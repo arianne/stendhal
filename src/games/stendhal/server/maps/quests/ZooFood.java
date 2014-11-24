@@ -272,7 +272,6 @@ public class ZooFood extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Zoo Food",
 				"The animals at the zoo are hungry and need some food!",
@@ -289,7 +288,7 @@ public class ZooFood extends AbstractQuest {
 	}
 	
 	@Override
-	public boolean isRepeatable(final Player player) {
+    public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,DELAY)).fire(player, null, null);
 	}

@@ -103,7 +103,6 @@ public class McPeglegIOU extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"McPegleg IOU",
 				"McPegleg doesn't always have cash to hand, and sometimes passes out IOUs instead.",

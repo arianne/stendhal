@@ -202,7 +202,6 @@ public class LookUpQuote extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Look Up Quote",
 				"Pequod has forgotten a quote by a famous fisherman.",

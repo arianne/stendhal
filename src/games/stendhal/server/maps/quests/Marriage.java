@@ -67,7 +67,6 @@ public class Marriage extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Marriage",
 				"Lucky ones who find a partner they want to share their life with can get married in Fado Church.",

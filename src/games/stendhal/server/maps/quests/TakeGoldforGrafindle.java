@@ -82,8 +82,8 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "lorithien", "done")) {
 			res.add("Because I'm a trustworthy person, I promised Grafindle to get the gold from Lorithien.");
 		}
-		if ((questState.equals("lorithien") && player.isEquipped("gold bar",
-				GOLD_AMOUNT))
+		if (questState.equals("lorithien") && player.isEquipped("gold bar",
+				GOLD_AMOUNT)
 				|| questState.equals("done")) {
 			res.add("Wohoo! I collected the gold bars Grafindle needs!");
 		}
@@ -240,7 +240,6 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Take gold for Grafindle",
 				"Grafindle in the bank of Nalwor, searches for someone he can trust with gold.",

@@ -90,7 +90,7 @@ public class MedicineForTad extends AbstractQuest {
 				"potion", "done")) {
 			res.add("He asked me to buy a flask from Margaret in Semos Tavern.");
 		}
-		if ((questState.equals("start") && player.isEquipped("flask"))
+		if (questState.equals("start") && player.isEquipped("flask")
 				|| player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs",
 						"potion", "done")) {
 			res.add("I got a flask and will bring it to Tad soon.");
@@ -102,7 +102,7 @@ public class MedicineForTad extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "corpse&herbs", "potion", "done")) {
 			res.add("Ilisa asked me to get a herb called Arandula which I can find north of Semos, near the tree grove.");
 		}
-		if ((questState.equals("corpse&herbs") && player.isEquipped("arandula"))
+		if (questState.equals("corpse&herbs") && player.isEquipped("arandula")
 				|| player.isQuestInState(QUEST_SLOT, "potion", "done")) {
 			res.add("I found some Arandula herbs and will bring them to Ilisa.");
 		}
@@ -350,7 +350,6 @@ public class MedicineForTad extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Medicine For Tad",
 				"Tad, a boy in Semos Hostel, needs help to get his medicine.",

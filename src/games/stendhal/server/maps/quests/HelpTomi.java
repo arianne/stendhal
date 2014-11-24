@@ -167,7 +167,6 @@ public class HelpTomi extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		// want "ice" and quest_messages to have same meaning in this quest
 		fillQuestInfo(
 				"Help Tomi",

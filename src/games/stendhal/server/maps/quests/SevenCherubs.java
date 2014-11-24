@@ -227,7 +227,6 @@ public class SevenCherubs extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
-		super.addToWorld();
 		fillHistoryMap();
 		fillQuestInfo(
 				"Seven Cherubs",

@@ -81,7 +81,6 @@ public class ElvishArmor extends AbstractQuest implements
 
   	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Elvish Armor",
 				"Lupos, an Albino elf, wants to get the knowledge of how he can make elvish armor parts himself. Therefore he asks young travellers to bring him some examples.",

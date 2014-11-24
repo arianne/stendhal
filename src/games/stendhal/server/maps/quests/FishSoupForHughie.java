@@ -110,7 +110,7 @@ public class FishSoupForHughie extends AbstractQuest {
 			return res;
 		}
 		res.add("I do want to help Hughie and Anastasia.");
-		if ((player.isEquipped("fish soup")) || isCompleted(player)) {
+		if (player.isEquipped("fish soup") || isCompleted(player)) {
 			res.add("I have fetched the fish soup needed to heal Hughie.");
 		}
 		if (isCompleted(player)) {
@@ -262,7 +262,6 @@ public class FishSoupForHughie extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Fish Soup For Hughie", 
 				"Anastasia's son Hughie is sick and needs something to heal him.", 

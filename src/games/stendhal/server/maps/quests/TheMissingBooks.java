@@ -206,7 +206,6 @@ public class TheMissingBooks extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"The missing books",
 				"Cameron, the librarian of Constantines Villa, searches some of his precious books.",

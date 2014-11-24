@@ -272,7 +272,6 @@ and ask for horse hair.
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		prepareQuestStep();
 		bringWoodStep();
 		getHairStep();
@@ -300,7 +299,7 @@ and ask for horse hair.
 		if(player.isQuestInState(QUEST_SLOT, "hair", "done")) {
 			res.add("Next I need to get some horse hairs, which Ouchit uses as bowstrings. I'm told the farmer Karl will help me.");
 		}
-		if((player.isEquipped("horse hair") && "hair".equals(questState)) || isCompleted(player)) {
+		if(player.isEquipped("horse hair") && "hair".equals(questState) || isCompleted(player)) {
 			res.add("Karl was kind and gave me some horse hairs.");
 		}
 		if (isCompleted(player)) {

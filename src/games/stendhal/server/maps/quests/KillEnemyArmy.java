@@ -241,7 +241,7 @@ import marauroa.common.Pair;
 		final List<String> enemyList = new LinkedList<String>(enemyForces.keySet());
 		final int enemySize = enemyList.size();
 		final int position  = Rand.rand(enemySize);
-		return(enemyList.get(position));
+		return enemyList.get(position);
 	}
 
 	/**
@@ -291,7 +291,7 @@ import marauroa.common.Pair;
 
 			count = count + solo - recsolo + shared - recshared;
 		}
-		return(count);
+		return count;
 	}
 
 
@@ -337,7 +337,7 @@ import marauroa.common.Pair;
 				speakerNPC.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
 						Grammar.plnoun(killed-killsnumber, "soldier")+"! Take these " + moneyreward + " coins, and remember, I may wish you to do this job again in one week!");
 			}
-			int karmabonus = 5*(2*killed/(killsnumber)-1);
+			int karmabonus = 5*(2*killed/killsnumber-1);
 			final StackableItem money = (StackableItem)
 					SingletonRepository.getEntityManager().getItem("money");
 			money.setQuantity(moneyreward);
@@ -468,7 +468,6 @@ import marauroa.common.Pair;
 	 */
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill Enemy Army",
 				"Despot Halb Errvl has a vendetta against any army who opposes him.",
@@ -481,7 +480,7 @@ import marauroa.common.Pair;
 	 */
 	@Override
 	public String getSlotName() {
-		return(QUEST_SLOT);
+		return QUEST_SLOT;
 	}
 
 	/**
@@ -489,7 +488,7 @@ import marauroa.common.Pair;
 	 */
 	@Override
 	public String getName() {
-		return("KillEnemyArmy");
+		return "KillEnemyArmy";
 	}
 	
 	@Override
@@ -528,7 +527,7 @@ import marauroa.common.Pair;
 			if(new KilledInSumForQuestCondition(QUEST_SLOT, 2, givenNumber).fire(player, null, null)) {
 				history.add("I have killed enough creatures to get my reward now.");
 			} else {
-				history.add((givenNumber-killedNumber)+" "+
+				history.add(givenNumber-killedNumber+" "+
 						Grammar.plnoun(givenNumber-killedNumber, givenEnemies)+" left to kill.");				
 			}
 		}

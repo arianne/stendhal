@@ -231,7 +231,6 @@ public class RainbowBeans extends AbstractQuest {
 			}
 
 		});
-		super.addToWorld();
 		fillQuestInfo(
 				"Rainbow Beans",
 				"Weird beans could be a way to strange and sometimes dangerous places!",

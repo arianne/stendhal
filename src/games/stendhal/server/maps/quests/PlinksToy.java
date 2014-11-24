@@ -78,7 +78,7 @@ public class PlinksToy extends AbstractQuest {
 			return res;
 		}
 		res.add("Plink begged me to look for his teddy in a garden with lots of wolves.");
-		if ((player.isEquipped("teddy")) || isCompleted(player)) {
+		if (player.isEquipped("teddy") || isCompleted(player)) {
 			res.add("I have found Plink's toy bear");
 		}
 		if (isCompleted(player)) {
@@ -178,7 +178,6 @@ public class PlinksToy extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Plinks toy",
 				"Plink is a sweet little boy, and like many little boys is frightened of wolves.",

@@ -79,7 +79,6 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		step_1();
 		setupAbstractQuest();
 		fillQuestInfo(

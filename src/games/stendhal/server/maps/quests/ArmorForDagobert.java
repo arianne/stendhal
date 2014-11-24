@@ -87,7 +87,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I promised to find a leather cuirass for him because he has been robbed.");
 		}
-		if (("start".equals(questState) && (player.isEquipped("leather cuirass") || player.isEquipped("pauldroned leather cuirass"))) || "done".equals(questState)) {
+		if ("start".equals(questState) && (player.isEquipped("leather cuirass") || player.isEquipped("pauldroned leather cuirass")) || "done".equals(questState)) {
 			res.add("I found a leather cuirass and will take it to Dagobert.");
 		}
 		if ("done".equals(questState)) {
@@ -208,7 +208,6 @@ public class ArmorForDagobert extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Armor For Dagobert",
 				"Dagobert, the consultant at the bank of Semos, needs protection.",

@@ -20,10 +20,6 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 
-import games.stendhal.server.maps.quests.captureflag.JoinCaptureFlagAction;
-import games.stendhal.server.maps.quests.captureflag.LeaveCaptureFlagAction;
-import games.stendhal.server.maps.quests.captureflag.ProvideCTFFlagsAction;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -157,7 +153,6 @@ public class CaptureFlagQuest extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		addTeamManagerNPC();
 	}

@@ -107,7 +107,6 @@ public class GuessKills extends AbstractQuest {
 
     @Override
     public void addToWorld() {
-        super.addToWorld();
         fillQuestInfo(
 				"The guessing game",
 				"Crearid plays a game where you guess how many creatures you have killed.",
@@ -157,7 +156,7 @@ public class GuessKills extends AbstractQuest {
 		} else if ("3".equals(state)) {
 			res.add("I have one guess left.");
 		} else if ("done".equals(state)) {
-			final long timeRemaining = (MathHelper.parseLong(time) + INTERVAL_BETWEEN_TRIES * MathHelper.MILLISECONDS_IN_ONE_MINUTE)
+			final long timeRemaining = MathHelper.parseLong(time) + INTERVAL_BETWEEN_TRIES * MathHelper.MILLISECONDS_IN_ONE_MINUTE
 					- System.currentTimeMillis();
 			
 			if (timeRemaining > 0) {
@@ -409,7 +408,7 @@ public class GuessKills extends AbstractQuest {
                     new ChatAction() {
                         @Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
-                        	int exactNumber = (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE));
+                        	int exactNumber = player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE);
                         	npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
                         	+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)
                         	+ " and " + Math.round(exactNumber + Math.max(exactNumber * 0.2, 10) - exactNumber * 0.1 * Rand.rand())

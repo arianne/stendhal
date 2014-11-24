@@ -113,8 +113,6 @@ public class DragonLair extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
-
 		step_1();
 		fillQuestInfo(
 				"Dragon Lair",

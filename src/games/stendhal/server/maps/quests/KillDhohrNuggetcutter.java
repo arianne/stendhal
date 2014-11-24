@@ -97,7 +97,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							final long delay = 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
-							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
+							final long timeRemaining = Long.parseLong(tokens[1]) + delay - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								raiser.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 								raiser.setCurrentState(ConversationStates.ATTENDING);
@@ -179,7 +179,6 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill Dhohr Nuggetcutter",
 				"Zogfang, the orc who guards the entrance of Abandoned Keep, isn't feeling safe while some dwarves still remain in the Keep.",

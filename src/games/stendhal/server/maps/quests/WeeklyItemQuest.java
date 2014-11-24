@@ -372,7 +372,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kirdneh museum needs help!",
 				"Hazel, the curator of the Kirdneh Museum, wants as many rare exhibits as she can afford.",

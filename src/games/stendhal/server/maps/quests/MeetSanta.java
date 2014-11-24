@@ -166,7 +166,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		// is it Christmas?
 		final Outfit outfit = player.getOutfit();
 		final int hairnumber = outfit.getHair();
-		if ((hairnumber >= 50) && (hairnumber < 94)) {
+		if (hairnumber >= 50 && hairnumber < 94) {
 			if (!isChristmasTime(new GregorianCalendar())) {
 				final int newhair = hairnumber - 50;
 				final Outfit newOutfit = new Outfit(null, newhair, null, null, null);
@@ -215,8 +215,6 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 
 	@Override
 	public void addToWorld() {
-
-		super.addToWorld();
 		fillQuestInfo(
 				"Meet Santa",
 				"Jingle bells, jingle bells, jingle all the way... Ho Ho Ho! Santa Claus delivers presents around Christmas time.",

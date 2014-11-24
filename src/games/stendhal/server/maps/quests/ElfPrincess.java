@@ -272,7 +272,6 @@ public class ElfPrincess extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Rhosyd for Elf Princess",
 				"Tywysoga, the Elf Princess in Nalwor Tower, wants to fill her room with precious rhosyds.",

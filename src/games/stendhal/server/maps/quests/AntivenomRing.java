@@ -621,7 +621,6 @@ public class AntivenomRing extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Antivenom Ring",
 				"As a favor to an old friend, Jameson the apothecary will strengthen the medicinal ring.",

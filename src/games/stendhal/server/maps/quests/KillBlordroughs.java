@@ -86,7 +86,7 @@ import org.apache.log4j.Logger;
 				blordroughs.add(creature);
 			}
 		}
-		return(blordroughs);
+		return blordroughs;
 	}
 
 	/**
@@ -96,9 +96,9 @@ import org.apache.log4j.Logger;
 	 */
 	private boolean questInProgress(final Player player) {
 		if(player.getQuest(QUEST_SLOT)!=null) {
-			return(!player.getQuest(QUEST_SLOT,0).equals("done"));
+			return !player.getQuest(QUEST_SLOT,0).equals("done");
 		}
-		return(false);
+		return false;
 	}
 
 	/**
@@ -132,8 +132,8 @@ import org.apache.log4j.Logger;
 		String reply = "";
 		String questLast = player.getQuest(QUEST_SLOT, 1);
 		if (questLast != null) {
-			final long timeRemaining = (Long.parseLong(questLast) +
-					questdelay - currenttime);
+			final long timeRemaining = Long.parseLong(questLast) +
+					questdelay - currenttime;
 
 			if (timeRemaining > 0) {
 				reply = "Please check back in "
@@ -148,7 +148,7 @@ import org.apache.log4j.Logger;
 						new Throwable());
 			}
 		}
-		return(reply);
+		return reply;
 	}
 
 	/**
@@ -196,7 +196,7 @@ import org.apache.log4j.Logger;
 
 			count = count + solo - recsolo + shared - recshared;
 		}
-		return(count);
+		return count;
 	}
 
 	/**
@@ -238,7 +238,7 @@ import org.apache.log4j.Logger;
 	 * @param killed - number of killed creatures.
 	 */
 	private void rewardPlayer(final Player player, int killed) {
-		int karmabonus = 5*(2*killed/(killsnumber)-1);
+		int karmabonus = 5*(2*killed/killsnumber-1);
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 			.getItem("money");
 		money.setQuantity(50000);
@@ -314,7 +314,6 @@ import org.apache.log4j.Logger;
 	@Override
 	public void addToWorld() {
 		npc = npcs.get(QUEST_NPC);
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill Blordroughs",
 				"Despot Halb Errvl wants some Blordrough warriors killed.",
@@ -333,7 +332,7 @@ import org.apache.log4j.Logger;
 	 */
 	@Override
 	public String getSlotName() {
-		return(QUEST_SLOT);
+		return QUEST_SLOT;
 	}
 
 	/**
@@ -341,7 +340,7 @@ import org.apache.log4j.Logger;
 	 */
 	@Override
 	public String getName() {
-		return("KillBlordroughs");
+		return "KillBlordroughs";
 	}
 
 	@Override

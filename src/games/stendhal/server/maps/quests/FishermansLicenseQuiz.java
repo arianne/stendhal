@@ -222,7 +222,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 						String species = getCurrentSpecies();
 						String obj = sentence.getObjectName();
 
-						if ((obj!=null && obj.contains(species)) ||
+						if (obj!=null && obj.contains(species) ||
 								sentence.getOriginalText().endsWith(species) ||
 								sentence.getNormalized().endsWith(species) ||
 								sentence.getTriggerExpression().matches(ConversationParser.createTriggerExpression(species))) {
@@ -261,7 +261,6 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Fishermans License Quiz",
 				"Santiago the fisherman will examine fishermen on their knowledge of fish species.",

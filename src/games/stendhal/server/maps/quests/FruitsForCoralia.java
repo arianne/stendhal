@@ -88,7 +88,6 @@ public class FruitsForCoralia extends AbstractQuest {
  
     @Override
     public void addToWorld() {
-        super.addToWorld();
         fillQuestInfo("Fruits for Coralia",
 				"The Ados Tavern barmaid, Coralia, searches for fresh fruits for her exotic hat.",
 				true);

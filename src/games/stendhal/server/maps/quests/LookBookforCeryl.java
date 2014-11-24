@@ -230,7 +230,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
 			res.add("I promised to fetch the black book from Jynath.");
 		}
-		if ((questState.equals("jynath") && player.isEquipped("black book"))
+		if (questState.equals("jynath") && player.isEquipped("black book")
 				|| questState.equals("done")) {
 			res.add("I have talked to Jynath, and have the book.");
 		}
@@ -245,7 +245,6 @@ public class LookBookforCeryl extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Look for a book for Ceryl",
 				"Ceryl wants an old book that was checked out.",

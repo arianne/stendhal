@@ -70,7 +70,6 @@ public class BalloonForBobby extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		prepareBalloonList();
 		prepareGreetWithBalloonStep();
 		prepareAttendingWithBalloonStep();

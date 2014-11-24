@@ -77,8 +77,8 @@ public class HatForMonogenes extends AbstractQuest {
 			return res;
 		}
 		res.add("I have to find a hat, something leather to keep his head warm.");
-		if ((player.isQuestInState(QUEST_SLOT, "start") 
-				&& player.isEquipped("leather helmet"))
+		if (player.isQuestInState(QUEST_SLOT, "start") 
+				&& player.isEquipped("leather helmet")
 				|| player.isQuestCompleted(QUEST_SLOT)) {
 			res.add("I have found a hat.");
 		}
@@ -177,7 +177,6 @@ public class HatForMonogenes extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Hat for Monogenes",
 				"Monogenes wants a hat to help him keep warm during the winter.",

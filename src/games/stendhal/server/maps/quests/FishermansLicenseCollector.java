@@ -241,7 +241,6 @@ public class FishermansLicenseCollector extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Fishermans License part 2",
 				"Santiago will grant a fishermans license to those who can prove their skills.",

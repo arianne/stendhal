@@ -116,7 +116,6 @@ public class MeetBunny extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Meet Easter Bunny",
 				"At Easter one may see the Easter Bunny hopping around the world of Faiumoni. Bunny is really fast even though he carries some heavy surprises with him...",

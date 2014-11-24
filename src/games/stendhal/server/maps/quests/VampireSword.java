@@ -308,7 +308,6 @@ public class VampireSword extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Vampire Sword",
 				"Hogart tells a thrilling story of vampires and betrayal. This inspires the idea of a life stealing sword he can forge.",
@@ -332,7 +331,7 @@ public class VampireSword extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I want the life stealing sword. I need to return to Hogart with a goblet of blood");
 		}
-		if ((questState.equals("start") && player.isEquipped("goblet"))
+		if (questState.equals("start") && player.isEquipped("goblet")
 				|| questState.equals("done")) {
 			res.add("I have filled the goblet and now I need to bring Hogart the materials he needs.");
 		}

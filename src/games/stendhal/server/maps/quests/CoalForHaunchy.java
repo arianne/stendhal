@@ -191,7 +191,6 @@ public class CoalForHaunchy extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Coal for Haunchy",
 				"Haunchy Meatoch is afraid of his BBQ grillfire. Will his coal last till the steaks are ready or will he need some more?",
@@ -215,7 +214,7 @@ public class CoalForHaunchy extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
 			res.add("The BBQ grill-heat is low and I promised Haunchy to help him out with 25 pieces of coal.");
 		}
-		if (("start".equals(questState) && player.isEquipped("coal",25)) || isCompleted(player)) {
+		if ("start".equals(questState) && player.isEquipped("coal",25) || isCompleted(player)) {
 			res.add("I found 25 pieces of coal for the Haunchy and think he will be happy.");
 		}
 		if (isCompleted(player)) {

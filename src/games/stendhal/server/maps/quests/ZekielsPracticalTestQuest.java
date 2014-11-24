@@ -338,7 +338,6 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Zekiels Practical Test",
 				"Zekiel, the guardian of the magic tower, knows all about the wizards domain and history.",
@@ -359,7 +358,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		}
 		final String questState = player.getQuest(QUEST_SLOT);
 		history.add("I entered the Wizards Circle tower. Zekiel the guardian asked me for items to make magic candles.");
-		if ((questState.equals("start") && player.isEquipped("beeswax", REQUIRED_BEESWAX) && player.isEquipped("iron", REQUIRED_IRON))
+		if (questState.equals("start") && player.isEquipped("beeswax", REQUIRED_BEESWAX) && player.isEquipped("iron", REQUIRED_IRON)
 				|| questState.equals("candles_done") || questState.endsWith("_step") || questState.equals("done")) {
 			history.add("I collected beeswax and iron for the magic candles which I will find on the next steps, if I pass each test.");
 		}

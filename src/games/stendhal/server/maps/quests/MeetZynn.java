@@ -150,7 +150,6 @@ public class MeetZynn extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Meet Zynn Iwuhos",
 				"Zynn Iwuhos, in the Semos library, is a great source of useful information.",

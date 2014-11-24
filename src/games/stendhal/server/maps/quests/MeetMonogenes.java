@@ -49,7 +49,6 @@ public class MeetMonogenes extends AbstractQuest {
 	}
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Meet Monogenes",
 				"A wise old man in Semos has a map to guide newcomers through the town.",

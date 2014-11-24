@@ -75,7 +75,6 @@ public class SheepGrowing extends AbstractQuest {
 
     @Override
     public void addToWorld() {
-        super.addToWorld();
         fillQuestInfo(
                 TITLE,
                 "Nishiya, the sheep seller, promised Sato a sheep. " +

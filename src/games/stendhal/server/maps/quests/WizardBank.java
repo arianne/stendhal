@@ -379,7 +379,6 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"The Wizard Bank",
 				"At the Wizard Bank, one can access many magical chests at once.",

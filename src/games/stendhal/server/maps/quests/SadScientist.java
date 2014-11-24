@@ -121,7 +121,7 @@ public class SadScientist extends AbstractQuest {
 			return res;
 		} 
 		res.add("Vasi Elos asked me bring gems, gold and mithril to make a present of jewelled legs for his honey, Vera.");
-		if ((getConditionForBeingInCollectionPhase()).fire(player,null,null)) {
+		if (getConditionForBeingInCollectionPhase().fire(player,null,null)) {
 			final ItemCollection missingItems = new ItemCollection();
 			missingItems.addFromQuestStateString(questState);
 			res.add("The jewelled legs still need " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
@@ -172,7 +172,6 @@ public class SadScientist extends AbstractQuest {
 	 */
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"A Sad Scientist",
 				"Vasi Elos, a lonely scientist, wants to deliver a present to his honey.",

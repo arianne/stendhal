@@ -155,7 +155,7 @@ public class FindJefsMom extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.ATTENDING,
-				("yet"),
+				"yet",
 				null,
 				ConversationStates.ATTENDING,
 				"The only thing I know is, that she had a little argument with her boyfriend, #Roger #Frampton earlier...",
@@ -163,7 +163,7 @@ public class FindJefsMom extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.ATTENDING,
-				("Jef"),
+				"Jef",
 				null,
 				ConversationStates.ATTENDING,
 				"Yes, that is me :)",
@@ -261,7 +261,6 @@ public class FindJefsMom extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Find Jefs mother",
 				"Jef, a young boy in Kirdneh city, waits for his mum Amber who didn't return yet from the market.",

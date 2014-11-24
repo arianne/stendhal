@@ -189,14 +189,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 	static class HenryQuestNotCompletedCondition implements ChatCondition {
 		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
+			return !player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start");
 		}
 	}
 
 	static class HenryQuestCompletedCondition implements ChatCondition {
 		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
+			return player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start");
 		}
 	}
 
@@ -439,7 +439,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kanmararn Soldiers",
 				"Some time ago, Sergeant James started with his crew of four brave soldiers to their adventure of finding a treasure in Kanmararn, the city of dwarves. They didn't return yet.",

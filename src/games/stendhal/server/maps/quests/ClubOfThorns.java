@@ -150,8 +150,6 @@ public class ClubOfThorns extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
-
 		step_1();
 		step_2();
 		step_3();
@@ -175,7 +173,7 @@ public class ClubOfThorns extends AbstractQuest {
 		if (questState.startsWith("start") || questState.equals("done")) {
 			res.add("I like a challenge and want to try kill the captive mountain orc chief. I was given the prison key.");
 		}
-		if ((questState.startsWith("start") && (new KilledForQuestCondition(QUEST_SLOT, 1)).fire(player,null,null)) || questState.equals("done")) {
+		if (questState.startsWith("start") && new KilledForQuestCondition(QUEST_SLOT, 1).fire(player,null,null) || questState.equals("done")) {
 			res.add("I killed the mountain orc chief in Kotoch Prison.");
 		}
 		if (questState.equals("done")) {

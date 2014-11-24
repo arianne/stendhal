@@ -212,7 +212,6 @@ public class RingMaker extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Ring Maker",
 				"Ognir, the expert on rings, is able to fix broken rings of life.",
@@ -235,7 +234,7 @@ public class RingMaker extends AbstractQuest {
 		// Note: this will not be seen till the forging stage starts as no quest slot is set before then.
 		res.add("Ognir said he can fix my ring of life by bringing him an emerald, 80000 money and 2 gold bars.");
 		final String questState = player.getQuest(QUEST_SLOT);
-		if (questState.startsWith(FORGING) && (new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null)) {
+		if (questState.startsWith(FORGING) && new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES).fire(player,null, null)) {
 				res.add("My fixed ring is ready to collect from Ognir! I must ask about \"life\" to get it back.");
 		} else if (questState.startsWith(FORGING) || isCompleted(player))  {
 				res.add("Ognir said it would take 10 minutes to fix my ring. I need to ask him about \"life\" so that he'll give it to me.");

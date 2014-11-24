@@ -209,7 +209,6 @@ public class GoodiesForRudolph extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Goodies for Rudolph",
 				"Rudolph, Santa's favorite reindeer, desperately wants some goodies.",

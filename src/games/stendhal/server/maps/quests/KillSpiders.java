@@ -90,7 +90,7 @@ public class KillSpiders extends AbstractQuest {
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
-							final long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
+							final long timeRemaining = Long.parseLong(tokens[1]) + delay - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								raiser.say("Sorry there is nothing to do for you yet. But maybe you could come back later. I have to clean the school once a week.");
 								return;
@@ -185,7 +185,6 @@ public class KillSpiders extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill spiders",
 				"Morgrin, groundskeeper of magic school, is concerned about spiders in the school basement.",

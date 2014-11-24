@@ -137,8 +137,8 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	 */
 	String generateRandomMessage() {
 		StringBuilder res = new StringBuilder();
-		for (int i = 0; i < TEMPLATES.length; i++) {
-			res.append(TEMPLATES[i][Rand.rand(TEMPLATES[i].length)]);
+		for (String[] element : TEMPLATES) {
+			res.append(element[Rand.rand(element.length)]);
 			res.append(" ");
 		}
 		return res.toString().trim();
@@ -294,7 +294,6 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		step1();
 		step2();
 		step3();
@@ -343,7 +342,8 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	 */
 	public class CreateAndSayCodedMessage implements ChatAction {
 
-		public void fire(Player player, Sentence sentence, EventRaiser npc) {
+		@Override
+        public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			String codedMessage = generateRandomMessage();
 			player.setQuest(QUEST_SLOT, QUEST_INDEX_MESSAGE, codedMessage);
 			npc.say(codedMessage);
@@ -372,7 +372,8 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	 */
 	public class TriggerMightbeACodedMessageCondition implements ChatCondition {
 
-		public boolean fire(Player player, Sentence sentence, Entity npc) {
+		@Override
+        public boolean fire(Player player, Sentence sentence, Entity npc) {
 			String originalText = sentence.getOriginalText();
 			int counter = 0;
 			for (int i = 0; i < originalText.length(); i++) {

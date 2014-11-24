@@ -95,8 +95,8 @@ public class HungryJoshua extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "joshua", "done")) {
 			res.add("I agreed to take 5 sandwiches to Joshua and tell him that I have his 'food'.");
 		}
-		if ((questState.equals("start") && player.isEquipped("sandwich",
-				FOOD_AMOUNT))
+		if (questState.equals("start") && player.isEquipped("sandwich",
+				FOOD_AMOUNT)
 				|| questState.equals("done")) {
 			res.add("I got five sandwiches to take Joshua.");
 		}
@@ -262,7 +262,6 @@ public class HungryJoshua extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Hungry Joshua",
 				"Xoderos is worried about his brother Joshua who lives in Ados because they are short of supplies.",

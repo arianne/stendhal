@@ -84,7 +84,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 		if (questState.equals("start") ||  questState.equals("done")) {
 			res.add("I want to help Zara soothe her skin. I need to get suntan cream from the lifeguards.");
 		}
-		if ((player.isEquipped("suntan cream") && questState.equals("start"))
+		if (player.isEquipped("suntan cream") && questState.equals("start")
 				|| questState.equals("done")) {
 			res.add("I got the suntan cream.");
 		}
@@ -211,7 +211,6 @@ public class SuntanCreamForZara extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Suntan Cream For Zara",
 				"Zara is burning under the hot Athor sun.",

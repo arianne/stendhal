@@ -69,7 +69,6 @@ public class WeaponsCollector extends AbstractQuest implements
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Weapon Collector",
 				"Balduin, the hermit who is living on Ados rock, wants to expand his weapons collection.",

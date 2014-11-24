@@ -168,7 +168,6 @@ public class MeetIo extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Meet Io",
 				"Io Flotto can teach about how to communicate.",

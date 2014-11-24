@@ -645,7 +645,6 @@ public class PizzaDelivery extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Pizza Delivery",
 				"Leander's pizza business is doing so well that he now recruits delivery boys and girls.",

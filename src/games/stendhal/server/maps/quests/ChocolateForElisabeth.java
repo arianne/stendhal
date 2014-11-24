@@ -302,7 +302,6 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	}
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Chocolate for Elisabeth",
 				"Sweet sweet chocolate! Noone can live without it! And Elisabeth loooves to have some...",

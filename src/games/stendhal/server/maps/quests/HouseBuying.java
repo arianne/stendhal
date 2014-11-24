@@ -28,7 +28,6 @@ public class HouseBuying extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 
 		quest = new HouseBuyingMain();
 		quest.addToWorld();

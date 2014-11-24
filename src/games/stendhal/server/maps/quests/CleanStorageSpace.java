@@ -78,7 +78,7 @@ public class CleanStorageSpace extends AbstractQuest {
 			return res;
 		}
 		res.add("I promised Eonna to kill the rats and snakes in her basement.");
-		if (("start".equals(questState) && player.hasKilled("rat") && player.hasKilled("caverat") && player.hasKilled("snake")) || "done".equals(questState)) {
+		if ("start".equals(questState) && player.hasKilled("rat") && player.hasKilled("caverat") && player.hasKilled("snake") || "done".equals(questState)) {
 			res.add("I have cleaned out Eonna's storage space.");
 		}
 		if ("done".equals(questState)) {
@@ -176,7 +176,6 @@ public class CleanStorageSpace extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Clean the Storage Space",
 				"Eonna is too scared to go into her underground storage space, as it is filled with rats and snakes.",

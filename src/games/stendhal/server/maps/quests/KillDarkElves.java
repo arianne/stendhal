@@ -238,7 +238,6 @@ public class KillDarkElves extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill Dark Elves",
 				"Maerion, leader of Elves, wants to kill dark elves in the secret room to hide his plots and get back his amulet.",
@@ -258,7 +257,7 @@ public class KillDarkElves extends AbstractQuest {
 	 * @return - list of dark elves to kill
 	 */
 	public List<String> getDrowCreaturesList() {
-		return(creatures);
+		return creatures;
 	}
 	
 	// Killing the thing probably requires a level even higher than this - but they can get help

@@ -275,7 +275,6 @@ public class FindGhosts extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Find Ghosts",
 				"Once upon a time, some travellers talked about some spirits which they visited on their way through Faiumoni. One of them, a young ghost called Carena, is hidden somewhere around Ados and needs some help...",

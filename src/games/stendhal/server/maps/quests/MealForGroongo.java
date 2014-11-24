@@ -230,13 +230,10 @@ public class MealForGroongo extends AbstractQuest {
 
     @Override
     public void addToWorld() {
-
-        super.addToWorld();
         fillQuestInfo(
             "Meal for Groongo Rahnnt",
             "Groongo is hungry and wants to have a decent meal at Fado's Hotel Restaurant.",
             true);
-
         stageBeginQuest();
         stageCollectIngredientsForMainDish();
         stageCheckForDessert();
@@ -281,10 +278,9 @@ public class MealForGroongo extends AbstractQuest {
                 } catch (final NumberFormatException e) {
                     timestamp = 0;
                 }
-                final long timeBeforeRepeatable = (
-                    timestamp
-                    + REPEATQUEST_DELAY * MathHelper.MILLISECONDS_IN_ONE_MINUTE
-                    - System.currentTimeMillis());
+                final long timeBeforeRepeatable = timestamp
+                + REPEATQUEST_DELAY * MathHelper.MILLISECONDS_IN_ONE_MINUTE
+                - System.currentTimeMillis();
                 res.add(
                     "He will be fine for at least " +
                     TimeUtil.approxTimeUntil((int) (timeBeforeRepeatable / 1000L)) + ".");
@@ -678,10 +674,9 @@ public class MealForGroongo extends AbstractQuest {
                 SpeakerNPC.say("A delicious choice indeed!");
             } else if ("fetch_dessert".equals(player.getQuest(QUEST_SLOT, 0))) {
                 final long timestamp = Long.parseLong(player.getQuest(QUEST_SLOT, 6));
-                final long timeToWaitForMealReady = (
-                    timestamp
-                    + MEALREADY_DELAY * MathHelper.MILLISECONDS_IN_ONE_MINUTE
-                    - System.currentTimeMillis());
+                final long timeToWaitForMealReady = timestamp
+                + MEALREADY_DELAY * MathHelper.MILLISECONDS_IN_ONE_MINUTE
+                - System.currentTimeMillis();
                 player.setQuest(QUEST_SLOT, 0, "prepare_decentmeal");
                 SpeakerNPC.say(
                     "Perfect! The decent meal for our troublesome customer will be ready in " +
@@ -1562,7 +1557,7 @@ public class MealForGroongo extends AbstractQuest {
                     sandwich.setQuantity(amountOfSandwiches);
                     sandwich.setBoundTo(player.getName());
                     sandwich.setDescription("You see an experimental sandwich made by Chef Stefan.");
-                    sandwich.put("amount", (player.getBaseHP()/2));
+                    sandwich.put("amount", player.getBaseHP()/2);
                     sandwich.put("frequency", 10);
                     sandwich.put("regen", 50);
                     sandwich.put("persistent", 1);

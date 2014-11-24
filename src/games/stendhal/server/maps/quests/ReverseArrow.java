@@ -138,8 +138,8 @@ public class ReverseArrow extends AbstractQuest implements
 			// check first row
 			for (int i = 1; i <= 3; i++) {
 				final Token token = tokens.get(i);
-				if ((token.getX() != topX - 1 + (i - 1))
-						|| (token.getY() != topY + 1)) {
+				if (token.getX() != topX - 1 + i - 1
+						|| token.getY() != topY + 1) {
 					return false;
 				}
 			}
@@ -147,8 +147,8 @@ public class ReverseArrow extends AbstractQuest implements
 			// check second row
 			for (int i = 4; i <= 8; i++) {
 				final Token token = tokens.get(i);
-				if ((token.getX() != topX - 2 + (i - 4))
-						|| (token.getY() != topY + 2)) {
+				if (token.getX() != topX - 2 + i - 4
+						|| token.getY() != topY + 2) {
 					return false;
 				}
 			}
@@ -162,7 +162,7 @@ public class ReverseArrow extends AbstractQuest implements
 		 */
 		@Override
 		public void onTurnReached(final int currentTurn) {
-			if (checkBoard() && (moveCount <= MAX_MOVES)) {
+			if (checkBoard() && moveCount <= MAX_MOVES) {
 				if (player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz again. But unfortunately I don't have any further rewards for you.");
 				} else {
@@ -236,7 +236,7 @@ public class ReverseArrow extends AbstractQuest implements
 			// Note that "player" always refers to the current player
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
-			if ((player == timerPlayer) && (player != null)) {
+			if (player == timerPlayer && player != null) {
 				final IRPZone playerZone = player.getZone();
 
 				if (playerZone.equals(zone)) {
@@ -406,7 +406,7 @@ public class ReverseArrow extends AbstractQuest implements
 		entranceZone = SingletonRepository.getRPWorld().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor");
 		door.setPosition(95, 101);
-		door.setIdentifier(Integer.valueOf((0)));
+		door.setIdentifier(Integer.valueOf(0));
 		door.setDestination(ZONE_NAME, Integer.valueOf(0));
 		entranceZone.add(door);
 
@@ -505,7 +505,6 @@ public class ReverseArrow extends AbstractQuest implements
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Reverse Arrow",
 				"Gamblos has a fun puzzle to solve.",

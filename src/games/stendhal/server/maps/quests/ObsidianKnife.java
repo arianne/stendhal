@@ -518,7 +518,6 @@ public class ObsidianKnife extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Obsidian Knife",
 				"A skilled dwarf blacksmith in Wo'fol is getting hungry, and bored...",

@@ -198,7 +198,6 @@ public class KillMonks extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill Monks",
 				"Andy's wife was killed by monks, now he wants revenge on them.",

@@ -135,7 +135,6 @@ public class LearnAboutOrbs extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Learn About Orbs",
 				"Ilisa will teach about using Orbs.",

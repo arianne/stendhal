@@ -44,7 +44,6 @@ public class Maze extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Maze",
 				"Haizen's maze is a great challenge for path finders.",

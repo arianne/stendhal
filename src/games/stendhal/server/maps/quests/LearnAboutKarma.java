@@ -176,7 +176,6 @@ public class LearnAboutKarma extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Learn About Karma", 
 				"Sarzina will teach about Karma.", 

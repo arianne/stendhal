@@ -100,7 +100,7 @@ public class Snowballs extends AbstractQuest {
 			return res;
 		}
 		res.add("Mr. Yeti asked me to collect some snowballs for him and I promised it.");
-		if ((player.isEquipped("snowball", REQUIRED_SNOWBALLS)) || isCompleted(player)) {
+		if (player.isEquipped("snowball", REQUIRED_SNOWBALLS) || isCompleted(player)) {
 			res.add("I found some snowballs after killing some ice golems.");
 		}
 		if (isCompleted(player)) {
@@ -268,7 +268,6 @@ public class Snowballs extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Snowballs for Mr. Yeti",
 				"The inhabitant of the icy region in Faiumoni needs your help to collect some snowballs for him.",

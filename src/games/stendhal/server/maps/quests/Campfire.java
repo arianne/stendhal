@@ -109,7 +109,7 @@ public class Campfire extends AbstractQuest {
 			return res;
 		}
 		res.add("I do want to help Sally");
-		if ((player.isEquipped("wood", REQUIRED_WOOD)) || isCompleted(player)) {
+		if (player.isEquipped("wood", REQUIRED_WOOD) || isCompleted(player)) {
 			res.add("I have found the 10 wood needed to start the fire");
 		}
 		if (isCompleted(player)) {
@@ -263,7 +263,6 @@ public class Campfire extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Campfire", 
 				"Sally wants to build a campfire, but she doesn't have any wood.", 

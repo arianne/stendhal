@@ -399,7 +399,6 @@ public class Soup extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Soup",
 				"Old Mother Helena makes a wonderful vegetable soup.",

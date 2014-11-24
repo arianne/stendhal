@@ -34,7 +34,6 @@ public class HerbsForJynath extends AbstractQuest {
     
     @Override
     public void addToWorld() {
-        super.addToWorld();
         prepareQuestStep();
         prepareBringingStep();
     }

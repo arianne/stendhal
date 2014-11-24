@@ -47,7 +47,6 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		System.setProperty("stendhal.minetown", "true");
-		super.addToWorld();
 
 		content.add(new FoundGirl());
 		content.add(new DadNPC());
@@ -60,7 +59,6 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 
 		// add it to the world
 		for (LoadableContent loadableContent : content) {
-			loadableContent.addToWorld();
 		}
 	}
 

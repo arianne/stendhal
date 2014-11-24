@@ -284,7 +284,6 @@ public class IcecreamForAnnie extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Ice cream for Annie",
 				"The best surprise for a litte girl like Annie is a cool ice cream on summer days while playing on the playground.",

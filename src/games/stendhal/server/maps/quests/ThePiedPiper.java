@@ -120,12 +120,12 @@ import org.apache.log4j.Logger;
     public static int getPhaseIndex(TPP_Phase ph) {
     	for (int i=0; i<getPhases().size(); i++) {
     		if(getPhases().get(i).getPhase().compareTo(ph)==0) {
-    			return(i);
+    			return i;
     		}
     	}
     	// didnt found it! 
     	logger.warn("Using improper phase for quest ("+ph.name()+"). size: "+getPhases().size());
-		return (-1);
+		return -1;
     }
     
     /**
@@ -135,10 +135,10 @@ import org.apache.log4j.Logger;
      */
     public static TPP_Phase getNextPhase(TPP_Phase ph) {
     	int pos=getPhaseIndex(ph);
-    	if(pos!=(getPhases().size()-1)) {
-		   return (getPhases().get(pos+1).getPhase());
+    	if(pos!=getPhases().size()-1) {
+		   return getPhases().get(pos+1).getPhase();
     	}
-    	return(getDefaultPhaseClass().getPhase());
+    	return getDefaultPhaseClass().getPhase();
     }
     
     /**
@@ -203,7 +203,7 @@ import org.apache.log4j.Logger;
 	 */
 	public static void setNewNotificationTime(int max, int min) {
 		TurnNotifier.get().dontNotify(questTimer);
-		if((max >= 0) && (min >= 0)) {
+		if(max >= 0 && min >= 0) {
 			TurnNotifier.get().notifyInSeconds(
 					Rand.randUniform(max, min),	questTimer);			
 		}
@@ -258,7 +258,6 @@ import org.apache.log4j.Logger;
 				"Ados City has a rat problem from time to time.",
 				true);
 
-		super.addToWorld();
 		startQuest();
 	}
 

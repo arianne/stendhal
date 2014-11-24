@@ -91,7 +91,6 @@ public class MithrilCloak extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Mithril Cloak",
 				"A shiny and high defence cloak is available for those willing to complete a long list of tasks for the seamstress Ida.",

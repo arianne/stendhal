@@ -75,7 +75,7 @@ public class MeetHayunn extends AbstractQuest {
 		}
 		final String questState = player.getQuest(QUEST_SLOT);
 		res.add("Hayunn Naratha is the first guy I ever met in this world, he challenged me to kill a rat.");
-		if (player.getQuest(QUEST_SLOT, 0).equals("start") && (new KilledForQuestCondition(QUEST_SLOT,1)).fire(player, null, null)) {
+		if (player.getQuest(QUEST_SLOT, 0).equals("start") && new KilledForQuestCondition(QUEST_SLOT,1).fire(player, null, null)) {
 			res.add("I killed that rat, I should go back to tell him!");
 		}
 		if (player.getQuest(QUEST_SLOT, 0).equals("start")) {
@@ -233,7 +233,6 @@ public class MeetHayunn extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Meet Hayunn Naratha",
 				"Hayunn Naratha can teach young heroes important basics of the Stendhal world.",

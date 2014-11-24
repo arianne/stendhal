@@ -293,7 +293,6 @@ import org.apache.log4j.Logger;
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Jailed Barbarian",
 				"Lorenz is a jailed Barbarian on Amazon Island. It's a mystery why he is jailed there, but perhaps he needs help.",

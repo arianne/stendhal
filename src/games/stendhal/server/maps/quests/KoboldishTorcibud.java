@@ -124,7 +124,6 @@ public class KoboldishTorcibud extends AbstractQuest {
 
     @Override
     public void addToWorld() {
-        super.addToWorld();
         fillQuestInfo(
             "Koboldish Torcibud",
             "Wrviliza needs some stuff to prepare her famous Koboldish Torcibud.",
@@ -167,7 +166,7 @@ public class KoboldishTorcibud extends AbstractQuest {
                 } catch (final NumberFormatException e) {
                     timestamp = 0;
                 }
-                final long timeRemaining = (timestamp - System.currentTimeMillis());
+                final long timeRemaining = timestamp - System.currentTimeMillis();
                 res.add("Her stock of supplies will be fine for " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
             }
         } else {
@@ -236,9 +235,9 @@ public class KoboldishTorcibud extends AbstractQuest {
         int FACTOR_BOTTLE_EARED = 80;
 		int FACTOR_MANDRAGORA = 100;
 
-        int required_bottle_eared = Rand.roll1D6() + (pLevel / FACTOR_BOTTLE_EARED);
-        int required_bottle_slim = Rand.roll1D6() + (pLevel / FACTOR_BOTTLE_SLIM);
-		int required_mandragora = Rand.randUniform(1,3) + (pLevel / FACTOR_MANDRAGORA);
+        int required_bottle_eared = Rand.roll1D6() + pLevel / FACTOR_BOTTLE_EARED;
+        int required_bottle_slim = Rand.roll1D6() + pLevel / FACTOR_BOTTLE_SLIM;
+		int required_mandragora = Rand.randUniform(1,3) + pLevel / FACTOR_MANDRAGORA;
 
         return
             "eared bottle=" + required_bottle_eared + ";" +

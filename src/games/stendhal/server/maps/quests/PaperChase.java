@@ -255,7 +255,6 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Paper Chase",
 				"Some rumours are going around in Faiumoni. Maybe some of the guys who live around there know something.",

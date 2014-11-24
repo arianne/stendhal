@@ -171,7 +171,6 @@ public class KillGnomes extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Kill Gnomes",
 				"Jenny isn't happy that gnomes keep stealing her carrots.",

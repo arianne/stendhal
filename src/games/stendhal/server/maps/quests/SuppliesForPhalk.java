@@ -441,7 +441,6 @@ import org.apache.log4j.Logger;
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Supplies for Phalk",
 				"Phalk, the dwarvish guard in Semos Mine, is in need of supplies.",

@@ -422,7 +422,6 @@ public class EmotionCrystals extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Emotion Crystals",
 				"Julius needs to get some crystals for his wife which are spread across Faiumoni.",

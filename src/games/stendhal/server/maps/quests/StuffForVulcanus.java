@@ -164,7 +164,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							- Integer.parseInt(tokens[4]);
 					boolean missingSomething = false;
 
-					if (!missingSomething && (neededIron > 0)) {
+					if (!missingSomething && neededIron > 0) {
 						if (player.isEquipped("iron", neededIron)) {
 							player.drop("iron", neededIron);
 							neededIron = 0;
@@ -183,7 +183,7 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && (neededWoodLogs > 0)) {
+					if (!missingSomething && neededWoodLogs > 0) {
 						if (player.isEquipped("wood", neededWoodLogs)) {
 							player.drop("wood", neededWoodLogs);
 							neededWoodLogs = 0;
@@ -201,7 +201,7 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && (neededGoldBars > 0)) {
+					if (!missingSomething && neededGoldBars > 0) {
 						if (player.isEquipped("gold bar", neededGoldBars)) {
 							player.drop("gold bar", neededGoldBars);
 							neededGoldBars = 0;
@@ -217,7 +217,7 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 					}
 
-					if (!missingSomething && (neededGiantHearts > 0)) {
+					if (!missingSomething && neededGiantHearts > 0) {
 						if (player.isEquipped("giant heart", neededGiantHearts)) {
 							player.drop("giant heart", neededGiantHearts);
 							neededGiantHearts = 0;
@@ -266,7 +266,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
 					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					final long timeRemaining = Long.parseLong(tokens[1]) + delay
 							- System.currentTimeMillis();
 
 					if (timeRemaining > 0L) {
@@ -339,7 +339,6 @@ public class StuffForVulcanus extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Stuff for Vulcanus",
 				"Vulcanus, the son of Zeus himself, will forge the god's sword.",

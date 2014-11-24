@@ -249,7 +249,6 @@ public class MixtureForOrtiv extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Mixture for Ortiv",
 				"Ortiv needs some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar.",

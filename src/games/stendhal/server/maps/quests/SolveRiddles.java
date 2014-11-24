@@ -193,7 +193,7 @@ public class SolveRiddles extends AbstractQuest {
 			@Override
 			public void endElement(final String uri, final String lName, final String qName) {
 				if (qName.equals("entry")) {
-					if ((currentKey != null) && (currentAnswer != null)) {
+					if (currentKey != null && currentAnswer != null) {
 						addAnswer(currentKey, currentAnswer);
 					} else {
 						logger.error("Error reading riddles, Key=" + currentKey + " " + " Answer=" + currentAnswer);
@@ -297,7 +297,6 @@ public class SolveRiddles extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Solve Riddles",
 				"The Grim Reapers pose tricky riddles for those who want to leave the hottest place in Faiumoni.",

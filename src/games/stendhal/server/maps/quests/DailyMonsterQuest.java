@@ -144,7 +144,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			raiser.say("Semos is in need of help. Go kill " + Grammar.a_nounCreature(creatureName)
 					+ " and say #complete, once you're done.");
 
-			questLast = "" + (new Date()).getTime();
+			questLast = "" + new Date().getTime();
 			player.setQuest(
 					QUEST_SLOT, 
 					creatureName + ",0,1,"+
@@ -174,8 +174,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 					break;
 				}
 				// Set the weakest creature
-				if ((!lowerBoundIsSet) && (creature.getLevel() > 0)
-						&& (creature.getLevel() >= level - 5)) {
+				if (!lowerBoundIsSet && creature.getLevel() > 0
+						&& creature.getLevel() >= level - 5) {
 					start = current;
 					lowerBoundIsSet = true;
 				}
@@ -207,8 +207,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			// shouldn't happen
-			if ((current < start) || (start < 0)
-					|| (current >= creatureList.size())) {
+			if (current < start || start < 0
+					|| current >= creatureList.size()) {
 				if (testMode) {
 					logger.debug("ERROR: <"+level + "> start=" + start + 
 							", current=" + current);
@@ -283,7 +283,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		if (player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String questLast = tokens[1];
-			final long timeRemaining = (Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_DAY)
+			final long timeRemaining = Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_DAY
 					- System.currentTimeMillis();
 
 			if (timeRemaining > 0L) {
@@ -481,7 +481,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Daily Monster Quest",
 				"Mayor Sakhs needs warriors to keep Semos city safe.",

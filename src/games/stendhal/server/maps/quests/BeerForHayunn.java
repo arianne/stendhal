@@ -84,7 +84,7 @@ public class BeerForHayunn extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I promised to buy him a beer from Margaret in Semos Tavern.");
 		}
-		if (("start".equals(questState) && player.isEquipped("beer"))
+		if ("start".equals(questState) && player.isEquipped("beer")
 				|| "done".equals(questState)) {
 			res.add("I have a bottle of beer.");
 		}
@@ -198,7 +198,6 @@ public class BeerForHayunn extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Beer for Hayunn",
 				"Hayunn Naratha, the great warrior in Semos Guard House, wants a beer.",

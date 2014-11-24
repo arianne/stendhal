@@ -280,7 +280,6 @@ public class HerbsForCarmen extends AbstractQuest {
 	
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Herbs for Carmen",
 				"The Semos healer, Carmen, searches for ingredients to make potions and other useful medicines with.",

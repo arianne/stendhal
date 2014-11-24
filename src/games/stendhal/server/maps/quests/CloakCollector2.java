@@ -365,7 +365,6 @@ public class CloakCollector2 extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		step_1();
 		step_2();
 		step_3();

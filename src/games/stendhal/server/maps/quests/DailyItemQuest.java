@@ -430,11 +430,11 @@ public class DailyItemQuest extends AbstractQuest {
 			String questItem = player.getRequiredItemName(QUEST_SLOT,0);
 			int amount = player.getRequiredItemQuantity(QUEST_SLOT,0);
 			if (!player.isEquipped(questItem, amount)) {
-				res.add(("I have been asked to fetch "
-						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados. I haven't got it yet."));
+				res.add("I have been asked to fetch "
+						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados. I haven't got it yet.");
 			} else {
-				res.add(("I have found "
-						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados and need to take it."));
+				res.add("I have found "
+						+ Grammar.quantityplnoun(amount, questItem, "a") + " to help Ados and need to take it.");
 			}
 		}
 		int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
@@ -452,7 +452,6 @@ public class DailyItemQuest extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Daily Item Quest",
 				"Mayor Chalmers needs supplies for Ados City.",

@@ -201,7 +201,6 @@ public class CleanAthorsUnderground extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Clean Athors underground",
 				"John and his wife Jane want to explore Athor underground on their vacation but unfortunately they can't.",

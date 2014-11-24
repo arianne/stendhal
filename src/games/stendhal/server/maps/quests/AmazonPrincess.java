@@ -177,7 +177,6 @@ npc.add(ConversationStates.ATTENDING,
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Amazon Princess",
 				"A thirsty princess wants a drink.",
@@ -201,7 +200,7 @@ npc.add(ConversationStates.ATTENDING,
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
 			res.add("The Princess is thirsty, I promised her an exotic drink, and should tell her 'drink' when I have it.");
 		}
-		if (("start".equals(questState) && player.isEquipped("pina colada")) || isCompleted(player)) {
+		if ("start".equals(questState) && player.isEquipped("pina colada") || isCompleted(player)) {
 			res.add("I found a pina colada for the Princess, I think she'd like that.");
 		}
         if (isCompleted(player)) {

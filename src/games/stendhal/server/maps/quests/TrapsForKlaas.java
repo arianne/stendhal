@@ -243,7 +243,6 @@ public class TrapsForKlaas extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Traps for Klaas",
 				"Klaas, the cargo caretaker on the Athor ferry, is in need of some rodent traps.",

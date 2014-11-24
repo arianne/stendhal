@@ -295,7 +295,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		step_1();
 		step_2();
 		step_3();

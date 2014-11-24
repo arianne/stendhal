@@ -245,7 +245,6 @@ public class WaterForXhiphin extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Water For Xhiphin Zohos",
 				"Xhiphin Zohos wants some nice fresh water.",

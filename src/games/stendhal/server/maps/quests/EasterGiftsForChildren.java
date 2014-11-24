@@ -87,7 +87,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I promised to bring Caroline some sweets for children around Faiumoni as an Easter gift.");
 		}
-		if (("start".equals(questState) && (player.isEquipped("chocolate bar", 5)  && player.isEquipped("small easter egg", 1) && player.isEquipped("apple", 5)  && player.isEquipped("cherry", 5))) || "done".equals(questState)) {
+		if ("start".equals(questState) && player.isEquipped("chocolate bar", 5)  && player.isEquipped("small easter egg", 1) && player.isEquipped("apple", 5)  && player.isEquipped("cherry", 5) || "done".equals(questState)) {
 			res.add("I got all the sweets and will take them to Caroline.");
 		}
 		if ("done".equals(questState)) {
@@ -247,7 +247,6 @@ public class EasterGiftsForChildren extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				"Easter Gifts For Children",
 				"Caroline, the nice tavern owner in Ados city, wants to make some children happy during Easter holidays.",

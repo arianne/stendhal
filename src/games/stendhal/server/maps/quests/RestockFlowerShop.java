@@ -361,7 +361,6 @@ public class RestockFlowerShop extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		super.addToWorld();
 		fillQuestInfo(
 				getTitle(),
 				getNPCName() + " needs to restock the flower shop in Nalwor City.",
