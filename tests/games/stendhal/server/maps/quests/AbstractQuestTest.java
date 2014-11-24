@@ -38,7 +38,7 @@ public class AbstractQuestTest {
 		public String getName() {
 			return null;
 		}
-		
+
 		@Override
 		public List<String> getHistory(final Player player) {
 			return new ArrayList<String>();
@@ -47,6 +47,11 @@ public class AbstractQuestTest {
 		@Override
 		public String getNPCName() {
 			return QUESTNPCNAME;
+		}
+
+		@Override
+		public void addToWorld() {
+			// do nothing
 		}
 	}
 	@BeforeClass
@@ -63,7 +68,7 @@ public class AbstractQuestTest {
 	private static String QUESTSlotSTRING = "TESTQUEST";
 
 	private static String QUESTNAMESTRING = "test quest name";
-	
+
 	private static String QUESTNPCNAME = "test npc name";
 
 
@@ -78,7 +83,7 @@ public class AbstractQuestTest {
 		assertTrue(quest.getHint(pl).isEmpty());
 		assertTrue(quest.getHistory(pl).isEmpty());
 	}
-	
+
 	/**
 	 * Tests for getLevel.
 	 */
@@ -89,7 +94,7 @@ public class AbstractQuestTest {
 		final AbstractQuest quest = new Mockquest();
 		assertTrue(quest.getMinLevel()==0);
 	}
-	
+
 	/**
 	 * Tests for isCompleted.
 	 */
@@ -166,17 +171,22 @@ public class AbstractQuestTest {
 			public String getName() {
 				return QUESTNAMESTRING;
 			}
-			
+
 			@Override
 			public List<String> getHistory(final Player player) {
 				return new ArrayList<String>();
 			}
+
+			@Override
+			public void addToWorld() {
+				// do nothing
+			}
 		};
 
-		
+
 		assertEquals(QUESTNAMESTRING, quest.getName());
 	}
-	
+
 	/**
 	 * Tests for isVisibleOnQuestStatus.
 	 */
@@ -186,14 +196,14 @@ public class AbstractQuestTest {
 		assertTrue("abstract quests are visible by default",
 				quest.isVisibleOnQuestStatus());
 	}
-	
+
 	/**
 	 * Tests for getNPCName.
 	 */
 	@Test
 	public final void testGetNPCName() {
 		final AbstractQuest quest = new Mockquest();
-		
+
 		assertEquals(QUESTNPCNAME, quest.getNPCName());
 	}
 
