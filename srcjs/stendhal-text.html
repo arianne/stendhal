@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width">
-<title>Stendhal Admin Client</title>
+<title>Stendhal Text Client</title>
 <style type="text/css">
 html, body {font-family: "Arial"; height: 100%; margin: 0; padding:0; overflow:hidden}
 #chatbar {width: 100%;}
@@ -50,7 +50,7 @@ p.logsupport {color: #ff7200}
 <body id="body" onload="stendhalStartClient()">
 
 <div id="chat"></div>
-<input type="text" name="chatbar" id="chatbar" onkeypress="if (event.keyCode == 13) {stendhal.ui.chatBar.send(); return false}; return true">
+<input type="text" name="chatbar" id="chatbar" autocomplete="off" onkeypress="if (event.keyCode == 13) {stendhal.ui.chatBar.send(); return false}; return true">
 
 </body>
 </html>
