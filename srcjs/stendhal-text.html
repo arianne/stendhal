@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Stendhal Text Client</title>
 <style type="text/css">
 html, body {
@@ -21,9 +21,9 @@ body {
 }
 #chat p {margin: 0}
 #chatbar {
-	width: 90%;
+	width: 99%;
 	align-self: flex-end;
-	height: 3.5em;
+	height: 1.2em;
 }
 p.logerror {color: #F00}
 p.logprivmsg {color: #444}
@@ -67,8 +67,7 @@ p.logsupport {color: #ff7200}
 <body id="body" onload="stendhalStartClient()">
 
 <div id="chat"></div>
-<textarea type="text" name="chatbar" id="chatbar" autocomplete="off" onkeypress="if (event.keyCode == 13) {stendhal.ui.chatBar.send(); return false}; return true">
-</textarea>
+<input type="text" name="chatbar" id="chatbar" autocomplete="off" onkeypress="if (event.keyCode == 13) {stendhal.ui.chatBar.send(); return false}; return true">
 
 </body>
 </html>
