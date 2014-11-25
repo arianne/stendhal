@@ -26,7 +26,7 @@ stendhal.ui.equip = {
 			if (typeof(s) != "undefined") {
 				var o = s.first();
 				if (typeof(o) != "undefined") {
-					document.getElementById(this.slots[i]).style.backgroundImage = "url(" + stendhal.server + "/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
+					document.getElementById(this.slots[i]).style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
 				} else {
 					document.getElementById(this.slots[i]).style.backgroundImage = "none";
 				}
@@ -55,7 +55,7 @@ stendhal.ui.itemContainerWindow = {
 		for (var i in marauroa.me[name]) {
 			if (!isNaN(i)) {
 				var o = marauroa.me[name][i];
-				document.getElementById(name + cnt).style.backgroundImage = "url(" + stendhal.server + "/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
+				document.getElementById(name + cnt).style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
 				cnt++;
 			}
 		}
