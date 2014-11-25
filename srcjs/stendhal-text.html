@@ -4,10 +4,27 @@
 <meta name="viewport" content="width=device-width">
 <title>Stendhal Text Client</title>
 <style type="text/css">
-html, body {font-family: "Arial"; height: 100%; margin: 0; padding:0; overflow:hidden}
-#chatbar {width: 100%;}
-#chat {height: 85%; border: 1px solid #000; padding:0.5em; overflow-y: scroll}
+html, body {
+	font-family: "Arial"; height: 100%; width: 100%;
+	margin: 0; padding: 0; 	overflow:hidden;
+}
+body {
+	display: flex;
+	flex-direction: column;
+}
+#chat {
+	border: 1px solid #000; 
+	overflow-y: scroll;
+	word-wrap: break-word;
+	flex-grow: 1;
+	padding:0.5em;
+}
 #chat p {margin: 0}
+#chatbar {
+	width: 90%;
+	align-self: flex-end;
+	height: 3-5em;
+}
 p.logerror {color: #F00}
 p.logprivmsg {color: #444}
 p.logclient {color: #888}
@@ -50,7 +67,8 @@ p.logsupport {color: #ff7200}
 <body id="body" onload="stendhalStartClient()">
 
 <div id="chat"></div>
-<input type="text" name="chatbar" id="chatbar" autocomplete="off" onkeypress="if (event.keyCode == 13) {stendhal.ui.chatBar.send(); return false}; return true">
+<textarea type="text" name="chatbar" id="chatbar" autocomplete="off" onkeypress="if (event.keyCode == 13) {stendhal.ui.chatBar.send(); return false}; return true">
+</textarea>
 
 </body>
 </html>
