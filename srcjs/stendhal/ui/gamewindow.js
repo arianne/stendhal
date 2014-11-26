@@ -20,6 +20,7 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.gamewindow = {
 	offsetX: 0,
 	offsetY: 0,
+	timeStamp: new Date().getTime(),
 
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -87,10 +88,14 @@ stendhal.ui.gamewindow = {
 
 	// TODO: sort marauroa.currentZone[i] by z-order and position
 	drawEntities: function() {
-		var i;
-		for (i in marauroa.currentZone) {
-			if (typeof(marauroa.currentZone[i].draw) != "undefined") {
-				marauroa.currentZone[i].draw(this.ctx);
+		var currentTime = new Date().getTime();
+		var time = currentTime - this.timeStamp;
+		this.timeStamp = currentTime;
+		for (var i in marauroa.currentZone) {
+			var entity = marauroa.currentZone[i];
+			if (typeof(entity.draw) != "undefined") {
+				entity.updatePosition(time);
+				entity.draw(this.ctx);
 			}
 		}
 	},
@@ -107,8 +112,8 @@ stendhal.ui.gamewindow = {
 	
 	adjustView: function(canvas) {
 		// Coordinates for a screen centered on player
-		var centerX = marauroa.me.x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
-		var centerY = marauroa.me.y * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
+		var centerX = marauroa.me._x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
+		var centerY = marauroa.me._y * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
 
 		// Keep the world within the screen view
 		centerX = Math.min(centerX, stendhal.data.map.zoneSizeX * this.targetTileWidth - canvas.width);
@@ -117,7 +122,7 @@ stendhal.ui.gamewindow = {
 		centerY = Math.min(centerY, stendhal.data.map.zoneSizeY * this.targetTileHeight - canvas.height);
 		centerY = Math.max(centerY, 0);
 
-		this.ctx.translate(-centerX, -centerY);
+		this.ctx.translate(Math.round(-centerX), Math.round(-centerY));
 		this.offsetX = Math.floor(centerX / this.targetTileWidth);
 		this.offsetY = Math.floor(centerY / this.targetTileHeight);
 	}

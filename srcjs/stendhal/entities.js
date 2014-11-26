@@ -97,8 +97,8 @@ marauroa.rpobjectFactory.rpentity.draw = function(ctx) {
 
 
 marauroa.rpobjectFactory.rpentity.drawSprite = function(ctx, filename) {
-	var localX = this.x * 32;
-	var localY = this.y * 32;
+	var localX = this._x * 32;
+	var localY = this._y * 32;
 	var image = stendhal.data.sprites.get(filename);
 	if (image.complete) {
 		// TODO: animate
@@ -113,8 +113,8 @@ marauroa.rpobjectFactory.rpentity.drawSprite = function(ctx, filename) {
 
 
 marauroa.rpobjectFactory.rpentity.drawTop = function(ctx) {
-	var localX = this.x * 32;
-	var localY = this.y * 32;
+	var localX = this._x * 32;
+	var localY = this._y * 32;
 	if (typeof(this.title) != "undefined") {
 		var textMetrics = ctx.measureText(this.title);
 		ctx.font = "14px Arial";
@@ -124,7 +124,6 @@ marauroa.rpobjectFactory.rpentity.drawTop = function(ctx) {
 		ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2, localY - 32);
 	}
 }
-
 
 /**
  * Player
@@ -167,3 +166,31 @@ marauroa.rpobjectFactory.npc.titleStyle = "#0000A0";
 
 
 marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.entity;
+
+marauroa.rpobjectFactory.entity.updatePosition = function(time) {
+	if (this._y == undefined) {
+		this._y = 1 * this.y;
+	}
+	if (this._x == undefined) {
+		this._x = 1 * this.x;
+	}
+	
+	if (this.speed > 0) {
+		var movement = this.speed * time / 300;
+		// switch does not work, for some reason
+		// The stupid calculations are to work around JS' broken typing
+		if (this.dir == 1) {
+			this._y = this._y - movement;
+			this._x = 1 * this.x;
+		} else if (this.dir == 2) {
+			this._x = 1 * this._x + movement;
+			this._y = 1 * this.y;
+		} else if (this.dir == 3) {
+			this._y = 1 * this._y + movement;
+			this._x = 1 * this.x;
+		} else if (this.dir == 4) {
+			this._x = 1 * this._x - movement;
+			this._y = 1 * this.y;
+		}
+	}
+}
