@@ -37,7 +37,8 @@ stendhal.ui.gamewindow = {
 
 		for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 			var name = stendhal.data.map.layerNames[drawingLayer];
-			if (name != "protection" && name != "collision" && name != "objects") {
+			if (name != "protection" && name != "collision" && name != "objects"
+				&& name != "blend_ground" && name != "blend_roof") {
 				this.paintLayer(canvas, drawingLayer);
 			}
 			if (name == "2_object") {
