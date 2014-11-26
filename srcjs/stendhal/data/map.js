@@ -176,6 +176,9 @@ stendhal.data.map = {
 				var decoder = new JXG.Util.Unzip(JXG.Util.Base64.decodeAsArray(mapData));
 				var data = decoder.unzip()[0][0];
 				this.readLayer(layerName, data);
+				if (layerName == "collision") {
+					this.collisionData = this.layers[this.layers.length - 1];
+				}
 			}
 		}
 		new ImagePreloader(images, function() {
@@ -227,5 +230,9 @@ stendhal.data.map = {
 			}
 			this.requestMap("/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx");
 		}
+	},
+	
+	collision: function(x, y) {
+		return this.collisionData[y * stendhal.data.map.numberOfXTiles + x] != 0;
 	}
 }
