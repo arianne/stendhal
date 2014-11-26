@@ -38,7 +38,7 @@ stendhal.ui.gamewindow = {
 		for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 			var name = stendhal.data.map.layerNames[drawingLayer];
 			if (name != "protection" && name != "collision" && name != "objects") {
-				this.paintLayer(drawingLayer);
+				this.paintLayer(canvas, drawingLayer);
 			}
 			if (name == "2_object") {
 				this.drawEntities();
@@ -53,11 +53,13 @@ stendhal.ui.gamewindow = {
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 	},
 
-	paintLayer: function(drawingLayer) {
+	paintLayer: function(canvas, drawingLayer) {
 		var layer = stendhal.data.map.layers[drawingLayer];
-		for (var y=0; y < stendhal.data.map.zoneSizeY; y++) {
-			for (var x=0; x < stendhal.data.map.zoneSizeX; x++) {
-				var gid = layer[(this.offsetY + y) * stendhal.data.map.numberOfXTiles + (this.offsetX + x)];
+		var yMax = Math.min(this.offsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
+		var xMax = Math.min(this.offsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
+		for (var y=this.offsetY; y < yMax; y++) {
+			for (var x=this.offsetX; x < xMax; x++) {
+				var gid = layer[y * stendhal.data.map.numberOfXTiles + x];
 				if (gid > 0) {
 					var tileset = stendhal.data.map.getTilesetForGid(gid);
 					var base = stendhal.data.map.firstgids[tileset];
@@ -69,8 +71,8 @@ stendhal.ui.gamewindow = {
 							this.ctx.drawImage(aImages[tileset],
 								(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight, 
 								stendhal.data.map.tileWidth, stendhal.data.map.tileHeight, 
-								(x + this.offsetX) * this.targetTileWidth,
-								(y + this.offsetY) * this.targetTileHeight,
+								x * this.targetTileWidth,
+								y * this.targetTileHeight,
 								this.targetTileWidth, this.targetTileHeight);
 						}
 					} catch (e) {
