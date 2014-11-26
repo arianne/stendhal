@@ -90,8 +90,7 @@ stendhal.ui.gamewindow = {
 		var i;
 		for (i in marauroa.currentZone) {
 			if (typeof(marauroa.currentZone[i].draw) != "undefined") {
-				//marauroa.currentZone[i].draw(this.ctx, this.offsetX, this.offsetY);
-				marauroa.currentZone[i].draw(this.ctx, 0, 0);
+				marauroa.currentZone[i].draw(this.ctx);
 			}
 		}
 	},
@@ -101,8 +100,7 @@ stendhal.ui.gamewindow = {
 		var i;
 		for (i in marauroa.currentZone) {
 			if (typeof(marauroa.currentZone[i].drawTop) != "undefined") {
-				//marauroa.currentZone[i].drawTop(this.ctx, this.offsetX, this.offsetY);
-				marauroa.currentZone[i].drawTop(this.ctx, 0, 0);
+				marauroa.currentZone[i].drawTop(this.ctx);
 			}
 		}
 	},
