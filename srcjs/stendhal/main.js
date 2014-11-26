@@ -15,7 +15,11 @@ window.stendhal = window.stendhal || {};
 
 stendhal.main = {
 
+	/**
+	 * register marauroa event handlers.
+	 */
 	registerMarauroaEventHandlers: function() {
+
 		marauroa.clientFramework.onDisconnect = function(reason, error){
 			stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
 		}
@@ -52,13 +56,32 @@ stendhal.main = {
 				}
 			}
 		}
+
+		// update user interface on perceptions
+		if (document.getElementById("gamewindow")) {
+			marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
+				stendhal.ui.minimap.drawEntities();
+				stendhal.ui.buddyList.update();
+				stendhal.ui.equip.update();
+				stendhal.ui.bag.update();
+				stendhal.ui.keyring.update();
+				stendhal.data.map.load(marauroa.currentZoneName);
+			}
+		}
 	},
-	
+
+
+	/**
+	 * registers global browser event handlers.
+	 */
 	registerBrowserEventHandlers: function() {
 		document.onkeydown=stendhal.ui.chatBar.keydown;
 		document.onkeyup=stendhal.ui.chatBar.keyup;
 	},
 
+	/**
+	 * starts the Stendhal web client and connects to the Stendhal server.
+	 */
 	startup: function() {
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
 		var body = document.getElementById("body")

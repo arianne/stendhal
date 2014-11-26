@@ -65,16 +65,6 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 </head>
 <body id="body">
 
-<script type="text/javascript">
-marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
-	stendhal.ui.minimap.drawEntities();
-	stendhal.ui.buddyList.update();
-	stendhal.ui.equip.update();
-	stendhal.ui.bag.update();
-	stendhal.ui.keyring.update();
-	stendhal.data.map.load(marauroa.currentZoneName);
-}
-</script>
 
 <div style="float:left; width:130px">
 <canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
