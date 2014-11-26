@@ -33,6 +33,7 @@ stendhal.ui.gamewindow = {
 
 		this.ctx = canvas.getContext("2d");
 		this.ctx.globalAlpha = 1.0;
+		this.adjustView(canvas);
 
 		for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 			var name = stendhal.data.map.layerNames[drawingLayer];
@@ -54,8 +55,8 @@ stendhal.ui.gamewindow = {
 
 	paintLayer: function(drawingLayer) {
 		var layer = stendhal.data.map.layers[drawingLayer];
-		for (var y=0; y < Math.min(stendhal.data.map.zoneSizeY, stendhal.data.map.sizeY); y++) {
-			for (var x=0; x < Math.min(stendhal.data.map.zoneSizeX, stendhal.data.map.sizeX); x++) {
+		for (var y=0; y < stendhal.data.map.zoneSizeY; y++) {
+			for (var x=0; x < stendhal.data.map.zoneSizeX; x++) {
 				var gid = layer[(this.offsetY + y) * stendhal.data.map.numberOfXTiles + (this.offsetX + x)];
 				if (gid > 0) {
 					var tileset = stendhal.data.map.getTilesetForGid(gid);
@@ -68,7 +69,8 @@ stendhal.ui.gamewindow = {
 							this.ctx.drawImage(aImages[tileset],
 								(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight, 
 								stendhal.data.map.tileWidth, stendhal.data.map.tileHeight, 
-								x * this.targetTileWidth, y * this.targetTileHeight, 
+								(x + this.offsetX) * this.targetTileWidth,
+								(y + this.offsetY) * this.targetTileHeight,
 								this.targetTileWidth, this.targetTileHeight);
 						}
 					} catch (e) {
@@ -85,7 +87,8 @@ stendhal.ui.gamewindow = {
 		var i;
 		for (i in marauroa.currentZone) {
 			if (typeof(marauroa.currentZone[i].draw) != "undefined") {
-				marauroa.currentZone[i].draw(this.ctx, this.offsetX, this.offsetY);
+				//marauroa.currentZone[i].draw(this.ctx, this.offsetX, this.offsetY);
+				marauroa.currentZone[i].draw(this.ctx, 0, 0);
 			}
 		}
 	},
@@ -95,8 +98,26 @@ stendhal.ui.gamewindow = {
 		var i;
 		for (i in marauroa.currentZone) {
 			if (typeof(marauroa.currentZone[i].drawTop) != "undefined") {
-				marauroa.currentZone[i].drawTop(this.ctx, this.offsetX, this.offsetY);
+				//marauroa.currentZone[i].drawTop(this.ctx, this.offsetX, this.offsetY);
+				marauroa.currentZone[i].drawTop(this.ctx, 0, 0);
 			}
 		}
+	},
+	
+	adjustView: function(canvas) {
+		// Coordinates for a screen centered on player
+		var centerX = marauroa.me.x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
+		var centerY = marauroa.me.y * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
+
+		// Keep the world within the screen view
+		centerX = Math.min(centerX, stendhal.data.map.zoneSizeX * this.targetTileWidth - canvas.width);
+		centerX = Math.max(centerX, 0);
+		
+		centerY = Math.min(centerY, stendhal.data.map.zoneSizeY * this.targetTileHeight - canvas.height);
+		centerY = Math.max(centerY, 0);
+
+		this.ctx.translate(-centerX, -centerY);
+		this.offsetX = Math.floor(centerX / this.targetTileWidth);
+		this.offsetY = Math.floor(centerY / this.targetTileHeight);
 	}
 }
