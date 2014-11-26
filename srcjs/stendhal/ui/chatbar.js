@@ -67,6 +67,7 @@ stendhal.ui.chatBar = {
 			}
 		}
 	},
+
 	keyup: function(e) {
 		var event = e
 		if (!event) {
@@ -89,6 +90,15 @@ stendhal.ui.chatBar = {
 			marauroa.clientFramework.sendAction(action);
 		}
 	},
+	
+	keypress: function(e) {
+		if (e.keyCode == 13) {
+			stendhal.ui.chatBar.send();
+			return false;
+		}
+		return true;
+	},
+
 	remember: function(text) {
 		if (this.history.length > 100) {
 			this.history.shift();
