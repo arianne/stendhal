@@ -125,5 +125,38 @@ stendhal.ui.gamewindow = {
 		this.ctx.translate(Math.round(-centerX), Math.round(-centerY));
 		this.offsetX = Math.floor(centerX / this.targetTileWidth);
 		this.offsetY = Math.floor(centerY / this.targetTileHeight);
+	},
+
+	onclick: function(event) {
+		// https://stackoverflow.com/questions/55677/ by Ryan Artecona
+		function relMouseCoords(event){
+		    var totalOffsetX = 0;
+		    var totalOffsetY = 0;
+		    var canvasX = 0;
+		    var canvasY = 0;
+		    var currentElement = event.target;
+		    do {
+		        totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+		        totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+		    }
+		    while(currentElement = currentElement.offsetParent)
+
+		    canvasX = event.pageX - totalOffsetX;
+		    canvasY = event.pageY - totalOffsetY;
+
+		    return {x:canvasX, y:canvasY}
+		}
+		// end
+		
+		var pos = relMouseCoords(event);
+		
+		console.log(event, pos, pos.x / 32 + stendhal.ui.gamewindow.offsetX, pos.y / 32 + stendhal.ui.gamewindow.offsetY);
+		var action = {
+				"type": "moveto", 
+				"x": "" + Math.floor(pos.x / 32 + stendhal.ui.gamewindow.offsetX),
+				"y": "" + Math.floor(pos.y / 32 + stendhal.ui.gamewindow.offsetY)
+				// TODO: "extend": direction
+			};
+		marauroa.clientFramework.sendAction(action);
 	}
 }
