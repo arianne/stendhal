@@ -91,16 +91,7 @@ marauroa.rpobjectFactory.activeEntity.updatePosition = function(time) {
 			this._x = this._x - movement;
 			this._y = serverY;
 		}
-		// FIXME: collision rectangle handling probably does not belong here.
-		// Just testing the idea.
-		var lowX = Math.floor(this._x);
-		var lowY = Math.floor(this._y);
-		var highX = Math.ceil(this._x);
-		var highY = Math.ceil(this._y);
-		if (stendhal.data.map.collision(lowX, lowY)
-				|| stendhal.data.map.collision(lowX, highY)
-				|| stendhal.data.map.collision(highX, lowY)
-				|| stendhal.data.map.collision(highX, highY)) {
+		if (this.collidesMap()) {
 			this._x = oldX;
 			this._y = oldY;
 		}
@@ -110,7 +101,21 @@ marauroa.rpobjectFactory.activeEntity.updatePosition = function(time) {
 		this._y = serverY;
 	}
 }
-
+/** Check if the entity collides with the collision map. */
+marauroa.rpobjectFactory.activeEntity.collidesMap = function() {
+	var startX = Math.floor(this._x);
+	var startY = Math.floor(this._y);
+	var endX = Math.ceil(this._x + parseFloat(this.width));
+	var endY = Math.ceil(this._y + parseFloat(this.height));
+	for (var y = startY; y < endY; y++) {
+		for (var x = startX; x < endX; x++) {
+			if (stendhal.data.map.collision(x, y)) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
 
 /**
  * RPEntity
