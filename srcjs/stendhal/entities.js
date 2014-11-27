@@ -31,10 +31,10 @@ marauroa.rpobjectFactory.entity.set = function(key, value) {
 // Ensure that the drawing code can rely on _x and _y
 marauroa.rpobjectFactory.entity.updatePosition = function(time) {
 	if (this._y == undefined) {
-		this._y = 1 * this.y;
+		this._y = parseFloat(this.y);
 	}
 	if (this._x == undefined) {
-		this._x = 1 * this.x;
+		this._x = parseFloat(this.x);
 	}
 }
 
@@ -61,33 +61,53 @@ marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
  */
 marauroa.rpobjectFactory.activeEntity = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
 marauroa.rpobjectFactory.activeEntity.updatePosition = function(time) {
-	if (this._y == undefined) {
-		this._y = 1 * this.y;
-	}
+	var serverX = parseFloat(this.x);
+	var serverY = parseFloat(this.y);
 	if (this._x == undefined) {
-		this._x = 1 * this.x;
+		this._x = serverX;
+	}
+	if (this._y == undefined) {
+		this._y = serverY;
 	}
 
 	if (this.speed > 0) {
+		var oldX = this._x;
+		var oldY = this._y;
 		var movement = this.speed * time / 300;
-		// The stupid calculations are to work around JS' broken typing
 		switch (this.dir) {
 		case "1":
 			this._y = this._y - movement;
-			this._x = 1 * this.x;
+			this._x = serverX;
 			break;
 		case "2":
-			this._x = 1 * this._x + movement;
-			this._y = 1 * this.y;
+			this._x = this._x + movement;
+			this._y = serverY;
 			break;
 		case "3": 
-			this._y = 1 * this._y + movement;
-			this._x = 1 * this.x;
+			this._y = this._y + movement;
+			this._x = serverX;
 			break;
 		case "4":
-			this._x = 1 * this._x - movement;
-			this._y = 1 * this.y;
+			this._x = this._x - movement;
+			this._y = serverY;
 		}
+		// FIXME: collision rectangle handling probably does not belong here.
+		// Just testing the idea.
+		var lowX = Math.floor(this._x);
+		var lowY = Math.floor(this._y);
+		var highX = Math.ceil(this._x);
+		var highY = Math.ceil(this._y);
+		if (stendhal.data.map.collision(lowX, lowY)
+				|| stendhal.data.map.collision(lowX, highY)
+				|| stendhal.data.map.collision(highX, lowY)
+				|| stendhal.data.map.collision(highX, highY)) {
+			this._x = oldX;
+			this._y = oldY;
+		}
+	} else {
+		// Restore server coordinates when the entity is not moving
+		this._x = serverX;
+		this._y = serverY;
 	}
 }
 
