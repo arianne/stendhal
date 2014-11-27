@@ -28,6 +28,15 @@ marauroa.rpobjectFactory.entity.set = function(key, value) {
 		this[key] = value;
 	}
 }
+// Ensure that the drawing code can rely on _x and _y
+marauroa.rpobjectFactory.entity.updatePosition = function(time) {
+	if (this._y == undefined) {
+		this._y = 1 * this.y;
+	}
+	if (this._x == undefined) {
+		this._x = 1 * this.x;
+	}
+}
 
 
 
@@ -47,11 +56,46 @@ marauroa.rpobjectFactory.portal.minimapShow = true;
 marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
 
 
+/**
+ * ActiveEntity
+ */
+marauroa.rpobjectFactory.activeEntity = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.activeEntity.updatePosition = function(time) {
+	if (this._y == undefined) {
+		this._y = 1 * this.y;
+	}
+	if (this._x == undefined) {
+		this._x = 1 * this.x;
+	}
+
+	if (this.speed > 0) {
+		var movement = this.speed * time / 300;
+		// The stupid calculations are to work around JS' broken typing
+		switch (this.dir) {
+		case "1":
+			this._y = this._y - movement;
+			this._x = 1 * this.x;
+			break;
+		case "2":
+			this._x = 1 * this._x + movement;
+			this._y = 1 * this.y;
+			break;
+		case "3": 
+			this._y = 1 * this._y + movement;
+			this._x = 1 * this.x;
+			break;
+		case "4":
+			this._x = 1 * this._x - movement;
+			this._y = 1 * this.y;
+		}
+	}
+}
+
 
 /**
  * RPEntity
  */
-marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.activeEntity);
 marauroa.rpobjectFactory.rpentity.drawY = 0;
 marauroa.rpobjectFactory.rpentity.spritePath = "";
 marauroa.rpobjectFactory.rpentity.titleStyle = "#FFFFFF";
@@ -102,7 +146,6 @@ marauroa.rpobjectFactory.rpentity.drawSprite = function(ctx, filename) {
 	var image = stendhal.data.sprites.get(filename);
 	if (image.complete) {
 		// TODO: animate
-		// TODO: smooth walking on sub tiles
 		var drawHeight = image.height / 4;
 		var drawWidth = image.width / 3;
 		var drawX = ((this.width * 32) - drawWidth) / 2;
@@ -166,31 +209,3 @@ marauroa.rpobjectFactory.npc.titleStyle = "#0000A0";
 
 
 marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.entity;
-
-marauroa.rpobjectFactory.entity.updatePosition = function(time) {
-	if (this._y == undefined) {
-		this._y = 1 * this.y;
-	}
-	if (this._x == undefined) {
-		this._x = 1 * this.x;
-	}
-	
-	if (this.speed > 0) {
-		var movement = this.speed * time / 300;
-		// switch does not work, for some reason
-		// The stupid calculations are to work around JS' broken typing
-		if (this.dir == 1) {
-			this._y = this._y - movement;
-			this._x = 1 * this.x;
-		} else if (this.dir == 2) {
-			this._x = 1 * this._x + movement;
-			this._y = 1 * this.y;
-		} else if (this.dir == 3) {
-			this._y = 1 * this._y + movement;
-			this._x = 1 * this.x;
-		} else if (this.dir == 4) {
-			this._x = 1 * this._x - movement;
-			this._y = 1 * this.y;
-		}
-	}
-}
