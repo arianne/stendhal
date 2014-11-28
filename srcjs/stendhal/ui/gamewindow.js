@@ -24,32 +24,35 @@ stendhal.ui.gamewindow = {
 
 	draw: function() {
 		var startTime = new Date().getTime();
-		var canvas = document.getElementById("gamewindow");
-		canvas.style.display = "none";
-		this.targetTileWidth = 32;
-		this.targetTileHeight = 32;
-		canvas.width = stendhal.data.map.sizeX * this.targetTileWidth;
-		canvas.height = stendhal.data.map.sizeY * this.targetTileHeight;
-		this.drawingError = false;
 
-		this.ctx = canvas.getContext("2d");
-		this.ctx.globalAlpha = 1.0;
-		this.adjustView(canvas);
+		if (document.visibilityState == "visible") {
 
-		for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
-			var name = stendhal.data.map.layerNames[drawingLayer];
-			if (name != "protection" && name != "collision" && name != "objects"
-				&& name != "blend_ground" && name != "blend_roof") {
-				this.paintLayer(canvas, drawingLayer);
+			var canvas = document.getElementById("gamewindow");
+			canvas.style.display = "none";
+			this.targetTileWidth = 32;
+			this.targetTileHeight = 32;
+			canvas.width = stendhal.data.map.sizeX * this.targetTileWidth;
+			canvas.height = stendhal.data.map.sizeY * this.targetTileHeight;
+			this.drawingError = false;
+
+			this.ctx = canvas.getContext("2d");
+			this.ctx.globalAlpha = 1.0;
+			this.adjustView(canvas);
+
+			for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
+				var name = stendhal.data.map.layerNames[drawingLayer];
+				if (name != "protection" && name != "collision" && name != "objects"
+					&& name != "blend_ground" && name != "blend_roof") {
+					this.paintLayer(canvas, drawingLayer);
+				}
+				if (name == "2_object") {
+					this.drawEntities();
+				}
 			}
-			if (name == "2_object") {
-				this.drawEntities();
-			}
+			this.drawEntitiesTop();
+
+			canvas.style.display = "block";
 		}
-		this.drawEntitiesTop();
-
-		canvas.style.display = "block";
-
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
@@ -149,8 +152,6 @@ stendhal.ui.gamewindow = {
 		// end
 		
 		var pos = relMouseCoords(event);
-		
-		console.log(event, pos, pos.x / 32 + stendhal.ui.gamewindow.offsetX, pos.y / 32 + stendhal.ui.gamewindow.offsetY);
 		var action = {
 				"type": "moveto", 
 				"x": "" + Math.floor(pos.x / 32 + stendhal.ui.gamewindow.offsetX),
