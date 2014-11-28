@@ -20,6 +20,7 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.chatBar = {
 	history: [],
 	historyIndex: 0,
+	pressedKeys: {},
 
 	clear: function() {
 		document.getElementById('chatbar').value = '';
@@ -55,16 +56,23 @@ stendhal.ui.chatBar = {
 			} else if (code == 40){
 				stendhal.ui.chatBar.fromHistory(1);
 			}
-		} else {
-			// Movement
-			if (code >= 37 && code <= 40) {
-				var dir = code - 37;
-				if (dir == 0) {
-					dir = 4;
-				}
-				var action = {"type": "move", "dir": ""+dir};
-				marauroa.clientFramework.sendAction(action);
+			return;
+		}
+
+		// if this is a repeated event, stop further processing
+		if (stendhal.ui.chatBar.pressedKeys[code]) {
+			return;
+		}
+		stendhal.ui.chatBar.pressedKeys[code] = true;
+
+		// Movement
+		if (code >= 37 && code <= 40) {
+			var dir = code - 37;
+			if (dir == 0) {
+				dir = 4;
 			}
+			var action = {"type": "move", "dir": ""+dir};
+			marauroa.clientFramework.sendAction(action);
 		}
 	},
 
@@ -79,6 +87,7 @@ stendhal.ui.chatBar = {
 		} else {
 			code = e.keyCode;
 		}
+		delete stendhal.ui.chatBar.pressedKeys[code];
 
 		// Movement
 		if (code >= 37 && code <= 40) {
