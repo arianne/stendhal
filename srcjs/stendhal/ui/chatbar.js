@@ -50,13 +50,14 @@ stendhal.ui.chatBar = {
 		} else {
 			code = e.keyCode;
 		}
+		
+		// chat history
 		if (event.shiftKey) {
 			if (code == 38) {
 				stendhal.ui.chatBar.fromHistory(-1);
 			} else if (code == 40){
 				stendhal.ui.chatBar.fromHistory(1);
 			}
-			return;
 		}
 
 		// if this is a repeated event, stop further processing
@@ -65,13 +66,17 @@ stendhal.ui.chatBar = {
 		}
 		stendhal.ui.chatBar.pressedKeys[code] = true;
 
-		// Movement
+		// Face and Movement
+		var type = "move";
+		if (event.shiftKey) {
+			type = "face";
+		}
 		if (code >= 37 && code <= 40) {
 			var dir = code - 37;
 			if (dir == 0) {
 				dir = 4;
 			}
-			var action = {"type": "move", "dir": ""+dir};
+			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
 		}
 	},
