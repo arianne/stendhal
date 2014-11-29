@@ -65,8 +65,8 @@ marauroa.rpobjectFactory.activeEntity = marauroa.util.fromProto(marauroa.rpobjec
 	collidesMap: function() {
 		var startX = Math.floor(this._x);
 		var startY = Math.floor(this._y);
-		var endX = Math.ceil(this._x + parseFloat(this.width));
-		var endY = Math.ceil(this._y + parseFloat(this.height));
+		var endX = Math.ceil(this._x + this.width);
+		var endY = Math.ceil(this._y + this.height);
 		for (var y = startY; y < endY; y++) {
 			for (var x = startX; x < endX; x++) {
 				if (stendhal.data.map.collision(x, y)) {
