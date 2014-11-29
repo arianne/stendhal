@@ -152,12 +152,7 @@ stendhal.ui.gamewindow = {
 		// end
 		
 		var pos = relMouseCoords(event);
-		var action = {
-				"type": "moveto", 
-				"x": "" + Math.floor(pos.x / 32 + stendhal.ui.gamewindow.offsetX),
-				"y": "" + Math.floor(pos.y / 32 + stendhal.ui.gamewindow.offsetY)
-				// TODO: "extend": direction
-			};
-		marauroa.clientFramework.sendAction(action);
+		stendhal.zone.entityAt(pos.x / 32 + stendhal.ui.gamewindow.offsetX, 
+				pos.y / 32 + stendhal.ui.gamewindow.offsetY).onclick(pos.x, pos.y);
 	}
 }

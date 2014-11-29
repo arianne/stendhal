@@ -11,49 +11,20 @@
  ***************************************************************************/
 
 "use strict";
+window.stendhal = window.stendhal || {};
+stendhal.zone = stendhal.zone || {};
 
 /**
- * General entity
+ * a pseudo entity which represents the ground
  */
-marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default, { 
-	minimapShow: false,
-	minimapStyle: "rgb(200,255,200)",
-
-	set: function(key, value) {
-		marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);
-		if (key == 'name') {
-			if (typeof(this['title']) == "undefined") {
-				this['title'] = value;
-			}
-		} else if (['x', 'y', 'height', 'width'].indexOf(key) > -1) {
-			this[key] = parseInt(value);
-		} else {
-			this[key] = value;
-		}
-	},
-
-	/**
-	 *  Ensure that the drawing code can rely on _x and _y
-	 */
-	updatePosition: function(time) {
-		if (this._y == undefined) {
-			this._y = parseFloat(this.y);
-		}
-		if (this._x == undefined) {
-			this._x = parseFloat(this.x);
-		}
-	},
-
+stendhal.zone.ground = {
 	onclick: function(x, y) {
-		marauroa.log.debug(this, x, y);
 		var action = {
-				"type": "look", 
-				"target": "#" + this.id
+				"type": "moveto", 
+				"x": "" + Math.floor(x / 32 + stendhal.ui.gamewindow.offsetX),
+				"y": "" + Math.floor(y / 32 + stendhal.ui.gamewindow.offsetY)
+				// TODO: "extend": direction
 			};
 		marauroa.clientFramework.sendAction(action);
 	}
-});
-
-
-
-marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.entity;
+};
