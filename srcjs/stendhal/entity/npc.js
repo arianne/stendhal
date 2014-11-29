@@ -16,7 +16,8 @@
 /**
  * NPC
  */
-marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
-marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
-marauroa.rpobjectFactory.npc.spritePath = "npc";
-marauroa.rpobjectFactory.npc.titleStyle = "#0000A0";
+marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
+	minimapStyle: "rgb(0,0,255)",
+	spritePath: "npc",
+	titleStyle: "#0000A0"
+});

@@ -15,6 +15,8 @@
 /**
  * Item
  */
-marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
-marauroa.rpobjectFactory.item.minimapStyle = "rgb(0,255,0)";
+marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+
+	minimapStyle: "rgb(0,255,0)"
+});
 

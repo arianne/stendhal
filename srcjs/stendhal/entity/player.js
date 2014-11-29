@@ -15,20 +15,26 @@
 /**
  * Player
  */
-marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
-marauroa.rpobjectFactory.player.minimapShow = true;
-marauroa.rpobjectFactory.player.minimapStyle = "rgb(255, 255, 255)";
-marauroa.rpobjectFactory.player.dir = 3;
+marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
 
+	minimapShow: true,
+	minimapStyle: "rgb(255, 255, 255)",
+	dir: 3,
 
+	/**
+	 * Is this player an admin?
+	 */
+	isAdmin = function() {
+		return (typeof(this.adminlevel) != "undefined" && this.adminlevel > 600);
+	},
 
-/** Is this player an admin? */
-marauroa.rpobjectFactory.player.isAdmin = function() {
-	return (typeof(this.adminlevel) != "undefined" && this.adminlevel > 600);
-}
-
-/** Can the player hear this chat message? */
-marauroa.rpobjectFactory.player.isInHearingRange = function(entity) {
-	return (this.isAdmin() || ((Math.abs(this.x - entity.x) < 15) && (Math.abs(this.y - entity.y) < 15)));
-}
+	/** 
+	 * Can the player hear this chat message?
+	 */
+	isInHearingRange = function(entity) {
+		return (this.isAdmin() 
+			|| ((Math.abs(this.x - entity.x) < 15) 
+				&& (Math.abs(this.y - entity.y) < 15)));
+	}
+});
 

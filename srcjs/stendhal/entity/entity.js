@@ -15,28 +15,33 @@
 /**
  * General entity
  */
-marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default);
-marauroa.rpobjectFactory.entity.minimapShow = false;
-marauroa.rpobjectFactory.entity.minimapStyle = "rgb(200,255,200)";
-marauroa.rpobjectFactory.entity.set = function(key, value) {
-	marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);
-	if (key == 'name') {
-		if (typeof(this['title']) == "undefined") {
-			this['title'] = value;
+marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default, { 
+	minimapShow: false,
+	minimapStyle: "rgb(200,255,200)",
+
+	set: function(key, value) {
+		marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);
+		if (key == 'name') {
+			if (typeof(this['title']) == "undefined") {
+				this['title'] = value;
+			}
+		} else {
+			this[key] = value;
 		}
-	} else {
-		this[key] = value;
+	},
+
+	/**
+	 *  Ensure that the drawing code can rely on _x and _y
+	 */
+	updatePosition: function(time) {
+		if (this._y == undefined) {
+			this._y = parseFloat(this.y);
+		}
+		if (this._x == undefined) {
+			this._x = parseFloat(this.x);
+		}
 	}
-}
-// Ensure that the drawing code can rely on _x and _y
-marauroa.rpobjectFactory.entity.updatePosition = function(time) {
-	if (this._y == undefined) {
-		this._y = parseFloat(this.y);
-	}
-	if (this._x == undefined) {
-		this._x = parseFloat(this.x);
-	}
-}
+});
 
 
 

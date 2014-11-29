@@ -15,7 +15,8 @@
 /**
  * Creature
  */
-marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
-marauroa.rpobjectFactory.creature.minimapStyle = "rgb(255,255,0)";
-marauroa.rpobjectFactory.creature.spritePath = "monsters";
-marauroa.rpobjectFactory.creature.titleStyle = "#A00000";
+marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
+	minimapStyle: "rgb(255,255,0)",
+	spritePath: "monsters",
+	titleStyle: "#A00000"
+});

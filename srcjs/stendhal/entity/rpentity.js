@@ -15,50 +15,55 @@
 /**
  * RPEntity
  */
-marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.activeEntity);
-marauroa.rpobjectFactory.rpentity.drawY = 0;
-marauroa.rpobjectFactory.rpentity.spritePath = "";
-marauroa.rpobjectFactory.rpentity.titleStyle = "#FFFFFF";
-marauroa.rpobjectFactory.rpentity.set = function(key, value) {
-	marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
-	if (key == "text") {
-		this.say(value);
-	}
-}
+marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.activeEntity, {
+	drawY: 0,
+	spritePath: "",
+	titleStyle: "#FFFFFF",
 
-/** says a text */
-marauroa.rpobjectFactory.rpentity.say = function (text) {
-	if (marauroa.me.isInHearingRange(this)) {
-		if (text.match("^!me") == "!me") {
-			stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
+	set = function(key, value) {
+		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
+		if (key == "text") {
+			this.say(value);
+		}
+	},
+
+	/** 
+	 * says a text
+	 */
+	say = function (text) {
+		if (marauroa.me.isInHearingRange(this)) {
+			if (text.match("^!me") == "!me") {
+				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
+			} else {
+				stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
+			}
+		}
+	},
+
+	/** 
+	 * draw RPEntities
+	 */
+	draw = function(ctx) {
+		var filename;
+		if (typeof(this.outfit) != "undefined") {
+			filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
+			this.drawSprite(ctx, filename)
+			filename = "/data/sprites/outfit/dress_" + (Math.floor(this.outfit/100) % 100) + ".png";
+			this.drawSprite(ctx, filename)
+			filename = "/data/sprites/outfit/head_" + (Math.floor(this.outfit/10000) % 100) + ".png";
+			this.drawSprite(ctx, filename)
+			filename = "/data/sprites/outfit/hair_" + (Math.floor(this.outfit/1000000) % 100) + ".png";
+			this.drawSprite(ctx, filename)
 		} else {
-			stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
+			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
+			if (typeof(this.subclass) != "undefined") {
+				filename = filename + "/" + this["subclass"];
+			}
+			filename = filename + ".png";
+			this.drawSprite(ctx, filename)
 		}
 	}
-}
-
-/** draw RPEntities */
-marauroa.rpobjectFactory.rpentity.draw = function(ctx) {
-	var filename;
-	if (typeof(this.outfit) != "undefined") {
-		filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
-		this.drawSprite(ctx, filename)
-		filename = "/data/sprites/outfit/dress_" + (Math.floor(this.outfit/100) % 100) + ".png";
-		this.drawSprite(ctx, filename)
-		filename = "/data/sprites/outfit/head_" + (Math.floor(this.outfit/10000) % 100) + ".png";
-		this.drawSprite(ctx, filename)
-		filename = "/data/sprites/outfit/hair_" + (Math.floor(this.outfit/1000000) % 100) + ".png";
-		this.drawSprite(ctx, filename)
-	} else {
-		filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
-		if (typeof(this.subclass) != "undefined") {
-			filename = filename + "/" + this["subclass"];
-		}
-		filename = filename + ".png";
-		this.drawSprite(ctx, filename)
-	}
-}
-
+});
 
 marauroa.rpobjectFactory.rpentity.drawSprite = function(ctx, filename) {
 	var localX = this._x * 32;
