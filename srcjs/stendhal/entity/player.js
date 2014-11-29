@@ -24,14 +24,14 @@ marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFacto
 	/**
 	 * Is this player an admin?
 	 */
-	isAdmin = function() {
+	isAdmin: function() {
 		return (typeof(this.adminlevel) != "undefined" && this.adminlevel > 600);
 	},
 
 	/** 
 	 * Can the player hear this chat message?
 	 */
-	isInHearingRange = function(entity) {
+	isInHearingRange: function(entity) {
 		return (this.isAdmin() 
 			|| ((Math.abs(this.x - entity.x) < 15) 
 				&& (Math.abs(this.y - entity.y) < 15)));

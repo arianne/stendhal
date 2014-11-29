@@ -20,7 +20,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	spritePath: "",
 	titleStyle: "#FFFFFF",
 
-	set = function(key, value) {
+	set: function(key, value) {
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 		if (key == "text") {
 			this.say(value);
@@ -30,7 +30,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	/** 
 	 * says a text
 	 */
-	say = function (text) {
+	say: function (text) {
 		if (marauroa.me.isInHearingRange(this)) {
 			if (text.match("^!me") == "!me") {
 				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
@@ -43,7 +43,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	/** 
 	 * draw RPEntities
 	 */
-	draw = function(ctx) {
+	draw: function(ctx) {
 		var filename;
 		if (typeof(this.outfit) != "undefined") {
 			filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
