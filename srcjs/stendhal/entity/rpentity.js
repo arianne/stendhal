@@ -62,33 +62,32 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			filename = filename + ".png";
 			this.drawSprite(ctx, filename)
 		}
+	},
+	
+	drawSprite: function(ctx, filename) {
+		var localX = this._x * 32;
+		var localY = this._y * 32;
+		var image = stendhal.data.sprites.get(filename);
+		if (image.complete) {
+			// TODO: animate
+			var drawHeight = image.height / 4;
+			var drawWidth = image.width / 3;
+			var drawX = ((this.width * 32) - drawWidth) / 2;
+			var drawY = (this.height * 32) - drawHeight;
+			ctx.drawImage(image, 0, (this.dir - 1) * drawHeight, drawWidth, drawHeight, localX + drawX, localY + drawY, drawWidth, drawHeight);
+		}
+	},
+
+	drawTop: function(ctx) {
+		var localX = this._x * 32;
+		var localY = this._y * 32;
+		if (typeof(this.title) != "undefined") {
+			var textMetrics = ctx.measureText(this.title);
+			ctx.font = "14px Arial";
+			ctx.fillStyle = "#A0A0A0";
+			ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2+2, localY - 32);
+			ctx.fillStyle = this.titleStyle;
+			ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2, localY - 32);
+		}
 	}
 });
-
-marauroa.rpobjectFactory.rpentity.drawSprite = function(ctx, filename) {
-	var localX = this._x * 32;
-	var localY = this._y * 32;
-	var image = stendhal.data.sprites.get(filename);
-	if (image.complete) {
-		// TODO: animate
-		var drawHeight = image.height / 4;
-		var drawWidth = image.width / 3;
-		var drawX = ((this.width * 32) - drawWidth) / 2;
-		var drawY = (this.height * 32) - drawHeight;
-		ctx.drawImage(image, 0, (this.dir - 1) * drawHeight, drawWidth, drawHeight, localX + drawX, localY + drawY, drawWidth, drawHeight);
-	}
-}
-
-
-marauroa.rpobjectFactory.rpentity.drawTop = function(ctx) {
-	var localX = this._x * 32;
-	var localY = this._y * 32;
-	if (typeof(this.title) != "undefined") {
-		var textMetrics = ctx.measureText(this.title);
-		ctx.font = "14px Arial";
-		ctx.fillStyle = "#A0A0A0";
-		ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2+2, localY - 32);
-		ctx.fillStyle = this.titleStyle;
-		ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2, localY - 32);
-	}
-}
