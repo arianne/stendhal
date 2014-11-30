@@ -37,10 +37,10 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	 */
 	updatePosition: function(time) {
 		if (this._y == undefined) {
-			this._y = parseFloat(this.y);
+			this._y = this.y;
 		}
 		if (this._x == undefined) {
-			this._x = parseFloat(this.x);
+			this._x = this.x;
 		}
 	},
 
