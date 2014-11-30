@@ -15,23 +15,22 @@
 /**
  * Item
  */
-marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory.blood = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
 	minimapShow: false,
-	minimapStyle: "rgb(0,255,0)",
 
 	init: function() {
 		this.sprite = {
 			height: 32,
-			width: 32
+			width: 32,
+			filename: "/data/sprites/combat/blood_red.png"
 		}
 	},
 
 	set: function(key, value) {
-		marauroa.rpobjectFactory.item.proto.set.apply(this, arguments);
-		if (key == "class" || key == "subclass") {
-			this.sprite.filename = "/data/sprites/items/" 
-				+ this.class + "/" + this.subclass + ".png";
+		marauroa.rpobjectFactory.blood.proto.set.apply(this, arguments);
+		if (key == "amount") {
+			this.sprite.offsetY = parseInt(value) * 32;
 		}
 	}
 });

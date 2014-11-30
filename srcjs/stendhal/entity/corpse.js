@@ -14,6 +14,8 @@
 
 marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
+	minimapShow: false,
+
 	set: function(key, value) {
 		marauroa.rpobjectFactory.corpse.proto.set.apply(this, arguments);
 

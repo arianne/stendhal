@@ -56,8 +56,8 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	drawSprite: function(ctx) {
 		var image = stendhal.data.sprites.get(this.sprite.filename);
 		if (image.complete) {
-			var localX = this._x * 32;
-			var localY = this._y * 32;
+			var localX = this.x * 32;
+			var localY = this.y * 32;
 			var offsetX = this.sprite.offsetX || 0;
 			var offsetY = this.sprite.offsetY || 0;
 			var width = this.sprite.width || image.width;
