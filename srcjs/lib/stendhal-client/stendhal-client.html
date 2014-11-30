@@ -33,7 +33,7 @@
 <script type="text/javascript" src="/stendhal/experimental.js"></script>
 <script type="text/javascript" src="/stendhal/main.js"></script>
 		
-<polymer-element name="stendhal-client" attributes="server">
+<polymer-element name="stendhal-client">
 	<template>
 	    <link rel="stylesheet" href="stendhal-client.css">
 		<div style="float: left; width: 130px">
@@ -93,11 +93,5 @@
 			<noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 		</div>
 	</template>
-	<script>
-	Polymer({
-		ready: function() {
-			stendhal.main.startup;
-		}
-	});
-	</script>
+	<script src="stendhal-client.js"></script>
 </polymer-element>
