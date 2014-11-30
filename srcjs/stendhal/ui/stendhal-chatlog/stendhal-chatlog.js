@@ -3,6 +3,12 @@
 Polymer("stendhal-chatlog", {
 	logEntries: [],
 
+	/**
+	 * adds an entry to the chat log
+	 *
+	 * @param type of entry
+	 * @param message message
+	 */
 	addEntry: function(type, message) {
 		var date = new Date();
 		var time = "" + date.getHours() + ":";
@@ -16,5 +22,12 @@ Polymer("stendhal-chatlog", {
 
 		var newEntry = {"time": time, "message": message, "type": type};
 		logEntries.push(newEntry);
+	},
+
+	/**
+	 * clears the chat log
+	 */
+	clear: function() {
+		logEntries = [];
 	}
 });
