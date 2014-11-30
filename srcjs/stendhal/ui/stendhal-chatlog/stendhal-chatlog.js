@@ -2,6 +2,16 @@
 
 Polymer("stendhal-chatlog", {
 	logEntries: [],
+	
+	ready: function() {
+		// TODO: cleanup compatibility code
+		stendhal.ui.chatLog.addLine = function(type, message) {
+			document.getElementById("chat").addLine(type, message);
+		}
+		stendhal.ui.chatLog.clear = function() {
+			document.getElementById("chat").clear();
+		}
+	},
 
 	/**
 	 * adds an entry to the chat log
@@ -9,7 +19,7 @@ Polymer("stendhal-chatlog", {
 	 * @param type of entry
 	 * @param message message
 	 */
-	addEntry: function(type, message) {
+	addLine: function(type, message) {
 		var date = new Date();
 		var time = "" + date.getHours() + ":";
 		if (date.getHours < 10) {
@@ -21,13 +31,13 @@ Polymer("stendhal-chatlog", {
 		time = time + date.getMinutes();
 
 		var newEntry = {"time": time, "message": message, "type": type};
-		logEntries.push(newEntry);
+		this.logEntries.push(newEntry);
 	},
 
 	/**
 	 * clears the chat log
 	 */
 	clear: function() {
-		logEntries = [];
+		this.logEntries = [];
 	}
 });

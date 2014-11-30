@@ -3,10 +3,7 @@
 <polymer-element name="stendhal-chatlog">
 	<template>
 	    <link rel="stylesheet" href="stendhal-chatlog.css">
-		<input type="text" name="chatbar" id="chatbar" style="width: 98%"
-			autocomplete="off" onkeypress="stendhal.ui.chatBar.keypress()">
 		<div id="chat" style="height: 200px">
-			<noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 			<template repeat="{{entry in logEntries}}">
 				<stendhal-chatline time="{{entry.time}}" message="{{entry.message}}" type="{{entry.type}}" />
 			</template>

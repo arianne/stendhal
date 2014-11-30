@@ -1,12 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<script src="lib/webcomponentsjs/webcomponents.js"></script>
-		<link rel="import" href="lib/stendhal-client/stendhal-client.html">
-		<style>
-		</style>
-	</head>
-	<body>
-		<stendhal-client />
-	</body>
+<head>
+<title>Stendhal Alpha Client</title>
+<style type="text/css">
+body {font-family: "Arial"}
+#chat {border: 1px solid #000; padding:0.5em; overflow-y: scroll; word-wrap:break-word;}
+#chat p {margin: 0}
+p.logerror {color: #F00}
+p.logprivmsg {color: #444}
+p.logclient {color: #888}
+p.logerror {color: #F00}
+p.loginformation {color: #ffc800}
+p.lognegative {color: #f00}
+p.lognormal {color: #000}
+p.logpositive {color: #0f0}
+p.loggroup {color: #633d8b}
+p.logemote {color: #633d8b}
+p.logresponse {color: #006400}
+p.logscene_setting {color: #572002}
+p.logsignificant_negative {color: #ff8f8f}
+p.logsignificant_positive {color: #4169e1}
+p.logtutorial {color: #ac00ac}
+p.logsupport {color: #ff7200}
+li.online {color: #0A0}
+li.offline {color: #A00}
+div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; padding: 1px; margin: 2px}
+.equipment {position:relative; height:160px; border: 1px solid black}
+#head {position:absolute; top:0px; left:40px}
+#lhand {position:absolute; top:50px; left:80px}
+#rhand {position:absolute; top:50px; left:0px}
+#finger {position:absolute; top:90px; left:0px}
+#armor {position:absolute; top:40px; left:40px}
+#cloak {position:absolute; top:90px; left:80px}
+#legs {position:absolute; top:80px; left:40px}
+#feet {position:absolute; top:120px; left:40px}
+
+#buddyList {border: 1px solid black; width: 128px; height: 352px; float: left; overflow:scroll}
+#buddyList ul {list-style-type: none; margin:0; padding:0.1em}
+</style>
+
+<script src="lib/webcomponentsjs/webcomponents.js"></script>
+
+<link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
+<link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatline.html">
+
+<script type="text/javascript" src="marauroa/marauroa.js"></script>
+<script type="text/javascript" src="marauroa/client-framework.js"></script>
+<script type="text/javascript" src="marauroa/message-factory.js"></script>
+<script type="text/javascript" src="marauroa/perception.js"></script>
+<script type="text/javascript" src="marauroa/rpfactory.js"></script>
+
+<script type="text/javascript" src="jsxgraph-util.js"></script>
+
+<script type="text/javascript" src="stendhal/data/map.js"></script>
+<script type="text/javascript" src="stendhal/data/sprites.js"></script>
+
+<script type="text/javascript" src="stendhal/entity/entity.js"></script>
+<script type="text/javascript" src="stendhal/entity/blood.js"></script>
+<script type="text/javascript" src="stendhal/entity/corpse.js"></script>
+<script type="text/javascript" src="stendhal/entity/item.js"></script>
+<script type="text/javascript" src="stendhal/entity/portal.js"></script>
+<script type="text/javascript" src="stendhal/entity/activeentity.js"></script>
+<script type="text/javascript" src="stendhal/entity/rpentity.js"></script>
+<script type="text/javascript" src="stendhal/entity/player.js"></script>
+<script type="text/javascript" src="stendhal/entity/creature.js"></script>
+<script type="text/javascript" src="stendhal/entity/npc.js"></script>
+<script type="text/javascript" src="stendhal/entity/ground.js"></script>
+<script type="text/javascript" src="stendhal/entity/zone.js"></script>
+
+<script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
+<script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
+<script type="text/javascript" src="stendhal/ui/html.js"></script>
+<script type="text/javascript" src="stendhal/ui/itemcontainer.js"></script>
+<script type="text/javascript" src="stendhal/ui/minimap.js"></script>
+<script type="text/javascript" src="stendhal/ui/sound.js"></script>
+
+<script type="text/javascript" src="stendhal/actions.js"></script>
+<script type="text/javascript" src="stendhal/config.js"></script>
+<script type="text/javascript" src="stendhal/events.js"></script>
+<script type="text/javascript" src="stendhal/experimental.js"></script>
+
+<script type="text/javascript" src="stendhal/main.js"></script>
+</head>
+<body id="body">
+
+
+<div style="float:left; width:130px">
+<canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
+<div id="buddyList"></div>
+</div>
+
+<canvas id="gamewindow" width="640" height="480" style="float:left">Sorry, this pages only works in modern web browsers.</canvas>
+
+
+<div style="float:left; width:130px">
+
+<div style="float: left; width:130px">
+<div id="equipment" class="equipment">
+<div id="head" class="itemSlot"></div>
+<div id="lhand" class="itemSlot"></div>
+<div id="rhand" class="itemSlot"></div>
+<div id="finger" class="itemSlot"></div>
+<div id="armor" class="itemSlot"></div>
+<div id="cloak" class="itemSlot"></div>
+<div id="legs" class="itemSlot"></div>
+<div id="feet" class="itemSlot"></div>
+</div>
+</div>
+
+<div id="bag" style="border: 1px solid black; width: 120px; padding: 2px; float: left">
+<div id="bag0" class="itemSlot"></div>
+<div id="bag1" class="itemSlot"></div>
+<div id="bag2" class="itemSlot"></div>
+<div id="bag3" class="itemSlot"></div>
+<div id="bag4" class="itemSlot"></div>
+<div id="bag5" class="itemSlot"></div>
+<div id="bag6" class="itemSlot"></div>
+<div id="bag7" class="itemSlot"></div>
+<div id="bag8" class="itemSlot"></div>
+<div id="bag9" class="itemSlot"></div>
+<div id="bag10" class="itemSlot"></div>
+<div id="bag11" class="itemSlot"></div>
+</div>
+
+<div id="keyring" style="border: 1px solid black; width: 80px; padding: 2px; float: left">
+<div id="keyring0" class="itemSlot"></div>
+<div id="keyring1" class="itemSlot"></div>
+<div id="keyring2" class="itemSlot"></div>
+<div id="keyring3" class="itemSlot"></div>
+<div id="keyring4" class="itemSlot"></div>
+<div id="keyring5" class="itemSlot"></div>
+<div id="keyring6" class="itemSlot"></div>
+<div id="keyring7" class="itemSlot"></div>
+</div>
+</div>
+
+<input type="text" name="chatbar" id="chatbar" style="width:98%" autocomplete="off">
+<stendhal-chatlog id="chat" style="height:200px">
+</stendhal-chatlog>
+
+
+</body>
 </html>
