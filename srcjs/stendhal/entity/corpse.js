@@ -14,21 +14,14 @@
 
 marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
-	draw: function(ctx) {
-		var name = "image";
-		if (!stendhal.config.gamescreen.blood) {
-			name = "harmless_image";
-		}
-		var filename = "/data/sprites/corpse/" + this[name] + ".png";
-		this.drawSprite(ctx, filename);
-	},
+	set: function(key, value) {
+		marauroa.rpobjectFactory.corpse.proto.set.apply(this, arguments);
 
-	drawSprite: function(ctx, filename) {
-		var localX = this._x * 32;
-		var localY = this._y * 32;
-		var image = stendhal.data.sprites.get(filename);
-		if (image.complete) {
-			ctx.drawImage(image, localX, localY, image.width, image.height);
+		this.sprite = this.sprite || {};
+		if (stendhal.config.gamescreen.blood && (key == "image")) {
+			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
+		} else if (!stendhal.config.gamescreen.blood && (key == "harmless_image")) {
+			this.sprite.fFilename = "/data/sprites/corpse/" + value + ".png";
 		}
 	}
 });

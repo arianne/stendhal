@@ -17,6 +17,13 @@
  */
 marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
-	minimapStyle: "rgb(0,255,0)"
+	minimapStyle: "rgb(0,255,0)",
+
+	set: function(key, value) {
+		marauroa.rpobjectFactory.item.proto.set.apply(this, arguments);
+
+		this.sprite = this.sprite || {height: 32, width: 32};
+		this.sprite.filename = "/data/sprites/items/" + this.class + "/" + this.subclass + ".png";
+	}
 });
 

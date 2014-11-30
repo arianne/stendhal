@@ -44,6 +44,28 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		}
 	},
 
+	draw: function(ctx) {
+		if (this.sprite) {
+			this.drawSprite(ctx);
+		}
+	},
+
+	/**
+	 * draws a standard sprite
+	 */
+	drawSprite: function(ctx) {
+		var image = stendhal.data.sprites.get(this.sprite.filename);
+		if (image.complete) {
+			var localX = this._x * 32;
+			var localY = this._y * 32;
+			var offsetX = this.sprite.offsetX || 0;
+			var offsetY = this.sprite.offsetY || 0;
+			var width = this.sprite.width || image.width;
+			var height = this.sprite.height || image.height;
+			ctx.drawImage(image, offsetX, offsetY, width, height, localX, localY, width, height);
+		}
+	},
+
 	onclick: function(x, y) {
 		marauroa.log.debug(this, x, y);
 		var action = {
