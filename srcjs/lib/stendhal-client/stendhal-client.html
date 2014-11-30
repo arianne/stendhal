@@ -1,40 +1,41 @@
 <link rel="import" href="../polymer/polymer.html">
 
+<script type="text/javascript" src="/marauroa/marauroa.js"></script>
+<script type="text/javascript" src="/marauroa/client-framework.js"></script>
+<script type="text/javascript" src="/marauroa/message-factory.js"></script>
+<script type="text/javascript" src="/marauroa/perception.js"></script>
+<script type="text/javascript" src="/marauroa/rpfactory.js"></script>
+<script type="text/javascript" src="/jsxgraph-util.js"></script>
+<script type="text/javascript" src="/stendhal/data/map.js"></script>
+<script type="text/javascript" src="/stendhal/data/sprites.js"></script>
+<script type="text/javascript" src="/stendhal/entity/entity.js"></script>
+<script type="text/javascript" src="/stendhal/entity/corpse.js"></script>
+<script type="text/javascript" src="/stendhal/entity/item.js"></script>
+<script type="text/javascript" src="/stendhal/entity/portal.js"></script>
+<script type="text/javascript" src="/stendhal/entity/activeentity.js"></script>
+<script type="text/javascript" src="/stendhal/entity/rpentity.js"></script>
+<script type="text/javascript" src="/stendhal/entity/player.js"></script>
+<script type="text/javascript" src="/stendhal/entity/creature.js"></script>
+<script type="text/javascript" src="/stendhal/entity/npc.js"></script>
+<script type="text/javascript" src="/stendhal/entity/ground.js"></script>
+<script type="text/javascript" src="/stendhal/entity/zone.js"></script>
+<script type="text/javascript" src="/stendhal/ui/buddylist.js"></script>
+<script type="text/javascript" src="/stendhal/ui/chatbar.js"></script>
+<script type="text/javascript" src="/stendhal/ui/chatlog.js"></script>
+<script type="text/javascript" src="/stendhal/ui/gamewindow.js"></script>
+<script type="text/javascript" src="/stendhal/ui/html.js"></script>
+<script type="text/javascript" src="/stendhal/ui/itemcontainer.js"></script>
+<script type="text/javascript" src="/stendhal/ui/minimap.js"></script>
+<script type="text/javascript" src="/stendhal/ui/sound.js"></script>
+<script type="text/javascript" src="/stendhal/actions.js"></script>
+<script type="text/javascript" src="/stendhal/config.js"></script>
+<script type="text/javascript" src="/stendhal/events.js"></script>
+<script type="text/javascript" src="/stendhal/experimental.js"></script>
+<script type="text/javascript" src="/stendhal/main.js"></script>
+		
 <polymer-element name="stendhal-client" attributes="server">
 	<template>
-	    <script type="text/javascript" src="/marauroa/marauroa.js"></script>
-		<script type="text/javascript" src="/marauroa/client-framework.js"></script>
-		<script type="text/javascript" src="/marauroa/message-factory.js"></script>
-		<script type="text/javascript" src="/marauroa/perception.js"></script>
-		<script type="text/javascript" src="/marauroa/rpfactory.js"></script>
-		<script type="text/javascript" src="/jsxgraph-util.js"></script>
-		<script type="text/javascript" src="/stendhal/data/map.js"></script>
-		<script type="text/javascript" src="/stendhal/data/sprites.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/entity.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/corpse.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/item.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/portal.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/activeentity.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/rpentity.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/player.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/creature.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/npc.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/ground.js"></script>
-		<script type="text/javascript" src="/stendhal/entity/zone.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/buddylist.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/chatbar.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/chatlog.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/gamewindow.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/html.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/itemcontainer.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/minimap.js"></script>
-		<script type="text/javascript" src="/stendhal/ui/sound.js"></script>
-		<script type="text/javascript" src="/stendhal/actions.js"></script>
-		<script type="text/javascript" src="/stendhal/config.js"></script>
-		<script type="text/javascript" src="/stendhal/events.js"></script>
-		<script type="text/javascript" src="/stendhal/experimental.js"></script>
-		<script type="text/javascript" src="/stendhal/main.js"></script>
-		
+	    <link rel="stylesheet" href="stendhal-client.css">
 		<div style="float: left; width: 130px">
 			<canvas style="border: 1px solid black; float: left" id="minimap"
 				width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
@@ -42,7 +43,6 @@
 		</div>
 		
 		<canvas id="gamewindow" width="640" height="480" style="float: left">Sorry, this pages only works in modern web browsers.</canvas>
-		
 		
 		<div style="float: left; width: 130px">
 		
@@ -93,11 +93,11 @@
 			<noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 		</div>
 	</template>
-	<script type="text/javascript">
-		Polymer({
-			ready: function() {
-				stendhal.main.startup;
-			}
-		});
+	<script>
+	Polymer({
+		ready: function() {
+			stendhal.main.startup;
+		}
+	});
 	</script>
 </polymer-element>
