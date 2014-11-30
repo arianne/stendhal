@@ -19,6 +19,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	drawY: 0,
 	spritePath: "",
 	titleStyle: "#FFFFFF",
+	_target: null,
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
@@ -89,5 +90,27 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			ctx.fillStyle = this.titleStyle;
 			ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2, localY - 32);
 		}
+	},
+
+	// attack handling
+	getAttackTarget: function() {
+		return this._target;
+	},
+	
+	onDamaged: function(source, damage) {
+		this.say(this.title + " got hit by " + source.title + " causing a damage of " + damage);
+	},
+
+	onBlocked: function(source) {
+		
+	},
+
+	onMissed: function(source) {
+		
+	},
+
+	onAttackPerformed: function(nature, ranged) {
+		
 	}
+
 });
