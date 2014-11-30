@@ -1,7 +1,66 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="stendhal-client" noscript>
-  <template>
-    <span>Hello from <b>my-element</b>. This is my Shadow DOM.</span>
-  </template>
+<polymer-element name="stendhal-client" attributes="server">
+	<template>
+		<div style="float: left; width: 130px">
+			<canvas style="border: 1px solid black; float: left" id="minimap"
+				width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
+			<div id="buddyList"></div>
+		</div>
+		
+		<canvas id="gamewindow" width="640" height="480" style="float: left">Sorry, this pages only works in modern web browsers.</canvas>
+		
+		
+		<div style="float: left; width: 130px">
+		
+			<div style="float: left; width: 130px">
+				<div id="equipment" class="equipment">
+					<div id="head" class="itemSlot"></div>
+					<div id="lhand" class="itemSlot"></div>
+					<div id="rhand" class="itemSlot"></div>
+					<div id="finger" class="itemSlot"></div>
+					<div id="armor" class="itemSlot"></div>
+					<div id="cloak" class="itemSlot"></div>
+					<div id="legs" class="itemSlot"></div>
+					<div id="feet" class="itemSlot"></div>
+				</div>
+			</div>
+		
+			<div id="bag"
+				style="border: 1px solid black; width: 120px; padding: 2px; float: left">
+				<div id="bag0" class="itemSlot"></div>
+				<div id="bag1" class="itemSlot"></div>
+				<div id="bag2" class="itemSlot"></div>
+				<div id="bag3" class="itemSlot"></div>
+				<div id="bag4" class="itemSlot"></div>
+				<div id="bag5" class="itemSlot"></div>
+				<div id="bag6" class="itemSlot"></div>
+				<div id="bag7" class="itemSlot"></div>
+				<div id="bag8" class="itemSlot"></div>
+				<div id="bag9" class="itemSlot"></div>
+				<div id="bag10" class="itemSlot"></div>
+				<div id="bag11" class="itemSlot"></div>
+			</div>
+		
+			<div id="keyring"
+				style="border: 1px solid black; width: 80px; padding: 2px; float: left">
+				<div id="keyring0" class="itemSlot"></div>
+				<div id="keyring1" class="itemSlot"></div>
+				<div id="keyring2" class="itemSlot"></div>
+				<div id="keyring3" class="itemSlot"></div>
+				<div id="keyring4" class="itemSlot"></div>
+				<div id="keyring5" class="itemSlot"></div>
+				<div id="keyring6" class="itemSlot"></div>
+				<div id="keyring7" class="itemSlot"></div>
+			</div>
+		</div>
+		<input type="text" name="chatbar" id="chatbar" style="width: 98%"
+			autocomplete="off">
+		<div id="chat" style="height: 200px">
+			<noscript>JavaScript is required by the Stendhal Web Client.</noscript>
+		</div>
+	</template>
+	<script type="text/javascript">
+		Polymer();
+	</script>
 </polymer-element>
