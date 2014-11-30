@@ -18,6 +18,7 @@ stendhal.ui = stendhal.ui || {};
  * game window aka world view
  */
 stendhal.ui.gamewindow = {
+	/** screen offsets in pixels. */
 	offsetX: 0,
 	offsetY: 0,
 	timeStamp: new Date().getTime(),
@@ -38,12 +39,15 @@ stendhal.ui.gamewindow = {
 			this.ctx = canvas.getContext("2d");
 			this.ctx.globalAlpha = 1.0;
 			this.adjustView(canvas);
+			
+			var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
+			var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
 
 			for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 				var name = stendhal.data.map.layerNames[drawingLayer];
 				if (name != "protection" && name != "collision" && name != "objects"
 					&& name != "blend_ground" && name != "blend_roof") {
-					this.paintLayer(canvas, drawingLayer);
+					this.paintLayer(canvas, drawingLayer, tileOffsetX, tileOffsetY);
 				}
 				if (name == "2_object") {
 					this.drawEntities();
@@ -58,12 +62,12 @@ stendhal.ui.gamewindow = {
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 	},
 
-	paintLayer: function(canvas, drawingLayer) {
+	paintLayer: function(canvas, drawingLayer, tileOffsetX, tileOffsetY) {
 		var layer = stendhal.data.map.layers[drawingLayer];
-		var yMax = Math.min(this.offsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
-		var xMax = Math.min(this.offsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
-		for (var y=this.offsetY; y < yMax; y++) {
-			for (var x=this.offsetX; x < xMax; x++) {
+		var yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
+		var xMax = Math.min(tileOffsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
+		for (var y = tileOffsetY; y < yMax; y++) {
+			for (var x = tileOffsetX; x < xMax; x++) {
 				var gid = layer[y * stendhal.data.map.numberOfXTiles + x];
 				if (gid > 0) {
 					var tileset = stendhal.data.map.getTilesetForGid(gid);
@@ -125,9 +129,9 @@ stendhal.ui.gamewindow = {
 		centerY = Math.min(centerY, stendhal.data.map.zoneSizeY * this.targetTileHeight - canvas.height);
 		centerY = Math.max(centerY, 0);
 
-		this.ctx.translate(Math.round(-centerX), Math.round(-centerY));
-		this.offsetX = Math.floor(centerX / this.targetTileWidth);
-		this.offsetY = Math.floor(centerY / this.targetTileHeight);
+		this.offsetX = Math.round(centerX);
+		this.offsetY = Math.round(centerY);
+		this.ctx.translate(-this.offsetX, -this.offsetY);
 	},
 
 	onclick: function(event) {

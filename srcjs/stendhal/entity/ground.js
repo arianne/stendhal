@@ -21,8 +21,8 @@ stendhal.zone.ground = {
 	onclick: function(x, y) {
 		var action = {
 				"type": "moveto", 
-				"x": "" + Math.floor(x / 32 + stendhal.ui.gamewindow.offsetX),
-				"y": "" + Math.floor(y / 32 + stendhal.ui.gamewindow.offsetY)
+				"x": "" + Math.floor((x + stendhal.ui.gamewindow.offsetX) / 32),
+				"y": "" + Math.floor((y + stendhal.ui.gamewindow.offsetY) / 32)
 				// TODO: "extend": direction
 			};
 		marauroa.clientFramework.sendAction(action);
