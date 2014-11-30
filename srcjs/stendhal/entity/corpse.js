@@ -12,15 +12,23 @@
 
 "use strict";
 
-window.stendhal = window.stendhal || {};
+marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
-stendhal.config = {
-	sound: {
-		play: false
+	draw: function(ctx) {
+		var name = "image";
+		if (!stendhal.config.gamescreen.blood) {
+			name = "harmless_image";
+		}
+		var filename = "/data/sprites/corpse/" + this[name] + ".png";
+		this.drawSprite(ctx, filename);
 	},
 
-	gamescreen: {
-		blood: true
+	drawSprite: function(ctx, filename) {
+		var localX = this._x * 32;
+		var localY = this._y * 32;
+		var image = stendhal.data.sprites.get(filename);
+		if (image.complete) {
+			ctx.drawImage(image, localX, localY, image.width, image.height);
+		}
 	}
-}
-
+});
