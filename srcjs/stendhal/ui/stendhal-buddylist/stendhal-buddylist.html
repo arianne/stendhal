@@ -3,7 +3,13 @@
 <polymer-element name="stendhal-buddylist">
 	<template>
 	    <link rel="stylesheet" href="stendhal-buddylist.css">
-		<div id="buddyList"></div>
+		<div id="buddyList">
+			<ul>
+				<template repeat="{{buddy in buddies}}">
+					<li class="{{buddy.status}}">{{buddy.name}}</li>
+				</template>
+			</ul>
+		</div>
 	</template>
 	<script src="stendhal-buddylist.js"></script>
 </polymer-element>
