@@ -31,8 +31,7 @@ public enum Nature {
 	/** light magic */
 	LIGHT,
 	/** dark magic */
-	DARK,
-	CHAOS_HAMMER;
+	DARK;
 
 	/**
 	 * Parses the Nature, defaulting to CUT for unknown types.

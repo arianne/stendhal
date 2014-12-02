@@ -14,7 +14,6 @@
     </attributes>
     <weight value="8.0"/>
     <value value="463050"/>
-    <damage type="chaos_hammer"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
