@@ -2,16 +2,6 @@
 
 Polymer("stendhal-chatlog", {
 	logEntries: [],
-	
-	ready: function() {
-		// TODO: cleanup compatibility code
-		stendhal.ui.chatLog.addLine = function(type, message) {
-			document.getElementById("chat").addLine(type, message);
-		}
-		stendhal.ui.chatLog.clear = function() {
-			document.getElementById("chat").clear();
-		}
-	},
 
 	/**
 	 * adds an entry to the chat log
