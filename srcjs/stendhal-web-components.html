@@ -4,8 +4,6 @@
 <title>Stendhal Alpha Client</title>
 <style type="text/css">
 body {font-family: "Arial"}
-li.online {color: #0A0}
-li.offline {color: #A00}
 div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; padding: 1px; margin: 2px}
 .equipment {position:relative; height:160px; border: 1px solid black}
 #head {position:absolute; top:0px; left:40px}
@@ -16,15 +14,11 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 #cloak {position:absolute; top:90px; left:80px}
 #legs {position:absolute; top:80px; left:40px}
 #feet {position:absolute; top:120px; left:40px}
-
-#buddyList {border: 1px solid black; width: 128px; height: 352px; float: left; overflow:scroll}
-#buddyList ul {list-style-type: none; margin:0; padding:0.1em}
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.js"></script>
 
 <link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
-<link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatline.html">
 
 <script type="text/javascript" src="marauroa/marauroa.js"></script>
 <script type="text/javascript" src="marauroa/client-framework.js"></script>
@@ -52,7 +46,7 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 
 <script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
 <script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
-<script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatlog-web-components.js"></script>
 <script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
 <script type="text/javascript" src="stendhal/ui/html.js"></script>
 <script type="text/javascript" src="stendhal/ui/itemcontainer.js"></script>
@@ -64,14 +58,14 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 <script type="text/javascript" src="stendhal/events.js"></script>
 <script type="text/javascript" src="stendhal/experimental.js"></script>
 
-<script type="text/javascript" src="stendhal/main.js"></script>
+<script type="text/javascript" src="stendhal/main-web-components.js"></script>
 </head>
 <body id="body">
 
 
 <div style="float:left; width:130px">
 <canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
-<div id="buddyList"></div>
+<stendhal-buddylist id="buddyList"></stendhal-buddylist>
 </div>
 
 <canvas id="gamewindow" width="640" height="480" style="float:left">Sorry, this pages only works in modern web browsers.</canvas>
