@@ -1,0 +1,4 @@
+li.online {color: #0A0}
+li.offline {color: #A00}
+#buddyList {border: 1px solid black; width: 128px; height: 352px; float: left; overflow:scroll}
+#buddyList ul {list-style-type: none; margin:0; padding:0.1em}

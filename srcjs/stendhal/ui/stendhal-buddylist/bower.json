@@ -1,0 +1,27 @@
+{
+  "name": "stendhal-buddylist",
+  "version": "0.0.1",
+  "authors": [
+    "Markus Keunecke <markus.keunecke@gmail.com>"
+  ],
+  "description": "Stendhal Web Client Buddylist",
+  "main": "stendhal-buddylist.html",
+  "keywords": [
+    "game",
+    "rpg",
+    "client"
+  ],
+  "license": "GPL",
+  "homepage": "http://stendhalgame.org",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": ">=0.5.1"
+  }
+}
