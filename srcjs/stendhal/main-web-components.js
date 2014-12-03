@@ -77,6 +77,7 @@ stendhal.main = {
 	registerBrowserEventHandlers: function() {
 		document.onkeydown=stendhal.ui.chatBar.keydown;
 		document.onkeyup=stendhal.ui.chatBar.keyup;
+		document.getElementById('chatbar').onkeypress=stendhal.ui.chatBar.keypress;
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
 			gamewindow.onclick = stendhal.ui.gamewindow.onclick;
