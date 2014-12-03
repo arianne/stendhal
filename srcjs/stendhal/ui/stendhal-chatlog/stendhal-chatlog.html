@@ -3,11 +3,9 @@
 <polymer-element name="stendhal-chatlog">
 	<template>
 	    <link rel="stylesheet" href="stendhal-chatlog.css">
-		<div id="chat" style="height: 200px">
-			<template repeat="{{entry in logEntries}}">
-				<p class="log{{entry.type}}">[{{entry.time}}] {{entry.message}}</p>
-			</template>
-		</div>
+		<template repeat="{{entry in logEntries}}">
+			<p class="log{{entry.type}}">[{{entry.time}}] {{entry.message}}</p>
+		</template>
 	</template>
 	<script src="stendhal-chatlog.js"></script>
 </polymer-element>

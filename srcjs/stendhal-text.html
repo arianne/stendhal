@@ -43,11 +43,18 @@ p.logtutorial {color: #ac00ac}
 p.logsupport {color: #ff7200}
 </style>
 
+<script src="lib/webcomponentsjs/webcomponents.js"></script>
+
+<link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
+<link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
+
 <script type="text/javascript" src="marauroa/marauroa.js"></script>
 <script type="text/javascript" src="marauroa/client-framework.js"></script>
 <script type="text/javascript" src="marauroa/message-factory.js"></script>
 <script type="text/javascript" src="marauroa/perception.js"></script>
 <script type="text/javascript" src="marauroa/rpfactory.js"></script>
+
+<script type="text/javascript" src="jsxgraph-util.js"></script>
 
 <script type="text/javascript" src="stendhal/data/map.js"></script>
 <script type="text/javascript" src="stendhal/data/sprites.js"></script>
@@ -65,24 +72,26 @@ p.logsupport {color: #ff7200}
 <script type="text/javascript" src="stendhal/entity/ground.js"></script>
 <script type="text/javascript" src="stendhal/entity/zone.js"></script>
 
-<script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
+<script type="text/javascript" src="stendhal/ui/buddylist-web-components.js"></script>
 <script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
-<script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatlog-web-components.js"></script>
 <script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
 <script type="text/javascript" src="stendhal/ui/html.js"></script>
 <script type="text/javascript" src="stendhal/ui/itemcontainer.js"></script>
 <script type="text/javascript" src="stendhal/ui/minimap.js"></script>
+<script type="text/javascript" src="stendhal/ui/sound.js"></script>
 
 <script type="text/javascript" src="stendhal/actions.js"></script>
-<script type="text/javascript" src="stendhal/entities.js"></script>
+<script type="text/javascript" src="stendhal/config.js"></script>
 <script type="text/javascript" src="stendhal/events.js"></script>
 <script type="text/javascript" src="stendhal/experimental.js"></script>
 
-<script type="text/javascript" src="stendhal/main.js"></script>
+<script type="text/javascript" src="stendhal/main-web-components.js"></script>
 </head>
 <body id="body">
 
-<div id="chat"></div>
+<stendhal-chatlog id="chat">
+</stendhal-chatlog>
 <input type="text" name="chatbar" id="chatbar" autocomplete="off">
 
 </body>
