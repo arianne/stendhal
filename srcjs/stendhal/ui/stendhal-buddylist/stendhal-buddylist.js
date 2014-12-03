@@ -3,6 +3,8 @@
 Polymer("stendhal-buddylist", {
 	buddies: [],
 
+	// TODO: don't rebuilt the buddylist completely on every turn,
+	//       but implement an observer
 	update: function(data) {
 		this.clear();
 		for (var buddy in data) {
@@ -20,9 +22,13 @@ Polymer("stendhal-buddylist", {
 		}
 		this.sort();
 	},
-	
+
+	/**
+	 * sorts the buddy list
+	 */
 	sort: function() {
 		this.buddies.sort(function compare(a, b) {
+			// online buddies first
 			if (a.isOnline) {
 				if (!b.isOnline) {
 					return -1;
@@ -33,6 +39,7 @@ Polymer("stendhal-buddylist", {
 				}
 			}
 
+			// sort by name
 			if (a.name < b.name) {
 				return -1;
 			}
@@ -47,11 +54,8 @@ Polymer("stendhal-buddylist", {
 		this.removeBuddy(buddy);
 		var newEntry = {"name": buddy, "status": status};
 		this.buddies.push(newEntry);
+		this.sort();
 	},
-
-    clear: function() {
-    	this.buddies = [];
-    },
 
     hasBuddy: function(buddy) {
     	var arrayLength = this.buddies.length;
@@ -60,6 +64,7 @@ Polymer("stendhal-buddylist", {
     	    	return true;
     	    }
     	}
+    	return false;
     },
 
     removeBuddy: function(buddy) {
