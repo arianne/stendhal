@@ -6,7 +6,7 @@ Polymer("stendhal-buddylist", {
 	// TODO: don't rebuilt the buddylist completely on every turn,
 	//       but implement an observer
 	update: function(data) {
-		this.clear();
+		this.buddies = [];
 		for (var buddy in data) {
 			if (data.hasOwnProperty(buddy)) {
 				var entry = {"name": buddy};
