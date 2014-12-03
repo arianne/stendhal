@@ -89,13 +89,15 @@ stendhal.main = {
 	 */
 	startup: function() {
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
-		var body = document.getElementById("body")
+		var body = document.getElementById("body");
 		body.style.cursor = "wait";
 
+		console.log("Initializing EventHandlers");
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
+		console.log("Connecting to Server");
 		marauroa.clientFramework.connect(null, null);
 	}
 }
 
-document.addEventListener('DOMContentLoaded', stendhal.main.startup);
+document.addEventListener('polymer-ready', stendhal.main.startup);

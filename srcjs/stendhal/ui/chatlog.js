@@ -19,24 +19,11 @@ stendhal.ui = stendhal.ui || {};
  */
 stendhal.ui.chatLog = {
 	addLine: function(type, msg) {
-		var e = document.createElement('p');
-		e.className = "log" + stendhal.ui.html.esc(type);
-		var date = new Date();
-		var time = "" + date.getHours() + ":";
-		if (date.getHours < 10) {
-			time = "0" + time;
-		}
-		if (date.getMinutes() < 10) {
-			time = time + "0";
-		};
-		time = time + date.getMinutes();
-		
-		e.innerHTML = "[" + time + "] " + stendhal.ui.html.esc(msg);
-		document.getElementById('chat').appendChild(e);
-		document.getElementById('chat').scrollTop = 1000000;
+		var chatElement = document.getElementById("chat");
+		chatElement.addLine(type, msg);
 	},
 
 	clear: function() {
-		document.getElementById("chat").innerHTML = "";
+		document.getElementById("chat").clear();
 	}
 }

@@ -20,18 +20,6 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.buddyList = {
 	update: function() {
 		var div = document.getElementById("buddyList");
-		var html = "";
-		for (var i in marauroa.me.buddies) {
-			if (marauroa.me.buddies.hasOwnProperty(i)) {
-				var styleClass;
-				if (marauroa.me.buddies[i] == "true") {
-					styleClass = "online";
-				} else {
-					styleClass = "offline";
-				}
-				html = html + "<li class='" + styleClass + "'>" + i + "</li>";
-			}
-		}
-		div.innerHTML = "<ul>" + html + "</ul>";
+		div.update(marauroa.me.buddies);
 	}
 }
