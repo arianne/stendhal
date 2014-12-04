@@ -80,17 +80,17 @@ public class DigAreaFactory implements ConfigurableFactory {
     }
     
 	/**
-	 * Create a damaging area.
+	 * Create a diggable area.
 	 * 
 	 * @param ctx
 	 *            Configuration context.
 	 * 
-	 * @return A OnePlayerArea.
+	 * @return
 	 * 
-	 * @see OnePlayerArea
+	 * @see
 	 */
 	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
-		return new ConditionAndActionArea(getCondition(ctx), getAction(ctx), getWidth(ctx), getHeight(ctx));
+		return new DigArea(getCondition(ctx), getAction(ctx), getWidth(ctx), getHeight(ctx));
 	}
 }
