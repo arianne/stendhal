@@ -93,13 +93,12 @@ stendhal.ui.gamewindow = {
 		}
 	},
 
-	// TODO: sort marauroa.currentZone[i] by z-order and position
 	drawEntities: function() {
 		var currentTime = new Date().getTime();
 		var time = currentTime - this.timeStamp;
 		this.timeStamp = currentTime;
-		for (var i in marauroa.currentZone) {
-			var entity = marauroa.currentZone[i];
+		for (var i in stendhal.zone.entities) {
+			var entity = stendhal.zone.entities[i];
 			if (typeof(entity.draw) != "undefined") {
 				entity.updatePosition(time);
 				entity.draw(this.ctx);
@@ -107,12 +106,11 @@ stendhal.ui.gamewindow = {
 		}
 	},
 
-	// TODO: sort marauroa.currentZone[i] by z-order and position
 	drawEntitiesTop: function() {
 		var i;
-		for (i in marauroa.currentZone) {
-			if (typeof(marauroa.currentZone[i].drawTop) != "undefined") {
-				marauroa.currentZone[i].drawTop(this.ctx);
+		for (i in stendhal.zone.entities) {
+			if (typeof(stendhal.zone.entities[i].drawTop) != "undefined") {
+				stendhal.zone.entities[i].drawTop(this.ctx);
 			}
 		}
 	},

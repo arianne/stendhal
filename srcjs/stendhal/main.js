@@ -60,6 +60,7 @@ stendhal.main = {
 		// update user interface on perceptions
 		if (document.getElementById("gamewindow")) {
 			marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
+				stendhal.zone.sortEntities();
 				stendhal.ui.minimap.drawEntities();
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
