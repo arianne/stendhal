@@ -156,7 +156,7 @@ stendhal.ui.gamewindow = {
 		// end
 		
 		var pos = relMouseCoords(event);
-		stendhal.zone.entityAt(pos.x / 32 + stendhal.ui.gamewindow.offsetX, 
-				pos.y / 32 + stendhal.ui.gamewindow.offsetY).onclick(pos.x, pos.y);
+		stendhal.zone.entityAt(pos.x + stendhal.ui.gamewindow.offsetX, 
+				pos.y + stendhal.ui.gamewindow.offsetY).onclick(pos.x, pos.y);
 	}
 }
