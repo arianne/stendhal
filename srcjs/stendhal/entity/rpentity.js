@@ -29,6 +29,10 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		}
 	},
 
+	isVisibleToAction: function(filter) {
+		return true;
+	},
+
 	/** 
 	 * says a text
 	 */

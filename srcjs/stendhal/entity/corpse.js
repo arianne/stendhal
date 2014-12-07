@@ -26,5 +26,10 @@ marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFacto
 		} else if (!stendhal.config.gamescreen.blood && (key == "harmless_image")) {
 			this.sprite.fFilename = "/data/sprites/corpse/" + value + ".png";
 		}
+	},
+
+	isVisibleToAction: function(filter) {
+		return false;
 	}
+
 });

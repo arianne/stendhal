@@ -28,6 +28,10 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 		}
 	},
 
+	isVisibleToAction: function(filter) {
+		return true;
+	},
+
 	set: function(key, value) {
 		marauroa.rpobjectFactory.item.proto.set.apply(this, arguments);
 		if (key == "class" || key == "subclass") {

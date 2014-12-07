@@ -34,6 +34,16 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	},
 
 	/**
+	 * is this entity visible to a specific action
+	 *
+	 * @param filter 0: short left click
+	 * @return true, if the entity is visible, false otherwise
+	 */
+	isVisibleToAction: function(filter) {
+		return false;
+	},
+
+	/**
 	 *  Ensure that the drawing code can rely on _x and _y
 	 */
 	updatePosition: function(time) {

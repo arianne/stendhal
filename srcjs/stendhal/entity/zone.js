@@ -19,13 +19,13 @@ stendhal.zone = stendhal.zone || {};
  * stendhal zone
  */
 stendhal.zone = {
-	entityAt: function(x, y) {
+	entityAt: function(x, y, filter) {
 		x = x / 32;
 		y = y / 32;
 		var res = stendhal.zone.ground;
 		for (var i in stendhal.zone.entities) {
 			var obj = stendhal.zone.entities[i];
-			if ((obj._x <= x) && (obj._y <= y)
+			if (obj.isVisibleToAction(filter) && (obj._x <= x) && (obj._y <= y)
 				&& (obj._x + obj.width >= x) && (obj._y + obj.height >= y)) {
 
 				res = obj;
@@ -43,7 +43,7 @@ stendhal.zone = {
 				this.entities.push(marauroa.currentZone[i]);
 			}
 		}
-		
+
 		this.entities.sort(function(entity1, entity2) {
 			var rv = entity1.zIndex - entity2.zIndex;
 			if (rv == 0) {
