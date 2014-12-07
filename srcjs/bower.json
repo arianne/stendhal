@@ -1,0 +1,28 @@
+{
+  "name": "stendhal-client",
+  "version": "0.0.1",
+  "authors": [
+    "Arianne <arianne-general@lists.sourceforge.net>"
+  ],
+  "description": "Stendhal Web Client",
+  "main": "stendhal.html",
+  "keywords": [
+    "game",
+    "rpg",
+    "client"
+  ],
+  "license": "GPL",
+  "homepage": "http://stendhalgame.org",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": ">=0.5.1",
+    "core-collapse": "Polymer/core-collapse#~0.5.1"
+  }
+}

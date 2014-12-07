@@ -18,6 +18,7 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
 
+<link rel="import" href="lib/core-collapse/core-collapse.html">
 <link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 
@@ -65,8 +66,13 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 
 
 <div style="float:left; width:130px">
-<canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
-<stendhal-buddylist id="buddyList"></stendhal-buddylist>
+	<canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
+	
+	<div class="heading" onclick="document.querySelector('#collapse-buddyList').toggle();">Buddies</div>
+		<core-collapse id="collapse-buddyList" opened="true">
+			<stendhal-buddylist id="buddyList"></stendhal-buddylist>
+		</core-collapse>
+	</div>
 </div>
 
 <canvas id="gamewindow" width="640" height="480" style="float:left">Sorry, this pages only works in modern web browsers.</canvas>
