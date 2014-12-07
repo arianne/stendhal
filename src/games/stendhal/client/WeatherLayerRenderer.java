@@ -58,7 +58,7 @@ public class WeatherLayerRenderer extends LayerRenderer {
 		Tileset ts = new SpriteTileset(sr, template, template.getHeight());
 		TilesetGroupAnimationMap animationMap = TileStore.getAnimationMap();
 
-		if (animationMap != null) {
+		if (animationMap != null && animationMap.get(name) != null) {
 			this.weather = animationMap.get(name).getSprite(ts, 0);
 		} else {
 			this.weather = ts.getSprite(0);
