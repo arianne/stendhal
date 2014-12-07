@@ -19,6 +19,7 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 
 	minimapShow: false,
 	minimapStyle: "rgb(0,255,0)",
+	zIndex: 7000,
 
 	init: function() {
 		this.sprite = {

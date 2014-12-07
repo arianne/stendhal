@@ -18,6 +18,7 @@
 marauroa.rpobjectFactory.blood = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
 	minimapShow: false,
+	zIndex: 2000,
 
 	init: function() {
 		this.sprite = {

@@ -18,6 +18,7 @@
 marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default, { 
 	minimapShow: false,
 	minimapStyle: "rgb(200,255,200)",
+	zIndex: 10000,
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);

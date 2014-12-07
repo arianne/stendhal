@@ -16,6 +16,7 @@
  * RPEntity
  */
 marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.activeEntity, {
+	zIndex: 8000,
 	drawY: 0,
 	spritePath: "",
 	titleStyle: "#FFFFFF",

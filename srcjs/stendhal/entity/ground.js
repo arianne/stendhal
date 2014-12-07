@@ -18,6 +18,7 @@ stendhal.zone = stendhal.zone || {};
  * a pseudo entity which represents the ground
  */
 stendhal.zone.ground = {
+		
 	onclick: function(x, y) {
 		var action = {
 				"type": "moveto", 
