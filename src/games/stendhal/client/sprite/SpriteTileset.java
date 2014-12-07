@@ -53,7 +53,7 @@ public class SpriteTileset implements Tileset {
 	 * @param size
 	 *            The tile size.
 	 */
-	private SpriteTileset(final SpriteStore store, final Sprite sprite,
+	public SpriteTileset(final SpriteStore store, final Sprite sprite,
 			final int size) {
 		if (sprite == null) {
 			tiles = new Sprite[0];

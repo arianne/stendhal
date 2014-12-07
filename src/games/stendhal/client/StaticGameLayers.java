@@ -147,6 +147,23 @@ public class StaticGameLayers {
 	}
 	
 	/**
+	 * Draw the weather layer.
+	 * 
+	 * @param g Graphics 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	void drawWeather(Graphics g, int x, int y, int width, int height) {
+		if (currentZone != null) {
+			if (currentZone.getName().equals(area)) {
+				currentZone.getWeather().draw(g, x, y, width, height);
+			}
+		}
+	}
+	
+	/**
 	 * Get a composite representation of multiple tile layers.
 	 * 
 	 * @param area area name

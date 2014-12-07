@@ -69,6 +69,15 @@ class TileStore implements Tileset {
 	 *	otherwise <code>false</code>.
 	 */
 	private boolean validated;
+	
+	/**
+	 * Get the animation map.
+	 * 
+	 * @return animation map
+	 */
+	public static TilesetGroupAnimationMap getAnimationMap() {
+		return animationMap;
+	}
 
 	/**
 	 * Create a tile store.

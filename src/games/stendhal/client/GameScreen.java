@@ -632,6 +632,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		gameLayers.drawLayers(g, set, "roof_bundle", startTileX,
 				startTileY, layerWidth, layerHeight, "blend_roof", "3_roof",
 				"4_roof_add");
+		gameLayers.drawWeather(g, startTileX, startTileY, layerWidth, layerHeight);
 		
 		// Draw the top portion screen entities (such as HP/title bars).
 		viewManager.drawTop(g);

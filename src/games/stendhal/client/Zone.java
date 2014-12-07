@@ -45,6 +45,8 @@ class Zone {
 	private final Map<String, LayerRenderer> layers = new HashMap<String, LayerRenderer>();
 	/** Global current zone information. */
 	private final ZoneInfo zoneInfo = ZoneInfo.get();
+	/** Weather renderer. */
+	private LayerRenderer weather = new EmptyLayerRenderer();
 	/** Collision layer. */
 	private CollisionDetection collision;
 	/** Protection layer. */
@@ -164,6 +166,12 @@ class Zone {
 				zoneInfo.setEffectBlend(getEffectBlend(obj.get("blend_method"), zoneInfo.getColorMethod()));
 			} else {
 				zoneInfo.setEffectBlend(null);
+			}
+			
+			// *** Weather ***
+			String weather = obj.get("weather");
+			if (weather != null) {
+				this.weather = new WeatherLayerRenderer(weather, zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
 			}
 			
 			// *** other attributes ***
@@ -394,6 +402,16 @@ class Zone {
 			layers.put(compositeName, r);
 		}
 		return r;
+	}
+	
+	/**
+	 * Get the weather renderer. 
+	 * 
+	 * @return renderer for the weather layer. The value is always a valid
+	 * renderer
+	 */
+	LayerRenderer getWeather() {
+		return weather;
 	}
 	
 	/**
