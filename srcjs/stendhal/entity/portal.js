@@ -17,6 +17,6 @@
  */
 marauroa.rpobjectFactory.portal = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 	minimapShow: true,
-	minimapStyle: "rgb(0,0,0)"
-	zIndex: 5000,
+	minimapStyle: "rgb(0,0,0)",
+	zIndex: 5000
 });
