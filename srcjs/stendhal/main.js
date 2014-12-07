@@ -81,7 +81,7 @@ stendhal.main = {
 		document.getElementById('chatbar').onkeypress=stendhal.ui.chatBar.keypress;
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
-			document.onclick = stendhal.ui.gamewindow.onclick(e);
+			document.onclick = stendhal.ui.gamewindow.onclick;
 		}
 	},
 
