@@ -81,7 +81,7 @@ stendhal.main = {
 		document.getElementById('chatbar').onkeypress=stendhal.ui.chatBar.keypress;
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
-			gamewindow.onclick = stendhal.ui.gamewindow.onclick;
+			document.onclick = stendhal.ui.gamewindow.onclick(e);
 		}
 	},
 
@@ -91,12 +91,9 @@ stendhal.main = {
 	startup: function() {
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
 		var body = document.getElementById("body");
-		body.style.cursor = "wait";
 
-		console.log("Initializing EventHandlers");
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
-		console.log("Connecting to Server");
 		marauroa.clientFramework.connect(null, null);
 		
 		if (document.getElementById("gamewindow")) {

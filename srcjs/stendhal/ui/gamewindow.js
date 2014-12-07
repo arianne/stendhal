@@ -29,7 +29,6 @@ stendhal.ui.gamewindow = {
 		if (marauroa.me && document.visibilityState == "visible") {
 
 			var canvas = document.getElementById("gamewindow");
-			canvas.style.display = "none";
 			this.targetTileWidth = 32;
 			this.targetTileHeight = 32;
 			canvas.width = stendhal.data.map.sizeX * this.targetTileWidth;
@@ -54,12 +53,11 @@ stendhal.ui.gamewindow = {
 				}
 			}
 			this.drawEntitiesTop();
-
-			canvas.style.display = "block";
 		}
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
+
 	},
 
 	paintLayer: function(canvas, drawingLayer, tileOffsetX, tileOffsetY) {
