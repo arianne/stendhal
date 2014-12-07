@@ -98,6 +98,10 @@ stendhal.main = {
 		stendhal.main.registerBrowserEventHandlers();
 		console.log("Connecting to Server");
 		marauroa.clientFramework.connect(null, null);
+		
+		if (document.getElementById("gamewindow")) {
+			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+		}
 	}
 }
 

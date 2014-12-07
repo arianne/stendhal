@@ -26,7 +26,7 @@ stendhal.ui.gamewindow = {
 	draw: function() {
 		var startTime = new Date().getTime();
 
-		if (document.visibilityState == "visible") {
+		if (marauroa.me && document.visibilityState == "visible") {
 
 			var canvas = document.getElementById("gamewindow");
 			canvas.style.display = "none";
