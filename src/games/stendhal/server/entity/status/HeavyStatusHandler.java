@@ -43,7 +43,9 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 				status.setOriginalSpeed(entity.getBaseSpeed());
 				
 				/* create random duration between 60 and 90 seconds */
-				duration = Rand.randUniform(60, 90);
+				Double d_min = 3.3 * 60;
+				Double d_max = 3.3 * 90;
+				duration = Rand.randUniform(d_min.intValue(), d_max.intValue());
 				
 				/* stop entity if it is currently moving */
 				if (entity.getSpeed() > 0.0) {
