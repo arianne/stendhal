@@ -754,3 +754,4 @@ tileset/object/creep_med.png 7 3@1:13@1
 
 # Weather: snow
 data/sprites/weather/snow.png *@75 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14
+data/sprites/weather/snow_heavy.png *@65 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14
