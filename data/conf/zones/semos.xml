@@ -35,6 +35,7 @@
     file="Level 0/semos/mountain_n_w4.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">snow_light</parameter>
     </attributes>
 
     <configurator
@@ -68,6 +69,7 @@
     file="Level 0/semos/mountain_n2_w3.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">snow_light</parameter>
     </attributes>
 
     <portal x="68" y="4" ref="kikareukin_exit">
