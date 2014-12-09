@@ -1542,6 +1542,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
     file="Level 0/semos/village_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="file" condition="stendhal.christmas">Level 0/semos/village_w_xmas.tmx</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow</parameter>
     </attributes>
 
