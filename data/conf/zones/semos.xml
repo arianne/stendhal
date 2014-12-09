@@ -510,6 +510,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/mountain_n_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator
@@ -1289,6 +1290,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/plains_n.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
 
     <!-- NPCs -->
@@ -1396,6 +1398,7 @@ South: Semos city
     file="Level 0/semos/plains_ne.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.plains.HoeingManNPC" />
@@ -1454,6 +1457,7 @@ Southeast: Farmhouse
     file="Level 0/semos/plains_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <portal x="85" y="26" ref="jail_entrance_left">
       <destination zone="-1_semos_jail" ref="entrance" />
@@ -3094,6 +3098,7 @@ Holy mackerel! These chips are tasty.
 
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <configurator
       class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
@@ -3201,6 +3206,7 @@ East: Ados city
     file="Level 0/semos/road_se.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
 
     <entity x="72" y="25">
@@ -3218,6 +3224,7 @@ East: Ados city
     file="Level 0/semos/plains_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
 
     <configurator
