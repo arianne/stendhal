@@ -2104,12 +2104,13 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <!-- END REMOVE AFTER MINE TOWN WEEKS -->
 
-    <entity x="45" y="10" condition="stendhal.christmas">
+
+    <entity x="30" y="16" condition="stendhal.christmas">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-        <parameter name="sound">christmastree</parameter>
+        <parameter name="sound">snowflakelittlewhiteskirt</parameter>
         <parameter name="volume">80</parameter>
-        <parameter name="radius">10</parameter>
+        <parameter name="radius">15</parameter>
       </implementation>
     </entity>
 
