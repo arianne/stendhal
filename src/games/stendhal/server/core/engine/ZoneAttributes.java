@@ -13,6 +13,7 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.common.CRC;
 import games.stendhal.server.core.rp.DaylightUpdater;
+import games.stendhal.server.core.rp.WeatherUpdater;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -89,12 +90,14 @@ public class ZoneAttributes {
 	 */
 	public void put(String key, String value) {
 		// Interpret special values
-		if ("color_method".equals(key) && "time".equals(value)) {
+		if ("weather".equals(key) && value != null && value.startsWith(WeatherUpdater.WEATHER_KEYWORD)) {
+			WeatherUpdater.get().manageAttributes(this, value);
+		} else if ("color_method".equals(key) && "time".equals(value)) {
 			DaylightUpdater.get().manageAttributes(this);
 		} else {
 			if ("color".equals(key)) {
 				/*
-				 * Accept hex strings as well. Check the prefix manually to avoid
+				 * Accept only hex strings. Check the prefix manually to avoid
 				 * stupid compatibility problems with octal numbers.
 				 */
 				try {
