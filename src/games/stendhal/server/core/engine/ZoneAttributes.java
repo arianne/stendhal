@@ -46,9 +46,9 @@ public class ZoneAttributes {
 	private boolean valid;
 
 	/**
-	 * Cereate new ZoneAttributes.
+	 * Create new ZoneAttributes.
 	 *
-	 * @param zone
+	 * @param zone the zone for which the attribute set is created
 	 */
 	public ZoneAttributes(StendhalRPZone zone) {
 		attr.setID(RPObject.INVALID_ID);
@@ -67,7 +67,7 @@ public class ZoneAttributes {
 	 *
 	 * @param name base zone name
 	 */
-	public void setBaseName(String name) {
+	public final void setBaseName(String name) {
 		// old client ignore layers ending in _map, thus the odd choice of name
 		content.name = name + ".data_map";
 	}
@@ -108,6 +108,16 @@ public class ZoneAttributes {
 			attr.put(key, value);
 		}
 		invalidate();
+	}
+	
+	/**
+	 * Get the current value of an attribute.
+	 * 
+	 * @param key attribute key
+	 * @return attribute value, or <code>null</code> if the attribute is not set
+	 */
+	public String get(String key) {
+		return attr.get(key);
 	}
 
 	/**
