@@ -137,10 +137,10 @@ public class WeatherUpdater implements TurnListener {
 		// Year time modifier. January is the coldest with effect of -60
 		int month = calendar.get(Calendar.MONTH);
 		month = 10 * Math.abs(month - 6);
-		// Day time modifier. Nights are slightly colder, 02 being the coldest
+		// Day time modifier. Nights are slightly colder, 03 being the coldest
 		// with effect of -6
 		int hour = calendar.get(Calendar.HOUR_OF_DAY);
-		hour = Math.abs((hour + 26) % 24 - 12);
+		hour = Math.abs((hour + 21) % 24 - 12) / 2;
 		int temp = temperature.getValue() - hour - month + temperatureMod;
 		LOGGER.debug("Modified temp: " + temp);
 		if (temp <= -30) {
