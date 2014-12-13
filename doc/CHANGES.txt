@@ -5,6 +5,12 @@
 
 *world*
 - Semos city is decorated for Christmas
+- Falling snow
+- Leaderhosen outfit 
+
+
+*code*
+- weather layer
 
 
 1.15.1
