@@ -113,11 +113,14 @@ The following files are released into the public domain and can be distributed u
             http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
             http://sourceforge.net/projects/myabcs
     • data/sounds/ambiance/
-        rain-01             rain-heavy-01               rain-light-01
         river-1             water-sloshing-1
         • Sources:
             http://freesound.org/people/Adam_N/sounds/166310/
+            http://freesound.org/people/pawsound/sounds/154879/
+    • data/sounds/weather/
+        rain                rain_heavy                  rain_light
+        • Sources:
             http://freesound.org/people/dingo1/sounds/134721/
             http://freesound.org/people/klangfabrik/sounds/157149/
-            http://freesound.org/people/pawsound/sounds/154879/
             http://freesound.org/people/Zepp2010/sounds/163264/
+            
