@@ -258,7 +258,7 @@ public class StendhalClient extends ClientFramework {
 				drawingSemaphore.lock();
 				staticLayers.clear();
 				for (ZoneChangeListener listener : zoneChangeListeners) {
-					listener.onZoneChange();
+					listener.onZoneChange(currentZone);
 				}
 			}
 		}
@@ -405,7 +405,7 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		// autologin if a valid character was specified.
-		if ((character != null) && (characters.keySet().contains(character))) {
+		if ((character != null) && (characters.containsKey(character))) {
 			try {
 				chooseCharacter(character);
 				stendhal.setDoLogin();
@@ -543,10 +543,8 @@ public class StendhalClient extends ClientFramework {
 		} else {
 			if (face) {
 				action = new FaceRPAction(directions.get(size - 1));
-
 			} else {
 				action = new MoveRPAction(directions.get(size - 1));
-
 			}
 		}
 
@@ -714,12 +712,23 @@ public class StendhalClient extends ClientFramework {
 	interface ZoneChangeListener {
 		/**
 		 * Called when the user is changing zone.
+		 * 
+		 * @param zone the new zone to be changed to. <b>This is not guaranteed
+		 * 	to have complete zone data at this stage.</b>
 		 */
-		void onZoneChange();
+		void onZoneChange(Zone zone);
+		/**
+		 * Called when the user has changed zone.
+		 * 
+		 * @param zone the new zone
+		 */
+		void onZoneChangeCompleted(Zone zone);
 		/**
 		 * Called when the zone is updated, such as when the coloring changes.
+		 * 
+		 * @param zone the updated zone
 		 */
-		void onZoneUpdate();
+		void onZoneUpdate(Zone zone);
 	}
 
 	/**
@@ -753,7 +762,7 @@ public class StendhalClient extends ClientFramework {
 							}
 							staticLayers.setZone(zone);
 							for (ZoneChangeListener listener : zoneChangeListeners) {
-								listener.onZoneUpdate();
+								listener.onZoneUpdate(zone);
 							}
 						}
 					});
@@ -763,6 +772,9 @@ public class StendhalClient extends ClientFramework {
 		} else {
 			zone.validate();
 			staticLayers.setZone(zone);
+			for (ZoneChangeListener listener : zoneChangeListeners) {
+				listener.onZoneChangeCompleted(zone);;
+			}
 		}
 	}
 

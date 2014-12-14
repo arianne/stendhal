@@ -1114,13 +1114,18 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	@Override
-	public void onZoneUpdate() {
+	public void onZoneUpdate(Zone zone) {
 		viewManager.resetViews();
 	}
 
 	@Override
-	public void onZoneChange() {
+	public void onZoneChange(Zone zone) {
 		removeAllObjects();
+	}
+	
+	@Override
+	public void onZoneChangeCompleted(Zone zone) {
+		// Change layers here ?
 	}
 
 	/**
