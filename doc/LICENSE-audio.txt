@@ -118,9 +118,18 @@ The following files are released into the public domain and can be distributed u
             http://freesound.org/people/Adam_N/sounds/166310/
             http://freesound.org/people/pawsound/sounds/154879/
     • data/sounds/weather/
-        rain                rain_heavy                  rain_light
+        rain                rain_heavy              rain_light
+        thunder-01          thunder-02              thunder-03
+        thunder-04          thunder-05              thunder-06
+        thunder-07          thunder-08
         • Sources:
+            http://freesound.org/people/Andy_Gardner/sounds/238145/
+            http://freesound.org/people/Dave%20Welsh/sounds/194364/
             http://freesound.org/people/dingo1/sounds/134721/
             http://freesound.org/people/klangfabrik/sounds/157149/
+            http://freesound.org/people/sphion/sounds/158525/
+            http://freesound.org/people/vonz/sounds/188767/
+            http://freesound.org/people/Xythe/sounds/37299/
+            http://freesound.org/people/Yoyodaman234/sounds/253953/
             http://freesound.org/people/Zepp2010/sounds/163264/
             
