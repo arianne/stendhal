@@ -47,6 +47,8 @@ class Zone {
 	private final ZoneInfo zoneInfo = ZoneInfo.get();
 	/** Weather renderer. */
 	private LayerRenderer weather = new EmptyLayerRenderer();
+	/** Name of the weather type, or <code>null</code>. */
+	private String weatherName;
 	/** Collision layer. */
 	private CollisionDetection collision;
 	/** Protection layer. */
@@ -143,49 +145,7 @@ class Zone {
 			store.addTilesets(new InputSerializer(in));
 			tileset = store;
 		} else if (layer.equals("data_map")) {
-			// Zone attributes
-			RPObject obj = new RPObject();
-			obj.readObject(new InputSerializer(in));
-
-			// *** coloring ***
-			// Ensure there's no old color left. That can happen in the
-			// morning on a daylight colored zone.
-			zoneInfo.setColorMethod(null);
-
-			// getBlend calls below may need the color, so check that one first
-			String color = obj.get("color");
-			if (color != null && isColoringEnabled()) {
-				// Keep working, but use an obviously broken color if parsing
-				// the value fails.
-				zoneInfo.setZoneColor(MathHelper.parseIntDefault(color, 0x00ff00));
-				zoneInfo.setColorMethod(getBlend(obj.get("color_method")));
-			}
-			
-			// * effect blend *
-			if (isColoringEnabled()) {
-				zoneInfo.setEffectBlend(getEffectBlend(obj.get("blend_method"), zoneInfo.getColorMethod()));
-			} else {
-				zoneInfo.setEffectBlend(null);
-			}
-			
-			// *** Weather ***
-			String weather = obj.get("weather");
-			if (weather != null) {
-				this.weather = new WeatherLayerRenderer(weather, zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
-			}
-			
-			// *** other attributes ***
-			String danger = obj.get("danger_level");
-			if (danger != null) {
-				try {
-					dangerLevel = Double.parseDouble(danger);
-				} catch (NumberFormatException e) {
-					Logger.getLogger(Zone.class).warn("Invalid danger level: " + danger, e);
-				}
-			}
-			readableName = obj.get("readable_name");
-			// OK to try validating after this
-			requireData = false;
+			readDataLayer(in);
 		} else {
 			/*
 			 * It is a tile layer.
@@ -195,6 +155,59 @@ class Zone {
 			layers.put(layer, content);
 		}
 		isValid = false;
+	}
+
+	/**
+	 * Read the special data layer.
+	 * 
+	 * @param in Stream for reading the layer data
+	 * @throws IOException
+	 */
+	private void readDataLayer(InputStream in) throws IOException {
+		// Zone attributes
+		RPObject obj = new RPObject();
+		obj.readObject(new InputSerializer(in));
+
+		// *** coloring ***
+		// Ensure there's no old color left. That can happen in the
+		// morning on a daylight colored zone.
+		zoneInfo.setColorMethod(null);
+
+		// getBlend calls below may need the color, so check that one first
+		String color = obj.get("color");
+		if (color != null && isColoringEnabled()) {
+			// Keep working, but use an obviously broken color if parsing
+			// the value fails.
+			zoneInfo.setZoneColor(MathHelper.parseIntDefault(color, 0x00ff00));
+			zoneInfo.setColorMethod(getBlend(obj.get("color_method")));
+		}
+		
+		// * effect blend *
+		if (isColoringEnabled()) {
+			zoneInfo.setEffectBlend(getEffectBlend(obj.get("blend_method"), zoneInfo.getColorMethod()));
+		} else {
+			zoneInfo.setEffectBlend(null);
+		}
+		
+		// *** Weather ***
+		String weather = obj.get("weather");
+		if (weather != null) {
+			weatherName = weather;
+			this.weather = new WeatherLayerRenderer(weather, zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
+		}
+		
+		// *** other attributes ***
+		String danger = obj.get("danger_level");
+		if (danger != null) {
+			try {
+				dangerLevel = Double.parseDouble(danger);
+			} catch (NumberFormatException e) {
+				Logger.getLogger(Zone.class).warn("Invalid danger level: " + danger, e);
+			}
+		}
+		readableName = obj.get("readable_name");
+		// OK to try validating after this
+		requireData = false;
 	}
 	
 	/**
@@ -412,6 +425,16 @@ class Zone {
 	 */
 	LayerRenderer getWeather() {
 		return weather;
+	}
+	
+	/**
+	 * Get the name of the weather type.
+	 * 
+	 * @return weather name, or <code>null</code> if the zone has no special
+	 * 	weather
+	 */
+	String getWeatherName() {
+		return weatherName;
 	}
 	
 	/**
