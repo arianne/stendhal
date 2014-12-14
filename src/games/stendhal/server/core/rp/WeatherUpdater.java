@@ -63,7 +63,7 @@ public class WeatherUpdater implements TurnListener {
 	 */
 	private final WeatherAttribute temperature = new WeatherAttribute(TEMP_RANGE);
 	/** Fogginess attribute. Foggy about 1/25 of time. */
-	private final WeatherAttribute fog = new WeatherAttribute(200 / FOGGINESS , "fog", "thick_fog");
+	private final WeatherAttribute fog = new WeatherAttribute(200 / FOGGINESS , "fog", "fog_heavy");
 
 	/**
 	 * Create a new Daylight instance. Do not use this.
