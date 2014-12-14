@@ -20,6 +20,7 @@ import games.stendhal.client.PerceptionListenerImpl;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.UserContext;
+import games.stendhal.client.WeatherSoundManager;
 import games.stendhal.client.World;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
@@ -252,6 +253,7 @@ public class j2DClient implements UserInterface {
 		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
 
 		client.addZoneChangeListener(screen);
+		client.addZoneChangeListener(new WeatherSoundManager());
 		positionChangeListener.add(screenController);
 
 		/*
