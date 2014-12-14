@@ -30,6 +30,7 @@
   <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">auto(rain=-1,fog=+1,temperature=+2)</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -102,6 +103,7 @@
   <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">auto(rain=-2, temperature=+5)</parameter>
     </attributes>
     
     <entity x="90" y="45">
@@ -146,6 +148,7 @@
   <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">auto(rain=-2, temperature=+5)</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -1078,6 +1081,7 @@
   <zone name="0_athor_island_e" level="0" x="501152" y="500384" file="Level 0/athor/island_e.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">auto(rain=-2, temperature=+5)</parameter>
     </attributes>
     
     <!-- Music/Ambiance -->
