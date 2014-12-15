@@ -16,14 +16,16 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.mapstuff.WeatherEntity;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import marauroa.common.Pair;
 
 import org.apache.log4j.Logger;
 
@@ -43,37 +45,49 @@ public class WeatherUpdater implements TurnListener {
 	/** Upper limit of the temperature attribute. */
 	private static final int TEMP_RANGE = 30;
 	/** Prevalence of rain. Roughly the percentage of rainy time. */
-	private static final int RAININESS = 10;
+	private static final double RAININESS = 10;
 	/** Prevalence of fog. Roughly the percentage of foggy time. */
-	private static final int FOGGINESS = 4;
+	private static final double FOGGINESS = 4;
+	/**
+	 * Rough percentage of rains that are thunderstorms. Note that triggering
+	 * thunder also demands a warm temperature, and this percentage
+	 * <em>only</em> is in effect when the temperature is high enough.
+	 */
+	private static final double THUNDER_PREVALENCE = 5;
 	
 	/** Singleton instance. */
 	private static final WeatherUpdater INSTANCE = new WeatherUpdater();
 
-	/** Managed zone attributes, and their modifiers. */
-	private final Map<ZoneAttributes, Modifiers> zones = new HashMap<ZoneAttributes, Modifiers>();	
+	/** Data about managed zones. */
+	private final Collection<ZoneData> zones = new ArrayList<ZoneData>();
+	
 	/**
 	 * Rain attribute. The descriptions are <em>modifiers</em> to be appended
 	 * after "rain" or "snow"
 	 */
-	private final WeatherAttribute rain = new WeatherAttribute(3 * 100 / RAININESS, "_light", "", "_heavy");
+	private final WeatherAttribute rain = new WeatherAttribute((int) Math.round(3 * 100 / RAININESS - 1), "_light", "", "_heavy");
 	/**
 	 * Temperature. Just to be used as a modifier to decide between rain and
 	 * snow.
 	 */
 	private final WeatherAttribute temperature = new WeatherAttribute(TEMP_RANGE);
 	/** Fogginess attribute. Foggy about 1/25 of time. */
-	private final WeatherAttribute fog = new WeatherAttribute(200 / FOGGINESS , "fog", "fog_heavy");
+	private final WeatherAttribute fog = new WeatherAttribute((int) Math.round(200 / FOGGINESS - 1) , "fog", "fog_heavy");
+	/**
+	 * Thunder attribute. This is used to turn on and off the weather entities
+	 * on managed zones. Roughly one in 20 rains will be thunders.
+	 */
+	private final WeatherAttribute thunder = new WeatherAttribute((int) Math.round(200 / THUNDER_PREVALENCE - 1), "", "");
 
 	/**
-	 * Create a new Daylight instance. Do not use this.
+	 * Create a new WeaterUpdater instance. Do not use this.
 	 */
 	private WeatherUpdater() {
 		onTurnReached(0);
 	}
 
 	/**
-	 * Get the Daylight instance.
+	 * Get the WeatherUpdater instance.
 	 *
 	 * @return singleton instance
 	 */
@@ -110,9 +124,13 @@ public class WeatherUpdater implements TurnListener {
 	 */
 	public void manageAttributes(ZoneAttributes attr, String desc) {
 		Modifiers mods = Modifiers.getModifiers(desc);
-		zones.put(attr, mods);
-		String weather = describeWeather(Calendar.getInstance(), mods);
-		updateAndNotify(attr, weather);
+		WeatherEntity entity = new WeatherEntity();
+		ZoneData data = new ZoneData(attr, mods, entity);
+		zones.add(data);
+		attr.getZone().add(entity);
+		
+		Pair<String, Boolean> weather = describeWeather(Calendar.getInstance(), mods);
+		updateAndNotify(data, weather);
 	}
 
 	@Override
@@ -128,6 +146,7 @@ public class WeatherUpdater implements TurnListener {
 		boolean changed = temperature.update();
 		changed |= rain.update();
 		changed |= fog.update();
+		changed |= thunder.update();
 		if (changed) {
 			updateZones();
 		}
@@ -140,21 +159,26 @@ public class WeatherUpdater implements TurnListener {
 	 * @param calendar determines the time used for  the description
 	 * @param mods weather modifiers
 	 * 
-	 * @return weather description, or <code>null</code> for clear skies
+	 * @return A pair of weather description and a boolean for thunder. The
+	 * 	description will be <code>null</code> for clear skies
 	 */
-	private String describeWeather(Calendar calendar, Modifiers mods) {
+	private Pair<String, Boolean> describeWeather(Calendar calendar, Modifiers mods) {
 		// Rain probability should get roughly a raise by 5% for each point,
 		// as described for manageAttributes()
 		int mod = (int) (mods.rain * 0.05 * rain.getMax());
 		String weather = rain.getDescription(mod);
 		if (weather != null) {
-			weather = rainOrSnow(calendar, mods.temperature) + weather;
+			Pair<String, Boolean> rainDesc = describeRain(calendar, mods.temperature);
+			return new Pair<String, Boolean>(rainDesc.first() + weather, rainDesc.second());
 		} else {
 			// Similarly 5% for fog
 			mod = (int) (mods.fog * 0.05 * fog.getMax());
 			weather = fog.getDescription(mod);
+			if (weather != null) {
+				return new Pair<String, Boolean>(weather, Boolean.FALSE);
+			}
 		}
-		return weather;
+		return new Pair<String, Boolean>(null, Boolean.FALSE);
 	}
 	
 	/**
@@ -163,9 +187,10 @@ public class WeatherUpdater implements TurnListener {
 	 * 
 	 * @param calendar calendar for checking current time
 	 * @param temperatureMod zone's temperature modifier
-	 * @return Either "snow" or "rain", depending on the time and temperature
+	 * @return A pair of "rain" or "snow", and a boolean marking if the rain is
+	 * 	thunder
 	 */
-	private String rainOrSnow(Calendar calendar, int temperatureMod) {
+	private Pair<String, Boolean> describeRain(Calendar calendar, int temperatureMod) {
 		// Year time modifier. January is the coldest with effect of -60
 		int month = calendar.get(Calendar.MONTH);
 		month = 10 * Math.abs(month - 6);
@@ -176,27 +201,34 @@ public class WeatherUpdater implements TurnListener {
 		// temperatureMod corresponds to a month, as described in
 		// manageAttributes() documentation
 		int temp = temperature.getValue() - hour - month + (temperatureMod * 10);
-		LOGGER.debug("Modified temp: " + temp);
+		LOGGER.debug("Modified temp: " + temp + " zone modifier: " + temperatureMod);
 		if (temp <= -30) {
-			return "snow";
+			return new Pair<String, Boolean>("snow", Boolean.FALSE);
 		}
-		return "rain";
+		// Require warmth for thunder
+		return new Pair<String, Boolean>("rain", temp >= -5 && thunder.getDescription(0) != null);
 	}
 	
 	/**
 	 * Update a zone's weather attribute, and notify players of the changes.
 	 * 
-	 * @param attr zone's attribute set
-	 * @param weather new weather description
+	 * @param zone zone's data set
+	 * @param weather Pair of new weather description string, and a Boolean
+	 *	determining if thunder should be activated
 	 */
-	private void updateAndNotify(ZoneAttributes attr, String weather) {
+	private void updateAndNotify(ZoneData zone, Pair<String, Boolean> weather) {
+		ZoneAttributes attr = zone.getAttributes();
+		zone.getEntity().setThunder(weather.second());
+		
+		String desc = weather.first();
 		String oldWeather = attr.get(WEATHER);
 		// Objects.equals()...
-		if ((weather != null && !weather.equals(oldWeather)) 
-				|| (weather == null && oldWeather != null)) {
-			LOGGER.debug("Weather on " + attr.getZone().describe() + ": " + weather);
-			if (weather != null) {
-				attr.put(WEATHER, weather);
+		if ((desc != null && !desc.equals(oldWeather)) 
+				|| (desc == null && oldWeather != null)) {
+			LOGGER.debug("Weather on " + attr.getZone().describe() + ": "
+				+ desc + (weather.second() ? ", thundering" : ""));
+			if (desc != null) {
+				attr.put(WEATHER, desc);
 			} else {
 				attr.remove(WEATHER);
 			}
@@ -222,15 +254,16 @@ public class WeatherUpdater implements TurnListener {
 		 */
 		Calendar calendar = Calendar.getInstance();
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("Weather change: rain=" + rain.getValue() + ", temp=" + temperature.getValue() + ", fog=" + fog.getValue());
+			LOGGER.debug("Weather change: rain=" + rain.getValue() + "/" 
+					+ rain.getMax() + ", temp="	+ temperature.getValue() + "/"
+					+ temperature.getMax() + ", fog=" + fog.getValue() + "/"
+					+ fog.getMax() + ", thunder=" + thunder.getValue() + "/"
+					+ thunder.getMax());
 			LOGGER.debug("Weather on typical zone: " + describeWeather(calendar, Modifiers.getModifiers(WEATHER_KEYWORD)));
-			LOGGER.debug("Rain would be:" + rainOrSnow(calendar, 0));
+			LOGGER.debug("Rain would be:" + describeRain(calendar, 0).first());
 		}
-		for (Entry<ZoneAttributes, Modifiers> entry : zones.entrySet()) {
-			ZoneAttributes attr = entry.getKey();
-			Modifiers mods = entry.getValue();
-			String weather = describeWeather(calendar, mods);
-			updateAndNotify(attr, weather);
+		for (ZoneData zone : zones) {
+			updateAndNotify(zone, describeWeather(calendar, zone.getModifiers()));
 		}
 	}
 	
@@ -415,6 +448,58 @@ public class WeatherUpdater implements TurnListener {
 				return desc[idx];
 			}
 			return null;
+		}
+	}
+	
+	/**
+	 * Container for weather related zone data.
+	 */
+	private static class ZoneData {
+		/** Zone's attribute map. */
+		private final ZoneAttributes attributes;
+		/** Weather modifiers of the zone. */
+		private final Modifiers modifiers;
+		/** Weather entity of the zone. */
+		private final WeatherEntity entity;
+		
+		/**
+		 * Create a ZoneData.
+		 * 
+		 * @param attributes zone's attributes
+		 * @param modifiers zone's weather modifiers
+		 * @param entity weather entity of the zone
+		 */
+		ZoneData(ZoneAttributes attributes, Modifiers modifiers, WeatherEntity entity) {
+			this.attributes = attributes;
+			this.modifiers = modifiers;
+			this.entity = entity;
+		}
+		
+		/**
+		 * Get the zone's attribute map.
+		 * 
+		 * @return zone attributes
+		 */
+		ZoneAttributes getAttributes() {
+			return attributes;
+		}
+		
+		/**
+		 * Get the zone's weather modifiers.
+		 * 
+		 * @return modifiers
+		 */
+		Modifiers getModifiers() {
+			return modifiers;
+		}
+		
+		/**
+		 * Get the zone's weather entity.
+		 * 
+		 * @return weather entity
+		 */
+		WeatherEntity getEntity() {
+			return entity;
 		}
 	}
 }
