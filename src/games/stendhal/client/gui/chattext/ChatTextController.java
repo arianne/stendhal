@@ -33,6 +33,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
+import javax.swing.text.JTextComponent;
 
 public class ChatTextController {
 	/** Maximum text length. Public chat is limited to 1000 server side. */
@@ -60,7 +61,7 @@ public class ChatTextController {
 		setCache(cache);
 	}
 
-	public Component getPlayerChatText() {
+	public JTextComponent getPlayerChatText() {
 		return playerChatText;
 	}
 

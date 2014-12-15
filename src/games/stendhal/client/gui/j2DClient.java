@@ -29,6 +29,7 @@ import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.buddies.BuddyPanelController;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chattext.CharacterMap;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.group.GroupPanelController;
@@ -338,16 +339,23 @@ public class j2DClient implements UserInterface {
 		// left side panel
 		final JComponent leftColumn = createLeftPanel();
 
+		// Set maximum size to prevent the entry requesting massive widths, but
+		// force expand if there's extra space anyway
+		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
+		// Container for chat entry and character map
+		JComponent chatEntryBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+		chatEntryBox.add(chatText.getPlayerChatText(), SLayout.EXPAND_X);
+		
+		if (System.getProperty("charmap.emotes") != null) {
+			chatEntryBox.add(new CharacterMap(chatText.getPlayerChatText()));
+		}
+		
 		// Chat entry and chat log. The chatlogs are in tabs so they need a
 		// patterned background.
 		final JComponent chatBox = new JPanel();
 		chatBox.setBorder(null);
 		chatBox.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
-		// Set maximum size to prevent the entry requesting massive widths, but
-		// force expand if there's extra space anyway
-		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
-		chatBox.add(chatText.getPlayerChatText(), SLayout.EXPAND_X);
-
+		chatBox.add(chatEntryBox, SLayout.EXPAND_X);
 		chatBox.add(chatLogArea, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 
 		// Give the user the ability to make the the game area less tall
