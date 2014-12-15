@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,7 +38,7 @@ public class SoundEvent extends RPEvent {
 	}
 
 	/**
-	 * Creates a new sound event.
+	 * Creates a new sound event with an infinite range.
 	 *
 	 * @param sound name of sound to play
 	 * @param layer 
@@ -49,9 +49,20 @@ public class SoundEvent extends RPEvent {
 		put("layer", layer.ordinal());
 	}
 
+	/**
+	 * Creates a new sound event with a volume and infinite range.
+	 *
+	 * @param sound name of sound to play
+	 * @param volume 
+	 * @param layer 
+	 */
+	public SoundEvent(final String sound, int volume, SoundLayer layer) {
+		this(sound, layer);
+		put("volume", volume);
+	}
 
 	/**
-	 * creates a new sound event.
+	 * Creates a new sound event with specified range and volume.
 	 *
 	 * @param sound name of sound to play
 	 * @param radius radius
@@ -59,10 +70,7 @@ public class SoundEvent extends RPEvent {
 	 * @param layer layer (e. g. ambient sound)
 	 */
 	public SoundEvent(String sound, int radius, int volume, SoundLayer layer) {
-		super(Events.SOUND);
-		put("sound", sound);
+		this(sound, volume, layer);
 		put("radius", radius);
-		put("volume", volume);
-		put("layer", layer.ordinal());
 	}
 }
