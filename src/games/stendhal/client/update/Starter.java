@@ -43,10 +43,10 @@ public class Starter {
 	public static void main(final String[] args) {
 		try {
 			final String version = System.getProperty("java.specification.version");
-			if (Float.parseFloat(version) < 1.6f) {
+			if (Float.parseFloat(version) < 1.7f) {
 				JOptionPane.showMessageDialog(
 						null,
-						"You need at least Java 6 (also known as 1.6.0) but you only have "
+						"You need at least Java 7 (also known as 1.7.0) but you only have "
 						+ version
 						+ ". You can download it at http://java.com");
 			}
@@ -54,7 +54,6 @@ public class Starter {
 			// ignore
 		}
 
-	ClientRunner.run(args);
+		ClientRunner.run(args);
 	}
-
 }
