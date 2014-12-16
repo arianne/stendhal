@@ -114,6 +114,10 @@ class VisualSettings {
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});
+		
+		JCheckBox weather = SettingsComponentFactory.createSettingsToggle("ui.draw_weather", "true",
+				"Draw weather", "Draw weather effects.");
+		page.add(weather);
 
 		// blood
 		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",

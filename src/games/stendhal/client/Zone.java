@@ -12,6 +12,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.gui.j2d.Blend;
+import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Tileset;
 import games.stendhal.common.CollisionDetection;
@@ -37,6 +38,12 @@ import org.apache.log4j.Logger;
  * Layer data of a zone.
  */
 class Zone {
+	/**
+	 * The name of the setting that controls whether the weather layer should
+	 * be drawn.
+	 */ 
+	private static final String WEATHER_PROPERTY = "ui.draw_weather";
+	
 	/** Name of the zone. */
 	private final String name;
 	/** A name that's suitable for presenting to the user. */
@@ -56,7 +63,7 @@ class Zone {
 	/** Tilesets. */
 	private TileStore tileset;
 	/**
-	 * <code>true</code>, if the zone has been succesfully validated since the
+	 * <code>true</code>, if the zone has been successfully validated since the
 	 * last change, <code>false</code> otherwise.
 	 */
 	private volatile boolean isValid;
@@ -73,6 +80,8 @@ class Zone {
 	private boolean update;
 	/** Danger level of the zone. */
 	private double dangerLevel;
+	/** Flag to check whether the weather layer should be drawn. */
+	private boolean drawWeather;
 	
 	/**
 	 * Create a new zone.
@@ -81,6 +90,22 @@ class Zone {
 	 */
 	Zone(String name) {
 		this.name = name;
+		
+		// Follow the weather drawing setting
+		WtWindowManager.getInstance().registerSettingChangeListener(WEATHER_PROPERTY, new SettingChangeAdapter(WEATHER_PROPERTY, "true") {
+			@Override
+			public void changed(String newValue) {
+				boolean value = Boolean.parseBoolean(newValue);
+				if (drawWeather != value) {
+					drawWeather = value;
+					if (!value) {
+						weather = new EmptyLayerRenderer();
+					} else if (weatherName != null) {
+						weather = new WeatherLayerRenderer(weatherName, zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
+					}
+				}
+			}
+		});
 	}
 	
 	/**
@@ -193,7 +218,9 @@ class Zone {
 		String weather = obj.get("weather");
 		if (weather != null) {
 			weatherName = weather;
-			this.weather = new WeatherLayerRenderer(weather, zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
+			if (drawWeather) {
+				this.weather = new WeatherLayerRenderer(weather, zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
+			}
 		}
 		
 		// *** other attributes ***
@@ -462,7 +489,7 @@ class Zone {
 		}
 
 		for (final LayerRenderer lr : layers.values()) {
-				lr.setTileset(tileset);
+			lr.setTileset(tileset);
 		}
 
 		isValid = true;
