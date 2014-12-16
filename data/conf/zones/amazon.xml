@@ -62,7 +62,7 @@
   <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
-      <parameter name="weather">auto(rain=+2,fog=+1,temperature=+5)</parameter>
+      <parameter name="weather">varying(rain=+2,fog=+1,temperature=+5)</parameter>
     </attributes>
     
     <entity x="43" y="90">
@@ -90,7 +90,7 @@
   <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
-      <parameter name="weather">auto(rain=+2,fog=+1,temperature=+5)</parameter>
+      <parameter name="weather">varying(rain=+2,fog=+1,temperature=+5)</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -129,7 +129,7 @@
   <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
-      <parameter name="weather">auto(rain=+2,fog=+1,temperature=+5)</parameter>
+      <parameter name="weather">varying(rain=+2,fog=+1,temperature=+5)</parameter>
     </attributes>
     
     <entity x="13" y="38">
@@ -148,7 +148,7 @@
   <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
-      <parameter name="weather">auto(rain=+2,fog=+1,temperature=+5)</parameter>
+      <parameter name="weather">varying(rain=+2,fog=+1,temperature=+5)</parameter>
     </attributes>
     
     <entity x="62" y="109">

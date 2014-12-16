@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
  */
 public class WeatherUpdater implements TurnListener {
 	/** The keyword used by the weather adjustments parser. */
-	public static final String WEATHER_KEYWORD = "auto";
+	public static final String WEATHER_KEYWORD = "varying";
 	
 	/** Logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(WeatherUpdater.class);
