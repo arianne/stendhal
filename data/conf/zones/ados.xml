@@ -11,12 +11,14 @@
   <zone name="0_ados_mountain_n2_w2" level="0" x="500384" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
   </zone>
   
   <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
     <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
@@ -98,6 +100,7 @@
   <zone name="0_ados_mountain_n2" level="0" x="500640" y="499744" file="Level 0/ados/mountain_n2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
     
     <point-of-interest x="63" y="48">
@@ -112,12 +115,14 @@
   <zone name="0_ados_wall_n2" level="0" x="500768" y="499744" file="Level 0/ados/wall_n2.tmx">
  	  <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
   
   <zone name="0_ados_city_n2" level="0" x="500896" y="499744" file="Level 0/ados/city_n2.tmx">
  	  <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -526,6 +531,7 @@
   <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
       
     <entity x="124" y="122">
@@ -570,6 +576,7 @@
     
  	  <attributes>
 		  <parameter name="color_method">time</parameter>
+		  <parameter name="weather">varying</parameter>
 	  </attributes>
     
     <entity x="5" y="124">
@@ -673,6 +680,7 @@ areas.
   <zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="Level 0/ados/outside_nw.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -812,6 +820,7 @@ West: Semos
   <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="Level 0/ados/wall_n.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch" />
@@ -929,6 +938,7 @@ West: Semos
   <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="Level 0/ados/city_n.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -4069,6 +4079,7 @@ My fee:
   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -4168,6 +4179,7 @@ My fee:
   <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
     
     <!-- Music/Ambiance -->
@@ -4212,6 +4224,7 @@ Southeast: Docks
   <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -4244,6 +4257,7 @@ Southeast: Docks
   <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="Level 0/ados/outside_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(fog=+2)</parameter>
     </attributes>
     
     <!-- Music ambiance -->
@@ -4259,6 +4273,7 @@ Southeast: Docks
   <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -4383,6 +4398,7 @@ Southeast: Docks
   <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!--  NPCs -->
@@ -4673,6 +4689,7 @@ Southeast: Docks
   <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" accessible="false" file="Level 0/ados/ocean_e.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <!-- temporarily no teleport in since it is not accessible to players most of the time and if we run a raid there, players shouldn't mark scrolls -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
@@ -4682,6 +4699,7 @@ Southeast: Docks
   <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(fog=+2)</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -4711,6 +4729,7 @@ Southeast: Docks
   <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- Removed till vaults ready
@@ -4736,6 +4755,7 @@ Southeast: Docks
   <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -5072,6 +5092,7 @@ Southeast: Docks
   <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -5093,6 +5114,7 @@ Southeast: Docks
   <zone name="0_ados_coast_sw" level="0" x="500768" y="500256" file="Level 0/ados/coast_sw.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
   </zone>
@@ -5100,12 +5122,14 @@ Southeast: Docks
   <zone name="0_ados_coast_s" level="0" x="500896" y="500256" file="Level 0/ados/coast_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
   
   <zone name="0_ados_river_s2_w2" level="0" x="500640" y="500384" file="Level 0/ados/river_s2_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
   </zone>

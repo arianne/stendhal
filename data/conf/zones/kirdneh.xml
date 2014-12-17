@@ -22,6 +22,7 @@
     file="Level 0/kirdneh/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC" />
@@ -1764,6 +1765,7 @@
     file="Level 0/kirdneh/river_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <point-of-interest x="9" y="68">
       <name>Kirdneh Little Dungeon Forest Entrance</name>

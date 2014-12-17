@@ -29,6 +29,7 @@
     file="Level 0/kalavan/castle.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <point-of-interest x="110" y="28">
       <name>Fado Great Caves 1</name>
@@ -112,6 +113,7 @@
     
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- Portals -->
@@ -2024,6 +2026,7 @@
     file="Level 0/kalavan/city_gardens.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <configurator
       class-name="games.stendhal.server.maps.kalavan.citygardens.GardenerNPC" />
@@ -2082,6 +2085,7 @@
     file="Level 0/kalavan/forest.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -2089,6 +2093,7 @@
     file="Level 0/kalavan/forest_e.tmx" accessible="false">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -2096,6 +2101,7 @@
     file="Level 0/kalavan/forest_e2.tmx" accessible="false">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 

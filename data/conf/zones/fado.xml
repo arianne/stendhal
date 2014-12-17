@@ -29,6 +29,7 @@
     file="Level 0/fado/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
       <parameter name="file" condition="stendhal.easter">Level 0/fado/city_easter.tmx</parameter>
     </attributes>
 
@@ -1033,6 +1034,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -1062,6 +1064,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="0_fado_forest_e" level="0" x="499872" y="500512" file="Level 0/fado/forest_e.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <portal x="65" y="68" ref="palace_entrance_left">
@@ -1215,6 +1218,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -1275,6 +1279,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <point-of-interest x="30" y="105">
@@ -1290,6 +1295,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="0_fado_forest_s_e2" level="0" x="500000" y="500640" file="Level 0/fado/forest_s_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <!-- NPCs -->
@@ -1332,6 +1338,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="0_fado_forest_s_e3" level="0" x="500128" y="500640" file="Level 0/fado/forest_s_e3.tmx" accessible="false">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
 
   </zone>

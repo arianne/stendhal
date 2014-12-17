@@ -35,7 +35,7 @@
     file="Level 0/semos/mountain_n_w4.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
-      <parameter name="weather">snow_light</parameter>
+      <parameter name="weather">varying(temperature=-2,rain=+1)</parameter>
     </attributes>
 
     <configurator
@@ -69,7 +69,7 @@
     file="Level 0/semos/mountain_n2_w3.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
-      <parameter name="weather">snow_light</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
     <portal x="68" y="4" ref="kikareukin_exit">
@@ -90,6 +90,7 @@
     file="Level 0/semos/mountain_n2_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
   </zone>
 
@@ -97,6 +98,7 @@
     file="Level 0/semos/mountain_n2_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
     <entity x="77" y="127">
@@ -229,6 +231,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/mountain_n2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
       <parameter name="file" condition="stendhal.minetown">Level 0/semos/mountain_n2_mine_town_weeks.tmx</parameter>
     </attributes>
 
@@ -412,6 +415,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/mountain_n2_e.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
   </zone>
@@ -462,6 +466,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/mountain_n2_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
     <portal x="67" y="47" ref="stores_entrance">
@@ -505,6 +510,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/mountain_n_w3.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -512,6 +518,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/mountain_n_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -1292,6 +1299,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     file="Level 0/semos/plains_n.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
 
@@ -1400,6 +1408,7 @@ South: Semos city
     file="Level 0/semos/plains_ne.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC" />
@@ -1421,6 +1430,7 @@ Southeast: Farmhouse
     file="Level 0/semos/plains_n_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -1428,6 +1438,7 @@ Southeast: Farmhouse
     file="Level 0/semos/mountain_n_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
 
     <point-of-interest x="62" y="99">
@@ -1452,6 +1463,7 @@ Southeast: Farmhouse
     file="Level 0/semos/mountain_w2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -1459,6 +1471,7 @@ Southeast: Farmhouse
     file="Level 0/semos/plains_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <portal x="85" y="26" ref="jail_entrance_left">
@@ -1543,6 +1556,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="file" condition="stendhal.christmas">Level 0/semos/village_w_xmas.tmx</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow</parameter>
     </attributes>
 
@@ -1651,6 +1665,7 @@ Mature sheep wanted: please speak to Sato.
     <title>The City of Semos</title>
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="file" condition="stendhal.christmas">Level 0/semos/city_xmas.tmx</parameter>
       <parameter name="file" condition="stendhal.minetown">Level 0/semos/city_halloween.tmx</parameter>
       <parameter name="file" condition="stendhal.easter">Level 0/semos/city_easter.tmx</parameter>
@@ -3102,6 +3117,7 @@ Holy mackerel! These chips are tasty.
 
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
     <configurator
@@ -3210,6 +3226,7 @@ East: Ados city
     file="Level 0/semos/road_se.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
 
@@ -3228,6 +3245,7 @@ East: Ados city
     file="Level 0/semos/plains_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
 
@@ -3290,6 +3308,7 @@ Mature sheep wanted: please speak to Sato
     file="Level 0/semos/forest_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
 
     <entity x="1" y="1">

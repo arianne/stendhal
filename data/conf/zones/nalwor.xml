@@ -28,6 +28,7 @@
     accessible="false" file="Level 0/nalwor/forest_nw.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -35,6 +36,7 @@
     file="Level 0/nalwor/forest_n.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -46,6 +48,7 @@
 
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <entity x="93" y="116">
       <implementation
@@ -79,6 +82,7 @@
     file="Level 0/nalwor/forest_n_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <entity x="0" y="85">
       <implementation
@@ -95,6 +99,7 @@
     file="Level 0/nalwor/forest_w.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.maps.nalwor.forest.OracleNPC" />
     <entity x="1" y="1">
@@ -752,6 +757,7 @@ below average.
     file="Level 0/nalwor/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <entity x="0" y="46">
       <implementation
@@ -878,6 +884,7 @@ below average.
     file="Level 0/nalwor/forest_e.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -885,6 +892,7 @@ below average.
     file="Level 0/nalwor/forest_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
   </zone>
 
@@ -896,6 +904,7 @@ below average.
 
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
 
     <entity x="87" y="83">
@@ -919,6 +928,7 @@ below average.
     file="Level 0/nalwor/river_s.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     <entity x="98" y="88">
       <implementation
@@ -944,6 +954,7 @@ below average.
     file="Level 0/nalwor/river_se.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
 
   </zone>
@@ -953,6 +964,7 @@ below average.
     file="Level 0/nalwor/river_s_e2.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying</parameter>
     </attributes>
     
     <entity x="57" y="64">

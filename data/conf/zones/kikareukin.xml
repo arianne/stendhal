@@ -47,6 +47,7 @@
     file="Level 6/kikareukin/islands.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="weather">varying(temperature=-2)</parameter>
     </attributes>
     <configurator
       class-name="games.stendhal.server.maps.kikareukin.islands.AddBalloonListener" />
