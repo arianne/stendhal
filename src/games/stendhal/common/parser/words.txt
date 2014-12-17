@@ -283,6 +283,7 @@ apothecary OBJ apothecaries
 apple	OBJ-FOO	apples
 arandula	OBJ
 armor	OBJ	armors
+armour  OBJ =armor armours
 arrow	OBJ	arrows
 artichoke	OBJ-FOO	artichokes
 arum OBJ =zantedeschia arums
