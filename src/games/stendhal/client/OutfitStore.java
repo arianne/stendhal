@@ -143,6 +143,29 @@ public class OutfitStore {
 	public static OutfitStore get() {
 		return sharedInstance;
 	}
+	
+	/**
+	 * Get a string value of convention xxx from "index"
+	 * 
+	 * @param index
+	 * 		The sprite index number
+	 * @return
+	 * 		A string value of the format xxx
+	 */
+	public String getSpriteSuffix(final int index) {
+		String suffix;
+		
+		/** Get the value of the index using xxx naming convention */
+		if (index < 10) {
+			suffix = "00" + Integer.toString(index);
+		} else if (index < 100) {
+			suffix = "0" + Integer.toString(index);
+		} else {
+			suffix = Integer.toString(index);
+		}
+		
+		return suffix;
+	}
 
 	/**
 	 * Get the body sprite tileset.
@@ -154,15 +177,7 @@ public class OutfitStore {
 	 */
 	public Sprite getBodySprite(final int index) {
 		String suffix;
-		
-		/** Get the value of the index using xxx naming convention */
-		if (index < 10) {
-			suffix = "00" + Integer.toString(index);
-		} else if (index < 100) {
-			suffix = "0" + Integer.toString(index);
-		} else {
-			suffix = Integer.toString(index);
-		}
+		suffix = getSpriteSuffix(index);
 		
 		final String ref = bodies + "/body_" + suffix + ".png";
 
@@ -229,15 +244,7 @@ public class OutfitStore {
 		}
 
 		String suffix;
-		
-		/** Get the value of the index using xxx naming convention */
-		if (index < 10) {
-			suffix = "00" + Integer.toString(index);
-		} else if (index < 100) {
-			suffix = "0" + Integer.toString(index);
-		} else {
-			suffix = Integer.toString(index);
-		}
+		suffix = getSpriteSuffix(index);
 		
 		final String ref = hairs + "/hair_" + suffix + ".png";
 
@@ -302,15 +309,7 @@ public class OutfitStore {
 	 */
 	public Sprite getHeadSprite(final int index) {
 		String suffix;
-		
-		/** Get the value of the index using xxx naming convention */
-		if (index < 10) {
-			suffix = "00" + Integer.toString(index);
-		} else if (index < 100) {
-			suffix = "0" + Integer.toString(index);
-		} else {
-			suffix = Integer.toString(index);
-		}
+		suffix = getSpriteSuffix(index);
 		
 		final String ref = heads + "/head_" + suffix + ".png";
 		
