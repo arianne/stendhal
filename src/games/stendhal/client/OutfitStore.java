@@ -262,21 +262,16 @@ public class OutfitStore {
 	 *            The resource index.
 	 * @return The sprite, or <code>null</code>
 	 */
-	public Sprite getEyesSprite(final int index) {
-		final String suffix;
-		if ((index > 10) && (index < 100)) {
-			suffix = "0" + index;
-		} else if (index < 10) {
-			suffix = "00" + index;
-		} else {
-			suffix = Integer.toString(index);
-		}
-		final String ref = "data/sprites/outfit/eyes/eyes_" + suffix + ".png";
+	public Sprite getEyesSprite(final int index, OutfitColor color) {
+		final String suffix = getSpriteSuffix(index);
+		
+		final String ref = eyes + "/eyes_" + suffix + ".png";
+		
 		if (!store.existsSprite(ref)) {
 			return null;
 		}
 		
-		return store.getSprite(ref);
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.EYES));
 	}
 
 	/**
@@ -287,15 +282,10 @@ public class OutfitStore {
 	 * @return The sprite, or <code>null</code>
 	 */
 	public Sprite getMouthSprite(final int index) {
-		final String suffix;
-		if ((index > 10) && (index < 100)) {
-			suffix = "0" + index;
-		} else if (index < 10) {
-			suffix = "00" + index;
-		} else {
-			suffix = Integer.toString(index);
-		}
-		final String ref = "data/sprites/outfit/mouth/mouth_" + suffix + ".png";
+		final String suffix = getSpriteSuffix(index);
+		
+		final String ref = mouths + "/mouth_" + suffix + ".png";
+		
 		if (!store.existsSprite(ref)) {
 			return null;
 		}
