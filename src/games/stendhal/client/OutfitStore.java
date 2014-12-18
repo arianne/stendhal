@@ -301,7 +301,19 @@ public class OutfitStore {
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getHeadSprite(final int index) {
-		final String ref = "data/sprites/outfit/head_" + index + ".png";
+		String suffix;
+		
+		/** Get the value of the index using xxx naming convention */
+		if (index < 10) {
+			suffix = "00" + Integer.toString(index);
+		} else if (index < 100) {
+			suffix = "0" + Integer.toString(index);
+		} else {
+			suffix = Integer.toString(index);
+		}
+		
+		final String ref = heads + "/head_" + suffix + ".png";
+		
 		if (!store.existsSprite(ref)) {
 			return null;
 		}
