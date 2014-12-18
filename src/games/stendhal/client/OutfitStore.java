@@ -35,7 +35,7 @@ public class OutfitStore {
 	final String outfits = "data/sprites/outfit";
 	
 	/** body directory */
-	final String bodies = outfits + "/body-new";
+	final String bodies = outfits + "/body";
 	
 	/** dress directory */
 	final String dresses = outfits + "/dress";
