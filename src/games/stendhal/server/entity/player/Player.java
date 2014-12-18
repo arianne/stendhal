@@ -73,7 +73,8 @@ import org.apache.log4j.Logger;
 public class Player extends RPEntity implements UseListener {
 
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
-	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail", "dress", "hair" };
+	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail",
+		"dress", "hair", "body", "head" };
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Player.class);
