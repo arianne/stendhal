@@ -176,8 +176,7 @@ public class OutfitStore {
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getBodySprite(final int index) {
-		String suffix;
-		suffix = getSpriteSuffix(index);
+		final String suffix = getSpriteSuffix(index);
 		
 		final String ref = bodies + "/body_" + suffix + ".png";
 
@@ -201,8 +200,11 @@ public class OutfitStore {
 		if (index == 0) {
 			return getEmptySprite();
 		}
+		
+		final String suffix = getSpriteSuffix(index);
 
-		final String ref = "data/sprites/outfit/dress_" + index + ".png";
+		final String ref = dresses + "/dress_" + suffix + ".png";
+		
 		return store.getColoredSprite(ref, color.getColor(OutfitColor.DRESS));
 	}
 
@@ -243,8 +245,7 @@ public class OutfitStore {
 			return getEmptySprite();
 		}
 
-		String suffix;
-		suffix = getSpriteSuffix(index);
+		final String suffix = getSpriteSuffix(index);
 		
 		final String ref = hairs + "/hair_" + suffix + ".png";
 
@@ -308,8 +309,7 @@ public class OutfitStore {
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getHeadSprite(final int index) {
-		String suffix;
-		suffix = getSpriteSuffix(index);
+		final String suffix = getSpriteSuffix(index);
 		
 		final String ref = heads + "/head_" + suffix + ".png";
 		
