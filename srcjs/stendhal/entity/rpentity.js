@@ -55,20 +55,34 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		}
 	},
 
+	/**
+	 * draw an outfix part
+	 *
+	 * @param ctx   ctx
+	 * @param part  part
+	 * @param index index
+	 */
+	drawOutfitPart: function(ctx, part, index) {
+		var n = index;
+		if (index < 10) {
+			n = "00" + index;
+		} else if(index < 100) {
+			n = "0" + index;
+		}
+		var filename = "/data/sprites/outfit/" + part + "/" + part + "_" + n + ".png";
+		this.drawSprite(ctx, filename);
+	},
+
 	/** 
 	 * draw RPEntities
 	 */
 	draw: function(ctx) {
 		var filename;
 		if (typeof(this.outfit) != "undefined") {
-			filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
-			this.drawSprite(ctx, filename)
-			filename = "/data/sprites/outfit/dress_" + (Math.floor(this.outfit/100) % 100) + ".png";
-			this.drawSprite(ctx, filename)
-			filename = "/data/sprites/outfit/head_" + (Math.floor(this.outfit/10000) % 100) + ".png";
-			this.drawSprite(ctx, filename)
-			filename = "/data/sprites/outfit/hair_" + (Math.floor(this.outfit/1000000) % 100) + ".png";
-			this.drawSprite(ctx, filename)
+			this.drawOutfitPart(ctx, "body", (this.outfit % 100));
+			this.drawOutfitPart(ctx, "dress", (Math.floor(this.outfit/100) % 100));
+			this.drawOutfitPart(ctx, "head", (Math.floor(this.outfit/10000) % 100));
+			this.drawOutfitPart(ctx, "hair", (Math.floor(this.outfit/1000000) % 100));
 		} else {
 			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
 			if (typeof(this.subclass) != "undefined") {
