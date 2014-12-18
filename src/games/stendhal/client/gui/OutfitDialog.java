@@ -368,7 +368,7 @@ class OutfitDialog extends JDialog {
 	 * @return body sprite
 	 */
 	private Sprite getBodySprite() {
-		return store.getTile(ostore.getBaseSprite(body.getIndex()), PLAYER_WIDTH,
+		return store.getTile(ostore.getBodySprite(body.getIndex()), PLAYER_WIDTH,
 				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 	

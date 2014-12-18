@@ -22,6 +22,9 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.apache.log4j.Logger;
 
@@ -30,6 +33,27 @@ import org.apache.log4j.Logger;
  */
 public class OutfitStore {
 	private Logger logger = Logger.getLogger(OutfitStore.class);
+	
+	/** outfit directory */
+	final String outfits = "data/sprites/outfit";
+	
+	/** body directory */
+	final String bodies = outfits + "/body";
+	
+	/** dress directory */
+	final String dresses = outfits + "/dress";
+	
+	/** head directory */
+	final String heads = outfits + "/head";
+	
+	/** mouth directory */
+	final String mouths = outfits + "/mouth";
+	
+	/** eyes directory */
+	final String eyes = outfits + "/eyes";
+	
+	/** hair directory */
+	final String hairs = outfits + "/hair";
 
 	/**
 	 * The singleton.
@@ -62,7 +86,7 @@ public class OutfitStore {
 	 * The outfit is described by an "outfit code". It is an 8-digit integer of
 	 * the form TTRRHHDDBB where TT is the number of the detail graphics (optional)
 	 * RR is the number of the hair graphics (optional), HH for the
-	 * head, DD for the dress, and BB for the base.
+	 * head, DD for the dress, and BB for the body.
 	 * 
 	 * @param code
 	 *            The outfit code.
@@ -71,7 +95,7 @@ public class OutfitStore {
 	 * @return A walking state tileset.
 	 */
 	private Sprite buildOutfit(int code, OutfitColor color) {
-		int basecode = code % 100;
+		int bodycode = code % 100;
 		code /= 100;
 		
 		int dresscode = code % 100;
@@ -85,10 +109,11 @@ public class OutfitStore {
 		
 		int detailcode = code % 100;
 		
-		// Base (body) layer
-		Sprite layer = getBaseSprite(basecode);
+		// Body layer
+		Sprite layer = getBodySprite(bodycode);
 		if (layer == null) {
-			throw new IllegalArgumentException("No base image found for outfit: " + basecode);
+			throw new IllegalArgumentException(
+					"No body image found for outfit: " + bodycode);
 		}
 
 		final ImageSprite sprite = new ImageSprite(layer);
@@ -123,20 +148,46 @@ public class OutfitStore {
 	}
 
 	/**
-	 * Get the base sprite tileset.
+	 * Get the body sprite tileset.
 	 * 
 	 * @param index
 	 *            The resource index.
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getBaseSprite(final int index) {
-		final String ref = "data/sprites/outfit/player_base_" + index + ".png";
+	public Sprite getBodySprite(final int index) {
+		String ref;
+		
+		File bodyDir = new File(bodies);
+		if (bodyDir.exists() && bodyDir.isDirectory()) {
+			System.out.println("Getting bodies from " + bodies);
+			String suffix;
+			
+			/** Get the value of the index using xxx naming convention */
+			if (index < 10) {
+				suffix = "00" + Integer.toString(index);
+			} else if (index < 100) {
+				suffix = "0" + Integer.toString(index);
+			} else {
+				suffix = Integer.toString(index);
+			}
+			
+			ref = bodies + "/body_" + suffix + ".png";
+		} else {
+			/* Backwards compatibility until old sprites are removed
+			 * 
+			 * TODO:
+			 * delete this "else" block after old sprites are deleted
+			 * in future release.
+			 */
+			System.out.println("Getting bodies from old directory.");
+			ref = "data/sprites/outfit/player_base_" + index + ".png";
+		}
 
 		if (!store.existsSprite(ref)) {
 			return null;
 		}
-
+		
 		return store.getSprite(ref);
 	}
 
@@ -290,7 +341,7 @@ public class OutfitStore {
 	 * The outfit is described by an "outfit code". It is an 10-digit integer of
 	 * the form TTRRHHDDBB where where TT is the number of the detail graphics (optional)
 	 * RR is the number of the hair graphics, HH for the
-	 * head, DD for the dress, and BB for the base.
+	 * head, DD for the dress, and BB for the body.
 	 * 
 	 * @param code
 	 *            The outfit code.
