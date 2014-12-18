@@ -80,7 +80,6 @@ public class RudolphNPC implements ZoneConfigurator {
 		npc.setPosition(2, 3);
 		npc.setDirection(Direction.DOWN);
 		npc.setDescription("You see Rudolph the Red-Nosed Reindeer. His nose is so big, bright and flashy.");
-		npc.setHP(950);
 		npc.setBaseSpeed(1);
 		npc.setEntityClass("rudolphnpc");
 		zone.add(npc);
