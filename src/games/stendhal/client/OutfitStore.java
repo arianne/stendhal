@@ -244,7 +244,18 @@ public class OutfitStore {
 			return getEmptySprite();
 		}
 
-		final String ref = "data/sprites/outfit/hair_" + index + ".png";
+		String suffix;
+		
+		/** Get the value of the index using xxx naming convention */
+		if (index < 10) {
+			suffix = "00" + Integer.toString(index);
+		} else if (index < 100) {
+			suffix = "0" + Integer.toString(index);
+		} else {
+			suffix = Integer.toString(index);
+		}
+		
+		final String ref = hairs + "/hair_" + suffix + ".png";
 
 		return store.getColoredSprite(ref, color.getColor(OutfitColor.HAIR));
 	}
