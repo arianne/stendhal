@@ -160,7 +160,6 @@ public class OutfitStore {
 		
 		File bodyDir = new File(bodies);
 		if (bodyDir.exists() && bodyDir.isDirectory()) {
-			System.out.println("Getting bodies from " + bodies);
 			String suffix;
 			
 			/** Get the value of the index using xxx naming convention */
@@ -180,7 +179,6 @@ public class OutfitStore {
 			 * delete this "else" block after old sprites are deleted
 			 * in future release.
 			 */
-			System.out.println("Getting bodies from old directory.");
 			ref = "data/sprites/outfit/player_base_" + index + ".png";
 		}
 
