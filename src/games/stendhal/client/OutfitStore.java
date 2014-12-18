@@ -51,6 +51,9 @@ public class OutfitStore {
 	
 	/** hair directory */
 	final String hairs = outfits + "/hair";
+	
+	/** detail directory */
+	final String details = outfits + "/detail";
 
 	/**
 	 * The singleton.
@@ -333,8 +336,10 @@ public class OutfitStore {
 		if (index == 0) {
 			return getEmptySprite();
 		}
+		
+		final String suffix = getSpriteSuffix(index);
 
-		final String ref = "data/sprites/outfit/detail_" + index + ".png";
+		final String ref = details + "/detail_" + suffix + ".png";
 
 		return store.getColoredSprite(ref, color.getColor(OutfitColor.DETAIL));
 	}
