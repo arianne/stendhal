@@ -22,9 +22,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import org.apache.log4j.Logger;
 
@@ -156,31 +153,18 @@ public class OutfitStore {
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getBodySprite(final int index) {
-		String ref;
+		String suffix;
 		
-		File bodyDir = new File(bodies);
-		if (bodyDir.exists() && bodyDir.isDirectory()) {
-			String suffix;
-			
-			/** Get the value of the index using xxx naming convention */
-			if (index < 10) {
-				suffix = "00" + Integer.toString(index);
-			} else if (index < 100) {
-				suffix = "0" + Integer.toString(index);
-			} else {
-				suffix = Integer.toString(index);
-			}
-			
-			ref = bodies + "/body_" + suffix + ".png";
+		/** Get the value of the index using xxx naming convention */
+		if (index < 10) {
+			suffix = "00" + Integer.toString(index);
+		} else if (index < 100) {
+			suffix = "0" + Integer.toString(index);
 		} else {
-			/* Backwards compatibility until old sprites are removed
-			 * 
-			 * TODO:
-			 * delete this "else" block after old sprites are deleted
-			 * in future release.
-			 */
-			ref = "data/sprites/outfit/player_base_" + index + ".png";
+			suffix = Integer.toString(index);
 		}
+		
+		final String ref = bodies + "/body_" + suffix + ".png";
 
 		if (!store.existsSprite(ref)) {
 			return null;
