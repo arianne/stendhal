@@ -26,6 +26,8 @@ import marauroa.common.game.RPObject;
 public class OutfitColor {
 	/** Identifier for hair color. */
 	public static final String HAIR = "hair";
+	/** Identifier for eyes color. */
+	public static final String EYES = "eyes";
 	/** Identifier for dress color. */
 	public static final String DRESS = "dress";
 	/** Identifier for body color. */
@@ -33,7 +35,7 @@ public class OutfitColor {
 	/** Identifier for detail color. */
 	public static final String DETAIL = "detail";
 	
-	private static final String[] parts = { DRESS, BODY, HAIR, DETAIL };
+	private static final String[] parts = { DRESS, BODY, HAIR, DETAIL, EYES };
 	public static final OutfitColor PLAIN = new OutfitColor();
 
 	private Map<String, Color> map = new TreeMap<String, Color>();
