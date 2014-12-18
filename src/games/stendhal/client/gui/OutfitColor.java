@@ -28,10 +28,12 @@ public class OutfitColor {
 	public static final String HAIR = "hair";
 	/** Identifier for dress color. */
 	public static final String DRESS = "dress";
+	/** Identifier for body color. */
+	public static final String BODY = "body";
 	/** Identifier for detail color. */
 	public static final String DETAIL = "detail";
 	
-	private static final String[] parts = { DRESS, HAIR, DETAIL };
+	private static final String[] parts = { DRESS, BODY, HAIR, DETAIL };
 	public static final OutfitColor PLAIN = new OutfitColor();
 
 	private Map<String, Color> map = new TreeMap<String, Color>();

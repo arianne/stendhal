@@ -35,7 +35,7 @@ public class Outfits {
 	public static final int HAIR_OUTFITS = 44;
 
 	/** number of player selectable body shapes */
-	public static final int BODY_OUTFITS = 15;
+	public static final int BODY_OUTFITS = 4;
 	
 	/** number of player selectable eyes */
 	public static final int EYES_OUTFITS = 10;

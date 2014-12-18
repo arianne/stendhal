@@ -35,7 +35,7 @@ public class OutfitStore {
 	final String outfits = "data/sprites/outfit";
 	
 	/** body directory */
-	final String bodies = outfits + "/body";
+	final String bodies = outfits + "/body-new";
 	
 	/** dress directory */
 	final String dresses = outfits + "/dress";
@@ -110,7 +110,7 @@ public class OutfitStore {
 		int detailcode = code % 100;
 		
 		// Body layer
-		Sprite layer = getBodySprite(bodycode);
+		Sprite layer = getBodySprite(bodycode, color);
 		if (layer == null) {
 			throw new IllegalArgumentException(
 					"No body image found for outfit: " + bodycode);
@@ -124,7 +124,7 @@ public class OutfitStore {
 		layer.draw(g, 0, 0);
 
 		// Head layer
-		layer = getHeadSprite(headcode);
+		layer = getHeadSprite(headcode, color);
 		layer.draw(g, 0, 0);
 
 		// Hair layer
@@ -178,7 +178,7 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getBodySprite(final int index) {
+	public Sprite getBodySprite(final int index, OutfitColor color) {
 		final String suffix = getSpriteSuffix(index);
 		
 		final String ref = bodies + "/body_" + suffix + ".png";
@@ -187,7 +187,7 @@ public class OutfitStore {
 			return null;
 		}
 		
-		return store.getSprite(ref);
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.BODY));
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getHeadSprite(final int index) {
+	public Sprite getHeadSprite(final int index, OutfitColor color) {
 		final String suffix = getSpriteSuffix(index);
 		
 		final String ref = heads + "/head_" + suffix + ".png";
@@ -320,7 +320,7 @@ public class OutfitStore {
 			return null;
 		}
 
-		return store.getSprite(ref);
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.BODY));
 	}
 
 	/**

@@ -252,10 +252,16 @@ class OutfitDialog extends JDialog {
 		// --------- Color selection column ---------
 		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		content.add(column, SLayout.EXPAND_Y);
+		/* hair color */
 		JComponent selector = createColorSelector("Hair", OutfitColor.HAIR, hairLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 		SBoxLayout.addSpring(column);
+		/* body color */
+		selector = createColorSelector("Body", OutfitColor.BODY, bodyLabel);
+		selector.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(selector);
+		/* dress color */
 		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
@@ -358,8 +364,9 @@ class OutfitDialog extends JDialog {
 	 * @return head sprite
 	 */
 	private Sprite getHeadSprite() {
-		return store.getTile(ostore.getHeadSprite(head.getIndex()), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+		return store.getTile(ostore.getHeadSprite(head.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
+				PLAYER_HEIGHT);
 	}
 	
 	/**
@@ -368,8 +375,9 @@ class OutfitDialog extends JDialog {
 	 * @return body sprite
 	 */
 	private Sprite getBodySprite() {
-		return store.getTile(ostore.getBodySprite(body.getIndex()), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+		return store.getTile(ostore.getBodySprite(body.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
+				PLAYER_HEIGHT);
 	}
 	
 	/**
