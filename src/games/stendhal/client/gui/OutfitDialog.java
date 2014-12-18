@@ -64,6 +64,7 @@ class OutfitDialog extends JDialog {
 	private static final int SLIDER_WIDTH = 80;
 
 	private final SelectorModel hair;
+	private final SelectorModel eyes;
 	private final SelectorModel head;
 	private final SelectorModel body;
 	private final SelectorModel dress;
@@ -84,6 +85,8 @@ class OutfitDialog extends JDialog {
 
 	/** Label containing the hair image. */
 	private OutfitLabel hairLabel;
+	/** Label containing the eyes image. */
+	private OutfitLabel eyesLabel;
 	/** Label containing the head image. */
 	private OutfitLabel headLabel;
 	/** Label containing the body image. */
@@ -108,7 +111,8 @@ class OutfitDialog extends JDialog {
 	OutfitDialog(final Frame parent, final String title, final int outfit,
 			OutfitColor outfitColor) {
 		this(parent, title, outfit, outfitColor, Outfits.HAIR_OUTFITS,
-				Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,	Outfits.CLOTHES_OUTFITS);
+				Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
+				Outfits.CLOTHES_OUTFITS, Outfits.EYES_OUTFITS);
 	}
 
 	/**
@@ -129,16 +133,19 @@ class OutfitDialog extends JDialog {
 	 *            an integer with the total of sprites with bodies
 	 * @param total_clothes
 	 *            an integer with the total of sprites with clothes
+	 * @param total_eyes
+	 *            an integer with the total of sprites with eyes
 	 */
 	private OutfitDialog(final Frame parent, final String title, int outfit,
 			OutfitColor outfitColor, final int total_hairs,
 			final int total_heads, final int total_bodies,
-			final int total_clothes) {
+			final int total_clothes, final int total_eyes) {
 		super(parent, false);
 		
 		this.outfitColor = outfitColor;
 		
 		hair = new SelectorModel(total_hairs);
+		eyes = new SelectorModel(total_eyes);
 		head = new SelectorModel(total_heads);
 		body = new SelectorModel(total_bodies);
 		dress = new SelectorModel(total_clothes);
@@ -151,6 +158,8 @@ class OutfitDialog extends JDialog {
 		// Follow the model changes; the whole outfit follows them all
 		hair.addListener(hairLabel);
 		hair.addListener(outfitLabel);
+		eyes.addListener(eyesLabel);
+		eyes.addListener(outfitLabel);
 		head.addListener(headLabel);
 		head.addListener(outfitLabel);
 		body.addListener(bodyLabel);
@@ -165,11 +174,16 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
+		// TODO: add eyes
+		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 
 		// reset special outfits
 		if (hairsIndex >= total_hairs) {
 			hairsIndex = 0;
+		}
+		if (eyesIndex >= total_eyes) {
+			eyesIndex = 0;
 		}
 		if (headsIndex >= total_heads) {
 			headsIndex = 0;
@@ -183,6 +197,7 @@ class OutfitDialog extends JDialog {
 		
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
+		eyes.setIndex(eyesIndex);
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
@@ -218,6 +233,16 @@ class OutfitDialog extends JDialog {
 		};
 		hairLabel = new OutfitLabel(hairRetriever);
 		partialsColumn.add(createSelector(hair, hairLabel));
+		
+		// Eyes
+		SpriteRetriever eyesRetriever = new SpriteRetriever() {
+			@Override
+			public Sprite getSprite() {
+				return getEyesSprite();
+			}
+		};
+		eyesLabel = new OutfitLabel(eyesRetriever);
+		partialsColumn.add(createSelector(eyes, eyesLabel));
 		
 		// Head
 		SpriteRetriever headRetriever = new SpriteRetriever() {
@@ -257,6 +282,10 @@ class OutfitDialog extends JDialog {
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 		SBoxLayout.addSpring(column);
+		/* eyes color */
+		selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
+		selector.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(selector);
 		/* body color */
 		selector = createColorSelector("Body", OutfitColor.BODY, bodyLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
@@ -342,6 +371,7 @@ class OutfitDialog extends JDialog {
 
 		outfitLabel.changed();
 		hairLabel.changed();
+		eyesLabel.changed();
 		headLabel.changed();
 		bodyLabel.changed();
 		dressLabel.changed();
@@ -354,6 +384,17 @@ class OutfitDialog extends JDialog {
 	 */
 	private Sprite getHairSprite() {
 		return store.getTile(ostore.getHairSprite(hair.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
+				PLAYER_HEIGHT);
+	}
+	
+	/**
+	 * Get the eyes sprite.
+	 * 
+	 * @return eyes sprite
+	 */
+	private Sprite getEyesSprite() {
+		return store.getTile(ostore.getEyesSprite(eyes.getIndex(), outfitColor),
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
@@ -485,10 +526,17 @@ class OutfitDialog extends JDialog {
 		rpaction.put("type", "outfit");
 		rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
 				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
+		/* hair color */
 		Color color = outfitColor.getColor("hair");
 		if (color != null) {
 			rpaction.put(OutfitColor.HAIR, color.getRGB());
 		}
+		/* body and head color */
+		color = outfitColor.getColor(OutfitColor.BODY);
+		if (color != null) {
+			rpaction.put(OutfitColor.BODY, color.getRGB());
+		}
+		/* dress color */
 		color = outfitColor.getColor(OutfitColor.DRESS);
 		if (color != null) {
 			rpaction.put(OutfitColor.DRESS, color.getRGB());
@@ -507,6 +555,7 @@ class OutfitDialog extends JDialog {
 			dressLabel.setBorder(style.getBorderDown());
 			outfitLabel.setBorder(style.getBorderDown());
 			hairLabel.setBorder(style.getBorderDown());
+			eyesLabel.setBorder(style.getBorderDown());
 			headLabel.setBorder(style.getBorderDown());
 		}
 	}
@@ -522,6 +571,7 @@ class OutfitDialog extends JDialog {
 		// Copy the original colors
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
+		outfitColor.setColor(OutfitColor.BODY, colors.getColor(OutfitColor.BODY));
 		
 		// analyze the outfit code
 		int bodiesIndex = outfit % 100;
@@ -530,11 +580,14 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
+		// TODO: add eyes
+		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 		
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
 		head.setIndex(headsIndex);
+		eyes.setIndex(eyesIndex);
 		hair.setIndex(hairsIndex);
 
 		// Color selectors, and their toggles
