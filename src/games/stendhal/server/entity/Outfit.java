@@ -23,12 +23,12 @@ import org.apache.log4j.Logger;
  * You can use this data structure so that you don't have to deal with the way
  * outfits are stored internally.
  *
- * An outfit can contain up to five parts: detail, hair, head, dress, and base.
+ * An outfit can contain up to five parts: detail, hair, head, dress, and body.
  *
  * Note, however, that you can create outfit objects that consist of less than
  * five parts by setting the other parts to <code>null</code>. For example,
  * you can create a dress outfit that you can combine with the player's current
- * so that the player gets the dress, but keeps his hair, head, and base.
+ * so that the player gets the dress, but keeps his hair, head, and body.
  *
  * Not all outfits can be chosen by players.
  *
@@ -52,8 +52,8 @@ public class Outfit {
 	/** The dress index, as a value between 0 and 99, or null. */
 	private final Integer dress;
 
-	/** The base index, as a value between 0 and 99, or null. */
-	private final Integer base;
+	/** The body index, as a value between 0 and 99, or null. */
+	private final Integer body;
 
 	/**
 	 * Creates a new default outfit (naked person).
@@ -75,27 +75,29 @@ public class Outfit {
 	 *            The index of the head style, or null
 	 * @param dress
 	 *            The index of the dress style, or null
-	 * @param base
-	 *            The index of the base style, or null
+	 * @param body
+	 *            The index of the body style, or null
 	 */
-	public Outfit(final Integer detail, final Integer hair, final Integer head, final Integer dress, final Integer base) {
+	public Outfit(final Integer detail, final Integer hair, final Integer head,
+			final Integer dress, final Integer body) {
 		this.detail = detail;
 		this.hair = hair;
 		this.head = head;
 		this.dress = dress;
-		this.base = base;
+		this.body = body;
 	}
 
 	/**
 	 * Creates a new outfit based on a numeric code.
 	 *
 	 * @param code
-	 *            A 10-digit decimal number where the last part (from the right) stands for base,
-	 *            the next for dress, then head, then hair, then detail
+	 *            A 10-digit decimal number where the last part (from the right)
+	 *            stands for body, the next for dress, then head, then hair,
+	 *            then detail.
 	 */
-	public Outfit(final int code) {
-
-		this.base = code % 100;
+	public Outfit(final Integer code) {
+		
+		this.body = code % 100;
 
 		this.dress = code / 100 % 100;
 
@@ -105,14 +107,14 @@ public class Outfit {
 
 		this.detail = code / 100000000 % 100;
 	}
-
+	
 	/**
-	 * Gets the index of this outfit's base style.
-	 *
-	 * @return The index, or null if this outfit doesn't contain a base.
+	 * Gets the index of this outfit's body style.
+	 * 
+	 * @return The index, or null if this outfit doesn't contain a body.
 	 */
-	public Integer getBase() {
-		return base;
+	public Integer getBody() {
+		return body;
 	}
 
 	/**
@@ -158,14 +160,14 @@ public class Outfit {
 	 *
 	 * @return A 10-digit decimal number where the first pair of digits stand for
 	 *         detail, the second pair for hair, the third pair for head, the
-	 *         fourth pair for dress, and the fifth pair for base
+	 *         fourth pair for dress, and the fifth pair for body
 	 */
 	public int getCode() {
 		int de = 0;
 		int ha = 0;
 		int he = 0;
 		int dr = 0;
-		int ba = 0;
+		int bo = 0;
 		if (detail != null) {
 			de = detail.intValue();
 		}
@@ -178,10 +180,10 @@ public class Outfit {
 		if (dress != null) {
 			dr = dress.intValue();
 		}
-		if (base != null) {
-			ba = base.intValue();
+		if (body != null) {
+			bo = body.intValue();
 		}
-		return de * 100000000 + ha * 1000000 + he * 10000 + dr * 100 + ba;
+		return de * 100000000 + ha * 1000000 + he * 10000 + dr * 100 + bo;
 	}
 
 	/**
@@ -198,7 +200,7 @@ public class Outfit {
 		int newHair;
 		int newHead;
 		int newDress;
-		int newBase;
+		int newBody;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
 		if (this.detail == null) {
@@ -221,12 +223,12 @@ public class Outfit {
 		} else {
 			newDress = this.dress;
 		}
-		if (this.base == null) {
-			newBase = other.base;
+		if (this.body == null) {
+			newBody = other.body;
 		} else {
-			newBase = this.base;
+			newBody = this.body;
 		}
-		return new Outfit(newDetail, newHair, newHead, newDress, newBase);
+		return new Outfit(newDetail, newHair, newHead, newDress, newBody);
 	}
 
 	/**
@@ -243,7 +245,7 @@ public class Outfit {
 		int newHair;
 		int newHead;
 		int newDress;
-		int newBase;
+		int newBody;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
 		if ((detail == null) || detail.equals(other.detail)) {
@@ -266,12 +268,12 @@ public class Outfit {
 		} else {
 			newDress = dress;
 		}
-		if ((base == null) || base.equals(other.base)) {
-			newBase = 0;
+		if ((body == null) || body.equals(other.body)) {
+			newBody = 0;
 		} else {
-			newBase = base;
+			newBody = body;
 		}
-		return new Outfit(newDetail, newHair, newHead, newDress, newBase);
+		return new Outfit(newDetail, newHair, newHead, newDress, newBody);
 	}
 
 	/**
@@ -293,7 +295,7 @@ public class Outfit {
 				&& ((hair == null) || hair.equals(other.hair))
 				&& ((head == null) || head.equals(other.head))
 				&& ((dress == null) || dress.equals(other.dress))
-				&& ((base == null) || base.equals(other.base));
+				&& ((body == null) || body.equals(other.body));
 	}
 
 	/**
@@ -307,7 +309,7 @@ public class Outfit {
 			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
 		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
 			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
-			&& (base < Outfits.BODY_OUTFITS) && (base >= 0);
+			&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
 	}
 
 	/**
@@ -325,7 +327,7 @@ public class Outfit {
 	}
 
 	/**
-	 * Create a random unisex outfit, with a 'normal' face and unisex base
+	 * Create a random unisex outfit, with a 'normal' face and unisex body
 	 *
 	 * <ul>
 	 * <li>hair number (1 to 26) selection of hairs which look ok with both goblin
@@ -341,9 +343,10 @@ public class Outfit {
 		final int newHair = Rand.randUniform(1, 26);
 		final int newHead = Rand.randUniform(1, 15);
 		final int newDress = Rand.randUniform(1, 16);
-		final int newBase = Rand.randUniform(1, 5);
-		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
-		return new Outfit(0, newHair, newHead, newDress, newBase);
+		final int newBody = Rand.randUniform(1, 5);
+		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " "
+				+ newDress + " " + newBody);
+		return new Outfit(0, newHair, newHead, newDress, newBody);
 	}
 	
 	/**
@@ -352,7 +355,7 @@ public class Outfit {
 	 * @return true if the outfit is compatible with clothes, false otherwise
 	 */
 	public boolean isCompatibleWithClothes() {
-		if (base > 80 && base < 99) {
+		if (body > 80 && body < 99) {
 			return false;
 		}
 		return true;

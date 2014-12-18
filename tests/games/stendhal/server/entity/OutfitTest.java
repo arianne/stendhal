@@ -31,7 +31,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(0), ou.getHair());
 		assertEquals(Integer.valueOf(0), ou.getHead());
 		assertEquals(Integer.valueOf(0), ou.getDress());
-		assertEquals(Integer.valueOf(0), ou.getBase());
+		assertEquals(Integer.valueOf(0), ou.getBody());
 
 	}
 
@@ -45,14 +45,14 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(2), ou.getHair());
 		assertEquals(Integer.valueOf(3), ou.getHead());
 		assertEquals(Integer.valueOf(4), ou.getDress());
-		assertEquals(Integer.valueOf(5), ou.getBase());
+		assertEquals(Integer.valueOf(5), ou.getBody());
 
 		final Outfit outfit2 = new Outfit(-1, -2, -3, -4, -5);
 		assertEquals(Integer.valueOf(-1), outfit2.getDetail());
 		assertEquals(Integer.valueOf(-2), outfit2.getHair());
 		assertEquals(Integer.valueOf(-3), outfit2.getHead());
 		assertEquals(Integer.valueOf(-4), outfit2.getDress());
-		assertEquals(Integer.valueOf(-5), outfit2.getBase());
+		assertEquals(Integer.valueOf(-5), outfit2.getBody());
 	}
 
 	/**
@@ -65,13 +65,13 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(0), ou.getHair());
 		assertEquals(Integer.valueOf(0), ou.getHead());
 		assertEquals(Integer.valueOf(0), ou.getDress());
-		assertEquals(Integer.valueOf(0), ou.getBase());
+		assertEquals(Integer.valueOf(0), ou.getBody());
 		ou = new Outfit(501020304);
 		assertEquals(Integer.valueOf(5), ou.getDetail());
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
-		assertEquals(Integer.valueOf(4), ou.getBase());
+		assertEquals(Integer.valueOf(4), ou.getBody());
 
 		final String outfitnumber = "0501020304";
 		assertEquals(Integer.valueOf(5), ou.getDetail());
@@ -79,7 +79,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
-		assertEquals(Integer.valueOf(4), ou.getBase());
+		assertEquals(Integer.valueOf(4), ou.getBody());
 
 	}
 
@@ -109,25 +109,25 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(56), result.getDress());
-		assertEquals(Integer.valueOf(0), result.getBase());
+		assertEquals(Integer.valueOf(0), result.getBody());
 		orig = new Outfit(null, 12, 34, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
-		assertEquals(Integer.valueOf(0), result.getBase());
+		assertEquals(Integer.valueOf(0), result.getBody());
 		orig = new Outfit(null, 12, null, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(0), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
-		assertEquals(Integer.valueOf(0), result.getBase());
+		assertEquals(Integer.valueOf(0), result.getBody());
 		orig = new Outfit(null, null, null, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(0), result.getHair());
 		assertEquals(Integer.valueOf(0), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
-		assertEquals(Integer.valueOf(0), result.getBase());
+		assertEquals(Integer.valueOf(0), result.getBody());
 
 	}
 
@@ -202,7 +202,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(56), result.getDress());
-		assertEquals(Integer.valueOf(78), result.getBase());
+		assertEquals(Integer.valueOf(78), result.getBody());
 
 		orig = new Outfit(null, 12, 34, 56, null);
 		result = orig.removeOutfit(new Outfit(1, null, null, null, null));

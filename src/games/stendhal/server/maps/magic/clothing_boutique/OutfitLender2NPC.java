@@ -123,8 +123,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 						final boolean type = outfitPair.second();
 
 						if (type) {
-							if (player.getOutfit().getBase() > 80
-									&& player.getOutfit().getBase() < 99) {
+							if (player.getOutfit().getBody() > 80
+									&& player.getOutfit().getBody() < 99) {
 								seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 								return false;
 							}
