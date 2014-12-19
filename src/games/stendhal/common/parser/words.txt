@@ -396,7 +396,6 @@ coffin	OBJ	coffins
 coin	OBJ	=money	coins
 colada	OBJ-FOO-FLU	coladas
 collard	OBJ-FOO	collards
-zucchini OBJ-FOO =collard zucchinis
 collection	OBJ	collections
 collision	OBJ	collisions
 color	OBJ	colors
@@ -410,6 +409,7 @@ cost	OBJ	costs
 costume	OBJ	costumes
 coupon	OBJ	coupons
 courgette	OBJ-FOO	courgettes
+zucchini OBJ-FOO =courgette zucchinis
 cow	OBJ-ANI	cows
 cream	OBJ	creams
 creature	OBJ	creatures

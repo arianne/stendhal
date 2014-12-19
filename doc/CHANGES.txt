@@ -4,7 +4,7 @@
 1.17
 
 *code*
-- Alias "zucchini" for "collard"
+- Alias "zucchini" for "courgette"
 - Alias "armour" for "armor"
 - Organized outfit parts into subdirectories
 - Changed "player_base" outfit type to "body"
