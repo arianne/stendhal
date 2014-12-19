@@ -1,6 +1,15 @@
 ﻿Changelog
 ---------
 
+1.17
+
+*code*
+- Alias "zucchini" for "collard"
+- Alias "armour" for "armor"
+- Organized outfit parts into subdirectories
+- Changed "player_base" outfit type to "body"
+
+
 1.16
 
 *world*
