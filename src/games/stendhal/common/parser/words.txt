@@ -399,6 +399,7 @@ collard	OBJ-FOO	collards
 collection	OBJ	collections
 collision	OBJ	collisions
 color	OBJ	colors
+colour  OBJ =color colours
 command	OBJ	commands
 comment	OBJ	comments
 company	OBJ	companies
