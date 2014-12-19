@@ -448,9 +448,18 @@ public abstract class GuidedEntity extends ActiveEntity {
         movementRadius = radius;
     }
     
-    public void setRandomMovementRadius(final int radius, final boolean origin) {
+    /**
+     * Sets the maximum distance an entity will move away from its original
+     * position
+     * 
+     * @param radius
+     *     distance entity will move away from its origin
+     * @param ret
+     *     if "true" entity will return to origin when radius border reached
+     */
+    public void setRandomMovementRadius(final int radius, final boolean ret) {
         movementRadius = radius;
-        returnToOrigin = origin;
+        returnToOrigin = ret;
     }
     
     /**
