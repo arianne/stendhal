@@ -396,6 +396,7 @@ coffin	OBJ	coffins
 coin	OBJ	=money	coins
 colada	OBJ-FOO-FLU	coladas
 collard	OBJ-FOO	collards
+zucchini OBJ-FOO =collard zucchinis
 collection	OBJ	collections
 collision	OBJ	collisions
 color	OBJ	colors
