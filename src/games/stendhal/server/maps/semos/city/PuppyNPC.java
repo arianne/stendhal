@@ -45,7 +45,7 @@ public class PuppyNPC implements ZoneConfigurator {
 		dog.setEntityClass("animal/puppy");
 		dog.setBaseSpeed(0.5);
 		dog.moveRandomly();
-		dog.setRandomMovementRadius(20, true);
+		dog.setRandomMovementRadius(25, true);
 		dog.setSounds(Arrays.asList("dog-small-bark-1", "dog-small-bark-2"));
 		zone.add(dog);
 	}
