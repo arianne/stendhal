@@ -17,6 +17,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -82,7 +83,7 @@ public class RudolphNPC implements ZoneConfigurator {
 		npc.setDescription("You see Rudolph the Red-Nosed Reindeer. His nose is so big, bright and flashy.");
 		npc.setBaseSpeed(1);
 		npc.setEntityClass("rudolphnpc");
-		npc.reversePath();
+		npc.setCollisionAction(CollisionAction.REVERSE);
 		zone.add(npc);
 	}
 
