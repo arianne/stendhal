@@ -85,7 +85,7 @@ import java.util.List;
  */
 public class FindJefsMom extends AbstractQuest {
 
-	// 7200 minutes (5 days)
+	// 4320 minutes (3 days)
 	private static final int REQUIRED_MINUTES = 4320;
 
 	private static final String QUEST_SLOT = "find_jefs_mom";
