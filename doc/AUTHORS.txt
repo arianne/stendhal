@@ -163,7 +163,9 @@ Authors of Stendhal are:
   . Wiki
   . Very small contribution the Stendhal main website
   . Testing
-  
+- Balaur
+  · Bugs fixer
+
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
 
