@@ -139,7 +139,7 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye now.", getReply(npc));
 
 		// wait three minutes
-		setPastTime(player, QUEST_SLOT, 3, 4*60);
+		setPastTime(player, QUEST_SLOT, 2, 3*60);
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Welcome back! I'm done with your order. Here you have the cup of tea.", getReply(npc));
