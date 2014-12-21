@@ -24,13 +24,15 @@ import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -64,14 +66,18 @@ import java.util.List;
  *
  * REPETITIONS:
  * <ul>
- * <li>None</li>
+ * <li>Once every 11 months.</li>
  * </ul>
  */
 public class GoodiesForRudolph extends AbstractQuest {
 
-	private static final String QUEST_SLOT = "goodies_rudolph_13";
+	private static final String QUEST_SLOT = "goodies_rudolph";
 
+	private static final int REQUIRED_MONTHS = 11;
+	private static final int REQUIRED_MINUTES = 60 * 24 * 30 * REQUIRED_MONTHS;
 
+	private static final String RUDOLPH_TALK_QUEST_ACCEPT = "I heard about the wonderful #goodies you have here in Semos. If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.";
+	private static final String RUDOLPH_TALK_QUEST_OFFER_AGAIN = RUDOLPH_TALK_QUEST_ACCEPT;
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -80,18 +86,25 @@ public class GoodiesForRudolph extends AbstractQuest {
 			return res;
 		}
 		res.add("I have met Rudolph. He is the Red-Nosed Reindeer running around in Semos.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questStateFull = player.getQuest(QUEST_SLOT);
+		final String[] parts = questStateFull.split(";");
+		final String questState = parts[0];
+
 		if ("rejected".equals(questState)) {
 			res.add("He asked me to find goodies for him but I rejected his request.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "start", "done")) {
 			res.add("I promised to find goodies for him because he is a nice reindeer.");
 		}
 		if ("start".equals(questState) && player.isEquipped("reindeer moss", 5)  && player.isEquipped("carrot", 10) && player.isEquipped("apple", 10) || "done".equals(questState)) {
 			res.add("I got all the goodies and will take them to Rudolph.");
 		}
-		if ("done".equals(questState)) {
-			res.add("I took the goodies to Rudolph. As a little thank you, he gave ME some goodies. :)");
+		if (isCompleted(player)) {
+			if (isRepeatable(player)) {
+				res.add("It's been a year since I helped Rudolph. I should ask him if he needs help again.");
+			} else {
+				res.add("I took the goodies to Rudolph. As a little thank you, he gave ME some goodies. :)");
+			}
 		}
 		return res;
 	}
@@ -110,9 +123,17 @@ public class GoodiesForRudolph extends AbstractQuest {
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
+			new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 			ConversationStates.ATTENDING,
 			"Thank you very much for the goodies, but I don't have any other task for you this year. Have a wonderful holiday season.",
+			null);
+
+		npc.add(
+			ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+			ConversationStates.ATTENDING,
+			RUDOLPH_TALK_QUEST_OFFER_AGAIN,
 			null);
 
 		// player is willing to help
@@ -121,7 +142,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"I heard about the wonderful #goodies you have here in Semos. If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.",
+			RUDOLPH_TALK_QUEST_ACCEPT,
 			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
@@ -178,10 +199,8 @@ public class GoodiesForRudolph extends AbstractQuest {
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(60));
 		reward.add(new InflictStatusOnNPCAction("apple"));
-
-
-
-
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		reward.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
@@ -230,6 +249,12 @@ public class GoodiesForRudolph extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 0;
+	}
+
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"),
+				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override
