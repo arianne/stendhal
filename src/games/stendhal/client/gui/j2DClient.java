@@ -61,6 +61,8 @@ import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusAdapter;
@@ -71,6 +73,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -84,6 +87,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
@@ -966,21 +970,27 @@ public class j2DClient implements UserInterface {
 	 */
 	private JComponent createLogArea() {
 		final JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
+		final Timer animator = new Timer(100, null);
+		List<JComponent> logs = createNotificationChannels();
+		final BitSet changedChannels = new BitSet(logs.size());
+		
 		tabs.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				int i = tabs.getSelectedIndex();
 				NotificationChannel channel = channelManager.getChannels().get(i);
 				channelManager.setVisibleChannel(channel);
-				// Remove modified marker
-				String channelName = tabs.getTitleAt(i);
-				if (channelName.startsWith("* ")) {
-					tabs.setTitleAt(i, channelName.substring(2));
+				if (changedChannels.get(i)) {
+					changedChannels.set(i, false);
+					// Remove modified marker
+					tabs.setForegroundAt(i, Color.WHITE);
+					if (changedChannels.isEmpty()) {
+						animator.stop();
+					}
 				}
 			}
 		});
-		List<JComponent> logs = createNotificationChannels();
-
+		
 		Iterator<NotificationChannel> it = channelManager.getChannels().iterator();
 		for (JComponent tab : logs) {
 			tabs.add(it.next().getName(), tab);
@@ -990,9 +1000,39 @@ public class j2DClient implements UserInterface {
 			public void channelModified(int index) {
 				// Mark the tab as modified so that the user can see there's
 				// new text
-				String channelName = tabs.getTitleAt(index);
-				if (!channelName.startsWith("* ")) {
-					tabs.setTitleAt(index, "* " + channelName);
+				if (!changedChannels.get(index)) {
+					changedChannels.set(index);
+					if (!animator.isRunning()) {
+						animator.start();
+					}
+				}
+			}
+		});
+		
+		animator.addActionListener(new ActionListener() {
+			private static final int STEPS = 10;
+			private final Color[] colors;
+			private int colorIndex;
+			private int change = 1;
+			{
+				colors = new Color[STEPS];
+				colors[0] = Color.WHITE;
+				for (int i = 1; i < STEPS; i++) {
+					int tmp = 255 - 255 * i / STEPS;
+					colors[i] = new Color(tmp, 255, tmp);
+				}
+			}
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				colorIndex += change;
+				if (colorIndex >= colors.length || colorIndex < 0) {
+					change = -change;
+					colorIndex += change;
+				}
+
+				for (int i = changedChannels.nextSetBit(0); i >= 0; i = changedChannels.nextSetBit(i + 1)) {
+					tabs.setForegroundAt(i, colors[colorIndex]);	
 				}
 			}
 		});
