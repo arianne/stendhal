@@ -39,6 +39,8 @@ import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.spells.Spells;
 import games.stendhal.client.gui.stats.StatsPanelController;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.styled.StyledTabbedPaneUI;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -61,6 +63,7 @@ import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -983,7 +986,7 @@ public class j2DClient implements UserInterface {
 				if (changedChannels.get(i)) {
 					changedChannels.set(i, false);
 					// Remove modified marker
-					tabs.setForegroundAt(i, Color.WHITE);
+					tabs.setBackgroundAt(i, null);
 					if (changedChannels.isEmpty()) {
 						animator.stop();
 					}
@@ -1016,10 +1019,33 @@ public class j2DClient implements UserInterface {
 			private int change = 1;
 			{
 				colors = new Color[STEPS];
-				colors[0] = Color.WHITE;
+				Color endColor;
+				
+				Style style = StyleUtil.getStyle();
+				if (style != null) {
+					colors[0] = style.getHighLightColor();
+					endColor = style.getPlainColor();
+				} else {
+					colors[0] = Color.BLUE;
+					endColor = Color.DARK_GRAY;
+				}
+				
+				int r = colors[0].getRed();
+				int g = colors[0].getGreen();
+				int b = colors[0].getBlue();
+				int alpha = 0xff;
+				int dR = r - endColor.getRed();
+				int dG = g - endColor.getGreen();
+				int dB = b - endColor.getBlue();
+				int dA;
+				if (TransparencyMode.TRANSPARENCY == Transparency.TRANSLUCENT) {
+					dA = 0xff / STEPS;
+				} else {
+					dA = 0;
+				}
 				for (int i = 1; i < STEPS; i++) {
-					int tmp = 255 - 255 * i / STEPS;
-					colors[i] = new Color(tmp, 255, tmp);
+					alpha -= dA;
+					colors[i] = new Color(r - i * dR / STEPS, g - i * dG / STEPS, b - i * dB / STEPS, alpha);
 				}
 			}
 			
@@ -1032,7 +1058,7 @@ public class j2DClient implements UserInterface {
 				}
 
 				for (int i = changedChannels.nextSetBit(0); i >= 0; i = changedChannels.nextSetBit(i + 1)) {
-					tabs.setForegroundAt(i, colors[colorIndex]);	
+					tabs.setBackgroundAt(i, colors[colorIndex]);
 				}
 			}
 		});
