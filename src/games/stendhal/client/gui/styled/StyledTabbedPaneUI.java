@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -19,6 +20,7 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
@@ -99,6 +101,12 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 	protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex,
 			int x, int y, int width, int height, boolean isSelected) {
 		StyleUtil.fillBackground(style, g, x, y, width, height);
+		Color c = tabPane.getBackgroundAt(tabIndex);
+		// Check for custom set colors. Defaults are ColorUIResources
+		if (c != null && !(c instanceof ColorUIResource)) {
+			g.setColor(c);
+			g.fillRect(x, y, width, height);
+		}
 	}
 	
 	@Override
