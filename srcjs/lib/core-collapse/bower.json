@@ -7,5 +7,5 @@
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^1.1.0"
   },
-  "version": "0.5.1"
+  "version": "0.5.2"
 }
