@@ -16,6 +16,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.farmhouse.FarmersWifeNPC;
 import games.stendhal.server.maps.ados.farmhouse.MotherNPC;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,6 +52,12 @@ public class FishSoupForHughieTest {
 		questSlot = quest.getSlotName();
 
 		player = PlayerTestHelper.createPlayer("bob");
+	}
+
+	@After
+	public void tearDown() {
+		PlayerTestHelper.removeNPC("Anastasia");
+		PlayerTestHelper.removeNPC("Philomena");
 	}
 
 	@Test
