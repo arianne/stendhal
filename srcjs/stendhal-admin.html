@@ -4,6 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Stendhal Admin Client</title>
 <style type="text/css">
+body {
+font-family: "Arial";
+}
 /*
 html, body {
 	font-family: "Arial"; height: 100%; width: 100%;
@@ -119,7 +122,6 @@ stendhal.ui.chatLog.addLine = function(type, msg) {
 <core-header-panel id="hPanel" flex>
 	<core-toolbar>
 		<div>Stendhal</div>
-		<input type="text" name="chatbar" id="chatbar" autocomplete="off">
 	</core-toolbar>
   	<core-list id="list" flex scrollTarget="{{$.hPanel.scroller}}">
 		<template>
@@ -127,6 +129,7 @@ stendhal.ui.chatLog.addLine = function(type, msg) {
 		</template>
 	</core-list>
 </core-header-panel>
+<input type="text" name="chatbar" id="chatbar" autocomplete="off">
 
 
 
