@@ -23,6 +23,9 @@
   ],
   "dependencies": {
     "polymer": ">=0.5.1",
-    "core-collapse": "Polymer/core-collapse#~0.5.1"
+    "core-collapse": "Polymer/core-collapse#~0.5.1",
+    "core-toolbar": "Polymer/core-toolbar#~0.5.2",
+    "core-header-panel": "Polymer/core-header-panel#~0.5.2",
+    "core-list": "Polymer/core-list#~0.5.2"
   }
 }
