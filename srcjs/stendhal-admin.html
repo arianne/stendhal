@@ -5,29 +5,11 @@
 <title>Stendhal Admin Client</title>
 <style type="text/css">
 body {
-font-family: "Arial";
+	font-family: "Arial";
 }
-/*
-html, body {
-	font-family: "Arial"; height: 100%; width: 100%;
-	margin: 0; padding: 0;
-}
-body {
-	display: flex;
-	flex-direction: column;
-}
-#chat {
-	border: 1px solid #000;
-	overflow-y: scroll;
-	word-wrap: break-word;
-	flex: 1;
-	padding:0.5em;
-}
-#chat p {margin: 0}
-#chatbar {
-	width: 99%;
-	align-self: flex-end;
-	height: 1.2em;
+core-toolbar {
+	color: white;
+	background: #0D4619;
 }
 p.logerror {color: #F00}
 p.logprivmsg {color: #444}
@@ -45,11 +27,6 @@ p.logsignificant_negative {color: #ff8f8f}
 p.logsignificant_positive {color: #4169e1}
 p.logtutorial {color: #ac00ac}
 p.logsupport {color: #ff7200}
-*/
-core-toolbar {
-color: white;
-background: #0D4619;
-}
 
 </style>
 
@@ -109,7 +86,17 @@ stendhal.ui.chatLog.addLine = function(type, msg) {
 	if (!document.getElementById("list").data) {
 		document.getElementById("list").data = [];
 	}
+	var date = new Date();
+	var time = "" + date.getHours() + ":";
+	if (date.getHours < 10) {
+		time = "0" + time;
+	}
+	if (date.getMinutes() < 10) {
+		time = time + "0";
+	};
+	time = time + date.getMinutes();
 	document.getElementById("list").data.push({
+		time: time,
 		type: type,
 		message: msg
 	});;
