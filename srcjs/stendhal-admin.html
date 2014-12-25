@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Stendhal Admin Client</title>
+<style type="text/css">
+/*
+html, body {
+	font-family: "Arial"; height: 100%; width: 100%;
+	margin: 0; padding: 0;
+}
+body {
+	display: flex;
+	flex-direction: column;
+}
+#chat {
+	border: 1px solid #000;
+	overflow-y: scroll;
+	word-wrap: break-word;
+	flex: 1;
+	padding:0.5em;
+}
+#chat p {margin: 0}
+#chatbar {
+	width: 99%;
+	align-self: flex-end;
+	height: 1.2em;
+}
+p.logerror {color: #F00}
+p.logprivmsg {color: #444}
+p.logclient {color: #888}
+p.logerror {color: #F00}
+p.loginformation {color: #ffc800}
+p.lognegative {color: #f00}
+p.lognormal {color: #000}
+p.logpositive {color: #0f0}
+p.loggroup {color: #633d8b}
+p.logemote {color: #633d8b}
+p.logresponse {color: #006400}
+p.logscene_setting {color: #572002}
+p.logsignificant_negative {color: #ff8f8f}
+p.logsignificant_positive {color: #4169e1}
+p.logtutorial {color: #ac00ac}
+p.logsupport {color: #ff7200}
+*/
+core-toolbar {
+color: white;
+background: #0D4619;
+}
+
+</style>
+
+<script src="lib/webcomponentsjs/webcomponents.min.js"></script>
+
+<link rel="import" href="lib/polymer/polymer.html">
+<link rel="import" href="lib/core-header-panel/core-header-panel.html">
+<link rel="import" href="lib/core-list/core-list.html">
+<link rel="import" href="lib/core-toolbar/core-toolbar.html">
+<link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
+<link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
+
+<script type="text/javascript" src="marauroa/marauroa.js"></script>
+<script type="text/javascript" src="marauroa/client-framework.js"></script>
+<script type="text/javascript" src="marauroa/message-factory.js"></script>
+<script type="text/javascript" src="marauroa/perception.js"></script>
+<script type="text/javascript" src="marauroa/rpfactory.js"></script>
+
+<script type="text/javascript" src="jsxgraph-util.js"></script>
+
+<script type="text/javascript" src="stendhal/data/map.js"></script>
+<script type="text/javascript" src="stendhal/data/sprites.js"></script>
+
+<script type="text/javascript" src="stendhal/entity/entity.js"></script>
+<script type="text/javascript" src="stendhal/entity/blood.js"></script>
+<script type="text/javascript" src="stendhal/entity/corpse.js"></script>
+<script type="text/javascript" src="stendhal/entity/item.js"></script>
+<script type="text/javascript" src="stendhal/entity/portal.js"></script>
+<script type="text/javascript" src="stendhal/entity/activeentity.js"></script>
+<script type="text/javascript" src="stendhal/entity/rpentity.js"></script>
+<script type="text/javascript" src="stendhal/entity/player.js"></script>
+<script type="text/javascript" src="stendhal/entity/creature.js"></script>
+<script type="text/javascript" src="stendhal/entity/npc.js"></script>
+<script type="text/javascript" src="stendhal/entity/zone.js"></script>
+<script type="text/javascript" src="stendhal/entity/ground.js"></script>
+
+<script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
+<script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
+<script type="text/javascript" src="stendhal/ui/html.js"></script>
+<script type="text/javascript" src="stendhal/ui/itemcontainer.js"></script>
+<script type="text/javascript" src="stendhal/ui/minimap.js"></script>
+<script type="text/javascript" src="stendhal/ui/sound.js"></script>
+
+<script type="text/javascript" src="stendhal/actions.js"></script>
+<script type="text/javascript" src="stendhal/config.js"></script>
+<script type="text/javascript" src="stendhal/events.js"></script>
+<script type="text/javascript" src="stendhal/experimental.js"></script>
+
+<script type="text/javascript" src="stendhal/main.js"></script>
+</head>
+<body id="body" fullbleed layout vertical>
+
+<script>
+stendhal.ui.chatLog.addLine = function(type, msg) {
+	if (!document.getElementById("list").data) {
+		document.getElementById("list").data = [];
+	}
+	document.getElementById("list").data.push({
+		type: type,
+		message: msg
+	});;
+	document.getElementById("list").scrollTarget=document.getElementById("hPanel");
+	document.getElementById("list").updateSize();
+	
+};
+</script>
+
+<core-header-panel id="hPanel" flex>
+	<core-toolbar>
+		<div>Stendhal</div>
+		<input type="text" name="chatbar" id="chatbar" autocomplete="off">
+	</core-toolbar>
+  	<core-list id="list" flex scrollTarget="{{$.hPanel.scroller}}">
+		<template>
+				<p class="log{{model.type}}">[{{model.time}}] {{model.message}}</p>
+		</template>
+	</core-list>
+</core-header-panel>
+
+
+
+</body>
+</html>
