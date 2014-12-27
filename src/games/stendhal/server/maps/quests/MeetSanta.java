@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -137,6 +138,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		};
 		santa.setEntityClass("santaclausnpc");
 		santa.initHP(100);
+		santa.setSounds(Arrays.asList("ho-ho-ho-1", "ho-ho-ho-2"));
 
 		// start in int_admin_playground
 		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
