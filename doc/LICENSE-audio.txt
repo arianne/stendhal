@@ -36,7 +36,7 @@ The following files are released into the public domain and can be distributed u
         fishing-1           flame-burst-1       flame-burst-2
         flame-burst-3       glass-break-1       goat-1
         goat-2              growl-large-3       grunt-large-1
-        grunt-large-2       horse-1             horse-2
+        grunt-large-2       ho-ho-ho-1			ho-ho-ho-2			horse-1             horse-2
         kitten-mew-1        kiteen-meow-1       kitten-meow-2
         kitten-meow-3       lion-1              lion-2
         loop-drag-slimy-1   loop-grind-stone-1  monster-1
@@ -63,6 +63,8 @@ The following files are released into the public domain and can be distributed u
             http://freesound.org/people/Barbamiz/sounds/116135/
             http://freesound.org/people/Belhene/sounds/157837/
             http://freesound.org/people/Bidone/sounds/66150/
+            http://freesound.org/people/canucklovingbrit/sounds/110641/
+            http://freesound.org/people/canucklovingbrit/sounds/110642/
             http://freesound.org/people/cloudyeyetavern/sounds/148931/
             http://freesound.org/people/cognito%20perceptu/sounds/88423/
             http://freesound.org/people/dave.des/sounds/127197/
