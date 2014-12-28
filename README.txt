@@ -83,5 +83,5 @@ Legal
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008
 arianne_rpg at users dot sourceforge dot net and others
 
-Stendhal(c) is copyright of the Arianne Project, 2006-2011
+Stendhal(c) is copyright of the Arianne Project, 2006-2014
 arianne-general at lists dot sourceforge dot net
