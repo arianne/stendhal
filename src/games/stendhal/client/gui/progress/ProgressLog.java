@@ -73,7 +73,7 @@ class ProgressLog {
 	/** Name of the font used. Defaults to {@link #FONT_NAME}. */
 	private String fontName;
 	/** Repeatable, completed quests. */
-	private Collection<String> repeatable = Collections.EMPTY_SET;
+	private Collection<String> repeatable = Collections.emptySet();
 
 	/**
 	 * Create a new ProgressLog.
@@ -199,7 +199,6 @@ class ProgressLog {
 	/**
 	 * A page on the window.
 	 */
-	@SuppressWarnings("serial")
 	private static class Page extends JComponent implements HyperlinkListener {
 		/** Html area for the subjects. */
 		private final JEditorPane indexArea;
@@ -467,8 +466,8 @@ class ProgressLog {
 	/**
 	 * A HTML JEditorPane with a background image.
 	 */
-	@SuppressWarnings("serial")
 	private static class PrettyEditorPane extends JEditorPane {
+		/** Painter for the background. */
 		private final BackgroundPainter background;
 
 		/**
