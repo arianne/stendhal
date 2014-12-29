@@ -20,7 +20,9 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.chatLog = {
 	addLine: function(type, msg) {
 		var chatElement = document.getElementById("chat");
-		chatElement.addLine(type, msg);
+		if (!chatElement) {
+			chatElement.addLine(type, msg);
+		}
 	},
 
 	clear: function() {
