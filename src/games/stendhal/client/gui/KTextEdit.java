@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.ChatTextSink;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
 import games.stendhal.common.NotificationType;
@@ -31,7 +32,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JComponent;
@@ -42,6 +46,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.BoxView;
 import javax.swing.text.Caret;
@@ -55,6 +60,7 @@ import javax.swing.text.ParagraphView;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 import javax.swing.text.StyledEditorKit;
 import javax.swing.text.View;
 import javax.swing.text.ViewFactory;
@@ -68,7 +74,6 @@ class KTextEdit extends JComponent {
 	/** Color of the time stamp written before the lines. */
 	protected static final Color HEADER_COLOR = Color.gray;
 
-	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);
 
 	/** The actual text component for showing the chat log. */
@@ -82,6 +87,7 @@ class KTextEdit extends JComponent {
 	/** Formatting class for text containing stendhal markup. */
 	private final StringFormatter<Style, StyleSet> formatter = new StringFormatter<Style, StyleSet>();
 	private StyleSet defaultAttributes;
+	private final Format dateFormatter = new SimpleDateFormat("[HH:mm] ");
 
 	/** Listener for opening the popup menu when it's requested. */
 	private final class TextPaneMouseListener extends MousePopupAdapter {
@@ -108,6 +114,21 @@ class KTextEdit extends JComponent {
 			popup.add(menuItem);
 
 			popup.show(e.getComponent(), e.getX(), e.getY());
+		}
+		
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			StyledDocument doc = (StyledDocument) textPane.getDocument();
+			Element ele = doc.getCharacterElement(textPane.viewToModel(e.getPoint()));
+			AttributeSet as = ele.getAttributes();
+			Object fla = as.getAttribute("linkact");
+			if (fla instanceof LinkListener) {
+				try {
+					((LinkListener) fla).linkClicked(doc.getText(ele.getStartOffset(), ele.getEndOffset() - ele.getStartOffset()));
+				} catch (BadLocationException exc) {
+					logger.error("Trying to extract link from invalid range", exc);
+				}
+			}
 		}
 	}
 
@@ -230,12 +251,14 @@ class KTextEdit extends JComponent {
 		defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
 		
 		StyleSet attributes = defaultAttributes.copy();
-		attributes.setAttribute(StyleConstants.Italic, true);
+		attributes.setAttribute(StyleConstants.Italic, Boolean.TRUE);
 		attributes.setAttribute(StyleConstants.Foreground, Color.blue);
+		attributes.setAttribute("linkact", new LinkListener());
+		
 		formatter.addStyle('#', attributes);
 
 		attributes = defaultAttributes.copy();
-		attributes.setAttribute(StyleConstants.Underline, true);
+		attributes.setAttribute(StyleConstants.Underline, Boolean.TRUE);
 		formatter.addStyle('§', attributes);
 	}
 
@@ -360,8 +383,7 @@ class KTextEdit extends JComponent {
 	private void handleAddLine(final String header, final String line, final NotificationType type) {
 		insertNewline();
 
-		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-		final String dateString = formatter.format(new Date());
+		String dateString = dateFormatter.format(new Date());
 		insertTimestamp(dateString);
 
 		insertHeader(header);
@@ -481,6 +503,28 @@ class KTextEdit extends JComponent {
 		}
 	}
 	
+
+	/**
+	 * Listener for clicking text marked with "#".
+	 */
+	private class LinkListener {
+		/** Allowed patterns for links to be opened in a browser. */
+		private final Pattern whitelist = Pattern.compile("^https+://stendhalgame\\.org.*");
+
+		/**
+		 * Called when a text marked with "#" is clicked.
+		 * 
+		 * @param text content of the marked text
+		 */
+		void linkClicked(String text) {
+			if (whitelist.matcher(text).matches()) {
+				addLine(new HeaderLessEventLine("Trying to open #'" + text
+						+ "' in your browser.", NotificationType.CLIENT));
+				BareBonesBrowserLaunch.openURL(text);
+			}
+		}
+	}
+	
 	/**
 	 * This is a workaround to line break behavior change between java versions
 	 * 6 and 7. Long words do not get line breaks and no officially supported
@@ -493,7 +537,7 @@ class KTextEdit extends JComponent {
 	 * here.</a>
 	 */
 	private static class WrapEditorKit extends StyledEditorKit {
-		private final ViewFactory defaultFactory=new WrapColumnFactory();
+		private final ViewFactory defaultFactory = new WrapColumnFactory();
 
 		@Override
 		public ViewFactory getViewFactory() {
