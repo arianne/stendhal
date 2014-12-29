@@ -509,7 +509,7 @@ class KTextEdit extends JComponent {
 	 */
 	private class LinkListener {
 		/** Allowed patterns for links to be opened in a browser. */
-		private final Pattern whitelist = Pattern.compile("^https+://stendhalgame\\.org.*");
+		private final Pattern whitelist = Pattern.compile("^https?+://stendhalgame\\.org.*");
 
 		/**
 		 * Called when a text marked with "#" is clicked.
