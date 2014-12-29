@@ -24,8 +24,13 @@
   "dependencies": {
     "polymer": ">=0.5.1",
     "core-collapse": "Polymer/core-collapse#~0.5.1",
-    "core-toolbar": "Polymer/core-toolbar#~0.5.2",
     "core-header-panel": "Polymer/core-header-panel#~0.5.2",
-    "core-list": "Polymer/core-list#~0.5.2"
+    "core-list": "Polymer/core-list#~0.5.2",
+    "core-menu": "Polymer/core-menu#~0.5.2",
+    "core-toolbar": "Polymer/core-toolbar#~0.5.2",
+    "paper-dropdown": "Polymer/paper-dropdown#~0.5.2",
+    "paper-icon-button": "Polymer/paper-icon-button#~0.5.2",
+    "paper-item": "Polymer/paper-item#~0.5.2"
+    "paper-menu-button": "Polymer/paper-menu-button#~0.5.2",
   }
 }

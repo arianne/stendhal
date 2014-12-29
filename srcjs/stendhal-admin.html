@@ -2,14 +2,17 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="manifest" href="stendhal/ui/admin-manifest.json">
 <title>Stendhal Admin Client</title>
 <style type="text/css">
 body {
 	font-family: "Arial";
 }
 core-toolbar {
-	color: white;
 	background: #0D4619;
+}
+core-toolbar .title {
+	color: white;
 }
 p.logerror {color: #F00}
 p.logprivmsg {color: #444}
@@ -28,14 +31,32 @@ p.logsignificant_positive {color: #4169e1}
 p.logtutorial {color: #ac00ac}
 p.logsupport {color: #ff7200}
 
+body {
+	background-color: #AAA;
+}
+.logitem {
+	background-color: #FFF;
+	padding: .5em;
+	margin: .25em;
+	border-radius: .25em;
+}
+
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
 
 <link rel="import" href="lib/polymer/polymer.html">
+
 <link rel="import" href="lib/core-header-panel/core-header-panel.html">
 <link rel="import" href="lib/core-list/core-list.html">
+<link rel="import" href="lib/core-menu/core-menu.html">
 <link rel="import" href="lib/core-toolbar/core-toolbar.html">
+
+<link rel="import" href="lib/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="lib/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="lib/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="lib/paper-item/paper-item.html">
+
 <link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 
@@ -77,48 +98,37 @@ p.logsupport {color: #ff7200}
 <script type="text/javascript" src="stendhal/events.js"></script>
 <script type="text/javascript" src="stendhal/experimental.js"></script>
 
+<script type="text/javascript" src="stendhal/ui/admin.js"></script>
+
 <script type="text/javascript" src="stendhal/main.js"></script>
 </head>
 <body id="body" fullbleed layout vertical>
 
-<script>
-stendhal.ui.chatLog.addLine = function(type, msg) {
-	if (!document.getElementById("list").data) {
-		document.getElementById("list").data = [];
-	}
-	var date = new Date();
-	var time = "" + date.getHours() + ":";
-	if (date.getHours < 10) {
-		time = "0" + time;
-	}
-	if (date.getMinutes() < 10) {
-		time = time + "0";
-	};
-	time = time + date.getMinutes();
-	document.getElementById("list").data.push({
-		time: time,
-		type: type,
-		message: msg
-	});;
-	document.getElementById("list").scrollTarget=document.getElementById("hPanel");
-	document.getElementById("list").updateSize();
-	
-};
-</script>
-
 <core-header-panel id="hPanel" flex>
 	<core-toolbar>
-		<div>Stendhal</div>
+		<div class="title" flex>Stendhal</div>
+		<paper-menu-button>
+			<paper-icon-button class="title" icon="more-vert"></paper-icon-button>
+			<paper-dropdown class="dropdown adminmenu" halign="right">
+					<paper-item>Ban</paper-item>
+					<paper-item>Support</paper-item>
+					<paper-item>Support answer</paper-item>
+					<paper-item>Teleport to</paper-item>
+					<paper-item>Who</paper-item>
+					<paper-item>Where</paper-item>
+			</paper-dropdown>
+		</paper-menu-button>
 	</core-toolbar>
+
   	<core-list id="list" flex scrollTarget="{{$.hPanel.scroller}}">
 		<template>
-				<p class="log{{model.type}}">[{{model.time}}] {{model.message}}</p>
+			<div>
+				<p class="logitem log{{model.type}}">[{{model.time}}] {{model.message}}</p>
+			</div>
 		</template>
 	</core-list>
 </core-header-panel>
 <input type="text" name="chatbar" id="chatbar" autocomplete="off">
-
-
 
 </body>
 </html>
