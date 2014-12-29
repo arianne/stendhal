@@ -30,6 +30,16 @@ p.logsignificant_positive {color: #4169e1}
 p.logtutorial {color: #ac00ac}
 p.logsupport {color: #ff7200}
 
+body {
+	background-color: #AAA;
+}
+.logitem {
+	background-color: #FFF;
+	padding: .5em;
+	margin: .25em;
+	border-radius: .25em;
+}
+
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
@@ -113,13 +123,13 @@ p.logsupport {color: #ff7200}
 
   	<core-list id="list" flex scrollTarget="{{$.hPanel.scroller}}">
 		<template>
-				<p class="log{{model.type}}">[{{model.time}}] {{model.message}}</p>
+			<div>
+				<p class="logitem log{{model.type}}">[{{model.time}}] {{model.message}}</p>
+			</div>
 		</template>
 	</core-list>
 </core-header-panel>
 <input type="text" name="chatbar" id="chatbar" autocomplete="off">
-
-
 
 </body>
 </html>
