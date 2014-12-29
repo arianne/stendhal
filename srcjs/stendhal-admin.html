@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="manifest" href="stendhal/ui/admin-manifest.json">
 <title>Stendhal Admin Client</title>
 <style type="text/css">
 body {
@@ -108,15 +109,13 @@ body {
 		<div class="title" flex>Stendhal</div>
 		<paper-menu-button>
 			<paper-icon-button class="title" icon="more-vert"></paper-icon-button>
-			<paper-dropdown class="dropdown" halign="right">
-				<core-menu class="menu">
+			<paper-dropdown class="dropdown adminmenu" halign="right">
 					<paper-item>Ban</paper-item>
 					<paper-item>Support</paper-item>
 					<paper-item>Support answer</paper-item>
 					<paper-item>Teleport to</paper-item>
 					<paper-item>Who</paper-item>
 					<paper-item>Where</paper-item>
-				</core-menu>
 			</paper-dropdown>
 		</paper-menu-button>
 	</core-toolbar>

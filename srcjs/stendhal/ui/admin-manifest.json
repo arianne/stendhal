@@ -1,0 +1,14 @@
+{
+  "short_name": "Admin",
+  "name": "Stendhal Admin",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16",
+      "type": "image/png",
+      "density": "1.0"
+    }
+  ],
+  "start_url": "https://stendhalgame.org/client/stendhal-admin.html",
+  "display": "standalone"
+}
