@@ -76,9 +76,6 @@ stendhal.main = {
 	 * registers global browser event handlers.
 	 */
 	registerBrowserEventHandlers: function() {
-		document.onkeydown=stendhal.ui.chatBar.keydown;
-		document.onkeyup=stendhal.ui.chatBar.keyup;
-		document.getElementById('chatbar').onkeypress=stendhal.ui.chatBar.keypress;
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
 			document.onclick = stendhal.ui.gamewindow.onclick;

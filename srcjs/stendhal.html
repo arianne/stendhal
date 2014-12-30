@@ -17,8 +17,10 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
+<link rel="import" href="lib/polymer/polymer.html">
 
 <link rel="import" href="lib/core-collapse/core-collapse.html">
+<link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
 <link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 <link rel="import" href="stendhal/ui/stendhal-minimap/stendhal-minimap.html">
@@ -48,7 +50,6 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 <script type="text/javascript" src="stendhal/entity/ground.js"></script>
 
 <script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
-<script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
 <script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
 <script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
 <script type="text/javascript" src="stendhal/ui/html.js"></script>
@@ -116,7 +117,7 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 </div>
 </div>
 
-<input type="text" name="chatbar" id="chatbar" style="width:98%" autocomplete="off">
+<input is="stendhal-chatbar" type="text" name="chatbar" style="width:98%" id="chatbar" autocomplete="off">
 <stendhal-chatlog id="chat" style="height:190px">
 </stendhal-chatlog>
 

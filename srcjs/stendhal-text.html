@@ -44,7 +44,9 @@ p.logsupport {color: #ff7200}
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
+<link rel="import" href="lib/polymer/polymer.html">
 
+<link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
 <link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 
@@ -73,7 +75,6 @@ p.logsupport {color: #ff7200}
 <script type="text/javascript" src="stendhal/entity/ground.js"></script>
 
 <script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
-<script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
 <script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
 <script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
 <script type="text/javascript" src="stendhal/ui/html.js"></script>
@@ -92,7 +93,7 @@ p.logsupport {color: #ff7200}
 
 <stendhal-chatlog id="chat">
 </stendhal-chatlog>
-<input type="text" name="chatbar" id="chatbar" autocomplete="off">
+<input is="stendhal-chatbar" type="text" name="chatbar" id="chatbar" autocomplete="off">
 
 </body>
 </html>
