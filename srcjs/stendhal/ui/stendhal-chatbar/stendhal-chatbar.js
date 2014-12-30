@@ -15,12 +15,6 @@ Polymer("stendhal-chatbar", {
 	history: [],
 	historyIndex: 0,
 	pressedKeys: {},
-	
-	ready: function() {
-		this.onkeydown = this.keydown;
-		this.onkeyup = this.keyup;
-		this.onkeypress = this.keypress;
-	},
 
 	clear: function() {
 		this.value = '';
