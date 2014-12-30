@@ -758,5 +758,5 @@ data/sprites/weather/snow_light.png *@75 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
 data/sprites/weather/snow_heavy.png *@65 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
 
 # Weather: rain
-data/sprites/weather/rain.png *@10 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
+data/sprites/weather/rain.png *@15 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
 data/sprites/weather/rain_heavy.png *@15 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
