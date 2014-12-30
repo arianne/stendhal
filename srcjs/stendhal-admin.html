@@ -7,44 +7,11 @@
 <style type="text/css">
 body {
 	font-family: "Arial";
-}
-core-toolbar {
-	background: #0D4619;
-}
-core-toolbar .title {
-	color: white;
-}
-p.logerror {color: #F00}
-p.logprivmsg {color: #444}
-p.logclient {color: #888}
-p.logerror {color: #F00}
-p.loginformation {color: #ffc800}
-p.lognegative {color: #f00}
-p.lognormal {color: #000}
-p.logpositive {color: #0f0}
-p.loggroup {color: #633d8b}
-p.logemote {color: #633d8b}
-p.logresponse {color: #006400}
-p.logscene_setting {color: #572002}
-p.logsignificant_negative {color: #ff8f8f}
-p.logsignificant_positive {color: #4169e1}
-p.logtutorial {color: #ac00ac}
-p.logsupport {color: #ff7200}
-
-body {
 	background-color: #AAA;
 }
-.logitem {
-	background-color: #FFF;
-	padding: .5em;
-	margin: .25em;
-	border-radius: .25em;
-}
-
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
-
 <link rel="import" href="lib/polymer/polymer.html">
 
 <link rel="import" href="lib/core-header-panel/core-header-panel.html">
@@ -57,6 +24,8 @@ body {
 <link rel="import" href="lib/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="lib/paper-item/paper-item.html">
 
+<link rel="import" href="stendhal/ui/stendhal-admin-app/stendhal-admin-app.html">
+<link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
 <link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 
@@ -85,7 +54,6 @@ body {
 <script type="text/javascript" src="stendhal/entity/ground.js"></script>
 
 <script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
-<script type="text/javascript" src="stendhal/ui/chatbar.js"></script>
 <script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
 <script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
 <script type="text/javascript" src="stendhal/ui/html.js"></script>
@@ -104,31 +72,8 @@ body {
 </head>
 <body id="body" fullbleed layout vertical>
 
-<core-header-panel id="hPanel" flex>
-	<core-toolbar>
-		<div class="title" flex>Stendhal</div>
-		<paper-menu-button>
-			<paper-icon-button class="title" icon="more-vert"></paper-icon-button>
-			<paper-dropdown class="dropdown adminmenu" halign="right">
-					<paper-item>Ban</paper-item>
-					<paper-item>Support</paper-item>
-					<paper-item>Support answer</paper-item>
-					<paper-item>Teleport to</paper-item>
-					<paper-item>Who</paper-item>
-					<paper-item>Where</paper-item>
-			</paper-dropdown>
-		</paper-menu-button>
-	</core-toolbar>
 
-  	<core-list id="list" flex scrollTarget="{{$.hPanel.scroller}}">
-		<template>
-			<div>
-				<p class="logitem log{{model.type}}">[{{model.time}}] {{model.message}}</p>
-			</div>
-		</template>
-	</core-list>
-</core-header-panel>
-<input type="text" name="chatbar" id="chatbar" autocomplete="off">
+<stendhal-admin-app id="app" flex layout vertical></stendhal-admin-app>
 
 </body>
 </html>
