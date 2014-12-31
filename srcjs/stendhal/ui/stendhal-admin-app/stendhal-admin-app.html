@@ -50,12 +50,13 @@ p.logsupport {color: #ff7200}
 		<paper-menu-button>
 			<paper-icon-button class="title" icon="more-vert"></paper-icon-button>
 			<paper-dropdown class="dropdown adminmenu" halign="right">
-					<paper-item>Ban</paper-item>
-					<paper-item>Support</paper-item>
-					<paper-item>Support answer</paper-item>
-					<paper-item>Teleport to</paper-item>
-					<paper-item>Who</paper-item>
-					<paper-item>Where</paper-item>
+					<paper-item on-click="{{clickBan}}">Ban</paper-item>
+					<paper-item on-click="{{clickDeepInspect}}">Deep inspect</paper-item>
+					<paper-item on-click="{{clickInspect}}">Inspect</paper-item>
+					<paper-item on-click="{{clickSupport}}">Support</paper-item>
+					<paper-item on-click="{{clickSupportAnswer}}">Support answer</paper-item>
+					<paper-item on-click="{{clickWho}}">Who</paper-item>
+					<paper-item on-click="{{clickWhere}}">Where</paper-item>
 			</paper-dropdown>
 		</paper-menu-button>
 	</core-toolbar>
