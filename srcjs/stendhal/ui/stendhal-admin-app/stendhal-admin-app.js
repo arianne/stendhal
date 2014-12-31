@@ -47,7 +47,7 @@ Polymer("stendhal-admin-app", {
 		this.fillChatbar("/where " + this.$.chatbar.value);
 	},
 	
-	fillChatbar(value) {
+	fillChatbar: function(value) {
 		this.$.chatbar.value = value;
 		this.$.chatbar.focus();
 	}
