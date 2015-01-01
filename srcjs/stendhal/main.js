@@ -37,12 +37,22 @@ stendhal.main = {
 		}
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
+			var name = null;
 			if (window.location.hash) {
-				marauroa.clientFramework.chooseCharacter(window.location.hash.substring(1));
+				name = window.location.hash.substring(1);
 			} else {
-				marauroa.clientFramework.chooseCharacter(marauroa.util.first(characters).a.name);
+				name = marauroa.util.first(characters).a.name;
+				var admin = 0;
+				for (var i in characters) {
+					if (characters.hasOwnProperty(i)) {
+						if (characters[i].a.adminlevel > admin) {
+							admin = characters[i].a.adminlevel;
+							name = characters[i].a.name;
+						}
+					}
+				}
 			}
-	
+			marauroa.clientFramework.chooseCharacter(name);
 			var body = document.getElementById("body")
 			body.style.cursor = "auto";
 			stendhal.ui.chatLog.addLine("client", "Loading world...");
