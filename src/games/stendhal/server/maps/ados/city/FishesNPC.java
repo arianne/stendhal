@@ -34,6 +34,8 @@ public class FishesNPC implements ZoneConfigurator {
 	}
 	
 	private void buildNPC(final StendhalRPZone zone) {
+		
+		// Fish that swims around in the fountain
 		final PassiveNPC f1 = new PassiveNPC() {
 			@Override
 			protected void createPath() {
@@ -52,5 +54,35 @@ public class FishesNPC implements ZoneConfigurator {
 		f1.setEntityClass("animal/fish_roach");
 		f1.setVisibility(50); //underwater
 		zone.add(f1);
+		
+		// Fish that swims up and down in the coast
+		final PassiveNPC f2 = new PassiveNPC() {
+			@Override
+			protected void createPath() {
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(84, 81));
+				nodes.add(new Node(84, 78));
+				nodes.add(new Node(90, 78));
+				nodes.add(new Node(90, 28));
+				nodes.add(new Node(85, 28));
+				nodes.add(new Node(85, 17));
+				nodes.add(new Node(80, 17));
+				nodes.add(new Node(80, 20));
+				nodes.add(new Node(85, 20));
+				nodes.add(new Node(85, 28));
+				nodes.add(new Node(90, 28));
+				nodes.add(new Node(90, 78));
+				nodes.add(new Node(84, 78));
+				setPath(new FixedPath(nodes, true));
+			}
+		};
+		
+		f2.setPosition(84, 81);
+		f2.setDescription("You see a fish.");
+		f2.setDirection(Direction.UP);
+		f2.setEntityClass("animal/fish_roach");
+		f2.setVisibility(50); //underwater
+		f2.setIgnoresCollision(true);
+		zone.add(f2);
 	}
 }
