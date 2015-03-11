@@ -106,9 +106,11 @@ public abstract class ActiveEntity extends Entity {
 		
 		zone.notifyBeforeMovement(this, x, y, nx, ny);
 		
-		if (zone.simpleCollides(this, nx, ny, this.getWidth(), this.getHeight())) {
-			handleSimpleCollision(nx, ny);
-			return;
+		if (!ignoresCollision()) {
+			if (zone.simpleCollides(this, nx, ny, this.getWidth(), this.getHeight())) {
+				handleSimpleCollision(nx, ny);
+				return;
+			}
 		}
 		final Portal p = zone.getPortal(nx, ny);
 		if (p != null) {
@@ -117,7 +119,7 @@ public abstract class ActiveEntity extends Entity {
 			}
 		}
 
-		if (isGhost() || ignoresCollision()) {
+		if (isGhost()) {
 			if (isMoveCompleted()) {
 				move(x, y, nx, ny);
 				return;
@@ -178,7 +180,7 @@ public abstract class ActiveEntity extends Entity {
 				return;
 			}
 		}
-		if (isGhost() || ignoresCollision()) {
+		if (isGhost()) {
 			move(getX(), getY(), nx, ny);
 		}
 	}
