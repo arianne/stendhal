@@ -2921,29 +2921,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	/**
-	 * Set entity to ignore collision tiles
-	 *
-	 * @param ignore
-	 */
-	public void setIgnoresCollision(boolean ignore) {
-		ignoreCollision = ignore;
-		if (ignore) {
-			put("ignore_collision", "");
-		} else {
-			remove("ignore_collision");
-		}
-	}
-
-	/**
-	 * Tells if entity can pass through collision tiles
-	 *
-	 * @return ignoreCollision
-	 */
-	public boolean ignoresCollision() {
-		return ignoreCollision;
-	}
-
-	/**
 	 * Sets the sound played at entity death
 	 *
 	 * @param sound Name of sound

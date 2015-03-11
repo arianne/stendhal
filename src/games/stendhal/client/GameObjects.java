@@ -151,7 +151,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		if (entity instanceof Player) {
 			final Player player = (Player) entity;
 
-			if (player.isGhostMode()) {
+			if (player.isGhostMode() || player.ignoresCollision()) {
 				return false;
 			}
 		}

@@ -49,6 +49,9 @@ public abstract class ActiveEntity extends Entity {
 	
 	private int stepsTaken;
 
+	/** Allows entity to walk through collision areas */
+	private boolean ignoreCollision;
+
 	/**
 	 * Create an active entity.
 	 */
@@ -114,7 +117,7 @@ public abstract class ActiveEntity extends Entity {
 			}
 		}
 
-		if (isGhost()) {
+		if (isGhost() || ignoresCollision()) {
 			if (isMoveCompleted()) {
 				move(x, y, nx, ny);
 				return;
@@ -175,7 +178,7 @@ public abstract class ActiveEntity extends Entity {
 				return;
 			}
 		}
-		if (isGhost()) {
+		if (isGhost() || ignoresCollision()) {
 			move(getX(), getY(), nx, ny);
 		}
 	}
@@ -434,6 +437,29 @@ public abstract class ActiveEntity extends Entity {
 	public boolean isGhost() {
 		// 'ghostmode' attribute is at player level
 		return false;
+	}
+
+	/**
+	 * Set entity to ignore collision tiles
+	 *
+	 * @param ignore
+	 */
+	public void setIgnoresCollision(boolean ignore) {
+		ignoreCollision = ignore;
+		if (ignore) {
+			put("ignore_collision", "");
+		} else {
+			remove("ignore_collision");
+		}
+	}
+
+	/**
+	 * Tells if entity can pass through collision tiles
+	 *
+	 * @return ignoreCollision
+	 */
+	public boolean ignoresCollision() {
+		return ignoreCollision;
 	}
 
 	/**
