@@ -5,6 +5,7 @@
 
 *world*
 - A new fish swimming along the coast in Ados City
+- Different "elf" head for players and NPCs
 
 *code*
 - Alias "zucchini" for "courgette"
