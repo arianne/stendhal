@@ -10,7 +10,10 @@ import games.stendhal.server.entity.RPEntity;
  *
  */
 public class ZombieStatusHandler implements StatusHandler<ZombieStatus> {
-
+	
+	/** The original base speed of the entity before being zombified */
+	private double originalSpeed;
+	
 	/**
 	 * @param status
 	 * 		Status to inflict
@@ -26,7 +29,7 @@ public class ZombieStatusHandler implements StatusHandler<ZombieStatus> {
 			RPEntity entity = statusList.getEntity();
 			if (entity != null) {
 				/* save the entity's original speed to be replaced later */
-				status.setOriginalSpeed(entity.getBaseSpeed());
+				originalSpeed = entity.getBaseSpeed();
 				entity.setBaseSpeed(0.5);
 				if (attacker == null) {
 					entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are zombified.");
@@ -62,7 +65,7 @@ public class ZombieStatusHandler implements StatusHandler<ZombieStatus> {
 
 		Status nextStatus = statusList.getFirstStatusByClass(ZombieStatus.class);
 		/* replace the entity's original speed */
-		entity.setBaseSpeed(status.getOriginalSpeed());
+		entity.setBaseSpeed(originalSpeed);
 		if (nextStatus != null) {
 			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, nextStatus));
 		} else {
