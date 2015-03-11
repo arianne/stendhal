@@ -9,6 +9,7 @@
 - Alias "colour" for "color"
 - Organized outfit parts into subdirectories
 - Changed "player_base" outfit type to "body"
+- Entities can now pass through collision tiles with "setIgnoresCollision()"
 
 
 1.16
