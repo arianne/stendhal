@@ -3,6 +3,9 @@
 
 1.17
 
+*world*
+- A new fish swimming along the coast in Ados City
+
 *code*
 - Alias "zucchini" for "courgette"
 - Alias "armour" for "armor"
