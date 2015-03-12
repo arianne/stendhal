@@ -206,7 +206,7 @@ del*/item/weapon/weapons_large.png
 object/boardwalk.png 3
 del*/object/lion_fountain.png 
 del*/object/rope_ladder.png 
-object/row_boat.png 1
+ant*/object/row_boat.png 1
 object/rowing_boats.png 2
 ble*/object/scarecrow.png 1
 object/ship.png 6
