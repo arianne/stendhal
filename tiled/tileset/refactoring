@@ -207,7 +207,7 @@ object/boardwalk.png 3
 del*/object/lion_fountain.png 
 del*/object/rope_ladder.png 
 ant*/object/row_boat.png 1
-object/rowing_boats.png 2
+del*/object/rowing_boats.png 2 (replaced with row_boat.png)
 ble*/object/scarecrow.png 1
 object/ship.png 6
 object/suspension_bridge.png 12
