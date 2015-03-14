@@ -47,7 +47,7 @@ public class AttackEvent extends Event<RPEntity> {
 			} else {
 				target.onMissed(entity);
 			}
-			entity.onAttackPerformed(dtype, ranged);
+			entity.onAttackPerformed(dtype, ranged, event.get("weapon"));
 		}
 	}
 }

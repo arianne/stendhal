@@ -162,6 +162,11 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	private Nature attackNature;
 	/**
+	 * The weapon used in the current attack, or <code>null</code> if no weapon
+	 * is specified.
+	 */
+	private String weapon;
+	/**
 	 * <code>true</code> if the previously done attack event was ranged,
 	 * 	otherwise <code>false</code>. 
 	 */
@@ -566,6 +571,15 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 	
 	/**
+	 * Get the weapon used in the current attack.
+	 * 
+	 * @return weapon, or <code>null</code> if not specified
+	 */
+	public String getShownWeapon() {
+		return weapon;
+	}
+	
+	/**
 	 * Check if the currently performed attack is ranged.
 	 * 
 	 * @return <code>true</code> if the attack is ranged, <code>false</code>
@@ -668,10 +682,13 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param type attack nature
 	 * @param ranged <code>true</code> if it's a ranged attack, otherwise
 	 * 	<code>false</code>
+	 * @param weapon Weapon used in the attack, or <code>null</code> if not
+	 * 	specified
 	 */
-	public void onAttackPerformed(final Nature type, boolean ranged) {
+	public void onAttackPerformed(final Nature type, boolean ranged, String weapon) {
 		attackNature = type;
 		isDoingRangedAttack = ranged;
+		this.weapon = weapon;
 		fireChange(PROP_ATTACK);
 	}
 
