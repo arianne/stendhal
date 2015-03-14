@@ -27,6 +27,7 @@ public class AttackEvent extends RPEvent {
 	private static final String DAMAGE_TYPE_ATTR = "type";
 	private static final String TARGET_ATTR = "target";
 	private static final String RANGED_ATTR = "ranged";
+	private static final String WEAPON_ATTR = "weapon";
 
 	/**
 	 * Creates the rpclass.
@@ -37,6 +38,7 @@ public class AttackEvent extends RPEvent {
 		rpclass.addAttribute(DAMAGE_ATTR, Type.INT);
 		rpclass.addAttribute(DAMAGE_TYPE_ATTR, Type.INT);
 		rpclass.addAttribute(RANGED_ATTR, Type.FLAG);
+		rpclass.addAttribute(WEAPON_ATTR, Type.STRING);
 
 		// there is a name clash with the attack event
 		rpclass.addAttribute(TARGET_ATTR, Type.STRING);
@@ -48,10 +50,11 @@ public class AttackEvent extends RPEvent {
 	 * @param canHit <code>false</code> for missed hits, <code>true</code> for wounding or blocked hits
 	 * @param damage damage done
 	 * @param type damage type of the attack
+	 * @param weapon the used weapon. Can be <code>null</code>
 	 * @param ranged <code>true</code> if the attack is ranged, otherwise
 	 * 	<code>false</code>
 	 */
-	public AttackEvent(boolean canHit, int damage, Nature type, boolean ranged) {
+	public AttackEvent(boolean canHit, int damage, Nature type, String weapon, boolean ranged) {
 		super(Events.ATTACK);
 		if (canHit) {
 			put(HIT_ATTR, "");
@@ -60,6 +63,9 @@ public class AttackEvent extends RPEvent {
 		put(DAMAGE_TYPE_ATTR, type.ordinal());
 		if (ranged) {
 			put(RANGED_ATTR, "");
+		}
+		if (weapon != null) {
+			put(WEAPON_ATTR, weapon);
 		}
 	}
 }

@@ -68,7 +68,7 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 
 			if(damageDone > 0) {
 				rpEntityToDamage.onDamaged(damageOrigin, damageDone);
-				damageOrigin.addEvent(new AttackEvent(true, damageDone, getNature(), true));
+				damageOrigin.addEvent(new AttackEvent(true, damageDone, getNature(), null, true));
 				damageOrigin.notifyWorldAboutChanges();
 			}
 

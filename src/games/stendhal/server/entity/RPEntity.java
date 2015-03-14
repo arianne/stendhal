@@ -2760,6 +2760,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		for (StatusAttacker statusAttacker : statusAttackers) {
 			statusAttacker.onAttackAttempt(defender, this);
 		}
+		
+		// Weapon for the use in the attack event
+		Item attackWeapon = getWeapon();
+		String weaponName = null;
+		if (attackWeapon != null) {
+			weaponName = attackWeapon.getWeaponType();
+		}
 
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
@@ -2781,7 +2788,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-			this.addEvent(new AttackEvent(true, damage, nature, isRanged));
+			this.addEvent(new AttackEvent(true, damage, nature, weaponName, isRanged));
 
 			// Try to inflict a status effect
 			for (StatusAttacker statusAttacker : statusAttackers) {
@@ -2792,7 +2799,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
-			this.addEvent(new AttackEvent(false, 0, nature, isRanged));
+			this.addEvent(new AttackEvent(false, 0, nature, weaponName, isRanged));
 		}
 
 		this.notifyWorldAboutChanges();

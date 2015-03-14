@@ -283,9 +283,13 @@ public class StendhalRPAction {
 				return false;
 			}
 		}
-
-		// {lifesteal} uncomented following line, also changed name:
-		final List<Item> weapons = player.getWeapons();
+		
+		// Weapon for the purpose of attack image
+		Item attackWeapon = player.getWeapon();
+		String weaponName = null;
+		if (attackWeapon != null) {
+			weaponName = attackWeapon.getWeaponType();
+		}
 
 		if (!(defender instanceof SpeakerNPC)
 				&& player.getsFightXpFrom(defender)) {
@@ -301,6 +305,8 @@ public class StendhalRPAction {
 					&& defender.getsFightXpFrom(player)) {
 				defender.incDefXP();
 			}
+
+			final List<Item> weapons = player.getWeapons();
 
 			int damage = player.damageDone(defender, player.getItemAtk(), player.getDamageType());
 			if (damage > 0) {
@@ -320,7 +326,7 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + 0);
 			}
 			//deteriorate weapons of attacker
-			for(Item weapon : player.getWeapons()) {
+			for (Item weapon : weapons) {
 				weapon.deteriorate();
 			}
 			//randomly choose one defensive item to deteriorate
@@ -328,13 +334,14 @@ public class StendhalRPAction {
 			if(!defenseItems.isEmpty()) {
 				Rand.rand(defenseItems).deteriorate();
 			}
-			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), missileUsed));
+			
+			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponName, missileUsed));
 			player.notifyWorldAboutChanges();
 		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
-			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), missileUsed));
+			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), weaponName, missileUsed));
 			player.notifyWorldAboutChanges();
 		}
 

@@ -582,6 +582,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
 	}
+	
+	/**
+	 * Get a weapon type identifier that can be used in attack events, so that
+	 * the client can draw an appropriate item image for the attack.
+	 * 
+	 * @return weapon identifier
+	 */
+	public String getWeaponType() {
+		return getItemClass();
+	}
 
 	@Override
 	public String toString() {
