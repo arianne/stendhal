@@ -1438,24 +1438,34 @@ public class Player extends RPEntity implements UseListener {
 
 		// default description for player includes their name, level and play
 		// time
+		final String name = getTitle();
 		final int hours = age / 60;
 		final int minutes = age % 60;
 		final String time = hours + " hours and " + minutes + " minutes";
-		final String text = "You see " + getTitle() + ".\n" + getTitle()
+		final String text = "You see " + name + ".\n" + name
 				+ " is level " + getLevel() + " and has been playing " + time
 				+ ".";
 		final StringBuilder sb = new StringBuilder();
 		sb.append(text);
 		final String awayMessage = getAwayMessage();
 		if (awayMessage != null) {
-			sb.append("\n" + getTitle() + " is away and has left a message: ");
+			sb.append("\n" + name + " is away and has left a message: ");
 			sb.append(awayMessage);
 		}
 		final String grumpyMessage = getGrumpyMessage();
 		if (grumpyMessage != null) {
-			sb.append("\n" +  getTitle() + " is grumpy and has left a message: ");
+			sb.append("\n" +  name + " is grumpy and has left a message: ");
 			sb.append(grumpyMessage);
 		}
+		
+		/* Show a sentence set by player if not away or grumpy */
+		if ((awayMessage == null) && (grumpyMessage == null)) {
+			final String sentence = getSentence();
+			if (!sentence.isEmpty()) {
+				sb.append("\n    \"" + sentence + "\"");
+			}
+		}
+		
 		return sb.toString();
 	}
 
