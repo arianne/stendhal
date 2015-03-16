@@ -15,6 +15,10 @@
 - Changed "player_base" outfit type to "body"
 - Entities can now pass through collision tiles with "setIgnoresCollision()"
 
+*chat*
+- Alias "/status" for command "/sentence"
+- "sentence" is now displayed in player description when using "Look"
+
 
 1.16
 
