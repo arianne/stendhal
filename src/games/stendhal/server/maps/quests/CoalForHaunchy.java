@@ -22,10 +22,10 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -61,7 +61,7 @@ import java.util.List;
  *
  * REWARD:
  * <ul>
- * <li>Karma +20 in all</li>
+ * <li>Karma +25 in all</li>
  * <li>XP +200 in all</li>
  * <li>Some grilled steaks, random between 1 and 4.</li>
  * </ul>
@@ -123,12 +123,12 @@ public class CoalForHaunchy extends AbstractQuest {
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "The coal amount behind my counter is still high enough. I will not need more for"));
 
-		// Player agrees to get the coal
+		// Player agrees to get the coal, increase 5 karma
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Thank you! If you have found 25 pieces, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward.",
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -159,6 +159,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				new MultipleActions(
 						new DropItemAction("coal",25), 
 						new IncreaseXPAction(200),
+						new IncreaseKarmaAction(20),
 						new ChatAction() {
 							@Override
 							public void fire(final Player player,
