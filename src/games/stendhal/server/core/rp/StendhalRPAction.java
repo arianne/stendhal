@@ -199,8 +199,18 @@ public class StendhalRPAction {
 	 * @return player strength
 	 */
 	private static double getPlayerStrength(final Player player) {
-		return STRENGTH_STATS_MULTIPLIER * (player.getAtk() + player.getDef())
-			+ player.getLevel();
+		int combatSum;
+		
+		/* FIXME: Ranged stat is disabled by default until fully implemented.
+		 * Remove System.getProperty().
+		 */
+		if (System.getProperty("stat.ranged") != null) {
+			combatSum = player.getAtk() + player.getDef() + player.getRng();
+		} else {
+			combatSum = player.getAtk() + player.getDef();
+		}
+		
+		return STRENGTH_STATS_MULTIPLIER * combatSum + player.getLevel();
 	}
 
 	/**
