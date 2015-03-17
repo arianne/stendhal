@@ -63,7 +63,7 @@ class StatsPanel extends JPanel {
 		defLabel = new StatLabel();
 		add(defLabel, SLayout.EXPAND_X);
 		
-		/* ranged stat is disabled until fully implemented */
+		/* FIXME: ranged stat is disabled until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
 			rngLabel = new StatLabel();
 			add(rngLabel, SLayout.EXPAND_X);

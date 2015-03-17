@@ -180,6 +180,8 @@ public abstract class RPEntity extends AudibleEntity {
 	private int atk;
 
 	private int def;
+	
+	private int rng;
 
 	private int xp;
 
@@ -244,6 +246,8 @@ public abstract class RPEntity extends AudibleEntity {
 	private int atkItem = -1;
 
 	private int defItem = -1;
+	
+	private int rngItem = -1;
 	
 	/** A flag that gets set once the entity has been released. */
 	private boolean released;
@@ -342,6 +346,20 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public int getDefXP() {
 		return defXP;
+	}
+
+	/**
+	 * @return Returns the rng.
+	 */
+	public int getRng() {
+		return rng;
+	}
+
+	/**
+	 * @return Returns the rng of items
+	 */
+	public int getRngItem() {
+		return rngItem;
 	}
 
 	/**
@@ -1310,6 +1328,16 @@ public abstract class RPEntity extends AudibleEntity {
 			def = changes.getInt("modified_def");
 		}
 
+		/* FIXME: ranged stat disabled by default until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			if (changes.has("rng")) {
+				rng = changes.getInt("rng");
+			}
+			if (changes.has("modified_rng")) {
+				rng = changes.getInt("modified_rng");
+			}
+		}
+
 		if (changes.has("level")) {
 			level = changes.getInt("level");
 		}
@@ -1325,7 +1353,7 @@ public abstract class RPEntity extends AudibleEntity {
 			defXP = changes.getInt("def_xp");
 		}
 		
-		/* ranged stat is disabled until fully implemented */
+		/* FIXME: ranged stat is disabled until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
 			if (changes.has("rng_xp")) {
 				rngXP = changes.getInt("rng_xp");
@@ -1338,6 +1366,13 @@ public abstract class RPEntity extends AudibleEntity {
 
 		if (changes.has("def_item")) {
 			defItem = changes.getInt("def_item");
+		}
+		
+		/* FIXME: ranged stat disabled by default until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			if (changes.has("rng_item")) {
+				rngItem = changes.getInt("rng_item");
+			}
 		}
 
 		if (changes.has("mana")) {

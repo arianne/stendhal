@@ -120,7 +120,7 @@ public final class StatsPanelController {
 		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
-		/* ranged stat is disabled until fully implemented */
+		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
 			listener = new RNGChangeListener();
 			addPropertyChangeListenerWithModifiedSupport(pcs, "rng", listener);
@@ -139,7 +139,7 @@ public final class StatsPanelController {
 		listener = new ArmorChangeListener();
 		pcs.addPropertyChangeListener("def_item", listener);
 		
-		/* ranged stat is disabled until fully implemented */
+		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
 			listener = new RangedWeaponChangeListener();
 			pcs.addPropertyChangeListener("rng_item", listener);
@@ -387,7 +387,7 @@ public final class StatsPanelController {
 				return;
 			}
 			
-			if (event.getPropertyName().equals("def_xp")) {
+			if ("def_xp".equals(event.getPropertyName())) {
 				defxp = Integer.parseInt((String) event.getNewValue());
 			} else if ("def".equals(event.getPropertyName())) {
 				def =  Integer.parseInt((String) event.getNewValue());
@@ -411,7 +411,7 @@ public final class StatsPanelController {
 			} else if ("rng".equals(event.getPropertyName())) {
 				rng = Integer.parseInt((String) event.getNewValue());
 			}
-			updateAtk();
+			updateRng();
 		}
 	}
 	
