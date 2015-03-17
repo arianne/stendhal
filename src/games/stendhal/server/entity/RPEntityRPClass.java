@@ -50,6 +50,9 @@ public class RPEntityRPClass {
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
         /* FIXME: ranged stat is disabled by default until fully implemented */
         if (System.getProperty("stat.ranged") != null) {
+        	// FIXME: remove VOLATILE when ranged stat is ready
+//        	entity.addAttribute("rng", Type.SHORT, Definition.PRIVATE);
+//        	entity.addAttribute("rng_xp", Type.INT, Definition.PRIVATE);
 	        entity.addAttribute("rng", Type.SHORT,
 	        		(byte) (Definition.PRIVATE | Definition.VOLATILE));
 	        entity.addAttribute("rng_xp", Type.INT,
