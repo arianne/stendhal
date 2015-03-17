@@ -252,6 +252,17 @@ public class StendhalRPAction {
 	public static boolean playerAttack(final Player player, final RPEntity defender) {
 		boolean result = false;
 
+		/* FIXME: Alternate method for training ATK XP. Player receives
+		 *        XP for successful hit without depending on taking
+		 *        damage. This can be removed later.
+		 */
+		Boolean atkAlt = System.getProperty("atkxp.alt") != null;
+		
+		/* FIXME: Ranged stat is disabled by default until fully implemented.
+		 *        This can be removed later.
+		 */
+		Boolean statRanged = System.getProperty("stat.ranged") != null;
+		
 		final StendhalRPZone zone = player.getZone();
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
 			logger.debug("Attack from " + player + " to " + defender
@@ -301,31 +312,25 @@ public class StendhalRPAction {
 			weaponClass = attackWeapon.getWeaponType();
 		}
 		
+		// Determine if player is using ranged attack depending
+		// on distance from defender.
+		Boolean usingRanged = false;
+		if (!player.nextTo(defender)) {
+			usingRanged = true;
+		}
+		
 		// Throw dices to determine if the attacker has missed the defender
 		final boolean beaten = player.canHit(defender);
 
-		// Player gets ATK XP from attack
-		boolean getsAtkXP = false;
-		// FIXME: replace conditional if alternate method added to game
-		if (System.getProperty("atkxp.alt") != null) {
-			// Alternate method allows player to recieve atk_xp on successfull
-			// hit independent of whether has received damage.
-			if (beaten) {
-				getsAtkXP = true;
-			}
-		} else {
-			getsAtkXP = player.getsFightXpFrom(defender);
-		}
-
-		// disabled attack xp for attacking NPC's
-		if (!(defender instanceof SpeakerNPC)
-				&& getsAtkXP) {
-			/* FIXME: Ranged stat is disabled by default until fully implemented.
-			 * Remove System.getProperty().
-			 */
-			if (!(player.nextTo(defender)) && (System.getProperty("stat.ranged") != null)) {
-				player.incRatkXP();
-			} else {
+		/* FIXME: Current ATK XP training system. This allows training ATK
+		 *        XP only after receiving damage. Also trains ATK even if
+		 *        attack is blocked. Remove if alternate attack training
+		 *        implemented in game.
+		 */
+		if (!atkAlt) {
+			// disabled attack xp for attacking NPC's
+			if (!(defender instanceof SpeakerNPC)
+					&& player.getsFightXpFrom(defender)) {
 				player.incAtkXP();
 			}
 		}
@@ -350,6 +355,25 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + damage);
 
 				result = true;
+				/* FIXME: Remove atkAlt condition if alternate attack
+				 *        training method implemented in game.
+				 * FIXME: Ranged stat is disabled by default until fully
+				 *        implemented. Remove "statRanged" from condition
+				 *        once implemented.
+				 */
+				if (atkAlt) {
+					/* Give player ATK or RATK XP if defender is not
+					 * SpeakerNPC. Player only receives XP if hit was
+					 * successful and not blocked.
+					 */
+					if (!(defender instanceof SpeakerNPC)) {
+						if (usingRanged && statRanged) {
+							player.incRatkXP();
+						} else {
+							player.incAtkXP();
+						}
+					}
+				}
 			} else {
 				// The attack was too weak, it was blocked
 				logger.debug("attack from " + player.getID() + " to "
