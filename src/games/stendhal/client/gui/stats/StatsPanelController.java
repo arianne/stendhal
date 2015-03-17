@@ -122,7 +122,7 @@ public final class StatsPanelController {
 		
 		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
-			listener = new RNGChangeListener();
+			listener = new RATKChangeListener();
 			addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
 			pcs.addPropertyChangeListener("ratk_xp", listener);
 		}
@@ -250,7 +250,7 @@ public final class StatsPanelController {
 	private void updateRatk() {
 		// ratk uses 10 levels shifted starting point
 		final int next = Level.getXP(ratk - 9) - ratkxp;
-		final String text = "RNG:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
+		final String text = "RATK:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -399,7 +399,7 @@ public final class StatsPanelController {
 	/**
 	 * Listener for ratk and ratk_xp changes.
 	 */
-	private class RNGChangeListener implements PropertyChangeListener {
+	private class RATKChangeListener implements PropertyChangeListener {
 		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
