@@ -2715,7 +2715,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public boolean canHit(final RPEntity defender) {
 		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getCappedDef();
-		final int attackerATK = this.getCappedAtk();
+		String weaponClass = this.getWeapon().getWeaponType();
+		/* FIXME: ranged stat is disabled by default until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			if (weaponClass.equals("ranged")) {
+				final int attackerATK = this.getCappedRng(); // If player is using ranged weapon
+			}
+		} else {
+			final int attackerATK = this.getCappedAtk();
+		}
 
 		/*
 		 * Use some karma unless attacker is much stronger than defender, in
