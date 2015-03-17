@@ -2715,15 +2715,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public boolean canHit(final RPEntity defender) {
 		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getCappedDef();
-		// FIXME: finding weapon's class should probably be optimized
-		Item weapon = this.getWeapon();
 		
-		// Check for ranged weapon if attacker is not next to defender
+		// Check if attacking from distance
 		boolean usesRanged = false;
 		if (!this.nextTo(defender)) {
-			if ((weapon != null) && weapon.isOfClass("ranged")) {
-				usesRanged = true;
-			}
+			usesRanged = true;
 		}
 		
 		final int attackerATK;

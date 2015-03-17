@@ -323,7 +323,7 @@ public class StendhalRPAction {
 			/* FIXME: Ranged stat is disabled by default until fully implemented.
 			 * Remove System.getProperty().
 			 */
-			if (weaponClass.equals("ranged") && !(player.nextTo(defender)) && (System.getProperty("stat.ranged") != null)) {
+			if (!(player.nextTo(defender)) && (System.getProperty("stat.ranged") != null)) {
 				player.incRngXP();
 			} else {
 				player.incAtkXP();
