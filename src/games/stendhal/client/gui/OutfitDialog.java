@@ -145,7 +145,12 @@ class OutfitDialog extends JDialog {
 		this.outfitColor = outfitColor;
 		
 		hair = new SelectorModel(total_hairs);
-		eyes = new SelectorModel(total_eyes);
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty("outfit.eyes") != null) {
+			eyes = new SelectorModel(total_eyes);
+		} else {
+			eyes = null;
+		}
 		head = new SelectorModel(total_heads);
 		body = new SelectorModel(total_bodies);
 		dress = new SelectorModel(total_clothes);
@@ -158,8 +163,11 @@ class OutfitDialog extends JDialog {
 		// Follow the model changes; the whole outfit follows them all
 		hair.addListener(hairLabel);
 		hair.addListener(outfitLabel);
-		eyes.addListener(eyesLabel);
-		eyes.addListener(outfitLabel);
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty("outfit.eyes") != null) {
+			eyes.addListener(eyesLabel);
+			eyes.addListener(outfitLabel);
+		}
 		head.addListener(headLabel);
 		head.addListener(outfitLabel);
 		body.addListener(bodyLabel);
@@ -197,7 +205,10 @@ class OutfitDialog extends JDialog {
 		
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
-		eyes.setIndex(eyesIndex);
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty("outfit.eyes") != null) {
+			eyes.setIndex(eyesIndex);
+		}
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
@@ -235,14 +246,17 @@ class OutfitDialog extends JDialog {
 		partialsColumn.add(createSelector(hair, hairLabel));
 		
 		// Eyes
-		SpriteRetriever eyesRetriever = new SpriteRetriever() {
-			@Override
-			public Sprite getSprite() {
-				return getEyesSprite();
-			}
-		};
-		eyesLabel = new OutfitLabel(eyesRetriever);
-		partialsColumn.add(createSelector(eyes, eyesLabel));
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty("outfit.eyes") != null) {
+			SpriteRetriever eyesRetriever = new SpriteRetriever() {
+				@Override
+				public Sprite getSprite() {
+					return getEyesSprite();
+				}
+			};
+			eyesLabel = new OutfitLabel(eyesRetriever);
+			partialsColumn.add(createSelector(eyes, eyesLabel));
+		}
 		
 		// Head
 		SpriteRetriever headRetriever = new SpriteRetriever() {
@@ -282,10 +296,12 @@ class OutfitDialog extends JDialog {
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 		SBoxLayout.addSpring(column);
-		/* eyes color */
-		selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
-		selector.setAlignmentX(CENTER_ALIGNMENT);
-		column.add(selector);
+		/* eyes color (currently only enabled through VM argument) */
+		if (System.getProperty("outfit.eyes") != null) {
+			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
+			selector.setAlignmentX(CENTER_ALIGNMENT);
+			column.add(selector);
+		}
 		/* body color */
 		selector = createColorSelector("Body", OutfitColor.BODY, bodyLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
@@ -371,7 +387,10 @@ class OutfitDialog extends JDialog {
 
 		outfitLabel.changed();
 		hairLabel.changed();
-		eyesLabel.changed();
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty("outfit.eyes") != null) {
+			eyesLabel.changed();
+		}
 		headLabel.changed();
 		bodyLabel.changed();
 		dressLabel.changed();
@@ -555,7 +574,9 @@ class OutfitDialog extends JDialog {
 			dressLabel.setBorder(style.getBorderDown());
 			outfitLabel.setBorder(style.getBorderDown());
 			hairLabel.setBorder(style.getBorderDown());
-			eyesLabel.setBorder(style.getBorderDown());
+			if (System.getProperty("outfit.eyes") != null) {
+				eyesLabel.setBorder(style.getBorderDown());
+			}
 			headLabel.setBorder(style.getBorderDown());
 		}
 	}
@@ -587,7 +608,10 @@ class OutfitDialog extends JDialog {
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
 		head.setIndex(headsIndex);
-		eyes.setIndex(eyesIndex);
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty("outfit.eyes") != null) {
+			eyes.setIndex(eyesIndex);
+		}
 		hair.setIndex(hairsIndex);
 
 		// Color selectors, and their toggles
