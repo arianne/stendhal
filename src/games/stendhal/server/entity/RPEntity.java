@@ -2715,15 +2715,16 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public boolean canHit(final RPEntity defender) {
 		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getCappedDef();
+		// FIXME: finding weapon's class should probably be optimized
 		Item weapon = this.getWeapon();
+		String weaponClass = null;
+		if (weapon != null) {
+			weaponClass = weapon.getWeaponType();
+		}
 		final int attackerATK;
-		if ((weapon != null) && (weapon.getWeaponType().equals("ranged"))) {
-			/* FIXME: ranged stat is disabled by default until fully implemented */
-			if (System.getProperty("stat.ranged") != null) {
-				attackerATK = this.getCappedRng(); // If player is using ranged weapon
-			} else {
-				attackerATK = this.getCappedAtk();
-			}
+		/* FIXME: ranged stat is disabled by default until fully implemented */
+		if ((weaponClass != null) && weaponClass.equals("ranged") && (System.getProperty("stat.ranged") != null)) {
+			attackerATK = this.getCappedRng(); // If player is using ranged weapon
 		} else {
 			attackerATK = this.getCappedAtk();
 		}
