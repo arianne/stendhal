@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -60,7 +61,7 @@ import marauroa.common.Pair;
  * <ul>
  * <li> mithril nugget
  * <li> 4000 XP
- * <li>10 karma in total
+ * <li>35 karma in total
  * </ul>
  * 
  * REPETITIONS:
@@ -120,6 +121,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
+		actions.add(new IncreaseKarmaAction(10));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -170,7 +172,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							final Item mithrilnug = SingletonRepository.getEntityManager()
 									.getItem("mithril nugget");
 							player.equipOrPutOnGround(mithrilnug);
-							player.addKarma(5.0);
+							player.addKarma(25.0);
 							player.addXP(4000);
 							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
 		 			}
