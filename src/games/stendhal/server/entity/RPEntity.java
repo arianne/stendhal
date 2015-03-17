@@ -2720,8 +2720,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if ((weapon != null) && (weapon.getWeaponType().equals("ranged"))) {
 			/* FIXME: ranged stat is disabled by default until fully implemented */
 			if (System.getProperty("stat.ranged") != null) {
-				// XXX: Remove debugging message
-				System.out.println("\n!!! USING RANGE CAP !!!\n");
 				attackerATK = this.getCappedRng(); // If player is using ranged weapon
 			} else {
 				attackerATK = this.getCappedAtk();
