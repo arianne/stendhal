@@ -286,15 +286,20 @@ public class StendhalRPAction {
 		
 		// Weapon for the purpose of attack image
 		Item attackWeapon = player.getWeapon();
-		String weaponName = null;
+		String weaponClass = null;
 		if (attackWeapon != null) {
-			weaponName = attackWeapon.getWeaponType();
+			weaponClass = attackWeapon.getWeaponType();
 		}
 
+		// disabled attack xp for attacking NPC's
 		if (!(defender instanceof SpeakerNPC)
 				&& player.getsFightXpFrom(defender)) {
-			// disabled attack xp for attacking NPC's
-			player.incAtkXP();
+			/* FIXME: ranged stat is disabled by default until fully implemented */
+			if (weaponClass.equals("ranged") && (System.getProperty("stat.ranged") != null)) {
+				player.incRngXP();
+			} else {
+				player.incAtkXP();
+			}
 		}
 
 		// Throw dices to determine if the attacker has missed the defender
@@ -335,13 +340,13 @@ public class StendhalRPAction {
 				Rand.rand(defenseItems).deteriorate();
 			}
 			
-			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponName, missileUsed));
+			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponClass, missileUsed));
 			player.notifyWorldAboutChanges();
 		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
-			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), weaponName, missileUsed));
+			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), weaponClass, missileUsed));
 			player.notifyWorldAboutChanges();
 		}
 
