@@ -237,7 +237,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int atkXP;
 
-	private int defXp;
+	private int defXP;
 
 	private int atkItem = -1;
 
@@ -339,7 +339,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @return the defence xp
 	 */
 	public int getDefXP() {
-		return defXp;
+		return defXP;
 	}
 
 	/**
@@ -1313,7 +1313,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 
 		if (changes.has("def_xp")) {
-			defXp = changes.getInt("def_xp");
+			defXP = changes.getInt("def_xp");
 		}
 
 		if (changes.has("atk_item")) {
