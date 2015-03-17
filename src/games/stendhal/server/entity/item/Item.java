@@ -160,6 +160,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// Some items have attack values
 		entity.addAttribute("atk", Type.SHORT, Definition.HIDDEN);
+		
+		// Some items have ranged attack values
+		entity.addAttribute("ratk", Type.SHORT, Definition.HIDDEN);
 
 		// Some items indicate how often you can attack.
 		entity.addAttribute("rate", Type.SHORT, Definition.HIDDEN);
@@ -287,6 +290,21 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	public int getDefense() {
 		if (has("def") && getDeterioration() <= MAX_DETERIORATION) {
 			return getInt("def");
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Returns the ranged attack points of this item. Positive and negative
+	 * values are allowed. If this item doesn't modify the ranged attack
+	 * it should return '0'.
+	 *
+	 * @return ranged attack points
+	 */
+	public int getRangedAttack() {
+		if (has("ratk") && getDeterioration() <= MAX_DETERIORATION) {
+			return getInt("ratk");
 		}
 
 		return 0;
@@ -672,6 +690,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		if (has("def")) {
 			stats.append(" DEF: ");
 			stats.append(get("def"));
+		}
+		if (has("ratk")) {
+			stats.append(" RATK: ");
+			stats.append(get("ratk"));
 		}
 		if (has("rate")) {
 			stats.append(" RATE: ");

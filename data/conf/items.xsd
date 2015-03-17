@@ -54,6 +54,7 @@
 			<element name="infostring" type="Q1:attribute" minOccurs="0"/>
 			<element name="atk" type="Q1:attribute" minOccurs="0"/>
 			<element name="def" type="Q1:attribute" minOccurs="0"/>
+			<element name="ratk" type="Q1:attribute" minOccurs="0"/>
 			<element name="amount" type="Q1:attribute" minOccurs="0"/>
 			<element name="frequency" type="Q1:attribute" minOccurs="0"/>
 			<element name="range" type="Q1:attribute" minOccurs="0"/>
