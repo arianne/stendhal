@@ -296,6 +296,7 @@ public class StendhalRPAction {
 
 		// Player gets ATK XP from attack
 		boolean getsAtkXP = false;
+		// FIXME: replace conditional if alternate method added to game
 		if (System.getProperty("atkxp.alt") != null) {
 			// Alternate method allows player to recieve atk_xp on successfull
 			// hit independent of whether has received damage.
