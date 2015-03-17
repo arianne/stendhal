@@ -33,7 +33,7 @@ class StatsPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -353271026575752035L;
 
-	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
+	private final StatLabel hpLabel, atkLabel, defLabel, rngLabel, xpLabel, levelLabel, moneyLabel;
 	private final StatusIconPanel statusIcons;
 	private final KarmaIndicator karmaIndicator;
 	private final ManaIndicator manaIndicator;
@@ -62,6 +62,14 @@ class StatsPanel extends JPanel {
 		
 		defLabel = new StatLabel();
 		add(defLabel, SLayout.EXPAND_X);
+		
+		/* ranged stat is disabled until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			rngLabel = new StatLabel();
+			add(rngLabel, SLayout.EXPAND_X);
+		} else {
+			rngLabel = null;
+		}
 		
 		xpLabel = new StatLabel();
 		add(xpLabel, SLayout.EXPAND_X);
@@ -98,6 +106,15 @@ class StatsPanel extends JPanel {
 	 */
 	void setDef(String def) {
 		defLabel.setText(def);
+	}
+
+	/**
+	 * Set the rng description string.
+	 * 
+	 * @param rng
+	 */
+	void setRng(String rng) {
+		rngLabel.setText(rng);
 	}
 
 	/**

@@ -238,6 +238,8 @@ public abstract class RPEntity extends AudibleEntity {
 	private int atkXP;
 
 	private int defXP;
+	
+	private int rngXP;
 
 	private int atkItem = -1;
 
@@ -340,6 +342,13 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public int getDefXP() {
 		return defXP;
+	}
+
+	/**
+	 * @return the ranged xp
+	 */
+	public int getRngXP() {
+		return rngXP;
 	}
 
 	/**
@@ -1314,6 +1323,13 @@ public abstract class RPEntity extends AudibleEntity {
 
 		if (changes.has("def_xp")) {
 			defXP = changes.getInt("def_xp");
+		}
+		
+		/* ranged stat is disabled until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			if (changes.has("rng_xp")) {
+				rngXP = changes.getInt("rng_xp");
+			}
 		}
 
 		if (changes.has("atk_item")) {

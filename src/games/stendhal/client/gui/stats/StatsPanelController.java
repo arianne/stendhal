@@ -65,6 +65,10 @@ public final class StatsPanelController {
 	private int defxp;
 	private int itemDef;
 	
+	private int rng;
+	private int rngxp;
+	private int weaponRng;
+	
 	private int mana;
 	private int baseMana;
 	
@@ -116,6 +120,13 @@ public final class StatsPanelController {
 		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
+		/* ranged stat is disabled until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			listener = new RNGChangeListener();
+			addPropertyChangeListenerWithModifiedSupport(pcs, "rng", listener);
+			pcs.addPropertyChangeListener("rng_xp", listener);
+		}
+		
 		listener = new XPChangeListener();
 		pcs.addPropertyChangeListener("xp", listener);
 		
@@ -127,6 +138,12 @@ public final class StatsPanelController {
 		
 		listener = new ArmorChangeListener();
 		pcs.addPropertyChangeListener("def_item", listener);
+		
+		/* ranged stat is disabled until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			listener = new RangedWeaponChangeListener();
+			pcs.addPropertyChangeListener("rng_item", listener);
+		}
 		
 		listener = new MoneyChangeListener();
 		for (String slot : MONEY_SLOTS) {
@@ -223,6 +240,21 @@ public final class StatsPanelController {
 			@Override
 			public void run() {
 				panel.setDef(text);
+			}
+		});
+	}
+	
+	/**
+	 * Called when rng, rngxp, or weaponRng changes.
+	 */
+	private void updateRng() {
+		// rng uses 10 levels shifted starting point
+		final int next = Level.getXP(rng - 9) - rngxp;
+		final String text = "RNG:" + SPC + rng + "×" + (1 + weaponRng) + SPC + "(" + next + ")";
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				panel.setRng(text);
 			}
 		});
 	}
@@ -365,6 +397,25 @@ public final class StatsPanelController {
 	}
 	
 	/**
+	 * Listener for rng and rng_xp changes.
+	 */
+	private class RNGChangeListener implements PropertyChangeListener {
+		@Override
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			
+			if ("rng_xp".equals(event.getPropertyName())) {
+				rngxp = Integer.parseInt((String) event.getNewValue());
+			} else if ("rng".equals(event.getPropertyName())) {
+				rng = Integer.parseInt((String) event.getNewValue());
+			}
+			updateAtk();
+		}
+	}
+	
+	/**
 	 * Listener for xp changes.
 	 */
 	private class XPChangeListener implements PropertyChangeListener {
@@ -426,6 +477,20 @@ public final class StatsPanelController {
 			}
 			itemDef = Integer.parseInt((String) event.getNewValue());
 			updateDef();
+		}
+	}
+	
+	/**
+	 * Listener for ranged weapon atk changes.
+	 */
+	private class RangedWeaponChangeListener implements PropertyChangeListener {
+		@Override
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			weaponRng = Integer.parseInt((String) event.getNewValue());
+			updateRng();
 		}
 	}
 	
