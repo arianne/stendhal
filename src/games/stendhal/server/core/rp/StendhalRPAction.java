@@ -290,10 +290,25 @@ public class StendhalRPAction {
 		if (attackWeapon != null) {
 			weaponClass = attackWeapon.getWeaponType();
 		}
+		
+		// Throw dices to determine if the attacker has missed the defender
+		final boolean beaten = player.canHit(defender);
+
+		// Player gets ATK XP from attack
+		boolean getsAtkXP = false;
+		if (System.getProperty("atkxp.alt") != null) {
+			// Alternate method allows player to recieve atk_xp on successfull
+			// hit independent of whether has received damage.
+			if (beaten) {
+				getsAtkXP = true;
+			}
+		} else {
+			getsAtkXP = player.getsFightXpFrom(defender);
+		}
 
 		// disabled attack xp for attacking NPC's
 		if (!(defender instanceof SpeakerNPC)
-				&& player.getsFightXpFrom(defender)) {
+				&& getsAtkXP) {
 			/* FIXME: ranged stat is disabled by default until fully implemented */
 			if (weaponClass.equals("ranged") && (System.getProperty("stat.ranged") != null)) {
 				player.incRngXP();
@@ -301,9 +316,6 @@ public class StendhalRPAction {
 				player.incAtkXP();
 			}
 		}
-
-		// Throw dices to determine if the attacker has missed the defender
-		final boolean beaten = player.canHit(defender);
 
 		if (beaten) {
 			if ((defender instanceof Player)
