@@ -22,6 +22,9 @@
 - Alias "/status" for command "/sentence"
 - "sentence" is now displayed in player description when using "Look"
 
+*visuals*
+- Active entities reset animated sprite index to 1 to appear standing when stopped
+
 
 1.16
 
