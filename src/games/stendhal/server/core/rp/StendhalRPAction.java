@@ -310,8 +310,10 @@ public class StendhalRPAction {
 		// disabled attack xp for attacking NPC's
 		if (!(defender instanceof SpeakerNPC)
 				&& getsAtkXP) {
-			/* FIXME: ranged stat is disabled by default until fully implemented */
-			if (weaponClass.equals("ranged") && (System.getProperty("stat.ranged") != null)) {
+			/* FIXME: Ranged stat is disabled by default until fully implemented.
+			 * Remove System.getProperty().
+			 */
+			if (weaponClass.equals("ranged") && !(player.nextTo(defender)) && (System.getProperty("stat.ranged") != null)) {
 				player.incRngXP();
 			} else {
 				player.incAtkXP();

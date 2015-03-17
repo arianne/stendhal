@@ -2718,10 +2718,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// FIXME: finding weapon's class should probably be optimized
 		Item weapon = this.getWeapon();
 		
-		// Check for ranged weapon
+		// Check for ranged weapon if attacker is not next to defender
 		boolean usesRanged = false;
-		if ((weapon != null) && weapon.isOfClass("ranged")) {
-			usesRanged = true;
+		if (!this.nextTo(defender)) {
+			if ((weapon != null) && weapon.isOfClass("ranged")) {
+				usesRanged = true;
+			}
 		}
 		
 		final int attackerATK;
