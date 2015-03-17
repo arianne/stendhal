@@ -17,7 +17,7 @@ create table if not exists character_stats
   /* Attributes */
   atk integer,
   def integer,
-  rng integer,
+  ratk integer,
   hp integer,
   karma integer,
 

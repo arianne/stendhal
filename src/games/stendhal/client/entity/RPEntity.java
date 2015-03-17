@@ -181,7 +181,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int def;
 	
-	private int rng;
+	private int ratk;
 
 	private int xp;
 
@@ -241,13 +241,13 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int defXP;
 	
-	private int rngXP;
+	private int ratkXP;
 
 	private int atkItem = -1;
 
 	private int defItem = -1;
 	
-	private int rngItem = -1;
+	private int ratkItem = -1;
 	
 	/** A flag that gets set once the entity has been released. */
 	private boolean released;
@@ -349,24 +349,24 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 
 	/**
-	 * @return Returns the rng.
+	 * @return Returns the ratk.
 	 */
-	public int getRng() {
-		return rng;
+	public int getRatk() {
+		return ratk;
 	}
 
 	/**
-	 * @return Returns the rng of items
+	 * @return Returns the ratk of items
 	 */
-	public int getRngItem() {
-		return rngItem;
+	public int getRatkItem() {
+		return ratkItem;
 	}
 
 	/**
 	 * @return the ranged xp
 	 */
-	public int getRngXP() {
-		return rngXP;
+	public int getRatkXP() {
+		return ratkXP;
 	}
 
 	/**
@@ -1330,11 +1330,11 @@ public abstract class RPEntity extends AudibleEntity {
 
 		/* FIXME: ranged stat disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
-			if (changes.has("rng")) {
-				rng = changes.getInt("rng");
+			if (changes.has("ratk")) {
+				ratk = changes.getInt("ratk");
 			}
-			if (changes.has("modified_rng")) {
-				rng = changes.getInt("modified_rng");
+			if (changes.has("modified_ratk")) {
+				ratk = changes.getInt("modified_ratk");
 			}
 		}
 
@@ -1355,8 +1355,8 @@ public abstract class RPEntity extends AudibleEntity {
 		
 		/* FIXME: ranged stat is disabled until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
-			if (changes.has("rng_xp")) {
-				rngXP = changes.getInt("rng_xp");
+			if (changes.has("ratk_xp")) {
+				ratkXP = changes.getInt("ratk_xp");
 			}
 		}
 
@@ -1370,8 +1370,8 @@ public abstract class RPEntity extends AudibleEntity {
 		
 		/* FIXME: ranged stat disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
-			if (changes.has("rng_item")) {
-				rngItem = changes.getInt("rng_item");
+			if (changes.has("ratk_item")) {
+				ratkItem = changes.getInt("ratk_item");
 			}
 		}
 

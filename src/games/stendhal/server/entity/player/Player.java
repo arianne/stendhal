@@ -183,8 +183,8 @@ public class Player extends RPEntity implements UseListener {
 		player.put("def_xp", 0);
 		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
-			player.put("rng", 10);
-			player.put("rng_xp", 0);
+			player.put("ratk", 10);
+			player.put("ratk_xp", 0);
 		}
 		player.put("level", 0);
 		player.setXP(0);
@@ -2644,12 +2644,12 @@ public class Player extends RPEntity implements UseListener {
 	}
 	
 	/**
-	 * gets the capped rng level, which prevent players from training their rng way beyond what is reasonable for their level
+	 * gets the capped ratk level, which prevent players from training their ratk way beyond what is reasonable for their level
 	 *
-	 * @return capped rng
+	 * @return capped ratk
 	 */
 	@Override
-	public int getCappedRng() {
-		return Math.min(this.rng, getMaxAtkForLevel(level));
+	public int getCappedRatk() {
+		return Math.min(this.ratk, getMaxAtkForLevel(level));
 	}
 }

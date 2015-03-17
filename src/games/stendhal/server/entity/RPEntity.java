@@ -104,9 +104,9 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private int def_xp;
 	
-	protected int rng;
+	protected int ratk;
 	
-	private int rng_xp;
+	private int ratk_xp;
 
 	private int base_hp;
 
@@ -417,9 +417,9 @@ public abstract class RPEntity extends GuidedEntity {
 		
 		/* FIXME: ranged stat disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
-			if (has("rng_xp")) {
-				rng_xp = getInt("rng_xp");
-				setRngXPInternal(rng_xp, false);
+			if (has("ratk_xp")) {
+				ratk_xp = getInt("ratk_xp");
+				setRatkXPInternal(ratk_xp, false);
 			}
 		}
 
@@ -776,64 +776,64 @@ public abstract class RPEntity extends GuidedEntity {
 
 /* ### --- START RANGED --- ### */
 	
-	public void setRng(final int rng) {
-		setRngInternal(rng, true);
+	public void setRatk(final int ratk) {
+		setRatkInternal(ratk, true);
 	}
 
-	private void setRngInternal(final int rng, boolean notify) {
-		this.rng = rng;
-		put("rng", rng);  // visible rng
+	private void setRatkInternal(final int ratk, boolean notify) {
+		this.ratk = ratk;
+		put("ratk", ratk);  // visible ratk
 		if(notify) {
 			this.updateModifiedAttributes();
 		}
 	}
 
-	public int getRng() {
-		return this.rng;
+	public int getRatk() {
+		return this.ratk;
 	}
 
 	/**
-	 * gets the capped rng level, which prevent players from training their rng way beyond what is reasonable for their level
+	 * gets the capped ratk level, which prevent players from training their ratk way beyond what is reasonable for their level
 	 *
-	 * @return capped rng
+	 * @return capped ratk
 	 */
-	public int getCappedRng() {
-		return this.rng;
+	public int getCappedRatk() {
+		return this.ratk;
 	}
 
 	/**
 	 * Set ranged XP.
 	 *
-	 * @param rngXP the new value
+	 * @param ratkXP the new value
 	 */
-	public void setRngXP(final int rngXP) {
-		setRngXPInternal(rngXP, true);
+	public void setRatkXP(final int ratkXP) {
+		setRatkXPInternal(ratkXP, true);
 	}
 
-	private void setRngXPInternal(final int rngXP, boolean notify) {
-		this.rng_xp = rngXP;
-		put("rng_xp", rng_xp);
+	private void setRatkXPInternal(final int ratkXP, boolean notify) {
+		this.ratk_xp = ratkXP;
+		put("ratk_xp", ratk_xp);
 
 		// Handle level changes
-		final int newLevel = Level.getLevel(rng_xp);
-		final int levels = newLevel - (this.rng - 10);
+		final int newLevel = Level.getLevel(ratk_xp);
+		final int levels = newLevel - (this.ratk - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setRngInternal(this.rng + (int) Math.signum(levels) * 1, notify);
-			new GameEvent(getName(), "rng", Integer.toString(this.rng)).raise();
+			setRatkInternal(this.ratk + (int) Math.signum(levels) * 1, notify);
+			new GameEvent(getName(), "ratk", Integer.toString(this.ratk)).raise();
 		}
 	}
 
-	public int getRngXP() {
-		return rng_xp;
+	public int getRatkXP() {
+		return ratk_xp;
 	}
 
 	/**
 	 * Increase ranged XP by 1.
 	 */
-	public void incRngXP() {
-		setRngXP(rng_xp + 1);
+	public void incRatkXP() {
+		setRatkXP(ratk_xp + 1);
 	}
 
 /* ### --- END RANGED --- ### */
@@ -2727,7 +2727,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		 * Remove System.getProperty().
 		 */
 		if (usesRanged && (System.getProperty("stat.ranged") != null)) {
-			attackerATK = this.getCappedRng(); // player is using ranged weapon
+			attackerATK = this.getCappedRatk(); // player is using ranged weapon
 		} else {
 			attackerATK = this.getCappedAtk(); // player is using hand-to-hand
 		}

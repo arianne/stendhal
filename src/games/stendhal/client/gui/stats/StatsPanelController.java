@@ -65,9 +65,9 @@ public final class StatsPanelController {
 	private int defxp;
 	private int itemDef;
 	
-	private int rng;
-	private int rngxp;
-	private int weaponRng;
+	private int ratk;
+	private int ratkxp;
+	private int weaponRatk;
 	
 	private int mana;
 	private int baseMana;
@@ -123,8 +123,8 @@ public final class StatsPanelController {
 		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
 			listener = new RNGChangeListener();
-			addPropertyChangeListenerWithModifiedSupport(pcs, "rng", listener);
-			pcs.addPropertyChangeListener("rng_xp", listener);
+			addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
+			pcs.addPropertyChangeListener("ratk_xp", listener);
 		}
 		
 		listener = new XPChangeListener();
@@ -142,7 +142,7 @@ public final class StatsPanelController {
 		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (System.getProperty("stat.ranged") != null) {
 			listener = new RangedWeaponChangeListener();
-			pcs.addPropertyChangeListener("rng_item", listener);
+			pcs.addPropertyChangeListener("ratk_item", listener);
 		}
 		
 		listener = new MoneyChangeListener();
@@ -245,16 +245,16 @@ public final class StatsPanelController {
 	}
 	
 	/**
-	 * Called when rng, rngxp, or weaponRng changes.
+	 * Called when ratk, ratkxp, or weaponRatk changes.
 	 */
-	private void updateRng() {
-		// rng uses 10 levels shifted starting point
-		final int next = Level.getXP(rng - 9) - rngxp;
-		final String text = "RNG:" + SPC + rng + "×" + (1 + weaponRng) + SPC + "(" + next + ")";
+	private void updateRatk() {
+		// ratk uses 10 levels shifted starting point
+		final int next = Level.getXP(ratk - 9) - ratkxp;
+		final String text = "RNG:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				panel.setRng(text);
+				panel.setRatk(text);
 			}
 		});
 	}
@@ -397,7 +397,7 @@ public final class StatsPanelController {
 	}
 	
 	/**
-	 * Listener for rng and rng_xp changes.
+	 * Listener for ratk and ratk_xp changes.
 	 */
 	private class RNGChangeListener implements PropertyChangeListener {
 		@Override
@@ -406,12 +406,12 @@ public final class StatsPanelController {
 				return;
 			}
 			
-			if ("rng_xp".equals(event.getPropertyName())) {
-				rngxp = Integer.parseInt((String) event.getNewValue());
-			} else if ("rng".equals(event.getPropertyName())) {
-				rng = Integer.parseInt((String) event.getNewValue());
+			if ("ratk_xp".equals(event.getPropertyName())) {
+				ratkxp = Integer.parseInt((String) event.getNewValue());
+			} else if ("ratk".equals(event.getPropertyName())) {
+				ratk = Integer.parseInt((String) event.getNewValue());
 			}
-			updateRng();
+			updateRatk();
 		}
 	}
 	
@@ -489,8 +489,8 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			weaponRng = Integer.parseInt((String) event.getNewValue());
-			updateRng();
+			weaponRatk = Integer.parseInt((String) event.getNewValue());
+			updateRatk();
 		}
 	}
 	
