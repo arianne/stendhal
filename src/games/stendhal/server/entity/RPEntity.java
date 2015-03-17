@@ -2717,16 +2717,21 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final int defenderDEF = defender.getCappedDef();
 		// FIXME: finding weapon's class should probably be optimized
 		Item weapon = this.getWeapon();
-		String weaponClass = null;
-		if (weapon != null) {
-			weaponClass = weapon.getWeaponType();
+		
+		// Check for ranged weapon
+		boolean usesRanged = false;
+		if ((weapon != null) && weapon.isOfClass("ranged")) {
+			usesRanged = true;
 		}
+		
 		final int attackerATK;
-		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if ((weaponClass != null) && weaponClass.equals("ranged") && (System.getProperty("stat.ranged") != null)) {
-			attackerATK = this.getCappedRng(); // If player is using ranged weapon
+		/* FIXME: Ranged stat is disabled by default until fully implemented.
+		 * Remove System.getProperty().
+		 */
+		if (usesRanged && (System.getProperty("stat.ranged") != null)) {
+			attackerATK = this.getCappedRng(); // player is using ranged weapon
 		} else {
-			attackerATK = this.getCappedAtk();
+			attackerATK = this.getCappedAtk(); // player is using hand-to-hand
 		}
 
 		/*
