@@ -205,7 +205,7 @@ public class StendhalRPAction {
 		 * Remove System.getProperty().
 		 */
 		if (System.getProperty("stat.ranged") != null) {
-			combatSum = player.getAtk() + player.getDef() + player.getRng();
+			combatSum = player.getAtk() + player.getDef() + player.getRatk();
 		} else {
 			combatSum = player.getAtk() + player.getDef();
 		}
@@ -324,7 +324,7 @@ public class StendhalRPAction {
 			 * Remove System.getProperty().
 			 */
 			if (!(player.nextTo(defender)) && (System.getProperty("stat.ranged") != null)) {
-				player.incRngXP();
+				player.incRatkXP();
 			} else {
 				player.incAtkXP();
 			}
