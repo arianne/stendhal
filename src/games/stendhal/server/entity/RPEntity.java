@@ -103,6 +103,10 @@ public abstract class RPEntity extends GuidedEntity {
 	protected int def;
 
 	private int def_xp;
+	
+	protected int rng;
+	
+	private int rng_xp;
 
 	private int base_hp;
 
@@ -409,6 +413,14 @@ public abstract class RPEntity extends GuidedEntity {
 		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
 			setDefXpInternal(def_xp, false);
+		}
+		
+		/* FIXME: ranged stat disabled by default until fully implemented */
+		if (System.getProperty("stat.ranged") != null) {
+			if (has("rng_xp")) {
+				rng_xp = getInt("rng_xp");
+				setRngXPInternal(rng_xp, false);
+			}
 		}
 
 		if (has("base_hp")) {
@@ -720,7 +732,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * gets the capped def level, which prevent players from training their def way beyond what is reasonable for their level
 	 *
-	 * @return capped atk
+	 * @return capped def
 	 */
 	public int getCappedDef() {
 		return this.def;
@@ -760,6 +772,72 @@ public abstract class RPEntity extends GuidedEntity {
 	public void incDefXP() {
 		setDefXP(def_xp + 1);
 	}
+
+
+/* ### --- START RANGED --- ### */
+	
+	public void setRng(final int rng) {
+		setRngInternal(rng, true);
+	}
+
+	private void setRngInternal(final int rng, boolean notify) {
+		this.rng = rng;
+		put("rng", rng);  // visible rng
+		if(notify) {
+			this.updateModifiedAttributes();
+		}
+	}
+
+	public int getRng() {
+		return this.rng;
+	}
+
+	/**
+	 * gets the capped rng level, which prevent players from training their rng way beyond what is reasonable for their level
+	 *
+	 * @return capped rng
+	 */
+	public int getCappedRng() {
+		return this.rng;
+	}
+
+	/**
+	 * Set ranged XP.
+	 *
+	 * @param rngXP the new value
+	 */
+	public void setRngXP(final int rngXP) {
+		setRngXPInternal(rngXP, true);
+	}
+
+	private void setRngXPInternal(final int rngXP, boolean notify) {
+		this.rng_xp = rngXP;
+		put("rng_xp", rng_xp);
+
+		// Handle level changes
+		final int newLevel = Level.getLevel(rng_xp);
+		final int levels = newLevel - (this.rng - 10);
+
+		// In case we level up several levels at a single time.
+		for (int i = 0; i < Math.abs(levels); i++) {
+			setRngInternal(this.rng + (int) Math.signum(levels) * 1, notify);
+			new GameEvent(getName(), "rng", Integer.toString(this.rng)).raise();
+		}
+	}
+
+	public int getRngXP() {
+		return rng_xp;
+	}
+
+	/**
+	 * Increase ranged XP by 1.
+	 */
+	public void incRngXP() {
+		setRngXP(rng_xp + 1);
+	}
+
+/* ### --- END RANGED --- ### */
+
 
 	/**
 	 * Set the base and current HP.
@@ -1140,7 +1218,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 
 	/**
-	 * if defender (this entity) is carrying a droopable item,
+	 * if defender (this entity) is carrying a droppable item,
 	 * then attacker and defender both roll d20, and if attacker
 	 * rolls higher, the defender drops the droppable.
 	 *

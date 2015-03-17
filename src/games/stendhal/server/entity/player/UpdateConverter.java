@@ -230,6 +230,10 @@ public abstract class UpdateConverter {
     	if (!object.has("atk_xp")) {
     		object.put("atk_xp", "0");
     		object.put("def_xp", "0");
+    		/* FIXME: ranged stat is disabled by default until fully implemented */
+    		if (System.getProperty("stat.ranged") != null) {
+    			object.put("rng_xp", "0");
+    		}
     	}
 
     	if (object.has("devel")) {
@@ -241,6 +245,10 @@ public abstract class UpdateConverter {
     		object.put("release", "0.00");
     		object.put("atk", "10");
     		object.put("def", "10");
+    		/* FIXME: ranged stat is disabled by default until fully implemented */
+    		if (System.getProperty("stat.ranged") != null) {
+    			object.put("rng", "10");
+    		}
     	}
 
     	if (!object.has("age")) {

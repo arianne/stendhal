@@ -42,12 +42,21 @@ public class RPEntityRPClass {
 
         entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
         entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
-        entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
-        entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
         entity.addAttribute("atk_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
+        entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
+        entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
         entity.addAttribute("def_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
+        /* FIXME: ranged stat is disabled by default until fully implemented */
+        if (System.getProperty("stat.ranged") != null) {
+	        entity.addAttribute("rng", Type.SHORT,
+	        		(byte) (Definition.PRIVATE | Definition.VOLATILE));
+	        entity.addAttribute("rng_xp", Type.INT,
+	        		(byte) (Definition.PRIVATE | Definition.VOLATILE));
+	        entity.addAttribute("rng_item", Type.INT,
+	                (byte) (Definition.PRIVATE | Definition.VOLATILE));
+        }
 
         entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE); // obsolete, do not use
         entity.addAttribute("damage", Type.INT, Definition.VOLATILE); // obsolete, do not use
