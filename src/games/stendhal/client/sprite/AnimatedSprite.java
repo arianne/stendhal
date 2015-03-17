@@ -259,6 +259,14 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
+	 * Reset the animation back to specified frame, and reset the next frame
+	 * time.
+	 */
+	public void reset(int index) {
+		setIndex(index);
+	}
+	
+	/**
 	 * Set the frame index to a specific value.
 	 * 
 	 * @param index

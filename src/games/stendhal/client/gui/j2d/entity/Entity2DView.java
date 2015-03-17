@@ -683,7 +683,12 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 				asprite.start();
 			} else {
 				asprite.stop();
-				asprite.reset();
+				if (this instanceof ActiveEntity2DView) {
+					// Use index 1 to show active entities as standing
+					asprite.reset(1);
+				} else {
+					asprite.reset();
+				}
 			}
 		}
 	}
