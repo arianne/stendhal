@@ -65,6 +65,7 @@ class OutfitDialog extends JDialog {
 
 	private final SelectorModel hair;
 	private final SelectorModel eyes;
+	private final SelectorModel mouth;
 	private final SelectorModel head;
 	private final SelectorModel body;
 	private final SelectorModel dress;
@@ -87,6 +88,8 @@ class OutfitDialog extends JDialog {
 	private OutfitLabel hairLabel;
 	/** Label containing the eyes image. */
 	private OutfitLabel eyesLabel;
+	/** Label containing the mouth image. */
+	private OutfitLabel mouthLabel;
 	/** Label containing the head image. */
 	private OutfitLabel headLabel;
 	/** Label containing the body image. */
@@ -112,7 +115,8 @@ class OutfitDialog extends JDialog {
 			OutfitColor outfitColor) {
 		this(parent, title, outfit, outfitColor, Outfits.HAIR_OUTFITS,
 				Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
-				Outfits.CLOTHES_OUTFITS, Outfits.EYES_OUTFITS);
+				Outfits.CLOTHES_OUTFITS, Outfits.EYES_OUTFITS,
+				Outfits.MOUTH_OUTFITS);
 	}
 
 	/**
@@ -135,11 +139,14 @@ class OutfitDialog extends JDialog {
 	 *            an integer with the total of sprites with clothes
 	 * @param total_eyes
 	 *            an integer with the total of sprites with eyes
+	 * @param total_mouths
+	 *            an integer with the total of sprites with mouths
 	 */
 	private OutfitDialog(final Frame parent, final String title, int outfit,
 			OutfitColor outfitColor, final int total_hairs,
 			final int total_heads, final int total_bodies,
-			final int total_clothes, final int total_eyes) {
+			final int total_clothes, final int total_eyes,
+			final int total_mouths) {
 		super(parent, false);
 		
 		this.outfitColor = outfitColor;
@@ -150,6 +157,12 @@ class OutfitDialog extends JDialog {
 			eyes = new SelectorModel(total_eyes);
 		} else {
 			eyes = null;
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty("outfit.mouth") != null) {
+			mouth = new SelectorModel(total_mouths);
+		} else {
+			mouth = null;
 		}
 		head = new SelectorModel(total_heads);
 		body = new SelectorModel(total_bodies);
@@ -168,6 +181,11 @@ class OutfitDialog extends JDialog {
 			eyes.addListener(eyesLabel);
 			eyes.addListener(outfitLabel);
 		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty("outfit.mouth") != null) {
+			mouth.addListener(mouthLabel);
+			mouth.addListener(outfitLabel);
+		}
 		head.addListener(headLabel);
 		head.addListener(outfitLabel);
 		body.addListener(bodyLabel);
@@ -182,7 +200,8 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
-		// TODO: add eyes
+		// TODO: add mouth and eyes
+		int mouthsIndex = 0;
 		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 
@@ -192,6 +211,9 @@ class OutfitDialog extends JDialog {
 		}
 		if (eyesIndex >= total_eyes) {
 			eyesIndex = 0;
+		}
+		if (mouthsIndex >= total_mouths) {
+			mouthsIndex = 0;
 		}
 		if (headsIndex >= total_heads) {
 			headsIndex = 0;
@@ -208,6 +230,10 @@ class OutfitDialog extends JDialog {
 		/* eyes currently only enabled through VM argument */
 		if (System.getProperty("outfit.eyes") != null) {
 			eyes.setIndex(eyesIndex);
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty("outfit.mouth") != null) {
+			mouth.setIndex(mouthsIndex);
 		}
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
@@ -256,6 +282,19 @@ class OutfitDialog extends JDialog {
 			};
 			eyesLabel = new OutfitLabel(eyesRetriever);
 			partialsColumn.add(createSelector(eyes, eyesLabel));
+		}
+		
+		// Mouth
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty("outfit.mouth") != null) {
+			SpriteRetriever mouthRetriever = new SpriteRetriever() {
+				@Override
+				public Sprite getSprite() {
+					return getMouthSprite();
+				}
+			};
+			mouthLabel = new OutfitLabel(mouthRetriever);
+			partialsColumn.add(createSelector(mouth, mouthLabel));
 		}
 		
 		// Head
@@ -419,6 +458,17 @@ class OutfitDialog extends JDialog {
 	}
 	
 	/**
+	 * Get the mouth sprite.
+	 * 
+	 * @return mouth sprite
+	 */
+	private Sprite getMouthSprite() {
+		return store.getTile(ostore.getMouthSprite(mouth.getIndex()),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
+				PLAYER_HEIGHT);
+	}
+	
+	/**
 	 * Get the head sprite.
 	 * 
 	 * @return head sprite
@@ -574,8 +624,13 @@ class OutfitDialog extends JDialog {
 			dressLabel.setBorder(style.getBorderDown());
 			outfitLabel.setBorder(style.getBorderDown());
 			hairLabel.setBorder(style.getBorderDown());
+			/* eyes currently only enabled through VM argument */
 			if (System.getProperty("outfit.eyes") != null) {
 				eyesLabel.setBorder(style.getBorderDown());
+			}
+			/* mouth currently only enabled through VM argument */
+			if (System.getProperty("outfit.mouth") != null) {
+				mouthLabel.setBorder(style.getBorderDown());
 			}
 			headLabel.setBorder(style.getBorderDown());
 		}
@@ -601,7 +656,8 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
-		// TODO: add eyes
+		// TODO: add mouth and eyes
+		int mouthsIndex = 0;
 		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 		
@@ -611,6 +667,10 @@ class OutfitDialog extends JDialog {
 		/* eyes currently only enabled through VM argument */
 		if (System.getProperty("outfit.eyes") != null) {
 			eyes.setIndex(eyesIndex);
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty("outfit.mouth") != null) {
+			mouth.setIndex(mouthsIndex);
 		}
 		hair.setIndex(hairsIndex);
 
