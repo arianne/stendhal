@@ -14,7 +14,6 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActiveEntity;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.common.Direction;
 
 /**
@@ -22,7 +21,7 @@ import games.stendhal.common.Direction;
  * 
  * @param <T> entity type 
  */
-abstract class ActiveEntity2DView<T extends IEntity> extends StateEntity2DView<T> {
+abstract class ActiveEntity2DView<T extends ActiveEntity> extends StateEntity2DView<T> {
 
 
 	//
@@ -56,7 +55,7 @@ abstract class ActiveEntity2DView<T extends IEntity> extends StateEntity2DView<T
 	 */
 	@Override
 	protected Direction getState(T entity) {
-		return getDirectionState(((ActiveEntity) entity).getDirection());
+		return getDirectionState(entity.getDirection());
 	}
 
 	//
@@ -70,7 +69,7 @@ abstract class ActiveEntity2DView<T extends IEntity> extends StateEntity2DView<T
 	 */
 	@Override
 	protected boolean isAnimating() {
-		return !((ActiveEntity) entity).stopped();
+		return !entity.stopped();
 	}
 
 	@Override
