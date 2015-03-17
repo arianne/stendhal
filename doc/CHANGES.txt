@@ -25,6 +25,9 @@
 *visuals*
 - Active entities reset animated sprite index to 1 to appear standing when stopped
 
+*fixes*
+- Fix player cannot move after zombie status wears off
+
 
 1.16
 
