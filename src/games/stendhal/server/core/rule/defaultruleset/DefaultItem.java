@@ -19,7 +19,6 @@ import games.stendhal.server.core.rule.defaultruleset.creator.DefaultItemCreator
 import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
-import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.entity.status.StatusType;
 
 import java.lang.reflect.Constructor;
@@ -248,7 +247,7 @@ public class DefaultItem {
 				item.setDamageType(damageType);
 			}
 			item.setSusceptibilities(susceptibilities);
-			item.setStatusResistances(resistances);
+			item.setStatusResistanceList(resistances);
 			item.setUseBehavior(useBehavior);
 		}
 
