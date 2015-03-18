@@ -186,7 +186,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			}
 			item.setSusceptibilities(susceptibilities);
 			susceptibilities.clear();
-			item.setResistances(resistances);
+			item.setStatusResistances(resistances);
 			resistances.clear();
 
 			if (implementation == null) {

@@ -144,7 +144,7 @@ public class DefaultItem {
 	 * 
 	 * @param resistances The status attack type and the resistance value
 	 */
-	public void setResistances(Map<String, Double> res) {
+	public void setStatusResistances(Map<String, Double> res) {
 		resistances = new HashMap<StatusType, Double>();
 		
 		for (Entry<String, Double> entry : res.entrySet()) {
