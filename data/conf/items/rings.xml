@@ -9,10 +9,10 @@
     <description>You see a medicinal ring. It could protect you from poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <antipoison value="0.25" />
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
+    <resistance type="POISONED" value="0.25" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -28,10 +28,10 @@
     <description>You see an antivenom ring. It has a good chance to protect you from poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <antipoison value="0.5" />
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
+    <resistance type="POISONED" value="0.5" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -47,10 +47,10 @@
     <description>You see a gm antitoxin ring. You will be immune poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
-      <antipoison value="1.0" />
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
+    <resistance type="POISONED" value="1.0" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
