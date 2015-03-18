@@ -116,6 +116,16 @@ public class StatusResistanceList {
 	public Entity getEntity() {
 		return entityRef.get();
 	}
+	
+	/**
+	 * Get the Map class for parsing.
+	 * 
+	 * @return
+	 * 		Map class of resistance list
+	 */
+	public Map<StatusType, Double> getMap() {
+		return this.resistances;
+	}
 
 	/**
 	 * Find the resistance to a specified status type.
