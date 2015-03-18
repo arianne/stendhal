@@ -156,6 +156,16 @@ public class StatusResistanceList {
 	}
 	
 	/**
+	 * Helper method to find if status list is empty after initialized.
+	 * 
+	 * @return
+	 * 		<code>true</true> if empty, <code>false</code> if not
+	 */
+	public Boolean isEmpty() {
+		return this.resistances.isEmpty();
+	}
+	
+	/**
 	 * Completely remove an entity's resistance to a status type.
 	 * 
 	 * @param statusType
