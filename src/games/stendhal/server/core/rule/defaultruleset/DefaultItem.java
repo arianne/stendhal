@@ -19,9 +19,12 @@ import games.stendhal.server.core.rule.defaultruleset.creator.DefaultItemCreator
 import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
+import games.stendhal.server.entity.status.Status;
+import games.stendhal.server.entity.status.StatusType;
 
 import java.lang.reflect.Constructor;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -68,6 +71,8 @@ public class DefaultItem {
 	private Nature damageType;
 	
 	private Map<Nature, Double> susceptibilities;
+	
+	private Map<StatusType, Double> resistances;
 	
 	/**
 	 * Use behavior of the item, or <code>null</code> if no special behaviors
@@ -133,7 +138,20 @@ public class DefaultItem {
 			susceptibilities.put(Nature.parse(entry.getKey()), entry.getValue());
 		}
 	}
-
+	
+	/**
+	 * Set the types of status attacks that this item can resist.
+	 * 
+	 * @param resistances The status attack type and the resistance value
+	 */
+	public void setResistances(Map<String, Double> res) {
+		resistances = new HashMap<StatusType, Double>();
+		
+		for (Entry<String, Double> entry : res.entrySet()) {
+			resistances.put(Status.parse(entry.getKey()), entry.getValue());
+		}
+	}
+	
 	public void setImplementation(final Class< ? > implementation) {
 		this.implementation = implementation;
 		creator = buildCreator(implementation);
@@ -230,6 +248,7 @@ public class DefaultItem {
 				item.setDamageType(damageType);
 			}
 			item.setSusceptibilities(susceptibilities);
+			item.setStatusResistances(resistances);
 			item.setUseBehavior(useBehavior);
 		}
 
