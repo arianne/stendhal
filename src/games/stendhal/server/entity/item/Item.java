@@ -26,6 +26,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.Status;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -33,13 +34,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * This is an item.
@@ -82,6 +83,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	private Nature damageType = Nature.CUT;
 
 	private Map<Nature, Double> susceptibilities;
+	
+	/** The status attack types that this item can resist */
+	private Map<Status, Double> resistances;
 
 	private boolean fromCorpse = false;
 	
@@ -143,6 +147,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
 		damageType = item.damageType;
 		susceptibilities = item.susceptibilities;
+		resistances = item.resistances;
 	}
 
 	public static void generateRPClass() {
@@ -591,7 +596,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		return value;
 	}
-
+	
 	/**
 	 * Set the susceptibility data of this item.
 	 *
@@ -601,6 +606,33 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		this.susceptibilities = susceptibilities;
 	}
 	
+	/**
+	 * Get the item's ability to resist a status attack
+	 * 
+	 * @param type The type of status to be resisted
+	 * @return The resistance value
+	 */
+	public double getStatusResistance(Status type) {
+		double value = 0.0;
+		if (resistances != null) {
+			Double res = resistances.get(type);
+			if (res != null) {
+				value = res.doubleValue();
+			}
+		}
+		
+		return value;
+	}
+	
+	/**
+	 * Set the resistances of this item
+	 * 
+	 * @param res Statuses and resistant values
+	 */
+	public void setStatusResistances(Map<Status, Double> res) {
+		this.resistances = res;
+	}
+
 	/**
 	 * Get a weapon type identifier that can be used in attack events, so that
 	 * the client can draw an appropriate item image for the attack.
