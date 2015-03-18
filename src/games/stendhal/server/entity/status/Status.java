@@ -60,12 +60,6 @@ public abstract class Status implements Cloneable {
 	 */
 	public abstract StatusType getStatusType();
 	
-	/**
-	 * Retrieve StatusType for creating status resistant items
-	 * 
-	 * @param statusName Name of the status class. e.g. PoisonStatus
-	 * @return StatusType
-	 */
 	public static StatusType parse(String statusName) {
 		String className = "games.stendhal.server.entity.status." + statusName;
 		Status status;

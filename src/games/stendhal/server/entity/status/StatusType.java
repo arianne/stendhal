@@ -11,6 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.common.constants.Nature;
+
+import java.util.Locale;
+
+import org.apache.log4j.Logger;
+
 /**
  * types of statuses
  *
@@ -68,5 +74,20 @@ public enum StatusType {
 	@SuppressWarnings("unchecked")
 	public <T extends Status> StatusHandler<T> getStatusHandler() {
 		return (StatusHandler<T>) statusHandler;
+	}
+	
+	/**
+	 * Retrieve StatusType for creating status resistant items
+	 * 
+	 * @param status Name of the status. e.g. PoisonStatus
+	 * @return StatusType
+	 */
+	public static StatusType parse(String status) {
+		try {
+			return StatusType.valueOf(status.toUpperCase(Locale.ENGLISH));
+		} catch (RuntimeException e) {
+			Logger.getLogger(StatusType.class).error("Unknown status type: " + status, e);
+			return null;
+		}
 	}
 }
