@@ -76,6 +76,8 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	
 	private Map<String, Double> susceptibilities = new HashMap<String, Double>();
 	
+	private Map<String, Double> resistances = new HashMap<String, Double>();
+	
 
 	public List<DefaultItem> load(final URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();
@@ -153,6 +155,8 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			damageType = attrs.getValue("type");
 		} else if (qName.equals("susceptibility")) {
 			susceptibilities.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
+		} else if (qName.equals("resistance")) {
+			resistances.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 		} else if (qName.equals("behavior")) {
 			String className = attrs.getValue("class-name");
 			try {
@@ -182,6 +186,8 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			}
 			item.setSusceptibilities(susceptibilities);
 			susceptibilities.clear();
+			item.setResistances(resistances);
+			resistances.clear();
 
 			if (implementation == null) {
 				LOGGER.error("Item without defined implementation: " + name);
