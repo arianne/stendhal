@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Entity;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
  * to status effects.
  */
 public class StatusResistanceList {
-	private WeakReference<RPEntity> entityRef;
+	private WeakReference<Entity> entityRef;
 	
 	/** The logger instance */
 	final Logger logger;
@@ -38,10 +38,10 @@ public class StatusResistanceList {
 	/**
 	 * Default constructor the container for status resistances.
 	 */
-	public StatusResistanceList(RPEntity entity) {
+	public StatusResistanceList(Entity entity) {
 		this.logger = Logger.getLogger(StatusResistanceList.class);
 		
-		this.entityRef = new WeakReference<RPEntity>(entity);
+		this.entityRef = new WeakReference<Entity>(entity);
 		this.resistances = new HashMap<StatusType, Double>();
 		
 		// FIXME: Change to ".isDebugEnabled" and ".debug"
@@ -53,10 +53,10 @@ public class StatusResistanceList {
 	/**
 	 * Constructor for pre-existing resistance list.
 	 */
-	public StatusResistanceList(RPEntity entity, Map<StatusType, Double> resistances) {
+	public StatusResistanceList(Entity entity, Map<StatusType, Double> resistances) {
 		this.logger = Logger.getLogger(StatusResistanceList.class);
 		
-		this.entityRef = new WeakReference<RPEntity>(entity);
+		this.entityRef = new WeakReference<Entity>(entity);
 		this.resistances = resistances;
 		
 		// FIXME: Change to ".isDebugEnabled" and ".debug"
@@ -113,7 +113,7 @@ public class StatusResistanceList {
 	 *
 	 * @return RPEntity or <code>null</code>
 	 */
-	public RPEntity getEntity() {
+	public Entity getEntity() {
 		return entityRef.get();
 	}
 
