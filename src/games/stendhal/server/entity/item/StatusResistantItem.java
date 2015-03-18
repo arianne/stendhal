@@ -7,12 +7,16 @@ import games.stendhal.server.entity.status.StatusType;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
+
 /**
  * An item that is resistant to status attacks when equipped.
  * 
  * @author AntumDeluge
  */
 public class StatusResistantItem extends Item {
+	/** Logger instance */
+	final Logger logger;
 	
 	/** List of status types that this item is resistant to. */
 	private StatusResistanceList resistances;
@@ -33,8 +37,11 @@ public class StatusResistantItem extends Item {
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		
+		// Initialize logger
+		this.logger = Logger.getLogger(StatusResistantItem.class);
+		
 		// Initialize resistances
-		resistances = new StatusResistanceList(this);
+		this.resistances = new StatusResistanceList(this);
 	}
 	
 	/**
