@@ -26,7 +26,6 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.entity.status.StatusType;
 
 import java.util.ArrayList;
@@ -85,9 +84,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 	private Map<Nature, Double> susceptibilities;
 	
-	/** The status attack types that this item can resist */
-	private Map<StatusType, Double> resistances;
-
 	private boolean fromCorpse = false;
 	
 	/**
@@ -148,7 +144,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
 		damageType = item.damageType;
 		susceptibilities = item.susceptibilities;
-		resistances = item.resistances;
 	}
 
 	public static void generateRPClass() {
@@ -608,30 +603,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 	
 	/**
-	 * Get the item's ability to resist a status attack
+	 * Dummy method
 	 * 
-	 * @param type The type of status to be resisted
-	 * @return The resistance value
+	 * See: StatusResistantItem.setStatusResistanceList(resistanceList)
 	 */
-	public double getStatusResistance(Status type) {
-		double value = 0.0;
-		if (resistances != null) {
-			Double res = resistances.get(type);
-			if (res != null) {
-				value = res.doubleValue();
-			}
-		}
-		
-		return value;
-	}
-	
-	/**
-	 * Set the resistances of this item
-	 * 
-	 * @param resistances Statuses and resistant values
-	 */
-	public void setStatusResistances(Map<StatusType, Double> resistances) {
-		this.resistances = resistances;
+	public void setStatusResistanceList(Map<StatusType, Double> resistanceList) {
+		// Do nothing
 	}
 
 	/**
@@ -750,27 +727,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 				stats.append(entry.getKey());
 				stats.append(": ");
 				stats.append(Math.round(100/entry.getValue()));
-				stats.append("%");
-			}
-		}
-		
-		// Add statuses resistance stats to description
-		if ((resistances != null) && !resistances.isEmpty()) {
-			for (Entry<StatusType, Double> entry : resistances.entrySet()) {
-				String statusType = entry.getKey().toString().toLowerCase();
-				if (statusType.equals("confused")) {
-					statusType = "confuse";
-				}
-				Integer nameLength = statusType.length();
-				if (statusType.substring(nameLength - 2).equals("ed")) {
-					statusType = statusType.substring(0, nameLength - 2);
-				}
-				statusType = statusType.substring(0, 1).toUpperCase() +
-						statusType.substring(1);
-				stats.append(" ");
-				stats.append(statusType);
-				stats.append(" resist: ");
-				stats.append(Math.round(100 * entry.getValue()));
 				stats.append("%");
 			}
 		}
