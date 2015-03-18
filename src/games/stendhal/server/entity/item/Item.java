@@ -757,6 +757,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 				stats.append("%");
 			}
 		}
+		
+		// FIXME: Add status resistances stats
+		if ((resistances != null) && !resistances.isEmpty()) {
+			
+		}
+		
 		if (has("min_level")) {
 			stats.append(" MIN-LEVEL: ");
 			stats.append(get("min_level"));
