@@ -27,6 +27,7 @@ import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.Status;
+import games.stendhal.server.entity.status.StatusType;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -85,7 +86,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	private Map<Nature, Double> susceptibilities;
 	
 	/** The status attack types that this item can resist */
-	private Map<Status, Double> resistances;
+	private Map<StatusType, Double> resistances;
 
 	private boolean fromCorpse = false;
 	
@@ -627,10 +628,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	/**
 	 * Set the resistances of this item
 	 * 
-	 * @param res Statuses and resistant values
+	 * @param resistances Statuses and resistant values
 	 */
-	public void setStatusResistances(Map<Status, Double> res) {
-		this.resistances = res;
+	public void setStatusResistances(Map<StatusType, Double> resistances) {
+		this.resistances = resistances;
 	}
 
 	/**
