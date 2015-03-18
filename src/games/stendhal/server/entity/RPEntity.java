@@ -41,6 +41,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusList;
+import games.stendhal.server.entity.status.StatusResistanceList;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
@@ -129,6 +130,9 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/** a list of current statuses */
 	protected StatusList statusList;
+	
+	/** a list of current status resistances */
+	protected StatusResistanceList resistanceList;
 
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
@@ -3046,6 +3050,61 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		Builder<StatusAttacker> builder = ImmutableList.builder();
 		statusAttackers = builder.addAll(statusAttackers).add(statusAttacker).build();
 	}
+	
+	
+/* ### --- START STATUS RESISTANCES --- ### */
+	
+	/**
+	 * Adjusts or creates an entity's resistance to a status effect.
+	 * 
+	 * @param statusType
+	 * 		Resisted status type
+	 * @param value
+	 * 		Adjusted resistance value
+	 */
+	public void adjustStatusResistance(StatusType statusType, Double value) {
+		this.getStatusResistanceList().adjustStatusResistance(statusType, value);
+	}
+	
+	/**
+	 * Find the resistance to a specified status type.
+	 * 
+	 * @param type
+	 * 		Status type to be resisted
+	 * @return
+	 * 		Status resistance value
+	 */
+	public Double getStatusResistance(StatusType statusType) {
+		return this.getStatusResistanceList().getStatusResistance(statusType);
+	}
+	
+	/**
+	 * Gets list of resistances this entity has.
+	 * 
+	 * @return
+	 * 		ResistanceList
+	 */
+	public StatusResistanceList getStatusResistanceList() {
+		// Initialze ResistanceList if not already done
+		if (resistanceList == null) {
+			resistanceList = new StatusResistanceList(this);
+		}
+		
+		return resistanceList;
+	}
+	
+	/**
+	 * Completely remove entity's resistance to a status type.
+	 * 
+	 * @param statusType
+	 * 		Resisted status type
+	 */
+	public void removeStatusResistance(StatusType statusType) {
+		this.getStatusResistanceList().removeStatusResistance(statusType);
+	}
+	
+/* ### --- END STATUS RESISTANCES --- ### */
+	
 
 	/**
 	 * gets the status list
@@ -3071,7 +3130,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		return statusList.hasStatus(statusType);
 	}
-
+	
 	@Override
 	public void onRemoved(StendhalRPZone zone) {
 		super.onRemoved(zone);
