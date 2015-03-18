@@ -59,20 +59,4 @@ public abstract class Status implements Cloneable {
 	 * @return StatusType
 	 */
 	public abstract StatusType getStatusType();
-	
-	public static StatusType parse(String statusName) {
-		String className = "games.stendhal.server.entity.status." + statusName;
-		Status status;
-		try {
-			status = (Status) Class.forName(className).newInstance();
-			return status.getStatusType();
-        } catch (InstantiationException e) {
-        	logger.error(e, e);
-        } catch (IllegalAccessException e) {
-        	logger.error(e, e);
-        } catch (ClassNotFoundException e) {
-            logger.error(e, e);
-        }
-        return null;
-	}
 }
