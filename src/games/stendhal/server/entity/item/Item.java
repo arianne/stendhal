@@ -744,10 +744,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 			stats.append(" LIFESTEAL: ");
 			stats.append(get("lifesteal"));
 		}
-		if (has("antipoison")) {
-			stats.append(" ANTIPOISON: ");
-			stats.append(get("antipoison"));
-		}
 		if ((susceptibilities != null) && !susceptibilities.isEmpty()) {
 			for (Entry<Nature, Double> entry : susceptibilities.entrySet()) {
 				stats.append(" ");
@@ -758,9 +754,25 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 			}
 		}
 		
-		// FIXME: Add status resistances stats
+		// Add statuses resistance stats to description
 		if ((resistances != null) && !resistances.isEmpty()) {
-			
+			for (Entry<StatusType, Double> entry : resistances.entrySet()) {
+				String statusType = entry.getKey().toString().toLowerCase();
+				if (statusType.equals("confused")) {
+					statusType = "confuse";
+				}
+				Integer nameLength = statusType.length();
+				if (statusType.substring(nameLength - 2).equals("ed")) {
+					statusType = statusType.substring(0, nameLength - 2);
+				}
+				statusType = statusType.substring(0, 1).toUpperCase() +
+						statusType.substring(1);
+				stats.append(" ");
+				stats.append(statusType);
+				stats.append(" resist: ");
+				stats.append(Math.round(100 * entry.getValue()));
+				stats.append("%");
+			}
 		}
 		
 		if (has("min_level")) {
