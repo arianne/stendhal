@@ -148,7 +148,7 @@ public class DefaultItem {
 		resistances = new HashMap<StatusType, Double>();
 		
 		for (Entry<String, Double> entry : res.entrySet()) {
-			resistances.put(Status.parse(entry.getKey()), entry.getValue());
+			resistances.put(StatusType.parse(entry.getKey()), entry.getValue());
 		}
 	}
 	
