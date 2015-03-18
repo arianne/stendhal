@@ -26,7 +26,7 @@ public class StatusResistantItem extends Item {
 	 * @return resistant value
 	 */
 	public double getStatusResistance(Status st) {
-		return super.getResistance(st);
+		return super.getStatusResistance(st);
 	}
 
 }
