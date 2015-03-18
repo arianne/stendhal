@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import org.apache.log4j.Logger;
+
 
 /**
  * A base class for status effects
@@ -18,6 +20,7 @@ package games.stendhal.server.entity.status;
  * @author AntumDeluge
  */
 public abstract class Status implements Cloneable {
+	private static Logger logger = Logger.getLogger(Status.class);
 
 	/** The name of the status effect */
 	private String name;
@@ -56,4 +59,26 @@ public abstract class Status implements Cloneable {
 	 * @return StatusType
 	 */
 	public abstract StatusType getStatusType();
+	
+	/**
+	 * Retrieve StatusType for creating status resistant items
+	 * 
+	 * @param statusName Name of the status class. e.g. PoisonStatus
+	 * @return StatusType
+	 */
+	public static StatusType parse(String statusName) {
+		String className = "games.stendhal.server.entity.status." + statusName;
+		Status status;
+		try {
+			status = (Status) Class.forName(className).newInstance();
+			return status.getStatusType();
+        } catch (InstantiationException e) {
+        	logger.error(e, e);
+        } catch (IllegalAccessException e) {
+        	logger.error(e, e);
+        } catch (ClassNotFoundException e) {
+            logger.error(e, e);
+        }
+        return null;
+	}
 }
