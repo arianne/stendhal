@@ -171,4 +171,14 @@ public class StatusResistanceList {
 		}
 	}
 	
+	/**
+	 * Reset or create resistances after construction.
+	 * 
+	 * @param resistanceList
+	 * 		Status resistances to be created
+	 */
+	public void setStatusResistances(Map<StatusType, Double> resistanceList) {
+		this.resistances = resistanceList;
+	}
+	
 }
