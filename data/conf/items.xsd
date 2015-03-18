@@ -68,7 +68,6 @@
 			<element name="slot_name" type="Q1:attribute" minOccurs="0"/>
 			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"/>
 			<element name="autobind" type="Q1:attribute" minOccurs="0"/>
-			<element name="antipoison" type="Q1:attribute" minOccurs="0"></element>
 			<element name="menu" type="Q1:attribute" minOccurs="0"/>
 		</sequence>
 	</complexType>
@@ -95,4 +94,10 @@
 		<attribute name="type" type="string" />
 		<attribute name="value" type="decimal" />
 	</complexType>
+	
+	<complexType name="resistance">
+		<attribute name="type" type="string" />
+		<attribute name="value" type="decimal" />
+	</complexType>
+	
 </schema>
