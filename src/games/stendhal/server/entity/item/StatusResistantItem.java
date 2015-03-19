@@ -256,10 +256,6 @@ public class StatusResistantItem extends Item {
 		
 		if ((owner != null) && (currentSlot != null)) {
 			
-			if ((owner.has("resist_status"))) {
-					this.owner.remove("resist_status");
-			}
-			
 			if (this.logger.isDebugEnabled()) {
 				this.logger.debug("Unequipped StatusResistantItem (ID "
 						+ Integer.toString(this.getID().getObjectID())
