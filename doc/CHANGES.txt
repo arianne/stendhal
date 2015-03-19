@@ -17,6 +17,7 @@
 - Organized outfit parts into subdirectories
 - Changed "player_base" outfit type to "body"
 - Entities can now pass through collision tiles with "setIgnoresCollision()"
+- Items can be given status resistance with StatusResistantItem implementation
 
 *chat*
 - Alias "/status" for command "/sentence"
