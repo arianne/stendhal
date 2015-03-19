@@ -90,9 +90,8 @@ public class StatusResistanceList {
 			// Create new resistance
 			resistances.put(statusType, value);
 			
-			// FIXME: Change to ".isDebugEnabled()" and ".debug()"
-			if (logger.isInfoEnabled()) {
-				logger.info("Created new resistance to " + statusType.toString()
+			if (logger.isDebugEnabled()) {
+				logger.debug("Created new resistance to " + statusType.toString()
 						+ " at " + value.toString());
 			}
 		}
@@ -101,11 +100,6 @@ public class StatusResistanceList {
 		// reference completely.
 		if (resistances.get(statusType) <= 0.0) {
 			this.removeStatusResistance(statusType);
-		}
-		
-		if (logger.isInfoEnabled()) {
-			logger.info(statusType.toString() + " resistance value: "
-					+ this.getStatusResistance(statusType));
 		}
 	}
 	
@@ -182,9 +176,8 @@ public class StatusResistanceList {
 	public void removeStatusResistance(StatusType statusType) {
 		resistances.remove(statusType);
 		
-		// FIXME: Change to ".isDebugEnabled()"
-		if (logger.isInfoEnabled()) {
-			logger.info("Removed " + statusType.toString() + " resistance");
+		if (logger.isDebugEnabled()) {
+			logger.debug("Removed " + statusType.toString() + " resistance");
 		}
 	}
 	
