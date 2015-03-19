@@ -22,6 +22,7 @@ import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.status.StatusType;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
@@ -72,6 +73,9 @@ public class DefaultItem {
 	private Map<Nature, Double> susceptibilities;
 	
 	private Map<StatusType, Double> resistances;
+	
+	/** List of slots where this item is active when equpped. */
+	private List<String> resistancesActiveSlotsList;
 	
 	/**
 	 * Use behavior of the item, or <code>null</code> if no special behaviors
@@ -148,6 +152,23 @@ public class DefaultItem {
 		
 		for (Entry<String, Double> entry : res.entrySet()) {
 			resistances.put(StatusType.parse(entry.getKey()), entry.getValue());
+		}
+	}
+	
+	/**
+	 * Add slots to list of slots that item is active in
+	 * 
+	 * @param slots
+	 * 		Semicolon separated list of slots
+	 */
+	public void setStatusResistancesActiveSlots(String slots) {
+		// Make sure the list is initialized
+		if (resistancesActiveSlotsList == null) {
+			resistancesActiveSlotsList = new ArrayList<String>();
+		}
+		
+		for (String s : slots.split(";")) {
+			resistancesActiveSlotsList.add(s);
 		}
 	}
 	
@@ -247,7 +268,17 @@ public class DefaultItem {
 				item.setDamageType(damageType);
 			}
 			item.setSusceptibilities(susceptibilities);
-			item.setStatusResistanceList(resistances);
+			
+			if ((resistances != null) && (!resistances.isEmpty())) {
+				item.setStatusResistanceList(resistances);
+				if ((resistancesActiveSlotsList != null)
+						&& (!resistancesActiveSlotsList.isEmpty())) {
+					for (String s : resistancesActiveSlotsList) {
+						item.addStatusResistancesActiveSlot(s);
+					}
+				}
+			}
+			
 			item.setUseBehavior(useBehavior);
 		}
 

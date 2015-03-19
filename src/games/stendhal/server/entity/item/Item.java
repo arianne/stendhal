@@ -605,6 +605,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	/**
 	 * Dummy method
 	 * 
+	 * See: StatusResistantItem.setStatusResistancesActiveSlot(String)
+	 */
+	public void addStatusResistancesActiveSlot(String slotName) {
+		// Do nothing
+	}
+	
+	/**
+	 * Dummy method
+	 * 
 	 * See: StatusResistantItem.setStatusResistanceList(resistanceList)
 	 */
 	public void setStatusResistanceList(Map<StatusType, Double> resistanceList) {

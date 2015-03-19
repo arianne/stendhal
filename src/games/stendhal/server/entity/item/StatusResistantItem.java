@@ -25,7 +25,7 @@ public class StatusResistantItem extends Item {
 	private StatusResistanceList resistances;
 	
 	/** List of slots where this item is active when equpped. */
-	private List<String> activeSlotList; // Should java.util.Collection be used instead?
+	private List<String> resistancesActiveSlotList; // Should java.util.Collection be used instead?
 	
 	/** Entity that equips the item. */
 	private RPEntity owner;
@@ -61,7 +61,7 @@ public class StatusResistantItem extends Item {
 		// Initialize resistances
 		this.resistances = new StatusResistanceList(this);
 		
-		this.activeSlotList = new ArrayList<String>();
+		this.resistancesActiveSlotList = new ArrayList<String>();
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("Created new StatusResistantItem");
@@ -78,8 +78,9 @@ public class StatusResistantItem extends Item {
 	 */
 	private boolean activeSlot(String slot) {
 		
-		if ((activeSlotList != null) && !activeSlotList.isEmpty()) {
-			for (String activeslot : activeSlotList) {
+		if ((resistancesActiveSlotList != null)
+				&& !resistancesActiveSlotList.isEmpty()) {
+			for (String activeslot : resistancesActiveSlotList) {
 				if (slot.equals(activeslot)) {
 					return true;
 				}
@@ -90,13 +91,13 @@ public class StatusResistantItem extends Item {
 	}
 	
 	/**
-	 * Add a designated slot to where the item can be active.
+	 * Add a slot to the list in which item can be active.
 	 * 
-	 * @param slot
-	 * 		Target slot name
+	 * @param slotName
+	 * 		Name of slot where equipped item is active
 	 */
-	public void addActiveSlot(String slot) {
-		this.activeSlotList.add(slot);
+	public void addStatusResistancesActiveSlot(String slotName) {
+		this.resistancesActiveSlotList.add(slotName);
 	}
 	
 	/**
@@ -172,6 +173,10 @@ public class StatusResistantItem extends Item {
 	@Override
 	public boolean onEquipped(RPEntity owner, String slot) {
 		Boolean ret = super.onEquipped(owner, slot);
+		
+		for (String s : this.resistancesActiveSlotList) {
+			System.out.println("\n!!! ACTIVE SLOT: " + s + " !!!\n");
+		}
 		
 		// Get the owner for onUnequipped()
 		this.owner = owner;
@@ -258,7 +263,7 @@ public class StatusResistantItem extends Item {
 		
 		return ret;
 	}
-
+	
 	/**
 	 * Create or reset resistances to status types for this item.
 	 * 
@@ -281,7 +286,7 @@ public class StatusResistantItem extends Item {
 	 * 		Status types and resistant values
 	 */
 	public void setStatusResistanceList(StatusResistanceList resistanceList) {
-		this.resistances= resistanceList;
+		this.resistances = resistanceList;
 	}
-
+	
 }
