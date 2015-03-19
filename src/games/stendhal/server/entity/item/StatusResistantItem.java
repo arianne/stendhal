@@ -62,10 +62,6 @@ public class StatusResistantItem extends Item {
 		this.resistances = new StatusResistanceList(this);
 		
 		this.resistancesActiveSlotList = new ArrayList<String>();
-		
-		if (logger.isInfoEnabled()) {
-			logger.info("Created new StatusResistantItem");
-		}
 	}
 	
 	/**
@@ -108,14 +104,14 @@ public class StatusResistantItem extends Item {
 	 */
 	private void adjustStatusResistance(RPEntity entity, StatusType statusType,
 			Double adjustValue) {
-		String statusAttribute = "resist_" + statusType.toString().toLowerCase();
+		String resistAttribute = "resist_" + statusType.toString().toLowerCase();
 		Double newResistance;
 		
 		// Add attribute if entity does not already have any resistance
-		if (!entity.has(statusAttribute)) {
+		if (!entity.has(resistAttribute)) {
 			newResistance = adjustValue;
 		} else {
-			Double currentResistance = entity.getDouble(statusAttribute);
+			Double currentResistance = entity.getDouble(resistAttribute);
 			newResistance = currentResistance + adjustValue;
 		}
 		
@@ -127,9 +123,12 @@ public class StatusResistantItem extends Item {
 		
 		// Remove reference if entity is no longer resistant
 		if (newResistance <= 0.0) {
-			entity.remove(statusAttribute);
+			entity.remove(resistAttribute);
 		} else {
-			entity.put(statusAttribute, newResistance);
+			entity.put(resistAttribute, newResistance);
+			// DEBUG
+			System.out.println("\n!!! RESIST ATTRIBUTE: " + resistAttribute
+					+ " = " + entity.get(resistAttribute) + " !!!\n");
 		}
 	}
 	
@@ -211,8 +210,8 @@ public class StatusResistantItem extends Item {
 		this.owner = owner;
 		this.currentSlot = slot;
 		
-		if (this.logger.isInfoEnabled()) {
-			this.logger.info("Equipped StatusResistantItem (ID "
+		if (this.logger.isDebugEnabled()) {
+			this.logger.debug("Equipped StatusResistantItem (ID "
 					+ Integer.toString(this.getID().getObjectID()) + ") to "
 					+ this.currentSlot);
 		}
@@ -229,8 +228,8 @@ public class StatusResistantItem extends Item {
 					value = entry.getValue();
 					adjustStatusResistance(owner, statusType, value);
 					
-					if (logger.isInfoEnabled()) {
-						logger.info(statusType.toString() + " adjustment: "
+					if (logger.isDebugEnabled()) {
+						logger.debug(statusType.toString() + " adjustment: "
 								+ value.toString() + " (" + owner.getName()
 								+ ")");
 					}
@@ -261,9 +260,8 @@ public class StatusResistantItem extends Item {
 					this.owner.remove("resist_status");
 			}
 			
-			if (this.logger.isInfoEnabled()) {
-				this.logger.info(this.owner.getName()
-						+ ": Unequipped StatusResistantItem (ID "
+			if (this.logger.isDebugEnabled()) {
+				this.logger.debug("Unequipped StatusResistantItem (ID "
 						+ Integer.toString(this.getID().getObjectID())
 						+ ") from " + this.currentSlot);
 			}
@@ -281,8 +279,8 @@ public class StatusResistantItem extends Item {
 						value = entry.getValue() * -1;
 						adjustStatusResistance(owner, statusType, value);
 						
-						if (logger.isInfoEnabled()) {
-							logger.info(statusType.toString() + " adjustment: "
+						if (logger.isDebugEnabled()) {
+							logger.debug(statusType.toString() + " adjustment: "
 									+ value.toString() + " (" + owner.getName()
 									+ ")");
 						}
