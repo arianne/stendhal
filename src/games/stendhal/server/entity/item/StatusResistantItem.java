@@ -61,9 +61,7 @@ public class StatusResistantItem extends Item {
 		// Initialize resistances
 		this.resistances = new StatusResistanceList(this);
 		
-		activeSlotList = new ArrayList<String>();
-		// DEBUG
-		activeSlotList.add("finger");
+		this.activeSlotList = new ArrayList<String>();
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("Created new StatusResistantItem");
@@ -89,6 +87,16 @@ public class StatusResistantItem extends Item {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Add a designated slot to where the item can be active.
+	 * 
+	 * @param slot
+	 * 		Target slot name
+	 */
+	public void addActiveSlot(String slot) {
+		this.activeSlotList.add(slot);
 	}
 	
 	/**
