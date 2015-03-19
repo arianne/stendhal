@@ -37,6 +37,9 @@ public class StatusResistanceList {
 	
 	/**
 	 * Default constructor the container for status resistances.
+	 * 
+	 * @param entity
+	 * 		The entity that is using this list
 	 */
 	public StatusResistanceList(Entity entity) {
 		this.logger = Logger.getLogger(StatusResistanceList.class);
@@ -44,9 +47,8 @@ public class StatusResistanceList {
 		this.entityRef = new WeakReference<Entity>(entity);
 		this.resistances = new HashMap<StatusType, Double>();
 		
-		// FIXME: Change to ".isDebugEnabled" and ".debug"
-		if (logger.isInfoEnabled()) {
-			logger.info("Creating new empty ResistanceList");
+		if (logger.isDebugEnabled()) {
+			logger.debug("Creating new empty ResistanceList");
 		}
 	}
 	
@@ -59,9 +61,8 @@ public class StatusResistanceList {
 		this.entityRef = new WeakReference<Entity>(entity);
 		this.resistances = resistances;
 		
-		// FIXME: Change to ".isDebugEnabled" and ".debug"
-		if (logger.isInfoEnabled()) {
-			logger.info("Created new non-empty ResistanceList");
+		if (logger.isDebugEnabled()) {
+			logger.debug("Created new non-empty ResistanceList");
 		}
 	}
 	
@@ -78,17 +79,12 @@ public class StatusResistanceList {
 		if (previousValue != null) {
 			Double newValue = previousValue + value;
 			if ((newValue > 1.0) || (newValue < 0.0)) {
-				logger.error("Cannot set StatusType resistance to " + newValue.toString());
+				logger.error("Cannot set " + statusType.toString()
+						+ " resistance to " + newValue.toString());
 				return;
 			} else {
 				// Adjust existent resistance
 				resistances.put(statusType, newValue);
-				
-				// FIXME: Change to ".isDebugEnabled()" and ".debug()"
-				if (logger.isInfoEnabled()) {
-					logger.info("Adjusting value of " + statusType.toString() +
-							" to " + newValue.toString());
-				}
 			}
 		} else {
 			// Create new resistance
@@ -105,6 +101,11 @@ public class StatusResistanceList {
 		// reference completely.
 		if (resistances.get(statusType) <= 0.0) {
 			this.removeStatusResistance(statusType);
+		}
+		
+		if (logger.isInfoEnabled()) {
+			logger.info(statusType.toString() + " resistance value: "
+					+ this.getStatusResistance(statusType));
 		}
 	}
 	
@@ -140,10 +141,7 @@ public class StatusResistanceList {
 		
 		/* Resistances are not initialized. Returning 0 resistance value */
 		if (resistances == null) {
-			// FIXME: Change to ".isDebugEnabled()"
-			if (logger.isInfoEnabled()) {
-				logger.warn("resistances were not initialized.");
-			}
+			logger.warn("resistances list was not initialized.");
 			
 			return res;
 		}
@@ -186,8 +184,7 @@ public class StatusResistanceList {
 		
 		// FIXME: Change to ".isDebugEnabled()"
 		if (logger.isInfoEnabled()) {
-			logger.info("RPEntity ID " + entityRef.get().getID().toString() +
-					": Removed " + statusType.toString() + " resistance");
+			logger.info("Removed " + statusType.toString() + " resistance");
 		}
 	}
 	
