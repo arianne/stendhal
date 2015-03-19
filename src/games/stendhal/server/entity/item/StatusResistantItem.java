@@ -97,6 +97,43 @@ public class StatusResistantItem extends Item {
 	}
 	
 	/**
+	 * Adjust an entities resistance to a specific status type.
+	 * 
+	 * @param entity
+	 * 		Entity to receive resistance adjustment
+	 * @param statusType
+	 * 		Resisted status type
+	 * @param adjustValue
+	 * 		Amount to change resistance
+	 */
+	private void adjustStatusResistance(RPEntity entity, StatusType statusType,
+			Double adjustValue) {
+		String statusAttribute = "resist_" + statusType.toString().toLowerCase();
+		Double newResistance;
+		
+		// Add attribute if entity does not already have any resistance
+		if (!entity.has(statusAttribute)) {
+			newResistance = adjustValue;
+		} else {
+			Double currentResistance = entity.getDouble(statusAttribute);
+			newResistance = currentResistance + adjustValue;
+		}
+		
+		// Safeguarding. Don't need to worry about less than zero because
+		// resistance will be removed if value is zeor or less.
+		if (newResistance > 1.0) {
+			newResistance = 1.0;
+		}
+		
+		// Remove reference if entity is no longer resistant
+		if (newResistance <= 0.0) {
+			entity.remove(statusAttribute);
+		} else {
+			entity.put(statusAttribute, newResistance);
+		}
+	}
+	
+	/**
 	 * Add resistance values to the description.
 	 */
 	@Override
@@ -170,17 +207,12 @@ public class StatusResistantItem extends Item {
 	public boolean onEquipped(RPEntity owner, String slot) {
 		Boolean ret = super.onEquipped(owner, slot);
 		
-		for (String s : this.resistancesActiveSlotList) {
-			System.out.println("\n!!! ACTIVE SLOT: " + s + " !!!\n");
-		}
-		
 		// Get the owner for onUnequipped()
 		this.owner = owner;
 		this.currentSlot = slot;
 		
 		if (this.logger.isInfoEnabled()) {
-			this.logger.info(this.owner.getName()
-					+ ": Equipped StatusResistantItem (ID "
+			this.logger.info("Equipped StatusResistantItem (ID "
 					+ Integer.toString(this.getID().getObjectID()) + ") to "
 					+ this.currentSlot);
 		}
@@ -195,7 +227,7 @@ public class StatusResistantItem extends Item {
 				for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
 					statusType = entry.getKey();
 					value = entry.getValue();
-					owner.adjustStatusResistance(statusType, value);
+					adjustStatusResistance(owner, statusType, value);
 					
 					if (logger.isInfoEnabled()) {
 						logger.info(statusType.toString() + " adjustment: "
@@ -225,6 +257,10 @@ public class StatusResistantItem extends Item {
 		
 		if ((owner != null) && (currentSlot != null)) {
 			
+			if ((owner.has("resist_status"))) {
+					this.owner.remove("resist_status");
+			}
+			
 			if (this.logger.isInfoEnabled()) {
 				this.logger.info(this.owner.getName()
 						+ ": Unequipped StatusResistantItem (ID "
@@ -243,7 +279,7 @@ public class StatusResistantItem extends Item {
 					for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
 						statusType = entry.getKey();
 						value = entry.getValue() * -1;
-						owner.adjustStatusResistance(statusType, value);
+						adjustStatusResistance(owner, statusType, value);
 						
 						if (logger.isInfoEnabled()) {
 							logger.info(statusType.toString() + " adjustment: "
