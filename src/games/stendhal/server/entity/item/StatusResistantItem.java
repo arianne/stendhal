@@ -80,11 +80,7 @@ public class StatusResistantItem extends Item {
 		
 		if ((resistancesActiveSlotList != null)
 				&& !resistancesActiveSlotList.isEmpty()) {
-			for (String activeslot : resistancesActiveSlotList) {
-				if (slot.equals(activeslot)) {
-					return true;
-				}
-			}
+			return resistancesActiveSlotList.contains(slot);
 		}
 		
 		return false;
