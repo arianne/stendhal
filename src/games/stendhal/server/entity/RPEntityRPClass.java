@@ -79,6 +79,7 @@ public class RPEntityRPClass {
         entity.addAttribute("job_healer", Type.FLAG, Definition.VOLATILE);
 
         // Status effects
+        entity.addAttribute("resist_status", Type.MAP, Definition.VOLATILE);
         entity.addAttribute("choking", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_confuse", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
