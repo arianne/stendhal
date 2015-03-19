@@ -42,15 +42,15 @@
     </equipable>
   </item>
   
-  <item name="gm antitoxin ring">
+  <item name="antitoxin ring">
     <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
-    <description>You see a gm antitoxin ring. It is highly resistant to poison.</description>
+    <description>You see an antitoxin ring. It is highly resistant to poison.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="0.95" slots="finger;" />
+    <resistance type="poisoned" value="0.75" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
