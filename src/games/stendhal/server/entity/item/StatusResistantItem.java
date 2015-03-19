@@ -126,9 +126,6 @@ public class StatusResistantItem extends Item {
 			entity.remove(resistAttribute);
 		} else {
 			entity.put(resistAttribute, newResistance);
-			// DEBUG
-			System.out.println("\n!!! RESIST ATTRIBUTE: " + resistAttribute
-					+ " = " + entity.get(resistAttribute) + " !!!\n");
 		}
 	}
 	
@@ -275,7 +272,7 @@ public class StatusResistantItem extends Item {
 						value = entry.getValue() * -1;
 						adjustStatusResistance(owner, statusType, value);
 						
-						if (logger.isDebugEnabled()) {
+						if (logger.isInfoEnabled()) {
 							logger.debug(statusType.toString() + " adjustment: "
 									+ value.toString() + " (" + owner.getName()
 									+ ")");
