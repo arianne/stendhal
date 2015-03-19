@@ -82,8 +82,6 @@ public class StatusAttacker {
 		String resistAttribute = "resist_"
 				+ statusType.toString().toLowerCase();
 		
-		System.out.println("\n!!! RESIST ATTRIBUTE: " + resistAttribute + " !!!\n");
-		
 		// Create a temporary instance to adjust without affecting entity's
 		// built-in probability.
 		Double actualProbability = probability;
@@ -92,7 +90,7 @@ public class StatusAttacker {
 			Double probabilityAdjust = 1.0 - target.getDouble(resistAttribute);
 			
 			if (logger.isDebugEnabled()) {
-				logger.debug("Adjusting " + statusType.toString()
+				logger.info("Adjusting " + statusType.toString()
 						+ " status infliction resistance: "
 						+ Double.toString(probability) + " * "
 						+ Double.toString(probabilityAdjust) + " = "
