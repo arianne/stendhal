@@ -12,7 +12,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="0.25" />
+    <resistance type="poisoned" value="0.25" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -31,7 +31,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="0.5" />
+    <resistance type="poisoned" value="0.5" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -50,7 +50,7 @@
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="1.0" />
+    <resistance type="poisoned" value="1.0" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
