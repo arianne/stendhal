@@ -13,9 +13,15 @@ package games.stendhal.client.gui.settings;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 
 /**
  * Page for general settings.
@@ -32,6 +38,9 @@ class GeneralSettings {
 	
 	/** Container for the setting components. */
 	private final JComponent page;
+	
+	/** Default client dimensions */
+	private final Dimension defaultDimensions = new Dimension(908, 682);
 	
 	/**
 	 * Create new GeneralSettings.
@@ -61,6 +70,17 @@ class GeneralSettings {
 		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
+		
+		// Reset client window to default dimensions
+		JButton resetDimensions = new JButton("Reset Client Dimensions");
+		resetDimensions.setActionCommand("reset_dimensions");
+		resetDimensions.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				resetClientDimensions();
+			}
+		});
+		page.add(resetDimensions);
 	}
 		
 	/**
@@ -70,5 +90,15 @@ class GeneralSettings {
 	 */
 	JComponent getComponent() {
 		return page;
+	}
+	
+	/**
+	 * Resets the clients width and height to their default values.
+	 */
+	public void resetClientDimensions() {
+		// Hack
+		SettingsDialog settingsWindow = (SettingsDialog) this.getComponent().getParent().getParent().getParent().getParent().getParent();
+		JFrame mainWindow = (JFrame) settingsWindow.getParent();
+		mainWindow.setSize(defaultDimensions);
 	}
 }
