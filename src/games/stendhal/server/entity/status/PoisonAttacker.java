@@ -13,6 +13,8 @@ package games.stendhal.server.entity.status;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
@@ -24,6 +26,8 @@ import games.stendhal.server.entity.item.Item;
  * a status attacker for poison
  */
 public class PoisonAttacker extends StatusAttacker {
+	/** The logger instance */
+	private static final Logger logger = Logger.getLogger(PoisonAttacker.class);
 
 	/**
 	 * PoisonAttacker
@@ -38,6 +42,7 @@ public class PoisonAttacker extends StatusAttacker {
 	@Override
 	public void onAttackAttempt(RPEntity target, RPEntity attacker) {
 
+		// FIXME: antipoison is replaced with resist_<status>
 		// Antipoison attributes
 		double sumAll = 0.0;
 		List<Item> defenderEquipment = target.getDefenseItems();
@@ -63,8 +68,26 @@ public class PoisonAttacker extends StatusAttacker {
 			myProbability *= myAntipoison;
 		}
 
+		// Create a temporary instance to adjust without affecting entity's
+		// built-in probability.
+		Double actualProbability = myProbability;
+		
+		String resistAttribute = "resist_poisoned";
+		if (target.has(resistAttribute)) {
+			Double probabilityAdjust = 1.0 - target.getDouble(resistAttribute);
+			
+			if (logger.isDebugEnabled()) {
+				logger.debug("Adjusting POISONED status infliction resistance: "
+						+ Double.toString(myProbability) + " * "
+						+ Double.toString(probabilityAdjust) + " = "
+						+ Double.toString(myProbability * probabilityAdjust));
+			}
+			
+			actualProbability = myProbability * probabilityAdjust;
+		}
+		
 		final int roll = Rand.roll1D100();
-		if (roll <= myProbability) {
+		if (roll <= actualProbability) {
 			if (target.getStatusList().inflictStatus((Status) getStatus().clone(), attacker)) {
 				new GameEvent(attacker.getName(), "poison", target.getName()).raise();
 				target.sendPrivateText("You have been poisoned by " + Grammar.a_noun(attacker.getName()) + ".");
