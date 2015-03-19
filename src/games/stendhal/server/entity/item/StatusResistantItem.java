@@ -4,6 +4,8 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.status.StatusResistanceList;
 import games.stendhal.server.entity.status.StatusType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -15,11 +17,21 @@ import org.apache.log4j.Logger;
  * @author AntumDeluge
  */
 public class StatusResistantItem extends Item {
-	/** Logger instance */
+	
+	/** The logger instance */
 	final Logger logger;
 	
 	/** List of status types that this item is resistant to. */
 	private StatusResistanceList resistances;
+	
+	/** List of slots where this item is active when equpped. */
+	private List<String> activeSlotList; // Should java.util.Collection be used instead?
+	
+	/** Entity that equips the item. */
+	private RPEntity owner;
+	
+	/** Current slot where item is equipped. */
+	private String currentSlot;
 	
 	/**
 	 * Default constructor.
@@ -37,11 +49,46 @@ public class StatusResistantItem extends Item {
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		
+		// FIXME: Resistance should be adjusted for equipping entity if item
+		//        is constructed in active slot.
+		
+		// FIXME: If item is destroyed while in active slot resistance is not
+		//        adjusted.
+		
 		// Initialize logger
 		this.logger = Logger.getLogger(StatusResistantItem.class);
 		
 		// Initialize resistances
 		this.resistances = new StatusResistanceList(this);
+		
+		activeSlotList = new ArrayList<String>();
+		// DEBUG
+		activeSlotList.add("finger");
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("Created new StatusResistantItem");
+		}
+	}
+	
+	/**
+	 * Tells whether the item is active in the current slot
+	 * 
+	 * @param slot
+	 * 		The slot to where the item is being (un)equipped
+	 * @return
+	 * 		Active in slot
+	 */
+	private boolean activeSlot(String slot) {
+		
+		if ((activeSlotList != null) && !activeSlotList.isEmpty()) {
+			for (String activeslot : activeSlotList) {
+				if (slot.equals(activeslot)) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -112,12 +159,47 @@ public class StatusResistantItem extends Item {
 	 * @param slot
 	 * 		The slot where the item is equipped
 	 * @return
-	 * 		unknown, see note in super.onEquipped()
+	 * 		See Item.onEquipped()
 	 */
 	@Override
 	public boolean onEquipped(RPEntity owner, String slot) {
-		return super.onEquipped(owner, slot);
+		Boolean ret = super.onEquipped(owner, slot);
 		
+		// Get the owner for onUnequipped()
+		this.owner = owner;
+		this.currentSlot = slot;
+		
+		if (this.logger.isInfoEnabled()) {
+			this.logger.info(this.owner.getName()
+					+ ": Equipped StatusResistantItem (ID "
+					+ Integer.toString(this.getID().getObjectID()) + ") to "
+					+ this.currentSlot);
+		}
+		
+		Boolean toActiveSlot = this.activeSlot(slot);
+		
+		// Add the resistance if values can be activated in target slot
+		if (toActiveSlot) {
+			StatusType statusType;
+			Double value;
+			if ((resistances != null) && !resistances.isEmpty()) {
+				for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
+					statusType = entry.getKey();
+					value = entry.getValue();
+					owner.adjustStatusResistance(statusType, value);
+					
+					if (logger.isInfoEnabled()) {
+						logger.info(statusType.toString() + " adjustment: "
+								+ value.toString() + " (" + owner.getName()
+								+ ")");
+					}
+				}
+			}
+		} else {
+			ret = false;
+		}
+		
+		return ret;
 	}
 
 	/**
@@ -126,10 +208,47 @@ public class StatusResistantItem extends Item {
 	 * @param owner
 	 * 		Entity that is unequipping the item
 	 * @return
-	 * 		Unknown, see note in super.onUnequipped()
+	 * 		See Item.onUnequipped()
 	 */
-	public boolean onUnequipped(RPEntity owner) {
-		return super.onUnequipped();
+	@Override
+	public boolean onUnequipped() {
+		Boolean ret = super.onUnequipped();
+		
+		if ((owner != null) && (currentSlot != null)) {
+			
+			if (this.logger.isInfoEnabled()) {
+				this.logger.info(this.owner.getName()
+						+ ": Unequipped StatusResistantItem (ID "
+						+ Integer.toString(this.getID().getObjectID())
+						+ ") from " + this.currentSlot);
+			}
+			
+			Boolean fromActiveSlot = this.activeSlot(this.currentSlot);
+			
+			// Only adjust resistance values if item was previously active in
+			// an appropriate slot
+			if (fromActiveSlot) {
+				StatusType statusType;
+				Double value;
+				if ((resistances != null) && !resistances.isEmpty()) {
+					for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
+						statusType = entry.getKey();
+						value = entry.getValue() * -1;
+						owner.adjustStatusResistance(statusType, value);
+						
+						if (logger.isInfoEnabled()) {
+							logger.info(statusType.toString() + " adjustment: "
+									+ value.toString() + " (" + owner.getName()
+									+ ")");
+						}
+					}
+				} else {
+					ret = false;
+				}
+			}
+		}
+		
+		return ret;
 	}
 
 	/**
