@@ -2,11 +2,11 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
   
-  <!-- Anti-poison
+  <!-- Start Anti-poison -->
   
   <item name="medicinal ring">
     <type class="ring" subclass="medicinal_ring" tileid="-1"/>
-    <description>You see a medicinal ring. It could protect you from poisoning.</description>
+    <description>You see a medicinal ring. It may protect you from being poisoned.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
     </attributes>
@@ -44,13 +44,13 @@
   
   <item name="gm antitoxin ring">
     <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
-    <description>You see a gm antitoxin ring. You will be immune poisoning.</description>
+    <description>You see a gm antitoxin ring. It is highly resistant to poison.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
-    <resistance type="poisoned" value="1.0" slots="finger;" />
+    <resistance type="poisoned" value="0.95" slots="finger;" />
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -61,7 +61,7 @@
     </equipable>
   </item>
   
-  End Anti-poison -->
+  <!-- End Anti-poison -->
   
   <item name="wedding ring">
     <type class="ring" subclass="wedding" tileid="-1"/>
