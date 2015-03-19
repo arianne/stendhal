@@ -42,31 +42,7 @@ public class PoisonAttacker extends StatusAttacker {
 	@Override
 	public void onAttackAttempt(RPEntity target, RPEntity attacker) {
 
-		// FIXME: antipoison is replaced with resist_<status>
-		// Antipoison attributes
-		double sumAll = 0.0;
-		List<Item> defenderEquipment = target.getDefenseItems();
-		if (target.hasRing()) {
-			defenderEquipment.add(target.getRing());
-		}
-
-		for (final Item equipmentItem : defenderEquipment) {
-			if (equipmentItem.has("antipoison")) {
-				sumAll += equipmentItem.getDouble("antipoison");
-			}
-		}
-
-		// Prevent antipoison attribute from surpassing 100%
-		if (sumAll > 1) {
-			sumAll = 1;
-		}
-
 		double myProbability = getProbability();
-		if (sumAll > 0) {
-			// invert the value for multiplying
-			double myAntipoison = (1 - sumAll);
-			myProbability *= myAntipoison;
-		}
 
 		// Create a temporary instance to adjust without affecting entity's
 		// built-in probability.
@@ -76,8 +52,8 @@ public class PoisonAttacker extends StatusAttacker {
 		if (target.has(resistAttribute)) {
 			Double probabilityAdjust = 1.0 - target.getDouble(resistAttribute);
 			
-			if (logger.isDebugEnabled()) {
-				logger.debug("Adjusting POISONED status infliction resistance: "
+			if (logger.isInfoEnabled()) {
+				logger.info("Adjusting POISONED status infliction resistance: "
 						+ Double.toString(myProbability) + " * "
 						+ Double.toString(probabilityAdjust) + " = "
 						+ Double.toString(myProbability * probabilityAdjust));
