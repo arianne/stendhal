@@ -52,7 +52,7 @@ public class PoisonAttacker extends StatusAttacker {
 		if (target.has(resistAttribute)) {
 			Double probabilityAdjust = 1.0 - target.getDouble(resistAttribute);
 			
-			if (logger.isInfoEnabled()) {
+			if (logger.isDebugEnabled()) {
 				logger.info("Adjusting POISONED status infliction resistance: "
 						+ Double.toString(myProbability) + " * "
 						+ Double.toString(probabilityAdjust) + " = "
