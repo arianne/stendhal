@@ -79,7 +79,6 @@ public class RPEntityRPClass {
         entity.addAttribute("job_healer", Type.FLAG, Definition.VOLATILE);
 
         // Status effects
-        entity.addAttribute("resist_status", Type.MAP, Definition.VOLATILE);
         entity.addAttribute("choking", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_confuse", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
@@ -87,6 +86,14 @@ public class RPEntityRPClass {
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_zombie", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_heavy", Type.SHORT, Definition.VOLATILE);
+        
+        //Status effects resistances
+        entity.addAttribute("resist_confused", Type.FLOAT, Definition.VOLATILE);
+        entity.addAttribute("resist_drunk", Type.FLOAT, Definition.VOLATILE);
+        entity.addAttribute("resist_heavy", Type.FLOAT, Definition.VOLATILE);
+        entity.addAttribute("resist_poisoned", Type.FLOAT, Definition.VOLATILE);
+        entity.addAttribute("resist_shocked", Type.FLOAT, Definition.VOLATILE);
+        entity.addAttribute("resist_zombie", Type.FLOAT, Definition.VOLATILE);
 
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);
