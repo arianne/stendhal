@@ -126,7 +126,7 @@ public class MeetMonogenes extends AbstractQuest {
 			"map", null, ConversationStates.ATTENDING, "Caption\n"
 			+ "1 Townhall, Mayor lives here,   2 Library,   3 Bank,   4 Bakery,\n"
 			+ "5 Storage,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
-        	+ "8 Temple, ilisa,   9 Dangerous Dungeon,\n"
+        	+ "8 Temple, Ilisa,   9 Dangerous Dungeon,\n"
         	+ "10 Public Chest, \n"
         	+ "A Semos Village,   B Northern Plains and Mine, \n"
         	+ "C Very long path to Ados, \n"

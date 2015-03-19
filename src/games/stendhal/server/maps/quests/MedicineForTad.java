@@ -199,33 +199,31 @@ public class MedicineForTad extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
+				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next.",
 				new MultipleActions(processStep));
 
 		// player said hi with flask on ground then picked it up and said flask
 		npc.add(ConversationStates.ATTENDING, "flask",
                 new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("flask")),
                 ConversationStates.ATTENDING,
-                "Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
+                "Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next.",
                 new MultipleActions(processStep));
 
 
-		// remind the player to take the flask to ilisa.
-		// note Ilisa is spelled with a small i here because I
-		// and l cannot be told apart in game
+		// remind the player to take the flask to Ilisa.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
 						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.",
+				"Ok, you got the flask! Now, I need you to take it to #Ilisa... she'll know what to do next.",
 				null);
 
 		// another reminder incase player says task again
         npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
                 new QuestInStateCondition(QUEST_SLOT, "ilisa"),
                 ConversationStates.ATTENDING,
-                "I need you to take a flask to #ilisa... she'll know what to do next.",
+                "I need you to take a flask to #Ilisa... she'll know what to do next.",
                 null);
 
 		npc.add(ConversationStates.ATTENDING, "ilisa", null,
@@ -310,7 +308,7 @@ public class MedicineForTad extends AbstractQuest {
         npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
                 new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
                 ConversationStates.ATTENDING,
-                "*cough* I hope #ilisa hurries with my medicine...",
+                "*cough* I hope #Ilisa hurries with my medicine...",
                 null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
@@ -322,7 +320,7 @@ public class MedicineForTad extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "potion")),
-				ConversationStates.ATTENDING, "Thanks! I will go talk with #ilisa as soon as possible.",
+				ConversationStates.ATTENDING, "Thanks! I will go talk with #Ilisa as soon as possible.",
 				new MultipleActions(processStep));
 	
 		/*

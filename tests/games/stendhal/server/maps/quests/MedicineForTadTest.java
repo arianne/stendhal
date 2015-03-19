@@ -162,7 +162,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
 		assertEquals(
-				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #ilisa... she'll know what to do next.",
+				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next.",
 				getReply(tad));
 		assertTrue(player.hasQuest(QUEST_SLOT));
 		assertEquals("ilisa", player.getQuest(QUEST_SLOT));
@@ -212,7 +212,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("potion", player.getQuest(QUEST_SLOT));
 		
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
-		assertEquals("Thanks! I will go talk with #ilisa as soon as possible.", getReply(tad));
+		assertEquals("Thanks! I will go talk with #Ilisa as soon as possible.", getReply(tad));
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		
 		// quest complete.  ketteh no longer reminds player
