@@ -62,6 +62,8 @@ The following files are released and can be distributed under the terms and cond
         butterfly
     • tiled/tileset/building/
         gnome_homes
+    • tiled/tileset/building/stairs/
+        wooden_ns
     • tiled/tileset/furniture/curtain/
         lt_blue_drapes      peach_drapes        purple_drapes
         red_drapes          royal_blue_drapes
