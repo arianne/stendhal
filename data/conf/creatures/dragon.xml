@@ -139,7 +139,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
-    <corpse name="dragon_3x3" width="3" height="3"/>
+    <corpse name="dragon_3x2" harmless="dragon_3x2" width="3" height="2"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,2]" probability="50.0"/>
