@@ -214,7 +214,7 @@ object/suspension_bridge.png 12
 object/tan_tent.png 2
 del*/object/trellis_large.png 1
 object/trellis_small.png 3
-ant /plant/cactus_2.png 3
+ant*/plant/cactus_2.png 3
 ant /plant/lily_pads.png 3
 plant/snowygrass.png 1
 plant/star_shaped_plants.png 6
