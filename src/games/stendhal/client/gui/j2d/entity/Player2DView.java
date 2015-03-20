@@ -17,8 +17,10 @@ import games.stendhal.client.OutfitStore;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.OutfitColor;
+import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -27,6 +29,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Version;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.util.List;
@@ -43,23 +46,22 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	 * The logger.
 	 */
 	private static final Logger logger = Logger.getLogger(Player2DView.class);
+	/** Color used for players who have been zombified. */
+	private static final Color ZOMBIE_COLOR = new Color(0x083000);
 
 	/**
 	 * Sprite representing away.
 	 */
-	private static Sprite awaySprite;
+	private static final Sprite awaySprite;
 	
 	/**
 	 * Sprite representing grumpy.
 	 */
-	private static Sprite grumpySprite;
-	
-	private boolean ignored = false;
-	
+	private static final Sprite grumpySprite;
 	/**
 	 * Sprite representing recently killing of other player.
 	 */
-	private static Sprite skullSprite;
+	private static final Sprite skullSprite;
 
 	static {
 		final SpriteStore store = SpriteStore.get();
@@ -70,6 +72,8 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		awaySprite = store.getAnimatedSprite(gotAwaySprite, 2000);
 		grumpySprite = store.getAnimatedSprite(gotGrumpySprite, 2000);
 	}
+
+	private boolean ignored = false;
 	
 	/**
 	 * Create a new Player2DView.
@@ -141,8 +145,12 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		try {
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
 			ZoneInfo info = ZoneInfo.get();
-			return store.getAdjustedOutfit(entity.getOutfit(), color,
+			Sprite outfit = store.getAdjustedOutfit(entity.getOutfit(), color,
 					info.getZoneColor(), info.getColorMethod());
+			if (entity.hasStatus(StatusID.ZOMBIE)) {
+				outfit = SpriteStore.get().modifySprite(outfit, ZOMBIE_COLOR, Blend.TrueColor, null);
+			}
+			return outfit;
 		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
