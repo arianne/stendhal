@@ -6,6 +6,7 @@
 *world*
 - A new fish swimming along the coast in Ados City
 - Different "elf" head for players and NPCs
+- New corpse for bone dragon
 
 *client*
 - Emote character map available by passing -Dcharmap.emotes to VM
