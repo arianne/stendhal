@@ -127,9 +127,10 @@ The following files are released into the public domain and can be distributed u
             http://openclipart.org/detail/35905/heart-by-anonymous-35905
             http://openclipart.org/detail/190320/1kg-weight-by-migranerp-190320
     • tiled/tileset/ground/
-        ground_3
+        flame               ground_3
         • Sources:
             http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+            http://opengameart.org/content/simple-animate-fire
     • tiled/tileset/item/corpse/
         snake_skeleton
         • Sources:

@@ -529,9 +529,14 @@ tileset/furniture/sink/jacuzzi_dark_side_on.png 26  26:32:20
 tileset/furniture/sink/jacuzzi_dark_side_on.png 30  30:18:24
 tileset/furniture/sink/jacuzzi_dark_side_on.png 31  31:19:25
 tileset/furniture/sink/jacuzzi_dark_side_on.png 32  32:20:26
+
 # more animated flames
+tileset/ground/fire/flame.png * 0:1:2
+tileset/ground/fire/flame.png * 1:2:0
+tileset/ground/fire/flame.png * 2:0:1
 tileset/ground/fire/flames.png * 0:1
 tileset/ground/fire/flames.png * 1:0
+
 # whirlies for wading in square whirlpool
 tileset/ground/water/whirlpool.png  * 4:5:6:7
 tileset/ground/water/whirlpool.png  * 5:6:7:4
