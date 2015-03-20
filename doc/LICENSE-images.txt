@@ -20,7 +20,7 @@ The following files are released under the terms and conditions of the GPL (see 
   
   Copyright © 2012-2013 Johann C:
     Sources:
-      http://opengameart.org/content/lpc-a-shootem-up-complete-graphic-kit (GPLv3)
+      http://opengameart.org/content/lpc-a-shootem-up-complete-graphic-kit (see doc/licenses/GPL-3.txt)
       http://poufpoufproduction.fr/
     • tiled/tileset/plant/
         cactus_2            mushroom3
@@ -29,6 +29,11 @@ The following files are released under the terms and conditions of the GPL (see 
     • tiled/tileset/object/rock/
         rocks               rock_face           pillars_stone
   
+  Copyright © Tuomo Untinen:
+    Source: http://opengameart.org/content/lpc-wooden-ship-tiles (see doc/licenses/GPL-3.txt)
+    • tiled/structure/boat/
+        ship-1
+    
 
 The following files are released and can be distributed under the terms and conditions of the BSD-style, MIT-style, or the Creative Commons Attribution 3.0 (or later) licenses provided (See Licenses/BSD.txt, Licenses/MIT.txt, and Licenses/CC-BY-3.0.txt):
 
