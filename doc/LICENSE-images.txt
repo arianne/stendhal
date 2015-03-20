@@ -37,7 +37,7 @@ The following files are released under the terms and conditions of the GPL (see 
 
 The following files are released and can be distributed under the terms and conditions of the BSD-style, MIT-style, or the Creative Commons Attribution 3.0 (or later) licenses provided (See Licenses/BSD.txt, Licenses/MIT.txt, and Licenses/CC-BY-3.0.txt):
 
-  Copyright © 2013 Jordan Irwin a.k.a. AntumDeluge:
+  Copyright © 2013-2015 Jordan Irwin a.k.a. AntumDeluge:
     • data/gui/
         panel_tile_aqua_001
     • data/sprites/corpse/
@@ -77,6 +77,8 @@ The following files are released and can be distributed under the terms and cond
         blue_crystal        gold_crystal        green_crystal2
         green_crystal3      huge_boulder        icy_crystal
         purple_crystal      red_crystal         red_crystal_small
+    • tiled/tileset/item/weapon/
+        cannon
     • tiled/tileset/object/
         rotating_orbs
     • tiled/tileset/terrain/ground/
