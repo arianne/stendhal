@@ -49,11 +49,13 @@ public class PublicChatAction implements ActionListener {
 	 * Apply random mutating effects to the text for slurry drunken speech.
 	 * 
 	 * @param text original text
-	 * @param count number of modifications
+	 * @param amount amount of modifications
 	 * @return modified text.
 	 */
-	private String applyDrunkEffect(String text, int count) {
-		while (count > 1) {
+	private String applyDrunkEffect(String text, int amount) {
+		// Make the effect relatively constant for different length sentences
+		amount = amount * (20 + text.length()) / 20;
+		while (amount > 1) {
 			switch (Rand.rand(3)) {
 			case 0:
 				text = swapLetters(text);
@@ -64,7 +66,7 @@ public class PublicChatAction implements ActionListener {
 			case 2:
 				text = duplicateLetter(text);
 			}
-			count--;
+			amount--;
 		}
 		/*
 		 * Place *hicks* always last, so that it does not get mangled. It is
