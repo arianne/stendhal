@@ -175,6 +175,7 @@ public class OutfitStore {
 	 * 
 	 * @param index
 	 *            The resource index.
+	 * @param color Skin color
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
@@ -260,6 +261,7 @@ public class OutfitStore {
 	 * 
 	 * @param index
 	 *            The resource index.
+	 * @param color Eye color
 	 * @return The sprite, or <code>null</code>
 	 */
 	public Sprite getEyesSprite(final int index, OutfitColor color) {
@@ -298,6 +300,7 @@ public class OutfitStore {
 	 * 
 	 * @param index
 	 *            The resource index.
+	 * @param color Skin color
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
