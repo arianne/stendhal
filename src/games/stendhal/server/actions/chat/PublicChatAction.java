@@ -54,17 +54,18 @@ public class PublicChatAction implements ActionListener {
 	 */
 	private String applyDrunkEffect(String text, int amount) {
 		// Make the effect relatively constant for different length sentences
-		amount = amount * (20 + text.length()) / 20;
+		amount = Math.max(amount / 2 + 1, amount * (20 + text.length()) / 40);
+		StringBuilder b = new StringBuilder(text);
 		while (amount > 1) {
 			switch (Rand.rand(3)) {
 			case 0:
-				text = swapLetters(text);
+				swapLetters(b);
 				break;
 			case 1:
-				text = removeLetter(text);
+				removeLetter(b);
 				break;
 			case 2:
-				text = duplicateLetter(text);
+				duplicateLetter(b);
 			}
 			amount--;
 		}
@@ -73,67 +74,47 @@ public class PublicChatAction implements ActionListener {
 		 * also always included, so that players notice the slurred speech
 		 * is intentional.
 		 */
-		return text + " *hicks*";
+		b.append(" *hicks*");
+		return b.toString();
 	}
 	
 	/**
 	 * Swap two adjacent letters at a random position.
 	 * 
 	 * @param text original text
-	 * @return modified text
 	 */
-	private String swapLetters(String text) {
+	private void swapLetters(StringBuilder text) {
 		if (text.length() < 2) {
-			return text;
+			return;
 		}
-		int low = Rand.rand(text.length() - 1);
-		int high = low + 1;
-
-		StringBuilder b = new StringBuilder();
-		if (low > 0) {
-			b.append(text.substring(0, low));
-		}
-		b.append(text.charAt(high));
-		b.append(text.charAt(low));
-		b.append(text.substring(high + 1));
-		return b.toString();
+		int index = Rand.rand(text.length() - 1);
+		char chr = text.charAt(index);
+		text.deleteCharAt(index);
+		text.insert(index + 1, chr);
 	}
 	
 	/**
-	 * Remove random letter from a string, if the string has at least length 2.
+	 * Remove random letter from a StringBuilder, if it has at least length 2.
 	 * 
 	 * @param text original text
-	 * @return modified text
 	 */
-	private String removeLetter(String text) {
+	private void removeLetter(StringBuilder text) {
 		if (text.length() < 2) {
-			return text;
+			return;
 		}
-		int index = Rand.rand(text.length());
-		if (index == 1) {
-			return text.substring(index);
-		}
-		return text.substring(0, index) + text.substring(index + 1);
+		text.deleteCharAt(Rand.rand(text.length()));
 	}
 	
 	/**
-	 * Duplicate a random letter in a string.
+	 * Duplicate a random letter in a StringBuilder.
 	 * 
 	 * @param text original text
-	 * @return modified text
 	 */
-	private String duplicateLetter(String text) {
+	private void duplicateLetter(StringBuilder text) {
 		if (text.length() < 1) {
-			return text;
+			return;
 		}
 		int index = Rand.rand(text.length());
-		StringBuilder b = new StringBuilder();
-		if (index > 0) {
-			b.append(text.substring(0, index));
-		}
-		b.append(text.charAt(index));
-		b.append(text.substring(index));
-		
-		return b.toString();
+		text.insert(index, text.charAt(index));
 	}
 }
