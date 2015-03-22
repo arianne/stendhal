@@ -11,9 +11,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
-import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +22,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 
 /**
  * Page for general settings.
@@ -38,9 +38,6 @@ class GeneralSettings {
 	
 	/** Container for the setting components. */
 	private final JComponent page;
-	
-	/** Default client dimensions */
-	private final Dimension defaultDimensions = new Dimension(908, 682);
 	
 	/**
 	 * Create new GeneralSettings.
@@ -96,9 +93,8 @@ class GeneralSettings {
 	 * Resets the clients width and height to their default values.
 	 */
 	public void resetClientDimensions() {
-		// Hack
-		SettingsDialog settingsWindow = (SettingsDialog) this.getComponent().getParent().getParent().getParent().getParent().getParent();
-		JFrame mainWindow = (JFrame) settingsWindow.getParent();
-		mainWindow.setSize(defaultDimensions);
+		j2DClient clientFrame = j2DClient.get();
+		Frame mainFrame = clientFrame.getMainFrame();
+		mainFrame.setSize(clientFrame.getFrameDefaultSize());
 	}
 }
