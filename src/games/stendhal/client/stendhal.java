@@ -27,6 +27,8 @@ import games.stendhal.common.Version;
 import java.awt.Dimension;
 import java.io.File;
 import java.security.AccessControlException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.SwingUtilities;
@@ -75,9 +77,14 @@ public final class stendhal {
 	}
 
 	public static final String VERSION = Version.getVersion();
-
-	private static final Dimension screenSize = new Dimension(640, 480);
-
+	
+	/** Display sizes optimized for different screen resolutions */
+	private static final List<Dimension> displaySizes = new ArrayList<Dimension>(3);
+	public static final Integer SIZE_INDEX = 0;
+	public static final Integer SIZE_INDEX_LARGE = 1;
+	public static final Integer SIZE_INDEX_WIDE = 2;
+	public static final Integer DISPLAY_SIZE_INDEX = SIZE_INDEX;
+	
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
@@ -139,7 +146,30 @@ public final class stendhal {
 	 * @return screen dimensions
 	 */
 	public static Dimension getScreenSize() {
-		return screenSize;
+		Integer size_index = DISPLAY_SIZE_INDEX;
+		try {
+			size_index = Integer.parseInt(System.getProperty("display.index"));
+		} catch (NumberFormatException e) {
+			logger.warn("display.index value not set. Using default display size");
+		}
+		try {
+			return displaySizes.get(size_index);
+		} catch (IndexOutOfBoundsException e) {
+			logger.warn("display.index " + Integer.toString(size_index) + " index out of bounds. Using default display size.");
+		}
+		
+		return displaySizes.get(DISPLAY_SIZE_INDEX);
+	}
+	
+	/**
+	 * Initialize list of dimensions that can be used for the clients
+	 * display area.
+	 */
+	private static void initUsableDisplaySizes() {
+		// Optimized display dimensions for display resolutions
+		displaySizes.add(new Dimension(640, 480)); // Smaller 4:3 (1024x768 and smaller)
+		displaySizes.add(new Dimension(800, 600)); // Larger 4:3 (1280x1024)
+		displaySizes.add(new Dimension(864, 486)); // Larger 16:9 (1366x768 and larger)
 	}
 
 	/**
@@ -225,6 +255,7 @@ public final class stendhal {
 	public static void main(final String[] args) {
 		startLogSystem();
 		MarauroaUncaughtExceptionHandler.setup(false);
+		initUsableDisplaySizes();
 		new Startup(args);
 	}
 	
