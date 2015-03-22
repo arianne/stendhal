@@ -125,6 +125,7 @@ public class j2DClient implements UserInterface {
 
 	/** Main window. */
 	private JFrame frame;
+	private final Dimension frameDefaultSize;
 	private QuitDialog quitDialog;
 
 	private GameScreen screen;
@@ -225,6 +226,7 @@ public class j2DClient implements UserInterface {
 	public j2DClient() {
 		setDefault(this);
 		screenController = null;
+		frameDefaultSize = null;
 	}
 
 	/**
@@ -538,7 +540,13 @@ public class j2DClient implements UserInterface {
 		Dimension current = frame.getSize();
 		frame.setSize(Math.min(current.width, maxBounds.width),
 				Math.min(current.height, maxBounds.height));
-
+		
+		/*
+		 * Used by settings dialog to restore the client's dimensions back to
+		 * the original width and height.
+		 */
+		frameDefaultSize = frame.getSize();
+		
 		/*
 		 * Needed for small screens; Sometimes the divider is placed
 		 * incorrectly unless we explicitly set it. Try to fit it on the
@@ -1125,6 +1133,17 @@ public class j2DClient implements UserInterface {
 	 */
 	public Frame getMainFrame() {
 		return frame;
+	}
+	
+	/**
+	 * Gets the default width and height of the client defined upon
+	 * frame (JFrame) construction.
+	 * 
+	 * @return
+	 *         Default dimension of client
+	 */
+	public Dimension getFrameDefaultSize() {
+		return frameDefaultSize;
 	}
 
 	/**
