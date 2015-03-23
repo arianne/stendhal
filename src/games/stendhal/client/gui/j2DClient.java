@@ -1145,6 +1145,26 @@ public class j2DClient implements UserInterface {
 	public Dimension getFrameDefaultSize() {
 		return frameDefaultSize;
 	}
+	
+	public Boolean restoreLastSessionSize() {
+		Boolean ret = false;
+		
+		// Get instance of WtWindowManager
+		WtWindowManager windowManager = WtWindowManager.getInstance();
+		
+		/*
+		 * Now restore dimensions from last session.
+		 */
+		Integer uiWidth = windowManager.getPropertyInt("ui.dimensions.width", frameDefaultSize.width);
+		Integer uiHeight = windowManager.getPropertyInt("ui.dimensions.height", frameDefaultSize.height);
+		if ((uiWidth != null) && uiHeight != null) {
+			frame.setSize(uiWidth, uiHeight);
+			ret = true;
+		}
+		
+		return ret;
+		
+	}
 
 	/**
 	 * Set the input chat line text.
