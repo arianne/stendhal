@@ -590,6 +590,11 @@ public class j2DClient implements UserInterface {
 				chatText.getPlayerChatText().requestFocus();
 			}
 		});
+		
+		/* Restore client's window dimensions from config (set by previous
+		 * session) if available. Call after ???.
+		 */
+		restoreLastSessionSize();
 	} // constructor
 
 	/**
@@ -1147,6 +1152,12 @@ public class j2DClient implements UserInterface {
 		return frameDefaultSize;
 	}
 	
+	/**
+	 * Sets the window's width and height from config.
+	 * 
+	 * @return
+	 *       Values for width and height are available from previous session.
+	 */
 	public Boolean restoreLastSessionSize() {
 		Boolean ret = false;
 		
@@ -1159,6 +1170,10 @@ public class j2DClient implements UserInterface {
 		Integer uiWidth = windowManager.getPropertyInt("ui.dimensions.width", frameDefaultSize.width);
 		Integer uiHeight = windowManager.getPropertyInt("ui.dimensions.height", frameDefaultSize.height);
 		if ((uiWidth != null) && uiHeight != null) {
+			if (logger.isDebugEnabled()) {
+				logger.debug("Setting window size from config.");
+			}
+			
 			frame.setSize(uiWidth, uiHeight);
 			ret = true;
 		}
