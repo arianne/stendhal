@@ -22,6 +22,7 @@
 			<element name="value" type="Q1:attribute"></element>
 			<element name="damage" type="Q1:damage" minOccurs="0"></element>
 			<element name="susceptibility" type="Q1:susceptibility" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="resistance" type="Q1:resistance" minOccurs="0" maxOccurs="unbounded" />
 			<element name="equipable" type="Q1:equipable"></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
@@ -37,7 +38,8 @@
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>
 	
-	<complexType name="behavior">
+	<complexType name="behav    <resistance type="poisoned" value="0.25" slots="finger;" />
+	ior">
 		<sequence>
 			<element name="parameter" type="Q1:pair" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
@@ -46,7 +48,8 @@
 	
 	<complexType name="pair">
 		<attribute name="name" type="string"/>
-		<attribute name="value" type="string"/>
+		<attribute name="val    <resistance type="poisoned" value="0.25" slots="finger;" />
+		ue" type="string"/>
 	</complexType>
 
 	<complexType name="attributes">
