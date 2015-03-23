@@ -80,6 +80,7 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 		super(CITY_ZONE_NAME, "Jef");
 	}
 
+	@Override
 	@Before
 	public void setUp() {
 		final StendhalRPZone cityZone = new StendhalRPZone(CITY_ZONE_NAME);

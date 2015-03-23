@@ -83,6 +83,7 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_SEMOS, NPC_RUDOLPH);
 	}
 
+	@Override
 	@Before
 	public void setUp() {
 		final StendhalRPZone cityZone = new StendhalRPZone(ZONE_SEMOS);

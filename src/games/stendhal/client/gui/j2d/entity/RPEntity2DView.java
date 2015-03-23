@@ -71,7 +71,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite eatingSprite;
 	private static final Sprite poisonedSprite;
 	private static final Sprite shockedSprite;
-	private static final Sprite zombieSprite;
 	private static final Sprite heavySprite;
 	
 	/** Colors of the ring/circle around the player while attacking or being attacked. */
@@ -141,7 +140,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		poisonedSprite = st.getAnimatedSprite(st.getStatusSprite("poison.png"), 100);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 		shockedSprite = st.getAnimatedSprite(st.getStatusSprite("shock.png"), 38, 200);
-		zombieSprite = st.getStatusSprite("zombie.png");
 		heavySprite = st.getAnimatedSprite(st.getStatusSprite("heavy.png"), 200);
 	}
 
@@ -187,10 +185,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		/* shock status */
 		addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
 				HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
-
-		/* zombie status */
-		addIconManager(new StatusIconManager(Player.PROP_ZOMBIE, zombieSprite,
-				HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.ZOMBIE));
 
 		/* heavy status */
 		StatusIconManager heavyManager = new StatusIconManager(Player.PROP_HEAVY,
@@ -703,6 +697,19 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			}
 		}
 	}
+	
+	/**
+	 * Check if icon states have changed.
+	 * 
+	 * @param property the changed property 
+	 */
+	private void checkIcons(Object property) {
+		for (AbstractStatusIconManager handler : iconManagers) {
+			if (handler.check(property, entity)) {
+				iconsChanged = true;
+			}
+		}
+	}
 
 	//
 	// Entity2DView
@@ -873,11 +880,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			visibilityChanged = true;
 		} else if (property == RPEntity.PROP_GHOSTMODE) {
 			visibilityChanged = true;
-		} else if (property == RPEntity.PROP_OUTFIT) {
+		} else if (property == RPEntity.PROP_OUTFIT
+				|| property == RPEntity.PROP_ZOMBIE) {
 			representationChanged = true;
-		} else if (property == IEntity.PROP_TITLE) {
-			titleChanged = true;
-		} else if (property == RPEntity.PROP_TITLE_TYPE) {
+		} else if (property == IEntity.PROP_TITLE
+				|| property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;
 		} else if (property == RPEntity.PROP_TEXT_INDICATORS) {
 			onFloatersChanged();
@@ -902,7 +909,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			}
 		}
 		
-		checkIcons();
+		checkIcons(property);
 	}
 
 	/**
