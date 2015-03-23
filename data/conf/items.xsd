@@ -38,8 +38,7 @@
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>
 	
-	<complexType name="behav    <resistance type="poisoned" value="0.25" slots="finger;" />
-	ior">
+	<complexType name="behavior">
 		<sequence>
 			<element name="parameter" type="Q1:pair" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
@@ -48,8 +47,7 @@
 	
 	<complexType name="pair">
 		<attribute name="name" type="string"/>
-		<attribute name="val    <resistance type="poisoned" value="0.25" slots="finger;" />
-		ue" type="string"/>
+		<attribute name="value" type="string"/>
 	</complexType>
 
 	<complexType name="attributes">
