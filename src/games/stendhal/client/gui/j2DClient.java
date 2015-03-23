@@ -594,7 +594,7 @@ public class j2DClient implements UserInterface {
 		/* Restore client's window dimensions from config (set by previous
 		 * session) if available. Call after ???.
 		 */
-		restoreLastSessionSize();
+		restorePrevSessionSize();
 	} // constructor
 
 	/**
@@ -1158,9 +1158,7 @@ public class j2DClient implements UserInterface {
 	 * @return
 	 *       Values for width and height are available from previous session.
 	 */
-	public Boolean restoreLastSessionSize() {
-		Boolean ret = false;
-		
+	public void restorePrevSessionSize() {
 		// Get instance of WtWindowManager
 		WtWindowManager windowManager = WtWindowManager.getInstance();
 		
@@ -1175,11 +1173,7 @@ public class j2DClient implements UserInterface {
 			}
 			
 			frame.setSize(uiWidth, uiHeight);
-			ret = true;
 		}
-		
-		return ret;
-		
 	}
 
 	/**
