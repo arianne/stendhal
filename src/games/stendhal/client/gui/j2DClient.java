@@ -543,7 +543,8 @@ public class j2DClient implements UserInterface {
 		
 		/*
 		 * Used by settings dialog to restore the client's dimensions back to
-		 * the original width and height.
+		 * the original width and height. Needs to be called after
+		 * frame.setSize().
 		 */
 		frameDefaultSize = frame.getSize();
 		
