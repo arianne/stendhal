@@ -911,9 +911,19 @@ public class j2DClient implements UserInterface {
 	 */
 	void shutdown() {
 		gameRunning = false;
+		
+		WtWindowManager windowManager = WtWindowManager.getInstance();
+		
+		/* Add the client's width and height to config for restoring in next
+		 * session.
+		 */
+		windowManager.setProperty("ui.dimensions.width",
+				Integer.toString(frame.getSize().width));
+		windowManager.setProperty("ui.dimensions.height",
+				Integer.toString(frame.getSize().height));
 
 		// try to save the window configuration
-		WtWindowManager.getInstance().save();
+		windowManager.save();
 	}
 
 	//
