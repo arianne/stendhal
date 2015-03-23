@@ -243,7 +243,7 @@ public class j2DClient implements UserInterface {
 		this.userContext = userContext;
 		setDefault(this);
 
-		final Dimension screenSize = stendhal.getScreenSize();
+		final Dimension displaySize = stendhal.getDisplaySize();
 
 		/*
 		 * Add a layered pane for the game area, so that we can have
@@ -350,7 +350,7 @@ public class j2DClient implements UserInterface {
 
 		// Set maximum size to prevent the entry requesting massive widths, but
 		// force expand if there's extra space anyway
-		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
+		chatText.getPlayerChatText().setMaximumSize(new Dimension(displaySize.width, Integer.MAX_VALUE));
 		// Container for chat entry and character map
 		JComponent chatEntryBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		chatEntryBox.add(chatText.getPlayerChatText(), SLayout.EXPAND_X);
@@ -414,8 +414,8 @@ public class j2DClient implements UserInterface {
 					SwingUtilities.invokeLater(new Runnable() {
 						@Override
 						public void run() {
-							double hScale = screen.getWidth() / (double) screenSize.width;
-							int preferredLocation = (int) (hScale * screenSize.height);
+							double hScale = screen.getWidth() / (double) displaySize.width;
+							int preferredLocation = (int) (hScale * displaySize.height);
 							splitPane.setDividerLocation(preferredLocation);
 						}
 					});
@@ -452,7 +452,7 @@ public class j2DClient implements UserInterface {
 		/** Used as a workaround for BasicSplitPaneUI bugs */
 		final int divWidth = splitPane.getDividerSize();
 		
-		pane.setPreferredSize(new Dimension(screenSize.width + divWidth, screenSize.height));
+		pane.setPreferredSize(new Dimension(displaySize.width + divWidth, displaySize.height));
 		horizSplit.setBorder(null);
 		
 		windowContent.add(horizSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
@@ -476,16 +476,16 @@ public class j2DClient implements UserInterface {
 					pane.setMaximumSize(null);
 				} else {
 					// Set the limits
-					splitPane.setMaximumSize(new Dimension(screenSize.width + divWidth, Integer.MAX_VALUE));
-					pane.setMaximumSize(screenSize);
+					splitPane.setMaximumSize(new Dimension(displaySize.width + divWidth, Integer.MAX_VALUE));
+					pane.setMaximumSize(displaySize);
 					// The user may have resized the screen outside allowed
 					// parameters
-					int overflow = horizSplit.getWidth() - horizSplit.getDividerLocation() - screenSize.width - divWidth;
+					int overflow = horizSplit.getWidth() - horizSplit.getDividerLocation() - displaySize.width - divWidth;
 					if (overflow > 0) {
 						horizSplit.setDividerLocation(horizSplit.getDividerLocation() + overflow);
 					}
-					if (splitPane.getDividerLocation() > screenSize.height) {
-						splitPane.setDividerLocation(screenSize.height);
+					if (splitPane.getDividerLocation() > displaySize.height) {
+						splitPane.setDividerLocation(displaySize.height);
 					}
 				}
 			}
@@ -552,7 +552,7 @@ public class j2DClient implements UserInterface {
 		 * incorrectly unless we explicitly set it. Try to fit it on the
 		 * screen and show a bit of the chat.
 		 */
-		splitPane.setDividerLocation(Math.min(screenSize.height,
+		splitPane.setDividerLocation(Math.min(displaySize.height,
 				maxBounds.height  - 80));
 
 		checkAndComplainAboutJavaImplementation();

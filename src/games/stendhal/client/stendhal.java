@@ -145,7 +145,7 @@ public final class stendhal {
 	 * 
 	 * @return screen dimensions
 	 */
-	public static Dimension getScreenSize() {
+	public static Dimension getDisplaySize() {
 		Integer size_index = DISPLAY_SIZE_INDEX;
 		try {
 			size_index = Integer.parseInt(System.getProperty("display.index"));

@@ -68,9 +68,9 @@ class ImageViewWindow extends InternalManagedWindow {
 	 * @return size
 	 */
 	private Dimension genMaxSize() {
-		Dimension screenSize = stendhal.getScreenSize();
-		final int width = (int) (screenSize.getWidth() - PADDING);
-		final int height = (int) (screenSize.getHeight() - PADDING);
+		Dimension displaySize = stendhal.getDisplaySize();
+		final int width = (int) (displaySize.getWidth() - PADDING);
+		final int height = (int) (displaySize.getHeight() - PADDING);
 		return new Dimension(width, height);
 	}
 }

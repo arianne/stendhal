@@ -207,7 +207,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *            The client.
 	 */
 	public GameScreen(final StendhalClient client) {
-		setSize(stendhal.getScreenSize());
+		setSize(stendhal.getDisplaySize());
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -255,7 +255,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * for the change. 
 	 */
 	private void onResized() {
-		Dimension screenSize = stendhal.getScreenSize();
+		Dimension screenSize = stendhal.getDisplaySize();
 		sw = getWidth();
 		sh = getHeight();
 		if (useScaling) {
@@ -569,8 +569,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			graphics.scale(scale, scale);
 			graphics.translate(xAdjust, yAdjust);
 			graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			int width = stendhal.getScreenSize().width;
-			int height = stendhal.getScreenSize().height;
+			int width = stendhal.getDisplaySize().width;
+			int height = stendhal.getDisplaySize().height;
 			do {
 				GraphicsConfiguration gc = getGraphicsConfiguration();
 				if ((buffer == null) || (buffer.validate(gc) == VolatileImage.IMAGE_INCOMPATIBLE)) {
