@@ -150,12 +150,10 @@ public final class stendhal {
 		try {
 			size_index = Integer.parseInt(System.getProperty("display.index"));
 		} catch (NumberFormatException e) {
-			logger.warn("display.index value not set. Using default display size");
 		}
 		try {
 			return displaySizes.get(size_index);
 		} catch (IndexOutOfBoundsException e) {
-			logger.warn("display.index " + Integer.toString(size_index) + " index out of bounds. Using default display size.");
 		}
 		
 		return displaySizes.get(DISPLAY_SIZE_INDEX);
