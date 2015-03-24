@@ -68,6 +68,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -114,6 +115,14 @@ public class j2DClient implements UserInterface {
 	private static final String PRIVATE_TAB_COLOR = "0xdcdcff";
 	/** Property name used to determine if scaling is wanted. */
 	private static final String SCALE_PREFERENCE_PROPERTY = "ui.scale_screen";
+	/** Property name used to determine if window dimensions should be restored. */
+	private static final String SAVE_DIMENSIONS_PROPERTY = "ui.dimensions";
+	/** Property name used to determine if window is maximized */
+	private static final String WINDOW_MAXIMIZED_PROPERTY = "ui.dimensions.maximized";
+	/** Property name used for width of window */
+	private static final String WINDOW_WIDTH_PROPERTY = "ui.dimensions.width";
+	/** Property name used for height of window */
+	private static final String WINDOW_HEIGHT_PROPERTY = "ui.dimensions.height";
 
 	/**
 	 * A shared [singleton] copy.
@@ -286,7 +295,7 @@ public class j2DClient implements UserInterface {
 				chatText.getPlayerChatText().requestFocus();
 			}
 		});
-
+		
 		// On Screen windows
 		/*
 		 * Quit dialog
@@ -343,6 +352,24 @@ public class j2DClient implements UserInterface {
 		JComponent glassPane = DragLayer.get();
 		frame.setGlassPane(glassPane);
 		glassPane.setVisible(true);
+
+		/*
+		 * Add listener for maximize and resize events
+		 * FIXME: Should probably be moved to WindowUtils
+		 */
+		frame.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent event) {
+				int frameState = frame.getExtendedState();
+				if (frameState == Frame.ICONIFIED) {
+					// Do nothing
+				} else if (frameState == Frame.MAXIMIZED_BOTH) {
+					windowManager.setProperty(WINDOW_MAXIMIZED_PROPERTY, "true");
+				} else {
+					onResized();
+				}
+			}
+		});
 
 		// *** Create the layout ***
 		// left side panel
@@ -573,7 +600,7 @@ public class j2DClient implements UserInterface {
 				 * and unusable until the user moves the game window. This
 				 * can happen with certain window managers if the window manager
 				 * moves the window as a result of resizing the window.
-				 * 
+				 * "ui.dimensions"
 				 * Description of the bug:
 				 * 	https://bugzilla.redhat.com/show_bug.cgi?id=698295
 				 * 
@@ -594,7 +621,7 @@ public class j2DClient implements UserInterface {
 		/* Restore client's window dimensions from config (set by previous
 		 * session) if available. Call after ???.
 		 */
-		if (windowManager.getProperty("ui.dimensions", "true").equals("true")) {
+		if (windowManager.getProperty(SAVE_DIMENSIONS_PROPERTY, "true").equals("true")) {
 			restorePrevSessionSize();
 		}
 	} // constructor
@@ -914,19 +941,8 @@ public class j2DClient implements UserInterface {
 	void shutdown() {
 		gameRunning = false;
 		
-		WtWindowManager windowManager = WtWindowManager.getInstance();
-		
-		// FIXME: Would be better to set properties on window resize
-		/* Add the client's width and height to config for restoring in next
-		 * session if "ui.dimensions" = "true".
-		 */
-		windowManager.setProperty("ui.dimensions.width",
-				Integer.toString(frame.getSize().width));
-		windowManager.setProperty("ui.dimensions.height",
-				Integer.toString(frame.getSize().height));
-		
 		// try to save the window configuration
-		windowManager.save();
+		WtWindowManager.getInstance().save();
 	}
 
 	//
@@ -1178,14 +1194,21 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Now restore dimensions from last session.
 		 */
-		Integer uiWidth = windowManager.getPropertyInt("ui.dimensions.width", frameDefaultSize.width);
-		Integer uiHeight = windowManager.getPropertyInt("ui.dimensions.height", frameDefaultSize.height);
+		Integer uiWidth = windowManager.getPropertyInt(WINDOW_WIDTH_PROPERTY,
+				frameDefaultSize.width);
+		Integer uiHeight = windowManager.getPropertyInt(WINDOW_HEIGHT_PROPERTY,
+				frameDefaultSize.height);
 		if ((uiWidth != null) && uiHeight != null) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Setting window size from config.");
 			}
 			
 			frame.setSize(uiWidth, uiHeight);
+		}
+		
+		// Check if window was maximized
+		if (windowManager.getProperty(WINDOW_MAXIMIZED_PROPERTY, "false").equals("true")) {
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		}
 	}
 
@@ -1302,5 +1325,18 @@ public class j2DClient implements UserInterface {
 
 	public void switchToSpellState(RPObject spell) {
 		this.screen.switchToSpellCastingState(spell);
+	}
+	
+	protected void onResized() {
+		final WtWindowManager windowManager = WtWindowManager.getInstance();
+		
+		// In case window was previously maximized
+		windowManager.setProperty(WINDOW_MAXIMIZED_PROPERTY, "false");
+		
+		// Set width and height properties
+		windowManager.setProperty(WINDOW_WIDTH_PROPERTY,
+				Integer.toString(frame.getSize().width));
+		windowManager.setProperty(WINDOW_HEIGHT_PROPERTY,
+				Integer.toString(frame.getSize().height));
 	}
 }
