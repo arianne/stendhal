@@ -68,7 +68,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -1183,9 +1182,6 @@ public class j2DClient implements UserInterface {
 	
 	/**
 	 * Sets the window's width and height from config.
-	 * 
-	 * @return
-	 *       Values for width and height are available from previous session.
 	 */
 	public void restorePrevSessionSize() {
 		// Get instance of WtWindowManager
