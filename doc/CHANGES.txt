@@ -32,6 +32,7 @@
 - Fix player cannot move after zombie status wears off
 - Karma reward for quests: Kill Dhohr Nuggetcutter, Coal for Haunchy
 - Refactored tiled/tileset/plant/cactus_2.png
+- Refactored tiled/tileset/object/row_boat.png
 
 
 1.16
