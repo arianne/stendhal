@@ -13,6 +13,7 @@ package games.stendhal.client.gui.settings;
 
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 /**
  * Page for general settings.
@@ -35,6 +37,8 @@ class GeneralSettings {
 	private static final String HEALING_MESSAGE_PROPERTY = "ui.healingmessage";
 	
 	private static final String POISON_MESSAGE_PROPERTY = "ui.poisonmessage";
+	
+	private static final String DIMENSIONS_PROPERTY = "ui.dimensions";
 	
 	/** Container for the setting components. */
 	private final JComponent page;
@@ -68,8 +72,29 @@ class GeneralSettings {
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
 		
+		// Client dimensions
+		JComponent clientSizeBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		clientSizeBox.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createEtchedBorder(),
+				BorderFactory.createEmptyBorder(pad, pad, pad, pad)
+				)
+			);
+		
+		JLabel clientSizeText = new JLabel("Client Dimensions");
+		clientSizeText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		clientSizeBox.add(clientSizeText);
+		
+		// Save client dimensions
+		JCheckBox saveDimensionsToggle =
+				SettingsComponentFactory.createSettingsToggle(
+						DIMENSIONS_PROPERTY, "true", "Save size",
+						"Save the width and height of cleint window to be resored in future session");
+		clientSizeBox.add(saveDimensionsToggle);
+		
 		// Reset client window to default dimensions
-		JButton resetDimensions = new JButton("Reset Client Dimensions");
+		JButton resetDimensions = new JButton("Reset");
+		resetDimensions.setToolTipText(
+				"Resets the client's width and height to their default dimensions");
 		resetDimensions.setActionCommand("reset_dimensions");
 		resetDimensions.addActionListener(new ActionListener() {
 			@Override
@@ -77,7 +102,10 @@ class GeneralSettings {
 				resetClientDimensions();
 			}
 		});
-		page.add(resetDimensions);
+		resetDimensions.setAlignmentX(JComponent.RIGHT_ALIGNMENT);
+		clientSizeBox.add(resetDimensions);
+		
+		page.add(clientSizeBox, SLayout.EXPAND_X);
 	}
 		
 	/**
