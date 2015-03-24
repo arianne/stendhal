@@ -916,6 +916,7 @@ public class j2DClient implements UserInterface {
 		
 		WtWindowManager windowManager = WtWindowManager.getInstance();
 		
+		// FIXME: Would be better to set properties on window resize
 		/* Add the client's width and height to config for restoring in next
 		 * session if "ui.dimensions" = "true".
 		 */
