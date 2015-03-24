@@ -88,7 +88,7 @@ class GeneralSettings {
 		JCheckBox saveDimensionsToggle =
 				SettingsComponentFactory.createSettingsToggle(
 						DIMENSIONS_PROPERTY, "true", "Save size",
-						"Save the width and height of cleint window to be resored in future session");
+						"Restores the client's width, height, and maximized state in future sessions");
 		clientSizeBox.add(saveDimensionsToggle);
 		
 		// Reset client window to default dimensions
