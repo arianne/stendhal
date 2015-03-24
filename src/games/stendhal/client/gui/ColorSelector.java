@@ -45,19 +45,33 @@ import javax.swing.event.ChangeListener;
  */
 class ColorSelector extends JPanel {
 	private final HSLSelectionModel model;
-	private final JComponent hueSaturationSelector;
+	private final JComponent paletteSelector;
 	private final JComponent lightnessSelector;
-
-
+	
+	
 	/**
 	 * Create a new ColorSelector.
 	 */
 	ColorSelector() {
+		this(false);
+	}
+	
+	/**
+	 * Create a new ColorSelector.
+	 * 
+	 * @param skinColors
+	 * 		Skin colors available only
+	 */
+	ColorSelector(Boolean skinPalette) {
 		model = new HSLSelectionModel();
 		setBorder(null);
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
-		hueSaturationSelector = new HueSaturationSelector(model);
-		add(hueSaturationSelector);
+		if (skinPalette) {
+			paletteSelector = new SkinPaletteSelector(model);
+		} else {
+			paletteSelector = new HueSaturationSelector(model);
+		}
+		add(paletteSelector);
 		lightnessSelector = new LightnessSelector(model);
 		add(lightnessSelector, SLayout.EXPAND_X);
 	}
@@ -65,7 +79,7 @@ class ColorSelector extends JPanel {
 	@Override
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);
-		hueSaturationSelector.setEnabled(enabled);
+		paletteSelector.setEnabled(enabled);
 		lightnessSelector.setEnabled(enabled);
 	}
 
@@ -222,6 +236,91 @@ class ColorSelector extends JPanel {
 			if (old != enabled) {
 				// Force sprite change
 				hueSprite = null;
+				repaint();
+			}
+		}
+	}
+
+	/**
+	 * Skin color part of the selector component.
+	 */
+	private static class SkinPaletteSelector extends Selector {
+		private static final String SKIN_PALETTE_IMAGE = "data/gui/colors_skin.png";
+		/** background sprite */
+		Sprite paletteSprite;
+
+		/**
+		 * Create a new SkinPaletteSelector.
+		 */
+		SkinPaletteSelector(HSLSelectionModel model) {
+			super(model);
+		}
+
+		/**
+		 * Get the color gradient sprite.
+		 * 
+		 * @return background sprite
+		 */
+		private Sprite getPaletteSprite() {
+			if (paletteSprite == null) {
+				if (isEnabled()) {
+					paletteSprite = SpriteStore.get().getSprite(SKIN_PALETTE_IMAGE);
+				} else {
+					// Desaturated image for disabled selector
+					paletteSprite = SpriteStore.get().getColoredSprite(SKIN_PALETTE_IMAGE, Color.GRAY);
+				}
+			}
+
+			return paletteSprite;
+		}
+
+		@Override
+		public Dimension getPreferredSize() {
+			Sprite s = getPaletteSprite();
+			int width = s.getWidth();
+			int height = s.getHeight();
+			Insets ins = getInsets();
+			width += ins.left + ins.right;
+			height += ins.top + ins.bottom;
+			return new Dimension(width, height);
+		}
+
+		@Override
+		public void paintComponent(Graphics g) {
+			Insets ins = getInsets();
+			Sprite sprite = getPaletteSprite();
+			sprite.draw(g, ins.left, ins.right);
+
+			// draw a cross
+			g.setColor(Color.BLACK);
+			int x = (int) (model.getHue() * sprite.getWidth()) + ins.left;
+			int y = (int) ((1f - model.getSaturation()) * sprite.getHeight()) + ins.left;
+			g.drawLine(x, 0, x, getHeight());
+			g.drawLine(0, y, getWidth(), y);
+		}
+
+		@Override
+		void select(Point point) {
+			Insets ins = getInsets();
+			Sprite sprite = getPaletteSprite();
+			int width = sprite.getWidth();
+			int height = sprite.getHeight();
+			int xDiff = point.x - ins.left;
+			xDiff = Math.min(width, Math.max(0, xDiff));
+			float hue = xDiff / (float) width;
+			int yDiff = point.y - ins.top;
+			yDiff = Math.min(height, Math.max(0, yDiff));
+			float saturation = 1f - yDiff / (float) height;
+			model.setHS(5, 5);
+		}
+		
+		@Override
+		public void setEnabled(boolean enabled) {
+			boolean old = isEnabled();
+			super.setEnabled(enabled);
+			if (old != enabled) {
+				// Force sprite change
+				paletteSprite = null;
 				repaint();
 			}
 		}
