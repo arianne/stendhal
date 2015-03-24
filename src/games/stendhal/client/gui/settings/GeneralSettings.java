@@ -125,7 +125,7 @@ class GeneralSettings {
 	/**
 	 * Resets the clients width and height to their default values.
 	 */
-	public void resetClientDimensions() {
+	private void resetClientDimensions() {
 		j2DClient clientFrame = j2DClient.get();
 		Frame mainFrame = clientFrame.getMainFrame();
 		int frameState = mainFrame.getExtendedState();
