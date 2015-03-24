@@ -23,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -123,6 +124,14 @@ class GeneralSettings {
 	public void resetClientDimensions() {
 		j2DClient clientFrame = j2DClient.get();
 		Frame mainFrame = clientFrame.getMainFrame();
-		mainFrame.setSize(clientFrame.getFrameDefaultSize());
+		int frameState = mainFrame.getExtendedState();
+		
+		/*
+		 *  Do not attempt to reset client dimensions if window is maximized.
+		 *  Prevents resizing errors for child components.
+		 */
+		if (frameState != JFrame.MAXIMIZED_BOTH) {
+			mainFrame.setSize(clientFrame.getFrameDefaultSize());
+		}
 	}
 }
