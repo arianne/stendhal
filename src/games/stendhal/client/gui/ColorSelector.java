@@ -47,7 +47,7 @@ class ColorSelector extends JPanel {
 	private final HSLSelectionModel model;
 	private final JComponent paletteSelector;
 	private final JComponent lightnessSelector;
-	
+	private Boolean useSkinPalette = false;
 	
 	/**
 	 * Create a new ColorSelector.
@@ -63,19 +63,19 @@ class ColorSelector extends JPanel {
 	 * 		Skin colors available only
 	 */
 	ColorSelector(Boolean skinPalette) {
+		this.useSkinPalette = skinPalette;
 		model = new HSLSelectionModel();
 		setBorder(null);
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
-		if (skinPalette) {
+		if (useSkinPalette) {
 			paletteSelector = new SkinPaletteSelector(model);
 			add(paletteSelector);
-			lightnessSelector = null;
 		} else {
 			paletteSelector = new HueSaturationSelector(model);
 			add(paletteSelector);
-			lightnessSelector = new LightnessSelector(model);
-			add(lightnessSelector, SLayout.EXPAND_X);
 		}
+		lightnessSelector = new LightnessSelector(model);
+		add(lightnessSelector, SLayout.EXPAND_X);
 	}
 
 	@Override
