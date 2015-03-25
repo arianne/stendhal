@@ -35,7 +35,7 @@ public class OutfitStore {
 	final String outfits = "data/sprites/outfit";
 	
 	/** body directory */
-	final String bodies = outfits + "/body";
+	final String bodies;// = outfits + "/body";
 	
 	/** dress directory */
 	final String dresses = outfits + "/dress";
@@ -74,6 +74,13 @@ public class OutfitStore {
 	 */
 	private OutfitStore(final SpriteStore store) {
 		this.store = store;
+		
+		// TODO: Remove when outfit testing is finished
+		if (System.getProperty("outfit.testing") != null) {
+			bodies = outfits + "/body-testing";
+		} else {
+			bodies = outfits + "/body";
+		}
 	}
 
 	//
