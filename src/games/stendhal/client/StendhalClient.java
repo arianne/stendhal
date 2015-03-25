@@ -773,7 +773,7 @@ public class StendhalClient extends ClientFramework {
 			zone.validate();
 			staticLayers.setZone(zone);
 			for (ZoneChangeListener listener : zoneChangeListeners) {
-				listener.onZoneChangeCompleted(zone);;
+				listener.onZoneChangeCompleted(zone);
 			}
 		}
 	}
