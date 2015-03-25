@@ -14,6 +14,8 @@ package games.stendhal.client.gui.settings;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -24,7 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.border.TitledBorder;
 
 /**
  * Page for general settings.
@@ -75,15 +77,17 @@ class GeneralSettings {
 		
 		// Client dimensions
 		JComponent clientSizeBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
-		clientSizeBox.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEtchedBorder(),
-				BorderFactory.createEmptyBorder(pad, pad, pad, pad)
-				)
-			);
-		
-		JLabel clientSizeText = new JLabel("Client Dimensions");
-		clientSizeText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		clientSizeBox.add(clientSizeText);
+		TitledBorder titleB = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+				"Client Dimensions");
+		// There seems to be no good way to change the default background color
+		// of all components. The color is needed for making the etched border.
+		Style style = StyleUtil.getStyle();
+		if (style != null) {
+			clientSizeBox.setBackground(style.getPlainColor());
+			titleB.setTitleColor(style.getForeground());
+		}
+		clientSizeBox.setBorder(BorderFactory.createCompoundBorder(titleB,
+				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
 		
 		// Save client dimensions
 		JCheckBox saveDimensionsToggle =
@@ -121,7 +125,7 @@ class GeneralSettings {
 	/**
 	 * Resets the clients width and height to their default values.
 	 */
-	public void resetClientDimensions() {
+	private void resetClientDimensions() {
 		j2DClient clientFrame = j2DClient.get();
 		Frame mainFrame = clientFrame.getMainFrame();
 		int frameState = mainFrame.getExtendedState();
