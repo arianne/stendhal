@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -28,18 +27,8 @@ import marauroa.common.net.message.MessageS2CPerception;
  *
  */
 class PerceptionToObject implements IPerceptionListener {
-
-	Map<RPObject.ID, Set<ObjectChangeListener>> map = Collections
-			.synchronizedMap(new HashMap<RPObject.ID,  Set<ObjectChangeListener>>());
-	private ObjectFactory of;
-
-	/**
-	 * sets Objectfactory for callback .
-	 * @param of
-	 */
-	public void setObjectFactory(final ObjectFactory of) {
-		this.of = of;
-	}
+	final Map<RPObject.ID, Set<ObjectChangeListener>> map = new HashMap<RPObject.ID,  Set<ObjectChangeListener>>();
+	private final ObjectFactory of = new ObjectFactory();
 	
 	/**
 	 * issues callback to Objectfactory.onAdded().
@@ -84,7 +73,6 @@ class PerceptionToObject implements IPerceptionListener {
 	public void onException(final Exception exception,
 			final MessageS2CPerception perception) {
 		onClear();
-
 	}
 
 	@Override
@@ -140,22 +128,18 @@ class PerceptionToObject implements IPerceptionListener {
 
 	@Override
 	public void onPerceptionBegin(final byte type, final int timestamp) {
-
 	}
 
 	@Override
 	public void onPerceptionEnd(final byte type, final int timestamp) {
-
 	}
 
 	@Override
 	public void onSynced() {
-
 	}
 
 	@Override
 	public void onUnsynced() {
-
 	}
 
 	void register(final RPObject object, final ObjectChangeListener listener) {

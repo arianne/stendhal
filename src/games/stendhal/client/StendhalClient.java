@@ -139,7 +139,6 @@ public class StendhalClient extends ClientFramework {
 
 		rpobjDispatcher = new RPObjectChangeDispatcher(gameObjects, userContext);
 		final PerceptionToObject po = new PerceptionToObject();
-		po.setObjectFactory(new ObjectFactory());
 		perceptionDispatcher.register(po);
 		StendhalPerceptionListener perceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, worldObjects);
 		handler = new PerceptionHandler(perceptionListener);
