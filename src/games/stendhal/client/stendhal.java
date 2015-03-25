@@ -30,6 +30,7 @@ import java.security.AccessControlException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -47,8 +48,6 @@ public final class stendhal {
 
 	private static final String LOG_FOLDER = "log/";
 	private static final Logger logger = Logger.getLogger(stendhal.class);
-
-	private static boolean doLogin;
 
 	// Use getGameFolder() where you need the real game data location
 	private static final String STENDHAL_FOLDER;
@@ -92,6 +91,8 @@ public final class stendhal {
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
 	static final int FPS_LIMIT = 25;
+	/** For keeping the login status. Blocks until logged in. */
+	private static final CountDownLatch latch = new CountDownLatch(1);
 	
 	/**
 	 * Make the class non-instantiable.
@@ -137,7 +138,7 @@ public final class stendhal {
 	 * to show the game window.
 	 */
 	public static void setDoLogin()	{
-		doLogin = true;
+		latch.countDown();
 	}
 
 	/**
@@ -226,12 +227,11 @@ public final class stendhal {
 	 * A loop which simply waits for the login to be completed.
 	 */
 	private static void waitForLogin() {
-		while (!doLogin) {
-			try {
-				Thread.sleep(200);
-			} catch (final InterruptedException e) {
-				logger.warn(e, e);
-			}
+		try {
+			latch.await();
+		} catch (final InterruptedException e) {
+			logger.error("Unexpected interrupt", e);
+			Thread.currentThread().interrupt();
 		}
 	}
 
