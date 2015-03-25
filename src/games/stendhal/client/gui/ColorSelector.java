@@ -68,19 +68,23 @@ class ColorSelector extends JPanel {
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
 		if (skinPalette) {
 			paletteSelector = new SkinPaletteSelector(model);
+			add(paletteSelector);
+			lightnessSelector = null;
 		} else {
 			paletteSelector = new HueSaturationSelector(model);
+			add(paletteSelector);
+			lightnessSelector = new LightnessSelector(model);
+			add(lightnessSelector, SLayout.EXPAND_X);
 		}
-		add(paletteSelector);
-		lightnessSelector = new LightnessSelector(model);
-		add(lightnessSelector, SLayout.EXPAND_X);
 	}
 
 	@Override
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);
 		paletteSelector.setEnabled(enabled);
-		lightnessSelector.setEnabled(enabled);
+		if (lightnessSelector != null) {
+			lightnessSelector.setEnabled(enabled);
+		}
 	}
 
 	/**
@@ -248,7 +252,17 @@ class ColorSelector extends JPanel {
 		private static final String SKIN_PALETTE_IMAGE = "data/gui/colors_skin.png";
 		/** background sprite */
 		Sprite paletteSprite;
-
+		
+		// Skin colors to choose from
+		private final Color COLOR1 = new Color(0x895426);
+		private final Color COLOR2 = new Color(0xbfb25e);
+		private final Color COLOR3 = new Color(0xd8d79a);
+		private final Color COLOR4 = new Color(0x60502d);
+		private final Color COLOR5 = new Color(0xe6dcc5);
+		private final Color COLOR6 = new Color(0xba6c45);
+		private final Color COLOR7 = new Color(0x917944);
+		private final Color COLOR8 = new Color(0x989898);
+		
 		/**
 		 * Create a new SkinPaletteSelector.
 		 */
@@ -290,28 +304,50 @@ class ColorSelector extends JPanel {
 			Insets ins = getInsets();
 			Sprite sprite = getPaletteSprite();
 			sprite.draw(g, ins.left, ins.right);
-
-			// draw a cross
-			g.setColor(Color.BLACK);
-			int x = (int) (model.getHue() * sprite.getWidth()) + ins.left;
-			int y = (int) ((1f - model.getSaturation()) * sprite.getHeight()) + ins.left;
-			g.drawLine(x, 0, x, getHeight());
-			g.drawLine(0, y, getWidth(), y);
 		}
 
 		@Override
 		void select(Point point) {
+			final Color selectedColor;
 			Insets ins = getInsets();
 			Sprite sprite = getPaletteSprite();
 			int width = sprite.getWidth();
 			int height = sprite.getHeight();
+			int colorWidth = width / 4; // 4 columns
+			int colorHeight = height / 2; // 2 rows
+			
+			// FIXME: Should be a more optimized way to do this
+			if (point.y <= colorHeight) {
+				// Top row
+				if (point.x <= colorWidth) {
+					selectedColor = COLOR1;
+				} else if (point.x <= (colorWidth * 2)) {
+					selectedColor = COLOR2;
+				} else if (point.x <= (colorWidth * 3)) {
+					selectedColor = COLOR3;
+				} else {
+					selectedColor = COLOR4;
+				}
+			} else {
+				// Bottom row
+				if (point.x <= colorWidth) {
+					selectedColor = COLOR5;
+				} else if (point.x <= (colorWidth * 2)) {
+					selectedColor = COLOR6;
+				} else if (point.x <= (colorWidth * 3)) {
+					selectedColor = COLOR7;
+				} else {
+					selectedColor = COLOR8;
+				}
+			}
 			int xDiff = point.x - ins.left;
 			xDiff = Math.min(width, Math.max(0, xDiff));
 			float hue = xDiff / (float) width;
 			int yDiff = point.y - ins.top;
 			yDiff = Math.min(height, Math.max(0, yDiff));
 			float saturation = 1f - yDiff / (float) height;
-			model.setHS(5, 5);
+			//model.setHS(hue, saturation);
+			model.setSelectedColor(selectedColor);
 		}
 		
 		@Override
