@@ -254,14 +254,14 @@ class ColorSelector extends JPanel {
 		Sprite paletteSprite;
 		
 		// Skin colors to choose from
-		private final Color COLOR1 = new Color(0x895426);
-		private final Color COLOR2 = new Color(0xbfb25e);
+		private final Color COLOR1 = new Color(0x513216);
+		private final Color COLOR2 = new Color(0x827940);
 		private final Color COLOR3 = new Color(0xd8d79a);
-		private final Color COLOR4 = new Color(0x60502d);
-		private final Color COLOR5 = new Color(0xe6dcc5);
-		private final Color COLOR6 = new Color(0xba6c45);
-		private final Color COLOR7 = new Color(0x917944);
-		private final Color COLOR8 = new Color(0x989898);
+		private final Color COLOR4 = new Color(0x3b311c);
+		private final Color COLOR5 = new Color(0xa29475);
+		private final Color COLOR6 = new Color(0x804a2f);
+		private final Color COLOR7 = new Color(0x6c5a33);
+		private final Color COLOR8 = new Color(0xd8c600);
 		
 		/**
 		 * Create a new SkinPaletteSelector.
