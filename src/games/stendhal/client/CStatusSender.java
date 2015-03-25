@@ -85,7 +85,7 @@ public final class CStatusSender {
 					.forName("games.stendhal.client.update.Starter");
 			if (clazz != null) {
 				Object[] objects = clazz.getSigners();
-				if ((objects != null) && objects instanceof Certificate[]) {
+				if (objects instanceof Certificate[]) {
 					Certificate[] certs = (Certificate[]) objects;
 					if ((certs.length > 0)) {
 						byte[] key = certs[0].getPublicKey().getEncoded();
