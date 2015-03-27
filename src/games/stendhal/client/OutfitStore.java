@@ -212,7 +212,7 @@ public class OutfitStore {
 			return null;
 		}
 		
-		return store.getColoredSprite(ref, color.getColor(OutfitColor.BODY));
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.SKIN));
 	}
 
 	/**
@@ -337,7 +337,7 @@ public class OutfitStore {
 			return null;
 		}
 
-		return store.getColoredSprite(ref, color.getColor(OutfitColor.BODY));
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.SKIN));
 	}
 
 	/**

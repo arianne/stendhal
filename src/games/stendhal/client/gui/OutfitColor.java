@@ -30,12 +30,12 @@ public class OutfitColor {
 	public static final String EYES = "eyes";
 	/** Identifier for dress color. */
 	public static final String DRESS = "dress";
-	/** Identifier for body color. */
-	public static final String BODY = "body";
+	/** Identifier for skin color. */
+	public static final String SKIN = "skin";
 	/** Identifier for detail color. */
 	public static final String DETAIL = "detail";
 	
-	private static final String[] parts = { DRESS, BODY, HAIR, DETAIL, EYES };
+	private static final String[] parts = { DRESS, SKIN, HAIR, DETAIL, EYES };
 	public static final OutfitColor PLAIN = new OutfitColor();
 
 	private Map<String, Color> map = new TreeMap<String, Color>();

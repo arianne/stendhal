@@ -347,7 +347,7 @@ class OutfitDialog extends JDialog {
 			column.add(selector);
 			
 			/* body color */
-			selector = createColorSelector("Body", OutfitColor.BODY, bodyLabel,
+			selector = createColorSelector("Skin", OutfitColor.SKIN, bodyLabel,
 					USE_SKIN_PALETTE);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
@@ -630,9 +630,9 @@ class OutfitDialog extends JDialog {
 			rpaction.put(OutfitColor.HAIR, color.getRGB());
 		}
 		/* body and head color */
-		color = outfitColor.getColor(OutfitColor.BODY);
+		color = outfitColor.getColor(OutfitColor.SKIN);
 		if (color != null) {
-			rpaction.put(OutfitColor.BODY, color.getRGB());
+			rpaction.put(OutfitColor.SKIN, color.getRGB());
 		}
 		/* dress color */
 		color = outfitColor.getColor(OutfitColor.DRESS);
@@ -676,7 +676,7 @@ class OutfitDialog extends JDialog {
 		// Copy the original colors
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
-		outfitColor.setColor(OutfitColor.BODY, colors.getColor(OutfitColor.BODY));
+		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
 		
 		// analyze the outfit code
 		int bodiesIndex = outfit % 100;
