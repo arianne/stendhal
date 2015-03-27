@@ -114,14 +114,6 @@ public class j2DClient implements UserInterface {
 	private static final String PRIVATE_TAB_COLOR = "0xdcdcff";
 	/** Property name used to determine if scaling is wanted. */
 	private static final String SCALE_PREFERENCE_PROPERTY = "ui.scale_screen";
-	/** Property name used to determine if window dimensions should be restored. */
-	private static final String SAVE_DIMENSIONS_PROPERTY = "ui.dimensions";
-	/** Property name used to determine if window is maximized */
-	private static final String WINDOW_MAXIMIZED_PROPERTY = "ui.dimensions.maximized";
-	/** Property name used for width of window */
-	private static final String WINDOW_WIDTH_PROPERTY = "ui.dimensions.width";
-	/** Property name used for height of window */
-	private static final String WINDOW_HEIGHT_PROPERTY = "ui.dimensions.height";
 
 	/**
 	 * A shared [singleton] copy.
@@ -351,24 +343,6 @@ public class j2DClient implements UserInterface {
 		JComponent glassPane = DragLayer.get();
 		frame.setGlassPane(glassPane);
 		glassPane.setVisible(true);
-
-		/*
-		 * Add listener for maximize and resize events
-		 * FIXME: Should probably be moved to WindowUtils
-		 */
-		frame.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent event) {
-				int frameState = frame.getExtendedState();
-				if (frameState == Frame.ICONIFIED) {
-					// Do nothing
-				} else if (frameState == Frame.MAXIMIZED_BOTH) {
-					windowManager.setProperty(WINDOW_MAXIMIZED_PROPERTY, "true");
-				} else {
-					onResized();
-				}
-			}
-		});
 
 		// *** Create the layout ***
 		// left side panel
@@ -617,12 +591,11 @@ public class j2DClient implements UserInterface {
 			}
 		});
 		
-		/* Restore client's window dimensions from config (set by previous
+		/*
+		 * Restore client's window dimensions from config (set by previous
 		 * session) if available. Call after ???.
 		 */
-		if (windowManager.getProperty(SAVE_DIMENSIONS_PROPERTY, "true").equals("true")) {
-			restorePrevSessionSize();
-		}
+		WindowUtils.restoreSize(frame);
 	} // constructor
 
 	/**
@@ -1179,34 +1152,6 @@ public class j2DClient implements UserInterface {
 	public Dimension getFrameDefaultSize() {
 		return frameDefaultSize;
 	}
-	
-	/**
-	 * Sets the window's width and height from config.
-	 */
-	public void restorePrevSessionSize() {
-		// Get instance of WtWindowManager
-		WtWindowManager windowManager = WtWindowManager.getInstance();
-		
-		/*
-		 * Now restore dimensions from last session.
-		 */
-		Integer uiWidth = windowManager.getPropertyInt(WINDOW_WIDTH_PROPERTY,
-				frameDefaultSize.width);
-		Integer uiHeight = windowManager.getPropertyInt(WINDOW_HEIGHT_PROPERTY,
-				frameDefaultSize.height);
-		if ((uiWidth != null) && uiHeight != null) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Setting window size from config.");
-			}
-			
-			frame.setSize(uiWidth, uiHeight);
-		}
-		
-		// Check if window was maximized
-		if (windowManager.getProperty(WINDOW_MAXIMIZED_PROPERTY, "false").equals("true")) {
-			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		}
-	}
 
 	/**
 	 * Set the input chat line text.
@@ -1321,18 +1266,5 @@ public class j2DClient implements UserInterface {
 
 	public void switchToSpellState(RPObject spell) {
 		this.screen.switchToSpellCastingState(spell);
-	}
-	
-	protected void onResized() {
-		final WtWindowManager windowManager = WtWindowManager.getInstance();
-		
-		// In case window was previously maximized
-		windowManager.setProperty(WINDOW_MAXIMIZED_PROPERTY, "false");
-		
-		// Set width and height properties
-		windowManager.setProperty(WINDOW_WIDTH_PROPERTY,
-				Integer.toString(frame.getSize().width));
-		windowManager.setProperty(WINDOW_HEIGHT_PROPERTY,
-				Integer.toString(frame.getSize().height));
 	}
 }

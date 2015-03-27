@@ -91,7 +91,7 @@ class ProgressLog {
 		window.add(tabs);
 		window.pack();
 		WindowUtils.watchFontSize(window);
-		WindowUtils.trackLocation(window, "travel_log");
+		WindowUtils.trackLocation(window, "travel_log", true);
 		
 		WtWindowManager.getInstance().registerSettingChangeListener("ui.logfont",
 				new SettingChangeAdapter("ui.logfont", FONT_NAME) {
