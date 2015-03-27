@@ -1329,7 +1329,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 
 		/* FIXME: ranged stat disabled by default until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			if (changes.has("ratk")) {
 				ratk = changes.getInt("ratk");
 			}
@@ -1354,7 +1354,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 		
 		/* FIXME: ranged stat is disabled until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			if (changes.has("ratk_xp")) {
 				ratkXP = changes.getInt("ratk_xp");
 			}
@@ -1369,7 +1369,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 		
 		/* FIXME: ranged stat disabled by default until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			if (changes.has("ratk_item")) {
 				ratkItem = changes.getInt("ratk_item");
 			}

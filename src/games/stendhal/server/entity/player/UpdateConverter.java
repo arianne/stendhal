@@ -231,7 +231,7 @@ public abstract class UpdateConverter {
     		object.put("atk_xp", "0");
     		object.put("def_xp", "0");
     		/* FIXME: ranged stat is disabled by default until fully implemented */
-    		if (System.getProperty("stat.ranged") != null) {
+    		if (System.getProperty("testing.combat") != null) {
     			object.put("ratk_xp", "0");
     		}
     	}
@@ -246,7 +246,7 @@ public abstract class UpdateConverter {
     		object.put("atk", "10");
     		object.put("def", "10");
     		/* FIXME: ranged stat is disabled by default until fully implemented */
-    		if (System.getProperty("stat.ranged") != null) {
+    		if (System.getProperty("testing.combat") != null) {
     			object.put("ratk", "10");
     		}
     	}

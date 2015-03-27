@@ -204,7 +204,7 @@ public class StendhalRPAction {
 		/* FIXME: Ranged stat is disabled by default until fully implemented.
 		 * Remove System.getProperty().
 		 */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			combatSum = player.getAtk() + player.getDef() + player.getRatk();
 		} else {
 			combatSum = player.getAtk() + player.getDef();
@@ -261,7 +261,7 @@ public class StendhalRPAction {
 		/* FIXME: Ranged stat is disabled by default until fully implemented.
 		 *        This can be removed later.
 		 */
-		Boolean statRanged = System.getProperty("stat.ranged") != null;
+		Boolean statRanged = System.getProperty("testing.combat") != null;
 		
 		final StendhalRPZone zone = player.getZone();
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {

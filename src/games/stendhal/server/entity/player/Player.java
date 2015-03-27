@@ -182,7 +182,7 @@ public class Player extends RPEntity implements UseListener {
 		player.put("def", 10);
 		player.put("def_xp", 0);
 		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			player.put("ratk", 10);
 			player.put("ratk_xp", 0);
 		}

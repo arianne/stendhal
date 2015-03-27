@@ -121,7 +121,7 @@ public final class StatsPanelController {
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
 		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			listener = new RATKChangeListener();
 			addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
 			pcs.addPropertyChangeListener("ratk_xp", listener);
@@ -140,7 +140,7 @@ public final class StatsPanelController {
 		pcs.addPropertyChangeListener("def_item", listener);
 		
 		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			listener = new RangedWeaponChangeListener();
 			pcs.addPropertyChangeListener("ratk_item", listener);
 		}

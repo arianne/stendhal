@@ -416,7 +416,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		
 		/* FIXME: ranged stat disabled by default until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			if (has("ratk_xp")) {
 				ratk_xp = getInt("ratk_xp");
 				setRatkXPInternal(ratk_xp, false);
@@ -2726,7 +2726,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		/* FIXME: Ranged stat is disabled by default until fully implemented.
 		 * Remove System.getProperty().
 		 */
-		if (usesRanged && (System.getProperty("stat.ranged") != null)) {
+		if (usesRanged && (System.getProperty("testing.combat") != null)) {
 			attackerATK = this.getCappedRatk(); // player is using ranged weapon
 		} else {
 			attackerATK = this.getCappedAtk(); // player is using hand-to-hand

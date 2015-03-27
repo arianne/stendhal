@@ -64,7 +64,7 @@ class StatsPanel extends JPanel {
 		add(defLabel, SLayout.EXPAND_X);
 		
 		/* FIXME: ranged stat is disabled until fully implemented */
-		if (System.getProperty("stat.ranged") != null) {
+		if (System.getProperty("testing.combat") != null) {
 			ratkLabel = new StatLabel();
 			add(ratkLabel, SLayout.EXPAND_X);
 		} else {

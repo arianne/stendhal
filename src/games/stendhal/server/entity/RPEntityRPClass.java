@@ -49,7 +49,7 @@ public class RPEntityRPClass {
         entity.addAttribute("def_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
         /* FIXME: ranged stat is disabled by default until fully implemented */
-        if (System.getProperty("stat.ranged") != null) {
+        if (System.getProperty("testing.combat") != null) {
         	// FIXME: remove VOLATILE when ranged stat is ready
 //        	entity.addAttribute("ratk", Type.SHORT, Definition.PRIVATE);
 //        	entity.addAttribute("ratk_xp", Type.INT, Definition.PRIVATE);
