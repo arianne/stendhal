@@ -118,7 +118,7 @@ class OutfitDialog extends JDialog {
 	OutfitDialog(final Frame parent, final String title, final int outfit,
 			OutfitColor outfitColor) {
 		this(parent, title, outfit, outfitColor, Outfits.HAIR_OUTFITS,
-				Outfits.HEAD_OUTFITS, Outfits.getBodiesCount(),
+				Outfits.getHeadsCount(), Outfits.getBodiesCount(),
 				Outfits.CLOTHES_OUTFITS, Outfits.EYES_OUTFITS,
 				Outfits.MOUTH_OUTFITS);
 	}
