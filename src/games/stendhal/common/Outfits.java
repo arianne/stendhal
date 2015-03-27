@@ -27,7 +27,7 @@ public class Outfits {
 
 	/** number of player selectable heads */
 	public static final int HEAD_OUTFITS = 21;
-	// TODO: Remove when outfit testing is finished
+	// TODO: Remove when testing outfits is finished
 	public static final int HEAD_OUTFITS_TESTING = 7;
 
 	/** number of player selectable dresses */
@@ -38,7 +38,7 @@ public class Outfits {
 
 	/** number of player selectable body shapes */
 	public static final int BODY_OUTFITS = 15;
-	// TODO: Remove when outfit testing is finished
+	// TODO: Remove when testing outfits is finished
 	public static final int BODY_OUTFITS_TESTING = 4;
 	
 	/** number of player selectable eyes */
@@ -47,18 +47,18 @@ public class Outfits {
 	/** number of player selectable mouths */
 	public static final int MOUTH_OUTFITS = 4;
 	
-	// TODO: Remove when outfit testing is finished
+	// TODO: Remove when testing outfits is finished
 	public static int getBodiesCount() {
-		if (System.getProperty("outfit.testing") != null) {
+		if (System.getProperty("testing.outfits") != null) {
 			return BODY_OUTFITS_TESTING;
 		} else {
 			return BODY_OUTFITS;
 		}
 	}
 	
-	// TODO: Remove when outfit testing is finished
+	// TODO: Remove when testing outfits is finished
 	public static int getHeadsCount() {
-		if (System.getProperty("outfit.testing") != null) {
+		if (System.getProperty("testing.outfits") != null) {
 			return HEAD_OUTFITS_TESTING;
 		} else {
 			return HEAD_OUTFITS;

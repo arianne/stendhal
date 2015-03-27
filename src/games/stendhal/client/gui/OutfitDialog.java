@@ -59,7 +59,7 @@ class OutfitDialog extends JDialog {
 
 	private static final long serialVersionUID = 4628210176721975735L;
 	
-	private final String OUTFIT_TESTING_PROPERTY = "outfit.testing";
+	private final String OUTFIT_TESTING_PROPERTY = "testing.outfits";
 
 	private static final int PLAYER_WIDTH = 48;
 	private static final int PLAYER_HEIGHT = 64;

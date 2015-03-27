@@ -75,8 +75,8 @@ public class OutfitStore {
 	private OutfitStore(final SpriteStore store) {
 		this.store = store;
 		
-		// TODO: Remove when outfit testing is finished
-		if (System.getProperty("outfit.testing") != null) {
+		// TODO: Remove when testing outfits is finished
+		if (System.getProperty("testing.outfits") != null) {
 			bodies = outfits + "/body-testing";
 			heads = outfits + "/head-testing";
 		} else {
@@ -104,7 +104,7 @@ public class OutfitStore {
 	 * @return A walking state tileset.
 	 */
 	private Sprite buildOutfit(int code, OutfitColor color) {
-		final String testing = System.getProperty("outfit.testing");
+		final String testing = System.getProperty("testing.outfits");
 		int bodycode;
 		if (testing != null) {
 			/* New outfit system uses single digit for body
