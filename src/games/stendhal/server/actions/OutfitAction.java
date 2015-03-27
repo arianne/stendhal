@@ -41,18 +41,31 @@ public class OutfitAction implements ActionListener {
 			if (outfit.isChoosableByPlayers()) {
 				new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 				player.setOutfit(outfit, false);
-				// players may change hair and dress colors
+				
+				// Players may change hair color
 				String color = action.get("hair");
 				if (color != null) {
 					player.put(COLOR_MAP, "hair", color);
 				} else {
 					player.remove(COLOR_MAP, "hair");
 				}
+				
+				// Players may change dress color
 				color = action.get("dress");
 				if (color != null) {
 					player.put(COLOR_MAP, "dress", color);
 				} else {
 					player.remove(COLOR_MAP, "dress");
+				}
+				
+				if (System.getProperty("testing.outfits") != null) {
+					// Players may change skin color
+					color = action.get("body");
+					if (color != null) {
+						player.put(COLOR_MAP, "body", color);
+					} else {
+						player.remove(COLOR_MAP, "body");
+					}
 				}
 			}
 		}
