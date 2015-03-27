@@ -19,6 +19,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.color.ARGB;
 import games.stendhal.common.color.HSL;
+import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,7 +32,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -254,14 +257,14 @@ class ColorSelector extends JPanel {
 		Sprite paletteSprite;
 		
 		// Skin colors to choose from
-		private final Color COLOR1 = new Color(0x513216);
-		private final Color COLOR2 = new Color(0x827940);
-		private final Color COLOR3 = new Color(0xd8d79a);
-		private final Color COLOR4 = new Color(0x3b311c);
-		private final Color COLOR5 = new Color(0xa29475);
-		private final Color COLOR6 = new Color(0x804a2f);
-		private final Color COLOR7 = new Color(0x6c5a33);
-		private final Color COLOR8 = new Color(0xd8c600);
+//		private final Color COLOR1 = new Color(0x513216);
+//		private final Color COLOR2 = new Color(0x827940);
+//		private final Color COLOR3 = new Color(0xd8d79a);
+//		private final Color COLOR4 = new Color(0x3b311c);
+//		private final Color COLOR5 = new Color(0xa29475);
+//		private final Color COLOR6 = new Color(0x804a2f);
+//		private final Color COLOR7 = new Color(0x6c5a33);
+//		private final Color COLOR8 = new Color(0xd8c600);
 		
 		/**
 		 * Create a new SkinPaletteSelector.
@@ -320,32 +323,48 @@ class ColorSelector extends JPanel {
 			if (point.y <= colorHeight) {
 				// Top row
 				if (point.x <= colorWidth) {
-					selectedColor = COLOR1;
+					selectedColor = SkinColor.COLOR1.getColor();
 				} else if (point.x <= (colorWidth * 2)) {
-					selectedColor = COLOR2;
+					selectedColor = SkinColor.COLOR2.getColor();
 				} else if (point.x <= (colorWidth * 3)) {
-					selectedColor = COLOR3;
+					selectedColor = SkinColor.COLOR3.getColor();
 				} else {
-					selectedColor = COLOR4;
+					selectedColor = SkinColor.COLOR4.getColor();
 				}
 			} else {
 				// Bottom row
 				if (point.x <= colorWidth) {
-					selectedColor = COLOR5;
+					selectedColor = SkinColor.COLOR5.getColor();
 				} else if (point.x <= (colorWidth * 2)) {
-					selectedColor = COLOR6;
+					selectedColor = SkinColor.COLOR6.getColor();
 				} else if (point.x <= (colorWidth * 3)) {
-					selectedColor = COLOR7;
+					selectedColor = SkinColor.COLOR7.getColor();
 				} else {
-					selectedColor = COLOR8;
+					selectedColor = SkinColor.COLOR8.getColor();
 				}
 			}
+			
+			// Check if selected color is allowed
+			Boolean matchesAllowedColors = false;
+			Iterator<Color> i = SkinColor.ALLOWED_COLORS.iterator();
+			while (i.hasNext()) {
+				if (i.next().equals(selectedColor)) {
+					matchesAllowedColors = true;
+				}
+			}
+			// Throw an error if the skin color is not allowed
+			if (!matchesAllowedColors) {
+				throw new IllegalArgumentException("Color "
+						+ Integer.toHexString(selectedColor.getRGB())
+						+ " cannot be used for skin color.");
+			}
+			
 			int xDiff = point.x - ins.left;
 			xDiff = Math.min(width, Math.max(0, xDiff));
-			float hue = xDiff / (float) width;
+			//float hue = xDiff / (float) width;
 			int yDiff = point.y - ins.top;
 			yDiff = Math.min(height, Math.max(0, yDiff));
-			float saturation = 1f - yDiff / (float) height;
+			//float saturation = 1f - yDiff / (float) height;
 			//model.setHS(hue, saturation);
 			model.setSelectedColor(selectedColor);
 		}
