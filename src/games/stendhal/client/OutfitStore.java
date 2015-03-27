@@ -41,7 +41,7 @@ public class OutfitStore {
 	final String dresses = outfits + "/dress";
 	
 	/** head directory */
-	final String heads = outfits + "/head";
+	final String heads;// = outfits + "/head";
 	
 	/** mouth directory */
 	final String mouths = outfits + "/mouth";
@@ -78,8 +78,10 @@ public class OutfitStore {
 		// TODO: Remove when outfit testing is finished
 		if (System.getProperty("outfit.testing") != null) {
 			bodies = outfits + "/body-testing";
+			heads = outfits + "/head-testing";
 		} else {
 			bodies = outfits + "/body";
+			heads = outfits + "/head";
 		}
 	}
 
@@ -102,7 +104,16 @@ public class OutfitStore {
 	 * @return A walking state tileset.
 	 */
 	private Sprite buildOutfit(int code, OutfitColor color) {
-		int bodycode = code % 100;
+		final String testing = System.getProperty("outfit.testing");
+		int bodycode;
+		if (testing != null) {
+			/* New outfit system uses single digit for body
+			 * (less than 10 body sprites).
+			 */
+			bodycode = code % 10;
+		} else {
+			bodycode = code % 100;
+		}		
 		code /= 100;
 		
 		int dresscode = code % 100;
@@ -110,6 +121,12 @@ public class OutfitStore {
 		
 		int headcode = code % 100;
 		code /= 100;
+		/* FIXME: To add when ready for mouth sprites 
+		if (testing != null) {
+			// Less than 10 mouth sprites
+			int mouthcode = code % 10;
+			code /= 10;
+		}*/
 		
 		int haircode = code % 100;
 		code /= 100;
