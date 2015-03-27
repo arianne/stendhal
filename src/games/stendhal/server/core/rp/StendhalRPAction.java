@@ -256,7 +256,7 @@ public class StendhalRPAction {
 		 *        XP for successful hit without depending on taking
 		 *        damage. This can be removed later.
 		 */
-		Boolean atkXPAlt = System.getProperty("atkxp.alt") != null;
+		Boolean atkXPAlt = System.getProperty("testing.combat") != null;
 		
 		/* FIXME: Ranged stat is disabled by default until fully implemented.
 		 *        This can be removed later.
