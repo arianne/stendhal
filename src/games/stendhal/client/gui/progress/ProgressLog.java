@@ -25,6 +25,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -178,7 +179,7 @@ class ProgressLog {
 	 *
 	 * @return travel log window
 	 */
-	Component getWindow() {
+	Window getWindow() {
 		return window;
 	}
 
