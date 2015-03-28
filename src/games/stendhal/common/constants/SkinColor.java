@@ -13,14 +13,14 @@ import java.util.List;
  * @author AntumDeluge
  */
 public enum SkinColor {
-	COLOR1(0x513216),
-	COLOR2(0x827940),
-	COLOR3(0xd8d79a),
-	COLOR4(0x3b311c),
-	COLOR5(0xa29475),
-	COLOR6(0x804a2f),
-	COLOR7(0x6c5a33),
-	COLOR8(0xd8c600);
+	COLOR1(0xff513216),
+	COLOR2(0xff827940),
+	COLOR3(0xffd8d79a),
+	COLOR4(0xff3b311c),
+	COLOR5(0xffa29475),
+	COLOR6(0xff804a2f),
+	COLOR7(0xff6c5a33),
+	COLOR8(0xffd8c600);
 	
 	private final int color;
 	
@@ -56,23 +56,42 @@ public enum SkinColor {
 	}
 	
 	/**
-	 * Check if a color code can be used for skin color.
+	 * Check if a Color can be used for skin.
 	 * 
-	 * @param colorValue
-	 * 		The hex color code
+	 * @param color
+	 * 		Color to be tested
 	 * @return
 	 * 		Color can be used
 	 */
-	public static Boolean isAllowed(int colorValue) {
+	public static Boolean isAllowed(Color targetColor) {
+		return isAllowed(targetColor.hashCode());
+	}
+	
+	/**
+	 * Use a color's hash code to check if it allowed for skin.
+	 * 
+	 * @param targetHash
+	 * 		The hash code of the target color's integer value
+	 * @return
+	 * 		Color can be used
+	 */
+	public static Boolean isAllowed(int targetHash) {
 		Boolean allowed = false;
-		final Color testedColor = new Color(colorValue);
 		
 		// If color is found in allowed list return true
-		Iterator<Color> itr = new ArrayList<Color>().iterator();
+		Iterator<Color> itr = ALLOWED_COLORS.iterator();
 		while (itr.hasNext()) {
-			if (itr.next().equals(testedColor)) {
+			if (targetHash == itr.next().hashCode()) {
 				allowed = true;
 			}
+		}
+		
+		// Throw an error if the desired color is not allowed
+		if (!allowed) {
+			throw new IllegalArgumentException("Color "
+					+ Integer.toString(targetHash) + " ("
+					+ Integer.toHexString(targetHash) + ")"
+					+ " cannot be used for skin color.");
 		}
 		
 		return allowed;
