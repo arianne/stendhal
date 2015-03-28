@@ -77,7 +77,7 @@ public class StendhalFirstScreen extends JFrame {
 	public StendhalFirstScreen(final StendhalClient client) {
 		super(detectScreen());
 		setLocationByPlatform(true);
-		WindowUtils.trackLocation(this, "main");
+		WindowUtils.trackLocation(this, "main", true);
 		this.client = client;
 		client.setSplashScreen(this);
 

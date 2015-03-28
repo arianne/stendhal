@@ -245,7 +245,7 @@ class OutfitDialog extends JDialog {
 
 		pack();
 		WindowUtils.closeOnEscape(this);
-		WindowUtils.trackLocation(this, "outfit");
+		WindowUtils.trackLocation(this, "outfit", false);
 	}
 
 	/**

@@ -19,6 +19,7 @@ import games.stendhal.common.MathHelper;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
@@ -26,6 +27,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -46,6 +49,14 @@ public class WindowUtils {
 	private static final String FONT_SIZE_PROPERTY = "ui.font_size";
 	/** Default font point size. */
 	private static final int DEFAULT_FONT_SIZE = 12;
+	
+	/** Property name used to determine if window dimensions should be restored. */
+	private static final String SAVE_DIMENSIONS_PROPERTY = "ui.dimensions";
+	/** Prefix for per window size properties. */
+	private static final String PROP_PREFIX = "ui.window.";
+	
+	/** Windows whose size is being tracked. */
+	private static final Map<Window, ManagedWindowDecorator> trackedWindows = new HashMap<Window, ManagedWindowDecorator>();
 	
 	/**
 	 * Utility class - no instantiation.
@@ -81,21 +92,85 @@ public class WindowUtils {
 	 * @param window tracked window
 	 * @param windowId identifier for the window. This should be unique for
 	 * 	each window type. The restored location is looked up by the identifier.
+	 * @param followSize track the size of the window too
 	 */
-	public static void trackLocation(final Window window, String windowId) {
-		final ManagedWindow mw = new ManagedWindowDecorator(window, windowId);
+	public static void trackLocation(Window window, String windowId,
+			final boolean followSize) {
+		final ManagedWindowDecorator mw = new ManagedWindowDecorator(window, windowId);
 		WtWindowManager manager = WtWindowManager.getInstance();
 		// Avoid specifying any, if the type of the window data has not been
 		// saved before.
 		manager.setDefaultProperties(mw.getName(), false, mw.getX(), mw.getY());
 		manager.formatWindow(mw);
+		if (followSize) {
+			trackedWindows.put(window, mw);
+		}
 		
 		window.addComponentListener(new ComponentAdapter() {
+			final String maximizedProperty = PROP_PREFIX + mw.getName() + ".maximized";
+			final String widthProperty = PROP_PREFIX + mw.getName() + ".width";
+			final String heightProperty = PROP_PREFIX + mw.getName() + ".height";
+			
 			@Override
 			public void componentMoved(ComponentEvent e) {
 				WtWindowManager.getInstance().moveTo(mw, mw.getX(), mw.getY());
 			}
+			
+			@Override
+			public void componentResized(ComponentEvent event) {
+				// Ignore tracking until the size has been restored, so that the
+				// stored size does not get overwritten before it has a chance
+				// of being used
+				if (!followSize || !mw.getRestored()) {
+					return;
+				}
+				WtWindowManager manager = WtWindowManager.getInstance();
+				if (mw.isMaximized()) {
+					manager.setProperty(maximizedProperty, "true");
+				} else {
+					// In case window was previously maximized
+					manager.setProperty(maximizedProperty, "false");
+					manager.setProperty(widthProperty, Integer.toString(mw.getWidth()));
+					manager.setProperty(heightProperty, Integer.toString(mw.getHeight()));
+				}
+			}
 		});
+	}
+	
+	/**
+	 * Restore the size of a tracked window.
+	 * 
+	 * @param window window whose size should be restored
+	 * 
+	 * @throws IllegalArgumentException in case restoring a window that is not
+	 *	tracked is tried
+	 */
+	public static void restoreSize(Window window) {
+		ManagedWindowDecorator dec = trackedWindows.get(window);
+		if (dec == null) {
+			throw new IllegalArgumentException("Trying to restore a window that is not being tracked");
+		}
+		dec.setRestored(true);
+		WtWindowManager wm = WtWindowManager.getInstance();
+		if (!"true".equals(wm.getProperty(SAVE_DIMENSIONS_PROPERTY, "true"))) {
+			return;
+		}
+		
+		String maximizedProp = PROP_PREFIX + dec.getName() + ".maximized";
+		if ("true".equals(wm.getProperty(maximizedProp, "false"))) {
+			if (window instanceof Frame) {
+				((Frame) window).setExtendedState(Frame.MAXIMIZED_BOTH);
+				return;
+			} else {
+				// Should not happen, but handle the situation gracefully
+				wm.setProperty(maximizedProp, "false");
+			}
+		}
+		int width = wm.getPropertyInt(PROP_PREFIX + dec.getName() + ".width", -1);
+		int height = wm.getPropertyInt(PROP_PREFIX + dec.getName() + ".height", -1);
+		if (width != -1 && height != -1) {
+			window.setSize(width, height);
+		}
 	}
 		
 	/**
@@ -178,6 +253,8 @@ public class WindowUtils {
 		private final Window window;
 		/** Window identifier. */
 		private final String name;
+		/** Size restored status of the window. */
+		private boolean restored;
 		
 		/**
 		 * Create a managed window decorator with an identity for a window. 
@@ -188,6 +265,58 @@ public class WindowUtils {
 		ManagedWindowDecorator(Window window, String windowId) {
 			this.window = window;
 			name = "system." + windowId;
+		}
+		
+		/**
+		 * Check if the window is maximized.
+		 * 
+		 * @return <code>true</code> if the window is maximized, otherwise
+		 * 	<code>false</code>
+		 */
+		boolean isMaximized() {
+			if (window instanceof Frame) {
+				return ((Frame) window).getExtendedState() == Frame.MAXIMIZED_BOTH;
+			}
+			return false;
+		}
+		
+		/**
+		 * Get the size restoration status of the window. The size has been
+		 * restored if {@link WindowUtils#restoreSize} has been called with the
+		 * window of this decorator as the parameter. 
+		 * 
+		 * @return <code>true</code> if the window size has been restored,
+		 * otherwise <code>false</code>
+		 */
+		boolean getRestored() {
+			return restored;
+		}
+		
+		/**
+		 * Set the size restoration status of this window.
+		 * 
+		 * @param restored new status
+		 */
+		void setRestored(boolean restored) {
+			this.restored = restored;
+		}
+		
+		/**
+		 * Get the window width.
+		 * 
+		 * @return width
+		 */
+		int getWidth() {
+			return window.getWidth();
+		}
+		
+		/**
+		 * Get the window height.
+		 * 
+		 * @return height
+		 */
+		int getHeight() {
+			return window.getHeight();
 		}
 		
 		@Override

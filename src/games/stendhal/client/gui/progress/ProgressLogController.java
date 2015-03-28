@@ -13,10 +13,11 @@ package games.stendhal.client.gui.progress;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
 
-import java.awt.Component;
+import java.awt.Window;
 import java.util.Collection;
 import java.util.List;
 
@@ -142,7 +143,8 @@ public class ProgressLogController {
 	 * outside the event dispatch thread.
 	 */
 	private void showWindow() {
-		Component window = getProgressLog().getWindow();
+		Window window = getProgressLog().getWindow();
+		WindowUtils.restoreSize(window);
 		window.setVisible(true);
 	}
 
