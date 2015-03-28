@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 public class StatusResistantItem extends Item {
 	
 	/** The logger instance */
-	final Logger logger;
+	final Logger logger = Logger.getLogger(StatusResistantItem.class);
 	
 	/** List of status types that this item is resistant to. */
 	private StatusResistanceList resistances;
@@ -55,13 +55,20 @@ public class StatusResistantItem extends Item {
 		// FIXME: If item is destroyed while in active slot resistance is not
 		//        adjusted.
 		
-		// Initialize logger
-		this.logger = Logger.getLogger(StatusResistantItem.class);
-		
 		// Initialize resistances
 		this.resistances = new StatusResistanceList(this);
 		
 		this.resistancesActiveSlotList = new ArrayList<String>();
+	}
+	
+	/**
+	 * Copy constructor.
+	 * 
+	 * @param item
+	 * 		Item to copy
+	 */
+	public StatusResistantItem(final StatusResistantItem item) {
+		super(item);
 	}
 	
 	/**
