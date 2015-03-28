@@ -254,16 +254,6 @@ class ColorSelector extends JPanel {
 		/** background sprite */
 		Sprite paletteSprite;
 		
-		// Skin colors to choose from
-//		private final Color COLOR1 = new Color(0x513216);
-//		private final Color COLOR2 = new Color(0x827940);
-//		private final Color COLOR3 = new Color(0xd8d79a);
-//		private final Color COLOR4 = new Color(0x3b311c);
-//		private final Color COLOR5 = new Color(0xa29475);
-//		private final Color COLOR6 = new Color(0x804a2f);
-//		private final Color COLOR7 = new Color(0x6c5a33);
-//		private final Color COLOR8 = new Color(0xd8c600);
-		
 		/**
 		 * Create a new SkinPaletteSelector.
 		 */
@@ -352,7 +342,7 @@ class ColorSelector extends JPanel {
 			xDiff = Math.min(width, Math.max(0, xDiff));
 			int yDiff = point.y - ins.top;
 			yDiff = Math.min(height, Math.max(0, yDiff));
-			model.setSelectedColor(selectedColor);
+			model.setSelectedSkinColor(selectedColor);
 		}
 		
 		@Override
@@ -509,7 +499,33 @@ class ColorSelector extends JPanel {
 		public void removeChangeListener(ChangeListener listener) {
 			listeners.remove(listener);
 		}
-
+		
+		/**
+		 * Used for setting skin color.
+		 * 
+		 * @param color
+		 * 		Target skin color
+		 */
+		public void setSelectedSkinColor(Color color) {
+			if (color != null) {
+				this.color = color;
+			} else {
+				// Something with a sane lightness value
+				this.color = SkinColor.COLOR1.getColor();
+			}
+			
+			int[] rgb = new int[4];
+			ARGB.splitRgb(this.color.getRGB(), rgb);
+			HSL.rgb2hsl(rgb, hsl);
+			fireChanged();
+		}
+		
+		/**
+		 * Used for setting outfit colors other than skin.
+		 * 
+		 * @param color
+		 * 		Target outfit color
+		 */
 		@Override
 		public void setSelectedColor(Color color) {
 			if (color != null) {
@@ -518,6 +534,7 @@ class ColorSelector extends JPanel {
 				// Something with a sane lightness value
 				this.color = Color.GRAY;
 			}
+			
 			int[] rgb = new int[4];
 			ARGB.splitRgb(this.color.getRGB(), rgb);
 			HSL.rgb2hsl(rgb, hsl);
