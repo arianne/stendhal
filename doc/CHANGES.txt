@@ -37,6 +37,7 @@
 *visuals*
 - Active entities reset animated sprite index to 1 to appear standing when stopped
 - Zombie status is indicated by making the player green
+- Animated flame tiles replaced in int_semos_wizards_tower_1
 
 *fixes*
 - Fix player cannot move after zombie status wears off
