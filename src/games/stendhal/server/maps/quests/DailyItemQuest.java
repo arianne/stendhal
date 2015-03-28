@@ -270,7 +270,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("wooden shield",1);
 		
 		// sword
-		items.put("biting sword",1);	
+		items.put("biting sword",1);
 		items.put("broadsword",1);
 		items.put("claymore",1);
 		items.put("dagger",1);
