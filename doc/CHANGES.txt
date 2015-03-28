@@ -8,10 +8,16 @@
 - Different "elf" head for players and NPCs
 - New corpse for bone dragon
 - Added 5 olives to Daily Item Quest
+- Varying weather at outside zones
+- Drunken player speech is now more confusing and depends on the state of drunkenness
 
 *client*
 - Emote character map available by passing -Dcharmap.emotes to VM
 - Can restore window width, height, and maximized state
+- Drawing weather can be disabled in settings
+- More visible new chat message indication
+- Links to stendhalgame.org in the chat log can be opened with a mouse click
+- The client can draw a weapon sprite with the attack swipes, if one is available 
 
 *code*
 - Alias "zucchini" for "courgette"
@@ -28,12 +34,15 @@
 
 *visuals*
 - Active entities reset animated sprite index to 1 to appear standing when stopped
+- Zombie status is indicated by making the player green
 
 *fixes*
 - Fix player cannot move after zombie status wears off
 - Karma reward for quests: Kill Dhohr Nuggetcutter, Coal for Haunchy
 - Refactored tiled/tileset/plant/cactus_2.png
 - Refactored tiled/tileset/object/row_boat.png
+- Reporting killers on an entity death no longer lists all attackers at the time
+  of death
 
 
 1.16
