@@ -212,6 +212,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("toadstool",15);
 		items.put("tomato",5);
 		items.put("trout",5);
+		items.put("olive",5);
 		
 		// helmet
         items.put("blue helmet",1);
