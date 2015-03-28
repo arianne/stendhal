@@ -59,6 +59,7 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 
 		// add it to the world
 		for (LoadableContent loadableContent : content) {
+			loadableContent.addToWorld();
 		}
 	}
 
