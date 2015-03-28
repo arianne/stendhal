@@ -32,9 +32,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -344,28 +342,16 @@ class ColorSelector extends JPanel {
 				}
 			}
 			
-			// Check if selected color is allowed
-			Boolean matchesAllowedColors = false;
-			Iterator<Color> i = SkinColor.ALLOWED_COLORS.iterator();
-			while (i.hasNext()) {
-				if (i.next().equals(selectedColor)) {
-					matchesAllowedColors = true;
-				}
-			}
-			// Throw an error if the skin color is not allowed
-			if (!matchesAllowedColors) {
-				throw new IllegalArgumentException("Color "
-						+ Integer.toHexString(selectedColor.getRGB())
-						+ " cannot be used for skin color.");
-			}
+			// Throws IllegalArgumentExeption if "color" is not in
+			// allowed colors.
+			// FIXME:	This probably isn't necessary since the server does the
+			// 			same check.
+			SkinColor.isAllowed(selectedColor);
 			
 			int xDiff = point.x - ins.left;
 			xDiff = Math.min(width, Math.max(0, xDiff));
-			//float hue = xDiff / (float) width;
 			int yDiff = point.y - ins.top;
 			yDiff = Math.min(height, Math.max(0, yDiff));
-			//float saturation = 1f - yDiff / (float) height;
-			//model.setHS(hue, saturation);
 			model.setSelectedColor(selectedColor);
 		}
 		
