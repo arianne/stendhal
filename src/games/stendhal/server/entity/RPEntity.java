@@ -1465,18 +1465,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param oldXP
 	 *            The XP that this RPEntity had before being killed.
-	 * @return list of killer names
 	 */
-	protected List<String> rewardKillers(final int oldXP) {
+	protected void rewardKillers(final int oldXP) {
 		final int xpReward = (int) (oldXP * 0.05);
-		ArrayList<String> killers = new ArrayList<String>();
 
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
 			final int damageDone = entry.getValue();
 			if (damageDone == 0) {
 				continue;
 			}
-			killers.add(entry.getKey().getName());
 			
 			Player killer = entityAsOnlinePlayer(entry.getKey());
 			if (killer == null) {
@@ -1532,7 +1529,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			killer.notifyWorldAboutChanges();
 		}
-		return killers;
 	}
 
 	/**

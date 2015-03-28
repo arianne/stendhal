@@ -2070,8 +2070,7 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	@Override
-	protected List<String> rewardKillers(final int oldXP) {
-		List<String> killers = new ArrayList<String>();
+	protected void rewardKillers(final int oldXP) {
 		// Don't reward for killing players
 		// process tutorial event for first player kill
 
@@ -2079,14 +2078,11 @@ public class Player extends RPEntity implements UseListener {
 			if (entry.getValue() == 0) {
 				continue;
 			}
-			Entity entity = entry.getKey();
-			killers.add(entity.getName());
-			Player killer = entityAsOnlinePlayer(entity);
+			Player killer = entityAsOnlinePlayer(entry.getKey());
 			if (killer != null) {
 				TutorialNotifier.killedPlayer(killer);
 			}
 		}
-		return killers;
 	}
 
 	public PetOwner getPetOwner() {
