@@ -113,6 +113,8 @@ class EventFactory {
 			event = new ViewChangeEvent();
 		}  else if (name.equals(Events.IMAGE)) {
 			event = new ImageEffectEvent();
+		} else if (name.equals(Events.PUBLIC_TEXT)) {
+			event = new EntityMessageEvent();
 		}
 
 		if (event != null) {

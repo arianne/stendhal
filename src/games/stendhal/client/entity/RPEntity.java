@@ -17,7 +17,6 @@ import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
@@ -1441,15 +1440,6 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param attackers the entities that were attacking the deceased
 	 */
 	private void onDeath(final Collection<Entity> attackers) {
-		if (!attackers.isEmpty()) {
-			Collection<String> attackerNames = new LinkedList<String>();
-			for (Entity attacker : attackers) {
-					attackerNames.add(attacker.getTitle());
-			}
-			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(
-					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames)));
-		}
-		
 	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "death");
 	}
 
