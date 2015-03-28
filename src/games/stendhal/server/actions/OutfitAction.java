@@ -65,7 +65,7 @@ public class OutfitAction implements ActionListener {
 					if (color != null) {
 						// Throws IllegalArgumentExeption if "color" is not in
 						// allowed colors.
-						SkinColor.isAllowed(Integer.parseInt(color) + 1);
+						SkinColor.isAllowed(Integer.parseInt(color));
 						player.put(COLOR_MAP, "skin", color);
 					} else {
 						player.remove(COLOR_MAP, "skin");
