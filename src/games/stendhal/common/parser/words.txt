@@ -114,6 +114,7 @@ expire	VER
 expired	VER	=expire
 explain	VER
 explore	VER
+extend	VER =prolong
 farewell	VER
 feed	VER
 fetch	VER

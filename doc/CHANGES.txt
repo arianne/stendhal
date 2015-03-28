@@ -24,6 +24,7 @@
 - Alias "zucchini" for "courgette"
 - Alias "armour" for "armor"
 - Alias "colour" for "color"
+- Alias "extend" for "prolong"
 - Organized outfit parts into subdirectories
 - Changed "player_base" outfit type to "body"
 - Entities can now pass through collision tiles with "setIgnoresCollision()"
