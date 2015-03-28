@@ -7,7 +7,8 @@
 - A new fish swimming along the coast in Ados City
 - Different "elf" head for players and NPCs
 - New corpse for bone dragon
-- Added 5 olives to Daily Item Quest
+- Added to Daily Item Quest list:
+-- 5 olives, 2 marbles
 - Varying weather at outside zones
 - Drunken player speech is now more confusing and depends on the state of drunkenness
 
