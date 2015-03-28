@@ -197,8 +197,10 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * A helper class for building a size limited list of killer names. If there
 	 * are more killers than the limit, then "others" is set as the last killer.
+	 * Only living creatures and online players are included in the killer name
+	 * list. RPEntities on other zones are not included.
 	 */
-	private static class KillerList {
+	private class KillerList {
 		/** Maximum amount of killer names. */
 		private static final int MAX_SIZE = 10;
 		/** List of killer names. */
@@ -215,9 +217,23 @@ public abstract class RPEntity extends GuidedEntity {
 		 * @param e entity
 		 */
 		void addEntity(Entity e) {
-			// Try to keep player names at the start of the list
-			if (e instanceof Player) {
-				list.addFirst(e.getName());
+			if (e instanceof RPEntity) {
+				// Only list the killers on the zone where the death happened.
+				if (e.getZone() != getZone()) {
+					return;
+				}
+				// Try to keep player names at the start of the list
+				if (e instanceof Player) {
+					if (((Player) e).isDisconnected()) {
+						return;
+					}
+					list.addFirst(e.getName());
+				} else {
+					if (((RPEntity) e).getHP() <= 0) {
+						return;
+					}
+					list.add(e.getName());
+				}
 			} else {
 				list.add(e.getName());
 			}
