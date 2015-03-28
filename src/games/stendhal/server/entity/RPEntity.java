@@ -49,6 +49,7 @@ import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -192,6 +193,59 @@ public abstract class RPEntity extends GuidedEntity {
 	 * weak enemies
 	 */
 	private static final double WEIGHT_EFFECT = 0.5;
+	
+	/**
+	 * A helper class for building a size limited list of killer names. If there
+	 * are more killers than the limit, then "others" is set as the last killer.
+	 */
+	private static class KillerList {
+		/** Maximum amount of killer names. */
+		private static final int MAX_SIZE = 10;
+		/** List of killer names. */
+		private final LinkedList<String> list = new LinkedList<String>();
+		/**
+		 * A flag for detecting when the killer list has grown over the
+		 * maximum size.
+		 */
+		private boolean more;
+		
+		/**
+		 * Add an entity to the killer list.
+		 * 
+		 * @param e entity
+		 */
+		void addEntity(Entity e) {
+			// Try to keep player names at the start of the list
+			if (e instanceof Player) {
+				list.addFirst(e.getName());
+			} else {
+				list.add(e.getName());
+			}
+			trim();
+		}
+		
+		/**
+		 * Keep the name list at most {@link #MAX_SIZE}.
+		 */
+		private void trim() {
+			if (list.size() > MAX_SIZE) {
+				list.remove(list.size() - 1);
+				more = true;
+			}
+		}
+		
+		/**
+		 * Get the name list of the added entities.
+		 * 
+		 * @return name list.
+		 */
+		List<String> asList() {
+			if (more) {
+				list.set(list.size() - 1, "others");
+			}
+			return Collections.unmodifiableList(list);
+		}
+	}
 
 	@Override
 	protected boolean handlePortal(final Portal portal) {
@@ -1517,6 +1571,25 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		onDead(killerName, remove);
 	}
+	
+	/**
+	 * Build a list of killer names.
+	 * 
+	 * @return list of killers
+	 */
+	private List<String> buildKillerList() {
+		KillerList killers = new KillerList();
+		
+		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			final int damageDone = entry.getValue();
+			if (damageDone == 0) {
+				continue;
+			}
+			
+			killers.addEntity(entry.getKey());
+		}
+		return killers.asList();
+	}
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
@@ -1538,11 +1611,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		// Establish how much xp points your are rewarded
 		// give XP to everyone who helped killing this RPEntity
-		List<String> killers = rewardKillers(oldXP);
+		rewardKillers(oldXP);
 
 		// Add a corpse
 		final Corpse corpse = makeCorpse(killerName);
-
+		// Needs to be done while the killer map still has the contents
+		List<String> killers = buildKillerList();
 		damageReceived.clear();
 		totalDamageReceived = 0;
 
@@ -1563,6 +1637,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			corpse.addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
 			corpse.notifyWorldAboutChanges();
 		}
+		
 		StringBuilder deathMessage = new StringBuilder(getName());
 		deathMessage.append(" has been killed");
 		if (!killers.isEmpty()) {
