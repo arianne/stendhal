@@ -3,6 +3,7 @@ package games.stendhal.common.constants;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -55,11 +56,25 @@ public enum SkinColor {
 	}
 	
 	/**
-	 * Retrieve colors that can be used for skin.
+	 * Check if a color code can be used for skin color.
 	 * 
+	 * @param colorValue
+	 * 		The hex color code
 	 * @return
+	 * 		Color can be used
 	 */
-	public List<Color> getAllowedColors() {
-		return SkinColor.ALLOWED_COLORS;
+	public static Boolean isAllowed(int colorValue) {
+		Boolean allowed = false;
+		final Color testedColor = new Color(colorValue);
+		
+		// If color is found in allowed list return true
+		Iterator<Color> itr = new ArrayList<Color>().iterator();
+		while (itr.hasNext()) {
+			if (itr.next().equals(testedColor)) {
+				allowed = true;
+			}
+		}
+		
+		return allowed;
 	}
 }
