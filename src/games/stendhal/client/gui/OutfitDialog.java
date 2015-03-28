@@ -31,6 +31,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -346,8 +348,9 @@ class OutfitDialog extends JDialog {
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
 			
-			/* body color */
-			selector = createColorSelector("Skin", OutfitColor.SKIN, bodyLabel,
+			/* skin color */
+			selector = createColorSelector("Skin", OutfitColor.SKIN, 
+					Arrays.asList(bodyLabel, headLabel),
 					USE_SKIN_PALETTE);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
@@ -539,6 +542,31 @@ class OutfitDialog extends JDialog {
 	 */
 	private JComponent createColorSelector(final String niceName, final String key,
 			final OutfitLabel label, final Boolean skinPalette) {
+		
+		final List<OutfitLabel> labels = Arrays.asList(label);
+		
+		return this.createColorSelector(niceName, key, labels, skinPalette);
+	}
+	
+	/**
+	 * Create a color selection component for an outfit part optionally with
+	 * defined skin colors only.
+	 * 
+	 * @param niceName
+	 * 		Outfit part name that is capitalizes for user to see
+	 * @param key
+	 * 		Outfit part identifier
+	 * @param labels
+	 * 		List of outfit part display that should be kept up to date with
+	 * 		the color changes (in addition of the whole outfit display)
+	 * @param skinPalette
+	 * 		Use skin colors only
+	 * @return
+	 * 		color selection component
+	 */
+	private JComponent createColorSelector(final String niceName, final String key,
+			final List<OutfitLabel> labels, final Boolean skinPalette) {
+		
 		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		final JCheckBox enableToggle = new JCheckBox(niceName + " color");
 		
@@ -558,8 +586,13 @@ class OutfitDialog extends JDialog {
 		selector.getSelectionModel().addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent ev) {
+				final Iterator<OutfitLabel> itr = labels.iterator();
+				OutfitLabel label;
 				outfitColor.setColor(key, model.getSelectedColor());
-				label.changed();
+				while (itr.hasNext()) {
+					label = itr.next();
+					label.changed();
+				}
 				outfitLabel.changed();
 			}
 		});
@@ -567,16 +600,24 @@ class OutfitDialog extends JDialog {
 		enableToggle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				final Iterator<OutfitLabel> itr = labels.iterator();
+				OutfitLabel label;
 				if (enableToggle.isSelected()) {
 					// restore previously selected color, if any
 					outfitColor.setColor(key, model.getSelectedColor());
-					label.changed();
+					while (itr.hasNext()) {
+						label = itr.next();
+						label.changed();
+					}
 					outfitLabel.changed();
 					selector.setEnabled(true);
 				} else {
 					// use default coloring
 					outfitColor.setColor(key, null);
-					label.changed();
+					while (itr.hasNext()) {
+						label = itr.next();
+						label.changed();
+					}
 					outfitLabel.changed();
 					selector.setEnabled(false);
 				}
