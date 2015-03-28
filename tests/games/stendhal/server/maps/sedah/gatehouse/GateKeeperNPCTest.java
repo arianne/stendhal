@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                (C) Copyright 2005-2015 - Faiumoni e. V.                 *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.sedah.gatehouse;
 
 import static org.junit.Assert.assertEquals;
@@ -79,7 +90,6 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		checkReply("bribe 300", REPLY_BRIBE_ACCEPTED);
 		assertTrue(player.isEquipped(ITEM_KEY));
 		assertMoneyLeft(0);
-
 	}
 
 	@Test
@@ -126,8 +136,16 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(expectedReply, getReply(npc));
 	}
 
+	/**
+	 * Check for exact amount of money on the player.
+	 * 
+	 * @param exactAmount
+	 */
 	private void assertMoneyLeft(int exactAmount) {
-		assertTrue(player.isEquipped(ITEM_MONEY, exactAmount));
+		// Testing for 0 items is always false
+		if (exactAmount > 0) {
+			assertTrue(player.isEquipped(ITEM_MONEY, exactAmount));
+		}
 		assertFalse(player.isEquipped(ITEM_MONEY, exactAmount + 1));
 	}
 }
