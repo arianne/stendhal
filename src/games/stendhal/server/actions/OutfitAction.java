@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.OUTFIT;
 import static games.stendhal.common.constants.Actions.VALUE;
+import games.stendhal.common.constants.SkinColor;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
@@ -24,7 +25,7 @@ import marauroa.common.game.RPAction;
  */
 public class OutfitAction implements ActionListener {
 	private static String COLOR_MAP = "outfit_colors";
-
+	
 	public static void register() {
 		CommandCenter.register(OUTFIT, new OutfitAction());
 	}
@@ -60,11 +61,14 @@ public class OutfitAction implements ActionListener {
 				
 				if (System.getProperty("testing.outfits") != null) {
 					// Players may change skin color
-					color = action.get("body");
+					color = action.get("skin");
 					if (color != null) {
-						player.put(COLOR_MAP, "body", color);
+						// Throws IllegalArgumentExeption if "color" is not in
+						// allowed colors.
+						SkinColor.isAllowed(Integer.parseInt(color) + 1);
+						player.put(COLOR_MAP, "skin", color);
 					} else {
-						player.remove(COLOR_MAP, "body");
+						player.remove(COLOR_MAP, "skin");
 					}
 				}
 			}
