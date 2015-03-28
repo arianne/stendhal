@@ -71,12 +71,14 @@ class ColorSelector extends JPanel {
 		if (useSkinPalette) {
 			paletteSelector = new SkinPaletteSelector(model);
 			add(paletteSelector);
+			// FIXME: Add lightness/darkness values to allowed colors in SkinColor
+			lightnessSelector = null;
 		} else {
 			paletteSelector = new HueSaturationSelector(model);
 			add(paletteSelector);
+			lightnessSelector = new LightnessSelector(model);
+			add(lightnessSelector, SLayout.EXPAND_X);
 		}
-		lightnessSelector = new LightnessSelector(model);
-		add(lightnessSelector, SLayout.EXPAND_X);
 	}
 
 	@Override
