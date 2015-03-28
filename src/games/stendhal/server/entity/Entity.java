@@ -154,6 +154,7 @@ public abstract class Entity extends RPObject implements Killer {
 		entity.addRPEvent(Events.SOUND, Definition.VOLATILE);
 		// graphical effects
 		entity.addRPEvent(Events.IMAGE, Definition.VOLATILE);
+		entity.addRPEvent(Events.PUBLIC_TEXT, Definition.VOLATILE);
 	}
 
 

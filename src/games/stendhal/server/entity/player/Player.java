@@ -61,6 +61,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
@@ -2069,16 +2070,23 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	@Override
-	protected void rewardKillers(final int oldXP) {
+	protected List<String> rewardKillers(final int oldXP) {
+		List<String> killers = new ArrayList<String>();
 		// Don't reward for killing players
 		// process tutorial event for first player kill
 
-		for (Entity entity : damageReceived.keySet()) {
+		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			if (entry.getValue() == 0) {
+				continue;
+			}
+			Entity entity = entry.getKey();
+			killers.add(entity.getName());
 			Player killer = entityAsOnlinePlayer(entity);
 			if (killer != null) {
 				TutorialNotifier.killedPlayer(killer);
 			}
 		}
+		return killers;
 	}
 
 	public PetOwner getPetOwner() {

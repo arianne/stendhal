@@ -44,6 +44,7 @@ import games.stendhal.server.entity.status.StatusList;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
@@ -1410,22 +1411,25 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param oldXP
 	 *            The XP that this RPEntity had before being killed.
+	 * @return list of killer names
 	 */
-	protected void rewardKillers(final int oldXP) {
+	protected List<String> rewardKillers(final int oldXP) {
 		final int xpReward = (int) (oldXP * 0.05);
+		ArrayList<String> killers = new ArrayList<String>();
 
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			final int damageDone = entry.getValue();
+			if (damageDone == 0) {
+				continue;
+			}
+			killers.add(entry.getKey().getName());
+			
 			Player killer = entityAsOnlinePlayer(entry.getKey());
 			if (killer == null) {
 				continue;
 			}
 
 			TutorialNotifier.killedSomething(killer);
-
-			final int damageDone = entry.getValue();
-			if (damageDone == 0) {
-				continue;
-			}
 
 			if (logger.isDebugEnabled()) {
 				final String killName;
@@ -1474,6 +1478,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			killer.notifyWorldAboutChanges();
 		}
+		return killers;
 	}
 
 	/**
@@ -1533,7 +1538,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		// Establish how much xp points your are rewarded
 		// give XP to everyone who helped killing this RPEntity
-		rewardKillers(oldXP);
+		List<String> killers = rewardKillers(oldXP);
 
 		// Add a corpse
 		final Corpse corpse = makeCorpse(killerName);
@@ -1558,6 +1563,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			corpse.addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
 			corpse.notifyWorldAboutChanges();
 		}
+		StringBuilder deathMessage = new StringBuilder(getName());
+		deathMessage.append(" has been killed");
+		if (!killers.isEmpty()) {
+			deathMessage.append(" by ");
+			deathMessage.append(Grammar.enumerateCollection(killers));
+		}
+		corpse.addEvent(new TextEvent(deathMessage.toString()));
 
 		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does),
 		// so defer stopping.

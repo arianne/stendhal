@@ -90,7 +90,6 @@ public abstract class NPC extends RPEntity {
 			npc.addAttribute("class", Type.STRING);
 			npc.addAttribute("subclass", Type.STRING);
 			//npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
-			npc.addRPEvent("text", Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
 			npc.addAttribute("outfit", Type.INT);
 		} catch (final SyntaxException e) {

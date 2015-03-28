@@ -16,6 +16,8 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.DeathmatchState;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 /**
@@ -58,17 +60,20 @@ public class DeathMatchCreature extends Creature {
 	}
 
 	@Override
-	protected void rewardKillers(final int oldXP) {
+	protected List<String> rewardKillers(final int oldXP) {
+		List<String> killers = new ArrayList<String>();
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			int damageDone = entry.getValue();
+			if (damageDone == 0) {
+				continue;
+			}
+			killers.add(entry.getKey().getName());
+			
 			Player killer = entityAsOnlinePlayer(entry.getKey());
 			if (killer == null) {
 				continue;
 			}
 			
-			int damageDone = entry.getValue();
-			if (damageDone == 0) {
-				continue;
-			}
 			// set the DM points score only for the player who started the DM
 			if (killer.getName().equals(playerName)) {
 				points = (int) (killer.getLevel()
@@ -94,6 +99,7 @@ public class DeathMatchCreature extends Creature {
 			
 			killer.notifyWorldAboutChanges();
 		}
+		return killers;
 	}
 	
 	/**
