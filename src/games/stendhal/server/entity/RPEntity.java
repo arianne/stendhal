@@ -1372,7 +1372,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
-	protected int damage(final int amount) {
+	private int damage(final int amount) {
 		int tempHp = getHP();
 		final int taken = Math.min(amount, tempHp);
 
@@ -1450,7 +1450,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @param killer
 	 *            The killer
 	 */
-	protected void kill(final Entity killer) {
+	private void kill(final Entity killer) {
 		setHP(0);
 		SingletonRepository.getRuleProcessor().killRPEntity(this, killer);
 	}
