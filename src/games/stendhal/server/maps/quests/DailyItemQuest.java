@@ -90,7 +90,6 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("power arrow",5);
 		items.put("steel arrow",7);
 		items.put("wooden arrow",10);
-
 		
 		// armor
         items.put("blue armor",1);
@@ -132,7 +131,6 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("dwarf cloak",1);
 		items.put("elf cloak",1);
 		items.put("green dragon cloak",1);
-	
 		
 		// club
 		items.put("club",1);
@@ -237,8 +235,9 @@ public class DailyItemQuest extends AbstractQuest {
 		
 		// misc
 		items.put("dice",1);
-		items.put("teddy",1);
+		items.put("marbles", 2);
 		items.put("rodent trap",5);
+		items.put("teddy",1);
 		
 		// money
 		items.put("money",100);
@@ -281,7 +280,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("scimitar",1);
 		items.put("short sword",1);
 		items.put("sword",1);
-
+		
 		// tool
 		items.put("pick",1);
 		items.put("gold pan",1);
