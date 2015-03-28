@@ -550,8 +550,11 @@ class OutfitDialog extends JDialog {
 		selector.setEnabled(colored);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		container.add(selector);
-		final ColorSelectionModel model = selector.getSelectionModel(); 
-		model.setSelectedColor(outfitColor.getColor(key));
+		final ColorSelectionModel model = selector.getSelectionModel();
+		// SkinPaletteSelector does this automatically with setSelectedSkinColor(color)
+		if (!skinPalette) {
+			model.setSelectedColor(outfitColor.getColor(key));
+		}
 		selector.getSelectionModel().addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent ev) {
