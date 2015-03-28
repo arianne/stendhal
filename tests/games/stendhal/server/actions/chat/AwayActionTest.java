@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,7 +45,7 @@ public class AwayActionTest {
 		assertEquals(null, bob.getAwayMessage());
 		action.put("message", "bla");
 		aa.onAction(bob, action);
-		assertEquals("bla", bob.getAwayMessage());
+		assertEquals("\"bla\"", bob.getAwayMessage());
 	}
 
 	/**
