@@ -19,19 +19,36 @@ public enum SkinColor {
 	COLOR5(0xffa29475),
 	COLOR6(0xff804a2f),
 	COLOR7(0xff6c5a33),
-	COLOR8(0xffd8c600);
+	COLOR8(0xffd8cc47),
+	COLOR9(0xff3b190f),
+	COLOR10(0xff602710),
+	COLOR11(0xffac8121),
+	COLOR12(0xff16120a),
+	COLOR13(0xff764b00),
+	COLOR14(0xffbfb4ae),
+	COLOR15(0xff966c00),
+	COLOR16(0xffb59d55);
 	
 	private final int color;
+	private final int colorHash;
 	
-	public static final List<Color> ALLOWED_COLORS = Arrays.asList(
-			COLOR1.getColor(),
-			COLOR2.getColor(),
-			COLOR3.getColor(),
-			COLOR4.getColor(),
-			COLOR5.getColor(),
-			COLOR6.getColor(),
-			COLOR7.getColor(),
-			COLOR8.getColor()
+	public static final List<Integer> ALLOWED_COLORS = Arrays.asList(
+			COLOR1.colorHash,
+			COLOR2.colorHash,
+			COLOR3.colorHash,
+			COLOR4.colorHash,
+			COLOR5.colorHash,
+			COLOR6.colorHash,
+			COLOR7.colorHash,
+			COLOR8.colorHash,
+			COLOR9.colorHash,
+			COLOR10.colorHash,
+			COLOR11.colorHash,
+			COLOR12.colorHash,
+			COLOR13.colorHash,
+			COLOR14.colorHash,
+			COLOR15.colorHash,
+			COLOR16.colorHash
 			);
 	
 	/**
@@ -42,6 +59,7 @@ public enum SkinColor {
 	 */
 	private SkinColor(int color) {
 		this.color = color;
+		this.colorHash = Integer.hashCode(color);
 	}
 	
 	/**
@@ -77,11 +95,11 @@ public enum SkinColor {
 	public static Boolean isAllowed(int targetHash) {
 		Boolean allowed = false;
 		
-		// If color is found in allowed list return true
-		Iterator<Color> itr = ALLOWED_COLORS.iterator();
+		// If color's hash is found in allowed list return true
+		Iterator<Integer> itr = ALLOWED_COLORS.iterator();
 		while (itr.hasNext()) {
-			if (targetHash == itr.next().hashCode()) {
-				allowed = true;
+			if (targetHash == itr.next()) {
+				return true; // No need to continue iterations
 			}
 		}
 		
