@@ -43,6 +43,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		// outfit type, in the order: hair, head, dress, base.
 		// One of these outfit will be chosen randomly.
 
+		// FIXME: Use new outfit system
 		// swimsuits for men
 		outfitTypes.put("trunks", Arrays.asList(
 				new Outfit(null, null, null, 95, null), new Outfit(null, null, null, 96,
