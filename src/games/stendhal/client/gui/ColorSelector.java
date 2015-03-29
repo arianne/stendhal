@@ -249,16 +249,14 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		@Override
 		public void setSelectedColor(Color color) {
-			if (color != null) {
-				super.setSelectedColor(color);
-			} else {
+			if (color == null) {
 				// Something with a sane lightness value
-				super.setSelectedColor(Color.GRAY);
+				color = Color.GRAY;
 			}
 			int[] rgb = new int[4];
-			ARGB.splitRgb(getSelectedColor().getRGB(), rgb);
+			ARGB.splitRgb(color.getRGB(), rgb);
 			HSL.rgb2hsl(rgb, hsl);
-			fireStateChanged();
+			super.setSelectedColor(color);
 		}
 
 		/**
@@ -318,7 +316,6 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			HSL.hsl2rgb(hsl, rgb);
 			rgb[0] = 0xff;
 			super.setSelectedColor(new Color(ARGB.mergeRgb(rgb)));
-			fireStateChanged();
 		}
 	}
 }

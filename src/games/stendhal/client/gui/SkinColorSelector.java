@@ -163,7 +163,6 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			}
 			enumColor = color;
 			super.setSelectedColor(new Color(enumColor.getColor()));
-			fireStateChanged();
 		}
 	
 		/**
@@ -180,8 +179,6 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 				enumColor = SkinColor.COLOR1;
 			}
 			super.setSelectedColor(new Color(enumColor.getColor()));
-			
-			fireStateChanged();
 		}
 	}
 }
