@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.city;
 
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -80,8 +81,14 @@ public class GreeterNPC implements ZoneConfigurator {
 				addGoodbye("Bye.");
 			}
 		};
-
-		greeterNPC.setOutfit(new Outfit(0, 5, 1, 6, 1));
+		
+		// TODO: Remove when outfit testing finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			// FIXME: Decide on mouth and eyes
+			greeterNPC.setOutfit(new Outfit(0, 5, 1, 6, 1, 0, 0));
+		} else {
+			greeterNPC.setOutfit(new Outfit(0, 5, 1, 6, 1));
+		}
 		greeterNPC.setPosition(39, 29);
 		greeterNPC.initHP(1000);
 		greeterNPC.setDescription("You see Xhiphin Zohos. He is a helpful citizen of Fado.");

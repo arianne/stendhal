@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests.revivalweeks;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -84,7 +85,13 @@ public class FoundGirl implements LoadableContent {
 		};
 
 		//	npcs.add(npc);
-		npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
+		// TODO: Remove when outfit testing finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			// FIXME: Decide on mouth and eyes
+			npc.setOutfit(new Outfit(0, 4, 7, 32, 13, 0, 0));
+		} else {
+			npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
+		}
 		npc.setPosition(4, 17);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

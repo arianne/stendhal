@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -155,7 +156,14 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		if (oldoutfit.getHair() < 50) {
 			final int hatnumber = oldoutfit.getHair() + 50;
 			// the new outfit only changes the hair, rest is null
-			final Outfit newOutfit = new Outfit(null, hatnumber, null, null, null);
+			final Outfit newOutfit;
+			// TODO: Remove when outfit testing is finished
+			if (Testing.enabled(Testing.OUTFITS)) {
+				newOutfit = new Outfit(null, hatnumber, null, null, null, null,
+						null);
+			} else {
+				newOutfit = new Outfit(null, hatnumber, null, null, null);
+			}
 			//put it on, and store old outfit.
 			player.setOutfit(newOutfit.putOver(oldoutfit), true);
 			player.registerOutfitExpireTime(43200);
@@ -171,7 +179,14 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		if (hairnumber >= 50 && hairnumber < 94) {
 			if (!isChristmasTime(new GregorianCalendar())) {
 				final int newhair = hairnumber - 50;
-				final Outfit newOutfit = new Outfit(null, newhair, null, null, null);
+				final Outfit newOutfit;
+				// TODO: Remove when outfit testing finished
+				if (Testing.enabled(Testing.OUTFITS)) {
+					newOutfit = new Outfit(null, newhair, null, null, null,
+							null, null);
+				} else {
+					newOutfit = new Outfit(null, newhair, null, null, null);
+				}
 				player.setOutfit(newOutfit.putOver(outfit), false);
 			}
 		}

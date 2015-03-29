@@ -59,6 +59,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		// these outfits must be put on over existing outfit 
 		// (what's null doesn't change that part of the outfit)	
 		// so true means we put on over
+		// FIXME: Use new outfit system
 		  final Pair<Outfit, Boolean> JUMPSUIT = new Pair<Outfit, Boolean>(new Outfit(null, null, null, Integer.valueOf(83), null), true);
 		  final Pair<Outfit, Boolean> DUNGAREES = new Pair<Outfit, Boolean>(new Outfit(null, null, null, Integer.valueOf(84), null), true);
 		  final Pair<Outfit, Boolean> GREEN_DRESS = new Pair<Outfit, Boolean>(new Outfit(null, null, null,	Integer.valueOf(78), null), true);

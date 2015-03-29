@@ -16,6 +16,7 @@
 package games.stendhal.server.maps.fado.city;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
@@ -78,8 +79,14 @@ public class SmallBoyNPC implements ZoneConfigurator {
 			}
 
 		};
-
-		boynpc.setOutfit(new Outfit(0, 33, 18, 3, 0));
+		
+		// TODO: Remove when outfit testing finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			// FIXME: Decide on mouth and eyes
+			boynpc.setOutfit(new Outfit(0, 33, 18, 3, 0, 0, 0));
+		} else {
+			boynpc.setOutfit(new Outfit(0, 33, 18, 3, 0));
+		}
 		boynpc.setPosition(42, 30);
 		boynpc.setDirection(Direction.RIGHT);
 		boynpc.initHP(100);
