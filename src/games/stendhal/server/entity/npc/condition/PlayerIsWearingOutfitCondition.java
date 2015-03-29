@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -49,7 +50,14 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 
 	@Override
 	public String toString() {
-		return "Player is wearing " + this.outfitToCheck.getCode() + " ?";
+		String outfitCode = Integer.toString(this.outfitToCheck.getCode());
+		// TODO: Remove condition after outfit testing is finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			outfitCode = outfitCode + "_"
+					+ Integer.toString(this.outfitToCheck.getSecondaryCode());
+		}
+		
+		return "Player is wearing " + outfitCode + " ?";
 	}
 
 	@Override
