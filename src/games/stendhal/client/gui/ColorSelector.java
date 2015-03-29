@@ -12,8 +12,8 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.color.ARGB;
 import games.stendhal.common.color.HSL;
 
@@ -24,6 +24,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 import javax.swing.colorchooser.DefaultColorSelectionModel;
@@ -61,9 +62,6 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 	 * Hue-Saturation part of the selector component.
 	 */
 	private static class HueSaturationSelector extends AbstractSpriteColorSelector<HSLSelectionModel> {
-		/** Image used for the H-S selection area. */
-		private static final String HUE_SATURATION_IMAGE = "data/gui/colors.png";
-
 		/**
 		 * Create a new HueSaturationSelector.
 		 * 
@@ -76,7 +74,23 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		
 		@Override
 		Sprite createNormalSprite() {
-			return SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
+			BufferedImage img = getGraphicsConfiguration().createCompatibleImage(SPRITE_WIDTH, SPRITE_HEIGHT);
+
+			float[] hsl = new float[3];
+			hsl[2] = 0.5f;
+			int[] rgb = new int[4];
+			rgb[0] = 0xff;
+			
+			for (int x = 0; x < SPRITE_WIDTH; x++) {
+				for (int y = 0; y < SPRITE_HEIGHT; y++) {
+					hsl[0] = x / (float) SPRITE_WIDTH;
+					hsl[1] = 1f - y / (float) SPRITE_HEIGHT;
+					HSL.hsl2rgb(hsl, rgb);
+					int color = ARGB.mergeRgb(rgb);
+					img.setRGB(x, y, color);
+				}
+			}
+			return new ImageSprite(img, "hsl_color_selection_id");
 		}
 
 		@Override
