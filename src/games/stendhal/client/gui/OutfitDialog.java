@@ -348,7 +348,6 @@ class OutfitDialog extends JDialog {
 				hairLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
-		SBoxLayout.addSpring(column);
 		
 		// TODO: Remove condition after outfit testing is finished
 		if (Testing.enabled(Testing.OUTFITS)) {
@@ -369,6 +368,7 @@ class OutfitDialog extends JDialog {
 		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
+		SBoxLayout.addSpring(column);
 		
 		// --------- whole outfit side ----------
 		column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
@@ -698,7 +698,7 @@ class OutfitDialog extends JDialog {
 		}
 		
 		/* hair color */
-		Color color = outfitColor.getColor("hair");
+		Color color = outfitColor.getColor(OutfitColor.HAIR);
 		if (color != null) {
 			rpaction.put(OutfitColor.HAIR, color.getRGB());
 		}
