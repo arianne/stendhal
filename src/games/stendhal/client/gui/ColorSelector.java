@@ -23,6 +23,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.LinearGradientPaint;
+import java.awt.Paint;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
@@ -174,26 +176,23 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 				hsl[0] = model.getHue();
 				hsl[1] = model.getSaturation();
+				Color[] colors = new Color[3];
 				// 0 would be black, and have no color
 				hsl[2] = 0.08f;
 				HSL.hsl2rgb(hsl, rgb);
-				Color startColor = new Color(ARGB.mergeRgb(rgb));
+				colors[0] = new Color(ARGB.mergeRgb(rgb));
 				hsl[2] = 0.5f;
 				HSL.hsl2rgb(hsl, rgb);
-				Color midColor = new Color(ARGB.mergeRgb(rgb));
+				colors[1] = new Color(ARGB.mergeRgb(rgb));
 				// 1 would be white, and have no color
 				hsl[2] = 0.92f;
 				HSL.hsl2rgb(hsl, rgb);
-				Color endColor = new Color(ARGB.mergeRgb(rgb));
-			
+				colors[2] = new Color(ARGB.mergeRgb(rgb));
+				Paint paint = new LinearGradientPaint(ins.left, 0f, width, 0f,
+						new float[]{0f,  0.5f, 1f}, colors);
 				Graphics2D g2d = (Graphics2D) g;
-				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width / 2f, ins.top, midColor);
-				g2d.setPaint(p);
-				g2d.fillRect(ins.left, ins.top, width / 2, height);
-
-				p = new GradientPaint(ins.left + width / 2f, ins.top, midColor, width, ins.top, endColor);
-				g2d.setPaint(p);
-				g2d.fillRect(ins.left + width / 2, ins.top, width / 2, height);
+				g2d.setPaint(paint);
+				g2d.fillRect(ins.left, ins.top, width, height);
 			} else {
 				// Fake a desaturated gradient.
 				Color startColor = Color.BLACK;
