@@ -55,7 +55,7 @@ public class ImageSprite implements Sprite {
 	 * @param reference
 	 *            The sprite reference, or null.
 	 */
-	ImageSprite(final Image image, final Object reference) {
+	public ImageSprite(final Image image, final Object reference) {
 		this.image = image;
 		this.reference = reference;
 	}

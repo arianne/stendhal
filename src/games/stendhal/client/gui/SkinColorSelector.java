@@ -11,10 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
@@ -53,22 +51,10 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 	 * Skin color part of the selector component.
 	 */
 	private static class SkinPaletteSelector extends AbstractSpriteColorSelector<SkinColorSelectionModel> {
-		/**
-		 * Width of the generated sprite. Should be the same as the width of
-		 * the sprite used for {@link ColorSelector}.
-		 */
-		private static final int SPRITE_WIDTH = 80;
-		/**
-		 * Height of the generated sprite. Should be roughly the same as the
-		 * height of the sprite used for {@link ColorSelector}.
-		 */
-		private static final int SPRITE_HEIGHT = 52;
 		/** Width and height of the color patches. */
 		private static final int COLOR_ITEM_WIDTH, COLOR_ITEM_HEIGHT;
 		/** Color mapping. */
 		private static final SkinColor[][] COLOR_MAP;
-		/** Background sprites. */
-		private static Sprite normalSprite, disabledSprite;
 		
 		/** Currently selected row and column. */
 		private int row, column;
@@ -108,38 +94,14 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		SkinPaletteSelector(SkinColorSelectionModel model) {
 			super(model);
 		}
-
-		@Override
-		Sprite createSprite() {
-			if (isEnabled()) {
-				return getNormalSprite();
-			} else {
-				// Desaturated image for disabled selector
-				if (disabledSprite == null) {
-					disabledSprite = SpriteStore.get().modifySprite(getNormalSprite(), Color.GRAY, Blend.TrueColor, null);
-				}
-				return disabledSprite;
-			}
-		}
-		
-		/**
-		 * Get the normal colored sprite.
-		 * 
-		 * @return sprite
-		 */
-		private Sprite getNormalSprite() {
-			if (normalSprite == null) {
-				normalSprite = createNormalSprite();
-			}
-			return normalSprite;
-		}
 		
 		/**
 		 * Create the color patch sprite.
 		 * 
 		 * @return created sprite
 		 */
-		private Sprite createNormalSprite() {
+		@Override
+		Sprite createNormalSprite() {
 			BufferedImage img = getGraphicsConfiguration().createCompatibleImage(SPRITE_WIDTH, SPRITE_HEIGHT);
 			Graphics g = img.getGraphics();
 
@@ -150,7 +112,7 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 				}
 			}
 			g.dispose();
-			return new ImageSprite(img);
+			return new ImageSprite(img, "skin_color_selection_id");
 		}
 		
 		@Override

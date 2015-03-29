@@ -38,7 +38,6 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 	/** Lightness slider. */
 	private final JComponent lightnessSelector;
 
-
 	/**
 	 * Create a new ColorSelector.
 	 */
@@ -74,15 +73,10 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		HueSaturationSelector(HSLSelectionModel model) {
 			super(model);
 		}
-
+		
 		@Override
-		Sprite createSprite() {
-			if (isEnabled()) {
-				return SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
-			} else {
-				// Desaturated image for disabled selector
-				return SpriteStore.get().getColoredSprite(HUE_SATURATION_IMAGE, Color.GRAY);
-			}
+		Sprite createNormalSprite() {
+			return SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
 		}
 
 		@Override

@@ -11,11 +11,15 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteCache;
+import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -127,8 +131,13 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 	 * @param <T> selection model type
 	 */
 	abstract static class AbstractSpriteColorSelector<T extends ColorSelectionModel> extends AbstractSelector<T> {
-		/** Background sprite. */
-		private Sprite background;
+		/** Width of the generated sprite. */
+		static final int SPRITE_WIDTH = 80;
+		/** Height of the generated sprite. */
+		static final int SPRITE_HEIGHT = 52;
+		
+		/** Background sprites. */
+		private Sprite normalSprite, disabledSprite;
 		
 		/**
 		 * Construct a new AbstractSpriteColorSelector.
@@ -140,12 +149,24 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		}
 		
 		/**
-		 * Create or fetch the appropriate background sprite for current state.
-		 *
-		 * @return appropriate sprite for the current enabled/disabled state of
-		 *	the selector
+		 * Create the normal, colored background sprite. The dimensions should
+		 * be {@link #SPRITE_WIDTH} × {@link #SPRITE_HEIGHT}.
+		 * 
+		 * @return background sprite
 		 */
-		abstract Sprite createSprite();
+		abstract Sprite createNormalSprite();
+		
+		/**
+		 * Fetch the normal background sprite.
+		 * 
+		 * @return colored background sprite
+		 */
+		private Sprite getNormalSprite() {
+			if (normalSprite == null) {
+				normalSprite = createNormalSprite();
+			}
+			return normalSprite;
+		}
 		
 		/**
 		 * Get the current background sprite.
@@ -153,10 +174,22 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		 * @return current background
 		 */
 		Sprite getBackgroundSprite() {
-			if (background == null) {
-				background = createSprite();
+			if (isEnabled()) {
+				return getNormalSprite();
+			} else {
+				if (disabledSprite == null) {
+					Sprite orig = getNormalSprite();
+					if (orig.getReference() != null) {
+						// Ensure it's cached so that the automatic lookup for
+						// colored version works
+						SpriteCache.get().add(orig.getReference(), orig);
+						disabledSprite = SpriteStore.get().getColoredSprite(orig.getReference().toString(), Color.GRAY);
+					} else {
+						disabledSprite = SpriteStore.get().modifySprite(orig, Color.GRAY, Blend.TrueColor, null);
+					}
+				}
+				return disabledSprite;
 			}
-			return background;
 		}
 		
 		@Override
@@ -182,8 +215,6 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 			boolean old = isEnabled();
 			super.setEnabled(enabled);
 			if (old != enabled) {
-				// Force sprite change
-				background = null;
 				repaint();
 			}
 		}
