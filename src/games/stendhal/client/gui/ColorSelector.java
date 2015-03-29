@@ -32,6 +32,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -71,7 +72,7 @@ class ColorSelector extends JPanel {
 		if (useSkinPalette) {
 			paletteSelector = new SkinPaletteSelector(model);
 			add(paletteSelector);
-			// FIXME: Add lightness/darkness values to allowed colors in SkinColor
+			// Skin color does not use lightness
 			lightnessSelector = null;
 		} else {
 			paletteSelector = new HueSaturationSelector(model);
@@ -256,6 +257,30 @@ class ColorSelector extends JPanel {
 		/** background sprite */
 		Sprite paletteSprite;
 		
+		/** Color mapping */
+		List<List<SkinColor>> colorMap = Arrays.asList(
+				Arrays.asList( // Row 1
+						SkinColor.COLOR1,
+						SkinColor.COLOR2,
+						SkinColor.COLOR3,
+						SkinColor.COLOR4),
+				Arrays.asList( // Row 2
+						SkinColor.COLOR5,
+						SkinColor.COLOR6,
+						SkinColor.COLOR7,
+						SkinColor.COLOR8),
+				Arrays.asList( // Row 3
+						SkinColor.COLOR9,
+						SkinColor.COLOR10,
+						SkinColor.COLOR11,
+						SkinColor.COLOR12),
+				Arrays.asList( // Row 4
+						SkinColor.COLOR13,
+						SkinColor.COLOR14,
+						SkinColor.COLOR15,
+						SkinColor.COLOR16)
+					);
+		
 		/**
 		 * Create a new SkinPaletteSelector.
 		 */
@@ -304,35 +329,35 @@ class ColorSelector extends JPanel {
 			final Color selectedColor;
 			Insets ins = getInsets();
 			Sprite sprite = getPaletteSprite();
+			
+			// Dimensions
 			int width = sprite.getWidth();
 			int height = sprite.getHeight();
-			int colorWidth = width / 4; // 4 columns
-			int colorHeight = height / 2; // 2 rows
+			int column_count = colorMap.size();
+			int row_count = colorMap.get(0).size();
+			int colorWidth = width / column_count;
+			int colorHeight = height / row_count; // 4 rows
 			
-			// FIXME: Should be a more optimized way to do this
-			if (point.y <= colorHeight) {
-				// Top row
-				if (point.x <= colorWidth) {
-					selectedColor = SkinColor.COLOR1.getColor();
-				} else if (point.x <= (colorWidth * 2)) {
-					selectedColor = SkinColor.COLOR2.getColor();
-				} else if (point.x <= (colorWidth * 3)) {
-					selectedColor = SkinColor.COLOR3.getColor();
-				} else {
-					selectedColor = SkinColor.COLOR4.getColor();
-				}
-			} else {
-				// Bottom row
-				if (point.x <= colorWidth) {
-					selectedColor = SkinColor.COLOR5.getColor();
-				} else if (point.x <= (colorWidth * 2)) {
-					selectedColor = SkinColor.COLOR6.getColor();
-				} else if (point.x <= (colorWidth * 3)) {
-					selectedColor = SkinColor.COLOR7.getColor();
-				} else {
-					selectedColor = SkinColor.COLOR8.getColor();
-				}
+			int column, row;
+			column = ((point.y / colorHeight));
+			row = ((point.x / colorWidth));
+			
+			/* Cursor position is tracked outside of selector area if mouse
+			 * button is held down. Must reset row and column to minimun or
+			 * maximum values in this case
+			 */
+			if (column < 0) {
+				column = 0;
+			} else if (column >= column_count) {
+				column = column_count - 1;
 			}
+			if (row < 0) {
+				row = 0;
+			} else if (row >= row_count) {
+				row = row_count - 1;
+			}
+			
+			selectedColor = colorMap.get(column).get(row).getColor();
 			
 			// Throws IllegalArgumentExeption if "color" is not in
 			// allowed colors.
