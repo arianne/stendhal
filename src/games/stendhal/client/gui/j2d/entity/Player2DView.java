@@ -27,6 +27,7 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Version;
+import games.stendhal.common.constants.Testing;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -145,8 +146,16 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		try {
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
 			ZoneInfo info = ZoneInfo.get();
-			Sprite outfit = store.getAdjustedOutfit(entity.getOutfit(), color,
-					info.getZoneColor(), info.getColorMethod());
+			
+			Sprite outfit;
+			if (Testing.enabled(Testing.OUTFITS)) {
+				outfit = store.getAdjustedOutfit(entity.getBodyCode(),
+						entity.getOutfitCode(), color, info.getZoneColor(),
+						info.getColorMethod());
+			} else {
+				outfit = store.getAdjustedOutfit(entity.getOutfit(),
+						color, info.getZoneColor(), info.getColorMethod());
+			}
 			if (entity.hasStatus(StatusID.ZOMBIE)) {
 				outfit = SpriteStore.get().modifySprite(outfit, ZOMBIE_COLOR, Blend.TrueColor, null);
 			}
