@@ -36,7 +36,16 @@ import javax.swing.event.ChangeListener;
  * @param <T> selection model type
  */
 public abstract class AbstractColorSelector<T extends ColorSelectionModel> extends JPanel {
-	AbstractColorSelector() {
+	/** Selection model. */
+	private final T model;
+	
+	/**
+	 * Construct a selector from a model.
+	 * 
+	 * @param model selection model
+	 */
+	AbstractColorSelector(T model) {
+		this.model = model;
 		setBorder(null);
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
 	}
@@ -46,13 +55,15 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 	 * 
 	 * @return selection model
 	 */
-	abstract T getSelectionModel();
+	T getSelectionModel() {
+		return model;
+	}
 	
 	/**
 	 * Base class for the color selector sliders.
 	 * @param <T> selection model type
 	 */
-	static abstract class AbstractSelector<T extends ColorSelectionModel> extends JComponent implements ChangeListener {
+	abstract static class AbstractSelector<T extends ColorSelectionModel> extends JComponent implements ChangeListener {
 		/** Model to adjust and listen to. */
 		final T model;
 
@@ -105,7 +116,7 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		 * User clicked a point, or dragged the adjuster to it. The component
 		 * should recalculate the colors.
 		 * 
-		 * @param point
+		 * @param point clicked point
 		 */
 		abstract void select(Point point);
 	}
@@ -115,7 +126,7 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 	 *
 	 * @param <T> selection model type
 	 */
-	static abstract class AbstractSpriteColorSelector<T extends ColorSelectionModel> extends AbstractSelector<T> {
+	abstract static class AbstractSpriteColorSelector<T extends ColorSelectionModel> extends AbstractSelector<T> {
 		/** Background sprite. */
 		private Sprite background;
 		

@@ -33,8 +33,9 @@ import javax.swing.colorchooser.DefaultColorSelectionModel;
  * selection dialog.
  */
 class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionModel> {
-	private final HSLSelectionModel model;
+	/** The H-S selection area. */
 	private final JComponent hueSaturationSelector;
+	/** Lightness slider. */
 	private final JComponent lightnessSelector;
 
 
@@ -42,7 +43,8 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 	 * Create a new ColorSelector.
 	 */
 	ColorSelector() {
-		model = new HSLSelectionModel();
+		super(new HSLSelectionModel());
+		HSLSelectionModel model = getSelectionModel();
 		hueSaturationSelector = new HueSaturationSelector(model);
 		add(hueSaturationSelector);
 		lightnessSelector = new LightnessSelector(model);
@@ -55,21 +57,12 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		hueSaturationSelector.setEnabled(enabled);
 		lightnessSelector.setEnabled(enabled);
 	}
-
-	/**
-	 * Get the selection model.
-	 * 
-	 * @return selection model
-	 */
-	@Override
-	HSLSelectionModel getSelectionModel() {
-		return model;
-	}
 	
 	/**
 	 * Hue-Saturation part of the selector component.
 	 */
 	private static class HueSaturationSelector extends AbstractSpriteColorSelector<HSLSelectionModel> {
+		/** Image used for the H-S selection area. */
 		private static final String HUE_SATURATION_IMAGE = "data/gui/colors.png";
 
 		/**
@@ -150,7 +143,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		}
 
 		@Override
-		public void paintComponent(Graphics g) {
+		protected void paintComponent(Graphics g) {
 			Insets ins = getInsets();
 			int width = getWidth() - ins.left - ins.right;
 			int height = getWidth() - ins.left - ins.right;
@@ -264,8 +257,8 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		/**
 		 * Set hue and saturation.
 		 * 
-		 * @param hue
-		 * @param saturation
+		 * @param hue new hue value
+		 * @param saturation new saturation value
 		 */
 		void setHS(float hue, float saturation) {
 			hsl[0] = hue;
@@ -274,9 +267,9 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		}
 
 		/**
-		 * Set lightness
+		 * Set lightness.
 		 * 
-		 * @param lightness
+		 * @param lightness new L value
 		 */
 		void setL(float lightness) {
 			hsl[2] = lightness;
