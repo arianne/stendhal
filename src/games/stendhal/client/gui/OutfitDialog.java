@@ -31,8 +31,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -58,21 +56,19 @@ import org.apache.log4j.Logger;
 class OutfitDialog extends JDialog {
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(OutfitDialog.class);
-
-	private static final long serialVersionUID = 4628210176721975735L;
 	
-	private final String OUTFIT_TESTING_PROPERTY = "testing.outfits";
+	private static final String OUTFIT_TESTING_PROPERTY = "testing.outfits";
 
 	private static final int PLAYER_WIDTH = 48;
 	private static final int PLAYER_HEIGHT = 64;
 	private static final int SLIDER_WIDTH = 80;
 
-	private final SelectorModel hair;
-	private final SelectorModel eyes;
-	private final SelectorModel mouth;
-	private final SelectorModel head;
-	private final SelectorModel body;
-	private final SelectorModel dress;
+	private final SelectorModel hair = new SelectorModel(Outfits.HAIR_OUTFITS);
+	private final SelectorModel eyes = new SelectorModel(Outfits.EYES_OUTFITS);
+	private final SelectorModel mouth = new SelectorModel(Outfits.MOUTH_OUTFITS);
+	private final SelectorModel head = new SelectorModel(Outfits.getHeadsCount());
+	private final SelectorModel body = new SelectorModel(Outfits.getBodiesCount());
+	private final SelectorModel dress = new SelectorModel(Outfits.CLOTHES_OUTFITS);
 	
 	/**
 	 * Coloring data used to get the initial colors, and to adjust colors should
@@ -115,62 +111,11 @@ class OutfitDialog extends JDialog {
 	 * @param outfitColor coloring information. <b>Note that outfitColor
 	 *	can be modified by the dialog.</b> 
 	 */
-	OutfitDialog(final Frame parent, final String title, final int outfit,
+	OutfitDialog(final Frame parent, String title, int outfit,
 			OutfitColor outfitColor) {
-		this(parent, title, outfit, outfitColor, Outfits.HAIR_OUTFITS,
-				Outfits.getHeadsCount(), Outfits.getBodiesCount(),
-				Outfits.CLOTHES_OUTFITS, Outfits.EYES_OUTFITS,
-				Outfits.MOUTH_OUTFITS);
-	}
-
-	/**
-	 * Create a new OutfitDialog.
-	 * 
-	 * @param parent
-	 *
-	 * @param title
-	 *            a String with the title for the dialog
-	 * @param outfit
-	 *            the current outfit
-	 * @param outfitColor coloring data
-	 * @param total_hairs
-	 *            an integer with the total of sprites with hairs
-	 * @param total_heads
-	 *            an integer with the total of sprites with heads
-	 * @param total_bodies
-	 *            an integer with the total of sprites with bodies
-	 * @param total_clothes
-	 *            an integer with the total of sprites with clothes
-	 * @param total_eyes
-	 *            an integer with the total of sprites with eyes
-	 * @param total_mouths
-	 *            an integer with the total of sprites with mouths
-	 */
-	private OutfitDialog(final Frame parent, final String title, int outfit,
-			OutfitColor outfitColor, final int total_hairs,
-			final int total_heads, final int total_bodies,
-			final int total_clothes, final int total_eyes,
-			final int total_mouths) {
 		super(parent, false);
 		
 		this.outfitColor = outfitColor;
-		
-		hair = new SelectorModel(total_hairs);
-		/* eyes currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			eyes = new SelectorModel(total_eyes);
-		} else {
-			eyes = null;
-		}
-		/* mouth currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			mouth = new SelectorModel(total_mouths);
-		} else {
-			mouth = null;
-		}
-		head = new SelectorModel(total_heads);
-		body = new SelectorModel(total_bodies);
-		dress = new SelectorModel(total_clothes);
 		
 		// Needs to be after initializing the models
 		initComponents();
@@ -210,24 +155,12 @@ class OutfitDialog extends JDialog {
 		int hairsIndex = outfit % 100;
 
 		// reset special outfits
-		if (hairsIndex >= total_hairs) {
-			hairsIndex = 0;
-		}
-		if (eyesIndex >= total_eyes) {
-			eyesIndex = 0;
-		}
-		if (mouthsIndex >= total_mouths) {
-			mouthsIndex = 0;
-		}
-		if (headsIndex >= total_heads) {
-			headsIndex = 0;
-		}
-		if (bodiesIndex >= total_bodies) {
-			bodiesIndex = 0;
-		}
-		if (clothesIndex >= total_clothes) {
-			clothesIndex = 0;
-		}
+		hairsIndex = checkIndex(hairsIndex, hair);
+		eyesIndex = checkIndex(eyesIndex, eyes);
+		mouthsIndex = checkIndex(mouthsIndex, mouth);
+		headsIndex = checkIndex(headsIndex, head);
+		bodiesIndex = checkIndex(bodiesIndex, body);
+		clothesIndex = checkIndex(clothesIndex, dress);
 		
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
@@ -246,6 +179,20 @@ class OutfitDialog extends JDialog {
 		pack();
 		WindowUtils.closeOnEscape(this);
 		WindowUtils.trackLocation(this, "outfit", false);
+	}
+	
+	/**
+	 * Check an index is within player accessible limits.
+	 * 
+	 * @param index current index
+	 * @param model to determine the limits
+	 * @return index, if the supplied index is within limits, otherwise 0
+	 */
+	private int checkIndex(int index, SelectorModel model) {
+		if (!model.isAllowed(index)) {
+			return 0;
+		}
+		return index;
 	}
 
 	/**
@@ -348,8 +295,8 @@ class OutfitDialog extends JDialog {
 			column.add(selector);
 			
 			/* skin color */
-			selector = createColorSelector("Skin", OutfitColor.SKIN, 
-					Arrays.asList(bodyLabel, headLabel), true);
+			selector = createColorSelector("Skin", OutfitColor.SKIN, true,
+					bodyLabel, headLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
 		}
@@ -514,37 +461,13 @@ class OutfitDialog extends JDialog {
 	 * 
 	 * @param niceName outfit part name that is capitalizes for user to see
 	 * @param key outfit part identifier
-	 * @param label outfit part display that should be kept up to date with the
-	 * 	color changes (in addition of the whole outfit display)
+	 * @param labels outfit part displays that should be kept up to date with
+	 *	the color changes (in addition of the whole outfit display)
 	 * @return color selection component
 	 */
-	private JComponent createColorSelector(final String niceName, final String key,
-			final OutfitLabel label) {
-		return this.createColorSelector(niceName, key, label, false);
-	}
-	
-	/**
-	 * Create a color selection component for an outfit part optionally with
-	 * defined skin colors only.
-	 * 
-	 * @param niceName
-	 * 		Outfit part name that is capitalizes for user to see
-	 * @param key
-	 * 		Outfit part identifier
-	 * @param label
-	 * 		Outfit part display that should be kept up to date with the
-	 * 		color changes (in addition of the whole outfit display)
-	 * @param skinPalette
-	 * 		Use skin colors only
-	 * @return
-	 * 		color selection component
-	 */
-	private JComponent createColorSelector(final String niceName, final String key,
-			final OutfitLabel label, boolean skinPalette) {
-		
-		final List<OutfitLabel> labels = Arrays.asList(label);
-		
-		return this.createColorSelector(niceName, key, labels, skinPalette);
+	private JComponent createColorSelector(String niceName, String key,
+			OutfitLabel... labels) {
+		return this.createColorSelector(niceName, key, false, labels);
 	}
 	
 	/**
@@ -564,7 +487,7 @@ class OutfitDialog extends JDialog {
 	 * 		color selection component
 	 */
 	private JComponent createColorSelector(final String niceName, final String key,
-			final List<OutfitLabel> labels, boolean skinPalette) {
+			boolean skinPalette, final OutfitLabel... labels) {
 		
 		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		final JCheckBox enableToggle = new JCheckBox(niceName + " color");
@@ -588,11 +511,8 @@ class OutfitDialog extends JDialog {
 		model.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent ev) {
-				final Iterator<OutfitLabel> itr = labels.iterator();
-				OutfitLabel label;
 				outfitColor.setColor(key, model.getSelectedColor());
-				while (itr.hasNext()) {
-					label = itr.next();
+				for (OutfitLabel label : labels) {
 					label.changed();
 				}
 				outfitLabel.changed();
@@ -602,27 +522,18 @@ class OutfitDialog extends JDialog {
 		enableToggle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				final Iterator<OutfitLabel> itr = labels.iterator();
-				OutfitLabel label;
 				if (enableToggle.isSelected()) {
 					// restore previously selected color, if any
 					outfitColor.setColor(key, model.getSelectedColor());
-					while (itr.hasNext()) {
-						label = itr.next();
-						label.changed();
-					}
-					outfitLabel.changed();
-					selector.setEnabled(true);
 				} else {
 					// use default coloring
 					outfitColor.setColor(key, null);
-					while (itr.hasNext()) {
-						label = itr.next();
-						label.changed();
-					}
-					outfitLabel.changed();
-					selector.setEnabled(false);
 				}
+				selector.setEnabled(enableToggle.isSelected());
+				for (OutfitLabel label : labels) {
+					label.changed();
+				}
+				outfitLabel.changed();
 			}
 		});
 		
@@ -830,7 +741,7 @@ class OutfitDialog extends JDialog {
 		 * @param index new index
 		 */
 		void setIndex(int index) {
-			if ((index < 0) || (index >= n)) {
+			if (!isAllowed(index)) {
 				LOGGER.warn("Index out of allowed range [0-" + n + "]: " + index, 
 						new Throwable());
 				index = 0;
@@ -865,6 +776,17 @@ class OutfitDialog extends JDialog {
 		 */
 		int getIndex() {
 			return index;
+		}
+		
+		/**
+		 * Check if an index is within allowed limits.
+		 * 
+		 * @param index checked index
+		 * @return <code>true</code> if the index is valid, otherwise
+		 * 	<code>false</code>
+		 */
+		boolean isAllowed(int index) {
+			return (index >= 0) && (index < n);
 		}
 		
 		/**
