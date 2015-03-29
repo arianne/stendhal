@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.util.List;
+
 import games.stendhal.common.Outfits;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Testing;
@@ -57,10 +59,10 @@ public class Outfit {
 	private final Integer body;
 	
 	/** The eyes index, as a value between 0 and 99, or null. */
-	private final Integer eyes;
+	private Integer eyes;
 
 	/** The mouth index, as a value between 0 and 99, or null. */
-	private final Integer mouth;
+	private Integer mouth;
 
 	/**
 	 * Creates a new default outfit (naked person).
@@ -99,9 +101,7 @@ public class Outfit {
 	}
 
 	/**
-	 * Creates a new outfit. Set some of the parameters to null if you want an
-	 * entity that put on this outfit to keep on the corresponding parts of its
-	 * current outfit.
+	 * Constructor that adds mouth and eyes outfits parts.
 	 *
 	 * @param detail
 	 *            The index of the detail style, or null
@@ -121,11 +121,8 @@ public class Outfit {
 	public Outfit(final Integer detail, final Integer hair, final Integer head,
 			final Integer dress, final Integer body, final Integer mouth,
 			final Integer eyes) {
-		this.detail = detail;
-		this.hair = hair;
-		this.head = head;
-		this.dress = dress;
-		this.body = body;
+		this(detail, hair, head, dress, body);
+		
 		this.mouth = mouth;
 		this.eyes = eyes;
 	}
@@ -138,11 +135,11 @@ public class Outfit {
 	 *            stands for body, the next for dress, then head, then hair,
 	 *            then detail.
 	 */
-	public Outfit(final double code) {
+	public Outfit(final int code) {
 		
-		this.body = (int) (code % 100);
+		this.body = (code % 100);
 
-		this.dress = (int) (code / 100 % 100);
+		this.dress = (code / 100 % 100);
 
 		this.head = (int) (code / Math.pow(100, 2) % 100);
 
@@ -150,15 +147,25 @@ public class Outfit {
 
 		this.detail = (int) (code / Math.pow(100, 4) % 100);
 		
-		if (Testing.enabled(Testing.OUTFITS)) {
-			this.mouth = (int) (code / Math.pow(100, 5) % 100);
-			
-			this.eyes = (int) (code / Math.pow(100, 6) % 100);
-		} else {
-			this.mouth = null;
-			
-			this.eyes = null;
-		}
+		this.mouth = null;
+		
+		this.eyes = null;
+	}
+	
+	/**
+	 * Constructor that adds mouth and eyes outfit parts using numerical codes.
+	 * 
+	 * @param code
+	 * 		The base (old) outfit code
+	 * @param secondaryCode
+	 * 		The outfit code for newer parts
+	 */
+	public Outfit(final int code, final int secondaryCode) {
+		this(code);
+		
+		this.mouth = (secondaryCode % 100);
+		
+		this.eyes = (secondaryCode / 100 % 100);
 	}
 	
 	/**
@@ -260,7 +267,7 @@ public class Outfit {
 	 * Gets the code for mouth and eyes.
 	 * 
 	 * @return
-	 * 		Numerial value for mouth and eyes parts
+	 * 		Numerical value for mouth and eyes parts
 	 */
 	public int getSecondaryCode() {
 		int mo = 0;
@@ -318,11 +325,10 @@ public class Outfit {
 			newBody = this.body;
 		}
 		
+		// TODO: Remove condition when outfit testing is finished
 		if (Testing.enabled(Testing.OUTFITS)) {
-			//int newMouth;
-			//int newEyes;
-			Integer newMouth;
-			Integer newEyes;
+			final int newMouth;
+			final int newEyes;
 			
 			if (this.mouth == null) {
 				newMouth = other.mouth;
@@ -338,11 +344,10 @@ public class Outfit {
 			return new Outfit(newDetail, newHair, newHead, newDress, newBody,
 					newMouth, newEyes);
 		} else {
-			return new Outfit(newDetail, newHair, newHead, newDress, newBody,
-					null, null);
+			return new Outfit(newDetail, newHair, newHead, newDress, newBody);
 		}
 	}
-
+	
 	/**
 	 * Gets the result that you get when you remove (parts of) an outfit.
 	 * Removes the parts in the parameter, from the current outfit.
@@ -404,8 +409,7 @@ public class Outfit {
 			return new Outfit(newDetail, newHair, newHead, newDress, newBody,
 					newMouth, newEyes);
 		} else {
-			return new Outfit(newDetail, newHair, newHead, newDress, newBody,
-					null, null);
+			return new Outfit(newDetail, newHair, newHead, newDress, newBody);
 		}
 	}
 
@@ -424,11 +428,25 @@ public class Outfit {
 	 * @return true iff this outfit is part of the given outfit.
 	 */
 	public boolean isPartOf(final Outfit other) {
-		return  ((detail == null) || detail.equals(other.detail))
+		boolean partOf;
+		// FIXME: Remove condition when outfit testing is finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			partOf = ((detail == null) || detail.equals(other.detail))
+					&& ((hair == null) || hair.equals(other.hair))
+					&& ((head == null) || head.equals(other.head))
+					&& ((dress == null) || dress.equals(other.dress))
+					&& ((body == null) || body.equals(other.body))
+					&& ((mouth == null) || mouth.equals(other.mouth))
+					&& ((eyes == null) || eyes.equals(other.eyes));
+		} else {
+		partOf = ((detail == null) || detail.equals(other.detail))
 				&& ((hair == null) || hair.equals(other.hair))
 				&& ((head == null) || head.equals(other.head))
 				&& ((dress == null) || dress.equals(other.dress))
 				&& ((body == null) || body.equals(other.body));
+		}
+		
+		return partOf;
 	}
 
 	/**
@@ -438,11 +456,25 @@ public class Outfit {
 	 * @return true if it is a normal outfit
 	 */
 	public boolean isChoosableByPlayers() {
-		return (detail == null || detail == 0)
-			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
-		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
-			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
-			&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
+		boolean choosable;
+		// TODO: Remove condition when outfit testing is finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			choosable = (detail == null || detail == 0)
+					&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
+				    && (head < Outfits.getHeadsCount()) && (head >= 0)
+					&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
+					&& (body < Outfits.getBodiesCount()) && (body >= 0)
+					&& (mouth < Outfits.MOUTH_OUTFITS) && (mouth >= 0)
+					&& (eyes < Outfits.EYES_OUTFITS) && (eyes >= 0);
+		} else {
+			choosable = (detail == null || detail == 0)
+				&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
+			    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
+				&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
+				&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
+		}
+		
+		return choosable;
 	}
 
 	/**
@@ -474,14 +506,18 @@ public class Outfit {
 
 	public static Outfit getRandomOutfit() {
 		final int newHair = Rand.randUniform(1, 26);
-		final int newHead;
+		final int newHead;// = Rand.randUniform(1, 15);
 		final int newDress = Rand.randUniform(1, 16);
-		final int newBody = Rand.randUniform(1, 5);
+		final int newBody;// = Rand.randUniform(1, 5);
+		final int newMouth;
+		final int newEyes;
 		
+		// TODO: Remove condition when outfit testing is finished
 		if (Testing.enabled(Testing.OUTFITS)) {
-			newHead = Rand.randUniform(1, Outfits.HEAD_OUTFITS_TESTING);
-			final int newMouth = Rand.randUniform(1, Outfits.MOUTH_OUTFITS);
-			final int newEyes = Rand.randUniform(1, Outfits.EYES_OUTFITS);
+			newHead = Rand.randUniform(1, Outfits.getBodiesCount());
+			newBody = Rand.randUniform(1, Outfits.getBodiesCount());
+			newMouth = Rand.randUniform(1, Outfits.MOUTH_OUTFITS);
+			newEyes = Rand.randUniform(1, Outfits.EYES_OUTFITS);
 			LOGGER.debug("chose random outfit: "  + newHair + " " + newHead
 					+ " " + newDress + " " + newBody + " " + newMouth + " "
 					+ newEyes);
@@ -489,6 +525,7 @@ public class Outfit {
 					newMouth, newEyes);
 		} else {
 			newHead = Rand.randUniform(1, 15);
+			newBody = Rand.randUniform(1, 5);
 			LOGGER.debug("chose random outfit: "  + newHair + " " + newHead
 					+ " " + newDress + " " + newBody);
 			return new Outfit(0, newHair, newHead, newDress, newBody,
@@ -510,13 +547,20 @@ public class Outfit {
 
 	@Override
 	public boolean equals(Object other) {
+		boolean ret = false;
 
 		if (!(other instanceof Outfit)) {
-			return false;
+			return ret;
 		}
 		else {
 			Outfit outfit = (Outfit)other;
-			return this.getCode() == outfit.getCode();
+			// TODO: Remove condition when outfit testing is finished
+			if (Testing.enabled(Testing.OUTFITS)) {
+				return ((this.getCode() == outfit.getCode())
+						|| (this.getSecondaryCode() == outfit.getSecondaryCode()));
+			} else {
+				return this.getCode() == outfit.getCode();
+			}
 		}
 
 	}
