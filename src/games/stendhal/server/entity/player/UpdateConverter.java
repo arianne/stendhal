@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
@@ -196,8 +197,14 @@ public abstract class UpdateConverter {
     	}
 
     	// Port from 0.13 to 0.20
+    	final Outfit tempOutfit = new Outfit();
     	if (!object.has("outfit")) {
-    		object.put("outfit", new Outfit().getCode());
+    		object.put("outfit", tempOutfit.getCode());
+    		// TODO: Remove condition when outfit testing is finished
+    		if (Testing.enabled(Testing.OUTFITS)) {
+	    		// FIXME: Should use its own condition
+	    		object.put("outfit_secondary", tempOutfit.getSecondaryCode());
+    		}
     	}
 
     	// create slots if they do not exist yet:

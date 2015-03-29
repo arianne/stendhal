@@ -28,6 +28,7 @@ import games.stendhal.common.TradeState;
 import games.stendhal.common.Version;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -193,7 +194,13 @@ public class Player extends RPEntity implements UseListener {
 		// define outfit
 		Outfit outfit = null;
 		if (template != null && template.has("outfit")) {
-			outfit = new Outfit(template.getInt("outfit"));
+			/* TODO: Remove condition when outfit testing is finished. */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				outfit = new Outfit(template.getInt("outfit"),
+						template.getInt("outfit_testing"));
+			} else {
+				outfit = new Outfit(template.getInt("outfit"));
+			}
 		}
 		if (outfit == null || !outfit.isChoosableByPlayers()) {
 			outfit = Outfit.getRandomOutfit();
@@ -1589,6 +1596,10 @@ public class Player extends RPEntity implements UseListener {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
+		/* TODO: Remove condition when outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			put("outfit_secondary", newOutfit.getSecondaryCode());
+		}
 		notifyWorldAboutChanges();
 	}
 

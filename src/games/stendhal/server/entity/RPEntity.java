@@ -19,6 +19,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.actions.equip.DropAction;
@@ -2741,6 +2742,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public void setOutfit(final Outfit outfit) {
 		put("outfit", outfit.getCode());
+		/* TODO: Remove condition when outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			put("outfit_secondary", outfit.getSecondaryCode());
+		}
 	}
 
 	/**
