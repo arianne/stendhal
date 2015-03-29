@@ -232,14 +232,11 @@ public class Outfit {
 	 *         fourth pair for dress, and the fifth pair for body
 	 */
 	public int getCode() {
-		// FIXME: Add eyes and mouth
 		int de = 0;
 		int ha = 0;
 		int he = 0;
 		int dr = 0;
 		int bo = 0;
-		int mo = 0;
-		int ey = 0;
 		if (detail != null) {
 			de = detail.intValue();
 		}
@@ -255,16 +252,27 @@ public class Outfit {
 		if (body != null) {
 			bo = body.intValue();
 		}
-		if (Testing.enabled(Testing.OUTFITS)) {
-			if (mouth != null) {
-				mo = mouth.intValue();
-			}
-			if (eyes != null) {
-				ey = mouth.intValue();
-			}
-		}
 		
 		return de * 100000000 + ha * 1000000 + he * 10000 + dr * 100 + bo;
+	}
+	
+	/**
+	 * Gets the code for mouth and eyes.
+	 * 
+	 * @return
+	 * 		Numerial value for mouth and eyes parts
+	 */
+	public int getSecondaryCode() {
+		int mo = 0;
+		int ey = 0;
+		if (mouth != null) {
+			mo = mouth.intValue();
+		}
+		if (eyes != null) {
+			ey = eyes.intValue();
+		}
+		
+		return ey * 100 + mo;
 	}
 	
 	/**
