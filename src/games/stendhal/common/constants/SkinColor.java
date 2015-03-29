@@ -1,10 +1,15 @@
+/***************************************************************************
+ *                (C) Copyright 2005-2015 - Faiumoni e. V.                 *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.common.constants;
-
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
 
 /**
  * Acceptable colors that can be used for skin
@@ -30,26 +35,6 @@ public enum SkinColor {
 	COLOR16(0xffb59d55);
 	
 	private final int color;
-	private final int colorHash;
-	
-	public static final List<Integer> ALLOWED_COLORS = Arrays.asList(
-			COLOR1.colorHash,
-			COLOR2.colorHash,
-			COLOR3.colorHash,
-			COLOR4.colorHash,
-			COLOR5.colorHash,
-			COLOR6.colorHash,
-			COLOR7.colorHash,
-			COLOR8.colorHash,
-			COLOR9.colorHash,
-			COLOR10.colorHash,
-			COLOR11.colorHash,
-			COLOR12.colorHash,
-			COLOR13.colorHash,
-			COLOR14.colorHash,
-			COLOR15.colorHash,
-			COLOR16.colorHash
-			);
 	
 	/**
 	 * Constructor that sets the value of SkinColor.
@@ -59,58 +44,30 @@ public enum SkinColor {
 	 */
 	private SkinColor(int color) {
 		this.color = color;
-		this.colorHash = Integer.hashCode(color);
 	}
 	
 	/**
-	 * Retrieve the color of a SkinColor.
+	 * Get the corresponding color RGB.
 	 * 
-	 * @return
-	 * 		Color value of SkinColor
+	 * @return color
 	 */
-	public Color getColor() {
-		return new Color(this.color);
+	public int getColor() {
+		return color;
 	}
 	
 	/**
-	 * Check if a Color can be used for skin.
-	 * 
-	 * @param color
-	 * 		Color to be tested
-	 * @return
-	 * 		Color can be used
+	 * Find the skin color corresponding to an integer color value.
+	 *  
+	 * @param color color as RGB int
+	 * @return skin color corresponding to the integer value, or a default value
+	 * 	if no skin color matches 
 	 */
-	public static Boolean isAllowed(Color targetColor) {
-		return isAllowed(targetColor.hashCode());
-	}
-	
-	/**
-	 * Use a color's hash code to check if it allowed for skin.
-	 * 
-	 * @param targetHash
-	 * 		The hash code of the target color's integer value
-	 * @return
-	 * 		Color can be used
-	 */
-	public static Boolean isAllowed(int targetHash) {
-		Boolean allowed = false;
-		
-		// If color's hash is found in allowed list return true
-		Iterator<Integer> itr = ALLOWED_COLORS.iterator();
-		while (itr.hasNext()) {
-			if (targetHash == itr.next()) {
-				return true; // No need to continue iterations
+	public static SkinColor fromInteger(int color) {
+		for (SkinColor c : values()) {
+			if (color == c.color) {
+				return c;
 			}
 		}
-		
-		// Throw an error if the desired color is not allowed
-		if (!allowed) {
-			throw new IllegalArgumentException("Color "
-					+ Integer.toString(targetHash) + " ("
-					+ Integer.toHexString(targetHash) + ")"
-					+ " cannot be used for skin color.");
-		}
-		
-		return allowed;
+		return COLOR1;
 	}
 }
