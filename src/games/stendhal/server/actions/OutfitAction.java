@@ -29,7 +29,7 @@ public class OutfitAction implements ActionListener {
 	public static void register() {
 		CommandCenter.register(OUTFIT, new OutfitAction());
 	}
-
+	
 	/**
 	 * Changes Player's outfit to the value provided in action.
 	 * @param player whose outfit is to be changed. Must not be <code>null</code>.
@@ -38,7 +38,7 @@ public class OutfitAction implements ActionListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
-			final Outfit outfit = new Outfit(action.getInt(VALUE));
+			final Outfit outfit = new Outfit(action.getDouble(VALUE));
 			if (outfit.isChoosableByPlayers()) {
 				new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 				player.setOutfit(outfit, false);
