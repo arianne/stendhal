@@ -67,7 +67,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 		ZoneInfo info = ZoneInfo.get();
 
 		try {
-			final int code = ((RPEntity) entity).getOutfit();
+			final long code = ((RPEntity) entity).getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
 				return OutfitStore.get().getAdjustedOutfit(code, OutfitColor.PLAIN,
