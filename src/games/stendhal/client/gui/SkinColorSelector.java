@@ -16,9 +16,9 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.Point;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.colorchooser.DefaultColorSelectionModel;
@@ -62,30 +62,13 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 	 */
 	private static class SkinPaletteSelector extends AbstractSpriteColorSelector<SkinColorSelectionModel> {
 		private static final String SKIN_PALETTE_IMAGE = "data/gui/colors_skin.png";
+		/** Currently selected row and column. */
+		int row, column;
+		/** Width and height of the color patches. */
+		int colorItemWidth, colorItemHeight;
 		
 		/** Color mapping */
-		List<List<SkinColor>> colorMap = Arrays.asList(
-				Arrays.asList( // Row 1
-						SkinColor.COLOR1,
-						SkinColor.COLOR2,
-						SkinColor.COLOR3,
-						SkinColor.COLOR4),
-				Arrays.asList( // Row 2
-						SkinColor.COLOR5,
-						SkinColor.COLOR6,
-						SkinColor.COLOR7,
-						SkinColor.COLOR8),
-				Arrays.asList( // Row 3
-						SkinColor.COLOR9,
-						SkinColor.COLOR10,
-						SkinColor.COLOR11,
-						SkinColor.COLOR12),
-				Arrays.asList( // Row 4
-						SkinColor.COLOR13,
-						SkinColor.COLOR14,
-						SkinColor.COLOR15,
-						SkinColor.COLOR16)
-					);
+		final SkinColor[][] colorMap;
 		
 		/**
 		 * Create a new SkinPaletteSelector.
@@ -93,6 +76,29 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		 */
 		SkinPaletteSelector(SkinColorSelectionModel model) {
 			super(model);
+			
+			/* Construct the color map. */
+			SkinColor[] allValues = SkinColor.values();
+			int numColors = allValues.length;
+			int width = 1, height = 1;
+			int bound = (int) Math.ceil(Math.sqrt(numColors));
+			for (int i = bound; i >= 1; i--) {
+				if (numColors % i == 0) {
+					width = i;
+					height = numColors / i;
+					break;
+				}
+			}
+			colorMap = new SkinColor[height][];
+			int index = 0;
+			for (int y = 0; y < height; y++) {
+				SkinColor arr[] = new SkinColor[width];
+				colorMap[y] = arr;
+				for (int x = 0; x < width; x++) {
+					arr[x] = allValues[index];
+					index++;
+				}
+			}
 		}
 
 		@Override
@@ -104,32 +110,63 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 				return SpriteStore.get().getColoredSprite(SKIN_PALETTE_IMAGE, Color.GRAY);
 			}
 		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			if (isEnabled()) {
+				// Highlight the selection
+				g.setColor(Color.WHITE);
+				Insets ins = getInsets();
+				int x = ins.left + column * getColorWidth();
+				int y = ins.top + row * getColorHeight();
+				g.drawRect(x, y, getColorWidth() - 1, getColorHeight() - 1);
+			}
+		}
 
 		@Override
 		void select(Point point) {
-			Sprite sprite = getBackgroundSprite();
-			
-			// Dimensions
-			int width = sprite.getWidth();
-			int height = sprite.getHeight();
-			int column_count = colorMap.size();
-			int row_count = colorMap.get(0).size();
-			int colorWidth = width / column_count;
-			int colorHeight = height / row_count; // 4 rows
-			
-			int column, row;
-			column = ((point.y / colorHeight));
-			row = ((point.x / colorWidth));
+			Insets ins = getInsets();
+			row = (point.y - ins.top) / getColorHeight();
+			column = (point.x - ins.left) / getColorWidth();
 			
 			/* Cursor position is tracked outside of selector area if mouse
 			 * button is held down. Must reset row and column to minimun or
 			 * maximum values in this case
 			 */
-			column = Math.max(0, Math.min(column, column_count - 1));
-			row = Math.max(0, Math.min(row, row_count - 1));
+			column = Math.max(0, Math.min(column, colorMap.length - 1));
+			row = Math.max(0, Math.min(row, colorMap[0].length - 1));
 			
-			SkinColor selectedColor = colorMap.get(column).get(row);
+			SkinColor selectedColor = colorMap[column][row];
 			model.setSelectedColor(selectedColor);
+		}
+		
+		/**
+		 * Get the width of the color patches.
+		 * 
+		 * @return color patch width
+		 */
+		private int getColorWidth() {
+			if (colorItemWidth == 0) {
+				Sprite sprite = getBackgroundSprite();
+				int width = sprite.getWidth();
+				colorItemWidth = width / colorMap.length;
+			}
+			return colorItemWidth;
+		}
+		
+		/**
+		 * Get the height of the color patches.
+		 * 
+		 * @return color patch height
+		 */
+		private int getColorHeight() {
+			if (colorItemHeight == 0) {
+				Sprite sprite = getBackgroundSprite();
+				int height = sprite.getHeight();
+				colorItemHeight = height / colorMap[0].length;
+			}
+			return colorItemHeight;
 		}
 	}
 
@@ -142,6 +179,9 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		private SkinColor enumColor;
 		
 		void setSelectedColor(SkinColor color) {
+			if (color == enumColor) {
+				return;
+			}
 			enumColor = color;
 			super.setSelectedColor(new Color(enumColor.getColor()));
 			fireStateChanged();
