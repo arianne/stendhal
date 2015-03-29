@@ -17,9 +17,13 @@ package games.stendhal.common.constants;
  * @author AntumDeluge
  */
 public class Testing {
-	/** Testing combat system */
-	public final String OUTFIT_TESTING_PROPERTY = "testing.outfits";
+	/** Testing outfit system property */
+	public static final String OUTFITS = "testing.outfits";
 	
-	/** Testing outfit system */
-	public final String COMBAT_TESTING_PROPERTY = "testing.combat";
+	/** Testing combat system property */
+	public static final String COMBAT = "testing.combat";
+	
+	public static Boolean enabled(String property) {
+		return (System.getProperty(property) != null);
+	}
 }
