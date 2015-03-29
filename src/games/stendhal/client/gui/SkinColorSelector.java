@@ -118,14 +118,12 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			if (isEnabled()) {
-				// Highlight the selection
-				g.setColor(Color.WHITE);
-				Insets ins = getInsets();
-				int x = ins.left + column * COLOR_ITEM_WIDTH;
-				int y = ins.top + row * COLOR_ITEM_HEIGHT;
-				g.drawRect(x, y, COLOR_ITEM_WIDTH - 1, COLOR_ITEM_HEIGHT - 1);
-			}
+			// Highlight the selection
+			g.setColor(Color.WHITE);
+			Insets ins = getInsets();
+			int x = ins.left + column * COLOR_ITEM_WIDTH;
+			int y = ins.top + row * COLOR_ITEM_HEIGHT;
+			g.drawRect(x, y, COLOR_ITEM_WIDTH - 1, COLOR_ITEM_HEIGHT - 1);
 		}
 
 		@Override
