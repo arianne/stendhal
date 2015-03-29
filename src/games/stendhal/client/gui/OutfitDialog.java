@@ -66,8 +66,6 @@ class OutfitDialog extends JDialog {
 	private static final int PLAYER_WIDTH = 48;
 	private static final int PLAYER_HEIGHT = 64;
 	private static final int SLIDER_WIDTH = 80;
-	
-	private final Boolean USE_SKIN_PALETTE = true;
 
 	private final SelectorModel hair;
 	private final SelectorModel eyes;
@@ -351,8 +349,7 @@ class OutfitDialog extends JDialog {
 			
 			/* skin color */
 			selector = createColorSelector("Skin", OutfitColor.SKIN, 
-					Arrays.asList(bodyLabel, headLabel),
-					USE_SKIN_PALETTE);
+					Arrays.asList(bodyLabel, headLabel), true);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
 		}
@@ -543,7 +540,7 @@ class OutfitDialog extends JDialog {
 	 * 		color selection component
 	 */
 	private JComponent createColorSelector(final String niceName, final String key,
-			final OutfitLabel label, final Boolean skinPalette) {
+			final OutfitLabel label, boolean skinPalette) {
 		
 		final List<OutfitLabel> labels = Arrays.asList(label);
 		
@@ -567,7 +564,7 @@ class OutfitDialog extends JDialog {
 	 * 		color selection component
 	 */
 	private JComponent createColorSelector(final String niceName, final String key,
-			final List<OutfitLabel> labels, final Boolean skinPalette) {
+			final List<OutfitLabel> labels, boolean skinPalette) {
 		
 		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		final JCheckBox enableToggle = new JCheckBox(niceName + " color");
@@ -587,10 +584,7 @@ class OutfitDialog extends JDialog {
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		container.add(selector);
 		final ColorSelectionModel model = selector.getSelectionModel();
-		// SkinPaletteSelector does this automatically with setSelectedSkinColor(color)
-		if (!skinPalette) {
-			model.setSelectedColor(outfitColor.getColor(key));
-		}
+		model.setSelectedColor(outfitColor.getColor(key));
 		model.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent ev) {
