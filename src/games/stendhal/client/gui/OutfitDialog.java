@@ -21,6 +21,7 @@ import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Outfits;
+import games.stendhal.common.constants.Testing;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -340,9 +341,10 @@ class OutfitDialog extends JDialog {
 				hairLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
-		SBoxLayout.addSpring(column);
-		/* eyes color (currently only enabled through VM argument) */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+		
+		// TODO: Remove condition after outfit testing is finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			/* eyes color */
 			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
@@ -358,6 +360,7 @@ class OutfitDialog extends JDialog {
 		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
+		SBoxLayout.addSpring(column);
 		
 		// --------- whole outfit side ----------
 		column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
@@ -674,7 +677,7 @@ class OutfitDialog extends JDialog {
 		rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
 				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
 		/* hair color */
-		Color color = outfitColor.getColor("hair");
+		Color color = outfitColor.getColor(OutfitColor.HAIR);
 		if (color != null) {
 			rpaction.put(OutfitColor.HAIR, color.getRGB());
 		}
