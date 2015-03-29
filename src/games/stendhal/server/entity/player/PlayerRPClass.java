@@ -45,6 +45,12 @@ public class PlayerRPClass {
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
 		player.addAttribute("outfit", Type.INT);
+		/* XXX:		Do not create testing condition here so that "outfit_secondary"
+		 * 			is always defined.
+		 * TODO:	Possibly remove VOLATILE definition when outfit testing is
+		 * 			finished.
+		 */
+		player.addAttribute("outfit_secondary", Type.INT, Definition.VOLATILE);
 		player.addAttribute("outfit_org", Type.INT, Definition.HIDDEN);
 		player.addAttribute("outfit_colors", Type.MAP);
 		player.addAttribute("outfit_expire_age", Type.INT, Definition.HIDDEN);

@@ -92,6 +92,11 @@ public abstract class NPC extends RPEntity {
 			//npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
 			npc.addAttribute("outfit", Type.INT);
+			// XXX: Do not put testing condition here so that "outfit_secondary"
+			//      is always defined.
+			// TODO: Possibly VOLATILE definition after outfit testing is
+			//       finished.
+			npc.addAttribute("outfit_secondary", Type.INT, Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
