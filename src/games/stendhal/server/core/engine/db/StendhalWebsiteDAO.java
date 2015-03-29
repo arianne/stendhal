@@ -191,7 +191,7 @@ public class StendhalWebsiteDAO {
 	}
 
 	/**
-	 * inserst statistics information about a new player
+	 * Insert statistics information about a new player
 	 * 
 	 *
 	 * @param transaction DBTransaction
