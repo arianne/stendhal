@@ -591,16 +591,17 @@ class OutfitDialog extends JDialog {
 		// get the current state
 		boolean colored = outfitColor.getColor(key) != null;
 		enableToggle.setSelected(colored);
-		final ColorSelector selector = new ColorSelector(skinPalette);
+		
+		final JComponent selector = skinPalette ? new SkinColorSelector() : new ColorSelector();
 		selector.setEnabled(colored);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		container.add(selector);
-		final ColorSelectionModel model = selector.getSelectionModel();
+		final ColorSelectionModel model = skinPalette ? ((SkinColorSelector) selector).getSelectionModel() : ((ColorSelector) selector).getSelectionModel();
 		// SkinPaletteSelector does this automatically with setSelectedSkinColor(color)
 		if (!skinPalette) {
 			model.setSelectedColor(outfitColor.getColor(key));
 		}
-		selector.getSelectionModel().addChangeListener(new ChangeListener() {
+		model.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent ev) {
 				final Iterator<OutfitLabel> itr = labels.iterator();

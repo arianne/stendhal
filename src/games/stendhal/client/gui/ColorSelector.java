@@ -19,7 +19,6 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.color.ARGB;
 import games.stendhal.common.color.HSL;
-import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,7 +31,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -47,48 +45,28 @@ import javax.swing.event.ChangeListener;
  */
 class ColorSelector extends JPanel {
 	private final HSLSelectionModel model;
-	private final JComponent paletteSelector;
+	private final JComponent hueSaturationSelector;
 	private final JComponent lightnessSelector;
-	private Boolean useSkinPalette = false;
-	
+
+
 	/**
 	 * Create a new ColorSelector.
 	 */
 	ColorSelector() {
-		this(false);
-	}
-	
-	/**
-	 * Create a new ColorSelector.
-	 * 
-	 * @param skinColors
-	 * 		Skin colors available only
-	 */
-	ColorSelector(Boolean skinPalette) {
-		this.useSkinPalette = skinPalette;
 		model = new HSLSelectionModel();
 		setBorder(null);
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
-		if (useSkinPalette) {
-			paletteSelector = new SkinPaletteSelector(model);
-			add(paletteSelector);
-			// Skin color does not use lightness
-			lightnessSelector = null;
-		} else {
-			paletteSelector = new HueSaturationSelector(model);
-			add(paletteSelector);
-			lightnessSelector = new LightnessSelector(model);
-			add(lightnessSelector, SLayout.EXPAND_X);
-		}
+		hueSaturationSelector = new HueSaturationSelector(model);
+		add(hueSaturationSelector);
+		lightnessSelector = new LightnessSelector(model);
+		add(lightnessSelector, SLayout.EXPAND_X);
 	}
 
 	@Override
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);
-		paletteSelector.setEnabled(enabled);
-		if (lightnessSelector != null) {
-			lightnessSelector.setEnabled(enabled);
-		}
+		hueSaturationSelector.setEnabled(enabled);
+		lightnessSelector.setEnabled(enabled);
 	}
 
 	/**
@@ -250,141 +228,6 @@ class ColorSelector extends JPanel {
 	}
 
 	/**
-	 * Skin color part of the selector component.
-	 */
-	private static class SkinPaletteSelector extends Selector {
-		private static final String SKIN_PALETTE_IMAGE = "data/gui/colors_skin.png";
-		/** background sprite */
-		Sprite paletteSprite;
-		
-		/** Color mapping */
-		List<List<SkinColor>> colorMap = Arrays.asList(
-				Arrays.asList( // Row 1
-						SkinColor.COLOR1,
-						SkinColor.COLOR2,
-						SkinColor.COLOR3,
-						SkinColor.COLOR4),
-				Arrays.asList( // Row 2
-						SkinColor.COLOR5,
-						SkinColor.COLOR6,
-						SkinColor.COLOR7,
-						SkinColor.COLOR8),
-				Arrays.asList( // Row 3
-						SkinColor.COLOR9,
-						SkinColor.COLOR10,
-						SkinColor.COLOR11,
-						SkinColor.COLOR12),
-				Arrays.asList( // Row 4
-						SkinColor.COLOR13,
-						SkinColor.COLOR14,
-						SkinColor.COLOR15,
-						SkinColor.COLOR16)
-					);
-		
-		/**
-		 * Create a new SkinPaletteSelector.
-		 */
-		SkinPaletteSelector(HSLSelectionModel model) {
-			super(model);
-		}
-
-		/**
-		 * Get the color gradient sprite.
-		 * 
-		 * @return background sprite
-		 */
-		private Sprite getPaletteSprite() {
-			if (paletteSprite == null) {
-				if (isEnabled()) {
-					paletteSprite = SpriteStore.get().getSprite(SKIN_PALETTE_IMAGE);
-				} else {
-					// Desaturated image for disabled selector
-					paletteSprite = SpriteStore.get().getColoredSprite(SKIN_PALETTE_IMAGE, Color.GRAY);
-				}
-			}
-
-			return paletteSprite;
-		}
-
-		@Override
-		public Dimension getPreferredSize() {
-			Sprite s = getPaletteSprite();
-			int width = s.getWidth();
-			int height = s.getHeight();
-			Insets ins = getInsets();
-			width += ins.left + ins.right;
-			height += ins.top + ins.bottom;
-			return new Dimension(width, height);
-		}
-
-		@Override
-		public void paintComponent(Graphics g) {
-			Insets ins = getInsets();
-			Sprite sprite = getPaletteSprite();
-			sprite.draw(g, ins.left, ins.right);
-		}
-
-		@Override
-		void select(Point point) {
-			final Color selectedColor;
-			Insets ins = getInsets();
-			Sprite sprite = getPaletteSprite();
-			
-			// Dimensions
-			int width = sprite.getWidth();
-			int height = sprite.getHeight();
-			int column_count = colorMap.size();
-			int row_count = colorMap.get(0).size();
-			int colorWidth = width / column_count;
-			int colorHeight = height / row_count; // 4 rows
-			
-			int column, row;
-			column = ((point.y / colorHeight));
-			row = ((point.x / colorWidth));
-			
-			/* Cursor position is tracked outside of selector area if mouse
-			 * button is held down. Must reset row and column to minimun or
-			 * maximum values in this case
-			 */
-			if (column < 0) {
-				column = 0;
-			} else if (column >= column_count) {
-				column = column_count - 1;
-			}
-			if (row < 0) {
-				row = 0;
-			} else if (row >= row_count) {
-				row = row_count - 1;
-			}
-			
-			selectedColor = colorMap.get(column).get(row).getColor();
-			
-			// Throws IllegalArgumentExeption if "color" is not in
-			// allowed colors.
-			// FIXME:	This probably isn't necessary since the server does the
-			// 			same check.
-			SkinColor.isAllowed(selectedColor);
-			
-			int xDiff = point.x - ins.left;
-			xDiff = Math.min(width, Math.max(0, xDiff));
-			int yDiff = point.y - ins.top;
-			yDiff = Math.min(height, Math.max(0, yDiff));
-			model.setSelectedSkinColor(selectedColor);
-		}
-		
-		@Override
-		public void setEnabled(boolean enabled) {
-			boolean old = isEnabled();
-			super.setEnabled(enabled);
-			if (old != enabled) {
-				// Force sprite change
-				paletteSprite = null;
-				repaint();
-			}
-		}
-	}
-
-	/**
 	 * Lightness part of the selector.
 	 */
 	private static class LightnessSelector extends Selector {
@@ -526,33 +369,7 @@ class ColorSelector extends JPanel {
 		public void removeChangeListener(ChangeListener listener) {
 			listeners.remove(listener);
 		}
-		
-		/**
-		 * Used for setting skin color.
-		 * 
-		 * @param color
-		 * 		Target skin color
-		 */
-		public void setSelectedSkinColor(Color color) {
-			if (color != null) {
-				this.color = color;
-			} else {
-				// Something with a sane lightness value
-				this.color = SkinColor.COLOR1.getColor();
-			}
-			
-			int[] rgb = new int[4];
-			ARGB.splitRgb(this.color.getRGB(), rgb);
-			HSL.rgb2hsl(rgb, hsl);
-			fireChanged();
-		}
-		
-		/**
-		 * Used for setting outfit colors other than skin.
-		 * 
-		 * @param color
-		 * 		Target outfit color
-		 */
+
 		@Override
 		public void setSelectedColor(Color color) {
 			if (color != null) {
@@ -561,7 +378,6 @@ class ColorSelector extends JPanel {
 				// Something with a sane lightness value
 				this.color = Color.GRAY;
 			}
-			
 			int[] rgb = new int[4];
 			ARGB.splitRgb(this.color.getRGB(), rgb);
 			HSL.rgb2hsl(rgb, hsl);
