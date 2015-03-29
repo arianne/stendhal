@@ -8,6 +8,7 @@
 
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 
@@ -97,8 +98,14 @@ public class CaptureTheFlagFlag extends Item {
 		//         currently, xml definition restricts
 		
 		// System.out.println("CaptureTheFlagFlag.onEquipped(): " + this.get("name") + " -> " + equipper);
-
-		Outfit flagOutfit  = new Outfit(this.detailValue, null, null, null, null);
+		
+		Outfit flagOutfit;
+		// TODO: Remove condition after outfit testing is finished
+		if (Testing.enabled(Testing.OUTFITS)) {
+			flagOutfit = new Outfit(this.detailValue, null, null, null, null, null, null);
+		} else {
+			flagOutfit  = new Outfit(this.detailValue, null, null, null, null);
+		}
 				
 		equipper.put("outfit_colors", "detail", this.colorValue);
 		

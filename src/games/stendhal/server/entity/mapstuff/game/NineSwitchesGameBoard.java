@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -81,7 +82,14 @@ public class NineSwitchesGameBoard implements TurnListener {
 		boolean completed = checkBoard();
 		if (completed) {
 			npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
-			Outfit balloonOutfit = new Outfit(1, null, null, null, null);
+			// TODO: Remove when outfit testing finished
+			Outfit balloonOutfit;
+			if (Testing.enabled(Testing.OUTFITS)) {
+				balloonOutfit = new Outfit(1, null, null, null, null, null,
+						null);
+			} else {
+				balloonOutfit = new Outfit(1, null, null, null, null);
+			}
 			user.setOutfit(balloonOutfit);
 			user.put("outfit_colors", "detail", Rand.rand(balloonColors));
 			
