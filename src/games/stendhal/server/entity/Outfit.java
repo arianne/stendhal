@@ -16,9 +16,6 @@ import games.stendhal.common.Outfits;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Testing;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 /**
  * A data structure that represents the outfit of an RPEntity. This RPEntity can
@@ -141,49 +138,27 @@ public class Outfit {
 	 *            stands for body, the next for dress, then head, then hair,
 	 *            then detail.
 	 */
-	public Outfit(final int code) {
+	public Outfit(final double code) {
 		
-		this.body = (code % 100);
+		this.body = (int) (code % 100);
 
-		this.dress = (code / 100 % 100);
+		this.dress = (int) (code / 100 % 100);
 
-		this.head = (code / 10000 % 100);
+		this.head = (int) (code / Math.pow(100, 2) % 100);
 
-		this.hair = (code / 1000000 % 100);
+		this.hair = (int) (code / Math.pow(100, 3) % 100);
 
-		this.detail = (code / 100000000 % 100);
+		this.detail = (int) (code / Math.pow(100, 4) % 100);
 		
-		this.mouth = null;
-		
-		this.eyes = null;
-	}
-	
-	/**
-	 * Creates a new outfit with parts divided into two numeric codes: body
-	 * and outfit.
-	 * 
-	 * @param bodyCode
-	 * 		Code used to set body, head, eyes, and hair
-	 * @param outfitCode
-	 * 		Code used to set clothes and detail
-	 */
-	public Outfit(final int bodyCode, final int outfitCode) {
-		
-		// Body
-		this.body = (bodyCode % 100);
-		
-		this.head = (bodyCode / 100 % 100);
-		
-		this.mouth = (int) (bodyCode / 10000 % 100);
-		
-		this.eyes = (int) (bodyCode / 1000000 % 100);
-		
-		this.hair = (int) (bodyCode / 100000000 % 100);
-		
-		// Clothes and detail
-		this.dress = (outfitCode % 100);
-		
-		this.detail = (outfitCode / 100 % 100);
+		if (Testing.enabled(Testing.OUTFITS)) {
+			this.mouth = (int) (code / Math.pow(100, 5) % 100);
+			
+			this.eyes = (int) (code / Math.pow(100, 6) % 100);
+		} else {
+			this.mouth = null;
+			
+			this.eyes = null;
+		}
 	}
 	
 	/**
@@ -278,49 +253,6 @@ public class Outfit {
 			bo = body.intValue();
 		}
 		return de * 100000000 + ha * 1000000 + he * 10000 + dr * 100 + bo;
-	}
-	
-	public List<Integer> getCodes() {
-		// Body
-		int b_bo = 0; // body
-		int b_he = 0; // head
-		int b_mo = 0; // mouth
-		int b_ey = 0; // eyes
-		int b_ha = 0; // hair
-		
-		if (body != null) {
-			b_bo = body;
-		}
-		if (head != null) {
-			b_he = head;
-		}
-		if (mouth != null) {
-			b_mo = mouth;
-		}
-		if (eyes != null) {
-			b_ey = eyes;
-		}
-		if (hair != null) {
-			b_ha = hair;
-		}
-		
-		// Clothes and detail
-		int o_dr = 0; // clothes/dress
-		int o_de = 0; // detail
-		
-		if (dress != null) {
-			o_dr = dress;
-		}
-		if (detail != null) {
-			o_de = detail;
-		}
-		
-		int bodyCode, outfitCode;
-		bodyCode = (b_ha * 100000000) + (b_ey * 1000000) + (b_mo * 10000)
-				+ (b_he * 100) + b_bo;
-		outfitCode = (o_de * 100) + o_dr;
-		
-		return Arrays.asList(bodyCode, outfitCode);
 	}
 	
 	/**
