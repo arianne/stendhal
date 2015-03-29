@@ -191,14 +191,8 @@ public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * The outfit code.
 	 */
-	private int outfit;
+	private long outfit;
 	
-	/** The body code */
-	private int bodyCode;
-	
-	/** The outfit code */
-	private int outfitCode;
-
 	private int baseHP;
 
 	private float hpRatio;
@@ -413,30 +407,10 @@ public abstract class RPEntity extends AudibleEntity {
 	 * 
 	 * @return The outfit code.
 	 */
-	public int getOutfit() {
+	public long getOutfit() {
 		return outfit;
 	}
 	
-	/**
-	 * Get the body code.
-	 * 
-	 * @return
-	 * 		Body code
-	 */
-	public int getBodyCode() {
-		return bodyCode;
-	}
-	
-	/**
-	 * Get the outfit code.
-	 * 
-	 * @return
-	 * 		The outfit code
-	 */
-	public int getOutfitCode() {
-		return outfitCode;
-	}
-
 	/**
 	 * The result of previous attack against this entity.
 	 * 
