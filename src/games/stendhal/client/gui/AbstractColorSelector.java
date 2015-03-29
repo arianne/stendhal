@@ -14,7 +14,11 @@ package games.stendhal.client.gui;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.client.sprite.Sprite;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -104,5 +108,73 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		 * @param point
 		 */
 		abstract void select(Point point);
+	}
+	
+	/**
+	 * Base class for color selectors that are based on a sprite.
+	 *
+	 * @param <T> selection model type
+	 */
+	static abstract class AbstractSpriteColorSelector<T extends ColorSelectionModel> extends AbstractSelector<T> {
+		/** Background sprite. */
+		private Sprite background;
+		
+		/**
+		 * Construct a new AbstractSpriteColorSelector.
+		 * 
+		 * @param model model for the selector
+		 */
+		AbstractSpriteColorSelector(T model) {
+			super(model);
+		}
+		
+		/**
+		 * Create or fetch the appropriate background sprite for current state.
+		 *
+		 * @return appropriate sprite for the current enabled/disabled state of
+		 *	the selector
+		 */
+		abstract Sprite createSprite();
+		
+		/**
+		 * Get the current background sprite.
+		 * 
+		 * @return current background
+		 */
+		Sprite getBackgroundSprite() {
+			if (background == null) {
+				background = createSprite();
+			}
+			return background;
+		}
+		
+		@Override
+		public Dimension getPreferredSize() {
+			Sprite s = getBackgroundSprite();
+			int width = s.getWidth();
+			int height = s.getHeight();
+			Insets ins = getInsets();
+			width += ins.left + ins.right;
+			height += ins.top + ins.bottom;
+			return new Dimension(width, height);
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			Insets ins = getInsets();
+			Sprite sprite = getBackgroundSprite();
+			sprite.draw(g, ins.left, ins.right);
+		}
+		
+		@Override
+		public void setEnabled(boolean enabled) {
+			boolean old = isEnabled();
+			super.setEnabled(enabled);
+			if (old != enabled) {
+				// Force sprite change
+				background = null;
+				repaint();
+			}
+		}
 	}
 }

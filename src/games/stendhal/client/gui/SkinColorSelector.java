@@ -16,9 +16,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.Point;
 import java.util.Arrays;
 import java.util.List;
@@ -63,10 +60,8 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 	/**
 	 * Skin color part of the selector component.
 	 */
-	private static class SkinPaletteSelector extends AbstractSelector<SkinColorSelectionModel> {
+	private static class SkinPaletteSelector extends AbstractSpriteColorSelector<SkinColorSelectionModel> {
 		private static final String SKIN_PALETTE_IMAGE = "data/gui/colors_skin.png";
-		/** background sprite */
-		Sprite paletteSprite;
 		
 		/** Color mapping */
 		List<List<SkinColor>> colorMap = Arrays.asList(
@@ -100,45 +95,19 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			super(model);
 		}
 
-		/**
-		 * Get the color gradient sprite.
-		 * 
-		 * @return background sprite
-		 */
-		private Sprite getPaletteSprite() {
-			if (paletteSprite == null) {
-				if (isEnabled()) {
-					paletteSprite = SpriteStore.get().getSprite(SKIN_PALETTE_IMAGE);
-				} else {
-					// Desaturated image for disabled selector
-					paletteSprite = SpriteStore.get().getColoredSprite(SKIN_PALETTE_IMAGE, Color.GRAY);
-				}
+		@Override
+		Sprite createSprite() {
+			if (isEnabled()) {
+				return SpriteStore.get().getSprite(SKIN_PALETTE_IMAGE);
+			} else {
+				// Desaturated image for disabled selector
+				return SpriteStore.get().getColoredSprite(SKIN_PALETTE_IMAGE, Color.GRAY);
 			}
-
-			return paletteSprite;
-		}
-
-		@Override
-		public Dimension getPreferredSize() {
-			Sprite s = getPaletteSprite();
-			int width = s.getWidth();
-			int height = s.getHeight();
-			Insets ins = getInsets();
-			width += ins.left + ins.right;
-			height += ins.top + ins.bottom;
-			return new Dimension(width, height);
-		}
-
-		@Override
-		public void paintComponent(Graphics g) {
-			Insets ins = getInsets();
-			Sprite sprite = getPaletteSprite();
-			sprite.draw(g, ins.left, ins.right);
 		}
 
 		@Override
 		void select(Point point) {
-			Sprite sprite = getPaletteSprite();
+			Sprite sprite = getBackgroundSprite();
 			
 			// Dimensions
 			int width = sprite.getWidth();
@@ -161,17 +130,6 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			
 			SkinColor selectedColor = colorMap.get(column).get(row);
 			model.setSelectedColor(selectedColor);
-		}
-		
-		@Override
-		public void setEnabled(boolean enabled) {
-			boolean old = isEnabled();
-			super.setEnabled(enabled);
-			if (old != enabled) {
-				// Force sprite change
-				paletteSprite = null;
-				repaint();
-			}
 		}
 	}
 

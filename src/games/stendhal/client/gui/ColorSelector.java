@@ -69,10 +69,8 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 	/**
 	 * Hue-Saturation part of the selector component.
 	 */
-	private static class HueSaturationSelector extends AbstractSelector<HSLSelectionModel> {
+	private static class HueSaturationSelector extends AbstractSpriteColorSelector<HSLSelectionModel> {
 		private static final String HUE_SATURATION_IMAGE = "data/gui/colors.png";
-		/** background sprite */
-		Sprite hueSprite;
 
 		/**
 		 * Create a new HueSaturationSelector.
@@ -84,40 +82,22 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			super(model);
 		}
 
-		/**
-		 * Get the color gradient sprite.
-		 * 
-		 * @return background sprite
-		 */
-		private Sprite getHueSprite() {
-			if (hueSprite == null) {
-				if (isEnabled()) {
-					hueSprite = SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
-				} else {
-					// Desaturated image for disabled selector
-					hueSprite = SpriteStore.get().getColoredSprite(HUE_SATURATION_IMAGE, Color.GRAY);
-				}
-			}
-
-			return hueSprite;
-		}
-
 		@Override
-		public Dimension getPreferredSize() {
-			Sprite s = getHueSprite();
-			int width = s.getWidth();
-			int height = s.getHeight();
-			Insets ins = getInsets();
-			width += ins.left + ins.right;
-			height += ins.top + ins.bottom;
-			return new Dimension(width, height);
+		Sprite createSprite() {
+			if (isEnabled()) {
+				return SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
+			} else {
+				// Desaturated image for disabled selector
+				return SpriteStore.get().getColoredSprite(HUE_SATURATION_IMAGE, Color.GRAY);
+			}
 		}
 
 		@Override
 		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
 			Insets ins = getInsets();
-			Sprite sprite = getHueSprite();
-			sprite.draw(g, ins.left, ins.right);
+			Sprite sprite = getBackgroundSprite();
 
 			// draw a cross
 			g.setColor(Color.BLACK);
@@ -130,7 +110,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		@Override
 		void select(Point point) {
 			Insets ins = getInsets();
-			Sprite sprite = getHueSprite();
+			Sprite sprite = getBackgroundSprite();
 			int width = sprite.getWidth();
 			int height = sprite.getHeight();
 			int xDiff = point.x - ins.left;
@@ -140,17 +120,6 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			yDiff = Math.min(height, Math.max(0, yDiff));
 			float saturation = 1f - yDiff / (float) height;
 			model.setHS(hue, saturation);
-		}
-		
-		@Override
-		public void setEnabled(boolean enabled) {
-			boolean old = isEnabled();
-			super.setEnabled(enabled);
-			if (old != enabled) {
-				// Force sprite change
-				hueSprite = null;
-				repaint();
-			}
 		}
 	}
 
