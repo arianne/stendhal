@@ -84,13 +84,20 @@ public class PublicChatAction implements ActionListener {
 	 * @param text original text
 	 */
 	private void swapLetters(StringBuilder text) {
-		if (text.length() < 2) {
+		int length = text.codePointCount(0, text.length());
+		if (length < 2) {
 			return;
 		}
-		int index = Rand.rand(text.length() - 1);
-		char chr = text.charAt(index);
-		text.deleteCharAt(index);
-		text.insert(index + 1, chr);
+		int index = Rand.rand(length - 1);
+		int chrIndex = text.offsetByCodePoints(0, index);
+		int chr = text.codePointAt(chrIndex);
+		int toRemove = Character.charCount(chr);
+		for (int i = 0; i < toRemove; i++) {
+			text.deleteCharAt(chrIndex);
+		}
+		// There's no insertCodePointAt()
+		text.insert(chrIndex + Character.charCount(text.codePointAt(chrIndex)),
+				new StringBuilder().appendCodePoint(chr));
 	}
 	
 	/**
@@ -99,10 +106,17 @@ public class PublicChatAction implements ActionListener {
 	 * @param text original text
 	 */
 	private void removeLetter(StringBuilder text) {
-		if (text.length() < 2) {
+		int length = text.codePointCount(0, text.length());
+		if (length < 2) {
 			return;
 		}
-		text.deleteCharAt(Rand.rand(text.length()));
+		int index = Rand.rand(length);
+		int chrIndex = text.offsetByCodePoints(0, index);
+		int chr = text.codePointAt(chrIndex);
+		int toRemove = Character.charCount(chr);
+		for (int i = 0; i < toRemove; i++) {
+			text.deleteCharAt(chrIndex);
+		}
 	}
 	
 	/**
@@ -111,10 +125,15 @@ public class PublicChatAction implements ActionListener {
 	 * @param text original text
 	 */
 	private void duplicateLetter(StringBuilder text) {
-		if (text.length() < 1) {
+		int length = text.codePointCount(0, text.length());
+		if (length < 1) {
 			return;
 		}
-		int index = Rand.rand(text.length());
-		text.insert(index, text.charAt(index));
+		int index = Rand.rand(length);
+		int chrIndex = text.offsetByCodePoints(0, index);
+		int chr = text.codePointAt(chrIndex);
+		// There's no insertCodePointAt()
+		text.insert(chrIndex + Character.charCount(chr),
+				new StringBuilder().appendCodePoint(chr));
 	}
 }
