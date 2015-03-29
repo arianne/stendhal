@@ -11,10 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.color.ARGB;
@@ -27,23 +24,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.colorchooser.ColorSelectionModel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.colorchooser.DefaultColorSelectionModel;
 
 /**
  * A HSL space color selector that should be small enough to fit in the outfit
  * selection dialog.
  */
-class ColorSelector extends JPanel {
+class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionModel> {
 	private final HSLSelectionModel model;
 	private final JComponent hueSaturationSelector;
 	private final JComponent lightnessSelector;
@@ -54,8 +43,6 @@ class ColorSelector extends JPanel {
 	 */
 	ColorSelector() {
 		model = new HSLSelectionModel();
-		setBorder(null);
-		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
 		hueSaturationSelector = new HueSaturationSelector(model);
 		add(hueSaturationSelector);
 		lightnessSelector = new LightnessSelector(model);
@@ -74,75 +61,15 @@ class ColorSelector extends JPanel {
 	 * 
 	 * @return selection model
 	 */
-	ColorSelectionModel getSelectionModel() {
+	@Override
+	HSLSelectionModel getSelectionModel() {
 		return model;
 	}
-
-	/**
-	 * Base class for the color selector sliders.
-	 */
-	private static abstract class Selector extends JComponent implements ChangeListener {
-		/** Model to adjust and listen to. */
-		final HSLSelectionModel model;
-
-		/**
-		 * Create a new Selector.
-		 * 
-		 * @param model selection model
-		 */
-		Selector(HSLSelectionModel model) {
-			this.model = model;
-			model.addChangeListener(this);
-			setOpaque(true);
-			applyStyle();
-			addMouseMotionListener(new MouseMotionAdapter() {
-				@Override
-				public void mouseDragged(MouseEvent ev) {
-					if (isEnabled()) {
-						select(ev.getPoint());
-					}
-				}
-			});
-
-			addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent ev) {
-					if (isEnabled()) {
-						select(ev.getPoint());
-					}
-				}
-			});
-		}
-
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			// Colors changed
-			repaint();
-		}
-
-		/**
-		 * Apply Stendhal style.
-		 */
-		private void applyStyle() {
-			Style style = StyleUtil.getStyle();
-			if (style != null) {
-				setBorder(style.getBorderDown());
-			}
-		}
-
-		/**
-		 * User clicked a point, or dragged the adjuster to it. The component
-		 * should recalculate the colors.
-		 * 
-		 * @param point
-		 */
-		abstract void select(Point point);
-	}
-
+	
 	/**
 	 * Hue-Saturation part of the selector component.
 	 */
-	private static class HueSaturationSelector extends Selector {
+	private static class HueSaturationSelector extends AbstractSelector<HSLSelectionModel> {
 		private static final String HUE_SATURATION_IMAGE = "data/gui/colors.png";
 		/** background sprite */
 		Sprite hueSprite;
@@ -230,7 +157,7 @@ class ColorSelector extends JPanel {
 	/**
 	 * Lightness part of the selector.
 	 */
-	private static class LightnessSelector extends Selector {
+	private static class LightnessSelector extends AbstractSelector<HSLSelectionModel> {
 		/** Height of the gradient bar. */
 		private static final int BAR_HEIGHT = 10;
 
@@ -347,41 +274,22 @@ class ColorSelector extends JPanel {
 	 * Color selection model that is capable of returning, and accepting HSL
 	 * space color data in addition of the usual RGB.
 	 */
-	private static class HSLSelectionModel implements ColorSelectionModel {
-		/** Listeners following this model. */
-		private List<ChangeListener> listeners = new ArrayList<ChangeListener>();
-		/** Current color. */
-		private Color color;
+	static class HSLSelectionModel extends DefaultColorSelectionModel {
 		/** Current color in HSL space. */
 		private float[] hsl = new float[3];
 
 		@Override
-		public void addChangeListener(ChangeListener listener) {
-			listeners.add(listener);
-		}
-
-		@Override
-		public Color getSelectedColor() {
-			return color;
-		}
-
-		@Override
-		public void removeChangeListener(ChangeListener listener) {
-			listeners.remove(listener);
-		}
-
-		@Override
 		public void setSelectedColor(Color color) {
 			if (color != null) {
-				this.color = color;
+				super.setSelectedColor(color);
 			} else {
 				// Something with a sane lightness value
-				this.color = Color.GRAY;
+				super.setSelectedColor(Color.GRAY);
 			}
 			int[] rgb = new int[4];
-			ARGB.splitRgb(this.color.getRGB(), rgb);
+			ARGB.splitRgb(getSelectedColor().getRGB(), rgb);
 			HSL.rgb2hsl(rgb, hsl);
-			fireChanged();
+			fireStateChanged();
 		}
 
 		/**
@@ -440,17 +348,8 @@ class ColorSelector extends JPanel {
 			int[] rgb = new int[4];
 			HSL.hsl2rgb(hsl, rgb);
 			rgb[0] = 0xff;
-			color = new Color(ARGB.mergeRgb(rgb));
-			fireChanged();
-		}
-
-		/**
-		 * Notify listeners about changed color.
-		 */
-		private void fireChanged() {
-			for (ChangeListener listener : listeners) {
-				listener.stateChanged(new ChangeEvent(this));
-			}
+			super.setSelectedColor(new Color(ARGB.mergeRgb(rgb)));
+			fireStateChanged();
 		}
 	}
 }

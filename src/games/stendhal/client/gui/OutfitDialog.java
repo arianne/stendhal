@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - 2013 Stendhal                 *
+ *                      (C) Copyright 2003 - 2015 Stendhal                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,7 +21,6 @@ import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Outfits;
-import games.stendhal.common.constants.Testing;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -71,11 +69,11 @@ class OutfitDialog extends JDialog {
 	private final Boolean USE_SKIN_PALETTE = true;
 
 	private final SelectorModel hair;
+	private final SelectorModel eyes;
+	private final SelectorModel mouth;
 	private final SelectorModel head;
 	private final SelectorModel body;
 	private final SelectorModel dress;
-	private final SelectorModel mouth;
-	private final SelectorModel eyes;
 	
 	/**
 	 * Coloring data used to get the initial colors, and to adjust colors should
@@ -159,16 +157,18 @@ class OutfitDialog extends JDialog {
 		this.outfitColor = outfitColor;
 		
 		hair = new SelectorModel(total_hairs);
-		
-		// TODO: Remove after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			eyes = new SelectorModel(total_eyes);
-			mouth = new SelectorModel(total_mouths);
 		} else {
 			eyes = null;
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+			mouth = new SelectorModel(total_mouths);
+		} else {
 			mouth = null;
 		}
-		
 		head = new SelectorModel(total_heads);
 		body = new SelectorModel(total_bodies);
 		dress = new SelectorModel(total_clothes);
@@ -181,16 +181,16 @@ class OutfitDialog extends JDialog {
 		// Follow the model changes; the whole outfit follows them all
 		hair.addListener(hairLabel);
 		hair.addListener(outfitLabel);
-		
-		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			eyes.addListener(eyesLabel);
 			eyes.addListener(outfitLabel);
-			
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			mouth.addListener(mouthLabel);
 			mouth.addListener(outfitLabel);
 		}
-		
 		head.addListener(headLabel);
 		head.addListener(outfitLabel);
 		body.addListener(bodyLabel);
@@ -205,32 +205,21 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
+		// TODO: add mouth and eyes
+		int mouthsIndex = 0;
+		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 
-		// TODO: Remove after outfit testing is finished
-		int mouthsIndex = 0, eyesIndex = 0;
-		if (Testing.enabled(Testing.OUTFITS)) {
-			outfit = outfit / 100;
-			mouthsIndex = outfit % 100;
-			outfit = outfit / 100;
-			eyesIndex = outfit % 100;
-		}
-		
 		// reset special outfits
 		if (hairsIndex >= total_hairs) {
 			hairsIndex = 0;
 		}
-		
-		// TODO: Remove condition after outfit testing if finished
-		if (Testing.enabled(Testing.OUTFITS)) {
-			if (eyesIndex >= total_eyes) {
-				eyesIndex = 0;
-			}
-			if (mouthsIndex >= total_mouths) {
-				mouthsIndex = 0;
-			}
+		if (eyesIndex >= total_eyes) {
+			eyesIndex = 0;
 		}
-		
+		if (mouthsIndex >= total_mouths) {
+			mouthsIndex = 0;
+		}
 		if (headsIndex >= total_heads) {
 			headsIndex = 0;
 		}
@@ -243,13 +232,14 @@ class OutfitDialog extends JDialog {
 		
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
-		
-		// TODO: Remove conditon after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			eyes.setIndex(eyesIndex);
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			mouth.setIndex(mouthsIndex);
 		}
-		
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
@@ -286,11 +276,10 @@ class OutfitDialog extends JDialog {
 		hairLabel = new OutfitLabel(hairRetriever);
 		partialsColumn.add(createSelector(hair, hairLabel));
 		
-		// TODO: Remove condition after outfit testing is finished
-		SpriteRetriever eyesRetriever = null, mouthRetriever = null;
-		if (Testing.enabled(Testing.OUTFITS)) {
-			// Eyes
-			eyesRetriever = new SpriteRetriever() {
+		// Eyes
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+			SpriteRetriever eyesRetriever = new SpriteRetriever() {
 				@Override
 				public Sprite getSprite() {
 					return getEyesSprite();
@@ -298,9 +287,12 @@ class OutfitDialog extends JDialog {
 			};
 			eyesLabel = new OutfitLabel(eyesRetriever);
 			partialsColumn.add(createSelector(eyes, eyesLabel));
-			
-			// Mouth
-			mouthRetriever = new SpriteRetriever() {
+		}
+		
+		// Mouth
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+			SpriteRetriever mouthRetriever = new SpriteRetriever() {
 				@Override
 				public Sprite getSprite() {
 					return getMouthSprite();
@@ -349,10 +341,8 @@ class OutfitDialog extends JDialog {
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 		SBoxLayout.addSpring(column);
-		
-		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
-			/* eyes color */
+		/* eyes color (currently only enabled through VM argument) */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
@@ -364,7 +354,6 @@ class OutfitDialog extends JDialog {
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
 		}
-		
 		/* dress color */
 		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
@@ -374,16 +363,9 @@ class OutfitDialog extends JDialog {
 		column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		column.setAlignmentY(CENTER_ALIGNMENT);
 		content.add(column);
-		
-		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
-			outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
-					headRetriever, mouthRetriever, eyesRetriever,
-					hairRetriever);
-		} else {
-			outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
-					headRetriever, hairRetriever);
-		}
+
+		outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
+				headRetriever, hairRetriever);
 		outfitLabel.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(outfitLabel);
 
@@ -592,11 +574,16 @@ class OutfitDialog extends JDialog {
 		boolean colored = outfitColor.getColor(key) != null;
 		enableToggle.setSelected(colored);
 		
-		final JComponent selector = skinPalette ? new SkinColorSelector() : new ColorSelector();
+		final AbstractColorSelector<?> selector;
+		if (skinPalette) {
+			selector = new SkinColorSelector();
+		} else {
+			selector = new ColorSelector();
+		}
 		selector.setEnabled(colored);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		container.add(selector);
-		final ColorSelectionModel model = skinPalette ? ((SkinColorSelector) selector).getSelectionModel() : ((ColorSelector) selector).getSelectionModel();
+		final ColorSelectionModel model = selector.getSelectionModel();
 		// SkinPaletteSelector does this automatically with setSelectedSkinColor(color)
 		if (!skinPalette) {
 			model.setSelectedColor(outfitColor.getColor(key));
@@ -684,19 +671,8 @@ class OutfitDialog extends JDialog {
 
 		final RPAction rpaction = new RPAction();
 		rpaction.put("type", "outfit");
-		
-		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
-			rpaction.put("value", body.getIndex() + (dress.getIndex() * 100)
-					+ (head.getIndex() * Math.pow(100, 2))
-					+ (hair.getIndex() * Math.pow(100, 3))
-					+ (mouth.getIndex() * Math.pow(100, 5))
-					+ (eyes.getIndex() * Math.pow(100, 6)));
-		} else {
-			rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
-					* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
-		}
-		
+		rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
+				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
 		/* hair color */
 		Color color = outfitColor.getColor("hair");
 		if (color != null) {
@@ -712,11 +688,6 @@ class OutfitDialog extends JDialog {
 		if (color != null) {
 			rpaction.put(OutfitColor.DRESS, color.getRGB());
 		}
-		/* eyes color */
-		color = outfitColor.getColor(OutfitColor.EYES);
-		if (color != null) {
-			rpaction.put(OutfitColor.EYES, color.getRGB());
-		}
 		client.send(rpaction);
 	}
 		
@@ -731,13 +702,14 @@ class OutfitDialog extends JDialog {
 			dressLabel.setBorder(style.getBorderDown());
 			outfitLabel.setBorder(style.getBorderDown());
 			hairLabel.setBorder(style.getBorderDown());
-			
-			// TODO: Remove condition after outfit testing is complete
-			if (Testing.enabled(Testing.OUTFITS)) {
+			/* eyes currently only enabled through VM argument */
+			if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 				eyesLabel.setBorder(style.getBorderDown());
+			}
+			/* mouth currently only enabled through VM argument */
+			if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 				mouthLabel.setBorder(style.getBorderDown());
 			}
-			
 			headLabel.setBorder(style.getBorderDown());
 		}
 	}
@@ -753,12 +725,7 @@ class OutfitDialog extends JDialog {
 		// Copy the original colors
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
-		
-		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
-			outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
-			outfitColor.setColor(OutfitColor.EYES, colors.getColor(OutfitColor.EYES));
-		}
+		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
 		
 		// analyze the outfit code
 		int bodiesIndex = outfit % 100;
@@ -767,27 +734,22 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
+		// TODO: add mouth and eyes
+		int mouthsIndex = 0;
+		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
-		
-		// TODO: Remove condition after outfit testing is finished
-		int mouthsIndex = 0, eyesIndex = 0;
-		if (Testing.enabled(Testing.OUTFITS)) {
-			outfit = outfit / 100;
-			mouthsIndex = outfit % 100;
-			outfit = outfit / 100;
-			headsIndex = outfit % 100;
-		}
 		
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
 		head.setIndex(headsIndex);
-		
-		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		/* eyes currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			eyes.setIndex(eyesIndex);
+		}
+		/* mouth currently only enabled through VM argument */
+		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 			mouth.setIndex(mouthsIndex);
 		}
-		
 		hair.setIndex(hairsIndex);
 
 		// Color selectors, and their toggles

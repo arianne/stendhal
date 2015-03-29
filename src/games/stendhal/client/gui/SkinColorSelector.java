@@ -11,41 +11,26 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.color.ARGB;
-import games.stendhal.common.color.HSL;
 import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.colorchooser.ColorSelectionModel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.colorchooser.DefaultColorSelectionModel;
 
 /**
  * A HSL space color selector that should be small enough to fit in the outfit
  * selection dialog.
  */
-class SkinColorSelector extends JPanel {
+class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColorSelectionModel> {
 	private final SkinColorSelectionModel model;
 	private final JComponent paletteSelector;
 	
@@ -54,8 +39,6 @@ class SkinColorSelector extends JPanel {
 	 */
 	SkinColorSelector() {
 		model = new SkinColorSelectionModel();
-		setBorder(null);
-		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
 		paletteSelector = new SkinPaletteSelector(model);
 		add(paletteSelector);
 	}
@@ -71,75 +54,16 @@ class SkinColorSelector extends JPanel {
 	 * 
 	 * @return selection model
 	 */
-	ColorSelectionModel getSelectionModel() {
+	@Override
+	SkinColorSelectionModel getSelectionModel() {
 		return model;
 	}
-
-	/**
-	 * Base class for the color selector sliders.
-	 */
-	private static abstract class Selector extends JComponent implements ChangeListener {
-		/** Model to adjust and listen to. */
-		final SkinColorSelectionModel model;
-
-		/**
-		 * Create a new Selector.
-		 * 
-		 * @param model selection model
-		 */
-		Selector(SkinColorSelectionModel model) {
-			this.model = model;
-			model.addChangeListener(this);
-			setOpaque(true);
-			applyStyle();
-			addMouseMotionListener(new MouseMotionAdapter() {
-				@Override
-				public void mouseDragged(MouseEvent ev) {
-					if (isEnabled()) {
-						select(ev.getPoint());
-					}
-				}
-			});
-
-			addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent ev) {
-					if (isEnabled()) {
-						select(ev.getPoint());
-					}
-				}
-			});
-		}
-
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			// Colors changed
-			repaint();
-		}
-
-		/**
-		 * Apply Stendhal style.
-		 */
-		private void applyStyle() {
-			Style style = StyleUtil.getStyle();
-			if (style != null) {
-				setBorder(style.getBorderDown());
-			}
-		}
-
-		/**
-		 * User clicked a point, or dragged the adjuster to it. The component
-		 * should recalculate the colors.
-		 * 
-		 * @param point
-		 */
-		abstract void select(Point point);
-	}
+	
 	
 	/**
 	 * Skin color part of the selector component.
 	 */
-	private static class SkinPaletteSelector extends Selector {
+	private static class SkinPaletteSelector extends AbstractSelector<SkinColorSelectionModel> {
 		private static final String SKIN_PALETTE_IMAGE = "data/gui/colors_skin.png";
 		/** background sprite */
 		Sprite paletteSprite;
@@ -255,33 +179,14 @@ class SkinColorSelector extends JPanel {
 	 * Color selection model that is capable of returning, and accepting HSL
 	 * space color data in addition of the usual RGB.
 	 */
-	private static class SkinColorSelectionModel implements ColorSelectionModel {
-		/** Listeners following this model. */
-		private List<ChangeListener> listeners = new ArrayList<ChangeListener>();
-		/** Current color. */
-		private Color color;
+	static class SkinColorSelectionModel extends DefaultColorSelectionModel {
 		/** The enum corresponding to current color. */
 		private SkinColor enumColor;
-
-		@Override
-		public void addChangeListener(ChangeListener listener) {
-			listeners.add(listener);
-		}
-
-		@Override
-		public Color getSelectedColor() {
-			return color;
-		}
-
-		@Override
-		public void removeChangeListener(ChangeListener listener) {
-			listeners.remove(listener);
-		}
 		
 		void setSelectedColor(SkinColor color) {
 			enumColor = color;
-			this.color = new Color(enumColor.getColor());
-			fireChanged();
+			super.setSelectedColor(new Color(enumColor.getColor()));
+			fireStateChanged();
 		}
 	
 		/**
@@ -297,18 +202,9 @@ class SkinColorSelector extends JPanel {
 			} else {
 				enumColor = SkinColor.COLOR1;
 			}
-			this.color = new Color(enumColor.getColor());
+			super.setSelectedColor(new Color(enumColor.getColor()));
 			
-			fireChanged();
-		}
-
-		/**
-		 * Notify listeners about changed color.
-		 */
-		private void fireChanged() {
-			for (ChangeListener listener : listeners) {
-				listener.stateChanged(new ChangeEvent(this));
-			}
+			fireStateChanged();
 		}
 	}
 }
