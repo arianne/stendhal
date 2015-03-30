@@ -13,7 +13,6 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.constants.Actions;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.BanAction;
@@ -31,8 +30,6 @@ import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveToAction;
 import games.stendhal.server.actions.move.PushAction;
-import games.stendhal.server.actions.outfit.ExtendedOutfitAction;
-import games.stendhal.server.actions.outfit.OutfitAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
@@ -115,10 +112,6 @@ public class CommandCenter {
 		MoveToAction.register();
 		NameAction.register();
 		OutfitAction.register();
-		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
-			ExtendedOutfitAction.register();
-		}
 		OwnAction.register();
 		ProgressStatusQueryAction.register();
 		PushAction.register();
