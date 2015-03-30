@@ -162,7 +162,7 @@ public class j2DClient implements UserInterface {
 	private boolean offline;
 
 	private OutfitDialog outfitDialog;
-
+	
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
 
 	private UserContext userContext;
@@ -955,63 +955,59 @@ public class j2DClient implements UserInterface {
 	public void addAchievementBox(String title, String description, String category) {
 		screen.addAchievementBox(title, description, category);
 	}
-
+	
 	/**
 	 * Initiate outfit selection by the user.
 	 */
 	public void chooseOutfit() {
-		final int outfit;
+		final int outfit, extendedOutfit;
 		final RPObject player = userContext.getPlayer();
 		
-		/* TODO: Remove condition and duplicate code after outfit testing is
-		 *       finished.
-		 */
+		if (player.has("outfit_org")) {
+			outfit = player.getInt("outfit_org");
+		} else {
+			outfit = player.getInt("outfit");
+		}
+		
+		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
-			final int extendedOutfit;
-			if (player.has("outfit_org")) {
-				outfit = player.getInt("outfit_org");
-				// FIXME: Should use own condition?
+			if (player.has("outfit_extended_org")) {
 				extendedOutfit = player.getInt("outfit_extended_org");
 			} else {
-				outfit = player.getInt("outfit");
-				// FIXME: Should use own condition?
 				extendedOutfit = player.getInt("outfit_extended");
 			}
-			
-			if (outfitDialog == null) {
-				// Here we actually want to call new OutfitColor(). Modifying
-				// OutfitColor.PLAIN would be a bad thing.
+		} else {
+			extendedOutfit = 0;
+		}
+		
+		if (outfitDialog == null) {
+			// Here we actually want to call new OutfitColor(). Modifying
+			// OutfitColor.PLAIN would be a bad thing.
+			/* TODO: Remove condition when outfit testing is finished. */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				// FIXME: remove method and add code here
 				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
 						extendedOutfit, new OutfitColor(player));
-				outfitDialog.setVisible(true);
 			} else {
-				outfitDialog.setState(outfit, extendedOutfit,
-						OutfitColor.get(player));
-				outfitDialog.setVisible(true);
-				outfitDialog.toFront();
-			}
-			
-		} else { // Outfit testing disabled
-			if (player.has("outfit_org")) {
-				outfit = player.getInt("outfit_org");
-			} else {
-				outfit = player.getInt("outfit");
-			}
-			
-			if (outfitDialog == null) {
-				// Here we actually want to call new OutfitColor(). Modifying
-				// OutfitColor.PLAIN would be a bad thing.
 				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
 						new OutfitColor(player));
-				outfitDialog.setVisible(true);
+			}
+			
+			outfitDialog.setVisible(true);
+		} else {
+			/* TODO: Remove condition when outfit testing is finished. */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				outfitDialog.setState(outfit, extendedOutfit,
+						OutfitColor.get(player));
 			} else {
 				outfitDialog.setState(outfit, OutfitColor.get(player));
-				outfitDialog.setVisible(true);
-				outfitDialog.toFront();
 			}
+			
+			outfitDialog.setVisible(true);
+			outfitDialog.toFront();
 		}
 	}
-
+	
 	/**
 	 * Create the chat log tabs.
 	 *
