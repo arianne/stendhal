@@ -243,9 +243,10 @@ class OutfitDialog extends JDialog {
 		partialsColumn.add(createSelector(hair, hairLabel));
 		
 		/* TODO: Remove condition after outfit testing is finished. */
+		SpriteRetriever eyesRetriever = null, mouthRetriever = null;
 		if (Testing.enabled(Testing.OUTFITS)) {
 			// Eyes
-			SpriteRetriever eyesRetriever = new SpriteRetriever() {
+			eyesRetriever = new SpriteRetriever() {
 				@Override
 				public Sprite getSprite() {
 					return getEyesSprite();
@@ -255,7 +256,7 @@ class OutfitDialog extends JDialog {
 			partialsColumn.add(createSelector(eyes, eyesLabel));
 			
 			// Mouth
-			SpriteRetriever mouthRetriever = new SpriteRetriever() {
+			mouthRetriever = new SpriteRetriever() {
 				@Override
 				public Sprite getSprite() {
 					return getMouthSprite();
@@ -327,9 +328,16 @@ class OutfitDialog extends JDialog {
 		column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		column.setAlignmentY(CENTER_ALIGNMENT);
 		content.add(column);
-
-		outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
-				headRetriever, hairRetriever);
+		
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
+					headRetriever, mouthRetriever, eyesRetriever,
+					hairRetriever);
+		} else {
+			outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
+					headRetriever, hairRetriever);
+		}
 		outfitLabel.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(outfitLabel);
 
