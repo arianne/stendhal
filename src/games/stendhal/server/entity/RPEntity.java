@@ -123,7 +123,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private int base_mana;
 
-	private boolean ignoreCollision;
+	protected boolean ignoreCollision;
 
 	private String deathSound;
 
