@@ -203,7 +203,7 @@ public abstract class UpdateConverter {
     		// TODO: Remove condition when outfit testing is finished
     		if (Testing.enabled(Testing.OUTFITS)) {
 	    		// FIXME: Should use its own condition
-	    		object.put("outfit_secondary", tempOutfit.getSecondaryCode());
+	    		object.put("outfit_extended", tempOutfit.getSecondaryCode());
     		}
     	}
 
@@ -237,8 +237,8 @@ public abstract class UpdateConverter {
     	if (!object.has("atk_xp")) {
     		object.put("atk_xp", "0");
     		object.put("def_xp", "0");
-    		/* FIXME: ranged stat is disabled by default until fully implemented */
-    		if (System.getProperty("testing.combat") != null) {
+    		/* TODO: Remove condition after ranged stat testing is finished. */
+    		if (Testing.enabled(Testing.COMBAT)) {
     			object.put("ratk_xp", "0");
     		}
     	}
@@ -252,8 +252,8 @@ public abstract class UpdateConverter {
     		object.put("release", "0.00");
     		object.put("atk", "10");
     		object.put("def", "10");
-    		/* FIXME: ranged stat is disabled by default until fully implemented */
-    		if (System.getProperty("testing.combat") != null) {
+    		/* TODO: Remove condition after ranged stat testing is finished. */
+    		if (Testing.enabled(Testing.COMBAT)) {
     			object.put("ratk", "10");
     		}
     	}
@@ -558,7 +558,8 @@ public abstract class UpdateConverter {
 			}
 		}
 	}
-
+	
+	// FIXME: Remove?
 	 // update the name of a quest to the new spelling
 //	private static void renameQuestSlot(Player player, String oldName, String newName) {
 //		String questState = player.getQuest(oldName);
