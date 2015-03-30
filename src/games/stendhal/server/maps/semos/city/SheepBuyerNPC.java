@@ -52,6 +52,10 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 
 		public SheepBuyerSpeakerNPC(String name) {
 			super(name);
+			// HP needs to be > 0 for Sato to appear in the killer list for
+			// the big bad wolf
+			setBaseHP(100);
+			setHP(100);
 		}
 		
 		/**
@@ -84,8 +88,8 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 						Creature wolf = (Creature) obj;
 						
 						if ("wolf".equals(wolf.get("subclass")) && getPen(zone).contains(wolf)) {
-								wolf.delayedDamage(wolf.getHP(), "Sato");
-								return;
+							wolf.onDamaged(this, wolf.getHP());
+							return;
 						}
 					}
 				}
