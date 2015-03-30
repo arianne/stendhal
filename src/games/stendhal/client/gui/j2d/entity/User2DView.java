@@ -73,6 +73,8 @@ class User2DView<T extends User> extends Player2DView<T> {
 		list.remove(ActionType.INVITE.getRepresentation());
 
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
+		/* TODO: Add auto walk action. */
+		//list.add(ActionType.AUTOWALK.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
 
 		User user = entity;
