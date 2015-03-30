@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.constants.Testing;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -48,8 +49,8 @@ public class RPEntityRPClass {
         entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
         entity.addAttribute("def_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
-        /* FIXME: ranged stat is disabled by default until fully implemented */
-        if (System.getProperty("testing.combat") != null) {
+        /* TODO: Remove condition when ranged stat testing is finished. */
+        if (Testing.enabled(Testing.COMBAT)) {
         	// FIXME: remove VOLATILE when ranged stat is ready
 //        	entity.addAttribute("ratk", Type.SHORT, Definition.PRIVATE);
 //        	entity.addAttribute("ratk_xp", Type.INT, Definition.PRIVATE);

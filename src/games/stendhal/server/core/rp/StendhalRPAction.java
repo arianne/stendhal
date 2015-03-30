@@ -13,6 +13,7 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.DataProvider;
 import games.stendhal.server.core.engine.GameEvent;
@@ -53,7 +54,7 @@ import org.apache.log4j.Logger;
 public class StendhalRPAction {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPAction.class);
-
+	
 	/**
 	 * The amount to weight ATK and DEF in player strength calculation. Higher
 	 * means more weight to stats vs level. Value 0.73 has been obtained from
@@ -201,10 +202,8 @@ public class StendhalRPAction {
 	private static double getPlayerStrength(final Player player) {
 		int combatSum;
 		
-		/* FIXME: Ranged stat is disabled by default until fully implemented.
-		 * Remove System.getProperty().
-		 */
-		if (System.getProperty("testing.combat") != null) {
+		/* TODO: Remove condition after ranged stat testing is finished. */
+		if (Testing.enabled(Testing.COMBAT)) {
 			combatSum = player.getAtk() + player.getDef() + player.getRatk();
 		} else {
 			combatSum = player.getAtk() + player.getDef();
@@ -252,17 +251,6 @@ public class StendhalRPAction {
 	public static boolean playerAttack(final Player player, final RPEntity defender) {
 		boolean result = false;
 
-		/* FIXME: Alternate method for training ATK XP. Player receives
-		 *        XP for successful hit without depending on taking
-		 *        damage. This can be removed later.
-		 */
-		Boolean atkXPAlt = System.getProperty("testing.combat") != null;
-		
-		/* FIXME: Ranged stat is disabled by default until fully implemented.
-		 *        This can be removed later.
-		 */
-		Boolean statRanged = System.getProperty("testing.combat") != null;
-		
 		final StendhalRPZone zone = player.getZone();
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
 			logger.debug("Attack from " + player + " to " + defender
@@ -322,12 +310,12 @@ public class StendhalRPAction {
 		// Throw dices to determine if the attacker has missed the defender
 		final boolean beaten = player.canHit(defender);
 
-		/* FIXME: Current ATK XP training system. This allows training ATK
-		 *        XP only after receiving damage. Also trains ATK even if
-		 *        attack is blocked. Remove if alternate attack training
-		 *        implemented in game.
+		/* TODO: Current ATK XP training system. This allows training ATK
+		 *       XP only after receiving damage. Also trains ATK even if
+		 *       attack is blocked. Remove if alternate attack training
+		 *       implemented in game.
 		 */
-		if (!atkXPAlt) {
+		if (!Testing.enabled(Testing.COMBAT)) {
 			// disabled attack xp for attacking NPC's
 			if (!(defender instanceof SpeakerNPC)
 					&& player.getsFightXpFrom(defender)) {
@@ -355,19 +343,19 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + damage);
 
 				result = true;
-				/* FIXME: Remove atkXPAlt condition if alternate attack
-				 *        training method implemented in game.
-				 * FIXME: Ranged stat is disabled by default until fully
-				 *        implemented. Remove "statRanged" from condition
-				 *        once implemented.
+				/* TODO: Remove atkXPAlt condition if alternate attack
+				 *       training method implemented in game.
+				 * TODO: Ranged stat is disabled by default until fully
+				 *       implemented. Remove "statRanged" from condition
+				 *       once implemented.
 				 */
-				if (atkXPAlt) {
+				if (Testing.enabled(Testing.COMBAT)) {
 					/* Give player ATK or RATK XP if defender is not
 					 * SpeakerNPC. Player only receives XP if hit was
 					 * successful and not blocked.
 					 */
 					if (!(defender instanceof SpeakerNPC)) {
-						if (usingRanged && statRanged) {
+						if (usingRanged && Testing.enabled(Testing.COMBAT)) {
 							player.incRatkXP();
 						} else {
 							player.incAtkXP();
