@@ -21,6 +21,7 @@ import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Outfits;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.common.constants.Testing;
 
 import java.awt.Color;
@@ -601,27 +602,44 @@ class OutfitDialog extends JDialog {
 	 */
 	private void sendAction() {
 		StendhalClient client = StendhalClient.get();
+		Color color;
 
-		final RPAction rpaction = new RPAction();
-		rpaction.put("type", "outfit");
-		rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
+		final RPAction rpOutfitAction = new RPAction();
+		rpOutfitAction.put(Actions.TYPE, "outfit");
+		rpOutfitAction.put(Actions.VALUE, body.getIndex() + dress.getIndex() * 100 + head.getIndex()
 				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
+		
 		/* hair color */
-		Color color = outfitColor.getColor(OutfitColor.HAIR);
+		color = outfitColor.getColor(OutfitColor.HAIR);
 		if (color != null) {
-			rpaction.put(OutfitColor.HAIR, color.getRGB());
+			rpOutfitAction.put(OutfitColor.HAIR, color.getRGB());
 		}
+		
 		/* body and head color */
 		color = outfitColor.getColor(OutfitColor.SKIN);
 		if (color != null) {
-			rpaction.put(OutfitColor.SKIN, color.getRGB());
+			rpOutfitAction.put(OutfitColor.SKIN, color.getRGB());
 		}
+		
 		/* dress color */
 		color = outfitColor.getColor(OutfitColor.DRESS);
 		if (color != null) {
-			rpaction.put(OutfitColor.DRESS, color.getRGB());
+			rpOutfitAction.put(OutfitColor.DRESS, color.getRGB());
 		}
-		client.send(rpaction);
+		
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			rpOutfitAction.put(Actions.VALUE2, mouth.getIndex()
+					+ (eyes.getIndex() * 100));
+			
+			/* eyes color */
+			color = outfitColor.getColor(OutfitColor.EYES);
+			if (color != null) {
+				rpOutfitAction.put(OutfitColor.EYES, color.getRGB());
+			}
+		}
+		
+		client.send(rpOutfitAction);
 	}
 		
 	/**
