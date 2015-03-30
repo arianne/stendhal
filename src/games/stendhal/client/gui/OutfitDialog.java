@@ -111,8 +111,8 @@ class OutfitDialog extends JDialog {
 	 * @param outfitColor coloring information. <b>Note that outfitColor
 	 *	can be modified by the dialog.</b> 
 	 */
-	OutfitDialog(final Frame parent, String title, int outfit,
-			OutfitColor outfitColor) {
+	OutfitDialog(final Frame parent, final String title, int outfit,
+			final OutfitColor outfitColor) {
 		super(parent, false);
 		
 		this.outfitColor = outfitColor;
@@ -125,16 +125,6 @@ class OutfitDialog extends JDialog {
 		// Follow the model changes; the whole outfit follows them all
 		hair.addListener(hairLabel);
 		hair.addListener(outfitLabel);
-		/* eyes currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			eyes.addListener(eyesLabel);
-			eyes.addListener(outfitLabel);
-		}
-		/* mouth currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			mouth.addListener(mouthLabel);
-			mouth.addListener(outfitLabel);
-		}
 		head.addListener(headLabel);
 		head.addListener(outfitLabel);
 		body.addListener(bodyLabel);
@@ -149,29 +139,16 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
-		// TODO: add mouth and eyes
-		int mouthsIndex = 0;
-		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 
 		// reset special outfits
 		hairsIndex = checkIndex(hairsIndex, hair);
-		eyesIndex = checkIndex(eyesIndex, eyes);
-		mouthsIndex = checkIndex(mouthsIndex, mouth);
 		headsIndex = checkIndex(headsIndex, head);
 		bodiesIndex = checkIndex(bodiesIndex, body);
 		clothesIndex = checkIndex(clothesIndex, dress);
 		
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
-		/* eyes currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			eyes.setIndex(eyesIndex);
-		}
-		/* mouth currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			mouth.setIndex(mouthsIndex);
-		}
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
@@ -179,6 +156,49 @@ class OutfitDialog extends JDialog {
 		pack();
 		WindowUtils.closeOnEscape(this);
 		WindowUtils.trackLocation(this, "outfit", false);
+	}
+	
+	/**
+	 * Create a new outfit dialog with extended outfit features: Currently
+	 * mouth and eyes.
+	 * 
+	 * @param parent
+	 * 		The parent object of this dialog
+	 * @param title
+	 * 		Text to be displayed in title bar
+	 * @param outfit
+	 * 		10-digit code representing original outfit features (old outfit
+	 * 		system)
+	 * @param extendedOutfit
+	 * 		4-digit code representing extended outfit features
+	 * @param outfitColor
+	 * 		Coloring information for outfit parts (<b>Note that outfitColor can
+	 * 		be modified by the dialog</b>)
+	 */
+	OutfitDialog(final Frame parent, final String title, final int outfit,
+			int extendedOutfit, final OutfitColor outfitColor) {
+		this(parent, title, outfit, outfitColor);
+		
+		// Follow the model changes
+		eyes.addListener(eyesLabel);
+		eyes.addListener(outfitLabel);
+		mouth.addListener(mouthLabel);
+		mouth.addListener(outfitLabel);
+		
+		// Analyze current outfit
+		int mouthsIndex = extendedOutfit % 100;
+		extendedOutfit = extendedOutfit / 100;
+		int eyesIndex = extendedOutfit % 100;
+		
+		// Reset special outfits
+		mouthsIndex = checkIndex(mouthsIndex, mouth);
+		eyesIndex = checkIndex(eyesIndex, eyes);
+		
+		// Set the current outfit indices; this will update the labels as well
+		eyes.setIndex(eyesIndex);
+		mouth.setIndex(mouthsIndex);
+		
+		pack();
 	}
 	
 	/**
@@ -222,9 +242,9 @@ class OutfitDialog extends JDialog {
 		hairLabel = new OutfitLabel(hairRetriever);
 		partialsColumn.add(createSelector(hair, hairLabel));
 		
-		// Eyes
-		/* eyes currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			// Eyes
 			SpriteRetriever eyesRetriever = new SpriteRetriever() {
 				@Override
 				public Sprite getSprite() {
@@ -233,11 +253,8 @@ class OutfitDialog extends JDialog {
 			};
 			eyesLabel = new OutfitLabel(eyesRetriever);
 			partialsColumn.add(createSelector(eyes, eyesLabel));
-		}
-		
-		// Mouth
-		/* mouth currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+			
+			// Mouth
 			SpriteRetriever mouthRetriever = new SpriteRetriever() {
 				@Override
 				public Sprite getSprite() {
@@ -610,12 +627,9 @@ class OutfitDialog extends JDialog {
 			dressLabel.setBorder(style.getBorderDown());
 			outfitLabel.setBorder(style.getBorderDown());
 			hairLabel.setBorder(style.getBorderDown());
-			/* eyes currently only enabled through VM argument */
-			if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+			/* TODO: Remove condition after outfit testing is finished */
+			if (Testing.enabled(Testing.OUTFITS)) {
 				eyesLabel.setBorder(style.getBorderDown());
-			}
-			/* mouth currently only enabled through VM argument */
-			if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
 				mouthLabel.setBorder(style.getBorderDown());
 			}
 			headLabel.setBorder(style.getBorderDown());
@@ -633,7 +647,10 @@ class OutfitDialog extends JDialog {
 		// Copy the original colors
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
-		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
+		}
 		
 		// analyze the outfit code
 		int bodiesIndex = outfit % 100;
@@ -642,28 +659,44 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
-		// TODO: add mouth and eyes
-		int mouthsIndex = 0;
-		int eyesIndex = 0;
 		int hairsIndex = outfit % 100;
 		
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
 		head.setIndex(headsIndex);
-		/* eyes currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			eyes.setIndex(eyesIndex);
-		}
-		/* mouth currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
-			mouth.setIndex(mouthsIndex);
-		}
 		hair.setIndex(hairsIndex);
 
 		// Color selectors, and their toggles
 		for (ResetListener l : resetListeners) {
 			l.reset();
 		}
+	}
+	
+	/**
+	 * Set the state of the selector for extened outfit features: Currently
+	 * mouth and eyes.
+	 * 
+	 * @param outfit
+	 * 		10-digit integer representing original outfit features (old outfit
+	 * 		system)
+	 * @param extendedOutfit
+	 * 		4-digit integer representing extended features
+	 * @param colors
+	 * 		Color state of outfit parts (will not be modiefied like the one
+	 * 		passed to constructor)
+	 */
+	void setState(final int outfit, int extendedOutfit,
+			final OutfitColor colors) {
+		// Analyze the outfit code
+		int mouthsIndex = extendedOutfit % 100;
+		extendedOutfit = extendedOutfit / 100;
+		int eyesIndex = extendedOutfit % 100;
+		
+		mouth.setIndex(mouthsIndex);
+		eyes.setIndex(eyesIndex);
+		
+		// Run code for original (old) outfit system to update listeners
+		this.setState(outfit, colors);
 	}
 	
 	/**
