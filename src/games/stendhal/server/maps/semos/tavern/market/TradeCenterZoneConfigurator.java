@@ -72,7 +72,7 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 		SpeakerNPC speaker = new MarketManagerNPC(TRADE_ADVISOR_NAME);
 		speaker.setPosition(COORDINATE_X,COORDINATE_Y);
 		speaker.setEntityClass("tradecenteradvisornpc");
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			speaker.setOutfit(new Outfit(0, 5, 1, 34, 1, 0, 0));
 		} else {
 			speaker.setOutfit(new Outfit(0, 5, 1, 34, 1));

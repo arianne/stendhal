@@ -326,7 +326,7 @@ public class Outfit {
 		}
 		
 		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			final int newMouth;
 			final int newEyes;
 			
@@ -392,7 +392,7 @@ public class Outfit {
 		}
 		
 		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			int newMouth;
 			int newEyes;
 			
@@ -431,7 +431,7 @@ public class Outfit {
 	public boolean isPartOf(final Outfit other) {
 		boolean partOf;
 		// FIXME: Remove condition when outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			partOf = ((detail == null) || detail.equals(other.detail))
 					&& ((hair == null) || hair.equals(other.hair))
 					&& ((head == null) || head.equals(other.head))
@@ -461,7 +461,7 @@ public class Outfit {
 		/* TODO: Remove condition and duplicate code when outfit testing is
 		 *       finished.
 		 */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			choosable = (detail == null || detail == 0)
 					&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
 				    && (head < Outfits.getHeadsCount()) && (head >= 0)
@@ -516,7 +516,7 @@ public class Outfit {
 		final int newEyes;
 		
 		// TODO: Remove condition when outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			newHead = Rand.randUniform(1, Outfits.getBodiesCount());
 			newBody = Rand.randUniform(1, Outfits.getBodiesCount());
 			newMouth = Rand.randUniform(1, Outfits.MOUTH_OUTFITS);
@@ -558,7 +558,7 @@ public class Outfit {
 		else {
 			Outfit outfit = (Outfit)other;
 			// TODO: Remove condition when outfit testing is finished
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				return ((this.getCode() == outfit.getCode())
 						|| (this.getExtendedCode() == outfit.getExtendedCode()));
 			} else {

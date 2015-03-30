@@ -17,31 +17,19 @@ package games.stendhal.common.constants;
  * @author AntumDeluge
  */
 public class Testing {
+	/** General testing property */
+	public static final boolean GENERAL =
+			(System.getProperty("testing") != null);
+	
+	/** Debugging */
+	public static final boolean DEBUG =
+			(System.getProperty("DEBUG") != null);
+	
 	/** Testing outfit system property */
-	public static final String OUTFITS = "testing.outfits";
+	public static final boolean OUTFITS =
+			(System.getProperty("testing.outfits") != null);
 	
 	/** Testing combat system property */
-	public static final String COMBAT = "testing.combat";
-	
-	/**
-	 * Checks if a specific testing mode is enabled.
-	 * 
-	 * @param property
-	 * 		The system property to test
-	 * @return
-	 * 		System property testing defined
-	 */
-	public static Boolean enabled(String property) {
-		return (System.getProperty(property) != null);
-	}
-	
-	/**
-	 * Checks if general testing is enabled.
-	 * 
-	 * @return
-	 * 		System property "testing" defined
-	 */
-	public static Boolean enabled() {
-		return (System.getProperty("testing") != null);
-	}
+	public static final boolean COMBAT =
+			(System.getProperty("testing.combat") != null);
 }

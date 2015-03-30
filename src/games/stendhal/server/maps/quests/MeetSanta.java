@@ -158,7 +158,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 			// the new outfit only changes the hair, rest is null
 			final Outfit newOutfit;
 			// TODO: Remove when outfit testing is finished
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				newOutfit = new Outfit(null, hatnumber, null, null, null, null,
 						null);
 			} else {
@@ -181,7 +181,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				final int newhair = hairnumber - 50;
 				final Outfit newOutfit;
 				// TODO: Remove when outfit testing finished
-				if (Testing.enabled(Testing.OUTFITS)) {
+				if (Testing.OUTFITS) {
 					newOutfit = new Outfit(null, newhair, null, null, null,
 							null, null);
 				} else {

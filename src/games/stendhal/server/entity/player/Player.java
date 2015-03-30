@@ -184,7 +184,7 @@ public class Player extends RPEntity implements UseListener {
 		player.put("def", 10);
 		player.put("def_xp", 0);
 		/* TODO: Remove condition after ranged stat testing is finished. */
-		if (Testing.enabled(Testing.COMBAT)) {
+		if (Testing.COMBAT) {
 			player.put("ratk", 10);
 			player.put("ratk_xp", 0);
 		}
@@ -195,7 +195,7 @@ public class Player extends RPEntity implements UseListener {
 		Outfit outfit = null;
 		if (template != null && template.has("outfit")) {
 			/* TODO: Remove condition when outfit testing is finished. */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				outfit = new Outfit(template.getInt("outfit"),
 						template.getInt("outfit_testing"));
 			} else {
@@ -1565,7 +1565,7 @@ public class Player extends RPEntity implements UseListener {
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
 			/** TODO: Remove condition after outfit testing is finished. */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				// FIXME: Should use its own condition?
 				put("outfit_extended_org", get("outfit_extended"));
 			}
@@ -1590,7 +1590,7 @@ public class Player extends RPEntity implements UseListener {
 		if (!temporary && has("outfit_org")) {
 			remove("outfit_org");
 			/* TODO: Remove condition after outfit testing is finished. */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				// FIXME: Should use its own condition?
 				remove("outfit_extended_org");
 			}
@@ -1607,7 +1607,7 @@ public class Player extends RPEntity implements UseListener {
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
 		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			put("outfit_extended", newOutfit.getExtendedCode());
 		}
 		notifyWorldAboutChanges();
@@ -1619,7 +1619,7 @@ public class Player extends RPEntity implements UseListener {
 			/* TODO: Remove condition and duplicate code when outfit testing is
 			 *       finished.
 			 */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				return new Outfit(getInt("outfit_org"),
 						getInt("outfit_extended_org"));
 			} else {
@@ -1652,7 +1652,7 @@ public class Player extends RPEntity implements UseListener {
 
 			remove("outfit_org");
 			/* TODO: Remove condition after outfit testing is finished. */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				remove("outfit_extended_org");
 			}
 			setOutfit(originalOutfit, false);

@@ -45,7 +45,7 @@ public class OutfitAction implements ActionListener {
 			if (outfit.isChoosableByPlayers()) {
 				
 				/* TODO: Remove condition when outfit testing is finished */
-				if (Testing.enabled(Testing.OUTFITS)) {
+				if (Testing.OUTFITS) {
 					if (action.has(VALUE2)) {
 						new GameEvent(player.getName(), OUTFIT, action.get(VALUE),
 								action.get(VALUE2)).raise();

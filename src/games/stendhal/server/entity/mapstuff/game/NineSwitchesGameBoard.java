@@ -84,7 +84,7 @@ public class NineSwitchesGameBoard implements TurnListener {
 			npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
 			// TODO: Remove when outfit testing finished
 			Outfit balloonOutfit;
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				balloonOutfit = new Outfit(1, null, null, null, null, null,
 						null);
 			} else {

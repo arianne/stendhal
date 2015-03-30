@@ -970,7 +970,7 @@ public class j2DClient implements UserInterface {
 		}
 		
 		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			if (player.has("outfit_extended_org")) {
 				extendedOutfit = player.getInt("outfit_extended_org");
 			} else {
@@ -984,7 +984,7 @@ public class j2DClient implements UserInterface {
 			// Here we actually want to call new OutfitColor(). Modifying
 			// OutfitColor.PLAIN would be a bad thing.
 			/* TODO: Remove condition when outfit testing is finished. */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				// FIXME: remove method and add code here
 				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
 						extendedOutfit, new OutfitColor(player));
@@ -996,7 +996,7 @@ public class j2DClient implements UserInterface {
 			outfitDialog.setVisible(true);
 		} else {
 			/* TODO: Remove condition when outfit testing is finished. */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				outfitDialog.setState(outfit, extendedOutfit,
 						OutfitColor.get(player));
 			} else {

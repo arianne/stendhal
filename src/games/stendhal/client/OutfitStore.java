@@ -77,7 +77,7 @@ public class OutfitStore {
 		this.store = store;
 		
 		/* TODO: Remove condition when testing outfits is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			bodies = outfits + "/body-testing";
 			heads = outfits + "/head-testing";
 		} else {
@@ -279,7 +279,7 @@ public class OutfitStore {
 	 */
 	public Sprite getFailsafeOutfit() {
 		try {
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				return getOutfit(0, 0, OutfitColor.PLAIN);
 			} else {
 				return getOutfit(0, OutfitColor.PLAIN);

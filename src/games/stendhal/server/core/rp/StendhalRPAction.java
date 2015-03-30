@@ -203,7 +203,7 @@ public class StendhalRPAction {
 		int combatSum;
 		
 		/* TODO: Remove condition after ranged stat testing is finished. */
-		if (Testing.enabled(Testing.COMBAT)) {
+		if (Testing.COMBAT) {
 			combatSum = player.getAtk() + player.getDef() + player.getRatk();
 		} else {
 			combatSum = player.getAtk() + player.getDef();
@@ -315,7 +315,7 @@ public class StendhalRPAction {
 		 *       attack is blocked. Remove if alternate attack training
 		 *       implemented in game.
 		 */
-		if (!Testing.enabled(Testing.COMBAT)) {
+		if (!Testing.COMBAT) {
 			// disabled attack xp for attacking NPC's
 			if (!(defender instanceof SpeakerNPC)
 					&& player.getsFightXpFrom(defender)) {
@@ -349,13 +349,13 @@ public class StendhalRPAction {
 				 *       implemented. Remove "statRanged" from condition
 				 *       once implemented.
 				 */
-				if (Testing.enabled(Testing.COMBAT)) {
+				if (Testing.COMBAT) {
 					/* Give player ATK or RATK XP if defender is not
 					 * SpeakerNPC. Player only receives XP if hit was
 					 * successful and not blocked.
 					 */
 					if (!(defender instanceof SpeakerNPC)) {
-						if (usingRanged && Testing.enabled(Testing.COMBAT)) {
+						if (usingRanged && Testing.COMBAT) {
 							player.incRatkXP();
 						} else {
 							player.incAtkXP();

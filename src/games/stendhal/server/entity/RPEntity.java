@@ -291,7 +291,7 @@ public abstract class RPEntity extends GuidedEntity {
 		ignoreCollision = false;
 		
 		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			/* Make sure that extended outfit features are available
 			 * otherwise an error is thrown for entities previously without
 			 * mouth and eyes features.
@@ -311,7 +311,7 @@ public abstract class RPEntity extends GuidedEntity {
 		ignoreCollision = false;
 		
 		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			/* Make sure that extended outfit features are available
 			 * otherwise an error is thrown for entities previously without
 			 * mouth and eyes features.
@@ -510,7 +510,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		
 		/* TODO: Remove condition after ranged stat testing is finished. */
-		if (Testing.enabled(Testing.COMBAT)) {
+		if (Testing.COMBAT) {
 			if (has("ratk_xp")) {
 				ratk_xp = getInt("ratk_xp");
 				setRatkXPInternal(ratk_xp, false);
@@ -2765,7 +2765,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public void setOutfit(final Outfit outfit) {
 		put("outfit", outfit.getCode());
 		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			put("outfit_extended", outfit.getExtendedCode());
 		}
 	}
@@ -2849,10 +2849,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		
 		final int attackerATK;
-		/* TODO: Remove Testing.enabled() condition check when ranged stat
+		/* TODO: Remove Testing.COMBAT condition check when ranged stat
 		 * testing is finished.
 		 */
-		if (usesRanged && Testing.enabled(Testing.COMBAT)) {
+		if (usesRanged && Testing.COMBAT) {
 			attackerATK = this.getCappedRatk(); // player is using ranged weapon
 		} else {
 			attackerATK = this.getCappedAtk(); // player is using hand-to-hand

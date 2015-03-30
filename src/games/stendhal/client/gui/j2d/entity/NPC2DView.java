@@ -72,7 +72,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 			/* TODO: Remove condition and duplicate code after outfit testing
 			 * is finished.
 			 */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				final int extendedCode = ((RPEntity) entity).getExtendedOutfit();
 				
 				if (code != RPEntity.OUTFIT_UNSET) {

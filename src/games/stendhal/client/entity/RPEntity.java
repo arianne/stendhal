@@ -1340,7 +1340,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 
 		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.enabled(Testing.COMBAT)) {
+		if (Testing.COMBAT) {
 			if (changes.has("ratk")) {
 				ratk = changes.getInt("ratk");
 			}
@@ -1365,7 +1365,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 		
 		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.enabled(Testing.COMBAT)) {
+		if (Testing.COMBAT) {
 			if (changes.has("ratk_xp")) {
 				ratkXP = changes.getInt("ratk_xp");
 			}
@@ -1380,7 +1380,7 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 		
 		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.enabled(Testing.COMBAT)) {
+		if (Testing.COMBAT) {
 			if (changes.has("ratk_item")) {
 				ratkItem = changes.getInt("ratk_item");
 			}

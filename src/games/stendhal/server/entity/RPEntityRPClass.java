@@ -50,7 +50,7 @@ public class RPEntityRPClass {
         entity.addAttribute("def_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
         /* TODO: Remove condition when ranged stat testing is finished. */
-        if (Testing.enabled(Testing.COMBAT)) {
+        if (Testing.COMBAT) {
         	// FIXME: remove VOLATILE when ranged stat is ready
 //        	entity.addAttribute("ratk", Type.SHORT, Definition.PRIVATE);
 //        	entity.addAttribute("ratk_xp", Type.INT, Definition.PRIVATE);

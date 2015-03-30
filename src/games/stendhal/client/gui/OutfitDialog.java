@@ -245,7 +245,7 @@ class OutfitDialog extends JDialog {
 		
 		/* TODO: Remove condition after outfit testing is finished. */
 		SpriteRetriever eyesRetriever = null, mouthRetriever = null;
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			// Eyes
 			eyesRetriever = new SpriteRetriever() {
 				@Override
@@ -307,7 +307,7 @@ class OutfitDialog extends JDialog {
 		column.add(selector);
 		
 		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			/* eyes color */
 			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
@@ -331,7 +331,7 @@ class OutfitDialog extends JDialog {
 		content.add(column);
 		
 		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
 					headRetriever, mouthRetriever, eyesRetriever,
 					hairRetriever);
@@ -628,7 +628,7 @@ class OutfitDialog extends JDialog {
 		}
 		
 		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			rpOutfitAction.put(Actions.VALUE2, mouth.getIndex()
 					+ (eyes.getIndex() * 100));
 			
@@ -654,7 +654,7 @@ class OutfitDialog extends JDialog {
 			outfitLabel.setBorder(style.getBorderDown());
 			hairLabel.setBorder(style.getBorderDown());
 			/* TODO: Remove condition after outfit testing is finished */
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				eyesLabel.setBorder(style.getBorderDown());
 				mouthLabel.setBorder(style.getBorderDown());
 			}
@@ -674,7 +674,7 @@ class OutfitDialog extends JDialog {
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
 		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
 		}
 		

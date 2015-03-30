@@ -81,7 +81,7 @@ public class SmallBoyNPC implements ZoneConfigurator {
 		};
 		
 		// TODO: Remove when outfit testing finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			// FIXME: Decide on mouth and eyes
 			boynpc.setOutfit(new Outfit(0, 33, 18, 3, 0, 0, 0));
 		} else {

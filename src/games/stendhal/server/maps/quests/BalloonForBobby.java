@@ -81,7 +81,7 @@ public class BalloonForBobby extends AbstractQuest {
 	public void prepareBalloonList() {
 		for (int i = 0; i < 4; i++) {
 			// TODO: Remove when outfit testing finished
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				balloonList[i] = new Outfit(i+1, null, null, null, null, null,
 						null);
 			} else {

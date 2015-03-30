@@ -87,7 +87,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 		};
 		
 		// TODO: Remove when outfit testing finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			// FIXME: Decide on mouth and eyes
 			npc.setOutfit(new Outfit(0, 4, 7, 32, 13, 0, 0));
 		} else {

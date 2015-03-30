@@ -101,7 +101,7 @@ public class CaptureTheFlagFlag extends Item {
 		
 		Outfit flagOutfit;
 		// TODO: Remove condition after outfit testing is finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			flagOutfit = new Outfit(this.detailValue, null, null, null, null, null, null);
 		} else {
 			flagOutfit  = new Outfit(this.detailValue, null, null, null, null);

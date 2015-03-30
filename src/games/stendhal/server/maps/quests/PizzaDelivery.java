@@ -82,7 +82,7 @@ public class PizzaDelivery extends AbstractQuest {
 	
 	// TODO: Remove when outfit testing is finished
 	public PizzaDelivery() {
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			UNIFORM = new Outfit(null, null, null, Integer.valueOf(90), null,
 					null, null);
 		} else {

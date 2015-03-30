@@ -83,7 +83,7 @@ public class GreeterNPC implements ZoneConfigurator {
 		};
 		
 		// TODO: Remove when outfit testing finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			// FIXME: Decide on mouth and eyes
 			greeterNPC.setOutfit(new Outfit(0, 5, 1, 6, 1, 0, 0));
 		} else {

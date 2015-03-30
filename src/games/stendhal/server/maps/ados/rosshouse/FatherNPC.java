@@ -78,7 +78,7 @@ public class FatherNPC implements ZoneConfigurator {
 		};
 		
 		// TODO: Remove when outfit testing finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			// FIXME: Decide on mouth and eyes
 			npc.setOutfit(new Outfit(0, 27, 7, 34, 1, 0, 0));
 		} else {

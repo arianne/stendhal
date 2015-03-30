@@ -151,7 +151,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			 * is finished.
 			 */
 			Sprite outfit;
-			if (Testing.enabled(Testing.OUTFITS)) {
+			if (Testing.OUTFITS) {
 				outfit = store.getAdjustedOutfit(entity.getOutfit(),
 						entity.getExtendedOutfit(), color, info.getZoneColor(),
 						info.getColorMethod());

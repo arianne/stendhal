@@ -201,7 +201,7 @@ public abstract class UpdateConverter {
     	if (!object.has("outfit")) {
     		object.put("outfit", tempOutfit.getCode());
     		// TODO: Remove condition when outfit testing is finished
-    		if (Testing.enabled(Testing.OUTFITS)) {
+    		if (Testing.OUTFITS) {
 	    		// FIXME: Should use its own condition
 	    		object.put("outfit_extended", tempOutfit.getExtendedCode());
     		}
@@ -238,7 +238,7 @@ public abstract class UpdateConverter {
     		object.put("atk_xp", "0");
     		object.put("def_xp", "0");
     		/* TODO: Remove condition after ranged stat testing is finished. */
-    		if (Testing.enabled(Testing.COMBAT)) {
+    		if (Testing.COMBAT) {
     			object.put("ratk_xp", "0");
     		}
     	}
@@ -253,7 +253,7 @@ public abstract class UpdateConverter {
     		object.put("atk", "10");
     		object.put("def", "10");
     		/* TODO: Remove condition after ranged stat testing is finished. */
-    		if (Testing.enabled(Testing.COMBAT)) {
+    		if (Testing.COMBAT) {
     			object.put("ratk", "10");
     		}
     	}

@@ -47,7 +47,7 @@ public class DadNPC implements LoadableContent {
 		};
 		
 		// TODO: Remove when outfit testing finished
-		if (Testing.enabled(Testing.OUTFITS)) {
+		if (Testing.OUTFITS) {
 			// FIXME: Decide on mouth and eyes
 			npc2.setOutfit(new Outfit(0, 27, 7, 34, 1, 0, 0));
 		} else {
