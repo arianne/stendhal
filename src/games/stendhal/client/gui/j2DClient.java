@@ -54,6 +54,7 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.constants.Testing;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -959,25 +960,55 @@ public class j2DClient implements UserInterface {
 	 * Initiate outfit selection by the user.
 	 */
 	public void chooseOutfit() {
-		int outfit;
+		final int outfit;
 		final RPObject player = userContext.getPlayer();
-
-		if (player.has("outfit_org")) {
-			outfit = player.getInt("outfit_org");
-		} else {
-			outfit = player.getInt("outfit");
-		}
-
-		if (outfitDialog == null) {
-			// Here we actually want to call new OutfitColor(). Modifying
-			// OutfitColor.PLAIN would be a bad thing.
-			outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
-					new OutfitColor(player));
-			outfitDialog.setVisible(true);
-		} else {
-			outfitDialog.setState(outfit, OutfitColor.get(player));
-			outfitDialog.setVisible(true);
-			outfitDialog.toFront();
+		
+		/* TODO: Remove condition and duplicate code after outfit testing is
+		 *       finished.
+		 */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			final int extendedOutfit;
+			if (player.has("outfit_org")) {
+				outfit = player.getInt("outfit_org");
+				// FIXME: Should use own condition?
+				extendedOutfit = player.getInt("outfit_extended_org");
+			} else {
+				outfit = player.getInt("outfit");
+				// FIXME: Should use own condition?
+				extendedOutfit = player.getInt("outfit_extended");
+			}
+			
+			if (outfitDialog == null) {
+				// Here we actually want to call new OutfitColor(). Modifying
+				// OutfitColor.PLAIN would be a bad thing.
+				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
+						extendedOutfit, new OutfitColor(player));
+				outfitDialog.setVisible(true);
+			} else {
+				outfitDialog.setState(outfit, extendedOutfit,
+						OutfitColor.get(player));
+				outfitDialog.setVisible(true);
+				outfitDialog.toFront();
+			}
+			
+		} else { // Outfit testing disabled
+			if (player.has("outfit_org")) {
+				outfit = player.getInt("outfit_org");
+			} else {
+				outfit = player.getInt("outfit");
+			}
+			
+			if (outfitDialog == null) {
+				// Here we actually want to call new OutfitColor(). Modifying
+				// OutfitColor.PLAIN would be a bad thing.
+				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
+						new OutfitColor(player));
+				outfitDialog.setVisible(true);
+			} else {
+				outfitDialog.setState(outfit, OutfitColor.get(player));
+				outfitDialog.setVisible(true);
+				outfitDialog.toFront();
+			}
 		}
 	}
 
