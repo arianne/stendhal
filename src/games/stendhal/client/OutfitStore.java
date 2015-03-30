@@ -76,8 +76,8 @@ public class OutfitStore {
 	private OutfitStore(final SpriteStore store) {
 		this.store = store;
 		
-		// TODO: Remove when testing outfits is finished
-		if (System.getProperty("testing.outfits") != null) {
+		/* TODO: Remove condition when testing outfits is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
 			bodies = outfits + "/body-testing";
 			heads = outfits + "/head-testing";
 		} else {
@@ -89,7 +89,7 @@ public class OutfitStore {
 	//
 	// OutfitStore
 	//
-
+	
 	/**
 	 * Build an outfit sprite.
 	 * 
@@ -104,30 +104,20 @@ public class OutfitStore {
 	 * 
 	 * @return A walking state tileset.
 	 */
-	private Sprite buildOutfit(long code, OutfitColor color) {
-		int bodycode = (int) (code % 100);
+	private Sprite buildOutfit(int code, final OutfitColor color) {
+		final int bodycode = (code % 100);
 		code /= 100;
 		
-		int dresscode = (int) (code % 100);
+		final int dresscode = (code % 100);
 		code /= 100;
 		
-		int headcode = (int) (code % 100);
+		final int headcode = (code % 100);
 		code /= 100;
 		
-		int haircode = (int) (code % 100);
+		final int haircode = (code % 100);
 		code /= 100;
 		
-		int detailcode = (int) (code % 100);
-		
-		int mouthcode = 0, eyescode = 0;
-		if (Testing.enabled(Testing.OUTFITS)) {
-			code /= 100;
-			
-			mouthcode = (int) (code % 100);
-			code /= 100;
-			
-			eyescode = (int) (code % 100);
-		}
+		final int detailcode = (code % 100);
 		
 		// Body layer
 		Sprite layer = getBodySprite(bodycode, color);
@@ -147,16 +137,6 @@ public class OutfitStore {
 		layer = getHeadSprite(headcode, color);
 		layer.draw(g, 0, 0);
 		
-		if (Testing.enabled(Testing.OUTFITS)) {
-			// Mouth layer
-			layer = getMouthSprite(mouthcode);
-			layer.draw(g, 0, 0);
-			
-			// Eyes Layer
-			layer = getEyesSprite(eyescode, color);
-			layer.draw(g, 0, 0);
-		}
-
 		// Hair layer
 		layer = getHairSprite(haircode, color);
 		layer.draw(g, 0, 0);
@@ -165,6 +145,44 @@ public class OutfitStore {
 		layer = getDetailSprite(detailcode, color);
 		layer.draw(g, 0, 0);
 
+		return sprite;
+	}
+	
+	/**
+	 * Build an outfit sprite.
+	 * 
+	 * Calls buildOutfit(primaryCode, color) to build primary features then
+	 * adds secondary features: mouth and eyes.
+	 * 
+	 * @param primaryCode
+	 * 		The original (old) outfit system code
+	 * @param secondaryCode
+	 * 		The secondary code used for mouth and eyes
+	 * @param color
+	 * 		Coloring data
+	 * @return
+	 * 		A walking state sprite
+	 */
+	private Sprite buildOutfit(final int primaryCode, int secondaryCode,
+			final OutfitColor color) {
+		Sprite layer = this.buildOutfit(primaryCode, color);
+		
+		final int mouthcode = (secondaryCode % 100);
+		secondaryCode /= 100;
+		
+		final int eyescode = (secondaryCode % 100);
+		
+		final ImageSprite sprite = new ImageSprite(layer);
+		final Graphics g = sprite.getGraphics();
+		
+		// Mouth layer
+		layer = getMouthSprite(mouthcode);
+		layer.draw(g, 0, 0);
+
+		// Eyes layer
+		layer = getEyesSprite(eyescode, color);
+		layer.draw(g, 0, 0);
+		
 		return sprite;
 	}
 	
@@ -261,11 +279,11 @@ public class OutfitStore {
 	 */
 	public Sprite getFailsafeOutfit() {
 		try {
-//			if (Testing.enabled(Testing.OUTFITS)) {
-//				return getOutfit(0, 0, OutfitColor.PLAIN);
-//			} else {
+			if (Testing.enabled(Testing.OUTFITS)) {
+				return getOutfit(0, 0, OutfitColor.PLAIN);
+			} else {
 				return getOutfit(0, OutfitColor.PLAIN);
-//			}
+			}
 		} catch (RuntimeException e) {
 			logger.warn("Cannot build failsafe outfit. Trying to use standard failsafe sprite.", e);
 			return store.getFailsafe();
@@ -388,10 +406,30 @@ public class OutfitStore {
 	 * 
 	 * @return An walking state tileset.
 	 */
-	private Sprite getOutfit(final long code, OutfitColor color) {
+	private Sprite getOutfit(final int code, final OutfitColor color) {
 		// Use the normalized string for the reference
 		final String reference = buildReference(code, color.toString());
 		return getOutfit(code, color, reference);
+	}
+	
+	/**
+	 * Get an outfit sprite with extended parts: mouth and eyes.
+	 * 
+	 * @param primaryCode
+	 * 		10-digit integer representing original (old) outfit features
+	 * @param secondaryCode
+	 * 		4-digit integer representing extended outfit features: mouth and
+	 * 		eyes
+	 * @param color
+	 * 		Color information for outfit parts
+	 * @return
+	 * 		A walking state sprite
+	 */
+	private Sprite getOutfit(final int primaryCode, final int secondaryCode,
+			final OutfitColor color) {
+		final String reference = buildReference(primaryCode, secondaryCode,
+				color.toString());
+		return getOutfit(primaryCode, secondaryCode, color, reference);
 	}
 	
 	/**
@@ -402,7 +440,8 @@ public class OutfitStore {
 	 * @param reference outfit reference
 	 * @return outfit
 	 */
-	private Sprite getOutfit(final long code, OutfitColor color, String reference) {
+	private Sprite getOutfit(final int code, final OutfitColor color,
+			final String reference) {
 		final SpriteCache cache = SpriteCache.get();
 		Sprite sprite = cache.get(reference);
 
@@ -415,6 +454,34 @@ public class OutfitStore {
 	}
 	
 	/**
+	 * Get outfit for a knows outfit reference with extended outfit parts:
+	 * mouth and eyes.
+	 * 
+	 * @param primaryCode
+	 * 		The original (old) outfit system code
+	 * @param secondaryCode
+	 * 		The extended outfit system code (mouth and eyes)
+	 * @param color
+	 * 		Color information for outfit parts
+	 * @param reference
+	 * 		Outfit reference
+	 * @return
+	 * 		Outfit
+	 */
+	private Sprite getOutfit(final int primaryCode, final int secondaryCode,
+			final OutfitColor color, final String reference) {
+		final SpriteCache cache = SpriteCache.get();
+		Sprite sprite = cache.get(reference);
+		
+		if (sprite == null) {
+			sprite = buildOutfit(primaryCode, secondaryCode, color);
+			cache.add(reference, sprite);
+		}
+		
+		return sprite;
+	}
+	
+	/**
 	 * Get an outfit with color adjustment, such as a player in colored light.
 	 * 
 	 * @param code outfit code
@@ -423,7 +490,7 @@ public class OutfitStore {
 	 * @param blend blend mode for applying the adjustment color
 	 * @return color adjusted outfit
 	 */
-	public Sprite getAdjustedOutfit(final long code, OutfitColor color, 
+	public Sprite getAdjustedOutfit(final int code, OutfitColor color, 
 			Color adjColor, Composite blend) {
 		if ((adjColor == null) || (blend == null)) {
 			return getOutfit(code, color);
@@ -442,6 +509,47 @@ public class OutfitStore {
 			return sprite;
 		}
 	}
+	
+	/**
+	 * Get an extended feature outfit with color adjustment, such as a player
+	 * in colored light.
+	 * 
+	 * @param primaryCode
+	 * 		10-digit integer representing the original outfit features (old
+	 * 		outfit system)
+	 * @param secondaryCode
+	 * 		4-digit integer representing the extended outfit features: mouth
+	 * 		and eyes
+	 * @param color
+	 * 		Color information for outfit parts
+	 * @param adjColor
+	 * 		Adjustment color for the entire outfit
+	 * @param blend
+	 * 		Blend mode for applying the adjustment color
+	 * @return
+	 * 		Color adjusted outfit
+	 */
+	public Sprite getAdjustedOutfit(final int primaryCode,
+			final int secondaryCode, final OutfitColor color,
+			final Color adjColor, final Composite blend) {
+		if ((adjColor == null) || (blend == null)) {
+			return getOutfit(primaryCode, secondaryCode, color);
+		} else {
+			final SpriteCache cache = SpriteCache.get();
+			// Use the normalized string for the reference
+			final String reference = buildReference(primaryCode, secondaryCode,
+					color.toString());
+			String fullRef = reference + ":" + adjColor.getRGB() + blend.toString();
+			Sprite sprite = cache.get(fullRef);
+			if (sprite == null) {
+				Sprite plain = getOutfit(primaryCode, secondaryCode, color);
+				SpriteStore store = SpriteStore.get();
+				sprite = store.modifySprite(plain, adjColor, blend, fullRef);
+				
+			}
+			return sprite;
+		}
+	}
 
 	/**
 	 * Create an unique reference for an outfit.
@@ -450,7 +558,27 @@ public class OutfitStore {
 	 * @param colorCode color information for outfit parts
 	 * @return outfit reference
 	 */
-	private String buildReference(final long code, final String colorCode) {
+	private String buildReference(final int code, final String colorCode) {
 		return "OUTFIT:" + code + "@" + colorCode;
+	}
+	
+	/**
+	 * Create a unique reference for an outfit that uses extended features:
+	 * mouth and eyes.
+	 * 
+	 * @param primaryCode
+	 * 		10-digit integer representing original outfit (old system) features
+	 * @param secondaryCode
+	 * 		4-digit integer representing extended outfit features: mouth and
+	 * 		eyes
+	 * @param colorCode
+	 * 		Coloring information for outfit parts
+	 * @return
+	 * 		Outfit reference
+	 */
+	private String buildReference(final int primaryCode,
+			final int secondaryCode, final String colorCode) {
+		return "OUTFIT:" + Integer.toString(primaryCode) + "_"
+				+ Integer.toString(secondaryCode) + "@" + colorCode;
 	}
 }
