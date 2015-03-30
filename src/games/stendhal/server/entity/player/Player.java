@@ -1564,6 +1564,11 @@ public class Player extends RPEntity implements UseListener {
 		// second slot so that we can return to it later.
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
+			/** TODO: Remove condition after outfit testing is finished. */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				// FIXME: Should use its own condition?
+				put("outfit_extended_org", get("outfit_extended"));
+			}
 
 			// remember the old color selections.
 			for (String part : RECOLORABLE_OUTFIT_PARTS) {
@@ -1584,6 +1589,11 @@ public class Player extends RPEntity implements UseListener {
 		// if the new outfit is not temporary, remove the backup
 		if (!temporary && has("outfit_org")) {
 			remove("outfit_org");
+			/* TODO: Remove condition after outfit testing is finished. */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				// FIXME: Should use its own condition?
+				remove("outfit_extended_org");
+			}
 			// clear colors
 			for (String part : RECOLORABLE_OUTFIT_PARTS) {
 				if (has("outfit_colors", part)) {
@@ -1598,14 +1608,23 @@ public class Player extends RPEntity implements UseListener {
 		put("outfit", newOutfit.getCode());
 		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
-			put("outfit_secondary", newOutfit.getSecondaryCode());
+			put("outfit_extended", newOutfit.getSecondaryCode());
 		}
 		notifyWorldAboutChanges();
 	}
 
 	public Outfit getOriginalOutfit() {
+		// FIXME: Should check for "outfit_extended_org" as well?
 		if (has("outfit_org")) {
-			return new Outfit(getInt("outfit_org"));
+			/* TODO: Remove condition and duplicate code when outfit testing is
+			 *       finished.
+			 */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				return new Outfit(getInt("outfit_org"),
+						getInt("outfit_extended_org"));
+			} else {
+				return new Outfit(getInt("outfit_org"));
+			}
 		}
 		return null;
 	}
@@ -1632,6 +1651,10 @@ public class Player extends RPEntity implements UseListener {
 			}
 
 			remove("outfit_org");
+			/* TODO: Remove condition after outfit testing is finished. */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				remove("outfit_extended_org");
+			}
 			setOutfit(originalOutfit, false);
 
 			// restore old colors
