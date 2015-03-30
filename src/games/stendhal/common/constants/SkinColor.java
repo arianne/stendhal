@@ -14,7 +14,7 @@ package games.stendhal.common.constants;
 /**
  * Acceptable colors that can be used for skin
  * 
- * @author AntumDeluge
+ * @author AntumDeluge, kiheru
  */
 public enum SkinColor {
 	COLOR1(0xff513216),
