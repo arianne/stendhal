@@ -23,7 +23,25 @@ public class Testing {
 	/** Testing combat system property */
 	public static final String COMBAT = "testing.combat";
 	
+	/**
+	 * Checks if a specific testing mode is enabled.
+	 * 
+	 * @param property
+	 * 		The system property to test
+	 * @return
+	 * 		System property testing defined
+	 */
 	public static Boolean enabled(String property) {
 		return (System.getProperty(property) != null);
+	}
+	
+	/**
+	 * Checks if general testing is enabled.
+	 * 
+	 * @return
+	 * 		System property "testing" defined
+	 */
+	public static Boolean enabled() {
+		return (System.getProperty("testing") != null);
 	}
 }
