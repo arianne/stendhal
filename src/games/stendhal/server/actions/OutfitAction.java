@@ -39,7 +39,7 @@ public class OutfitAction implements ActionListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
-			final Outfit outfit = new Outfit(action.getDouble(VALUE));
+			final Outfit outfit = new Outfit(action.getInt(VALUE));
 			if (outfit.isChoosableByPlayers()) {
 				new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 				player.setOutfit(outfit, false);
