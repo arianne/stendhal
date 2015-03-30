@@ -26,6 +26,7 @@ import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.constants.Testing;
 
 import java.util.List;
 
@@ -67,16 +68,34 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 		ZoneInfo info = ZoneInfo.get();
 
 		try {
-			final long code = ((RPEntity) entity).getOutfit();
-
-			if (code != RPEntity.OUTFIT_UNSET) {
-				return OutfitStore.get().getAdjustedOutfit(code, OutfitColor.PLAIN,
-						info.getZoneColor(), info.getColorMethod());
+			final int code = ((RPEntity) entity).getOutfit();
+			/* TODO: Remove condition and duplicate code after outfit testing
+			 * is finished.
+			 */
+			if (Testing.enabled(Testing.OUTFITS)) {
+				final int secondaryCode = ((RPEntity) entity).getExtendedOutfit();
+				
+				if (code != RPEntity.OUTFIT_UNSET) {
+					return OutfitStore.get().getAdjustedOutfit(code,
+							secondaryCode, OutfitColor.PLAIN,
+							info.getZoneColor(), info.getColorMethod());
+				} else {
+					// This NPC's outfit is read from a single file.
+					return store.getModifiedSprite(translate("npc/"
+							+ entity.getEntityClass()), info.getZoneColor(),
+							info.getColorMethod());
+				}
 			} else {
-				// This NPC's outfit is read from a single file.
-				return store.getModifiedSprite(translate("npc/"
-						+ entity.getEntityClass()), info.getZoneColor(),
-						info.getColorMethod());
+				if (code != RPEntity.OUTFIT_UNSET) {
+					return OutfitStore.get().getAdjustedOutfit(code,
+							OutfitColor.PLAIN,
+							info.getZoneColor(), info.getColorMethod());
+				} else {
+					// This NPC's outfit is read from a single file.
+					return store.getModifiedSprite(translate("npc/"
+							+ entity.getEntityClass()), info.getZoneColor(),
+							info.getColorMethod());
+				}
 			}
 		} catch (final Exception e) {
 			logger.error("Cannot build animations", e);
