@@ -53,7 +53,7 @@ public final class Actions {
 
 	//outfit
 	public static final String OUTFIT = "outfit";
-
+	
 	public static final String MOVETO = "moveto";
 
 	//teleclickmode
@@ -168,6 +168,7 @@ public final class Actions {
 
 
 	public static final String VALUE = "value";
+	public static final String VALUE2 = "value2";
 	public static final String MODE = "mode";
 	public static final String STAT = "stat";
 
