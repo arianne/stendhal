@@ -22,6 +22,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 
 import java.util.Collection;
@@ -1338,8 +1339,8 @@ public abstract class RPEntity extends AudibleEntity {
 			def = changes.getInt("modified_def");
 		}
 
-		/* FIXME: ranged stat disabled by default until fully implemented */
-		if (System.getProperty("testing.combat") != null) {
+		/* TODO: Remove condition when ranged stat testing is finished. */
+		if (Testing.enabled(Testing.COMBAT)) {
 			if (changes.has("ratk")) {
 				ratk = changes.getInt("ratk");
 			}
@@ -1363,8 +1364,8 @@ public abstract class RPEntity extends AudibleEntity {
 			defXP = changes.getInt("def_xp");
 		}
 		
-		/* FIXME: ranged stat is disabled until fully implemented */
-		if (System.getProperty("testing.combat") != null) {
+		/* TODO: Remove condition when ranged stat testing is finished. */
+		if (Testing.enabled(Testing.COMBAT)) {
 			if (changes.has("ratk_xp")) {
 				ratkXP = changes.getInt("ratk_xp");
 			}
@@ -1378,8 +1379,8 @@ public abstract class RPEntity extends AudibleEntity {
 			defItem = changes.getInt("def_item");
 		}
 		
-		/* FIXME: ranged stat disabled by default until fully implemented */
-		if (System.getProperty("testing.combat") != null) {
+		/* TODO: Remove condition when ranged stat testing is finished. */
+		if (Testing.enabled(Testing.COMBAT)) {
 			if (changes.has("ratk_item")) {
 				ratkItem = changes.getInt("ratk_item");
 			}
