@@ -1608,7 +1608,7 @@ public class Player extends RPEntity implements UseListener {
 		put("outfit", newOutfit.getCode());
 		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
-			put("outfit_extended", newOutfit.getSecondaryCode());
+			put("outfit_extended", newOutfit.getExtendedCode());
 		}
 		notifyWorldAboutChanges();
 	}

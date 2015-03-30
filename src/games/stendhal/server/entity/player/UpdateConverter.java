@@ -203,7 +203,7 @@ public abstract class UpdateConverter {
     		// TODO: Remove condition when outfit testing is finished
     		if (Testing.enabled(Testing.OUTFITS)) {
 	    		// FIXME: Should use its own condition
-	    		object.put("outfit_extended", tempOutfit.getSecondaryCode());
+	    		object.put("outfit_extended", tempOutfit.getExtendedCode());
     		}
     	}
 

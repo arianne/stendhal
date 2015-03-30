@@ -54,7 +54,7 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 		// TODO: Remove condition after outfit testing is finished
 		if (Testing.enabled(Testing.OUTFITS)) {
 			outfitCode = outfitCode + "_"
-					+ Integer.toString(this.outfitToCheck.getSecondaryCode());
+					+ Integer.toString(this.outfitToCheck.getExtendedCode());
 		}
 		
 		return "Player is wearing " + outfitCode + " ?";

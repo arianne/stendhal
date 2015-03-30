@@ -2766,7 +2766,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		put("outfit", outfit.getCode());
 		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
-			put("outfit_extended", outfit.getSecondaryCode());
+			put("outfit_extended", outfit.getExtendedCode());
 		}
 	}
 

@@ -157,15 +157,15 @@ public class Outfit {
 	 * 
 	 * @param code
 	 * 		The base (old) outfit code
-	 * @param secondaryCode
+	 * @param extendedCode
 	 * 		The outfit code for newer parts
 	 */
-	public Outfit(final int code, final int secondaryCode) {
+	public Outfit(final int code, final int extendedCode) {
 		this(code);
 		
-		this.mouth = (secondaryCode % 100);
+		this.mouth = (extendedCode % 100);
 		
-		this.eyes = (secondaryCode / 100 % 100);
+		this.eyes = (extendedCode / 100 % 100);
 	}
 	
 	/**
@@ -269,7 +269,7 @@ public class Outfit {
 	 * @return
 	 * 		Numerical value for mouth and eyes parts
 	 */
-	public int getSecondaryCode() {
+	public int getExtendedCode() {
 		int mo = 0;
 		int ey = 0;
 		if (mouth != null) {
@@ -560,7 +560,7 @@ public class Outfit {
 			// TODO: Remove condition when outfit testing is finished
 			if (Testing.enabled(Testing.OUTFITS)) {
 				return ((this.getCode() == outfit.getCode())
-						|| (this.getSecondaryCode() == outfit.getSecondaryCode()));
+						|| (this.getExtendedCode() == outfit.getExtendedCode()));
 			} else {
 				return this.getCode() == outfit.getCode();
 			}
