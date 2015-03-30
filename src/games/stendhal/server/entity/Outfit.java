@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.util.List;
-
 import games.stendhal.common.Outfits;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Testing;
@@ -96,8 +94,9 @@ public class Outfit {
 		this.head = head;
 		this.dress = dress;
 		this.body = body;
-		this.mouth = null;
-		this.eyes = null;
+		// Set unused features to 0
+		this.mouth = 0;
+		this.eyes = 0;
 	}
 
 	/**
@@ -147,9 +146,10 @@ public class Outfit {
 
 		this.detail = (int) (code / Math.pow(100, 4) % 100);
 		
-		this.mouth = null;
+		// Set unused features to 0
+		this.mouth = 0;
 		
-		this.eyes = null;
+		this.eyes = 0;
 	}
 	
 	/**
@@ -325,7 +325,7 @@ public class Outfit {
 			newBody = this.body;
 		}
 		
-		// TODO: Remove condition when outfit testing is finished
+		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
 			final int newMouth;
 			final int newEyes;
@@ -391,6 +391,7 @@ public class Outfit {
 			newBody = body;
 		}
 		
+		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
 			int newMouth;
 			int newEyes;
@@ -457,7 +458,9 @@ public class Outfit {
 	 */
 	public boolean isChoosableByPlayers() {
 		boolean choosable;
-		// TODO: Remove condition when outfit testing is finished
+		/* TODO: Remove condition and duplicate code when outfit testing is
+		 *       finished.
+		 */
 		if (Testing.enabled(Testing.OUTFITS)) {
 			choosable = (detail == null || detail == 0)
 					&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
