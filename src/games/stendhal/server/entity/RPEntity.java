@@ -289,6 +289,17 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
+		
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			/* Make sure that extended outfit features are available
+			 * otherwise an error is thrown for entities previously without
+			 * mouth and eyes features.
+			 */
+			if (!has("outfit_extended")) {
+				put("outfit_extended", 0);
+			}
+		}
 	}
 
 	public RPEntity() {
@@ -298,6 +309,17 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
+		
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.enabled(Testing.OUTFITS)) {
+			/* Make sure that extended outfit features are available
+			 * otherwise an error is thrown for entities previously without
+			 * mouth and eyes features.
+			 */
+			if (!has("outfit_extended")) {
+				put("outfit_extended", 0);
+			}
+		}
 	}
 
 	/**
@@ -2744,7 +2766,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		put("outfit", outfit.getCode());
 		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.enabled(Testing.OUTFITS)) {
-			put("outfit_secondary", outfit.getSecondaryCode());
+			put("outfit_extended", outfit.getSecondaryCode());
 		}
 	}
 
