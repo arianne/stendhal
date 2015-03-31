@@ -296,7 +296,7 @@ public abstract class RPEntity extends GuidedEntity {
 			 * otherwise an error will be thrown.
 			 */
 			if (!has("outfit_extended")) {
-				put("outfit_extended", (long) 0);
+				put("outfit_extended", 0L);
 			}
 		}
 	}
@@ -315,7 +315,7 @@ public abstract class RPEntity extends GuidedEntity {
 			 * otherwise an error will be thrown.
 			 */
 			if (!has("outfit_extended")) {
-				put("outfit_extended", (long) 0);
+				put("outfit_extended", 0L);
 			}
 		}
 	}
