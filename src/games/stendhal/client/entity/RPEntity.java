@@ -193,7 +193,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * The outfit code.
 	 */
 	private int outfit;
-	private int extendedOutfit;
+	private long extendedOutfit;
 	
 	private int baseHP;
 
@@ -417,9 +417,9 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Get the outfit code for extended features: Currently mouth and eyes.
 	 * 
 	 * @return
-	 * 		4-digit code represented extended features
+	 * 		14-digit code represented extended features
 	 */
-	public int getExtendedOutfit() {
+	public long getExtendedOutfit() {
 		return extendedOutfit;
 	}
 	
