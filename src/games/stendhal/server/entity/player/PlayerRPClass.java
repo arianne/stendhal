@@ -50,9 +50,9 @@ public class PlayerRPClass {
 		 * TODO: Possibly remove VOLATILE definition when outfit testing is
 		 * 		 finished.
 		 */
-		player.addAttribute("outfit_extended", Type.INT, Definition.VOLATILE);
+		player.addAttribute("outfit_extended", Type.LONG, Definition.VOLATILE);
 		player.addAttribute("outfit_org", Type.INT, Definition.HIDDEN);
-		player.addAttribute("outfit_extended_org", Type.INT,
+		player.addAttribute("outfit_extended_org", Type.LONG,
 				(byte) (Definition.VOLATILE | Definition.HIDDEN));
 		player.addAttribute("outfit_colors", Type.MAP);
 		player.addAttribute("outfit_expire_age", Type.INT, Definition.HIDDEN);
