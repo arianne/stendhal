@@ -766,7 +766,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param resource name of resource
 	 * @return mime content/type or <code>null</code>
 	 */
-	@Override
 	public String getMimeTypeForResource(String resource) {
 		if (resource.endsWith(".tmx")) {
 			return "text/xml";
@@ -784,7 +783,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param resource name of resource
 	 * @return InputStream or <code>null</code>
 	 */
-	@Override
 	public InputStream getResource(String resource) {
 		if (resource.startsWith("/tiled") || resource.startsWith("/data")) {
 			return StendhalRPRuleProcessor.class.getClassLoader().getResourceAsStream(resource.substring(1));
