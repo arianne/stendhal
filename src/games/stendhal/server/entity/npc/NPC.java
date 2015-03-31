@@ -97,7 +97,7 @@ public abstract class NPC extends RPEntity {
 			 * TODO: Possibly remove VOLATILE definition after outfit testing
 			 *		 is finished.
 			 */
-			npc.addAttribute("outfit_extended", Type.INT, Definition.VOLATILE);
+			npc.addAttribute("outfit_extended", Type.LONG, Definition.VOLATILE);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
