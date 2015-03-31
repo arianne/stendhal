@@ -198,12 +198,11 @@ public class Player extends RPEntity implements UseListener {
 			if (template != null && template.has("outfit_extended")) {
 				outfit = new Outfit(template.getLong("outfit_extended"));
 			}
-		} else {
-			if (template != null && template.has("outfit")) {
-				outfit = new Outfit(template.getInt("outfit"));
-			}
 		}
-		
+		if (template != null && template.has("outfit")) {
+			outfit = new Outfit(template.getInt("outfit"));
+		}
+
 		if (outfit == null || !outfit.isChoosableByPlayers()) {
 			outfit = Outfit.getRandomOutfit();
 		}
@@ -1644,9 +1643,8 @@ public class Player extends RPEntity implements UseListener {
 		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.OUTFITS) {
 			put("outfit_extended", newOutfit.getExtendedCode());
-		} else {
-			put("outfit", newOutfit.getCode());
 		}
+		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
 
