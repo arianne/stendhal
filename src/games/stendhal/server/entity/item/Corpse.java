@@ -115,6 +115,11 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	private String corpseOwner = null;
 	
 	private int stage;
+	/**
+	 * A holder for more accurate creature name "rat" instead of "small
+	 * animal" for corpses of Creatures.
+	 */
+	private String creatureName;
 
 	private TurnListener corpseDegradator = new CorpseRottingTurnListener();
 	private TurnListener itemForRewardsReleaser = new CorpseReleaseRewardingForEveryoneTurnListener();
@@ -189,6 +194,10 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		put(ATTR_IMAGE, victim.getCorpseName());
 		put(ATTR_HARMLESS_IMAGE, victim.getHarmlessCorpseName());
 		setSize(victim.getCorpseWidth(), victim.getCorpseHeight());
+		
+		if ("creature".equals(victim.getRPClass().getName())) {
+			creatureName = victim.getName();
+		}
 
 		if ((killerName != null)) {
 			put(ATTR_NAME, victim.getTitle());
@@ -398,6 +407,8 @@ public class Corpse extends PassiveEntity implements EquipListener {
 
 		if (hasDescription()) {
 			text = getDescription();
+		} else if (creatureName != null) {
+			text += Grammar.a_noun(creatureName);
 		} else if (has(ATTR_NAME)) {
 			text += get(ATTR_NAME);
 
