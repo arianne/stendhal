@@ -58,8 +58,6 @@ class OutfitDialog extends JDialog {
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(OutfitDialog.class);
 	
-	private static final String OUTFIT_TESTING_PROPERTY = "testing.outfits";
-
 	private static final int PLAYER_WIDTH = 48;
 	private static final int PLAYER_HEIGHT = 64;
 	private static final int SLIDER_WIDTH = 80;
@@ -176,9 +174,9 @@ class OutfitDialog extends JDialog {
 	 * 		Coloring information for outfit parts (<b>Note that outfitColor can
 	 * 		be modified by the dialog</b>)
 	 */
-	OutfitDialog(final Frame parent, final String title, final int outfit,
-			int extendedOutfit, final OutfitColor outfitColor) {
-		this(parent, title, outfit, outfitColor);
+	OutfitDialog(final Frame parent, final String title, long outfit,
+			final OutfitColor outfitColor) {
+		this(parent, title, (int)(outfit / 10000), outfitColor);
 		
 		// Follow the model changes
 		eyes.addListener(eyesLabel);
@@ -187,9 +185,9 @@ class OutfitDialog extends JDialog {
 		mouth.addListener(outfitLabel);
 		
 		// Analyze current outfit
-		int mouthsIndex = extendedOutfit % 100;
-		extendedOutfit = extendedOutfit / 100;
-		int eyesIndex = extendedOutfit % 100;
+		int mouthsIndex = (int) (outfit % 100);
+		outfit = outfit / 100;
+		int eyesIndex = (int) (outfit % 100);
 		
 		// Reset special outfits
 		mouthsIndex = checkIndex(mouthsIndex, mouth);
@@ -408,8 +406,8 @@ class OutfitDialog extends JDialog {
 
 		outfitLabel.changed();
 		hairLabel.changed();
-		/* eyes currently only enabled through VM argument */
-		if (System.getProperty(OUTFIT_TESTING_PROPERTY) != null) {
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.OUTFITS) {
 			eyesLabel.changed();
 		}
 		headLabel.changed();
@@ -605,9 +603,22 @@ class OutfitDialog extends JDialog {
 		Color color;
 
 		final RPAction rpOutfitAction = new RPAction();
-		rpOutfitAction.put(Actions.TYPE, "outfit");
-		rpOutfitAction.put(Actions.VALUE, body.getIndex() + dress.getIndex() * 100 + head.getIndex()
-				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
+		/* TODO: Remove condition when outfit testing is finished */
+		if (Testing.OUTFITS) {
+			rpOutfitAction.put(Actions.TYPE, "outfit_extended");
+			long value = (body.getIndex() + (dress.getIndex() * 100)
+					+ (head.getIndex() * (int)Math.pow(100, 2))
+					+ (hair.getIndex() * (int)Math.pow(100, 3))
+					+ (mouth.getIndex() * (int)Math.pow(100, 5))
+					+ (eyes.getIndex() * (int)Math.pow(100, 6)));
+			rpOutfitAction.put(Actions.VALUE, value);
+		} else {
+			rpOutfitAction.put(Actions.TYPE, "outfit");
+			rpOutfitAction.put(Actions.VALUE, body.getIndex()
+					+ (dress.getIndex() * 100)
+					+ (head.getIndex() * 100 * 100)
+					+ (hair.getIndex() * 100 * 100 * 100));
+		}
 		
 		/* hair color */
 		color = outfitColor.getColor(OutfitColor.HAIR);
@@ -629,9 +640,6 @@ class OutfitDialog extends JDialog {
 		
 		/* TODO: Remove condition after outfit testing is finished. */
 		if (Testing.OUTFITS) {
-			rpOutfitAction.put(Actions.VALUE2, mouth.getIndex()
-					+ (eyes.getIndex() * 100));
-			
 			/* eyes color */
 			color = outfitColor.getColor(OutfitColor.EYES);
 			if (color != null) {
@@ -703,26 +711,23 @@ class OutfitDialog extends JDialog {
 	 * mouth and eyes.
 	 * 
 	 * @param outfit
-	 * 		10-digit integer representing original outfit features (old outfit
-	 * 		system)
-	 * @param extendedOutfit
-	 * 		4-digit integer representing extended features
+	 * 		14-digit integer representing extended features
 	 * @param colors
 	 * 		Color state of outfit parts (will not be modiefied like the one
 	 * 		passed to constructor)
 	 */
-	void setState(final int outfit, int extendedOutfit,
-			final OutfitColor colors) {
+	void setState(long outfit, final OutfitColor colors) {
 		// Analyze the outfit code
-		int mouthsIndex = extendedOutfit % 100;
-		extendedOutfit = extendedOutfit / 100;
-		int eyesIndex = extendedOutfit % 100;
+		int mouthsIndex = (int) (outfit % 100);
+		outfit = outfit / 100;
+		int eyesIndex = (int) (outfit % 100);
+		outfit = outfit / 100;
 		
 		mouth.setIndex(mouthsIndex);
 		eyes.setIndex(eyesIndex);
 		
 		// Run code for original (old) outfit system to update listeners
-		this.setState(outfit, colors);
+		this.setState((int)outfit, colors);
 	}
 	
 	/**
