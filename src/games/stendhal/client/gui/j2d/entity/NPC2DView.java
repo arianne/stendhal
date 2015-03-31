@@ -68,16 +68,15 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 		ZoneInfo info = ZoneInfo.get();
 
 		try {
-			final int code = ((RPEntity) entity).getOutfit();
 			/* TODO: Remove condition and duplicate code after outfit testing
 			 * is finished.
 			 */
 			if (Testing.OUTFITS) {
-				final int extendedCode = ((RPEntity) entity).getExtendedOutfit();
+				final long code = ((RPEntity) entity).getExtendedOutfit();
 				
 				if (code != RPEntity.OUTFIT_UNSET) {
 					return OutfitStore.get().getAdjustedOutfit(code,
-							extendedCode, OutfitColor.PLAIN,
+							OutfitColor.PLAIN,
 							info.getZoneColor(), info.getColorMethod());
 				} else {
 					// This NPC's outfit is read from a single file.
@@ -85,7 +84,10 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 							+ entity.getEntityClass()), info.getZoneColor(),
 							info.getColorMethod());
 				}
+				
 			} else {
+				final int code = ((RPEntity) entity).getOutfit();
+				
 				if (code != RPEntity.OUTFIT_UNSET) {
 					return OutfitStore.get().getAdjustedOutfit(code,
 							OutfitColor.PLAIN,

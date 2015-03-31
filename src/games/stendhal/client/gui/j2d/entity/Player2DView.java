@@ -152,16 +152,17 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			 */
 			Sprite outfit;
 			if (Testing.OUTFITS) {
-				outfit = store.getAdjustedOutfit(entity.getOutfit(),
-						entity.getExtendedOutfit(), color, info.getZoneColor(),
-						info.getColorMethod());
+				outfit = store.getAdjustedOutfit(entity.getExtendedOutfit(),
+						color, info.getZoneColor(), info.getColorMethod());
 			} else {
 				outfit = store.getAdjustedOutfit(entity.getOutfit(),
 						color, info.getZoneColor(), info.getColorMethod());
 			}
+			
 			if (entity.hasStatus(StatusID.ZOMBIE)) {
 				outfit = SpriteStore.get().modifySprite(outfit, ZOMBIE_COLOR, Blend.TrueColor, null);
 			}
+			
 			return outfit;
 		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
