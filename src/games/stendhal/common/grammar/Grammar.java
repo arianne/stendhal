@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2009-2011 - Stendhal                    *
+ *                    (C) Copyright 2009-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,8 +14,8 @@ package games.stendhal.common.grammar;
 
 import games.stendhal.common.parser.Expression;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -1000,8 +1000,7 @@ public class Grammar {
 			return "";
 		}
 		
-		final List<String> result = new LinkedList<String>();
-		
+		final List<String> result = new ArrayList<String>(collection.size());
 		for (String entry : collection) {
 			result.add("#" + entry);
 		}
@@ -1263,11 +1262,10 @@ public class Grammar {
 	 * @return enumeration using plural forms
 	 */
 	public static String enumerateCollectionPlural(Collection<String> collection) {
-		Collection<String> pluralCollection = new LinkedList<String>();
+		Collection<String> pluralCollection = new ArrayList<String>(collection.size());
 		for (String entry : collection) {
 			pluralCollection.add(plural(entry));
 		}
 		return enumerateCollection(pluralCollection);
 	}
-
 }
