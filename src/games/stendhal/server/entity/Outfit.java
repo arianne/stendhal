@@ -153,19 +153,26 @@ public class Outfit {
 	}
 	
 	/**
-	 * Constructor that adds mouth and eyes outfit parts using numerical codes.
+	 * Constructor with code to add extended features: Currently mouth and eyes.
 	 * 
 	 * @param code
-	 * 		The base (old) outfit code
-	 * @param extendedCode
-	 * 		The outfit code for newer parts
+	 * 		The outfit code including extended features
 	 */
-	public Outfit(final int code, final int extendedCode) {
-		this(code);
+	public Outfit(final long code) {
 		
-		this.mouth = (extendedCode % 100);
+		this.body = (int) (code % 100);
+
+		this.dress = (int) (code / 100 % 100);
+
+		this.head = (int) (code / 10000 % 100);
+
+		this.hair = (int) (code / 1000000 % 100);
+
+		this.detail = (int) (code / 100000000 % 100);
 		
-		this.eyes = (extendedCode / 100 % 100);
+		this.mouth = (int) (code / (100000000 * 100) % 100);
+		
+		this.eyes = (int) (code / (100000000 * 10000) % 100);
 	}
 	
 	/**
@@ -260,16 +267,17 @@ public class Outfit {
 			bo = body.intValue();
 		}
 		
-		return de * 100000000 + ha * 1000000 + he * 10000 + dr * 100 + bo;
+		return (de * 100000000) + (ha * 1000000) + (he * 10000) + (dr * 100)
+				+ bo;
 	}
 	
 	/**
-	 * Gets the code for mouth and eyes.
-	 * 
+	 * Gets the code which includes extended features: Currently mouth and eyes.
+	 *  
 	 * @return
-	 * 		Numerical value for mouth and eyes parts
+	 * 		14-digit numerical value for outfit
 	 */
-	public int getExtendedCode() {
+	public long getExtendedCode() {
 		int mo = 0;
 		int ey = 0;
 		if (mouth != null) {
@@ -279,7 +287,7 @@ public class Outfit {
 			ey = eyes.intValue();
 		}
 		
-		return ey * 100 + mo;
+		return (ey * 100000000 * 10000) + (mo * 100000000 * 100) + getCode();
 	}
 	
 	/**
@@ -393,8 +401,8 @@ public class Outfit {
 		
 		/* TODO: Remove condition when outfit testing is finished. */
 		if (Testing.OUTFITS) {
-			int newMouth;
-			int newEyes;
+			final int newMouth;
+			final int newEyes;
 			
 			if ((mouth == null) || mouth.equals(other.mouth)) {
 				newMouth = 0;
@@ -559,8 +567,7 @@ public class Outfit {
 			Outfit outfit = (Outfit)other;
 			// TODO: Remove condition when outfit testing is finished
 			if (Testing.OUTFITS) {
-				return ((this.getCode() == outfit.getCode())
-						|| (this.getExtendedCode() == outfit.getExtendedCode()));
+				return (this.getExtendedCode() == outfit.getExtendedCode());
 			} else {
 				return this.getCode() == outfit.getCode();
 			}
