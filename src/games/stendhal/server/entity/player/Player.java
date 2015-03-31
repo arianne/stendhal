@@ -197,7 +197,7 @@ public class Player extends RPEntity implements UseListener {
 			/* TODO: Remove condition when outfit testing is finished. */
 			if (Testing.OUTFITS) {
 				outfit = new Outfit(template.getInt("outfit"),
-						template.getInt("outfit_testing"));
+						template.getInt("outfit_extended"));
 			} else {
 				outfit = new Outfit(template.getInt("outfit"));
 			}
