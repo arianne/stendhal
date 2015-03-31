@@ -198,13 +198,15 @@ public abstract class UpdateConverter {
 
     	// Port from 0.13 to 0.20
     	final Outfit tempOutfit = new Outfit();
-    	if (!object.has("outfit")) {
-    		object.put("outfit", tempOutfit.getCode());
-    		// TODO: Remove condition when outfit testing is finished
-    		if (Testing.OUTFITS) {
-	    		// FIXME: Should use its own condition
-	    		object.put("outfit_extended", tempOutfit.getExtendedCode());
-    		}
+		// TODO: Remove condition when outfit testing is finished
+		if (Testing.OUTFITS) {
+			if (!object.has("outfit_extended")); {
+				object.put("outfit_extended", tempOutfit.getExtendedCode());
+			}
+		} else {
+	    	if (!object.has("outfit")) {
+	    		object.put("outfit", tempOutfit.getCode());
+	    	}
     	}
 
     	// create slots if they do not exist yet:

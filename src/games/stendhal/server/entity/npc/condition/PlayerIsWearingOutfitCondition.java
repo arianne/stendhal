@@ -50,11 +50,12 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 
 	@Override
 	public String toString() {
-		String outfitCode = Integer.toString(this.outfitToCheck.getCode());
+		final String outfitCode;
 		// TODO: Remove condition after outfit testing is finished
 		if (Testing.OUTFITS) {
-			outfitCode = outfitCode + "_"
-					+ Integer.toString(this.outfitToCheck.getExtendedCode());
+			outfitCode = Long.toString(this.outfitToCheck.getExtendedCode());
+		} else {
+			outfitCode = Integer.toString(this.outfitToCheck.getCode());
 		}
 		
 		return "Player is wearing " + outfitCode + " ?";
