@@ -295,19 +295,18 @@ public class StendhalRPAction {
 		}
 		
 		// Determine if player is using ranged attack depending
-		// on distance from defender.
-		Boolean usingRanged = false;
-		if (!player.nextTo(defender)) {
-			usingRanged = true;
-		}
+		// on distance from defender and weapon being used.
+		boolean usingRanged = player.usingRangedAttack();
 		
 		// Throw dices to determine if the attacker has missed the defender
 		final boolean beaten = player.canHit(defender);
 
-		/* TODO: Current ATK XP training system. This allows training ATK
-		 *       XP only after receiving damage. Also trains ATK even if
-		 *       attack is blocked. Remove if alternate attack training
-		 *       implemented in game.
+		/* TODO: Remove if alternate attack training method implemented in
+		 *       game.
+		 *
+		 * Current ATK XP training system allows training ATK XP only if the
+		 * player has recently received damage from the target. ATK experience
+		 * increases even if attack is blocked.
 		 */
 		if (!Testing.COMBAT) {
 			// disabled attack xp for attacking NPC's
@@ -337,19 +336,19 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + damage);
 
 				result = true;
-				/* TODO: Remove atkXPAlt condition if alternate attack
-				 *       training method implemented in game.
-				 * TODO: Ranged stat is disabled by default until fully
-				 *       implemented. Remove "statRanged" from condition
-				 *       once implemented.
+				/* TODO: Remove condition for alternate attack training method
+				 *       when implemented in game.
+				 * TODO: Remove condition for ranged attack stat when
+				 *       implemented in game.
 				 */
 				if (Testing.COMBAT) {
-					/* Give player ATK or RATK XP if defender is not
-					 * SpeakerNPC. Player only receives XP if hit was
-					 * successful and not blocked.
+					/* Alternate ATK XP training method raises player's ATK or
+					 * RATK experience only when player has successfully hit
+					 * the target regardless of whether player has recently
+					 * taken damage.
 					 */
 					if (!(defender instanceof SpeakerNPC)) {
-						if (usingRanged && Testing.COMBAT) {
+						if (usingRanged) {
 							player.incRatkXP();
 						} else {
 							player.incAtkXP();
