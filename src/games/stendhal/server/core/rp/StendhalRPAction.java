@@ -201,13 +201,7 @@ public class StendhalRPAction {
 	 */
 	private static double getPlayerStrength(final Player player) {
 		int combatSum;
-		
-		/* TODO: Remove condition after ranged stat testing is finished. */
-		if (Testing.COMBAT) {
-			combatSum = player.getAtk() + player.getDef() + player.getRatk();
-		} else {
-			combatSum = player.getAtk() + player.getDef();
-		}
+		combatSum = player.getAtk() + player.getDef();
 		
 		return STRENGTH_STATS_MULTIPLIER * combatSum + player.getLevel();
 	}
