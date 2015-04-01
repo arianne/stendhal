@@ -267,7 +267,10 @@ public abstract class RPEntity extends GuidedEntity {
 	@Override
 	protected boolean handlePortal(final Portal portal) {
 		if (isZoneChangeAllowed()) {
-			logger.debug("Using portal " + portal);
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				logger.debug("Using portal " + portal);
+			}
+			
 			return portal.onUsed(this);
 		}
 		return super.handlePortal(portal);
@@ -599,14 +602,29 @@ public abstract class RPEntity extends GuidedEntity {
 		if (!(effectiveDefenderLevel - levelDifferenceToNotNeedKarmaDefending  > effectiveAttackerLevel)) {
 			defence += defence * defender.useKarma(0.1);
 		}
+		
+		/* Attacking with ranged weapon uses a separate strength value.
+		 * 
+		 * XXX: atkStrength never used outside of debugger.
+		 */
+		final int atkStrength, sourceAtk;
+		/* TODO: Remove COMBAT condition when ranged attack testing is
+		 *       finished.
+		 */
+		if (this.usingRangedAttack() && Testing.COMBAT) {
+			atkStrength = this.getRatk();
+			sourceAtk = this.getCappedRatk();
+		} else {
+			atkStrength = this.getAtk();
+			sourceAtk = this.getCappedAtk();
+		}
 
 		// Attacking
-		if (logger.isDebugEnabled()) {
-			logger.debug("attacker has " + getAtk() + " (" + getCappedAtk() + ") and uses a weapon of "
-					+ getItemAtk());
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			logger.debug("attacker has " + atkStrength + " (" + getCappedAtk()
+					+ ") and uses a weapon of " + getItemAtk());
 		}
-		final int sourceAtk = getCappedAtk();
-
+		
 		// Make fast weapons efficient against weak enemies, and heavy
 		// better against strong enemies.
 		// Half a parabola; desceding for rate < 5; ascending for > 5
@@ -625,6 +643,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 
 		final double weaponComponent = 1.0 + attackingWeaponsValue;
+		// XXX: Is correct to use sourceAtk here instead of atkStrength?
 		final double maxAttack = sourceAtk * weaponComponent
 				* (1 + LEVEL_ATK * effectiveAttackerLevel) * speedEffect;
 		double attack = Rand.rand() * maxAttack;
@@ -638,14 +657,17 @@ public abstract class RPEntity extends GuidedEntity {
 			attack += attack * useKarma(0.1);
 		}
 
-		if (logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			logger.debug("DEF MAX: " + maxDefence + "\t DEF VALUE: " + defence);
 		}
 
 		// Apply defense and damage type effect
 		int damage = (int) (defender.getSusceptibility(damageType)
 				* (WEIGHT_ATK * attack - defence) / maxDefence);
-
+		
+		/* FIXME: Can argument be removed and just use
+		 *        RPEntity.usingRangedAttack() here?
+		 */
 		if (isRanged) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
@@ -905,7 +927,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * gets the capped ranged attack level, which prevent players from training
+	 * gets the capped ranged attack level which prevents players from training
 	 * ratk way beyond what is reasonable for their level.
 	 *
 	 * @return
@@ -1396,7 +1418,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @param damage
 	 */
 	public void onDamaged(final Entity attacker, final int damage) {
-		logger.debug("Damaged " + damage + " points by " + attacker.getID());
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			logger.debug("Damaged " + damage + " points by " + attacker.getID());
+		}
 
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
@@ -1557,7 +1581,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			TutorialNotifier.killedSomething(killer);
 
-			if (logger.isDebugEnabled()) {
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
 				final String killName;
 				if (killer.has("name")) {
 					killName = killer.get("name");
@@ -1571,8 +1595,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			final int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
-			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
-					+ totalDamageReceived + "\t");
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
+						+ totalDamageReceived + "\t");
+			}
 
 			int reward = xpEarn;
 
@@ -2932,7 +2958,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		int risk = calculateRiskForCanHit(roll, defenderDEF, attackerATK);
 
-		if (logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			logger.debug("attack from " + this + " to " + defender
 					+ ": Risk to strike: " + risk);
 		}
@@ -3057,13 +3083,20 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				this.handleLifesteal(this, this.getWeapons(), damage);
 
 				defender.onDamaged(this, damage);
-				logger.debug("attack from " + this.getID() + " to "
-						+ defender.getID() + ": Damage: " + damage);
+				
+				if (logger.isDebugEnabled() || Testing.DEBUG) {
+					logger.debug("attack from " + this.getID() + " to "
+							+ defender.getID() + ": Damage: " + damage);
+				}
+				
 				result = true;
 			} else {
 				// The attack was too weak, it was blocked
-				logger.debug("attack from " + this.getID() + " to "
-						+ defender.getID() + ": Damage: " + 0);
+				
+				if (logger.isDebugEnabled() || Testing.DEBUG) {
+					logger.debug("attack from " + this.getID() + " to "
+							+ defender.getID() + ": Damage: " + 0);
+				}
 			}
 			this.addEvent(new AttackEvent(true, damage, nature, weaponName, isRanged));
 
@@ -3074,8 +3107,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		} else {
 			// Missed
-			logger.debug("attack from " + this.getID() + " to "
-					+ defender.getID() + ": Missed");
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				logger.debug("attack from " + this.getID() + " to "
+						+ defender.getID() + ": Missed");
+			}
+			
 			this.addEvent(new AttackEvent(false, 0, nature, weaponName, isRanged));
 		}
 
