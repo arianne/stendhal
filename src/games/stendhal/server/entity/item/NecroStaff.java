@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -79,31 +80,21 @@ public class NecroStaff extends Item {
 	private AttackableCreature pickSuitableCreature(final int playerlevel) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
-		Creature pickedCreature = null;
-
 		final Collection<Creature> creatures = manager.getCreatures();
-			final List<Creature> possibleCreatures = new ArrayList<Creature>();
-			for (final Creature creature : creatures) {
-				if (creature.getLevel() <= LEVEL_FACTOR * playerlevel && creature.get("class").equals("undead") 
-						&& !creature.isRare()) {
-					
-					possibleCreatures.add(creature);
-				}
+		final List<Creature> possibleCreatures = new ArrayList<Creature>();
+		for (final Creature creature : creatures) {
+			if (creature.getLevel() <= LEVEL_FACTOR * playerlevel && creature.get("class").equals("undead") 
+					&& !creature.isRare()) {
+
+				possibleCreatures.add(creature);
 			}
-			
-		final int pickedIdx = (int) (Math.random() * possibleCreatures.size());
-		pickedCreature = possibleCreatures.get(pickedIdx);
+		}
 			
 		//		 create it
-		final AttackableCreature creature;
-
-		if (pickedCreature != null) {
-			creature = new AttackableCreature(pickedCreature);
-		} else {
-			creature = null;
+		if (!possibleCreatures.isEmpty()) {
+			return new AttackableCreature(Rand.rand(possibleCreatures));
 		}
-		
-		return creature;
+		return null;
 	}
 	
 	/**
@@ -153,6 +144,7 @@ public class NecroStaff extends Item {
 				
 				//Suck some of the summoners HP depending on the summoned creature's level.
 				user.damage(HP_FACTOR * creature.getLevel(), this);
+				user.notifyWorldAboutChanges();
 				return true;
 			}
 
