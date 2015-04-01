@@ -40,6 +40,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.Slots;
+import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusList;
 import games.stendhal.server.entity.status.StatusType;
@@ -239,6 +240,26 @@ public abstract class RPEntity extends GuidedEntity {
 				list.add(e.getName());
 			}
 			trim();
+		}
+		
+		/**
+		 * Set the official killer. If the killer was already on the list, move
+		 * it first. Otherwise prepend the list with the official killer. This
+		 * means that a creature can appear before players if it is the official
+		 * killer. Also an item "poison" can be the first on the list this way.
+		 * (And, as of this writing (2015-04-01) it is the only way anything but
+		 * RPEntities can be shown on the killer list).
+		 * 
+		 * @param killer The official killer
+		 */
+		void setKiller(String killer) {
+			if (list.contains(killer)) {
+				list.remove(killer);
+				list.addFirst(killer);
+			} else {
+				list.addFirst(killer);
+				trim();
+			}
 		}
 		
 		/**
@@ -1662,19 +1683,17 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer));
 
-		// Players are unique, so they should not get an article.
-		if (!(killer instanceof Player)) {
-			killerName = Grammar.a_noun(killerName);
-		}
-		onDead(killerName, remove);
+		die(killer, remove);
 	}
 	
 	/**
 	 * Build a list of killer names.
 	 * 
+	 * @param killerName The "official" killer. This will be always included in
+	 *	the list
 	 * @return list of killers
 	 */
-	private List<String> buildKillerList() {
+	private List<String> buildKillerList(String killerName) {
 		KillerList killers = new KillerList();
 		
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
@@ -1685,24 +1704,29 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			
 			killers.addEntity(entry.getKey());
 		}
+		if (killerName != null) {
+			killers.setKiller(killerName);
+		}
 		return killers.asList();
 	}
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
 	 *
-	 * @param killerName
-	 *            The killer's name (a phrase suitable in the expression "
-	 *            <code>by</code> <em>killerName</em>".
+	 * @param killer the "official" killer
 	 * @param remove
 	 *            <code>true</code> to remove entity from world.
 	 */
-	protected final void onDead(final String killerName, final boolean remove) {
+	private void die(Killer killer, final boolean remove) {
 		StendhalRPZone zone = this.getZone();
 		if ((zone == null) || !zone.has(this.getID())) {
 			logger.warn("RPEntity died but is not in a zone");
 			return;
 		}
+		
+		String killerName = killer.getName();
+		// Needs to be done while the killer map still has the contents
+		List<String> killers = buildKillerList(killerName);
 
 		final int oldXP = this.getXP();
 
@@ -1710,10 +1734,18 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// give XP to everyone who helped killing this RPEntity
 		rewardKillers(oldXP);
 
+		if (!(killer instanceof Player) && !(killer instanceof Status)) {
+			/*
+			 * Prettify the killer name for the corpse. Should be done only
+			 * after the more plain version has been used for the killer list.
+			 * Players are unique, so they should not get an article. Also
+			 * statuses should not, so that "killed by poison" does not become
+			 * "killed by a bottle of poison".
+			 */
+			killerName = Grammar.a_noun(killerName);
+		}
 		// Add a corpse
 		final Corpse corpse = makeCorpse(killerName);
-		// Needs to be done while the killer map still has the contents
-		List<String> killers = buildKillerList();
 		damageReceived.clear();
 		totalDamageReceived = 0;
 
