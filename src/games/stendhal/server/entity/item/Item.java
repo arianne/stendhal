@@ -895,4 +895,40 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		
 		return false;
 	}
+	
+	/**
+	 * Checks if the item is owned/carried by an entity.
+	 * 
+	 * @return
+	 * 		Item is in an entity slot
+	 */
+	public boolean hasOwner() {
+		if (this.isContained()) {
+			return this.getContainerOwner() != null;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Gets the entity that is carrying this item.
+	 * 
+	 * @return
+	 * 		RPEntity that owns the slot where item is stored
+	 */
+	public RPEntity getOwner() {
+		final RPEntity owner;
+		if (hasOwner()) {
+			owner = (RPEntity)this.getContainerOwner();
+		} else {
+			owner = null;
+		}
+		
+		if (owner == null) {
+			throw new NullPointerException("Could not get owner for item ID "
+					+ this.getID().getObjectID());
+		}
+		
+		return owner;
+	}
 }
