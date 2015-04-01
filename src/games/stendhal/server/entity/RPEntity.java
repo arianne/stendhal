@@ -934,7 +934,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param notify
 	 * 		Update ranged attack experience in real-time
 	 */
-	private void setRatkXPInternal(final int ratkXP, boolean notify) {
+	protected void setRatkXPInternal(final int ratkXP, boolean notify) {
 		this.ratk_xp = ratkXP;
 		put("ratk_xp", ratk_xp);
 
