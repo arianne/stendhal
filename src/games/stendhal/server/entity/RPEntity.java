@@ -868,10 +868,24 @@ public abstract class RPEntity extends GuidedEntity {
 
 /* ### --- START RANGED --- ### */
 	
+	/**
+	 * Set the value of the entity's ranged attack level.
+	 * 
+	 * @param ratk
+	 * 		Integer value representing new ranged attack level
+	 */
 	public void setRatk(final int ratk) {
 		setRatkInternal(ratk, true);
 	}
 
+	/**
+	 * Set the entity's ranged attack level.
+	 * 
+	 * @param ratk
+	 * 		Integer value representing new ranged attack level
+	 * @param notify
+	 * 		Update stat in real-time
+	 */
 	private void setRatkInternal(final int ratk, boolean notify) {
 		this.ratk = ratk;
 		put("ratk", ratk);  // visible ratk
@@ -880,28 +894,46 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
+	/**
+	 * Gets the entity's current ranged attack level.
+	 * 
+	 * @return
+	 * 		Integer value of ranged attack level
+	 */
 	public int getRatk() {
 		return this.ratk;
 	}
 
 	/**
-	 * gets the capped ratk level, which prevent players from training their ratk way beyond what is reasonable for their level
+	 * gets the capped ranged attack level, which prevent players from training
+	 * ratk way beyond what is reasonable for their level.
 	 *
-	 * @return capped ratk
+	 * @return
+	 * 		The maximum value player's ranged attack level can be at current
+	 * 		level
 	 */
 	public int getCappedRatk() {
 		return this.ratk;
 	}
 
 	/**
-	 * Set ranged XP.
+	 * Sets the entity's ranged attack experience.
 	 *
-	 * @param ratkXP the new value
+	 * @param ratkXP
+	 * 		Integer value of the target experience
 	 */
 	public void setRatkXP(final int ratkXP) {
 		setRatkXPInternal(ratkXP, true);
 	}
 
+	/**
+	 * Sets the entity's ranged attack experience.
+	 * 
+	 * @param ratkXP
+	 * 		Integer value of the target experience
+	 * @param notify
+	 * 		Update ranged attack experience in real-time
+	 */
 	private void setRatkXPInternal(final int ratkXP, boolean notify) {
 		this.ratk_xp = ratkXP;
 		put("ratk_xp", ratk_xp);
@@ -917,6 +949,12 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
+	/**
+	 * Get's the entity's current ranged attack experience.
+	 * 
+	 * @return
+	 * 		Integer representation of current experience
+	 */
 	public int getRatkXP() {
 		return ratk_xp;
 	}
