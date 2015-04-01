@@ -1080,6 +1080,13 @@ public class Player extends RPEntity implements UseListener {
 
 	@Override
 	public void onDead(final Killer killer, final boolean remove) {
+		/*
+		 * Don't try to kill disconnected players. May be triggered on damage
+		 * done from turn listeners.
+		 */
+		if (isDisconnected()) {
+			return;
+		}
 		// Always use remove=false for players, as documented
 		// in RPEntity.onDead()
 		super.onDead(killer, false);
