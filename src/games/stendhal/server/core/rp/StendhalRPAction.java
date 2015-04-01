@@ -268,7 +268,7 @@ public class StendhalRPAction {
 			}
 		}
 
-		boolean missileUsed = false;
+		boolean isRanged = false;
 		if (!player.nextTo(defender)) {
 			// The attacker is not directly standing next to the defender.
 			// Find out if he can attack from the distance.
@@ -279,7 +279,7 @@ public class StendhalRPAction {
 					return false;
 				}
 
-				missileUsed = true;
+				isRanged = true;
 			} else {
 				logger.debug("Attack from " + player + " to " + defender
 						+ " failed because target is not near.");
@@ -293,10 +293,6 @@ public class StendhalRPAction {
 		if (attackWeapon != null) {
 			weaponClass = attackWeapon.getWeaponType();
 		}
-		
-		// Determine if player is using ranged attack depending
-		// on distance from defender and weapon being used.
-		boolean usingRanged = player.usingRangedAttack();
 		
 		// Throw dices to determine if the attacker has missed the defender
 		final boolean beaten = player.canHit(defender);
@@ -348,7 +344,7 @@ public class StendhalRPAction {
 					 * taken damage.
 					 */
 					if (!(defender instanceof SpeakerNPC)) {
-						if (usingRanged) {
+						if (isRanged) {
 							player.incRatkXP();
 						} else {
 							player.incAtkXP();
@@ -370,17 +366,17 @@ public class StendhalRPAction {
 				Rand.rand(defenseItems).deteriorate();
 			}
 			
-			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponClass, missileUsed));
+			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponClass, isRanged));
 			player.notifyWorldAboutChanges();
 		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
-			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), weaponClass, missileUsed));
+			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), weaponClass, isRanged));
 			player.notifyWorldAboutChanges();
 		}
 
-		if (missileUsed) {
+		if (isRanged) {
 			// Removing the missile is deferred here so that the weapon
 			// information is available when calculating the damage.
 			useMissile(player);

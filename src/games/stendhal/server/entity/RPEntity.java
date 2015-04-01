@@ -611,7 +611,7 @@ public abstract class RPEntity extends GuidedEntity {
 		/* TODO: Remove COMBAT condition when ranged attack testing is
 		 *       finished.
 		 */
-		if (this.usingRangedAttack() && Testing.COMBAT) {
+		if (isRanged && Testing.COMBAT) {
 			atkStrength = this.getRatk();
 			sourceAtk = this.getCappedRatk();
 		} else {
@@ -1856,27 +1856,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public RPEntity getAttackTarget() {
 		return attackTarget;
-	}
-	
-	/**
-	 * Determine if the entity is using a ranged attack against the target.
-	 * 
-	 * @return
-	 * 		Entity is not standing next to target and is using ranged class
-	 * 		weapon
-	 */
-	public boolean usingRangedAttack() {
-		// If entity is not in combat mode there is no reason to continue
-		if (!this.isAttacking()) {
-			return false;
-		}
-		
-		/* Determine if entity is using ranged attack by distance from target
-		 * and type of weapon being used.
-		 */
-		String weaponClass = this.getWeapon().getItemClass();
-		return (!(this.nextTo(attackTarget)) && (weaponClass.equals("ranged")
-				|| weaponClass.equals("missile")));
 	}
 
 	/***************************************************************************
