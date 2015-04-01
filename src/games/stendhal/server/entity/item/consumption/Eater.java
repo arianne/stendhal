@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,7 +37,7 @@ class Eater implements Feeder {
 		int count = player.getStatusList().countStatusByType(StatusType.EATING);
 		if (count > COUNT_CHOKING_TO_DEATH) {
 			int playerHP = player.getHP();
-			int chokingDamage = Rand.rand(2 * playerHP / 3);
+			int chokingDamage = damage(2 * playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
 			player.sendPrivateText(NotificationType.NEGATIVE, "You ate so much that you vomited on the ground and lost " + Integer.toString(chokingDamage) + " health points.");
 			final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
@@ -52,7 +51,7 @@ class Eater implements Feeder {
 		if (count > COUNT_CHOKING) {
 			// remove some HP so they know we are serious about this
 			int playerHP = player.getHP();
-			int chokingDamage = Rand.rand(playerHP / 3);
+			int chokingDamage = damage(playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
 			player.sendPrivateText(NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could be very sick.");
 			player.notifyWorldAboutChanges();
@@ -71,5 +70,18 @@ class Eater implements Feeder {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Get damage done by overeating.
+	 * 
+	 * @param maxDamage upper limit of damage
+	 * @return random damage between 0 and maxDamage - 1
+	 */
+	private int damage(int maxDamage) {
+		// Avoid calling rand(0)
+		if (maxDamage > 0) {
+			return Rand.rand(maxDamage);
+		}
+		return 0;
+	}
 }
