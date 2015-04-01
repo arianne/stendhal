@@ -13,6 +13,7 @@ package games.stendhal.server.entity.mapstuff.sign;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Actions;
+import games.stendhal.common.grammar.Grammar;
 
 import java.util.Calendar;
 
@@ -54,10 +55,14 @@ public class Clock extends Sign {
 			// For getting the hour right for the "x to y" versions
 			hour = (hour + 1) % 12;
 		}
+		if (hour == 0) {
+			hour = 12;
+		}
 		
 		StringBuilder msg = new StringBuilder("The time is ");
 		msg.append(describeMinute(min));
-		msg.append(describeHour(hour));
+		msg.append(Grammar.numberString(hour));
+		msg.append('.');
 		
 		return msg.toString();
 	}
@@ -83,30 +88,5 @@ public class Clock extends Sign {
 		case 55: return "five to ";
 		default: return "";
 		}
-	}
-	
-	/**
-	 * Hour as text.
-	 * 
-	 * @param h hour
-	 * @return hour as a word
-	 */
-	private String describeHour(int h) {
-		switch (h) {
-		case 0: return "twelve.";
-		case 1: return "one.";
-		case 2: return "two.";
-		case 3: return "three.";
-		case 4: return "four.";
-		case 5: return "five.";
-		case 6: return "six.";
-		case 7: return "seven.";
-		case 8: return "eight.";
-		case 9: return "nine.";
-		case 10: return "ten.";
-		case 11: return "eleven.";
-		}
-		// Should not happen
-		return "";
 	}
 }
