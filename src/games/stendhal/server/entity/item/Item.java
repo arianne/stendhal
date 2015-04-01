@@ -918,7 +918,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 */
 	public RPEntity getOwner() {
 		final RPEntity owner;
-		if (hasOwner()) {
+		if (isContained()) {
 			owner = (RPEntity)this.getContainerOwner();
 		} else {
 			owner = null;
@@ -930,5 +930,19 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		}
 		
 		return owner;
+	}
+	
+	/**
+	 * Gets the name of the slot where the item is currently held.
+	 * 
+	 * @return
+	 * 		String name of container slot or <b>null</b> if not contained
+	 */
+	public String getCurrentSlotName() {
+		if (this.isContained()) {
+			return this.getContainerSlot().getName();
+		}
+		
+		return null;
 	}
 }
