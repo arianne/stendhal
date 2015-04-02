@@ -30,6 +30,6 @@ public class Testing {
 			(System.getProperty("testing.outfits") != null);
 	
 	/** Testing combat system property */
-	public static final boolean COMBAT =
-			(System.getProperty("testing.combat") != null);
+	public static final boolean COMBAT = true; // TODO: Revert after testing
+			//(System.getProperty("testing.combat") != null);
 }
