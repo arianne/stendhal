@@ -22,11 +22,29 @@ public abstract class SlotActivatedItem extends Item {
 	
 /* XXX --- CONSTRUCTORS --- XXX */
 	
+	/**
+	 * Default constructor.
+	 * 
+	 * @param name
+	 * 		Item's name
+	 * @param clazz
+	 * 		Item's class or type
+	 * @param subclass
+	 * 		Item's subclass
+	 * @param attributes
+	 * 		Attributes available to this item
+	 */
 	public SlotActivatedItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 	
+	/**
+	 * Copy constructor
+	 * 
+	 * @param item
+	 * 		Item to be copied
+	 */
 	public SlotActivatedItem(Item item) {
 		super(item);
 	}
