@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.status.StatusType;
 
 import java.util.List;
 import java.util.Map;
@@ -13,60 +12,87 @@ import java.util.Map;
  */
 public abstract class SlotActivatedItem extends Item {
 	
-	/** List of slots where this item is active when equpped. */
-	private List<String> activeSlotList; // Should java.util.Collection be used instead?
+	/** List of slots where this item is active when equipped. */
+	// XXX: Should java.util.Collection be used instead?
+	private List<String> activeSlotList = null;
 	
-	/** Entity that is carrying the item. */
-	@SuppressWarnings("unused")
-	private RPEntity owner;
+	/** The active state of the item */
+	private boolean activated = false;
 	
-	/** Slot where the item is currently held. */
-	private String currentSlot;
-
+	
+/* XXX --- CONSTRUCTORS --- XXX */
+	
 	public SlotActivatedItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
+	
 	public SlotActivatedItem(Item item) {
 		super(item);
 	}
 	
+	
+/* XXX --- ITEM MANIPULATION --- XXX */
+	
+	/**
+	 * Fill the list of active slots.
+	 * 
+	 * @param slotList
+	 * 		List of slots in which item can be activated
+	 */
+	public void initiateActiveSlotList(final List<String> slotList) {
+		activeSlotList = slotList;
+		}
+	
+	/**
+	 * Activates/deactivates the item's attributes if it has an owner.
+	 */
+	public abstract void setActivation();
+	
+	/**
+	 * Activates/deactivates the item's attributes for the given owner.
+	 * 
+	 * @param owner
+	 * 		The entity that is carrying the item
+	 */
+	public abstract void setActivation(RPEntity owner);
+	
+	/**
+	 * Action to take when item is equipped.
+	 */
 	@Override
 	public boolean onEquipped(final RPEntity owner, final String slot) {
-		this.owner = owner;
-		this.currentSlot = slot;
+		this.setActivation();
+		
 		return super.onEquipped(owner, slot);
 	}
 	
+	/**
+	 * Action to take when item is unequipped.
+	 */
 	@Override
 	public boolean onUnequipped() {
-		this.owner = null;
-		this.currentSlot = null;
+		this.setActivation();
+		
 		return super.onUnequipped();
 	}
 	
+	
+/* XXX --- ITEM CHECKS --- XXX */
+	
 	/**
-	 * Activates the item's attributes for the given owner.
+	 * Tests whether the item can be activated in the current slot.
 	 * 
-	 * @param owner
-	 * 		The entity that is carrying the item
+	 * @return
+	 * 		<b>true</b> if current slot name is found in active slot list
 	 */
-	public abstract void activate(RPEntity owner);
-
-	/**
-	 * Sets current slot and activates the item for the owner if the slot
-	 * name is found in active slot list.
-	 * 
-	 * @param owner
-	 * 		The entity that is carrying the item
-	 * @param slot
-	 * 		Slot name where item can be activated
-	 */
-	public void activate(RPEntity owner, String slot) {
-		if (this.canActivateInSlot(slot)) {
-			this.activate(owner);
+	protected boolean isActiveCurrentSlot() {
+		if (this.isContained() && (activeSlotList != null)
+				&& !activeSlotList.isEmpty()) {
+			return activeSlotList.contains(this.getCurrentSlotName());
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -75,9 +101,9 @@ public abstract class SlotActivatedItem extends Item {
 	 * @param slot
 	 * 		Slot to be tested
 	 * @return
-	 * 		Item can activate
+	 * 		<b>true</b> if slot name is found in active slot list
 	 */
-	protected boolean canActivateInSlot(String slot) {
+	protected boolean isActiveSlot(String slot) {
 		if ((activeSlotList != null)
 				&& !activeSlotList.isEmpty()) {
 			return activeSlotList.contains(slot);
@@ -87,7 +113,25 @@ public abstract class SlotActivatedItem extends Item {
 	}
 	
 	/**
-	 * Action to take when item is activated.
+	 * Tests whether the item is currently activated.
+	 * 
+	 * @return
+	 * 		Item's activation state
+	 */
+	public boolean activated() {
+		return activated;
+	}
+	
+	
+/* XXX --- ITEM ACTIVATION --- XXX */
+	
+	/**
+	 * Actions to take when activated and owner is known.
+	 */
+	protected abstract void onActivate();
+	
+	/**
+	 * Actions to take for specified owner when item is activated.
 	 * 
 	 * @param owner
 	 * 		Entity carrying the item
@@ -95,45 +139,15 @@ public abstract class SlotActivatedItem extends Item {
 	protected abstract void onActivate(RPEntity owner);
 	
 	/**
-	 * Action to take when item is deactivated.
+	 * Actions to take when deactivated and owner is known.
+	 */
+	protected abstract void onDeactivate();
+	
+	/**
+	 * Action to take for specified owner when item is deactivated.
 	 * 
 	 * @param owner
 	 * 		Entity carrying the item
 	 */
 	protected abstract void onDeactivate(RPEntity owner);
-	
-	/**
-	 * Gets the name of the slot where the item is currently held.
-	 * 
-	 * @return
-	 * 		Slot name containing item
-	 */
-	public String getCurrentSlot() {
-		return this.currentSlot;
-	}
-	
-	/**
-	 * Clear slot name in case item is placed on ground.
-	 */
-	public void onRemovedFromSlot() {
-		this.currentSlot = null;
-	}
-	
-	/**
-	 * Dummy method
-	 * 
-	 * See: StatusResistantItem.setStatusResistancesActiveSlot(String)
-	 */
-	public void addStatusResistancesActiveSlot(String slotName) {
-		// Do nothing
-	}
-	
-	/**
-	 * Dummy method
-	 * 
-	 * See: StatusResistantItem.setStatusResistanceList(resistanceList)
-	 */
-	public void setStatusResistanceList(Map<StatusType, Double> resistanceList) {
-		// Do nothing
-	}
 }
