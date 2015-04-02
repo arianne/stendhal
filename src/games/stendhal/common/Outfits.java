@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import games.stendhal.common.constants.Testing;
+
 
 /**
  * class to store the max outfit numbers for player available outfits.
@@ -49,7 +51,7 @@ public class Outfits {
 	
 	// TODO: Remove when testing outfits is finished
 	public static int getBodiesCount() {
-		if (System.getProperty("testing.outfits") != null) {
+		if (Testing.OUTFITS) {
 			return BODY_OUTFITS_TESTING;
 		} else {
 			return BODY_OUTFITS;
@@ -58,7 +60,7 @@ public class Outfits {
 	
 	// TODO: Remove when testing outfits is finished
 	public static int getHeadsCount() {
-		if (System.getProperty("testing.outfits") != null) {
+		if (Testing.OUTFITS) {
 			return HEAD_OUTFITS_TESTING;
 		} else {
 			return HEAD_OUTFITS;

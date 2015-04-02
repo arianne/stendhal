@@ -15,6 +15,7 @@ package games.stendhal.client.gui.stats;
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.Testing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -120,8 +121,8 @@ public final class StatsPanelController {
 		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
-		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if (System.getProperty("testing.combat") != null) {
+		/* TODO: Remove condition after ranged stat testing is finished. */
+		if (Testing.COMBAT) {
 			listener = new RATKChangeListener();
 			addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
 			pcs.addPropertyChangeListener("ratk_xp", listener);
@@ -140,7 +141,7 @@ public final class StatsPanelController {
 		pcs.addPropertyChangeListener("def_item", listener);
 		
 		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if (System.getProperty("testing.combat") != null) {
+		if (Testing.COMBAT) {
 			listener = new RangedWeaponChangeListener();
 			pcs.addPropertyChangeListener("ratk_item", listener);
 		}

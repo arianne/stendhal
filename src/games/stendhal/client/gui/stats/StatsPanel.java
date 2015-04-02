@@ -17,6 +17,7 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.common.constants.Testing;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -64,7 +65,7 @@ class StatsPanel extends JPanel {
 		add(defLabel, SLayout.EXPAND_X);
 		
 		/* FIXME: ranged stat is disabled until fully implemented */
-		if (System.getProperty("testing.combat") != null) {
+		if (Testing.COMBAT) {
 			ratkLabel = new StatLabel();
 			add(ratkLabel, SLayout.EXPAND_X);
 		} else {
