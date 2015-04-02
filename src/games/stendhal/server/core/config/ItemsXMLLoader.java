@@ -76,9 +76,11 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	
 	private Map<String, Double> susceptibilities = new HashMap<String, Double>();
 	
-	private Map<String, Double> resistances = new HashMap<String, Double>();
+	/* Slots where SlotActivatedItem can be activated when equipped. */
+	private String activeSlots;
 	
-	private String resistancesSlots;
+	/* Statuses that StatusResistantItem resists. */
+	private Map<String, Double> resistances = new HashMap<String, Double>();
 	
 
 	public List<DefaultItem> load(final URI uri) throws SAXException {
@@ -159,7 +161,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			susceptibilities.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
 		} else if (qName.equals("resistance")) {
 			this.resistances.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
-			this.resistancesSlots = attrs.getValue("slots");
+			this.activeSlots = attrs.getValue("slots");
 		} else if (qName.equals("behavior")) {
 			String className = attrs.getValue("class-name");
 			try {
@@ -190,13 +192,18 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			item.setSusceptibilities(susceptibilities);
 			susceptibilities.clear();
 			
-			if ((resistances != null) && !resistances.isEmpty()) {
-				item.setStatusResistances(this.resistances);
-				resistances.clear();
-				item.setStatusResistancesActiveSlots(this.resistancesSlots);
-				this.resistancesSlots = null;
+			/* SlotActivatedItem */
+			if (this.activeSlots != null) {
+				item.initializeActiveSlotsList(this.activeSlots);
+				this.activeSlots = null;
 			}
-
+			
+			/* StatusResistantItem */
+			if ((this.resistances != null) && !this.resistances.isEmpty()) {
+				item.initializeStatusResistancesList(this.resistances);
+				this.resistances.clear();
+			}
+			
 			if (implementation == null) {
 				LOGGER.error("Item without defined implementation: " + name);
 				return;
