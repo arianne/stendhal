@@ -72,10 +72,11 @@ public class DefaultItem {
 	
 	private Map<Nature, Double> susceptibilities;
 	
+	/* List of status effects to be added to StatusResistantIte. */
 	private Map<StatusType, Double> resistances;
 	
-	/** List of slots where this item is active when equpped. */
-	private List<String> resistancesActiveSlotsList;
+	/* Slots where SlotActivatedItem can be activated when equipped. */
+	private List<String> activeSlotsList;
 	
 	/**
 	 * Use behavior of the item, or <code>null</code> if no special behaviors
@@ -143,32 +144,34 @@ public class DefaultItem {
 	}
 	
 	/**
-	 * Set the types of status attacks that this item can resist.
+	 * Add slots to list where SlotActivatedItem can be activated when
+	 * equipped.
 	 * 
-	 * @param resistances The status attack type and the resistance value
+	 * @param slots
+	 * 		String list of slots separated by semicolon
 	 */
-	public void setStatusResistances(Map<String, Double> res) {
-		resistances = new HashMap<StatusType, Double>();
+	public void initializeActiveSlotsList(String slots) {
+		// Make sure the list is initialized
+		if (activeSlotsList == null) {
+			activeSlotsList = new ArrayList<String>();
+		}
 		
-		for (Entry<String, Double> entry : res.entrySet()) {
-			resistances.put(StatusType.parse(entry.getKey()), entry.getValue());
+		for (String s : slots.split(";")) {
+			activeSlotsList.add(s);
 		}
 	}
 	
 	/**
-	 * Add slots to list of slots that item is active in
+	 * Set the types of status attacks that this StatusResistantItem can resist.
 	 * 
-	 * @param slots
-	 * 		Semicolon separated list of slots
+	 * @param resistances
+	 * 		The status type and the resistance value
 	 */
-	public void setStatusResistancesActiveSlots(String slots) {
-		// Make sure the list is initialized
-		if (resistancesActiveSlotsList == null) {
-			resistancesActiveSlotsList = new ArrayList<String>();
-		}
+	public void initializeStatusResistancesList(Map<String, Double> res) {
+		resistances = new HashMap<StatusType, Double>();
 		
-		for (String s : slots.split(";")) {
-			resistancesActiveSlotsList.add(s);
+		for (Entry<String, Double> entry : res.entrySet()) {
+			resistances.put(StatusType.parse(entry.getKey()), entry.getValue());
 		}
 	}
 	
@@ -269,14 +272,15 @@ public class DefaultItem {
 			}
 			item.setSusceptibilities(susceptibilities);
 			
-			if ((resistances != null) && (!resistances.isEmpty())) {
-				item.setStatusResistanceList(resistances);
-				if ((resistancesActiveSlotsList != null)
-						&& (!resistancesActiveSlotsList.isEmpty())) {
-					for (String s : resistancesActiveSlotsList) {
-						item.addStatusResistancesActiveSlot(s);
-					}
-				}
+			/* Set a list of status resistances for StatusResistantItem. */
+			if ((this.resistances != null) && (!this.resistances.isEmpty())) {
+				item.initializeStatusResistancesList(resistances);
+			}
+			
+			/* Set a list of active slots for SlotActivatedItem. */
+			if ((this.activeSlotsList != null)
+					&& (!this.activeSlotsList.isEmpty())) {
+				item.initializeActiveSlotsList(this.activeSlotsList);
 			}
 			
 			item.setUseBehavior(useBehavior);
