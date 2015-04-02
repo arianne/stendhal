@@ -495,9 +495,16 @@ public abstract class Entity extends RPObject implements Killer {
 	 *
 	 */
 	public void notifyWorldAboutChanges() {
-		// Only possible if in a zone
-		if (getZone() != null) {
-			getZone().modify(this);
+		/*
+		 * Only possible if in a zone. This does *NOT* use getZone(), because
+		 * that can return a zone that currently does not really contain this
+		 * entity, and MarauroaRPZone.modify() assumes the object modified is
+		 * really contained there. Modifying an entity that's not really in the
+		 * zone results in a perception for an entity that the client does not
+		 * recognize.
+		 */
+		if (zone != null) {
+			zone.modify(this);
 		}
 	}
 
