@@ -1,13 +1,15 @@
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.status.StatusResistanceList;
 import games.stendhal.server.entity.status.StatusType;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import marauroa.common.game.RPSlot;
+import marauroa.common.game.SlotOwner;
 
 import org.apache.log4j.Logger;
 
@@ -16,7 +18,7 @@ import org.apache.log4j.Logger;
  * 
  * @author AntumDeluge
  */
-public class StatusResistantItem extends Item {
+public class StatusResistantItem extends SlotActivatedItem {
 	
 	/** The logger instance */
 	final Logger logger = Logger.getLogger(StatusResistantItem.class);
@@ -24,14 +26,8 @@ public class StatusResistantItem extends Item {
 	/** List of status types that this item is resistant to. */
 	private StatusResistanceList resistances;
 	
-	/** List of slots where this item is active when equpped. */
-	private List<String> resistancesActiveSlotList; // Should java.util.Collection be used instead?
 	
-	/** Entity that equips the item. */
-	private RPEntity owner;
-	
-	/** Current slot where item is equipped. */
-	private String currentSlot;
+/* XXX --- CONSTRUCTORS --- XXX */
 	
 	/**
 	 * Default constructor.
@@ -49,16 +45,15 @@ public class StatusResistantItem extends Item {
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		
-		// FIXME: Resistance should be adjusted for equipping entity if item
-		//        is constructed in active slot.
+		/* FIXME: Resistance should be adjusted for equipping entity if item
+		 * is constructed in active slot.
+		 *
+		 * FIXME: If item is destroyed while in active slot resistance is not
+		 * adjusted.
+		 */
 		
-		// FIXME: If item is destroyed while in active slot resistance is not
-		//        adjusted.
-		
-		// Initialize resistances
+		/* Initialize resistances. */
 		this.resistances = new StatusResistanceList(this);
-		
-		this.resistancesActiveSlotList = new ArrayList<String>();
 	}
 	
 	/**
@@ -71,88 +66,262 @@ public class StatusResistantItem extends Item {
 		super(item);
 	}
 	
+	
+/* XXX --- ITEM INITIALIZATION --- XXX */
+	
 	/**
-	 * Tells whether the item is active in the current slot
+	 * Create or reset resistances to status types for this item.
 	 * 
-	 * @param slot
-	 * 		The slot to where the item is being (un)equipped
-	 * @return
-	 * 		Active in slot
+	 * @param resistanceList
+	 * 		Status types and resistant values
 	 */
-	private boolean activeSlot(String slot) {
+	@Override
+	public void initializeStatusResistancesList(final Map<StatusType, Double> list) {
+		/* FIXME: Here is where constructed item should checked if equipped
+		 * in active slot.
+		 */
 		
-		if ((resistancesActiveSlotList != null)
-				&& !resistancesActiveSlotList.isEmpty()) {
-			return resistancesActiveSlotList.contains(slot);
+		if (this.resistances == null) {
+			this.resistances = new StatusResistanceList(this);
 		}
 		
-		return false;
+		this.resistances.setStatusResistances(list);
+		
+		/* Slot that the item is initialized/created in. */
+		final RPSlot slotObject = this.getContainerSlot();
+		final String slot;
+		if (slotObject != null) {
+			slot = slotObject.getName();
+			
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				logger.info(this.getName() + " initialized in \"" + slot + "\"");
+			}
+		}
+		
+		if (logger.isDebugEnabled() || Testing.DEBUG){
+			logger.info("StatusResistantItem: Initializing status resistances list");
+			if (this.resistances == null) {
+				logger.error("Could not initialize status resistances list");
+			}
+		}
 	}
 	
 	/**
-	 * Add a slot to the list in which item can be active.
+	 * Create or reset resistances to status types for this item.
 	 * 
-	 * @param slotName
-	 * 		Name of slot where equipped item is active
+	 * @param resistanceList
+	 * 		Status types and resistant values
 	 */
-	public void addStatusResistancesActiveSlot(String slotName) {
-		this.resistancesActiveSlotList.add(slotName);
+	public void initializeStatusResistancesList(final StatusResistanceList list) {
+		this.resistances = list;
+		
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			logger.info("StatusResistantItem: Initializing status resistances");
+			if (this.resistances == null) {
+				logger.error("Could not initialize status resistances list");
+			}
+		}
 	}
+	
+	
+/* XXX --- ITEM MANIPULATION --- XXX */
 	
 	/**
 	 * Adjust an entities resistance to a specific status type.
 	 * 
-	 * @param entity
+	 * @param owner
 	 * 		Entity to receive resistance adjustment
 	 * @param statusType
 	 * 		Resisted status type
-	 * @param adjustValue
-	 * 		Amount to change resistance
+	 * @param newResistance
+	 * 		The resistance value that the owner will have
+	 * @return
+	 * 		The value was successfully adjusted
 	 */
-	private void adjustStatusResistance(RPEntity entity, StatusType statusType,
-			Double adjustValue) {
-		String resistAttribute = "resist_" + statusType.toString().toLowerCase();
-		Double newResistance;
+	private boolean adjustStatusResistance(final String statusName,
+			double newResistance) {
+		SlotOwner slotOwner = this.getContainerBaseOwner();
 		
-		// Add attribute if entity does not already have any resistance
-		if (!entity.has(resistAttribute)) {
-			newResistance = adjustValue;
+		/* XXX: Is there any usefulness in casting to RPEntity? Would it be
+		 *      better to simply only allow resistances for Player?
+		 */
+		if (slotOwner instanceof RPEntity) {
+			RPEntity owner = (RPEntity)slotOwner;
+			/*
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				logger.info(owner.getName() + " " + statusName
+						+ " resistance adjustment: "
+						+ Double.toString(newResistance));
+			}*/
+			
+			final String resistAttribute = "resist_"
+				+ statusName.toLowerCase();
+			final double currentResistance;
+			
+			/* Apply current resistance value if applicable. */
+			if (owner.has(resistAttribute)) {
+				currentResistance = owner.getDouble(resistAttribute);
+				newResistance += currentResistance;
+			}
+			
+			/* Safeguarding. Entity cannot be more than 100% resistant. Do not
+			 * need to worry about less than zero because resistance will be
+			 * removed in such case.
+			 */
+			if (newResistance > 1.0) {
+				newResistance = 1.0;
+			}
+			
+			/* Remove reference if entity is no longer resistant. This can be
+			 * changed to allow a less than 0 value for items that cause a
+			 * weakness to status effects.
+			 */
+			if (newResistance <= 0.0) {
+				owner.remove(resistAttribute);
+				return !owner.has(resistAttribute);
+			} else {
+				owner.put(resistAttribute, newResistance);
+				return owner.getDouble(resistAttribute) == newResistance;
+			}
+		}
+		
+		/* Attributes cannot be applied to non-RPEntity */
+		return false;
+	}
+	
+	
+/* XXX --- ITEM ACTIVATION --- XXX */
+	
+	/**
+	 * Actions to take when activated. Super class sets activationState by
+	 * calling this method via onEquipped().
+	 * 
+	 * @return
+	 * 		Item activation state
+	 */
+	@Override
+	protected boolean onActivate() {
+		boolean isActive = false;
+		
+		StatusType statusType;
+		double value;
+		if ((resistances != null) && !resistances.isEmpty()) {
+			for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
+				statusType = entry.getKey();
+				value = entry.getValue();
+				
+				/* Attempt to adjust the entity's resistance. */
+				isActive = this.adjustStatusResistance(statusType.toString(),
+						value);
+				
+				if (!isActive) {
+					/* FIXME: Should revert any previous adjustments and
+					 * break loop.
+					 */
+				}
+			}
 		} else {
-			Double currentResistance = entity.getDouble(resistAttribute);
-			newResistance = currentResistance + adjustValue;
+			logger.warn("Status resistance list is empty");
 		}
+		/*
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			SlotOwner owner = this.getContainerBaseOwner();
+			String statusName;
+			String statusResistancesString = "StatusResistantItem activated:";
+			for (Entry<StatusType, Double> entry:
+				this.resistances.getMap().entrySet()) {
+				statusName = entry.getKey().toString().toLowerCase();
+				statusResistancesString += " " + statusName + "("
+						+ Double.toString(owner.getDouble("resist_" +
+								statusName)) + ")";
+			}
+			logger.info(statusResistancesString);
+		}*/
 		
-		// Safeguarding. Don't need to worry about less than zero because
-		// resistance will be removed if value is zeor or less.
-		if (newResistance > 1.0) {
-			newResistance = 1.0;
-		}
-		
-		// Remove reference if entity is no longer resistant
-		if (newResistance <= 0.0) {
-			entity.remove(resistAttribute);
-		} else {
-			entity.put(resistAttribute, newResistance);
-		}
+		return isActive;
 	}
 	
 	/**
-	 * Add resistance values to the description.
+	 * Actions to take when deactivated. Super class sets activationState by
+	 * calling this method via onUnequipped().
+	 * 
+	 * @return
+	 * 		Deactivated
+	 */
+	@Override
+	protected boolean onDeactivate() {
+		boolean isInactive = false;
+		
+		StatusType statusType;
+		double value;
+		if ((resistances != null) && !resistances.isEmpty()) {
+			for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
+				statusType = entry.getKey();
+				/* The value is inverted for deactivation. */
+				value = entry.getValue() * -1;
+				
+				/* Attempt to adjust the entity's resistance. */
+				isInactive = adjustStatusResistance(statusType.toString(),
+						value);
+				
+				if (!isInactive) {
+					/* FIXME: Should revert any previous adjustments and
+					 * break loop.
+					 */
+				}
+			}
+		} else {
+			logger.warn("Status resistance list is empty");
+		}
+		/*
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			SlotOwner owner = this.getContainerBaseOwner();
+			String statusName;
+			String statusResistancesString = "StatusResistantItem deactivated:";
+			for (Entry<StatusType, Double> entry:
+				this.resistances.getMap().entrySet()) {
+				statusName = entry.getKey().toString().toLowerCase();
+				if (owner.has(statusName)) {
+					statusResistancesString += " " + statusName + "("
+							+ Double.toString(owner.getDouble("resist_" +
+									statusName)) + ")";
+				}
+			}
+			logger.info(statusResistancesString);
+		}*/
+		
+		/* FIXME: Should go through checks to make sture attributes have
+		 *        been removed correctly.
+		 */
+		//return isInactive;
+		return true;
+	}
+	
+/* XXX --- ITEM INFORMATION --- XXX */
+	
+	/**
+	 * Add resistance values to description.
 	 */
 	@Override
 	public String describe() {
 		String description = super.describe();
 		StringBuilder res = new StringBuilder();
 		
-		// Add statuses resistance stats to description
-		Map<StatusType, Double> resistances = this.getStatusResistanceList().getMap();
+		/* Add statuses resistance stats to description. */
+		Map<StatusType, Double> resistances = this.getStatusResistancesList().getMap();
 		if ((resistances != null) && !resistances.isEmpty()) {
 			for (Entry<StatusType, Double> entry : resistances.entrySet()) {
 				String statusType = entry.getKey().toString().toLowerCase();
+				
+				/* Special treatment for status names ending in "ed" where
+				 * only "d" should be removed. 
+				 */
 				if (statusType.equals("confused")) {
 					statusType = "confuse";
 				}
-				Integer nameLength = statusType.length();
+				
+				/* Remove "ed" suffix from status name. */
+				final int nameLength = statusType.length();
 				if (statusType.substring(nameLength - 2).equals("ed")) {
 					statusType = statusType.substring(0, nameLength - 2);
 				}
@@ -171,7 +340,6 @@ public class StatusResistantItem extends Item {
 		}
 		
 		return description;
-		
 	}
 	
 	/**
@@ -182,141 +350,22 @@ public class StatusResistantItem extends Item {
 	 * @return
 	 * 		The resistance value
 	 */
-	public double getStatusResistance(StatusType statusType) {
-		return resistances.getStatusResistance(statusType);
+	public double getStatusResistanceValue(StatusType type) {
+		Double resistValue = resistances.getStatusResistance(type);
+		if (resistValue == null) {
+			return 0.0;
+		}
+		
+		return resistValue.doubleValue();
 	}
 	
 	/**
 	 * Gets all status types and resistance values for this item.
 	 * 
 	 * @return
-	 * 		Status types and resistance values
+	 * 		List containing types and resistance values
 	 */
-	public StatusResistanceList getStatusResistanceList() {
+	public StatusResistanceList getStatusResistancesList() {
 		return this.resistances;
 	}
-	
-	/**
-	 * Gives the entity a status resistance
-	 * 
-	 * @param owner
-	 * 		Entity that is equipping the item 
-	 * @param slot
-	 * 		The slot where the item is equipped
-	 * @return
-	 * 		See Item.onEquipped()
-	 */
-	@Override
-	public boolean onEquipped(RPEntity owner, String slot) {
-		Boolean ret = super.onEquipped(owner, slot);
-		
-		// Get the owner for onUnequipped()
-		this.owner = owner;
-		this.currentSlot = slot;
-		
-		if (this.logger.isDebugEnabled()) {
-			this.logger.debug("Equipped StatusResistantItem (ID "
-					+ Integer.toString(this.getID().getObjectID()) + ") to "
-					+ this.currentSlot);
-		}
-		
-		Boolean toActiveSlot = this.activeSlot(slot);
-		
-		// Add the resistance if values can be activated in target slot
-		if (toActiveSlot) {
-			StatusType statusType;
-			Double value;
-			if ((resistances != null) && !resistances.isEmpty()) {
-				for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
-					statusType = entry.getKey();
-					value = entry.getValue();
-					adjustStatusResistance(owner, statusType, value);
-					
-					if (logger.isDebugEnabled()) {
-						logger.debug(statusType.toString() + " adjustment: "
-								+ value.toString() + " (" + owner.getName()
-								+ ")");
-					}
-				}
-			}
-		} else {
-			ret = false;
-		}
-		
-		return ret;
-	}
-
-	/**
-	 * Removes or reduces resistance value from entity.
-	 * 
-	 * @param owner
-	 * 		Entity that is unequipping the item
-	 * @return
-	 * 		See Item.onUnequipped()
-	 */
-	@Override
-	public boolean onUnequipped() {
-		Boolean ret = super.onUnequipped();
-		
-		if ((owner != null) && (currentSlot != null)) {
-			
-			if (this.logger.isDebugEnabled()) {
-				this.logger.debug("Unequipped StatusResistantItem (ID "
-						+ Integer.toString(this.getID().getObjectID())
-						+ ") from " + this.currentSlot);
-			}
-			
-			Boolean fromActiveSlot = this.activeSlot(this.currentSlot);
-			
-			// Only adjust resistance values if item was previously active in
-			// an appropriate slot
-			if (fromActiveSlot) {
-				StatusType statusType;
-				Double value;
-				if ((resistances != null) && !resistances.isEmpty()) {
-					for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
-						statusType = entry.getKey();
-						value = entry.getValue() * -1;
-						adjustStatusResistance(owner, statusType, value);
-						
-						if (logger.isInfoEnabled()) {
-							logger.debug(statusType.toString() + " adjustment: "
-									+ value.toString() + " (" + owner.getName()
-									+ ")");
-						}
-					}
-				} else {
-					ret = false;
-				}
-			}
-		}
-		
-		return ret;
-	}
-	
-	/**
-	 * Create or reset resistances to status types for this item.
-	 * 
-	 * @param resistanceList
-	 * 		Status types and resistant values
-	 */
-	@Override
-	public void setStatusResistanceList(Map<StatusType, Double> resistanceList) {
-		if (this.resistances == null) {
-			this.resistances = new StatusResistanceList(this);
-		}
-		
-		this.resistances.setStatusResistances(resistanceList);
-	}
-
-	/**
-	 * Create or reset resistances to status types for this item.
-	 * 
-	 * @param resistanceList
-	 * 		Status types and resistant values
-	 */
-	public void setStatusResistanceList(StatusResistanceList resistanceList) {
-		this.resistances = resistanceList;
-	}
-	
 }
