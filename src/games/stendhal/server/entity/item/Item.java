@@ -39,6 +39,7 @@ import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SlotOwner;
 
 import org.apache.log4j.Logger;
 
@@ -914,19 +915,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 * 		RPEntity that owns the slot where item is stored
 	 */
 	public RPEntity getOwner() {
-		final RPEntity owner;
+		final SlotOwner owner;
 		if (isContained()) {
-			owner = (RPEntity)this.getContainerOwner();
-		} else {
-			owner = null;
+			owner = this.getContainerOwner();
+			if (owner instanceof RPEntity) {
+				return (RPEntity)owner;
+			}
 		}
 		
-		if (owner == null) {
-			throw new NullPointerException("Could not get owner for item ID "
-					+ this.getID().getObjectID());
-		}
-		
-		return owner;
+		return null;
 	}
 	
 	/**
