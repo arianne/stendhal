@@ -124,7 +124,7 @@ public abstract class SlotActivatedItem extends Item {
 			}
 			
 			/* Check and activate item's attribute's for containing slot owner.
-			 * this.setActivationState() should return <b>true</b>.
+			 * this.onActivate() should return <b>true</b>.
 			 */
 			this.activated = this.onActivate();
 			
@@ -161,7 +161,7 @@ public abstract class SlotActivatedItem extends Item {
 				}
 				
 				/* Check and deactivate item's attribute's for containing slot
-				 * owner. this.setActivatedState() should return <b>false</b>.
+				 * owner. this.onDeactivate() should return <b>false</b>.
 				 */
 				this.activated = this.onDeactivate();
 				
