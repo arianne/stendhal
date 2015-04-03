@@ -369,7 +369,17 @@ public abstract class ActiveEntity extends Entity {
 			stepsTaken += 1;
 		}
 	}
-
+	
+	/**
+	 * Retrieves the stored previous speed of the entity.
+	 * 
+	 * @return
+	 * 		Value of previous speed
+	 */
+	public double getPreviousSpeed() {
+		return previousSpeed;
+	}
+	
 	/**
 	 * Get the current speed.
 	 * 
@@ -423,6 +433,16 @@ public abstract class ActiveEntity extends Entity {
 	@Override
 	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
 		getZone().notifyMovement(this, oldX, oldY, newX, newY);
+	}
+	
+	/**
+	 * Stores the entity's current speed when it changes.
+	 * 
+	 * @param value
+	 * 		The entity's current speed
+	 */
+	protected void setPreviousSpeed(final double value) {
+		this.previousSpeed = value;
 	}
 	
 	/**
