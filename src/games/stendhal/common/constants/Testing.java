@@ -29,6 +29,10 @@ public class Testing {
 	public static final boolean ACTIONS =
 			(System.getProperty("testing.actions") != null);
 	
+	/** Testing chat system property */
+	public static final boolean CHAT =
+			(System.getProperty("testing.chat") != null);
+	
 	/** Testing combat system property */
 	public static final boolean COMBAT =
 			(System.getProperty("testing.combat") != null);
