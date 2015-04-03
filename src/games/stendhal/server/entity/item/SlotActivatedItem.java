@@ -27,6 +27,9 @@ public abstract class SlotActivatedItem extends Item {
 	/* The active state of the item initialized as deactivated. */
 	private boolean activated = false;
 	
+	/* Slot to track previous equipped location. */
+	private String transitionSlot;
+	
 	/* Name of slot being transition to/from. Useful for checking previous
 	 * slot on un-equipping.
 	 * 
@@ -109,6 +112,9 @@ public abstract class SlotActivatedItem extends Item {
 			logger.info(this.getName() + " moved to \"" + slot + "\"");
 		}
 		
+		/* Begin tracking transision slot when the item is equipped. */
+		this.transitionSlot = slot;
+		
 		/* Attempt to activate item's attributes if being transitioned to an
 		 * active slot from a non-active one.
 		 * 
@@ -116,8 +122,7 @@ public abstract class SlotActivatedItem extends Item {
 		 */
 		if (this.isActiveSlot(slot)) {
 			if (logger.isDebugEnabled() || Testing.DEBUG) {
-				logger.info("SlotActivatedItem: Equipping to active slot \""
-						+ slot + "\"");
+				logger.info("Activating");
 			}
 			
 			/* Check and activate item's attribute's for containing slot owner.
@@ -125,7 +130,12 @@ public abstract class SlotActivatedItem extends Item {
 			 * FIXME: Returning wrong value in either this.onActivate() or
 			 *        this.onDeactivate().
 			 */
-			this.activated = this.onActivate();
+			this.onActivate();
+			
+			/* FIXME: This should be set by the return value of
+			 *        this.onActivate().
+			 */
+			this.activated = true;
 		}
 		
 		return super.onEquipped(owner, slot);
@@ -137,29 +147,40 @@ public abstract class SlotActivatedItem extends Item {
 	 */
 	@Override
 	public boolean onUnequipped() {
-		/* The slot from where the item is being removed. */
-		final RPSlot slotObject = this.getContainerSlot();
-		
-		if (slotObject != null) {
-			final String slot = slotObject.getName();
-			
-			if (logger.isDebugEnabled() || Testing.DEBUG) {
-				logger.info(this.getName() + " removed from \"" + slot + "\"");
-			}
+		/* Use the transition slot to determine previous equipped location. */
+		if (this.transitionSlot != null) {
+//			if (logger.isDebugEnabled() || Testing.DEBUG) {
+//				logger.info(this.getName() + " removed from \"" +
+//						this.transitionSlot + "\"");
+//			}
 			
 			/* Attempt to deactivate item's attributes if being transitioned from
 			 * an active slot to a non-active one.
 			 * 
 			 * FIXME: Should also check this.activated.
 			 */
-			if (!this.isActiveSlot(slot)) {
-				/* Check and deactive item's attribute's for containing slot
+			if (this.isActiveSlot(this.transitionSlot)) {
+				if (logger.isDebugEnabled() || Testing.DEBUG) {
+					logger.info("Deactivating");
+				}
+				
+				/* Check and deactivate item's attribute's for containing slot
 				 * owner.
 				 * 
 				 * FIXME: Returning wrong value in either this.onActivate() or
 				 *        this.onDeactivate().
 				 */
-				this.activated = this.onDeactivate();
+				this.onDeactivate();
+				
+				/* FIXME: This should be set by the return value of
+				 *        this.onDeactivate();
+				 */
+				this.activated = false;
+				
+				/* We need to clear transitionSlot in case the item is placed
+				 * on the ground.
+				 */
+				this.transitionSlot = null;
 			}
 		} else {
 			/* Item was picked up from ground or other unknown source. */
@@ -204,16 +225,18 @@ public abstract class SlotActivatedItem extends Item {
 	 * 		<b>true</b> if slot name is found in active slot list
 	 */
 	protected boolean isActiveSlot(String slot) {
-		/*if (logger.isDebugEnabled() || Testing.DEBUG) {
-			String activeSlotListString = "";
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			String activeSlotListString = null;
 			for (String slotName: this.activeSlotsList) {
-				activeSlotListString += " " + slotName;
+				if (activeSlotListString == null) {
+					activeSlotListString = slotName;
+				} else {
+					activeSlotListString += ", " + slotName;
+				}
 			}
-			
-			logger.info("Checking " + this.getName()
-					+ " for active slot \"" + slot + "\" in \""
-					+ activeSlotListString + "\"");
-		}*/
+			logger.info("Checking slot: " + slot);
+			logger.info("Active slots: " + activeSlotListString);
+		}
 		
 		if ((activeSlotsList != null)
 				&& !activeSlotsList.isEmpty() && slot != null) {
