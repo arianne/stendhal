@@ -220,7 +220,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @return
 	 * 		Item's activation state
 	 */
-	public boolean getActivationState() {
+	public boolean isActivated() {
 		return this.activated;
 	}
 	
