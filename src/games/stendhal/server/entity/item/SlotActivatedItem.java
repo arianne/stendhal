@@ -6,8 +6,6 @@ import games.stendhal.server.entity.RPEntity;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPSlot;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -25,7 +23,7 @@ public abstract class SlotActivatedItem extends Item {
 	private List<String> activeSlotsList = null;
 	
 	/* The active state of the item initialized as deactivated. */
-	private boolean activated = false;
+	protected boolean activated = false;
 	
 	/* Slot to track previous equipped location. */
 	private String transitionSlot;
@@ -126,16 +124,14 @@ public abstract class SlotActivatedItem extends Item {
 			}
 			
 			/* Check and activate item's attribute's for containing slot owner.
-			 * 
-			 * FIXME: Returning wrong value in either this.onActivate() or
-			 *        this.onDeactivate().
+			 * this.setActivationState() should return <b>true</b>.
 			 */
-			this.onActivate();
+			this.activated = this.onActivate();
 			
-			/* FIXME: This should be set by the return value of
-			 *        this.onActivate().
-			 */
-			this.activated = true;
+			/* Check if the item has been activated. */
+			if (!this.activated) {
+				
+			}
 		}
 		
 		return super.onEquipped(owner, slot);
@@ -165,22 +161,19 @@ public abstract class SlotActivatedItem extends Item {
 				}
 				
 				/* Check and deactivate item's attribute's for containing slot
-				 * owner.
-				 * 
-				 * FIXME: Returning wrong value in either this.onActivate() or
-				 *        this.onDeactivate().
+				 * owner. this.setActivatedState() should return <b>false</b>.
 				 */
-				this.onDeactivate();
-				
-				/* FIXME: This should be set by the return value of
-				 *        this.onDeactivate();
-				 */
-				this.activated = false;
+				this.activated = this.onDeactivate();
 				
 				/* We need to clear transitionSlot in case the item is placed
 				 * on the ground.
 				 */
 				this.transitionSlot = null;
+				
+				/* Check if the item is still activated. */
+				if (this.activated) {
+					
+				}
 			}
 		} else {
 			/* Item was picked up from ground or other unknown source. */
@@ -192,17 +185,6 @@ public abstract class SlotActivatedItem extends Item {
 		return super.onUnequipped();
 	}
 	
-	/**
-	 * Sets the item's state of activation.
-	 * 
-	 * @param state
-	 * 		<b>true</b>: Item's attributes are currently applied to owning
-	 * 		entity.
-	 */
-	protected void setActivationState(boolean state) {
-		this.activated = state;
-	}
-	
 	
 /* XXX --- ITEM CHECKS --- XXX */
 	
@@ -212,7 +194,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @return
 	 * 		Item's activation state
 	 */
-	public boolean isActivated() {
+	public boolean getActivationState() {
 		return this.activated;
 	}
 	
