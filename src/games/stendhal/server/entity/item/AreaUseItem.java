@@ -21,12 +21,12 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 import java.util.Map;
 
-public class Tool extends Item {
-    public Tool(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
+public class AreaUseItem extends Item {
+    public AreaUseItem(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
         super(name, clazz, subclass, attributes);
     }
     
-    public Tool(Tool item) {
+    public AreaUseItem(AreaUseItem item) {
         super(item);
     }
     
