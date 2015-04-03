@@ -29,6 +29,7 @@ import marauroa.common.game.RPObject;
  */
 public abstract class GuidedEntity extends ActiveEntity {
 	
+	/** The entity's default speed value */
 	protected double baseSpeed;
 
 	private final EntityGuide guide = new EntityGuide();
