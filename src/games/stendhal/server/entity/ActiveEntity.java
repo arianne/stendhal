@@ -383,11 +383,6 @@ public abstract class ActiveEntity extends Entity {
 	 * 		Value of previous speed
 	 */
 	public double getPreviousSpeed() {
-		/* If this.previousSpeed is null then entity was previously stopped. */
-		if (Double.valueOf(this.previousSpeed) == null) {
-			return 0.0;
-		}
-		
 		return this.previousSpeed;
 	}
 	
