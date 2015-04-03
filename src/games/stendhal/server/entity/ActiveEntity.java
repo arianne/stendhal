@@ -41,6 +41,9 @@ public abstract class ActiveEntity extends Entity {
 	 * The current speed.
 	 */
 	private double speed;
+	
+	/* A stored value of previous speed when speed changes. */
+	private double previousSpeed;
 
 	/**
 	 * The amount of uncommitted tile movement.
@@ -58,6 +61,7 @@ public abstract class ActiveEntity extends Entity {
 	public ActiveEntity() {
 		direction = Direction.STOP;
 		speed = 0.0;
+		previousSpeed = speed;
 		movementOffset = 0.0;
 		stepsTaken = 0;
 	}
@@ -73,15 +77,229 @@ public abstract class ActiveEntity extends Entity {
 
 		direction = Direction.STOP;
 		speed = 0.0;
+		previousSpeed = speed;
 		stepsTaken = 0;
-
+		
 		update();
 	}
 
+	private void move(final int x, final int y, final int nx, final int ny) {
+		setPosition(nx, ny);
+		notifyWorldAboutChanges();
+	}
+
+	protected boolean handlePortal(final Portal portal) {
+		
+		return false;
+	}
+
+	protected void handleLeaveZone(final int nx, final int ny) {
+		logger.debug("Leaving zone from (" + getX() + "," + getY() + ") to ("
+				+ nx + "," + ny + ")");
+		StendhalRPAction.decideChangeZone(this, nx, ny);
+		stop();
+		notifyWorldAboutChanges();
+	}
+
+	/**
+	 * Define the RPClass.
+	 * 
+	 * @return The configured RPClass.
+	 */
+	private static RPClass createRPClass() {
+		final RPClass rpclass = new RPClass("active_entity");
+
+		rpclass.isA("entity");
+		rpclass.addAttribute("dir", Type.BYTE, Definition.VOLATILE);
+		rpclass.addAttribute("speed", Type.FLOAT, Definition.VOLATILE);
+
+		return rpclass;
+	}
+
+	/**
+	 * Generate the RPClass (compatible with manual init/order).
+	 * 
+	 * NOTE: This MUST be called during environment initialization.
+	 */
+	public static void generateRPClass() {
+		createRPClass();
+	}
+
+	/**
+	 * Determine if zone changes are currently allowed via normal means
+	 * (non-portal teleportation doesn't count).
+	 * 
+	 * @return <code>true</code> if the entity can change zones.
+	 */
+	protected boolean isZoneChangeAllowed() {
+		return false;
+	}
+
 	//
-	// ActiveEntity
+	// Entity
 	//
 
+	/**
+	 * Called when this object is added to a zone.
+	 * 
+	 * @param zone
+	 *            The zone this was added to.
+	 */
+	@Override
+	public void onAdded(final StendhalRPZone zone) {
+		super.onAdded(zone);
+
+		zone.notifyEntered(this, getX(), getY());
+	}
+
+	/**
+	 * Called when this object is removed from a zone.
+	 * 
+	 * @param zone
+	 *            The zone this was removed from.
+	 */
+	@Override
+	public void onRemoved(final StendhalRPZone zone) {
+		zone.notifyExited(this, getX(), getY());
+
+		super.onRemoved(zone);
+	}
+
+	@Override
+	public void update() {
+		super.update();
+
+		if (has("dir")) {
+			direction = Direction.build(getInt("dir"));
+		}
+
+		if (has("speed")) {
+			speed = getDouble("speed");
+		}
+	}
+
+	/**
+	 * Checks whether an entity is a ghost (non physically interactive).
+	 * 
+	 * @return <code>true</code> if in ghost mode.
+	 */
+	public boolean isGhost() {
+		// 'ghostmode' attribute is at player level
+		return false;
+	}
+
+	/**
+	 * Get the resistance this has on other entities (0-100).
+	 * 
+	 * @return The amount of resistance, or 0 if in ghostmode.
+	 */
+	@Override
+	public int getResistance() {
+		if (isGhost()) {
+			return 0;
+		}
+		return super.getResistance();
+	}
+	
+	
+/* XXX --- DIRECTION --- XXX */
+	
+	
+	/**
+	 * Face toward a specified point on the map.
+	 * 
+	 * @param x
+	 * 		Horizontal coordinate of position
+	 * @param y
+	 * 		Vertical coordinate of position
+	 */
+	public final void faceto(final int x, final int y) {
+		final int rndx = x - getX();
+		final int rndy = y - getY();
+
+		if (Math.abs(rndx) > Math.abs(rndy)) {
+			if (rndx < 0.0) {
+				setDirection(Direction.LEFT);
+			} else {
+				setDirection(Direction.RIGHT);
+			}
+		} else {
+			if (rndy < 0.0) {
+				setDirection(Direction.UP);
+			} else {
+				setDirection(Direction.DOWN);
+			}
+		}
+	}
+	
+	/**
+	 * Face toward an entity.
+	 * 
+	 * @param entity
+	 * 		The entity to face toward
+	 */
+	public final void faceToward(final Entity entity) {
+		setDirection(getDirectionToward(entity));
+	}
+	
+	/**
+	 * Get the current facing direction.
+	 * 
+	 * @return
+	 * 		The facing direction
+	 */
+	public Direction getDirection() {
+		return direction;
+	}
+
+	/**
+	 * Get the direction toward an entity.
+	 * 
+	 * @param entity
+	 * 		The target entity
+	 * 
+	 * @return
+	 * 		A facing direction
+	 */
+	public final Direction getDirectionToward(final Entity entity) {
+		return getDirectionToward(entity.getArea());
+	}
+
+	final Direction getDirectionToward(final Rectangle2D area) {
+		return Direction.getAreaDirectionTowardsArea(getArea(), area);
+	}
+	
+	/**
+	 * Determine if this entity is facing toward another entity.
+	 * 
+	 * @param entity
+	 * 		The target entity
+	 * 
+	 * @return
+	 * 		<code>true</code> if facing other entity
+	 */
+	public boolean isFacingToward(final Entity entity) {
+		return direction.equals(getDirectionToward(entity));
+	}
+	
+	/**
+	 * Set the facing direction.
+	 * 
+	 * @param dir
+	 * 		Direction to face toward
+	 */
+	public void setDirection(final Direction dir) {
+		if (dir == this.direction) {
+			return;
+		}
+
+		this.direction = dir;
+		put("dir", direction.get());
+	}
+	
+	
+/* XXX --- MOVEMENT --- XXX */
+	
 	/**
 	 * Apply movement and process it's reactions.
 	 */
@@ -152,20 +370,103 @@ public abstract class ActiveEntity extends Entity {
 		}
 	}
 
+	/**
+	 * Get the current speed.
+	 * 
+	 * @return
+	 * 		The current speed, or <code>0.0</code> if stopped.
+	 */
+	public double getSpeed() {
+		return speed;
+	}
+	
+	/**
+	 * Retrieves the amount of steps the entity has taken during the current
+	 * session.
+	 * 
+	 * @return
+	 * 		Steps taken
+	 */
+	public int getStepsTaken() {
+	    return stepsTaken;
+	}
+	
+	/**
+	 * Determine if this entity has move at least a whole tile.
+	 * 
+	 * @return
+	 * 		<code>true</code> if moved a whole tile
+	 */
+	protected boolean isMoveCompleted() {
+		movementOffset += getSpeed();
+
+		if (movementOffset >= 1.0) {
+			movementOffset -= 1.0;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Notification of intra-zone position change.
+	 * 
+	 * @param oldX
+	 * 		The old X coordinate.
+	 * @param oldY
+	 * 		The old Y coordinate.
+	 * @param newX
+	 * 		The new X coordinate.
+	 * @param newY
+	 * 		The new Y coordinate.
+	 */
+	@Override
+	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
+		getZone().notifyMovement(this, oldX, oldY, newX, newY);
+	}
+	
+	/**
+	 * Set the movement speed.
+	 * 
+	 * @param speed
+	 * 		New speed.
+	 */
+	public void setSpeed(final double speed) {
+		if (speed == this.speed) {
+			return;
+		}
+		
+		this.speed = speed;
+		put("speed", speed);
+		notifyWorldAboutChanges();
+	}
+	
+	/**
+	 * Stops entity's movement.
+	 */
+	public void stop() {
+		setSpeed(0.0);
+		movementOffset = 0.0;
+	}
+	
+	/**
+	 * Checks if the entity is not moving.
+	 * 
+	 * @return
+	 * 		<b>true</b> if stopped, <b>false</b> if moving
+	 */
+	@Override
+	public boolean stopped() {
+		return (speed == 0.0);
+	}
+	
+	
+/* XXX --- COLLISION --- XXX */
+	
 	protected void handleObjectCollision() {
 		// implemented by sub classes
 	}
-
-	private void move(final int x, final int y, final int nx, final int ny) {
-		setPosition(nx, ny);
-		notifyWorldAboutChanges();
-	}
-
-	protected boolean handlePortal(final Portal portal) {
-		
-		return false;
-	}
-
+	
 	/**
 	 * a simple collision is from tiled collision layer or the edge of the map.
 	 * 
@@ -184,263 +485,16 @@ public abstract class ActiveEntity extends Entity {
 			move(getX(), getY(), nx, ny);
 		}
 	}
-
-	protected void handleLeaveZone(final int nx, final int ny) {
-		logger.debug("Leaving zone from (" + getX() + "," + getY() + ") to ("
-				+ nx + "," + ny + ")");
-		StendhalRPAction.decideChangeZone(this, nx, ny);
-		stop();
-		notifyWorldAboutChanges();
-	}
-
+	
 	/**
-	 * Define the RPClass.
-	 * 
-	 * @return The configured RPClass.
+	 * Tells if entity can pass through collision tiles
+	 *
+	 * @return ignoreCollision
 	 */
-	private static RPClass createRPClass() {
-		final RPClass rpclass = new RPClass("active_entity");
-
-		rpclass.isA("entity");
-		rpclass.addAttribute("dir", Type.BYTE, Definition.VOLATILE);
-		rpclass.addAttribute("speed", Type.FLOAT, Definition.VOLATILE);
-
-		return rpclass;
+	public boolean ignoresCollision() {
+		return ignoreCollision;
 	}
-
-	/**
-	 * Face toward an entity.
-	 * 
-	 * @param entity
-	 *            The entity to face toward.
-	 */
-	public final void faceToward(final Entity entity) {
-		setDirection(getDirectionToward(entity));
-	}
-
-	/**
-	 * Generate the RPClass (compatible with manual init/order).
-	 * 
-	 * NOTE: This MUST be called during environment initialization.
-	 */
-	public static void generateRPClass() {
-		createRPClass();
-	}
-
-	/**
-	 * Get the current facing direction.
-	 * 
-	 * @return The facing direction.
-	 */
-	public Direction getDirection() {
-		return direction;
-	}
-
-	/**
-	 * Get the direction toward an entity.
-	 * 
-	 * @param entity
-	 *            The target entity.
-	 * 
-	 * @return A facing direction.
-	 */
-	public final Direction getDirectionToward(final Entity entity) {
-		return getDirectionToward(entity.getArea());
-	}
-
-	final Direction getDirectionToward(final Rectangle2D area) {
-		return Direction.getAreaDirectionTowardsArea(getArea(), area);
-	}
-
-	/**
-	 * Get the current speed.
-	 * 
-	 * @return The current speed, or <code>0.0</code> if stopped.
-	 */
-	public double getSpeed() {
-		return speed;
-	}
-
-	/**
-	 * Determine if this entity is facing toward another entity.
-	 * 
-	 * @param entity
-	 *            The target entity.
-	 * 
-	 * @return <code>true</code> if facing the other entity.
-	 */
-	public boolean isFacingToward(final Entity entity) {
-		return direction.equals(getDirectionToward(entity));
-	}
-
-	/**
-	 * Determine if this entity has move at least a whole tile.
-	 * 
-	 * @return <code>true</code> if moved a whole tile.
-	 */
-	protected boolean isMoveCompleted() {
-		movementOffset += getSpeed();
-
-		if (movementOffset >= 1.0) {
-			movementOffset -= 1.0;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Determine if zone changes are currently allowed via normal means
-	 * (non-portal teleportation doesn't count).
-	 * 
-	 * @return <code>true</code> if the entity can change zones.
-	 */
-	protected boolean isZoneChangeAllowed() {
-		return false;
-	}
-
-	/**
-	 * Notification of intra-zone position change.
-	 * 
-	 * @param oldX
-	 *            The old X coordinate.
-	 * @param oldY
-	 *            The old Y coordinate.
-	 * @param newX
-	 *            The new X coordinate.
-	 * @param newY
-	 *            The new Y coordinate.
-	 */
-	@Override
-	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
-		getZone().notifyMovement(this, oldX, oldY, newX, newY);
-	}
-
-	/**
-	 * Set the facing direction.
-	 * 
-	 * @param dir
-	 *            The facing direction.
-	 */
-	public void setDirection(final Direction dir) {
-		if (dir == this.direction) {
-			return;
-		}
-
-		this.direction = dir;
-		put("dir", direction.get());
-	}
-
-	/**
-	 * Set the movement speed.
-	 * 
-	 * @param speed
-	 *            The new speed.
-	 */
-	public void setSpeed(final double speed) {
-		if (speed == this.speed) {
-			return;
-		}
-
-		this.speed = speed;
-		put("speed", speed);
-		notifyWorldAboutChanges();
-	}
-
-	/**
-	 * Stops entity movement.
-	 */
-	public void stop() {
-		setSpeed(0.0);
-		movementOffset = 0.0;
-	}
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Called when this object is added to a zone.
-	 * 
-	 * @param zone
-	 *            The zone this was added to.
-	 */
-	@Override
-	public void onAdded(final StendhalRPZone zone) {
-		super.onAdded(zone);
-
-		zone.notifyEntered(this, getX(), getY());
-	}
-
-	/**
-	 * Called when this object is removed from a zone.
-	 * 
-	 * @param zone
-	 *            The zone this was removed from.
-	 */
-	@Override
-	public void onRemoved(final StendhalRPZone zone) {
-		zone.notifyExited(this, getX(), getY());
-
-		super.onRemoved(zone);
-	}
-
-	@Override
-	public void update() {
-		super.update();
-
-		if (has("dir")) {
-			direction = Direction.build(getInt("dir"));
-		}
-
-		if (has("speed")) {
-			speed = getDouble("speed");
-		}
-	}
-
-	//
-	// <Compat>
-	//
-
-	/**
-	 * is this entity not moving.
-	 * 
-	 * @return true, if it stopped, false if it is moving
-	 */
-	@Override
-	public boolean stopped() {
-		return (speed == 0.0);
-	}
-
-	public final void faceto(final int x, final int y) {
-		final int rndx = x - getX();
-		final int rndy = y - getY();
-
-		if (Math.abs(rndx) > Math.abs(rndy)) {
-			if (rndx < 0.0) {
-				setDirection(Direction.LEFT);
-			} else {
-				setDirection(Direction.RIGHT);
-			}
-		} else {
-			if (rndy < 0.0) {
-				setDirection(Direction.UP);
-			} else {
-				setDirection(Direction.DOWN);
-			}
-		}
-	}
-
-	/**
-	 * Checks whether an entity is a ghost (non physically interactive).
-	 * 
-	 * @return <code>true</code> if in ghost mode.
-	 */
-	public boolean isGhost() {
-		// 'ghostmode' attribute is at player level
-		return false;
-	}
-
+	
 	/**
 	 * Set entity to ignore collision tiles
 	 *
@@ -454,30 +508,5 @@ public abstract class ActiveEntity extends Entity {
 			remove("ignore_collision");
 		}
 	}
-
-	/**
-	 * Tells if entity can pass through collision tiles
-	 *
-	 * @return ignoreCollision
-	 */
-	public boolean ignoresCollision() {
-		return ignoreCollision;
-	}
-
-	/**
-	 * Get the resistance this has on other entities (0-100).
-	 * 
-	 * @return The amount of resistance, or 0 if in ghostmode.
-	 */
-	@Override
-	public int getResistance() {
-		if (isGhost()) {
-			return 0;
-		}
-		return super.getResistance();
-	}
 	
-	public int getStepsTaken() {
-	    return stepsTaken;
-	}
 }
