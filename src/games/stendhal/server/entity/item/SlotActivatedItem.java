@@ -194,7 +194,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @return
 	 * 		<b>true</b> if item is not currently activated
 	 */
-	private boolean canActivate() {
+	protected boolean canActivate() {
 		if (this.activated) {
 			return false;
 		}
@@ -207,7 +207,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @return
 	 * 		<b>true</b> if item is currently activated
 	 */
-	private boolean canDeactivate() {
+	protected boolean canDeactivate() {
 		if (!this.activated) {
 			return false;
 		}
