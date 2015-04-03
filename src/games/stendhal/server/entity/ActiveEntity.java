@@ -64,9 +64,8 @@ public abstract class ActiveEntity extends Entity {
 		movementOffset = 0.0;
 		stepsTaken = 0;
 		
-		/* Do not set previousSpeed on construction. Will be set the
-		 * first time setBaseSpeed() is called or when entity begins
-		 * walking.
+		/* Do not set previousSpeed on construction. "null" value for
+		 * this.previousSpeed represents "stopped".
 		 */
 	}
 
@@ -83,9 +82,8 @@ public abstract class ActiveEntity extends Entity {
 		speed = 0.0;
 		stepsTaken = 0;
 		
-		/* Do not set previousSpeed on construction. Will be set the
-		 * first time setBaseSpeed() is called or when entity begins
-		 * walking.
+		/* Do not set previousSpeed on construction. "null" value for
+		 * this.previousSpeed represents "stopped".
 		 */
 		
 		update();
@@ -385,7 +383,12 @@ public abstract class ActiveEntity extends Entity {
 	 * 		Value of previous speed
 	 */
 	public double getPreviousSpeed() {
-		return previousSpeed;
+		/* If this.previousSpeed is null then entity was previously stopped. */
+		if (Double.valueOf(this.previousSpeed) == null) {
+			return 0.0;
+		}
+		
+		return this.previousSpeed;
 	}
 	
 	/**
