@@ -55,22 +55,31 @@ import java.util.Map;
  * 
  * PARTICIPANTS:
  * <ul>
- * <li>Jameson (the retired apothecary in semos mountain)</li>
+ * <li>Jameson (the retired apothecary)</li>
+ * <li>Other NPCs to give hints at location of apothecary's lab (undecided)</li>
+ * <li>Another NPC that fuses the ring (undecided)</li>
  * </ul>
  * 
  * STEPS:
  * <ul>
- * <li>Bring note to apothecary and to Jameson.</li>
+ * <li>Bring note to apothecary to Jameson.</li>
  * <li>As a favor to Klaas, Jameson will help you to strengthen your medicinal ring.</li>
  * <li>Bring Jameson a medicinal ring, venom gland, 2 mandragora and 5 fairycakes.</li>
- * <li>Jameson concocts a mixture that doubles your rings' resistance against poison.</li>
+ * <li>Jameson requires a bottle big enough to hold venom extracted from gland.</li>
+ * <li>Bring Jameson a giant bottle.</li>
+ * <li>Jameson realizes he doesn't have a way to extract the venom.</li>
+ * <li>Find [NPC undecided] who will extract the venom into the giant bottle.</li>
+ * <li>Take the bottle filled with venom back to Jameson.</li>
+ * <li>Jameson concocts a mixture to infuse the ring.</li>
+ * <li>Take mixture and ring to [NPC undecided] to be fused.</li>
+ * <li>[NPC undecided] will also have requirements for the player.</li>
  * </ul>
  * 
  * REWARD:
  * <ul>
  * <li>2000 XP</li>
  * <li>antivenom ring</li>
- * <li>Karma: 25</li>
+ * <li>Karma: 25???</li>
  * </ul>
  * 
  * REPETITIONS:
