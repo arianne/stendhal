@@ -456,6 +456,9 @@ public abstract class ActiveEntity extends Entity {
 			return;
 		}
 		
+		/* Store the current speed before it is altered. */
+		this.previousSpeed = this.speed;
+		
 		this.speed = speed;
 		put("speed", speed);
 		notifyWorldAboutChanges();
@@ -465,6 +468,9 @@ public abstract class ActiveEntity extends Entity {
 	 * Stops entity's movement.
 	 */
 	public void stop() {
+		/* Store the current speed before it is altered. */
+		this.previousSpeed = this.speed;
+		
 		setSpeed(0.0);
 		movementOffset = 0.0;
 	}
