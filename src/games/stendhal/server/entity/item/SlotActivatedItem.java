@@ -264,7 +264,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @return
 	 * 		Activated state
 	 */
-	private boolean onActivate() {
+	protected boolean onActivate() {
 		return canActivate();
 	}
 	
@@ -275,7 +275,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @return
 	 * 		Non-activated state
 	 */
-	private boolean onDeactivate() {
+	protected boolean onDeactivate() {
 		return !canDeactivate();
 	}
 }
