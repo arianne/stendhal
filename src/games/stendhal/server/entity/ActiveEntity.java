@@ -61,9 +61,13 @@ public abstract class ActiveEntity extends Entity {
 	public ActiveEntity() {
 		direction = Direction.STOP;
 		speed = 0.0;
-		previousSpeed = speed;
 		movementOffset = 0.0;
 		stepsTaken = 0;
+		
+		/* Do not set previousSpeed on construction. Will be set the
+		 * first time setBaseSpeed() is called or when entity begins
+		 * walking.
+		 */
 	}
 
 	/**
@@ -77,8 +81,12 @@ public abstract class ActiveEntity extends Entity {
 
 		direction = Direction.STOP;
 		speed = 0.0;
-		previousSpeed = speed;
 		stepsTaken = 0;
+		
+		/* Do not set previousSpeed on construction. Will be set the
+		 * first time setBaseSpeed() is called or when entity begins
+		 * walking.
+		 */
 		
 		update();
 	}
