@@ -110,7 +110,7 @@ public abstract class SlotActivatedItem extends Item {
 			logger.info(this.getName() + " moved to \"" + slot + "\"");
 		}
 		
-		/* Begin tracking transision slot when the item is equipped. */
+		/* Begin tracking transition slot when the item is equipped. */
 		this.transitionSlot = slot;
 		
 		/* Attempt to activate item's attributes if being transitioned to an
@@ -119,10 +119,6 @@ public abstract class SlotActivatedItem extends Item {
 		 * FIXME: Should also check !this.activated.
 		 */
 		if (this.isActiveSlot(slot)) {
-			if (logger.isDebugEnabled() || Testing.DEBUG) {
-				logger.info("Activating");
-			}
-			
 			/* Check and activate item's attribute's for containing slot owner.
 			 * this.onActivate() should return <b>true</b>.
 			 */
@@ -130,7 +126,8 @@ public abstract class SlotActivatedItem extends Item {
 			
 			/* Check if the item has been activated. */
 			if (!this.activated) {
-				
+				logger.error("Did not activate when equipped to slot \""
+						+ slot + "\"");
 			}
 		}
 		
@@ -156,10 +153,6 @@ public abstract class SlotActivatedItem extends Item {
 			 * FIXME: Should also check this.activated.
 			 */
 			if (this.isActiveSlot(this.transitionSlot)) {
-				if (logger.isDebugEnabled() || Testing.DEBUG) {
-					logger.info("Deactivating");
-				}
-				
 				/* Check and deactivate item's attribute's for containing slot
 				 * owner. this.onDeactivate() should return <b>false</b>.
 				 */
@@ -172,7 +165,8 @@ public abstract class SlotActivatedItem extends Item {
 				
 				/* Check if the item is still activated. */
 				if (this.activated) {
-					
+					logger.error("Did not deactivate when removed from slot \""
+							+ transitionSlot + "\"");
 				}
 			}
 		} else {
