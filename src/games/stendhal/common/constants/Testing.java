@@ -37,6 +37,10 @@ public class Testing {
 	public static final boolean COMBAT =
 			(System.getProperty("testing.combat") != null);
 	
+	/** Testing movement system property */
+	public static final boolean MOVEMENT =
+			(System.getProperty("testing.movement") != null);
+	
 	/** Testing outfit system property */
 	public static final boolean OUTFITS =
 			(System.getProperty("testing.outfits") != null);
