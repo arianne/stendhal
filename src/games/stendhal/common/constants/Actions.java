@@ -20,28 +20,25 @@ package games.stendhal.common.constants;
  */
 public final class Actions {
 	public static final String ACTION = "action";
-
-
+	
 	//forsake
 	public static final String SPECIES = "species";
 	public static final String FORSAKE = "forsake";
 	public static final String PET = "pet";
 	public static final String SHEEP = "sheep";
-
 	
 	//push
 	public static final String PUSH = "push";
-
 		
 	//knock
 	public static final String KNOCK = "knock";
-
+	
 	//own
 	public static final String OWN = "own";
-
+	
 	//list quests	
 	public static final String PROGRESS_STATUS = "progressstatus";
-
+	
 	//list quests	
 	public static final String LISTQUESTS = "listquests";
 	
@@ -50,40 +47,38 @@ public final class Actions {
 	
 	//support
 	public static final String SUPPORTANSWER = "supportanswer";
-
+	
 	//outfit
 	public static final String OUTFIT = "outfit";
 	
 	public static final String MOVETO = "moveto";
-
+	
 	//teleclickmode
 	public static final String TELECLICKMODE = "teleclickmode";
-
+	
 	//tellall
 	public static final String TELLALL = "tellall";
-
+	
 	//sentence
 	public static final String SENTENCE = "sentence";
-
+	
 	//jail
 	public static final String JAIL = "jail";
-
+	
 	//gag
-
 	public static final String GAG = "gag";
-
+	
 	//playersquery
 	public static final String WHERE = "where";
 	public static final String WHO = "who";
 	
 	//inspect
 	public static final String INSPECT = "inspect";
-
+	
 	//teleport
 	public static final String ZONE = "zone";
-
 	public static final String TELEPORT = "teleport";
-
+	
 	//teleportto
 	public static final String TELEPORTTO = "teleportto";
 	
@@ -94,7 +89,6 @@ public final class Actions {
 	//ghostmode
 	public static final String INVISIBLE = "invisible";
 	public static final String GHOSTMODE = "ghostmode";
-
 	
 	//lookaction
 	public static final String LOOK = "look";
@@ -108,7 +102,7 @@ public final class Actions {
 	
 	//away
 	public static final String AWAY = "away";
-
+	
 	//CStatus
 	public static final String CSTATUS = "cstatus";
 	public static final String CID = "cid";
@@ -116,7 +110,6 @@ public final class Actions {
 	public static final String CIDLIST = "cidlist";
 	
 	//attack
-	
 	public static final String ATTACK = "attack";
 	
 	//destroy
@@ -129,19 +122,18 @@ public final class Actions {
 	public static final String GROUP_MESSAGE = "group_message";
 	public static final String SUPPORT = "support";
 	public static final String TELL = "tell";
-
 	
 	//summon
 	public static final String CREATURE = "creature";
 	public static final String SUMMON = "summon";
-
+	
 	//summonat
 	public static final String AMOUNT = "amount";
 	public static final String ITEM = "item";
 	public static final String SLOT = "slot";
-
 	public static final String SUMMONAT = "summonat";
-
+	
+	//castspell
 	public static final String CASTSPELL = "cast_spell";	
 	
 	//buddy
@@ -153,7 +145,7 @@ public final class Actions {
 	public static final String REMOVEBUDDY = "removebuddy";
 	public static final String IGNORE = "ignore";
 	public static final String ADDBUDDY = "addbuddy";
-
+	
 	//adminlevel
 	public static final String ATTR_HP = "hp";
 	public static final String SUB = "sub";
@@ -162,18 +154,17 @@ public final class Actions {
 	public static final String TITLE = "title";
 	public static final String ADMINLEVEL = "adminlevel";
 	public static final String NEWLEVEL = "newlevel";
-
+	
 	//altercreature
 	public static final String ALTERCREATURE = "altercreature";
-
-
+	
 	public static final String VALUE = "value";
 	public static final String MODE = "mode";
 	public static final String STAT = "stat";
-
+	
 	public static final String ALTER = "alter";
 	public static final String UNSET = "unset";
-
+	
 	// for listing e.g. ignore list
 	public static final String LIST = "list";
 	
@@ -189,10 +180,13 @@ public final class Actions {
 	public static final String MINUTES = "minutes";
 	public static final String MESSAGE = "message";
 	public static final String TEXT = "text";
-
+	
 	public static final String READ = "read";
 	public static final String LOOK_CLOSELY = "look_closely";
 	public static final String LANGUAGE = "language";
+	
+	//walk
+	public static final String WALK = "walk";
 	
 	private Actions() {
 		// hide constructor
