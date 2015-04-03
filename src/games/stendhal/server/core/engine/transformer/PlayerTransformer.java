@@ -27,6 +27,7 @@ import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.SlotActivatedItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.entity.slot.BankSlot;
@@ -370,6 +371,15 @@ public class PlayerTransformer implements Transformer {
 				boundOldItemsToPlayer(player, item);
 
 				newSlot.add(item);
+				
+				/* Check if item has attributes that can be activated by a slot.
+				 * 
+				 * XXX: Perhaps onEquipped() should be run for all items when
+				 *      player is created.
+				 */
+				if (item instanceof SlotActivatedItem) {
+					item.onEquipped(player, newSlot.getName());
+				}
 			} catch (final Exception e) {
 				logger.error("Error adding " + rpobject + " to player slot" + slot,
 						e);
