@@ -114,6 +114,8 @@ public class SlashActionRepository {
 		actions.put("who", who);
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 //		actions.put("wrap", new WrapAction());
+		
+		actions.put("walk", new WalkAction());
 	}
 
 	/**
