@@ -150,7 +150,7 @@ public enum ActionType {
 		}
 		
 	},
-	AUTOWALK("autowalk", "Auto walk");
+	WALK("walk", "Walk");
 
 	/**
 	 * the String send to the server, if so.
