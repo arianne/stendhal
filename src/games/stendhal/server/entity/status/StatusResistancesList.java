@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * Container that holds information about the entities current resistances
  * to status effects.
  */
-public class StatusResistanceList {
+public class StatusResistancesList {
 	private WeakReference<Entity> entityRef;
 	
 	/** The logger instance */
@@ -41,8 +41,8 @@ public class StatusResistanceList {
 	 * @param entity
 	 * 		The entity that is using this list
 	 */
-	public StatusResistanceList(Entity entity) {
-		this.logger = Logger.getLogger(StatusResistanceList.class);
+	public StatusResistancesList(Entity entity) {
+		this.logger = Logger.getLogger(StatusResistancesList.class);
 		
 		this.entityRef = new WeakReference<Entity>(entity);
 		this.resistances = new HashMap<StatusType, Double>();
@@ -55,8 +55,8 @@ public class StatusResistanceList {
 	/**
 	 * Constructor for pre-existing resistance list.
 	 */
-	public StatusResistanceList(Entity entity, Map<StatusType, Double> resistances) {
-		this.logger = Logger.getLogger(StatusResistanceList.class);
+	public StatusResistancesList(Entity entity, Map<StatusType, Double> resistances) {
+		this.logger = Logger.getLogger(StatusResistancesList.class);
 		
 		this.entityRef = new WeakReference<Entity>(entity);
 		this.resistances = resistances;

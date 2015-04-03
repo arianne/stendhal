@@ -2,7 +2,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.constants.Testing;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.status.StatusResistanceList;
+import games.stendhal.server.entity.status.StatusResistancesList;
 import games.stendhal.server.entity.status.StatusType;
 
 import java.util.Map;
@@ -24,7 +24,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 	final Logger logger = Logger.getLogger(StatusResistantItem.class);
 	
 	/** List of status types that this item is resistant to. */
-	private StatusResistanceList resistances;
+	private StatusResistancesList resistances;
 	
 	
 /* XXX --- CONSTRUCTORS --- XXX */
@@ -53,7 +53,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 		 */
 		
 		/* Initialize resistances. */
-		this.resistances = new StatusResistanceList(this);
+		this.resistances = new StatusResistancesList(this);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 		 */
 		
 		if (this.resistances == null) {
-			this.resistances = new StatusResistanceList(this);
+			this.resistances = new StatusResistancesList(this);
 		}
 		
 		this.resistances.setStatusResistances(list);
@@ -112,7 +112,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 * @param resistanceList
 	 * 		Status types and resistant values
 	 */
-	public void initializeStatusResistancesList(final StatusResistanceList list) {
+	public void initializeStatusResistancesList(final StatusResistancesList list) {
 		this.resistances = list;
 		
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
@@ -365,7 +365,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 * @return
 	 * 		List containing types and resistance values
 	 */
-	public StatusResistanceList getStatusResistancesList() {
+	public StatusResistancesList getStatusResistancesList() {
 		return this.resistances;
 	}
 }
