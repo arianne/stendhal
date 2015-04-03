@@ -127,19 +127,18 @@ public class StatusResistantItem extends SlotActivatedItem {
 /* XXX --- ITEM MANIPULATION --- XXX */
 	
 	/**
-	 * Adjust an entities resistance to a specific status type.
+	 * Applies or removes a status resistance value for the owning entity.
 	 * 
-	 * @param owner
-	 * 		Entity to receive resistance adjustment
 	 * @param statusType
-	 * 		Resisted status type
-	 * @param newResistance
-	 * 		The resistance value that the owner will have
+	 * 		The resisted status effect
+	 * @param apply
+	 * 		Applies resistance for <b>true</b>, removes for false
 	 * @return
-	 * 		The value was successfully adjusted
+	 * 		Resistance value was successfully adjusted
 	 */
-	private boolean adjustStatusResistance(final String statusName,
-			double newResistance) {
+	private boolean adjustOwnerStatusResistance(final StatusType statusType,
+			final boolean apply) {
+		
 		SlotOwner slotOwner = this.getContainerBaseOwner();
 		
 		/* XXX: Is there any usefulness in casting to RPEntity? Would it be
@@ -147,20 +146,33 @@ public class StatusResistantItem extends SlotActivatedItem {
 		 */
 		if (slotOwner instanceof RPEntity) {
 			RPEntity owner = (RPEntity)slotOwner;
-			/*
-			if (logger.isDebugEnabled() || Testing.DEBUG) {
-				logger.info(owner.getName() + " " + statusName
-						+ " resistance adjustment: "
-						+ Double.toString(newResistance));
-			}*/
 			
+			final String statusName = statusType.getName().toLowerCase();
 			final String resistAttribute = "resist_"
-				+ statusName.toLowerCase();
+					+ statusName;
 			final double currentResistance;
+			double newResistance = this.getStatusResistanceValue(statusType);
+			
+			if (!apply) {
+				/* Invert the new resistance value for removal instead of
+				 * application.
+				 */
+				newResistance *= -1;
+			}
 			
 			/* Apply current resistance value if applicable. */
 			if (owner.has(resistAttribute)) {
 				currentResistance = owner.getDouble(resistAttribute);
+				
+				/* If for some reason the owner already has the resistance
+				 * attribute is 0 or less when trying to remove it.
+				 */
+				if (!apply && currentResistance <= 0.0) {
+					/* Remove the residual attribute. */
+					owner.remove(resistAttribute);
+					return false;
+				}
+				
 				newResistance += currentResistance;
 			}
 			
@@ -178,14 +190,26 @@ public class StatusResistantItem extends SlotActivatedItem {
 			 */
 			if (newResistance <= 0.0) {
 				owner.remove(resistAttribute);
-				return !owner.has(resistAttribute);
+				
+				if (logger.isDebugEnabled() || Testing.DEBUG) {
+					logger.info(owner.getName() + " new "
+							+ statusName + " resistance: 0.0");
+				}
+				
+				return true;
 			} else {
 				owner.put(resistAttribute, newResistance);
-				return owner.getDouble(resistAttribute) == newResistance;
+				
+				if (logger.isDebugEnabled() || Testing.DEBUG) {
+					logger.info(owner.getName() + " new "
+							+ statusName + " resistance: "
+							+ Double.toString(newResistance));
+				}
+				
+				return true;
 			}
 		}
 		
-		/* Attributes cannot be applied to non-RPEntity */
 		return false;
 	}
 	
@@ -201,44 +225,40 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 */
 	@Override
 	protected boolean onActivate() {
-		boolean isActive = false;
+		boolean active = this.isActivated();
+
+		if (active) {
+			/* If the item is already activated do not change the state or
+			 * attributes. Active item state = true.
+			 */
+			return active;
+		}
 		
 		StatusType statusType;
-		double value;
 		if ((resistances != null) && !resistances.isEmpty()) {
 			for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
 				statusType = entry.getKey();
-				value = entry.getValue();
 				
-				/* Attempt to adjust the entity's resistance. */
-				isActive = this.adjustStatusResistance(statusType.toString(),
-						value);
+				/* Attempt to adjust the entity's resistance. Should return
+				 * "true" to show that attribute has been applied to owning
+				 * entity.
+				 */
+				active = this.adjustOwnerStatusResistance(statusType, true);
 				
-				if (!isActive) {
+				if (!active) {
 					/* FIXME: Should revert any previous adjustments and
-					 * break loop.
+					 * return "active" state.
 					 */
+					
+					logger.warn("Failed application of status resistance \""
+							+ statusType.getName() + "\"");
 				}
 			}
 		} else {
 			logger.warn("Status resistance list is empty");
 		}
-		/*
-		if (logger.isDebugEnabled() || Testing.DEBUG) {
-			SlotOwner owner = this.getContainerBaseOwner();
-			String statusName;
-			String statusResistancesString = "StatusResistantItem activated:";
-			for (Entry<StatusType, Double> entry:
-				this.resistances.getMap().entrySet()) {
-				statusName = entry.getKey().toString().toLowerCase();
-				statusResistancesString += " " + statusName + "("
-						+ Double.toString(owner.getDouble("resist_" +
-								statusName)) + ")";
-			}
-			logger.info(statusResistancesString);
-		}*/
 		
-		return isActive;
+		return active;
 	}
 	
 	/**
@@ -250,51 +270,40 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 */
 	@Override
 	protected boolean onDeactivate() {
-		boolean isInactive = false;
+		boolean active = this.isActivated();
+
+		if (!active) {
+			/* If the item is already inactive do not change the state or
+			 * attributes. Inactive item state = false.
+			 */
+			return active;
+		}
 		
 		StatusType statusType;
-		double value;
 		if ((resistances != null) && !resistances.isEmpty()) {
 			for (Entry<StatusType, Double> entry : resistances.getMap().entrySet()) {
 				statusType = entry.getKey();
-				/* The value is inverted for deactivation. */
-				value = entry.getValue() * -1;
 				
-				/* Attempt to adjust the entity's resistance. */
-				isInactive = adjustStatusResistance(statusType.toString(),
-						value);
+				/* Attempt to adjust the entity's resistance. Should get
+				 * "false" value confirming that attribute has been removed
+				 * from owning entity.
+				 */
+				active = !adjustOwnerStatusResistance(statusType, false);
 				
-				if (!isInactive) {
+				if (active) {
 					/* FIXME: Should revert any previous adjustments and
-					 * break loop.
+					 * return "active" state.
 					 */
+					
+					logger.warn("Failed removal of status resistance \""
+							+ statusType.getName() + "\"");
 				}
 			}
 		} else {
 			logger.warn("Status resistance list is empty");
 		}
-		/*
-		if (logger.isDebugEnabled() || Testing.DEBUG) {
-			SlotOwner owner = this.getContainerBaseOwner();
-			String statusName;
-			String statusResistancesString = "StatusResistantItem deactivated:";
-			for (Entry<StatusType, Double> entry:
-				this.resistances.getMap().entrySet()) {
-				statusName = entry.getKey().toString().toLowerCase();
-				if (owner.has(statusName)) {
-					statusResistancesString += " " + statusName + "("
-							+ Double.toString(owner.getDouble("resist_" +
-									statusName)) + ")";
-				}
-			}
-			logger.info(statusResistancesString);
-		}*/
 		
-		/* FIXME: Should go through checks to make sture attributes have
-		 *        been removed correctly.
-		 */
-		//return isInactive;
-		return true;
+		return active;
 	}
 	
 /* XXX --- ITEM INFORMATION --- XXX */
