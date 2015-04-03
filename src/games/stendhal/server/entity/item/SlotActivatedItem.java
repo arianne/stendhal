@@ -189,6 +189,32 @@ public abstract class SlotActivatedItem extends Item {
 /* XXX --- ITEM CHECKS --- XXX */
 	
 	/**
+	 * Checks the activation state of the item for activation.
+	 * 
+	 * @return
+	 * 		<b>true</b> if item is not currently activated
+	 */
+	private boolean canActivate() {
+		if (this.activated) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Checks the activation state of the item for deactivation.
+	 * 
+	 * @return
+	 * 		<b>true</b> if item is currently activated
+	 */
+	private boolean canDeactivate() {
+		if (!this.activated) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * Tests whether the item is currently activated.
 	 * 
 	 * @return
@@ -232,18 +258,24 @@ public abstract class SlotActivatedItem extends Item {
 /* XXX --- ITEM ACTIVATION --- XXX */
 	
 	/**
-	 * Actions to take when activated and owner is known.
+	 * Actions to take when equipped. Should return <b>true</b> on successful
+	 * activation.
 	 *
 	 * @return
-	 * 		Item activation state
+	 * 		Activated state
 	 */
-	protected abstract boolean onActivate();
+	private boolean onActivate() {
+		return canActivate();
+	}
 	
 	/**
-	 * Actions to take when deactivated and owner is known.
+	 * Actions to take when Unequipped. Should return <b>false</b> on
+	 * successful deactivation. 
 	 * 
 	 * @return
-	 * 		Item activation state
+	 * 		Non-activated state
 	 */
-	protected abstract boolean onDeactivate();
+	private boolean onDeactivate() {
+		return !canDeactivate();
+	}
 }
