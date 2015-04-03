@@ -25,11 +25,15 @@ public class Testing {
 	public static final boolean DEBUG =
 			(System.getProperty("DEBUG") != null);
 	
-	/** Testing outfit system property */
-	public static final boolean OUTFITS =
-			(System.getProperty("testing.outfits") != null);
+	/** Testing actions system property */
+	public static final boolean ACTIONS =
+			(System.getProperty("testing.actions") != null);
 	
 	/** Testing combat system property */
 	public static final boolean COMBAT =
 			(System.getProperty("testing.combat") != null);
+	
+	/** Testing outfit system property */
+	public static final boolean OUTFITS =
+			(System.getProperty("testing.outfits") != null);
 }
