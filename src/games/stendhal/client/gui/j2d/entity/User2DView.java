@@ -71,10 +71,9 @@ class User2DView<T extends User> extends Player2DView<T> {
 		list.remove(ActionType.PUSH.getRepresentation());
 		list.remove(ActionType.TRADE.getRepresentation());
 		list.remove(ActionType.INVITE.getRepresentation());
-
+		
+		list.add(ActionType.WALK.getRepresentation());
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
-		/* TODO: Add auto walk action. */
-		//list.add(ActionType.AUTOWALK.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
 
 		User user = entity;
@@ -120,6 +119,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 			j2DClient.get().chooseOutfit();
 			break;
 			
+		case WALK:
 		case WHERE:
 		case LEAVE_SHEEP:
 		case LEAVE_PET:
