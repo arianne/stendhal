@@ -356,7 +356,7 @@ public class j2DClient implements UserInterface {
 		JComponent chatEntryBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		chatEntryBox.add(chatText.getPlayerChatText(), SLayout.EXPAND_X);
 		
-		if (System.getProperty("charmap.emotes") != null) {
+		if (Testing.CHAT) {
 			chatEntryBox.add(new CharacterMap(chatText.getPlayerChatText()));
 		}
 		
