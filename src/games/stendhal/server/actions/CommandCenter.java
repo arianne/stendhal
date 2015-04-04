@@ -30,6 +30,7 @@ import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveToAction;
 import games.stendhal.server.actions.move.PushAction;
+import games.stendhal.server.actions.move.WalkAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
@@ -122,6 +123,7 @@ public class CommandCenter {
 		StopAction.register();
 		TradeAction.register();
 		UseAction.register();
+		WalkAction.register();
 		WhereAction.register();
 		WhoAction.register();
 		register("info", new InfoAction());
