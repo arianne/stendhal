@@ -72,7 +72,12 @@ class User2DView<T extends User> extends Player2DView<T> {
 		list.remove(ActionType.TRADE.getRepresentation());
 		list.remove(ActionType.INVITE.getRepresentation());
 		
-		list.add(ActionType.WALK.getRepresentation());
+		/* Walk/Stop action. */
+		if (this.getEntity().stopped()) {
+			list.add(ActionType.WALK_START.getRepresentation());
+		} else {
+			list.add(ActionType.WALK_STOP.getRepresentation());
+		}
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
 
@@ -119,7 +124,8 @@ class User2DView<T extends User> extends Player2DView<T> {
 			j2DClient.get().chooseOutfit();
 			break;
 			
-		case WALK:
+		case WALK_START:
+		case WALK_STOP:
 		case WHERE:
 		case LEAVE_SHEEP:
 		case LEAVE_PET:
