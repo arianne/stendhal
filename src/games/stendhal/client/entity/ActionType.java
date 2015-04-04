@@ -150,7 +150,8 @@ public enum ActionType {
 		}
 		
 	},
-	WALK("walk", "Walk");
+	WALK_START("walk", "Walk"),
+	WALK_STOP("walk", "Stop");
 
 	/**
 	 * the String send to the server, if so.
