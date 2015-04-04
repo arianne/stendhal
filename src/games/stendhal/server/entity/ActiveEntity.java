@@ -17,9 +17,9 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -315,6 +315,12 @@ public abstract class ActiveEntity extends Entity {
 			stepsTaken = 0;
 			return;
 		}
+		/* XXX: Can this.stopped() be called here instead and set direction
+		 *      to Direction.DOWN at construction? Issue found with WalkAction:
+		 *      When player logs in setSpeed() will not cause movement as
+		 *      direction is set to STOP. WalkAction bypasses this by setting
+		 *      default to DOWN if direction is STOP or null.
+		 */
 		if (direction == Direction.STOP) {
 			stepsTaken = 0;
 			return;
