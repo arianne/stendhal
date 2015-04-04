@@ -39,7 +39,8 @@ public class WalkAction implements ActionListener {
 	@Override
 	public void onAction(Player player, RPAction action) {
 		/* The speed at which the player will walk. */
-		final double newSpeed;
+		final double currentSpeed = player.getSpeed();
+		final double newSpeed = player.getBaseSpeed();
 		final Direction walkDirection = player.getDirection();
 		
 		if (player.stopped()) {
@@ -49,17 +50,10 @@ public class WalkAction implements ActionListener {
 				player.setDirection(Direction.DOWN);
 			}
 			
-			/* Begin walking using the entity's previous speed. */
-			if (((Double)player.getPreviousSpeed() == null
-					|| player.getPreviousSpeed() <= 0.0)) {
-				/* Use base speed if previous speed has not been set or is set
-				 * to 0.
-				 */
-				newSpeed = player.getBaseSpeed();
-			} else {
-				newSpeed = player.getPreviousSpeed();
+			/* Begin walking using the entity's base speed. */
+			if (newSpeed != currentSpeed) {
+				player.setSpeed(newSpeed);
 			}
-			player.setSpeed(newSpeed);
 		} else {
 			/* Use the same command to stop walking. */
 			player.stop();
