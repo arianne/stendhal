@@ -53,10 +53,14 @@ public class WalkAction implements ActionListener {
 			/* Begin walking using the entity's base speed. */
 			if (newSpeed != currentSpeed) {
 				player.setSpeed(newSpeed);
+				/* Turn on auto-walk indicator. */
+				player.setAutoWalkState(true);
 			}
 		} else {
 			/* Use the same command to stop walking. */
 			player.stop();
+			/* Turn off auto-walk indicator. */
+			player.setAutoWalkState(false);
 		}
 	}
 }
