@@ -18,7 +18,8 @@
 - Drawing weather can be disabled in settings
 - More visible new chat message indication
 - Links to stendhalgame.org in the chat log can be opened with a mouse click
-- The client can draw a weapon sprite with the attack swipes, if one is available 
+- The client can draw a weapon sprite with the attack swipes, if one is available
+- "Walk" option added to character right-click menu
 
 *code*
 - Alias "zucchini" for "courgette"
