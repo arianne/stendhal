@@ -20,6 +20,7 @@
 - Links to stendhalgame.org in the chat log can be opened with a mouse click
 - The client can draw a weapon sprite with the attack swipes, if one is available
 - "Walk" option added to character right-click menu
+  - Can also be activated by using "/walk" slash command
 
 *code*
 - Alias "zucchini" for "courgette"
