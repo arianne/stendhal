@@ -160,6 +160,9 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	private long lastClientActionTimestamp = System.currentTimeMillis();
 
+	/** The state of the auto walking feature. */
+	private boolean autoWalkState = false;
+	
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
@@ -252,7 +255,7 @@ public class Player extends RPEntity implements UseListener {
 
 	public Player(final RPObject object) {
 		super(object);
-
+		
 		setRPClass("player");
 		put("type", "player");
 		// HACK: postman as NPC
@@ -1794,7 +1797,6 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public void logic() {
-
 		/*
 		 * TODO: Refactor Most of these things can be handled as RPEvents
 		 */
@@ -2758,5 +2760,25 @@ public class Player extends RPEntity implements UseListener {
 	@Override
 	public int getCappedRatk() {
 		return Math.min(this.ratk, getMaxAtkForLevel(level));
+	}
+	
+	/**
+	 * Sets the auto-walk state for the player called by WalkAction.
+	 * 
+	 * @param state
+	 * 		<b>true</b> for is using, <b>false</b> for not
+	 */
+	public void setAutoWalkState(boolean state) {
+		this.autoWalkState = state;
+	}
+	
+	/**
+	 * Retrieves whether the player is using the auto-walk feature.
+	 * 
+	 * @return
+	 * 		<b>true</b> if player has set auto-walk
+	 */
+	public boolean getAutoWalkState() {
+		return this.autoWalkState;
 	}
 }
