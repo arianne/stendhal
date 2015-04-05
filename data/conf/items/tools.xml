@@ -164,7 +164,7 @@
     </equipable>
   </item>
   
-  <item name="shovel">
+  <!-- disabled <item name="shovel">
     <type class="tool" subclass="shovel" tileid="-1"/>
     <description>You see a shovel, a tool for digging.</description>
     <implementation class-name="games.stendhal.server.entity.item.AreaUseItem"/>
@@ -181,6 +181,6 @@
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
-  </item>
+  </item> -->
   
 </items>
