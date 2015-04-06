@@ -11,8 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
 
@@ -98,6 +101,32 @@ public class StatusAttacker {
 			}
 			
 			actualProbability = probability * probabilityAdjust;
+		}
+		
+		// DEBUG
+		if (logger.isDebugEnabled() || Testing.DEBUG) {
+			if (target.has(resistAttribute)) {
+				double resistValue = target.getDouble(resistAttribute);
+				String debugString1 = attacker.getName() + " "
+						+ inflictedStatus.getName() + " probability: "
+						+ Double.toString(probability);
+				String debugString2 = target.getName() + statusType.getName()
+						+ " resistance: "
+						+ Double.toString(resistValue);
+				String debugString3 = "New probability: "
+						+ Double.toString(actualProbability)
+						+ " (" + Double.toString(probability) + " * (1.0 - "
+						+ Double.toString(resistValue) + "))";
+				logger.info(debugString1);
+				logger.info(debugString2);
+				logger.info(debugString3);
+				if (target instanceof Player) {
+					Player player = (Player)target;
+					player.sendPrivateText(NotificationType.SERVER,
+							debugString1 + "\n" + debugString2 + "\n"
+							+ debugString3);
+				}
+			}
 		}
 		
 		// Roll dice between 1-100
