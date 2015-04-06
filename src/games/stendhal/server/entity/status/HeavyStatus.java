@@ -16,9 +16,6 @@ package games.stendhal.server.entity.status;
  */
 public class HeavyStatus extends Status {
 	
-	/** The original speed of the entity */
-	private static double originalSpeed;
-	
 	/**
 	 * Create the status
 	 */
@@ -34,21 +31,4 @@ public class HeavyStatus extends Status {
 	public StatusType getStatusType() {
 		return StatusType.HEAVY;
 	}
-	
-	/**
-	 * @param speed
-	 * 		The default speed of the entity
-	 */
-	public void setOriginalSpeed(double speed) {
-		originalSpeed = speed;
-	}
-	
-	/**
-	 * @return
-	 * 		The default speed of the entity
-	 */
-	public double getOriginalSpeed() {
-		return originalSpeed;
-	}
-
 }

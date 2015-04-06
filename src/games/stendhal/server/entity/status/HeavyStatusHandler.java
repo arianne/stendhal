@@ -25,6 +25,9 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 	
 	private int duration;
 	
+	/** The original speed of the entity */
+	private static double originalSpeed;
+	
 	/**
 	 * @param status
 	 * 		Status to inflict
@@ -40,25 +43,16 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 			RPEntity entity = statusList.getEntity();
 			if (entity != null) {
 				/* save the entity's original speed to be replaced later */
-				status.setOriginalSpeed(entity.getBaseSpeed());
-				
-				/* create random duration between 60 and 90 seconds */
-				Double d_min = 3.3 * 60;
-				Double d_max = 3.3 * 90;
-				duration = Rand.randUniform(d_min.intValue(), d_max.intValue());
-				
-				/* stop entity if it is currently moving */
-				if (entity.getSpeed() > 0.0) {
-					entity.stop();
-				}
-				
-				/* slow the entity down to half walking speed */
+				originalSpeed = entity.getBaseSpeed();
 				entity.setBaseSpeed(0.5);
 				
-				/* restart entity's movement */
-				if (entity.getSpeed() == 0) {
-					// TODO
-				}
+				/* slow the entity down to half walking speed */
+				entity.setBaseSpeed(entity.getBaseSpeed() / 2);
+				
+				/* create random duration between 30 seconds and 5 minutes */
+				Double d_min = 3.3 * 30;
+				Double d_max = 3.3 * 300;
+				duration = Rand.randUniform(d_min.intValue(), d_max.intValue());
 				
 				/* status was not inflicted by another entity */
 				if (attacker == null) {
@@ -69,19 +63,12 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 							"Your feet begin to feel heavy. You have been weighed down by "
 					+ attacker.getName() + ".");
 				}		
+				
+				statusList.addInternal(status);
+				statusList.activateStatusAttribute("status_" + status.getName());
+				TurnNotifier.get().notifyInSeconds(duration, new StatusRemover(statusList, status));
 			}
 		}
-		
-		int count = statusList.countStatusByType(status.getStatusType());
-		if (count <= 6) {
-			statusList.addInternal(status);
-		}
-		
-		if (count == 0) {
-			statusList.activateStatusAttribute("status_" + status.getName());
-			TurnNotifier.get().notifyInSeconds(duration, new StatusRemover(statusList, status));
-		}
-		
 	}
 	
 	/**
@@ -94,7 +81,6 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 	 */
 	@Override
 	public void remove(HeavyStatus status, StatusList statusList) {
-		final double original_speed = status.getOriginalSpeed();
 		statusList.removeInternal(status);
 
 		RPEntity entity = statusList.getEntity();
@@ -103,12 +89,12 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 		}
 
 		Status nextStatus = statusList.getFirstStatusByClass(HeavyStatus.class);
+		/* replace the entity's original speed */
+		entity.setBaseSpeed(originalSpeed);
 		if (nextStatus != null) {
 			TurnNotifier.get().notifyInSeconds(duration, new StatusRemover(statusList, nextStatus));
 		} else {
 			entity.remove("status_" + status.getName());
-			/* replace the entity's original speed */
-			entity.setBaseSpeed(original_speed);
 			entity.sendPrivateText(NotificationType.SCENE_SETTING, "You no longer feel weighed down.");
 		}
 	}
