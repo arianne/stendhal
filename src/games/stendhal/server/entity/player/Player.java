@@ -29,6 +29,7 @@ import games.stendhal.common.Version;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.constants.Testing;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -162,7 +163,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/** The state of the auto walking feature. */
 	private boolean autoWalkState = false;
-	
+
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
@@ -255,7 +256,7 @@ public class Player extends RPEntity implements UseListener {
 
 	public Player(final RPObject object) {
 		super(object);
-		
+
 		setRPClass("player");
 		put("type", "player");
 		// HACK: postman as NPC
@@ -286,7 +287,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		unlockedPortals = new LinkedList<Integer>();
-		
+
 		/* TODO: Remove condition when ranged stat testing is finished. */
 		if (Testing.COMBAT) {
 			/* TODO: Remove if VOLATILE definition is removed from "ratk" and
@@ -298,7 +299,7 @@ public class Player extends RPEntity implements UseListener {
 				 */
 				this.put("ratk", 10);
 				this.put("ratk_xp", 0);
-				
+
 				/* if player's current level is 20 or higher give a buffer
 				 * based on about 25% of current atk experience.
 				 */
@@ -1507,15 +1508,17 @@ public class Player extends RPEntity implements UseListener {
 			sb.append("\n" +  name + " is grumpy and has left a message: ");
 			sb.append(grumpyMessage);
 		}
-		
+
 		/* Show a sentence set by player if not away or grumpy */
 		if ((awayMessage == null) && (grumpyMessage == null)) {
 			final String sentence = getSentence();
 			if (!sentence.isEmpty()) {
-				sb.append("\n    \"" + sentence + "\"");
+				sb.append("\n");
+				sb.append(Grammar.suffix_s(name));
+				sb.append(" sentence is: \"" + sentence + "\"");
 			}
 		}
-		
+
 		return sb.toString();
 	}
 
@@ -1605,8 +1608,8 @@ public class Player extends RPEntity implements UseListener {
 		if (Testing.OUTFITS) {
 			if (temporary && !has("outfit_extended_org")) {
 				put("outfit_extended_org", get("outfit_extended"));
-				
-				
+
+
 				// remember the old color selections.
 				for (String part : RECOLORABLE_OUTFIT_PARTS) {
 					String tmp = part + "_orig";
@@ -1622,11 +1625,11 @@ public class Player extends RPEntity implements UseListener {
 					}
 				}
 			}
-			
+
 		} else {
 			if (temporary && !has("outfit_org")) {
 				put("outfit_org", get("outfit"));
-	
+
 				// remember the old color selections.
 				for (String part : RECOLORABLE_OUTFIT_PARTS) {
 					String tmp = part + "_orig";
@@ -1643,14 +1646,14 @@ public class Player extends RPEntity implements UseListener {
 				}
 			}
 		}
-		
+
 		/* TODO: Remove condition and duplicate code after outfit testing is
 		 * finished.
 		 */
 		if (Testing.OUTFITS) {
 			if (!temporary && has("outfit_extended_org")) {
 				remove("outfit_extended_org");
-				
+
 				// clear colors
 				for (String part : RECOLORABLE_OUTFIT_PARTS) {
 					if (has("outfit_colors", part)) {
@@ -1658,12 +1661,12 @@ public class Player extends RPEntity implements UseListener {
 					}
 				}
 			}
-			
+
 		} else {
 			// if the new outfit is not temporary, remove the backup
 			if (!temporary && has("outfit_org")) {
 				remove("outfit_org");
-				
+
 				// clear colors
 				for (String part : RECOLORABLE_OUTFIT_PARTS) {
 					if (has("outfit_colors", part)) {
@@ -2707,17 +2710,17 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Get the maximum allowed ATK for a level.
-	 *   
+	 *
 	 * @param level checked level
 	 * @return maximum ATK
 	 */
 	private int getMaxAtkForLevel(int level) {
 		return (int) (5 * Math.sqrt(level + 10));
 	}
-	
+
 	/**
 	 * Get the maximum allowed DEF for a level.
-	 *   
+	 *
 	 * @param level checked level
 	 * @return maximum DEF
 	 */
@@ -2728,7 +2731,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 		return getMaxAtkForLevel(level);
 	}
-	
+
 	/**
 	 * gets the capped atk level, which prevent players from training their atk way beyond what is reasonable for their level
 	 *
@@ -2751,7 +2754,7 @@ public class Player extends RPEntity implements UseListener {
 		// Red line in http://sourceforge.net/p/arianne/feature-requests/1330/
 		return Math.min(this.def, getMaxDefForLevel(level));
 	}
-	
+
 	/**
 	 * gets the capped ratk level, which prevent players from training their ratk way beyond what is reasonable for their level
 	 *
@@ -2761,20 +2764,20 @@ public class Player extends RPEntity implements UseListener {
 	public int getCappedRatk() {
 		return Math.min(this.ratk, getMaxAtkForLevel(level));
 	}
-	
+
 	/**
 	 * Sets the auto-walk state for the player called by WalkAction.
-	 * 
+	 *
 	 * @param state
 	 * 		<b>true</b> for is using, <b>false</b> for not
 	 */
 	public void setAutoWalkState(boolean state) {
 		this.autoWalkState = state;
 	}
-	
+
 	/**
 	 * Retrieves whether the player is using the auto-walk feature.
-	 * 
+	 *
 	 * @return
 	 * 		<b>true</b> if player has set auto-walk
 	 */
