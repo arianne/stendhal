@@ -23,6 +23,7 @@
     </equipable>
   </item>
   
+  <!-- DISABLED
   <item name="antivenom ring">
     <type class="ring" subclass="antivenom_ring" tileid="-1"/>
     <description>You see an antivenom ring. It has a good chance to protect you from poisoning.</description>
@@ -60,6 +61,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+  DISABLED -->
   
   <!-- End Anti-poison -->
   
