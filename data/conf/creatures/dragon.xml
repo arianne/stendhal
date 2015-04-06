@@ -264,7 +264,7 @@
       <item value="black dragon cloak" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
-      <slot name="rhand" item="golden mace"/>
+      <slot name="rhand" item="dummy_melee_8"/>
     </equips>
     <abilities>
       <damage rangedType="fire"/>

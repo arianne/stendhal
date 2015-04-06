@@ -18,4 +18,19 @@
     <equipable>
     </equipable>
   </item>
+  
+  <item name="dummy_melee_8">
+    <type class="club" subclass="dummy_melee_8" tileid="-1"/>
+    <description>Ranged weapon. This description should not be seen.</description>
+    <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>    
+    <attributes>
+      <atk value="22"/>
+      <range value="8"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+    </equipable>
+  </item>
+  
 </items>
