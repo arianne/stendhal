@@ -429,13 +429,6 @@ public class Player extends RPEntity implements UseListener {
 		if (!this.autoWalkState) {
 			directions.clear();
 			super.stop();
-			if (logger.isDebugEnabled() || Testing.DEBUG) {
-				this.sendPrivateText("STOPPING: auto-walk not enabled");
-			}
-		} else {
-			if (logger.isDebugEnabled() || Testing.DEBUG) {
-				this.sendPrivateText("NOT STOPPING: auto-walk enabled");
-			}
 		}
 	}
 
@@ -1884,13 +1877,6 @@ public class Player extends RPEntity implements UseListener {
 		if (has("offline")) {
 			remove("offline");
 			notifyWorldAboutChanges();
-		}
-
-		if (logger.isDebugEnabled() || Testing.DEBUG) {
-			if (this.autoWalkState) {
-				System.out.println("auto-walking");
-				// this.sendPrivateText("auto-walking");
-			}
 		}
 
 		applyMovement();
