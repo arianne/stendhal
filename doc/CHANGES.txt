@@ -11,6 +11,7 @@
 -- 5 olives, 2 marbles
 - Varying weather at outside zones
 - Drunken player speech is now more confusing and depends on the state of drunkenness
+- New item medicinal ring: Slightly protects against poisoning
 
 *client*
 - Emote character map available by passing -Dcharmap.emotes to VM
