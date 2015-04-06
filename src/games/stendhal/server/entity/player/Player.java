@@ -1794,6 +1794,24 @@ public class Player extends RPEntity implements UseListener {
 	//
 	// Entity
 	//
+	
+	/**
+	 * Override to keep walking if player is using auto-walk.
+	 */
+	@Override
+	public void onFinishedPath() {
+		super.onFinishedPath();
+		
+		/* Continue walking if autoWalkState is enabled. */
+		if (this.autoWalkState) {
+			/* FIXME: Should use the same speed the character had during path
+			 *        in case different from baseSpeed.
+			 * 
+			 * FIXME: Pause in player movement after path finished.
+			 */
+			this.setSpeed(this.getBaseSpeed());
+		}
+	}
 
 	/**
 	 * Perform cycle logic.
