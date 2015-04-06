@@ -91,12 +91,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public final void setBaseSpeed(final double bs) {
 		this.baseSpeed = bs;
-		
-		/* If the character has not moved yet set previousSpeed as baseSpeed.
-		 */
-		if (Double.valueOf(this.getPreviousSpeed()) == null) {
-			this.setPreviousSpeed(this.baseSpeed);
-		}
 	}
 	
 	//
