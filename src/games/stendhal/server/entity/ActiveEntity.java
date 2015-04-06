@@ -42,9 +42,6 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	private double speed;
 	
-	/* A stored value of previous speed when speed changes. */
-	private double previousSpeed;
-
 	/**
 	 * The amount of uncommitted tile movement.
 	 */
@@ -63,10 +60,6 @@ public abstract class ActiveEntity extends Entity {
 		speed = 0.0;
 		movementOffset = 0.0;
 		stepsTaken = 0;
-		
-		/* Do not set previousSpeed on construction. "null" value for
-		 * this.previousSpeed represents "stopped".
-		 */
 	}
 
 	/**
@@ -81,10 +74,6 @@ public abstract class ActiveEntity extends Entity {
 		direction = Direction.STOP;
 		speed = 0.0;
 		stepsTaken = 0;
-		
-		/* Do not set previousSpeed on construction. "null" value for
-		 * this.previousSpeed represents "stopped".
-		 */
 		
 		update();
 	}
@@ -383,16 +372,6 @@ public abstract class ActiveEntity extends Entity {
 	}
 	
 	/**
-	 * Retrieves the stored previous speed of the entity.
-	 * 
-	 * @return
-	 * 		Value of previous speed
-	 */
-	public double getPreviousSpeed() {
-		return this.previousSpeed;
-	}
-	
-	/**
 	 * Get the current speed.
 	 * 
 	 * @return
@@ -448,16 +427,6 @@ public abstract class ActiveEntity extends Entity {
 	}
 	
 	/**
-	 * Stores the entity's current speed when it changes.
-	 * 
-	 * @param value
-	 * 		The entity's current speed
-	 */
-	protected void setPreviousSpeed(final double value) {
-		this.previousSpeed = value;
-	}
-	
-	/**
 	 * Set the movement speed.
 	 * 
 	 * @param speed
@@ -468,9 +437,6 @@ public abstract class ActiveEntity extends Entity {
 			return;
 		}
 		
-		/* Store the current speed before it is altered. */
-		this.previousSpeed = this.speed;
-		
 		this.speed = speed;
 		put("speed", speed);
 		notifyWorldAboutChanges();
@@ -480,9 +446,6 @@ public abstract class ActiveEntity extends Entity {
 	 * Stops entity's movement.
 	 */
 	public void stop() {
-		/* Store the current speed before it is altered. */
-		this.previousSpeed = this.speed;
-		
 		setSpeed(0.0);
 		movementOffset = 0.0;
 	}
