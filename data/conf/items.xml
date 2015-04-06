@@ -13,6 +13,7 @@
 	<group uri="items/crystals.xml"/>
 	<group uri="items/documents.xml"/>
 	<group uri="items/drinks.xml"/>
+	<group uri="items/dummy_weapons.xml"/>
     <group uri="items/flowers.xml"/>
 	<group uri="items/food.xml"/>
 	<group uri="items/helmets.xml"/>

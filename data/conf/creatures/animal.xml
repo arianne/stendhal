@@ -314,7 +314,7 @@
     </drops>
     <equips>
       <slot name="lhand" item="steel arrow" quantity="10000"/>
-      <slot name="rhand" item="wooden bow" quantity="1"/>
+      <slot name="rhand" item="dummy_ranged" quantity="1"/>
     </equips>
     <ai>
       <says>
