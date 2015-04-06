@@ -21,18 +21,17 @@ import marauroa.common.game.RPAction;
 /**
  * Action that sets character speed and begins moving in faced direction.
  * 
- * @author
- *		AntumDeluge
+ * @author AntumDeluge
  */
 public class WalkAction implements ActionListener {
-	
+
 	/**
 	 * Registers walk action.
 	 */
 	public static void register() {
 		CommandCenter.register(WALK, new WalkAction());
 	}
-	
+
 	/**
 	 * Begin walking.
 	 */
@@ -42,25 +41,25 @@ public class WalkAction implements ActionListener {
 		final double currentSpeed = player.getSpeed();
 		final double newSpeed = player.getBaseSpeed();
 		final Direction walkDirection = player.getDirection();
-		
+
 		if (player.stopped()) {
 			/* Check if the player's direction is defined. */
 			if ((walkDirection == Direction.STOP) || (walkDirection == null)) {
 				/* Set default direction to DOWN. */
 				player.setDirection(Direction.DOWN);
 			}
-			
+
 			/* Begin walking using the entity's base speed. */
 			if (newSpeed != currentSpeed) {
-				player.setSpeed(newSpeed);
 				/* Turn on auto-walk indicator. */
 				player.setAutoWalkState(true);
+				player.setSpeed(newSpeed);
 			}
 		} else {
 			/* Use the same command to stop walking. */
-			player.stop();
 			/* Turn off auto-walk indicator. */
 			player.setAutoWalkState(false);
+			player.stop();
 		}
 	}
 }
