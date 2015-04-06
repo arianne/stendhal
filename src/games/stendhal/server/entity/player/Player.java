@@ -1790,7 +1790,7 @@ public class Player extends RPEntity implements UseListener {
 
 		return true;
 	}
-
+	
 	//
 	// Entity
 	//
@@ -2781,7 +2781,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @return
 	 * 		<b>true</b> if player has set auto-walk
 	 */
-	public boolean getAutoWalkState() {
+	public boolean usingAutoWalk() {
 		return this.autoWalkState;
 	}
 }
