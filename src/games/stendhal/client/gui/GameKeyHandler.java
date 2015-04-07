@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
@@ -20,13 +21,21 @@ import games.stendhal.common.Direction;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * Main window keyboard handling.
  */
 class GameKeyHandler implements KeyListener {
+	/* Logger instance. */
+	private static final Logger logger = Logger.getLogger(GameKeyHandler.class);
+
 	private final StendhalClient client;
 	private final GameScreen screen;
 	private long lastAction = 0;
@@ -36,6 +45,8 @@ class GameKeyHandler implements KeyListener {
 	 */
 	private DelayedDirectionRelease directionRelease;
 
+	/** List of keys that are currently in the "pressed" state. */
+	private List<Integer> pressedStateKeys = new ArrayList<Integer>();
 	/**
 	 * Create a new GameKeyHandler.
 	 * 
@@ -49,91 +60,112 @@ class GameKeyHandler implements KeyListener {
 
 	@Override
 	public void keyPressed(final KeyEvent e) {
-		if (e.isShiftDown()) {
-			/*
-			 * We are going to use shift to move to previous/next line of text
-			 * with arrows so we just ignore the keys if shift is pressed.
-			 */
-			return;
-		}
+		final int keyCode = e.getKeyCode();
 
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_R:
-			if (e.isControlDown()) {
+		/* Ignore if the key is already pressed down. */
+		if (!this.pressedStateKeys.contains(keyCode)) {
+			/* Add keyCode to pressedStateKeys list. */
+			this.pressedStateKeys.add(keyCode);
+
+			if (e.isShiftDown()) {
 				/*
-				 * Ctrl+R Remove text bubbles
+				 * We are going to use shift to move to previous/next line of text
+				 * with arrows so we just ignore the keys if shift is pressed.
 				 */
-				screen.clearTexts();
+				return;
 			}
-			break;
 
-		case KeyEvent.VK_W:
-			if (e.isControlDown()) {
-				StendhalClient client = StendhalClient.get();
-				RPAction action = new RPAction();
+			switch (keyCode) {
+			case KeyEvent.VK_R:
+				if (e.isControlDown()) {
+					/*
+					 * Ctrl+R Remove text bubbles
+					 */
+					screen.clearTexts();
+				}
+				break;
 
-				/* Toggle auto-walk. */
-				action.put("type", "walk");
-				client.send(action);
-			}
-			break;
+			case KeyEvent.VK_W:
+				if (e.isControlDown()) {
+					StendhalClient client = StendhalClient.get();
+					RPAction action = new RPAction();
 
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_DOWN:
-			/*
-			 * Ctrl means face, otherwise move
-			 */
-			final Direction direction = keyCodeToDirection(e.getKeyCode());
+					/* Toggle auto-walk. */
+					action.put(TYPE, "walk");
+					client.send(action);
+				}
+				break;
 
-			if (e.isAltGraphDown()) {
-				if (System.currentTimeMillis() - lastAction > 1000) {
-					final User user = User.get();
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_DOWN:
+				/*
+				 * Ctrl means face, otherwise move
+				 */
+				final Direction direction = keyCodeToDirection(e.getKeyCode());
 
-					final EntityView<?> view = screen.getEntityViewAt(user.getX()
-							+ direction.getdx(), user.getY() + direction.getdy());
+				if (e.isAltGraphDown()) {
+					if (System.currentTimeMillis() - lastAction > 1000) {
+						final User user = User.get();
 
-					if (view != null) {
-						final IEntity entity = view.getEntity();
-						if (!entity.equals(user)) {
-							view.onAction();
-							lastAction = System.currentTimeMillis();
+						final EntityView<?> view = screen.getEntityViewAt(
+								user.getX()
+										+ direction.getdx(), user.getY()
+										+ direction.getdy());
+
+						if (view != null) {
+							final IEntity entity = view.getEntity();
+							if (!entity.equals(user)) {
+								view.onAction();
+								lastAction = System.currentTimeMillis();
+							}
 						}
 					}
 				}
-			}
 
-			processDirectionPress(direction, e.isControlDown());
-			break;
-		case KeyEvent.VK_0:
-		case KeyEvent.VK_1:
-		case KeyEvent.VK_2:
-		case KeyEvent.VK_3:
-		case KeyEvent.VK_4:
-		case KeyEvent.VK_5:
-		case KeyEvent.VK_6:
-		case KeyEvent.VK_7:
-		case KeyEvent.VK_8:
-		case KeyEvent.VK_9:
-			switchToSpellCastingState(e);
-			break;
-		}
+				processDirectionPress(direction, e.isControlDown());
+				break;
+			case KeyEvent.VK_0:
+			case KeyEvent.VK_1:
+			case KeyEvent.VK_2:
+			case KeyEvent.VK_3:
+			case KeyEvent.VK_4:
+			case KeyEvent.VK_5:
+			case KeyEvent.VK_6:
+			case KeyEvent.VK_7:
+			case KeyEvent.VK_8:
+			case KeyEvent.VK_9:
+				switchToSpellCastingState(e);
+				break;
+			}
+		} // !pressedStateKeys.contains(keyCode)
 	}
 
 	@Override
 	public void keyReleased(final KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_DOWN:
-			/*
-			 * Ctrl means face, otherwise move
-			 */
-			processDirectionRelease(keyCodeToDirection(e.getKeyCode()),
-					e.isControlDown());
-		}
+		final int keyCode = e.getKeyCode();
+
+		/* Ignore if the key is not found in the pressedStateKeys list. */
+		if (this.pressedStateKeys.contains(keyCode)) {
+			/* Remove keyCode from pressedStateKeys list. */
+			this.pressedStateKeys.removeAll(Collections.singleton(keyCode));
+
+			switch (keyCode) {
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_DOWN:
+				/*
+				 * Ctrl means face, otherwise move
+				 */
+				processDirectionRelease(keyCodeToDirection(e.getKeyCode()),
+						e.isControlDown());
+			}
+		} else {
+			logger.warn("Released key " + Integer.toString(keyCode)
+					+ " was not found in pressedStateKeys list");
+		} // this.pressedStatekeys.contains(keyCode)
 	}
 
 	@Override
