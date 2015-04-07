@@ -20,7 +20,10 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * Action that sets character speed and begins moving in faced direction.
+ * Action that sets character speed and begins moving in faced direction. If
+ * the action is executed with the MODE attribute set to "stop" it will
+ * exclusively stop the entity's movement and set auto-walking off. Otherwise
+ * it will toggle auto-walk.
  * 
  * @author AntumDeluge
  */
