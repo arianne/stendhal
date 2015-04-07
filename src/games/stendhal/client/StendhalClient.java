@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -77,6 +78,9 @@ public class StendhalClient extends ClientFramework {
 	private final Cache cache;
 
 	private final List<Direction> directions;
+
+	/** List of keys that are currently in the "pressed" state. */
+	private static List<Integer> pressedStateKeys = new ArrayList<Integer>();
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
@@ -818,5 +822,44 @@ public class StendhalClient extends ClientFramework {
 			action.remove("type");
 		}
 		super.send(action);
+	}
+
+	/**
+	 * Check if a keyboard key is in the "pressed" state.
+	 * 
+	 * @param keyCode
+	 *        The integer code for the key
+	 * @return
+	 *         <b>true</b> if code is found in pressedStateKeys list
+	 */
+	public boolean keyIsPressed(final int keyCode) {
+		return pressedStateKeys.contains(keyCode);
+	}
+
+	/**
+	 * Add a keypress to pressedStateKeys list.
+	 * 
+	 * @param keyCode
+	 *        Key to add
+	 */
+	public void onKeyPressed(final int keyCode) {
+		if (!pressedStateKeys.contains(keyCode)) {
+			pressedStateKeys.add(keyCode);
+		}
+	}
+
+	/**
+	 * Remove a keypress from pressedStateKeys list.
+	 * 
+	 * @param keyCode
+	 *        Key to remove
+	 */
+	public void onKeyReleased(final int keyCode) {
+		if (pressedStateKeys.contains(keyCode)) {
+			pressedStateKeys.removeAll(Collections.singleton(keyCode));
+		} else {
+			logger.warn("Released key " + Integer.toString(keyCode)
+					+ " was not found in pressedStateKeys list");
+		}
 	}
 }
