@@ -52,7 +52,7 @@ import java.util.List;
  * STEPS:<ul>
  * <li> Tad asks you to buy a flask to give it to Margaret.
  * <li> Margaret sells you a flask
- * <li>Tad thanks you and asks you to take the flask to Ilisa
+ * <li> Tad thanks you and asks you to take the flask to Ilisa
  * <li> Ilisa asks you for a few herbs.
  * <li> Return the created dress potion to Tad.
  * <li> Ketteh Wehoh will reminder player about Tad, if quest is started but not complete.
@@ -69,48 +69,90 @@ import java.util.List;
  * </ul>
  */
 public class MedicineForTad extends AbstractQuest {
-	private static final String QUEST_SLOT = "introduce_players";
 
+	static final String ILISA_TALK_ASK_FOR_FLASK = "Medicine for #Tad? Didn't he tell you to bring a flask?";
+	static final String ILISA_TALK_ASK_FOR_HERB = "Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?";
+	static final String ILISA_TALK_DESCRIBE_HERB = "North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.";
+	static final String ILISA_TALK_INTRODUCE_TAD = "He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him.";
+	static final String ILISA_TALK_REMIND_HERB = "Can you fetch those #herbs for the #medicine?";
+	static final String ILISA_TALK_PREPARE_MEDICINE = "Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing.";
+	static final String ILISA_TALK_EXPLAIN_MEDICINE = "The medicine that #Tad is waiting for.";
+
+	static final String KETTEH_TALK_BYE_INTRODUCES_TAD = "Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya.";
+	static final String KETTEH_TALK_BYE_REMINDS_OF_TAD = "Goodbye. Don't forget to check on Tad. I hope he's feeling better.";
+
+	static final String TAD_TALK_GOT_FLASK = "Ok, you got the flask!";
+	static final String TAD_TALK_REWARD_MONEY = "Here take this money to cover your expense.";
+	static final String TAD_TALK_FLASK_ILISA = "Now, I need you to take it to #Ilisa... she'll know what to do next.";
+	static final String TAD_TALK_REMIND_FLASK_ILISA = "I need you to take a flask to #Ilisa... she'll know what to do next.";
+	static final String TAD_TALK_INTRODUCE_ILISA = "Ilisa is the summon healer at Semos temple.";
+	static final String TAD_TALK_REMIND_MEDICINE = "*cough* I hope #Ilisa hurries with my medicine...";
+	static final String TAD_TALK_COMPLETE_QUEST = "Thanks! I will go talk with #Ilisa as soon as possible.";
+
+	static final String TAD_TALK_ASK_FOR_EMPTY_FLASK = "I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?";
+	static final String TAD_TALK_ALREADY_HELPED_1 = "I'm alright now, thanks.";
+	static final String TAD_TALK_ALREADY_HELPED_2 = "You've already helped me out! I'm feeling much better now.";
+	static final String TAD_TALK_WAIT_FOR_FLASK = "*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.";
+	static final String TAD_TALK_FLASK_MARGARET = "You could probably get a flask from #Margaret.";
+	static final String TAD_TALK_INTRODUCE_MARGARET = "Margaret is the maid in the inn just down the street.";
+	static final String TAD_TALK_CONFIRM_QUEST = "So, will you help?";
+	static final String TAD_TALK_QUEST_REFUSED = "Oh, please won't you change your mind? *sneeze*";
+	static final String TAD_TALK_QUEST_ACCEPTED = "Great! Please go as quickly as you can. *sneeze*";
+
+	static final String HISTORY_MET_TAD = "I have met Tad in Semos Hostel.";
+	static final String HISTORY_QUEST_OFFERED = "He asked me to buy a flask from Margaret in Semos Tavern.";
+	static final String HISTORY_GOT_FLASK = "I got a flask and will bring it to Tad soon.";
+	static final String HISTORY_TAKE_FLASK_TO_ILISA = "Tad asked me to take the flask to Ilisa at Semos Temple.";
+	static final String HISTORY_ILISA_ASKED_FOR_HERB = "Ilisa asked me to get a herb called Arandula which I can find north of Semos, near the tree grove.";
+	static final String HISTORY_GOT_HERB = "I found some Arandula herbs and will bring them to Ilisa.";
+	static final String HISTORY_POTION_READY = "Ilisa created a powerful potion to help Tad. She asked me to tell him that it is ready.";
+	static final String HISTORY_DONE = "Tad thanked me.";
+
+	static final String STATE_START = "start";
+	static final String STATE_ILISA = "ilisa";
+	static final String STATE_HERB = "corpse&herbs";
+	static final String STATE_POTION = "potion";
+	static final String STATE_DONE = "done";
+
+	private static final String QUEST_SLOT = "introduce_players";
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest("TadFirstChat")) {
-			res.add("I have met Tad in Semos Hostel.");
+			res.add(HISTORY_MET_TAD);
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 		final String questState = player.getQuest(QUEST_SLOT);
-		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs",
-				"potion", "done")) {
-			res.add("He asked me to buy a flask from Margaret in Semos Tavern.");
+		if (player.isQuestInState(QUEST_SLOT, STATE_START, STATE_ILISA, STATE_HERB, STATE_POTION, STATE_DONE)) {
+			res.add(HISTORY_QUEST_OFFERED);
 		}
-		if (questState.equals("start") && player.isEquipped("flask")
-				|| player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs",
-						"potion", "done")) {
-			res.add("I got a flask and will bring it to Tad soon.");
+		if (questState.equals(STATE_START) && player.isEquipped("flask")
+				|| player.isQuestInState(QUEST_SLOT, STATE_ILISA, STATE_HERB, STATE_POTION, STATE_DONE)) {
+			res.add(HISTORY_GOT_FLASK);
 		}
-		if (player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs",
-				"potion", "done")) {
-			res.add("Tad asked me to take the flask to Ilisa at Semos Temple.");
+		if (player.isQuestInState(QUEST_SLOT, STATE_ILISA, STATE_HERB, STATE_POTION, STATE_DONE)) {
+			res.add(HISTORY_TAKE_FLASK_TO_ILISA);
 		}
-		if (player.isQuestInState(QUEST_SLOT, "corpse&herbs", "potion", "done")) {
-			res.add("Ilisa asked me to get a herb called Arandula which I can find north of Semos, near the tree grove.");
+		if (player.isQuestInState(QUEST_SLOT, STATE_HERB, STATE_POTION, STATE_DONE)) {
+			res.add(HISTORY_ILISA_ASKED_FOR_HERB);
 		}
-		if (questState.equals("corpse&herbs") && player.isEquipped("arandula")
-				|| player.isQuestInState(QUEST_SLOT, "potion", "done")) {
-			res.add("I found some Arandula herbs and will bring them to Ilisa.");
+		if (questState.equals(STATE_HERB) && player.isEquipped("arandula")
+				|| player.isQuestInState(QUEST_SLOT, STATE_POTION, STATE_DONE)) {
+			res.add(HISTORY_GOT_HERB);
 		}
-		if (player.isQuestInState(QUEST_SLOT, "potion", "done")) {
-			res.add("Ilisa created a powerful potion to help Tad. She asked me to tell him that it is ready.");
+		if (player.isQuestInState(QUEST_SLOT, STATE_POTION, STATE_DONE)) {
+			res.add(HISTORY_POTION_READY);
 		}
-		if (questState.equals("done")) {
-			res.add("Tad thanked me.");
+		if (questState.equals(STATE_DONE)) {
+			res.add(HISTORY_DONE);
 		}
 		return res;
 	}
@@ -120,63 +162,76 @@ public class MedicineForTad extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "I'm alright now, thanks.", null);
+				ConversationStates.ATTENDING,
+				TAD_TALK_ALREADY_HELPED_1,
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
-				"I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?",
+				TAD_TALK_ASK_FOR_EMPTY_FLASK,
 				null);
 
-		/** In case Quest has already been completed */
-		npc.add(ConversationStates.ATTENDING, "flask",
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"You've already helped me out! I'm feeling much better now.",
-				null);
-
-		/** If quest is not started yet, start it. */
-		npc.add(ConversationStates.QUEST_OFFERED, "flask",
-				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED,
-				"You could probably get a flask from #Margaret.", null);
-
-		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, 
-				"Great! Please go as quickly as you can. *sneeze*",
-				new SetQuestAction(QUEST_SLOT, "start"));
-
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Oh, please won't you change your mind? *sneeze*", null);
-
-		npc.add(ConversationStates.QUEST_OFFERED,
-				"margaret", null,
-				ConversationStates.QUEST_OFFERED,
-				"Margaret is the maid in the inn just down the street. So, will you help?",
-				null);
-
-		/** Remind player about the quest */
+		// In case Quest has already been completed
 		npc.add(ConversationStates.ATTENDING,
 				"flask",
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
+				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.",
+				TAD_TALK_ALREADY_HELPED_2,
 				null);
 
-        /** Remind player about the quest */
+		// If quest is not started yet, start it.
+		npc.add(ConversationStates.QUEST_OFFERED,
+				"flask",
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				TAD_TALK_FLASK_MARGARET,
+				null);
+
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING, 
+				TAD_TALK_QUEST_ACCEPTED,
+				new SetQuestAction(QUEST_SLOT, STATE_START));
+
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				TAD_TALK_QUEST_REFUSED,
+				null);
+
+		npc.add(ConversationStates.QUEST_OFFERED,
+				"margaret",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				TAD_TALK_INTRODUCE_MARGARET + " " + TAD_TALK_CONFIRM_QUEST,
+				null);
+
+		// Remind player about the quest
+		npc.add(ConversationStates.ATTENDING,
+				"flask",
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, STATE_START), new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
+				ConversationStates.ATTENDING,
+				TAD_TALK_WAIT_FOR_FLASK,
+				null);
+
+        // Remind player about the quest
         npc.add(ConversationStates.ATTENDING,
                 ConversationPhrases.QUEST_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, "start"),
+                new QuestInStateCondition(QUEST_SLOT, STATE_START),
                 ConversationStates.ATTENDING,
-                "*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.",
+                TAD_TALK_WAIT_FOR_FLASK,
                 null);
 
-		npc.add(ConversationStates.ATTENDING, "margaret", null,
+		npc.add(ConversationStates.ATTENDING,
+				"margaret",
+				null,
 				ConversationStates.ATTENDING,
-				"Margaret is the maid in the inn just down the street.", null);
+				TAD_TALK_INTRODUCE_MARGARET,
+				null);
 	}
 
 	private void step_2() {
@@ -189,78 +244,80 @@ public class MedicineForTad extends AbstractQuest {
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new EquipItemAction("money", 10));
 		processStep.add(new IncreaseXPAction(10));
-		processStep.add(new SetQuestAction(QUEST_SLOT, "ilisa"));
+		processStep.add(new SetQuestAction(QUEST_SLOT, STATE_ILISA));
 		
 		// starting the conversation the first time after getting a flask.
-		// note Ilisa is spelled with a small i here because I
-		// and l cannot be told apart in game
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestInStateCondition(QUEST_SLOT, STATE_START),
 						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next.",
+				TAD_TALK_GOT_FLASK + " " + TAD_TALK_REWARD_MONEY + " " + TAD_TALK_FLASK_ILISA,
 				new MultipleActions(processStep));
 
 		// player said hi with flask on ground then picked it up and said flask
 		npc.add(ConversationStates.ATTENDING, "flask",
-                new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("flask")),
+                new AndCondition(new QuestInStateCondition(QUEST_SLOT, STATE_START), new PlayerHasItemWithHimCondition("flask")),
                 ConversationStates.ATTENDING,
-                "Ok, you got the flask! Here take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next.",
+                TAD_TALK_GOT_FLASK + " " + TAD_TALK_REWARD_MONEY + " " + TAD_TALK_FLASK_ILISA,
                 new MultipleActions(processStep));
-
 
 		// remind the player to take the flask to Ilisa.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+						new QuestInStateCondition(QUEST_SLOT, STATE_ILISA),
 						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ok, you got the flask! Now, I need you to take it to #Ilisa... she'll know what to do next.",
+				TAD_TALK_GOT_FLASK + " " + TAD_TALK_FLASK_ILISA,
 				null);
 
-		// another reminder incase player says task again
+		// another reminder in case player says task again
         npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+                new QuestInStateCondition(QUEST_SLOT, STATE_ILISA),
                 ConversationStates.ATTENDING,
-                "I need you to take a flask to #Ilisa... she'll know what to do next.",
+                TAD_TALK_REMIND_FLASK_ILISA,
                 null);
 
 		npc.add(ConversationStates.ATTENDING, "ilisa", null,
 				ConversationStates.ATTENDING,
-				"Ilisa is the summon healer at Semos temple.", null);
+				TAD_TALK_INTRODUCE_ILISA, null);
 	}
 
 	private void step_4() {
 		final SpeakerNPC npc = npcs.get("Ilisa");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, STATE_ILISA),
 						new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
 				ConversationStates.ATTENDING, 
-				"Medicine for #Tad? Didn't he tell you to bring a flask?", null);
+				ILISA_TALK_ASK_FOR_FLASK,
+				null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new DropItemAction("flask"));
 		processStep.add(new IncreaseXPAction(10));
-		processStep.add(new SetQuestAction(QUEST_SLOT, "corpse&herbs"));
+		processStep.add(new SetQuestAction(QUEST_SLOT, STATE_HERB));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "ilisa"),
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, STATE_ILISA),
 						new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
+				ILISA_TALK_ASK_FOR_HERB,
 				new MultipleActions(processStep));
 
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("herb", "arandula", "yes", "ok"),
-						new AndCondition(new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, STATE_HERB),
 						new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING,
-				"North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",
+				ILISA_TALK_DESCRIBE_HERB,
 				new ExamineChatAction("arandula.png", "Ilisa's drawing", "Arandula"));
 
 		npc.add(
@@ -268,7 +325,7 @@ public class MedicineForTad extends AbstractQuest {
 				"tad",
 				null,
 				ConversationStates.ATTENDING,
-				"He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him.",
+				ILISA_TALK_INTRODUCE_TAD,
 				null);
 	}
 
@@ -276,51 +333,55 @@ public class MedicineForTad extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, STATE_HERB),
 						new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
 				ConversationStates.ATTENDING, 
-				"Can you fetch those #herbs for the #medicine?", null);
+				ILISA_TALK_REMIND_HERB, null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new DropItemAction("arandula"));
 		processStep.add(new IncreaseXPAction(50));
         processStep.add(new IncreaseKarmaAction(4));
-		processStep.add(new SetQuestAction(QUEST_SLOT, "potion"));
+		processStep.add(new SetQuestAction(QUEST_SLOT, STATE_POTION));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, STATE_HERB),
 						new PlayerHasItemWithHimCondition("arandula")),
 				ConversationStates.ATTENDING, 
-				"Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing.",
+				ILISA_TALK_PREPARE_MEDICINE,
 				new MultipleActions(processStep));
 
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("potion",
+		npc.add(ConversationStates.ATTENDING, Arrays.asList(STATE_POTION,
 				"medicine"), null, ConversationStates.ATTENDING,
-				"The medicine that #Tad is waiting for.", null);
+				ILISA_TALK_EXPLAIN_MEDICINE, null);
 	}
 
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-        // another reminder incase player says task again                                                                                                    
-        npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, "corpse&herbs"),
+        // another reminder in case player says task again                                                                                                    
+        npc.add(ConversationStates.ATTENDING,
+        		ConversationPhrases.QUEST_MESSAGES,
+                new QuestInStateCondition(QUEST_SLOT, STATE_HERB),
                 ConversationStates.ATTENDING,
-                "*cough* I hope #Ilisa hurries with my medicine...",
+                TAD_TALK_REMIND_MEDICINE,
                 null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new IncreaseXPAction(200));
-		processStep.add(new SetQuestAction(QUEST_SLOT, "done"));
+		processStep.add(new SetQuestAction(QUEST_SLOT, STATE_DONE));
 		
-		// note Ilisa is spelled with a small i here because I
-		// and l cannot be told apart in game
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "potion")),
-				ConversationStates.ATTENDING, "Thanks! I will go talk with #Ilisa as soon as possible.",
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new GreetingMatchesNameCondition(npc.getName()),
+						new QuestInStateCondition(QUEST_SLOT, STATE_POTION)),
+				ConversationStates.ATTENDING,
+				TAD_TALK_COMPLETE_QUEST,
 				new MultipleActions(processStep));
 	
 		/*
@@ -331,17 +392,18 @@ public class MedicineForTad extends AbstractQuest {
 
         npc.add(ConversationStates.ATTENDING, 
         		ConversationPhrases.GOODBYE_MESSAGES,
-        		new AndCondition(new QuestStartedCondition(QUEST_SLOT),
-        					     new QuestNotCompletedCondition(QUEST_SLOT)),
+        		new AndCondition(
+        				new QuestStartedCondition(QUEST_SLOT),
+        				new QuestNotCompletedCondition(QUEST_SLOT)),
                 ConversationStates.IDLE,
-                "Goodbye. Don't forget to check on Tad. I hope he's feeling better.",
+                KETTEH_TALK_BYE_REMINDS_OF_TAD,
                 null);
 
         npc.add(ConversationStates.ATTENDING, 
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new QuestNotStartedCondition(QUEST_SLOT),
                 ConversationStates.IDLE,
-                "Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya.",
+                KETTEH_TALK_BYE_INTRODUCES_TAD,
                 null);
 
 	}
