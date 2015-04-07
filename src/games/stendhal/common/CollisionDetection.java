@@ -46,6 +46,8 @@ public class CollisionDetection {
 	public void init(final int width, final int height) {
 		if (this.width != width || this.height != height) {
 			map = null;
+		} else if (map != null) {
+			map.clear();
 		}
 		
 		this.width = width;
