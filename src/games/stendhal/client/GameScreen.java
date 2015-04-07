@@ -1124,8 +1124,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	@Override
-	public void onZoneChangeCompleted(Zone zone) {
-		setMaxWorldSize(zone.getWidth(), zone.getHeight());
+	public void onZoneChangeCompleted(final Zone zone) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				setMaxWorldSize(zone.getWidth(), zone.getHeight());
+			}
+		});
 		// Change layers here ?
 	}
 
