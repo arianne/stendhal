@@ -12,18 +12,25 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import static games.stendhal.common.constants.Common.AUTOWALK;
+import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.Actions;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -193,6 +200,24 @@ public class User extends Player {
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		/* TODO: Remove condition when walking bug fix is finished. */
+		if (Testing.MOVEMENT) {
+			if (object != null) {
+				if (!this.stopped()) {
+					if (!object.has(PATHSET) && !object.has(AUTOWALK)
+							&& !StendhalClient.get().keyIsPressed(
+									this.directionToKeyCode(
+											this.getDirection()))) {
+						final RPAction stopAction = new RPAction();
+						stopAction.put(Actions.TYPE, Actions.WALK);
+						stopAction.put(Actions.MODE, "stop");
+						ClientSingletonRepository.getClientFramework().send(
+								stopAction);
+					}
+				}
+			}
+		}
+
 		super.onChangedAdded(object, changes);
 
 		// The first time we ignore it.
@@ -465,6 +490,29 @@ public class User extends Player {
 			}
 			// setDirection fires the appropriate property for itself
 			setDirection(direction);
+		}
+	}
+
+	/**
+	 * Convert a Direction to the corresponding key code.
+	 * 
+	 * @param direction
+	 *        Direction to process
+	 * @return
+	 *         Corresponding key code, otherwise <code>null</code>
+	 */
+	public Integer directionToKeyCode(final Direction direction) {
+		switch (direction) {
+		case LEFT:
+			return KeyEvent.VK_LEFT;
+		case RIGHT:
+			return KeyEvent.VK_RIGHT;
+		case UP:
+			return KeyEvent.VK_UP;
+		case DOWN:
+			return KeyEvent.VK_DOWN;
+		default:
+			return null;
 		}
 	}
 }
