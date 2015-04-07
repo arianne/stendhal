@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import static games.stendhal.common.constants.Actions.MODE;
-import static games.stendhal.common.constants.Actions.TYPE;
-import static games.stendhal.common.constants.Actions.WALK;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
@@ -99,7 +96,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
 
 import marauroa.client.net.IPerceptionListener;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
@@ -301,10 +297,10 @@ public class j2DClient implements UserInterface {
 		chatText.getPlayerChatText().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(final FocusEvent e) {
-				final RPAction stopAction = new RPAction();
-				stopAction.put(TYPE, WALK);
-				stopAction.put(MODE, "stop");
-				ClientSingletonRepository.getClientFramework().send(stopAction);
+				/* Stop character's movement. */
+				client.stop();
+
+				/* Clear saved pressed state keys. */
 				client.clearPressedKeys();
 			}
 		});
