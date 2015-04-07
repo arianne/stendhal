@@ -118,21 +118,6 @@ class ScreenController implements PositionChangeListener {
 	}
 	
 	/**
-	 * Set the map size.
-	 * 
-	 * @param width
-	 * @param height
-	 */
-	void setWorldSize(final double width, final double height) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				screen.setMaxWorldSize(width, height);
-			}
-		});
-	}
-	
-	/**
 	 * Set the offline status of the client.
 	 * 
 	 * @param offline

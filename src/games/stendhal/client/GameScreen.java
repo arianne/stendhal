@@ -751,13 +751,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return (double) getScreenViewY() / SIZE_UNIT_PIXELS;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Sets the world size.
 	 *
-	 * @see games.stendhal.client.IGameScreen#setMaxWorldSize(double, double)
+	 * @param width The world width.
+	 * @param height The height width.
 	 */
-	@Override
-	public void setMaxWorldSize(final double width, final double height) {
+	private void setMaxWorldSize(final double width, final double height) {
 		ww = (int) width;
 		wh = (int) height;
 		calculateView(x, y);
@@ -1125,6 +1125,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	@Override
 	public void onZoneChangeCompleted(Zone zone) {
+		setMaxWorldSize(zone.getWidth(), zone.getHeight());
 		// Change layers here ?
 	}
 

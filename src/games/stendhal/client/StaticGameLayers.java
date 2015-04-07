@@ -27,9 +27,6 @@ public class StaticGameLayers {
 	/** Name of the layers set that we are rendering right now. */
 	private String area;
 
-	/** true when the area has been changed. */
-	private boolean areaChanged;
-
 	/** Global current zone information. */
 	private final ZoneInfo zoneInfo = ZoneInfo.get();
 	/** The current zone. */
@@ -37,7 +34,6 @@ public class StaticGameLayers {
 
 	public StaticGameLayers() {
 		area = null;
-		areaChanged = true;
 	}
 	
 	/**
@@ -74,7 +70,6 @@ public class StaticGameLayers {
 		currentZone = zone;
 		if (!zone.getName().equals(area)) {
 			setAreaName(zone.getName());
-			markAreaChanged();
 		}
 	}
 
@@ -208,26 +203,5 @@ public class StaticGameLayers {
 			return currentZone.getProtection();
 		}
 		return null;
-	}
-
-	/**
-	 * @return true if the area has changed since the last
-	 */
-	public boolean isAreaChanged() {
-		return areaChanged;
-	}
-
-	/**
-	 * marks the area as changed
-	 */
-	private void markAreaChanged() {
-		this.areaChanged = true;
-	}
-
-	/**
-	 * resets the areaChanged flag.
-	 */
-	public void resetChangedArea() {
-		areaChanged = false;
 	}
 }

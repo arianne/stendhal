@@ -32,16 +32,6 @@ public interface IGameScreen {
 	 void center();
 
 	/**
-	 * Sets the world size.
-	 *
-	 * @param width
-	 *            The world width.
-	 * @param height
-	 *            The height width.
-	 */
-	void setMaxWorldSize(double width, double height);
-
-	/**
 	 * Set the offline indication state.
 	 *
 	 * @param offline

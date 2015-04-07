@@ -833,16 +833,6 @@ public class j2DClient implements UserInterface {
 		logger.debug("Move objects");
 		gameObjects.update(delta);
 
-		if (gameLayers.isAreaChanged()) {
-			// Same thread as the ClientFramework loop, so these should
-			// be safe
-			/*
-			 * Update the screen
-			 */
-			screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-			gameLayers.resetChangedArea();
-		}
-
 		final User user = User.get();
 
 		// check if the player object has changed.

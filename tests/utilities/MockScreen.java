@@ -150,10 +150,6 @@ public class MockScreen implements IGameScreen {
 	}
 
 	@Override
-	public void setMaxWorldSize(final double width, final double height) {
-	}
-
-	@Override
 	public void setOffline(final boolean offline) {
 	}
 
