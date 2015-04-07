@@ -9,6 +9,7 @@ package games.stendhal.server.entity;
 //
 //
 
+import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.pathfinder.EntityGuide;
@@ -109,6 +110,11 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public final void setPath(final FixedPath path) {
 		if ((path != null) && !path.isFinished()) {
 			setSpeed(getBaseSpeed());
+
+			if (!this.has(PATHSET)) {
+				this.put(PATHSET, "");
+			}
+
 			guide.path = path;
 			guide.pathPosition = 0;
 			guide.followPath(this);
@@ -116,6 +122,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 			return;
 		}
 		
+		if (this.has(PATHSET)) {
+			this.remove(PATHSET);
+		}
 		guide.clearPath();
 	}
 	
@@ -133,6 +142,11 @@ public abstract class GuidedEntity extends ActiveEntity {
     public final void setPath(final FixedPath path, final int position) {
         if ((path != null) && !path.isFinished()) {
             setSpeed(getBaseSpeed());
+
+			if (!this.has(PATHSET)) {
+				this.put(PATHSET, "");
+			}
+
             guide.path = path;
             guide.pathPosition = position;
             guide.followPath(this);
@@ -140,6 +154,9 @@ public abstract class GuidedEntity extends ActiveEntity {
             return;
         }
         
+		if (this.has(PATHSET)) {
+			this.remove(PATHSET);
+		}
         guide.clearPath();
     }
     
@@ -161,6 +178,18 @@ public abstract class GuidedEntity extends ActiveEntity {
 	    }
 	}
 	
+	/**
+	 * Remove the entity's PATHSET attribute if available and stop entity
+	 * movement.
+	 */
+	@Override
+	public void stop() {
+		if (this.has(PATHSET)) {
+			this.remove(PATHSET);
+		}
+		super.stop();
+	}
+
 	public void setCollisionAction(final CollisionAction action) {
 		collisionAction = action;
 	}
