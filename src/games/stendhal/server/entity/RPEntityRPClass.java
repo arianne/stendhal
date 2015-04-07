@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.common.constants.Testing;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
@@ -95,6 +96,9 @@ public class RPEntityRPClass {
         entity.addAttribute("resist_poisoned", Type.FLOAT, Definition.VOLATILE);
         entity.addAttribute("resist_shocked", Type.FLOAT, Definition.VOLATILE);
         entity.addAttribute("resist_zombie", Type.FLOAT, Definition.VOLATILE);
+
+		/* Movement */
+		entity.addAttribute(PATHSET, Type.STRING, Definition.VOLATILE);
 
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);
