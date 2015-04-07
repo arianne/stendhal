@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.constants.Actions.MODE;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.WALK;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
@@ -96,6 +99,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
 
 import marauroa.client.net.IPerceptionListener;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
@@ -107,7 +111,7 @@ public class j2DClient implements UserInterface {
 		// using web start)
 		Initializer.init();
 	}
-	
+
 	/** Scrolling speed when using the mouse wheel. */
 	private static final int SCROLLING_SPEED = 8;
 	/** Background color of the private chat tab. Light blue. */
@@ -151,7 +155,7 @@ public class j2DClient implements UserInterface {
 	/** the minimap panel. */
 	private MapPanelController minimap;
 
-	/** the inventory.*/
+	/** the inventory. */
 	private SlotWindow inventory;
 
 	private Spells spells;
@@ -161,7 +165,7 @@ public class j2DClient implements UserInterface {
 	private boolean offline;
 
 	private OutfitDialog outfitDialog;
-	
+
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
 
 	private UserContext userContext;
@@ -171,7 +175,8 @@ public class j2DClient implements UserInterface {
 
 	/**
 	 * Get the default UI.
-	 * @return  the instance
+	 * 
+	 * @return the instance
 	 */
 	public static j2DClient get() {
 		return sharedUI;
@@ -181,16 +186,16 @@ public class j2DClient implements UserInterface {
 	 * Set the shared [singleton] value.
 	 *
 	 * @param sharedUI
-	 *            The Stendhal UI.
+	 *        The Stendhal UI.
 	 */
 	private static void setDefault(final j2DClient sharedUI) {
 		j2DClient.sharedUI = sharedUI;
 		ClientSingletonRepository.setUserInterface(sharedUI);
 	}
 
-
 	private final IPerceptionListener perceptionListener = new PerceptionListenerImpl() {
 		int times;
+
 		@Override
 		public void onSynced() {
 			setOffline(false);
@@ -206,7 +211,8 @@ public class j2DClient implements UserInterface {
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
+				addEventLine(new HeaderLessEventLine(
+						"Unsynced: Resynchronizing...",
 						NotificationType.CLIENT));
 			}
 		}
@@ -218,7 +224,6 @@ public class j2DClient implements UserInterface {
 	private StendhalClient client;
 
 	private SoundSystemFacade soundSystemFacade;
-
 
 	/**
 	 * A constructor for JUnit tests.
@@ -234,10 +239,12 @@ public class j2DClient implements UserInterface {
 	 *
 	 * @param client
 	 * @param userContext
-	 * @param splash splash screen or <code>null</code>. If not
-	 *	<code>null</code>, it will be used as the main window
+	 * @param splash
+	 *        splash screen or <code>null</code>. If not
+	 *        <code>null</code>, it will be used as the main window
 	 */
-	public j2DClient(final StendhalClient client, final UserContext userContext,
+	public j2DClient(final StendhalClient client,
+			final UserContext userContext,
 			JFrame splash) {
 		this.client = client;
 		this.userContext = userContext;
@@ -272,8 +279,9 @@ public class j2DClient implements UserInterface {
 		 * ChatCompletionHelper.
 		 */
 		SlashActionRepository.register();
-		
-		final KeyListener tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList(),
+
+		final KeyListener tabcompletion = new ChatCompletionHelper(chatText,
+				World.get().getPlayerList().getNamesList(),
 				SlashActionRepository.getCommandNames());
 		chatText.addKeyListener(tabcompletion);
 
@@ -284,6 +292,20 @@ public class j2DClient implements UserInterface {
 			@Override
 			public void focusGained(final FocusEvent e) {
 				chatText.getPlayerChatText().requestFocus();
+			}
+		});
+
+		/* 
+		 * Stop character movement when focus is lost.
+		 */
+		chatText.getPlayerChatText().addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(final FocusEvent e) {
+				final RPAction stopAction = new RPAction();
+				stopAction.put(TYPE, WALK);
+				stopAction.put(MODE, "stop");
+				ClientSingletonRepository.getClientFramework().send(stopAction);
+				client.clearPressedKeys();
 			}
 		});
 		
