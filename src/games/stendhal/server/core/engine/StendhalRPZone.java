@@ -386,11 +386,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public void notifyOnlinePlayers() {
 		// Notify resident players about the changed weather
-		for (Player player : getPlayers()) {
-			// Old clients do not understand content transfer that just
-			// update the old map, and end up with no entities on the screen
-			if (!player.isDisconnected() && player.isClientNewerThan("0.97")) {
-				StendhalRPAction.transferContent(player, contents);
+		if (!getPlayers().isEmpty()) {
+			List<TransferContent> newContents = getContents();
+			for (Player player : getPlayers()) {
+				// Old clients do not understand content transfer that just
+				// update the old map, and end up with no entities on the screen
+				if (!player.isDisconnected() && player.isClientNewerThan("0.97")) {
+					StendhalRPAction.transferContent(player, newContents);
+				}
 			}
 		}
 	}
