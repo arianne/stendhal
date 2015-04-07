@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
+import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.WALK;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
@@ -36,11 +37,25 @@ public class WalkAction implements ActionListener {
 	 * Begin walking.
 	 */
 	@Override
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 		/* The speed at which the player will walk. */
 		final double currentSpeed = player.getSpeed();
 		final double newSpeed = player.getBaseSpeed();
 		final Direction walkDirection = player.getDirection();
+		
+		final String mode = action.get(MODE);
+
+		/* Player used "/stop" slash command. */
+		if (mode != null && mode.equals("stop")) {
+			if (!player.stopped()) {
+				/* Call setAutoWalkState() before stop(). */
+				player.setAutoWalkState(false);
+				player.stop();
+				return;
+			} else {
+				return;
+			}
+		}
 
 		if (player.stopped()) {
 			/* Check if the player's direction is defined. */
