@@ -21,9 +21,6 @@ import games.stendhal.common.Direction;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import marauroa.common.game.RPAction;
 
@@ -45,8 +42,6 @@ class GameKeyHandler implements KeyListener {
 	 */
 	private DelayedDirectionRelease directionRelease;
 
-	/** List of keys that are currently in the "pressed" state. */
-	private List<Integer> pressedStateKeys = new ArrayList<Integer>();
 	/**
 	 * Create a new GameKeyHandler.
 	 * 
@@ -63,9 +58,9 @@ class GameKeyHandler implements KeyListener {
 		final int keyCode = e.getKeyCode();
 
 		/* Ignore if the key is already pressed down. */
-		if (!this.pressedStateKeys.contains(keyCode)) {
+		if (!client.keyIsPressed(keyCode)) {
 			/* Add keyCode to pressedStateKeys list. */
-			this.pressedStateKeys.add(keyCode);
+			client.onKeyPressed(keyCode);
 
 			if (e.isShiftDown()) {
 				/*
@@ -139,7 +134,7 @@ class GameKeyHandler implements KeyListener {
 				switchToSpellCastingState(e);
 				break;
 			}
-		} // !pressedStateKeys.contains(keyCode)
+		}
 	}
 
 	@Override
@@ -147,9 +142,9 @@ class GameKeyHandler implements KeyListener {
 		final int keyCode = e.getKeyCode();
 
 		/* Ignore if the key is not found in the pressedStateKeys list. */
-		if (this.pressedStateKeys.contains(keyCode)) {
+		if (client.keyIsPressed(keyCode)) {
 			/* Remove keyCode from pressedStateKeys list. */
-			this.pressedStateKeys.removeAll(Collections.singleton(keyCode));
+			client.onKeyReleased(keyCode);
 
 			switch (keyCode) {
 			case KeyEvent.VK_LEFT:
@@ -165,7 +160,7 @@ class GameKeyHandler implements KeyListener {
 		} else {
 			logger.warn("Released key " + Integer.toString(keyCode)
 					+ " was not found in pressedStateKeys list");
-		} // this.pressedStatekeys.contains(keyCode)
+		}
 	}
 
 	@Override
