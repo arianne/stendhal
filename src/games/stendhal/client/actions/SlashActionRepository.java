@@ -116,6 +116,7 @@ public class SlashActionRepository {
 //		actions.put("wrap", new WrapAction());
 		
 		actions.put("walk", new WalkAction());
+		actions.put("stopwalk", new StopWalkAction());
 	}
 
 	/**
