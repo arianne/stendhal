@@ -21,6 +21,8 @@ import games.stendhal.common.Direction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import marauroa.common.game.RPAction;
+
 /**
  * Main window keyboard handling.
  */
@@ -63,7 +65,17 @@ class GameKeyHandler implements KeyListener {
 				 */
 				screen.clearTexts();
 			}
+			break;
 
+		case KeyEvent.VK_W:
+			if (e.isControlDown()) {
+				StendhalClient client = StendhalClient.get();
+				RPAction action = new RPAction();
+
+				/* Toggle auto-walk. */
+				action.put("type", "walk");
+				client.send(action);
+			}
 			break;
 
 		case KeyEvent.VK_LEFT:
