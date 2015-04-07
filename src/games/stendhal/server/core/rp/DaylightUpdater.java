@@ -3,7 +3,6 @@ package games.stendhal.server.core.rp;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,13 +100,7 @@ public class DaylightUpdater implements TurnListener {
 			attr.put("blend_method", "bleach");
 		}
 		// Notify resident players about the changed color
-		for (Player player : attr.getZone().getPlayers()) {
-			// Old clients do not understand content transfer that just
-			// update the old map, and end up with no entities on the screen
-			if (player.isClientNewerThan("0.97")) {
-				StendhalRPAction.transferContent(player);
-			}
-		}
+		attr.getZone().notifyOnlinePlayers();
 	}
 }
 
