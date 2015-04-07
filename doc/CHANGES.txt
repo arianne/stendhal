@@ -20,8 +20,10 @@
 - More visible new chat message indication
 - Links to stendhalgame.org in the chat log can be opened with a mouse click
 - The client can draw a weapon sprite with the attack swipes, if one is available
-- "Walk" option added to character right-click menu
-  - Can also be activated by using "/walk" slash command
+- Auto-walk feature:
+  - Character right-click menu: "Walk" to toggle on and "Stop" to toggle off
+  - Slash action: "/walk" to toggle on/off and "/stopwalk" to toggle off
+  - Hotkey: "Ctrl+W" to toggle on/off
 
 *code*
 - Alias "zucchini" for "courgette"
