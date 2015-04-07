@@ -20,7 +20,6 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.constants.Actions;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 
@@ -30,7 +29,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -208,11 +206,8 @@ public class User extends Player {
 							&& !StendhalClient.get().keyIsPressed(
 									this.directionToKeyCode(
 											this.getDirection()))) {
-						final RPAction stopAction = new RPAction();
-						stopAction.put(Actions.TYPE, Actions.WALK);
-						stopAction.put(Actions.MODE, "stop");
-						ClientSingletonRepository.getClientFramework().send(
-								stopAction);
+						/* Stop the character's movement. */
+						StendhalClient.get().stop();
 					}
 				}
 			}
