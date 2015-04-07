@@ -53,6 +53,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -360,6 +361,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param byteContents
 	 */
 	private void addToContent(final String name, final byte[] byteContents) {
+		// Remove old data by the same name if it exists
+		Iterator<TransferContent> it = contents.iterator();
+		while (it.hasNext()) {
+			if (name.equals(it.next().name)) {
+				logger.info("Replacing old '" + name + "' layer.");
+				it.remove();
+			}
+		}
+		
 		final TransferContent content = new TransferContent();
 		content.name = name;
 		content.cacheable = true;
@@ -368,6 +378,21 @@ public class StendhalRPZone extends MarauroaRPZone {
 		content.timestamp = CRC.cmpCRC(content.data);
 
 		contents.add(content);
+	}
+	
+	/**
+	 * Resend the zone data to players on the zone. This is meant for situations
+	 * where the map data changes. (Weather and lighting changes, and so on).
+	 */
+	public void notifyOnlinePlayers() {
+		// Notify resident players about the changed weather
+		for (Player player : getPlayers()) {
+			// Old clients do not understand content transfer that just
+			// update the old map, and end up with no entities on the screen
+			if (!player.isDisconnected() && player.isClientNewerThan("0.97")) {
+				StendhalRPAction.transferContent(player, contents);
+			}
+		}
 	}
 
 	/**
