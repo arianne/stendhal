@@ -13,6 +13,7 @@ package games.stendhal.server.actions.move;
 
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.WALK;
+import static games.stendhal.common.constants.Common.AUTOWALK;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -51,8 +52,10 @@ public class WalkAction implements ActionListener {
 		/* Player used "/stop" slash command. */
 		if (mode != null && mode.equals("stop")) {
 			if (!player.stopped()) {
-				/* Call setAutoWalkState() before stop(). */
-				player.setAutoWalkState(false);
+				/* Remove AUTOWALK before calling stop(). */
+				if (player.has(AUTOWALK)) {
+					player.remove(AUTOWALK);
+				}
 				player.stop();
 				return;
 			} else {
@@ -69,14 +72,18 @@ public class WalkAction implements ActionListener {
 
 			/* Begin walking using the entity's base speed. */
 			if (newSpeed != currentSpeed) {
-				/* Turn on auto-walk indicator. */
-				player.setAutoWalkState(true);
+				/* Turn on AUTOWALK before calling setSpeed(). */
+				if (!player.has(AUTOWALK)) {
+					player.put(AUTOWALK, "");
+				}
 				player.setSpeed(newSpeed);
 			}
 		} else {
 			/* Use the same command to stop walking. */
 			/* Turn off auto-walk indicator. */
-			player.setAutoWalkState(false);
+			if (player.has(AUTOWALK)) {
+				player.remove(AUTOWALK);
+			}
 			player.stop();
 		}
 	}

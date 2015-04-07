@@ -19,6 +19,7 @@ import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
+import static games.stendhal.common.constants.Common.AUTOWALK;
 import games.stendhal.common.Direction;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
@@ -161,9 +162,6 @@ public class Player extends RPEntity implements UseListener {
 	 * last client action timestamp
 	 */
 	private long lastClientActionTimestamp = System.currentTimeMillis();
-
-	/** The state of the auto walking feature. */
-	private boolean autoWalkState = false;
 
 	public static void generateRPClass() {
 		try {
@@ -426,7 +424,7 @@ public class Player extends RPEntity implements UseListener {
 	@Override
 	public void stop() {
 		/* Bypass stopping the player if autoWalkState is <b>true</b>. */
-		if (!this.autoWalkState) {
+		if (!this.has(AUTOWALK)) {
 			directions.clear();
 			super.stop();
 		}
@@ -2864,24 +2862,5 @@ public class Player extends RPEntity implements UseListener {
 	@Override
 	public int getCappedRatk() {
 		return Math.min(this.ratk, getMaxAtkForLevel(level));
-	}
-
-	/**
-	 * Sets the auto-walk state for the player called by WalkAction.
-	 *
-	 * @param state
-	 *            <b>true</b> for is using, <b>false</b> for not
-	 */
-	public void setAutoWalkState(boolean state) {
-		this.autoWalkState = state;
-	}
-
-	/**
-	 * Retrieves whether the player is using the auto-walk feature.
-	 *
-	 * @return <b>true</b> if player has set auto-walk
-	 */
-	public boolean usingAutoWalk() {
-		return this.autoWalkState;
 	}
 }
