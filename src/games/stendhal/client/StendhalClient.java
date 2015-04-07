@@ -712,7 +712,7 @@ public class StendhalClient extends ClientFramework {
 	 * Interface for listeners that need to be informed when the user is
 	 * changing zone.
 	 */
-	interface ZoneChangeListener {
+	public interface ZoneChangeListener {
 		/**
 		 * Called when the user is changing zone.
 		 * 

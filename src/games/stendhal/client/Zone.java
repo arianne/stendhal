@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
 /**
  * Layer data of a zone.
  */
-class Zone {
+public class Zone {
 	/**
 	 * The name of the setting that controls whether the weather layer should
 	 * be drawn.
@@ -305,7 +305,7 @@ class Zone {
 	 * 
 	 * @return user readable name
 	 */
-	String getReadableName() {
+	public String getReadableName() {
 		if (readableName != null) {
 			return readableName;
 		}
@@ -343,7 +343,7 @@ class Zone {
 	 * 
 	 * @return danger level
 	 */
-	double getDangerLevel() {
+	public double getDangerLevel() {
 		return dangerLevel;
 	}
 	
@@ -366,7 +366,7 @@ class Zone {
 	 * 
 	 * @return collision
 	 */
-	CollisionDetection getCollision() {
+	public CollisionDetection getCollision() {
 		return collision;
 	}
 	
@@ -375,7 +375,7 @@ class Zone {
 	 * 
 	 * @return protection.
 	 */
-	CollisionDetection getProtection() {
+	public CollisionDetection getProtection() {
 		return protection;
 	}
 	

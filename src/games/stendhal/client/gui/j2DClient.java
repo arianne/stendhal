@@ -50,7 +50,6 @@ import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
@@ -348,6 +347,7 @@ public class j2DClient implements UserInterface {
 		// *** Create the layout ***
 		// left side panel
 		final JComponent leftColumn = createLeftPanel();
+		client.addZoneChangeListener(minimap);
 
 		// Set maximum size to prevent the entry requesting massive widths, but
 		// force expand if there's extra space anyway
@@ -835,20 +835,11 @@ public class j2DClient implements UserInterface {
 
 		if (gameLayers.isAreaChanged()) {
 			// Same thread as the ClientFramework loop, so these should
-			// be save
+			// be safe
 			/*
 			 * Update the screen
 			 */
 			screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-
-			// [Re]create the map.
-
-			final CollisionDetection cd = gameLayers.getCollisionDetection();
-			final CollisionDetection pd = gameLayers.getProtectionDetection();
-
-			if (cd != null) {
-				minimap.update(cd, pd, gameLayers.getReadableName(), gameLayers.getDangerLevel());
-			}
 			gameLayers.resetChangedArea();
 		}
 

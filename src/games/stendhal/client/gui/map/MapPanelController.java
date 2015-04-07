@@ -14,6 +14,8 @@ package games.stendhal.client.gui.map;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalClient.ZoneChangeListener;
+import games.stendhal.client.Zone;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.HousePortal;
@@ -40,7 +42,7 @@ import javax.swing.SwingUtilities;
 /**
  * Controller object for the map panel.
  */
-public class MapPanelController implements GameObjects.GameObjectListener, PositionChangeListener {
+public class MapPanelController implements GameObjects.GameObjectListener, PositionChangeListener, ZoneChangeListener {
 	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
 	private final JComponent container;
 	private final MapPanel panel;
@@ -179,7 +181,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 *            The zone name.
 	 * @param dangerLevel zone danger level
 	 */
-	public void update(final CollisionDetection cd, final CollisionDetection pd,
+	private void update(final CollisionDetection cd, final CollisionDetection pd,
 			final String zone, final double dangerLevel) {
 		// Panel will do the relevant part in EDT.
 		panel.update(cd, pd);
@@ -224,6 +226,20 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 				}
 			});
 		}
+	}
+	
+	@Override
+	public void onZoneChange(Zone zone) {
+	}
+
+	@Override
+	public void onZoneChangeCompleted(Zone zone) {
+		update(zone.getCollision(), zone.getProtection(), zone.getReadableName(), zone.getDangerLevel());
+	}
+
+	@Override
+	public void onZoneUpdate(Zone zone) {
+		update(zone.getCollision(), zone.getProtection(), zone.getReadableName(), zone.getDangerLevel());
 	}
 
 	/**
