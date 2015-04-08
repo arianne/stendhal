@@ -12,6 +12,9 @@
 - Varying weather at outside zones
 - Drunken player speech is now more confusing and depends on the state of drunkenness
 - New item medicinal ring: Slightly protects against poisoning
+- Alternative ATK XP training with "testing.combat" defined defined for server
+- Optional ranged attack (RATK) stat with "testing.combat" defined for server
+  and client
 
 *client*
 - Emote character map available by passing -Dtesting.chat to VM
