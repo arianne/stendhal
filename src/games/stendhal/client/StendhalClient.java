@@ -22,6 +22,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Version;
 
+import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -834,6 +835,19 @@ public class StendhalClient extends ClientFramework {
 	 */
 	public boolean keyIsPressed(final int keyCode) {
 		return pressedStateKeys.contains(keyCode);
+	}
+
+	/**
+	 * Check if any direction key is in "pressed" state.
+	 * 
+	 * @return
+	 *         Direction key found in pressedStateKeys list
+	 */
+	public boolean directionKeyIsPressed() {
+		return pressedStateKeys.contains(KeyEvent.VK_UP)
+				|| pressedStateKeys.contains(KeyEvent.VK_DOWN)
+				|| pressedStateKeys.contains(KeyEvent.VK_LEFT)
+				|| pressedStateKeys.contains(KeyEvent.VK_RIGHT);
 	}
 
 	/**
