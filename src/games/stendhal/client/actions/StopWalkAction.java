@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.MODE;
+import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.WALK;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
@@ -36,9 +40,9 @@ public class StopWalkAction implements SlashAction {
 	public boolean execute(String[] params, String remainder) {
 		final RPAction stop = new RPAction();
 
-		stop.put("type", "walk");
-		stop.put("target", StringHelper.unquote(remainder));
-		stop.put("mode", "stop");
+		stop.put(TYPE, WALK);
+		stop.put(TARGET, StringHelper.unquote(remainder));
+		stop.put(MODE, "stop");
 
 		ClientSingletonRepository.getClientFramework().send(stop);
 
