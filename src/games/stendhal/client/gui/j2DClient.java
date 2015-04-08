@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
@@ -293,20 +292,24 @@ public class j2DClient implements UserInterface {
 		});
 
 		/* 
-		 * Stop character movement when focus is lost.
+		 * Flush direction key states when chat box loses focus.
 		 */
 		chatText.getPlayerChatText().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(final FocusEvent e) {
-				/* Only stop player movement if it is not following a set path.
-				 */
-				if (!client.getPlayer().has(PATHSET)) {
-					/* Stop character's movement. */
-					client.stop();
+				/* TODO: Remove condition when movement testing is finished. */
+				if (Testing.MOVEMENT) {
+					/* FIXME: Something is not being flushed. Trying to
+					 *        continue walking in same direction after focus
+					 *        lost then regained does not allow moving until
+					 *        after key has been released and pressed again.
+					 */
+					if (client.clearPressedKeys()) {
+						if (logger.isDebugEnabled() || Testing.DEBUG) {
+							logger.info("Flushed pressed key states");
+						}
+					}
 				}
-
-				/* Clear saved pressed state keys. */
-				client.clearPressedKeys();
 			}
 		});
 		
