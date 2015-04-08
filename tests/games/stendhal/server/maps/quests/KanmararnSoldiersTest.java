@@ -199,11 +199,10 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		en2.step(player, "hi");
 		assertEquals("Good day, adventurer!", getReply(james));
 		en2.step(player, "map");
-		assertEquals("The map! Wonderful! Thank you. And here is your reward.", getReply(james));
+		assertEquals("The map! Wonderful! Thank you. And here is your reward. I got these boots while on the #dreamscape.", getReply(james));
 		// player earns 5000 experience points.
 		assertEquals(7500, player.getXP());
-		// You see a pair of steel boots, fit for any soldier. It is a special quest reward for player, and cannot be used by others. Stats are (DEF: 6).
-		assertTrue(player.isEquipped("steel boots"));
+		assertTrue(player.isEquipped("mainio boots"));
 		en2.step(player, "bye");
 		assertEquals("Good luck and better watch your back with all those dwarves around!", getReply(james));
 

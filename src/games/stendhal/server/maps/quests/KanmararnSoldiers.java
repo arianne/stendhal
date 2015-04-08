@@ -89,7 +89,7 @@ import org.apache.log4j.Logger;
  * <li> some karma (15)
  * <p>
  * from Sergeant James
- * <li> steel boots
+ * <li> mainio boots
  * <li> some karma (15)
  *
  * REPETITIONS:
@@ -397,19 +397,21 @@ public class KanmararnSoldiers extends AbstractQuest {
 			"He was a good soldier and fought bravely.");
 		james.addReply(Arrays.asList("kingdom", "kanmararn"),
 			"Kanmararn, the legendary kingdom of the #dwarves.");
+		james.addReply("dreamscape",
+			"There's a man east of town. He knows the way.");
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(5000));
 		actions.add(new DropInfostringItemAction("map","Henry"));
 		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 15.0));	
-		actions.add(new EquipItemAction("steel boots", 1, true));
+		actions.add(new EquipItemAction("mainio boots", 1, true));
 		
 		james.add(ConversationStates.ATTENDING, 
 				Arrays.asList("map", "henry"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
 								new PlayerHasInfostringItemWithHimCondition("map", "henry")),
 				ConversationStates.ATTENDING, 
-				"The map! Wonderful! Thank you. And here is your reward.",
+				"The map! Wonderful! Thank you. And here is your reward. I got these boots while on the #dreamscape.",
 				new MultipleActions(actions));
 		
 		james.add(ConversationStates.ATTENDING, 
@@ -467,7 +469,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			if ("map".equals(questState)) {
 				return res;
 			} 
-			res.add("I met Sergeant James and gave him the treasure map. He gave me sturdy steel boots in return.");
+			res.add("I met Sergeant James and gave him the treasure map. He gave me an excellent pair of mainio boots in return.");
 			if (isCompleted(player)) {
 				return res;
 			}
