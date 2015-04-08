@@ -179,13 +179,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 	
 	/**
-	 * Remove the entity's PATHSET attribute if available and stop entity
-	 * movement.
+	 * Clear the entity's path and remove PATHSET attribute if available and
+	 * stop entity movement.
 	 */
 	@Override
 	public void stop() {
-		if (this.has(PATHSET)) {
-			this.remove(PATHSET);
+		/* Clear entity's path if set. */
+		if (this.hasPath() || this.has(PATHSET)) {
+			this.clearPath();
 		}
 		super.stop();
 	}
@@ -203,9 +204,13 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 
 	/**
-	 * Clear the entity's path.
+	 * Clear the entity's path and remove PATHSET attribute if available.
 	 */
 	public void clearPath() {
+		if (this.has(PATHSET)) {
+			this.remove(PATHSET);
+		}
+
 		guide.clearPath();
 
 	}
@@ -266,8 +271,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 				 * target position after the path has been planned. Just
 				 * stop if that happens and we are next to the goal.
 				 */
-				clearPath();
-				stop();
+				stop(); // Calls clearPath()
 			}
 		}
 	}
@@ -375,8 +379,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	@Override
 	protected void handleObjectCollision() {
-		stop();
-		clearPath();
+		stop(); // Calls clearPath()
 	}
 
 	public void updateModifiedAttributes() {
