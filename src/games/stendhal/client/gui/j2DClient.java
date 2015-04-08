@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
@@ -297,8 +298,12 @@ public class j2DClient implements UserInterface {
 		chatText.getPlayerChatText().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(final FocusEvent e) {
-				/* Stop character's movement. */
-				client.stop();
+				/* Only stop player movement if it is not following a set path.
+				 */
+				if (!client.getPlayer().has(PATHSET)) {
+					/* Stop character's movement. */
+					client.stop();
+				}
 
 				/* Clear saved pressed state keys. */
 				client.clearPressedKeys();
