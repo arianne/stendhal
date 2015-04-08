@@ -37,6 +37,8 @@
 - Changed "player_base" outfit type to "body"
 - Entities can now pass through collision tiles with "setIgnoresCollision()"
 - Items can be given status resistance with StatusResistantItem implementation
+- New SlotActivatedItem enables an item's attributes when equipped to specified
+  slots
 
 *chat*
 - Alias "/status" for command "/sentence"
