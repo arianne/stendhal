@@ -36,12 +36,17 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+import org.apache.log4j.Logger;
+
 /**
  * This class identifies the user of this client.
  *
  * @author durkham, hendrik
  */
 public class User extends Player {
+	/* The logger instance. */
+	private static final Logger logger = Logger.getLogger(User.class);
+
 	private static User instance;
 	private static String groupLootmode;
 	private static Set<String> groupMembers;
@@ -205,10 +210,32 @@ public class User extends Player {
 		/* TODO: Remove condition when walking bug fix is finished. */
 		if (Testing.MOVEMENT) {
 			if (!this.stopped()) {
-				if (!StendhalClient.get().directionKeyIsPressed()
-						&& !object.has(AUTOWALK) && !object.has(PATHSET)) {
+				boolean shouldStop = true;
+				String debugString = "Stopped on:";
+
+				if (StendhalClient.get().directionKeyIsPressed()) {
+					shouldStop = false;
+				} else {
+					debugString += " !directionKeyIsPressed()";
+				}
+				if (object.has(AUTOWALK)) {
+					shouldStop = false;
+				} else {
+					debugString += " !has(AUTOWALK)";
+				}
+				if (object.has(PATHSET)) {
+					shouldStop = false;
+				} else {
+					debugString += " !has(PATHSET)";
+				}
+
+				if (shouldStop) {
 					/* Stop the character's movement. */
 					this.stop();
+
+					if (logger.isDebugEnabled() || Testing.DEBUG) {
+						logger.info(debugString);
+					}
 				}
 			}
 		}
