@@ -15,6 +15,7 @@
 - Alternative ATK XP training with "testing.combat" defined defined for server
 - Optional ranged attack (RATK) stat with "testing.combat" defined for server
   and client
+- Mainio boots reward instead of steel boots from Kanmararn Soldiers quest
 
 *client*
 - Emote character map available by passing -Dtesting.chat to VM
