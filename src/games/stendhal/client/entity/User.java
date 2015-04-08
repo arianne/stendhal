@@ -15,11 +15,15 @@ package games.stendhal.client.entity;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
+import static games.stendhal.common.constants.Common.AUTOWALK;
+import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 
 import java.awt.event.KeyEvent;
@@ -198,6 +202,17 @@ public class User extends Player {
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		/* TODO: Remove condition when walking bug fix is finished. */
+		if (Testing.MOVEMENT) {
+			if (!this.stopped()) {
+				if (!StendhalClient.get().directionKeyIsPressed()
+						&& !object.has(AUTOWALK) && !object.has(PATHSET)) {
+					/* Stop the character's movement. */
+					this.stop();
+				}
+			}
+		}
+
 		super.onChangedAdded(object, changes);
 
 		// The first time we ignore it.
