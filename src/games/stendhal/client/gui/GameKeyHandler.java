@@ -12,6 +12,7 @@
 package games.stendhal.client.gui;
 
 import static games.stendhal.common.constants.Actions.TYPE;
+import static games.stendhal.common.constants.Actions.WALK;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
@@ -82,12 +83,11 @@ class GameKeyHandler implements KeyListener {
 
 			case KeyEvent.VK_W:
 				if (e.isControlDown()) {
-					StendhalClient client = StendhalClient.get();
 					RPAction action = new RPAction();
 
 					/* Toggle auto-walk. */
-					action.put(TYPE, "walk");
-					client.send(action);
+					action.put(TYPE, WALK);
+					this.client.send(action);
 				}
 				break;
 
@@ -272,7 +272,7 @@ class GameKeyHandler implements KeyListener {
 	private void switchToSpellCastingState(KeyEvent e) {
 		screen.switchToSpellCasting(e);
 	}
-
+	
 	private static class DelayedDirectionRelease {
 		/**
 		 * The maximum delay between auto-repeat release-press.
