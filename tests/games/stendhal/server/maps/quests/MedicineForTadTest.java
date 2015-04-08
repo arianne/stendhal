@@ -173,9 +173,13 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		String firstReply = startTalkingToNpc("Ilisa");
 
 		assertEquals(MedicineForTad.ILISA_TALK_ASK_FOR_HERB, firstReply);
+		assertEquals(MedicineForTad.STATE_HERB, player.getQuest(questSlot));
+
 		en.step(player, "yes");
 		assertEquals(MedicineForTad.ILISA_TALK_DESCRIBE_HERB, getReply(npc));
-		assertEquals(MedicineForTad.STATE_HERB, player.getQuest(questSlot));
+
+		en.step(player, "yes");
+		assertEquals(null, getReply(npc));
 
 		en.step(player, "tad");
 		assertEquals(MedicineForTad.ILISA_TALK_INTRODUCE_TAD, getReply(npc));
