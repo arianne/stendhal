@@ -186,6 +186,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public void stop() {
 		/* Clear entity's path if set. */
 		if (this.hasPath() || this.has(PATHSET)) {
+			/* Remove PATHSET attribute here instead of in clearPath(). */
+			this.remove(PATHSET);
 			this.clearPath();
 		}
 		super.stop();
@@ -204,15 +206,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 
 	/**
-	 * Clear the entity's path and remove PATHSET attribute if available.
+	 * Clear the entity's path.
 	 */
 	public void clearPath() {
-		if (this.has(PATHSET)) {
-			this.remove(PATHSET);
-		}
-
 		guide.clearPath();
-
 	}
 
 	/**
