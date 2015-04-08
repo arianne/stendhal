@@ -231,7 +231,7 @@ public class User extends Player {
 
 				if (shouldStop) {
 					/* Stop the character's movement. */
-					this.stop();
+					this.stopMovement();
 
 					if (logger.isDebugEnabled() || Testing.DEBUG) {
 						logger.info(debugString);
@@ -541,7 +541,7 @@ public class User extends Player {
 	/**
 	 * Stop the user's movement.
 	 */
-	public void stop() {
+	public void stopMovement() {
 		final RPAction stopAction = new RPAction();
 
 		stopAction.put(TYPE, WALK);
