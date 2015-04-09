@@ -11,8 +11,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.constants.Actions.DIR;
+import static games.stendhal.common.constants.Actions.FACE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
+import static games.stendhal.common.constants.Common.AUTOWALK;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
@@ -81,45 +84,40 @@ class GameKeyHandler implements KeyListener {
 				}
 				break;
 
-			case KeyEvent.VK_W:
-				if (e.isControlDown()) {
-					RPAction action = new RPAction();
-
-					/* Toggle auto-walk. */
-					action.put(TYPE, WALK);
-					this.client.send(action);
-				}
-				break;
-
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_DOWN:
 				/*
-				 * Ctrl means face, otherwise move
+				 * Ctrl means face, otherwise move. Alt turns on auto-walk.
 				 */
 				final Direction direction = keyCodeToDirection(e.getKeyCode());
 
-				if (e.isAltGraphDown()) {
-					if (System.currentTimeMillis() - lastAction > 1000) {
-						final User user = User.get();
+				if (e.isAltDown()) {
+					/* Face direction pressed and toggle auto-walk. */
+					this.processDirectionPress(direction, false, true);
+				} else {
+					if (e.isAltGraphDown()) {
+						if (System.currentTimeMillis() - lastAction > 1000) {
+							final User user = User.get();
 
-						final EntityView<?> view = screen.getEntityViewAt(
-								user.getX()
-										+ direction.getdx(), user.getY()
-										+ direction.getdy());
+							final EntityView<?> view = screen.getEntityViewAt(
+									user.getX()
+											+ direction.getdx(), user.getY()
+											+ direction.getdy());
 
-						if (view != null) {
-							final IEntity entity = view.getEntity();
-							if (!entity.equals(user)) {
-								view.onAction();
-								lastAction = System.currentTimeMillis();
+							if (view != null) {
+								final IEntity entity = view.getEntity();
+								if (!entity.equals(user)) {
+									view.onAction();
+									lastAction = System.currentTimeMillis();
+								}
 							}
 						}
 					}
-				}
 
-				processDirectionPress(direction, e.isControlDown());
+					this.processDirectionPress(direction, e.isControlDown());
+				}
 				break;
 			case KeyEvent.VK_0:
 			case KeyEvent.VK_1:
@@ -235,6 +233,51 @@ class GameKeyHandler implements KeyListener {
     		if (user != null) {
     			user.predictMovement(direction, facing);
     		}
+		}
+	}
+
+	/**
+	 * Handle direction press actions and optionally set auto-walk.
+	 * 
+	 * @param direction
+	 *        The direction to move/face
+	 * @param facing
+	 *        If facing only (ignored if autoWalk is <code>true</code>)
+	 * @param autoWalk
+	 *        Toggle auto-walk on/off
+	 */
+	private synchronized void processDirectionPress(final Direction direction,
+			final boolean facing, final boolean autoWalk) {
+		if (autoWalk) {
+			boolean toggle = true;
+			User user = User.get();
+
+			RPAction walkAction = new RPAction();
+			walkAction.put(TYPE, WALK);
+
+			/* Correct user's direction if needed. */
+			if (direction != user.getDirection()) {
+				RPAction faceAction = new RPAction();
+
+				faceAction.put(TYPE, FACE);
+				faceAction.put(DIR, direction.get());
+				this.client.send(faceAction);
+
+				if (user.getRPObject().has(AUTOWALK)) {
+					/* If player changes directions while auto-walk is on we
+					 * do not need to turn it off.
+					 */
+					toggle = false;
+				}
+			}
+
+			if (toggle) {
+				/* Toggle auto-walk. */
+				this.client.send(walkAction);
+			}
+		} else {
+			/* If not using auto-walk switch to normal behavior. */
+			this.processDirectionPress(direction, facing);
 		}
 	}
 
