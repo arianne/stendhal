@@ -16,6 +16,7 @@
 - Optional ranged attack (RATK) stat with "testing.combat" defined for server
   and client
 - Mainio boots reward instead of steel boots from Kanmararn Soldiers quest
+- Corpse descriptions state the creature name, instead of just the creature class
 
 *client*
 - Emote character map available by passing -Dtesting.chat to VM
@@ -40,6 +41,7 @@
 - Items can be given status resistance with StatusResistantItem implementation
 - New SlotActivatedItem enables an item's attributes when equipped to specified
   slots
+- A new script for replacing maps on a running server
 
 *chat*
 - Alias "/status" for command "/sentence"
@@ -58,6 +60,7 @@
 - Refactored tiled/tileset/object/row_boat.png
 - Reporting killers on an entity death no longer lists all attackers at the time
   of death
+- The server no longer sends perceptions for deleted entities
 
 
 1.16
