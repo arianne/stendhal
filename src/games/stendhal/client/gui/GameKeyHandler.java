@@ -19,6 +19,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.Testing;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -82,7 +83,7 @@ class GameKeyHandler implements KeyListener {
 				break;
 
 			case KeyEvent.VK_W:
-				if (e.isControlDown()) {
+				if (Testing.MOVEMENT && e.isControlDown()) {
 					RPAction action = new RPAction();
 
 					/* Toggle auto-walk. */
