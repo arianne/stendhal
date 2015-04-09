@@ -85,16 +85,6 @@ class GameKeyHandler implements KeyListener {
 				}
 				break;
 
-			case KeyEvent.VK_W:
-				if (Testing.MOVEMENT && e.isControlDown()) {
-					RPAction action = new RPAction();
-
-					/* Toggle auto-walk. */
-					action.put(TYPE, WALK);
-					this.client.send(action);
-				}
-				break;
-
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_UP:
@@ -104,7 +94,10 @@ class GameKeyHandler implements KeyListener {
 				 */
 				final Direction direction = keyCodeToDirection(e.getKeyCode());
 
-				if (e.isAltDown()) {
+				/* TODO: Remove MOTION condition when auto-walk testing is
+				 * finished.
+				 */
+				if (e.isAltDown() && Testing.MOVEMENT) {
 					/* Face direction pressed and toggle auto-walk. */
 					this.processDirectionPress(direction, false, true);
 				} else {
