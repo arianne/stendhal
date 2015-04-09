@@ -16,6 +16,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.common.constants.Testing;
 
 import java.util.List;
 
@@ -73,10 +74,12 @@ class User2DView<T extends User> extends Player2DView<T> {
 		list.remove(ActionType.INVITE.getRepresentation());
 		
 		/* Walk/Stop action. */
-		if (this.getEntity().stopped()) {
-			list.add(ActionType.WALK_START.getRepresentation());
-		} else {
-			list.add(ActionType.WALK_STOP.getRepresentation());
+		if (Testing.MOVEMENT) {
+			if (this.getEntity().stopped()) {
+				list.add(ActionType.WALK_START.getRepresentation());
+			} else {
+				list.add(ActionType.WALK_STOP.getRepresentation());
+			}
 		}
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
