@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
@@ -19,55 +20,54 @@ import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
 /**
- * Causes the entity to begin walking in the direction facing.
+ * Stops player's movement.
  * 
  * @author
- * 		AntumDeluge
+ *         AntumDeluge
  */
-public class WalkAction implements SlashAction {
-	
+public class AutoWalkStopAction implements SlashAction {
 	/**
 	 * Execute a chat command.
 	 * 
 	 * @param params
-	 * 		The formal parameters.
+	 *        The formal parameters.
 	 * @param remainder
-	 * 		Line content after parameters.
+	 *        Line content after parameters.
 	 * @return
-	 * 		<code>true</code> if command was handled.
+	 *         <code>true</code> if command was handled.
 	 */
 	@Override
 	public boolean execute(String[] params, String remainder) {
-		final RPAction walk = new RPAction();
-		
-		walk.put(TYPE, WALK);
-		walk.put(TARGET, StringHelper.unquote(remainder));
+		final RPAction stop = new RPAction();
 
-		ClientSingletonRepository.getClientFramework().send(walk);
-		
+		stop.put(TYPE, WALK);
+		stop.put(TARGET, StringHelper.unquote(remainder));
+		stop.put(MODE, "stop");
+
+		ClientSingletonRepository.getClientFramework().send(stop);
+
 		return true;
 	}
-	
+
 	/**
 	 * Get the maximum number of formal parameters.
 	 * 
 	 * @return
-	 * 		Parameter count.
+	 *         Parameter count.
 	 */
 	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
-	
+
 	/**
 	 * Get the minimum number of formal parameters.
 	 * 
 	 * @return
-	 * 		Parameter count.
+	 *         Parameter count.
 	 */
 	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}
-
 }
