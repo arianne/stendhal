@@ -208,7 +208,7 @@ public class User extends Player {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		/* TODO: Remove condition when walking bug fix is finished. */
-		if (Testing.MOVEMENT) {
+		if (false) { // DISABLED
 			if (!this.stopped()) {
 				boolean shouldStop = true;
 				String debugString = "Stopped on:";
