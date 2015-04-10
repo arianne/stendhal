@@ -567,7 +567,12 @@ public class StendhalRPAction {
 		if (entity instanceof RPEntity) {
 			final RPEntity rpentity = (RPEntity) entity;
 
-			rpentity.stop();
+			/* XXX: Allow players to continue moving after zone change without
+			 *      having to press direction again.
+			 */
+			if (!Testing.MOVEMENT) {
+				rpentity.stop();
+			}
 			rpentity.stopAttack();
 			rpentity.clearPath();
 		}

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
@@ -25,10 +26,10 @@ import games.stendhal.server.entity.status.StatusType;
 
 import java.util.List;
 
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -232,7 +233,12 @@ public class Portal extends Entity implements UseListener {
 		}
 
 		if (player.teleport(destZone, dest.getX(), dest.getY(), null, null)) {
-			player.stop();
+			/* XXX: Allow player to continue movement after teleport without
+			 *      the need to release and press direction again.
+			 */
+			if (!Testing.MOVEMENT) {
+				player.stop();
+			}
 			dest.onUsedBackwards(player);
 		}
 		return true;

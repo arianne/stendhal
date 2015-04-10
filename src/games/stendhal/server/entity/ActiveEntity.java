@@ -10,6 +10,7 @@ package games.stendhal.server.entity;
 //
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -92,7 +93,16 @@ public abstract class ActiveEntity extends Entity {
 		logger.debug("Leaving zone from (" + getX() + "," + getY() + ") to ("
 				+ nx + "," + ny + ")");
 		StendhalRPAction.decideChangeZone(this, nx, ny);
-		stop();
+
+		/* TODO: Remove after zone-change testing is finished.
+		 * 
+		 * It is uncommon in games to have to release the direction key and
+		 * press it again after a zone change.
+		 */
+		if (!Testing.MOVEMENT) {
+			stop();
+		}
+
 		notifyWorldAboutChanges();
 	}
 
