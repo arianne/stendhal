@@ -348,13 +348,11 @@ public class j2DClient implements UserInterface {
 				 */
 				if (e.isControlDown()) {
 					frame.dispatchEvent(e);
-				}
 
-				/* Make sure chat box has focus. */
-				chatText.getPlayerChatText().requestFocus();
+					/* Make sure chat box has focus. */
+					chatText.getPlayerChatText().requestFocus();
 
-				/* Process cyclying throug chat tabs. */
-				if (e.isControlDown() && e.isShiftDown()) {
+					/* Process cyclying through chat tabs. */
 					final int keyCode = e.getKeyCode();
 					final int tabCount = chatLogArea.getComponentCount();
 
@@ -363,24 +361,37 @@ public class j2DClient implements UserInterface {
 					 * current tab index.
 					 */
 
-					if (keyCode == KeyEvent.VK_RIGHT) {
-						/* Cycle through tabs. */
-						chatLogTabIndex += 1;
-					} else if (keyCode == KeyEvent.VK_LEFT) {
-						/* Cycle through tabs in reverse. */
-						chatLogTabIndex -= 1;
+					final int initialIndex = chatLogTabIndex;
+
+					if (e.isShiftDown()) {
+						if (keyCode == KeyEvent.VK_RIGHT) {
+							/* Cycle through tabs. */
+							chatLogTabIndex += 1;
+						} else if (keyCode == KeyEvent.VK_LEFT) {
+							/* Cycle through tabs in reverse. */
+							chatLogTabIndex -= 1;
+						}
+					} else {
+						if (keyCode == KeyEvent.VK_PAGE_UP) {
+							chatLogTabIndex += 1;
+						} else if (keyCode == KeyEvent.VK_PAGE_DOWN) {
+							chatLogTabIndex -= 1;
+						}
 					}
 
-					/* Reached the end of tabs. */
-					if (chatLogTabIndex >= tabCount) {
-						/* Set index to first tab. */
-						chatLogTabIndex = 0;
-					} else if (chatLogTabIndex < 0) {
-						/* Reached beginning of tabs. */
-						chatLogTabIndex = tabCount - 1;
-					}
+					/* Only make changes if correct hot keys were pressed. */
+					if (chatLogTabIndex != initialIndex) {
+						/* Reached the end of tabs. */
+						if (chatLogTabIndex >= tabCount) {
+							/* Set index to first tab. */
+							chatLogTabIndex = 0;
+						} else if (chatLogTabIndex < 0) {
+							/* Reached beginning of tabs. */
+							chatLogTabIndex = tabCount - 1;
+						}
 
-					chatLogArea.setSelectedIndex(chatLogTabIndex);
+						chatLogArea.setSelectedIndex(chatLogTabIndex);
+					}
 				}
 			}
 		});

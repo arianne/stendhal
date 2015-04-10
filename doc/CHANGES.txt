@@ -30,7 +30,7 @@
   - Slash action: "/walk" to toggle on/off and "/stopwalk" to toggle off
   - Hotkeys: "Ctrl+arrow" to toggle on, "arrow" key of walking direction to
     toggle off
-- Changed hotkeys for cycling through chat log tabs: "Ctrl+Shift+left/right"
+- Add hotkeys for cycling through chat log tabs: "Ctrl+Shift+left/right"
 
 *code*
 - Alias "zucchini" for "courgette"
