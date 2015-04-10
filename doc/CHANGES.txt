@@ -30,6 +30,7 @@
   - Slash action: "/walk" to toggle on/off and "/stopwalk" to toggle off
   - Hotkeys: "Ctrl+arrow" to toggle on, "arrow" key of walking direction to
     toggle off
+- Changed hotkeys for cycling through chat log tabs: "Ctrl+Shift+left/right"
 
 *code*
 - Alias "zucchini" for "courgette"
@@ -63,6 +64,7 @@
 - Reporting killers on an entity death no longer lists all attackers at the time
   of death
 - The server no longer sends perceptions for deleted entities
+- Fix client chat box never loses focus so key release events are not lost
 
 
 1.16
