@@ -28,11 +28,14 @@ public abstract class Path {
 	private static final Logger logger = Logger.getLogger(Path.class);
 	
 	/**
-	 * Get a reasonable maximum path lenght to search
+	 * Get a reasonable maximum path length to search
 	 * 
-	 * @param entity moving Entity
-	 * @param x destination x
-	 * @param y destination y
+	 * @param entity
+	 *        moving Entity
+	 * @param x
+	 *        destination x
+	 * @param y
+	 *        destination y
 	 * @return distance
 	 */
 	private static int defaultMaximumDistance(final Entity entity, final int x, final int y) {
