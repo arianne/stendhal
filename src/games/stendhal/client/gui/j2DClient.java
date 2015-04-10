@@ -303,6 +303,9 @@ public class j2DClient implements UserInterface {
 				/* TODO: Remove condition when movement testing is finished. */
 				if (Testing.MOVEMENT) {
 					client.clearPressedKeys();
+					if (logger.isDebugEnabled() || Testing.DEBUG) {
+						System.out.println("DEBUG: flushed pressedStateKeys");
+					}
 				}
 			}
 		});
@@ -356,7 +359,13 @@ public class j2DClient implements UserInterface {
 				 * events to be lost.
 				 */
 				if (e.isControlDown()) {
-					frame.dispatchEvent(e);
+					if (Testing.MOVEMENT) {
+						// New behavior
+						frame.dispatchEvent(e);
+					} else {
+						// Previous behavior
+						chatLogArea.dispatchEvent(e);
+					}
 
 					/* Make sure chat box has focus. */
 					chatText.getPlayerChatText().requestFocus();
@@ -372,19 +381,21 @@ public class j2DClient implements UserInterface {
 
 					final int initialIndex = chatLogTabIndex;
 
-					if (e.isShiftDown()) {
-						if (keyCode == KeyEvent.VK_RIGHT) {
-							/* Cycle through tabs. */
-							chatLogTabIndex += 1;
-						} else if (keyCode == KeyEvent.VK_LEFT) {
-							/* Cycle through tabs in reverse. */
-							chatLogTabIndex -= 1;
-						}
-					} else {
-						if (keyCode == KeyEvent.VK_PAGE_UP) {
-							chatLogTabIndex += 1;
-						} else if (keyCode == KeyEvent.VK_PAGE_DOWN) {
-							chatLogTabIndex -= 1;
+					if (Testing.MOVEMENT) {
+						if (e.isShiftDown()) {
+							if (keyCode == KeyEvent.VK_RIGHT) {
+								/* Cycle through tabs. */
+								chatLogTabIndex += 1;
+							} else if (keyCode == KeyEvent.VK_LEFT) {
+								/* Cycle through tabs in reverse. */
+								chatLogTabIndex -= 1;
+							}
+						} else {
+							if (keyCode == KeyEvent.VK_PAGE_UP) {
+								chatLogTabIndex += 1;
+							} else if (keyCode == KeyEvent.VK_PAGE_DOWN) {
+								chatLogTabIndex -= 1;
+							}
 						}
 					}
 
