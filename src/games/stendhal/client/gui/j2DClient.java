@@ -332,25 +332,6 @@ public class j2DClient implements UserInterface {
 		// respond to key pressed
 		chatText.addKeyListener(gameKeyHandler);
 		screen.addKeyListener(gameKeyHandler);
-		// Also redirect key presses to the chatlog tabs, so that the tabs
-		// can be switched with ctrl-PgUp/Down
-		chatText.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				/*
-				 * Redispatch only if CTRL is pressed. Otherwise any arrow key
-				 * press will be interpreted as switching log tabs.
-				 *
-				 * What should be used for Macs?
-				 */
-				if (e.isControlDown()) {
-					chatLogArea.dispatchEvent(e);
-					// The log tab contents like stealing the focus if they get
-					// key events.
-					chatText.getPlayerChatText().requestFocus();
-				}
-			}
-		});
 
 		// Display a hint if this is a debug client
 		if (Debug.PRE_RELEASE_VERSION != null) {
@@ -369,6 +350,23 @@ public class j2DClient implements UserInterface {
 		JComponent glassPane = DragLayer.get();
 		frame.setGlassPane(glassPane);
 		glassPane.setVisible(true);
+
+		/* Listen for key events in the chat box. */
+		chatText.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				/* Dispatch key events if "Ctrl" is pressed so that chat box
+				 * does not lose focus. Losing focus can cause key release
+				 * events to be lost.
+				 */
+				if (e.isControlDown()) {
+					frame.dispatchEvent(e);
+
+					/* Make sure chat box has focus. */
+					chatText.getPlayerChatText().requestFocus();
+				}
+			}
+		});
 
 		// *** Create the layout ***
 		// left side panel
