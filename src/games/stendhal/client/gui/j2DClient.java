@@ -295,11 +295,7 @@ public class j2DClient implements UserInterface {
 					 *        lost then regained does not allow moving until
 					 *        after key has been released and pressed again.
 					 */
-					if (client.clearPressedKeys()) {
-						if (logger.isDebugEnabled() || Testing.DEBUG) {
-							logger.info("Flushed pressed key states");
-						}
-					}
+					client.clearPressedKeys();
 				}
 			}
 		});

@@ -163,9 +163,6 @@ class GameKeyHandler implements KeyListener {
 				processDirectionRelease(keyCodeToDirection(e.getKeyCode()),
 						e.isControlDown());
 			}
-		} else {
-			logger.warn("Released key " + Integer.toString(keyCode)
-					+ " was not found in pressedStateKeys list");
 		}
 	}
 

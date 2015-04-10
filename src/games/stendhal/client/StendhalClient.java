@@ -883,14 +883,11 @@ public class StendhalClient extends ClientFramework {
 	 * @return
 	 *         <code>true</code> if pressedStateKeys is empty
 	 */
-	public boolean clearPressedKeys() {
+	public void clearPressedKeys() {
 		pressedStateKeys.clear();
 
 		if (!pressedStateKeys.isEmpty()) {
 			logger.error("Could not flush pressedStateKeys list");
-			return false;
 		}
-
-		return true;
 	}
 }
