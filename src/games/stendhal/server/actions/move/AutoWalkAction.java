@@ -28,13 +28,13 @@ import marauroa.common.game.RPAction;
  * 
  * @author AntumDeluge
  */
-public class WalkAction implements ActionListener {
+public class AutoWalkAction implements ActionListener {
 
 	/**
 	 * Registers walk action.
 	 */
 	public static void register() {
-		CommandCenter.register(WALK, new WalkAction());
+		CommandCenter.register(WALK, new AutoWalkAction());
 	}
 
 	/**
