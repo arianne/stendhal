@@ -13,7 +13,7 @@
 package games.stendhal.client.gui;
 
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.User;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -114,11 +114,17 @@ import javax.swing.JComponent;
 	 * and shows a dialog in which the player can confirm that they really wants
 	 * to quit the program. If so it flags the client for termination.
 	 */
-	void requestQuit() {
+	void requestQuit(final User user) {
 		/*
 		 * Stop the player
 		 */
-		StendhalClient.get().stop();
+		if (!user.stopped()) {
+			/* User.stopMovement() executes an AutoWalkAction which will stop
+			 * the character's movement and remove auto-walk setting.
+			 */
+			user.stopMovement();
+		}
+
 		quitDialog.center();
 		quitDialog.setVisible(true);
 		yesButton.requestFocusInWindow();

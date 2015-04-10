@@ -1234,7 +1234,10 @@ public class j2DClient implements UserInterface {
 	 */
 	public void requestQuit() {
 		if (client.getConnectionState() || !offline) {
-			quitDialog.requestQuit();
+			/* XXX: Will "lastuser" always be the correct entity to use for
+			 *      logging out?
+			 */
+			quitDialog.requestQuit(this.lastuser);
 		} else {
 			System.exit(0);
 		}
