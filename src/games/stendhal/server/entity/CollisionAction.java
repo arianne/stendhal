@@ -13,5 +13,6 @@ package games.stendhal.server.entity;
 
 public enum CollisionAction {
 	REVERSE,
-	REROUTE;
+	REROUTE,
+	STOP;
 }
