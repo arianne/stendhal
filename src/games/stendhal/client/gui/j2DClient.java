@@ -300,9 +300,6 @@ public class j2DClient implements UserInterface {
 				/* TODO: Remove condition when movement testing is finished. */
 				if (Testing.MOVEMENT) {
 					client.clearPressedKeys();
-					if (logger.isDebugEnabled() || Testing.DEBUG) {
-						System.out.println("DEBUG: flushed pressedStateKeys");
-					}
 				}
 			}
 		});
