@@ -78,7 +78,7 @@ public abstract class ActiveEntity extends Entity {
 		update();
 	}
 
-	private void move(final int x, final int y, final int nx, final int ny) {
+	protected void move(final int x, final int y, final int nx, final int ny) {
 		setPosition(nx, ny);
 		notifyWorldAboutChanges();
 	}
