@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-import games.stendhal.common.constants.Testing;
 
 
 /**
@@ -48,22 +47,4 @@ public class Outfits {
 	
 	/** number of player selectable mouths */
 	public static final int MOUTH_OUTFITS = 4;
-	
-	// TODO: Remove when testing outfits is finished
-	public static int getBodiesCount() {
-		if (Testing.OUTFITS) {
-			return BODY_OUTFITS_TESTING;
-		} else {
-			return BODY_OUTFITS;
-		}
-	}
-	
-	// TODO: Remove when testing outfits is finished
-	public static int getHeadsCount() {
-		if (Testing.OUTFITS) {
-			return HEAD_OUTFITS_TESTING;
-		} else {
-			return HEAD_OUTFITS;
-		}
-	}
 }

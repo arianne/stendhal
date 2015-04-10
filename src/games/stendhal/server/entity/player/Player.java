@@ -197,12 +197,6 @@ public class Player extends RPEntity implements UseListener {
 
 		// define outfit
 		Outfit outfit = null;
-		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.OUTFITS) {
-			if (template != null && template.has("outfit_extended")) {
-				outfit = new Outfit(template.getLong("outfit_extended"));
-			}
-		}
 		if (template != null && template.has("outfit")) {
 			outfit = new Outfit(template.getInt("outfit"));
 		}
@@ -1643,77 +1637,33 @@ public class Player extends RPEntity implements UseListener {
 		// if the new outfit is temporary and the player is not wearing
 		// a temporary outfit already, store the current outfit in a
 		// second slot so that we can return to it later.
-		/**
-		 * TODO: Remove condition and duplicate code after outfit testing is
-		 * finished.
-		 */
-		if (Testing.OUTFITS) {
-			if (temporary && !has("outfit_extended_org")) {
-				put("outfit_extended_org", get("outfit_extended"));
+		if (temporary && !has("outfit_org")) {
+			put("outfit_org", get("outfit"));
 
-				// remember the old color selections.
-				for (String part : RECOLORABLE_OUTFIT_PARTS) {
-					String tmp = part + "_orig";
-					String color = get("outfit_colors", part);
-					if (color != null) {
-						put("outfit_colors", tmp, color);
-						if (!"hair".equals(part)) {
-							remove("outfit_colors", part);
-						}
-					} else if (has("outfit_colors", tmp)) {
-						// old saved colors need to be cleared in any case
-						remove("outfit_colors", tmp);
+			// remember the old color selections.
+			for (String part : RECOLORABLE_OUTFIT_PARTS) {
+				String tmp = part + "_orig";
+				String color = get("outfit_colors", part);
+				if (color != null) {
+					put("outfit_colors", tmp, color);
+					if (!"hair".equals(part)) {
+						remove("outfit_colors", part);
 					}
-				}
-			}
-
-		} else {
-			if (temporary && !has("outfit_org")) {
-				put("outfit_org", get("outfit"));
-
-				// remember the old color selections.
-				for (String part : RECOLORABLE_OUTFIT_PARTS) {
-					String tmp = part + "_orig";
-					String color = get("outfit_colors", part);
-					if (color != null) {
-						put("outfit_colors", tmp, color);
-						if (!"hair".equals(part)) {
-							remove("outfit_colors", part);
-						}
-					} else if (has("outfit_colors", tmp)) {
-						// old saved colors need to be cleared in any case
-						remove("outfit_colors", tmp);
-					}
+				} else if (has("outfit_colors", tmp)) {
+					// old saved colors need to be cleared in any case
+					remove("outfit_colors", tmp);
 				}
 			}
 		}
 
-		/*
-		 * TODO: Remove condition and duplicate code after outfit testing is
-		 * finished.
-		 */
-		if (Testing.OUTFITS) {
-			if (!temporary && has("outfit_extended_org")) {
-				remove("outfit_extended_org");
+		// if the new outfit is not temporary, remove the backup
+		if (!temporary && has("outfit_org")) {
+			remove("outfit_org");
 
-				// clear colors
-				for (String part : RECOLORABLE_OUTFIT_PARTS) {
-					if (has("outfit_colors", part)) {
-						remove("outfit_colors", part);
-					}
-				}
-			}
-
-		} else {
-			// if the new outfit is not temporary, remove the backup
-			if (!temporary && has("outfit_org")) {
-				remove("outfit_org");
-
-				// clear colors
-				for (String part : RECOLORABLE_OUTFIT_PARTS) {
-					if (has("outfit_colors", part)) {
-						remove("outfit_colors", part);
-					}
+			// clear colors
+			for (String part : RECOLORABLE_OUTFIT_PARTS) {
+				if (has("outfit_colors", part)) {
+					remove("outfit_colors", part);
 				}
 			}
 		}
@@ -1721,28 +1671,15 @@ public class Player extends RPEntity implements UseListener {
 		// combine the old outfit with the new one, as the new one might
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
-		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.OUTFITS) {
-			put("outfit_extended", newOutfit.getExtendedCode());
-		}
 		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
 
 	public Outfit getOriginalOutfit() {
-		/*
-		 * TODO: Remove condition and duplicate code when outfit testing is
-		 * finished.
-		 */
-		if (Testing.OUTFITS) {
-			if (has("outfit_extended_org")) {
-				return new Outfit(getLong("outfit_extended_org"));
-			}
-		} else {
-			if (has("outfit_org")) {
-				return new Outfit(getInt("outfit_org"));
-			}
+		if (has("outfit_org")) {
+			return new Outfit(getInt("outfit_org"));
 		}
+		
 		return null;
 	}
 
@@ -1768,12 +1705,7 @@ public class Player extends RPEntity implements UseListener {
 				}
 			}
 
-			/* TODO: Remove condition after outfit testing is finished. */
-			if (Testing.OUTFITS) {
-				remove("outfit_extended_org");
-			} else {
-				remove("outfit_org");
-			}
+			remove("outfit_org");
 			setOutfit(originalOutfit, false);
 
 			// restore old colors

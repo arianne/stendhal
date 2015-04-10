@@ -65,8 +65,8 @@ class OutfitDialog extends JDialog {
 	private final SelectorModel hair = new SelectorModel(Outfits.HAIR_OUTFITS);
 	private final SelectorModel eyes = new SelectorModel(Outfits.EYES_OUTFITS);
 	private final SelectorModel mouth = new SelectorModel(Outfits.MOUTH_OUTFITS);
-	private final SelectorModel head = new SelectorModel(Outfits.getHeadsCount());
-	private final SelectorModel body = new SelectorModel(Outfits.getBodiesCount());
+	private final SelectorModel head = new SelectorModel(Outfits.HEAD_OUTFITS);
+	private final SelectorModel body = new SelectorModel(Outfits.BODY_OUTFITS);
 	private final SelectorModel dress = new SelectorModel(Outfits.CLOTHES_OUTFITS);
 	
 	/**

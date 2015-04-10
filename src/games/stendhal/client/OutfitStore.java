@@ -18,7 +18,6 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.constants.Testing;
 
 import java.awt.Color;
 import java.awt.Composite;
@@ -76,14 +75,8 @@ public class OutfitStore {
 	private OutfitStore(final SpriteStore store) {
 		this.store = store;
 		
-		/* TODO: Remove condition when testing outfits is finished. */
-		if (Testing.OUTFITS) {
-			bodies = outfits + "/body-testing";
-			heads = outfits + "/head-testing";
-		} else {
-			bodies = outfits + "/body";
-			heads = outfits + "/head";
-		}
+		bodies = outfits + "/body";
+		heads = outfits + "/head";
 	}
 
 	//
@@ -277,12 +270,7 @@ public class OutfitStore {
 	 */
 	public Sprite getFailsafeOutfit() {
 		try {
-			/* TODO: Remove condition when outfit testing is finished. */
-			if (Testing.OUTFITS) {
-				return getOutfit((long) 0, OutfitColor.PLAIN);
-			} else {
-				return getOutfit(0, OutfitColor.PLAIN);
-			}
+			return getOutfit(0, OutfitColor.PLAIN);
 		} catch (RuntimeException e) {
 			logger.warn("Cannot build failsafe outfit. Trying to use standard failsafe sprite.", e);
 			return store.getFailsafe();

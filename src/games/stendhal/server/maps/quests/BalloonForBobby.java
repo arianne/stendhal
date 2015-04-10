@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.constants.Testing;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -80,13 +79,7 @@ public class BalloonForBobby extends AbstractQuest {
 	// Load the different outfits into the list
 	public void prepareBalloonList() {
 		for (int i = 0; i < 4; i++) {
-			// TODO: Remove when outfit testing finished
-			if (Testing.OUTFITS) {
-				balloonList[i] = new Outfit(i+1, null, null, null, null, null,
-						null);
-			} else {
-				balloonList[i] = new Outfit(i+1, null, null, null, null);
-			}
+			balloonList[i] = new Outfit(i+1, null, null, null, null);
 		}
 
 	}

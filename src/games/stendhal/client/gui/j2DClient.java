@@ -996,46 +996,22 @@ public class j2DClient implements UserInterface {
 		final RPObject player = userContext.getPlayer();
 		
 		final int outfit;
-		final long extendedOutfit;
 		
-		/* TODO: Remove condition when outfit testing is finished. */
-		if (Testing.OUTFITS) {
-			outfit = 0; // Not using but needs initialized to avoid error
-			if (player.has("outfit_extended_org")) {
-				extendedOutfit = player.getLong("outfit_extended_org");
-			} else {
-				extendedOutfit = player.getLong("outfit_extended");
-			}
+		if (player.has("outfit_org")) {
+			outfit = player.getInt("outfit_org");
 		} else {
-			extendedOutfit = 0; // Not using but needs initialized to avoid error
-			if (player.has("outfit_org")) {
-				outfit = player.getInt("outfit_org");
-			} else {
-				outfit = player.getInt("outfit");
-			}
+			outfit = player.getInt("outfit");
 		}
 		
 		if (outfitDialog == null) {
 			// Here we actually want to call new OutfitColor(). Modifying
 			// OutfitColor.PLAIN would be a bad thing.
-			/* TODO: Remove condition when outfit testing is finished. */
-			if (Testing.OUTFITS) {
-				// FIXME: remove method and add code here
-				outfitDialog = new OutfitDialog(frame, "Set outfit",
-						extendedOutfit, new OutfitColor(player));
-			} else {
-				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
-						new OutfitColor(player));
-			}
+			outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
+					new OutfitColor(player));
 			
 			outfitDialog.setVisible(true);
 		} else {
-			/* TODO: Remove condition when outfit testing is finished. */
-			if (Testing.OUTFITS) {
-				outfitDialog.setState(extendedOutfit, OutfitColor.get(player));
-			} else {
-				outfitDialog.setState(outfit, OutfitColor.get(player));
-			}
+			outfitDialog.setState(outfit, OutfitColor.get(player));
 			
 			outfitDialog.setVisible(true);
 			outfitDialog.toFront();

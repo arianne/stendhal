@@ -13,7 +13,6 @@
 package games.stendhal.server.maps.ados.rosshouse;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -86,13 +85,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			}
 		};
 		
-		// TODO: Remove when outfit testing finished
-		if (Testing.OUTFITS) {
-			// FIXME: Decide on mouth and eyes
-			npc.setOutfit(new Outfit(0, 4, 7, 32, 13, 0, 0));
-		} else {
-			npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
-		}
+		npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
 		npc.setPosition(3, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

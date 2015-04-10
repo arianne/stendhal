@@ -13,7 +13,6 @@
 package games.stendhal.server.maps.ados.rosshouse;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
@@ -77,13 +76,7 @@ public class FatherNPC implements ZoneConfigurator {
 
 		};
 		
-		// TODO: Remove when outfit testing finished
-		if (Testing.OUTFITS) {
-			// FIXME: Decide on mouth and eyes
-			npc.setOutfit(new Outfit(0, 27, 7, 34, 1, 0, 0));
-		} else {
-			npc.setOutfit(new Outfit(0, 27, 7, 34, 1));
-		}
+		npc.setOutfit(new Outfit(0, 27, 7, 34, 1));
 		npc.setPosition(12, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

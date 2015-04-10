@@ -13,7 +13,6 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -80,14 +79,8 @@ public class PizzaDelivery extends AbstractQuest {
 	// FIXME: return to "final" after outfit testing is finished
 	private static Outfit UNIFORM;
 	
-	// TODO: Remove when outfit testing is finished
 	public PizzaDelivery() {
-		if (Testing.OUTFITS) {
-			UNIFORM = new Outfit(null, null, null, Integer.valueOf(90), null,
-					null, null);
-		} else {
-			UNIFORM = new Outfit(null, null, null, Integer.valueOf(90), null);
-		}
+		UNIFORM = new Outfit(null, null, null, Integer.valueOf(90), null);
 	}
 	
 	/**
