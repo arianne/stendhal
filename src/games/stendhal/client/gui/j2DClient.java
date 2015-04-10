@@ -142,9 +142,6 @@ public class j2DClient implements UserInterface {
 
 	private final ChatTextController chatText = new ChatTextController();
 
-	/* The index of the currently shown chat log tab. */
-	private int chatLogTabIndex = 0;
-
 	/** the Character panel. */
 	private Character character;
 
@@ -354,64 +351,11 @@ public class j2DClient implements UserInterface {
 		chatText.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				/* Dispatch key events if "Ctrl" is pressed so that chat box
-				 * does not lose focus. Losing focus can cause key release
-				 * events to be lost.
-				 */
 				if (e.isControlDown()) {
-					if (Testing.MOVEMENT) {
-						// New behavior
-						frame.dispatchEvent(e);
-					} else {
-						// Previous behavior
-						chatLogArea.dispatchEvent(e);
-					}
+					chatLogArea.dispatchEvent(e);
 
-					/* Make sure chat box has focus. */
+					/* Make sure chat box regains focus. */
 					chatText.getPlayerChatText().requestFocus();
-
-					/* Process cycling through chat tabs. */
-					final int keyCode = e.getKeyCode();
-					final int tabCount = chatLogArea.getComponentCount();
-
-					/* indexOfTabComponnent(getSelectedComponent()) always
-					 * seems to return "-1", so using class field to store
-					 * current tab index.
-					 */
-
-					final int initialIndex = chatLogTabIndex;
-
-					if (Testing.MOVEMENT) {
-						if (e.isShiftDown()) {
-							if (keyCode == KeyEvent.VK_RIGHT) {
-								/* Cycle through tabs. */
-								chatLogTabIndex += 1;
-							} else if (keyCode == KeyEvent.VK_LEFT) {
-								/* Cycle through tabs in reverse. */
-								chatLogTabIndex -= 1;
-							}
-						} else {
-							if (keyCode == KeyEvent.VK_PAGE_UP) {
-								chatLogTabIndex += 1;
-							} else if (keyCode == KeyEvent.VK_PAGE_DOWN) {
-								chatLogTabIndex -= 1;
-							}
-						}
-					}
-
-					/* Only make changes if correct hot keys were pressed. */
-					if (chatLogTabIndex != initialIndex) {
-						/* Reached the end of tabs. */
-						if (chatLogTabIndex >= tabCount) {
-							/* Set index to first tab. */
-							chatLogTabIndex = 0;
-						} else if (chatLogTabIndex < 0) {
-							/* Reached beginning of tabs. */
-							chatLogTabIndex = tabCount - 1;
-						}
-
-						chatLogArea.setSelectedIndex(chatLogTabIndex);
-					}
 				}
 			}
 		});
@@ -1071,9 +1015,6 @@ public class j2DClient implements UserInterface {
 		for (JComponent tab : logs) {
 			tabs.add(it.next().getName(), tab);
 		}
-
-		/* Set active tab to default index. */
-		tabs.setSelectedIndex(chatLogTabIndex);
 
 		channelManager.addHiddenChannelListener(new NotificationChannelManager.HiddenChannelListener() {
 			@Override
