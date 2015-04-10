@@ -18,6 +18,7 @@ import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.common.Direction;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -100,6 +101,10 @@ public class MoveToAction implements ActionListener {
 			if (player.has(TELECLICKMODE) && action.has("double_click")) {
 				// Teleport
 				final StendhalRPZone zone = player.getZone();
+				// Stop walking
+				if (!player.stopped() && Testing.MOVEMENT) {
+					player.stop();
+				}
 				player.teleport(zone, x, y, null, null);
 			} else {
 				// Walk
