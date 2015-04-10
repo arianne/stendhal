@@ -2867,24 +2867,6 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
-	 * Call super method and force player to stop if using auto-walk when path
-	 * is finished.
-	 */
-	@Override
-	public void onFinishedPath() {
-		super.onFinishedPath();
-
-		/* FIXME: Hack: Removing auto-walk should be handled in setPath() and
-		 *        stopping should work when a character's path is finished
-		 *        regardless of auto-walk state.
-		 */
-		if (!this.stopped() && this.has(AUTOWALK)) {
-			this.remove(AUTOWALK);
-			this.stop();
-		}
-	}
-
-	/**
 	 * Collision handling instructions for players.
 	 * 
 	 * @param nx

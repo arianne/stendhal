@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
+import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MOVETO;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import static games.stendhal.common.constants.Actions.X;
@@ -71,6 +72,11 @@ public class MoveToAction implements ActionListener {
 
 		if (player.hasPath()) {
 			player.clearPath();
+		}
+
+		/* Disable auto-walk if player clicks with mouse. */
+		if (player.has(AUTOWALK)) {
+			player.remove(AUTOWALK);
 		}
 
 		move(player, action);
