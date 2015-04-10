@@ -28,7 +28,8 @@
 - Auto-walk feature:
   - Character right-click menu: "Walk" to toggle on and "Stop" to toggle off
   - Slash action: "/walk" to toggle on/off and "/stopwalk" to toggle off
-  - Hotkey: "Ctrl+W" to toggle on/off
+  - Hotkeys: "Ctrl+arrow" to toggle on, "arrow" key of walking direction to
+    toggle off
 
 *code*
 - Alias "zucchini" for "courgette"
@@ -42,6 +43,7 @@
 - New SlotActivatedItem enables an item's attributes when equipped to specified
   slots
 - A new script for replacing maps on a running server
+- Player entity stops walking on non-object collision
 
 *chat*
 - Alias "/status" for command "/sentence"
