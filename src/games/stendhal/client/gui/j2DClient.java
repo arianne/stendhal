@@ -142,6 +142,9 @@ public class j2DClient implements UserInterface {
 
 	private final ChatTextController chatText = new ChatTextController();
 
+	/* The index of the currently shown chat log tab. */
+	private int chatLogTabIndex = 0;
+
 	/** the Character panel. */
 	private Character character;
 
@@ -290,11 +293,6 @@ public class j2DClient implements UserInterface {
 			public void focusLost(final FocusEvent e) {
 				/* TODO: Remove condition when movement testing is finished. */
 				if (Testing.MOVEMENT) {
-					/* FIXME: Something is not being flushed. Trying to
-					 *        continue walking in same direction after focus
-					 *        lost then regained does not allow moving until
-					 *        after key has been released and pressed again.
-					 */
 					client.clearPressedKeys();
 				}
 			}
@@ -310,7 +308,7 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Game log
 		 */
-		final JComponent chatLogArea = createLogArea();
+		final JTabbedPane chatLogArea = createLogArea();
 		chatLogArea.setPreferredSize(new Dimension(screen.getWidth(), 171));
 
 		// *** Key handling ***
@@ -338,7 +336,9 @@ public class j2DClient implements UserInterface {
 		frame.setGlassPane(glassPane);
 		glassPane.setVisible(true);
 
-		/* Listen for key events in the chat box. */
+		/* Create a KeyListener to change tabs with hot keys and dispatch other
+		 * events.
+		 */
 		chatText.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -348,9 +348,39 @@ public class j2DClient implements UserInterface {
 				 */
 				if (e.isControlDown()) {
 					frame.dispatchEvent(e);
+				}
 
-					/* Make sure chat box has focus. */
-					chatText.getPlayerChatText().requestFocus();
+				/* Make sure chat box has focus. */
+				chatText.getPlayerChatText().requestFocus();
+
+				/* Process cyclying throug chat tabs. */
+				if (e.isControlDown() && e.isShiftDown()) {
+					final int keyCode = e.getKeyCode();
+					final int tabCount = chatLogArea.getComponentCount();
+
+					/* indexOfTabComponnent(getSelectedComponent()) always
+					 * seems to return "-1", so using class field to store
+					 * current tab index.
+					 */
+
+					if (keyCode == KeyEvent.VK_RIGHT) {
+						/* Cycle through tabs. */
+						chatLogTabIndex += 1;
+					} else if (keyCode == KeyEvent.VK_LEFT) {
+						/* Cycle through tabs in reverse. */
+						chatLogTabIndex -= 1;
+					}
+
+					/* Reached the end of tabs. */
+					if (chatLogTabIndex >= tabCount) {
+						/* Set index to first tab. */
+						chatLogTabIndex = 0;
+					} else if (chatLogTabIndex < 0) {
+						/* Reached beginning of tabs. */
+						chatLogTabIndex = tabCount - 1;
+					}
+
+					chatLogArea.setSelectedIndex(chatLogTabIndex);
 				}
 			}
 		});
@@ -1006,7 +1036,7 @@ public class j2DClient implements UserInterface {
 	 *
 	 * @return chat log area
 	 */
-	private JComponent createLogArea() {
+	private JTabbedPane createLogArea() {
 		final JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
 		tabs.setFocusable(false);
 		final Timer animator = new Timer(100, null);
@@ -1034,6 +1064,10 @@ public class j2DClient implements UserInterface {
 		for (JComponent tab : logs) {
 			tabs.add(it.next().getName(), tab);
 		}
+
+		/* Set active tab to default index. */
+		tabs.setSelectedIndex(chatLogTabIndex);
+
 		channelManager.addHiddenChannelListener(new NotificationChannelManager.HiddenChannelListener() {
 			@Override
 			public void channelModified(int index) {
