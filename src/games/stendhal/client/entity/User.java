@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
-import static games.stendhal.common.constants.Common.AUTOWALK;
 import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;

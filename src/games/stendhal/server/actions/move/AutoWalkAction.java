@@ -11,9 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions.move;
 
+import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.WALK;
-import static games.stendhal.common.constants.Common.AUTOWALK;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;

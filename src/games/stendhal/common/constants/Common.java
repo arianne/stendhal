@@ -19,9 +19,6 @@ package games.stendhal.common.constants;
  */
 public class Common {
 
-	/* Property indicating entity is using auto-walk. */
-	public final static String AUTOWALK = "autowalk";
-
 	/* Property indicating entity has a path set. */
 	public final static String PATHSET = "pathset";
 }

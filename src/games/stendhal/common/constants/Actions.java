@@ -185,9 +185,10 @@ public final class Actions {
 	public static final String LOOK_CLOSELY = "look_closely";
 	public static final String LANGUAGE = "language";
 	
-	//walk
 	public static final String WALK = "walk";
-	
+	/* Auto-walk property. */
+	public final static String AUTOWALK = "autowalk";
+
 	private Actions() {
 		// hide constructor
 	}

@@ -14,12 +14,12 @@ package games.stendhal.server.entity.player;
 
 import static games.stendhal.common.NotificationType.getServerNotificationType;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
+import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
-import static games.stendhal.common.constants.Common.AUTOWALK;
 import games.stendhal.common.Direction;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
