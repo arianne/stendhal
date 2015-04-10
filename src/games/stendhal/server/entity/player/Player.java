@@ -2883,4 +2883,31 @@ public class Player extends RPEntity implements UseListener {
 			this.stop();
 		}
 	}
+
+	/**
+	 * Collision handling instructions for players.
+	 * 
+	 * @param nx
+	 *        New horizontal position
+	 * @param ny
+	 *        New vertical position
+	 */
+	@Override
+	protected void handleSimpleCollision(final int nx, final int ny) {
+		if (isZoneChangeAllowed()) {
+			if (getZone().leavesZone(this, nx, ny)) {
+				handleLeaveZone(nx, ny);
+				return;
+			}
+		}
+		if (isGhost()) {
+			this.move(getX(), getY(), nx, ny);
+		} else if (Testing.MOVEMENT) { // TODO: Remove condition after auto-walk testing is finished.
+			if (this.has(AUTOWALK)) {
+				this.remove(AUTOWALK);
+			}
+
+			this.stop();
+		}
+	}
 }
