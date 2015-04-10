@@ -1,0 +1,15 @@
+<link rel="import" href="../../../lib/polymer/polymer.html">
+		
+<polymer-element name="stendhal-inventory" attributes="size slotName">
+	<template>
+		<style type="text/css">
+		div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; padding: 1px; margin: 2px}
+		</style>
+		<template repeat="{{entry in slot}}">
+			<div id="entry{{entry.i}}" class="itemSlot" style="background-image: {{entry.sprite}}" on-click="{{onClick}}">
+				{{entry.quantity}}
+			</div>
+		</template>
+	</template>
+	<script src="stendhal-inventory.js"></script>
+</polymer-element>
