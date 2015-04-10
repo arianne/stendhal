@@ -97,15 +97,18 @@ class GameKeyHandler implements KeyListener {
 
 				/* TODO: Remove MOTION condition when auto-walk testing is
 				 * finished.
+				 * 
+				 * Check if the player is currently using auto-walk or the Alt
+				 * key is pressed.
 				 */
-				if (e.isAltDown() && Testing.MOVEMENT) {
+				User user = User.get();
+				if ((user.getRPObject().has(AUTOWALK) || e.isAltDown())
+						&& Testing.MOVEMENT) {
 					/* Face direction pressed and toggle auto-walk. */
-					this.processAutoWalk(direction);
+					this.processAutoWalk(direction, user);
 				} else {
 					if (e.isAltGraphDown()) {
 						if (System.currentTimeMillis() - lastAction > 1000) {
-							final User user = User.get();
-
 							final EntityView<?> view = screen.getEntityViewAt(
 									user.getX()
 											+ direction.getdx(), user.getY()
@@ -242,17 +245,15 @@ class GameKeyHandler implements KeyListener {
 	}
 
 	/**
-	 * Handle direction press actions and optionally set auto-walk.
+	 * Handle direction press to invoke or disable auto-walk.
 	 * 
 	 * @param direction
 	 *        The direction to move/face
-	 * @param facing
-	 *        If facing only (ignored if autoWalk is <code>true</code>)
-	 * @param autoWalk
-	 *        Toggle auto-walk on/off
+	 * @param user
+	 *        The entity to set/check
 	 */
-	private synchronized void processAutoWalk(final Direction direction) {
-		User user = User.get();
+	private synchronized void processAutoWalk(final Direction direction,
+			final User user) {
 		RPAction walkAction = new RPAction();
 		final boolean facing = direction == user.getDirection();
 
