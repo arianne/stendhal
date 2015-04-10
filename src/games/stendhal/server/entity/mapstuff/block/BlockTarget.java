@@ -40,6 +40,7 @@ public class BlockTarget extends AreaEntity {
 		setRPClass("blocktarget");
 		put("type", "blocktarget");
 		this.setPosition(x, y);
+		hide();
 	}
 
 	/**
