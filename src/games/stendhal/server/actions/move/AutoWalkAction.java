@@ -14,6 +14,7 @@ package games.stendhal.server.actions.move;
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.WALK;
+import static games.stendhal.common.constants.Common.PATHSET;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -42,6 +43,15 @@ public class AutoWalkAction implements ActionListener {
 	 */
 	@Override
 	public void onAction(final Player player, final RPAction action) {
+
+		/* Clear player's path if set. */
+		if (player.hasPath()) {
+			player.clearPath();
+		}
+		if (player.has(PATHSET)) {
+			player.remove(PATHSET);
+		}
+
 		/* The speed at which the player will walk. */
 		final double currentSpeed = player.getSpeed();
 		final double newSpeed = player.getBaseSpeed();
