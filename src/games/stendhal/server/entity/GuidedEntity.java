@@ -191,6 +191,12 @@ public abstract class GuidedEntity extends ActiveEntity {
 		super.stop();
 	}
 
+	/**
+	 * Set the action type to take when entity collides.
+	 * 
+	 * @param action
+	 *        Type of action to execute
+	 */
 	public void setCollisionAction(final CollisionAction action) {
 		collisionAction = action;
 	}
