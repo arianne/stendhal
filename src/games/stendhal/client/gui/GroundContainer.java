@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.constants.Actions.DIR;
+import static games.stendhal.common.constants.Actions.FACE;
+import static games.stendhal.common.constants.Actions.TYPE;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
@@ -213,13 +216,23 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 		 */
 		logger.debug(e.getClickCount() + " click count and " + e.getScrollType() + " scroll type and wheel rotation " + e.getWheelRotation());
 		if (e.getClickCount() <= 1) {
-			Direction current = User.get().getDirection();
+			final User user = User.get();
+			Direction currentDirection = user.getDirection();
+			Direction newDirection = null;
 			if (e.getUnitsToScroll() > 0) {
 				// Turn right
-				client.addDirection(current.nextDirection(), true);
+				newDirection = currentDirection.nextDirection();
 			} else {
 				// Turn left
-				client.addDirection(current.nextDirection().oppositeDirection(), true);
+				newDirection =
+						currentDirection.nextDirection().oppositeDirection();
+			}
+
+			if (newDirection != null && newDirection != currentDirection) {
+				final RPAction turnAction = new RPAction();
+				turnAction.put(TYPE, FACE);
+				turnAction.put(DIR, newDirection.get());
+				client.send(turnAction);
 			}
 		}
 	}

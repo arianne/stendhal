@@ -65,6 +65,7 @@
   of death
 - The server no longer sends perceptions for deleted entities
 - Fix client chat box never loses focus so key release events are not lost
+- Fix mouse wheel walking bug where character walks endlessly
 
 
 1.16
