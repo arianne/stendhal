@@ -879,9 +879,6 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Clears all saved pressed state keys.
-	 * 
-	 * @return
-	 *         <code>true</code> if pressedStateKeys is empty
 	 */
 	public void clearPressedKeys() {
 		pressedStateKeys.clear();
