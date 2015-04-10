@@ -259,6 +259,7 @@ public class j2DClient implements UserInterface {
 		 * Create the main game screen
 		 */
 		screen = new GameScreen(client);
+		screen.setFocusable(false);
 		screenController = new ScreenController(screen);
 		GameScreen.setDefaultScreen(screen);
 
@@ -280,16 +281,6 @@ public class j2DClient implements UserInterface {
 				World.get().getPlayerList().getNamesList(),
 				SlashActionRepository.getCommandNames());
 		chatText.addKeyListener(tabcompletion);
-
-		/*
-		 * Always redirect focus to chat field
-		 */
-		screen.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(final FocusEvent e) {
-				chatText.getPlayerChatText().requestFocus();
-			}
-		});
 
 		/* 
 		 * Flush direction key states when chat box loses focus.
@@ -1021,6 +1012,7 @@ public class j2DClient implements UserInterface {
 	 */
 	private JComponent createLogArea() {
 		final JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
+		tabs.setFocusable(false);
 		final Timer animator = new Timer(100, null);
 		List<JComponent> logs = createNotificationChannels();
 		final BitSet changedChannels = new BitSet(logs.size());
