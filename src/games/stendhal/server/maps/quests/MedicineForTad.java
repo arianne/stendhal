@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
@@ -47,7 +46,7 @@ import java.util.List;
  * <li> Ilisa
  * <li> Ketteh Wehoh
  * </ul>
- * 
+ *
  * <p>
  * STEPS:<ul>
  * <li> Tad asks you to buy a flask to give it to Margaret.
@@ -170,7 +169,7 @@ public class MedicineForTad extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				TAD_TALK_ASK_FOR_EMPTY_FLASK,
 				null);
 
@@ -193,7 +192,7 @@ public class MedicineForTad extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				TAD_TALK_QUEST_ACCEPTED,
 				new SetQuestAction(QUEST_SLOT, 0, STATE_START));
 
@@ -248,13 +247,13 @@ public class MedicineForTad extends AbstractQuest {
 		processStep.add(new EquipItemAction("money", 10));
 		processStep.add(new IncreaseXPAction(10));
 		processStep.add(new SetQuestAction(QUEST_SLOT, 0, STATE_ILISA));
-		
+
 		// starting the conversation the first time after getting a flask.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_START),
 						new PlayerHasItemWithHimCondition("flask")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				TAD_TALK_GOT_FLASK + " " + TAD_TALK_REWARD_MONEY + " " + TAD_TALK_FLASK_ILISA,
 				new MultipleActions(processStep));
 
@@ -270,7 +269,7 @@ public class MedicineForTad extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_ILISA),
 						new PlayerHasItemWithHimCondition("flask")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				TAD_TALK_GOT_FLASK + " " + TAD_TALK_FLASK_ILISA,
 				null);
 
@@ -281,9 +280,12 @@ public class MedicineForTad extends AbstractQuest {
                 TAD_TALK_REMIND_FLASK_ILISA,
                 null);
 
-		npc.add(ConversationStates.ATTENDING, "ilisa", null,
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("ilisa", "iiisa", "llisa"),
+				null,
 				ConversationStates.ATTENDING,
-				TAD_TALK_INTRODUCE_ILISA, null);
+				TAD_TALK_INTRODUCE_ILISA,
+				null);
 	}
 
 	private void step_4() {
@@ -295,7 +297,7 @@ public class MedicineForTad extends AbstractQuest {
 						new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_ILISA),
 						new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				ILISA_TALK_ASK_FOR_FLASK,
 				null);
 
@@ -309,7 +311,7 @@ public class MedicineForTad extends AbstractQuest {
 						new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_ILISA),
 						new PlayerHasItemWithHimCondition("flask")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				ILISA_TALK_ASK_FOR_HERB,
 				new MultipleActions(processStep));
 
@@ -351,7 +353,7 @@ public class MedicineForTad extends AbstractQuest {
 						new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_HERB),
 						new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				ILISA_TALK_REMIND_HERB, null);
 
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
@@ -365,7 +367,7 @@ public class MedicineForTad extends AbstractQuest {
 						new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_HERB),
 						new PlayerHasItemWithHimCondition("arandula")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				ILISA_TALK_PREPARE_MEDICINE,
 				new MultipleActions(processStep));
 
@@ -377,7 +379,7 @@ public class MedicineForTad extends AbstractQuest {
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-        // another reminder in case player says task again                                                                                                    
+        // another reminder in case player says task again
         npc.add(ConversationStates.ATTENDING,
         		ConversationPhrases.QUEST_MESSAGES,
                 new QuestInStateCondition(QUEST_SLOT, 0, STATE_HERB),
@@ -388,7 +390,7 @@ public class MedicineForTad extends AbstractQuest {
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new IncreaseXPAction(200));
 		processStep.add(new SetQuestAction(QUEST_SLOT, 0, STATE_DONE));
-		
+
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
@@ -397,14 +399,14 @@ public class MedicineForTad extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				TAD_TALK_COMPLETE_QUEST,
 				new MultipleActions(processStep));
-	
+
 		/*
 		 * if player has not finished this quest, ketteh will remind player about him.
 		 * if player has not started, and not finished, ketteh will ask if player has met him.
 		 */
 		npc = npcs.get("Ketteh Wehoh");
 
-        npc.add(ConversationStates.ATTENDING, 
+        npc.add(ConversationStates.ATTENDING,
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new AndCondition(
         				new QuestStartedCondition(QUEST_SLOT),
@@ -413,7 +415,7 @@ public class MedicineForTad extends AbstractQuest {
                 KETTEH_TALK_BYE_REMINDS_OF_TAD,
                 null);
 
-        npc.add(ConversationStates.ATTENDING, 
+        npc.add(ConversationStates.ATTENDING,
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new QuestNotStartedCondition(QUEST_SLOT),
                 ConversationStates.IDLE,
