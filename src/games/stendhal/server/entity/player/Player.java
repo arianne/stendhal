@@ -2854,8 +2854,10 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
-	 * gets the capped ratk level, which prevent players from training their
-	 * ratk way beyond what is reasonable for their level
+	 * Gets the capped ratk level, which prevent players from training their
+	 * ratk way beyond what is reasonable for their level.
+	 * 
+	 * XXX: Should use getMaxRatkForLevel() method instead?
 	 *
 	 * @return capped ratk
 	 */
