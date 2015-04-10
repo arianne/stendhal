@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.DIR;
 import static games.stendhal.common.constants.Actions.FACE;
+import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
 import games.stendhal.client.GameScreen;
@@ -99,7 +100,7 @@ class GameKeyHandler implements KeyListener {
 				 */
 				if (e.isAltDown() && Testing.MOVEMENT) {
 					/* Face direction pressed and toggle auto-walk. */
-					this.processDirectionPress(direction, false, true);
+					this.processAutoWalk(direction);
 				} else {
 					if (e.isAltGraphDown()) {
 						if (System.currentTimeMillis() - lastAction > 1000) {
@@ -250,38 +251,35 @@ class GameKeyHandler implements KeyListener {
 	 * @param autoWalk
 	 *        Toggle auto-walk on/off
 	 */
-	private synchronized void processDirectionPress(final Direction direction,
-			final boolean facing, final boolean autoWalk) {
-		if (autoWalk) {
-			boolean toggle = true;
-			User user = User.get();
+	private synchronized void processAutoWalk(final Direction direction) {
+		User user = User.get();
+		RPAction walkAction = new RPAction();
+		final boolean facing = direction == user.getDirection();
 
-			RPAction walkAction = new RPAction();
+		/* Correct facing direction if necessary. */
+		if (!facing) {
+			RPAction faceAction = new RPAction();
+			faceAction.put(TYPE, FACE);
+			faceAction.put(DIR, direction.get());
+			this.client.send(faceAction);
+		}
+
+		/* Check if player is already using auto-walk. */
+		if (!user.getRPObject().has(AUTOWALK)) {
 			walkAction.put(TYPE, WALK);
 
-			/* Correct user's direction if needed. */
-			if (direction != user.getDirection()) {
-				RPAction faceAction = new RPAction();
+		} else if (facing) {
+			/* Player can press key of current walking direction to toggle
+			 * auto-walk off.
+			 */
+			walkAction.put(TYPE, WALK);
+			walkAction.put(MODE, "stop");
+		}
 
-				faceAction.put(TYPE, FACE);
-				faceAction.put(DIR, direction.get());
-				this.client.send(faceAction);
-
-				if (user.getRPObject().has(AUTOWALK)) {
-					/* If player changes directions while auto-walk is on we
-					 * do not need to turn it off.
-					 */
-					toggle = false;
-				}
-			}
-
-			if (toggle) {
-				/* Toggle auto-walk. */
-				this.client.send(walkAction);
-			}
-		} else {
-			/* If not using auto-walk switch to normal behavior. */
-			this.processDirectionPress(direction, facing);
+		/* Send auto-walk action to the server. */
+		if (walkAction.has(TYPE)) {
+			/* Toggle auto-walk. */
+			this.client.send(walkAction);
 		}
 	}
 
