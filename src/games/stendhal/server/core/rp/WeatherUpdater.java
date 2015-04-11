@@ -41,6 +41,11 @@ public class WeatherUpdater implements TurnListener {
 	private static final String WEATHER = "weather";
 	/** Time between checking if the weather should be changed. Seconds. */
 	private static final int CHECK_INTERVAL = 79;
+	/**
+	 * The tendency of weather attributes to keep their current value. Must be
+	 * at least 1.
+	 */
+	private static final int WEATHER_STABILITY = 6;
 	/** Upper limit of the temperature attribute. */
 	private static final int TEMP_RANGE = 30;
 	/** Prevalence of rain. Roughly the percentage of rainy time. */
@@ -371,7 +376,7 @@ public class WeatherUpdater implements TurnListener {
 		private final String[] desc;
 		/** Current value of the attribute. */
 		private int value;
-		/** The change direction of the attribute. [-2, 2] */
+		/** The change direction of the attribute. [-1, 1] */
 		private int change;
 		
 		/**
@@ -398,9 +403,9 @@ public class WeatherUpdater implements TurnListener {
 		 * 	change, and its changing may depend on the maps' weather modifiers.
 		 */
 		boolean update() {
-			change += Rand.rand(5) - 2;
+			change += Rand.rand(2 * WEATHER_STABILITY + 1) - WEATHER_STABILITY;
 			// Favor stability. This also keeps the change rate at range [-1, 1] 
-			change /= 2;
+			change /= WEATHER_STABILITY;
 			int oldValue = value;
 			value += change;
 			value = Math.max(Math.min(value, maxValue), 0);
