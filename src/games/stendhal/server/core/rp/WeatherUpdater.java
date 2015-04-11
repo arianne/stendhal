@@ -29,7 +29,7 @@ import marauroa.common.Pair;
 import org.apache.log4j.Logger;
 
 /**
- * Manager for daylight colored zones.
+ * Manager for zones with changing weather.
  */
 public class WeatherUpdater implements TurnListener {
 	/** The keyword used by the weather adjustments parser. */
@@ -39,7 +39,7 @@ public class WeatherUpdater implements TurnListener {
 	private static final Logger LOGGER = Logger.getLogger(WeatherUpdater.class);
 	/** Weather attribute string. */
 	private static final String WEATHER = "weather";
-	/** Time between checking if the color should be changed. Seconds. */
+	/** Time between checking if the weather should be changed. Seconds. */
 	private static final int CHECK_INTERVAL = 79;
 	/** Upper limit of the temperature attribute. */
 	private static final int TEMP_RANGE = 30;
@@ -95,7 +95,7 @@ public class WeatherUpdater implements TurnListener {
 	}
 
 	/**
-	 * Make a zone color managed by the daylight colorer. Modifiers to the
+	 * Make a zone weather managed by the weather updater. Modifiers to the
 	 * default weather can be described in form
 	 * "auto(rain=value1, temperature=value2, fog=value3)", where any or all
 	 * of the modifiers can be omitted, and their order does not matter.
@@ -139,7 +139,7 @@ public class WeatherUpdater implements TurnListener {
 	}
 
 	/**
-	 * Update the zone color according to the hour.
+	 * Update the zone weather states.
 	 */
 	private void updateWeatherStates() {
 		boolean changed = temperature.update();
