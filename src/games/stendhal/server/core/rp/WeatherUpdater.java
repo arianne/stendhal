@@ -102,10 +102,10 @@ public class WeatherUpdater implements TurnListener {
 	/**
 	 * Make a zone weather managed by the weather updater. Modifiers to the
 	 * default weather can be described in form
-	 * "auto(rain=value1, temperature=value2, fog=value3)", where any or all
+	 * "varying(rain=value1, temperature=value2, fog=value3)", where any or all
 	 * of the modifiers can be omitted, and their order does not matter.
-	 * Description parameter "auto" is interpreted as "auto()", that is, no 
-	 * weather modifiers.
+	 * Description parameter "varying" is interpreted as "varying()", that is,
+	 * no weather modifiers.
 	 * <br/>
 	 * The values are interpreted so that:
 	 * <ul>
