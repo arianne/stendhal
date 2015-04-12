@@ -34,7 +34,8 @@ class RemessageAction implements SlashAction {
 		final MessageAction messageCommand = (MessageAction) SlashActionRepository.get("msg");
 
 		if ((messageCommand == null)
-				|| (messageCommand.getLastPlayerTell() == null)) {
+				|| (messageCommand.getLastPlayerTell() == null)
+				|| remainder.isEmpty()) {
 			return false;
 		}
 

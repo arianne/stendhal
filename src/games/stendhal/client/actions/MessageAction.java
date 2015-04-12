@@ -36,15 +36,18 @@ class MessageAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		lastPlayerTell = params[0];
 
-		final RPAction tell = new RPAction();
+		if (!remainder.isEmpty()) {
+			RPAction tell = new RPAction();
 
-		tell.put("type", "tell");
-		tell.put("target", lastPlayerTell);
-		tell.put("text", remainder);
+			tell.put("type", "tell");
+			tell.put("target", lastPlayerTell);
+			tell.put("text", remainder);
 
-		ClientSingletonRepository.getClientFramework().send(tell);
+			ClientSingletonRepository.getClientFramework().send(tell);
+			return true;
+		}
 
-		return true;
+		return false;
 	}
 
 	/**
