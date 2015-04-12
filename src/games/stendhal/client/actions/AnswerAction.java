@@ -32,15 +32,17 @@ class AnswerAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
+		if (!remainder.isEmpty()) {
+			RPAction answer = new RPAction();
 
-		final RPAction answer = new RPAction();
+			answer.put("type", "answer");
+			answer.put("text", remainder);
 
-		answer.put("type", "answer");
-		answer.put("text", remainder);
+			ClientSingletonRepository.getClientFramework().send(answer);
+			return true;
+		}
 
-		ClientSingletonRepository.getClientFramework().send(answer);
-
-		return true;
+		return false;
 	}
 
 	/**
@@ -60,6 +62,6 @@ class AnswerAction implements SlashAction {
 	 */
 	@Override
 	public int getMinimumParameters() {
-		return 0;
+		return 1;
 	}
 }
