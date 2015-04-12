@@ -66,7 +66,7 @@ public class AnswerActionTest {
 	@Test
 	public void testGetMinimumParameters() {
 		final AnswerAction action = new AnswerAction();
-		assertThat(action.getMinimumParameters(), is(0));
+		assertThat(action.getMinimumParameters(), is(1));
 	}
 
 }

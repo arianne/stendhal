@@ -32,7 +32,8 @@ class IsPutIntoCorpse implements Validator {
 		boolean targetIsCorpse = (data.getTargetRoot() instanceof Corpse);
 		if (!sourceIsCorpse && targetIsCorpse) {
 			data.setWarningMessage("For your information, you just dropped "
-				+ Grammar.quantityplnounWithHash(data.getQuantity(), data.getItemName()) + " into a corpse next to you.");
+				+ Grammar.quantityplnounWithMarker(data.getQuantity(), data.getItemName(), '§')
+				+ " into a corpse next to you.");
 		}
 
 		return true;

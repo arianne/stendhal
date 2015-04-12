@@ -822,6 +822,21 @@ public class Grammar {
 	 *         appropriate
 	 */
 	public static String quantityplnounWithHash(final int quantity, final String noun) {
+		return quantityplnounWithMarker(quantity, noun, '#');
+	}
+	
+	/**
+	 * Returns either the plural or singular form of the given noun, depending on
+	 * the quantity; also prefixes the quantity and prints the noun with a
+	 * specifier prefix.
+	 * 
+	 * @param quantity The quantity to examine
+	 * @param noun The noun to examine
+	 * @param marker The character use for the markup. '#' or '§'
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityplnounWithMarker(int quantity, String noun, char marker) {
 		final String fullNoun = plnoun(quantity, noun);
 		String prefix;
 		if (quantity == 1) {
@@ -832,10 +847,11 @@ public class Grammar {
 		final StringBuilder sb = new StringBuilder(prefix);
 
 		if (fullNoun.indexOf(' ') == -1) {
-			sb.append("#");
+			sb.append(marker);
 			sb.append(fullNoun);
 		} else {
-			sb.append("#'" + fullNoun + "'");
+			sb.append(marker);
+			sb.append("'" + fullNoun + "'");
 		}
 
 		return sb.toString();
