@@ -4,68 +4,46 @@
 1.17
 
 *world*
+- Varying weather at outside zones
 - A new fish swimming along the coast in Ados City
+- Added to Daily Item Quest list: 5 olives, 2 marbles
+- Drunken player speech is now more confusing and depends on the state of drunkenness
 - Different "elf" head for players and NPCs
 - New corpse for bone dragon
-- Added to Daily Item Quest list:
--- 5 olives, 2 marbles
-- Varying weather at outside zones
-- Drunken player speech is now more confusing and depends on the state of drunkenness
 - New item medicinal ring: Slightly protects against poisoning
-- Alternative ATK XP training with "testing.combat" defined defined for server
-- Optional ranged attack (RATK) stat with "testing.combat" defined for server
-  and client
 - Mainio boots reward instead of steel boots from Kanmararn Soldiers quest
 - Corpse descriptions state the creature name, instead of just the creature class
-
-*client*
-- Emote character map available by passing -Dtesting.chat to VM
-- Can restore window width, height, and maximized state
-- Drawing weather can be disabled in settings
-- More visible new chat message indication
-- Links to stendhalgame.org in the chat log can be opened with a mouse click
-- The client can draw a weapon sprite with the attack swipes, if one is available
-- Auto-walk feature:
-  - Character right-click menu: "Walk" to toggle on and "Stop" to toggle off
-  - Slash action: "/walk" to toggle on/off and "/stopwalk" to toggle off
-  - Hotkeys: "Ctrl+arrow" to toggle on, "arrow" key of walking direction to
-    toggle off
-- Add hotkeys for cycling through chat log tabs: "Ctrl+Shift+left/right"
-
-*code*
-- Alias "zucchini" for "courgette"
-- Alias "armour" for "armor"
-- Alias "color" for "colour"
-- Alias "extend" for "prolong"
-- Organized outfit parts into subdirectories
-- Changed "player_base" outfit type to "body"
-- Entities can now pass through collision tiles with "setIgnoresCollision()"
-- Items can be given status resistance with StatusResistantItem implementation
-- New SlotActivatedItem enables an item's attributes when equipped to specified
-  slots
-- A new script for replacing maps on a running server
-- Player entity stops walking on non-object collision
+- Animated flame tiles replaced in int_semos_wizards_tower_1
 
 *chat*
+- More visible new chat message indication
 - Alias "/status" for command "/sentence"
 - "sentence" is now displayed in player description when using "Look"
 
-*visuals*
+*client*
+- The client can draw a weapon sprite with the attack swipes, if one is available
+- Can restore window width, height, and maximized state
+- Drawing weather can be disabled in settings
+- Links to stendhalgame.org in the chat log can be opened with a mouse click
+- Add hotkeys for cycling through chat log tabs: "Ctrl+Shift+left/right"
 - Active entities reset animated sprite index to 1 to appear standing when stopped
 - Zombie status is indicated by making the player green
-- Animated flame tiles replaced in int_semos_wizards_tower_1
 
 *fixes*
 - Fix player cannot move after zombie status wears off
-  - zombie status removed for release
 - Karma reward for quests: Kill Dhohr Nuggetcutter, Coal for Haunchy
-- Refactored tiled/tileset/plant/cactus_2.png
-- Refactored tiled/tileset/object/row_boat.png
-- Reporting killers on an entity death no longer lists all attackers at the time
-  of death
+- Refactored plant/cactus_2.png, object/row_boat.png
+- Reporting killers on an entity death no longer lists all attackers at the time of death
 - The server no longer sends perceptions for deleted entities
 - Fix client chat box never loses focus so key release events are not lost
 - Fix mouse wheel walking bug where character walks endlessly
+
+*code*
+- Alias "zucchini" for "courgette", Alias "armour" for "armor", Alias "color" for "colour", Alias "extend" for "prolong"
+- Organized outfit parts into subdirectories
+- Changed "player_base" outfit type to "body"
+- A new script for replacing maps on a running server
+
 
 
 1.16
