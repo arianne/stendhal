@@ -55,3 +55,5 @@ build_client_data
 .byecycle
 build_server_xmlconf
 *.umlproject
+/*.cert
+/*.csr
