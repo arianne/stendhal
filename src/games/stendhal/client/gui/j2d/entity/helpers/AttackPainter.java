@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                 (C) Copyright 2003-2015 - Faiumoni e.V                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,78 +37,6 @@ import java.util.Map;
  * An utility for drawing the attack sprites.
  */
 public final class AttackPainter {
-	/**
-	 * A reference object for caching sweep sprite mappings.
-	 */
-	private static final class AttackPainterRef {
-		/** Nature of the sprite mapping. */
-		private final Nature nature;
-		/** Size of the sprite mapping. */
-		private final int size;
-
-		/**
-		 * Create a new painter reference.
-		 * 
-		 * @param nature attack nature
-		 * @param size creaure size
-		 */
-		private AttackPainterRef(Nature nature, int size) {
-			this.nature = nature;
-			this.size = size;
-		}
-
-		@Override
-		public boolean equals(Object o) {
-			if (o instanceof AttackPainterRef) {
-				AttackPainterRef obj = (AttackPainterRef) o;
-				return (size == obj.size) && (nature == obj.nature);
-			}
-			return false;
-		}
-
-		@Override
-		public int hashCode() {
-			return nature.hashCode() * 37 + size;
-		}
-	}
-
-	/**
-	 * Reference object for weapon sprite mappings.
-	 */
-	private static final class WeaponRef {
-		/** Weapon name. */
-		private final String weapon;
-		/** Size of the sprite mapping. */
-		private final int size;
-
-		/**
-		 * Create a new WeaponRef.
-		 * 
-		 * @param weapon weapon name
-		 * @param size size of the sprite mapping
-		 */
-		WeaponRef(String weapon, int size) {
-			this.weapon = weapon;
-			this.size = size;
-		}
-
-		@Override
-		public boolean equals(Object o) {
-			if (o instanceof WeaponRef) {
-				WeaponRef obj = (WeaponRef) o;
-				return (size == obj.size)
-						&& ((weapon == null && obj.weapon == null) || (weapon != null && weapon
-								.equals(obj.weapon)));
-			}
-			return false;
-		}
-
-		@Override
-		public int hashCode() {
-			return weapon.hashCode() * 37 + size;
-		}
-	}
-
 	/** Number of frames in attack sprites. */
 	private static final int NUM_ATTACK_FRAMES = 3;
 	/** Tile size for convenience. */
@@ -123,38 +51,121 @@ public final class AttackPainter {
 	private static final int ICON_OFFSET = 8;
 
 	/** Cache for previously constructed sprite sets. */
-	private static final MemoryCache<AttackPainterRef, Map<Direction, Sprite[]>> cache = new MemoryCache<AttackPainterRef, Map<Direction, Sprite[]>>();
+	private static final MemoryCache<NatureRef, Map<Direction, Sprite[]>> SWEEP_CACHE = new MemoryCache<NatureRef, Map<Direction, Sprite[]>>();
 	/** Cache for the weapon sprites. */
-	private static final MemoryCache<WeaponRef, Map<Direction, Sprite[]>> weaponCache = new MemoryCache<WeaponRef, Map<Direction, Sprite[]>>();
+	private static final MemoryCache<WeaponRef, Map<Direction, Sprite[]>> WEAPON_CACHE = new MemoryCache<WeaponRef, Map<Direction, Sprite[]>>();
 	/** Colors used for drawing distance attacks. */
-	private static final Map<Nature, Color> arrowColor;
+	private static final Map<Nature, Color> ARROW_COLOR;
 
 	/** Stroke used for drawing distance attacks. */
 	private static final Stroke ARROW_STROKE = new BasicStroke(2);
 	static {
-		arrowColor = new EnumMap<Nature, Color>(Nature.class);
-		arrowColor.put(Nature.CUT, Color.LIGHT_GRAY);
-		arrowColor.put(Nature.DARK, Color.DARK_GRAY);
-		arrowColor.put(Nature.LIGHT, new Color(255, 240, 140)); // light yellow
-		arrowColor.put(Nature.FIRE, new Color(255, 100, 0)); // reddish orange
-		arrowColor.put(Nature.ICE, new Color(140, 140, 255)); // light blue
+		ARROW_COLOR = new EnumMap<Nature, Color>(Nature.class);
+		ARROW_COLOR.put(Nature.CUT, Color.LIGHT_GRAY);
+		ARROW_COLOR.put(Nature.DARK, Color.DARK_GRAY);
+		ARROW_COLOR.put(Nature.LIGHT, new Color(255, 240, 140)); // light yellow
+		ARROW_COLOR.put(Nature.FIRE, new Color(255, 100, 0)); // reddish orange
+		ARROW_COLOR.put(Nature.ICE, new Color(140, 140, 255)); // light blue
 	}
+	
+	/** Sprite sets for the painter. */
+	private final Map<Direction, Sprite[]> map;
 
-	private static Map<Direction, Sprite[]> createSweepImage(Nature nature) {
-		SpriteStore st = SpriteStore.get();
-		Sprite tiles = st.getCombatSprite("blade_strike_"
-				+ nature.toString().toLowerCase(Locale.US) + ".png");
-		return splitTiles(st, tiles);
+	/**
+	 * Sprite sets for the weapon, or <code>null</code> if no weapon sprite is
+	 * used.
+	 */
+	private final Map<Direction, Sprite[]> weaponMap;
+	/**
+	 * Ranged sprite sets for the weapon, or <code>null</code> if no weapon
+	 * sprite is used for ranged attacks.
+	 */
+	private final Map<Direction, Sprite[]> rangedWeaponMap;
+
+	/** Sprites used for the current attack. */
+	private Sprite[] sprites;
+
+	/**
+	 * Weapon sprites used for the current attack, or <code>null</code> if no
+	 * weapon should be drawn.
+	 */
+	private Sprite[] weaponSprites;
+	/** Weapon sprites used for the current ranged attack. */
+	private Sprite[] rangedSprites;
+
+	/** Frame counter for the attack. */
+	private int frame;
+
+	/** Nature of the attack. */
+	private final Nature nature;
+
+	/** Weapon used in the attack, or <code>null</code>. */
+	private final String weapon;
+	
+	/**
+	 * Create a painter using a specified sprite map.
+	 * 
+	 * @param nature attack nature
+	 * @param weapon weapon or <code>null</code> if no weapon should be drawn
+	 * @param sprites sprite map
+	 * @param weaponSprites weapon sprite map, or <code>null</code> if no weapon
+	 *        should be drawn.
+	 * @param rangedSprites Weapon sprites used for ranged attacks.
+	 */
+	private AttackPainter(Nature nature, String weapon,
+			Map<Direction, Sprite[]> sprites,
+			Map<Direction, Sprite[]> weaponSprites,
+			Map<Direction, Sprite[]> rangedSprites) {
+		this.nature = nature;
+		this.map = sprites;
+		this.weaponMap = weaponSprites;
+		this.rangedWeaponMap = rangedSprites;
+		this.weapon = weapon;
+	}
+	
+	/**
+	 * Get a painter for attack of a given nature, and size of a creature.
+	 * 
+	 * @param nature attack nature
+	 * @param weapon weapon, or <code>null</code> if not specified
+	 * @param size creature size
+	 * 
+	 * @return painter
+	 */
+	public static AttackPainter get(Nature nature, final String weapon, int size) {
+		Map<Direction, Sprite[]> sprites = getSpriteMap(nature, size);
+		Map<Direction, Sprite[]> weaponSprites = null;
+		Map<Direction, Sprite[]> rangedSprites = null;
+		if (weapon != null) {
+			WeaponRef ref = new WeaponRef(weapon, size);
+			if (!"ranged".equals(weapon)) {
+				weaponSprites = getSpriteMap(ref, size, WEAPON_CACHE, new SpriteMaker() {
+					@Override
+					public Sprite getSprite() {
+						return createWeaponImage(weapon);
+					}
+				});
+			} else {
+				rangedSprites = getSpriteMap(ref, size, WEAPON_CACHE, new SpriteMaker() {
+					@Override
+					public Sprite getSprite() {
+						return SpriteStore.get().getCombatSprite(weapon + ".png");
+					}
+				});
+			}
+		}
+
+		return new AttackPainter(nature, weapon, sprites, weaponSprites, rangedSprites);
 	}
 
 	/**
 	 * Create a weapon sprite mapping of size 1.
 	 * 
 	 * @param weapon weapon name
-	 * @return weapon sprite map, or <code>null</code> if there's no image for
+	 * @return weapon sprite, or <code>null</code> if there's no image for
 	 *         the weapon
 	 */
-	private static Map<Direction, Sprite[]> createWeaponImage(String weapon) {
+	private static Sprite createWeaponImage(String weapon) {
 		SpriteStore st = SpriteStore.get();
 		Sprite template = st.getCombatSprite(weapon + ".png");
 		// Never use the fail safe sprite for attacks
@@ -220,66 +231,57 @@ public final class AttackPainter {
 		template.draw(g, -204, 439);
 		g.dispose();
 
-		return splitTiles(SpriteStore.get(), new ImageSprite(image));
+		return new ImageSprite(image);
 	}
 
 	/**
-	 * Get a painter for attack of a given nature, and size of a creature.
+	 * Get a mapping for nature sweep images.
 	 * 
 	 * @param nature attack nature
-	 * @param weapon weapon, or <code>null</code> if not specified
-	 * @param size creature size
-	 * 
-	 * @return painter
+	 * @param size sweep size
+	 * @return image mapping
 	 */
-	public static AttackPainter get(Nature nature, String weapon, int size) {
-		Map<Direction, Sprite[]> sprites = getSpriteMap(nature, size);
-		Map<Direction, Sprite[]> weaponSprites = getWeaponMap(weapon, size);
-
-		return new AttackPainter(nature, weapon, sprites, weaponSprites);
+	private static Map<Direction, Sprite[]> getSpriteMap(final Nature nature, int size) {
+		NatureRef ref = new NatureRef(nature, size);
+		return getSpriteMap(ref, size, SWEEP_CACHE, new SpriteMaker() {
+			@Override
+			public Sprite getSprite() {
+				SpriteStore st = SpriteStore.get();
+				return st.getCombatSprite("blade_strike_"
+						+ nature.toString().toLowerCase(Locale.US) + ".png");
+			}
+		});
 	}
-
-	private static Map<Direction, Sprite[]> getSpriteMap(Nature nature, int size) {
-		AttackPainterRef ref = new AttackPainterRef(nature, size);
+	
+	/**
+	 * Find or create an attack sprite map.
+	 * 
+	 * @param <T> Type of the sprite map reference
+	 * @param ref reference for the sprite map
+	 * @param size size of the attack image
+	 * @param cache cache used for storing created image maps
+	 * @param maker sprite retriever for size 1 sprites.
+	 * @return sprite map, or <code>null</code> if the needed base sprites were
+	 * not found
+	 */
+	private static <T> Map<Direction, Sprite[]> getSpriteMap(T ref, int size,
+			MemoryCache<T, Map<Direction, Sprite[]>> cache, SpriteMaker maker) {
 		Map<Direction, Sprite[]> map = cache.get(ref);
 		if (map == null) {
 			if (size == 1) {
-				map = createSweepImage(nature);
+				SpriteStore st = SpriteStore.get();
+				Sprite template = maker.getSprite();
+				// Never use the fail safe sprite for attacks
+				if (template == st.getFailsafe()) {
+					return null;
+				}
+				map = splitTiles(st, template);
 				cache.put(ref, map);
 			} else {
-				Map<Direction, Sprite[]> normalSized = getSpriteMap(nature, 1);
+				Map<Direction, Sprite[]> normalSized = getSpriteMap(ref, 1, cache, maker);
 				if (normalSized != null) {
 					map = scale(normalSized, size);
 					cache.put(ref, map);
-				}
-			}
-		}
-		return map;
-	}
-
-	/**
-	 * Get a weapon sprite map.
-	 * 
-	 * @param weapon name of the weapon
-	 * @param size size of the attack sprites
-	 * @return weapin sprite mapping of the wanted size, or <code>null</code> if
-	 *         there is no image for the weapon
-	 */
-	private static Map<Direction, Sprite[]> getWeaponMap(String weapon, int size) {
-		if (weapon == null) {
-			return null;
-		}
-		WeaponRef ref = new WeaponRef(weapon, size);
-		Map<Direction, Sprite[]> map = weaponCache.get(ref);
-		if (map == null) {
-			if (size == 1) {
-				map = createWeaponImage(weapon);
-				weaponCache.put(ref, map);
-			} else {
-				Map<Direction, Sprite[]> normalSized = getWeaponMap(weapon, 1);
-				if (normalSized != null) {
-					map = scale(normalSized, size);
-					weaponCache.put(ref, map);
 				}
 			}
 		}
@@ -360,51 +362,6 @@ public final class AttackPainter {
 		return map;
 	}
 
-	/** Sprite sets for the painter. */
-	private final Map<Direction, Sprite[]> map;
-
-	/**
-	 * Sprite sets for the weapon, or <code>null</code> if no weapon sprite is
-	 * used.
-	 */
-	private final Map<Direction, Sprite[]> weaponMap;
-
-	/** Sprites used for the current attack. */
-	private Sprite[] sprites;
-
-	/**
-	 * Weapon sprites used for the current attack, or <code>null</code> if no
-	 * weapon should be drawn.
-	 */
-	private Sprite[] weaponSprites;
-
-	/** Frame counter for the attack. */
-	private int frame;
-
-	/** Nature of the attack. */
-	private final Nature nature;
-
-	/** Weapon used in the attack, or <code>null</code>. */
-	private final String weapon;
-
-	/**
-	 * Create a painter using a specified sprite map.
-	 * 
-	 * @param nature attack nature
-	 * @param weapon weapon or <code>null</code> if no weapon should be drawn
-	 * @param sprites sprite map
-	 * @param weaponSprites weapon sprite map, or <code>null</code> if no weapon
-	 *        should be drawn.
-	 */
-	private AttackPainter(Nature nature, String weapon,
-			Map<Direction, Sprite[]> sprites,
-			Map<Direction, Sprite[]> weaponSprites) {
-		this.nature = nature;
-		this.map = sprites;
-		this.weaponMap = weaponSprites;
-		this.weapon = weapon;
-	}
-
 	/**
 	 * Draw a melee attack.
 	 * 
@@ -417,14 +374,36 @@ public final class AttackPainter {
 	 */
 	public void draw(Graphics2D g2d, Direction direction, int x, int y,
 			int width, int height) {
-		final Sprite sprite = sprites[frame];
 
-		final int spriteWidth = sprite.getWidth();
-		final int spriteHeight = sprite.getHeight();
 
+		drawAttackSprite(g2d, sprites, direction, x, y, width, height);
+		drawAttackSprite(g2d, weaponSprites, direction, x, y, width, height);
+
+		frame++;
+	}
+	
+	/**
+	 * Draw an attack sprite centered on the entity.
+	 * 
+	 * @param g graphics
+	 * @param spriteSet attack sprite set
+	 * @param direction attack direction
+	 * @param x x coordinate of the entity
+	 * @param y y coordinate of the entity
+	 * @param width entity width
+	 * @param height entity height
+	 */
+	private void drawAttackSprite(Graphics2D g, Sprite[] spriteSet, Direction direction,
+			int x, int y, int width, int height) {
+		// Weapon sprite sets can be null
+		if (spriteSet == null) {
+			return;
+		}
+		Sprite sprite = spriteSet[frame];
+		int spriteWidth = sprite.getWidth();
+		int spriteHeight = sprite.getHeight();
 		int sx;
 		int sy;
-
 		/*
 		 * Align swipe image to be 16 px past the facing edge, centering in
 		 * other axis.
@@ -458,18 +437,7 @@ public final class AttackPainter {
 			sy = y + ((height - spriteHeight) / 2);
 		}
 
-		sprite.draw(g2d, sx, sy);
-		/*
-		 * Weapon sprite set can be null, and technically it can *become* null.
-		 * That is done in the game loop thread, so grab a local reference first
-		 * before checking it.
-		 */
-		Sprite[] wSet = weaponSprites;
-		if (wSet != null) {
-			wSet[frame].draw(g2d, sx, sy);
-		}
-
-		skipFrame();
+		sprite.draw(g, sx, sy);
 	}
 
 	/**
@@ -505,13 +473,15 @@ public final class AttackPainter {
 		startX += frame * xLength;
 		endX = startX + xLength;
 
-		g2d.setColor(arrowColor.get(nature));
+		g2d.setColor(ARROW_COLOR.get(nature));
 		Stroke oldStroke = g2d.getStroke();
 		g2d.setStroke(ARROW_STROKE);
 		g2d.drawLine(startX, startY, endX, endY);
 		g2d.setStroke(oldStroke);
+		
+		drawAttackSprite(g2d, rangedSprites, entity.getDirection(), x, y, width, height);
 
-		skipFrame();
+		frame++;
 	}
 
 	/**
@@ -552,13 +522,95 @@ public final class AttackPainter {
 		if (weaponMap != null) {
 			weaponSprites = weaponMap.get(direction);
 		}
+		if (rangedWeaponMap != null) {
+			rangedSprites = rangedWeaponMap.get(direction);
+		}
+
 		frame = 0;
+	}
+	
+	/**
+	 * Interface for attack image retrievers.
+	 */
+	private interface SpriteMaker {
+		/**
+		 * Get an attack sprite of size 1.
+		 *  
+		 * @return attack sprite, or <code>null</code> if the sprite could not
+		 * be found
+		 */
+		Sprite getSprite();
+	}
+	
+	/**
+	 * A reference object for caching sweep sprite mappings.
+	 */
+	private static final class NatureRef {
+		/** Nature of the sprite mapping. */
+		private final Nature nature;
+		/** Size of the sprite mapping. */
+		private final int size;
+
+		/**
+		 * Create a new painter reference.
+		 * 
+		 * @param nature attack nature
+		 * @param size creature size
+		 */
+		private NatureRef(Nature nature, int size) {
+			this.nature = nature;
+			this.size = size;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (o instanceof NatureRef) {
+				NatureRef obj = (NatureRef) o;
+				return (size == obj.size) && (nature == obj.nature);
+			}
+			return false;
+		}
+
+		@Override
+		public int hashCode() {
+			return nature.hashCode() * 37 + size;
+		}
 	}
 
 	/**
-	 * Advance a frame.
+	 * Reference object for weapon sprite mappings.
 	 */
-	private void skipFrame() {
-		frame++;
+	private static final class WeaponRef {
+		/** Weapon name. */
+		private final String weapon;
+		/** Size of the sprite mapping. */
+		private final int size;
+
+		/**
+		 * Create a new WeaponRef.
+		 * 
+		 * @param weapon weapon name
+		 * @param size size of the sprite mapping
+		 */
+		WeaponRef(String weapon, int size) {
+			this.weapon = weapon;
+			this.size = size;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (o instanceof WeaponRef) {
+				WeaponRef obj = (WeaponRef) o;
+				return (size == obj.size)
+						&& ((weapon == null && obj.weapon == null) || (weapon != null && weapon
+								.equals(obj.weapon)));
+			}
+			return false;
+		}
+
+		@Override
+		public int hashCode() {
+			return weapon.hashCode() * 37 + size;
+		}
 	}
 }
