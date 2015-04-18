@@ -73,9 +73,9 @@ public class ChatCacheTest {
 		ChatCache cache = new ChatCache(null);
 
 		cache.addlinetoCache("one");
-		assertThat(cache.current(), is("one"));
+		assertThat(cache.previous(), is("one"));
 		cache.addlinetoCache("two");
-		assertThat(cache.current(), is("two"));
+		assertThat(cache.previous(), is("two"));
 	}
 
 	/**
@@ -92,6 +92,9 @@ public class ChatCacheTest {
 		assertFalse(cache.hasNext());
 		assertTrue(cache.hasPrevious());
 
+		assertThat(cache.previous(), is("two"));
+		assertThat(cache.current(), is("two"));
+		
 		assertThat(cache.previous(), is("one"));
 		assertThat(cache.current(), is("one"));
 

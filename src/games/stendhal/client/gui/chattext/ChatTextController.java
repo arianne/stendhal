@@ -82,8 +82,7 @@ public class ChatTextController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (cache.hasPrevious()) {
-					setChatLine(cache.current());
-					cache.previous();
+					setChatLine(cache.previous());
 				}
 			}
 		});

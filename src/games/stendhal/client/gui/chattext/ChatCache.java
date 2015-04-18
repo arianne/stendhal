@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,7 +19,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
@@ -114,7 +112,7 @@ class ChatCache {
 	}
 
 	String current() {
-		return getLines().get(current - 1);
+		return getLines().get(current);
 	}
 
 	boolean hasNext() {
@@ -126,23 +124,18 @@ class ChatCache {
 	}
 
 	String previous() {
-		try {
-			current--;
+		current = Math.max(current - 1, 0);
+		if (!lines.isEmpty()) {
 			return current();
-		} catch (final IndexOutOfBoundsException e) {
-			Logger.getLogger(ChatCache.class).error(e.getMessage());
-			current++;
-			throw new NoSuchElementException();
 		}
+		return "";
 	}
 
 	String next() {
-		try {
-			current++;
+		current = Math.max(0, Math.min(current + 1, lines.size() - 1));
+		if (!lines.isEmpty()) {
 			return current();
-		} catch (final IndexOutOfBoundsException e) {
-			current--;
-			throw new NoSuchElementException();
 		}
+		return "";
 	}
 }
