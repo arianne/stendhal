@@ -70,8 +70,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -83,12 +81,14 @@ import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
@@ -342,20 +342,10 @@ public class j2DClient implements UserInterface {
 		frame.setGlassPane(glassPane);
 		glassPane.setVisible(true);
 
-		/* Create a KeyListener to change tabs with hot keys and dispatch other
-		 * events.
-		 */
-		chatText.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.isControlDown()) {
-					chatLogArea.dispatchEvent(e);
-
-					/* Make sure chat box regains focus. */
-					chatText.getPlayerChatText().requestFocus();
-				}
-			}
-		});
+		// Bind the tab changing keys of the chat log to global key map
+		InputMap input = chatLogArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		input.put(KeyStroke.getKeyStroke("control PAGE_UP"), "navigatePrevious");
+		input.put(KeyStroke.getKeyStroke("control PAGE_DOWN"), "navigateNext");
 
 		// *** Create the layout ***
 		// left side panel
