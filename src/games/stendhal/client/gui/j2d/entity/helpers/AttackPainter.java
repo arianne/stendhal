@@ -179,54 +179,73 @@ public final class AttackPainter {
 		BufferedImage image = gc.createCompatibleImage(288, 512,
 				TransparencyMode.TRANSPARENCY);
 		Graphics2D g = image.createGraphics();
+		
+		int partWidth = 96;
+		int partHeight = 128;
 
+		// The clippings are to prevent hard to notice translucent weapon trails
+		// being drawn outside the intended area. These may be unnoticeable on
+		// a test image, but sometimes visible in the game.
+		
 		// Top middle
+		g.clipRect(partWidth, 0, partWidth, partHeight);
 		template.draw(g, 84, 40);
 		// top left
+		g.setClip(0, 0, partWidth, partHeight);
 		g.rotate(-Math.PI / 4);
 		template.draw(g, -87, 46);
 		g.dispose();
 		// top right
 		g = image.createGraphics();
+		g.clipRect(2 * partWidth, 0, partWidth, partHeight);
 		g.rotate(Math.PI / 4);
 		template.draw(g, 179, -160);
 
 		// 2. row, left
+		g.setClip(null);
 		template.draw(g, 105, 52);
 		g.dispose();
 		// 2. row, middle
 		g = image.createGraphics();
+		g.clipRect(partWidth, partHeight, partWidth, partHeight);
 		g.rotate(Math.PI / 2);
 		template.draw(g, 147, -192);
 		g.dispose();
 		// 2. row, right
 		g = image.createGraphics();
+		g.clipRect(2 * partWidth, partHeight, partWidth, partHeight);
 		g.rotate(Math.PI / 4 * 3);
 		template.draw(g, -70, -373);
 
 		// 3. row, left
+		g.setClip(null);
 		template.draw(g, 144, -308);
 		g.dispose();
 		// 3. row, middle
 		g = image.createGraphics();
+		g.clipRect(partWidth, 2 * partHeight, partWidth, partHeight);
 		g.rotate(Math.PI);
 		template.draw(g, -187, -383);
 		g.dispose();
 		// 3. row, right
 		g = image.createGraphics();
+		g.clipRect(2 * partWidth, 2 * partHeight, partWidth, partHeight);
 		g.rotate(-Math.PI / 4 * 3);
 		template.draw(g, -457, -120);
 
 		// 4.row, left
+		g.setClip(null);
 		template.draw(g, -427, -343);
 		g.dispose();
 		// 4. row, middle
 		g = image.createGraphics();
+		g.clipRect(partWidth, 3 * partHeight, partWidth, partHeight);
 		g.rotate(-Math.PI / 2);
 		template.draw(g, -507, 96);
 		g.dispose();
 		// 4. row, right
 		g = image.createGraphics();
+		g.clipRect(2 * partWidth, 3 * partHeight, partWidth, partHeight);
 		g.rotate(-Math.PI / 4);
 		template.draw(g, -204, 439);
 		g.dispose();
