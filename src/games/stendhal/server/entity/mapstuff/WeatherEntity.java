@@ -47,6 +47,7 @@ public class WeatherEntity extends Entity {
 	public WeatherEntity() {
 		setRPClass("entity");
 		thunderer = new Thunderer();
+		setResistance(0);
 	}
 	
 	/**
