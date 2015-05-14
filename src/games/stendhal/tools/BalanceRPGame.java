@@ -29,6 +29,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import marauroa.common.Pair;
+import utilities.PlayerTestHelper;
 
 /* 
  * Running:
@@ -110,24 +111,6 @@ public class BalanceRPGame {
 	private static final double DEFAULT_DURATION_THRESHOLD = 0.2;
 	private static double durationThreshold;
 	private static Player player;
-	
-	/**
-	 * Place an item to a slot, unless the slot is already used.
-	 * 
-	 * @param player player to equip
-	 * @param slot slot name
-	 * @param item item to be placed
-	 * @return <code>true</code> on success, or if the player was already
-	 *	equipped with an item in the specified slot, <code>false</code> if the
-	 *	slot was vacant, but placing the item failed
-	 */
-	private static boolean equipToSlot(Player player, String slot, Item item) {
-		if (player.getSlot(slot).isEmpty() && !player.equip(slot, item)) {
-			System.err.println("Failed to place " + item.getName() + " to " + slot);
-			return false;
-		}
-		return true;
-	}
 
 	public static void main(final String[] args) throws Exception {
 		new RPClassGenerator().createRPClasses();
@@ -159,17 +142,13 @@ public class BalanceRPGame {
 		final Item legs = em.getItem("leather legs");
 		final Item boots = em.getItem("leather boots");
 
-		player = Player.createZeroLevelPlayer("Tester", null);
-
-		if (!(equipToSlot(player, "lhand", shield)
-				&& equipToSlot(player, "armor", armor)
-				&& equipToSlot(player, "head", helmet)
-				&& equipToSlot(player, "legs", legs)
-				&& equipToSlot(player, "feet", boots))) {
-			System.err.println("Terminating due to failure of preparing the player.");
-			
-			return;
-		}
+		player = PlayerTestHelper.createPlayer("Tester");
+		player.equip("lhand", shield);
+		player.equip("rhand", em.getItem("club"));
+		player.equip("armor", armor);
+		player.equip("head", helmet);
+		player.equip("legs", legs);
+		player.equip("feet", boots);
 
 		// Setup the list of creatures to balance
 		Collection<DefaultCreature> creaturesToBalance;
@@ -357,7 +336,7 @@ public class BalanceRPGame {
 	}
 	
 	private static void equip(final Player p, final int level) {
-		p.getWeapons().get(0).put("atk", 7 + level * 2 / 6);
+		p.getWeapon().put("atk", 7 + level * 2 / 6);
 		if (level == 0) {
 			p.getShield().put("def", 0);
 		} else {
