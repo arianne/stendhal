@@ -195,6 +195,37 @@
     </ai>
   </creature>
   
+    <creature name="dodo">
+    <type class="animal" subclass="dodo_bird" tileid="animal.png:29"/>
+    <description>You see a dodo bird, aren't they supposed to be extinct?</description>
+    <attributes>
+      <atk value="57"/>
+      <def value="14"/>
+      <hp value="45"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="3"/>
+    <experience value="30"/>
+    <respawn value="900"/>
+    <corpse name="small_winged" harmless="feathered" />
+    <drops>
+      <item value="ham" quantity="[1,3]" probability="60.0"/>
+      <item value="spinach" quantity="[1,1]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Bawk Bawk"/>
+        <noise state="idle follow fight" value="Bawwwk"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+      <profile name="non offensive"/>
+    </ai>
+  </creature>
+  
   <creature name="mother hen">
     <type class="farm_animal" subclass="hen" tileid="farm_animal.png:6"/>
     <description>You see a mother hen, she will probably hurt you if you touch her sons.</description>
