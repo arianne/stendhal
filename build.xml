@@ -543,7 +543,12 @@
 
 
 	<target name="signjar" unless="exclude.signing">
-		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}" jar="${lib}/${client_starter_jarname}" />
+		<signjar 
+			alias="${keystore.alias}"
+			keystore="keystore.ks" 
+			storepass="${keystore.password}"
+			tsaurl="http://timestamp.verisign.com"
+			jar="${lib}/${client_starter_jarname}" />
 	</target>
 
 	<target name="docs" description="Build javadocs for fixedStendhal">
