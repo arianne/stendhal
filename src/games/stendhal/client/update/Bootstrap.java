@@ -27,6 +27,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivilegedAction;
 import java.security.cert.Certificate;
+import java.security.cert.X509Certificate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -285,7 +286,11 @@ public class Bootstrap {
 				if (keyStr.equals(ClientGameConfiguration.get("UPDATE_SIGNER_KEY"))) {
 					return true;
 				}
-                System.err.println("Skipping unknown signature: " + keyStr);
+                System.err.println("Skipping unknown signature: " + keyStr + " from " + cert);
+                if (cert instanceof X509Certificate) {
+                	System.err.println("   " + ((X509Certificate) cert).getSubjectDN());
+                }
+
 			}
 			return false;
 
