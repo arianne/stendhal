@@ -15,6 +15,7 @@ package games.stendhal.tools;
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -29,7 +30,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import marauroa.common.Pair;
-import utilities.PlayerTestHelper;
+import marauroa.common.game.RPObject;
 
 /* 
  * Running:
@@ -142,7 +143,7 @@ public class BalanceRPGame {
 		final Item legs = em.getItem("leather legs");
 		final Item boots = em.getItem("leather boots");
 
-		player = PlayerTestHelper.createPlayer("Tester");
+		player = (Player) new PlayerTransformer().transform(new RPObject());
 		player.equip("lhand", shield);
 		player.equip("rhand", em.getItem("club"));
 		player.equip("armor", armor);
