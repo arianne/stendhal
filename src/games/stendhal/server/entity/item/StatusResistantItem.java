@@ -72,7 +72,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 	/**
 	 * Create or reset resistances to status types for this item.
 	 * 
-	 * @param resistanceList
+	 * @param list
 	 * 		Status types and resistant values
 	 */
 	@Override
@@ -109,7 +109,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 	/**
 	 * Create or reset resistances to status types for this item.
 	 * 
-	 * @param resistanceList
+	 * @param list
 	 * 		Status types and resistant values
 	 */
 	public void initializeStatusResistancesList(final StatusResistancesList list) {
@@ -323,7 +323,10 @@ public class StatusResistantItem extends SlotActivatedItem {
 		StringBuilder res = new StringBuilder();
 		
 		/* Add statuses resistance stats to description. */
-		Map<StatusType, Double> resistances = this.getStatusResistancesList().getMap();
+		if (this.resistances == null) {
+			return description;
+		}
+		Map<StatusType, Double> resistances = this.resistances.getMap();
 		if ((resistances != null) && !resistances.isEmpty()) {
 			for (Entry<StatusType, Double> entry : resistances.entrySet()) {
 				String statusType = entry.getKey().toString().toLowerCase();
