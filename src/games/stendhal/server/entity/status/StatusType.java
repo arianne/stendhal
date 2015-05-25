@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.common.constants.Nature;
-
 import java.util.Locale;
 
 import org.apache.log4j.Logger;

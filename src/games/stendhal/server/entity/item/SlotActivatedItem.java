@@ -37,8 +37,6 @@ public abstract class SlotActivatedItem extends Item {
 	//private String transitionSlot;
 	
 	
-/* XXX --- CONSTRUCTORS --- XXX */
-	
 	/**
 	 * Default constructor.
 	 * 
@@ -96,9 +94,9 @@ public abstract class SlotActivatedItem extends Item {
 	 * @param slotList
 	 * 		List of slots in which item can be activated
 	 */
-	public void initiateActiveSlotsList(final List<String> list) {
-		activeSlotsList = list;
-		}
+	public void initiateActiveSlotsList(final List<String> slotList) {
+		activeSlotsList = slotList;
+	}
 	
 	/**
 	 * Action to take when item is equipped. If successfully equipped item's

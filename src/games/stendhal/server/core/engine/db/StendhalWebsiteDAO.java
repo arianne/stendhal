@@ -110,7 +110,7 @@ public class StendhalWebsiteDAO {
 	 * @param itemid   id of item
 	 * @param quantity quantity
 	 * @param price    price
-	 * @param description description of item
+	 * @param stats    description of item
 	 * @throws SQLException in case of an database error
 	 */
 	public void logTradeEvent(final DBTransaction transaction, String charname, String itemname, int itemid, int quantity, int price, String stats) throws SQLException {

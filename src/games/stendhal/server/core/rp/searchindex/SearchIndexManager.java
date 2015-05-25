@@ -86,7 +86,7 @@ public class SearchIndexManager {
 	 * adds the search index entries for a name variable
 	 *
 	 * @param name        name of entity
-	 * @param entityType  type of entity
+	 * @param type  type of entity
 	 */
 	private void addName(String name, SearchIndexEntryType type) {
 		index.add(new SearchIndexEntry(name, type.getEntityType(), name, 3000 + type.getMinorScore()));
@@ -103,8 +103,9 @@ public class SearchIndexManager {
 	 * adds the search index entries for a name variable
 	 *
 	 * @param name        name of entity
-	 * @param entityType  type of entity
-	 * @param minorScore  base score of the match type
+	 * @param description description to add
+	 * @param type        type of entity
+	 * @param baseScore   base score of the match type
 	 */
 	private void addDescription(String name, String description, SearchIndexEntryType type, int baseScore) {
 		if (description == null) {

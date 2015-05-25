@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2015 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +16,7 @@ import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.Task;
@@ -44,6 +44,7 @@ public class WhoAction implements ActionListener {
 		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final Set<String> players = new TreeSet<String>();
 
+		new GameEvent(player.getName(), WHO).raise();
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
 			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 				@Override

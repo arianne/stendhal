@@ -84,10 +84,7 @@ public class DigAreaFactory implements ConfigurableFactory {
 	 * 
 	 * @param ctx
 	 *            Configuration context.
-	 * 
-	 * @return
-	 * 
-	 * @see
+	 * @return Object
 	 */
 	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {

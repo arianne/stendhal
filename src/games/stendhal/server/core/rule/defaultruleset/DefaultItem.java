@@ -164,7 +164,7 @@ public class DefaultItem {
 	/**
 	 * Set the types of status attacks that this StatusResistantItem can resist.
 	 * 
-	 * @param resistances
+	 * @param res
 	 * 		The status type and the resistance value
 	 */
 	public void initializeStatusResistancesList(Map<String, Double> res) {

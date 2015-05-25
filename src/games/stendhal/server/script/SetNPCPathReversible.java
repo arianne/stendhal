@@ -40,7 +40,6 @@ public class SetNPCPathReversible extends ScriptImpl {
 		/* TODO: merge with NPC's current collision action rather than replace
 		 *       it.
 		 */
-		CollisionAction collisionAction = npc.getCollisionAction();
 		if (reverseOnCollision.equals("true")) {
 			npc.setCollisionAction(CollisionAction.REVERSE);
 		} else if (reverseOnCollision.equals("false")) {

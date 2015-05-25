@@ -168,8 +168,6 @@ class OutfitDialog extends JDialog {
 	 * @param outfit
 	 * 		10-digit code representing original outfit features (old outfit
 	 * 		system)
-	 * @param extendedOutfit
-	 * 		4-digit code representing extended outfit features
 	 * @param outfitColor
 	 * 		Coloring information for outfit parts (<b>Note that outfitColor can
 	 * 		be modified by the dialog</b>)

@@ -125,7 +125,7 @@ public class StatusResistancesList {
 	/**
 	 * Find the resistance to a specified status type.
 	 * 
-	 * @param type
+	 * @param statusType
 	 * 		Status type to be resisted
 	 * @return
 	 * 		Resistance value

@@ -32,7 +32,7 @@ public class MithrilbourghEnemyArmyAchievementFactory extends AbstractAchievemen
 		LinkedList<Achievement> achievements = new LinkedList<Achievement>();
 		
 		// Index where number of completions is stored
-		final int INDEX = 3;
+		// final int INDEX = 3;
 		
 		/* Disabled until ready to implement
 		achievements.add(createAchievement("quest.special.weekly_army.0005", "Sergeant", "Finish Kill Enemy Army quest 5 times",
