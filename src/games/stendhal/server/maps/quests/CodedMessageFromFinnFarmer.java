@@ -62,7 +62,7 @@ import java.util.List;
 public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 
-	private static String QUEST_SLOT = "coded_message";
+	private static final String QUEST_SLOT = "coded_message";
 	private static final int QUEST_INDEX_STATUS = 0;
 	private static final int QUEST_INDEX_MESSAGE = 1;
 	private static final int QUEST_INDEX_REPEATED = 2;
@@ -76,7 +76,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			return res;
 		}
 		res.add("I talked to a little boy called Finn Farmer in Ados.");
-		res.add("Finn asked me to deliver a secret message to George. I can find her near her dog Tommy in Ados park.");
+		res.add("Finn asked me to deliver a secret message to George. I can find him near his dog Tommy in Ados park.");
 
 		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if (questState.equals("rejected")) {
@@ -89,12 +89,12 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			return res;
 		}
 
-		res.add("After talking to George she gave me another secret message, which I need to deliver to Finn.");
+		res.add("After talking to George he gave me another secret message, which I need to deliver to Finn.");
 		if (questState.equals("deliver_to_finn")) {
 			return res;
 		}
 		
-		res.add("I completed my mission as messanger. Finn Farmer went almost crazy of join when I told him George's answer.");
+		res.add("I completed my mission as messenger. Finn Farmer went almost crazy of join when I told him George's answer.");
 		return res;
 	}
 
@@ -103,7 +103,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			"The banana",
 			"The swallow",
 			"The elephant",
-			"The teady bear",
+			"The teddy bear",
 			"The moon",
 			"Jupiter",
 			"Delta"
@@ -174,14 +174,14 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 						new QuestNotActiveCondition(QUEST_SLOT),
 						new TimeReachedCondition(QUEST_SLOT, QUEST_INDEX_TIME)),
 				ConversationStates.QUEST_OFFERED,
-				"I have an urgent message for #George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to her?",
+				"I have an urgent message for #George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to him?",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				"george",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Just find Tommy. Perhaps in Ados Park. George won't be far away. Could you please deliver a message to her?",
+				"Just find Tommy. Perhaps in Ados Park. George won't be far away. Could you please deliver a message to him?",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
@@ -276,7 +276,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 					new SayTextAction("Oh, thank you for telling George!"),
 					new SayTextAction("!me dances around happily."),
 					new SayTextAction("This was really important!"),
-					new SayTextAction("And her answer is super interesting!"),
+					new SayTextAction("And his answer is super interesting!"),
 					new SayTextAction("I will be on the watch!"),
 					new SayTextAction("Perhaps, I have another message for you tomorrow.")
 				));

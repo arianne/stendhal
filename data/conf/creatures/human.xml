@@ -1968,7 +1968,7 @@
   
   <creature name="kalavan housewife">
     <type class="human" subclass="kalavan_housewife" tileid="human_kalavan.png:2"/>
-    <description>You see a kalavan housewife. She lives in Kalavan city and she very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!</description>
+    <description>You see a kalavan housewife. She lives in Kalavan city and she is very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!</description>
     <attributes>
       <atk value="274"/>
       <def value="42"/>

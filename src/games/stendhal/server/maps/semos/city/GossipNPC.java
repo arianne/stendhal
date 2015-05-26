@@ -96,7 +96,7 @@ public class GossipNPC implements ZoneConfigurator {
                     ConversationPhrases.YES_MESSAGES,
                     null,
                     ConversationStates.IDLE,
-                    "First of all, you should go talk to Hayunn Naratha. He's an great old hero, and he's also pretty much our only defender here... I'm sure he will gladly give you some advice! Good luck.",
+                    "First of all, you should go talk to Hayunn Naratha. He's a great old hero, and he's also pretty much our only defender here... I'm sure he will gladly give you some advice! Good luck.",
                     null);
 
                 add(ConversationStates.INFORMATION_1,
