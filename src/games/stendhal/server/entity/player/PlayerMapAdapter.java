@@ -26,22 +26,27 @@ public class PlayerMapAdapter implements Map<String, String> {
 		this.player = player;
 	}
 
+	@Override
 	public void clear() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean containsKey(Object arg0) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean containsValue(Object arg0) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Set<java.util.Map.Entry<String, String>> entrySet() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String get(Object obj) {
 		if (obj == null || ! (obj instanceof String)) {
 			return null;
@@ -75,30 +80,37 @@ public class PlayerMapAdapter implements Map<String, String> {
 		}
 	}
 
+	@Override
 	public boolean isEmpty() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Set<String> keySet() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String put(String arg0, String arg1) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void putAll(Map<? extends String, ? extends String> arg0) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String remove(Object arg0) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public int size() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Collection<String> values() {
 		throw new UnsupportedOperationException();
 	}
