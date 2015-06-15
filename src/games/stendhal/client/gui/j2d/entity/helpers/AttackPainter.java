@@ -149,7 +149,13 @@ public final class AttackPainter {
 				rangedSprites = getSpriteMap(ref, size, WEAPON_CACHE, new SpriteMaker() {
 					@Override
 					public Sprite getSprite() {
-						return SpriteStore.get().getCombatSprite(weapon + ".png");
+						SpriteStore st = SpriteStore.get();
+						Sprite sprite = st.getCombatSprite(weapon + ".png");
+						// Never use the fail safe sprite for attacks
+						if (sprite == st.getFailsafe()) {
+							return null;
+						}
+						return sprite;
 					}
 				});
 			}
@@ -290,8 +296,7 @@ public final class AttackPainter {
 			if (size == 1) {
 				SpriteStore st = SpriteStore.get();
 				Sprite template = maker.getSprite();
-				// Never use the fail safe sprite for attacks
-				if (template == st.getFailsafe()) {
+				if (template == null) {
 					return null;
 				}
 				map = splitTiles(st, template);
@@ -540,9 +545,13 @@ public final class AttackPainter {
 		sprites = map.get(direction);
 		if (weaponMap != null) {
 			weaponSprites = weaponMap.get(direction);
+		} else {
+			weaponSprites = null;
 		}
 		if (rangedWeaponMap != null) {
 			rangedSprites = rangedWeaponMap.get(direction);
+		} else {
+			rangedSprites = null;
 		}
 
 		frame = 0;
