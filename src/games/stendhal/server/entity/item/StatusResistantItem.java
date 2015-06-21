@@ -53,7 +53,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 		 */
 		
 		/* Initialize resistances. */
-		this.resistances = new StatusResistancesList(this);
+		this.resistances = new StatusResistancesList();
 	}
 	
 	/**
@@ -64,6 +64,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 */
 	public StatusResistantItem(final StatusResistantItem item) {
 		super(item);
+		initializeStatusResistancesList(item.resistances.getMap());
 	}
 	
 	
@@ -82,7 +83,7 @@ public class StatusResistantItem extends SlotActivatedItem {
 		 */
 		
 		if (this.resistances == null) {
-			this.resistances = new StatusResistancesList(this);
+			this.resistances = new StatusResistancesList();
 		}
 		
 		this.resistances.setStatusResistances(list);
