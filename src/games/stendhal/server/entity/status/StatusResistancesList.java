@@ -11,9 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.entity.Entity;
-
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,91 +24,20 @@ import org.apache.log4j.Logger;
  * to status effects.
  */
 public class StatusResistancesList {
-	private WeakReference<Entity> entityRef;
-	
 	/** The logger instance */
-	final Logger logger;
+	private static final Logger logger = Logger.getLogger(StatusResistancesList.class);
 	
 	/** Container for current resistances */
 	private Map<StatusType, Double> resistances;
 	
 	/**
 	 * Default constructor the container for status resistances.
-	 * 
-	 * @param entity
-	 * 		The entity that is using this list
 	 */
-	public StatusResistancesList(Entity entity) {
-		this.logger = Logger.getLogger(StatusResistancesList.class);
-		
-		this.entityRef = new WeakReference<Entity>(entity);
+	public StatusResistancesList() {
 		this.resistances = new HashMap<StatusType, Double>();
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Creating new empty ResistanceList");
-		}
+		logger.debug("Creating new empty ResistanceList");
 	}
-	
-	/**
-	 * Constructor for pre-existing resistance list.
-	 */
-	public StatusResistancesList(Entity entity, Map<StatusType, Double> resistances) {
-		this.logger = Logger.getLogger(StatusResistancesList.class);
 		
-		this.entityRef = new WeakReference<Entity>(entity);
-		this.resistances = resistances;
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Created new non-empty ResistanceList");
-		}
-	}
-	
-	/**
-	 * Adjusts or creates an entity's resistance to a status effect.
-	 * 
-	 * @param statusType
-	 * 		Resisted status type
-	 * @param value
-	 * 		Adjusted resistance value
-	 */
-	public void adjustStatusResistance(StatusType statusType, Double value) {
-		Double previousValue = resistances.get(statusType);
-		if (previousValue != null) {
-			Double newValue = previousValue + value;
-			if ((newValue > 1.0) || (newValue < 0.0)) {
-				logger.error("Cannot set " + statusType.toString()
-						+ " resistance to " + newValue.toString());
-				return;
-			} else {
-				// Adjust existent resistance
-				resistances.put(statusType, newValue);
-			}
-		} else {
-			// Create new resistance
-			resistances.put(statusType, value);
-			
-			if (logger.isDebugEnabled()) {
-				logger.debug("Created new resistance to " + statusType.toString()
-						+ " at " + value.toString());
-			}
-		}
-		
-		// If entity is no longer resistant to status type then remove
-		// reference completely.
-		if (resistances.get(statusType) <= 0.0) {
-			this.removeStatusResistance(statusType);
-		}
-	}
-	
-	/**
-	 * Gets the entity that uses this list.
-	 *
-	 * @return RPEntity or <code>null</code>
-	 */
-	public Entity getEntity() {
-		return entityRef.get();
-	}
-	
 	/**
 	 * Get the Map class for parsing.
 	 * 
@@ -136,7 +62,6 @@ public class StatusResistancesList {
 		/* Resistances are not initialized. Returning 0 resistance value */
 		if (resistances == null) {
 			logger.warn("resistances list was not initialized.");
-			
 			return res;
 		}
 		
@@ -165,20 +90,6 @@ public class StatusResistancesList {
 	 */
 	public Boolean isEmpty() {
 		return this.resistances.isEmpty();
-	}
-	
-	/**
-	 * Completely remove an entity's resistance to a status type.
-	 * 
-	 * @param statusType
-	 * 		Resisted status type
-	 */
-	public void removeStatusResistance(StatusType statusType) {
-		resistances.remove(statusType);
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Removed " + statusType.toString() + " resistance");
-		}
 	}
 	
 	/**
