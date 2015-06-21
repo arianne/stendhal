@@ -1,38 +1,27 @@
-# Eclipse project files
-.project
-
 # NetBeans project files
 manifest.mf
 nbbuild.xml
 nbproject
-
-# CVS repository files
-CVS
 
 build_client
 build_client_sound_data
 marauroa.ini
 server.log.*
 .stendhal-postman*.xml
-keystore.ksX
+keystore*
 .externalToolBuilders
-keystore_bak.ks
 build_server_maps
 /build
 build.ant-private.properties
 stendhal.log*
 marauroa-strato.ini
-.settings
 build_server
 cobertura.ser
-.classpath
 .metadata
 .checkstyle
 build_tiled_convertmaps
-keystore.ks
 server.ini
 /classes
-keystore*
 bak
 textclient-private.sh
 .pmd

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="tests"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/ant.jar"/>
+	<classpathentry kind="lib" path="libs/cglib-nodep-2.2_beta1.jar"/>
+	<classpathentry kind="lib" path="libs/easymock.jar"/>
+	<classpathentry kind="lib" path="libs/easymockclassextension.jar"/>
+	<classpathentry kind="lib" path="libs/groovy.jar"/>
+	<classpathentry kind="lib" path="libs/guava.jar"/>
+	<classpathentry kind="lib" path="libs/h2.jar"/>
+	<classpathentry kind="lib" path="libs/hamcrest-all-1.1.jar"/>
+	<classpathentry kind="lib" path="libs/jardiff.jar"/>
+	<classpathentry kind="lib" path="libs/jcurses.jar"/>
+	<classpathentry kind="lib" path="libs/jorbis.jar"/>
+	<classpathentry kind="lib" path="libs/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="libs/libtiled.jar"/>
+	<classpathentry kind="lib" path="libs/log4j.jar"/>
+	<classpathentry kind="lib" path="libs/marauroa.jar"/>
+	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.5-bin.jar"/>
+	<classpathentry kind="lib" path="libs/simple.jar"/>
+	<classpathentry kind="lib" path="libs/swing-layout.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
