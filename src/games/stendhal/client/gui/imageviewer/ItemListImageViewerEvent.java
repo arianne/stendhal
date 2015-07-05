@@ -319,7 +319,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 	 */
 	private Sprite getItemSprite(RPObject item) {
 		List<String> fishes = Arrays.asList("arctic_char", "clown-fish", "cod",
-				"mackerel", "perch", "roach", "surgeonfish", "trout", "red-lionfish");
+				"mackerel", "perch", "roach", "surgeonfish", "trout", "red-lionfish", "smoked cod", "smoked trout");
 		String itemSubclass = item.get("subclass");
 		for (String t:fishes) {
 			if (t.equals(itemSubclass)) {
