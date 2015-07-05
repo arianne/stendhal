@@ -44,12 +44,15 @@ public class LilJohnnnnyNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I didn't mean to hurt him.");
-				addJob("He was making fun of me.");
-				addHelp("He said my mommy wears army boots.");
+				addGreeting("I didn't mean to hurt #him.");
+				addJob("Job? Nah! Can't think of that now.");
+				addHelp("He said my mommy wears army #boots.");
 				addOffer("I'm gonna make him sorry he ever said that!");
 				addGoodbye("well, if you really have to leave...");
-				addQuest("Nah, I got nothin for you right now. Maybe later.");
+				addQuest("Nah, I got nothin' for you right now. Maybe later.");
+				addReply("him","He was making #fun of me.");
+				addReply("fun","He said my mommy wears army #boots.");
+				addReply("boots","I'm gonna make him sorry he'd ever said that!");
 			}
 		};
 
