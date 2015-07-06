@@ -54,6 +54,7 @@
     <corpse name="tiny_humanoid" harmless="gnome" />
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
+      <item value="minor potion" quantity="[1,1]" probability="2.5"/>
       <item value="antidote" quantity="[1,1]" probability="10.0"/>
       <item value="porcini" quantity="[1,10]" probability="10.0"/>
       <item value="leather armor" quantity="[1,1]" probability="10.0"/>
