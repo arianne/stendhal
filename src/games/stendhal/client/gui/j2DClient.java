@@ -17,7 +17,6 @@ import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.PerceptionListenerImpl;
-import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.WeatherSoundManager;
@@ -769,12 +768,11 @@ public class j2DClient implements UserInterface {
 
 		GameLoop loop = GameLoop.get();
 		final GameObjects gameObjects = client.getGameObjects();
-		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
 		loop.runAllways(new GameLoop.PersistentTask() {
 			@Override
 			public void run(int delta) {
-				gameLoop(delta, gameLayers, gameObjects);
+				gameLoop(delta, gameObjects);
 			}
 		});
 
@@ -794,11 +792,9 @@ public class j2DClient implements UserInterface {
 	 * Main game loop contents. Updates objects, and requests redraws.
 	 *
 	 * @param delta difference to previous calling time
-	 * @param gameLayers
 	 * @param gameObjects
 	 */
-	private void gameLoop(final int delta, final StaticGameLayers gameLayers,
-			final GameObjects gameObjects) {
+	private void gameLoop(final int delta, final GameObjects gameObjects) {
 		// Check logouts first, in case something goes wrong with the drawing
 		// code
 
