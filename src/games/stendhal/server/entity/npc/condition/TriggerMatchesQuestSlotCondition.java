@@ -26,6 +26,7 @@ public class TriggerMatchesQuestSlotCondition implements ChatCondition {
 		this.index = index;
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return sentence.matchesNormalized(player.getQuest(questname, index));
 	}
