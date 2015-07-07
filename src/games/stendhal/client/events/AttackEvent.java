@@ -42,10 +42,10 @@ public class AttackEvent extends Event<RPEntity> {
 				if (damage != 0) {
 					target.onDamaged(entity, damage);
 				} else {
-					target.onBlocked(entity);
+					target.onBlocked();
 				}
 			} else {
-				target.onMissed(entity);
+				target.onMissed();
 			}
 			entity.onAttackPerformed(dtype, ranged, event.get("weapon"));
 		}
