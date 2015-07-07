@@ -74,6 +74,7 @@ public abstract class SlotActivatedItem extends Item {
 	 * @param list
 	 * 		List of slot active slot names
 	 */
+	@Override
 	public void initializeActiveSlotsList(final List<String> list) {
 		this.activeSlotsList = list;
 		
