@@ -322,7 +322,7 @@ public final class WtWindowManager {
 				final boolean defaultMinimized, final int defaultX, final int defaultY,
 				final boolean defaultVisible) {
 			minimized = Boolean.parseBoolean(props.getProperty("window." + name
-					+ ".minimized", Boolean.toString(minimized)));
+					+ ".minimized", Boolean.toString(defaultMinimized)));
 			visible = Boolean.parseBoolean(props.getProperty("window." + name
 					+ ".visible", Boolean.toString(defaultVisible)));
 			x = Integer.parseInt(props.getProperty("window." + name + ".x",
