@@ -3,13 +3,18 @@
 
 1.18
 
+*world*
+- Improving dialogue of Lil Johnnny
+
 *fixes*
 - fixed status resistance items being forgetting their status value
 - fixed turning of character on character creation web page
+- fixed map in Orril Dungeon -3
 
 
 
 1.17
+20th april 2015
 
 *world*
 - A new fish swimming along the coast in Ados City
@@ -72,7 +77,9 @@
 - Fix mouse wheel walking bug where character walks endlessly
 
 
+
 1.16
+15th December 2014
 
 *world*
 - Semos city is decorated for Christmas
@@ -84,13 +91,16 @@
 - weather layer
 
 
+
 1.15.1
+26th October 2014
 
 - fixed a bug which caused poisoned summon creates to die multiple times
 
 
 
 1.15
+5th October 2014
 
 *world*
 - Mine Town Revival Weeks are celebrated again!
@@ -114,8 +124,8 @@
 
 
 
-
 1.14
+2nd June 2014
 
 *world*
 - new park in Fado city, south of church
