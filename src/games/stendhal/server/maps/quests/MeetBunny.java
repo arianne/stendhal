@@ -60,8 +60,8 @@ public class MeetBunny extends AbstractQuest {
 	/** the name of the quest */
 	public static final String QUEST_NAME = "MeetBunny";
 
-	// The default is 100 (30 seconds) so make ours half this
-	private static final int TIME_OUT = 50;
+	// The default is 30 seconds so make ours half this
+	private static final int TIME_OUT = 15;
 
 	@Override
 	public String getSlotName() {

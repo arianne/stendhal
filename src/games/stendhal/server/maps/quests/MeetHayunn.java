@@ -57,8 +57,7 @@ public class MeetHayunn extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "meet_hayunn";
 
-	//This is 1 minute at 300 ms per turn
-	private static final int TIME_OUT = 200;
+	private static final int TIME_OUT = 60;
 
 	private static Logger logger = Logger.getLogger(MeetHayunn.class);
 	

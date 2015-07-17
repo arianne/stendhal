@@ -57,8 +57,8 @@ import org.apache.log4j.Logger;
 public class SignLessorNPC implements ZoneConfigurator {
 	protected String text;
 
-	// 1.5 mins at 300 ms/turn
-	private static final int CHAT_TIMEOUT = 300;
+	// 1.5 minutes
+	private static final int CHAT_TIMEOUT = 90;
 	private static final int MONEY = 100; 
 	protected RentedSignList rentedSignList;
 

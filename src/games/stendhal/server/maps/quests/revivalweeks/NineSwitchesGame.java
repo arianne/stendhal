@@ -37,8 +37,7 @@ public class NineSwitchesGame implements LoadableContent {
 	private NineSwitchesGameBoard board;
 	private SpeakerNPC npc;
 
-	// 1 min at 300 ms/turn
-	private static final int CHAT_TIMEOUT = 200;
+	private static final int CHAT_TIMEOUT = 60;
 	
 	private void addBoard() {
 		board = new NineSwitchesGameBoard(zone, 94, 106);

@@ -17,6 +17,7 @@ import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.ExpressionMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
@@ -125,9 +126,9 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Determines how long a conversation can be paused before it will
-	 * terminated by the NPC. Defaults to 30 seconds at 300 ms / turn.
+	 * terminated by the NPC. Defaults to 30 seconds.
 	 */
-	private long playerChatTimeout = 100;
+	private long playerChatTimeout = secondsToTurns(30);
 
 	// Default wait message when NPC is busy
 	private String waitMessage;
@@ -341,10 +342,14 @@ public class SpeakerNPC extends NPC {
 	 * by the NPC.
 	 *
 	 * @param playerChatTimeout
-	 *            the time, in turns
+	 *            the time, in seconds
 	 */
-	public void setPlayerChatTimeout(final long playerChatTimeout) {
-		this.playerChatTimeout = playerChatTimeout;
+	public void setPlayerChatTimeout(final long seconds) {
+		playerChatTimeout = secondsToTurns(seconds);
+	}
+
+	private long secondsToTurns(final long seconds) {
+		return seconds * 1000 / StendhalRPWorld.MILLISECONDS_PER_TURN;
 	}
 
 	@Override

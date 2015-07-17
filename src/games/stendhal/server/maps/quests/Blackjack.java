@@ -50,11 +50,8 @@ public class Blackjack extends AbstractQuest {
 
 	// clubs ♣
 	private static final String CLUBS = "\u2663";
-
 	
-	
-	// 1 min at 300 ms/turn
-	private static final int CHAT_TIMEOUT = 200;
+	private static final int CHAT_TIMEOUT = 60;
 
 	private static final int MIN_STAKE = 10;
 

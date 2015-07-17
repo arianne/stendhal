@@ -30,8 +30,7 @@ import java.util.Map;
  */
 public class TeacherNPC implements ZoneConfigurator {
 	
-	// This is 1 minute at 300 ms per turn.
-	private static final int TIME_OUT = 200;
+	private static final int TIME_OUT = 60;
 	
 	/**
 	 * Configure a zone.
