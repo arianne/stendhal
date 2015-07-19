@@ -64,7 +64,7 @@ class IgnoreAction implements ActionListener {
 						}
 					}
 				}
-				if (namesAndReasons.size() < 0) {
+				if (namesAndReasons.isEmpty()) {
 					//	no, we can't just use the slot size test above as 'id' is in there, a bogus entry.
 					player.sendPrivateText("Your ignore list is empty.");
 				} else if (namesAndReasons.size() < 50) {
