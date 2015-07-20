@@ -1,8 +1,8 @@
 <link rel="import" href="../../../lib/polymer/polymer.html">
 		
-<polymer-element name="stendhal-buddylist">
+<dom-module id="stendhal-buddylist">
+    <link rel="stylesheet" href="stendhal-buddylist.css">
 	<template>
-	    <link rel="stylesheet" href="stendhal-buddylist.css">
 		<div id="buddyList">
 			<ul>
 				<template repeat="{{buddy in buddies}}">
@@ -11,5 +11,5 @@
 			</ul>
 		</div>
 	</template>
-	<script src="stendhal-buddylist.js"></script>
-</polymer-element>
+</dom-module>
+<script src="stendhal-buddylist.js"></script>

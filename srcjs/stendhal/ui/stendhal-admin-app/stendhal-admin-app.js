@@ -1,6 +1,7 @@
 "use strict";
 
-Polymer("stendhal-admin-app", {
+Polymer({
+	is: "stendhal-admin-app",
 
 	addChatLine: function(type, msg) {
 		if (!this.$.list.data) {

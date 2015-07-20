@@ -1,6 +1,8 @@
 "use strict";
 
-Polymer("stendhal-buddylist", {
+Polymer({
+	is: "stendhal-buddylist", 
+
 	buddies: [],
 
 	// TODO: don't rebuilt the buddylist completely on every turn,

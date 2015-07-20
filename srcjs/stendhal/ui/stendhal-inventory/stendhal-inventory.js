@@ -1,11 +1,19 @@
 "use strict";
 
-Polymer("stendhal-inventory", {
-	
-	size: 1,
-	slot: [],
+Polymer({
+	is: "stendhal-inventory",
+
+	properties: {
+		size: {
+			type: Number,
+			value: 1
+		},
+		slot: Array,
+	},
 
 	ready: function() {
+		this.slot = []
+
 		for (var i=0; i < this.size; i++) {
 			this.slot.push({sprite: "none", entry: i});
 		}

@@ -1,6 +1,8 @@
 "use strict";
 
-Polymer("stendhal-chatlog", {
+Polymer({
+	is: "stendhal-chatlog",
+
 	logEntries: [],
 
 	/**

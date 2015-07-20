@@ -2,9 +2,7 @@
 
 <link rel="import" href="../../../lib/polymer/polymer.html">
 		
-<polymer-element name="stendhal-admin-app">
-	<template>
-
+<dom-module id="stendhal-admin-app">
 <style type="text/css">
 :host {
 	font-family: "Arial";
@@ -44,6 +42,7 @@ p.logsupport {color: #ff7200}
 
 </style>
 
+<template>
 <core-header-panel id="hPanel" flex>
 	<core-toolbar>
 		<div class="title" flex>Stendhal</div>
@@ -71,5 +70,5 @@ p.logsupport {color: #ff7200}
 </core-header-panel>
 <input is="stendhal-chatbar" type="text" name="chatbar" id="chatbar" autocomplete="off">
 </template>
+</dom-element>
 <script src="stendhal-admin-app.js"></script>
-</polymer-element>

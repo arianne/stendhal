@@ -1,6 +1,7 @@
 "use strict";
 
-Polymer("stendhal-minimap", {
+Polymer({
+	is: "stendhal-minimap",
 	
 	width: 128,
 	height: 128,
