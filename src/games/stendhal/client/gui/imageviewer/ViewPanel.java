@@ -39,7 +39,5 @@ abstract class ViewPanel extends JComponent {
 	 *
 	 * @param maxSize of the panel
 	 */
-	public void prepareView(Dimension maxSize) {
-		// do nothing
-	}
+	public abstract void prepareView(Dimension maxSize);
 }

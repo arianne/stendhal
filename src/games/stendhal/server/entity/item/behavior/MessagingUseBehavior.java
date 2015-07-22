@@ -66,7 +66,7 @@ public class MessagingUseBehavior implements UseBehavior {
 		RPObject base = item.getBaseContainer();
 
 		if ((base instanceof Entity) && user.nextTo((Entity) base)) {
-			sendMessages(user, item);
+			sendMessages(user);
 			return true;
 		}
 		int amount = item.getQuantity();
@@ -81,9 +81,8 @@ public class MessagingUseBehavior implements UseBehavior {
 	 * Send the messages.
 	 * 
 	 * @param user entity using the item
-	 * @param item used item
 	 */
-	private void sendMessages(RPEntity user, Item item) {
+	private void sendMessages(RPEntity user) {
 		if (publicMessage != null) {
 			if (user instanceof Player) {
 				Player player = (Player) user;

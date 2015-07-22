@@ -63,6 +63,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		super(HOSTEL_ZONE_NAME, "Tad");
 	}
 
+	@Override
 	@Before
 	public void setUp() {
 		StendhalRPZone hostelZone = new StendhalRPZone(HOSTEL_ZONE_NAME);
@@ -84,6 +85,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest("TadFirstChat", "done");
 	}
 	
+	@Override
 	@After
 	public void tearDown() {
 		en.step(player, "bye");

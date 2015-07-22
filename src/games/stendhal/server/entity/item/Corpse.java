@@ -48,7 +48,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	private final class CorpseRottingTurnListener implements TurnListener {
 		@Override
 		public void onTurnReached(final int currentTurn) {
-			Corpse.this.onTurnReached(currentTurn);
+			Corpse.this.onTurnReached();
 		}
 	}
 	
@@ -344,11 +344,9 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	}
 
 	/**
-	 * degradates this corpse and remove it if it is completely rotten
-	 *
-	 * @param currentTurn ignored
+	 * Degrades this corpse and remove it if it is completely rotten
 	 */
-	public void onTurnReached(final int currentTurn) {
+	private void onTurnReached() {
 		degradateCorpse();
 		if (isCompletelyRotten()) {
 			for (RPObject obj : getSlot(CONTENT_SLOT)) {

@@ -135,7 +135,7 @@ public class CreateAccountDialog extends JDialog {
 		createAccountButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				createAccountButton_actionPerformed(e, false);
+				createAccountButton_actionPerformed();
 			}
 		});
 
@@ -198,8 +198,7 @@ public class CreateAccountDialog extends JDialog {
 		}
 	}
 
-	private void createAccountButton_actionPerformed(final ActionEvent e,
-			final boolean saveLoginBoxStatus) {
+	private void createAccountButton_actionPerformed() {
 		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
 

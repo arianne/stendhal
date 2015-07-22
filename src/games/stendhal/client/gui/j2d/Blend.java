@@ -102,12 +102,12 @@ public class Blend implements Composite {
 		case SOFT_LIGHT:
 			CompositeContext ctx = cache.get(Mode.SOFT_LIGHT);
 			if (ctx == null) {
-				ctx = new BlendContext(mode, srcColorModel, dstColorModel, color);
+				ctx = new BlendContext(mode, color);
 				cache.put(Mode.SOFT_LIGHT, ctx);
 			}
 			return ctx;
 		default:
-			return new BlendContext(mode, srcColorModel, dstColorModel, color);
+			return new BlendContext(mode, color);
 		}
 	}
 	
@@ -147,12 +147,9 @@ public class Blend implements Composite {
 		 * transparency image, if either of the images does not have alpha.
 		 * 
 		 * @param mode blending mode
-		 * @param srcColorModel
-		 * @param dstColorModel
 		 * @param color Color for modes that need it
 		 */
-		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel,
-				Color color) {
+		BlendContext(Mode mode, Color color) {
 			switch (mode) {
 			case BLEACH: composer = new BleachComposer(color);
 			break;

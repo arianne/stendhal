@@ -731,10 +731,8 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when this entity blocks the attack by attacker.
-	 * 
-	 * @param attacker attacking entity
 	 */
-	public void onBlocked(final IEntity attacker) {
+	public void onBlocked() {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.BLOCKED;
 		combatIconTime = System.currentTimeMillis();
@@ -817,10 +815,8 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when an attacker misses this entity.
-	 * 
-	 * @param attacker attacking entity
 	 */
-	public void onMissed(final IEntity attacker) {
+	public void onMissed() {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.MISSED;
 		combatIconTime = System.currentTimeMillis();
@@ -1263,7 +1259,7 @@ public abstract class RPEntity extends AudibleEntity {
 					hpRatio = hp / (float) baseHP;
 				}
 				if (hp == 0) {
-					onDeath(attackers);
+					onDeath();
 				}
 				fireChange(PROP_HP_RATIO);
 			}
@@ -1437,10 +1433,8 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when the entity dies.
-	 * 
-	 * @param attackers the entities that were attacking the deceased
 	 */
-	private void onDeath(final Collection<Entity> attackers) {
+	private void onDeath() {
 	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "death");
 	}
 
