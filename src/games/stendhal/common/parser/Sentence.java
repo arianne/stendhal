@@ -190,7 +190,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
         if (expressions.size() > 1) {
 	        // Test for a list of items
-			StringBuffer objects = new StringBuffer();
+			StringBuilder objects = new StringBuilder();
 			int simpleObjects = 0;
 	
 			for(Expression e : expressions) {

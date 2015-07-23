@@ -26,7 +26,7 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 	private int duration;
 	
 	/** The original speed of the entity */
-	private static double originalSpeed;
+	private double originalSpeed;
 	
 	/**
 	 * @param status

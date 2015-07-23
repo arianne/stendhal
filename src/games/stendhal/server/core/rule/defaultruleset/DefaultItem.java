@@ -24,7 +24,6 @@ import games.stendhal.server.entity.status.StatusType;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -168,7 +167,7 @@ public class DefaultItem {
 	 * 		The status type and the resistance value
 	 */
 	public void initializeStatusResistancesList(Map<String, Double> res) {
-		resistances = new HashMap<StatusType, Double>();
+		resistances = new EnumMap<StatusType, Double>(StatusType.class);
 		
 		for (Entry<String, Double> entry : res.entrySet()) {
 			resistances.put(StatusType.parse(entry.getKey()), entry.getValue());

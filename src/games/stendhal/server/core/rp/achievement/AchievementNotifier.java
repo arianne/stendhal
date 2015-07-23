@@ -28,6 +28,7 @@ import games.stendhal.server.events.SoundEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,7 +58,7 @@ public final class AchievementNotifier {
 	final private Map<String, Integer> identifiersToIds;
 
 	private AchievementNotifier() {
-		achievements = new HashMap<Category, List<Achievement>>();
+		achievements = new EnumMap<Category, List<Achievement>>(Category.class);
 		identifiersToIds = new HashMap<String, Integer>();
 	}
 
