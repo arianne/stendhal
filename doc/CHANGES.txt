@@ -5,12 +5,15 @@
 
 *world*
 - Improving dialogue of Lil Johnnny
+- Saskia sells umbrellas
 
 *fixes*
 - fixed status resistance items being forgetting their status value
 - fixed turning of character on character creation web page
 - fixed map in Orril Dungeon -3
 
+*code*
+- quality improvements
 
 
 1.17
