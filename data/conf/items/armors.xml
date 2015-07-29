@@ -459,6 +459,25 @@
     </equipable>
   </item>
   
+  <item name="scuba gear">
+    <type class="armor" subclass="scuba_gear" tileid="-1"/>
+    <description>You see a scuba suit with a heavy helmet attached. It is dense enough to offer protection and perfect for going under the waves.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="18"/>
+	  <min_level value="50"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="34391"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
   <item name="shadow armor">
     <type class="armor" subclass="shadow_armor" tileid="-1"/>
     <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>

@@ -36,6 +36,7 @@
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC" />
     <configurator class-name="games.stendhal.server.maps.athor.ship.CaptainNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.ship.ScubaNPC" />
     
     <entity x="34" y="39">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
@@ -44,6 +45,15 @@
     </entity>
     
     <!-- Portals -->
+   
+   <portal x="31" y="40" ref="divingSpot">
+   <destination zone="-3_athor_sea_floor" ref="surfaceSpot" />
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+   <parameter name="condition">new PlayerHasItemWithHimCondition("scuba gear", 1)</parameter>
+   <parameter name="rejected">You could dive in if you had the right equipment.</parameter>
+   </implementation>
+   </portal>
+   
     <entity x="15" y="31">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -1401,7 +1411,29 @@ You get your stake back when there is a draw. If you win, you get the double of 
   
   
  <!-- Level -3 -->
-  
+ <zone name="-3_athor_sea_floor" level="-3" x="500768" y="500384" file="Level -3/athor/sea_floor.tmx">
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#0c4774</parameter>
+      <parameter name="weather">wave</parameter>
+    </attributes>
+    
+   <!-- Portals -->
+   <portal x="31" y="40" ref="surfaceSpot">
+   <destination zone="0_athor_ship_w2" ref="divingSpot"/>
+   </portal>
+   
+       <!-- whirpool -->
+    <entity x="31" y="40">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    </zone>
   
  <!-- Level -4 -->
   
@@ -1413,5 +1445,4 @@ You get your stake back when there is a draw. If you win, you get the double of 
 
 
  <!-- Level -7 -->
-
 </zones>
