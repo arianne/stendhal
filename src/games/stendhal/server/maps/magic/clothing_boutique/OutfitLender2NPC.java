@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -63,6 +62,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		  final Pair<Outfit, Boolean> GLASSES = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(86), null, null), true);
 		  final Pair<Outfit, Boolean> GOBLIN_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(88), null, null), true);
 		  final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(87), null, null), true);
+		  final Pair<Outfit, Boolean> Umbrella = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(07), null, null, null, null), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
 		  final Pair<Outfit, Boolean> PURPLE_SLIME = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(93)), false);
@@ -75,6 +75,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 			outfitTypes.put("glasses", GLASSES);
 			outfitTypes.put("goblin face", GOBLIN_FACE);
 			outfitTypes.put("thing face", THING_FACE);
+			outfitTypes.put("umbrella", Umbrella);
 			outfitTypes.put("purple slime", PURPLE_SLIME);
 			outfitTypes.put("green slime", GREEN_SLIME);
 			outfitTypes.put("red slime", RED_SLIME);
@@ -166,6 +167,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 				priceList.put("blue slime", (int) (N * 3000));
 				priceList.put("green slime", (int) (N * 3000));
 				priceList.put("gingerbread man", (int) (N * 1200));
+				priceList.put("umbrella", (int) (N * 300));
 			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
 				addQuest("Just look fabulous!");
 				add(
@@ -173,7 +175,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #purple #slime outfit, #hire a #green #slime, #hire a #red #slime, #hire a #blue #slime, or #hire a #gingerbread #man outfit.",
+					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #umbrella, #hire a #purple #slime outfit, #hire a #green #slime, #hire a #red #slime, #hire a #blue #slime, or #hire a #gingerbread #man outfit.",
 					new ExamineChatAction("outfits2.png", "Outfits", "Price varies"));
 				addJob("I work with magic in a fun way! Ask about the #offer.");
 				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana also rents out from a different range.");
