@@ -126,7 +126,7 @@
   
   <item name="map">
     <type class="documents" subclass="mapwithgrid" tileid="-1"/>
-    <description/>
+    <description>You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
