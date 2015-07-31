@@ -165,6 +165,8 @@ Authors of Stendhal are:
   . Testing
 - Balaur
   · Bugs fixer
+  - Diligent Dodo
+  · Artist (mimic, dodo, suba diving concepts)
 
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
@@ -195,5 +197,3 @@ Notable contributors:
 - Omero
   · Coder (trivial patch to the client GUI for deleting local profiles, some NPCs)
   · Artist (some new pies, so far)
-- Diligent Dodo
-  · Artist (mimic sprite)
