@@ -165,7 +165,7 @@ Authors of Stendhal are:
   . Testing
 - Balaur
   · Bugs fixer
-  - Diligent Dodo
+  - Diligent Dodo (aka Soniccuz)
   · Artist (mimic, dodo, suba diving concepts)
 
 We also thank many who have contributed to Stendhal by providing patches,
