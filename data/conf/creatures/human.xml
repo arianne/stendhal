@@ -3352,7 +3352,7 @@
   
   <creature name="littlewitch">
     <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
-    <description>You see a little witch. Witches are are evil little girls who are very dangerous.</description>
+    <description>You see a little witch. These little girls are witches and that makes them very dangerous.</description>
     <attributes>
       <atk value="246"/>
       <def value="48"/>
