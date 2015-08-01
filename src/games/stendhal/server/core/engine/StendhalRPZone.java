@@ -1644,7 +1644,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			// here we need to capitalise the city name
 			result += Grammar.makeUpperCaseWord(remainder.replaceAll("_", " "));
 		} else {
-			System.err.println("no match: " + zoneName);
+			logger.warn("no match: " + zoneName);
 		}
 		if ("".equals(result)) {
 			return zoneName;
@@ -1751,5 +1751,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public String getNoItemMoveMessage() {
 		return this.noItemMoveMessage;
+	}
+
+	/**
+	 * gets the zone attributes
+	 *
+	 * @return zone attributes
+	 */
+	public ZoneAttributes getAttributes() {
+		return attributes;
 	}
 }

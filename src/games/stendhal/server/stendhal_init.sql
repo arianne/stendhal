@@ -151,6 +151,29 @@ CREATE TABLE IF NOT EXISTS npcs (
 /*CREATE INDEX i_npcs_id ON npcs (id);*/
 /*CREATE INDEX i_npcs_name ON npcs (name);*/
 
+CREATE TABLE IF NOT EXISTS zoneinfo (
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  name          VARCHAR(64),
+  level         INTEGER,
+  iterior       INTEGER,
+  x             INTEGER,
+  y             INTEGER,
+  height        INTEGER,
+  width         INTEGER,
+  accessable    INTEGER,
+  readableName  VARCHAR(64),
+  description   VARCHAR(64),
+  colorMethod   VARCHAR(64),
+  color         VARCHAR(64),
+  blendMethod   VARCHAR(64),
+  dangerLevel   FLOAT,
+  weather       VARCHAR(64),
+  PRIMARY KEY (id)
+);
+
+/*CREATE INDEX i_zoneinfo_name ON zoneinfo (name);*/
+
+
 CREATE TABLE IF NOT EXISTS postman (
   id         INTEGER AUTO_INCREMENT NOT NULL,
   source     VARCHAR(64),
