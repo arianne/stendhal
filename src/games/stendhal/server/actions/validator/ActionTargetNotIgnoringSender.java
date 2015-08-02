@@ -57,7 +57,7 @@ public class ActionTargetNotIgnoringSender implements ActionValidator {
 		if (reply.length() == 0) {
 			return Grammar.suffix_s(playerName) + " mind is not attuned to yours, so you cannot reach them.";
 		} else {
-			return targetPlayer + " is ignoring you: " + reply;
+			return playerName + " is ignoring you: " + reply;
 		}
 	}
 }
