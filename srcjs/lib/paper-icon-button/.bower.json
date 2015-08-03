@@ -1,25 +1,47 @@
 {
   "name": "paper-icon-button",
   "private": true,
+  "version": "1.0.3",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "description": "A material design icon button",
+  "main": "paper-icon-button.html",
+  "author": [
+    "The Polymer Authors"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "button",
+    "icon",
+    "control"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-icon-button.git"
+  },
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.5.0",
-    "paper-button": "Polymer/paper-button#^0.5.0",
-    "core-icon": "Polymer/core-icon#^0.5.0",
-    "core-icons": "Polymer/core-icons#^0.5.0",
-    "paper-ripple": "Polymer/paper-ripple#^0.5.0"
+    "iron-flex-layout": "polymerelements/iron-flex-layout#^1.0.0",
+    "iron-icon": "polymerelements/iron-icon#^1.0.0",
+    "iron-icons": "polymerelements/iron-icons#^1.0.0",
+    "paper-behaviors": "polymerelements/paper-behaviors#^1.0.0",
+    "paper-ripple": "polymerelements/paper-ripple#^1.0.0",
+    "paper-styles": "polymerelements/paper-styles#^1.0.0",
+    "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^1.1.4"
+    "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "test-fixture": "polymerelements/test-fixture#^1.0.0",
+    "web-component-tester": "*",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   },
-  "version": "0.5.2",
-  "homepage": "https://github.com/Polymer/paper-icon-button",
-  "_release": "0.5.2",
+  "homepage": "https://github.com/PolymerElements/paper-icon-button",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "0.5.2",
-    "commit": "01ff19f4cce26f99d1d6d45af79de6d3963c2cc6"
+    "tag": "v1.0.3",
+    "commit": "9f183bdae3ff419aeae78a51a05fcc4d0100e5a3"
   },
-  "_source": "git://github.com/Polymer/paper-icon-button.git",
-  "_target": "^0.5.0",
-  "_originalSource": "Polymer/paper-icon-button"
+  "_source": "git://github.com/PolymerElements/paper-icon-button.git",
+  "_target": "^1.0.0",
+  "_originalSource": "PolymerElements/paper-icon-button"
 }

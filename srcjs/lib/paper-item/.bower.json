@@ -1,25 +1,49 @@
 {
   "name": "paper-item",
+  "version": "1.0.2",
+  "description": "A material-design styled list item",
+  "authors": [
+    "The Polymer Authors"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "item"
+  ],
+  "main": [
+    "paper-item.html",
+    "paper-icon-item.html",
+    "paper-item-body.html"
+  ],
   "private": true,
-  "dependencies": {
-    "polymer": "Polymer/polymer#^0.5.0",
-    "core-icon": "Polymer/core-icon#^0.5.0",
-    "core-icons": "Polymer/core-icons#^0.5.0",
-    "core-selector": "Polymer/core-selector#^0.5.0",
-    "font-roboto": "Polymer/font-roboto#^0.5.0",
-    "paper-button": "Polymer/paper-button#^0.5.0",
-    "paper-ripple": "Polymer/paper-ripple#^0.5.0",
-    "paper-shadow": "Polymer/paper-shadow#^0.5.0"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-item"
   },
-  "version": "0.5.2",
-  "homepage": "https://github.com/Polymer/paper-item",
-  "_release": "0.5.2",
+  "license": "MIT",
+  "homepage": "https://github.com/PolymerElements/paper-item",
+  "ignore": [],
+  "dependencies": {
+    "paper-styles": "PolymerElements/paper-styles#^1.0.0",
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-icon": "PolymerElements/iron-icon#^1.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.0.0",
+    "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0",
+    "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+    "web-component-tester": "*",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "_release": "1.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "0.5.2",
-    "commit": "d008b8eaea306710012e60fcae68ea02c730333f"
+    "tag": "v1.0.2",
+    "commit": "209d000bd2e99d9b31cfc996bbc5b0fc554be21d"
   },
-  "_source": "git://github.com/Polymer/paper-item.git",
-  "_target": "^0.5.0",
-  "_originalSource": "Polymer/paper-item"
+  "_source": "git://github.com/PolymerElements/paper-item.git",
+  "_target": "^1.0.0",
+  "_originalSource": "PolymerElements/paper-item"
 }

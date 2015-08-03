@@ -1,79 +1,267 @@
 <!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+<link rel="import" href="../iron-behaviors/iron-control-state.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../neon-animation/animations/fade-in-animation.html">
+<link rel="import" href="../neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="paper-menu-button-animations.html">
+
 <!--
+`paper-menu-button` allows one to compose a designated "trigger" element with
+another element that represents "content", to create a dropdown menu that
+displays the "content" when the "trigger" is clicked.
 
-`paper-menu-button` works together with a button and a `paper-dropdown` to
-implement a button that displays a drop-down when tapped on.
+The child element with the class `dropdown-trigger` will be used as the
+"trigger" element. The child element with the class `dropdown-content` will be
+used as the "content" element.
 
-The child element with the class `dropdown` will be used as the drop-down
-menu. It should be a `paper-dropdown` or other overlay element.
+The `paper-menu-button` is sensitive to its content's `iron-select` events. If
+the "content" element triggers an `iron-select` event, the `paper-menu-button`
+will close automatically.
 
 Example:
 
     <paper-menu-button>
-        <paper-icon-button icon="menu" noink></paper-icon-button>
-        <paper-dropdown class="dropdown">
-            <core-menu class="menu">
-                <paper-item>Share</paper-item>
-                <paper-item>Settings</paper-item>
-                <paper-item>Help</paper-item>
-            </core-menu>
-        </paper-dropdown>
+      <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
+      <paper-menu class="dropdown-content">
+        <paper-item>Share</paper-item>
+        <paper-item>Settings</paper-item>
+        <paper-item>Help</paper-item>
+      </paper-menu>
     </paper-menu-button>
 
-@group Paper Elements
-@element paper-menu-button
-@extends core-dropdown-base
-@status unstable
+### Styling
+
+The following custom properties and mixins are also available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-menu-button-dropdown-background` | Background color of the paper-menu-button dropdown | `#fff`
+`--paper-menu-button` | Mixin applied to the paper-menu-button | `{}`
+`--paper-menu-button-disabled` | Mixin applied to the paper-menu-button when disabled | `{}`
+`--paper-menu-button-dropdown` | Mixin applied to the paper-menu-button dropdown | `{}`
+
+
+@hero hero.svg
+@demo demo/index.html
 -->
-<link href="../polymer/polymer.html" rel="import">
-<link href="../core-a11y-keys/core-a11y-keys.html" rel="import">
-<link href="../core-dropdown/core-dropdown-base.html" rel="import">
 
-<polymer-element name="paper-menu-button" extends="core-dropdown-base" relative>
-<template>
-
+<dom-module id="paper-menu-button">
   <style>
     :host {
       display: inline-block;
+      position: relative;
+      padding: 8px;
+      outline: none;
+
+      @apply(--paper-menu-button);
     }
 
     :host([disabled]) {
-      pointer-events: none;
-      color: #a8a8a8;
+      cursor: auto;
+      color: var(--disabled-text-color);
+
+      @apply(--paper-menu-button-disabled);
     }
 
-    polyfill-next-selector { content: ':host([disabled]) *'; }
-    :host([disabled]) ::content * {
-      pointer-events: none;
+    :host([vertical-align="top"]) paper-material {
+      margin-bottom: 20px;
+      margin-top: -10px;
+      top: 10px;
+    }
+
+    :host([vertical-align="bottom"]) paper-material {
+      bottom: 10px;
+      margin-bottom: -10px;
+      margin-top: 20px;
+    }
+
+    paper-material {
+      border-radius: 2px;
+      background-color: var(--paper-menu-button-dropdown-background, --primary-background-color);
+
+      @apply(--paper-menu-button-dropdown);
     }
   </style>
-
-  <core-a11y-keys target="{{}}" keys="enter space" on-keys-pressed="{{toggleOverlay}}"></core-a11y-keys>
-
-  <content></content>
-
-</template>
+  <template>
+    <div id="trigger" on-tap="open">
+      <content select=".dropdown-trigger"></content>
+    </div>
+    <iron-dropdown
+      id="dropdown"
+      opened="{{opened}}"
+      horizontal-align="[[horizontalAlign]]"
+      vertical-align="[[verticalAlign]]"
+      open-animation-config="[[openAnimationConfig]]"
+      close-animation-config="[[closeAnimationConfig]]"
+      no-animations="[[noAnimations]]">
+      <paper-material class="dropdown-content">
+        <content select=".dropdown-content"></content>
+      </paper-material>
+    </iron-dropdown>
+  </template>
+</dom-module>
 <script>
+  (function() {
+    'use strict';
 
-  Polymer({
+    var PaperMenuButton = Polymer({
 
-    overlayListeners: {
-      'core-overlay-open': 'openAction',
-      'core-activate': 'activateAction'
-    },
+      is: 'paper-menu-button',
 
-    activateAction: function() {
-      this.opened = false;
-    }
+      behaviors: [
+        Polymer.IronA11yKeysBehavior,
+        Polymer.IronControlState
+      ],
 
-  });
+      properties: {
 
+        /**
+         * True if the content is currently displayed.
+         */
+        opened: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+
+        /**
+         * The orientation against which to align the menu dropdown
+         * horizontally relative to the dropdown trigger.
+         */
+        horizontalAlign: {
+          type: String,
+          value: 'left',
+          reflectToAttribute: true
+        },
+
+        /**
+         * The orientation against which to align the menu dropdown
+         * vertically relative to the dropdown trigger.
+         */
+        verticalAlign: {
+          type: String,
+          value: 'top',
+          reflectToAttribute: true
+        },
+
+        /**
+         * Set to true to disable animations when opening and closing the
+         * dropdown.
+         */
+        noAnimations: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * An animation config. If provided, this will be used to animate the
+         * opening of the dropdown.
+         */
+        openAnimationConfig: {
+          type: Object,
+          value: function() {
+            return [{
+              name: 'fade-in-animation',
+              timing: {
+                delay: 100,
+                duration: 200
+              }
+            }, {
+              name: 'paper-menu-grow-width-animation',
+              timing: {
+                delay: 100,
+                duration: 150,
+                easing: PaperMenuButton.ANIMATION_CUBIC_BEZIER
+              }
+            }, {
+              name: 'paper-menu-grow-height-animation',
+              timing: {
+                delay: 100,
+                duration: 275,
+                easing: PaperMenuButton.ANIMATION_CUBIC_BEZIER
+              }
+            }];
+          }
+        },
+
+        /**
+         * An animation config. If provided, this will be used to animate the
+         * closing of the dropdown.
+         */
+        closeAnimationConfig: {
+          type: Object,
+          value: function() {
+            return [{
+              name: 'fade-out-animation',
+              timing: {
+                duration: 150
+              }
+            }, {
+              name: 'paper-menu-shrink-width-animation',
+              timing: {
+                delay: 100,
+                duration: 50,
+                easing: PaperMenuButton.ANIMATION_CUBIC_BEZIER
+              }
+            }, {
+              name: 'paper-menu-shrink-height-animation',
+              timing: {
+                duration: 200,
+                easing: 'ease-in'
+              }
+            }];
+          }
+        }
+      },
+
+      hostAttributes: {
+        role: 'group',
+        'aria-haspopup': 'true'
+      },
+
+      listeners: {
+        'iron-activate': '_onIronActivate'
+      },
+
+      /**
+       * Make the dropdown content appear as an overlay positioned relative
+       * to the dropdown trigger.
+       */
+      open: function() {
+        this.fire('paper-open');
+        this.$.dropdown.open();
+      },
+
+      /**
+       * Hide the dropdown content.
+       */
+      close: function() {
+        this.fire('paper-close');
+        this.$.dropdown.close();
+      },
+
+      _onIronActivate: function(event) {
+        this.close();
+      }
+    });
+
+    PaperMenuButton.ANIMATION_CUBIC_BEZIER = 'cubic-bezier(.3,.95,.5,1)';
+    PaperMenuButton.MAX_ANIMATION_TIME_MS = 400;
+
+    Polymer.PaperMenuButton = PaperMenuButton;
+  })();
 </script>
-</polymer-element>
+
