@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,10 +11,20 @@
  ***************************************************************************/
 
 "use strict";
-Polymer("stendhal-chatbar", {
+Polymer({
+	is: "stendhal-chatbar", 
+
 	history: [],
 	historyIndex: 0,
 	pressedKeys: {},
+	
+	extends: 'input',
+	
+	listeners: {
+		'keydown': 'keydown',
+		'keyup': 'keyup',
+		'keypress': 'keypress'
+	},
 
 	clear: function() {
 		this.value = '';
