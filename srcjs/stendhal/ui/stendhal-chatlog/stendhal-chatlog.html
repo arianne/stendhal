@@ -3,8 +3,8 @@
 <dom-module id="stendhal-chatlog">
     <link rel="stylesheet" href="stendhal-chatlog.css">
 	<template>
-		<template repeat="{{entry in logEntries}}">
-			<p class="log{{entry.type}}">[{{entry.time}}] {{entry.message}}</p>
+		<template is="dom-repeat" items="[[logEntries]]">
+			<p class$="[[item.type]]">[<span>[[item.time]]</span>] <span>[[item.message]]</span></p>
 		</template>
 	</template>
 </dom-module>
