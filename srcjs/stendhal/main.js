@@ -109,4 +109,4 @@ stendhal.main = {
 	}
 }
 
-document.addEventListener('polymer-ready', stendhal.main.startup);
+document.addEventListener('WebComponentsReady', stendhal.main.startup);
