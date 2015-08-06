@@ -2,11 +2,15 @@
 
 Polymer({
 	is: "stendhal-admin-app",
+	
+	properties: {
+		chat: {
+			type: Array,
+			value: []
+		}
+	},
 
 	addChatLine: function(type, msg) {
-		if (!this.$.list.data) {
-			this.$.list.data = [];
-		}
 		var date = new Date();
 		var time = "" + date.getHours() + ":";
 		if (date.getHours < 10) {
@@ -16,13 +20,13 @@ Polymer({
 			time = time + "0";
 		};
 		time = time + date.getMinutes();
-		this.$.list.data.push({
+		this.push('chat', {
 			time: time,
-			type: type,
+			type: "log" + type,
 			message: msg
 		});
 		this.$.list.scrollTarget = this.$.hPanel;
-		this.$.list.updateSize();
+		this.$.list.fire('resize');
 	},
 
 	clickBan: function(e) {

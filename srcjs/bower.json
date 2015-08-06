@@ -31,6 +31,7 @@
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#^1.0.0",
     "paper-item": "PolymerElements/paper-item#^1.0.0",
-    "paper-menu-button": "PolymerElements/paper-menu-button#^1.0.0"
+    "paper-menu-button": "PolymerElements/paper-menu-button#^1.0.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.2"
   }
 }

@@ -43,32 +43,32 @@ p.logsupport {color: #ff7200}
 </style>
 
 <template>
-<core-header-panel id="hPanel" flex>
-	<core-toolbar>
+<paper-header-panel id="hPanel" class="flex">
+	<paper-toolbar>
 		<div class="title" flex>Stendhal</div>
 		<paper-menu-button>
-			<paper-icon-button class="title" icon="more-vert"></paper-icon-button>
-			<paper-dropdown class="dropdown adminmenu" halign="right">
-					<paper-item on-click="{{clickBan}}">Ban</paper-item>
-					<paper-item on-click="{{clickDeepInspect}}">Deep inspect</paper-item>
-					<paper-item on-click="{{clickInspect}}">Inspect</paper-item>
-					<paper-item on-click="{{clickSupport}}">Support</paper-item>
-					<paper-item on-click="{{clickSupportAnswer}}">Support answer</paper-item>
-					<paper-item on-click="{{clickWho}}">Who</paper-item>
-					<paper-item on-click="{{clickWhere}}">Where</paper-item>
-			</paper-dropdown>
+			<paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+			<paper-menu class="dropdown-content adminmenu">
+				<paper-item role="listitem" on-click="clickBan">Ban</paper-item>
+				<paper-item role="listitem" on-click="clickDeepInspect">Deep inspect</paper-item>
+				<paper-item role="listitem" on-click="clickInspect">Inspect</paper-item>
+				<paper-item role="listitem" on-click="clickSupport">Support</paper-item>
+				<paper-item role="listitem" on-click="clickSupportAnswer">Support answer</paper-item>
+				<paper-item role="listitem" on-click="clickWho">Who</paper-item>
+				<paper-item role="listitem" on-click="clickWhere">Where</paper-item>
+			</paper-menu>
 		</paper-menu-button>
-	</core-toolbar>
+	</paper-toolbar>
 
-  	<core-list id="list" flex>
+  	<iron-list id="list" class="flex" items="[[chat]]" as="model">
 		<template>
 			<div>
-				<p class="logitem log{{model.type}}">[{{model.time}}] {{model.message}}</p>
+				<p class="logitem log{{model.type}}">[<span>{{model.time}}</span>] <span>{{model.message}}</span></p>
 			</div>
 		</template>
-	</core-list>
-</core-header-panel>
+	</iron-list>
+</paper-header-panel>
 <input is="stendhal-chatbar" type="text" name="chatbar" id="chatbar" autocomplete="off">
 </template>
-</dom-element>
+</dom-module>
 <script src="stendhal-admin-app.js"></script>
