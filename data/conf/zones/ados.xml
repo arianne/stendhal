@@ -132,6 +132,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.market.DistilleryCustomerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.OracleNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.CafeSellerNPC" />
     
