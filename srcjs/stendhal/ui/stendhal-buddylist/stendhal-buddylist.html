@@ -5,8 +5,8 @@
 	<template>
 		<div id="buddyList">
 			<ul>
-				<template repeat="{{buddy in buddies}}">
-					<li class="{{buddy.status}}">{{buddy.name}}</li>
+				<template is="dom-repeat" items="[[buddies]]">
+					<li class$="[[item.status]]">[[item.name]]</li>
 				</template>
 			</ul>
 		</div>

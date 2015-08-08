@@ -3,12 +3,17 @@
 Polymer({
 	is: "stendhal-buddylist", 
 
-	buddies: [],
+	properties: {
+		buddies: {
+			type: Array,
+			value: []
+		}
+	},
 
 	// TODO: don't rebuilt the buddylist completely on every turn,
 	//       but implement an observer
 	update: function(data) {
-		this.buddies = [];
+		this.splice('buddies', 0, this.buddies.length);
 		for (var buddy in data) {
 			if (data.hasOwnProperty(buddy)) {
 				var entry = {"name": buddy};
@@ -20,7 +25,7 @@ Polymer({
 					entry.status = "offline";
 				}
 			}
-			this.buddies.push(entry);
+			this.push('buddies', entry);
 		}
 		this.sort();
 	},
