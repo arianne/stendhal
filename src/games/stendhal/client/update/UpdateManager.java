@@ -42,20 +42,32 @@ class UpdateManager {
 	 *
 	 * @param initialDownload true, if an initial download is required
 	 */
-	private void init(final boolean initialDownload) {
-		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")
-				+ "/update-0.95.properties";
+	private void downloadUpdateProp(final boolean initialDownload) {
+		// user configuration (for testing)
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder-0.95",
-					ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
+			serverFolder = bootProp.getProperty("server.folder-0.95", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
 					+ "/";
-			updatePropertiesFile = bootProp.getProperty("server.update-prop-0.95",
-					serverFolder + "update-0.95.properties");
+			String updatePropertiesFile = bootProp.getProperty("server.update-prop-0.95", serverFolder + "update-0.95.properties");
+			final HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
+			updateProp = httpClient.fetchProperties();
+			if (updateProp != null && updateProp.containsKey("init.version")) {
+				return;
+			}
 		}
-		final HttpClient httpClient = new HttpClient(updatePropertiesFile,
-				initialDownload);
+
+		// primary location
+		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER") + "/update-0.95.properties";
+		HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
 		updateProp = httpClient.fetchProperties();
-	}
+		if (updateProp != null && updateProp.containsKey("init.version")) {
+			return;
+		}
+
+		// fallback location
+		updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER_FALLBACK") + "/update-0.95.properties";
+		httpClient = new HttpClient(updatePropertiesFile, initialDownload);
+		updateProp = httpClient.fetchProperties();
+}
 
 	/**
 	 * Processes the update.
@@ -74,7 +86,7 @@ class UpdateManager {
 		this.jarFolder = jarFolder;
 		this.bootProp = bootProp;
 		this.classLoader = classLoader;
-		init(initialDownload.booleanValue());
+		downloadUpdateProp(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
 				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from\r\n"

@@ -110,9 +110,14 @@
 			replace="UPDATE_SERVER_FOLDER=${updates_server}"
 			byline="true"/>
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+			match="UPDATE_SERVER_FOLDER_FALLBACK=.*"
+			replace="UPDATE_SERVER_FOLDER_FALLBACK=${updates_server_fallback}"
+			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="UPDATE_VERSION_CHECK=.*"
 			replace="UPDATE_VERSION_CHECK=${version_server}"
 			byline="true"/>
+		
 
 		<replaceregexp file="stendhal.jnlp"
 			match="-0\..*\.jar&quot;"
