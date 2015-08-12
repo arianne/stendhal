@@ -76,6 +76,7 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 					" : ["+	player.getQuest(questSlot)+
 					"]");
 			//npc.say("something wrong with you, i dont see how much monsters you killed.");
+			// TODO: clear player's quest slot
 			return false;
 		}
 		int sum=0;
@@ -90,6 +91,7 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 				logger.error("NumberFormatException while parsing numbers in quest slot "+questSlot+
 						" of player "+player.getName()
 						+" , creature " + i*5);
+				// TODO: clear player's quest slot
 				return false;
 			}
 			final int diffSolo = player.getSoloKill(creatureName) - killedSolo;
