@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition;
+import games.stendhal.server.entity.npc.condition.KillsQuestSlotNeedUpdateCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -511,7 +512,11 @@ import marauroa.common.Pair;
 		
 		if(player.getQuest(QUEST_SLOT, 0).equals("start")) {
 	        final String givenEnemies = player.getQuest(QUEST_SLOT, 1);
-	        final int givenNumber = enemyForces.get(givenEnemies).first(); 
+	        final int givenNumber = enemyForces.get(givenEnemies).first();
+	        // updating firstly
+			if(new KillsQuestSlotNeedUpdateCondition(QUEST_SLOT, 2, enemys.get(givenEnemies), true).fire(player, null, null)) {
+				// still need update??
+			}
 	        final int killedNumber = getKilledCreaturesNumber(player);
 	        
 			history.add("Despot Halb Errvl asked me to kill "+
