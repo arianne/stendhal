@@ -48,6 +48,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Pair;
 
 
@@ -378,6 +380,28 @@ import marauroa.common.Pair;
 	}
 
 	/**
+	 * class for quest talking.
+	 */
+	class FixAction implements ChatAction {
+
+		@Override
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
+				//final String monsters = player.getQuest(QUEST_SLOT, 1);
+			    Logger.getLogger(KillEnemyArmy.class).warn("Fixing malformed quest string of player <"+
+				                                            player.getName()+
+				                                            ">: ("+
+				                                            player.getQuest(QUEST_SLOT)+
+				                                            ")");
+				npc.say("Something really wrong with you, I cannot see what exactly. I suppose you "+
+						"was cursed by strong magic, named Stendhal Bug Problem, or maybe Stendhal Java Problem, "+
+						"I am not sure. I will apply my own magic on you, but you have to start my quest from begin. "+
+						"What I need now:");
+				new GiveQuestAction().fire(player, sentence, npc);
+		}
+	}
+
+	
+	/**
 	 * add quest state to npc's fsm.
 	 */
 	private void step_1() {
@@ -428,6 +452,16 @@ import marauroa.common.Pair;
 				"Yes, my enemies are everywhere, they want to kill me! I guess you are one of them. Stay away from me!",
 				null);
 
+		// update player's quest slot or blank it if failed...
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new KillsQuestSlotNeedUpdateCondition(QUEST_SLOT, 1, enemys, true)),
+				ConversationStates.ATTENDING,
+				null,
+				new FixAction());		
+		
 		// checking for kills
 		final List<String> creatures = new LinkedList<String>(enemyForces.keySet());
 		for(int i=0; i<enemyForces.size(); i++) {
