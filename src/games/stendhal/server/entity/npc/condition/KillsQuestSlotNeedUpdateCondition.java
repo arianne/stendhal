@@ -23,6 +23,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -44,15 +45,16 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledInSumForQuestCondition.class);
 	private final String questSlot;
 	private final int questIndex;
+	private final int questGroupIndex;
 	private final List<String> creatures;
 	private final boolean do_update;
-	
+    private final Map<String, List<String>> allcreatures;	
 
 	/**
 	 * Creates a new KillsQuestSlotNeedUpdateCondition.
 	 *
 	 * @param quest - the quest slot
-	 * @param index - quest slot index where information stored
+	 * @param index - quest slot index where information stored (creatures records)
 	 * @param creatures - list of creatures required to kill by npc
 	 * @param do_update - if true then player's quest slot would update
 	 */
@@ -61,14 +63,48 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 		this.questIndex = index;
 		this.creatures = creatures;
 		this.do_update = do_update;
+		// not applicable in this case
+		this.questGroupIndex = -1;
+		this.allcreatures = null;
 	}
 
+	
+	/**
+	 * Creates a new KillsQuestSlotNeedUpdateCondition.
+	 *
+	 * @param quest - the quest slot
+	 * @param index - quest slot index where information stored (creatures group string followed by creatures records)
+	 * @param allcreatures - map of creatures groups, required to kill by npc
+	 * @param do_update - if true then player's quest slot would update
+	 */
+	public KillsQuestSlotNeedUpdateCondition(String quest, int index, Map<String, List<String>> allcreatures, boolean do_update) {
+		this.questSlot = checkNotNull(quest);
+		this.questGroupIndex = index;
+		this.questIndex = index+1;
+		this.allcreatures = allcreatures;
+		this.do_update = do_update;
+		// not applicable in this case
+		this.creatures = null;
+	}
+	
+	
 	/**
 	 * return true if player need update, or if required update was unsuccessful.
 	 */
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		String toadd="";
+		List<String> neededcreatures;
+		// checking what we have
+		if(allcreatures==null) {
+			// simple call
+			neededcreatures=creatures;
+		} else {
+			// taking from player's quest slot
+	        final String givenEnemies = player.getQuest(questSlot, questGroupIndex);
+	        neededcreatures=allcreatures.get(givenEnemies);
+		};
+
 		final String temp = player.getQuest(questSlot, questIndex);
 		if (temp == null) {
 			return false;
@@ -92,7 +128,7 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 		}
 		
 		// check for creatures from list
-		for(String monster:creatures) {
+		for(String monster:neededcreatures) {
 			if(!mycreatures.contains(monster)) {
 			   if(do_update) {
 				   // adding creature name to user quest slot (tail)
