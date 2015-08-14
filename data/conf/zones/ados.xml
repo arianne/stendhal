@@ -135,6 +135,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.DistilleryCustomerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.OracleNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.CafeSellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.market.HalfElfNPC" />
     
     <!-- Signs -->
     <entity x="78" y="99">
