@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -42,14 +49,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import marauroa.common.Pair;
 
 
@@ -82,7 +81,7 @@ import marauroa.common.Pair;
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
 	private static final int delay = MathHelper.MINUTES_IN_ONE_WEEK;
-	
+
 	protected HashMap<String, Pair<Integer, String>> enemyForces = new HashMap<String, Pair<Integer,String>>();
 	protected HashMap<String, List<String>> enemys = new HashMap<String, List<String>>();
 
@@ -347,7 +346,7 @@ import marauroa.common.Pair;
 
 			player.equipOrPutOnGround(money);
 			player.addKarma(karmabonus);
-		
+
 		}
 	}
 
@@ -392,20 +391,18 @@ import marauroa.common.Pair;
 				                                            ">: ("+
 				                                            player.getQuest(QUEST_SLOT)+
 				                                            ")");
-				npc.say("Something really wrong with you, I cannot see what exactly. I suppose you "+
-						"was cursed by strong magic, named Stendhal Bug Problem, or maybe Stendhal Java Problem, "+
-						"I am not sure. I will apply my own magic on you, but you have to start my quest from begin. "+
+				npc.say("I am sorry, I did not pay attention. " +
 						"What I need now:");
 				new GiveQuestAction().fire(player, sentence, npc);
 		}
 	}
 
-	
+
 	/**
 	 * add quest state to npc's fsm.
 	 */
 	private void step_1() {
-		
+
 		SpeakerNPC npc = npcs.get(QUEST_NPC);
 
 		// quest can be given
@@ -460,8 +457,8 @@ import marauroa.common.Pair;
 						new KillsQuestSlotNeedUpdateCondition(QUEST_SLOT, 1, enemys, true)),
 				ConversationStates.ATTENDING,
 				null,
-				new FixAction());		
-		
+				new FixAction());
+
 		// checking for kills
 		final List<String> creatures = new LinkedList<String>(enemyForces.keySet());
 		for(int i=0; i<enemyForces.size(); i++) {
@@ -525,25 +522,25 @@ import marauroa.common.Pair;
 	public String getName() {
 		return "KillEnemyArmy";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 80;
-	}	
-	
+	}
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
-	
+
  	@Override
  	public List<String> getHistory(final Player player) {
  		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
 		}
-		
+
 		if(player.getQuest(QUEST_SLOT, 0).equals("start")) {
 	        final String givenEnemies = player.getQuest(QUEST_SLOT, 1);
 	        final int givenNumber = enemyForces.get(givenEnemies).first();
@@ -552,7 +549,7 @@ import marauroa.common.Pair;
 				// still need update??
 			}
 	        final int killedNumber = getKilledCreaturesNumber(player);
-	        
+
 			history.add("Despot Halb Errvl asked me to kill "+
 					givenNumber+" "+
 					Grammar.plnoun(givenNumber, givenEnemies));
@@ -567,29 +564,29 @@ import marauroa.common.Pair;
 				history.add("I have killed enough creatures to get my reward now.");
 			} else {
 				history.add(givenNumber-killedNumber+" "+
-						Grammar.plnoun(givenNumber-killedNumber, givenEnemies)+" left to kill.");				
+						Grammar.plnoun(givenNumber-killedNumber, givenEnemies)+" left to kill.");
 			}
 		}
-		
+
 		if(isCompleted(player)) {
 			history.add("I completed Despot's Halb Errvl task and got my reward!");
-		}	
+		}
 		if (isRepeatable(player)) {
 			history.add("Despot Halb Errvl is getting paranoid again about his safety, I can offer my services now.");
-		} 
+		}
 		int repetitions = player.getNumberOfRepetitions(getSlotName(), 3);
 		if (repetitions > 0) {
 			history.add("I've bloodthirstily slain "
 					+ Grammar.quantityplnoun(repetitions, "whole army") + " for Despot Halb Errvl.");
 		}
-		return history; 
+		return history;
  	}
 
 	@Override
 	public String getNPCName() {
 		return "Despot Halb Errvl";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;
