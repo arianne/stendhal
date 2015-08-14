@@ -11,11 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -36,7 +40,16 @@ public class HalfElfNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				// no path
+                final List<Node> nodes = new LinkedList<Node>();
+                nodes.add(new Node(77, 16));
+                nodes.add(new Node(77, 20));
+                nodes.add(new Node(73, 20));
+                nodes.add(new Node(73, 26));
+                nodes.add(new Node(70, 26));
+                nodes.add(new Node(70, 18));
+                nodes.add(new Node(74, 18));
+                nodes.add(new Node(74, 16));
+                setPath(new FixedPath(nodes, true));
 			}
 
 			@Override
@@ -69,7 +82,7 @@ public class HalfElfNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see Aerianna, a really beautiful young woman with elvish ears.");
 		npc.setEntityClass("halfelfnpc");
-		npc.setPosition(40, 31);
+		npc.setPosition(77, 12);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
