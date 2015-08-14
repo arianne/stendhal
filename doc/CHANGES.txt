@@ -8,19 +8,22 @@
 - Improving dialogue of Lil Johnnny
 - Saskia sells umbrellas
 
+
+*website*
+- zone names labels on world map
+- http://arianne.sourceforge.net is moving to https://arianne-project.org
+
 *fixes*
 - fixed status resistance items being forgetting their status value
 - fixed turning left and right of character on character creation web page
 - fixed map in Orril Dungeon -3
 - fixed kill enemy quests getting stuck
 
-*website*
-- http://arianne.sourceforge.net is moving to https://arianne-project.org
 
 *code*
 - Webstart starter will be able to check both arianne-project.org and arianne.sourceforge.net for additional files.
   So if SourceForge goes down again for a week, webstart will still be able to download Stendhal
-- quality improvements
+- code quality improvements
 
 
 1.17
