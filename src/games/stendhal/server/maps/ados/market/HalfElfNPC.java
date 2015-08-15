@@ -41,14 +41,22 @@ public class HalfElfNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
                 final List<Node> nodes = new LinkedList<Node>();
-                nodes.add(new Node(77, 16));
-                nodes.add(new Node(77, 20));
-                nodes.add(new Node(73, 20));
-                nodes.add(new Node(73, 26));
-                nodes.add(new Node(70, 26));
-                nodes.add(new Node(70, 18));
-                nodes.add(new Node(74, 18));
-                nodes.add(new Node(74, 16));
+                nodes.add(new Node(55, 47));
+                nodes.add(new Node(55, 35));
+                nodes.add(new Node(73, 35));
+                nodes.add(new Node(73, 23));
+                nodes.add(new Node(76, 23));
+                nodes.add(new Node(76, 11));
+                nodes.add(new Node(71, 11));
+                nodes.add(new Node(71, 7));
+                nodes.add(new Node(57, 7));
+                nodes.add(new Node(57, 23));
+                nodes.add(new Node(27, 23));
+                nodes.add(new Node(27, 28));
+                nodes.add(new Node(21, 28));
+                nodes.add(new Node(21, 44));
+                nodes.add(new Node(31, 44));
+                nodes.add(new Node(31, 47));
                 setPath(new FixedPath(nodes, true));
 			}
 
