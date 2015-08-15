@@ -18,6 +18,7 @@ import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.dbcommand.LogTradeEventCommand;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -139,6 +140,12 @@ public class PrepareOfferHandler {
 					} else if (item.hasSlot("content") && item.getSlot("content").size() > 0) {
 						npc.say("Please empty your " + itemName + " first.");
 						return;
+					} else if (item instanceof RingOfLife) {
+					    // broken ring of life should not be sold via Harold
+					    if(((RingOfLife) item).isBroken()) {
+					        npc.say("Please repair your " + itemName + " before trying to sell it.");
+					        return;
+					    }
 					}
 
 					// All looks ok so far. Ask confirmation from the player.
