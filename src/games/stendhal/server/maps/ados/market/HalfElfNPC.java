@@ -90,7 +90,7 @@ public class HalfElfNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see Aerianna, a really beautiful young woman with elvish ears.");
 		npc.setEntityClass("halfelfnpc");
-		npc.setPosition(77, 12);
+		npc.setPosition(55, 47);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
