@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,10 +11,10 @@
  ***************************************************************************/
 package conf;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -26,14 +25,14 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import marauroa.common.Log4J;
-
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import marauroa.common.Log4J;
 
 public class PortalMatchTest {
 	private static final Logger logger = Logger.getLogger(PortalMatchTest.class); 
@@ -74,7 +73,7 @@ public class PortalMatchTest {
 			fail(t.toString());
 		}
 
-		assertTrue("All portals are valid", isValid(portals));
+		assertThat("All portals are valid", isValid(portals), equalTo(""));
 
 	}
 
@@ -112,8 +111,8 @@ public class PortalMatchTest {
 		return tempList;
 	}
 
-	public boolean isValid(final List<PortalTestObject> testList) {
-		boolean result = true;
+	public String isValid(final List<PortalTestObject> testList) {
+		StringBuilder errors = new StringBuilder();
 
 		for (final PortalTestObject x : testList) {
 			if (x.hasDestination()) {
@@ -125,12 +124,11 @@ public class PortalMatchTest {
 
 				}
 				if (!founddestination) {
-					logger.warn(x.toString());
+					errors.append(x.toString());
 
 				}
-				result = result && founddestination;
 			}
 		}
-		return result;
+		return errors.toString();
 	}
 }
