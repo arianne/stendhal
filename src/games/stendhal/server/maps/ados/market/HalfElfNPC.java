@@ -51,8 +51,8 @@ public class HalfElfNPC implements ZoneConfigurator {
                 nodes.add(new Node(71, 7));
                 nodes.add(new Node(57, 7));
                 nodes.add(new Node(57, 23));
-                nodes.add(new Node(27, 23));
-                nodes.add(new Node(27, 28));
+                nodes.add(new Node(28, 23));
+                nodes.add(new Node(28, 28));
                 nodes.add(new Node(21, 28));
                 nodes.add(new Node(21, 44));
                 nodes.add(new Node(31, 44));
