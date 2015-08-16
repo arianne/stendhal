@@ -930,7 +930,7 @@
 <!--************************************************************************-->
 
 
-	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
+	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test"/>
 
 	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
 		<mkdir dir="${build_tests}"/>
@@ -970,6 +970,28 @@
 		</javac>
 	</target>
 
+	<available property="server.ini" file="server.ini"/>
+	<target name="prepare_serverini_for_tests" unless="server.ini">
+		<echo file="server.ini">
+database_implementation=games.stendhal.server.core.engine.StendhalPlayerDatabase
+factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory
+database_adapter=marauroa.server.db.adapter.H2DatabaseAdapter
+jdbc_url=jdbc:h2:~/stendhal/database/h2db;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE
+jdbc_class=org.h2.Driver
+tcp_port=32160
+world=games.stendhal.server.core.engine.StendhalRPWorld
+ruleprocessor=games.stendhal.server.core.engine.StendhalRPRuleProcessor
+turn_length=300
+server_typeGame=stendhal
+server_name=stendhal Marauroa server
+server_version=1.17.5
+server_contact=https://sourceforge.net/tracker/?atid=514826&amp;group_id=66537&amp;func=browse
+n = 966117159215070350422008719727400433209081371975507132437556194069529307432746058120899703845731090424709994853484674454738958575201865208533043689325553646377
+e = 15
+d = 901709348600732327060541471745573737661809280510473323608385781131560686937229596225645929798090122419343070307904183075525081589946196209839163758401803422679
+		</echo>
+	</target>
+	
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
 		<junit printsummary="yes" fork="no">
@@ -994,6 +1016,7 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${guava_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
+				<pathelement path="${h2_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
