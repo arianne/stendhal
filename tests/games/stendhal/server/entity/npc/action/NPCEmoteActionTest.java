@@ -55,6 +55,7 @@ public class NPCEmoteActionTest {
 	 * Tests for fire.
 	 */
 	@Ignore
+	@Test
 	public void testFire() {
 		final SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC();
 		npc.setName("TestNPC");

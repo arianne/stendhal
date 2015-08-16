@@ -244,11 +244,12 @@ public class ElvishArmorTest {
 		assertThat(getReply(npc), is("I don't think that's a piece of elvish armor..."));
 	}
 	
-    @Ignore 
-    // ignored because removed from quest logic now.
 	/**
 	 * Tests for question1toIdle.
 	 */
+    @Ignore
+    @Test
+    // ignored because removed from quest logic now.
     public void testQuestion1toIdle() {
             for (final String playerSays : ConversationPhrases.GOODBYE_MESSAGES) {
                     final Player player = PlayerTestHelper.createPlayer("bob");
@@ -336,6 +337,7 @@ public class ElvishArmorTest {
 	 * *This is no longer in quest as the general logic doesn't have it in
 	 */
 	@Ignore
+    @Test
 	public void testAttendingtoAttendingDoneQuestmessage() {
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player player = PlayerTestHelper.createPlayer("bob");
@@ -355,6 +357,7 @@ public class ElvishArmorTest {
 	 * *This is no longer in quest as the general logic doesn't have it in
 	 */
 	@Ignore
+    @Test
 	public void testAttendingtoQuestion1NotDoneQuestmessage() {
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player player = PlayerTestHelper.createPlayer("bob");

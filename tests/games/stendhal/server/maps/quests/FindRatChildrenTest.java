@@ -296,6 +296,7 @@ public class FindRatChildrenTest {
 
 
 	@Ignore
+    @Test
 	public void testReturningAfterTimePassed() {
 		
 		// [11:51] Admin kymara changed your state of the quest 'find_rat_kids' from 'done;1270205441630' to 'done;1'

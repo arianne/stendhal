@@ -46,7 +46,6 @@ public class UpdatePlayerEntitiesTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
-	//@Ignore
 	/**
 	 * Tests for doUpdate.
 	 * @throws Throwable
