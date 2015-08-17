@@ -366,6 +366,7 @@ public class ReverseArrow extends AbstractQuest implements
 	private static final class GamblosSpeakerNPC extends SpeakerNPC {
 		private GamblosSpeakerNPC(String name) {
 			super(name);
+			setPlayerChatTimeout(TIME);
 		}
 
 		@Override
