@@ -23,6 +23,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.maps.semos.tavern.market.MarketManagerNPC;
 import games.stendhal.server.maps.semos.tavern.market.TradeCenterZoneConfigurator;
@@ -226,6 +227,9 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		playersMoney.setQuantity(price);
 		
 		//player needs belt slot to equip keyring
+		if(!player.hasSlot("belt")) {
+		    player.addSlot(new PlayerSlot("belt"));
+		}
 		assertThat(player.hasSlot("belt"), is(Boolean.TRUE));
 		
 		assertTrue("Equipping player with keyring in belt should be successfull.", player.equip("belt", keyring));
@@ -259,6 +263,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals(
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+		
 	}
 
 
