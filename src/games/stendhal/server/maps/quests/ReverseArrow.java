@@ -69,10 +69,10 @@ public class ReverseArrow extends AbstractQuest implements
 	private static final int MAX_MOVES = 3;
 
 	/** Horizontal position of the upper left token at the beginning. */
-	private static final int OFFSET_X = 15;
+	private static final int OFFSET_X = 8;
 
 	/** Vertical position of the upper left token at the beginning. */
-	private static final int OFFSET_Y = 10;
+	private static final int OFFSET_Y = 9;
 
 	// "static" data
 	protected StendhalRPZone zone;
@@ -357,7 +357,7 @@ public class ReverseArrow extends AbstractQuest implements
 		npc = new GamblosSpeakerNPC("Gamblos");
 
 		npc.setEntityClass("oldwizardnpc"); 
-		npc.setPosition(20, 8);
+		npc.setPosition(13, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
@@ -414,7 +414,7 @@ public class ReverseArrow extends AbstractQuest implements
 		door.open();
 
 		final Portal exit = new Portal();
-		exit.setPosition(17, 20);
+		exit.setPosition(10, 17);
 		exit.setIdentifier(Integer.valueOf(0));
 		exit.setDestination(entranceZoneName, Integer.valueOf(0));
 		zone.add(exit);

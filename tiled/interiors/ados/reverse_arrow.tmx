@@ -1,52 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="35" height="24" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/ground/ground_2.png" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="21" height="21" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/ground/ground_2.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="5" name="../../tileset/ground/indoor/grey_skull.png" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/ground/indoor/grey_skull.png" firstgid="5" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_skull.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="13" name="../../tileset/building/wall/int_wall_pale.png" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/wall/int_wall_pale.png" firstgid="13" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="29" name="../../tileset/building/wall/int_wall_purple.png" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/wall/int_wall_purple.png" firstgid="29" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="49" name="../../tileset/building/entrance/pale_red_ns.png" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="49" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="85" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <layer name="0_floor" width="35" height="24">
+ <layer name="0_floor" width="21" height="21">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OoREAMAgEsBd0/5XZAUOPi4hPJSkYeAtcXFxcXFxcXK5c+FMDHulwkyANAAA=
+   H4sIAAAAAAAAAGNhYGBgGcVUx6xUwKNmjpo5auaomYPdzMGOAWi5AffkBgAA
   </data>
  </layer>
- <layer name="1_terrain" width="35" height="24">
+ <layer name="1_terrain" width="21" height="21">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYnAAD4jkAx5AYAAA==
   </data>
  </layer>
- <layer name="2_object" width="35" height="24">
+ <layer name="2_object" width="21" height="21">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QuQ2AMBBEUTfAkXCk3KRABjQAZNj918IUgJG9kDEjvXClr1WKe1oOocAGOxzC++ymJYYeak8naDCC2w4iS0vp8L8vV7CFLWxhC1vYwha2vGxpofI0wAiT4LaxtKQQCMywwCq8Txz+9/ddW4NRFCANAAA=
+   H4sIAAAAAAAAAGNgGFpAAoj5cGBPIPYCYm88asSxmCkAxBpArIIFBwFxMBCH4JBXB2J+HGYqkelHxVEzR80cNXPUTCBWA2JlHNgIj5wqDjPFgJgXB7YCYmsgtsGjRpRMPw4kAAAlzTvQ5AYAAA==
   </data>
  </layer>
- <layer name="objects" width="35" height="24">
+ <layer name="objects" width="21" height="21">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYnAAD4jkAx5AYAAA==
   </data>
  </layer>
- <layer name="collision" width="35" height="24" opacity="0.29">
+ <layer name="collision" width="21" height="21" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OwQkAQAgDwTRp/61cD6KHjwnsN0wlKanZz7GwsLCwsLCwTFg6bf3qXg+AdJLvIA0AAA==
+   H4sIAAAAAAAAAAtlYGAIHcU0w+SAUTNHzRw1c9RMYuyiVjk1nDEA4XWG0eQGAAA=
   </data>
  </layer>
- <layer name="protection" width="35" height="24" opacity="0.47">
+ <layer name="protection" width="21" height="21" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYnAAD4jkAx5AYAAA==
   </data>
  </layer>
 </map>
