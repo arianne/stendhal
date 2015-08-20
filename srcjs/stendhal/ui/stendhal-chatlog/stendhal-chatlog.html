@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="stendhal-chatlog.css">
 	<template>
 		<template is="dom-repeat" items="[[logEntries]]">
-			<p class$="[[item.type]]">[<span>[[item.time]]</span>] <span>[[item.message]]</span></p>
+			<div class$="[[item.type]]">[<span>[[item.time]]</span>] <span>[[item.message]]</span></div>
 		</template>
 	</template>
 </dom-module>
