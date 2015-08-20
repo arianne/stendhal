@@ -109,13 +109,11 @@ stendhal.data.map = {
 	 * Returns the index of the tileset a tile belongs to.
 	 */
 	getTilesetForGid: function(value) {
-		var pos;
-		for (pos = 0; pos < this.firstgids.length; pos++) {
-			if (value < this.firstgids[pos]) {
-				break;
-			}
+		if (value < this.gidsindex.length) {
+			return this.gidsindex[value]
+		} else {
+			return this.gidsindex[this.gidsindex.length - 1] + 1;
 		}
-		return pos - 1;
 	},
 
 	httpRequest: -1,
@@ -182,13 +180,22 @@ stendhal.data.map = {
 			}
 		}
 		new ImagePreloader(images, function() {
-//			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 			var body = document.getElementById("body")
 			body.style.cursor = "auto";
 		});
 
 		this.numberOfXTiles = root.getAttribute("width")
 		this.numberOfYTiles = root.getAttribute("height")
+
+		// create a lookup table from gid to tileset index for a significant performance reasons
+		this.gidsindex = new Array;
+		var pos, lastStart = 0, i;
+		for (pos = 0; pos < parseInt(this.firstgids.length, 10); pos++) {
+			for (i=lastStart; i<this.firstgids[pos]; i++) {
+				this.gidsindex.push(pos - 1);
+			}
+			lastStart = parseInt(this.firstgids[pos], 10);
+		}
 	},
 
 	getTilesetFilename: function(node) {

@@ -22,7 +22,7 @@ stendhal.ui.gamewindow = {
 	offsetX: 0,
 	offsetY: 0,
 	timeStamp: new Date().getTime(),
-
+	
 	draw: function() {
 		var startTime = new Date().getTime();
 
@@ -53,6 +53,13 @@ stendhal.ui.gamewindow = {
 				}
 			}
 			this.drawEntitiesTop();
+			
+			/*
+			this.ctx.font = "14px Arial";
+			this.ctx.fillStyle = "#000000";
+			this.ctx.fillText((1000/20) - (new Date().getTime()-startTime) + "  " + Math.floor(1000 / (new Date().getTime()-startTime)), 10, 10);
+			console.log((1000/20) - (new Date().getTime()-startTime), Math.floor(1000 / (new Date().getTime()-startTime)))
+			*/
 		}
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
