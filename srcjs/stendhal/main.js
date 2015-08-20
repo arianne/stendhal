@@ -88,7 +88,7 @@ stendhal.main = {
 	registerBrowserEventHandlers: function() {
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
-			document.onclick = stendhal.ui.gamewindow.onclick;
+			gamewindow.addEventListener("click", stendhal.ui.gamewindow.onclick);
 		}
 	},
 
