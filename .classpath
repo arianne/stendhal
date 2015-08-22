@@ -17,9 +17,26 @@
 	<classpathentry kind="lib" path="libs/junit-4.4.jar"/>
 	<classpathentry kind="lib" path="libs/libtiled.jar"/>
 	<classpathentry kind="lib" path="libs/log4j.jar"/>
-	<classpathentry kind="lib" path="libs/marauroa.jar"/>
+	<classpathentry kind="lib" path="libs/marauroa.jar" sourcepath="/marauroa"/>
 	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.5-bin.jar"/>
 	<classpathentry kind="lib" path="libs/simple.jar"/>
 	<classpathentry kind="lib" path="libs/swing-layout.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-client-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-continuation-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-http-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-io-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-security-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-server-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-servlet-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-util-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-webapp-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-xml-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/servlet-api-3.1.jar"/>
+	<classpathentry kind="lib" path="libs/websocket-api-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/websocket-client-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/websocket-common-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/websocket-server-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/websocket-servlet-9.2.5.v20141112.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
