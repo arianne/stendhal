@@ -2,6 +2,11 @@
 		
 <dom-module id="stendhal-chatlog">
     <link rel="stylesheet" href="stendhal-chatlog.css">
+    <style>
+	:host {
+		border: 1px solid #000; padding:0.5em; overflow-y: scroll; word-wrap:break-word; display: block
+	}
+	</style>
 	<template>
 		<template is="dom-repeat" items="[[logEntries]]">
 			<div class$="[[item.type]]">[<span>[[item.time]]</span>] <span>[[item.message]]</span></div>
