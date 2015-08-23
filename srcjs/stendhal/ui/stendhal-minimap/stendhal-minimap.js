@@ -8,6 +8,10 @@ Polymer({
 	titleHeight: 15,
 	minimumScale: 2,
 
+	listeners: {
+		"click": "onclick"
+	},
+
 	zoneChange: function() {
 		this.mapWidth = /*marauroa.currentZone.width;*/ 128;
 		this.mapHeight = /*marauroa.currentZone.height;*/ 64;
@@ -79,5 +83,9 @@ Polymer({
 		}
 
 		this.ctx.translate(Math.round(this.xOffset), Math.round(this.yOffset));
+	},
+	
+	onclick: function(e) {
+		document.getElementById("chatbar").focus();
 	}
 });

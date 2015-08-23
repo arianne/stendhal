@@ -25,6 +25,10 @@ Polymer({
 		'keyup': 'keyup',
 		'keypress': 'keypress'
 	},
+	
+	attached: function() {
+		this.focus();
+	},
 
 	clear: function() {
 		this.value = '';
