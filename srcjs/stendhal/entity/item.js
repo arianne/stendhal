@@ -17,6 +17,7 @@
  */
 marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 
+
 	minimapShow: false,
 	minimapStyle: "rgb(0,255,0)",
 	zIndex: 7000,
@@ -38,6 +39,28 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 			this.sprite.filename = "/data/sprites/items/" 
 				+ this.class + "/" + this.subclass + ".png";
 		}
+	},
+	
+	draw: function(ctx) {
+		marauroa.rpobjectFactory.item.proto.draw.apply(this, arguments);
+		ctx.font = "10px Arial";
+		ctx.fillStyle = "#FFF";
+		var text = this.formatQuantity();
+		var textMetrics = ctx.measureText(text);
+		ctx.fillText(text, this.x * 32 + (32 - textMetrics.width)/2, this.y * 32);
+	},
+	
+	formatQuantity: function() {
+		if (!this.quantity) {
+			return "";
+		}
+		if (this.quantity > 10000000) {
+			return Math.floor(this.quantity / 1000000) + "m"; 
+		}
+		if (this.quantity > 10000) {
+			return Math.floor(this.quantity / 1000) + "k"; 
+		}
+		return this.quantity;
 	}
 });
 

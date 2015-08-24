@@ -27,7 +27,7 @@ stendhal.ui.equip = {
 				var o = s.first();
 				if (typeof(o) != "undefined") {
 					document.getElementById(this.slots[i]).style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
-					document.getElementById(this.slots[i]).textContent = stendhal.ui.itemContainerWindow.formatQuantity(o['quantity']);
+					document.getElementById(this.slots[i]).textContent = o.formatQuantity();
 				} else {
 					document.getElementById(this.slots[i]).style.backgroundImage = "none";
 					document.getElementById(this.slots[i]).textContent = "";
@@ -59,7 +59,7 @@ stendhal.ui.itemContainerWindow = {
 			if (!isNaN(i)) {
 				var o = marauroa.me[name][i];
 				document.getElementById(name + cnt).style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
-				document.getElementById(name + cnt).textContent = this.formatQuantity(o['quantity']);
+				document.getElementById(name + cnt).textContent = o.formatQuantity();
 				cnt++;
 			}
 		}
@@ -67,18 +67,5 @@ stendhal.ui.itemContainerWindow = {
 			document.getElementById(name + i).style.backgroundImage = "none";
 			document.getElementById(name + cnt).textContent = "";
 		}
-	},
-	
-	formatQuantity: function(quantity) {
-		if (!quantity) {
-			return "";
-		}
-		if (quantity > 10000000) {
-			return Math.floor(quantity / 1000000) + "m"; 
-		}
-		if (quantity > 10000) {
-			return Math.floor(quantity / 1000) + "k"; 
-		}
-		return quantity;
 	}
 }

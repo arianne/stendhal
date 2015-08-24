@@ -133,9 +133,9 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 
 	drawTitle: function(ctx, x, y) {
 		if (typeof(this.title) != "undefined") {
-			var textMetrics = ctx.measureText(this.title);
 			ctx.font = "14px Arial";
 			ctx.fillStyle = "#A0A0A0";
+			var textMetrics = ctx.measureText(this.title);
 			var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
 			ctx.fillText(this.title, x + (this.width * 32 - textMetrics.width) / 2+2, drawY - 5 - HEALTH_BAR_HEIGHT);
 			ctx.fillStyle = this.titleStyle;
