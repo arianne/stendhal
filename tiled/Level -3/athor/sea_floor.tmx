@@ -21,6 +21,9 @@
  <tileset firstgid="209" name="ship" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/ship.png" width="512" height="736"/>
  </tileset>
+ <tileset firstgid="577" name="giant_animal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/giant_animal.png" width="96" height="32"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3ZW27TQBiA0VrihccuoUthCd0gawUULDmRx3O3x5NzJKsCBXXw9/uajw8AAID2fkY25hVrbw7mlNPdDMwl1PbHZiudDzMztpT2ZmBeV7Q3A+NIaa//vFL7H81A7axwjZz2oa4tzhdco8exr/991PZvea/A+Wqb5nzODIyntmnu9cEMjCX1mn5mfzNwnqMGrbqW3hvQX8l9Wu41vfQcYA76q+l/1MkM3EOv/nu8IxyP/u+pZfecPt4RjqFH/9RO/z7T43tF0tXs55R2R3p+t0yaVv1D7WJ6zQBhLfZv6ncDKZwDztWz/2u/VD36m4N9rfZri/P/Vkn/lM/zrOWxFdv/uVL7+y6xXOvz65n9U687+of1OL5a7feSdZmBPDn7uHYGeq2tZFZ56HF+bbnPS9enf5rR+8fWqX+dkuNq5P7L8thaPovOrLR/ySy0XON2rds//1oe2+v/Q/99NdfV34F/f2b/7fb1t/vn8vipf5ozrvtn9V/+919/bs8Ppe+iZ3fXa39oLZ+b9kef42H0/innp/Xvv5fnbfv5HnM5g6Pj6sp3P7H1XX1NmknKDNTs41H6uw6E1fbtdYzF2n8tz9tR+7154dlI/VOO/fV9z7rpX2+E9qF1xGYg1t/5P+7q7kfryO0fev7Xv8xZ7UO/K+f87/1/e1f3f20b6p/yfMD4YrO21z/1+ZB7yLnvyHk3wD3o/95ynz3c980ndwZ0n5f+rPRHf1a6AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvIc/rdzFwgAAAQA=
@@ -48,7 +51,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3YwQkAIAwDwOJq7r9TJxBBH7Z4N0GhnyQRAAAAAAAAUMMcry/ghv8BAABwSqcEAAAAduwHAAAA/9IJAQCgJ1keAAAAWLEbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD0kFJzrxoAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.2">

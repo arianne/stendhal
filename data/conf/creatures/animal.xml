@@ -2,6 +2,42 @@
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
   
+      <!-- START: Aquatic -->
+    
+  <creature name="shark">
+    <type class="giant_animal" subclass="shark" tileid="giant_animal.png:2"/>
+    <description>A shark! Best move cautiously.</description>
+    <attributes>
+      <atk value="340"/>
+      <def value="50"/>
+      <hp value="180"/>
+      <speed value="0.5"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="39"/>
+    <experience value=1500/>
+    <respawn value="1230"/>
+    <corpse name="shark_2x2" harmless="shark_2x2" width="2" height="2" />
+    <drops>
+      <item value="money" quantity="[4,18]" probability="40.0"/>
+      <item value="cod" quantity="[1,3]" probability="40.0"/>
+      <item value="clown_fish" quantity="[1,3]" probability="40.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+   </ai>
+ </creature>
+   
+  <!-- END: Aquatic -->
+
   <!-- START: arachnid -->
   
   <creature name="spider">
