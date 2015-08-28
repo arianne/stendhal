@@ -15,7 +15,7 @@
       <size value="2,2"/>
     </attributes>
     <level value="39"/>
-    <experience value=1500/>
+    <experience value="1500" />
     <respawn value="1230"/>
     <corpse name="shark_2x2" harmless="shark_2x2" width="2" height="2" />
     <drops>
