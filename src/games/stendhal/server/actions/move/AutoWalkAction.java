@@ -19,6 +19,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import marauroa.common.game.RPAction;
 
 /**
@@ -78,6 +79,10 @@ public class AutoWalkAction implements ActionListener {
 			if ((walkDirection == Direction.STOP) || (walkDirection == null)) {
 				/* Set default direction to DOWN. */
 				player.setDirection(Direction.DOWN);
+			}
+			if (player.hasStatus(StatusType.POISONED)
+					|| player.hasStatus(StatusType.CONFUSED)) {
+				player.setDirection(player.getDirection().oppositeDirection());
 			}
 
 			/* Begin walking using the entity's base speed. */
