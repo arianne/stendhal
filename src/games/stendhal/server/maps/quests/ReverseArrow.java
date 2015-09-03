@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
@@ -24,8 +25,10 @@ import games.stendhal.server.entity.item.token.Token;
 import games.stendhal.server.entity.mapstuff.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -363,10 +366,18 @@ public class ReverseArrow extends AbstractQuest implements
 		zone.add(npc);
 	}
 
-	private static final class GamblosSpeakerNPC extends SpeakerNPC {
+	private final class GamblosSpeakerNPC extends SpeakerNPC {
 		private GamblosSpeakerNPC(String name) {
 			super(name);
 			setPlayerChatTimeout(TIME);
+			setPerceptionRange(12);
+
+			addInitChatMessage(null, new ChatAction() {
+				@Override
+				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					listenTo(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+				}
+			});
 		}
 
 		@Override
@@ -398,6 +409,13 @@ public class ReverseArrow extends AbstractQuest implements
 			addGoodbye("It was nice to meet you.");
 			addQuest("Your task in this game is to reverse the direction of this arrow moving only 3 tokens within "
 					+ TIME + " seconds.");
+		}
+
+		@Override
+		protected void onGoodbye(RPEntity player) {
+			super.onGoodbye(player);
+			SingletonRepository.getTurnNotifier().notifyInTurns(1,
+					new FinishNotifier(true, (Player) player));
 		}
 	}
 
