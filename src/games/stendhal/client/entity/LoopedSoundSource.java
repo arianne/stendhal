@@ -91,12 +91,11 @@ public class LoopedSoundSource extends InvisibleEntity {
 	}
 
 	/**
-	 * plays the sound
+	 * Plays the sound.
 	 */
 	private void play() {
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float) x, (float) y), radius / 2.0f, radius);
-		boolean cloneSound = group != ClientSingletonRepository.getSound().getGroup(SoundLayer.BACKGROUND_MUSIC.groupName);
-		sound = group.play(soundName, volume, 0, area, fadingDuration, true, cloneSound);
+		sound = group.play(soundName, volume, 0, area, fadingDuration, true, true);
 	}
 
 	/**
