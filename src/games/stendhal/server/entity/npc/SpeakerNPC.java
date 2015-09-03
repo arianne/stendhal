@@ -122,6 +122,9 @@ public class SpeakerNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(SpeakerNPC.class);
 
+	/** The default distance from which an NPC should end a conversation. */
+	private static final int DEFAULT_GOODBYE_RANGE = 8;
+
 	private final Engine engine = new Engine(this);
 
 	/**
@@ -129,6 +132,8 @@ public class SpeakerNPC extends NPC {
 	 * terminated by the NPC. Defaults to 30 seconds.
 	 */
 	private long playerChatTimeout = secondsToTurns(30);
+
+	private int squaredGoodByeRange = getSquaredGoodByeRange();
 
 	// Default wait message when NPC is busy
 	private String waitMessage;
@@ -348,8 +353,19 @@ public class SpeakerNPC extends NPC {
 		playerChatTimeout = secondsToTurns(seconds);
 	}
 
+	@Override
+	public void setPerceptionRange(int perceptionRange) {
+		super.setPerceptionRange(perceptionRange);
+		squaredGoodByeRange = getSquaredGoodByeRange();
+	}
+
 	private long secondsToTurns(final long seconds) {
 		return seconds * 1000 / StendhalRPWorld.MILLISECONDS_PER_TURN;
+	}
+
+	private int getSquaredGoodByeRange() {
+		int goodByeRange = Math.max(getPerceptionRange(), DEFAULT_GOODBYE_RANGE);
+		return goodByeRange * goodByeRange;
 	}
 
 	@Override
@@ -381,18 +397,13 @@ public class SpeakerNPC extends NPC {
 			applyMovement();
 		} else if (attending != null) {
 			// If the player is too far away
-			if ((attending.squaredDistance(this) > 8 * 8)
+			if ((attending.squaredDistance(this) > squaredGoodByeRange)
 					|| ((attending instanceof Player) && (((Player) attending).isDisconnected()))
 			// or if the player fell asleep ;)
 					|| ((attending instanceof Player) && (SingletonRepository.getRuleProcessor().getTurn()
 							- lastMessageTurn > playerChatTimeout))) {
 				// we force him to say bye to NPC :)
-				if (goodbyeMessage != null) {
-					say(goodbyeMessage);
-				}
-				onGoodbye(attending);
-				engine.setCurrentState(ConversationStates.IDLE);
-				setAttending(null);
+				endConversation();
 			}
 		}
 
@@ -418,6 +429,15 @@ public class SpeakerNPC extends NPC {
 
 		maybeMakeSound();
 		notifyWorldAboutChanges();
+	}
+
+	protected void endConversation() {
+		if (goodbyeMessage != null) {
+			say(goodbyeMessage);
+		}
+		onGoodbye(attending);
+		engine.setCurrentState(ConversationStates.IDLE);
+		setAttending(null);
 	}
 
 	public boolean isTalking() {
