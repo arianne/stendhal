@@ -18,9 +18,11 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.PerceptionListenerImpl;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalClient.ZoneChangeListener;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.WeatherSoundManager;
 import games.stendhal.client.World;
+import games.stendhal.client.Zone;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.User;
@@ -266,6 +268,22 @@ public class j2DClient implements UserInterface {
 
 		client.addZoneChangeListener(screen);
 		client.addZoneChangeListener(new WeatherSoundManager());
+		// Disable side panel animation while changing zone
+		client.addZoneChangeListener(new ZoneChangeListener() {
+			@Override
+			public void onZoneUpdate(Zone zone) {
+			}
+			
+			@Override
+			public void onZoneChangeCompleted(Zone zone) {
+				containerPanel.setAnimated(true);
+			}
+			
+			@Override
+			public void onZoneChange(Zone zone) {
+				containerPanel.setAnimated(false);
+			}
+		});
 		positionChangeListener.add(screenController);
 
 		/*
@@ -649,6 +667,7 @@ public class j2DClient implements UserInterface {
 	 */
 	private ContainerPanel createContainerPanel() {
 		ContainerPanel containerPanel = new ContainerPanel();
+		containerPanel.setAnimated(false);
 		containerPanel.setMinimumSize(new Dimension(0, 0));
 
 		/*

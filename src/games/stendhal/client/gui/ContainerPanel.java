@@ -12,15 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.factory.EntityMap;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.awt.Point;
+import java.awt.Transparency;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -30,6 +26,12 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.factory.EntityMap;
+import games.stendhal.client.gui.layout.AnimatedLayout;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import marauroa.common.game.RPSlot;
 
 /**
@@ -56,12 +58,34 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 */
 	public ContainerPanel() {
 		panel = new PhantomLayoutPanel();
-		panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		/*
+		 * An ugly way to turn off animations on slow systems. As a side effect
+		 * gets turned off also on systems where the tranlucency has been
+		 * explicitly disabled.
+		 */
+		if (TransparencyMode.TRANSPARENCY == Transparency.TRANSLUCENT) {
+			panel.setLayout(new AnimatedLayout(new SBoxLayout(SBoxLayout.VERTICAL)));
+		} else {
+			panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		}
 		setViewportView(panel);
 		setBorder(null);
 		String orderProp = WtWindowManager.getInstance().getProperty(WINDOW_ORDER_PROPERTY, "character;bag;keyring");
 		windowOrder = new ArrayList<String>(Arrays.asList(orderProp.split(";")));
 		getVerticalScrollBar().setUnitIncrement(16);
+	}
+	
+	/**
+	 * Set whether the panel should animate layout changes.
+	 * 
+	 * @param animate <code>true</code> if layout changes should be animated,
+	 * otherwise <code>false</code>
+	 */
+	public void setAnimated(boolean animate) {
+		LayoutManager layout = panel.getLayout();
+		if (layout instanceof AnimatedLayout) {
+			((AnimatedLayout) layout).setAnimated(animate);
+		}
 	}
 	
 	/**
@@ -341,6 +365,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * maximum and preferred sizes as another component.
 	 */
 	private static class PhantomComponent extends JComponent {
+		/** The mimicked component. */
 		private final Component component;
 		
 		/**
