@@ -249,7 +249,7 @@ public class EntityHelper {
                 final int objectId = Integer.parseInt(target.substring(1));
 
                 Entity entity = entityFromZoneByID(objectId, zone);
-                if ((entity != null) && (entity instanceof Item)) {
+                if (entity instanceof Item) {
                     return new GroundSlot(zone, entity);
                 } else {
                     return null;

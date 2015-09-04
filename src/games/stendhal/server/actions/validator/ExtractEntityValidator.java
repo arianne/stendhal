@@ -39,12 +39,10 @@ public class ExtractEntityValidator implements ActionValidator {
 			}
 		}
 
-		if (entity != null) {
-			if (entity instanceof Player) {
-				if (((Player) entity).isGhost()
-						&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand(Actions.GHOSTMODE))) {
-					entity = null;
-				}
+		if (entity instanceof Player) {
+			if (((Player) entity).isGhost()
+					&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand(Actions.GHOSTMODE))) {
+				entity = null;
 			}
 		}
 		data.setEntity(entity);
