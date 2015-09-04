@@ -98,7 +98,7 @@ public class StringUtils {
     	if (params == null) {
     		return string;
     	}
-        StringBuffer res = new StringBuffer();
+        StringBuilder res = new StringBuilder();
         StringTokenizer st = new StringTokenizer(string, "[]", true);
         String lastToken = "";
         while (st.hasMoreTokens()) {

@@ -154,7 +154,7 @@ public class HelpTomi extends AbstractQuest {
 						player.addXP(N * Math.min(N, N_0) * 1000);
 						// make the number of smilies correspond to how many
 						// times you helped him
-						StringBuffer saybuf = new StringBuffer();
+						StringBuilder saybuf = new StringBuilder();
 						saybuf.append("my ice ");
 						for (int i = 0; i < N; i++) {
 							saybuf.append(":) ");

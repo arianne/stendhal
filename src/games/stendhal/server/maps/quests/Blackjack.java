@@ -153,8 +153,8 @@ public class Blackjack extends AbstractQuest {
 	 *            The number of cards that each player should draw.
 	 */
 	private void dealCards(final RPEntity rpEntity, final int number) {
-		StringBuffer messagebuf = new StringBuffer();
-		messagebuf.append("\n");
+		StringBuilder messagebuf = new StringBuilder();
+		messagebuf.append('\n');
 		int playerSum = sumValues(playerCards);
 		int bankSum = sumValues(bankCards);
 		for (int i = 0; i < number; i++) {

@@ -55,7 +55,7 @@ public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction
 			for (String name :  npcnames) {
 				if (name.equalsIgnoreCase(sentence.getTriggerExpression().toString())) {
 					List<String> descs = SingletonRepository.getStendhalQuestSystem().getQuestDescriptionForUnstartedQuestInRegionFromNPCName(player,region,name);
-					StringBuffer answer = new StringBuffer();
+					StringBuilder answer = new StringBuilder();
 					for (String desc : descs) {
 						answer.append(desc + " ");
 					}

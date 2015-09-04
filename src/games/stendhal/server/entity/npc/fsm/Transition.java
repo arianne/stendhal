@@ -464,7 +464,7 @@ public class Transition {
 	 */
 	@Override
 	public String toString() {
-		StringBuffer sb = new StringBuffer("[" + state + ",");
+		StringBuilder sb = new StringBuilder("[" + state + ",");
 
 		int i = 0;
 		for(Expression triggerExpr : triggers) {
@@ -473,7 +473,7 @@ public class Transition {
 			}
 			sb.append(triggerExpr);
 		}
-		sb.append(",");
+		sb.append(',');
 
 		return sb.append(nextState + "," + condition + ",\"" + label + "\"]").toString();
 	}
