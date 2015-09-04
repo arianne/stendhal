@@ -90,7 +90,7 @@ public class ShopSign extends Sign implements UseListener {
 		List<Item> itemList = new LinkedList<Item>();
 		Map<String, Integer> items = shops.get(shopName);
 		for (Map.Entry<String, Integer> entry : items.entrySet()) {
-			itemList.add(prepareItem(entry.getKey(), Integer.valueOf(entry.getValue())));
+			itemList.add(prepareItem(entry.getKey(), entry.getValue()));
 		}
 		return itemList;
 	}
