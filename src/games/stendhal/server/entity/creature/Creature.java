@@ -353,7 +353,7 @@ public class Creature extends NPC {
 	 * @param sound Name of sound
 	 */
 	@Override
-	public void setDeathSound(String sound) {
+	public final void setDeathSound(String sound) {
 	    if (deathSound == null) {
 	        deathSound = sound;
 	    }
@@ -364,7 +364,7 @@ public class Creature extends NPC {
 	 * Set looped sound to be played while creature is walking
 	 * @param sound sound effect file name
 	 */
-	public void setMovementSound(String sound) {
+	public final void setMovementSound(String sound) {
 	    this.movementSound = sound;
 	}
 
@@ -469,7 +469,7 @@ public class Creature extends NPC {
 	 *
 	 * @param aiProfiles aiProfile
 	 */
-	public void setAIProfiles(final Map<String, String> aiProfiles) {
+	public final void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.setAIProfiles(aiProfiles, true);
 	}
 	
@@ -530,7 +530,7 @@ public class Creature extends NPC {
 		return respawnTime;
 	}
 
-	public void setCorpse(final String name, final String harmless, final int width, final int height) {
+	public final void setCorpse(final String name, final String harmless, final int width, final int height) {
 		corpseName = name;
 		harmlessCorpseName = harmless;
 		if (corpseName == null) {
@@ -672,7 +672,7 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	public List<RPEntity> getEnemyList() {
-		if (getAIProfiles().keySet().contains("offensive")) {
+		if (getAIProfiles().containsKey("offensive")) {
 			return getZone().getPlayerAndFriends();
 		} else {
 			return getAttackingRPEntities();
@@ -713,7 +713,7 @@ public class Creature extends NPC {
 		// now choose the nearest enemy for which there is a path, or is
 		// attackable otherwise
 		RPEntity chosen = null;
-		while ((chosen == null) && (distances.size() > 0)) {
+		while ((chosen == null) && !distances.isEmpty()) {
 			double shortestDistance = Double.MAX_VALUE;
 			for (final Map.Entry<RPEntity, Double> enemy : distances.entrySet()) {
 				final double distance = enemy.getValue();
@@ -725,7 +725,7 @@ public class Creature extends NPC {
 
 			if (shortestDistance >= 1) {
 				final List<Node> path = Path.searchPath(this, chosen, getMovementRange());
-				if ((path == null) || (path.size() == 0) && !strategy.canAttackNow(this, chosen)) {
+				if ((path == null) || path.isEmpty() && !strategy.canAttackNow(this, chosen)) {
 					distances.remove(chosen);
 					chosen = null;
 				} else {
@@ -743,7 +743,7 @@ public class Creature extends NPC {
 		final int y = getY();
 
 		List<RPEntity> enemyList = getEnemyList();
-		if (enemyList.size() == 0) {
+		if (enemyList.isEmpty()) {
 			final StendhalRPZone zone = getZone();
 			enemyList = zone.getPlayerAndFriends();
 		}
@@ -777,7 +777,7 @@ public class Creature extends NPC {
 	 * @return true if the creature is rare, false otherwise
 	 */
 	public boolean isRare() {
-		return getAIProfiles().keySet().contains("rare");
+		return getAIProfiles().containsKey("rare");
 	}
 
 	public void equip(final List<EquipItem> items) {
@@ -1048,7 +1048,7 @@ public class Creature extends NPC {
 	 * @param rangedType Damage nature for ranged attacks, or <code>null</code>
 	 * 	if the creature uses the same type as for the melee.
 	 */
-	public void setDamageTypes(Nature type, Nature rangedType) {
+	public final void setDamageTypes(Nature type, Nature rangedType) {
 		damageType = type;
 		if (rangedType != null) {
 			rangedDamageType = rangedType;
@@ -1093,7 +1093,7 @@ public class Creature extends NPC {
 
 		// which player did hurt us most
 		Entity entity = damageReceived.getHighestCountedObject();
-		if ((entity != null) && (entity instanceof Player)) {
+		if (entity instanceof Player) {
 			if (getZone() == entity.getZone()) {
 				return ((Player) entity).getName();
 			}
@@ -1101,7 +1101,7 @@ public class Creature extends NPC {
 
 		// which player did we attack last?
 		RPEntity target = getAttackTarget();
-		if ((target != null) && (target instanceof Player)) {
+		if (target instanceof Player) {
 			if (getZone() == target.getZone()) {
 				return target.getName();
 			}
