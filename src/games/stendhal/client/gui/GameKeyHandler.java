@@ -340,7 +340,7 @@ class GameKeyHandler implements KeyListener {
 		 * @return <code>true</code> if this is a repeat.
 		 */
 		public boolean check(final Direction dir, final boolean facing) {
-			if (!this.dir.equals(dir)) {
+			if (this.dir != dir) {
 				return false;
 			}
 
