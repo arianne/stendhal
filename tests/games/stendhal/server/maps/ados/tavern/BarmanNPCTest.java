@@ -69,7 +69,12 @@ public class BarmanNPCTest {
 		assertThat(getReply(dale),is("Hey, good looking ..."));
 		
 		engine.step(player,"offer");
-		assertThat(getReply(dale),is("I sell wine, pina colada, and chocolate bar."));
+		assertThat(getReply(dale), anyOf(equalTo("I sell wine, pina colada, and chocolate bar."),
+				equalTo("I sell wine, chocolate bar, and pina colada."),
+				equalTo("I sell chocolate bar, wine, and pina colada."),
+				equalTo("I sell chocolate bar, pina colada, and wine."),
+				equalTo("I sell pina colada, chocolate bar, and wine."),
+				equalTo("I sell pina colada, wine, and chocolate bar.")));
 
 		engine.step(player,"buy 100 chocolate");
 		assertThat(getReply(dale),is("Please specify which sort of chocolate you want to buy."));
