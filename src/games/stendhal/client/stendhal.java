@@ -22,6 +22,7 @@ import games.stendhal.client.gui.styled.styles.StyleFactory;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Version;
 
 import java.awt.Dimension;
@@ -147,14 +148,13 @@ public final class stendhal {
 	 * @return screen dimensions
 	 */
 	public static Dimension getDisplaySize() {
-		Integer size_index = DISPLAY_SIZE_INDEX;
+		String spec = System.getProperty("display.index");
+		int sizeIndex = MathHelper.parseIntDefault(spec, DISPLAY_SIZE_INDEX);
+		
 		try {
-			size_index = Integer.parseInt(System.getProperty("display.index"));
-		} catch (NumberFormatException e) {
-		}
-		try {
-			return displaySizes.get(size_index);
+			return displaySizes.get(sizeIndex);
 		} catch (IndexOutOfBoundsException e) {
+			logger.error("Invalid client size index: " + spec + " (" + sizeIndex + ")", e);
 		}
 		
 		return displaySizes.get(DISPLAY_SIZE_INDEX);
