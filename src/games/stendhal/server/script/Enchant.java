@@ -27,15 +27,14 @@ import java.util.List;
  * @author kymara
  */
 public class Enchant extends ScriptImpl {
-
-	private final int LOW_ATK = 100;
-	private final int HIGH_HP = 3000;
+	private static final int LOW_ATK = 100;
+	private static final int HIGH_HP = 3000;
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 
-		if (args.size() == 0) {
+		if (args.isEmpty()) {
 			admin.sendPrivateText("Usage: /script Enchant.class creature");
 			return;
 		} 
@@ -83,8 +82,6 @@ public class Enchant extends ScriptImpl {
 		creature.setAtk(newatk);
 		creature.initHP(newHP);
 		
-		sandbox.add(creature, x, y );
-
+		sandbox.add(creature, x, y);
 	}
-
 }
