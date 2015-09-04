@@ -33,7 +33,6 @@ import games.stendhal.client.gui.layout.AnimatedLayout;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import marauroa.common.game.RPSlot;
-
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
@@ -126,7 +125,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			int i = 0;
 			for (Component c : panel.getComponents()) {
 				if (c instanceof ManagedWindow) {
-					String name = ((ManagedWindow) c).getName();
+					String name = c.getName();
 					// Added windows always have a valid position (see below)
 					if (loc < windowOrder.indexOf(name)) {
 						return i;
@@ -167,22 +166,31 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * @param movedWindow name of the moved window
 	 */
 	private void checkWindowOrder(String movedWindow) {
+		// Name of the component preceding the dragged window.
 		String previous = null;
 		for (Component c : panel.getComponents()) {
-			if (c instanceof ManagedWindow) {
+			/*
+			 * Ignore invisible components. These can appear both in the order
+			 * list and in the panel. Such as the spells window when spells are
+			 * not available. Checking the order relative to these can result in
+			 * incorrect saved window order. Any match is fake, as these
+			 * components do not exist as far as the user is concerned.
+			 */
+			if (c.isVisible() && c instanceof ManagedWindow) {
 				String name = ((ManagedWindow) c).getName();
 				if (movedWindow.equals(name)) {
-					int oldIndex = windowOrder.indexOf(name);
-					int newIndex = 0;
+					int newIndex;
 					if (previous == null) {
 						// Moved to first position
 						newIndex = 0;
 					} else {
+						// Move after the preceding component
 						newIndex = windowOrder.indexOf(previous) + 1;
 					}
 					
 					// Move to new location. Be careful about removing the old
 					// to avoid breaking the order
+					int oldIndex = windowOrder.indexOf(name);
 					if (newIndex > oldIndex) {
 						windowOrder.add(newIndex, name);	
 						windowOrder.remove(name);
