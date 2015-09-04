@@ -59,7 +59,6 @@ import games.stendhal.server.events.SoundEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -106,11 +105,6 @@ public class Player extends RPEntity implements UseListener {
 	 * List of portals that have been "unlocked" for this player.
 	 */
 	private final List<Integer> unlockedPortals;
-
-	/**
-	 * A list of away replies sent to players.
-	 */
-	private final HashMap<String, Long> awayReplies;
 
 	private final PlayerQuests quests = new PlayerQuests(this);
 	private final PlayerDieer dieer = new PlayerDieer(this);
@@ -268,7 +262,6 @@ public class Player extends RPEntity implements UseListener {
 		setSize(1, 1);
 
 		directions = new ArrayList<Direction>();
-		awayReplies = new HashMap<String, Long>();
 
 		// Beginner's luck (unless overridden by update)
 		karma = 10.0;
@@ -445,15 +438,6 @@ public class Player extends RPEntity implements UseListener {
 		} else if (has(AWAY)) {
 			remove(AWAY);
 		}
-
-		resetAwayReplies();
-	}
-
-	/**
-	 * Clear out all recorded away responses.
-	 */
-	private void resetAwayReplies() {
-		awayReplies.clear();
 	}
 
 	/**
