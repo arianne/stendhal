@@ -16,6 +16,7 @@ import games.stendhal.common.parser.Expression;
 import games.stendhal.server.entity.npc.ConversationStates;
 
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class TransitionList {
 	 * @return Set of source states
 	 */
 	public Set<ConversationStates> getSourceStates() {
-		final Set<ConversationStates> res = new HashSet<ConversationStates>();
+		final Set<ConversationStates> res = EnumSet.noneOf(ConversationStates.class);
 		for (final Transition transition : transitions) {
 			res.add(transition.getState());
 		}
