@@ -31,6 +31,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
@@ -130,6 +131,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		
 		// Action buttons. Should these be of uniform size?
 		JButton newCharButton = new JButton("New Character");
+		newCharButton.setMnemonic(KeyEvent.VK_N);
 		newCharButton.addActionListener(new CreateCharacterAction(this));
 		// Disable creating unreasonable amounts of characters. Enough is enough.
 		if (characters.keySet().size() >= MAX_CHARACTERS) {
@@ -138,6 +140,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		buttonBar.add(newCharButton);
 		
 		JButton exitButton = new JButton("Cancel");
+		exitButton.setMnemonic(KeyEvent.VK_C);
 		exitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent evt) {
