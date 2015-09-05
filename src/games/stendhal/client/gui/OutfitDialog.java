@@ -12,24 +12,14 @@
 
 package games.stendhal.client.gui;
 
-import games.stendhal.client.OutfitStore;
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyleUtil;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Outfits;
-import games.stendhal.common.constants.Actions;
-import games.stendhal.common.constants.Testing;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +37,20 @@ import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.OutfitStore;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Outfits;
+import games.stendhal.common.constants.Actions;
+import games.stendhal.common.constants.Testing;
+import marauroa.common.game.RPAction;
 
 /**
  * Outfit selection dialog.
@@ -219,11 +220,14 @@ class OutfitDialog extends JDialog {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(false);
 
-		final JComponent content = (JComponent) getContentPane();
-		final int pad = SBoxLayout.COMMON_PADDING;
-		content.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
-		
-		content.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL, pad));
+		int pad = SBoxLayout.COMMON_PADDING;
+
+		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
+		JComponent cPane = (JComponent) getContentPane();
+		cPane.setBorder(BorderFactory.createCompoundBorder(cPane.getBorder(),
+				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
+		cPane.setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
+		add(content);
 		final JComponent partialsColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		content.add(partialsColumn);
 
@@ -354,15 +358,27 @@ class OutfitDialog extends JDialog {
 		});
 		column.add(directionSlider);
 
-		JButton okButton = new JButton("OK");
+		JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
+		buttonBox.setAlignmentX(RIGHT_ALIGNMENT);
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				OutfitDialog.this.dispatchEvent(new WindowEvent(OutfitDialog.this, WindowEvent.WINDOW_CLOSING));
+			}
+		});
+		cancelButton.setMnemonic(KeyEvent.VK_C);
+		buttonBox.add(cancelButton);
+		JButton okButton = new JButton("Change Outfit");
+		okButton.setMnemonic(KeyEvent.VK_A);
 		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent evt) {
 				okActionPerformed();
 			}
 		});
-		okButton.setAlignmentX(CENTER_ALIGNMENT);
-		column.add(okButton);
+		buttonBox.add(okButton);
+		add(buttonBox);
 	}
 
 	/**
