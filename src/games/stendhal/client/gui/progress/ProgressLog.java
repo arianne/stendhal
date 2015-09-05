@@ -11,15 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.progress;
 
-import games.stendhal.client.gui.WindowUtils;
-import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.j2d.BackgroundPainter;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sprite.DataLoader;
-
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -28,6 +19,7 @@ import java.awt.Graphics;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -47,6 +39,15 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.Caret;
 import javax.swing.text.DefaultCaret;
+
+import games.stendhal.client.gui.WindowUtils;
+import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.j2d.BackgroundPainter;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sprite.DataLoader;
 
 /**
  * Progress status window. For displaying quest information.
@@ -89,6 +90,7 @@ class ProgressLog {
 		tabs.addChangeListener(new TabChangeListener());
 
 		WindowUtils.closeOnEscape(window);
+		window.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		window.add(tabs);
 		window.pack();
 		WindowUtils.watchFontSize(window);
@@ -200,7 +202,7 @@ class ProgressLog {
 	/**
 	 * A page on the window.
 	 */
-	private static class Page extends JComponent implements HyperlinkListener {
+	private class Page extends JComponent implements HyperlinkListener {
 		/** Html area for the subjects. */
 		private final JEditorPane indexArea;
 		/** The html area. */
@@ -253,20 +255,31 @@ class ProgressLog {
 			panels.add(contentScrollPane, SBoxLayout.constraint(SLayout.EXPAND_X,
 					SLayout.EXPAND_Y));
 
+			JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+			buttonBox.setAlignmentX(RIGHT_ALIGNMENT);
+			buttonBox.setBorder(BorderFactory.createEmptyBorder(SBoxLayout.COMMON_PADDING,
+					0, SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING));
+			add(buttonBox);
 			// A button for reloading the page contents
 			JButton refresh = new JButton("Update");
+			refresh.setMnemonic(KeyEvent.VK_U);
 			refresh.setAlignmentX(Component.RIGHT_ALIGNMENT);
-			refresh.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(SBoxLayout.COMMON_PADDING,
-					SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING,
-					SBoxLayout.COMMON_PADDING), refresh.getBorder()));
 			refresh.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent event) {
 					update();
 				}
 			});
-			
-			add(refresh);
+			buttonBox.add(refresh);
+			JButton closeButton = new JButton("Close");
+			closeButton.setMnemonic(KeyEvent.VK_C);
+			closeButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					getWindow().dispose();
+				}
+			});
+			buttonBox.add(closeButton);
 		}
 
 		/**
