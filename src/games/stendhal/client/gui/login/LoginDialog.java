@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                 (C) Copyright 2003 - 2015 Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,14 +10,6 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.gui.login;
-
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.ProgressBar;
-import games.stendhal.client.gui.WindowUtils;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Component;
 import java.awt.Frame;
@@ -52,8 +43,19 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.Document;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.NumberDocumentFilter;
+import games.stendhal.client.gui.ProgressBar;
+import games.stendhal.client.gui.WindowUtils;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.update.ClientGameConfiguration;
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
@@ -61,16 +63,10 @@ import marauroa.common.io.Persistence;
 import marauroa.common.net.InvalidVersionException;
 import marauroa.common.net.message.MessageS2CLoginNACK;
 
-import org.apache.log4j.Logger;
-
 /**
  * Server login dialog.
- *
  */
 public class LoginDialog extends JDialog {
-
-	private static final long serialVersionUID = -1182930046629241075L;
-
 	private ProfileList profiles;
 
 	private JComboBox profilesComboBox;
@@ -202,6 +198,7 @@ public class LoginDialog extends JDialog {
 
 		serverPortField = new JTextField(
 				ClientGameConfiguration.get("DEFAULT_PORT"));
+		((AbstractDocument) serverPortField.getDocument()).setDocumentFilter(new NumberDocumentFilter(serverPortField, false));
 		c.gridx = 1;
 		c.gridy = 2;
 		c.insets = new Insets(4, 4, 4, 4);

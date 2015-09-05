@@ -36,6 +36,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -44,6 +45,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.NumberDocumentFilter;
 import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.layout.SBoxLayout;
@@ -127,6 +129,7 @@ public class CreateAccountDialog extends JDialog {
 		JLabel serverPortLabel = new JLabel("Server port");
 		serverPortField = new JTextField(
 				ClientGameConfiguration.get("DEFAULT_PORT"));
+		((AbstractDocument) serverPortField.getDocument()).setDocumentFilter(new NumberDocumentFilter(serverPortField, false));
 		
 		JLabel usernameLabel = new JLabel("Choose a username");
 		usernameField = new JTextField();
@@ -471,36 +474,23 @@ public class CreateAccountDialog extends JDialog {
 		return true;
 	}
 	
+	
+	/**
+	 * Prints text only when running stand-alone.
+	 * @param text text to be printed
+	 */
+	private void debug(final String text) {
+		if (client == null) {
+			LOGGER.debug(text);
+		}
+	}
+	
 	/**
 	 * Used to preview the CreateAccountDialog.
 	 * @param args ignored
 	 */
 	public static void main(final String[] args) {
 		new CreateAccountDialog(null, null);
-	}
-	
-	/**
-	 * A document that can contain only lower case characters.
-	 */
-	private static class LowerCaseLetterDocument extends PlainDocument {
-		@Override
-		public void insertString(final int offs, final String str, final AttributeSet a)
-				throws BadLocationException {
-			final String lower = str.toLowerCase(Locale.ENGLISH);
-			boolean ok = true;
-			for (int i = lower.length() - 1; i >= 0; i--) {
-				final char chr = lower.charAt(i);
-				if ((chr < 'a') || (chr > 'z')) {
-					ok = false;
-					break;
-				}
-			}
-			if (ok) {
-				super.insertString(offs, lower, a);
-			} else {
-				Toolkit.getDefaultToolkit().beep();
-			}
-		}
 	}
 	
 	/**
@@ -590,12 +580,26 @@ public class CreateAccountDialog extends JDialog {
 	}
 	
 	/**
-	 * Prints text only when running stand-alone.
-	 * @param text text to be printed
+	 * A document that can contain only lower case characters.
 	 */
-	private void debug(final String text) {
-		if (client == null) {
-			LOGGER.debug(text);
+	private static class LowerCaseLetterDocument extends PlainDocument {
+		@Override
+		public void insertString(final int offs, final String str, final AttributeSet a)
+				throws BadLocationException {
+			final String lower = str.toLowerCase(Locale.ENGLISH);
+			boolean ok = true;
+			for (int i = lower.length() - 1; i >= 0; i--) {
+				final char chr = lower.charAt(i);
+				if ((chr < 'a') || (chr > 'z')) {
+					ok = false;
+					break;
+				}
+			}
+			if (ok) {
+				super.insertString(offs, lower, a);
+			} else {
+				Toolkit.getDefaultToolkit().beep();
+			}
 		}
 	}
 }
