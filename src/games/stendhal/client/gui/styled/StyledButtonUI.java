@@ -75,6 +75,15 @@ public class StyledButtonUI extends BasicButtonUI {
 					button.setBorder(style.getBorder());
 				}
 			}
+			if (button instanceof JButton) {
+				if (((JButton) button).isDefaultButton()) {
+					Insets insets = button.getInsets();
+					graphics.setColor(style.getShadowColor());
+					int width = button.getWidth() - insets.right - insets.left - 3;
+					int height = button.getHeight() - insets.top - insets.bottom - 3;
+					graphics.drawRect(insets.left + 1, insets.right + 1, width, height);
+				}
+			}
 		}
 
 		if (mouseOver) {
