@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -70,12 +71,14 @@ import javax.swing.JComponent;
 		// create "yes" button
 		yesButton = new JButton();
 		yesButton.setText("Yes");
+		yesButton.setMnemonic(KeyEvent.VK_Y);
 		yesButton.addActionListener(new QuitConfirmCB());
 		content.add(yesButton);
 
 		// create "no" button
 		JButton noButton = new JButton();
 		noButton.setText("No");
+		noButton.setMnemonic(KeyEvent.VK_N);
 		noButton.addActionListener(new QuitCancelCB());
 		content.add(noButton);
 
