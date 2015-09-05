@@ -87,11 +87,10 @@ public class LoginDialog extends JDialog {
 
 	private JButton removeButton;
 
-	// End of variables declaration
 	private final StendhalClient client;
 
 	private ProgressBar progressBar;
-	// Object checking that all required fields are filled
+	/** Object checking that all required fields are filled */
 	private DataValidator fieldValidator;
 
 	/**
@@ -111,16 +110,15 @@ public class LoginDialog extends JDialog {
 	 * Create the dialog contents.
 	 */
 	private void initializeComponent() {
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				if (getOwner() == null) {
-					System.exit(0);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		if (getOwner() != null) {
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					getOwner().setEnabled(true);
 				}
-				getOwner().setEnabled(true);
-				dispose();
-			}
-		});
+			});
+		}
 
 		JLabel l;
 
@@ -274,12 +272,24 @@ public class LoginDialog extends JDialog {
 			}
 		});
 
+		JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setMnemonic(KeyEvent.VK_C);
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
+			}
+		});
+		buttonBox.add(cancelButton);
+		buttonBox.add(loginButton);
+
 		c.gridx = 1;
 		c.gridy = 5;
 		c.gridheight = 2;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(15, 4, 4, 4);
-		contentPane.add(loginButton, c);
+		c.anchor = GridBagConstraints.LAST_LINE_END;
+		c.insets = new Insets(0, 0, SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING);
+		contentPane.add(buttonBox, c);
 		
 		// Before loading profiles so that we can catch the data filled from
 		// there
