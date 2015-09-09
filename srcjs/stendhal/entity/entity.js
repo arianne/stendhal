@@ -77,6 +77,26 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		}
 	},
 
+	/**
+	 * gets the container path identifying the item
+	 *
+	 * @returns
+	 */
+	getIdPath: function() {
+		var object = this;
+		var res = "";
+		while (object) {
+			res = object.id + "\t" + res;
+			var slot = object._parent;
+			if (!slot) {
+				break;
+			}
+			res = slot._name + "\t" + res;
+			object = slot._parent;
+		}
+		return "[" + res.substr(0, res.length - 1) + "]";
+	},
+
 	onclick: function(x, y) {
 		marauroa.log.debug(this, x, y);
 		var action = {
