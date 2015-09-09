@@ -136,8 +136,12 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		ctx.fillStyle = "#E0E0E0";
 		ctx.fillRect(drawX + 1, drawY + 1, this.drawWidth - 2, HEALTH_BAR_HEIGHT - 2);
 
-		ctx.fillStyle = "#00A000"; // TODO: change color
-		ctx.fillRect(drawX + 1, drawY + 1, this.drawWidth * this.hp / this.base_hp - 2, HEALTH_BAR_HEIGHT - 2);
+		// Bar color
+		var hpRatio = this.hp / this.base_hp;
+		var red = Math.floor(Math.min((1 - hpRatio) * 2, 1) * 255);
+		var green = Math.floor(Math.min(hpRatio * 2, 1) * 255);
+		ctx.fillStyle = "rgb(".concat(red, ",", green, ",0)");
+		ctx.fillRect(drawX + 1, drawY + 1, this.drawWidth * hpRatio - 2, HEALTH_BAR_HEIGHT - 2);
 
 		ctx.strokeStyle = "#000000 1px";
 		ctx.beginPath();
