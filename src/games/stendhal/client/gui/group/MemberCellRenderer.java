@@ -32,7 +32,7 @@ import javax.swing.ListCellRenderer;
  * in bold. Members that are present have a colored HP bar, like on the game
  * screen. Absent members have a grayed out HP bar. 
  */
-class MemberCellRenderer implements ListCellRenderer {
+class MemberCellRenderer implements ListCellRenderer<Member> {
 	private final JComponent renderer = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 	private final JLabel label;
 	private final HPBar hpBar;
@@ -61,9 +61,8 @@ class MemberCellRenderer implements ListCellRenderer {
 	}
 
 	@Override
-	public Component getListCellRendererComponent(JList list, Object value,
-			int index, boolean isSelected, boolean cellHasFocus) {
-		Member member = (Member) value;
+	public Component getListCellRendererComponent(JList<? extends Member> list,
+			Member member, int index, boolean isSelected, boolean cellHasFocus) {
 		label.setText(member.getName());
 		if (member.isLeader()) {
 			label.setFont(boldFont);
@@ -96,7 +95,7 @@ class MemberCellRenderer implements ListCellRenderer {
 	 * HP bar component with a grayed out mode for absent members.
 	 */
 	private static class HPBar extends StatusDisplayBar {
-		/** Default preferred height of the component */
+		/** Default preferred height of the component. */
 		private static final int DEFAULT_HEIGHT = 6;
 		
 		/**
@@ -113,18 +112,20 @@ class MemberCellRenderer implements ListCellRenderer {
 		/**
 		 * Set present or absent.
 		 * 
-		 * @param present
+		 * @param present present status of the member
 		 */
 		void setPresent(boolean present) {
 			// Show full, but gray bar
-			setBarColor(Color.LIGHT_GRAY);
-			getModel().setValue(1.0);
+			if (!present) {
+				setBarColor(Color.LIGHT_GRAY);
+				getModel().setValue(1.0);
+			}
 		}
 		
 		/**
 		 * Set the ratio of HP/Maximum HP.
 		 * 
-		 * @param ratio
+		 * @param ratio hp ratio
 		 */
 		void setRatio(float ratio) {
 			// Pick a color from red to green depending on the hp ratio. 

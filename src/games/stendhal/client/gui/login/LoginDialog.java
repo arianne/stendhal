@@ -69,7 +69,7 @@ import marauroa.common.net.message.MessageS2CLoginNACK;
 public class LoginDialog extends JDialog {
 	private ProfileList profiles;
 
-	private JComboBox profilesComboBox;
+	private JComboBox<Profile> profilesComboBox;
 
 	private JCheckBox saveLoginBox;
 
@@ -148,7 +148,7 @@ public class LoginDialog extends JDialog {
 		c.gridy = 0;
 		contentPane.add(l, c);
 
-		profilesComboBox = new JComboBox();
+		profilesComboBox = new JComboBox<Profile>();
 		profilesComboBox.addActionListener(new ProfilesCB());
 
 		/*
@@ -615,6 +615,7 @@ public class LoginDialog extends JDialog {
 		Profile profile;
 		String host;
 
+		// This *should* be generic in swing, but it is not
 		profile = (Profile) profilesComboBox.getSelectedItem();
 
 		if (profile != null) {

@@ -27,16 +27,13 @@ import javax.swing.event.ChangeListener;
  * A <code>ListModel</code> for group members. The group leader is always kept
  * first.
  */
-class MemberListModel extends AbstractListModel implements Iterable<Member> {
-	// Keep FindBugs happy
-	private static final long serialVersionUID = -5983645746012160833L;
-	
+class MemberListModel extends AbstractListModel<Member> implements Iterable<Member> {
 	private List<Member> memberList = new ArrayList<Member>();
 	private Map<String, Member> memberMap = new HashMap<String, Member>();
 	private final MemberListHealthListener healthListener = new MemberListHealthListener();
 
 	@Override
-	public Object getElementAt(int index) {
+	public Member getElementAt(int index) {
 		return memberList.get(index);
 	}
 
@@ -73,7 +70,7 @@ class MemberListModel extends AbstractListModel implements Iterable<Member> {
 	/**
 	 * Set the list of current group members.
 	 * 
-	 * @param members
+	 * @param members list of members
 	 */
 	void setMembers(List<String> members) {
 		if (members == null) {
@@ -99,7 +96,7 @@ class MemberListModel extends AbstractListModel implements Iterable<Member> {
 	/**
 	 * Add a group of new members.
 	 * 
-	 * @param newMembers
+	 * @param newMembers list of new members
 	 */
 	private void addMembers(List<String> newMembers) {
 		if (newMembers.isEmpty()) {
@@ -154,7 +151,7 @@ class MemberListModel extends AbstractListModel implements Iterable<Member> {
 	 * To be called when a member changes a value that makes a difference in
 	 * drawing it.
 	 * 
-	 * @param member
+	 * @param member member whose attributes changed
 	 */
 	void memberChanged(Member member) {
 		int index = memberList.indexOf(member);

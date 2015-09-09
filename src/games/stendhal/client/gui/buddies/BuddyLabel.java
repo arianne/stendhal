@@ -25,12 +25,7 @@ import javax.swing.ListCellRenderer;
 /**
  * Rendering component for buddies in a JList.
  */
-class BuddyLabel extends JLabel implements ListCellRenderer {
-	/**
-	 * serial version uid.
-	 */
-	private static final long serialVersionUID = 4293696464719089570L;
-
+class BuddyLabel extends JLabel implements ListCellRenderer<Buddy> {
 	/**
 	 * The online icon image.
 	 */
@@ -42,6 +37,15 @@ class BuddyLabel extends JLabel implements ListCellRenderer {
 	private static ImageIcon offlineIcon = new ImageIcon(DataLoader.getResource("data/gui/buddy_offline.png"));
 
 	/**
+	 * Create new BuddyLabel.
+	 */
+	public BuddyLabel() {
+		super();
+		initialize();
+		this.setText("bobbele");
+	}
+	
+	/**
 	 * Set the buddy online or away.
 	 * 
 	 * @param online <code>true</code> if the buddy is online,
@@ -49,15 +53,6 @@ class BuddyLabel extends JLabel implements ListCellRenderer {
 	 */
 	private void setOnline(final boolean online) {
 		this.setEnabled(online);
-	}
-
-	/**
-	 * Create new BuddyLabel.
-	 */
-	public BuddyLabel() {
-		super();
-		initialize();
-		this.setText("bobbele");
 	}
 
 	/**
@@ -72,14 +67,11 @@ class BuddyLabel extends JLabel implements ListCellRenderer {
 	}
 
 	@Override
-	public Component getListCellRendererComponent(JList list, Object value,
+	public Component getListCellRendererComponent(JList<? extends Buddy> list, Buddy buddy,
 			int index, boolean selected, boolean focused) {
 		// We ignore most of the parameters
-		if (value instanceof Buddy) {
-			Buddy buddy = (Buddy) value;
-			setText(buddy.getName());
-			setOnline(buddy.isOnline());
-		}
+		setText(buddy.getName());
+		setOnline(buddy.isOnline());
 		return this;
 	}
 }

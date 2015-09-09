@@ -26,12 +26,7 @@ import javax.swing.ListCellRenderer;
  * JList that can show popup menues for buddies. Use <code>BuddyListModel</code>
  * with this.
  */
-class BuddyPanel extends JList {
-	/**
-	 * serial version uid.
-	 */
-	private static final long serialVersionUID = -1728697267036233233L;
-
+class BuddyPanel extends JList<Buddy> {
 	/**
 	 * The amount of pixels that popup menus will be shifted up and left from
 	 * the clicking point.
@@ -54,7 +49,7 @@ class BuddyPanel extends JList {
 	@Override
 	public Font getFont() {
 		// The only real for is that of the cell renderer
-		ListCellRenderer renderer = getCellRenderer();
+		ListCellRenderer<?> renderer = getCellRenderer();
 		if (renderer instanceof Component) {
 			return ((Component) renderer).getFont();
 		}
@@ -65,7 +60,7 @@ class BuddyPanel extends JList {
 	@Override
 	public void setFont(Font font) {
 		// Pass the font change to the cell renderer
-		ListCellRenderer renderer = getCellRenderer();
+		ListCellRenderer<?> renderer = getCellRenderer();
 		if (renderer instanceof Component) {
 			Component comp = (Component) renderer;
 			comp.setFont(font);
@@ -79,12 +74,10 @@ class BuddyPanel extends JList {
 		@Override
 		protected void showPopup(final MouseEvent e) {
 			int index = BuddyPanel.this.locationToIndex(e.getPoint());
-			Object obj = BuddyPanel.this.getModel().getElementAt(index);
-			if (obj instanceof Buddy) {
-				Buddy buddy = (Buddy) obj;
-				final JPopupMenu popup = new BuddyLabelPopMenu(buddy.getName(), buddy.isOnline());
-				popup.show(e.getComponent(), e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
-			}
+			Buddy buddy = BuddyPanel.this.getModel().getElementAt(index);
+			
+			final JPopupMenu popup = new BuddyLabelPopMenu(buddy.getName(), buddy.isOnline());
+			popup.show(e.getComponent(), e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 		}
 	}
 }

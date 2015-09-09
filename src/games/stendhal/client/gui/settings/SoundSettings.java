@@ -50,27 +50,27 @@ class SoundSettings {
 	/** Default value of the sound device property. */
 	private static final String DEFAULT_DEVICE = "auto - recommended";
 	
-	/** Container for the setting components */
+	/** Container for the setting components. */
 	private final JComponent page;
 	
-	/** Toggle for mute */
+	/** Toggle for mute. */
 	private final JCheckBox muteToggle;
 	/**
 	 * Container for the volume sliders. Exist to help turning them all,
 	 * and their labels easily on or off.
 	 */
 	private List<JComponent> sliderComponents = new ArrayList<JComponent>(14);
-	/** Volume adjuster for master channel */
+	/** Volume adjuster for master channel. */
 	private final JSlider masterVolume;
-	/** Volume adjuster for GUI channel */
+	/** Volume adjuster for GUI channel. */
 	private final JSlider guiVolume;
-	/** Volume adjuster for effects channel */
+	/** Volume adjuster for effects channel. */
 	private final JSlider effectsVolume;
-	/** Volume adjuster for creatures channel */
+	/** Volume adjuster for creatures channel. */
 	private final JSlider creaturesVolume;
-	/** Volume adjuster for ambient channel */
+	/** Volume adjuster for ambient channel. */
 	private final JSlider ambientVolume;
-	/** Volume adjuster for music channel */
+	/** Volume adjuster for music channel. */
 	private final JSlider musicVolume;
 
 	/**
@@ -188,7 +188,7 @@ class SoundSettings {
 	 * @return combo box with device options
 	 */
 	private JComponent createDeviceSelector() {
-		final JComboBox selector = new JComboBox();
+		final JComboBox<String> selector = new JComboBox<>();
 		
 		// Fill with available device names
 		selector.addItem(DEFAULT_DEVICE);
@@ -233,7 +233,7 @@ class SoundSettings {
 	 * Create a volume slider, and initialize its value from the volume of a
 	 * channel.
 	 * 
-	 * @param channel
+	 * @param channel channel corresponding to the slider
 	 * @return volume slider for the channel
 	 */
 	private JSlider createVolumeSlider(String channel) {
@@ -286,7 +286,7 @@ class SoundSettings {
 		 * Create a ChannelChangeListener for a sound group.
 		 * 
 		 * @param groupName name of the sound group
-		 * @param group
+		 * @param group group
 		 */
 		public ChannelChangeListener(String groupName, SoundGroup group) {
 			this.group = group;

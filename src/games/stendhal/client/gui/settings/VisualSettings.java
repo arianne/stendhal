@@ -154,7 +154,7 @@ class VisualSettings {
 	 * @return combo box with style options
 	 */
 	private JComponent createStyleSelector() {
-		final JComboBox selector = new JComboBox();
+		final JComboBox<String> selector = new JComboBox<>();
 		
 		// Fill with available styles
 		for (String s : StyleFactory.getAvailableStyles()) {
@@ -188,7 +188,7 @@ class VisualSettings {
 		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		JLabel label = new JLabel("Transparency mode:");
 		row.add(label);
-		final JComboBox selector = new JComboBox();
+		final JComboBox<String> selector = new JComboBox<>();
 		final String[][] data = {
 				{"Automatic (default)", "auto", "The appropriate mode is decided automatically based on the system speed."},
 				{"Full translucency", "translucent", "Use semitransparent images where available. This is slow on some systems."},
@@ -200,7 +200,7 @@ class VisualSettings {
 		final Map<String, String[]> desc2data = new HashMap<String, String[]>();
 		Map<String, String[]> key2data = new HashMap<String, String[]>();
 		
-		for (String s[] : data) {
+		for (String[] s : data) {
 			// fill the selector...
 			selector.addItem(s[0]);
 			// ...and prepare the convenience mappings in the same step
@@ -276,7 +276,7 @@ class VisualSettings {
 	}
 	
 	/**
-	 * Create selector for choosing between defined and custom styles
+	 * Create selector for choosing between defined and custom styles.
 	 * 
 	 * @return layout for styles widgets
 	 */
@@ -388,7 +388,7 @@ class VisualSettings {
 		JComponent container = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		container.add(new JLabel("Text size:"));
 		
-		final JComboBox selector = new JComboBox();
+		final JComboBox<Object> selector = new JComboBox<>();
 		
 		// Fill the selector, and set current size as the selection
 		int current = WtWindowManager.getInstance().getPropertyInt(FONT_SIZE_PROPERTY, DEFAULT_FONT_SIZE);
@@ -449,7 +449,7 @@ class VisualSettings {
 		fontBox.add(fontRow, SLayout.EXPAND_X);
 		final JLabel label = new JLabel("Font:");
 		fontRow.add(label);
-		final JComboBox fontList = new JComboBox();
+		final JComboBox<String> fontList = new JComboBox<>();
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		for (String font : ge.getAvailableFontFamilyNames()) {
 			fontList.addItem(font);
@@ -531,7 +531,7 @@ class VisualSettings {
 		}
 		
 		@Override
-		public Component getListCellRendererComponent(JList list, Object value,
+		public Component getListCellRendererComponent(JList<?> list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
 
 			JComponent comp = (JComponent) super.getListCellRendererComponent(list,

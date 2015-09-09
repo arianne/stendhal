@@ -85,7 +85,7 @@ class GroupPanel {
 	/** Model of the member list. */
 	private final MemberListModel memberList;
 	/** Component part of the member list. */
-	private final JList memberListComponent;
+	private final JList<Member> memberListComponent;
 	/** Button for leaving the group. */
 	private final JButton leaveGroupButton;
 	/** Button for sending a group message. */
@@ -130,7 +130,7 @@ class GroupPanel {
 		memberLabel.setVisible(false);
 		
 		memberList = new MemberListModel();
-		memberListComponent = new JList(memberList);
+		memberListComponent = new JList<Member>(memberList);
 		memberListComponent.setFocusable(false);
 		memberListComponent.setCellRenderer(new MemberCellRenderer());
 		memberListComponent.setOpaque(false);
@@ -208,7 +208,7 @@ class GroupPanel {
 	/**
 	 * Set the header text.
 	 * 
-	 * @param text
+	 * @param text header contents
 	 */
 	void showHeader(String text) {
 		header.setText(text);
@@ -217,7 +217,7 @@ class GroupPanel {
 	/**
 	 * Set the member list.
 	 * 
-	 * @param members
+	 * @param members list of members
 	 */
 	void setMembers(List<String> members) {
 		memberList.setMembers(members);
@@ -312,7 +312,7 @@ class GroupPanel {
 	 * Called, when a player is added to the zone. The player is not necessarily
 	 * a member of the group.
 	 * 
-	 * @param player
+	 * @param player added player
 	 * @return <code>true</code> if the added player was is member,
 	 * 	<code>false</code> otherwise. 
 	 */
@@ -338,7 +338,7 @@ class GroupPanel {
 	/**
 	 * Called for new members that are present at the zone.
 	 * 
-	 * @param players
+	 * @param players list of players on the zone
 	 */
 	void addPlayers(List<Player> players) {
 		for (Player player : players) {
@@ -352,7 +352,7 @@ class GroupPanel {
 	 * Called, when a player is removed from the zone. The player is not
 	 * necessarily a member of the group.
 	 * 
-	 * @param player
+	 * @param player removed player
 	 */
 	void removePlayer(IEntity player) {
 		Member member = memberList.getMember(player.getName());
@@ -431,17 +431,14 @@ class GroupPanel {
 		@Override
 		protected void showPopup(final MouseEvent e) {
 			int index = memberListComponent.locationToIndex(e.getPoint());
-			Object obj = memberListComponent.getModel().getElementAt(index);
+			Member member = memberListComponent.getModel().getElementAt(index);
 
-			if (obj instanceof Member) {
-				Member me = memberList.getMember(User.getCharacterName());
-				Member member = (Member) obj;
-				// Show leader operations only if the user is the leader, and
-				// only for the other members
-				boolean showLeaderOps = me.isLeader() && (obj != me);
-				final JPopupMenu popup = new MemberPopupMenu(member.getName(), showLeaderOps);
-				popup.show(memberListComponent, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
-			}
+			Member me = memberList.getMember(User.getCharacterName());
+			// Show leader operations only if the user is the leader, and
+			// only for the other members
+			boolean showLeaderOps = me.isLeader() && (member != me);
+			final JPopupMenu popup = new MemberPopupMenu(member.getName(), showLeaderOps);
+			popup.show(memberListComponent, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 		}
 	}
 }

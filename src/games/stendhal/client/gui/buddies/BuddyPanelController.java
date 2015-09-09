@@ -48,7 +48,7 @@ public final class BuddyPanelController implements PropertyChangeListener {
 		buddyPanel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		// now the actual sorted list
 		model = new BuddyListModel();
-		JList list = new BuddyPanel(model);
+		JList<Buddy> list = new BuddyPanel(model);
 		buddyPanel.add(list, SLayout.EXPAND_X);
 	}
 

@@ -26,12 +26,7 @@ import org.apache.log4j.Logger;
  * A <code>ListModel</code> for buddies that keeps itself sorted first by online
  * status and secondarily by buddy name.
  */
-class BuddyListModel extends AbstractListModel {
-	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = 6616529427540883628L;
-
+class BuddyListModel extends AbstractListModel<Buddy> {
 	/*
 	 * LinkedHashMap would nicely combine order and fast searches, but
 	 * unfortunately it does not allow sorting after creation. (Likewise for
@@ -43,7 +38,7 @@ class BuddyListModel extends AbstractListModel {
 	private final Map<String, Buddy> buddyMap = new HashMap<String, Buddy>();
 
 	@Override
-	public Object getElementAt(int index) {
+	public Buddy getElementAt(int index) {
 		return buddyList.get(index);
 	}
 
@@ -62,7 +57,7 @@ class BuddyListModel extends AbstractListModel {
 	 */
 	void setOnline(String name, boolean online) {
 		if (name == null) {
-			Logger.getLogger(BuddyListModel.class).error("Buddy with no name set " + ((online) ? "online" : "offline"));
+			Logger.getLogger(BuddyListModel.class).error("Buddy with no name set " + (online ? "online" : "offline"));
 			return;
 		}
 		Buddy buddy = buddyMap.get(name);
