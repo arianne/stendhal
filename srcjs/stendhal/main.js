@@ -106,6 +106,15 @@ stendhal.main = {
 		
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+			
+			document.addEventListener("click", function(e) {
+				if (e.srcElement.dataItem) {
+					marauroa.clientFramework.sendAction({
+						type: "use", 
+						"target_path": e.srcElement.dataItem.getIdPath()
+					});
+				}
+			});
 		}
 	}
 }

@@ -23,18 +23,22 @@ stendhal.ui.equip = {
 	update: function() {
 		for (var i in this.slots) {
 			var s = marauroa.me[this.slots[i]];
+			var e = document.getElementById(this.slots[i]);
 			if (typeof(s) != "undefined") {
 				var o = s.first();
 				if (typeof(o) != "undefined") {
-					document.getElementById(this.slots[i]).style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
-					document.getElementById(this.slots[i]).textContent = o.formatQuantity();
+					e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
+					e.textContent = o.formatQuantity();
+					e.dataItem = o;
 				} else {
-					document.getElementById(this.slots[i]).style.backgroundImage = "none";
-					document.getElementById(this.slots[i]).textContent = "";
+					e.style.backgroundImage = "none";
+					e.textContent = "";
+					e.dataItem = null;
 				}
 			} else {
-				document.getElementById(this.slots[i]).style.backgroundImage = "none";
-				document.getElementById(this.slots[i]).textContent = "";
+				e.style.backgroundImage = "none";
+				e.textContent = "";
+				e.dataItem = null;
 			}
 		}
 	}
@@ -58,14 +62,18 @@ stendhal.ui.itemContainerWindow = {
 		for (var i in marauroa.me[name]) {
 			if (!isNaN(i)) {
 				var o = marauroa.me[name][i];
-				document.getElementById(name + cnt).style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
-				document.getElementById(name + cnt).textContent = o.formatQuantity();
+				var e = document.getElementById(name + cnt);
+				e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
+				e.textContent = o.formatQuantity();
+				e.dataItem = o;
 				cnt++;
 			}
 		}
 		for (var i = cnt; i < size; i++) {
-			document.getElementById(name + i).style.backgroundImage = "none";
-			document.getElementById(name + cnt).textContent = "";
+			var e = document.getElementById(name + i);
+			e.style.backgroundImage = "none";
+			e.textContent = "";
+			e.dataItem = null;
 		}
 	}
 }
