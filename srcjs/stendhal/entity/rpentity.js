@@ -98,12 +98,26 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		var localY = this._y * 32;
 		var image = stendhal.data.sprites.get(filename);
 		if (image.complete) {
-			// TODO: animate
-			this.drawHeight = image.height / 4;
-			this.drawWidth = image.width / 3;
+			var nFrames = 3;
+			var nDirections = 4;
+			var yRow = this.dir - 1;
+			// Ents are a hack in Java client too
+			if (this["class"] == "ent") {
+				nFrames = 1;
+				nDirections = 2;
+				yRow = Math.floor((this.dir - 1) / 2);
+			}
+			this.drawHeight = image.height / nDirections;
+			this.drawWidth = image.width / nFrames;
 			var drawX = ((this.width * 32) - this.drawWidth) / 2;
+			var frame = 0;
+			if (this.speed > 0 && nFrames != 1) {
+				// % Works normally with *floats* (just whose bright idea was
+				// that?), so use floor() as a workaround
+				frame = Math.floor(Date.now() / 100) % nFrames;
+			}
 			var drawY = (this.height * 32) - this.drawHeight;
-			ctx.drawImage(image, 0, (this.dir - 1) * this.drawHeight, this.drawWidth, this.drawHeight, localX + drawX, localY + drawY, this.drawWidth, this.drawHeight);
+			ctx.drawImage(image, frame * this.drawWidth, yRow * this.drawHeight, this.drawWidth, this.drawHeight, localX + drawX, localY + drawY, this.drawWidth, this.drawHeight);
 		}
 	},
 
