@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import java.util.Objects;
+
 /**
  * A container for three objects.
  *
@@ -67,25 +69,8 @@ public final class Triple<P, S, T> {
 		
 		final Triple<P, S , T> other = (Triple <P, S, T>) obj;
 		
-		return nullSafeEquals(prim, other.prim) && nullSafeEquals(sec, other.sec)
-				&& nullSafeEquals(third, other.third);
-	}
-	
-	/**
-	 * Null safe equality check for objects. <b>Note: this should be replaced
-	 * 	with Objects.equals() once we start requiring java 7.</b>
-	 * 
-	 * @param a first object
-	 * @param b second object
-	 * @return <code>true</code> if both <code>a</code> and <code>b</code> are
-	 * 	<code>null</code> or if they are equal otherwise. In any other case the
-	 * 	result is <code>false</code>
-	 */
-	private boolean nullSafeEquals(Object a, Object b) {
-		if (a == null) {
-			return b == null;
-		}
-		return a.equals(b);
+		return Objects.equals(prim, other.prim) && Objects.equals(sec, other.sec)
+				&& Objects.equals(third, other.third);
 	}
 
 	/**

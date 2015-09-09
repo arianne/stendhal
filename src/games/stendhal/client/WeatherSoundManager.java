@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import java.util.Objects;
+
 import games.stendhal.client.StendhalClient.ZoneChangeListener;
 import games.stendhal.client.sound.facade.AudibleArea;
 import games.stendhal.client.sound.facade.InfiniteAudibleArea;
@@ -58,9 +60,7 @@ public class WeatherSoundManager implements ZoneChangeListener {
 	 * @param sound weather type name
 	 */
 	private void updateWeatherSound(String sound) {
-		// !Objects.equals()...
-		if ((sound != null && !sound.equals(soundName) 
-				|| (sound == null && soundName != null))) {
+		if (!Objects.equals(sound,  soundName)) {
 			if (currentSound != null) {
 				// Stop old weather sound
 				ClientSingletonRepository.getSound().stop(currentSound, fadeOutDuration);

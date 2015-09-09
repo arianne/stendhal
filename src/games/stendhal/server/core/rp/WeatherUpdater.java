@@ -21,6 +21,7 @@ import games.stendhal.server.entity.mapstuff.WeatherEntity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -227,8 +228,7 @@ public class WeatherUpdater implements TurnListener {
 		String desc = weather.first();
 		String oldWeather = attr.get(WEATHER);
 		// Objects.equals()...
-		if ((desc != null && !desc.equals(oldWeather)) 
-				|| (desc == null && oldWeather != null)) {
+		if (!Objects.equals(desc, oldWeather)) {
 			LOGGER.debug("Weather on " + attr.getZone().describe() + ": "
 				+ desc + (weather.second() ? ", thundering" : ""));
 			if (desc != null) {
