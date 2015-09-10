@@ -42,6 +42,19 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		return true;
 	},
 
+	/** 
+	 * says a text
+	 */
+	say: function (text) {
+		if (marauroa.me.isInHearingRange(this)) {
+			if (text.match("^!me") == "!me") {
+				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
+			} else {
+				stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
+			}
+		}
+	},
+
 	/**
 	 * draw an outfix part
 	 *

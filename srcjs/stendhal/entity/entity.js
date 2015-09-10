@@ -97,19 +97,6 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		return "[" + res.substr(0, res.length - 1) + "]";
 	},
 
-	/** 
-	 * says a text
-	 */
-	say: function (text) {
-		if (marauroa.me.isInHearingRange(this)) {
-			if (text.match("^!me") == "!me") {
-				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
-			} else {
-				stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
-			}
-		}
-	},
-
 	onclick: function(x, y) {
 		marauroa.log.debug(this, x, y);
 		var action = {
