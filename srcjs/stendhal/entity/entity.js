@@ -97,6 +97,15 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		return "[" + res.substr(0, res.length - 1) + "]";
 	},
 
+	/** 
+	 * says a text
+	 */
+	say: function (text) {
+		if (marauroa.me.isInHearingRange(this)) {
+			stendhal.ui.chatLog.addLine("normal", text);
+		}
+	},
+
 	onclick: function(x, y) {
 		marauroa.log.debug(this, x, y);
 		var action = {
