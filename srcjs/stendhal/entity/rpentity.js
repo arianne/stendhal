@@ -32,9 +32,16 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 		if (key == "text") {
 			this.say(value);
-		}
-		if (key in ["hp", "base_hp"]) {
+		} else if (key in ["hp", "base_hp"]) {
 			this[key] = parseInt(value);
+		} else if (key == "target") {
+			for (var i in stendhal.zone.entities) {
+				var entity = stendhal.zone.entities[i];
+				if (entity.id == value) {
+					this._target = entity;
+					break;
+				}
+			}
 		}
 	},
 
@@ -179,7 +186,6 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	onAttackPerformed: function(nature, ranged) {
-		
 	}
 
 });
