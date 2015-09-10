@@ -36,19 +36,14 @@ import org.apache.log4j.Logger;
  * A view of an RPSlot in a grid of ItemPanels.
  */
 public class SlotGrid extends JComponent implements ContentChangeListener, Inspectable {
-	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = -1822952960582728997L;
-
 	private static final int PADDING = 1;
 	private static final Logger logger = Logger.getLogger(SlotGrid.class);
 	
-	/** All shown item panels */
+	/** All shown item panels. */
 	private final List<ItemPanel> panels;
-	/** The parent entity of the shown slot */
+	/** The parent entity of the shown slot. */
 	private IEntity parent;
-	/** Name of the shown slot */
+	/** Name of the shown slot. */
 	private String slotName;
 
 	
@@ -67,9 +62,10 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 	/**
 	 * Set the types the panels can accept.
 	 * 
-	 * @param types
+	 * @param types accepted types
 	 */
-	public void setAcceptedTypes(Class<? extends IEntity> ... types) {
+	@SafeVarargs
+	public final void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		// Reuse the same set for all the panels
 		List<Class<? extends IEntity>> list = Arrays.asList(types);
 		for (ItemPanel panel : panels) {
@@ -80,8 +76,8 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 	/**
 	 * Sets the parent entity of the window.
 	 * 
-	 * @param parent
-	 * @param slot
+	 * @param parent entity owning the slot represented by the grid
+	 * @param slot the slot represented by the grid
 	 */
 	public void setSlot(final IEntity parent, final String slot) {
 		if (!GameLoop.isGameLoop()) {
@@ -116,7 +112,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 	}
 	
 	/**
-	 * Get the name of the slot this grid represents
+	 * Get the name of the slot this grid represents.
 	 * 
 	 * @return name of the slot
 	 */
@@ -127,7 +123,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 	/**
 	 * Set the inspector the contained entities should use.
 	 * 
-	 * @param inspector
+	 * @param inspector used inspector
 	 */
 	@Override
 	public void setInspector(Inspector inspector) {

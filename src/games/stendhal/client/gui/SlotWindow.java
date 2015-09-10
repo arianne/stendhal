@@ -27,11 +27,6 @@ import marauroa.common.game.RPObject;
  */
 public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = 7599313996868476471L;
-
-	/**
 	 * when the player is this far away from the container, the panel is closed.
 	 */
 	private static final int MAX_DISTANCE = 4;
@@ -56,17 +51,18 @@ public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	/**
 	 * Set the types the panels can accept.
 	 * 
-	 * @param types
+	 * @param types accepted types
 	 */
-	public void setAcceptedTypes(Class<? extends IEntity> ... types) {
+	@SafeVarargs
+	public final void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		content.setAcceptedTypes(types);
 	}
 	
 	/**
 	 * Sets the parent entity of the window.
 	 * 
-	 * @param parent
-	 * @param slot
+	 * @param parent entity owning the slot presented by the window
+	 * @param slot slot presented
 	 */
 	public void setSlot(final IEntity parent, final String slot) {
 		this.parent = parent;
@@ -76,7 +72,7 @@ public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	/**
 	 * Set the inspector used for the contained entities.
 	 * 
-	 * @param inspector
+	 * @param inspector used inspector
 	 */
 	@Override
 	public void setInspector(Inspector inspector) {

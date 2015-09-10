@@ -160,7 +160,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/**
 	 * Set the inspector the contained entity should use.
 	 * 
-	 * @param inspector
+	 * @param inspector used inspector
 	 */
 	@Override
 	public void setInspector(Inspector inspector) {
@@ -241,7 +241,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/**
 	 * Set the containing entity.
 	 * 
-	 * @param parent
+	 * @param parent entity owning the slot to which this panel belongs to
 	 */
 	protected void setParent(IEntity parent) {
 		this.parent = parent;
@@ -321,7 +321,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/**
 	 * Generate a reordering action for an entity in the slot.
 	 * 
-	 * @param entity
+	 * @param entity moved entity
 	 */
 	private void reorder(final IEntity entity) {
 		// Don't needlessly send reordering commands to servers that do not
@@ -480,16 +480,17 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/**
 	 * Set the types the panel can accept.
 	 * 
-	 * @param types
+	 * @param types accepted types
 	 */
-	void setAcceptedTypes(Class<? extends IEntity> ... types) {
+	@SafeVarargs
+	final void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		acceptedTypes = Arrays.asList(types);
 	}
 	
 	/**
 	 * Set the types the panel can accept.
 	 * 
-	 * @param types
+	 * @param types list of accepted types
 	 */
 	void setAcceptedTypes(List<Class<? extends IEntity>> types) {
 		acceptedTypes = types;
