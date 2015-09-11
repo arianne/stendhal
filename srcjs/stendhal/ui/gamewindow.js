@@ -136,30 +136,10 @@ stendhal.ui.gamewindow = {
 		this.ctx.translate(-this.offsetX, -this.offsetY);
 	},
 
-	onclick: function(event) {
-		// https://stackoverflow.com/questions/55677/ by Ryan Artecona
-		function relMouseCoords(event){
-		    var totalOffsetX = 0;
-		    var totalOffsetY = 0;
-		    var canvasX = 0;
-		    var canvasY = 0;
-		    var currentElement = event.target;
-		    do {
-		        totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
-		        totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
-		    }
-		    while(currentElement = currentElement.offsetParent)
-
-		    canvasX = event.pageX - totalOffsetX;
-		    canvasY = event.pageY - totalOffsetY;
-
-		    return {x:canvasX, y:canvasY}
-		}
-		// end
-		
-		var pos = relMouseCoords(event);
-		stendhal.zone.entityAt(pos.x + stendhal.ui.gamewindow.offsetX, 
-				pos.y + stendhal.ui.gamewindow.offsetY).onclick(pos.x, pos.y);
+	onclick: function(e) {
+		console.log(e);
+		stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX, 
+				e.offsetY + stendhal.ui.gamewindow.offsetY).onclick(e.offsetX, e.offsetY);
 		document.getElementById("chatbar").focus();
 	}
 }
