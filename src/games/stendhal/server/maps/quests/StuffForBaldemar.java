@@ -69,86 +69,83 @@ import java.util.TreeMap;
  * </ul>
  */
 public class StuffForBaldemar extends AbstractQuest {
-	private static Map<Integer, ItemData> neededItems = initneededitems();
-	private static Map<Integer, ItemData> initneededitems() {
+	private static Map<Integer, ItemData> neededItems = initNeededItems();
+	private static Map<Integer, ItemData> initNeededItems() {
 		neededItems = new TreeMap<Integer, ItemData>();
-		ItemData data = new ItemData("mithril bar", 
-									REQUIRED_MITHRIL_BAR, 
-									"I cannot #forge it without the missing ", 
-									". After all, this IS a mithril shield.");
+		ItemData data;
+
+		data = new ItemData("mithril bar", REQUIRED_MITHRIL_BAR,
+				"I cannot #forge it without the missing ",
+				". After all, this IS a mithril shield.");
 		neededItems.put(1, data);
-		data = new ItemData("obsidian",	REQUIRED_OBSIDIAN, 
-				"I need several gems to grind into dust to mix with the mithril. I need ", 
+
+		data = new ItemData("obsidian",	REQUIRED_OBSIDIAN,
+				"I need several gems to grind into dust to mix with the mithril. I need ",
 				" still.");
 		neededItems.put(2, data);
-		data = new ItemData("diamond",	REQUIRED_DIAMOND , 
-				"I need several gems to grind into dust to mix with the mithril. I need ", 
+
+		data = new ItemData("diamond", REQUIRED_DIAMOND,
+				"I need several gems to grind into dust to mix with the mithril. I need ",
 				" still.");
 		neededItems.put(3, data);
 		
-		
-		data = new ItemData("emerald",	REQUIRED_EMERALD , 
-				"I need several gems to grind into dust to mix with the mithril. I need ", 
+		data = new ItemData("emerald", REQUIRED_EMERALD,
+				"I need several gems to grind into dust to mix with the mithril. I need ",
 				" still.");
 		neededItems.put(4, data);
 		
-		data = new ItemData("carbuncle",	REQUIRED_CARBUNCLE , 
-				"I need several gems to grind into dust to mix with the mithril. I need ", 
+		data = new ItemData("carbuncle", REQUIRED_CARBUNCLE,
+				"I need several gems to grind into dust to mix with the mithril. I need ",
 				" still.");
 		neededItems.put(5, data);
 		
-		data = new ItemData("sapphire",	REQUIRED_SAPPHIRE, 
-				"I need several gems to grind into dust to mix with the mithril. I need ", 
+		data = new ItemData("sapphire",	REQUIRED_SAPPHIRE,
+				"I need several gems to grind into dust to mix with the mithril. I need ",
 				" still.");
 		neededItems.put(6, data);
-		int i = 7;
-		data = new ItemData("black shield",	REQUIRED_BLACK_SHIELD , 
-				"I need ", 
+
+		data = new ItemData("black shield",	REQUIRED_BLACK_SHIELD,
+				"I need ",
 				" to form the framework for your new shield.");
-		neededItems.put(i, data);
+		neededItems.put(7, data);
 		
-		 i = 8;
-		data = new ItemData("magic plate shield",	REQUIRED_MAGIC_PLATE_SHIELD , 
-				"I need ", 
+		data = new ItemData("magic plate shield", REQUIRED_MAGIC_PLATE_SHIELD,
+				"I need ",
 				" for the pieces and parts for your new shield.");
-		neededItems.put(i, data);
+		neededItems.put(8, data);
 	
-		 i = 9;
-			data = new ItemData("gold bar",	REQUIRED_GOLD_BAR , 
-					"I need ", 
-					" to melt down with the mithril and iron.");
-			neededItems.put(i, data);
+		data = new ItemData("gold bar",	REQUIRED_GOLD_BAR,
+				"I need ",
+				" to melt down with the mithril and iron.");
+		neededItems.put(9, data);
 
-		 i = 10;
-			data = new ItemData("iron",	REQUIRED_IRON , 
-					"I need ", 
-					" to melt down with the mithril and gold.");
-			neededItems.put(i, data);
-		 i = 11;
-			data = new ItemData("black pearl",	REQUIRED_BLACK_PEARL , 
-					"I need ", 
-					" to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
-			neededItems.put(i, data);
+		data = new ItemData("iron",	REQUIRED_IRON,
+				"I need ",
+				" to melt down with the mithril and gold.");
+		neededItems.put(10, data);
 
-		 i = 12;
-			data = new ItemData("shuriken",	REQUIRED_SHURIKEN , 
-					"I need ", 
-					" to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
-			neededItems.put(i, data);
-			i = 13;
-			data = new ItemData("marbles",	REQUIRED_MARBLES , 
-					"My son wants some new toys. I need ", 
-					" still.");
-			neededItems.put(i, data);
+		data = new ItemData("black pearl", REQUIRED_BLACK_PEARL,
+				"I need ",
+				" to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
+		neededItems.put(11, data);
 
-			data = new ItemData("snowglobe",	REQUIRED_SNOWGLOBE, 
-					"I just LOVE those trinkets from athor. I need ", 
-					" still.");
-			neededItems.put(14, data);
+		data = new ItemData("shuriken",	REQUIRED_SHURIKEN,
+				"I need ",
+				" to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
+		neededItems.put(12, data);
+
+		data = new ItemData("marbles", REQUIRED_MARBLES,
+				"My son wants some new toys. I need ",
+				" still.");
+		neededItems.put(13, data);
+
+		data = new ItemData("snowglobe", REQUIRED_SNOWGLOBE,
+				"I just LOVE those trinkets from athor. I need ",
+				" still.");
+		neededItems.put(14, data);
 		return neededItems;
 	}
 
-	
 	protected static final class ItemData {
 
 		private int neededAmount;
@@ -171,7 +168,6 @@ public class StuffForBaldemar extends AbstractQuest {
 
 		public void setAmount(final int needed) {
 			neededAmount = needed;
-			
 		}
 
 		public String getName() {
@@ -188,7 +184,6 @@ public class StuffForBaldemar extends AbstractQuest {
 
 		public void subAmount(final String string) {
 			subAmount(Integer.parseInt(string));
-			
 		}
 
 		String getAnswer() {
@@ -208,12 +203,10 @@ public class StuffForBaldemar extends AbstractQuest {
 
 		public void subAmount(final int amount) {
 			neededAmount -= amount;
-			
 		}
 
 		public void resetAmount() {
 			neededAmount = requiredAmount;
-			
 		}
 	}
 
@@ -378,10 +371,8 @@ public class StuffForBaldemar extends AbstractQuest {
 							sb.append(id.getAlreadyBrought());
 						}
 						player.setQuest(QUEST_SLOT, sb.toString());
-							
 					}
 				}
-
 	
 				private boolean proceedItem(final Player player,
 						final EventRaiser engine, final ItemData itemData) {
@@ -491,7 +482,6 @@ public class StuffForBaldemar extends AbstractQuest {
 							+ neededSnowglobe + " snowglobe");
 				}
 			});
-
 	}
 
 	@Override
@@ -540,7 +530,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			}
 			return res;
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 100;
