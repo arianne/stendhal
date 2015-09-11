@@ -137,7 +137,6 @@ stendhal.ui.gamewindow = {
 	},
 
 	onclick: function(e) {
-		console.log(e);
 		stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX, 
 				e.offsetY + stendhal.ui.gamewindow.offsetY).onclick(e.offsetX, e.offsetY);
 		document.getElementById("chatbar").focus();
