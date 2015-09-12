@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="ground.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff" width="96" height="352"/>
  </tileset>
@@ -93,7 +93,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJztzgEJADAMA7D5V1Gp4yJOGSQKMgMAAAAAAAAAAAAAAAAAPGkHOCntAAAA8E3aAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICCBd/yAeE=
+   eJzt1rENACAMA0H2L5gho1JRQhdZoLsJXnLjMQAA7mY6gDa2BQC20y/wF/5hSwBg8wsAAAAAAADgrtIBPKnSAQAAQJtKBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAELA3eBTU=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
