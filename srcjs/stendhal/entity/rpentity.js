@@ -53,6 +53,9 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	 * says a text
 	 */
 	say: function (text) {
+		if (!marauroa.me) {
+			return;
+		}
 		if (marauroa.me.isInHearingRange(this)) {
 			if (text.match("^!me") == "!me") {
 				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
