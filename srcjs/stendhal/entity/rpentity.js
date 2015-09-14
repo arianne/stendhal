@@ -27,6 +27,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	spritePath: "",
 	titleStyle: "#FFFFFF",
 	_target: null,
+	attackSprite: null,
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
@@ -35,13 +36,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		} else if (key in ["hp", "base_hp"]) {
 			this[key] = parseInt(value);
 		} else if (key == "target") {
-			for (var i in stendhal.zone.entities) {
-				var entity = stendhal.zone.entities[i];
-				if (entity.id == value) {
-					this._target = entity;
-					break;
-				}
-			}
+			this._target = marauroa.currentZone[value];
 		}
 	},
 
@@ -101,6 +96,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			filename = filename + ".png";
 			this.drawSprite(ctx, filename)
 		}
+		this.drawAttack(ctx);
 	},
 	
 	drawSprite: function(ctx, filename) {
@@ -170,9 +166,28 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			ctx.fillText(this.title, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	},
+	
+	drawAttack: function(ctx) {
+		if (this.attackSprite == null) {
+			return;
+		}
+		if (this.attackSprite.expired()) {
+			this.attackSprite = null;
+			return;
+		}
+		var localX = this._x * 32;
+		var localY = this._y * 32;
+		this.attackSprite.draw(ctx, localX, localY, this.drawWidth, this.drawHeight);
+	},
 
 	// attack handling
 	getAttackTarget: function() {
+		// If the attack target id was read before the target was available,
+		// _target does not point to the correct entity. Look up the target
+		// again, if _target does not exist, but it should.
+		if (!this._target && this.target) {
+			this._target = marauroa.currentZone[this.target];
+		}
 		return this._target;
 	},
 	
@@ -189,6 +204,30 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	onAttackPerformed: function(nature, ranged) {
+		this.attackSprite = (function(nature, ranged, dir, width, height) {
+			return {
+				initTime: Date.now(),
+				image: stendhal.data.sprites.get("/data/sprites/combat/blade_strike_cut.png"),
+				frame: 0,
+				expired: function() {
+					return Date.now() - this.initTime > 180;
+				},
+				draw: function(ctx, x, y, entityWidth, entityHeight) {
+					if (!this.image.complete) {
+						return;
+					}
+					var yRow = dir - 1;
+					var drawHeight = this.image.height / 4;
+					var drawWidth = this.image.width / 3;
+					var dtime = Date.now() - this.initTime;
+					var frame = Math.floor(Math.min(dtime / 60, 3));
+					var centerX = x + (entityWidth - drawWidth) / 2;
+					var centerY = y + (entityHeight - drawHeight) / 2;
+					ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
+							drawWidth, drawHeight, centerX, centerY, drawWidth, drawHeight);
+				}
+			};
+		})(nature, ranged, this.dir);
 	}
 
 });
