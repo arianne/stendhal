@@ -204,48 +204,99 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	onAttackPerformed: function(nature, ranged) {
-		var imagePath;
-		switch (nature) {
-		case "0":
-		default:
-			imagePath = "/data/sprites/combat/blade_strike_cut.png";
+		if (ranged) {
+			var color;
+			switch (nature) {
+			case "0":
+			default:
+				color = "#c0c0c0";
 			break;
-		case "1":
-			imagePath = "/data/sprites/combat/blade_strike_fire.png";
-			break;
-		case "2":
-			imagePath = "/data/sprites/combat/blade_strike_ice.png";
-			break;
-		case "3":
-			imagePath = "/data/sprites/combat/blade_strike_light.png";
-			break;
-		case "4":
-			imagePath = "/data/sprites/combat/blade_strike_dark.png";
-		}
-		this.attackSprite = (function(imagePath, ranged, dir, width, height) {
-			return {
-				initTime: Date.now(),
-				image: stendhal.data.sprites.get(imagePath),
-				frame: 0,
-				expired: function() {
-					return Date.now() - this.initTime > 180;
-				},
-				draw: function(ctx, x, y, entityWidth, entityHeight) {
-					if (!this.image.complete) {
-						return;
+			case "1":
+				color = "#ff6400";
+				break;
+			case "2":
+				color = "#8c8cff";
+				break;
+			case "3":
+				color = "#fff08c";
+				break;
+			case "4":
+				color = "#404040";
+			}
+			var tgt = this.getAttackTarget();
+			this.attackSprite = (function(color, targetX, targetY) {
+				return {
+					initTime: Date.now(),
+					expired: function() {
+						return Date.now() - this.initTime > 180;
+					},
+					draw: function(ctx, x, y, entityWidth, entityHeight) {			
+						var dtime = Date.now() - this.initTime;
+						var frame = Math.floor(Math.min(dtime / 60, 3));
+						
+						var startX = x + entityWidth / 4;
+						var startY = y + entityHeight / 4;
+						
+						var yLength = (targetY - startY) / 3;
+						var xLength = (targetX - startX) / 3;
+
+						startY += frame * yLength;
+						var endY = startY + yLength;
+						startX += frame * xLength;
+						var endX = startX + xLength;
+						
+						ctx.strokeStyle = color;
+						ctx.lineWidth = 2;
+						ctx.moveTo(startX, startY);
+						ctx.lineTo(endX, endY);
+						ctx.stroke();
 					}
-					var yRow = dir - 1;
-					var drawHeight = this.image.height / 4;
-					var drawWidth = this.image.width / 3;
-					var dtime = Date.now() - this.initTime;
-					var frame = Math.floor(Math.min(dtime / 60, 3));
-					var centerX = x + (entityWidth - drawWidth) / 2;
-					var centerY = y + (entityHeight - drawHeight) / 2;
-					ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
-							drawWidth, drawHeight, centerX, centerY, drawWidth, drawHeight);
-				}
-			};
-		})(imagePath, ranged, this.dir);
+				};
+			})(color, (tgt.x + tgt.width / 2) * 32, (tgt.y + tgt.height / 2) * 32);
+		} else {
+			var imagePath;
+			switch (nature) {
+			case "0":
+			default:
+				imagePath = "/data/sprites/combat/blade_strike_cut.png";
+			break;
+			case "1":
+				imagePath = "/data/sprites/combat/blade_strike_fire.png";
+				break;
+			case "2":
+				imagePath = "/data/sprites/combat/blade_strike_ice.png";
+				break;
+			case "3":
+				imagePath = "/data/sprites/combat/blade_strike_light.png";
+				break;
+			case "4":
+				imagePath = "/data/sprites/combat/blade_strike_dark.png";
+			}
+			this.attackSprite = (function(imagePath, ranged, dir, width, height) {
+				return {
+					initTime: Date.now(),
+					image: stendhal.data.sprites.get(imagePath),
+					frame: 0,
+					expired: function() {
+						return Date.now() - this.initTime > 180;
+					},
+					draw: function(ctx, x, y, entityWidth, entityHeight) {
+						if (!this.image.complete) {
+							return;
+						}
+						var yRow = dir - 1;
+						var drawHeight = this.image.height / 4;
+						var drawWidth = this.image.width / 3;
+						var dtime = Date.now() - this.initTime;
+						var frame = Math.floor(Math.min(dtime / 60, 3));
+						var centerX = x + (entityWidth - drawWidth) / 2;
+						var centerY = y + (entityHeight - drawHeight) / 2;
+						ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
+								drawWidth, drawHeight, centerX, centerY, drawWidth, drawHeight);
+					}
+				};
+			})(imagePath, ranged, this.dir);
+		}
 	}
 
 });
