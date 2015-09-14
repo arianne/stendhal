@@ -204,10 +204,28 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	onAttackPerformed: function(nature, ranged) {
-		this.attackSprite = (function(nature, ranged, dir, width, height) {
+		var imagePath;
+		switch (nature) {
+		case "0":
+		default:
+			imagePath = "/data/sprites/combat/blade_strike_cut.png";
+			break;
+		case "1":
+			imagePath = "/data/sprites/combat/blade_strike_fire.png";
+			break;
+		case "2":
+			imagePath = "/data/sprites/combat/blade_strike_ice.png";
+			break;
+		case "3":
+			imagePath = "/data/sprites/combat/blade_strike_light.png";
+			break;
+		case "4":
+			imagePath = "/data/sprites/combat/blade_strike_dark.png";
+		}
+		this.attackSprite = (function(imagePath, ranged, dir, width, height) {
 			return {
 				initTime: Date.now(),
-				image: stendhal.data.sprites.get("/data/sprites/combat/blade_strike_cut.png"),
+				image: stendhal.data.sprites.get(imagePath),
 				frame: 0,
 				expired: function() {
 					return Date.now() - this.initTime > 180;
@@ -227,7 +245,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 							drawWidth, drawHeight, centerX, centerY, drawWidth, drawHeight);
 				}
 			};
-		})(nature, ranged, this.dir);
+		})(imagePath, ranged, this.dir);
 	}
 
 });
