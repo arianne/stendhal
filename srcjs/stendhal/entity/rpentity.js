@@ -28,6 +28,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	titleStyle: "#FFFFFF",
 	_target: null,
 	attackSprite: null,
+	attackResult: null,
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
@@ -169,6 +170,11 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 				ctx.strokeRect(32 * this._x + 1, 32 * this._y + 1, 32 * this.width - 2, 32 * this.height - 2);
 			}
 		}
+		if (this.attackResult) {
+			if (this.attackResult.draw(ctx, (this._x + this.width) * 32 - 10, (this._y + this.height) * 32 - 10)) {
+				this.attackResult = null;
+			}
+		} 
 	},
 	
 	drawSprite: function(ctx, filename) {
@@ -269,14 +275,34 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	
 	onDamaged: function(source, damage) {
 		this.say(this.title + " got hit by " + source.title + " causing a damage of " + damage);
+		this.attackResult = this.createResultIcon("/data/sprites/combat/hitted.png");
 	},
 
 	onBlocked: function(source) {
-		
+		this.attackResult = this.createResultIcon("/data/sprites/combat/blocked.png");
 	},
 
 	onMissed: function(source) {
-		
+		this.attackResult = this.createResultIcon("/data/sprites/combat/missed.png");
+	},
+	
+	/**
+	 * Create a closure for drawing attack result icons. The resulting object
+	 * has a method draw(context, x, y) which returns true when the attack
+	 * result has expired and draw() should no longer be called.
+	 * 
+	 * @param imagePath path to the result icon
+	 * @return object for drawing the icon
+	 */
+	createResultIcon: function(imagePath) {
+		return {
+			initTime: Date.now(),
+			image: stendhal.data.sprites.get(imagePath),
+			draw: function(ctx, x, y) {
+				ctx.drawImage(this.image, x, y);
+				return (Date.now() - this.initTime > 1200);
+			}
+		};
 	},
 
 	onAttackPerformed: function(nature, ranged) {
