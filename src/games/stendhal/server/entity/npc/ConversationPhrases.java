@@ -61,7 +61,7 @@ public class ConversationPhrases {
 	/**
 	 * Combine a string collection (list) with additional strings.
 	 *  
-	 * @param list 
+	 * @param list first collection of strings
 	 * @param args additional strings
 	 * @return new list with the contents of the list and all the additional
 	 * 	strings 
@@ -79,10 +79,11 @@ public class ConversationPhrases {
 	/**
 	 * Combine a string collection with other collections.
 	 * 
-	 * @param list1 
-	 * @param lists 
+	 * @param list1 first collection
+	 * @param lists additional collections
 	 * @return a new list with contents of all the collections
 	 */
+	@SafeVarargs
 	public static final List<String> combine(Collection<String> list1, Collection<String>... lists) {
 		List<String> ret = new LinkedList<String>(list1);
 		for (Collection<String> list : lists) {
