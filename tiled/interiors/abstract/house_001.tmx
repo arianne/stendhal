@@ -65,17 +65,23 @@
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjBdwC4tt45PmBWAALFqSS/XeA+C4eeSEgFsaCRahk/z0gvj+A9hMCokAshgWLU8l8QvFPa0Ao/mFAEgdNKSAU/8MdEBv/UjhoSgG++Oejkh34wEiPf2wAAAjsTKoACAAA
+   H4sIAAAAAAAAAGNgGAUjBdwC4tt45PmBWAALFqSS/XeA+C4eeSEgFsaCRahk/z0gvj+A9hMCokAs
+hgWLU8l8QvFPa0Ao/mFAEgdNKSAU/8MdEBv/UjhoSgG++Oejkh34wEiPf2wAAAjsTKoACAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3Ty07CQBTG8b4BFxVWXjZiN5hgogns1ApsVRRRngLYiS+AdyVGBNygblBfhJfiT3JIJpMWaCvCSX5JZ6bnfIvJmIZhrNgooYyKrGu4FjeyF8emfG/A1Gao53YGPWvI4hBHOIaFS1RxJetb3Il72UtgCxmsKrMs7dyyofbsIYcTnBrua1ebFUBQhCbsGVcP4hFPY2aFsSAW5Z+ez/xXNMSbh3y93OaPqlnnN9FCG+8u87ex4zO/gw984ssh3+n+k0j5zO/iGz/4dcjXa17vP48zTUE5f0YdL1PKP8eFpqicD9+h+gb/4/2Pqlm/P33WEiIiOkFPGvs+HHiYNeyJYfkPrHuYNejpA+fkj14ACAAA
+   H4sIAAAAAAAAAM3Ty07CQBTG8b4BFxVWXjZiN5hgogns1ApsVRRRngLYiS+AdyVGBNygblBfhJfi
+T3JIJpMWaCvCSX5JZ6bnfIvJmIZhrNgooYyKrGu4FjeyF8emfG/A1Gao53YGPWvI4hBHOIaFS1Rx
+Jetb3Il72UtgCxmsKrMs7dyyofbsIYcTnBrua1ebFUBQhCbsGVcP4hFPY2aFsSAW5Z+ez/xXNMSb
+h3y93OaPqlnnN9FCG+8u87ex4zO/gw984ssh3+n+k0j5zO/iGz/4dcjXa17vP48zTUE5f0YdL1PK
+P8eFpqicD9+h+gb/4/2Pqlm/P33WEiIiOkFPGvs+HHiYNeyJYfkPrHuYNejpA+fkj14ACAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBRQCuYA8dwBtP8cEJ8fQPvXAPHaAbR/FFAGeAfaAaNgQAAAOD3vOQAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBRQCuYA8dwBtP8cEJ8fQPvXAPHaAbR/FFAGeAfaAaNgQAAAOD3vOQAI
+AAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -85,7 +91,8 @@
  </layer>
  <layer name="collision" width="32" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvJwMBwc5BihgG0lxRAjn5S9eBTT4xZhMKVEkCsWSPdfkr1UAIGOv4H2n4GBuLsJ1QmEKOHEjeTUyYNh/CnxA3Usn8kYgBeWd/yAAgAAA==
+   H4sIAAAAAAAAALvJwMBwc5BihgG0lxRAjn5S9eBTT4xZhMKVEkCsWSPdfkr1UAIGOv4H2n4GBuLs
+J1QmEKOHEjeTUyYNh/CnxA3Usn8kYgBeWd/yAAgAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="16">

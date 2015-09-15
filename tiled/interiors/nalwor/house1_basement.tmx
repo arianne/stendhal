@@ -13,13 +13,13 @@
  <tileset firstgid="9" name="../../tileset/building/stairs/stairs.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset firstgid="13" name="../../tileset/item/armor/weapons_rack.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="21" name="../../tileset/item/armor/weapons_rack.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="31" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="39" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="32" name="../../tileset/building/wall/int_clay.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="40" name="../../tileset/building/wall/int_clay.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <layer name="0_floor" width="8" height="8">
@@ -29,17 +29,17 @@
  </layer>
  <layer name="1_terrain" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANNmYGDQw4H1gdiUATfwHSTybHjkg4E4BAcOB2IAgmrqLQABAAA=
+   H4sIAAAAAAAAADNmYGAww4HNgdiWATcIHSTybHjko4E4BgeOB2IAKAta7wABAAA=
   </data>
  </layer>
  <layer name="2_object" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAw4oJiLCLW0BGJALAnEMkAsRyUzAcbfIa8AAQAA
+   H4sIAAAAAAAAAGNgIAw4oJiLCLW0BHJArAjEKkCsRiUzAVLpo7oAAQAA
   </data>
  </layer>
  <layer name="3_roof" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDyAF4gFgFgYiEXpZCcAafl9GQABAAA=
+   H4sIAAAAAAAAAGNgGDxAFIglgFgaiGXpZCcA/TqduQABAAA=
   </data>
  </layer>
  <layer name="objects" width="8" height="8">
@@ -49,7 +49,7 @@
  </layer>
  <layer name="collision" width="8" height="8" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNnYGCQJxKjA1zitJIn1l2E1CNjALI9gGEAAQAA
+   H4sIAAAAAAAAAFNnYGBQJxKjA1zitJIn1l2E1CNjAMHkc7cAAQAA
   </data>
  </layer>
  <layer name="protection" width="8" height="8">

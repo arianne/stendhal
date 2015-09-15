@@ -84,22 +84,29 @@
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtgYGBoGKG4CY1fT4CPrp5euHaA7CWEByo8SMX0DL9qHJge5hETHwPpPhjGFx+j4UeZefTGAB83ZE5ABgAA
+   H4sIAAAAAAAAAGtgYGBoGKG4CY1fT4CPrp5euHaA7CWEByo8SMX0DL9qHJge5hETHwPpPhjGFx+j
+4UeZefTGAB83ZE5ABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2TuwoCMRBFp1LUavH9Xgsb8QfsRa3s1D/STgV/2LuQwDCY2Rkf4MAhzeUkITcZETW/RAu0QQdUP6QLRsFXAQdwBCfyzwU0hI/P3uCQGc33zvzat0nkZqBuYCh8W7AMjiu4gXvYdw6mBnLm2yn36IGM7P0rfGvmWDCir096T2X/UsN9MvcI65ns/Yu+mmFfz/m8vlRftPtqPt6Xf/Tx/r16D69vpeS8vgHp/zL6ynKFbwwmJeSO3BOJZA86QAYAAA==
+   H4sIAAAAAAAAAM2TuwoCMRBFp1LUavH9Xgu/YrETtbJT/0g7Ffxh70ICw2BmZ3yAA4c0l5OE3GRE
+1P4SHdAFPVD/kD6YBF8NHMARnMg/F9ASPj57g0NmNN8782vfJpFbgKaBsfBtwSo4ruAG7mHfJZgb
+yJlvp9xjADKy96/0rZmjYETfkPSeyv6lhvtk7hHWM9n7F30Nw76e83l9qb5o99V8vC//6OP9e/Ue
+Xl+h5Ly+Een/MvqqcqVvCmYV5I7cE7E8C8JABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAB/IA4A4kAG6oAgIA4G4hAoXxeHOn0q2TcK8ANjItUlA3EKEKcSUGdApHlpQJwOxBkE1NkRaV4mEGcBcTaSWAuRerGBHCDOBeI8IJ4EFWulwDwTCvQOJmBEZfMmUtm8aCqbZ0Fl84gFZljEqJGGiM3HxAJc+RgAJZ06jUAGAAA=
+   H4sIAAAAAAAAAGNggAB/IA4A4kAG6oAgIA4G4hAo3wqHOhsq2TcK8ANc4Y8OkoE4BYhTqWReGhCn
+A3EGAXV2RJqXCcRZQJyNJNZCpF5sIAeIc4E4D4gnQcVaKTCP2HAZ7IDa/phIZfOiqWzeQMUbtvKP
+Gm4hNh8TC3DlYwBkPqVpQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHrAm0pqhgroAOJOIO6iknndQNwDxL1UMg8fyAfiAiAupJJ5FUBcCcRVVDKPHDCc0tZwAKPxMXAAAI5m2WFABgAA
+   H4sIAAAAAAAAAGNgGHrAm0pqhgroAOJOIO6iknndQNwDxL1UMg8fyAfiAiAupJJ5FUBcCcRVVDKP
+HDCc0tZwAKPxMXAAAI5m2WFABgAA
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
@@ -109,7 +116,8 @@
  </layer>
  <layer name="collision" width="20" height="20" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNnYGAwH2KYVEDIDGLMxKaHEjdhM5+W5uEyE5c6UuKBGHXkxutgMQ8XIBQuuNShm0GMOnz2UlsdseE3HM2jRnyQmv4IqSEHU9MsXBgA26DqtkAGAAA=
+   H4sIAAAAAAAAADNnYGAwH2KYVEDIDGLMxKaHEjdhM5+W5uEyE5c6UuKBGHXkxutgMQ8XIBQuuNSh
+m0GMOnz2UlsdseE3HM2jRnyQmv4IqSEHU9MsXBgA26DqtkAGAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

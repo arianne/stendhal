@@ -71,17 +71,24 @@
  </layer>
  <layer name="1_terrain" width="25" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvFwMBwhki8hwy5s0B8CIjPA/EBGuALQHwQasd+BuygAoc4NuAKxJ5A7AXF3kB8hIAdVUBcTaIdPkh8PyLsqAXiOhrbQSoA2eEPxAFQHEgDOxyA2B4Nw+zgoZId2ADIjqN0sOMkA/XCCh0wM1I/PtDNZ0Gz4zIQH0bCt9H4xGJ0fVegdlwD4htI+BgQ34PSx9Dk8GFkfcjiN4EYAPckO7YUBQAA
+   H4sIAAAAAAAAADvFwMBwhki8hwy5s0B8CIjPA/EBGuALQHwQasd+BuygAoc4NuAKxJ5A7AXF3kB8
+hIAdVUBcTaIdPkh8PyLsqAXiOhrbQSoA2eEPxAFQHEgDOxyA2B4Nw+zgoZId2ADIjqN0sOMkA/XC
+Ch0wM1I/PtDNZ0Gz4zIQH0bCt9H4xGJ0fVegdlwD4htI+BgQ34PSx9Dk8GFkfcjiN4EYAPckO7YU
+BQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXPzwoBURTH8fs0HggL7PxJCqH8idCUbJCFRxB5B8WDYE2xodj7qiNjmjtxp/urT6fmdM65o9R3csijILWIkvQ2Sp+gnjdlVFBDFXU0/pj3yxEnOOKVJloh97pzxsXzrY2O4b4lVpqeoz7/0UUPfYMbcywM5twZSB2G3KPLCBOMMZU6+2Fubek97mylRhFD3OKtBJJIWbyRRgZZizfe2WGPg6Z/xc1gzpuI8Msdj4A5vzwB7BzjgxQFAAA=
+   H4sIAAAAAAAAALXPzwoBURTH8fs0HggL7PxJCqH8idCUbJCFRxB5B8WDYE2xodj7qiNjmjtxp/ur
+T6fmdM65o9R3csijILWIkvQ2Sp+gnjdlVFBDFXU0/pj3yxEnOOKVJloh97pzxsXzrY2O4b4lVpqe
+oz7/0UUPfYMbcywM5twZSB2G3KPLCBOMMZU6+2Fubek97mylRhFD3OKtBJJIWbyRRgZZizfe2WGP
+g6Z/xc1gzpuI8Msdj4A5vzwB7BzjgxQFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB+oh+KhDoaLP4gBjUDcDMRNQNwKpTsH1EWjYBQgwDE0mhR993DoAwDMi0NsFAUAAA==
+   H4sIAAAAAAAAAGNgoB+oh+KhDoaLP4gBjUDcDMRNQNwKpTsH1EWjYBQgwDE0mhR993DoAwDMi0Ns
+FAUAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="13">
@@ -96,7 +103,8 @@
  </layer>
  <layer name="collision" width="25" height="13" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvJwMCwcxhiBix8YgA2tdjMxiZHTTvo7Q9yALXsINbv+NRRG9DDPlrbQeuwIicfkpt/6YkBd06QtRQFAAA=
+   H4sIAAAAAAAAANvJwMCwcxhiBix8YgA2tdjMxiZHTTvo7Q9yALXsINbv+NRRG9DDPlrbQeuwIicf
+kpt/6YkBd06QtRQFAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="13">

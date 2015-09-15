@@ -107,17 +107,26 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOXTyQrCMBSF4WRZcUJRRBQXDmvBlQvn2db5CbUv6i8ETItpS9OdFz5ImnII7b2OECKXkTwKKKJtqYSyymsJc01D6zFceJoTOgnynniF+DjjorkmzDPVDXfNwzIvfG/fMu9X6XkVNJWJ5Ltjhrn8Po9TVXk11DULMpZYYS2DZ3EacESwJzdkbLHDXtr384GMI1x4Mvt+Tlpp/u/QsE6TN1L0ve39ouqf8/R5M+miF3FumjeTPgYx73zm7Q1xqnraQAYAAA==
+   H4sIAAAAAAAAAOXTyQrCMBSF4WRZcUJRRBQXDmvBlQvn2db5CbUv6i8ETItpS9OdFz5ImnII7b2O
+ECKXkTwKKKJtqYSyymsJc01D6zFceJoTOgnynniF+DjjorkmzDPVDXfNwzIvfG/fMu9X6XkVNJWJ
+5Ltjhrn8Po9TVXk11DULMpZYYS2DZ3EacESwJzdkbLHDXtr384GMI1x4Mvt+Tlpp/u/QsE6TN1L0
+ve39ouqf8/R5M+miF3FumjeTPgYx73zm7Q1xqnraQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWTOwrCQBCGJ4fw1doqKojaxpuYVVBMEyKonaXHiJ2vI1l7D//FWRiS2SSl/vCxm3n8SfZB9B+KeOzyaEAPDECfifj5Cm7gDh7gqfgZj7/23hc4Cd5K3RKsavyHVSMgaoIWaINOUKxZK9/o4jsmHydPzipiv0TEElFvhEdemt+va1uS24ODJ7fxxOMSvzg3z8Tc12fXOqXifrhcJOaJyBnuy0s7K1JDcAQjxs4XnNPOfkb+80Dcb/vGzFn4JUq9FpOagKlgVlEf0ncd5hV1deXW3N3jsGafIf89tR5uj1PhLdciZC5c487Fv+gD7AkJJUAGAAA=
+   H4sIAAAAAAAAANWTOwrCQBCGJ4fw1doqKojaxpuYVVBMEyKonaXHiJ2vI1l7D//FWRiS2SSl/vCx
+m3n8SfZB9B+KeOzyaEAPDECfifj5Cm7gDh7gqfgZj7/23hc4Cd5K3RKsavyHVSMgaoIWaINOUKxZ
+K9/o4jsmHydPzipiv0TEElFvhEdemt+va1uS24ODJ7fxxOMSvzg3z8Tc12fXOqXifrhcJOaJyBnu
+y0s7K1JDcAQjxs4XnNPOfkb+80Dcb/vGzFn4JUq9FpOagKlgVlEf0ncd5hV1deXW3N3jsGafIf89
+tR5uj1PhLdciZC5c487Fv+gD7AkJJUAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC1QpLH5gw3k4WCTC/JxsAcL8GVkYPADYn8gDmCk3LxAoBlBQBwMxCFUMC8UaEYYEIcDcQQe84iJq0IgjgSaEQXE0UAcg8O8fgZEXGVD9VETUCNdIQNs6aqfynaAALXDAQbQw4OS8AG5MZ8B1a3Ywmc+khpa+WsoAAA3g+wyQAYAAA==
+   H4sIAAAAAAAAAGNgoC1QpLH5gw3k4WCTC/JxsAcL8GVkYPADYn8gDmCk3LxAoBlBQBwMxCFUMC8U
+aEYYEIcDcQQe84iJq0IgjgSaEQXE0UAcg8O8fgZEXGVD9VETUCNdIQNs6aqfynaAALXDAQbQw4OS
+8AG5MZ8B1a3Ywmc+khpa+WsoAAA3g+wyQAYAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -132,7 +141,8 @@
  </layer>
  <layer name="collision" width="20" height="20" visible="0" opacity="0.56">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJvJwMAwc4hgBjSaGuYxIJmHDVBiJi5AiXmE3E+KmcS6nxLzKImXkWgeA5o4ujpy0x65/qCmeZQAcv1NjnmkmDsY0xA9MQCDO4exQAYAAA==
+   H4sIAAAAAAAAAJvJwMAwc4hgBjSaGuYxIJmHDVBiJi5AiXmE3E+KmcS6nxLzKImXkWgeA5o4ujpy
+0x65/qCmeZQAcv1NjnmkmDsY0xA9MQCDO4exQAYAAA==
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

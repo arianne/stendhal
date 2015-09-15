@@ -14,7 +14,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgHMWjeBSPSAwAbLh3cwAEAAA=
+   H4sIAAAAAAAAAGNiYGBgGsWjeBSPSAwA64dADQAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">

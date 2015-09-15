@@ -44,12 +44,14 @@
  </layer>
  <layer name="1_terrain" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJXQ7QqCMBSA4RNYgUVkqX2IZHUl5Vfe/w31Cmcwamx64IGxvT/GSUTkoCIcHcx7igtyrANOOGu/wgtv1PI/LTbYWn2j952jF+33Vt/jg8HT2/8Jjemzmf1iZr8M9OPeapn+/3EPw09/xR0PPBE7FNqXuHnsrHOFL/nQ2dFAAgAA
+   H4sIAAAAAAAAAJXQ7QqCMBSA4RNYgUVkqX2IZHU55Vfe/730Cmcwamx64IGxvT/GSUTkoCIcHcx7
+igtyrANOOGu/wgtv1PI/LTbYWn2j952jF+33Vt/jg8HT2/8Jjemzmf1iZr8M9OPeapn+/3EPw09/
+xR0PPBE7FNqXuHnsrHOFLxGfdvZAAgAA
   </data>
  </layer>
  <layer name="2_object" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC4wxSFujUPcDI8cLYEDieptgdgOiu2p7hr8wIZEtaSopxQAADGPuw1AAgAA
+   H4sIAAAAAAAAAGNgoC7wJlHcB48cLQGpdoLU+0CxL/WdQ9BuUtTSMzwB+4JqZkACAAA=
   </data>
  </layer>
  <layer name="3_roof" width="12" height="12">
@@ -64,7 +66,7 @@
  </layer>
  <layer name="collision" width="12" height="12" visible="0" opacity="0.38">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNiYGDwohPGBkhRi08frdUT0k9L95ASPoTcTO04BQDRdMYtQAIAAA==
+   H4sIAAAAAAAAAPNmYGDwphPGBkhRi08frdUT0k9L95ASPoTcTO04BQBwbezlQAIAAA==
   </data>
  </layer>
  <layer name="protection" width="12" height="12">

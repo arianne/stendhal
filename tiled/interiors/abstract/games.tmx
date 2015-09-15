@@ -7,20 +7,22 @@
  <tileset firstgid="2" name="logic/protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="3" name="building/fence/fence_chunky" tilewidth="32" tileheight="32">
+ <tileset firstgid="4" name="building/fence/fence_chunky" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png"/>
  </tileset>
- <tileset firstgid="24" name="ground/ground" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="ground/ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDobNR/0YnYx9IWDVVVVVVVVVVVVVVVVVVVVX19QEKqys3AEAAAA==
+   H4sIAAAAAAAAAO3DQQ0AAAwDodNR/0InYx9IWDVVVVVVVVVVVVVVVVVVVVX19QExmB9BAEAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WUQqDMAwAUD/n/qf3v6kbLFCkOsfCbPE9KErbSEJacBi4P8eYNG5/zj3D4+BcVlxrIufXOYj+zcXcVo/nSlzP9f+Se8Y3zhI51/pZvu+tRWzP9R9d+3Z/6yLn6f1c93jr/pf7Irbn+q9+/2v93Ot/7bz0XP+nuay41lz9/w8AAAAAAAAAAAAAAABo0wI6qZ/XAEAAAA==
+   H4sIAAAAAAAAAO3WUQqDMAwAUH/n/qf3P6kbLFCkOsfCbPE9KErbSEJacBi4P8eYNG5/zj3D4+Bc
+VlxrIufXOYj+zcXcVo/nSlzP9f+Se8Y3zhI51/pZvu+tRWzP9R9d+3Z/6yLn6f1c93jr/pf7Irbn
++q9+/2v93Ot/7bz0XP+nuay41lz9/w8AAAAAAAAAAAAAAABo0wKWUi+cAEAAAA==
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
@@ -35,12 +37,15 @@
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.2">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3W2wqAMAgA0Pn/P91rjF0q9jDbORADSVDMWCnE4iebVs1P+viat5u4ndGJtWY8ystkRe1/6r+eZ1Tvzr6XbEY1v93xzP2P5t/b/z/N3/6f/f+fxVbl7eb0+x8AAAAAAAAAAAAAAACwpwuT9anbAEAAAA==
+   H4sIAAAAAAAAAO3W2wqAMAgA0Pn/P91rjF0q9jDbORADSVDMWCnE4iebVs1P+viat5u4ndGJtWY8
+ystkRe1/6r+eZ1Tvzr6XbEY1v93xzP2P5t/b/z/N3/6f/f+fxVbl7eb0+x8AAAAAAAAAAAAAAACw
+pwuT9anbAEAAAA==
   </data>
  </layer>
  <layer name="protection" width="64" height="64" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PQQ0AAAjEsAv+RWOCB4Q2mYAl1HDX+Pfv379///79+//1DwAAAAAAAAAAAAAAAOzUMsCtGwBAAAA=
+   H4sIAAAAAAAAAO3PQQ0AAAjEsAv+RWOCB4Q2mYAl1HDX+Pfv379///79+//1DwAAAAAAAAAAAAAA
+AOzUMsCtGwBAAAA=
   </data>
  </layer>
 </map>

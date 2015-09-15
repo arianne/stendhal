@@ -58,41 +58,51 @@
  <tileset firstgid="163" name="kitchen" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset firstgid="191" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="207" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
- <tileset firstgid="200" name="bread" tilewidth="32" tileheight="32">
+ <tileset firstgid="216" name="bread" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset firstgid="204" name="planted containers" tilewidth="32" tileheight="32">
+ <tileset firstgid="220" name="planted containers" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
- <tileset firstgid="220" name="cups" tilewidth="32" tileheight="32">
+ <tileset firstgid="236" name="cups" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUgMI/OeDDYj+wOetuPHg6j9g+MvaP2j9o/aj/55jBiMYscQC1/kAoA5FAbMwAIAAA=
+   H4sIAAAAAAAAAGNgGAUgMI/OeDDYj+wOetuPHg6j9g+MvaP2j9o/aj/55jBiMYscQC1/kAoA5FAb
+MwAIAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWTSQoCMRBFcwI9g+AJnDfOKwXB8YwOC5cu3DjrVsGVp/GH7oZQVJLqpu2NDx40SXV+QiVKBeRSlMNXU0xgB3Yd81M4s6xPKcEyrBjfTaZuCVdwDXuwbzlvxBO+yBi3bkTVsx7HGV5Cr4L6DRzDSYIsjhu8hz6E+XO4SCk/LltYgHlHzQEeGU8p7cGXb/bUVNJfH5L+/zqf9n+XYT7Xf5pv3mlTer/fKjgP/V8zgEPGkSBfSsuRb0PvmfZ/n2G+Rvr+a7Ae2oBtMv9RQT/j7t/3/v6FLxvWpLoACAAA
+   H4sIAAAAAAAAAOWTSQoCMRBFcwI9g+AJnDfOKwXB8YwOC5cuvISzbhVceQp/6G4IRSWpbtre+OBB
+k1TnJ1SiVEAuRTl8NcUEdmDXMT+FM8v6lBIsw4rx3WTqlnAF17AH+5bzRjzhi4xx60ZUPetxnOEl
+9Cqo38AxnCTI4rjBe+hDmD+Hi5Ty47KFBZh31BzgkfGU0h58+WZPTSX99SHp/6/zaf93GeZz/af5
+5p02pff7rYLz0P81AzhkHAnypbQc+Tb0nmn/9xnma6TvvwbroQ3YJvMfFfQz7v597+9f+AKcN/z+
+AAgAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXUT07CQByG4bmAxY3AFhVw6xoSboALE0g0QWCH3ET+nQEFlUiiCSR6hAqn6Kbn4G06JJNJW4tt6Zc8SfnNdL6GEvJCCEN4p+Iz98oUz/LakOq48Ti/Imc5nOIK18r6/rqKDyyxwhovmGEe8Czqnltc4gkDDOW5ZWRk/3nAWZ/4wjd+AvapecM7FspshDEmeEUhZH/YbPDwj/vi6j8kZsr9atLub6Dps7b/nmzUEuq/w73PmiXc35WT3xg7w77/rfa5FeMz6P12xHPMv7cE9keNlWK//p6O3R8lTn8JFwlqo4OuMisK9/8/i5OE9fCIvjY/ww5ZDxM2AAgAAA==
+   H4sIAAAAAAAAAMXUT07CQByG4bmAxY3AFhVw6xoSboALE0g0QWCH3ET+nQEFlUiiCSR6lAqn6KZr
+3qZDMpm0tdiWfsmTlN9M52soIS+EMIR3Kj5zr0zxLK8NqY4bj/MrcpbDKa5wrazvr6v4wBIrrPGC
+GeYBz6LuucUlnjDAUJ5bRkb2nwec9YkvfOMnYJ+aN7xjocxGGGOCVxRC9ofNBg//uC+u/kNiptyv
+Ju3+Bpo+a/vvyUYtof473PusWcL9XTn5jbEz7Pvfap9bMT6D3m9HPMf8e0tgf9RYKfbr7+nY/VHi
+9JdwkaA2Ougqs6Jw//+zOElYD4/oa/Mz7ADbZ2F+AAgAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHrgNAH5k0j4DBCfpbF79gPxASg+SGO7RgF9AHKcImNqxO8yKphBbbBpoB1AAQCFJzb3uwCxKxbsQT+nDXtwbaAdMAooAgBVytrQAAgAAA==
+   H4sIAAAAAAAAAGNgGHrgNgH5m0j4DhDfpbF7zgPxBSi+SGO7RgF9AHKcImNqxO8yKphBbbBpoB1A
+AQCFJzb3uwCxKxbsQT+nDXvwbKAdMAooAgA5MCtoAAgAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUACeh9OkBdcUoGAWjABk8g9IPofTLgXLIKBgFgxAAAO1aOWcACAAA
+   H4sIAAAAAAAAAGNgGAXUADeh9O0BdcUoGAWjABl8g9IfofTPgXLIKBgFgxAAAIlNiHsACAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -102,7 +112,8 @@
  </layer>
  <layer name="collision" width="32" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJvOwMAwfRRjxQxEqkEH5NpFLiDVLGrbTyoY6fZjcwMheWq6lRgz6W0/urkDbT85ZhFrD73sJ0bPQNiPzQ3EqsOXTiixn9Z4IOwkBgMA5O87/AAIAAA=
+   H4sIAAAAAAAAAJvOwMAwfRRjxQxEqkEH5NpFLiDVLGrbTyoY6fZjcwMheWq6lRgz6W0/urkDbT85
+ZhFrD73sJ0bPQNiPzQ3EqsOXTiixn9Z4IOwkBgMA5O87/AAIAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="16" opacity="0.24">

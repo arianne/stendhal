@@ -69,22 +69,30 @@
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAwYcWBSAA8BzIIDE9LHQ4IdlOBRO0btGLVj1I5RO0btGLVj1A5S7CAW8KJhYgEAnIHr5sQJAAA=
+   H4sIAAAAAAAAAGNgIAwYcWBSAA8BzIIDE9LHQ4IdlOBRO0btGLVj1I5RO0btGLVj1A5S7CAW8KJh
+YgEAnIHr5sQJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UuwrCMBTG8Xhbi7qpCAr1JbzMjmrrZRHrM+mii76q34FTkEOs8ZBM5oPf1uQ/FJIYY+pQq/BpVWdIAzrQheYXtJZgHM6RHjdcd4HrD98bReMG98CNBzwDNzSLjf9s9GEgjJX3jSx3DSGBtjBRNlLLXeV7RZsKvlb+jzkshUVsxIbDVrBmG9GgzQTNMsjhCFtLw8cyvj8P2NjBnh0CNU5QsPNbw/Ym+kRv4gtqatRbxAkAAA==
+   H4sIAAAAAAAAAO3UuwrCMBTG8Xhbi7qpCAr1JbzMjmrrZRHrM+mii76q34FTkEOs8ZBM5oPf1uQ/
+FJIYY+pQq/BpVWdIAzrQheYXtJZgHM6RHjdcd4HrD98bReMG98CNBzwDNzSLjf9s9GEgjJX3jSx3
+DSGBtjBRNlLLXeV7RZsKvlb+jzkshUVsxIbDVrBmG9GgzQTNMsjhCFtLw8cyvj8P2NjBnh0CNU5Q
+sPNbw/Ym+kRv4gtqatRbxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2S4QqDMAyE+3xj7i1EimMDncLcYOzNlx8KpUtyTdfuhweHpprvWlLnsEbyoNQpasG3iXwL1rZa64u5HdkL7hSG1hf3erCfXHnhfa8ZaB4lMn7RXjM4W3lWRk4G0nl9Xozs2ppXh7qTF+H/ayJvZuow50F+KpwD4HNZzn2f5S1wjuSGfAIZHLPU3Zc43ExSxM1G4lj52tylOeScAUm6T6FeBXMs/L5ALlL/p5ya+gANAyebxAkAAA==
+   H4sIAAAAAAAAAN2S4QqDMAyE+3xj7i1EimMDncLcYOzNlx8KpUtyTdfuhweHpprvWlLnsEbyoNQp
+asG3iXwL1rZa64u5HdkL7hSG1hf3erCfXHnhfa8ZaB4lMn7RXjM4W3lWRk4G0nl9Xozs2ppXh7qT
+F+H/ayJvZuow50F+KpwD4HNZzn2f5S1wjuSGfAIZHLPU3Zc43ExSxM1G4lj52tylOeScAUm6T6Fe
+BXMs/L5ALlL/p5ya+gANAyebxAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAW0ALOAePZAO4JMkEqm3CgYBaNg8AFPKO09oK4YBaNgFNACAAAZz72GxAkAAA==
+   H4sIAAAAAAAAAGNgGAW0ALOAePZAO4JMkEqm3CgYBaNg8AFPKO09oK4YBaNgFNACAAAZz72GxAkA
+AA==
   </data>
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
@@ -94,7 +102,9 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWU2woAIQhE/fa+fJ+CZcnR8ULRDvSgksfQHCIyfnKmNJvNU6kIg63npHdEYwwjo1sZ2XnO/r0uRkQdf3x1H+0fZta/tmenvW2rXi2vVZslJmeUkcmhxb0+5NcYnno8/V31jxGa+yoGuocYVTvRYuzcvRXnAVKnJeLECQAA
+   H4sIAAAAAAAAAOWU2woAIQhE/fa+fJ+CZcnR8ULRDvSgksfQHCIyfnKmNJvNU6kIg63npHdEYwwj
+o1sZ2XnO/r0uRkQdf3x1H+0fZta/tmenvW2rXi2vVZslJmeUkcmhxb0+5NcYnno8/V31jxGa+yoG
+uocYVTvRYuzcvRXnAVKnJeLECQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="25">

@@ -25,7 +25,7 @@
  <tileset firstgid="46" name="big table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="52" name="lamps" tilewidth="32" tileheight="32">
+ <tileset firstgid="55" name="lamps" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
  <layer name="0_floor" width="9" height="10">
@@ -35,12 +35,14 @@
  </layer>
  <layer name="1_terrain" width="9" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONkYGBgw4O5gJgDiCWBWAULlgJidqgaJSDWA2IDBgiAsRXR1BgCsTFUDYyNrgYbQFejTSU1hOySBmJlNHkQXwaqhhuIWaEYGcDEeIAYAKr7J75oAQAA
+   H4sIAAAAAAAAAONkYGBgw4O5gJgDiCWBWAULlgJidqgaJSDWA2IDBgiAsRXR1BgCsTFUDYyNrgYb
+QFejTSU1hOySBmJlNHkQXwaqhhuIWaEYGcDEeIAYAKr7J75oAQAA
   </data>
  </layer>
  <layer name="2_object" width="9" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA+4ALErATVeQOxNpvnEAC0i1OhS0T5eIOYDYn48agSAWBCIhdDEAYP/LwZoAQAA
+   H4sIAAAAAAAAAGNgIA+4A7EHATW+QOxHpvnEAC0i1OhS0T5eIOYDYn48agSAWBCIhdDEAXCMGPRo
+AQAA
   </data>
  </layer>
  <layer name="3_roof" width="9" height="10">
