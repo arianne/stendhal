@@ -370,10 +370,12 @@ public class RingMakerTest {
 	 */
 	@Test
 	public void testname() {
-		Scanner sc = new Scanner("forging;123").useDelimiter(";");
-		assertFalse(sc.hasNextInt());
-		assertThat(sc.next(), is("forging"));
-		assertTrue(sc.hasNextInt());
-		assertThat(sc.next(), is("123"));		
+		try (Scanner sc = new Scanner("forging;123")) {
+			sc.useDelimiter(";");
+			assertFalse(sc.hasNextInt());
+			assertThat(sc.next(), is("forging"));
+			assertTrue(sc.hasNextInt());
+			assertThat(sc.next(), is("123"));
+		}
 	}
 }
