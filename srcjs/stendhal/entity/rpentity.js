@@ -308,13 +308,15 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 					},
 					draw: function(ctx, x, y, entityWidth, entityHeight) {			
 						var dtime = Date.now() - this.initTime;
-						var frame = Math.floor(Math.min(dtime / 60, 3));
+						// We can use fractional "frame" for the lines. Just
+						// draw the arrow where it should be at the moment.
+						var frame = Math.min(dtime / 60, 4);
 						
 						var startX = x + entityWidth / 4;
 						var startY = y + entityHeight / 4;
 						
-						var yLength = (targetY - startY) / 3;
-						var xLength = (targetX - startX) / 3;
+						var yLength = (targetY - startY) / 4;
+						var xLength = (targetX - startX) / 4;
 
 						startY += frame * yLength;
 						var endY = startY + yLength;
