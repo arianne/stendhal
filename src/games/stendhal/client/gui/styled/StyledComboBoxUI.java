@@ -69,7 +69,7 @@ public class StyledComboBoxUI extends BasicComboBoxUI {
 	 */
 	private static class StyledComboBoxRenderer extends BasicComboBoxRenderer {
 		@Override
-		public Component getListCellRendererComponent(JList list, Object value, 
+		public Component getListCellRendererComponent(@SuppressWarnings("rawtypes") JList list, Object value, 
 				int index, boolean isSelected, boolean cellHasFocus) {
 			Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			
