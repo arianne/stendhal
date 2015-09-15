@@ -25,7 +25,6 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -34,8 +33,7 @@ import org.xml.sax.SAXParseException;
 
 import marauroa.common.Log4J;
 
-public class PortalMatchTest {
-	private static final Logger logger = Logger.getLogger(PortalMatchTest.class); 
+public class PortalMatchTest { 
 	private final transient List<PortalTestObject> portals = new LinkedList<PortalTestObject>();
 
 	@Test
