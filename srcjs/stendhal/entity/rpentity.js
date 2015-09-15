@@ -36,8 +36,22 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		} else if (key in ["hp", "base_hp"]) {
 			this[key] = parseInt(value);
 		} else if (key == "target") {
+			if (this._target) {
+				this._target.onAttackStopped(this);
+			}
 			this._target = marauroa.currentZone[value];
+			if (this._target) {
+				this._target.onTargeted(this);
+			}
 		}
+	},
+	
+	unset: function(key) {
+		if (key == "target" && this._target) {
+			this._target.onAttackStopped(this);
+			this._target = null;
+		}
+		delete this[key];
 	},
 
 	isVisibleToAction: function(filter) {
@@ -82,6 +96,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	 * draw RPEntities
 	 */
 	draw: function(ctx) {
+		this.drawCombat(ctx);
 		var filename;
 		if (typeof(this.outfit) != "undefined") {
 			this.drawOutfitPart(ctx, "body", (this.outfit % 100));
@@ -97,6 +112,63 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			this.drawSprite(ctx, filename)
 		}
 		this.drawAttack(ctx);
+	},
+	
+	/**
+	 * Draw colored ellipses (or rectangles on browsers that do not support
+	 * ellipses) when the entity is being attacked, or is attacking the user.
+	 */
+	drawCombat: function(ctx) {
+		if (this.attackers && this.attackers.size > 0) {
+			ctx.lineWidth = 1;
+			/*
+			 * As of 2015-9-15 CanvasRenderingContext2D.ellipse() is not
+			 * supported in most browsers. Fall back to rectangles on these.
+			 * Also on Chrome 45.0.2454.85 ellipse() does not seem to support
+			 * the begin angle parameter correctly, nor does the stroke 
+			 * direction work as it should so it can't be used as a workaround.
+			 * Currently the second ellipse part is drawn as a full ellipse, but
+			 * the code below should eventually draw the right thing once
+			 * browsers catch up. Probably.
+			 */
+			if (ctx.ellipse instanceof Function) {
+				var xRad = this.width * 16;
+				var yRad = this.height * 16 / Math.SQRT2;
+				var centerX = this._x * 32 + xRad;
+				var centerY = (this._y + this.height) * 32 - yRad;
+				ctx.strokeStyle = "#4a0000";
+				ctx.beginPath();
+				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, false);
+				ctx.stroke();
+				ctx.strokeStyle = "#e60a0a";
+				ctx.beginPath();
+				ctx.ellipse(centerX, centerY, xRad, yRad, Math.PI, 2 * Math.PI, false);
+				ctx.stroke();
+			} else {
+				ctx.strokeStyle = "#e60a0a";
+				ctx.strokeRect(32 * this._x, 32 * this._y, 32 * this.width, 32 * this.height);
+			}
+		}
+		if (this.getAttackTarget() === marauroa.me) {
+			// See above about ellipses.
+			if (ctx.ellipse instanceof Function) {
+				var xRad = this.width * 16 - 1;
+				var yRad = this.height * 16 / Math.SQRT2 - 1;
+				var centerX = this._x * 32 + xRad + 1;
+				var centerY = (this._y + this.height) * 32 - yRad - 1;
+				ctx.strokeStyle = "#ffc800";
+				ctx.beginPath();
+				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, false);
+				ctx.stroke();
+				ctx.strokeStyle = "#ffdd0a";
+				ctx.beginPath();
+				ctx.ellipse(centerX, centerY, xRad, yRad, Math.PI, 2 * Math.PI, false);
+				ctx.stroke();
+			} else {
+				ctx.strokeStyle = "#ffdd0a";
+				ctx.strokeRect(32 * this._x + 1, 32 * this._y + 1, 32 * this.width - 2, 32 * this.height - 2);
+			}
+		}
 	},
 	
 	drawSprite: function(ctx, filename) {
@@ -149,7 +221,8 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		ctx.fillStyle = "rgb(".concat(red, ",", green, ",0)");
 		ctx.fillRect(drawX + 1, drawY + 1, this.drawWidth * hpRatio - 2, HEALTH_BAR_HEIGHT - 2);
 
-		ctx.strokeStyle = "#000000 1px";
+		ctx.strokeStyle = "#000000";
+		ctx.lineWidth = 1;
 		ctx.beginPath();
 		ctx.rect(drawX, drawY, this.drawWidth - 1, HEALTH_BAR_HEIGHT - 1);
 		ctx.stroke();
@@ -187,6 +260,9 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		// again, if _target does not exist, but it should.
 		if (!this._target && this.target) {
 			this._target = marauroa.currentZone[this.target];
+			if (this._target) {
+				this._target.onTargeted(this);
+			}
 		}
 		return this._target;
 	},
@@ -297,8 +373,41 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 				};
 			})(imagePath, ranged, this.dir);
 		}
+	},
+	
+	/**
+	 * Called when this entity is selected as the attack target.
+	 * 
+	 * @param attacked The entity that selected this as the target
+	 */
+	onTargeted: function(attacker) {
+		if (!this.attackers) {
+			this.attackers = { size: 0 };
+		}
+		if (!(attacker.id in this.attackers)) {
+			this.attackers[attacker.id] = true;
+			this.attackers.size += 1;
+		}
+	},
+	
+	/**
+	 * Called when an entity deselects this as its attack target.
+	 * 
+	 * @param attacker The entity that had this as the attack target, but
+	 * 	stopped attacking
+	 */
+	onAttackStopped: function(attacker) {
+		if (attacker.id in this.attackers) {
+			delete this.attackers[attacker.id];
+			this.attackers.size -= 1;
+		}
+	},
+	
+	destroy: function(obj) {
+		if (this._target) {
+			this._target.onAttackStopped(this);
+		}
 	}
-
 });
 
 })();
