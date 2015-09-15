@@ -63,9 +63,9 @@ public class TestEnvDlg extends javax.swing.JDialog {
     private javax.swing.JButton btMatch;
     private javax.swing.JButton btParse;
     private javax.swing.JButton btWriteWordlist;
-    private javax.swing.JComboBox cbMatchExpr;
-    private javax.swing.JComboBox cbMatchType;
-    private javax.swing.JComboBox cbSentence;
+    private javax.swing.JComboBox<String> cbMatchExpr;
+    private javax.swing.JComboBox<String> cbMatchType;
+    private javax.swing.JComboBox<String> cbSentence;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbAnalyzed;
     private javax.swing.JLabel lbMatchResult;
@@ -117,7 +117,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         btWriteWordlist = new javax.swing.JButton();
         panelSentence = new javax.swing.JPanel();
         lbSentence = new javax.swing.JLabel();
-        cbSentence = new javax.swing.JComboBox();
+        cbSentence = new javax.swing.JComboBox<String>();
         btParse = new javax.swing.JButton();
         tfTrimmed = new javax.swing.JTextField();
         lbTrimmed = new javax.swing.JLabel();
@@ -142,8 +142,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
         panelMatch = new javax.swing.JPanel();
         lbMatchResult = new javax.swing.JLabel();
         lbMatching = new javax.swing.JLabel();
-        cbMatchType = new javax.swing.JComboBox();
-        cbMatchExpr = new javax.swing.JComboBox();
+        cbMatchType = new javax.swing.JComboBox<String>();
+        cbMatchExpr = new javax.swing.JComboBox<String>();
         lbParsedSentence = new javax.swing.JLabel();
         tfParsedSentence = new javax.swing.JTextField();
         lbParsedMatchString = new javax.swing.JLabel();
@@ -221,7 +221,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         lbSentence.setText("Please enter a sentence:");
 
         cbSentence.setEditable(true);
-        cbSentence.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy seven bananas", "buy 3 cookies", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
+        cbSentence.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "buy seven bananas", "buy 3 cookies", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         cbSentence.addActionListener(new java.awt.event.ActionListener() {
             @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +396,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         lbMatching.setText("Please select matching type and enter a matching expression:");
 
-        cbMatchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "joker matching", "exact matching", "case insensitive", "similarity matching", "controlled matching", "merged expressions" }));
+        cbMatchType.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "joker matching", "exact matching", "case insensitive", "similarity matching", "controlled matching", "merged expressions" }));
         cbMatchType.addActionListener(new java.awt.event.ActionListener() {
             @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +405,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         });
 
         cbMatchExpr.setEditable(true);
-        cbMatchExpr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy seven bananas", "buy bananas", "buy * bananas", "buy * *", "|EXACT|buy seven bananas", "buy 3 cookies", "|JOKER|buy * bananas", "give a bottle of wine", "give *", "give * * * *", "|JOKER|ICASE|give *", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
+        cbMatchExpr.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "buy seven bananas", "buy bananas", "buy * bananas", "buy * *", "|EXACT|buy seven bananas", "buy 3 cookies", "|JOKER|buy * bananas", "give a bottle of wine", "give *", "give * * * *", "|JOKER|ICASE|give *", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         cbMatchExpr.addActionListener(new java.awt.event.ActionListener() {
             @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -609,7 +609,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		} else if (sel.equals("similarity matching")) {
 			selectedMatcher = new SimilarExprMatcher();
 		} else if (sel.equals("controlled matching")) {
-			selectedMatcher = null;
+			//selectedMatcher = null;
 		} else if (sel.equals("merged expressions")) {
 			selectedMatcher = new ExpressionMatcher();
 			mergeExpressions = true;
