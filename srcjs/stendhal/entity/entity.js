@@ -107,7 +107,6 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	},
 
 	onclick: function(x, y) {
-		marauroa.log.debug(this, x, y);
 		var action = {
 				"type": "look", 
 				"target": "#" + this.id
