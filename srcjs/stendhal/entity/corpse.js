@@ -29,7 +29,12 @@ marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFacto
 	},
 
 	isVisibleToAction: function(filter) {
-		return false;
-	}
+		return true;
+	},
 
+	onclick: function(x, y) {
+		var inventory = Object.create(stendhal.ui.window.container);
+		inventory.init(this, "content", 2, 2);
+		inventory.draw();
+	}
 });
