@@ -54,6 +54,10 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			if (this._target) {
 				this._target.onTargeted(this);
 			}
+		} else if (key === "away") {
+			this.addFloater("Away", "#ffff00");
+		} else if (key === "grumpy") {
+			this.addFloater("Grumpy", "#ffff00");
 		}
 	},
 	
@@ -61,6 +65,10 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		if (key == "target" && this._target) {
 			this._target.onAttackStopped(this);
 			this._target = null;
+		} else if (key === "away") {
+			this.addFloater("Back", "#ffff00");
+		} else if (key === "grumpy") {
+			this.addFloater("Receptive", "#ffff00");
 		}
 		delete this[key];
 	},
@@ -360,22 +368,28 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 	
 	onHPChanged: function(change) {
+		if (change > 0) {
+			this.addFloater("+" + change, "#00ff00");
+		} else if (change < 0) {
+			this.addFloater(change.toString(), "#ff0000");
+		}
+	},
+	
+	addFloater: function(message, color) {
 		if (!this.hasOwnProperty("floaters")) {
 			this.floaters = [];
 		}
 		this.floaters.push({
 			initTime: Date.now(),
-			color: (change < 0) ? "#ff0000" : "#00ff00",
-			str: (change > 0) ? ("+" + change) : change.toString(),
 			textOffset: null,
 			draw: function(ctx, x, y) {
 				ctx.font = "14px Arial";
-				ctx.fillStyle = this.color;
+				ctx.fillStyle = color;
 				if (!this.textOffset) {
-					this.textOffset = ctx.measureText(this.str).width / 2;
+					this.textOffset = ctx.measureText(message).width / 2;
 				}
 				var timeDiff = Date.now() - this.initTime;
-				ctx.fillText(this.str, x - this.textOffset, y - timeDiff / 50);
+				ctx.fillText(message, x - this.textOffset, y - timeDiff / 50);
 				return (timeDiff > 2000);
 			}
 		});
