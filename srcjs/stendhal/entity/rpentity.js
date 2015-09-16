@@ -31,11 +31,21 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	attackResult: null,
 
 	set: function(key, value) {
+		// Ugly hack to detect the amount of HP change. The old value is no
+		// longer available after .apply()
+		var oldHP;
+		if (key === "hp") {
+			oldHP = this[key];
+		}
+
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 		if (key == "text") {
 			this.say(value);
-		} else if (key in ["hp", "base_hp"]) {
+		} else if (["hp", "base_hp"].indexOf(key) !== -1) {
 			this[key] = parseInt(value);
+			if (key === "hp" && oldHP != undefined) {
+				this.onHPChanged(this[key] - oldHP);
+			}
 		} else if (key == "target") {
 			if (this._target) {
 				this._target.onAttackStopped(this);
@@ -113,6 +123,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			this.drawSprite(ctx, filename)
 		}
 		this.drawAttack(ctx);
+		this.drawFloaters(ctx);
 	},
 	
 	/**
@@ -175,6 +186,29 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 				this.attackResult = null;
 			}
 		} 
+	},
+	
+	/**
+	 * Draw entities in this.floaters array. Each floater should have
+	 * draw(ctx, x, y) method, where ctx is the canvas context, and x, y are
+	 * the coordinates where to start floating. The method should return true
+	 * when the floater should be removed.
+	 */
+	drawFloaters: function(ctx) {
+		if (this.hasOwnProperty("floaters")) {
+			var centerX = (this._x + this.width / 2) * 32;
+			var topY = (this._y + 1) * 32 - this.drawHeight;
+			// Grab an unchanging copy
+			var currentFloaters = this.floaters;
+			for (var i = 0; i < currentFloaters.length; i++) {
+				var floater = currentFloaters[i];
+				if (floater.draw(ctx, centerX, topY)) {
+					// copy the array and remove the specific element from the copy
+					this.floaters = this.floaters.slice();
+					this.floaters.splice(this.floaters.indexOf(floater), 1);
+				}
+			}
+		}
 	},
 	
 	drawSprite: function(ctx, filename) {
@@ -274,7 +308,6 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 	
 	onDamaged: function(source, damage) {
-		this.say(this.title + " got hit by " + source.title + " causing a damage of " + damage);
 		this.attackResult = this.createResultIcon("/data/sprites/combat/hitted.png");
 	},
 
@@ -284,6 +317,28 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 
 	onMissed: function(source) {
 		this.attackResult = this.createResultIcon("/data/sprites/combat/missed.png");
+	},
+	
+	onHPChanged: function(change) {
+		if (!this.hasOwnProperty("floaters")) {
+			this.floaters = [];
+		}
+		this.floaters.push({
+			initTime: Date.now(),
+			color: (change < 0) ? "#ff0000" : "#00ff00",
+			str: (change > 0) ? ("+" + change) : change.toString(),
+			textOffset: null,
+			draw: function(ctx, x, y) {
+				ctx.font = "14px Arial";
+				ctx.fillStyle = this.color;
+				if (!this.textOffset) {
+					this.textOffset = ctx.measureText(this.str).width / 2;
+				}
+				var timeDiff = Date.now() - this.initTime;
+				ctx.fillText(this.str, x - this.textOffset, y - timeDiff / 50);
+				return (timeDiff > 2000);
+			}
+		});
 	},
 	
 	/**
