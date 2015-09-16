@@ -124,6 +124,26 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		}
 		this.drawAttack(ctx);
 		this.drawFloaters(ctx);
+		this.drawStatusIcons(ctx);
+	},
+	
+	drawStatusIcons: function(ctx) {
+		var x = this._x * 32 - 10;
+		var y = (this._y + 1) * 32 - 10;
+		if (this.hasOwnProperty("choking")) {
+			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/choking.png"), x, y);
+		} else if (this.hasOwnProperty("eating")) {
+			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/eat.png"), x, y);
+		}
+		if (this.hasOwnProperty("poisoned")) {
+			var poisonImage = stendhal.data.sprites.get("data/sprites/status/poison.png");
+			var dim = poisonImage.height;
+			var nFrames = poisonImage.width / dim;
+			var frame = Math.floor(Date.now() / 100) % nFrames;
+			
+			ctx.drawImage(poisonImage, frame * poisonImage.height, 0,
+					dim, dim, x + 32 * this.width - 5, y - this.drawHeight, dim, dim);
+		}
 	},
 	
 	/**
