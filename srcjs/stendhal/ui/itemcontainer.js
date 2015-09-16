@@ -77,3 +77,33 @@ stendhal.ui.itemContainerWindow = {
 		}
 	}
 }
+
+stendhal.ui.window = {};
+stendhal.ui.window.container = {
+
+	init: function(object, slotName, width, height)  {
+		this.canvas = document.createElement('canvas');;
+		this.canvas.height = height * 40 + 2;
+		this.canvas.width = width * 40 + 2;
+		window.body.appendChild(this.canvas);
+		this.object = object;
+		this.slotName = slotName;
+		this.width = width;
+		this.height = height;
+	},
+
+	draw: function() {
+		var ctx = this.canvas.getContext("2d");
+		ctx.fillStyle = "rgb(255,255,255)";
+		ctx.fillRect(0, 0, this.width * 40, this.height * 40);
+		ctx.strokeStyle = "rgb(0,0,0)";
+		ctx.strokeRect(0, 0, this.width * 40, this.height * 40);
+		ctx.fillStyle = "rgb(224,224,224)";
+		for (var h = 0; h < this.height; h++) {
+			for (var w = 0; w < this.width; w++) {
+				ctx.fillRect(w * 40 + 2, h * 40 + 2,
+						40 - 2, 40 - 2);
+			}
+		}
+	}
+}
