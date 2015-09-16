@@ -93,6 +93,7 @@ stendhal.ui.window.container = {
 	},
 
 	draw: function() {
+		// draw outline
 		var ctx = this.canvas.getContext("2d");
 		ctx.fillStyle = "rgb(255,255,255)";
 		ctx.fillRect(0, 0, this.width * 40, this.height * 40);
@@ -105,5 +106,38 @@ stendhal.ui.window.container = {
 						40 - 2, 40 - 2);
 			}
 		}
+
+		// draw items
+		var slot = this.object[this.slotName];
+		var index = 0;
+		for (var i in slot) {
+			if (isNaN(i)) {
+				continue;
+			}
+
+			var w = index % this.width;
+			var h = Math.floor(index / this.width);
+			var localX = w * 40 + 3;
+			var localY = h * 40 + 3;
+
+			var item = slot[i];
+			var image = stendhal.data.sprites.get(item.sprite.filename);
+			if (image.complete) {
+				var offsetX = item.sprite.offsetX || 0;
+				var offsetY = item.sprite.offsetY || 0;
+				ctx.drawImage(image, offsetX, offsetY, 32, 32, localX, localY, 32, 32);
+			}
+			ctx.font = "10px Arial";
+			ctx.fillStyle = "#FFF";
+			var text = item.formatQuantity();
+			var textMetrics = ctx.measureText(text);
+			ctx.fillText(text, localX * 32 + (32 - textMetrics.width)/2, localY * 32);
+
+			index++;
+		}
+	},
+
+	close: function() {
+		this.canvas.remove();
 	}
 }
