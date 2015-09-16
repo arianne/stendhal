@@ -128,21 +128,41 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 	
 	drawStatusIcons: function(ctx) {
+		function _drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y) {
+			var frame = Math.floor(Date.now() / delay) % nFrames;
+			ctx.drawImage(icon, frame * xdim, 0, xdim, ydim, x, y, xdim, ydim);
+		}
+		function drawAnimatedIcon(iconPath, delay, x, y) {
+			var icon = stendhal.data.sprites.get(iconPath);
+			var dim = icon.height;
+			var nFrames = icon.width / dim;
+			_drawAnimatedIcon(icon, delay, nFrames, dim, dim, x, y);
+		}
+		function drawAnimatedIconWithFrames(iconPath, nFrames, delay, x, y) {
+			var icon = stendhal.data.sprites.get(iconPath);
+			var ydim = icon.height;
+			var xdim = icon.width / nFrames;
+			_drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y);
+		}
+		
 		var x = this._x * 32 - 10;
-		var y = (this._y + 1) * 32 - 10;
+		var y = (this._y + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/choking.png"), x, y);
+			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/choking.png"), x, y - 10);
 		} else if (this.hasOwnProperty("eating")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/eat.png"), x, y);
+			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/eat.png"), x, y - 10);
+		}
+		if (this.hasOwnProperty("away")) {
+			drawAnimatedIcon("data/sprites/ideas/away.png", 1500, x + 32 * this.width, y - this.drawHeight);
+		}
+		if (this.hasOwnProperty("grumpy")) {
+			drawAnimatedIcon("data/sprites/ideas/grumpy.png", 1000, x + 5, y - this.drawHeight);
+		}
+		if (this.hasOwnProperty("last_player_kill_time")) {
+			drawAnimatedIconWithFrames("data/sprites/ideas/pk.png", 12, 300, x, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("poisoned")) {
-			var poisonImage = stendhal.data.sprites.get("data/sprites/status/poison.png");
-			var dim = poisonImage.height;
-			var nFrames = poisonImage.width / dim;
-			var frame = Math.floor(Date.now() / 100) % nFrames;
-			
-			ctx.drawImage(poisonImage, frame * poisonImage.height, 0,
-					dim, dim, x + 32 * this.width - 5, y - this.drawHeight, dim, dim);
+			drawAnimatedIcon("data/sprites/status/poison.png", 100, x + 32 * this.width - 10, y - this.drawHeight);
 		}
 	},
 	
