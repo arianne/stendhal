@@ -318,14 +318,25 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	drawTitle: function(ctx, x, y) {
-		if (typeof(this.title) != "undefined") {
+		var title = this.title;
+		if (title == undefined) {
+			title = this.name;
+			if (title == undefined || title == "") {
+				title = this["class"];
+				if (title == undefined) {
+					title = this.type;
+				}
+			}
+		}
+		
+		if (typeof(title) != "undefined") {
 			ctx.font = "14px Arial";
 			ctx.fillStyle = "#A0A0A0";
-			var textMetrics = ctx.measureText(this.title);
+			var textMetrics = ctx.measureText(title);
 			var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
-			ctx.fillText(this.title, x + (this.width * 32 - textMetrics.width) / 2+2, drawY - 5 - HEALTH_BAR_HEIGHT);
+			ctx.fillText(title, x + (this.width * 32 - textMetrics.width) / 2+2, drawY - 5 - HEALTH_BAR_HEIGHT);
 			ctx.fillStyle = this.titleStyle;
-			ctx.fillText(this.title, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
+			ctx.fillText(title, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	},
 	
