@@ -142,6 +142,16 @@ Polymer({
 	},
 	
 	onclick: function(e) {
+		var x = Math.floor((e.offsetX + this.xOffset) / this.scale);
+		var y = Math.floor((e.offsetY + this.yOffset) / this.scale);
+		if (!stendhal.data.map.collision(x, y)) {
+			var action = {
+					type: "moveto",
+					x: x.toString(),
+					y: y.toString()
+			};
+			marauroa.clientFramework.sendAction(action);
+		}
 		document.getElementById("chatbar").focus();
 	}
 });
