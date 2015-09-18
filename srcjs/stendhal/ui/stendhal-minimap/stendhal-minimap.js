@@ -13,11 +13,10 @@ Polymer({
 	},
 
 	zoneChange: function() {
-		this.mapWidth = /*marauroa.currentZone.width;*/ 128;
-		this.mapHeight = /*marauroa.currentZone.height;*/ 64;
+		this.mapWidth = stendhal.data.map.zoneSizeX;
+		this.mapHeight = stendhal.data.map.zoneSizeY;
 		this.scale = Math.max(this.minimumScale, Math.min(this.height / this.mapHeight, this.width / this.mapWidth));
-		/*final int width = Math.min(WIDTH, mapWidth * scale);
-		final int height = Math.min(HEIGHT, mapHeight * scale);*/
+		this.createBackgroundImage();
 	},
 
 	updateBasePosition: function() {
@@ -51,38 +50,95 @@ Polymer({
 		}
 	},
 	
-	drawEntities: function() {
+	draw: function() {
 		this.scale = 10;
 		
 		this.zoneChange();
 		this.updateBasePosition();
-		
 		var canvas = this.$.minimap;
-		this.ctx = canvas.getContext("2d");
-		this.ctx.fillStyle = "rgb(224,224,224)";
-		this.ctx.fillRect(0, 0, canvas.width, canvas.height);
-		this.ctx.fillStyle = "rgb(255,0,0)";
-		this.ctx.strokeStyle = "rgb(0,0,0)";
+		
+		var ctx = canvas.getContext("2d");
+		ctx.resetTransform();
+		// The area outside of the map
+		ctx.fillStyle = "#606060";
+		ctx.fillRect(0, 0, this.width, this.height);
+		
+		ctx.translate(Math.round(-this.xOffset), Math.round(-this.yOffset));
+		this.drawBackground(ctx);
+		this.drawEntities(ctx);
+	},
+	
+	drawBackground: function(ctx) {
+		ctx.save();
+		// imageSmoothingEnabled is the standard property but browsers haven't
+		// yet caught up
+		ctx.imageSmoothingEnabled = false;
+		ctx.mozImageSmoothingEnabled = false;
+		ctx.msImageSmoothingEnabled = false;
+		
+		ctx.scale(this.scale, this.scale);
+		if (this.bgImage) {
+			ctx.drawImage(this.bgImage, 0, 0);
+		}
+		ctx.restore();
+	},
+	
+	createBackgroundImage: function() {
+		var width = this.mapWidth;
+		var height = this.mapHeight;
+		if (width <= 0 || height <= 0) {
+			return;
+		}
+		
+		if (stendhal.data.map.collisionData !== this.lastZone) {
+			this.lastZone = stendhal.data.map.collisionData;
+			this.bgImage = document.createElement("canvas");
+			var ctx = this.bgImage.getContext("2d")
+			var imgData = ctx.createImageData(width, height);
 
-		this.ctx.translate(Math.round(-this.xOffset), Math.round(-this.yOffset));
+			for (var y = 0; y < height; y++) {
+				for (var x = 0; x < width; x++) {
+					// RGBA array. Find the actual position
+					var pos = 4 * (y * width + x);
+					// TODO: draw protection before falling back to default color
+					if (stendhal.data.map.collision(x, y)) {
+						// red collision
+						imgData.data[pos] = 255;
+					} else {
+						// light gray elsewhere
+						imgData.data[pos] = 224;
+						imgData.data[pos + 1] = 224;
+						imgData.data[pos + 2] = 224;
+					}
+					imgData.data[pos + 3] = 255;
+				}
+			}
+			this.bgImage.width  = width;
+			this.bgImage.height = height;
+
+			ctx.putImageData(imgData, 0, 0);
+		}
+	},
+	
+	drawEntities: function(ctx) {
+		ctx.fillStyle = "rgb(255,0,0)";
+		ctx.strokeStyle = "rgb(0,0,0)";
 
 		for (var i in marauroa.currentZone) {
 			var o = marauroa.currentZone[i];
 			if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined" && (o.minimapShow || (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600))) {
 				// not supported by IE <= 8
-				if (typeof(this.ctx.fillText) != "undefined") {
+				if (typeof(ctx.fillText) != "undefined") {
 //					this.ctx.fillText(o.id, o.x * this.scale, o.y * this.scale);
 				}
 				if (typeof(o.minimapStyle) != "undefined") {
-					this.ctx.strokeStyle = o.minimapStyle;
+					ctx.strokeStyle = o.minimapStyle;
 				} else {
-					this.ctx.strokeStyle = "rgb(128, 128, 128)";
+					ctx.strokeStyle = "rgb(128, 128, 128)";
 				}
-				this.ctx.strokeRect(o.x * this.scale, o.y * this.scale, o.width * this.scale, o.height * this.scale);
+				ctx.strokeRect(o.x * this.scale, o.y * this.scale, o.width * this.scale, o.height * this.scale);
 			}
 		}
-
-		this.ctx.translate(Math.round(this.xOffset), Math.round(this.yOffset));
 	},
 	
 	onclick: function(e) {

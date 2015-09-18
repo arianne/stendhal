@@ -18,8 +18,8 @@ stendhal.ui = stendhal.ui || {};
  * mini map
  */
 stendhal.ui.minimap = {
-	drawEntities: function() {
+	draw: function() {
 		var minimap = document.getElementById("minimap");
-		minimap.drawEntities();
+		minimap.draw();
 	}
 }

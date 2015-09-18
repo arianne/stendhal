@@ -71,7 +71,7 @@ stendhal.main = {
 		if (document.getElementById("gamewindow")) {
 			marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 				stendhal.zone.sortEntities();
-				stendhal.ui.minimap.drawEntities();
+				stendhal.ui.minimap.draw();
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
 				stendhal.ui.bag.update();
