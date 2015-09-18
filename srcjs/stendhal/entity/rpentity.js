@@ -29,6 +29,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	_target: null,
 	attackSprite: null,
 	attackResult: null,
+	dir: 3,
 
 	set: function(key, value) {
 		// Ugly hack to detect the amount of HP change. The old value is no
@@ -128,7 +129,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 				filename = filename + "/" + this["subclass"];
 			}
 			filename = filename + ".png";
-			this.drawSprite(ctx, filename)
+			this.drawSprite(ctx, filename);
 		}
 		this.drawAttack(ctx);
 		this.drawFloaters(ctx);
