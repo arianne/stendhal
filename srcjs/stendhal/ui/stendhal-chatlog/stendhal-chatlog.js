@@ -29,6 +29,13 @@ Polymer({
 
 		var newEntry = {"time": time, "message": message, "type": "log" + type};
 		this.push('logEntries', newEntry);
+		
+		var isAtBottom = (this.scrollHeight - this.clientHeight) == this.scrollTop;
+		this.async(function () {
+			if (isAtBottom) {
+				this.scrollTop = this.scrollHeight;
+			}
+		});
 	},
 
 	/**
