@@ -37,5 +37,8 @@ marauroa.rpobjectFactory.cat = marauroa.util.fromProto(marauroa.rpobjectFactory.
 
 marauroa.rpobjectFactory.baby_dragon = marauroa.util.fromProto(marauroa.rpobjectFactory.domesticanimal, {
 	imagePath: "/data/sprites/baby_dragon.png",
-	largeWeight: 20
+	largeWeight: 20,
+	// A default title that does not have an underscore. Named pets set their
+	// own title anyway
+	title: "baby dragon"
 });
