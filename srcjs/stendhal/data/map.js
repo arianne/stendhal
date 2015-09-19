@@ -176,6 +176,8 @@ stendhal.data.map = {
 				this.readLayer(layerName, data);
 				if (layerName == "collision") {
 					this.collisionData = this.layers[this.layers.length - 1];
+				} else if (layerName === "protection") {
+					this.protection = this.layers[this.layers.length - 1];
 				}
 			}
 		}
@@ -241,5 +243,9 @@ stendhal.data.map = {
 	
 	collision: function(x, y) {
 		return this.collisionData[y * stendhal.data.map.numberOfXTiles + x] != 0;
+	},
+	
+	isProtected: function(x, y) {
+		return this.protection[y * stendhal.data.map.numberOfXTiles + x] != 0;
 	}
 };
