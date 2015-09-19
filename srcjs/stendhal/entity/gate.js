@@ -1,4 +1,6 @@
 marauroa.rpobjectFactory.gate = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+	zIndex: 5000,
+	
 	set: function(key, value) {
 		marauroa.rpobjectFactory.gate.proto.set.apply(this, arguments);
 		if (key === "resistance") {
