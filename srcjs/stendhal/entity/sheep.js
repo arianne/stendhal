@@ -23,13 +23,4 @@ marauroa.rpobjectFactory.sheep = marauroa.util.fromProto(marauroa.rpobjectFactor
 			ctx.drawImage(image, frame * this.drawWidth, yRow * this.drawHeight, this.drawWidth, this.drawHeight, localX + drawX, localY + drawY, this.drawWidth, this.drawHeight);
 		}
 	},
-
-	onclick: function(x, y) {
-		marauroa.log.debug(this, x, y);
-		var action = {
-				"type": "look",
-				"target": "#" + this.id
-			};
-		marauroa.clientFramework.sendAction(action);
-	}
 });
