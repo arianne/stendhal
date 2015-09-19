@@ -85,6 +85,7 @@ stendhal.ui.window.container = {
 		this.canvas = document.createElement('canvas');;
 		this.canvas.height = height * 40 + 2;
 		this.canvas.width = width * 40 + 2;
+		this.canvas.addEventListener("click", this.onclick.bind(this));
 		window.body.appendChild(this.canvas);
 		this.object = object;
 		this.slotName = slotName;
@@ -135,6 +136,31 @@ stendhal.ui.window.container = {
 
 			index++;
 		}
+	},
+	onclick: function(e) {
+		// which item?
+		var x = Math.floor(e.offsetX / 40);
+		var y = Math.floor(e.offsetY / 40);
+		var idx = y * this.width + x;
+		console.log("Pickup index: ", idx);
+		if (this.object[this.slotName].length - 1 < idx) {
+			return;
+		}
+		this.pickupItem(idx);
+	},
+
+	/**
+	 * tries to move an item from a corpse to the players bag
+	 */
+	pickupItem: function(idx) {
+		var item = this.object[this.slotName][idx];
+		var action = {
+			"type": "equip", 
+			"source_path": item.getIdPath(),
+			"target_path": "[" + marauroa.me.id + "\tbag]"
+		};
+		console.log(action);
+		marauroa.clientFramework.sendAction(action);
 	},
 
 	close: function() {
