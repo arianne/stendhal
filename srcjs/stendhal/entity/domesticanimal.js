@@ -1,13 +1,13 @@
-marauroa.rpobjectFactory.sheep = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
+marauroa.rpobjectFactory.domesticanimal = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
 	drawSprite: function(ctx, filename) {
 		var localX = this._x * 32;
 		var localY = this._y * 32;
-		var image = stendhal.data.sprites.get("/data/sprites/sheep.png");
+		var image = stendhal.data.sprites.get(this.imagePath);
 		if (image.complete) {
 			var nFrames = 3;
 			var nDirections = 4;
 			var yRow = this.dir - 1;
-			if (this.weight >= 60) {
+			if (this.weight >= this.largeWeight) {
 				yRow += 4;
 			}
 			this.drawHeight = image.height / nDirections / 2;
@@ -23,4 +23,19 @@ marauroa.rpobjectFactory.sheep = marauroa.util.fromProto(marauroa.rpobjectFactor
 			ctx.drawImage(image, frame * this.drawWidth, yRow * this.drawHeight, this.drawWidth, this.drawHeight, localX + drawX, localY + drawY, this.drawWidth, this.drawHeight);
 		}
 	},
+});
+
+marauroa.rpobjectFactory.sheep = marauroa.util.fromProto(marauroa.rpobjectFactory.domesticanimal, {
+	imagePath: "/data/sprites/sheep.png",
+	largeWeight: 60
+});
+
+marauroa.rpobjectFactory.cat = marauroa.util.fromProto(marauroa.rpobjectFactory.domesticanimal, {
+	imagePath: "/data/sprites/cat.png",
+	largeWeight: 20
+});
+
+marauroa.rpobjectFactory.baby_dragon = marauroa.util.fromProto(marauroa.rpobjectFactory.domesticanimal, {
+	imagePath: "/data/sprites/baby_dragon.png",
+	largeWeight: 20
 });
