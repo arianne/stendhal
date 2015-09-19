@@ -49,32 +49,32 @@ stendhal.data = stendhal.data || {};
 
 		// assign the .src property of the Image object
 		oImage.src = image;
-	}
+	};
 
 	ImagePreloader.prototype.onComplete = function() {
 		this.nProcessed++;
 		if (this.nProcessed == this.nImages) {
 			this.callback();
 		}
-	}
+	};
 
 	ImagePreloader.prototype.onload = function() {
 		this.bLoaded = true;
 		this.oImagePreloader.nLoaded++;
 		this.oImagePreloader.onComplete();
-	}
+	};
 
 	ImagePreloader.prototype.onerror = function() {
 		this.bError = true;
 		this.oImagePreloader.onComplete();
 		marauroa.log.error("Error loading " + this.src);
-	}
+	};
 
 	ImagePreloader.prototype.onabort = function() {
 		this.bAbort = true;
 		this.oImagePreloader.onComplete();
 		marauroa.log.error("Loading " + this.src + " was aborted");
-	}
+	};
 
 	// End http://www.webreference.com/programming/javascript/gr/column3/
 
@@ -110,7 +110,7 @@ stendhal.data.map = {
 	 */
 	getTilesetForGid: function(value) {
 		if (value < this.gidsindex.length) {
-			return this.gidsindex[value]
+			return this.gidsindex[value];
 		} else {
 			return this.gidsindex[this.gidsindex.length - 1] + 1;
 		}
@@ -164,7 +164,7 @@ stendhal.data.map = {
 		for (var iNode = 0; iNode < root.childNodes.length; iNode++) {
 			var node = root.childNodes.item(iNode);
 			if (node.nodeName == "tileset") {
-				var filename = this.getTilesetFilename(node)
+				var filename = this.getTilesetFilename(node);
 				images.push(filename);
 				this.firstgids.push(node.getAttribute("firstgid"));
 			} else if (node.nodeName == "layer") {
@@ -180,12 +180,12 @@ stendhal.data.map = {
 			}
 		}
 		new ImagePreloader(images, function() {
-			var body = document.getElementById("body")
+			var body = document.getElementById("body");
 			body.style.cursor = "auto";
 		});
 
-		this.numberOfXTiles = root.getAttribute("width")
-		this.numberOfYTiles = root.getAttribute("height")
+		this.numberOfXTiles = root.getAttribute("width");
+		this.numberOfYTiles = root.getAttribute("height");
 
 		// create a lookup table from gid to tileset index for a significant performance reasons
 		this.gidsindex = new Array;
@@ -202,7 +202,7 @@ stendhal.data.map = {
 		var image = node.getElementsByTagName("image");
 		var name = node.getAttribute("name");
 		if (image.length > 0) {
-			name = image[0].getAttribute("source")
+			name = image[0].getAttribute("source");
 		}
 		return "/" + name.replace(/\.\.\/\.\.\//g, "");
 	},
@@ -218,7 +218,7 @@ stendhal.data.map = {
 				+ (data.charCodeAt(i + 1) << 8)
 				+ (data.charCodeAt(i + 2) << 16)
 				+ (data.charCodeAt(i + 3) << 24);
-			layer.push(tileId)
+			layer.push(tileId);
 		}
 		this.layerNames.push(name);
 		this.layers.push(layer);
@@ -227,11 +227,11 @@ stendhal.data.map = {
 	load: function(locat) {
 		if (this.lastMap != locat) {
 			this.lastMap = locat;
-			var body = document.getElementById("body")
+			var body = document.getElementById("body");
 			body.style.cursor = "wait";
 			var temp = /([^_]*)_([^_]*)_(.*)/.exec(locat);
 			if (temp[1] == "int") {
-				temp[1] = "interiors"
+				temp[1] = "interiors";
 			} else {
 				temp[1] = "Level " + temp[1];
 			}
@@ -242,4 +242,4 @@ stendhal.data.map = {
 	collision: function(x, y) {
 		return this.collisionData[y * stendhal.data.map.numberOfXTiles + x] != 0;
 	}
-}
+};
