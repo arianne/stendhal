@@ -23,8 +23,8 @@ Polymer({
 		this.xOffset = 0;
 		this.yOffset = 0;
 
-		var imageWidth = this.mapWidth * this.scale
-		var imageHeight = this.mapHeight * this.scale
+		var imageWidth = this.mapWidth * this.scale;
+		var imageHeight = this.mapHeight * this.scale;
 
 		var xpos = Math.round((marauroa.me.x * this.scale) + 0.5) - this.width / 2;
 		var ypos = Math.round((marauroa.me.y * this.scale) + 0.5) - this.width / 2;
@@ -93,17 +93,21 @@ Polymer({
 		if (stendhal.data.map.collisionData !== this.lastZone) {
 			this.lastZone = stendhal.data.map.collisionData;
 			this.bgImage = document.createElement("canvas");
-			var ctx = this.bgImage.getContext("2d")
+			var ctx = this.bgImage.getContext("2d");
 			var imgData = ctx.createImageData(width, height);
 
 			for (var y = 0; y < height; y++) {
 				for (var x = 0; x < width; x++) {
 					// RGBA array. Find the actual position
 					var pos = 4 * (y * width + x);
-					// TODO: draw protection before falling back to default color
 					if (stendhal.data.map.collision(x, y)) {
 						// red collision
 						imgData.data[pos] = 255;
+					} else if (stendhal.data.map.isProtected(x, y)) {
+						// light green for protection
+						imgData.data[pos] = 202;
+						imgData.data[pos + 1] = 230;
+						imgData.data[pos + 2] = 202;
 					} else {
 						// light gray elsewhere
 						imgData.data[pos] = 224;
