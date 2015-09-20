@@ -26,7 +26,7 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 		this.sprite = {
 			height: 32,
 			width: 32
-		}
+		};
 	},
 
 	isVisibleToAction: function(filter) {
@@ -44,14 +44,13 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 	draw: function(ctx) {
 		marauroa.rpobjectFactory.item.proto.draw.apply(this, arguments);
 		ctx.font = "10px Arial";
-		ctx.fillStyle = "#FFF";
 		var text = this.formatQuantity();
 		var textMetrics = ctx.measureText(text);
-		ctx.fillText(text, this.x * 32 + (32 - textMetrics.width)/2, this.y * 32);
+		this.drawOutlineText(ctx, text, "white", this.x * 32 + (32 - textMetrics.width)/2, this.y * 32);
 	},
 	
 	formatQuantity: function() {
-		if (!this.quantity) {
+		if (!this.quantity || this.quantity === "1") {
 			return "";
 		}
 		if (this.quantity > 10000000) {
