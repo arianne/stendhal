@@ -18,7 +18,7 @@
 marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
 	minimapStyle: "rgb(255,255,0)",
 	spritePath: "monsters",
-	titleStyle: "#A00000",
+	titleStyle: "#ffc8c8",
 
 	onclick: function(x, y) {
 		marauroa.log.debug(this, x, y);
