@@ -344,9 +344,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			ctx.fillStyle = "#A0A0A0";
 			var textMetrics = ctx.measureText(title);
 			var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
-			ctx.fillText(title, x + (this.width * 32 - textMetrics.width) / 2+2, drawY - 5 - HEALTH_BAR_HEIGHT);
-			ctx.fillStyle = this.titleStyle;
-			ctx.fillText(title, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
+			this.drawOutlineText(ctx, title, this.titleStyle, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	},
 	
@@ -411,17 +409,17 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		if (!this.hasOwnProperty("floaters")) {
 			this.floaters = [];
 		}
+		var self = this;
 		this.floaters.push({
 			initTime: Date.now(),
 			textOffset: null,
 			draw: function(ctx, x, y) {
 				ctx.font = "14px Arial";
-				ctx.fillStyle = color;
 				if (!this.textOffset) {
 					this.textOffset = ctx.measureText(message).width / 2;
 				}
 				var timeDiff = Date.now() - this.initTime;
-				ctx.fillText(message, x - this.textOffset, y - timeDiff / 50);
+				self.drawOutlineText(ctx, message, color, x - this.textOffset, y - timeDiff / 50);
 				return (timeDiff > 2000);
 			}
 		});
