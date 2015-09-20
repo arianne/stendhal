@@ -76,6 +76,24 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 			ctx.drawImage(image, offsetX, offsetY, width, height, localX, localY, width, height);
 		}
 	},
+	
+	/**
+	 * Draws text in specified color with black outline. Setting the font is the
+	 * caller's responsibility.
+	 * 
+	 * @param ctx graphics context
+	 * @param color text inner color
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 */
+	drawOutlineText: function(ctx, text, color, x, y) {
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "black";
+		ctx.fillStyle = color;
+		ctx.lineJoin = "round";
+		ctx.strokeText(text, x, y);
+		ctx.fillText(text, x, y);
+	},
 
 	/**
 	 * gets the container path identifying the item
