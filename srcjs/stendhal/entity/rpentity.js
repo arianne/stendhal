@@ -221,6 +221,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			}
 		}
 		if (this.getAttackTarget() === marauroa.me) {
+			ctx.lineWidth = 1;
 			// See above about ellipses.
 			if (ctx.ellipse instanceof Function) {
 				var xRad = this.width * 16 - 1;
