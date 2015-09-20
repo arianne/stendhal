@@ -1,6 +1,6 @@
 marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 	set: function(key, value) {
-		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
+		marauroa.rpobjectFactory.entity.set.apply(this, arguments);
 		if (key === "amount") {
 			this._amount = parseInt(value);
 		}

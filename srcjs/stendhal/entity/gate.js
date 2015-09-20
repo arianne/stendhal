@@ -2,7 +2,7 @@ marauroa.rpobjectFactory.gate = marauroa.util.fromProto(marauroa.rpobjectFactory
 	zIndex: 5000,
 	
 	set: function(key, value) {
-		marauroa.rpobjectFactory.gate.proto.set.apply(this, arguments);
+		marauroa.rpobjectFactory.entity.set.apply(this, arguments);
 		if (key === "resistance") {
 			this.locked = parseInt(value) != 0;
 		} else if (key === "image" || key === "orientation") {
