@@ -105,13 +105,35 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 			stendhal.ui.chatLog.addLine("normal", text);
 		}
 	},
+	
+	/**
+	 * Create the default action for this entity. If the entity specifies a
+	 * default action description, interpret it as an action command.
+	 */
+	getDefaultAction: function() {
+		// Map descriptive command names to the real commands
+		var actionAliases = {
+			"look_closely" : "use",
+			"read" : "look"
+		};
+		
+		var actionCommand = "look";
+		var act = this["action"];
+		if (typeof(act) === "string") {
+			if (actionAliases.hasOwnProperty(act)) {
+				actionCommand = actionAliases[act];
+			} else {
+				actionCommand = act;
+			}
+		}
+		return {
+			"type": actionCommand,
+			"target": "#" + this.id
+		};
+	},
 
 	onclick: function(x, y) {
-		var action = {
-				"type": "look", 
-				"target": "#" + this.id
-			};
-		marauroa.clientFramework.sendAction(action);
+		marauroa.clientFramework.sendAction(this.getDefaultAction());
 	}
 });
 
