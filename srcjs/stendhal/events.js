@@ -55,3 +55,26 @@ marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFa
 		}
 	}
 });
+
+marauroa.rpeventFactory.show_item_list = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
+	execute: function(rpobject) {
+		if (this.hasOwnProperty("title")) {
+			stendhal.ui.chatLog.addLine("normal", this.title);
+		}
+		if (this.hasOwnProperty("caption")) {
+			stendhal.ui.chatLog.addLine("normal", this.caption);
+		}
+		if (this.hasOwnProperty("content")) {
+			stendhal.ui.chatLog.addLine("normal", "Item\t-\tPrice\t-\tDescription");
+			for (var obj in this.content) {
+				if (this.content.hasOwnProperty(obj)) {
+					var slotObj = this.content[obj];
+					console.log("logging thingy: " + obj + " : " + typeof(slotObj));
+					var data = this.content[obj].a;
+					stendhal.ui.chatLog.addLine("normal", data["subclass"] + "\t"
+							+ data["price"] + "\t" + data["description_info"]);
+				}
+			}
+		}
+	}
+});
