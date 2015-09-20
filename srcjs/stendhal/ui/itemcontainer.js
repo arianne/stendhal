@@ -137,12 +137,13 @@ stendhal.ui.window.container = {
 			index++;
 		}
 	},
+
+	
 	onclick: function(e) {
 		// which item?
 		var x = Math.floor(e.offsetX / 40);
 		var y = Math.floor(e.offsetY / 40);
 		var idx = y * this.width + x;
-		console.log("Pickup index: ", idx);
 		if (this.object[this.slotName].length - 1 < idx) {
 			return;
 		}
