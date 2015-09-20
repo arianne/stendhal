@@ -310,21 +310,21 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		var drawX = x + ((this.width * 32) - this.drawWidth) / 2;
 		var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
 		
+		ctx.strokeStyle = "#000000";
+		ctx.lineWidth = 2;
+		ctx.beginPath();
+		ctx.rect(drawX, drawY, this.drawWidth, HEALTH_BAR_HEIGHT - 2);
+		ctx.stroke();
+		
 		ctx.fillStyle = "#E0E0E0";
-		ctx.fillRect(drawX + 1, drawY + 1, this.drawWidth - 2, HEALTH_BAR_HEIGHT - 2);
+		ctx.fillRect(drawX, drawY, this.drawWidth, HEALTH_BAR_HEIGHT - 2);
 
 		// Bar color
 		var hpRatio = this.hp / this.base_hp;
 		var red = Math.floor(Math.min((1 - hpRatio) * 2, 1) * 255);
 		var green = Math.floor(Math.min(hpRatio * 2, 1) * 255);
 		ctx.fillStyle = "rgb(".concat(red, ",", green, ",0)");
-		ctx.fillRect(drawX + 1, drawY + 1, this.drawWidth * hpRatio - 2, HEALTH_BAR_HEIGHT - 2);
-
-		ctx.strokeStyle = "#000000";
-		ctx.lineWidth = 1;
-		ctx.beginPath();
-		ctx.rect(drawX, drawY, this.drawWidth - 1, HEALTH_BAR_HEIGHT - 1);
-		ctx.stroke();
+		ctx.fillRect(drawX, drawY, this.drawWidth * hpRatio, HEALTH_BAR_HEIGHT - 2);
 	},
 
 	drawTitle: function(ctx, x, y) {
@@ -341,7 +341,6 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		
 		if (typeof(title) != "undefined") {
 			ctx.font = "14px Arial";
-			ctx.fillStyle = "#A0A0A0";
 			var textMetrics = ctx.measureText(title);
 			var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
 			this.drawOutlineText(ctx, title, this.titleStyle, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
