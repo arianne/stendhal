@@ -32,20 +32,17 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	dir: 3,
 
 	set: function(key, value) {
-		// Ugly hack to detect the amount of HP change. The old value is no
+		// Ugly hack to detect changes. The old value is no
 		// longer available after .apply()
-		var oldHP;
-		if (key === "hp") {
-			oldHP = this[key];
-		}
+		var oldValue = this[key];
 
 		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 		if (key == "text") {
 			this.say(value);
 		} else if (["hp", "base_hp"].indexOf(key) !== -1) {
 			this[key] = parseInt(value);
-			if (key === "hp" && oldHP != undefined) {
-				this.onHPChanged(this[key] - oldHP);
+			if (key === "hp" && oldValue != undefined) {
+				this.onHPChanged(this[key] - oldValue);
 			}
 		} else if (key == "target") {
 			if (this._target) {
@@ -59,6 +56,8 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			this.addFloater("Away", "#ffff00");
 		} else if (key === "grumpy") {
 			this.addFloater("Grumpy", "#ffff00");
+		} else if (key === "xp" && oldValue != undefined) {
+			this.onXPChanged(this[key] - oldValue);
 		}
 	},
 	
@@ -395,6 +394,16 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 			this.addFloater("+" + change, "#00ff00");
 		} else if (change < 0) {
 			this.addFloater(change.toString(), "#ff0000");
+		}
+	},
+	
+	onXPChanged: function(change) {
+		if (change > 0) {
+			this.addFloater("+" + change, "#4169e1");
+			stendhal.ui.chatLog.addLine("significant_positive", this.title + " earns " + change + " experience points.");
+		} else if (change < 0) {
+			this.addFloater(change.toString(), "#ff8f8f");
+			stendhal.ui.chatLog.addLine("significant_negative", this.title + " loses " + Math.abs(change) + " experience points.");
 		}
 	},
 	
