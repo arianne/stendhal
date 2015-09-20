@@ -122,18 +122,7 @@ stendhal.ui.window.container = {
 			var localY = h * 40 + 3;
 
 			var item = slot[i];
-			var image = stendhal.data.sprites.get(item.sprite.filename);
-			if (image.complete) {
-				var offsetX = item.sprite.offsetX || 0;
-				var offsetY = item.sprite.offsetY || 0;
-				ctx.drawImage(image, offsetX, offsetY, 32, 32, localX, localY, 32, 32);
-			}
-			ctx.font = "10px Arial";
-			ctx.fillStyle = "#FFF";
-			var text = item.formatQuantity();
-			var textMetrics = ctx.measureText(text);
-			ctx.fillText(text, localX * 32 + (32 - textMetrics.width)/2, localY * 32);
-
+			item.drawAt(ctx, localX, localY);
 			index++;
 		}
 	},

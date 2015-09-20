@@ -42,11 +42,16 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 	},
 	
 	draw: function(ctx) {
-		marauroa.rpobjectFactory.item.proto.draw.apply(this, arguments);
-		ctx.font = "10px Arial";
-		var text = this.formatQuantity();
-		var textMetrics = ctx.measureText(text);
-		this.drawOutlineText(ctx, text, "white", this.x * 32 + (32 - textMetrics.width)/2, this.y * 32);
+		this.drawAt(ctx, this.x * 32, this.y * 32);
+	},
+	
+	drawAt: function(ctx, x, y) {
+		if (this.sprite) {
+			this.drawSpriteAt(ctx, x, y);
+			var text = this.formatQuantity();
+			var textMetrics = ctx.measureText(text);
+			this.drawOutlineText(ctx, text, "white", x + (32 - textMetrics.width) / 2, y + 6);
+		}
 	},
 	
 	formatQuantity: function() {
