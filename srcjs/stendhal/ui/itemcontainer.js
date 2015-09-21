@@ -133,7 +133,7 @@ stendhal.ui.window.container = {
 		var x = Math.floor(e.offsetX / 40);
 		var y = Math.floor(e.offsetY / 40);
 		var idx = y * this.width + x;
-		if (this.object[this.slotName].length - 1 < idx) {
+		if (!this.object[this.slotName].hasOwnProperty(idx)) {
 			return;
 		}
 		this.pickupItem(idx);
