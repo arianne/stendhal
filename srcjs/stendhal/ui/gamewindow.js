@@ -140,5 +140,73 @@ stendhal.ui.gamewindow = {
 		stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX, 
 				e.offsetY + stendhal.ui.gamewindow.offsetY).onclick(e.offsetX, e.offsetY);
 		document.getElementById("chatbar").focus();
-	}
-}
+	},
+	
+	// Mouse handling
+	onMouseDown: (function() {
+		var draggedEntity;
+		var startX;
+		var startY;
+		var inTrueDrag = false;
+		
+		function _onMouseDown(e) {
+			e.srcElement.addEventListener("mousemove", onDrag);
+			e.srcElement.addEventListener("mouseup", onMouseUp);
+			startX = e.offsetX;
+			startY = e.offsetY;
+			
+			var x = e.offsetX + stendhal.ui.gamewindow.offsetX;
+			var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
+			var entity = stendhal.zone.entityAt(x, y);
+			// Not really necessarily dragged, or anything that can be dragged, but
+			// a potential dragged object
+			draggedEntity = entity;
+		}
+		
+		function onMouseUp(e) {
+			if (inTrueDrag) {
+				var action = {
+					"type": "drop",
+					"source_path": draggedEntity.getIdPath(),
+					"x": Math.floor((e.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
+					"y": Math.floor((e.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
+					"zone" : marauroa.currentZoneName
+				};
+				marauroa.clientFramework.sendAction(action);
+			} else {
+				// It was a click rather than a drag
+				e.srcElement.removeEventListener("mousemove", onDrag);
+				draggedEntity.onclick(e.offsetX, e.offsetY);
+			}
+			cleanUp();
+		}
+		
+		function onDrag(e) {
+			var xDiff = startX - e.offsetX;
+			var yDiff = startY - e.offsetY;
+			// // The mouse has moved a bit. Check if it's something that can
+			// be dragged, or just forget about it.
+			if (xDiff * xDiff + yDiff * yDiff > 5) {
+				if (draggedEntity.type === "item") {
+					// Start a real drag
+					inTrueDrag = true;
+				} else {
+					// Nothing that can be dragged, and it's not a click either.
+					// We are not interested in mouseup anymore.
+					e.srcElement.removeEventListener("mouseup", onMouseUp);
+					cleanUp();
+				}
+				// Not needed anymore
+				e.srcElement.removeEventListener("mousemove", onDrag);
+			}
+		}
+		
+		function cleanUp() {
+			draggedEntity = null;
+			inTrueDrag = false;
+			document.getElementById("chatbar").focus();
+		}
+		
+		return _onMouseDown;
+	})(),
+};

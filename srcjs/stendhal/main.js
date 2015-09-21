@@ -88,7 +88,7 @@ stendhal.main = {
 	registerBrowserEventHandlers: function() {
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
-			gamewindow.addEventListener("click", stendhal.ui.gamewindow.onclick);
+			gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
 		}
 	},
 
