@@ -9,6 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+"use strict";
 
 window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};

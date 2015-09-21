@@ -1,3 +1,5 @@
+"use strict";
+
 marauroa.rpobjectFactory.domesticanimal = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
 	drawSprite: function(ctx, filename) {
 		var localX = this._x * 32;

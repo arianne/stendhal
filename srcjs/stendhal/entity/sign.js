@@ -1,3 +1,5 @@
+"use strict";
+
 marauroa.rpobjectFactory.sign = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 	zIndex: 5000,
 	"class": "default",

@@ -1,3 +1,5 @@
+"use strict";
+
 marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 	set: function(key, value) {
 		marauroa.rpobjectFactory.entity.set.apply(this, arguments);

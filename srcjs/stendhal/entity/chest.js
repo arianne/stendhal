@@ -1,3 +1,5 @@
+"use strict";
+
 marauroa.rpobjectFactory.chest = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
 	zIndex: 5000,
 	

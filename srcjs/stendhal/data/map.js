@@ -9,6 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+"use strict";
 
 window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
@@ -22,7 +23,7 @@ stendhal.data = stendhal.data || {};
 		// initialize internal state.
 		this.nLoaded = 0;
 		this.nProcessed = 0;
-		aImages = new Array;
+		stendhal.data.map.aImages = new Array;
 
 		// record the number of images.
 		this.nImages = images.length;
@@ -36,7 +37,7 @@ stendhal.data = stendhal.data || {};
 	ImagePreloader.prototype.preload = function(image) {
 		// create new Image object and add to array
 		var oImage = new Image;
-		aImages.push(oImage);
+		stendhal.data.map.aImages.push(oImage);
 
 		// set up event handlers for the Image object
 		oImage.onload = ImagePreloader.prototype.onload;
