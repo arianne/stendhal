@@ -155,6 +155,10 @@ stendhal.ui.gamewindow = {
 			startX = e.offsetX;
 			startY = e.offsetY;
 			
+			// Drags outside the game area can confuse the state, and leave
+			// garbage behind for the next click
+			inTrueDrag = false;
+			
 			var x = e.offsetX + stendhal.ui.gamewindow.offsetX;
 			var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
 			var entity = stendhal.zone.entityAt(x, y);
@@ -164,6 +168,8 @@ stendhal.ui.gamewindow = {
 		}
 		
 		function onMouseUp(e) {
+			// Drags outside the game area can confuse the state, and a click
+			// can i
 			if (inTrueDrag) {
 				var action = {
 					"type": "drop",
@@ -178,6 +184,7 @@ stendhal.ui.gamewindow = {
 				e.srcElement.removeEventListener("mousemove", onDrag);
 				draggedEntity.onclick(e.offsetX, e.offsetY);
 			}
+			e.srcElement.removeEventListener("mouseup", onMouseUp);
 			cleanUp();
 		}
 		
