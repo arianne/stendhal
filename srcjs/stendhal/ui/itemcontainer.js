@@ -91,6 +91,10 @@ stendhal.ui.window.container = {
 		this.slotName = slotName;
 		this.width = width;
 		this.height = height;
+		this.canvas.setAttribute("draggable", true);
+		this.canvas.addEventListener("dragstart", this.onDragStart.bind(this));
+		this.canvas.addEventListener("dragover", this.onDragOver.bind(this));
+		this.canvas.addEventListener("drop", this.onDrop.bind(this));
 	},
 
 	draw: function() {
@@ -127,23 +131,28 @@ stendhal.ui.window.container = {
 		}
 	},
 
+	getItem: function(xOffset, yOffset) {
+		var x = Math.floor(xOffset / 40);
+		var y = Math.floor(yOffset / 40);
+		var idx = y * this.width + x;
+		if (this.object.hasOwnProperty(this.slotName)) {
+			return this.object[this.slotName][idx];
+		}
+		return null;
+	},
 	
 	onclick: function(e) {
 		// which item?
-		var x = Math.floor(e.offsetX / 40);
-		var y = Math.floor(e.offsetY / 40);
-		var idx = y * this.width + x;
-		if (!this.object[this.slotName].hasOwnProperty(idx)) {
-			return;
+		var item = this.getItem(e.offsetX, e.offsetY);
+		if (item) {
+			this.pickupItem(item);
 		}
-		this.pickupItem(idx);
 	},
 
 	/**
 	 * tries to move an item from a corpse to the players bag
 	 */
-	pickupItem: function(idx) {
-		var item = this.object[this.slotName][idx];
+	pickupItem: function(item) {
 		var action = {
 			"type": "equip", 
 			"source_path": item.getIdPath(),
@@ -155,5 +164,41 @@ stendhal.ui.window.container = {
 
 	close: function() {
 		this.canvas.remove();
+	},
+	
+	onDragStart: function(e) {
+		var item = this.getItem(e.offsetX, e.offsetY);
+		if (item) {
+			e.dataTransfer.setDragImage(stendhal.data.sprites.get(item.sprite.filename), 0, 0);
+			e.dataTransfer.setData("text/x-stendhal-item", item.getIdPath());
+		} else {
+			e.preventDefault();
+		}
+	},
+	
+	onDragOver: function(e) {
+		e.preventDefault(); // Necessary. Allows us to drop.
+		e.dataTransfer.dropEffect = "move";
+		return false;
+	},
+	
+	onDrop: function(e) {
+		var data = e.dataTransfer.getData("text/x-stendhal-item");
+		if (data) {
+			var targetPath = this.object.getIdPath();
+			// add the slot name to the path
+			targetPath = targetPath.substr(0, targetPath.length - 1) + "\t" +
+					this.slotName + "]";
+			var action = {
+				"type": "equip",
+				"source_path": data,
+				"target_path": targetPath,
+				// FIXME: This is not necessarily true. What to do when the drag
+				// started on previous zone?
+				// "zone" : marauroa.currentZoneName
+			};
+			marauroa.clientFramework.sendAction(action);
+		}
+		e.stopPropagation();
 	}
-}
+};
