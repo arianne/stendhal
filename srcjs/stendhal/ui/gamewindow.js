@@ -143,8 +143,8 @@ stendhal.ui.gamewindow = {
 		var startY;
 		
 		function _onMouseDown(e) {
-			e.srcElement.addEventListener("mousemove", onDrag);
-			e.srcElement.addEventListener("mouseup", onMouseUp);
+			e.target.addEventListener("mousemove", onDrag);
+			e.target.addEventListener("mouseup", onMouseUp);
 			startX = e.offsetX;
 			startY = e.offsetY;
 			
@@ -169,8 +169,8 @@ stendhal.ui.gamewindow = {
 		
 		function cleanUp(e) {
 			entity = null;
-			e.srcElement.removeEventListener("mouseup", onMouseUp);
-			e.srcElement.removeEventListener("mousemove", onDrag);
+			e.target.removeEventListener("mouseup", onMouseUp);
+			e.target.removeEventListener("mousemove", onDrag);
 			document.getElementById("chatbar").focus();
 		}
 		
