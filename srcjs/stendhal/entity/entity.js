@@ -47,12 +47,10 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	 *  Ensure that the drawing code can rely on _x and _y
 	 */
 	updatePosition: function(time) {
-		if (this._y == undefined) {
-			this._y = this.y;
-		}
-		if (this._x == undefined) {
-			this._x = this.x;
-		}
+		// The position of non active entities can change too, so always copy
+		// the position
+		this._y = this.y;
+		this._x = this.x;
 	},
 
 	draw: function(ctx) {
