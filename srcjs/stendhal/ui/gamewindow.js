@@ -184,6 +184,9 @@ stendhal.ui.gamewindow = {
 		if (draggedEntity.type === "item") {
 			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
 			e.dataTransfer.setData("text/x-stendhal-item", draggedEntity.getIdPath());
+		} else if (draggedEntity.type === "corpse") {
+			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
+			e.dataTransfer.setData("text/x-stendhal-corpse", draggedEntity.getIdPath());
 		} else {
 			e.preventDefault();
 		}
@@ -196,16 +199,23 @@ stendhal.ui.gamewindow = {
 	},
 	
 	onDrop: function(e) {
-		var data = e.dataTransfer.getData("text/x-stendhal-item");
+		var data = e.dataTransfer.getData("text/x-stendhal-item") || e.dataTransfer.getData("text/x-stendhal-corpse");
 		if (data) {
 			var action = {
-				"type": "drop",
-				"source_path": data,
 				"x": Math.floor((e.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((e.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
 				// FIXME: This is not necessarily true. What to do when the drag
 				// started on previous zone?
 				// "zone" : marauroa.currentZoneName
+			};
+			var id = data.substr(1, data.length - 2);
+			var drop = /\t/.test(id);
+			if (drop) {
+				action["type"] = "drop";
+				action["source_path"] = data;
+			} else {
+				action["type"] = "displace";
+				action["baseitem"] = id;
 			};
 			marauroa.clientFramework.sendAction(action);
 		}
