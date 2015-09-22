@@ -16,58 +16,55 @@
  <tileset firstgid="78" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="87" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset firstgid="88" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
- <tileset firstgid="92" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset firstgid="94" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="91" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
- <tileset firstgid="104" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="111" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="108" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset firstgid="116" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="113" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtnYGAoH8WjeBQPGAYAR5dylIQDAAA=
+   H4sIAAAAAAAAAGNhYGBgGcWjeBQPGAYAoIGW84QDAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGAoJQPXAXE5ENcDcTUJGKSvDKq3koE0UDGqd1QvjfXWAnEVGi5hgKT5Mixy
-NVDxWqg6dAwSb2SA5BNs8iD9AO7qPcKEAwAA
+   H4sIAAAAAAAAADNlYGDQJgObALEuELsCsSMJ2AWIdaB67RlIA3ajekf10livMxA7oGE2IGYHYg4sck5QvcZArIUF8wOxMBAL4pA3AmIAOHPXBIQDAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA8oAeJSLOLYxNDlyoC4nOouGjygggHiPxiNCwzWcCghUw8sTZSRoR8WXpU4
-7C9BEsdmPjluphUAAHF+oVKEAwAA
+   H4sIAAAAAAAAAGNgoA8IBeIwLOJRePTA5MKBOILqLho8IB6I45BoXGCwhkMImXr8gNgfiAPI0B8IxEFAHIzD/kgoBoFYHPYPFgAAWH18d4QDAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAX0BCVAXDrQjhgFgwoAAB/vncaEAwAA
+   H4sIAAAAAAAAAGNgGAX0BKFAHDbQjhgFgwoAAMQY55SEAwAA
   </data>
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXooJwINSUDbP8ooAxU0Fg9KQAAR4MU7IQDAAA=
+   H4sIAAAAAAAAAGNgGAXoIJ8INTkDbP8ooAwUkKg+kyaugAAAaSBhBYQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.57">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACthYGAoGWCMC5Qg0aTow2XWYNWLSw0l/h7M/sWmltp60eVIcTM+c2iBAZq8ytSE
-AwAA
+   H4sIAAAAAAAAACtkYGAoHGCMCxQi0aTow2XWYNWLSw0l/h7M/sWmltp60eVIcTM+c2iBAb8gWf2EAwAA
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

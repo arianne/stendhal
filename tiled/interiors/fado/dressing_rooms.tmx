@@ -66,29 +66,22 @@
  </tileset>
  <layer name="0_floor" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEecj0Y4jaJhcO4dLPt8J
-xaTqAwA89bPi3AUAAA==
+   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEecj0Y4jaJhcO4dLPt8JxaTqAwA89bPi3AUAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXTywrCQAwF0KmIWkUUQXBVENSd7UJd+gW68Gvq+63/7RUs1HAz1qHQwNmEG0Iz
-1DPGlCzK4P3RZzkfKhAQVaiRjNa3zfdgbr5rBV2RSUrry8qSK3JHDGvYwJbMjTPsWMDSktnBHg5w
-JDvCHL7jBGe4wJXMRTnsuMEdHvBUZtl8n2S0u7u++fudBiKj3d11R0gy2t1dd0Qko929qH9wAtOP
-GcnVoUM0RGYII9Jns+n5JrQs2qlMUrL/a/4FaDQb2NwFAAA=
+   H4sIAAAAAAAAAMXTywrCQAwF0KmIWkUUQXBVENSd7UJd+gW68Gvq+63/7RUs1HAz1qHQwNmEG0Iz1DPGlCzK4P3RZzkfKhAQVaiRjNa3zfdgbr5rBV2RSUrry8qSK3JHDGvYwJbMjTPsWMDSktnBHg5wJDvCHL7jBGe4wJXMRTnsuMEdHvBUZtl8n2S0u7u++fudBiKj3d11R0gy2t1dd0Qko929qH9wAtOPGcnVoUM0RGYII9Jns+n5JrQs2qlMUrL/a/4FaDQb2NwFAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA2E4JELJaDXBokdi0NNOBCHYRHPQOObA7EFFnVKSOwUHHZE4BDPR+NbAbE1
-DrVJSGwPHGpwgTQS1CaSaDY2EATEKlQwhxDAZkcCHewYBdhBAhYxX3o7ggxgAMSGUGw0wG4ZygAA
-BjlkkNwFAAA=
+   H4sIAAAAAAAAAGNgIA2E4JELJaDXBokdi0NNOBCHYRHPQOObA7EFFnVKSOwUHHZE4BDPR+NbAbE1DrVJSGwPHGpwgTQS1CaSaDY2EATEKlQwhxDAZkcCHewYBdhBAhYxX3o7ggxgAMSGUGw0wG4ZygAABjlkkNwFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFyglApmRFOgN54EtVFA7A7EHhTYRwzwBGIvPPJtQNwOxB1A3EmCuZEkuqMb
-iHtI1EMq6AfiCTQ0fxIQTwbiKUA8lUKzyA13ECAl7EfDfWQDdSDWIEMfAD6jgw/cBQAA
+   H4sIAAAAAAAAAGNgGFyglApmRFOgN54EtVFA7A7EHhTYRwzwBGIvPPJtQNwOxB1A3EmCuZEkuqMbiHtI1EMq6AfiCTQ0fxIQTwbiKUA8lUKzyA13ECAl7EfDfWQDdSDWIEMfAD6jgw/cBQAA
   </data>
  </layer>
  <layer name="objects" width="25" height="15">
@@ -98,8 +91,7 @@ iHtI1EMq6AfiCTQ0fxIQTwbiKUA8lUKzyA13ECAl7EfDfWQDdSDWIEMfAD6jgw/cBQAA
  </layer>
  <layer name="collision" width="25" height="15" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNjYGCwG2YYGeBTQ0gvLjMYsKjFZQ4xegnpJ8cOdLMJqSMUluTaQYpfCQFi/EHI
-DmLtHgg7SE0XpLqPnPAeCH8QK0aJHcT6gxCmRC+tMQDbD4MQ3AUAAA==
+   H4sIAAAAAAAAALNjYGCwG2YYGeBTQ0gvLjMYsKjFZQ4xegnpJ8cOdLMJqSMUluTaQYpfCQFi/EHIDmLtHgg7SE0XpLqPnPAeCH8QK0aJHcT6gxCmRC+tMQDbD4MQ3AUAAA==
   </data>
  </layer>
  <layer name="protection" width="25" height="15">

@@ -22,44 +22,41 @@
  <tileset firstgid="375" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="377" name="menorah" tilewidth="32" tileheight="32">
+ <tileset firstgid="376" name="menorah" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/menorah.png"/>
  </tileset>
- <tileset firstgid="385" name="marble" tilewidth="32" tileheight="32">
+ <tileset firstgid="384" name="marble" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/marble.png"/>
  </tileset>
- <tileset firstgid="386" name="church" tilewidth="32" tileheight="32">
+ <tileset firstgid="385" name="church" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/church.png"/>
  </tileset>
- <tileset firstgid="442" name="imperial" tilewidth="32" tileheight="32">
+ <tileset firstgid="441" name="imperial" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
  </tileset>
  <layer name="0_floor" width="14" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGC4BsQqjMThSwwI8AqILRiJw8+Q9P0D4kZG4vCvUX2j+uisz48RgQnpi2CE
-6AEAgmOBB0gDAAA=
+   H4sIAAAAAAAAAGNgYGC4BsQqjMThSwwI8AqILRiJw8+Q9P0D4gZG4vCvUX2j+uisz48RgQnpi2CE6AEAX3JXCUgDAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="14" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtlIB2kQjEp4BmZ+rDZt4YRQscD6WQoTmJElcPnzhSgmlQoTmPElKeWOynVl8uI
-nU0r+0jVtwaLm7DJDbQ7SdV3Gg0fhMrvxyJ3GqoHADlCXDBIAwAA
+   H4sIAAAAAAAAAEtlIB2kQjEp4BmZ+rDZt5oRQscD6WQoTmJElcPnzhSgmlQoTmPElKeWOynVl8uInU0r+0jVtxqLm7DJDbQ7SdV3Gg0fhMrvxyJ3GqoHAPVEypRIAwAA
   </data>
  </layer>
  <layer name="2_object" width="14" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtiIB0UAnHRINFXy8jAUMdIP/tG9Q1/fVeB+AoSRgZX0PBlqD4AubzjxEgDAAA=
+   H4sIAAAAAAAAACtiIB0UAnHRINFXw8jAUMtIP/tG9Q1/fVeB+AoSRgZX0PBlqD4ACyYtn0gDAAA=
   </data>
  </layer>
  <layer name="3_roof" width="14" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC6oZ2RgqGIkTu0cJHXVQHYNI3a5oQ4ykfySPQj9hS+sh1M80BIAAIavlexI
-AwAA
+   H4sIAAAAAAAAAGNgoC6oY2RgqGQkTu1sJHVVQHY1I3a5oQ4ykfySPQj9hS+sh1M80BIAAPbGW/BIAwAA
   </data>
  </layer>
  <layer name="objects" width="14" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXEgGOMA+0CCDg8SNxBLTBYwpUQKCbgTgD/NLNMSAMAAA==
+   H4sIAAAAAAAAAGNgGAXEgKOMA+0CCDg0SNxBLTBYwpUQKCbgTgCf6ZO5SAMAAA==
   </data>
  </layer>
  <layer name="collision" width="14" height="15" opacity="0.47">

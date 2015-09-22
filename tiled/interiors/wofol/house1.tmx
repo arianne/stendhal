@@ -42,23 +42,22 @@
  </tileset>
  <layer name="0_floor" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNnYGBwH8WDBgMAdYJZXZABAAA=
+   H4sIAAAAAAAAAGNmYGBgHsWDBgMAyAqMIJABAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNlYGDwIoD9gNgHiF2BOAAHdgNib6g6kHpcwHcYqnMHYn8oBoWRG5KYB1QdiO2J
-hD2gtBeSGCgcAYYyA22QAQAA
+   H4sIAAAAAAAAAONjYGDgJoD5gZgXiIWAWBYHFgZiHqg6aQbcQGoYqhMBYhkolgNieSBWgPJFoeoEgJgLCSsCsRIQKyOJCQIxAGNy5TqQAQAA
   </data>
  </layer>
  <layer name="2_object" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA1wBWI3JDYpwJ1Ce4mxD9l9hNziQYF7SAUAXIbcRJABAAA=
+   H4sIAAAAAAAAAGNgoA3QAmJtKNuIRL0WFNhrCMQ6RKjTBWI9ItTpA7EBBe4hFQAA7mvjs5ABAAA=
   </data>
  </layer>
  <layer name="objects" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL7AcwjaCwDbSrTpkAEAAA==
+   H4sIAAAAAAAAAGNgGL7AdoDsdaJALwAsACNkkAEAAA==
   </data>
  </layer>
  <layer name="collision" width="10" height="10" opacity="0.52">

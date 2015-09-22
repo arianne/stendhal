@@ -34,16 +34,16 @@
  <tileset firstgid="78" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="108" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="115" name="huge_animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="113" name="huge_animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset firstgid="128" name="stairs.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="126" name="stairs.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset firstgid="140" name="blood/floor_stain.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="130" name="blood/floor_stain.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/floor_stain.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="18">
@@ -53,15 +53,12 @@
  </layer>
  <layer name="1_terrain" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SNw6AMAyFYR+B3hfKSueYOTRvcCQGD8ReGLD0KdsvS85ERI3RCB1csCmd0HJn
-If3MAR3H3nQiiAVJ4D4pZA+O39zY8f6OruP/gdTxN7LsU0ApqAI72vly54BVaefOALVRDzcRBN4y
-EAUAAA==
+   H4sIAAAAAAAAAO3SNw6AMAyFYR+B3hfKSueEOTlvcCQGD8ReGLD0KdsvS85ERI3RCB1csCmd0HJnIf3MAR3H3nQiiAVJ4D4pZA+O39zY8f6OruP/gdTxN7LsU0ApqAI72vly54BVaefOALVRDzdUuzF7EAUAAA==
   </data>
  </layer>
  <layer name="2_object" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC6wBWI7ILan0BwHIHYEYidKHYQHuACxKw3NJwTcgNh9AO0fBQjgTKbcUAX8
-OMRhfkVOmz1A3IDHHFxmDUUAAANm5moQBQAA
+   H4sIAAAAAAAAAGNgoC6wBWI7ILan0BwHIHYEYidKHYQHuACxKw3NJwTcgNh9AO0fBQjgTKbcUAX8OMRhfkVOm01AXIfHHFxmDUUAAMN+IuMQBQAA
   </data>
  </layer>
  <layer name="3_roof" width="18" height="18">
@@ -71,8 +68,7 @@ OMRhfkVOmz1A3IDHHFxmDUUAAANm5moQBQAA
  </layer>
  <layer name="objects" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXRA+0ACkEFnexJoJM9gw3E08BMPxzi5KbFBDL1EQsKaGz+YAEAanRCmRAF
-AAA=
+   H4sIAAAAAAAAAGNgGAXRA+0ACkEZnexJoJM9gw3E08BMPxzi5KbFBDL1EQvyaGz+YAEA6ZK6MBAFAAA=
   </data>
  </layer>
  <layer name="collision" width="18" height="18" opacity="0.52">

@@ -45,30 +45,27 @@
  </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMtnYGDIH8WjeBQPGAYA7xi0QIQDAAA=
+   H4sIAAAAAAAAAGNiYGBgGsWjeBQPGAYASiKnxoQDAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtkYGDIJwNXAHEhEFcCcSkJGKSvAKq3mIE0UDSqd1QvjfWWA3EJGs5jgKT5Aixy
-ZVA95VB16LgKiKuBuAaHPEg/ACkK8RqEAwAA
+   H4sIAAAAAAAAANNjYGBQIQPrArEaEEsBsRgJWBKIVaF6RRhIA8Kjekf10livBBCLomFjIDYBYlMscuJAzAPEOkCsjAXbA7EDEDvikNcGYgCqbTZshAMAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAV5UEwuyMcilodDHF1fARZxkFghDj3YzCXGLkr1YgPY9BEbFvRwM7n+IsVe
-bPFH7XCmBshDwwMNACYMCMGEAwAA
+   H4sIAAAAAAAAAGNgQAUpQBzOQD6IwCKWCsRpBPRlAXEkFvF0IM7AoScJiJOJEKO2XmwgC4tYDpXtpUQvNvcRC4i1N5cCvfQEmWh4oAEAIp0fNYQDAAA=
   </data>
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFygiAw9eVQyh56gcID0UhsMF38QArRMTwBj+tSLhAMAAA==
+   H4sIAAAAAAAAAGNgGFygiAw9eVQyh56gcID0UhsMF38QAnE0NBsAzAO6JYQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMtjYGDIG0BMCCCrI8YMXOZSUy8udxJr52BxMy5Arr3U9i8lbiZFLbHplFZ5AABm
-8oSwhAMAAA==
+   H4sIAAAAAAAAAEtkYGBIHEBMCCCrI8YMXOZSUy8udxJr52BxMy5Arr3U9i8lbiZFLbHplFZ5AADQdLEQhAMAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

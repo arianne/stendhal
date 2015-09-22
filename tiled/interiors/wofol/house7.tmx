@@ -48,35 +48,32 @@
  </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACthYGAoGcWjeBQPGAYAskbqjoQDAAA=
+   H4sIAAAAAAAAAGNkYGBgHMWjeBQPGAYAv/M/3IQDAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGAoJQPXAXE5ENcDcTUJGKSvDKq3kgE/KEGyD6SnggS96GBU76heYvTWAnEV
-GoalwzIscjVQPbVQdei4AYgbgbgJhzxIPwCmXrREhAMAAA==
+   H4sIAAAAAAAAANNjYGBQIQPrArEaEEsBsRgJWBKIVaF6RRjwgxggjoXiOCAWJkEvOhjVO6qXGL0SQCyKho2B2ASITbHIiQMxDxDrALEyFmwPxA5A7IhDXhuIAbumXneEAwAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIAyBuJACZHqqAFAdpVCMbHuoweoGWgHIIESBuLiBBaW6GLDAQym+CAHAADr
-xmMLhAMAAA==
+   H4sIAAAAAAAAAGNggIBoBuJAJJHqqAHigTgWiuPoaC8hkDnQDkAC4UAcQYS6IiAuRhMjRt9QAIMpPsgBABnoClGEAwAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLqgjAK9lVRzxSiAgdH4IA8AAEvA/EuEAwAA
+   H4sIAAAAAAAAAGNgGLogmQK9aVRzxSiAgdH4IA8AAMA5QDKEAwAA
   </data>
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjCZQMtAOGKKigodkAYqsynoQDAAA=
+   H4sIAAAAAAAAAGNgGAUjCZQMtAOGKMijodkAlVS9JIQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACthYGAoGUCMD1Cil5BZlOglRT+t3YxPnFx3D5ZwJlcfNeIXm3m0ygMAdSmvSIQD
-AAA=
+   H4sIAAAAAAAAACtkYGAoHECMD1Cil5BZlOglRT+t3YxPnFx3D5ZwJlcfNeIXm3m0ygMAPfBuMYQDAAA=
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

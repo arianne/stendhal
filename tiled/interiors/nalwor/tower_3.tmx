@@ -13,58 +13,52 @@
  <tileset firstgid="32" name="../../tileset/building/stairs/stairs.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset firstgid="44" name="../../tileset/building/decoration/fancy_gate.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="36" name="../../tileset/building/decoration/fancy_gate.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fancy_gate.png"/>
  </tileset>
- <tileset firstgid="50" name="../../tileset/building/decoration/rocks_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="../../tileset/building/decoration/rocks_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/rocks_2.png"/>
  </tileset>
- <tileset firstgid="52" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="44" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="53" name="../../tileset/furniture/carpet/rug_border.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="../../tileset/furniture/carpet/rug_border.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset firstgid="62" name="../../tileset/furniture/carpet/plain_colours.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="54" name="../../tileset/furniture/carpet/plain_colours.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset firstgid="72" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBrAmUI8at6oeaPmjZo3VM0brAAAitBm7kAGAAA=
+   H4sIAAAAAAAAAGNgGBrAmkI8at6oeaPmjZo3VM0brAAA8Y1vLUAGAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3MKw6AMBBAwYVAgiFg+JZr8If7X4snqioQ28oVYycTkTyRAiUm9JFmVP4bsWJT
-2jEE34FT6bLPPvvs+/luPEpv8Dl0kRb/1WgSafEBkFmickAGAAA=
+   H4sIAAAAAAAAAO3MKw6AMBBAwYVAgiFg+JYr8If7X40nqioQ28oVYycTkTyRAiUm9JFmVP4bsWJT2jEE34FT6bLPPvvs+/luPEpv8Dl0kRb/1WgSafEBTFOTRUAGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBrAaKAdQAAoUtk8fSA2wIMNkdQSEzakhB+1w5oY80D+NUTj4/M/rrDAZacR
-EiYH4NJHjbCC+RWbP4gF2PxLCcAVfjCAHj/kuB2bG7HFkRIZZuMzjxKA7G9DKptPbhqVBWI5KJan
-kluIBQByLwH7QAYAAA==
+   H4sIAAAAAAAAAGNgGBpAa6AdQAAoUtk8dSDWwIM1kdQSEzakhB+1w5oY80D+1UTj4/M/rrDAZacWEiYH4NJHjbCC+RWbP4gF2PxLCcAVfjCAHj/kuB2bG7HFkRIZZuMzjxKA7G9NKptPbhqVBWI5KJankluIBQDaoj1AQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUADpArIsH6w2c02gCQP7VQ+Pj8/9wCguYX4eSP9DjZyi5nRKA7O+R4md6
-AgA8Hp/SQAYAAA==
+   H4sIAAAAAAAAAGNgGAXUACpArIoHqw2c02gCQP5VQ+Pj8/9wCguYX4eSP9DjZyi5nRKA7O+R4md6AgCcs39qQAYAAA==
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHrAn0h1HjR1BfHAa6AdMAqwAmLTES0AJWlzIN1NDUBMfhgseZcSMNTjiRgA
-AJjpIoxABgAA
+   H4sIAAAAAAAAAGNgGHrAnUh1DrR0BAnAaaAdMAqwAmLTES2AAwV6B9Ld1ADE5AcHWjuCDmCoxxMxAAAujkn+QAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNhYGAwGSKYEkBNs+hhHinhgc1+SsKPGPNIAcS6D91P1EwvpLqd2PAj1zxK3EaM
-+8iJI2LcSKp6UsMOl3pK0jItzKNFWUWNNE9vDAAiDXT8QAYAAA==
+   H4sIAAAAAAAAANNhYGDQGSKYEkBNs+hhHinhgc1+SsKPGPNIAcS6D91P1EwvpLqd2PAj1zxK3EaM+8iJI2LcSKp6UsMOl3pK0jItzKNFWUWNNE9vDADmfQsaQAYAAA==
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

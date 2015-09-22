@@ -59,22 +59,17 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXSPwrCMBTH8QQcdbDWPzios3oON8EbiEcQD+Umbu5FQRcFvYaCLgq6+C1NIYQ0
-MYMPPpRH+PUlJFshxA6zQHsccMQJ80BnXLDGElJC2EtaFlZYaHlfSWXkyNcQo406Slp+orjmN9BU
-Wp79mPkqooJvWmVUNKHn983Pa6y4Kr0PW17P+f7xa35q5PL+H+c3Z4XOj9Q7jYsesmX+FTds0CHX
-RU9mvcsdDzzxQoI+uQGGMutd3vjgC1Y9tagABAAA
+   H4sIAAAAAAAAALXSPwrCMBTH8QQcdbDWPzios3oON8EbiEcQD+Umbu5FQRcFvYaCLgq6+C1NIYQ0MYMPPpRH+PUlJFshxA6zQHsccMQJ80BnXLDGElJC2EtaFlZYaHlfSWXkyNcQo406Slp+orjmN9BUWp79mPkqooJvWmVUNKHn983Pa6y4Kr0PW17P+f7xa35q5PL+H+c3Z4XOj9Q7jYsesmX+FTds0CHXRU9mvcsdDzzxQoI+uQGGMutd3vjgC1Y9tagABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBJgJFMOCpiAatzxyFEKAqGYlkAAiPmRaGoDHiRMEaAwPPHFhzkQW1BgtiUQ
-W6GJRSJhckAUEEcDcQyZ+gfafloCAB6CccsABAAA
+   H4sIAAAAAAAAAGNgoBJgJFMOCpiAatzxyFEKAqGYlkAAiPmRaGoDHiRMEaAwPPHFhzkQW1BgtiUQW6GJRSJhckAUEEcDcQyZ+gfafloCAB6CccsABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA5gZsQtx4pHjlTgTD2jMIA2EBsBsRoQq6PJsaFhdMCPRUwASZwTDQ8kYKdi
-fBACcQT4tLSL3vYLQcNVhMzwlYPqUyBTvxZQnzYQ65CgHwD4YZDnAAQAAA==
+   H4sIAAAAAAAAAGNgoA5gZsQtx4pHjlTgTD2jMIA2EBsBsRoQq6PJsaFhdMCPRUwASZwTDQ8kYKdifBACcQT4tLSL3vYLQcNVhMzwlYPqUyBTvxZQnzYQ65CgHwD4YZDnAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -89,8 +84,7 @@ fBACcQT4tLSL3vYLQcNVhMzwlYPqUyBTvxZQnzYQ65CgHwD4YZDnAAQAAA==
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNlYGBgHUQYG8AmTow+fGZh08+Kpg6fubj0E+smUsOEnHAjxX5K9NLSfmLDgxr2
-E5POaGU/KXFNTQwAUWhr+QAEAAA=
+   H4sIAAAAAAAAAGNlYGBgHUQYG8AmTow+fGZh08+Kpg6fubj0E+smUsOEnHAjxX5K9NLSfmLDgxr2E5POaGU/KXFNTQwAUWhr+QAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
