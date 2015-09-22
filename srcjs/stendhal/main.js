@@ -88,7 +88,11 @@ stendhal.main = {
 	registerBrowserEventHandlers: function() {
 		var gamewindow = document.getElementById('gamewindow');
 		if (gamewindow) {
+			gamewindow.setAttribute("draggable", true);
 			gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
+			gamewindow.addEventListener("dragstart", stendhal.ui.gamewindow.onDragStart);
+			gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
+			gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		}
 	},
 

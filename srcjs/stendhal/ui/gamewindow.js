@@ -135,19 +135,12 @@ stendhal.ui.gamewindow = {
 		this.offsetY = Math.round(centerY);
 		this.ctx.translate(-this.offsetX, -this.offsetY);
 	},
-
-	onclick: function(e) {
-		stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX, 
-				e.offsetY + stendhal.ui.gamewindow.offsetY).onclick(e.offsetX, e.offsetY);
-		document.getElementById("chatbar").focus();
-	},
 	
-	// Mouse handling
+	// Mouse click handling
 	onMouseDown: (function() {
-		var draggedEntity;
+		var entity;
 		var startX;
 		var startY;
-		var inTrueDrag = false;
 		
 		function _onMouseDown(e) {
 			e.srcElement.addEventListener("mousemove", onDrag);
@@ -155,65 +148,67 @@ stendhal.ui.gamewindow = {
 			startX = e.offsetX;
 			startY = e.offsetY;
 			
-			// Drags outside the game area can confuse the state, and leave
-			// garbage behind for the next click
-			inTrueDrag = false;
-			
 			var x = e.offsetX + stendhal.ui.gamewindow.offsetX;
 			var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
-			var entity = stendhal.zone.entityAt(x, y);
-			// Not really necessarily dragged, or anything that can be dragged, but
-			// a potential dragged object
-			draggedEntity = entity;
+			entity = stendhal.zone.entityAt(x, y);
 		}
 		
 		function onMouseUp(e) {
-			// Drags outside the game area can confuse the state, and a click
-			// can i
-			if (inTrueDrag) {
-				var action = {
-					"type": "drop",
-					"source_path": draggedEntity.getIdPath(),
-					"x": Math.floor((e.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
-					"y": Math.floor((e.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
-					"zone" : marauroa.currentZoneName
-				};
-				marauroa.clientFramework.sendAction(action);
-			} else {
-				// It was a click rather than a drag
-				e.srcElement.removeEventListener("mousemove", onDrag);
-				draggedEntity.onclick(e.offsetX, e.offsetY);
-			}
-			e.srcElement.removeEventListener("mouseup", onMouseUp);
-			cleanUp();
+			entity.onclick(e.offsetX, e.offsetY);
+			cleanUp(e);
 		}
 		
 		function onDrag(e) {
 			var xDiff = startX - e.offsetX;
 			var yDiff = startY - e.offsetY;
-			// // The mouse has moved a bit. Check if it's something that can
-			// be dragged, or just forget about it.
+			// It's not really a click if the mouse has moved too much.
 			if (xDiff * xDiff + yDiff * yDiff > 5) {
-				if (draggedEntity.type === "item") {
-					// Start a real drag
-					inTrueDrag = true;
-				} else {
-					// Nothing that can be dragged, and it's not a click either.
-					// We are not interested in mouseup anymore.
-					e.srcElement.removeEventListener("mouseup", onMouseUp);
-					cleanUp();
-				}
-				// Not needed anymore
-				e.srcElement.removeEventListener("mousemove", onDrag);
+				cleanUp(e);
 			}
 		}
 		
-		function cleanUp() {
-			draggedEntity = null;
-			inTrueDrag = false;
+		function cleanUp(e) {
+			entity = null;
+			e.srcElement.removeEventListener("mouseup", onMouseUp);
+			e.srcElement.removeEventListener("mousemove", onDrag);
 			document.getElementById("chatbar").focus();
 		}
 		
 		return _onMouseDown;
 	})(),
+	
+	// ***************** Drag and drop ******************
+	onDragStart: function(e) {
+		var draggedEntity = stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX,
+				e.offsetY + stendhal.ui.gamewindow.offsetY);
+		if (draggedEntity.type === "item") {
+			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
+			e.dataTransfer.setData("text/x-stendhal-item", draggedEntity.getIdPath());
+		} else {
+			e.preventDefault();
+		}
+	},
+	
+	onDragOver: function(e) {
+		e.preventDefault(); // Necessary. Allows us to drop.
+		e.dataTransfer.dropEffect = "move";
+		return false;
+	},
+	
+	onDrop: function(e) {
+		var data = e.dataTransfer.getData("text/x-stendhal-item");
+		if (data) {
+			var action = {
+				"type": "drop",
+				"source_path": data,
+				"x": Math.floor((e.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
+				"y": Math.floor((e.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
+				// FIXME: This is not necessarily true. What to do when the drag
+				// started on previous zone?
+				// "zone" : marauroa.currentZoneName
+			};
+			marauroa.clientFramework.sendAction(action);
+		}
+		e.stopPropagation();
+	}
 };
