@@ -169,7 +169,8 @@ stendhal.ui.window.container = {
 	onDragStart: function(e) {
 		var item = this.getItem(e.offsetX, e.offsetY);
 		if (item) {
-			e.dataTransfer.setDragImage(stendhal.data.sprites.get(item.sprite.filename), 0, 0);
+			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
+			e.dataTransfer.setDragImage(img, 0, 0);
 			e.dataTransfer.setData("text/x-stendhal-item", item.getIdPath());
 		} else {
 			e.preventDefault();

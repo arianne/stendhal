@@ -182,7 +182,8 @@ stendhal.ui.gamewindow = {
 		var draggedEntity = stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX,
 				e.offsetY + stendhal.ui.gamewindow.offsetY);
 		if (draggedEntity.type === "item") {
-			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
+			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
+			e.dataTransfer.setDragImage(img, 0, 0);
 			e.dataTransfer.setData("text/x-stendhal-item", draggedEntity.getIdPath());
 		} else if (draggedEntity.type === "corpse") {
 			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
