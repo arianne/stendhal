@@ -197,7 +197,15 @@ stendhal.ui.window.container = {
 		var y = Math.floor(yOffset / 40);
 		var idx = y * this.width + x;
 		if (this.object.hasOwnProperty(this.slotName)) {
-			return this.object[this.slotName][idx];
+			var cnt = 0;
+			for (var i in this.object[this.slotName]) {
+				if (!isNaN(i)) {
+					if (idx === cnt) {
+						return this.object[this.slotName][i];
+					}
+					cnt++;
+				}
+			}
 		}
 		return null;
 	},
