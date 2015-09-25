@@ -15,13 +15,14 @@ window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 stendhal.ui.sound = {
-	playEffect: function(soundName) {
+	playEffect: function(soundName, volume) {
 		if (!stendhal.config.sound.play) {
 			return;
 		}
 
 		var sound = new Audio();
 		sound.autoplay = true;
+		sound.volume = volume;
 		sound.src = "/data/sounds/" + soundName + ".ogg";
 	}
-}
+};
