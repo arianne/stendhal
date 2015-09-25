@@ -42,22 +42,26 @@ stendhal.ui.equip = {
 			}
 		}
 	}
-}
+};
 
-stendhal.ui.bag = {
-	update: function() {
-		stendhal.ui.itemContainerWindow.render("bag", 12);
-	}
-}
-
-stendhal.ui.keyring = {
-	update: function() {
-		stendhal.ui.itemContainerWindow.render("keyring", 8);
-	}
-}
-
-stendhal.ui.itemContainerWindow = {
-	render: function(name, size) {
+stendhal.ui.ItemContainerWindow = function(name, size) {
+	var initialized = false;
+	
+	this.update = function() {
+		if (!initialized) {
+			for (var i = 0; i < size; i++) {
+				var e = document.getElementById(name + i);
+				e.setAttribute("draggable", true);
+				e.addEventListener("dragstart", onDragStart);
+				e.addEventListener("dragover", onDragOver);
+				e.addEventListener("drop", onDrop);
+			}
+			initialized = true;
+		}
+		render(name, size);
+	};
+	
+	function render(name, size) {
 		var cnt = 0;
 		for (var i in marauroa.me[name]) {
 			if (!isNaN(i)) {
@@ -76,7 +80,64 @@ stendhal.ui.itemContainerWindow = {
 			e.dataItem = null;
 		}
 	}
+	
+	/**
+	 * Look up an item by slot number.
+	 * 
+	 * @param slotNum number of the visible slot
+	 * @return item if there is one in the visible slot, otherwise undefined
+	 */
+	function findItem(slotNum) {
+		var cnt = 0;
+		slotNum = parseInt(slotNum);
+		for (var i in marauroa.me[name]) {
+			if (!isNaN(i)) {
+				if (slotNum === cnt) {
+					return marauroa.me[name][i];
+				}
+				cnt++;
+			}
+		}
+	}
+	
+	function onDragStart(e) {
+		var slotNumber = e.target.id.slice(name.length);
+		var item = findItem(slotNumber);
+		if (item) {
+			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
+			e.dataTransfer.setDragImage(img, 0, 0);
+			e.dataTransfer.setData("text/x-stendhal-item", item.getIdPath());
+		} else {
+			e.preventDefault();
+		}
+	}
+	
+	function onDragOver(e) {
+		e.preventDefault();
+		e.dataTransfer.dropEffect = "move";
+		return false;
+	}
+	
+	function onDrop(e) {
+		var data = e.dataTransfer.getData("text/x-stendhal-item");
+		if (data) {
+			var targetPath = "[" + marauroa.me.id + "\t" + name + "]";
+			var action = {
+				"type": "equip",
+				"source_path": data,
+				"target_path": targetPath,
+				// FIXME: This is not necessarily true. What to do when the drag
+				// started on previous zone?
+				// "zone" : marauroa.currentZoneName
+			};
+			marauroa.clientFramework.sendAction(action);
+		}
+		e.stopPropagation();
+	}
 }
+
+stendhal.ui.bag = new stendhal.ui.ItemContainerWindow("bag", 12);
+stendhal.ui.keyring = new stendhal.ui.ItemContainerWindow("keyring", 8);
 
 stendhal.ui.window = {};
 stendhal.ui.window.container = {
