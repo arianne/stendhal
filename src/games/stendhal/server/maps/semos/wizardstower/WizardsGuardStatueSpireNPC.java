@@ -14,7 +14,16 @@ package games.stendhal.server.maps.semos.wizardstower;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -50,10 +59,10 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				addReply(Arrays.asList("store", "storekeeper"),
 				        "I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 
-//				addReply("special",
-//				        "For example I can create a #rift #cloak. I could read in your mind, adventurer. But it is not allowed to me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
 				addReply("special",
-				        "I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
+				        "For now I can create a #Demon #Fire #Swords, and #Enhanced #Lion #Shields. I could read in your mind, adventurer, but it is not allowed of me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
+//				addReply("special",
+//				        "I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
 
 				addReply(Arrays.asList("wizard", "wizards"),
 				        "Seven wizards form the wizards circle. These are #Erastus, #Elana, #Ravashack, #Jaer, #Cassandra, #Silvanus and #Malleus");
@@ -64,6 +73,88 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				addReply("cassandra", "Cassandra is a beautiful woman, but foremost a powerful sorceress. Cassandra's domain is Water and she can be cold like ice to achieve her aim.");
 				addReply("silvanus", "Silvanus is a sage druid and perhaps the eldest of all elves. He is a friend of all animals, trees, fairy creatures and ents. His domain is Earth and Nature.");
 				addReply("malleus", "Malleus is the powerful archetype of a magician and the master of destructive magics. His domain is Fire and he rambled the plains of demons for ages, to understand their ambitions.");
+				
+				//behavior for enhancing lion shield
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("enhanced lion shield", "shields"),
+						ConversationStates.INFORMATION_1,
+					    "I can turn a plate shield into an enhanced lion shield with iron, but I need eight pieces of iron and the shield to do that. Do you want an enhanced lion shield?",
+					    null);
+				add(ConversationStates.INFORMATION_1, 
+						ConversationPhrases.YES_MESSAGES,
+						new AndCondition(
+								new NotCondition(new PlayerHasItemWithHimCondition("iron", 8)),
+								new PlayerHasItemWithHimCondition("plate shield", 1)),
+						ConversationStates.ATTENDING,
+						"You don't have enough Iron, I will need 8 iron bars and a plate shield.",
+						null);
+				add(ConversationStates.INFORMATION_1, 
+						ConversationPhrases.YES_MESSAGES,
+						new AndCondition(
+								new NotCondition(new PlayerHasItemWithHimCondition("plate shield", 1)),
+								new PlayerHasItemWithHimCondition("iron", 8)),
+						ConversationStates.ATTENDING,
+						"You do not have a shield for me to enhance, I will need 8 iron bars and a plate shield.",
+						null);
+				add(ConversationStates.INFORMATION_1, 
+						ConversationPhrases.YES_MESSAGES,
+						new AndCondition(
+								new PlayerHasItemWithHimCondition("iron", 8),
+								new PlayerHasItemWithHimCondition("plate shield", 1)),
+						ConversationStates.ATTENDING,
+						"There is your enhanced lion shield.",
+						new MultipleActions(
+							new DropItemAction("iron", 8),
+							new DropItemAction("plate Shield", 1),
+							new EquipItemAction("enhanced lion shield", 1, true),
+							new IncreaseXPAction(250)));
+					add(ConversationStates.INFORMATION_1, 
+						ConversationPhrases.NO_MESSAGES, 
+						null,
+						ConversationStates.ATTENDING,
+						"Fine. Just tell me when you want an enhanced lion shield.", 
+						null);
+					
+					//behavior for forging a demon fire sword
+					add(ConversationStates.ATTENDING,
+							Arrays.asList("demon fire sword", "swords"),
+							ConversationStates.INFORMATION_1,
+						    "I can craft for you a Demon Fire Sword if you can procure a Demon Sword and a Fire Sword.",
+						    null);
+					add(ConversationStates.INFORMATION_1, 
+							ConversationPhrases.YES_MESSAGES,
+							new AndCondition(
+									new NotCondition(new PlayerHasItemWithHimCondition("fire sword", 1)),
+									new PlayerHasItemWithHimCondition("demon sword", 1)),
+							ConversationStates.ATTENDING,
+							"You don't have a Fire Sword, I need both a Demon Sword and a Fire Sword.",
+							null);
+					add(ConversationStates.INFORMATION_1, 
+							ConversationPhrases.YES_MESSAGES,
+							new AndCondition(
+									new NotCondition(new PlayerHasItemWithHimCondition("demon sword", 1)),
+									new PlayerHasItemWithHimCondition("fire sword", 1)),
+							ConversationStates.ATTENDING,
+							"You don't have a Demon Sword, I need both a Fire Sword and a Demon Sword.",
+							null);
+					add(ConversationStates.INFORMATION_1, 
+							ConversationPhrases.YES_MESSAGES,
+							new AndCondition(
+									new PlayerHasItemWithHimCondition("demon sword", 1),
+									new PlayerHasItemWithHimCondition("fire sword", 1)),
+							ConversationStates.ATTENDING,
+							"There is your Demon Fire Sword.",
+							new MultipleActions(
+								new DropItemAction("demon sword", 1),
+								new DropItemAction("fire sword", 1),
+								new EquipItemAction("demon fire sword", 1, true),
+								new IncreaseXPAction(550)));
+						add(ConversationStates.INFORMATION_1, 
+							ConversationPhrases.NO_MESSAGES, 
+							null,
+							ConversationStates.ATTENDING,
+							"Fine. Just tell me when you want to forge a Demon Fire Sword.", 
+							null);
 
 /**				// behavior on special item BLANK SCROLL
 				add(ConversationStates.ATTENDING,
