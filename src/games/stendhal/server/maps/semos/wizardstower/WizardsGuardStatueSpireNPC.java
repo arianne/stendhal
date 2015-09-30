@@ -60,7 +60,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				        "I can create #special items with the materials from the store. Just tell me what you want, but for most items I will need extra ingredients.");
 
 				addReply("special",
-				        "For now I can create a #Demon #Fire #Swords, and #Enhanced #Lion #Shields. I could read in your mind, adventurer, but it is not allowed of me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
+				        "For now I can create #Demon #Fire #Swords, and #Enhanced #Lion #Shields. I could read in your mind, adventurer, but it is not allowed of me here. So you have to tell me which special item you want and I will tell you, if I can help you.");
 //				addReply("special",
 //				        "I am sorry, now is not the time. Try again in some weeks, and I may be ready to help you.");
 
@@ -76,7 +76,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 				
 				//behavior for enhancing lion shield
 				add(ConversationStates.ATTENDING,
-						Arrays.asList("enhanced lion shield", "shields"),
+						Arrays.asList("enhanced lion shield", "shields", "shield"),
 						ConversationStates.INFORMATION_1,
 					    "I can turn a plate shield into an enhanced lion shield with iron, but I need eight pieces of iron and the shield to do that. Do you want an enhanced lion shield?",
 					    null);
@@ -117,9 +117,9 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 					
 					//behavior for forging a demon fire sword
 					add(ConversationStates.ATTENDING,
-							Arrays.asList("demon fire sword", "swords"),
+							Arrays.asList("demon fire sword", "swords", "sword"),
 							ConversationStates.INFORMATION_1,
-						    "I can craft for you a Demon Fire Sword if you can procure a Demon Sword and a Fire Sword.",
+						    "I can craft for you a demon fire sword if you can procure a demon sword and a fire sword.",
 						    null);
 					add(ConversationStates.INFORMATION_1, 
 							ConversationPhrases.YES_MESSAGES,
@@ -127,7 +127,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 									new NotCondition(new PlayerHasItemWithHimCondition("fire sword", 1)),
 									new PlayerHasItemWithHimCondition("demon sword", 1)),
 							ConversationStates.ATTENDING,
-							"You don't have a Fire Sword, I need both a Demon Sword and a Fire Sword.",
+							"You don't have a fire sword, I need both a demon sword and a fire sword.",
 							null);
 					add(ConversationStates.INFORMATION_1, 
 							ConversationPhrases.YES_MESSAGES,
@@ -135,7 +135,7 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 									new NotCondition(new PlayerHasItemWithHimCondition("demon sword", 1)),
 									new PlayerHasItemWithHimCondition("fire sword", 1)),
 							ConversationStates.ATTENDING,
-							"You don't have a Demon Sword, I need both a Fire Sword and a Demon Sword.",
+							"You don't have a demon sword, I need both a fire sword and a demon sword.",
 							null);
 					add(ConversationStates.INFORMATION_1, 
 							ConversationPhrases.YES_MESSAGES,
@@ -148,12 +148,12 @@ public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 								new DropItemAction("demon sword", 1),
 								new DropItemAction("fire sword", 1),
 								new EquipItemAction("demon fire sword", 1, true),
-								new IncreaseXPAction(550)));
+								new IncreaseXPAction(11250)));
 						add(ConversationStates.INFORMATION_1, 
 							ConversationPhrases.NO_MESSAGES, 
 							null,
 							ConversationStates.ATTENDING,
-							"Fine. Just tell me when you want to forge a Demon Fire Sword.", 
+							"Fine. Just tell me when you want to forge a demon fire sword.", 
 							null);
 
 /**				// behavior on special item BLANK SCROLL
