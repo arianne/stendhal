@@ -349,8 +349,8 @@ public class SpeakerNPC extends NPC {
 	 * @param playerChatTimeout
 	 *            the time, in seconds
 	 */
-	public void setPlayerChatTimeout(final long seconds) {
-		playerChatTimeout = secondsToTurns(seconds);
+	public void setPlayerChatTimeout(final long playerChatTimeout) {
+		this.playerChatTimeout = secondsToTurns(playerChatTimeout);
 	}
 
 	@Override
