@@ -156,32 +156,32 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		var x = this._x * 32 - 10;
 		var y = (this._y + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/choking.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/choking.png"), x, y - 10);
 		} else if (this.hasOwnProperty("eating")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/eat.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/eat.png"), x, y - 10);
 		}
 		// NPC and pet idea icons
 		if (this.hasOwnProperty("idea")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/ideas/" + this.idea + ".png"), x + 32 * this.width, y - this.drawHeight);
+			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/" + this.idea + ".png"), x + 32 * this.width, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("away")) {
-			drawAnimatedIcon("data/sprites/ideas/away.png", 1500, x + 32 * this.width, y - this.drawHeight);
+			drawAnimatedIcon("/data/sprites/ideas/away.png", 1500, x + 32 * this.width, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("grumpy")) {
-			drawAnimatedIcon("data/sprites/ideas/grumpy.png", 1000, x + 5, y - this.drawHeight);
+			drawAnimatedIcon("/data/sprites/ideas/grumpy.png", 1000, x + 5, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("last_player_kill_time")) {
-			drawAnimatedIconWithFrames("data/sprites/ideas/pk.png", 12, 300, x, y - this.drawHeight);
+			drawAnimatedIconWithFrames("/data/sprites/ideas/pk.png", 12, 300, x, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("poisoned")) {
-			drawAnimatedIcon("data/sprites/status/poison.png", 100, x + 32 * this.width - 10, y - this.drawHeight);
+			drawAnimatedIcon("/data/sprites/status/poison.png", 100, x + 32 * this.width - 10, y - this.drawHeight);
 		}
 		// NPC job icons
 		if (this.hasOwnProperty("job_healer")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/status/healer.png"), x, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/status/healer.png"), x, y - 10);
 		}
 		if (this.hasOwnProperty("job_merchant")) {
-			ctx.drawImage(stendhal.data.sprites.get("data/sprites/status/merchant.png"), x + 12, y - 10);
+			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/status/merchant.png"), x + 12, y - 10);
 		}
 	},
 	
