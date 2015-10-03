@@ -40,7 +40,7 @@ public class ReportErrorAction  implements ActionListener {
 		Object context = MDC.get("context");
 		MDC.remove("context");
 
-		logger.warn(player.getName() + " (" + username + "):"
+		logger.error(player.getName() + " (" + username + "):"
 		  + System.getProperty("line.separator")
 		  + action.get(TEXT).replaceAll("\r\n", System.getProperty("line.separator")));
 
