@@ -62,20 +62,16 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 
 	private static Map<String, String> anwsers = new HashMap<String, String>();
 	static {
-		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive you are experiencing?", "decompression sickness");
-		anwsers.put("fisherman Jacky",
-						"Don't mistake your trout for your old trout, she wouldn't taste so good.");
+		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive you are experiencing?", 
+				"decompression sickness");
 		anwsers.put("What percentage of air is oxygen? Just give me a number.",
 						"21");
-		anwsers.put("fisherman Sody",
-				"Devout Crustaceans believe in the One True Cod.");
 		anwsers.put("What are waves caused by?",
 						"wind");
 		anwsers.put("Most scuba diving injuries caused by fish and aquatic animals happen because?",
 						"They are a afraid of you.");
 		anwsers.put("You should never even consider diving if you currently have a cold because?",
 						"you may not be able to equalize pressure");
-		anwsers.put("fisherman Ally", "Holy mackerel! These chips are tasty.");
 	}
 
 

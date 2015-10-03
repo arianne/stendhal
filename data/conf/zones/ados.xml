@@ -1633,6 +1633,19 @@ in roaches.
       <attribute name="class">book_blue</attribute>
     </entity>
     
+    <entity x="28" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">
+THE DIVER'S HANDBOOK by N Moe
+Decompression Sickness - When nitrogen bubbles block blood flow in your body after a dive.
+It's not pleasant.
+Did you know that only 21 precent of the air we breath is oxygen?
+Most scuba diving injuries caused by fish and aquatic animals happen because they are afraid of you.
+You should never dive with a cold or severe allergy because, you may not be able to equalize pressure.
+      </attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
     <entity x="13" y="6">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">...Beauty is nothing other than the promise of happiness...</attribute>
