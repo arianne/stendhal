@@ -16,8 +16,10 @@ import static games.stendhal.common.constants.Actions.ANSWER;
 import static games.stendhal.common.constants.Actions.CHAT;
 import static games.stendhal.common.constants.Actions.EMOTE;
 import static games.stendhal.common.constants.Actions.GROUP_MESSAGE;
+import static games.stendhal.common.constants.Actions.REPORT_ERROR;
 import static games.stendhal.common.constants.Actions.SUPPORT;
 import static games.stendhal.common.constants.Actions.TELL;
+
 import games.stendhal.server.actions.CommandCenter;
 
 /**
@@ -34,7 +36,8 @@ public class ChatAction {
 		CommandCenter.register(CHAT, new PublicChatAction());
 		CommandCenter.register(EMOTE, new EmoteAction());
 		CommandCenter.register(GROUP_MESSAGE, new GroupMessageAction());
-		CommandCenter.register(SUPPORT, new AskForSupportAction());
+        CommandCenter.register(REPORT_ERROR, new ReportErrorAction());
+        CommandCenter.register(SUPPORT, new AskForSupportAction());
 		CommandCenter.register(TELL, new TellAction());
 	}
 }

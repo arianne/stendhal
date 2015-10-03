@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +12,10 @@
 package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TEXT;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.GameEvent;
@@ -20,10 +23,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.game.RPAction;
 import marauroa.server.game.container.PlayerEntryContainer;
 

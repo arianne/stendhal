@@ -120,7 +120,31 @@ stendhal.main = {
 				}
 			});
 		}
+	},
+	
+	onerror: function(error) {
+		
+		var text = error.message + "\r\n";
+		text += error.filename + ":" + error.lineno;
+		if (error.colno) {
+			text += ":" + error.colno;
+		}
+		if (error.error) {
+			text += "\r\n" + error.error.stack
+		}
+		try {
+			console.log(text);
+			var action = {
+				"type": "report_error",
+				"text": text,
+			};
+			marauroa.clientFramework.sendAction(action);
+		} catch (e) {
+			// ignore
+		}
+		return true;
 	}
 }
 
 document.addEventListener('WebComponentsReady', stendhal.main.startup);
+window.addEventListener('error', stendhal.main.onerror);
