@@ -21,6 +21,7 @@ import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
+import games.stendhal.server.entity.creature.PurpleDragon;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -208,6 +209,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("baby_dragon")) {
 			BabyDragon.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("purple_dragon")) {
+			PurpleDragon.generateRPClass();
 		}
 
 		// PassiveEntityRespawnPoint sub-class

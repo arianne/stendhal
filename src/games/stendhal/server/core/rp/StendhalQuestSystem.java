@@ -153,6 +153,7 @@ public class StendhalQuestSystem {
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());
+		loadQuest(new ScubaLicenseQuiz());
 		loadQuest(new SheepGrowing());
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());

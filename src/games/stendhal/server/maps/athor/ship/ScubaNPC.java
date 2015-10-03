@@ -43,10 +43,17 @@ public class ScubaNPC implements ZoneConfigurator  {
 
 			@Override
 			public void createDialog() {
-				addGreeting("*Sigh* eh... oh, ahoy!");
 				addGoodbye("So long...");
 				addHelp("Hm, maybe you'd like to go on an adventure?");
 				addJob("I'm an assistant on this ship.");
+				
+				//scuba gear phrases
+				addReply("scuba gear","You need scuba gear to explore the beautiful world below the sea.");
+				addReply("scuba","You need scuba gear to explore the beautiful world below the sea.");
+				addReply("gear","You need scuba gear to explore the beautiful world below the sea.");
+				
+				//quest phrases;
+				addReply("license","Do you want to get the diving license?");
 				add(ConversationStates.ATTENDING,
 						"status",
 						null,
@@ -64,8 +71,8 @@ public class ScubaNPC implements ZoneConfigurator  {
 
 			@Override
 			protected void onGoodbye(final RPEntity player) {
-				// Turn back to the wheel
-				setDirection(Direction.DOWN);
+				// Turn back to the sea.
+				setDirection(Direction.LEFT);
 			}	
 		};
 

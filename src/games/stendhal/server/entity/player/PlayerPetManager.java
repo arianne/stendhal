@@ -15,6 +15,7 @@ package games.stendhal.server.entity.player;
 import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Pet;
+import games.stendhal.server.entity.creature.PurpleDragon;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -74,6 +75,8 @@ public class PlayerPetManager {
 					return new Cat(object, player);
 				} else if (object.get("type").equals("baby_dragon")) {
 					return new BabyDragon(object, player);
+				} else if (object.get("type").equals("purple_dragon")) {
+					return new PurpleDragon(object, player);
 				}
 			}
 		}
