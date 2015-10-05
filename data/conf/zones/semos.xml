@@ -40,6 +40,12 @@
 
     <configurator
       class-name="games.stendhal.server.maps.semos.mountain.YellowCrystalNPC" />
+      
+      <entity x="28" y="27">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">trout</parameter>
+      </implementation>
+    </entity>
 
     <configurator
       class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
