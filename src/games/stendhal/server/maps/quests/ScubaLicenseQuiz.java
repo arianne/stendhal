@@ -111,7 +111,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.say("Do you know the anwser to my question, " + name + "?");
 						npc.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
-						npc.say("Welcome back!");
+						npc.say("Welcome aboard!");
 					}
 				}
 			});
@@ -139,7 +139,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 		instructor.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"Then I don't do you a favour, either.", null);
+			"Okay, diving is not for everyone, but don't hesitate to come back to me if you change your mind.", null);
 
 		instructor.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
@@ -148,7 +148,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = Rand.rand(anwsers.keySet());
-					npc.say("Please look up the famous quote by " + name + ".");
+					npc.say("Very well. Here is your question. " + name + ". Do you know the answer?");
 					player.setQuest(QUEST_SLOT, name);
 				}
 			});
@@ -176,6 +176,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 
 					if (answer.matchesFull(expected)) {
 						npc.say("Correct, well done! Here is your new diving license!");
+						//For now I'm just handing out scuba gear until there's a license to give.
 						final Item ScubaGear = SingletonRepository.getEntityManager().getItem("scuba gear");
 						ScubaGear.setBoundTo(player.getName());
 						player.equipOrPutOnGround(ScubaGear);

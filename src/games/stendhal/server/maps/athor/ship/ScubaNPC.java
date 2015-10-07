@@ -51,6 +51,8 @@ public class ScubaNPC implements ZoneConfigurator  {
 				addReply("scuba gear","You need scuba gear to explore the beautiful world below the sea.");
 				addReply("scuba","You need scuba gear to explore the beautiful world below the sea.");
 				addReply("gear","You need scuba gear to explore the beautiful world below the sea.");
+				//clue for the player.
+				addReply("study","Go to a library and check out the Diver's Handbook.");
 				
 				//quest phrases;
 				addReply("license","Do you want to get the diving license?");
