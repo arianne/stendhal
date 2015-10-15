@@ -239,6 +239,7 @@ public class Snowballs extends AbstractQuest {
 						final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
 						reward.setQuantity(20);
 						player.equipOrPutOnGround(reward);
+						player.addKarma(20.0);
 						player.notifyWorldAboutChanges();
 					}
 				});
