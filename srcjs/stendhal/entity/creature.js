@@ -27,5 +27,10 @@ marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFac
 				"target": "#" + this.id
 			};
 		marauroa.clientFramework.sendAction(action);
-	}
+	},
+	
+	// Overrides the one in creature
+	say: function (text) {
+		this.addSpeechBubble(text);
+	},
 });

@@ -81,9 +81,20 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	 * says a text
 	 */
 	say: function (text) {
+		this.addSpeechBubble(text);
 		if (!marauroa.me) {
 			return;
 		}
+		if (marauroa.me.isInHearingRange(this)) {
+			if (text.match("^!me") == "!me") {
+				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
+			} else {
+				stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
+			}
+		}
+	},
+	
+	addSpeechBubble: function(text) {
 		var x = this._x * 32 + 32;
 		var y = this._y * 32 - 16;
 		stendhal.ui.gamewindow.addTextSprite({
@@ -112,13 +123,6 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 				return Date.now() > this.timeStamp + 2000 + 20 * this.realText.length;
 			}
 		});
-		if (marauroa.me.isInHearingRange(this)) {
-			if (text.match("^!me") == "!me") {
-				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
-			} else {
-				stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
-			}
-		}
 	},
 
 	/**
