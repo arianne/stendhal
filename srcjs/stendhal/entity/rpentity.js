@@ -84,6 +84,34 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		if (!marauroa.me) {
 			return;
 		}
+		var x = this._x * 32 + 32;
+		var y = this._y * 32 - 16;
+		stendhal.ui.gamewindow.addTextSprite({
+			realText: (text.length > 30) ? (text.substring(0, 30) + "...") : text,
+			timeStamp: Date.now(),
+			draw: function(ctx) {
+				ctx.lineWidth = 2;
+				ctx.font = "14px Arial";
+				ctx.fillStyle = '#ffffff';
+				// get width of text
+				var width = ctx.measureText(this.realText).width + 8;
+				ctx.strokeStyle = "#000000";
+				ctx.strokeRect(x, y - 15, width, 20);
+				ctx.fillRect(x, y - 15, width, 20);
+				
+				ctx.beginPath();
+				ctx.moveTo(x, y);
+				ctx.lineTo(x - 5, y + 8);
+				ctx.lineTo(x + 1, y + 5);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fill();
+
+				ctx.fillStyle = "#000000";
+				ctx.fillText(this.realText, x + 4, y);
+				return Date.now() > this.timeStamp + 2000 + 20 * this.realText.length;
+			}
+		});
 		if (marauroa.me.isInHearingRange(this)) {
 			if (text.match("^!me") == "!me") {
 				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));

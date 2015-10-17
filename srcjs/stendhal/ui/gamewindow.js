@@ -21,7 +21,8 @@ stendhal.ui.gamewindow = {
 	/** screen offsets in pixels. */
 	offsetX: 0,
 	offsetY: 0,
-	timeStamp: new Date().getTime(),
+	timeStamp: Date.now(),
+	textSprites: [],
 	
 	draw: function() {
 		var startTime = new Date().getTime();
@@ -50,6 +51,7 @@ stendhal.ui.gamewindow = {
 				}
 				if (name == "2_object") {
 					this.drawEntities();
+					this.drawTextSprites();
 				}
 			}
 			this.drawEntitiesTop();
@@ -119,6 +121,16 @@ stendhal.ui.gamewindow = {
 		}
 	},
 	
+	drawTextSprites: function(ctx) {
+		for (var i = 0; i < this.textSprites.length; i++) {
+			var sprite = this.textSprites[i];
+			var remove = sprite.draw(this.ctx);
+			if (remove) {
+				this.textSprites.splice(i, 1);
+			}
+		}
+	},
+	
 	adjustView: function(canvas) {
 		// Coordinates for a screen centered on player
 		var centerX = marauroa.me._x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
@@ -134,6 +146,10 @@ stendhal.ui.gamewindow = {
 		this.offsetX = Math.round(centerX);
 		this.offsetY = Math.round(centerY);
 		this.ctx.translate(-this.offsetX, -this.offsetY);
+	},
+	
+	addTextSprite: function(sprite) {
+		this.textSprites.push(sprite);
 	},
 	
 	// Mouse click handling
