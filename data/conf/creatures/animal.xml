@@ -3,6 +3,37 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
   
       <!-- START: Aquatic -->
+      
+  <creature name="kraken">
+	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:14"/>
+	<description>From the depths of the sea rises a Kraken! It is level 153.</description>
+	<attributes>
+	<atk value="887"/>
+	<def value="114"/>
+	<hp value="1935"/>
+	<speed value="1"/>
+	<size value="3,2"/>
+	</attributes>
+	<level value="155"/>
+	<experience value="14400"/>
+    <respawn value="5400"/>
+    <corpse name="animal_2x2" width="2" height="2"/>
+    <drops>
+      <item value="greater potion" quantity="[1,4]" probability="70.0"/>
+      <item value="greater poison" quantity="[1,2]" probability="80.0"/>
+      <item value="money" quantity="[30,150]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="15,deadly poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
     
   <creature name="shark">
     <type class="giant_animal" subclass="shark" tileid="giant_animal.png:2"/>
