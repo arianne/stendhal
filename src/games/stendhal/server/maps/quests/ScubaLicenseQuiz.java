@@ -64,7 +64,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 	static {
 		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive you are experiencing?", 
 				"decompression sickness");
-		anwsers.put("What percentage of air is oxygen? Just give me a number.",
+		anwsers.put("What percentage of air is oxygen? Just give me a number",
 						"21");
 		anwsers.put("What are waves caused by?",
 						"wind");
