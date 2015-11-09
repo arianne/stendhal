@@ -40,18 +40,13 @@ public class PurpleDragon extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(PurpleDragon.class);
 
-	private void setUp() {
-
+	@Override
+	void setUp() {
 		HP = 500;
-
 		incHP = 6;
-
 		ATK = 15;
-
 		DEF = 40;
-
 		XP = 100;
-
 		baseSpeed = 0.9;
 
 		setAtk(ATK);

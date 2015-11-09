@@ -67,7 +67,9 @@ public class BabyDragonTest {
 	 */
 	@Test
 	public void testBabyDragonRPObjectPlayer() {
-		final BabyDragon drako = new BabyDragon(new RPObject(), PlayerTestHelper.createPlayer("bob"));
+		RPObject template = new RPObject();
+		template.put("hp", 30);
+		final BabyDragon drako = new BabyDragon(template, PlayerTestHelper.createPlayer("bob"));
 		assertThat(drako.getFoodNames(), is(foods));
 	}
 

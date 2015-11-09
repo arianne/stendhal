@@ -68,8 +68,6 @@ public abstract class Pet extends DomesticAnimal {
 
 	protected int HP = 100;
 
-	protected int incHP = 2;
-
 	protected int ATK = 10;
 
 	protected int DEF = 20;
@@ -85,11 +83,7 @@ public abstract class Pet extends DomesticAnimal {
 	public Pet() {
 		super();
 		baseSpeed = 0.5;
-		setAtk(ATK);
-		setDef(DEF);
-		setXP(XP);
-		setBaseHP(HP);
-		setHP(HP);
+		setUp();
 
 		// set the default perception range
 		setPerceptionRange(20);
@@ -104,13 +98,12 @@ public abstract class Pet extends DomesticAnimal {
 	 * Creates a Pet based on an existing pet RPObject, and assigns it to a
 	 * player.
 	 * 
-	 * @param object
+	 * @param object object containing the data for the Pet
 	 * @param owner
 	 *            The player who should own the pet
 	 */
 	public Pet(final RPObject object, final Player owner) {
 		super(object, owner);
-		baseSpeed = 0.5;
 		hunger = START_HUNGER_VALUE;
 	}
 	

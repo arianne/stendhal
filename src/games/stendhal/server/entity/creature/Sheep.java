@@ -119,7 +119,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new Sheep that is owned by a player.
-	 * @param owner
+	 * @param owner owning player, or <code>null</code>
 	 */
 	public Sheep(final Player owner) {
 		super();
@@ -127,11 +127,8 @@ public class Sheep extends DomesticAnimal {
 		setRPClass("sheep");
 		put("type", "sheep");
 
-		setAtk(ATK);
-		setDef(DEF);
-		setXP(XP);
 		initHP(HP);
-		baseSpeed = 0.25;
+		setUp();
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
 
@@ -150,7 +147,7 @@ public class Sheep extends DomesticAnimal {
 	 * Creates a Sheep based on an existing sheep RPObject, and assigns it to a
 	 * player.
 	 *
-	 * @param object
+	 * @param object object containing the data for the sheep
 	 * @param owner
 	 *            The player who should own the sheep
 	 */
@@ -159,7 +156,6 @@ public class Sheep extends DomesticAnimal {
 
 		setRPClass("sheep");
 		put("type", "sheep");
-		baseSpeed = 0.25;
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
 
@@ -172,6 +168,16 @@ public class Sheep extends DomesticAnimal {
 		update();
 		updateSoundList();
 		logger.debug("Created Sheep: " + this);
+	}
+	
+	@Override
+	void setUp() {
+		setHP(HP);
+		setAtk(ATK);
+		setDef(DEF);
+		setXP(XP);
+		incHP = 5;
+		baseSpeed = 0.25;
 	}
 
 	/**
@@ -356,7 +362,7 @@ public class Sheep extends DomesticAnimal {
 				updateSoundList();
 			}
 
-			heal(5);
+			heal(incHP);
 			hunger = 0;
 		}
 	}

@@ -40,18 +40,13 @@ public class BabyDragon extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(BabyDragon.class);
 
-	private void setUp() {
-
+	@Override
+	void setUp() {
 		HP = 500;
-
 		incHP = 6;
-
 		ATK = 15;
-
 		DEF = 40;
-
 		XP = 100;
-
 		baseSpeed = 0.9;
 
 		setAtk(ATK);
@@ -59,7 +54,6 @@ public class BabyDragon extends Pet {
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);
-
 	}
 
 	public static void generateRPClass() {
@@ -104,15 +98,13 @@ public class BabyDragon extends Pet {
 	 * Creates a Baby Dragon based on an existing pet RPObject, and assigns it
 	 * to a player.
 	 * 
-	 * @param object
+	 * @param object object containing the data for the dragon
 	 * @param owner
 	 *            The player who should own the baby dragon
 	 */
 	public BabyDragon(final RPObject object, final Player owner) {
-		
 		super(object, owner);
 		
-
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
 

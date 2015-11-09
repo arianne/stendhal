@@ -34,6 +34,7 @@ public abstract class DomesticAnimal extends Creature {
 	private static final Logger logger = Logger.getLogger(DomesticAnimal.class);
 
 	protected int weight;
+	int incHP = 2;
 
 	protected boolean wasOwned = false;
 
@@ -55,7 +56,7 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Creates a wild DomesticAnimal based on an existing RPObject.
 	 * 
-	 * @param object
+	 * @param object object containing the data for the animal
 	 */
 	public DomesticAnimal(final RPObject object) {
 		super(object);
@@ -73,7 +74,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * Creates a wild DomesticAnimal based on an existing RPObject, and assigns
 	 * it to a player.
 	 * 
-	 * @param object
+	 * @param object owning player, or <code>null</code>
 	 * @param owner
 	 *            The player who should own the sheep
 	 */
@@ -83,6 +84,11 @@ public abstract class DomesticAnimal extends Creature {
 		if (owner != null) {
 			wasOwned = true;
 		}
+		int storedHP = getInt("hp");
+		// fetch the speed etc values...
+		setUp();
+		// ...but don't heal the animal
+		setHP(storedHP);
 	}
 
 	public void setOwner(final Player owner) {
@@ -94,6 +100,12 @@ public abstract class DomesticAnimal extends Creature {
 			}
 		}
 	}
+	
+	/**
+	 * Set the default stats of the animal. This should include HP, incHP (the
+	 * amount of healing when eating), ATK, DEF, XP and base speed. 
+	 */
+	abstract void setUp();
 
 	/**
 	 * Does this domestic animal take part in combat?

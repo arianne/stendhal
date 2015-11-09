@@ -40,17 +40,14 @@ public class Cat extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Cat.class);
 
-	private void setUp() {
+	@Override
+	void setUp() {
 		HP = 200;
 		// each chicken or fish would give +5 HP
 		incHP = 4; 
-
 		ATK = 10;
-
 		DEF = 30;
-
 		XP = 100;
-
 		baseSpeed = 0.9;
 
 		setAtk(ATK);
@@ -80,7 +77,7 @@ public class Cat extends Pet {
 
 	/**
 	 * Creates a new Cat that may be owned by a player.
-	 * @param owner 
+	 * @param owner owning player, or <code>null</code>
 	 */
 	public Cat(final Player owner) {
 		// call set up before parent constructor is called as it needs those
@@ -104,17 +101,12 @@ public class Cat extends Pet {
 	 * Creates a Cat based on an existing cat RPObject, and assigns it to a
 	 * player.
 	 * 
-	 * @param object
+	 * @param object object containing the data for the Cat
 	 * @param owner
 	 *            The player who should own the cat
 	 */
 	public Cat(final RPObject object, final Player owner) {
 		super(object, owner);
-		int storedHP = getInt("hp");
-		// fetch the speed etc values...
-		setUp();
-		// ...but don't heal the cat
-		setHP(storedHP);
 		setRPClass("cat");
 		put("type", "cat");
 		update();
