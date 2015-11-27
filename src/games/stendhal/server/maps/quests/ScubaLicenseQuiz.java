@@ -108,7 +108,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.say("Hi I am Faiumoni's one and only teacher for diving. If you want to explore the wonderful world below the sea you need a #license and #scuba #gear.");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
 						final String name = player.getQuest(QUEST_SLOT);
-						npc.say("Do you know the anwser to my question, " + name + " ");
+						npc.say("You're back! I trust you studied up and can answer the question. " + name + " ");
 						npc.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
 						npc.say("Welcome aboard!");
@@ -129,6 +129,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 					} else if (player.hasQuest(QUEST_SLOT)) {
 						final String name = player.getQuest(QUEST_SLOT);
 						npc.say("I trust you studied up and can answer the question. " + name + " ");
+						npc.setCurrentState(ConversationStates.QUESTION_2);
 						
 					} else {
 						npc.say("Are you ready to take the #test?");
@@ -148,7 +149,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = Rand.rand(anwsers.keySet());
-					npc.say("Very well. Here is your question. " + name + "? Do you know the answer?");
+					npc.say("Very well. Here is your question. " + name + " Do you know the answer?");
 					npc.setCurrentState(ConversationStates.QUESTION_1);
 					player.setQuest(QUEST_SLOT, name);
 				}
@@ -161,7 +162,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 		instructor.add(ConversationStates.QUESTION_1,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"Too bad. You're not qualified to dive until you know the answer.", null);
+			"Too bad. You're not qualified to dive until you know the answer. You should #study.", null);
 
 		// TODO: rewrite this to use standard conditions and actions
 		instructor.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
@@ -189,8 +190,8 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.say("Good bye - see you next time!");
 						npc.setCurrentState(ConversationStates.IDLE);
 					} else {
-						npc.say("Incorrect. #Study up and come back to me.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
+						npc.say("Incorrect. #Study up and come back to me.");
 					}
 				}
 			});
