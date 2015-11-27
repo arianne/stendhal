@@ -55,7 +55,7 @@ public class ScubaNPC implements ZoneConfigurator  {
 				addReply("study","Go to a library and check out the Diver's Handbook.");
 				
 				//quest phrases;
-				addReply("license","Do you want to get the diving license?");
+				addReply("license","Scuba diving can be dangerous before I can give you scuba gear you need to pass an exam.");
 				add(ConversationStates.ATTENDING,
 						"status",
 						null,

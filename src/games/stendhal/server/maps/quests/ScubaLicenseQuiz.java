@@ -64,9 +64,9 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 	static {
 		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive you are experiencing?", 
 				"decompression sickness");
-		anwsers.put("What percentage of air is oxygen? Just give me a number",
+		anwsers.put("What percentage of air is oxygen? Just give me a number.",
 						"21");
-		anwsers.put("What are waves caused by?",
+		anwsers.put("What are waves caused by",
 						"wind");
 		anwsers.put("Most scuba diving injuries caused by fish and aquatic animals happen because?",
 						"They are a afraid of you.");
@@ -108,7 +108,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.say("Hi I am Faiumoni's one and only teacher for diving. If you want to explore the wonderful world below the sea you need a #license and #scuba #gear.");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
 						final String name = player.getQuest(QUEST_SLOT);
-						npc.say("Do you know the anwser to my question, " + name + "?");
+						npc.say("Do you know the anwser to my question, " + name + " ");
 						npc.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
 						npc.say("Welcome aboard!");
@@ -128,8 +128,8 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					} else if (player.hasQuest(QUEST_SLOT)) {
 						final String name = player.getQuest(QUEST_SLOT);
-						npc.say("I trust you studied up and can answer the question. " + name + "?");
-						npc.setCurrentState(ConversationStates.QUESTION_1);
+						npc.say("I trust you studied up and can answer the question. " + name + " ");
+						
 					} else {
 						npc.say("Are you ready to take the #test?");
 					}
@@ -148,7 +148,8 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = Rand.rand(anwsers.keySet());
-					npc.say("Very well. Here is your question. " + name + ". Do you know the answer?");
+					npc.say("Very well. Here is your question. " + name + "? Do you know the answer?");
+					npc.setCurrentState(ConversationStates.QUESTION_1);
 					player.setQuest(QUEST_SLOT, name);
 				}
 			});
@@ -175,7 +176,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 					final Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
 
 					if (answer.matchesFull(expected)) {
-						npc.say("Correct, well done! Here is your new diving license!");
+						npc.say("Correct, well done! You are now licensed to go scuba diving! Here is your gear.");
 						//For now I'm just handing out scuba gear until there's a license to give.
 						final Item ScubaGear = SingletonRepository.getEntityManager().getItem("scuba gear");
 						ScubaGear.setBoundTo(player.getName());
@@ -189,7 +190,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.setCurrentState(ConversationStates.IDLE);
 					} else {
 						npc.say("Incorrect. #Study up and come back to me.");
-						npc.setCurrentState(ConversationStates.IDLE);
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
 			});

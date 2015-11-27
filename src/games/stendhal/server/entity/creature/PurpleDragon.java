@@ -42,11 +42,11 @@ public class PurpleDragon extends Pet {
 
 	@Override
 	void setUp() {
-		HP = 500;
-		incHP = 6;
-		ATK = 15;
-		DEF = 40;
-		XP = 100;
+		HP = 1450;
+		incHP = 100;
+		ATK = 535;
+		DEF = 250;
+		XP = 6750;
 		baseSpeed = 0.9;
 
 		setAtk(ATK);
@@ -54,6 +54,7 @@ public class PurpleDragon extends Pet {
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);
+		setSize(2, 2);
 
 	}
 
