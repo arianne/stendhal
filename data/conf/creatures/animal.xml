@@ -5,7 +5,7 @@
       <!-- START: Aquatic -->
       
   <creature name="kraken">
-	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:14"/>
+	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
 	<description>From the depths of the sea rises a Kraken! It is level 153.</description>
 	<attributes>
 	<atk value="887"/>
