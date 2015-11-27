@@ -1,5 +1,27 @@
 ﻿Changelog
 ---------
+1.19
+
+*world*
+- Zekiel can make enhanced lion shields
+- Cats can drink milk now
+- map improvements
+
+*code*
+- fixed compiler warnings and code cleanup
+
+*client*
+- added cancel buttons on all dialog boxes (for window managers which do not add an X to the title bar)
+
+
+*todo, check if active*
+- /autowalk
+- Scuba quest
+- Sea floor
+- Kraken creature
+
+
+
 
 1.18
 
