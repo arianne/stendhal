@@ -813,7 +813,9 @@ public abstract class RPEntity extends GuidedEntity {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setAtkInternal(this.atk + (int) Math.signum(levels) * 1, notify);
-			new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
+			if (this.atk > 0) {
+				new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
+			}
 		}
 	}
 
@@ -873,7 +875,9 @@ public abstract class RPEntity extends GuidedEntity {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setDefInternal(this.def + (int) Math.signum(levels) * 1, notify);
-			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+			if (this.def > 0) {
+				new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+			}
 		}
 	}
 
