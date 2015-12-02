@@ -55,7 +55,7 @@ public class ScubaNPC implements ZoneConfigurator  {
 				addReply("study","Go to a library and check out the Diver's Handbook.");
 				
 				//quest phrases;
-				addReply("license","Scuba diving can be dangerous before I can give you scuba gear you need to pass an exam.");
+				addReply("license","Scuba diving can be dangerous before I can give you scuba gear you need to pass an #exam.");
 				add(ConversationStates.ATTENDING,
 						"status",
 						null,
@@ -65,7 +65,6 @@ public class ScubaNPC implements ZoneConfigurator  {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say(ferrystate.toString());
-						//.getCurrentDescription());
 					}
 				});
 
