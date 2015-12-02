@@ -26,6 +26,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -62,16 +65,16 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 
 	private static Map<String, String> anwsers = new HashMap<String, String>();
 	static {
-		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive you are experiencing?", 
+		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive, you are experiencing?", 
 				"decompression sickness");
 		anwsers.put("What percentage of air is oxygen? Just give me a number.",
 						"21");
-		anwsers.put("What are waves caused by",
+		anwsers.put("Waves are caused by ...",
 						"wind");
-		anwsers.put("Most scuba diving injuries caused by fish and aquatic animals happen because?",
-						"They are a afraid of you.");
-		anwsers.put("You should never even consider diving if you currently have a cold because?",
-						"you may not be able to equalize pressure");
+		anwsers.put("Most scuba diving injuries caused by fish and aquatic animals happen because they are ... of you.",
+						"afraid");
+		anwsers.put("You should never even consider diving when you have a ...",
+						"cold");
 	}
 
 
@@ -108,7 +111,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 						npc.say("Hi I am Faiumoni's one and only teacher for diving. If you want to explore the wonderful world below the sea you need a #license and #scuba #gear.");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
 						final String name = player.getQuest(QUEST_SLOT);
-						npc.say("You're back! I trust you studied up and can answer the question. " + name + " ");
+						npc.say("You're back! I trust you studied up and can answer the question. " + name);
 						npc.setCurrentState(ConversationStates.QUESTION_1);
 					} else {
 						npc.say("Welcome aboard!");
@@ -116,56 +119,60 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 				}
 			});
 
-		// TODO: rewrite this to use standard conditions and actions
 		instructor.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.QUEST_OFFERED, null,
-			new ChatAction() {
-				@Override
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (player.isQuestCompleted(QUEST_SLOT)) {
-						npc.say("You've already passed the exam!");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					} else if (player.hasQuest(QUEST_SLOT)) {
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				"Are you ready to take the test?",
+				null);
+
+		// TODO: point to diving location
+		instructor.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"You've already passed the exam! Now find a good spot to explore the ocean.",
+				null);
+
+		instructor.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String name = player.getQuest(QUEST_SLOT);
-						npc.say("I trust you studied up and can answer the question. " + name + " ");
-						npc.setCurrentState(ConversationStates.QUESTION_2);
-						
-					} else {
-						npc.say("Are you ready to take the #test?");
+						npc.say("I trust you studied up and can answer the question. " + name);
 					}
-				}
-			});
+				});
 
 		instructor.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"Okay, diving is not for everyone, but don't hesitate to come back to me if you change your mind.", null);
+			"Okay, diving is not for everyone, but don't hesitate to come back to me if you change your mind. Feel free to #study in the mean time.", null);
 
 		instructor.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
+			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = Rand.rand(anwsers.keySet());
-					npc.say("Very well. Here is your question. " + name + " Do you know the answer?");
-					npc.setCurrentState(ConversationStates.QUESTION_1);
+					npc.say("Very well. Here is your question. " + name);
 					player.setQuest(QUEST_SLOT, name);
 				}
 			});
 
-		instructor.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUESTION_2, "So, what is it?", null);
-
+		/*
 		instructor.add(ConversationStates.QUESTION_1,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Too bad. You're not qualified to dive until you know the answer. You should #study.", null);
+		*/
 
 		// TODO: rewrite this to use standard conditions and actions
-		instructor.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
+		instructor.addMatching(ConversationStates.QUESTION_1, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
 				@Override
