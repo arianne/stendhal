@@ -47,11 +47,11 @@
     <!-- Portals -->
    
    <portal x="31" y="40" ref="divingSpot">
-   <destination zone="-3_athor_sea_floor" ref="surfaceSpot" />
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
-   <parameter name="condition">new PlayerHasItemWithHimCondition("scuba gear", 1)</parameter>
-   <parameter name="rejected">You could dive in if you had the right equipment.</parameter>
-   </implementation>
+	   <destination zone="-3_athor_sea_floor" ref="surfaceSpot" />
+	   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+		   <parameter name="condition">new PlayerHasItemEquippedInSlot("scuba gear", "armor")</parameter>
+		   <parameter name="rejected">You could dive in if you had the right equipment.</parameter>
+	   </implementation>
    </portal>
    
     <entity x="15" y="31">
