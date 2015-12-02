@@ -2387,6 +2387,28 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return false;
 	}
 
+
+	/**
+	 * checks if an item is equipped in a slot
+	 *
+	 * @param slot
+	 * @param item
+	 * @return true if so false otherwise
+	 */
+	public boolean isEquippedItemInSlot(final String slot, final String item) {
+		if (hasSlot(slot)) {
+			final RPSlot rpslot = getSlot(slot);
+			for (final RPObject object : rpslot) {
+				if ((object instanceof Item) && ((Item) object).getName().equals(item)) {
+					return true;
+				}
+			}
+		}
+
+		// no slot, free slot or wrong item type
+		return false;
+	}
+	
 	/**
 	 * Finds the first item of class <i>clazz</i> from the slot.
 	 *
@@ -2414,6 +2436,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// no slot, free slot or wrong item type
 		return null;
 	}
+
 
 	/**
 	 * Gets the weapon that this entity is holding in its hands.
