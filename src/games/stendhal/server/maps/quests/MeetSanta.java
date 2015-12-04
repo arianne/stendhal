@@ -11,6 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -35,13 +42,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Meet Santa anywhere around the World.
  *<p>
@@ -56,8 +56,8 @@ import java.util.List;
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
 
-	// quest slot changed ready for 2014
-	private static final String QUEST_SLOT = "meet_santa_14";
+	// quest slot changed ready for 2015
+	private static final String QUEST_SLOT = "meet_santa_15";
 
 	public static final String QUEST_NAME = "MeetSanta";
 
