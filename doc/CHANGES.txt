@@ -3,6 +3,9 @@
 1.19
 
 *world*
+- new interesting under water zone
+- new quest for a scuba diving license
+- new Kraken creature
 - Zekiel can make enhanced lion shields
 - Cats can drink milk now
 - map improvements
@@ -14,16 +17,10 @@
 - added cancel buttons on all dialog boxes (for window managers which do not add an X to the title bar)
 
 
-*todo, check if active*
-- /autowalk
-- Scuba quest
-- Sea floor
-- Kraken creature
-
-
 
 
 1.18
+18th August 2015
 
 *world*
 - a half elf girl and an distillery customer share their stories at Ados market
