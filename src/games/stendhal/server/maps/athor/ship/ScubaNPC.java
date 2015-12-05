@@ -15,12 +15,16 @@ package games.stendhal.server.maps.athor.ship;
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.QuestCompletedSellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
@@ -31,6 +35,7 @@ import java.util.Map;
 public class ScubaNPC implements ZoneConfigurator  {
 
 	private Status ferrystate;
+	private final ShopList shops = SingletonRepository.getShopList();
 
 	@Override
 	public void configureZone(StendhalRPZone zone,
@@ -45,6 +50,8 @@ public class ScubaNPC implements ZoneConfigurator  {
 			public void createDialog() {
 				addGoodbye("So long...");
 				addHelp("Hm, maybe you'd like to go on an adventure?");
+				addOffer("To licensed divers I can sell #scuba #gear.");
+				new SellerAdder().addSeller(this, new QuestCompletedSellerBehaviour("get_diving_license", "I can't sell #scuba #gear to just anyone!", shops.get("sellScubaStuff")), false);
 				addJob("I'm an assistant on this ship.");
 				
 				//scuba gear phrases
