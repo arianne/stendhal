@@ -54,7 +54,7 @@
       <item value="money" quantity="[7,40]" probability="30.0"/>
       <item value="char" quantity="[2,6]" probability="15.0"/>
       <item value="cod" quantity="[1,5]" probability="70.0"/>
-      <item value="clown_fish" quantity="[1,3]" probability="50.0"/>
+      <item value="clownfish" quantity="[1,3]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
