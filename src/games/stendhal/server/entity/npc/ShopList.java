@@ -448,6 +448,9 @@ public final class ShopList {
 		// Should have its own shop (buytraps)
 		shops.add("buypoisons", "rodent trap", 50);
 		
+		//Scuba Instructor Edward
+		shops.add("sellScubaStuff", "scuba gear", 45000);
+		
 		// Mine Town Revival Weeks Caroline
 		shops.add("sellrevivalweeks", "cherry pie", 195);
 		shops.add("sellrevivalweeks", "apple pie", 195);

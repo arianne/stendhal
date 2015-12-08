@@ -25,8 +25,10 @@ import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -39,25 +41,25 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 /**
- * QUEST: Quest to get the scuba gear. 
+ * QUEST: Quest to get the scuba gear.
  * <p>
- * 
+ *
  * PARTICIPANTS: <ul><li> Edward the diving instructor</ul>
- * 
- * 
+ *
+ *
  * STEPS: <ul><li> This quest is about players getting the ability to dive and earn the necessary equipment.
  *  The instructor will as a question and once the player answers correctly will reward them with scuba gear.</ul>
- * 
- * 
+ *
+ *
  * REWARD:
  * <ul>
  * <li> 100 XP
  * <li> some karma (5)
  * <li> The Scuba Gear
  * </ul>
- * 
+ *
  * REPETITIONS: <ul><li> no repetitions</ul>
- * 
+ *
  * @author soniccuz based on (LookUpQuote by dine)
  */
 
@@ -66,7 +68,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 
 	private static Map<String, String> anwsers = new HashMap<String, String>();
 	static {
-		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive, you are experiencing?", 
+		anwsers.put("When nitrogen bubbles block blood flow in your body after a dive, you are experiencing?",
 				"decompression sickness");
 		anwsers.put("What percentage of air is oxygen? Just give me a number.",
 						"21");
@@ -217,7 +219,7 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 	public String getName() {
 		return "DivingLicenseQuiz";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ATHOR_ISLAND;
@@ -225,5 +227,31 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Edward";
+	}
+
+	/**
+	 * is scuba diving possible?
+	 */
+	public static class ScubaCondition implements ChatCondition {
+
+        @Override
+        public boolean fire(Player player, Sentence sentence, Entity npc) {
+            return player.isEquippedItemInSlot("armor", "scuba gear") && player.isQuestCompleted("get_diving_license");
+        }
+
+        @Override
+        public int hashCode() {
+            return -13527181;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj instanceof ScubaCondition;
+        }
+
+        @Override
+        public String toString() {
+            return "scuba?";
+        }
 	}
 }
