@@ -6,7 +6,7 @@
       
   <creature name="kraken">
 	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
-	<description>From the depths of the sea rises a Kraken! It is level 153.</description>
+	<description>From the depths of the sea rises a Kraken!</description>
 	<attributes>
 	<atk value="887"/>
 	<def value="114"/>
@@ -21,7 +21,7 @@
     <drops>
       <item value="greater potion" quantity="[2,6]" probability="75.0"/>
       <item value="greater poison" quantity="[1,2]" probability="90.0"/>
-      <item value="orcish sword" quantity="[1,2]" probability="0.3"/>
+      <item value="orcish sword" quantity="[1]" probability="0.3"/>
       <item value="money" quantity="[30,150]" probability="100.0"/>
     </drops>
     <equips>
