@@ -1033,11 +1033,11 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 
 	<target name="report_test" description="Aggregate Testresults">
 		<mkdir dir="${build_tests_report}" />
-		<junitreport todir="." tofile="${build_tests_report}/testresults.xml">
+		<junitreport todir="${build_tests_report}" tofile="testresults.xml">
 			<fileset dir="${build_tests_report}">
 				<include name="TEST-*.xml"/>
 			</fileset>
-			<report format="noframes" todir="${build_tests_report}"/>
+			<report format="frames" todir="${build_tests_report}"/>
 		</junitreport>
 		<delete>
 			<fileset dir="${build_tests_report}">
