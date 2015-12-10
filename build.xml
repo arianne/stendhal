@@ -994,9 +994,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
-		<junit printsummary="yes" fork="no">
-			<jvmarg value="-Djava.awt.headless=true"/>
-
+		<junit printsummary="yes" fork="yes" forkmode="once">
 			<classpath>
 				<pathelement path="${build_tests}"/>
 				<pathelement path="${build_client}"/>
