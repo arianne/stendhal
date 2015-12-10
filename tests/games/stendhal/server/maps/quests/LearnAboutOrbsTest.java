@@ -13,20 +13,20 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.temple.HealerNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class LearnAboutOrbsTest {
 
@@ -42,8 +42,8 @@ public class LearnAboutOrbsTest {
 	@Before
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new HealerNPC().configureZone(zone, null);	
-		
+		new HealerNPC().configureZone(zone, null);
+
 
 		AbstractQuest quest = new LearnAboutOrbs();
 		quest.addToWorld();
@@ -92,7 +92,7 @@ public class LearnAboutOrbsTest {
 		int xpAfterQuest = before + 50;
 		assertEquals(player.getXP(), xpAfterQuest);
 	}
-	
+
 	@Test
 	public void testQuestTooLowLevel() {
 		player.setLevel(1);
@@ -105,5 +105,7 @@ public class LearnAboutOrbsTest {
 		en.step(player, "no");
 		en.step(player, "use");
 		assertEquals("Oh oh, I just noticed you are still new here. Perhaps you better come back when you have more experience. Until then if you need any #help just ask!", getReply(npc));
+        en.step(player, "bye");
+        assertEquals("Bye.", getReply(npc));
 	}
 }
