@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,11 +11,12 @@
  ***************************************************************************/
 package utilities.RPClass;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.entity.item.ConsumableItem;
 
 import org.junit.Test;
+
+import games.stendhal.server.entity.item.ConsumableItem;
 
 public class ConsumableTestHelperTest {
 
@@ -24,9 +24,9 @@ public class ConsumableTestHelperTest {
 	public void testCreate() throws Exception {
 
 		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
-		assertThat(eater, is(ConsumableItem.class));
+		assertThat(eater, instanceOf(ConsumableItem.class));
 
 		ConsumableItem createImmunizer = ConsumableTestHelper.createImmunizer("consume");
-		assertThat(createImmunizer, is(ConsumableItem.class));
+		assertThat(createImmunizer, instanceOf(ConsumableItem.class));
 	}
 }

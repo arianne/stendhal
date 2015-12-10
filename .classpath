@@ -10,11 +10,9 @@
 	<classpathentry kind="lib" path="libs/groovy.jar"/>
 	<classpathentry kind="lib" path="libs/guava.jar"/>
 	<classpathentry kind="lib" path="libs/h2.jar"/>
-	<classpathentry kind="lib" path="libs/hamcrest-all-1.1.jar"/>
 	<classpathentry kind="lib" path="libs/jardiff.jar"/>
 	<classpathentry kind="lib" path="libs/jcurses.jar"/>
 	<classpathentry kind="lib" path="libs/jorbis.jar"/>
-	<classpathentry kind="lib" path="libs/junit-4.4.jar"/>
 	<classpathentry kind="lib" path="libs/libtiled.jar"/>
 	<classpathentry kind="lib" path="libs/log4j.jar"/>
 	<classpathentry kind="lib" path="libs/marauroa.jar" sourcepath="/marauroa"/>
@@ -38,5 +36,7 @@
 	<classpathentry kind="lib" path="libs/websocket-common-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/websocket-server-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/websocket-servlet-9.2.5.v20141112.jar"/>
+	<classpathentry kind="lib" path="libs/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="libs/java-hamcrest-2.0.0.0.jar" sourcepath="/home/brummermann/.m2/repository/org/hamcrest/java-hamcrest/2.0.0.0/java-hamcrest-2.0.0.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
