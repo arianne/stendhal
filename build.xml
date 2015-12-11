@@ -932,7 +932,7 @@
 
 	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
 		<exec executable="curl">
-		        <arg line="-q -F 'filename=testresults.xml' -F 'file=@build/build_test_report/testresults-short.xml' https://stendhalgame.org?id=content/script/cireport"/>
+		        <arg line="-q -F 'filename=testresults.xml' -F 'file=@build/build_test_report/testresults-short.xml' https://stendhalgame.org?id=content/scripts/cireport"/>
 		</exec>
 		<fail message="Test errors detected, check test results." if="test.error" />
 		<fail message="Test failure detected, check test results." if="test.failure" />
