@@ -2,4 +2,6 @@ language: java
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-
+irc:
+    - "chat.freenode.net#arianne"
+    - "chat.freenode.net#arianne-devel"
