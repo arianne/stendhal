@@ -930,7 +930,11 @@
 <!--************************************************************************-->
 
 
-	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test"/>
+	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
+		<exec executable="curl">
+		        <arg line="-q -F 'filename=testresults.xml' -F 'file=@build/build_test_report/testresults-short.xml' https://stendhalgame.org?id=content/script/cireport"/>
+		</exec>
+	</target>
 
 	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
 		<mkdir dir="${build_tests}"/>
@@ -994,7 +998,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
-		<junit printsummary="yes" fork="yes" forkmode="once">
+		<junit fork="yes" forkmode="once">
 			<classpath>
 				<pathelement path="${build_tests}"/>
 				<pathelement path="${build_client}"/>
@@ -1020,9 +1024,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 				<pathelement path="data/conf"/>
 				<pathelement path="data/script"/>
 			</classpath>
-			<formatter type="plain" usefile="false"/>
 			<formatter type="xml"/>
-			<batchtest todir="${build_tests_report}">
+			<batchtest  todir="${build_tests_report}">
 				<fileset dir="tests">
 					<include name="**/*Test.java"/>
 					<include name="**/Test*.java"/>
@@ -1039,13 +1042,20 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			</fileset>
 			<report format="frames" todir="${build_tests_report}"/>
 		</junitreport>
+		<copy file="${build_tests_report}/testresults.xml" tofile="${build_tests_report}/testresults-short.xml"/>
+		<replaceregexp file="${build_tests_report}/testresults-short.xml"
+		               match="&lt;properties&gt;.*?&lt;/properties&gt;|&lt;system-out /&gt;|&lt;system-err /&gt;|^ *"
+		               replace=""
+			           flags="gsm"
+		               byline="false"
+		/>
 		<delete>
 			<fileset dir="${build_tests_report}">
 				<include name="TEST-*.xml"/>
 			</fileset>
 		</delete>
 	</target>
-
+	
 	<target name="checkxml" description="Verify XML files are well-formed">
 		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
 			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
