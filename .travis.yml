@@ -3,5 +3,10 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 irc:
+  - channels
     - "chat.freenode.net#arianne"
     - "chat.freenode.net#arianne-devel"
+  - on_success: always
+  - on_failure: always
+  - use_notice: false
+  - skip_join: false
