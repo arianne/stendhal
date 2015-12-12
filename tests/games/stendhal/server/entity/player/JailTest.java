@@ -93,14 +93,14 @@ public class JailTest {
 		final StendhalRPZone zone = new StendhalRPZone("knast", 100, 100);
 				Jail.jailzone = zone;
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
-		String jaillist = SingletonRepository.getJail().listJailed();
+		SingletonRepository.getJail().release("bob");
 		
 		SingletonRepository.getJail().imprison("bob", bob, 1, "test");
 			assertTrue(Jail.isInJail(bob));
 		
-		assertEquals("bob: 1 Minutes because: test\n", SingletonRepository.getJail().listJailed().replace(jaillist, ""));
+		assertEquals("bob: 1 Minutes because: test\n", SingletonRepository.getJail().listJailed());
 		SingletonRepository.getJail().imprison("bob", bob, 1, "test2");
-		assertEquals("bob: 1 Minutes because: test2\n", SingletonRepository.getJail().listJailed().replace(jaillist, ""));
+		assertEquals("bob: 1 Minutes because: test2\n", SingletonRepository.getJail().listJailed());
 		
 	}
 	/**
@@ -109,6 +109,7 @@ public class JailTest {
 	@Test
 	public final void testIsInJail() {
 		StendhalRPZone jail = new StendhalRPZone("testknast");
+		jail.collisionMap.init(64, 64);
 		Jail jailcnf = new Jail();
 		jailcnf.configureZone(jail, null);
 		
