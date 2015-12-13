@@ -1,0 +1,58 @@
+#Stendhal
+
+Are you looking for adventure? Want to fight for riches?<br>
+Develop yourself and your social standing? Meet new people?<br>
+Do you want to be part of a brave new world?
+
+Stendhal is a fully fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system.
+
+Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons.
+You will meet NPCs and acquire tasks and quests for valuable experience.
+
+Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your armour and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters!
+
+Stendhal is platform independent, and completely open source.
+
+So what are you waiting for?! A whole new world awaits...
+
+
+##How to play
+
+You need Java which you can download from [http://www.java.com](http://www.java.com/en/download) on Microsoft Windows.
+Java is included in most Linux distributions. Both Oracle Java and OpenJDK are supported.
+
+Please download Stendhal from [https://stendhalgame.org](https://stendhalgame.org)<br>
+Then unzip the client zip into a new folder. You can double click on stendhal-starter.jar and the client will run.<br>
+
+If you prefer to run from command line, then just execute this command
+in the stendhal folder:
+
+`java -jar stendhal-starter.jar`
+
+Alternatively you can run it using Java Webstart technology at: [https://stendhalgame.org](https://stendhalgame.org)
+
+There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there is Help from the client menu icons in the upper right hand side of the game screen.
+
+
+## Development environment
+
+* [Hosting a Stendhal Server](http://stendhalgame.org/wiki/Host_a_Stendhal_Server)
+* [Stendhal in Eclipse](https://stendhalgame.org/wiki/Stendhal_on_Eclipse)
+* [Building Stendhal](http://stendhalgame.org/wiki/HowToBuildStendhal)
+
+
+##Legal
+This program is free software; you can redistribute it and/or modify<br>
+it under the terms of the GNU General Public License as published by<br>
+the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,<br>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br>
+[LICENSE.txt](LICENSE.txt) file for more details.
+
+Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008<br>
+arianne_rpg at users dot sourceforge dot net and others
+
+Stendhal(c) is copyright of the Arianne Project, 2006-2015<br>
+arianne-general at lists dot sourceforge dot net
