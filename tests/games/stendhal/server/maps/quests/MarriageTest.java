@@ -90,6 +90,8 @@ public class MarriageTest {
 	public void testGettingEngaged() {
 		player.removeQuest(QUEST_SLOT);
 		player2.removeQuest(QUEST_SLOT);
+		player.setPosition(52, 53);
+		player2.setPosition(53, 53);
 
 		// **in front of church**
 		npc = SingletonRepository.getNPCList().get("Sister Benedicta");
@@ -335,7 +337,9 @@ public class MarriageTest {
 
 		player.setQuest("marriage", "engaged_with_ring");
 		player2.setQuest("marriage", "engaged_with_ring");
-
+		player.removeQuest("spouse");
+		player2.removeQuest("spouse");
+		
 		npc = SingletonRepository.getNPCList().get("Priest");
 		en = npc.getEngine();
 		en.step(player, "hi");
@@ -393,6 +397,8 @@ public class MarriageTest {
 
 		player.setQuest("marriage", "just_married");
 		player2.setQuest("marriage", "just_married");
+		player.setQuest("spouse", "player2");
+		player2.setQuest("spouse", "player");
 
 		npc = SingletonRepository.getNPCList().get("Linda");
 		en = npc.getEngine();
