@@ -161,9 +161,11 @@
   <zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx" accessible="false">
 
     <!-- Portals -->
+    <!-- add portal at 0_semos_mountain_n2_w to enable this zone
     <portal x="7" y="19" ref="exit">
       <destination zone="0_semos_mountain_n2_w" ref="apothecary_entrance" />
     </portal>
+    -->
     <portal x="3" y="13" ref="lab_entrance">
       <destination zone="int_apothecary_lab" ref="lab_exit" />
       <implementation
