@@ -938,7 +938,7 @@
 			<arg value="filename=testresults.xml" />
 			<arg value="-F" />
 			<arg value="file=@build/build_test_report/testresults-short.xml" />
-			<arg value="https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}&amp;buildnumber=${env.TRAVIS_BUILD_NUMBER}&amp;=buildid=${env.TRAVIS_BUILD_ID}&amp;commit=${env.TRAVIS_COMMIT}&amp;commits=${env.TRAVIS_COMMIT_RANGE}&amp;slug=${env.TRAVIS_REPO_SLUG}&amp;pullrequest=${env.TRAVIS_PULL_REQUEST}&amp;branch=${env.TRAVIS_BRANCH}"/>
+			<arg value="https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}&amp;buildnumber=${env.TRAVIS_BUILD_NUMBER}&amp;buildid=${env.TRAVIS_BUILD_ID}&amp;commit=${env.TRAVIS_COMMIT}&amp;commits=${env.TRAVIS_COMMIT_RANGE}&amp;slug=${env.TRAVIS_REPO_SLUG}&amp;pullrequest=${env.TRAVIS_PULL_REQUEST}&amp;branch=${env.TRAVIS_BRANCH}"/>
 		</exec>
 		<fail message="Test errors detected, check test results." if="test.error" />
 		<fail message="Test failure detected, check test results." if="test.failure" />
