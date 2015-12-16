@@ -933,7 +933,12 @@
 	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
 		<property environment="env"/>
 		<exec executable="curl">
-		        <arg line="-q -F 'filename=testresults.xml' -F 'file=@build/build_test_report/testresults-short.xml' https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}"/>
+		    <arg value="-q" />
+			<arg value="-F" />
+			<arg value="filename=testresults.xml" />
+			<arg value="-F" />
+			<arg value="file=@build/build_test_report/testresults-short.xml" />
+			<arg value="https://stendhalgame.org?id=content/scripts/cireport&amp;cikey=${env.cikey}&amp;buildnumber=${env.TRAVIS_BUILD_NUMBER}&amp;buildid=${env.TRAVIS_BUILD_ID}&amp;commit=${env.TRAVIS_COMMIT}&amp;commits=${env.TRAVIS_COMMIT_RANGE}&amp;slug=${env.TRAVIS_REPO_SLUG}&amp;pullrequest=${env.TRAVIS_PULL_REQUEST}&amp;branch=${env.TRAVIS_BRANCH}"/>
 		</exec>
 		<fail message="Test errors detected, check test results." if="test.error" />
 		<fail message="Test failure detected, check test results." if="test.failure" />
