@@ -69,7 +69,7 @@ import java.util.List;
  */
 public class EasterGiftsForChildren extends AbstractQuest {
 
-	private static final String QUEST_SLOT = "easter_gifts_14";
+	private static final String QUEST_SLOT = "easter_gifts_[year]";
 
 	
 

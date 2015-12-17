@@ -57,7 +57,7 @@ import games.stendhal.server.entity.player.Player;
 public class MeetSanta extends AbstractQuest implements LoginListener {
 
 	// quest slot changed ready for 2015
-	private static final String QUEST_SLOT = "meet_santa_15";
+	private static final String QUEST_SLOT = "meet_santa_[seasonyear]";
 
 	public static final String QUEST_NAME = "MeetSanta";
 
