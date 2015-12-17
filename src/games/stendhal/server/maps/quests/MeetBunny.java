@@ -48,7 +48,7 @@ import java.util.List;
  */
 public class MeetBunny extends AbstractQuest {
 	// quest slot changed ready for 2015
-	private static final String QUEST_SLOT = "meet_bunny_15";
+	private static final String QUEST_SLOT = "meet_bunny_[year]";
 
 	/** the Bunny NPC. */
 	protected SpeakerNPC bunny;
