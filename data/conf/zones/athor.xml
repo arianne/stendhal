@@ -1417,6 +1417,8 @@ You get your stake back when there is a draw. If you win, you get the double of 
       <parameter name="color">#0c4774</parameter>
       <parameter name="weather">wave</parameter>
     </attributes>
+
+   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     
    <!-- Portals -->
    <portal x="31" y="40" ref="surfaceSpot">
