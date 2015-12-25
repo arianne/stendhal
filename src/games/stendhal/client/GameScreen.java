@@ -12,19 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Corpse;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Item;
-import games.stendhal.client.gui.DropTarget;
-import games.stendhal.client.gui.GroundContainer;
-import games.stendhal.client.gui.j2d.AchievementBoxFactory;
-import games.stendhal.client.gui.j2d.RemovableSprite;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
-import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.spellcasting.SpellCastingGroundContainerMouseState;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -38,6 +25,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.VolatileImage;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,10 +37,23 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.entity.Corpse;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Item;
+import games.stendhal.client.gui.DropTarget;
+import games.stendhal.client.gui.EffectLayer;
+import games.stendhal.client.gui.GroundContainer;
+import games.stendhal.client.gui.j2d.AchievementBoxFactory;
+import games.stendhal.client.gui.j2d.RemovableSprite;
+import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.spellcasting.SpellCastingGroundContainerMouseState;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * The game screen. This manages and renders the visual elements of the game.
@@ -105,6 +106,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Static game layers.
 	 */
 	private final StaticGameLayers gameLayers;
+	private static final Collection<EffectLayer> globalEffects = new LinkedList<>();
 	
 	/** Entity views container. */
 	private final EntityViewManager viewManager = new EntityViewManager();
@@ -381,6 +383,20 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			}
 		}
 	}
+	
+	/**
+	 * Add a map wide visual effect.
+	 * 
+	 * @param effect effect renderer
+	 */
+	public void addEffect(final EffectLayer effect) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				globalEffects.add(effect);	
+			}
+		});
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -636,6 +652,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		
 		// Draw the top portion screen entities (such as HP/title bars).
 		viewManager.drawTop(g);
+		// Effects get drawn even above title bars, so that darkening and such work
+		// as expected
+		Iterator<EffectLayer> it = globalEffects.iterator();
+		while (it.hasNext()) {
+			EffectLayer eff = it.next();
+			if (!eff.isExpired()) {
+				eff.draw(g, startTileX, startTileY, layerWidth, layerHeight);
+			} else {
+				it.remove();
+			}
+		}
 	}
 	
 	/**
@@ -1121,6 +1148,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	@Override
 	public void onZoneChange(Zone zone) {
 		removeAllObjects();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				globalEffects.clear();	
+			}
+		});
 	}
 	
 	@Override

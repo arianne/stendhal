@@ -22,7 +22,7 @@ import java.awt.Graphics;
 /**
  * This is a helper base class to render a layer.
  */
-abstract class LayerRenderer {
+public abstract class LayerRenderer {
 
 	protected int width;
 
@@ -52,12 +52,12 @@ abstract class LayerRenderer {
 	 * @param w width in world units
 	 * @param h height in world units
 	 */
-	abstract void draw(Graphics g, int x, int y, int w, int h);
+	public abstract void draw(Graphics g, int x, int y, int w, int h);
 
 	/**
 	 * Set the tiles used for rendering.
 	 * 
 	 * @param tileset tile set
 	 */
-	abstract void setTileset(Tileset tileset);
+	public abstract void setTileset(Tileset tileset);
 }

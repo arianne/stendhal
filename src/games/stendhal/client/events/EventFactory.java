@@ -78,6 +78,8 @@ class EventFactory {
 			event = new ProgressStatusEvent();
 		} else if (name.equals(Events.REACHED_ACHIEVEMENT)) {
 			event = new ReachedAchievementEvent();
+		} else if (name.equals(Events.GLOBAL_VISUAL)) {
+			event = new GlobalVisualEffectEvent();
 		}
 
 		if (event != null) {

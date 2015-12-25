@@ -9,23 +9,36 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client;
+package games.stendhal.client.gui;
 
-import games.stendhal.client.sprite.Tileset;
-
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * A dummy layer renderer.
+ * An effect that turns the screen black, fading in specified duration.
  */
-public class EmptyLayerRenderer extends LayerRenderer {
-	@Override
-	public void draw(Graphics g, int x, int y, int w, int h) {
-		// Draw nothing
+public class BlackenScreenEffect extends EffectLayer {
+	public BlackenScreenEffect(int duration) {
+		super(duration);
 	}
 
 	@Override
-	public void setTileset(Tileset tileset) {
-		// Do nothing
+	public boolean isExpired() {
+		// Never expire. Lasts until the next zone change.
+		return false;
+	}
+
+	@Override
+	public void drawScreen(Graphics g, int x, int y, int w, int h) {
+		Color c;
+		long time = System.currentTimeMillis();
+		if (time > timestamp + duration) {
+			c = Color.BLACK;
+		} else {
+			int traslucency = (int) ((timestamp  + duration - time) * 255 / duration);
+			c = new Color(0, 0, 0, 255 - traslucency);
+		}
+		g.setColor(c);
+		g.fillRect(x, y, w, h);
 	}
 }

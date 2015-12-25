@@ -66,7 +66,7 @@ public class WeatherLayerRenderer extends LayerRenderer {
 	}
 
 	@Override
-	void draw(Graphics g, int x, int y, int w, int h) {
+	public void draw(Graphics g, int x, int y, int w, int h) {
 		int myX = (x * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth();
 		int myY = (y * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight();
 		int myW = (w * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth() + 1;
@@ -85,7 +85,7 @@ public class WeatherLayerRenderer extends LayerRenderer {
 	}
 
 	@Override
-	void setTileset(Tileset tileset) {
+	public void setTileset(Tileset tileset) {
 		throw new UnsupportedOperationException("Adding tilesets not supported");
 	}
 }
