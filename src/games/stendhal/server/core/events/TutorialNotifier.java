@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +13,8 @@ package games.stendhal.server.core.events;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -196,7 +197,12 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
-	public static void equipped(final Player player) {
-		process(player, TutorialEventType.FIRST_EQUIPPED);
+	public static void equippedByNPC(final Player player, final Item item) {
+		// do not trigger on Stackable items, as it may be confusing to players
+		// that already own an item of that type. It is far less discoverable
+		// that the number have increased compared to a new item showing up
+		if (!(item instanceof StackableItem)) {
+			process(player, TutorialEventType.FIRST_EQUIPPED);
+		}
 	}
 }
