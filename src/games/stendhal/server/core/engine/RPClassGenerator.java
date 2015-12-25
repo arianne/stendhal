@@ -61,6 +61,7 @@ import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
 import games.stendhal.server.events.ExamineEvent;
+import games.stendhal.server.events.GlobalVisualEffectEvent;
 import games.stendhal.server.events.GroupChangeEvent;
 import games.stendhal.server.events.GroupInviteEvent;
 import games.stendhal.server.events.HealedEvent;
@@ -303,6 +304,10 @@ public class RPClassGenerator {
 		
 		if (!RPClass.hasRPClass(Events.VIEW_CHANGE)) {
 			ViewChangeEvent.generateRPClass();
+		}
+		
+		if (!RPClass.hasRPClass(Events.GLOBAL_VISUAL)) {
+			GlobalVisualEffectEvent.generateRPClass();
 		}
 
 		if (!RPClass.hasRPClass("action")) {

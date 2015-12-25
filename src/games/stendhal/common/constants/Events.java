@@ -55,4 +55,7 @@ public final class Events {
 
 	/** Event for graphical effects. */
 	public static final String IMAGE = "image_event";
+	
+	/** Event for visual effects affecting the entire game screen. */
+	public static final String GLOBAL_VISUAL = "global_visual_effect";
 }
