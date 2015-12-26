@@ -462,10 +462,11 @@
   <item name="scuba gear">
     <type class="armor" subclass="scuba_gear" tileid="-1"/>
     <description>You see a scuba suit with a heavy helmet attached. It is dense enough to offer protection and perfect for going under the waves.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <implementation class-name="games.stendhal.server.entity.item.LifeSupportGear"/>
     <attributes>
       <def value="18"/>
 	  <min_level value="50"/>
+	  <life_support value="water"/>
     </attributes>
     <weight value="45.0"/>
     <value value="34391"/>
