@@ -28,6 +28,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.Fire;
+import games.stendhal.server.entity.mapstuff.WeatherEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.area.Wall;
@@ -149,6 +150,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("well_source")) {
 			WellSource.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("weather_entity")) {
+			WeatherEntity.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("item")) {
 			Item.generateRPClass();

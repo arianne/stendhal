@@ -25,6 +25,11 @@ public class GlobalVisualEffectEvent extends RPEvent {
 	private static final String NAME_ATTR = "effect_name";
 	/** Duration in milliseconds. The exact interpretation is effect dependent. */
 	private static final String DURATION_ATTR = "duration";
+	/**
+	 * Strength of the effect 1-100. The interpretation is effect dependent and
+	 * may be ignored if it is not relevent.
+	 */
+	private static final String STRENGTH_ATTR = "strength";
 	
 	/**
 	 * Creates the rpclass.
@@ -33,6 +38,7 @@ public class GlobalVisualEffectEvent extends RPEvent {
 		final RPClass rpclass = new RPClass(Events.GLOBAL_VISUAL);
 		rpclass.addAttribute(NAME_ATTR, Type.STRING);
 		rpclass.addAttribute(DURATION_ATTR, Type.INT);
+		rpclass.addAttribute(STRENGTH_ATTR, Type.INT);
 	}
 
 	/**
@@ -40,11 +46,26 @@ public class GlobalVisualEffectEvent extends RPEvent {
 	 * 
 	 * @param effectName name of the effect
 	 * @param duration Duration in milliseconds. The exact interpretation is
-	 *  effect dependent.
+	 *  effect dependent
 	 */
 	public GlobalVisualEffectEvent(String effectName, int duration) {
 		super(Events.GLOBAL_VISUAL);
 		put(NAME_ATTR, effectName);
 		put(DURATION_ATTR, duration);
+	}
+	
+	/**
+	 * Create a new GlobalVisualEffectEvent with a specified strength.
+	 * 
+	 * @param effectName name of the effect
+	 * @param duration Duration in milliseconds. The exact interpretation is
+	 *  effect dependent
+	 * @param strength strength of the effect. The meaning is effect dependent
+	 */
+	public GlobalVisualEffectEvent(String effectName, int duration, int strength) {
+		super(Events.GLOBAL_VISUAL);
+		put(NAME_ATTR, effectName);
+		put(DURATION_ATTR, duration);
+		put(STRENGTH_ATTR, strength);
 	}
 }

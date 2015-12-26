@@ -162,6 +162,7 @@ public final class EntityMap {
 		register("gate", null, null, Gate.class);
 		register("game_board", null, null, GameBoard.class);
 		register("wall", null, null, Wall.class);
+		register("weather_entity", null, null, InvisibleEntity.class);
 
 		register("looped_sound_source", null, null, LoopedSoundSource.class);
 	}

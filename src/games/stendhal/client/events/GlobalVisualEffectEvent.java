@@ -14,15 +14,16 @@ package games.stendhal.client.events;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.BlackenScreenEffect;
 import games.stendhal.client.gui.EffectLayer;
+import games.stendhal.client.gui.LightningEffect;
 
 /**
  * An event that tells the client to display a visual effect that affects the
  * entire game screen.
  */
-class GlobalVisualEffectEvent extends Event<RPEntity>{
+class GlobalVisualEffectEvent extends Event<Entity> {
 	private static final Logger LOGGER = Logger.getLogger(GlobalVisualEffectEvent.class);
 	
 	@Override
@@ -33,6 +34,9 @@ class GlobalVisualEffectEvent extends Event<RPEntity>{
 		switch (name) {
 		case "blacken":
 			effect = new BlackenScreenEffect(duration);
+			break;
+		case "lightning":
+			effect = new LightningEffect(duration, event.getInt("strength"));
 			break;
 		default:
 			LOGGER.error("Unknown effect name: " + name);

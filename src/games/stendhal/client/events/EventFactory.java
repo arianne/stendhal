@@ -78,8 +78,6 @@ class EventFactory {
 			event = new ProgressStatusEvent();
 		} else if (name.equals(Events.REACHED_ACHIEVEMENT)) {
 			event = new ReachedAchievementEvent();
-		} else if (name.equals(Events.GLOBAL_VISUAL)) {
-			event = new GlobalVisualEffectEvent();
 		}
 
 		if (event != null) {
@@ -117,6 +115,8 @@ class EventFactory {
 			event = new ImageEffectEvent();
 		} else if (name.equals(Events.PUBLIC_TEXT)) {
 			event = new EntityMessageEvent();
+		}  else if (name.equals(Events.GLOBAL_VISUAL)) {
+			event = new GlobalVisualEffectEvent();
 		}
 
 		if (event != null) {
