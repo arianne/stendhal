@@ -218,6 +218,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		// Some items should not be dropped on death
 		entity.addAttribute("undroppableondeath", Type.SHORT, Definition.HIDDEN);
 
+		// Offers life support for certain environments (e. g. scuba gear)
+		entity.addAttribute("life_support", Type.STRING, Definition.HIDDEN);
+
 		// Unique database ID for logging
 		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
 
