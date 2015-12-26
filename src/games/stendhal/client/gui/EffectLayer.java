@@ -12,6 +12,7 @@
 package games.stendhal.client.gui;
 
 import java.awt.Graphics;
+import java.awt.Transparency;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.LayerRenderer;
@@ -70,5 +71,20 @@ public abstract class EffectLayer extends LayerRenderer {
 	public boolean isExpired() {
 		// Default implementation: remove after the time of duration has passed
 		return System.currentTimeMillis() > timestamp + duration;
+	}
+	
+	/**
+	 * A convenience method for getting the opaque or fully transparent alpha
+	 * values on systems that need it.
+	 * 
+	 * @param originalAlpha original alpha value
+	 * @return original alpha, or its value rounded to fully opaque or
+	 * 	transparent on systems that have the translucency turned off
+	 */
+	int alpha(int originalAlpha) {
+		if (TransparencyMode.TRANSPARENCY == Transparency.BITMASK) {
+			return originalAlpha > 127 ? 255 : 0;
+		}
+		return originalAlpha;
 	}
 }

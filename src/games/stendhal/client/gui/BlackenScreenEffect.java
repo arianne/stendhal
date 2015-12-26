@@ -36,7 +36,7 @@ public class BlackenScreenEffect extends EffectLayer {
 			c = Color.BLACK;
 		} else {
 			int traslucency = (int) ((timestamp  + duration - time) * 255 / duration);
-			c = new Color(0, 0, 0, 255 - traslucency);
+			c = new Color(0, 0, 0, alpha(255 - traslucency));
 		}
 		g.setColor(c);
 		g.fillRect(x, y, w, h);
