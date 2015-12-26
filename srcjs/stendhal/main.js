@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@
 window.stendhal = window.stendhal || {};
 
 stendhal.main = {
+	errorCounter: 0,
 
 	/**
 	 * register marauroa event handlers.
@@ -123,7 +124,11 @@ stendhal.main = {
 	},
 	
 	onerror: function(error) {
-		
+		stendhal.main.errorCounter++;
+		if (stendhal.main.errorCounter > 5) {
+			console.log("Too many errors, stopped reporting");
+			return;
+		}
 		var text = error.message + "\r\n";
 		text += error.filename + ":" + error.lineno;
 		if (error.colno) {
@@ -132,7 +137,7 @@ stendhal.main = {
 		if (error.error) {
 			text += "\r\n" + error.error.stack
 		}
-		test += "\r\n" + window.navigator.userAgent;
+		text += "\r\n" + window.navigator.userAgent;
 		try {
 			console.log(text);
 			var action = {
