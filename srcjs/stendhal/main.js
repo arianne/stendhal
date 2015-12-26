@@ -123,7 +123,6 @@ stendhal.main = {
 	},
 	
 	onerror: function(error) {
-		
 		var text = error.message + "\r\n";
 		text += error.filename + ":" + error.lineno;
 		if (error.colno) {
@@ -132,7 +131,7 @@ stendhal.main = {
 		if (error.error) {
 			text += "\r\n" + error.error.stack
 		}
-		test += "\r\n" + window.navigator.userAgent;
+		text += "\r\n" + window.navigator.userAgent;
 		try {
 			console.log(text);
 			var action = {
