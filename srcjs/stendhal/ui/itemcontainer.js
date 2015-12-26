@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2015 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -63,9 +63,9 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 	
 	function render(name, size) {
 		var cnt = 0;
-		for (var i in marauroa.me[name]) {
-			if (!isNaN(i)) {
-				var o = marauroa.me[name][i];
+		if (marauroa.me[name]) {
+			for (var i = 0; i < marauroa.me[name].count(); i++) {
+				var o = marauroa.me[name].getByIndex(i);
 				var e = document.getElementById(name + cnt);
 				e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
 				e.textContent = o.formatQuantity();
@@ -81,28 +81,9 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 		}
 	}
 	
-	/**
-	 * Look up an item by slot number.
-	 * 
-	 * @param slotNum number of the visible slot
-	 * @return item if there is one in the visible slot, otherwise undefined
-	 */
-	function findItem(slotNum) {
-		var cnt = 0;
-		slotNum = parseInt(slotNum);
-		for (var i in marauroa.me[name]) {
-			if (!isNaN(i)) {
-				if (slotNum === cnt) {
-					return marauroa.me[name][i];
-				}
-				cnt++;
-			}
-		}
-	}
-	
 	function onDragStart(e) {
 		var slotNumber = e.target.id.slice(name.length);
-		var item = findItem(slotNumber);
+		var item = marauroa.me[name].getByIndex(slotNumber);
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			e.dataTransfer.setDragImage(img, 0, 0);
@@ -176,17 +157,13 @@ stendhal.ui.window.container = {
 		// draw items
 		var slot = this.object[this.slotName];
 		var index = 0;
-		for (var i in slot) {
-			if (isNaN(i)) {
-				continue;
-			}
-
+		for (var i = 0; i < slot.count(); i++) {
 			var w = index % this.width;
 			var h = Math.floor(index / this.width);
 			var localX = w * 40 + 3;
 			var localY = h * 40 + 3;
 
-			var item = slot[i];
+			var item = slot.getByIndex(i);
 			item.drawAt(ctx, localX, localY);
 			index++;
 		}
@@ -197,15 +174,7 @@ stendhal.ui.window.container = {
 		var y = Math.floor(yOffset / 40);
 		var idx = y * this.width + x;
 		if (this.object.hasOwnProperty(this.slotName)) {
-			var cnt = 0;
-			for (var i in this.object[this.slotName]) {
-				if (!isNaN(i)) {
-					if (idx === cnt) {
-						return this.object[this.slotName][i];
-					}
-					cnt++;
-				}
-			}
+			return this.object[this.slotName].getByIndex(idx);
 		}
 		return null;
 	},
