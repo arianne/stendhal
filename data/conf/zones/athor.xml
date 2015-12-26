@@ -1412,11 +1412,13 @@ You get your stake back when there is a draw. If you win, you get the double of 
   
  <!-- Level -3 -->
  <zone name="-3_athor_sea_floor" level="-3" x="500768" y="500384" file="Level -3/athor/sea_floor.tmx">
-    <attributes>
+   <attributes>
       <parameter name="color_method">softlight</parameter>
       <parameter name="color">#0c4774</parameter>
       <parameter name="weather">wave</parameter>
-    </attributes>
+      <parameter name="life_support_environment">water</parameter>
+      <parameter name="life_support_failure_location"> 0_ados_coast_sw, 25, 72 </parameter>
+   </attributes>
 
    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     
