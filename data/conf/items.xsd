@@ -66,6 +66,7 @@
 			<element name="lifesteal" type="Q1:attribute" minOccurs="0"/>
 			<element name="persistent" type="Q1:attribute" minOccurs="0"/>
 			<element name="min_level" type="Q1:attribute" minOccurs="0"/>
+			<element name="life_support" type="Q1:attribute" minOccurs="0"/>
 			<element name="slot_name" type="Q1:attribute" minOccurs="0"/>
 			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"/>
 			<element name="autobind" type="Q1:attribute" minOccurs="0"/>
