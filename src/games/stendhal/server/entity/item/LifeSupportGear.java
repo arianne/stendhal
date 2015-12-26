@@ -36,7 +36,7 @@ public class LifeSupportGear extends Item {
 	 *
 	 * @param item item to copy
 	 */
-	public LifeSupportGear(Item item) {
+	public LifeSupportGear(LifeSupportGear item) {
 		super(item);
 	}
 
@@ -79,7 +79,7 @@ public class LifeSupportGear extends Item {
 		if (!requireLifeSupport.equals(this.get("life_support"))) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -88,7 +88,7 @@ public class LifeSupportGear extends Item {
 		player.addEvent(new GlobalVisualEffectEvent("blacken", 1000));
 		player.sendPrivateText("You cannot breath, the world around you turns black.");
 		TurnNotifier.get().notifyInTurns(4, new TurnListener() {
-			
+
 			@Override
 			public void onTurnReached(int currentTurn) {
 				StendhalRPZone zone = StendhalRPWorld.get().getZone(target[0].trim());
