@@ -123,7 +123,8 @@ public class MeetMonogenes extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.ATTENDING,
-			"map", null, ConversationStates.ATTENDING, "Caption\n"
+			"map", null, ConversationStates.ATTENDING, 
+			"I have marked the following locations on my map:\n"
 			+ "1 Townhall, Mayor lives here,   2 Library,   3 Bank,   4 Bakery,\n"
 			+ "5 Storage,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
         	+ "8 Temple, Ilisa,   9 Dangerous Dungeon,\n"
