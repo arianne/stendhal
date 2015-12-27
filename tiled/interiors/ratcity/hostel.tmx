@@ -1,71 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="floor" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/brown.png" width="160" height="32"/>
+  <image source="../../tileset/ground/brown.png"/>
  </tileset>
  <tileset firstgid="6" name="brick wall" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_bricks.png" width="64" height="192"/>
+  <image source="../../tileset/building/wall/int_wall_bricks.png"/>
  </tileset>
  <tileset firstgid="18" name="brick wall" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_thin_bricks.png" width="64" height="192"/>
+  <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
  <tileset firstgid="30" name="brick door" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/bricks_ns.png" width="96" height="128"/>
+  <image source="../../tileset/building/entrance/bricks_ns.png"/>
  </tileset>
  <tileset firstgid="42" name="portal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset firstgid="49" name="collision" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset firstgid="50" name="bookshelf" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" width="96" height="64"/>
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <tileset firstgid="56" name="lamp" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/light/small_lamp.png" width="128" height="32"/>
+  <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
  <tileset firstgid="60" name="warmer" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/kitchen/warmer_2.png" width="64" height="96"/>
+  <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
  <tileset firstgid="66" name="single_purple_gold" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/single_purple_gold.png" width="96" height="96"/>
+  <image source="../../tileset/furniture/bed/single_purple_gold.png"/>
  </tileset>
  <tileset firstgid="75" name="stairs" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/stairs/stairs.png" width="64" height="192"/>
+  <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NmYGBgHsWjeBSPSAwAqZCCkQAEAAA=
+   H4sIAAAAAAAAAGNmYGBgHsWjeBSPSAwAqZCCkQAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+NjYGDgJhPzAzEvEAsBsSwOLIMDiwMxD1S/NAPpQHpUP9X1OyPJE2Jj0++GpI4QG5t+TyR1hNiDMfzI1S8CxHJALA/ECgy48wwyloTqFwBiLiBWBGIlIFaG8onBgkAMACSjYYEABAAA
+   H4sIAAAAAAAAAONjYGDgJhPzAzEvEAsBsSwOLIMDiwMxD1S/NAPpQHpUP9X1OyPJE2Jj0++GpI4Q
+G5t+TyR1hNiDMfzI1S8CxHJALA/ECgy48wwyloTqFwBiLiBWBGIlIFaG8onBgkAMACSjYYEABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoB5wBmITKHYmQhwZBAGxGxCbQbEbkhy6uAUOMzxJZA934ADEjnS2ExZPxIoPF4ArTVKqltYAANLtmHIABAAA
+   H4sIAAAAAAAAAGNgoB5wBmITKHYmQhwZBAGxGxCbQbEbkhy6uAUOMzxJZA934ADEjnS2ExZPxIoP
+F4ArTVKqltYAANLtmHIABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGDzAnUT2YAc2QGxLgX47ILankluIBSZQTKw4Mhhu8TcSAABIwsNxAAQAAA==
+   H4sIAAAAAAAAAGNgGDzAnUT2YAc2QGxLgX47ILankluIBSZQTKw4Mhhu8TcSAABIwsNxAAQAAA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGBxAb6AdMApGwQCDgcgDAPJTnBsABAAA
+   H4sIAAAAAAAAAGNgGBxAb6AdMApGwQCDgcgDAPJTnBsABAAA
   </data>
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACzNkYGAwHASYAQsfGeBShy7OQCQbm35SwFDQT4wcte0nJv5w6R/K8UeKGcTmAXpgAFt5B6oABAAA
+   H4sIAAAAAAAAADNkYGAwHASYAQsfGeBShy7OQCQbm35SwFDQT4wcte0nJv5w6R/K8UeKGcTmAXpg
+AFt5B6oABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
 </map>

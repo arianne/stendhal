@@ -16,20 +16,24 @@
  <tileset firstgid="17" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset firstgid="30" name="necro" tilewidth="32" tileheight="32">
+ <tileset firstgid="31" name="necro" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png"/>
  </tileset>
- <tileset firstgid="44" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VsQ2AMAxEURcsxAopKViCGoZgEVaFEiKi2PHZAcnF1e93l4go/WDztZG5ycAehEM1tNioBo2tbUDYrQ1IW9pgYXMbLO1ag4ddavC03xqWDv4afvjhh/8Bf+vg7/T8AM+G3PZsKNkeDTXbsoFrWzRIbWRDq41o0NqaBpR9bziYQ9uWOwHfMm0bABAAAA==
+   H4sIAAAAAAAAAO3VsQ2AMAxEURdsxAopKViCGoZgETaFEiKi2PHZAcnF1e93l4go/WDztZG5ycAe
+hEM1tNioBo2tbUDYrQ1IW9pgYXMbLO1ag4ddavC03xqWDv4afvjhh/8Bf+vg7/T8AM+G3PZsKNke
+DTXbsoFrWzRIbWRDq41o0NqaBpR9bziYQ9uWOwETOIV0ABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UPQ5AQBCG4T2BE7mDXkWilFDp3cGBzXaaZX6+WSIzyVfZ5HkrKcVxrqO1zI0Odi94PwAbpDayQWsjGqy2pQFlaxrQtqTBy+Y0eNtPDROtqeBnYy74tS788MP/nv/m/2ehrRX8jbYXvnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wSR/+jWABAAAA==
+   H4sIAAAAAAAAAO3UPQ5AQBCG4T2BI7mDXkWilFDp3cF5zXaaZX6+WSIzyVfZ5HkrKcVxrqO1zI0O
+di94PwAbpDayQWsjGqy2pQFlaxrQtqTBy+Y0eNtPDROtqeBnYy74tS788MP/nv/m/2ehrRX8jbYX
+vnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wRlhGe1ABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -44,12 +48,13 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OAQkAQAgEQSP4Iexf0RIHjzATYNkquKl/DwBxE+69cA8A4LIF/IcwBgAQAAA=
+   H4sIAAAAAAAAAO3OAQkAQAgEQSP4Jewf0RIHjzATYNkquKl/DwBxE+69cA8A4LIFBKKXZwAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VwQ0AIAhDUW7sv7ErILQWkzbh/P5JMyLS98VVp7QZDd0pbUQDakq708Ca0q42KP1Xs2/f/j5f/f5s8NX/z4b/F93QsVENE3vagLC7DUj7toFh+zh3ADvSus0AEAAA
+   H4sIAAAAAAAAAO3VwQ0AIAhDUW7sv7ErILQWkzbh/P5JMyLS98VVp7QZDd0pbUQDakq708Ca0q42
+KP1Xs2/f/j5f/f5s8NX/z4b/F93QsVENE3vagLC7DUj7toFh+zh3ADvSus0AEAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="32">

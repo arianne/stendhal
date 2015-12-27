@@ -80,17 +80,22 @@
  </layer>
  <layer name="1_terrain" width="30" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NOQqAQAyF4RQibuCGrQvew13vfyRfMcVgJcnMVHnwQVL9MRElgaWQQQ5DIAXUpjvRvy2wCmwwMro7HAIns3vBLfAwuy6mXe1q1223hN6YrduHynQbaC3R5/ehgxfXxf0yCAcAAA==
+   H4sIAAAAAAAAAO3NOQqAQAyF4RQibuCGrQvew13vfyRfMcVgJcnMVHnwQVL9MRElgaWQQQ5DIAXU
+pjvRvy2wCmwwMro7HAIns3vBLfAwuy6mXe1q1223hN6YrduHynQbaC3R5/ehgxfXxf0yCAcAAA==
   </data>
  </layer>
  <layer name="2_object" width="30" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UOQvCMBgG4PxNRfFARd2c3NTB+8L7wmsQVDo466D4z3zFFD9CmoTUbr7w0PZr4E0olLFPQhCGCEQhBnH+nGDBJQkpSEMGspDjz/kAewsGa+aw8GFp2bsyWKPKWtNbgzo0hDUb2Pqw0+yrCSNoC/M90YcBn1/41XSm6m1peocwhjN5r5p5pSj0ys5LM4EZOIYzJuzHTUnolZ2X5ggnyxlNGaqkV3demziSGe3tQBd6P+6VpULu399kyr7fxc1Bc73CjbtzD+7p0Wvy3/jHPi9lvu5XCAcAAA==
+   H4sIAAAAAAAAAO3UOQvCMBgG4PxNRfFARd2c3NTB+8L7wmsQVDo466D4z3zFFD9CmoTUbr7w0PZr
+4E0olLFPQhCGCEQhBnH+nGDBJQkpSEMGspDjz/kAewsGa+aw8GFp2bsyWKPKWtNbgzo0hDUb2Pqw
+0+yrCSNoC/M90YcBn1/41XSm6m1peocwhjN5r5p5pSj0ys5LM4EZOIYzJuzHTUnolZ2X5ggnyxlN
+GaqkV3demziSGe3tQBd6P+6VpULu399kyr7fxc1Bc73CjbtzD+7p0Wvy3/jHPi9lvu5XCAcAAA==
   </data>
  </layer>
  <layer name="3_roof" width="30" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMFFgKxMvIFBsF+MFiAvQGIN4IxVuheBsU76CTG4cCUILSKnS2Vw2I1YFYgw52AQDfyv/JCAcAAA==
+   H4sIAAAAAAAAAGNgGAWjYBQMFFgKxMvIFBsF+MFiAvQGIN4IxVuheBsU76CTG4cCUILSKnS2Vw2I
+1YFYgw52AQDfyv/JCAcAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="30" height="15">
@@ -105,7 +110,8 @@
  </layer>
  <layer name="collision" width="30" height="15" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvOwMBwfYRiQmC42ovLLbT2Kyn2MqDRhMSoaS+6PD4xcsKZkNvwiVHbXlLFKLWXHEBueqaV3cToIUQTyjPk2EsNQKqbhgsGADoihrMIBwAA
+   H4sIAAAAAAAAALvOwMBwfYRiQmC42ovLLbT2Kyn2MqDRhMSoaS+6PD4xcsKZkNvwiVHbXlLFKLWX
+HEBueqaV3cToIUQTyjPk2EsNQKqbhgsGADoihrMIBwAA
   </data>
  </layer>
  <layer name="protection" width="30" height="15">

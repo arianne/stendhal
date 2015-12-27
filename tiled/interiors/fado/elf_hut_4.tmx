@@ -1,59 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="pebbles" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
+  <image source="../../tileset/ground/rock/pebbles.png"/>
  </tileset>
  <tileset firstgid="4" name="dark_torch" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/light/dark_torch.png" width="64" height="128"/>
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
  <tileset firstgid="12" name="collision" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset firstgid="13" name="logic/portal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset firstgid="20" name="ground_4" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/ground_4.png" width="128" height="320"/>
+  <image source="../../tileset/ground/ground_4.png"/>
  </tileset>
  <tileset firstgid="60" name="wall/int_clay" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_clay.png" width="320" height="320"/>
+  <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
  <tileset firstgid="160" name="rotating_crystal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/rotating_crystal.png" width="256" height="192"/>
+  <image source="../../tileset/object/rotating_crystal.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACxNhYGAQGcWjeBSP4lE8iknEABaE3wdABgAA
+   H4sIAAAAAAAAABNhYGAQGcWjeBSP4lE8iknEABaE3wdABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC7NhYGBwpBJ2AmI3IHYHYi8KsTcQl0DNC2SgHGSOmjcg5jFSwbwTRNgzWPw7mMxjIsIcWPwMB/8OJvO4KDCLC828fCAuwIELoXri8agB4WKoeRVAXIkHVwNxDRDXElAHwnVADABwGisQQAYAAA==
+   H4sIAAAAAAAAALNhYGBwpBJ2AmI3IHYHYi8KsTcQl0DNC2SgHGSOmjcg5jFSwbwTRNgzWPw7mMxj
+IsIcWPwMB/8OJvO4KDCLC828fCAuwIELoXri8agB4WKoeRVAXIkHVwNxDRDXElAHwnVADABwGisQ
+QAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkgHADV9EcVABgAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjgLrgwEA7YBSMAhIB2wDpHeoAAFr4ErFABgAA
+   H4sIAAAAAAAAAGNgGAWjgLrgwEA7YBSMAhIB2wDpHeoAAFr4ErFABgAA
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCiBAkAS1ALTJKSBABgAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCiBAkAS1ALTJKSBABgAA
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+NhYGDgGQKYUjBq3qh5o+aNmkcv8ygxk5yykdplLbFqAb6swT1ABgAA
+   H4sIAAAAAAAAAONhYGDgGQKYUjBq3qh5o+aNmkcv8ygxk5yykdplLbFqAb6swT1ABgAA
   </data>
  </layer>
  <layer name="protection" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkgHADV9EcVABgAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
  </layer>
 </map>

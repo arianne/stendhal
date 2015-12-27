@@ -67,47 +67,57 @@
  <tileset firstgid="219" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="220" name="bread" tilewidth="32" tileheight="32">
+ <tileset firstgid="221" name="bread" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset firstgid="224" name="pie safe" tilewidth="32" tileheight="32">
+ <tileset firstgid="225" name="pie safe" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/pie_safe.png"/>
  </tileset>
- <tileset firstgid="228" name="items" tilewidth="32" tileheight="32">
+ <tileset firstgid="229" name="items" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
- <tileset firstgid="244" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="245" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/rectangular_with_meals.png"/>
  </tileset>
- <tileset firstgid="253" name="water" tilewidth="32" tileheight="32">
+ <tileset firstgid="254" name="water" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water.png"/>
  </tileset>
- <tileset firstgid="277" name="grey_plain" tilewidth="32" tileheight="32">
+ <tileset firstgid="278" name="grey_plain" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC7gobJ59LKfhUj8Fwljk+chEpNrPyFMiv3I7qCn3djCYdR++tqPDkbtH/r2k+KGUfupYz86wGY2MWCg7AcAE6N/VwAIAAA=
+   H4sIAAAAAAAAAGNgoC7gobJ59LKfhUj8Dwljk+chEpNrPyFMiv3I7qCn3djCYdR++tqPDkbtH/r2
+k+KGUfupYz86wGY2MWCg7AcADdKWFgAIAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOXUuQrCMAAG4PQF1EUcxEHxCbwX73tSEBEERd09FnURH7iztw7+oRVDTdo0Fhd/+CAtMX+bEgkx4vuCTJx+E1fQgKZN58RmfWsSkGKudUia92nqkIcCFKEELWhz1gpqhIS0z/ErecHzpgVjNmWoQJW5FwU/BCAGYfRFzE52zGYEY0GH28xhAUtYSczvwxRmHvWvYQNb2EnMH5D3nolygCPHSTB/L/uwZmT67xwPy7yay14auv9O3/8m6Le+v0o/3X+n73+GC8dVoY8X6/7riuvYvX8Huhy9H/Xbxavzr9I/JPLnPwNZU44Y/8Pf9tM4nb9/yRO0Zq6iAAgAAA==
+   H4sIAAAAAAAAAOXUuQrCMAAG4PQF1EkcRFB8Au/F+54URARBUXePRV3EF+7sreAfWjHUpE1jcfGH
+D9IS87cpkRAjvi/IxOk3cQUNaNp0TmzWtyYBKeZah6R5n6YOeShAEUrQgjZnraBGSEj7HL+SFzxv
+WjBmU4YKVJl7UfBDAGIQRl/E7GTHbEYwFnS4zRwWsISVxPw+TGHmUf8aNrCFncT8AXnvmSgHOHKc
+BPP3sg9rRqb/zvGwzKu57KWh++/0/W+Cfuv7q/TT/Xf6/me4cFwV+nix7r+uuI7d+3egy9H7Ub9d
+vDr/Kv1DIn/+M5A15YjxP/xtP43T+fuXPAG93CRXAAgAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SOQrCQBQG4LmAS6OmdbcN2mnrKbQQFBTMFVwuonbqTVyPEHdIZeFyAf/gCwwykxiMCJKBDx5J3v8LjsIYC7L3TlHy3NyPgUKzpQJVmmcwhwXlWDthyIFKWXs4cNkqN5ck/VkIcVkpcoYazUtYwZpy+J0E5eThCCcoSLpEJ/6StaPnF9gSp51fHb9f3L/hZs0howNd6EHfZX8dGpJ35m/QaS7bZLi9Szo3N6El+e4ONzDY8063mfd32Yv/3+//337z/l1pNr7Un4HkB9JcvyhrAEMYCXaiEPBAxCZrDBOYCnYeffkqkAAIAAA=
+   H4sIAAAAAAAAAO3SOQrCQBQG4LmAS6OmdbcN2mnrKbQQFBTMFVwuonbqTVyvEHdIZeFyAP/gCwwy
+kxiMCJKBDx5J3v8LjsIYC7L3TlHy3NyPgUKzpQJVmmcwhwXlWDthyIFKWXs4cNkqN5ck/VkIcVkp
+coYazUtYwZpy+J0E5eThCCcoSLpEJ/6StaPnF9gSp51fHb9f3L/hZs0howNd6EHfZX8dGpJ35m/Q
+aS7bZLi9Szo3N6El+e4ONzDY8063mfd32Yv/3+//337z/l1pNr7Un4HkB9JcvyhrAEMYCXaiEPBA
+xCZrDBOYCnYewWyCfwAIAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHzg+UA7YBSQDM4C8Tki1d6hgf3ngfgCDcwdBUMXeAGxNxbsN5COAoKIAbY/coDtHwWDBwAAhsHThgAIAAA=
+   H4sIAAAAAAAAAGNgGHzgxUA7YBSQDM4C8Tki1d6lgf3ngfgCDcwdBUMXeAGxNxbsN5COAoKIAbY/
+coDtHwWDBwAAbcfnogAIAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMguEL7uJgj4JRMNIBAGbY8fkACAAA
+   H4sIAAAAAAAAAGNgGAWjYBSMguEL7uFgj4JRMNIBAHxfQOgACAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -117,7 +127,8 @@
  </layer>
  <layer name="collision" width="32" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvFwMBwaxTjxQxoNDY5fPpgbGSATS25gByzBtJ+XGFFL0CM/YTSAz615LiBXPvJCUtq+n+g7cemlhhArTSIzxxyyhlq2k+KPnIBreKfWLXU8j+t8UDYSQwGACnFpFAACAAA
+   H4sIAAAAAAAAALvFwMBwaxTjxQxoNDY5fPpgbGSATS25gByzBtJ+XGFFL0CM/YTSAz615LiBXPvJ
+CUtq+n+g7cemlhhArTSIzxxyyhlq2k+KPnIBreKfWLXU8j+t8UDYSQwGACnFpFAACAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="16" visible="0" opacity="0.24">

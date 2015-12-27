@@ -54,22 +54,30 @@
  </tileset>
  <layer name="0_floor" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNhYGBgGcWjmAzMOwB41C2jbhl1y6hb8GGtUbcM+jgadcuoW0bdMooHOwYApXCWMiANAAA=
+   H4sIAAAAAAAAAGNhYGBgGcWjmAzMOwB41C2jbhl1y6hb8GGtUbcM+jgadcuoW0bdMooHOwYApXCW
+MiANAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2U2woCIRCG9V267e32pu0iWLIDBJ0v7UB0sW+Z0Qizg8fdJAk/kEFxDv6OMlYo/A8Tnl/MCvmnqC+EqSHvLLAWgfb5fIaeb6H8lyRGbMwqkcZn3rWpmVvynNS6VOMK9kj2iS/1m01HHfMA+S9Qyw3mW+K3UvM1WjP1oovQM9zVvlaNMfvYR0Se0LegaWD/+ywN8dW6SFiXRJcarNZX9LijmB7fQ/4n2J2jX4ZQc/dcs+FdawPfO9W4L6b/5VfgM9m0MtVr+xd8aD1xXvo2Q3vBdh+xb5vW5sMUP0RHE6NM+qCQLy+CEI86IA0AAA==
+   H4sIAAAAAAAAAO2U2woCIRCG9V267e32pu0iWLIDBJ0v7UB0sW+Z0Qizg8fdJAk/kEFxDv6OMlYo
+/A8Tnl/MCvmnqC+EqSHvLLAWgfb5fIaeb6H8lyRGbMwqkcZn3rWpmVvynNS6VOMK9kj2iS/1m01H
+HfMA+S9Qyw3mW+K3UvM1WjP1oovQM9zVvlaNMfvYR0Se0LegaWD/+ywN8dW6SFiXRJcarNZX9Lij
+mB7fQ/4n2J2jX4ZQc/dcs+FdawPfO9W4L6b/5VfgM9m0MtVr+xd8aD1xXvo2Q3vBdh+xb5vW5sMU
+P0RHE6NM+qCQLy+CEI86IA0AAA==
   </data>
  </layer>
  <layer name="2_object" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHzgORC/AGI7RvriN2jukAeK/QbSf4A4EMgOoiNmAGIdRlS3KAOxABCnAnE6lE6jAxbB4RYVRgaSwTqgni1AvIEMvSCgQUW3bATq2QTEmweBWygFo24ZdctAumU7BX4YzuEy6pZRt4y6ZXC5xRjqloEA6G5xB7I9GOnfvgThYCAOQXJLNJAdw0i/diUyBrVnMwYoTvABAJ1IMLAgDQAA
+   H4sIAAAAAAAAAGNgGHzgORC/AGI7RvriN2jukAeK/QbSf4A4EMgOoiNmAGIdRlS3KAOxABCnAnE6
+lE6jAxbB4RYVRgaSwTqgni1AvIEMvSCgQUW3bATq2QTEmweBWygFo24ZdctAumU7BX4YzuEy6pZR
+t4y6ZXC5xRjqloEA6G5xB7I9GOnfvgThYCAOQXJLNJAdw0i/diUyBrVnMwYoTvABAJ1IMLAgDQAA
   </data>
  </layer>
  <layer name="3_roof" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OsQkAIAxE0WQTh7CxcRlHsHF80yrXR+E/OEK6b/aW5mYr7kza8LOnXH8mWjRaNFo0WjRaNFo0WjRatJdaarT0pOEfG6oGY+AgDQAA
+   H4sIAAAAAAAAAO3OsQkAIAxE0WQTh7CxcRlHsHF80yrXR+E/OEK6b/aW5mYr7kza8LOnXH8mWjRa
+NFo0WjRaNFo0WjRatJdaarT0pOEfG6oGY+AgDQAA
   </data>
  </layer>
  <layer name="objects" width="35" height="24">
@@ -79,7 +87,8 @@
  </layer>
  <layer name="collision" width="35" height="24" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvJyMCwcxSPYjIwOYCa+oeTWygFo24ZdctAuWUw5SOYvsHgFkrBqFtG3TLqlpHhllE8ODEAXI+KPSANAAA=
+   H4sIAAAAAAAAANvJyMCwcxSPYjIwOYCa+oeTWygFo24ZdctAuWUw5SOYvsHgFkrBqFtG3TLqlpHh
+llE8ODEAXI+KPSANAAA=
   </data>
  </layer>
  <layer name="protection" width="35" height="24" opacity="0.47">

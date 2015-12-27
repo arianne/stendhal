@@ -37,43 +37,43 @@
  <tileset firstgid="180" name="fruits" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/fruits.png"/>
  </tileset>
- <tileset firstgid="189" name="pot plant sprout" tilewidth="32" tileheight="32">
+ <tileset firstgid="190" name="pot plant sprout" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
  </tileset>
- <tileset firstgid="191" name="glass walls" tilewidth="32" tileheight="32">
+ <tileset firstgid="192" name="glass walls" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/glass.png"/>
  </tileset>
- <tileset firstgid="207" name="potted plants" tilewidth="32" tileheight="32">
+ <tileset firstgid="208" name="potted plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
- <tileset firstgid="213" name="tools" tilewidth="32" tileheight="32">
+ <tileset firstgid="214" name="tools" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/tools.png"/>
  </tileset>
- <tileset firstgid="222" name="sacks" tilewidth="32" tileheight="32">
+ <tileset firstgid="223" name="sacks" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sacks.png"/>
  </tileset>
- <tileset firstgid="224" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="225" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="228" name="oriental plant" tilewidth="32" tileheight="32">
+ <tileset firstgid="229" name="oriental plant" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
- <tileset firstgid="230" name="planted containers" tilewidth="32" tileheight="32">
+ <tileset firstgid="231" name="planted containers" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/planted_containers.png"/>
  </tileset>
- <tileset firstgid="246" name="dark grassy sink" tilewidth="32" tileheight="32">
+ <tileset firstgid="247" name="dark grassy sink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/dark_brown_stone.png"/>
  </tileset>
- <tileset firstgid="250" name="flower benches" tilewidth="32" tileheight="32">
+ <tileset firstgid="251" name="flower benches" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
  </tileset>
- <tileset firstgid="256" name="flower benches 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="257" name="flower benches 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
- <tileset firstgid="266" name="pot plant" tilewidth="32" tileheight="32">
+ <tileset firstgid="267" name="pot plant" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset firstgid="278" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="279" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
@@ -83,22 +83,31 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ2SzWrCUBCF5/pTdedK7Z8vICj4stkVdOFjpNqChVRdufAhdKdLW8+lc2BI7k2JBz4yJHMyJzfzLiJLsNJrvo49+wBfoOdEBsDqoNc3CStT7yN8zyDR+zVX7D2CEziDmXo/wQt6h2CEegweXNhntda5V/ADfsEUtANzRWdecpmpeeTbxHgoZvZn1Q+cV5mY2Z/Vk55XTHw/Z2QVvOxhHzPf462SOTTXe/3/fdV/XDXzIm75N3PdhffQitmYj5mbqBslXu6qFTO3XHGHrSbyt6tWzNxx8R2m7M5zrvem5baCUpPZf09S0tvVTPtc5m+wAVvF1hK57+sduAG+ywpAsAQAAA==
+   H4sIAAAAAAAAAJ1Sy4oCQQxM49ubJ1dX3Q8QFPZnvQnrwd9QV0FBXU8e/Ai96dG1GlMQZrpHxoKi
+QyY1qU5nLiIL8FfPZBz7tgQ3YNOJtECLk55jCWOr2jZ0HXCk+YJL157BC3gFf1S7Aruo/QL7iAdg
+xYV1Fmvtewf/fQKabxy1QF/RnreEZ2ISuZsYDUHPflYfgXllgZ79rD51XjHw/+yxzaFlDevo+R1t
+Hs+hvl7r37enb5zX8zQueem56MJ7aEFv9EfPZcSlDC131YKeqy69wxZDee6qBT3XXXyHCbvz7Ou1
+s2xZCjPj2d9nlFHb0F7HhOcduAf/lDaWSN7HB/ABFRkMibAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGC4zYAJrqLxryOxr2FRjw/cQmLfRGLfBeIoIN5HpDkxJNipD8RGJKgnFtwD4vtAHI0mrg3Eemhi34D4Ow5zjJDUY3PrDyD+icQXZUSEEz6/nQfiT2hiIH3vcaiHgYVAfBmLugdAfJGAXgaonVeg6mFgHhBfIkJvIZR+hyY+D+ouXKAViNuAWJARU45Q/E8F4mkMmGFFK4CcPpYwINIRIbUgAPPLeQL6kNXiAnfR+NcJmAlyx1Mc5oLyNb68q8eA8MdTAu4CgdlAPBOI5+JRAwCAFqnKsAQAAA==
+   H4sIAAAAAAAAAGNgYGC4w4AJrqHxbyCxr2NRjw/cRmLfQmLfA+IoIN5PpDkxJNipD8RGJKgnFtwH
+4gdAHI0mrg3Eemhi34H4Bw5zjJDUY3PrTyD+hcQXY0SEEz6/XQDiz2hiIH0fcKiHgYVAfAWLuodA
+fImAXgaonVeh6mFgHhBfJkJvIZR+jyY+D+ouXKAViNuAWIgRU45Q/E8F4mkMmGFFK4CcPpYwINIR
+IbUgAPPLBQL6kNXiAvfQ+DcImAlyxzMc5oLyNb68q8eA8MczAu4CgdlAPBOI5+JRAwC9fh95sAQA
+AA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA7YC2MwYsq9AOKXQPyBRDNh+rCBX0D8G4j/EDADZOdHEu1lIFMPIcDHiBROJAKQvs/UdAwacKah2cQAbizphiJAbfMGAcCV5olJU0/wqMennwsajhfQzBgoAACbAw8usAQAAA==
+   H4sIAAAAAAAAAGNgoA7YB6UZGTHlXgLxKyD+SKKZMH3YwG8g/gPEfwmYAbLzE4n2MpCphxDgZ0SE
+E6kApO8LNR2DBpxpaDYxgAdLuqEEYEuHQx3gSvPEpKmneNTj088NDceLaGYMFAAAwSyi67AEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWkAhMK9JqRqa+SAjtHwfAA55HYxhSYY4rGr6HALHoDAB6L5O+wBAAA
+   H4sIAAAAAAAAAGNgGAWkAhMK9JqRqa+SAjtHwfAAF5DYxhSYY4rGr6HALHoDACQsALOwBAAA
   </data>
  </layer>
  <layer name="objects" width="15" height="20">
@@ -108,7 +117,8 @@
  </layer>
  <layer name="collision" width="15" height="20" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFNiYGBQohKGASUcNLI8Nr3o6nCpxWcnuj50dxBrL7o4Prtx6SPG3YQAqfYSG16DXS8DA2X2EgLkupcYsyixm1i9pNqLK2xJSc+4zCGkj5C9xLgNhgF9X+LgsAQAAA==
+   H4sIAAAAAAAAAFNiYGBQohKGASUcNLI8Nr3o6nCpxWcnuj50dxBrL7o4Prtx6SPG3YQAqfYSG16D
+XS8DA2X2EgLkupcYsyixm1i9pNqLK2xJSc+4zCGkj5C9xLgNhgF9X+LgsAQAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="20">

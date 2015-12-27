@@ -46,25 +46,25 @@
  <tileset firstgid="156" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset firstgid="184" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="200" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_linen.png"/>
  </tileset>
- <tileset firstgid="188" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="204" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch.png"/>
  </tileset>
- <tileset firstgid="189" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="205" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/furnace.png"/>
  </tileset>
- <tileset firstgid="193" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="209" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/flames.png"/>
  </tileset>
- <tileset firstgid="195" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="211" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/door/door_s.png"/>
  </tileset>
- <tileset firstgid="201" name="oil paintings" tilewidth="32" tileheight="32">
+ <tileset firstgid="217" name="oil paintings" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
- <tileset firstgid="217" name="double_peach" tilewidth="32" tileheight="32">
+ <tileset firstgid="233" name="double_peach" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_peach.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -74,17 +74,24 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ3RSQoCMRAF0ICCKM5jqy3EnVPjccSVeCNFUfQSLtx6OH/DLwixkzZd8CADnySVplJqWFALJlCHOUnJvGHtm+tT5mfKXRGMOd7BnuP4z7xZBzgG5vswgAUsYQurgHzM/TVsKLHybdA8R87U1DH2tbUueemv9ClSv/3O63/J8wbXu0L6f4JzQL5CaX3gAleOs/IvK1+FWsD97XyZpG5w9+TfnrPSOz/g6bh/1v/mkf/vwqigHnwByRdlqAAEAAA=
+   H4sIAAAAAAAAAJ3RWQrCMBQF0ICCKM5j1Qrxz6m4HPFL3JGiKLoJP9yGi/IW7oMQm9T0wYEMXJK8
+NJVSw4JaMIE6zElK5g1r31yfMj9T7opgzPEO9hzHf+bNOsAxMN+HASxgCVtYBeRj7q9hQ4mVb4Pm
+OXKmpo6xr611yUt/pU+R+u13Xv9Lnje43hXS/xOcA/IVSusDF7hynJV/Wfkq1ALub+fLJHWDuyf/
+9pyV3vkBT8f9s/43j/x/F0YF9eALeu2jZQAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXQWQrCMBDG8djez+VJfRKfvJiKegI3cK3rCVzP4r84QojTSNoHP/iRZjITSox5p2S+o9WyEuGMC65W7ZOy9V1R5mNZb7g7tTRVdETN8x8PPDPOWmh7Zotk/qNWR0M0ld6Qt9Z6I2d/lHWFtVU/Kb2+LLB0arHS10UP/YC77QwwxEj2Y0xy3pVmilmB+X9kgy2SnPM77HEImHkBud9PRQAEAAA=
+   H4sIAAAAAAAAAMXQWQrCMBDG8djez+VJfRKfvJiKehI3cK3rCVzP4L84QojTSNoHP/iRZjITSox5
+p2S+o9WyEuGMC65W7ZOy9V1R5mNZb7g7tTRVdETN8x8PPDPOWmh7Zotk/qNWR0M0ld6Qt9Z6I2d/
+lHWFtVU/Kb2+LLB0arHS10UP/YC77QwwxEj2Y0xy3pVmilmB+X9kgy2SnPM77HEImHkBOx4XUwAE
+AAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFzgPhA/GAB7e7GI9SOxrYDYEYitgdiGDPPZgDgHiHOhbHqBvUC8j472YQM9SOw+HGpWo/F3APFO2jiHZABKB9OAeDoD9nQylAEA+IiMbAAEAAA=
+   H4sIAAAAAAAAAGNgGFzgPRB/GAB7e7GI9SOxrYDYEYitgdiGDPPZgDgHiHOhbHqBs0B8jo72YQM9
+SOw+HGpWo/FPAPFJ2jiHZABKB9OAeDoD9nQylAEAaroDqwAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
@@ -94,7 +101,8 @@
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONmYGDgHiQYHZCjF5dZhMwmRh0hd1HifmQzKA1DaoU/Aw45aphDbPgzMGDqI0Y/KfFKTHohpJ9Uu2gV/6RiAJpviiwABAAA
+   H4sIAAAAAAAAAONmYGDgHiQYHZCjF5dZhMwmRh0hd1HifmQzKA1DaoU/Aw45aphDbPgzMGDqI0Y/
+KfFKTHohpJ9Uu2gV/6RiAJpviiwABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

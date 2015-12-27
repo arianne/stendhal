@@ -84,22 +84,29 @@
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNjYGBgIwHDADY5Jjx6CJnLRCIe1T+49OOLU2LTlgASJlX/OhLxYNNPT2yCxAYAHLknzgAEAAA=
+   H4sIAAAAAAAAAGNjYGBgIwHDADY5Jjx6CJnLRCIe1T+49OOLU2LTlgASJlX/OhLxYNNPT2yCxAYA
+HLknzgAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3SNw7CMABAUV8ACGWhLNwCGBATO2WhXAUxEFbETO/lOnAhfoSRLMuRjcHSG1y+lFgeCiHaqKCKmpy7GKCLHOriPRoIHGTRkX1SmMcEYcxewqGfYf5DH40Fllhh7dFvsMUOe7k2+qI/4IgTznJtbOgfeBr6C6644e7x/XFD7TNIaQrK2bxhP6300fsJ5NmpVFL6orC/n7JFU5vr/2/rdf/sTfdn87m/PlqeengBAg8eigAEAAA=
+   H4sIAAAAAAAAAK3SNw7CMABAUV8ACGWhLNwCGBATO2WhXAUxEFbETO/lOnAhfoSRLMuRjcHSG1y+
+lFgeCiHaqKCKmpy7GKCLHOriPRoIHGTRkX1SmMcEYcxewqGfYf5DH40Fllhh7dFvsMUOe7k2+qI/
+4IgTznJtbOgfeBr6C6644e7x/XFD7TNIaQrK2bxhP6300fsJ5NmpVFL6orC/n7JFU5vr/2/rdf/s
+Tfdn87m/PlqeengBAg8eigAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAAbKK0GxBpQdjkQVzCgggIG7MAeSmsCsTaUXQ3ENUB8E4hv4dAHAh5IbB0g1kOTvw/ED/DoJwSeAvEzPPLZFJhNKthGR7toAdxpYOZEKD0DiPdgkXdFYu/HIj8VSvdCMTpwAmIvIPYG4kNkutEPiP3J1IsMrlHBDGoBAEw1SOIABAAA
+   H4sIAAAAAAAAAGNgQAAbKK0GxBpQdjkQVzCgggIG7MAeSmsCsTaUXQ3ENUB8E4hv4dAHAh5IbB0g
+1kOTvw/ED/DoJwSeAvEzPPLZFJhNKthGR7toAdxpYOZEKD0DiPdgkXdFYu/HIj8VSvdCMTpwAmIv
+IPYG4kNkutEPiP3J1IsMrlHBDGoBAEw1SOIABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB1oA+IOKpn1EIgf4ZFPpZI95IJTQHyaAv3ngPg8ldwyCkYBsQAAGAOu/QAEAAA=
+   H4sIAAAAAAAAAGNgoB1oA+IOKpn1EIgf4ZFPpZI95IJTQHyaAv3ngPg8ldwyCkYBsQAAGAOu/QAE
+AAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -114,7 +121,8 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAAtgYGAIoBJmoIJ+bGZgA8SowaYel35izKDEfnx6qaGfVHNoZT8x8UkL/aS4G5uZpAJ6hB89MADiif7UAAQAAA==
+   H4sIAAAAAAAAAAtgYGAIoBJmoIJ+bGZgA8SowaYel35izKDEfnx6qaGfVHNoZT8x8UkL/aS4G5uZ
+pAJ6hB89MADiif7UAAQAAA==
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

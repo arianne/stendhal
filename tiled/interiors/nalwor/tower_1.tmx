@@ -1,77 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="int_wall_dark_red_corners" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_dark_red_corners.png" width="128" height="128"/>
+  <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
  <tileset firstgid="17" name="int_wall_dark_red" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_dark_red.png" width="128" height="128"/>
+  <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
  <tileset firstgid="33" name="stone" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/stone.png" width="96" height="128"/>
+  <image source="../../tileset/building/wall/stone.png"/>
  </tileset>
  <tileset firstgid="45" name="bricked_edges" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/bricked_edges.png" width="160" height="96"/>
+  <image source="../../tileset/building/wall/bricked_edges.png"/>
  </tileset>
  <tileset firstgid="60" name="stairs" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/stairs/stairs.png" width="64" height="64"/>
+  <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset firstgid="64" name="fairypool" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/fairypool.png" width="64" height="256"/>
+ <tileset firstgid="72" name="fairypool" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/fairypool.png"/>
  </tileset>
- <tileset firstgid="80" name="blobcreature" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/blobcreature.png" width="64" height="64"/>
+ <tileset firstgid="88" name="blobcreature" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/blobcreature.png"/>
  </tileset>
- <tileset firstgid="84" name="elf" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/elf.png" width="320" height="32"/>
+ <tileset firstgid="92" name="elf" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="94" name="collision" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ <tileset firstgid="102" name="collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="95" name="green_stone" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/green_stone.png" width="128" height="96"/>
+ <tileset firstgid="103" name="green_stone" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone.png"/>
  </tileset>
- <tileset firstgid="107" name="blue_circle" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/blue_circle.png" width="64" height="64"/>
+ <tileset firstgid="115" name="blue_circle" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/blue_circle.png"/>
  </tileset>
- <tileset firstgid="111" name="green_stone_3" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/green_stone_3.png" width="32" height="96"/>
+ <tileset firstgid="119" name="green_stone_3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
- <tileset firstgid="114" name="Untitled" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/stone2.png" width="96" height="128"/>
+ <tileset firstgid="122" name="Untitled" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/stone2.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgaoAiIi4G4hEw2OigFYlUgLieTjQ4qgFgDiKvIZKODaiDWBuJaMtmj4TcafqPhN3zCb7ACAHD0ZHU=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBqgCoirgbiGTDY6qAViVSCuJ5ONDhqAWAOIm8hko4NmINYG4lYy2ehgNPxG
+ww8fGx2Mht/gCr/BCgDI3qQ5QAYAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJzVk9sKwjAQRMdrveuTgv5DVRS8fZA+CP3/t05gF2rZYJr0pQOHHcISJkPbA9AngxbmkIzImOwSyciETMkW6TqQheRz9z3IkdwrHgHe7T/lPl++s8xToL8Z+a4kJ5cI//qTL0a+/hDhff0V+O0G4osKMHZC+nuTj3Fu7XS1Pyft5iu+fm75Ln9/Tf9fp5D+mnirP5XVEzxed/S9mm9G9onMJd+SrMi6hbkhJct3J54=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAANWT2wrCMBBEx2u965OC/kNVFLx9lD4I/f1OYBdq2WCa9KUDhx3CEiZD2wPQJ4MW
+5pCMyJjsEsnIhEzJFuk6kIXkc/c9yJHcKx4B3u0/5T5fvrPMU6C/GfmuJCeXCP/6ky9Gvv4Q4X39
+FfjtBuKLCjB2Qvp7k49xbu10tT8n7eYrvn5u+S5/f03/X6eQ/pp4qz+V1RM8Xnf0vZpvRvaJzCXf
+kqzIuoW5ISW5dh90QAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgawAyIjYDYlES2HRDrYjHPEIuYBYlsQuZRAkDmZQJxFha5ICAOJkEcBMgNPxAbX/iRGmb0DD9qgqEUftl4/EEsQDYvF4jzcKhzAmJnIswb7OFnS4QfSAEmQKyHxEfOm8jiyOxCKLamsltoCQCI6hm5
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBrADIiNgNiURLYdEOtiMc8Qi5gFiWxC5lECQOYVAnERFrkoII4mQRwEyA0/
+EBtf+JEaZvQMP2qCoRR+xXj8QSxANq8UiMtwqPMCYm8izBvs4WdLhB9IASZArIfER86byOLI7Eoo
+tqayW2gJAAP51DVABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBi5IBGIk6hoXioQp2ERDwDiQBLEhyKIB+IEKqiBgWQgTqGCmlGAChyA2HGgHTEEADF5swCKRzIAACJcB98=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGLkgE4izqGheLhDnYRGPAOJIEsSHIkgH4gwqqIGBbCDOoYKaUYAKPIDYc6Ad
+MQQAMXmzAopHMgAA0E6iJ0AGAAA=
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFtAAhA+2AYQpGwxU3GIlhMxB+HonhjAsAAHHcAaU=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAW0ADED7YBhCkbDFTcYiWEzEH4eieGMCwAA+lg8P0AGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.47">
-  <data encoding="base64" compression="zlib">
-   eJyLY2BgiBsCmFJAD/NwmU2MOD3MowTQK/zQ5dHVYjODGPcR4+6hHn7ocvj0DaR55AB6m0eqPbROf4MVAwA37kLV
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAEtjYGBIGwKYUkAP83CZTYw4PcyjBNAr/NDl0dViM4MY9xHj7qEefuhy+PQNpHnk
+AHqbR6o9tE5/gxUDAAdcXSdABgAA
   </data>
  </layer>
  <layer name="protection" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
  </layer>
 </map>

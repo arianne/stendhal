@@ -50,12 +50,15 @@
  </layer>
  <layer name="1_terrain" width="17" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3QSQqDQBCF4QaNoIlujWY4gLrQnMTpDAaSOzjc3H9RgouI3ZKCD7p68XhUoJSyNXR4//j34eCJeMcHX3n3GPDACR6uymxGTAjhSg/TjGVC6bGVUaJaqUUje6uR8Y8eJhlHbrrOWG56R4IUGSJNN+lxgYUcBV6y6zpjBtAZnPmoAgAA
+   H4sIAAAAAAAAAK3QSQqDQBCF4QaNoIlujWY4gLrQnMTpDAaSOzjc3H9RgouI3ZKCD7p68XhUoJSy
+NXR4//j34eCJeMcHX3n3GPDACR6uymxGTAjhSg/TjGVC6bGVUaJaqUUje6uR8Y8eJhlHbrrOWG56
+R4IUGSJNN+lxgYUcBV6y6zpjBtAZnPmoAgAA
   </data>
  </layer>
  <layer name="2_object" width="17" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIAUIE4F4kQGykESBXrDgDgCiJPJ1B8KxJFAHE2BGxiQzIinghkwd4UiyYWiiSHLIYMYII6jwA3DAQAAk34nE6gCAAA=
+   H4sIAAAAAAAAAGNgQIAUIE4F4kQGykESBXrDgDgCiJPJ1B8KxJFAHE2BGxiQzIinghkwd4UiyYWi
+iSHLIYMYII6jwA3DAQAAk34nE6gCAAA=
   </data>
  </layer>
  <layer name="3_roof" width="17" height="10">

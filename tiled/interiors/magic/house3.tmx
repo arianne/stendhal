@@ -73,52 +73,61 @@
  <tileset firstgid="130" name="wooden table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="136" name="dark shelf" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="dark shelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png"/>
  </tileset>
- <tileset firstgid="148" name="picture" tilewidth="32" tileheight="32">
+ <tileset firstgid="151" name="picture" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
- <tileset firstgid="150" name="clock" tilewidth="32" tileheight="32">
+ <tileset firstgid="153" name="clock" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/grandfather_clock.png"/>
  </tileset>
- <tileset firstgid="152" name="door details" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="door details" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
- <tileset firstgid="164" name="dark elf" tilewidth="32" tileheight="32">
+ <tileset firstgid="167" name="dark elf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dark_elf.png"/>
  </tileset>
- <tileset firstgid="178" name="double_blue" tilewidth="32" tileheight="32">
+ <tileset firstgid="181" name="double_blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_blue.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBqAiUKMzTxmLOpYcehHF6eH+2CYC4t6Tixi7HR03yigDNRSiEfNG1nmDVYAAIU+ezFABgAA
+   H4sIAAAAAAAAAGNgGBqAiUKMzTxmLOpYcehHF6eH+2CYC4t6Tixi7HR03yigDNRSiEfNG1nmDVYA
+AIU+ezFABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXTy2rCQBiG4bkDQUFxIZ5Aq7auFQVvoHblylWXnqv1UNzW09q68D7q6fb6FkaIPzEaHT94SIaffAyZJKSUChsSQRQx+O4Ux5Pu86rTjJG3rCv4xUbfH1PV1xICDn122WJ3Zvbqsu9/T3scxP6OKd+wP6e8Ge6T7y8B/52Sui+FoCEZhOAxJKIe9z0XxTteW+6X+MHK7jB0TJ5v7oq+GupooHlFp+x7F/MW2ujgw+b5lwt9Ml308Im+mH1jgqmLvgGGGOFLzGaYY+HQV7DpdEpWrN3+b+rC3Pq/pQ15xh9l1cPXQAYAAA==
+   H4sIAAAAAAAAALXTSWoCQRiG4bqBoKC4ECfQqIlrRcELxKxcucrSORqH4DZOFzAuvEecTpc3UEL7
+07a2lh88dBc//VF0dYeUUmFDIogiBt+d4njSfV51mjHylnUFv9jo+2Oq+lpCwKHPLlvszsxeXfb9
+72mPg9jfMeUb9ueUN8N98v0l4L9TUvelEDQkgxA8hkTU477nonjHa8v9Ej9Y2R2GjsnzzV3RV0Md
+DTSv6JR972LeQhsdfNg8/3KhT6aLHj7RF7NvTDB10TfAECN8idkMcywc+go2nU7JirXb/01dmFv/
+t7Qhz/gDid/5E0AGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB2ogtIVQGyIJB6IxjaGssOhtB0O86qp5zQw0CNTXxwV3aBPRbNgAFf4URM4ALEjEDtRyTxnIHYBYlcqmecGxO5A7EEl8zyB2AuIvaH8aUhyfUDcD8QTkMSmAPFUKtk9CigDpkBsMtCOoCFwYBi4vAgApF5tSEAGAAA=
+   H4sIAAAAAAAAAGNgoB2ogtIVQGyIJB6IxjaGssOhtB0O86qp5zQw0CNTXxwV3aBPRbNgAFf4URM4
+ALEjEDtRyTxnIHYBYlcqmecGxO5A7EEl8zyB2AuIvaH8mUhyE4F4EhBPRhKbDsQzqGT3KKAMmAKx
+yUA7gobAgWHg8iIADEU4UUAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXoIBAHexTQDswA4vlAPItK5i0E4kVAvJhK5lECzKhsnjmVzcMG4ulgxygY+gAAuKYEmkAGAAA=
+   H4sIAAAAAAAAAGNgGAXoIBAHexTQDswG4kVAPJdK5i0B4qVAvIxK5lECzKhsnjmVzcMG4ulgxygY
++gAA5rvyIEAGAAA=
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDAVYPtANGwYgGGwfaAVQC6wapWfQGqQNkLwAP7+TuQAYAAA==
+   H4sIAAAAAAAAAGNgGAUDAdYNtANGwYgGWwbaAVQCGwepWfQGqQNkLwCHO6tZQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNlYGCwHQKYAY2GsRlwqMWmHpsaXACfOlLNI6SWHPeRYh8tzMMXtpTG8UgyDzmMsYU3LjCY0wstzKTELGz6aG0erfIcvdImsRgA4DYonUAGAAA=
+   H4sIAAAAAAAAALNlYGCwHQKYAY2GsRlwqMWmHpsaXACfOlLNI6SWHPeRYh8tzMMXtpTG8UgyDzmM
+sYU3LjCY0wstzKTELGz6aG0erfIcvdImsRgA4DYonUAGAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

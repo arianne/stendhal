@@ -31,55 +31,76 @@
  <tileset firstgid="216" name="mushroom3" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/mushroom3.png"/>
  </tileset>
- <tileset firstgid="217" name="leaves" tilewidth="32" tileheight="32">
+ <tileset firstgid="218" name="leaves" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/leaves.png"/>
  </tileset>
- <tileset firstgid="225" name="star_shaped_plants" tilewidth="32" tileheight="32">
+ <tileset firstgid="226" name="star_shaped_plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/star_shaped_plants.png"/>
  </tileset>
- <tileset firstgid="231" name="bushes" tilewidth="32" tileheight="32">
+ <tileset firstgid="232" name="bushes" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
- <tileset firstgid="241" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="242" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="242" name="portal" tilewidth="32" tileheight="32">
+ <tileset firstgid="243" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="249" name="blue_stone" tilewidth="32" tileheight="32">
+ <tileset firstgid="250" name="blue_stone" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/blue_stone.png"/>
  </tileset>
- <tileset firstgid="252" name="green_stone_3" tilewidth="32" tileheight="32">
+ <tileset firstgid="253" name="green_stone_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VSwoAIAhFUWsf7X+bbUAETSLzDt4kokPgZ4nIIqRpppGhxLqPjY2N/ZKtvW/Z2lmG7Q12vNZO3Iw6j7pZPRZxM/vb61adLdg97JNZctu2UunfXWsNGxv7X5tdwi7Brm9vn/wgtjgYAAA=
+   H4sIAAAAAAAAAO3VSwoAIAhFUWsf7X+bbUAETSLzDt4kokPgZ4nIIqRpppGhxLqPjY2N/ZKtvW/Z
+2lmG7Q12vNZO3Iw6j7pZPRZxM/vb61adLdg97JNZctu2UunfXWsNGxv7X5tdwi7Brm9vn/wgtjgY
+AAA=
   </data>
  </layer>
  <layer name="1_terrain" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWXsXLCMAyGNQPH1oGNIXsXxl4z9j0Y2Dp0o6Hv0udh6tC+QEjC2GeofViH4rOJ3DhyuPx3Ohzj6IsUW3ZmADAPsDW4lQX6WSp7Vfaj7OjxGVu/5ndl2N9CXCpkoxrSPgmzfaoGZpekf6PsMaI9dbCpcvOfSw834vCNf+nJxrxQNp0TQ7Dtd50i7pRsmvN6YHbm8bX29N8a38WmseTWuD7r+8hgU9lsl0Keh8PGmsphhyh23FLsxrouIUxdbFqjxhQ36r/76j287zohGybKrhKyQZitY6X1Yipxu9iFsm1P5s744bCxbmn2AvznBK4y4+eech5DnwnZKA4b11mKuYaSnmv07CeR8wzSvW8YCVv6vEbZqNJifw3MLqC9piTi3kE7bmxLr++TxZbeS3S7AdmairWUxh1DIXvJc2Q2aqznljNc6nmqc4v+FuJ8++tY7Hy4+qhCc+6rZ2+Oe1x9HPYernWNYx/mnndzfSB9oX7+AFydH9o4GAAA
+   H4sIAAAAAAAAAOWXsXLCMAyGNQPH1oGNIXsXxl4z9j0Y2Dp0o6Hv0udh6tA+QUjC2FeofViH4rOJ
+3DhyuPx3Ohzj6IsUW3ZmADAPsDW4lQX6WSp7Vfaj7OjxGVu/5ndl2N9CXCpkoxrSPgmzfaoGZpek
+f6PsMaI9dbCpcvOfSw834vCNf+nJxrxQNp0TQ7Dtd50i7pRsmvN6YHbm8bX29N8a38WmseTWuD7r
++8hgU9lsl0Keh8PGmsphhyh23FLsxrouIUxdbFqjxhQ36r/76j287zohGybKrhKyQZitY6X1Yipx
+u9iFsm1P5s744bCxbmn2AvznBK4y4+eech5DnwnZKA4b11mKuYaSnmv07CeR8wzSvW8YCVv6vEbZ
+qNJifw3MLqC9piTi3kE7bmxLr++TxZbeS3S7AdmairWUxh1DIXvJc2Q2aqznljNc6nmqc4v+FuJ8
+++tY7Hy4+qhCc+6rZ2+Oe1x9HPYernWNYx/mnndzfSB9oX7+AGsPF3k4GAAA
   </data>
  </layer>
  <layer name="2_object" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2YaU7DMBCFfXRAQpwAiVMAB2BfrxComvhfJZa2fwEJ4UiOGKbj8Zs4SXnSU5to4s+TjJfEuXLNCq6toq2sp56sFTu2qom/NelDI8T5Hm1b9AzGeUOb35ljJP7dwGu1E7wb/BH8SfwVz6ecit8zsPfjr9SWplT8wcBsqa6mYkt9QNhSn63sWrhuyrwbN33e3XjmuefYjXCNlZ2SFF+58WqtU63Ec/ZbAdsnrkPYy+DXAjYV7Qea9xJgS8rViiRaazlp7E7e4etSn1obSv+FjY5vRN7IzglhW/aHQ9V5H/E61/YyCLt2m8/Og2xNKTa/zxJfYyNKsfk61O2N/QRsRNL7wrbHt7Z2jc1ek2OtRjQ2fweZqtYkeZCNrn9j3HN0HuzL9gqbamFgXwZfBV/361LR874Jvg2+I+dq9l/7DsDZL4VsqpbtM2xkLrewNR5nt5oBfbDmjbDX2ahNdjUQmys15sbIO6XD6BT7Pvgh+JGdn7u/c2x7LM1flM3Hdo4tiTO0ObMk71JpeyYru21jviW2Vdo9P4rW2FKe9BzyvJG1TGKnvpUicyXPG3n/HkqUvUpG/bJz35bRtaFjUybdN54Fn0dfgO0dB58En4LxEuMHkFsD9jgYAAA=
+   H4sIAAAAAAAAAM2Y207DMAyG8+iAhHgCJJ4CeADOx1eoYFqzu0kctt0CErhSKoJnO3aStvzSr62Z
+2y9OnTSdc+WaFZzbBFtZT5msNTq2yofPNuqDJ+IWGde26FkZZ+nHd+JYE/9u4HXaAe+CP8Cfkb9C
+O2cufs/A3g+f1LUkcfEHldl+QjbVBw2b6rOV3RLnjZm3d+Pn3c9nnHuK7YlzrGxOVHzjhqu1Xq0Q
+j9lvBWxubdSwV+DXAnasuB/avFcKNqVUrVCKay0lid1r4fTPpZxaq6X/wtbOb4004147b8v+sFad
+5wjXubSX0bBbt33vuPGvMcfwOFN8ia0Rx/aI1e+NU/U21hyj3hemnt/Ss2to9iY6lmpEYuN3kLFq
+jZJ2XdM+/4YYc+06mMtOrS29lgb2JfgKfJ3Zp5L7fQO+Bd9FbS36Lv0PgNkvhexYHVuquY7thd9z
+2NY900zRB2veGvYmGbXNbiqxsbg5N0TenA6DOfY9+AH8iNrn7u8a2x1T61fMxnM7xaaEGdKaWZJ3
+qaQ9k5XdXWM+EdsqacyPgiU2lWfcprnfmmcZxfZE24Jp59i9NO/ftRSz12zULzv137I3smNmvG88
+A58HXyivdww+AZ8q4ynGD7d/+Ug4GAAA
   </data>
  </layer>
  <layer name="3_roof" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VQQqAIBgFYe9/heg+EpVURKcJ+oP2QS2mcD54iCDM0pT0JfvN/e17SZIkSXVowHYLtvVPOTbEeqhPdct1dlB/hLpzbI1NUP+0Qd0F6j7lXyLV6wB5bVGvOBgAAA==
+   H4sIAAAAAAAAAO3VQQqAIBgFYe9/heg+EpVURLeJ/qB9UIspnA8eIgizNCV9yX5zf/tekiRJUh0a
+sN2Cbf1Tjg2xHupT3XKdHdQfoe4cW2MT1D9tUHeBuk/5l0j1OgBp8JxYOBgAAA==
   </data>
  </layer>
  <layer name="objects" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XsQ0AIAgEQPZf18SaBWyMhSJ3yZeEjg8R+8YiAAAA1Hfzv+u6G+A3Xe+5LuEl83A+AeQ31y84GAAA
+   H4sIAAAAAAAAAO3XsQ0AIAgEQPaf18SWBWyMhSJ3yZeEjg8R+8YiAAAA1Hfzv+u6G+A3Xe+5LuEl
+83A+AcVZPqY4GAAA
   </data>
  </layer>
  <layer name="collision" width="31" height="50" opacity="0.34">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSw7AIAhEuf9tvUHXNfIVLG2HxEXRzIMIxUFEw7lW5tWQtKoNbH5f+t45z7G5WvDWjlRTUbY1D7DB7s6mxV60v8G+c7vmnWVggw022H9nS7Paw8x6O5xiZ9oT7DfO0Mr7ttTBMJyNsEnxWzWsMXRiSzGBXcte1XU1e9bjeiqzx2ZNjR01T39L/9/dGE6zPbPkybxn/xffLVpMmp7m0/Q6sKNrV+MCoS3ydDgYAAA=
+   H4sIAAAAAAAAAO2WSw7AIAhEuf9xPUHXNfIVLG2HxEXRzIMIxUFEw7lW5tWQtKoNbH5f+t45z7G5
+WvDWjlRTUbY1D7DB7s6mxV60v8G+c7vmnWVggw022H9nS7Paw8x6O5xiZ9oT7DfO0Mr7ttTBMJyN
+sEnxWzWsMXRiSzGBXcte1XU1e9bjeiqzx2ZNjR01T39L/9/dGE6zPbPkybxn/xffLVpMmp7m0/Q6
+sKNrV+MCkoWDZjgYAAA=
   </data>
  </layer>
  <layer name="protection" width="31" height="50">

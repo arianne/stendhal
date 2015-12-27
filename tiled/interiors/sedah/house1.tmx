@@ -1,80 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_pale.png" width="64" height="256"/>
+  <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
  <tileset firstgid="17" name="wall2" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_purple.png" width="64" height="320"/>
+  <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
  <tileset firstgid="37" name="entrance" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/pale_red_ns.png" width="288" height="128"/>
+  <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
  <tileset firstgid="73" name="entrance details" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/detail_ns.png" width="96" height="64"/>
+  <image source="../../tileset/building/entrance/detail_ns.png"/>
  </tileset>
  <tileset firstgid="79" name="ground_4" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/ground_4.png" width="128" height="32"/>
+  <image source="../../tileset/ground/ground_4.png"/>
  </tileset>
- <tileset firstgid="83" name="barrell" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/pot/barrel_tall.png" width="32" height="64"/>
+ <tileset firstgid="119" name="barrell" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset firstgid="85" name="barel" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/pot/small_barrel.png" width="32" height="64"/>
+ <tileset firstgid="121" name="barel" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset firstgid="87" name="bed" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/side_on.png" width="64" height="32"/>
+ <tileset firstgid="123" name="bed" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
- <tileset firstgid="89" name="stool" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/chair/stool.png" width="32" height="32"/>
+ <tileset firstgid="125" name="stool" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset firstgid="90" name="table" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/square_pale.png" width="32" height="32"/>
+ <tileset firstgid="126" name="table" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
- <tileset firstgid="91" name="shelf" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" width="96" height="64"/>
+ <tileset firstgid="127" name="shelf" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset firstgid="97" name="collision" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ <tileset firstgid="133" name="collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="98" name="portal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
+ <tileset firstgid="134" name="portal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="105" name="imperials" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/human_kalavan.png" width="160" height="32"/>
+ <tileset firstgid="141" name="imperials" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_kalavan.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC/NnYGDwH8WjeBQPGAYAzvTMqoQDAAA=
+   H4sIAAAAAAAAAPNnYGDwH8WjeBQPGAYAzvTMqoQDAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC9XNOQqAMBCF4XFpXFp3W7VTDyNuIHj/U/iKDMQQi2gRfPA1E34SE5H7QgQ+1JBrHA/3CjzRpjBLeCfdt8AKidKa7G/t9qHdLf1Lmnay2DKTtoRM0kALnXJnhWhDcBQ9DDBq3lgAF3Uw9z+EAwAA
+   H4sIAAAAAAAAANXNuQqAMBBF0XFpXFp3W7VTP0/cQPDDfUUGYohFtAg+OM2ES2Iicl+IwIcaco3j
+4V6BJ9oUZgnvpPsWWCFRWpP9rd0+tLulf0nTThZbZtKWkEkaaKFT7qwQbQiOoocBRs0bC+AC9iPB
+d4QDAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoByEIuFRMAqQQfAA6R1KAABUWQC4hAMAAA==
+   H4sIAAAAAAAAAGNgoBxUIuFRMAqQQfkA6R1KAADZZaRMhAMAAA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjAD8IHmC7B9J+SoAnEHsBsTcBdQCqwqGchAMAAA==
+   H4sIAAAAAAAAAGNgGAWjAD8oH2C7B9J+SoAnEHsBsTcBdQB6SLWVhAMAAA==
   </data>
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAVDGWQOtANGAEijsfkAeo0sI4QDAAA=
+   H4sIAAAAAAAAAGNgGAVDGfQOtANGAOiisfkAJF8v4IQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC0tkYGBIHCQYBpDZDESoJwaMJL2DKazo5W5i0hU5ehOJVEMJBgDdCrlQhAMAAA==
+   H4sIAAAAAAAAAGtlYGBoHSQYBpDZDESoJwaMJL2DKazo5W5i0hU5eluJVEMJBgDvCzQDhAMAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBQMJAAA7Ly31YQDAAA=
+   H4sIAAAAAAAAAGNgGAWjYBQMJAAA7Ly31YQDAAA=
   </data>
  </layer>
 </map>
