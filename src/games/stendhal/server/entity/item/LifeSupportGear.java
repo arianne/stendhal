@@ -93,6 +93,9 @@ public class LifeSupportGear extends Item {
 			public void onTurnReached(int currentTurn) {
 				StendhalRPZone zone = StendhalRPWorld.get().getZone(target[0].trim());
 				player.teleport(zone, MathHelper.parseInt(target[1]), MathHelper.parseInt(target[2]), Direction.DOWN, player);
+
+				int hp = player.getHP();
+				player.setHP(Math.min(hp, 50));
 				player.sendPrivateText("You recover slowly, wondering where you are.");
 			}
 		});
