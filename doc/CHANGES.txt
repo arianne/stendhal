@@ -1,5 +1,16 @@
 ﻿Changelog
 ---------
+1.20
+*world*
+- player loses conscious when scuba gear is take off under water
+- improved thunderstorms
+
+*code*
+- setup Travis for continuous integration tests 
+- git repository is mirrored instantaneously between Github and Sourceforge in both directions
+- we went through the list of old bug an checked which ones have been fixed in the mean time
+- yearly special event quests now pick up the current year as part of their quest slot automatically
+
 1.19
 
 *world*
