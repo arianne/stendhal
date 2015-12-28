@@ -12,9 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -33,7 +37,13 @@ public class ProlongOfferHandler extends OfferHandler {
 				new ProlongOfferChatAction());
 		npc.add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.YES_MESSAGES, 
 				ConversationStates.ATTENDING, null, new ConfirmProlongOfferChatAction());
+		// PRODUCTION is a misnomer for "prolong all" service, but it's a simple
+		// way to distinguish it from a single prolong
+		npc.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.YES_MESSAGES, 
+				ConversationStates.ATTENDING, null, new ConfirmProlongAllChatAction());
 		npc.add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.NO_MESSAGES, null, 
+				ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
+		npc.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.NO_MESSAGES, null, 
 				ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
 	}
 	
@@ -98,8 +108,50 @@ public class ProlongOfferHandler extends OfferHandler {
 					return;
 				}
 			} catch (NumberFormatException e) {
-				npc.say("Sorry, please say #prolong #number");
+				if (!handleProlongAll(player, sentence, npc)) {
+					npc.say("Sorry, please say #prolong #number");
+				}
 			}
+		}
+		
+		private boolean handleProlongAll(Player player, Sentence sentence, EventRaiser npc) {
+			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
+			int last = sentence.getExpressions().size();
+			
+			for (Expression expr : sentence.getExpressions().subList(1, last)) {
+				if ("all".equals(expr.toString())) {
+					Collection<Offer> offers = manager.getOfferMap().values();
+					if (offers.isEmpty()) {
+						npc.say("Sorry, you have to specify a list of offers to prolong.");
+						return true;
+					}
+					int price = 0;
+					int numOffers = offers.size();
+					List<String> offerDesc = new ArrayList<>(numOffers);
+					for (Offer o : offers) {
+						if (!o.getOfferer().equals(player.getName())) {
+							npc.say("You can only prolong your own offers. Please say #show #mine or #show #expired to see only your offers.");
+							return true;
+						}
+						int quantity = 1;
+						if (o.hasItem()) {
+							quantity = getQuantity(o.getItem());
+						}
+						price += TradingUtility.calculateFee(player, o.getPrice()).intValue();
+						offerDesc.add(Grammar.quantityplnoun(quantity, o.getItemName(), "one")
+								+ " at price of " + o.getPrice());
+					}
+					String total = numOffers > 1 ? "total" : "";
+					npc.say("Do you want to prolong your " 
+							+ Grammar.plnoun(numOffers, "offer") + " of "
+							+ Grammar.enumerateCollection(offerDesc)
+							+ " for a " + total + " fee of " + price + " money?");
+					npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 	
@@ -134,7 +186,7 @@ public class ProlongOfferHandler extends OfferHandler {
 		 * @param offer the offer the player wants to prolong
 		 * @return true if prolonging the offer should be denied
 		 */
-		private boolean wouldOverflowMaxOffers(Player player, Offer offer) {
+		boolean wouldOverflowMaxOffers(Player player, Offer offer) {
 			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			
 			if ((market.countOffersOfPlayer(player) == TradingUtility.MAX_NUMBER_OFF_OFFERS)
@@ -145,7 +197,7 @@ public class ProlongOfferHandler extends OfferHandler {
 			return false;
 		}
 		
-		private boolean prolongOffer(Player player, Offer o) {
+		boolean prolongOffer(Player player, Offer o) {
 			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			if (market != null) {
 				if (market.prolongOffer(o) != null) {
@@ -157,6 +209,59 @@ public class ProlongOfferHandler extends OfferHandler {
 			}
 			
 			return false;
+		}
+	}
+	
+	private class ConfirmProlongAllChatAction extends ConfirmProlongOfferChatAction {
+		@Override
+		public void fire (Player player, Sentence sentence, EventRaiser npc) {
+			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
+			Collection<Offer> offers = manager.getOfferMap().values();
+			boolean clear = false;
+			for (Offer offer : offers) {
+				int quantity = 1;
+				if (offer.hasItem()) {
+					quantity = getQuantity(offer.getItem());
+				}
+				String offerDesc = Grammar.quantityplnoun(quantity, offer.getItemName(), "one");
+				
+				if (!offer.getOfferer().equals(player.getName())) {
+					// This should not be possible, but it does not hurt to check
+					// it anyway.
+					npc.say("You can only prolong your own offers.");
+					// clear the offer map as it apparently resulted in an
+					// incorrect request already.
+					clear = true;
+					break;
+				}
+				
+				if (!wouldOverflowMaxOffers(player, offer)) {
+					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, offer.getPrice()).intValue());
+					if (player.isEquipped("money", fee)) {
+					
+						if (prolongOffer(player, offer)) {
+							TradingUtility.substractTradingFee(player, offer.getPrice());
+							npc.say("I prolonged your offer of " + offerDesc 
+									+ " and took the fee of " + fee.toString() + ".");
+						} else {
+							npc.say("Sorry, that offer of " + offerDesc + " has already been removed from the market.");
+						}
+						clear = true;
+					} else {
+						npc.say("You cannot afford the trading fee of " + fee.toString());
+					}
+				} else {
+					npc.say("Sorry, you can have only " + TradingUtility.MAX_NUMBER_OFF_OFFERS
+							+ " active offers at a time.");
+					// Avoid complaining about the offer limit multiple times
+					break;
+				}
+			}
+			
+			if (clear) {
+				// Changed the status, or it has been changed by expiration. Obsolete the offers
+				((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();
+			}
 		}
 	}
 }
