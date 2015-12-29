@@ -27,6 +27,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,7 +98,7 @@ public class WindowUtils {
 	public static void trackLocation(Window window, String windowId,
 			final boolean followSize) {
 		final ManagedWindowDecorator mw = new ManagedWindowDecorator(window, windowId);
-		WtWindowManager manager = WtWindowManager.getInstance();
+		final WtWindowManager manager = WtWindowManager.getInstance();
 		// Avoid specifying any, if the type of the window data has not been
 		// saved before.
 		manager.setDefaultProperties(mw.getName(), false, mw.getX(), mw.getY());
@@ -107,7 +108,6 @@ public class WindowUtils {
 		}
 		
 		window.addComponentListener(new ComponentAdapter() {
-			final String maximizedProperty = PROP_PREFIX + mw.getName() + ".maximized";
 			final String widthProperty = PROP_PREFIX + mw.getName() + ".width";
 			final String heightProperty = PROP_PREFIX + mw.getName() + ".height";
 			
@@ -125,14 +125,20 @@ public class WindowUtils {
 					return;
 				}
 				WtWindowManager manager = WtWindowManager.getInstance();
-				if (mw.isMaximized()) {
-					manager.setProperty(maximizedProperty, "true");
-				} else {
-					// In case window was previously maximized
-					manager.setProperty(maximizedProperty, "false");
+				if (!mw.isMaximized()) {
 					manager.setProperty(widthProperty, Integer.toString(mw.getWidth()));
 					manager.setProperty(heightProperty, Integer.toString(mw.getHeight()));
 				}
+			}
+		});
+		
+		// Some maximization changes are not for some reason detected by the
+		// size changes. Check the corresponding low level window events.
+		window.addWindowStateListener(new WindowStateListener() {
+			@Override
+			public void windowStateChanged(WindowEvent e) {
+				manager.setProperty(PROP_PREFIX + mw.getName() + ".maximized",
+						Boolean.toString(mw.isMaximized()));
 			}
 		});
 	}
