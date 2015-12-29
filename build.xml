@@ -656,7 +656,6 @@
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="icon.ico"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
@@ -680,7 +679,6 @@
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-starter-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_starter_jarname}"/>
 			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_starter_jarname}" filemode="755"/>
@@ -727,7 +725,6 @@
 		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="icon.ico"/>
 		<copy todir="${buildroot}/stendhal-${version}-src/lib">
 			<fileset dir="libs">
