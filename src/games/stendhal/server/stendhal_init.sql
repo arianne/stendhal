@@ -37,7 +37,7 @@ create table if not exists character_stats
   primary key(name)
   )
  ;
-/*CREATE INDEX i_character_stats_name ON character_stats(name);*/
+CREATE INDEX IF NOT EXISTS i_character_stats_name ON character_stats(name);
 
 create table if not exists halloffame
   (
@@ -50,7 +50,7 @@ create table if not exists halloffame
   ) 
  ;
 
-/*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
+CREATE INDEX IF NOT EXISTS i_halloffame_charname ON halloffame(charname);
 
 create table if not exists halloffame_archive_recent
   (
@@ -63,7 +63,7 @@ create table if not exists halloffame_archive_recent
   primary key(id)
   );
 
-/*CREATE INDEX i_halloffame_archive_recent_day_charname ON halloffame_archive_recent(day, charname);*/
+CREATE INDEX IF NOT EXISTS i_halloffame_day_charname ON halloffame_archive_recent(day, charname);
 
 
 create table if not exists halloffame_archive_alltimes
@@ -78,7 +78,7 @@ create table if not exists halloffame_archive_alltimes
   ) 
  ;
 
-/*CREATE INDEX i_halloffame_archive_alltimes_day_charname ON halloffame_archive_alltimes(day, charname);*/
+CREATE INDEX IF NOT EXISTS i_halloffame_archive_alltimes_day_charname ON halloffame_archive_alltimes(day, charname);
 
 
 CREATE TABLE IF NOT EXISTS item (
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS item (
   PRIMARY KEY(id)
 );
 
-/* CREATE INDEX i_item_timedate ON item(timedate); */
+CREATE INDEX IF NOT EXISTS i_item_timedate ON item(timedate);
 
 CREATE TABLE IF NOT EXISTS itemlog (
   id         INTEGER AUTO_INCREMENT NOT NULL,
@@ -103,16 +103,14 @@ CREATE TABLE IF NOT EXISTS itemlog (
   PRIMARY KEY (id)
 );
 
-/*CREATE INDEX i_itemlog_itemid ON itemlog(itemid);*/
-/*CREATE INDEX i_itemlog_source_timedate ON itemlog(source, timedate);*/
-/*CREATE INDEX i_itemlog_event_timedate ON itemlog(event, timedate);*/
-/*CREATE INDEX i_itemlog_param1 ON itemlog(param1);*/
-/*CREATE INDEX i_itemlog_param2 ON itemlog(param2);*/
-/*CREATE INDEX i_itemlog_param3 ON itemlog(param3);*/
-/*CREATE INDEX i_itemlog_param4 ON itemlog(param4);*/
-/*CREATE INDEX i_itemlog_source_itemid ON itemlog(source, itemid);*/
-/*CREATE INDEX i_itemlog_event_param12 ON itemlog(event, param1, param2);*/
-/*CREATE INDEX i_itemlog_event_param34 ON itemlog(event, param3, param4);*/
+CREATE INDEX IF NOT EXISTS i_itemlog_itemid ON itemlog(itemid);
+CREATE INDEX IF NOT EXISTS i_itemlog_source_timedate ON itemlog(source, timedate);
+CREATE INDEX IF NOT EXISTS i_itemlog_event_timedate ON itemlog(event, timedate);
+CREATE INDEX IF NOT EXISTS i_itemlog_param1 ON itemlog(param1);
+CREATE INDEX IF NOT EXISTS i_itemlog_param2 ON itemlog(param2);
+CREATE INDEX IF NOT EXISTS i_itemlog_param3 ON itemlog(param3);
+CREATE INDEX IF NOT EXISTS i_itemlog_param4 ON itemlog(param4);
+CREATE INDEX IF NOT EXISTS i_itemlog_source_itemid ON itemlog(source, itemid);
 
 
 CREATE TABLE IF NOT EXISTS kills (
@@ -126,8 +124,8 @@ CREATE TABLE IF NOT EXISTS kills (
   PRIMARY KEY (id)
 );
 
-/*CREATE INDEX i_kills_killed ON kills (killed_type, killed);*/
-/*CREATE INDEX i_kills_killer ON kills (killer_type, killer);*/
+CREATE INDEX IF NOT EXISTS i_kills_killed ON kills (killed_type, killed);
+CREATE INDEX IF NOT EXISTS i_kills_killer ON kills (killer_type, killer);
 
 
 CREATE TABLE IF NOT EXISTS npcs (
@@ -148,8 +146,7 @@ CREATE TABLE IF NOT EXISTS npcs (
   PRIMARY KEY (id)
 );
 
-/*CREATE INDEX i_npcs_id ON npcs (id);*/
-/*CREATE INDEX i_npcs_name ON npcs (name);*/
+CREATE INDEX IF NOT EXISTS i_npcs_name ON npcs (name);
 
 CREATE TABLE IF NOT EXISTS zoneinfo (
   id            INTEGER AUTO_INCREMENT NOT NULL,
@@ -171,7 +168,7 @@ CREATE TABLE IF NOT EXISTS zoneinfo (
   PRIMARY KEY (id)
 );
 
-/*CREATE INDEX i_zoneinfo_name ON zoneinfo (name);*/
+CREATE INDEX IF NOT EXISTS i_zoneinfo_name ON zoneinfo (name);
 
 
 CREATE TABLE IF NOT EXISTS postman (
@@ -185,7 +182,8 @@ CREATE TABLE IF NOT EXISTS postman (
   PRIMARY KEY (id)
 );
 
-/*CREATE INDEX i_postman_name ON postman(name);*/
+CREATE INDEX IF NOT EXISTS i_postman_source ON postman(source);
+CREATE INDEX IF NOT EXISTS i_postman_target ON postman(target);
 
 CREATE TABLE IF NOT EXISTS buddy (
   id           INTEGER AUTO_INCREMENT NOT NULL,
@@ -195,7 +193,8 @@ CREATE TABLE IF NOT EXISTS buddy (
   PRIMARY KEY (id)
 );
 
-/* CREATE INDEX i_buddy_charname_relationtype ON buddy (charname, relationtype); */
+CREATE INDEX IF NOT EXISTS i_buddy_charname_relationtype ON buddy (charname, relationtype);
+CREATE INDEX IF NOT EXISTS i_buddy_buddy_relationtype ON buddy (buddy, relationtype);
 
 
 /*
@@ -209,16 +208,16 @@ CREATE TABLE IF NOT EXISTS openid_allowedsites (
 
 /* CREATE INDEX i_openid_allowedsites ON openid_allowedsites (player_id, realm); */
 
-/*
+
 CREATE TABLE IF NOT EXISTS openid_associations (
   id         INTEGER AUTO_INCREMENT NOT NULL,
   handle     VARCHAR(255),
   data TEXT NOT NULL,
   timedate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
- );*/
+ );
 
-/* CREATE INDEX i_openid_associations ON openid_associations (handle); */
+CREATE INDEX IF NOT EXISTS i_openid_associations_handle ON openid_associations (handle);
 
 CREATE TABLE IF NOT EXISTS achievement (
     id INTEGER AUTO_INCREMENT NOT NULL,
@@ -230,7 +229,7 @@ CREATE TABLE IF NOT EXISTS achievement (
     active INTEGER,
     PRIMARY KEY(id)
 );
-/* CREATE UNIQUE INDEX i_achievement_identifier ON achievement(identifier);*/
+CREATE UNIQUE INDEX IF NOT EXISTS i_achievement_identifier ON achievement(identifier);
 
 CREATE TABLE IF NOT EXISTS reached_achievement (
     id INTEGER AUTO_INCREMENT NOT NULL,
@@ -241,7 +240,8 @@ CREATE TABLE IF NOT EXISTS reached_achievement (
 );
 
 
-/* CREATE INDEX i_reached_achievement_charname ON reached_achievement(charname);*/
+CREATE INDEX IF NOT EXISTS i_reached_achievement_charname ON reached_achievement(charname);
+CREATE INDEX IF NOT EXISTS i_reached_achievement_achievement_id ON reached_achievement(achievement_id);
 
 CREATE TABLE IF NOT EXISTS pending_achievement (
     id INTEGER AUTO_INCREMENT NOT NULL,
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS pending_achievement (
     PRIMARY KEY(id)
 );
 
-/* CREATE INDEX i_pending_achievement_charname ON pending_achievement(charname);*/
+CREATE INDEX IF NOT EXISTS i_pending_achievement_charname ON pending_achievement(charname);
 
 create table if not exists statistics_archive
   (
@@ -263,6 +263,7 @@ create table if not exists statistics_archive
   primary key(id)
   );
 
+CREATE INDEX IF NOT EXISTS i_statistics_archive_day ON statistics_archive(day);
 
 create table if not exists trade
   (
@@ -276,7 +277,7 @@ create table if not exists trade
   timedate timestamp default CURRENT_TIMESTAMP,
   primary key(id)
   );
-/*CREATE INDEX i_trade_timedate ON trade(timedate);*/
+CREATE INDEX IF NOT EXISTS i_trade_timedate ON trade(timedate);
 
 
 CREATE TABLE IF NOT EXISTS searchindex
@@ -289,5 +290,5 @@ CREATE TABLE IF NOT EXISTS searchindex
   PRIMARY KEY(id)
   );
   
-/* CREATE INDEX i_searchindex_searchterm ON searchindex(searchterm); */
-/* CREATE INDEX i_searchindex_entitytype_entityname ON searchindex(entitytype, entityname); */
+CREATE INDEX IF NOT EXISTS i_searchindex_searchterm ON searchindex(searchterm);
+CREATE INDEX IF NOT EXISTS i_searchindex_entitytype_entityname ON searchindex(entitytype, entityname);
