@@ -331,7 +331,7 @@ public class MedicineForTad extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("herb", "arandula"),
-				null,
+				new QuestStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				ILISA_TALK_DESCRIBE_HERB,
 				new MultipleActions(showArandulaDrawing, flagDrawingWasShown));
