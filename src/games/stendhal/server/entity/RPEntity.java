@@ -1291,6 +1291,15 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
+	 * gets the name of the blood class
+	 *
+	 * @return bloodClass or <code>null</code>
+	 */
+	public final String getBloodClass() {
+		return this.bloodClass;
+	}
+
+	/**
 	 * Creates a blood pool on the ground under this entity, but only if there
 	 * isn't a blood pool at that position already.
 	 */
