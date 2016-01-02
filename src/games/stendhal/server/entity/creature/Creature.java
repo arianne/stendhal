@@ -190,6 +190,7 @@ public class Creature extends NPC {
 		setSize((int) copy.getWidth(), (int) copy.getHeight());
 
 		setCorpse(copy.getCorpseName(), copy.getHarmlessCorpseName(), copy.getCorpseWidth(), copy.getCorpseHeight());
+		setBlood(copy.getBloodClass());
 
 		/**
 		 * Creatures created with this function will share their dropsItems with

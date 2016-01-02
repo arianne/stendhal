@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -42,7 +41,7 @@ class Blood2DView extends StateEntity2DView<IEntity> {
 	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
 		ZoneInfo info = ZoneInfo.get();
-		final Sprite tiles = store.getModifiedSprite("data/sprites/combat/blood_red.png",
+		final Sprite tiles = store.getModifiedSprite("data/sprites/combat/blood_" + entity.getEntityClass() +".png",
 				info.getZoneColor(), info.getColorMethod());
 
 		final int theight = tiles.getHeight();

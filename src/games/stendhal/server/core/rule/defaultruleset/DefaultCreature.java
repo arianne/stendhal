@@ -74,7 +74,9 @@ public class DefaultCreature {
 	private int width;
 
 	private int height;
-	
+
+	private String bloodClass;
+
 	private String corpseName;
 	private String harmlessCorpseName;
 	private int corpseWidth;
@@ -208,6 +210,10 @@ public class DefaultCreature {
 	public List<EquipItem> getEquipedItems() {
 		return equipsItems;
 	}
+
+	public void setBlood(final String name) {
+		this.bloodClass = name;
+	}
 	
 	public void setCorpse(final String name, final String harmless, final int width, final int height) {
 		corpseName = name;
@@ -271,6 +277,7 @@ public class DefaultCreature {
 		creature.equip(equipsItems);
 		
 		creature.setCorpse(corpseName, harmlessCorpseName, corpseWidth, corpseHeight);
+		creature.setBlood(bloodClass);
 		creature.setSusceptibilities(susceptibilities);
 		creature.setDamageTypes(damageType, rangedDamageType);
 		creature.setSounds(Collections.unmodifiableList(sounds));

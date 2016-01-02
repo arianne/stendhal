@@ -89,6 +89,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private Map<String, String> aiProfiles;
 
 	private List<DefaultCreature> list;
+	
+	private String bloodName;
 
 	private String corpseName;
 	
@@ -218,6 +220,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			}
 		} else if (qName.equals("respawn")) {
 			respawn = Integer.parseInt(attrs.getValue("value"));
+		} else if (qName.equals("blood")) {
+			bloodName = attrs.getValue("name");
 		} else if (qName.equals("corpse")) {
 			corpseName = attrs.getValue("name");
 			harmlessCorpseName = attrs.getValue("harmless");
@@ -358,6 +362,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setLevel(level, xp);
 			creature.setSize(sizeWidth, sizeHeight);
 			creature.setEquipedItems(equipsItems);
+
+			creature.setBlood(bloodName);
+			bloodName = null;
 
 			creature.setCorpse(corpseName, harmlessCorpseName, corpseWidth, corpseHeight);
 			corpseName = null;

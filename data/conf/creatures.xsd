@@ -24,6 +24,7 @@
 			<xsd:element name="level" type="Q2:Level" minOccurs="1" />
 			<xsd:element name="experience" type="Q2:Experience"	minOccurs="1" />
 			<xsd:element name="respawn" type="Q2:Respawn" />
+			<xsd:element name="blood" type="Q2:Blood" minOccurs="0" />
 			<xsd:element name="corpse" type="Q2:Corpse" />
 			<xsd:element name="drops" type="Q2:Drops" minOccurs="0" />
 			<xsd:element name="slots" type="Q2:Slots" minOccurs="0" />
@@ -54,6 +55,10 @@
 		<xsd:attribute name="value" type="xsd:positiveInteger"/>
 	</xsd:complexType>
 	
+	<xsd:complexType name="Blood">
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
 	<xsd:complexType name="Corpse">
 		<xsd:attribute name="name" type="xsd:string" use="required"/>
 		<xsd:attribute name="width" type="xsd:positiveInteger"/>
