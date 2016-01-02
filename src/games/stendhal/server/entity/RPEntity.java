@@ -127,6 +127,8 @@ public abstract class RPEntity extends GuidedEntity {
 	protected boolean ignoreCollision;
 
 	private String deathSound;
+	
+	private String bloodClass;
 
 	/** Entity uses a status attack */
 	protected ImmutableList<StatusAttacker> statusAttackers = ImmutableList.of();
@@ -1280,6 +1282,15 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
+	 * sets the blood class
+	 *
+	 * @param name name of blood class
+	 */
+	public final void setBlood(final String name) {
+		this.bloodClass = name;
+	}
+
+	/**
 	 * Creates a blood pool on the ground under this entity, but only if there
 	 * isn't a blood pool at that position already.
 	 */
@@ -1290,7 +1301,7 @@ public abstract class RPEntity extends GuidedEntity {
 		final StendhalRPZone zone = getZone();
 
 		if (zone.getBlood(bx, by) == null) {
-			final Blood blood = new Blood();
+			final Blood blood = new Blood(bloodClass);
 			blood.setPosition(bx, by);
 
 			zone.add(blood);

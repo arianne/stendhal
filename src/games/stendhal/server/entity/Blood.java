@@ -56,8 +56,18 @@ public class Blood extends PassiveEntity {
 	 * Create a blood entity.
 	 */
 	public Blood() {
-		this("red", Rand.rand(4));
+		this(null, Rand.rand(4));
 	}
+	
+	/**
+	 * Create a blood entity.
+	 *
+	 * @param type of blood
+	 */
+	public Blood(final String clazz) {
+		this(clazz, Rand.rand(4));
+	}
+
 
 	/**
 	 * Create a blood entity.
@@ -68,9 +78,13 @@ public class Blood extends PassiveEntity {
 	 *            The amount of blood.
 	 */
 	public Blood(final String clazz, final int amount) {
+		String myClass = clazz;
+		if (myClass == null) {
+			myClass = "red";
+		}
 		setRPClass("blood");
 		put("type", "blood");
-		setEntityClass(clazz);
+		setEntityClass(myClass);
 		put("amount", amount);
 
 		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this.turnlistener);
