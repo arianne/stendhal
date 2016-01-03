@@ -21,7 +21,7 @@ marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFac
 	titleStyle: "#ffc8c8",
 
 	onclick: function(x, y) {
-		marauroa.log.debug(this, x, y);
+		console.log(this, x, y);
 		var action = {
 				"type": "attack", 
 				"target": "#" + this.id

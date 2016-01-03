@@ -19,7 +19,7 @@ marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory
 	},
 	
 	onclick: function(x, y) {
-		marauroa.log.debug(this, x, y);
+		console.log(this, x, y);
 		var action = {
 				"type": "look",
 				"target": "#" + this.id

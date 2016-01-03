@@ -91,7 +91,7 @@ stendhal.ui.gamewindow = {
 								this.targetTileWidth, this.targetTileHeight);
 						}
 					} catch (e) {
-						marauroa.log.error(e);
+						console.error(e);
 						this.drawingError = true;
 					}
 				}

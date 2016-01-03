@@ -31,7 +31,7 @@ stendhal.data.sprites = {
 	// TODO: call clean on map change
 	clean: function() {
 		for (var i in this) {
-			marauroa.log.debug(typeof(i));
+			console.log(typeof(i));
 			if (typeof(i) == "Image") {
 				if (this[i].counter > 0) {
 					this[i].counter = 0;

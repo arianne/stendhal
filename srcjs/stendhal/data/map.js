@@ -68,13 +68,13 @@ stendhal.data = stendhal.data || {};
 	ImagePreloader.prototype.onerror = function() {
 		this.bError = true;
 		this.oImagePreloader.onComplete();
-		marauroa.log.error("Error loading " + this.src);
+		console.error("Error loading " + this.src);
 	};
 
 	ImagePreloader.prototype.onabort = function() {
 		this.bAbort = true;
 		this.oImagePreloader.onComplete();
-		marauroa.log.error("Loading " + this.src + " was aborted");
+		console.error("Loading " + this.src + " was aborted");
 	};
 
 	// End http://www.webreference.com/programming/javascript/gr/column3/
@@ -147,7 +147,7 @@ stendhal.data.map = {
 			return;
 		}
 		if (this.httpRequest.status != 200) {
-			marauroa.log.error("Error: Could not find map file.");
+			console.error("Error: Could not find map file.");
 			return;
 		}
 		var xmldoc = this.httpRequest.responseXML;
