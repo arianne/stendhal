@@ -18,6 +18,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.mapstuff.game.SokobanBoard;
 import games.stendhal.server.entity.mapstuff.game.SokobanListener;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -186,7 +187,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		if (player == null) {
 			return;
 		}
-		player.setPosition(npc.getX() - 1, npc.getY() + 1);
+		StendhalRPAction.placeat(npc.getZone(), player, npc.getX() - 2, npc.getY() + 1);
 		player.setDirection(Direction.RIGHT);
 
 		long startTime = MathHelper.parseLongDefault(player.getQuest(QUEST_SLOT, QUEST_IDX_START_TIME_OF_CURRENT_LEVEL), 0);
@@ -211,7 +212,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		if (player == null) {
 			return;
 		}
-		player.setPosition(npc.getX() - 2, npc.getY() + 1);
+		StendhalRPAction.placeat(npc.getZone(), player, npc.getX() - 2, npc.getY() + 1);
 		player.setDirection(Direction.RIGHT);
 
 		npc.say("I am sorry " + playerName + ", you have been too slow.");
@@ -224,7 +225,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		if (player == null) {
 			return;
 		}
-		player.setPosition(npc.getX() - 2, npc.getY() + 1);
+		StendhalRPAction.placeat(npc.getZone(), player, npc.getX() - 2, npc.getY() + 1);
 		player.setDirection(Direction.RIGHT);
 	}
 }
