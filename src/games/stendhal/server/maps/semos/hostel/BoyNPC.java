@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.maps.semos.hostel;
+
+import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
@@ -24,14 +25,12 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 public class BoyNPC implements ZoneConfigurator {
 	/**
@@ -68,7 +67,7 @@ public class BoyNPC implements ZoneConfigurator {
 								}),
 				        ConversationStates.ATTENDING,
 				        null,
-				        new SayTextWithPlayerNameAction("Ssshh! Come here, [name]! I have a #task for you."));
+				        new SayTextAction("Ssshh! Come here, [name]! I have a #task for you."));
 				
 				// this is the condition for any other case while the quest is active, not covered by the quest.
 				add(ConversationStates.IDLE,
@@ -84,7 +83,7 @@ public class BoyNPC implements ZoneConfigurator {
 								new QuestCompletedCondition("introduce_players")),
 				        ConversationStates.ATTENDING,
 				        null,
-				        new SayTextWithPlayerNameAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
+				        new SayTextAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
 
 				addGoodbye();
 			}

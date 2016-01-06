@@ -1,4 +1,18 @@
+/***************************************************************************
+ *                   (C) Copyright 2016 - Faiumoni e. V.                   *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
+
+import java.util.List;
+import java.util.Set;
 
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
@@ -7,12 +21,9 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.impl.prices.PriceCalculationStrategy;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Behaviour for NPCs repairing items
@@ -92,7 +103,7 @@ public class RepairerBehaviour extends TransactionBehaviour {
 
 	@Override
 	public ChatAction getRejectedTransactionAction() {
-		return new SayTextWithPlayerNameAction("I am sorry, [name], but I cannot repair your item.");
+		return new SayTextAction("I am sorry, [name], but I cannot repair your item.");
 	}
 
 	/**

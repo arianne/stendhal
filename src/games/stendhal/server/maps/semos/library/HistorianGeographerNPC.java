@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.library;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -19,16 +23,11 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class HistorianGeographerNPC implements ZoneConfigurator {
 
@@ -66,7 +65,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
 				addGoodbye();
 				
 				// A little trick to make NPC remember if it has met

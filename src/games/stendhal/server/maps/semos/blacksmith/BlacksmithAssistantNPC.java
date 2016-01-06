@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.blacksmith;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -19,15 +22,11 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The blacksmith's young assistant (original name: Hackim Easso).
@@ -82,7 +81,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 				        "Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
 				        new SetQuestAction("meet_hackim","start"));
 				
-				addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
 				
 				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
 				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");

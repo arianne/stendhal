@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,8 +9,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 package games.stendhal.server.maps.semos.city;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,15 +22,11 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A guy (original name: Nomyr Ahba) who looks into the windows of the bakery
@@ -50,7 +48,7 @@ public class GossipNPC implements ZoneConfigurator {
             
             @Override
             public void createDialog() {
-                addGreeting(null,new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+                addGreeting(null,new SayTextAction("Hi again, [name]. How can I #help you this time?"));
                 
                 // A little trick to make NPC remember if it has met
                 // player before and react accordingly

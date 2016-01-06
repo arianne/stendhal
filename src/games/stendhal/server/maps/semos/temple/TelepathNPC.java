@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,10 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.maps.semos.temple;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
@@ -26,18 +29,14 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class TelepathNPC implements ZoneConfigurator {
 	/**
@@ -89,7 +88,7 @@ public class TelepathNPC implements ZoneConfigurator {
 								}),
 				        ConversationStates.QUESTION_1,
 				        null,
-				        new SayTextWithPlayerNameAction("Hi again, [name]. I sense you have been branded with the mark of a killer. Do you wish to have it removed?"));
+				        new SayTextAction("Hi again, [name]. I sense you have been branded with the mark of a killer. Do you wish to have it removed?"));
 				
 				// player has met io before and has not got a pk skull
 				add(ConversationStates.IDLE,
@@ -104,7 +103,7 @@ public class TelepathNPC implements ZoneConfigurator {
 								}),
 				        ConversationStates.ATTENDING,
 				        null,
-				        new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time? Not that I don't already know..."));
+				        new SayTextAction("Hi again, [name]. How can I #help you this time? Not that I don't already know..."));
 				
 				// first meeting with player
 				add(ConversationStates.IDLE, 
@@ -114,7 +113,7 @@ public class TelepathNPC implements ZoneConfigurator {
 						ConversationStates.ATTENDING,
 				        null, 
 				        new MultipleActions(
-				        		new SayTextWithPlayerNameAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
+				        		new SayTextAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
 				        		new SetQuestAction("meet_io", "start")));
 
 				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,

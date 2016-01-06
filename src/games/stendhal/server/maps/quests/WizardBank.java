@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,11 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
@@ -25,7 +29,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -41,12 +45,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 
 /**
@@ -199,7 +197,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 								new QuestCompletedCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
-					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]. Do you wish to pay to access your chest again?"));
+					    new SayTextAction("Welcome to the Wizard's Bank, [name]. Do you wish to pay to access your chest again?"));
 
 				// never started quest
 				add(ConversationStates.IDLE,
@@ -210,7 +208,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 								new QuestNotStartedCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
-					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]."));
+					    new SayTextAction("Welcome to the Wizard's Bank, [name]."));
 				
 				// currently in bank
 				add(ConversationStates.IDLE,
@@ -221,7 +219,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 								new QuestActiveCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
-					    new SayTextWithPlayerNameAction("Welcome to the Wizard's Bank, [name]. You may #leave sooner, if required."));
+					    new SayTextAction("Welcome to the Wizard's Bank, [name]. You may #leave sooner, if required."));
 				
 				// hasn't got access to all banks yet
 				add(ConversationStates.IDLE,

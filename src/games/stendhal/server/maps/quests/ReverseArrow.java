@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,14 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.grammar.Grammar;
@@ -30,23 +37,14 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
-
-import org.apache.log4j.Logger;
 
 /**
  * A quest where the player has to invert an arrow build out of stones by moving
@@ -394,7 +392,7 @@ public class ReverseArrow extends AbstractQuest implements
 							new QuestCompletedCondition(QUEST_SLOT)), 
 					ConversationStates.ATTENDING, 
 					null,
-					new SayTextWithPlayerNameAction("Hi again, [name]. I remember that you solved this problem already. You can do it again, of course."));
+					new SayTextAction("Hi again, [name]. I remember that you solved this problem already. You can do it again, of course."));
 			
 			add(ConversationStates.IDLE, 
 					ConversationPhrases.GREETING_MESSAGES,

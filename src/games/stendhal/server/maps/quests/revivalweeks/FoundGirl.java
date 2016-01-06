@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,11 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.maps.quests.revivalweeks;
+
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -27,7 +31,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestToYearAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -38,11 +42,6 @@ import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerExactlyInListCondition;
 import games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC;
-
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
 
 public class FoundGirl implements LoadableContent {
 	private SpeakerNPC npc;
@@ -145,7 +144,7 @@ public class FoundGirl implements LoadableContent {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						anyFriends),
 				ConversationStates.ATTENDING,
-				null, new SayTextWithPlayerNameAction("Hello [name], nice to meet you again. "
+				null, new SayTextAction("Hello [name], nice to meet you again. "
 						+ "Guess what, we are having another #Town #Revival #Weeks."));
 		// TODO: Tell old friends about renewal
 	}

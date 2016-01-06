@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -20,7 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.JailAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -34,9 +36,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * QUEST: Speak with Ketteh
@@ -122,7 +121,7 @@ public class MeetKetteh extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new MultipleActions(
-						new SayTextWithPlayerNameAction("Hi again, [name]. I'm so glad you have some clothes on now. Now we can continue with the lesson in #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners." ),
+						new SayTextAction("Hi again, [name]. I'm so glad you have some clothes on now. Now we can continue with the lesson in #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners." ),
 						new SetQuestAction(QUEST_SLOT, "seen")));
 
 		// normal situation: player is clothed and meets Ketteh for the first time.
@@ -134,7 +133,7 @@ public class MeetKetteh extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new MultipleActions(
-						new SayTextWithPlayerNameAction("Hi [name], nice to meet you. You know, we have something in common - good #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners."),
+						new SayTextAction("Hi [name], nice to meet you. You know, we have something in common - good #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners."),
 						new SetQuestAction(QUEST_SLOT, "seen")));
 		
 		// player has finished the quest by learning manners or was marked as done in an old state
@@ -146,7 +145,7 @@ public class MeetKetteh extends AbstractQuest {
 						new OrCondition(new QuestInStateCondition(QUEST_SLOT, "learnt_manners"),new QuestInStateCondition(QUEST_SLOT, "done"))),
 				ConversationStates.ATTENDING, 
 				null,
-				new SayTextWithPlayerNameAction("Hi again, [name]."));
+				new SayTextAction("Hi again, [name]."));
 		
 		// player had started the quest but didn't finish it and are still clothed
 		npc.add(ConversationStates.IDLE, 
@@ -156,7 +155,7 @@ public class MeetKetteh extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, "seen")),
 				ConversationStates.ATTENDING, 
 				null,
-				new SayTextWithPlayerNameAction("Hi again, [name]. I hope you are here to continue the lesson in #manners."));
+				new SayTextAction("Hi again, [name]. I hope you are here to continue the lesson in #manners."));
 		
 		// player refuses to put clothes on (or just says No while naked)
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES, new NakedCondition(),
