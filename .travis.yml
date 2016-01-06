@@ -7,7 +7,7 @@ notifications:
     channels:
       - "chat.freenode.net#arianne"
       - "chat.freenode.net#arianne-devel"
-    on_success: always
-    on_failure: always
+    on_success: change
+    on_failure: change
     use_notice: false
     skip_join: false
