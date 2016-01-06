@@ -37,6 +37,6 @@
 	<classpathentry kind="lib" path="libs/websocket-servlet-9.2.5.v20141112.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="libs/java-hamcrest-2.0.0.0.jar" sourcepath="/home/brummermann/.m2/repository/org/hamcrest/java-hamcrest/2.0.0.0/java-hamcrest-2.0.0.0-sources.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/marauroa"/>
+	<classpathentry kind="lib" path="libs/marauroa.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
