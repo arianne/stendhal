@@ -621,7 +621,7 @@
 
 		<copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
 
-		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
 		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
 		<touch file="${buildroot}/stendhal-server-${version}/log/empty" />
 		<zip destfile="${buildroot}/stendhal-server-${version}.zip">
@@ -655,7 +655,7 @@
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
-		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="icon.ico"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
@@ -678,7 +678,7 @@
 			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
-		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
 		<zip destfile="${buildroot}/stendhal-starter-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_starter_jarname}"/>
 			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_starter_jarname}" filemode="755"/>
@@ -720,8 +720,7 @@
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
 
-		<copy todir="${buildroot}/stendhal-${version}-src" file="README.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="COPYING.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}-src" file="README.md"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
