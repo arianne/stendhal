@@ -1,5 +1,3 @@
-/* $Id$ */
-
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.entity.player.*

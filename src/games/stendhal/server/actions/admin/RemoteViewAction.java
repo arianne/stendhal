@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2016 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,7 +8,8 @@
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
- ***************************************************************************/package games.stendhal.server.actions.admin;
+ ***************************************************************************/
+package games.stendhal.server.actions.admin;
 
  import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.CommandCenter;
