@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 
+import games.stendhal.common.MathHelper;
+
 /**
  * A layout manager that does nothing else but keep the child components inside
  * the parent's borders.
@@ -46,8 +48,8 @@ public class FreePlacementLayout implements LayoutManager {
 		int maxX = parent.getWidth() - insets.right;
 		int maxY = parent.getHeight() - insets.bottom;
 		for (Component c : parent.getComponents()) {
-			int x = Math.max(insets.top, Math.min(c.getX(), maxX - c.getWidth()));
-			int y = Math.max(insets.left, Math.min(c.getY(), maxY - c.getHeight()));
+			int x = MathHelper.clamp(c.getX(), insets.top, maxX - c.getWidth());
+			int y = MathHelper.clamp(c.getY(), insets.left, maxY - c.getHeight());
 			c.setLocation(x, y);
 		}
 	}

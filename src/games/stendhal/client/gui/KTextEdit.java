@@ -17,6 +17,7 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Adjustable;
@@ -493,10 +494,10 @@ class KTextEdit extends JComponent {
 			if (atBottom && (value == getValue())) {
 				// We are at bottom, use adjusted values to ensure we stay
 				// at bottom
-				value = Math.min(Math.max(max - extent, min), max);
+				value = MathHelper.clamp(max - extent, min, max);
 			} else if (max > getMaximum()) {
 				// Not at bottom. Keep the old location.
-				value = Math.min(Math.max(getValue(), min), max);
+				value = MathHelper.clamp(getValue(), min, max);
 				setUnreadLinesWarning(true);
 			}
 			super.setRangeProperties(value, extent, min, max, adjusting);

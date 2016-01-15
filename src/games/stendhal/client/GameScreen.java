@@ -52,6 +52,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.spellcasting.SpellCastingGroundContainerMouseState;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.MathHelper;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -446,15 +447,15 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				 * Don't overshoot. Don't stall.
 				 */
 				if (dvx < 0) {
-					dx = Math.max(Math.min(-1, dx), dvx);
+					dx = MathHelper.clamp(dx, dvx, -1);
 				} else if (dvx > 0) {
-					dx = Math.min(Math.max(1, dx), dvx);
+					dx = MathHelper.clamp(dx, 1, dvx);
 				}
 
 				if (dvy < 0) {
-					dy = Math.max(Math.min(-1, dy), dvy);
+					dy = MathHelper.clamp(dy, dvy, -1);
 				} else if (dvy > 0) {
-					dy = Math.min(Math.max(1, dy), dvy);
+					dy = MathHelper.clamp(dy, 1, dvy);
 				}
 
 				/*
@@ -509,12 +510,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 * Keep the world within the screen view
 		 */
 		final int maxX = (int) (ww * SIZE_UNIT_PIXELS - sw / scale);
-		cvx = Math.min(cvx, maxX);
-		cvx = Math.max(cvx, 0);
+		cvx = MathHelper.clamp(cvx, 0, maxX);
 		
 		final int maxY = (int) (wh * SIZE_UNIT_PIXELS - sh / scale);
-		cvy = Math.min(cvy, maxY);
-		cvy = Math.max(cvy, 0);
+		cvy = MathHelper.clamp(cvy, 0, maxY);
 		
 		// Differences from center
 		dvx = cvx - svx;

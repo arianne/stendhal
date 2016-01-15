@@ -13,6 +13,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SkinColor;
 
 import java.awt.Color;
@@ -136,8 +137,8 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			 * button is held down. Must reset row and column to minimun or
 			 * maximum values in this case
 			 */
-			column = Math.max(0, Math.min(column, COLOR_MAP.length - 1));
-			row = Math.max(0, Math.min(row, COLOR_MAP[0].length - 1));
+			column = MathHelper.clamp(column, 0, COLOR_MAP.length - 1);
+			row = MathHelper.clamp(row, 0, COLOR_MAP[0].length - 1);
 			
 			SkinColor selectedColor = COLOR_MAP[row][column];
 			model.setSelectedColor(selectedColor);

@@ -24,6 +24,8 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
+import games.stendhal.common.MathHelper;
+
 /**
  * UI delegate for JTabbedPanes.
  */
@@ -147,7 +149,7 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		@Override
 		public void mouseWheelMoved(MouseWheelEvent e) {
 			int tabIndex = tabPane.getSelectedIndex();
-			int newIndex = Math.max(0, Math.min(tabPane.getTabCount() - 1, tabIndex + e.getWheelRotation()));
+			int newIndex = MathHelper.clamp(tabIndex + e.getWheelRotation(), 0, tabPane.getTabCount() - 1);
 			if (newIndex != tabIndex) {
 				tabPane.setSelectedIndex(newIndex);
 			}

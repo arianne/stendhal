@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.color.ARGB;
 import games.stendhal.common.color.HSL;
 
@@ -117,10 +118,10 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			int width = sprite.getWidth();
 			int height = sprite.getHeight();
 			int xDiff = point.x - ins.left;
-			xDiff = Math.min(width, Math.max(0, xDiff));
+			xDiff = MathHelper.clamp(xDiff, 0, width);
 			float hue = xDiff / (float) width;
 			int yDiff = point.y - ins.top;
-			yDiff = Math.min(height, Math.max(0, yDiff));
+			yDiff = MathHelper.clamp(yDiff, 0, height);
 			float saturation = 1f - yDiff / (float) height;
 			model.setHS(hue, saturation);
 		}
@@ -219,13 +220,13 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			Insets ins = getInsets();
 			int width = getWidth() - ins.left - ins.right;
 			int xDiff = point.x - ins.left;
-			xDiff = Math.min(width, Math.max(0, xDiff));
+			xDiff = MathHelper.clamp(xDiff, 0, width);
 			float lightness = xDiff / (float) width;
 			/*
 			 * Limit lightness a bit, so that the gradient does not become
 			 * confusingly desaturated at the ends.
 			 */
-			lightness = Math.max(0.01f, Math.min(0.99f, lightness));
+			lightness = MathHelper.clamp(lightness, 0.01f, 0.99f);
 			model.setL(lightness);
 		}
 		

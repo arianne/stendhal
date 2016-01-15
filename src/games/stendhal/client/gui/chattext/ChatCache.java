@@ -22,6 +22,8 @@ import java.util.ListIterator;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.MathHelper;
+
 class ChatCache {
 	private final static Logger logger = Logger.getLogger(ChatCache.class);
 
@@ -132,7 +134,7 @@ class ChatCache {
 	}
 
 	String next() {
-		current = Math.max(0, Math.min(current + 1, lines.size() - 1));
+		current = MathHelper.clamp(current + 1, 0, lines.size() - 1);
 		if (!lines.isEmpty()) {
 			return current();
 		}

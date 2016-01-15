@@ -131,4 +131,31 @@ public class MathHelper {
 		return parseLongDefault(s, 0);
 	}
 
+	/**
+	 * Limit an integer value to a specific range.
+	 * 
+	 * @param value value to be limited
+	 * @param minValue minimum value. Should be <= maxValue.
+	 * @param maxValue maximum value. Should be >= minValue.
+	 * @return if value is in range [minValue, maxValue], value is returned.
+	 * 	Otherwise if value > maxValue, maxValue is returned, if value < minValue,
+	 * 	minValue is returned.
+	 */
+	public static int clamp(int value, int minValue, int maxValue) {
+		return Math.max(minValue, Math.min(value, maxValue));
+	}
+	
+	/**
+	 * Limit a float value to a specific range.
+	 * 
+	 * @param value value to be limited
+	 * @param minValue minimum value. Should be <= maxValue.
+	 * @param maxValue maximum value. Should be >= minValue.
+	 * @return if value is in range [minValue, maxValue], value is returned.
+	 * 	Otherwise if value > maxValue, maxValue is returned, if value < minValue,
+	 * 	minValue is returned.
+	 */
+	public static float clamp(float value, float minValue, float maxValue) {
+		return Math.max(minValue, Math.min(value, maxValue));
+	}
 }
