@@ -407,8 +407,7 @@ public class WeatherUpdater implements TurnListener {
 			// Favor stability. This also keeps the change rate at range [-1, 1] 
 			change /= WEATHER_STABILITY;
 			int oldValue = value;
-			value += change;
-			value = Math.max(Math.min(value, maxValue), 0);
+			value = MathHelper.clamp(value + change, 0, maxValue);
 			return value != oldValue;
 		}
 		
@@ -440,7 +439,7 @@ public class WeatherUpdater implements TurnListener {
 		 * 	weather state has no description.
 		 */
 		String getDescription(int modifier) {
-			int adjusted = Math.max(Math.min(value + modifier, maxValue), 0);
+			int adjusted = MathHelper.clamp(value + modifier, 0, maxValue);
 			int idx = adjusted - (maxValue - desc.length) - 1;
 			if (idx >= 0) {
 				return desc[idx];

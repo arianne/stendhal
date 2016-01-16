@@ -12,18 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Observer;
+
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Creature;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Observer;
-
-import org.apache.log4j.Logger;
 
 /**
  * RespawnPoints are points at which creatures can appear. Several creatures can
@@ -184,10 +185,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @return the amount of turns calculated
 	 */
 	protected int calculateNextRespawnTurn() {
-		final int time = Rand.randExponential(respawnTime);
-		
-		// limit between MAX_ and MIN_
-		return Math.max(Math.min(time, MAX_RESPAWN_TIME), MIN_RESPAWN_TIME);
+		return MathHelper.clamp(Rand.randExponential(respawnTime), MIN_RESPAWN_TIME, MAX_RESPAWN_TIME);
 	}
 
 	/**

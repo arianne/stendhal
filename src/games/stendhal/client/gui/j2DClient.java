@@ -52,6 +52,7 @@ import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.common.Debug;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.constants.Testing;
@@ -460,10 +461,9 @@ public class j2DClient implements UserInterface {
 						 */
 						oldRightDiff = oldWidth - horizSplit.getLastDividerLocation();
 					}
-					position = width - oldRightDiff;
-
-					position = Math.min(position, horizSplit.getMaximumDividerLocation());
-					position = Math.max(position, horizSplit.getMinimumDividerLocation());
+					position = MathHelper.clamp(width - oldRightDiff,
+							horizSplit.getMinimumDividerLocation(),
+							horizSplit.getMaximumDividerLocation());
 
 					horizSplit.setDividerLocation(position);
 					oldWidth = horizSplit.getWidth();
