@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 
-<project name="stendhal" default="compile" basedir=".">
+<project name="stendhal" default="compile" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
 	<!--
 		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
 		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
@@ -55,25 +55,6 @@
 			<available file="${build-archive}/stendhal-${version.old}.zip"/>
 		</not>
 	</condition>
-
-
-	<!--
-	Definitions for cobertura coverage
-	-->
-	<path id="cobertura.classpath">
-	    <fileset dir="${cobertura.dir}">
-	        <include name="cobertura.jar" />
-	        <include name="*.jar" />
-	    </fileset>
-		<fileset dir="${libdir}">
-			<include name="*.jar" />
-		</fileset>
-	</path>
-
-	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
-	
-	<property name="build_cobertura" value="${buildroot}/cobertura"/>
-	<property name="build_cobertura_report" value="${buildroot}/cobertura_report"/>
 
 
 	<target name="init">
@@ -1003,41 +984,62 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
-		<junit fork="yes" forkmode="once" errorproperty="test.error" failureproperty="test.failure">
-			<classpath>
-				<pathelement path="${build_tests}"/>
-				<pathelement path="${build_client}"/>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${build_server_maps}"/>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${build_stendhaltextclient}"/>
-				<pathelement path="${build_server_script}"/>
-				<pathelement path="${build_postman}"/>
-				<pathelement path="${easymock_jar}"/>
-				<pathelement path="${easymockclassextension_jar}"/>
-				<pathelement path="${cglib_jar}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${hamcrest_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${mysqldriver_jar}"/>
-				<pathelement path="${h2_jar}"/>
-				<pathelement path="${jorbis_jar}"/>
-				<pathelement path="."/>
-				<pathelement path="data/conf"/>
-				<pathelement path="data/script"/>
-			</classpath>
-			<formatter type="xml"/>
-			<batchtest  todir="${build_tests_report}">
-				<fileset dir="tests">
-					<include name="**/*Test.java"/>
-					<include name="**/Test*.java"/>
-				</fileset>
-			</batchtest>
-		</junit>
+		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+			<classpath path="libs/jacoco/jacocoant.jar"/>
+		</taskdef>
+		<jacoco:coverage destfile="${build_tests_report}/jacoco.exec" append="false" includes="games.stendhal.*">
+			<junit fork="yes" forkmode="once" errorproperty="test.error" failureproperty="test.failure">
+				<classpath>
+					<pathelement path="${build_tests}"/>
+					<pathelement path="${build_client}"/>
+					<pathelement path="${build_server}"/>
+					<pathelement path="${build_server_maps}"/>
+					<pathelement path="${build_stendhaltools}"/>
+					<pathelement path="${build_stendhaltextclient}"/>
+					<pathelement path="${build_server_script}"/>
+					<pathelement path="${build_postman}"/>
+					<pathelement path="${easymock_jar}"/>
+					<pathelement path="${easymockclassextension_jar}"/>
+					<pathelement path="${cglib_jar}"/>
+					<pathelement path="${marauroa_jar}"/>
+					<pathelement path="${hamcrest_jar}"/>
+					<pathelement path="${log4j_jar}"/>
+					<pathelement path="${junit_jar}"/>
+					<pathelement path="${groovy_jar}"/>
+					<pathelement path="${simple_jar}"/>
+					<pathelement path="${guava_jar}"/>
+					<pathelement path="${mysqldriver_jar}"/>
+					<pathelement path="${h2_jar}"/>
+					<pathelement path="${jorbis_jar}"/>
+					<pathelement path="."/>
+					<pathelement path="data/conf"/>
+					<pathelement path="data/script"/>
+				</classpath>
+				<formatter type="xml"/>
+				<batchtest  todir="${build_tests_report}">
+					<fileset dir="tests">
+						<include name="**/*Test.java"/>
+						<include name="**/Test*.java"/>
+					</fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
+	    <jacoco:report>
+	        <executiondata>
+	            <file file="${build_tests_report}/jacoco.exec" />
+	        </executiondata>
+	        <structure name="stendhal">
+	            <classfiles>
+	            	<fileset dir="${build_client}"/>
+					<fileset dir="${build_server}"/>
+	            </classfiles>
+	            <sourcefiles encoding="UTF-8">
+	                <fileset dir="${src}" />
+	            </sourcefiles>
+	        </structure>
+	    	<xml destfile="${build_tests_report}/jacoco.xml" />
+	    </jacoco:report>
+		
 	</target>
 
 	<target name="report_test" description="Aggregate Testresults">
@@ -1091,80 +1093,5 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		</schemavalidate>
 	</target>
 	
-	<target name="cobertura-instrument">
-		<cobertura-instrument todir="${build_cobertura}" datafile="${build_cobertura}/cobertura.ser">
-			<ignore regex="org.apache.log4j.*" />
-			<fileset dir="${build_server}">
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${build_server_maps}">
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${build_server_script}">
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${build_server_xmlconf}">
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${build_client}">
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${build_client_data}">
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${build_stendhaltools}">
-				<include name="**/*.class" />
-			</fileset>
-		</cobertura-instrument>
-	</target>
-	
-	<target name="cobertura-test">
-		<mkdir dir="${build_tests_report}"/>
-		<junit printsummary="yes" fork="yes" forkmode="once">
-			<sysproperty key="net.sourceforge.cobertura.datafile"
-			file="${build_cobertura}/cobertura.ser" />
-			<classpath>
-				<pathelement path="${build_cobertura}"/>
-				<pathelement path="${build_tests}"/>
-				<pathelement path="${build_client}"/>
-				<pathelement path="${build_server}"/>
-				<pathelement path="${build_server_maps}"/>
-				<pathelement path="${build_stendhaltools}"/>
-				<pathelement path="${build_stendhaltextclient}"/>
-				<pathelement path="${build_postman}"/>
-				<pathelement path="${easymock_jar}"/>
-				<pathelement path="${easymockclassextension_jar}"/>
-				<pathelement path="${cglib_jar}"/>
-				<pathelement path="${marauroa_jar}"/>
-				<pathelement path="${hamcrest_jar}"/>
-				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
-				<pathelement path="${simple_jar}"/>
-				<pathelement path="${guava_jar}"/>
-				<pathelement path="${mysqldriver_jar}"/>
-				<pathelement path="."/>
-				<pathelement path="data/conf"/>
-				<pathelement path="data/script"/>
-			</classpath>
-			<classpath refid="cobertura.classpath" />
-			<formatter type="plain" usefile="false"/>
-			<formatter type="xml"/>
-			<batchtest todir="${build_tests_report}">
-				<fileset dir="tests">
-					<include name="**/*Test.java"/>
-					<include name="**/Test*.java"/>
-				</fileset>
-			</batchtest>
-		</junit>
-	</target>
-	
-	<target name="cobertura-report">
-		<mkdir dir="${build_cobertura_report}"/>
-		<cobertura-report format="html" destdir="${build_cobertura_report}" srcdir="${src}" datafile="${build_cobertura}/cobertura.ser" />
-		<cobertura-report format="xml" destdir="${build_cobertura_report}" srcdir="${src}" datafile="${build_cobertura}/cobertura.ser" />
-	</target>
-	
-	<target name="run_tests_with_cobertura" depends="compile_tests,cobertura-instrument,cobertura-test,cobertura-report,report_test" description="Run tests with cobertura coverage"/>
 	
 </project>
