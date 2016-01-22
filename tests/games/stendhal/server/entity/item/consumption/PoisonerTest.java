@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +12,13 @@
 package games.stendhal.server.entity.item.consumption;
 
 import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,16 +26,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.Log4J;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -41,15 +38,11 @@ public class PoisonerTest {
 		Log4J.init();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
 
 	/**
 	 * Tests for feed.
 	 */
+	@Test
 	public final void testFeed() {
 		SingletonRepository.getEntityManager();
 		ItemTestHelper.generateRPClasses();

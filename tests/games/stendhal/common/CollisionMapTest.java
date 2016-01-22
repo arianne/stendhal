@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,44 +11,29 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import java.awt.geom.Rectangle2D;
+import java.util.BitSet;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.util.UserInterfaceTestHelper;
 import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.awt.geom.Rectangle2D;
-import java.util.BitSet;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class CollisionMapTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		UserInterfaceTestHelper.initUserInterface();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -63,7 +47,6 @@ public class CollisionMapTest {
 		final CollisionMap map2x2 = new CollisionMap(2, 2);
 		assertThat(map2x2.getWidth(), is(2));
 		assertThat(map2x2.getHeight(), is(2));
-
 	}
 
 	/**
@@ -116,7 +99,6 @@ public class CollisionMapTest {
 		assertTrue("edge", map.collides(3, 1, 2, 2));
 		assertTrue("edge", map.collides(3, 2, 2, 2));
 		assertTrue("edge", map.collides(3, 3, 2, 2));
-
 	}
 
 	/**
@@ -144,7 +126,6 @@ public class CollisionMapTest {
 		assertTrue("edge", map.collides(3, 1, 2, 2));
 		assertTrue("edge", map.collides(3, 2, 2, 2));
 		assertTrue("edge", map.collides(3, 3, 2, 2));
-
 	}
 
 	/**
@@ -183,7 +164,6 @@ public class CollisionMapTest {
 		assertFalse(subset2.get(4));
 		assertTrue(subset2.get(5));
 		assertFalse(subset2.get(6));
-
 	}
 
 	/**
@@ -199,7 +179,6 @@ public class CollisionMapTest {
 		assertTrue(map.collides(0, 0, 4, 4));
 		map.clear();
 		assertFalse(map.collides(0, 0, 4, 4));
-
 	}
 	
 	/**
@@ -229,8 +208,8 @@ public class CollisionMapTest {
 		assertFalse(map.get(3, 1));
 		assertFalse(map.get(3, 2));
 		assertFalse(map.get(3, 3));
-
 	}
+
 	/**
 	 * Tests for setCollideRectangle2D2x3.
 	 */
@@ -258,7 +237,6 @@ public class CollisionMapTest {
 		assertFalse(map.get(3, 1));
 		assertFalse(map.get(3, 2));
 		assertFalse(map.get(3, 3));
-
 	}
 
 
@@ -373,9 +351,6 @@ public class CollisionMapTest {
 		bob.initialize(serverbob);
 		assertFalse(map.collides((int) bob.getX(), (int) bob.getY(), (int) bob
 				.getWidth(), (int) bob.getHeight()));
-
 	}
-	
-	
 
 }

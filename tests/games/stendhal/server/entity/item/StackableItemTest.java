@@ -16,41 +16,23 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.RPClass.ItemTestHelper;
 
 public class StackableItemTest {
-
-	
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -60,7 +42,6 @@ public class StackableItemTest {
 	public void testGetQuantity() {
 		StackableItem stack = new StackableItem("item", "clazz", "subclass", null);
 		assertThat(stack.getQuantity(), is(1));
-		
 	}
 
 	/**
@@ -111,7 +92,6 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(100));
 		stack.sub(1);
 		assertThat(stack.getQuantity(), is(99));
-		
 	}
 	
 	/**
@@ -166,7 +146,6 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(1));
 		stack.splitOff(0);
 		assertThat(stack.getQuantity(), is(1));
-		
 		
 		stack.setQuantity(1);
 		assertThat(stack.getQuantity(), is(1));

@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,19 +13,9 @@ package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class LevelTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * Tests for maxLevel.
@@ -34,7 +23,6 @@ public class LevelTest {
 	@Test
 	public final void testMaxLevel() {
 		assertEquals(597, Level.maxLevel());
-
 	}
 
 	/**
@@ -50,7 +38,6 @@ public class LevelTest {
 	 */
 	@Test
 	public final void testGetXP() {
-
 		assertEquals(0, Level.getXP(0));
 		assertEquals(50, Level.getXP(1));
 		assertEquals(9753800, Level.getXP(100));
@@ -63,7 +50,6 @@ public class LevelTest {
 	 */
 	@Test
 	public final void testGetNegativeXP() {
-
 		assertEquals(-1, Level.getXP(-1));
 		assertEquals(-1, Level.getXP(-10));
 	}
@@ -91,7 +77,6 @@ public class LevelTest {
 				Level.getXP(Level.maxLevel() - 1)));
 		assertEquals(Level.maxLevel(), Level.changeLevel(0,
 				Level.getXP(Level.maxLevel())));
-
 	}
 
 	/**

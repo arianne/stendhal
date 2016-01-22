@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,21 +16,16 @@ import static org.junit.Assert.assertNull;
 
 import java.util.Locale;
 
-import marauroa.common.game.Result;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import marauroa.common.game.Result;
 
 public class LowerCaseValidatorTest {
 
 	@Before
 	public void setUp() throws Exception {
 		Locale.setDefault(Locale.ENGLISH);
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**

@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,16 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 public class AntidoteEaterTest {
@@ -34,14 +32,6 @@ public class AntidoteEaterTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		MockStendlRPWorld.reset();
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**

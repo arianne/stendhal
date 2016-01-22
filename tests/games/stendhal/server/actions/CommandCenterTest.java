@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -62,14 +61,14 @@ public class CommandCenterTest {
 
 			@Override
 			public void onAction(final Player player, final RPAction action) {
-
+				// do nothing
 			}
 		});
 
 		CommandCenter.register("this", new ActionListener() {
 			@Override
 			public void onAction(final Player player, final RPAction action) {
-
+				// do nothing
 			}
 		});
 	}
@@ -93,17 +92,19 @@ public class CommandCenterTest {
 		CommandCenter.register("this", new ActionListener() {
 			@Override
 			public void onAction(final Player player, final RPAction action) {
+				// do nothing
 			}
 		});
 		CommandCenter.register("that", new ActionListener() {
 			@Override
 			public void onAction(final Player player, final RPAction action) {
-
+				// do nothing
 			}
 		});
 		CommandCenter.register("thus", new ActionListener() {
 			@Override
 			public void onAction(final Player player, final RPAction action) {
+				// do nothing
 			}
 		});
 		

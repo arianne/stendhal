@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,30 +11,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.factory;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.*;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ConfigurableFactoryContextTest {
 
 	private Map<String, String> attributes;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -44,10 +33,6 @@ public class ConfigurableFactoryContextTest {
 		attributes.put("string", "stringvalue");
 		attributes.put("negative", "false");
 		attributes.put("fiveInt", "5");
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -88,7 +73,6 @@ public class ConfigurableFactoryContextTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetNonbooleanRequiredBoolean() {
-
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
 				attributes);
 		assertTrue(con.getRequiredBoolean("string"));
@@ -125,7 +109,6 @@ public class ConfigurableFactoryContextTest {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
 				attributes);
 		con.getRequiredInt("nonExistingkey");
-
 	}
 
 	/**
@@ -135,7 +118,6 @@ public class ConfigurableFactoryContextTest {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
 				attributes);
 		assertThat(con.getRequiredInt("fiveInt"), is(5));
-
 	}
 
 	/**
@@ -147,7 +129,6 @@ public class ConfigurableFactoryContextTest {
 				attributes);
 		assertThat(con.getString("nonexistantstring", "default"), is("default"));
 		assertThat(con.getString("string", "default"), is("stringvalue"));
-
 	}
 
 	/**
@@ -158,7 +139,6 @@ public class ConfigurableFactoryContextTest {
 		ConfigurableFactoryContext con = new ConfigurableFactoryContext(
 				attributes);
 		con.getRequiredString("nonexistantstring");
-
 	}
 
 }

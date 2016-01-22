@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,25 +12,16 @@
 package games.stendhal.server.entity.item.consumption;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.entity.item.Drink;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
+import games.stendhal.server.entity.item.Drink;
 import utilities.RPClass.ItemTestHelper;
 
 public class FeederFactoryTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * Tests for getEaterForSoup.
