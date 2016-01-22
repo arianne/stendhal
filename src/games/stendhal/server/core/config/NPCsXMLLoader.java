@@ -26,8 +26,6 @@ public final class NPCsXMLLoader extends DefaultHandler {
     /** the logger instance. */
     private static final Logger logger = Logger.getLogger(ItemsXMLLoader.class);
     
-    private Class< ? > implementation;
-    
     private String name;
     
     private String clazz;
@@ -122,7 +120,6 @@ public final class NPCsXMLLoader extends DefaultHandler {
             npcSays = new LinkedHashMap<String, LinkedList<String>>();
             aiProfiles = new LinkedHashMap<String, String>();
             description = null;
-            implementation = null;
         } else if (qName.equals("type")) {
             clazz = attrs.getValue("class");
             subclass = attrs.getValue("subclass");
@@ -133,7 +130,7 @@ public final class NPCsXMLLoader extends DefaultHandler {
             final String className = attrs.getValue("class-name");
 
             try {
-                implementation = Class.forName(className);
+                Class.forName(className);
             } catch (final ClassNotFoundException ex) {
                 logger.error("Unable to load class: " + className);
             }
