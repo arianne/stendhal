@@ -11,8 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.puzzle;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
 
@@ -27,7 +29,9 @@ public class PuzzleBuildingBlock {
 	private String zoneName;
 	private String name;
 	private Entity entity;
-	private List<String> dependencies;
+	private List<String> dependencies = new LinkedList<>();
+	private HashMap<String, String> values = new HashMap<>();
+	private HashMap<String, String> definitions = new HashMap<>();
 
 	/**
 	 * creates a PuzzleBuildingBlock
@@ -41,6 +45,93 @@ public class PuzzleBuildingBlock {
 		this.name = name;
 		this.entity = entity;
 		this.dependencies = new LinkedList<>();
+	}
+
+	/**
+	 * defines a property
+	 *
+	 * @param variable name of property
+	 * @param expression expression
+	 * @param defaultValue default value
+	 */
+	public void defineProperty(String variable, String expression, String defaultValue) {
+		values.put(variable, defaultValue);
+		if (expression != null) {
+			definitions.put(variable, expression);
+			// TODO: update dependencies
+		}
+	}
+
+	/**
+	 * processes all expressions and updates properties
+	 */
+	private void processExpressions() {
+		boolean notificationRequired = false;
+		for (Map.Entry<String, String> entry : definitions.entrySet()) {
+			String variable = entry.getKey();
+			String expression = entry.getValue();
+			String value = evaluateExpression(expression);
+			if (putInternal(variable, value)) {
+				notificationRequired = true;
+			}
+		}
+		if (notificationRequired) {
+			PuzzleEventDispatcher.get().notify(this);
+		}
+	}
+
+	/**
+	 * evaluates an expression
+	 *
+	 * @param expression expression
+	 * @return result
+	 */
+	private String evaluateExpression(String expression) {
+		// TODO
+		return "true";
+	}
+
+	/**
+	 * sets the name of a property internally without triggering the notification 
+	 * mechanism. This method is useful for batch processing with a combined
+	 * notifications at the end.
+	 * 
+	 * @param variable name of property
+	 * @param value value of property
+	 * @return true, if notification is required; false otherwise
+	 */
+	private boolean putInternal(String variable, String value) {
+		String oldValue = values.get(variable);
+		values.put(variable, value);
+
+		// notification is required, if and only if there was a real change
+		if (oldValue == null) {
+			return value != null;
+		} else {
+			return !oldValue.equals(value);
+		}
+	}
+
+	/**
+	 * sets the name of a property
+	 *
+	 * @param variable name of property
+	 * @param value value of property
+	 */
+	public void put(String variable, String value) {
+		if (putInternal(variable, value)) {
+			PuzzleEventDispatcher.get().notify(this);
+		}
+	}
+
+	/**
+	 * gets the value of a property
+	 *
+	 * @param variable name of property
+	 * @return value of property
+	 */
+	public String get(String variable) {
+		return values.get(variable);
 	}
 
 	/**
@@ -65,6 +156,7 @@ public class PuzzleBuildingBlock {
 	 * listens to input change events
 	 */
 	public void onInputChanged() {
+		processExpressions();
 		entity.update();
 	}
 
