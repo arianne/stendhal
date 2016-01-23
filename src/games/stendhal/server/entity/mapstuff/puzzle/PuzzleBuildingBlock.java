@@ -21,6 +21,20 @@ import java.util.List;
 public interface PuzzleBuildingBlock {
 
 	/**
+	 * gets the name of the zone
+	 *
+	 * @return zone
+	 */
+	public String getZoneName();
+
+	/**
+	 * gets the name of building block
+	 *
+	 * @return name
+	 */
+	public String getName();
+
+	/**
 	 * listens to input change events
 	 */
 	public void onInputChanged();

@@ -6,8 +6,6 @@ import java.util.Map;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
-
 /**
  * manages puzzle building blocks
  */
@@ -50,13 +48,13 @@ public class PuzzleEventDispatcher {
 	 * @param name 
 	 * @param block 
 	 */
-	public void register(StendhalRPZone zone, String name, PuzzleBuildingBlock block) {
-		if (name.contains(SEP)) {
-			throw new RuntimeException("Entity \"" + name + "\" in zone " + zone.getName() + " must not contain " + SEP + ".");
+	public void register(PuzzleBuildingBlock block) {
+		if (block.getName().contains(SEP)) {
+			throw new RuntimeException("Entity \"" + block.getName() + "\" in zone " + block.getZoneName() + " must not contain " + SEP + ".");
 		}
 			
-		String prefix = zone.getName() + SEP;
-		String qualifiedName = prefix + name;
+		String prefix = block.getZoneName() + SEP;
+		String qualifiedName = prefix + block.getName();
 		buildingBlocks.put(qualifiedName, block);
 
 		for (String dependency : block.getDependencies()) {
@@ -66,4 +64,20 @@ public class PuzzleEventDispatcher {
 			notifies.put(dependency, qualifiedName);
 		}
 	}
+
+	/**
+	 * notifies about property changes 
+	 *
+	 * @param sourceBlock PuzzleBuildingBlock which had a property changed
+	 */
+	public void notify(PuzzleBuildingBlock sourceBlock) {
+		String qualifiedName = sourceBlock.getZoneName() + SEP + sourceBlock.getName();
+		for (String notifyName : notifies.get(qualifiedName)) {
+			PuzzleBuildingBlock targetBlock = buildingBlocks.get(notifyName);
+			if (targetBlock != null) {
+				targetBlock.onInputChanged();
+			}
+		}
+	}
+
 }
