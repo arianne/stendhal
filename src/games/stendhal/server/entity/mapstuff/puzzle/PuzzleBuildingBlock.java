@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableList;
 
@@ -55,11 +57,22 @@ public class PuzzleBuildingBlock {
 	 * @param expression expression
 	 * @param defaultValue default value
 	 */
-	public void defineProperty(String variable, String expression, String defaultValue) {
+	public void defineProperty(String variable, String expression, Object defaultValue) {
 		values.put(variable, defaultValue);
 		if (expression != null) {
-			definitions.put(variable, PuzzleEventDispatcher.get().parseExpression(this, expression));
-			// TODO: update dependencies
+			definitions.put(variable, 
+					PuzzleEventDispatcher.get().parseExpression(this, expression));
+
+			Scanner sc = new Scanner(expression);
+		    Pattern pattern = Pattern.compile("\"[^\"]*\"|[A-Za-z0-9._]+");
+		    String token = sc.findInLine(pattern);
+		    while (token != null) {
+		    	if (token.charAt(0) != '"' && token.contains(".")) {
+		    		this.dependencies.add(token.substring(0, token.lastIndexOf('.')));
+		    	}
+		        token = sc.findInLine(pattern);
+		    }
+		    sc.close();
 		}
 	}
 
@@ -108,7 +121,7 @@ public class PuzzleBuildingBlock {
 	 * @param variable name of property
 	 * @param value value of property
 	 */
-	public void put(String variable, String value) {
+	public void put(String variable, Object value) {
 		if (putInternal(variable, value)) {
 			PuzzleEventDispatcher.get().notify(this);
 		}
@@ -147,7 +160,9 @@ public class PuzzleBuildingBlock {
 	 */
 	public void onInputChanged() {
 		processExpressions();
-		entity.update();
+		if (entity != null) {
+			entity.update();
+		}
 	}
 
 	/**
