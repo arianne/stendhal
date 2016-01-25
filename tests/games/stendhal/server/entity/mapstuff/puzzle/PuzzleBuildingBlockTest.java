@@ -60,13 +60,18 @@ public class PuzzleBuildingBlockTest {
 
 
 		// test input propagation
-		
 		door.onInputChanged();
 		assertTrue(((Boolean) door.get(ACTIVE)).booleanValue());
 
+		// no change
+		door.onInputChanged();
+		assertTrue(((Boolean) door.get(ACTIVE)).booleanValue());
+
+		// remote change
 		remoteSwitch.put(ACTIVE, Boolean.FALSE);
 		assertFalse(((Boolean) door.get(ACTIVE)).booleanValue());
 
+		// local change
 		localSwitch.put(ACTIVE, Boolean.FALSE);
 		assertTrue(((Boolean) door.get(ACTIVE)).booleanValue());
 
