@@ -19,6 +19,7 @@ import java.util.Map;
 import com.google.common.collect.ImmutableList;
 
 import games.stendhal.server.entity.Entity;
+import groovy.lang.Script;
 
 /**
  * a puzzle building block
@@ -30,8 +31,8 @@ public class PuzzleBuildingBlock {
 	private String name;
 	private Entity entity;
 	private List<String> dependencies = new LinkedList<>();
-	private HashMap<String, String> values = new HashMap<>();
-	private HashMap<String, String> definitions = new HashMap<>();
+	private HashMap<String, Object> values = new HashMap<>();
+	private HashMap<String, Script> definitions = new HashMap<>();
 
 	/**
 	 * creates a PuzzleBuildingBlock
@@ -57,7 +58,7 @@ public class PuzzleBuildingBlock {
 	public void defineProperty(String variable, String expression, String defaultValue) {
 		values.put(variable, defaultValue);
 		if (expression != null) {
-			definitions.put(variable, expression);
+			definitions.put(variable, PuzzleEventDispatcher.get().parseExpression(this, expression));
 			// TODO: update dependencies
 		}
 	}
@@ -67,10 +68,10 @@ public class PuzzleBuildingBlock {
 	 */
 	private void processExpressions() {
 		boolean notificationRequired = false;
-		for (Map.Entry<String, String> entry : definitions.entrySet()) {
+		for (Map.Entry<String, Script> entry : definitions.entrySet()) {
 			String variable = entry.getKey();
-			String expression = entry.getValue();
-			String value = evaluateExpression(expression);
+			Script script = entry.getValue();
+			Object value = script.run();
 			if (putInternal(variable, value)) {
 				notificationRequired = true;
 			}
@@ -78,17 +79,6 @@ public class PuzzleBuildingBlock {
 		if (notificationRequired) {
 			PuzzleEventDispatcher.get().notify(this);
 		}
-	}
-
-	/**
-	 * evaluates an expression
-	 *
-	 * @param expression expression
-	 * @return result
-	 */
-	private String evaluateExpression(String expression) {
-		// TODO
-		return "true";
 	}
 
 	/**
@@ -100,8 +90,8 @@ public class PuzzleBuildingBlock {
 	 * @param value value of property
 	 * @return true, if notification is required; false otherwise
 	 */
-	private boolean putInternal(String variable, String value) {
-		String oldValue = values.get(variable);
+	private boolean putInternal(String variable, Object value) {
+		Object oldValue = values.get(variable);
 		values.put(variable, value);
 
 		// notification is required, if and only if there was a real change
@@ -130,7 +120,7 @@ public class PuzzleBuildingBlock {
 	 * @param variable name of property
 	 * @return value of property
 	 */
-	public String get(String variable) {
+	public Object get(String variable) {
 		return values.get(variable);
 	}
 
