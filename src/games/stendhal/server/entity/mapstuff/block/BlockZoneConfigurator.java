@@ -63,8 +63,6 @@ public class BlockZoneConfigurator implements ZoneConfigurator {
 		}
 		
 		zone.add(b, false);
-		zone.addMovementListener(b);
-		zone.addZoneEnterExitListener(b);
 	}
 
 }

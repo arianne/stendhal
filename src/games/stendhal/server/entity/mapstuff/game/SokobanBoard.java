@@ -204,7 +204,6 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 		block.setResetBlock(false);
 		block.setDescription("You see a pumpkin, move it to a basket.");
 		this.getZone().add(block);
-		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);
 		boxes.add(block);
 	}

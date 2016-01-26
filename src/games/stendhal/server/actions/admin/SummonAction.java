@@ -117,8 +117,6 @@ public class SummonAction extends AdministrationAction {
         if ("block".equals(action.get(CREATURE))) {
 		    final Block block = new Block(action.getInt(X), action.getInt(Y), true);
 		    player.getZone().add(block);
-		    player.getZone().addMovementListener(block);
-		    player.getZone().addZoneEnterExitListener(block);
 		}
 
 		try {
