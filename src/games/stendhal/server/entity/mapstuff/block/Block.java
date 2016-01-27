@@ -11,6 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.block;
 
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
@@ -25,18 +32,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
-
-import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * A solid, movable block on a map. It can have different apearances, 
@@ -57,9 +55,9 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	private static final String Z_ORDER = "z";
 
-	private static final String START_Y = "start-y";
-
-	private static final String START_X = "start-x";
+	private int startX;
+	private int startY;
+	private boolean multi;
 
 	private final List<String> sounds;
 
@@ -69,12 +67,6 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
 		clazz.isA("area");
-		// start_* denotes the initial place of a block to be able resetting it
-		// to that position
-		clazz.addAttribute(START_X, Type.INT, Definition.HIDDEN);
-		clazz.addAttribute(START_Y, Type.INT, Definition.HIDDEN);
-		// flag denoting if this block is multiple times pushable
-		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
 		// z order to control client side drawing
 		clazz.addAttribute(Z_ORDER, Type.INT);
 		clazz.addAttribute("class", Type.STRING);
@@ -129,10 +121,10 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 */
 	public Block(int startX, int startY, boolean multiPush, String style, String shape, List<String> sounds) {
 		super();
-		this.put(START_X, startX);
-		this.put(START_Y, startY);
+		this.startX = startX;
+		this.startY = startY;
 		this.put(Z_ORDER, 8000);
-		this.put("multi", Boolean.valueOf(multiPush).toString());
+		this.multi = Boolean.valueOf(multiPush);
 		setRPClass("block");
 		put("type", "block");
 		put("class", "block");
@@ -148,7 +140,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		if (shape != null) {
 			put("shape", shape);
 		}
-		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
+		this.setPosition(startX, startY);
 	}
 
 	/**
@@ -156,7 +148,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 */
 	public void reset() {
 		wasMoved = false;
-		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
+		this.setPosition(startX, startY);
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 		this.notifyWorldAboutChanges();
 	}
@@ -221,18 +213,17 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	private boolean wasPushed() {
-		boolean xChanged = this.getInt("x") != this.getInt(START_X);
-		boolean yChanged = this.getInt("y") != this.getInt(START_Y);
+		boolean xChanged = this.getInt("x") != this.startX;
+		boolean yChanged = this.getInt("y") != this.startY;
 		return xChanged || yChanged;
 	}
 
 	private boolean mayBePushed(Direction d) {
 		boolean pushed = wasPushed();
-		boolean multiPush = this.getBool("multi");
 		int newX = this.getXAfterPush(d);
 		int newY = this.getYAfterPush(d);
 
-		if (!multiPush && pushed) {
+		if (!multi && pushed) {
 			return false;
 		}
 
@@ -343,7 +334,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * possible
 	 */
 	private void resetIfInitialPositionFree() {
-		if (!this.getZone().collides(this, this.getInt(START_X), this.getInt(START_Y))) {
+		if (!this.getZone().collides(this, this.startX, this.startY)) {
 			this.reset();
 		} else {
 			// try again in a few moments
