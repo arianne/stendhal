@@ -83,24 +83,21 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * @param multiPush
 	 *            is pushing multiple times allowed
 	 */
-	public Block(int startX, int startY, boolean multiPush) {
-		this(startX, startY, multiPush, "block", null, Arrays.asList(
-				"scrape-1", "scrape-2"));
+	public Block(boolean multiPush) {
+		this(multiPush, "block", null, Arrays.asList("scrape-1", "scrape-2"));
 	}
 
 	/**
 	 *
-	 * @param startX
-	 * @param startY
 	 * @param multiPush
 	 * @param style
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style) {
-		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
+	public Block(boolean multiPush, String style) {
+		this(multiPush, style, null, Collections.<String> emptyList());
 	}
 
-	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
-		this(startX, startY, multiPush, style, shape, Collections.<String> emptyList());
+	public Block(boolean multiPush, String style, String shape) {
+		this(multiPush, style, shape, Collections.<String> emptyList());
 	}
 
 	/**
@@ -119,10 +116,8 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * @param sounds
 	 *            what sounds should be played on push?
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style, String shape, List<String> sounds) {
+	public Block(boolean multiPush, String style, String shape, List<String> sounds) {
 		super();
-		this.startX = startX;
-		this.startY = startY;
 		this.put(Z_ORDER, 8000);
 		this.multi = Boolean.valueOf(multiPush);
 		setRPClass("block");
@@ -140,7 +135,6 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		if (shape != null) {
 			put("shape", shape);
 		}
-		this.setPosition(startX, startY);
 	}
 
 	/**
@@ -318,6 +312,8 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	@Override
 	public void onAdded(StendhalRPZone zone) {
 		super.onAdded(zone);
+		this.startX = getX();
+		this.startY = getY();
 		zone.addMovementListener(this);
 		zone.addZoneEnterExitListener(this);
 	}

@@ -40,8 +40,10 @@ public class BlockTargetTest {
 		Player player = PlayerTestHelper.createPlayer("pusher");
 		BlockTarget unshapedTarget = new BlockTarget(1, 1);
 		BlockTarget squareTarget = new BlockTarget(1, 1, "square");
-		Block unshapedBlock = new Block(1, 1, true);
-		Block squareBlock = new Block(1, 1, true, "block", "square");
+		Block unshapedBlock = new Block(true);
+		unshapedBlock.setPosition(1, 1);
+		Block squareBlock = new Block(true, "block", "square");
+		squareBlock.setPosition(1, 1);
 		
 		assertThat(Boolean.valueOf(unshapedTarget.doesTrigger(unshapedBlock, player)), is(Boolean.TRUE));
 		assertThat(Boolean.valueOf(squareTarget.doesTrigger(unshapedBlock, player)), is(Boolean.FALSE));
@@ -56,8 +58,10 @@ public class BlockTargetTest {
 		Player player = PlayerTestHelper.createPlayer("pusher");
 		BlockTarget unshapedTarget = new BlockTarget(1, 1);
 		BlockTarget squareTarget = new BlockTarget(1, 1, "square");
-		Block unshapedBlock = new Block(1, 1, true);
-		Block squareBlock = new Block(1, 1, true, "block", "square");
+		Block unshapedBlock = new Block(true);
+		unshapedBlock.setPosition(1, 1);
+		Block squareBlock = new Block(true, "block", "square");
+		squareBlock.setPosition(1, 1);
 		ChatCondition condition = new LevelGreaterThanCondition(1);
 		
 		unshapedTarget.setCondition(condition);
@@ -80,7 +84,8 @@ public class BlockTargetTest {
 	 */
 	@Test
 	public void testTrigger() {
-		Block unshapedBlock = new Block(1, 1, true);
+		Block unshapedBlock = new Block(true);
+		unshapedBlock.setPosition(1, 1);
 		BlockTarget unshapedTarget = new BlockTarget(1, 1);
 		Player player = PlayerTestHelper.createPlayer("pusher");
 		assertThat(Integer.valueOf(player.getXP()), is(Integer.valueOf(0)));

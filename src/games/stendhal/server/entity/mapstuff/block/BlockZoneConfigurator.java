@@ -53,10 +53,11 @@ public class BlockZoneConfigurator implements ZoneConfigurator {
 		
 		
 		if(style == null) {
-			b = new Block(x, y, multiPush);
+			b = new Block(multiPush);
 		} else {
-			b = new Block(x, y, multiPush, style, shape, soundList);
+			b = new Block( multiPush, style, shape, soundList);
 		}
+		b.setPosition(x, y);
 		
 		if(description != null) {
 			b.setDescription(description);
