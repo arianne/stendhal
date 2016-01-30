@@ -32,7 +32,8 @@ public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 		String condition = attributes.get("condition");
 		String action = attributes.get("action");
 		
-		BlockTarget blockTarget = new BlockTarget(x, y);
+		BlockTarget blockTarget = new BlockTarget();
+		blockTarget.setPosition(x, y);
 		
 		try {
 			if(condition != null) {

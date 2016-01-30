@@ -38,8 +38,10 @@ public class BlockTargetTest {
 	@Test
 	public void testDoesTrigger() {
 		Player player = PlayerTestHelper.createPlayer("pusher");
-		BlockTarget unshapedTarget = new BlockTarget(1, 1);
-		BlockTarget squareTarget = new BlockTarget(1, 1, "square");
+		BlockTarget unshapedTarget = new BlockTarget();
+		unshapedTarget.setPosition(1, 1);
+		BlockTarget squareTarget = new BlockTarget("square");
+		squareTarget.setPosition(1, 1);
 		Block unshapedBlock = new Block(true);
 		unshapedBlock.setPosition(1, 1);
 		Block squareBlock = new Block(true, "block", "square");
@@ -56,8 +58,10 @@ public class BlockTargetTest {
 	@Test
 	public void testDoesTriggerWithCondition() {
 		Player player = PlayerTestHelper.createPlayer("pusher");
-		BlockTarget unshapedTarget = new BlockTarget(1, 1);
-		BlockTarget squareTarget = new BlockTarget(1, 1, "square");
+		BlockTarget unshapedTarget = new BlockTarget();
+		unshapedTarget.setPosition(1, 1);
+		BlockTarget squareTarget = new BlockTarget("square");
+		squareTarget.setPosition(1, 1);
 		Block unshapedBlock = new Block(true);
 		unshapedBlock.setPosition(1, 1);
 		Block squareBlock = new Block(true, "block", "square");
@@ -86,7 +90,8 @@ public class BlockTargetTest {
 	public void testTrigger() {
 		Block unshapedBlock = new Block(true);
 		unshapedBlock.setPosition(1, 1);
-		BlockTarget unshapedTarget = new BlockTarget(1, 1);
+		BlockTarget unshapedTarget = new BlockTarget();
+		unshapedTarget.setPosition(1, 1);
 		Player player = PlayerTestHelper.createPlayer("pusher");
 		assertThat(Integer.valueOf(player.getXP()), is(Integer.valueOf(0)));
 		unshapedTarget.trigger(unshapedBlock, player);

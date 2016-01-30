@@ -1,11 +1,20 @@
-
+/***************************************************************************
+ *                   (C) Copyright 2012-2016 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.block;
 
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
 /**
@@ -14,9 +23,9 @@ import marauroa.common.game.RPClass;
  * @author madmetzger
  */
 public class BlockTarget extends AreaEntity {
+	private String shape = null;
 
 	private ChatAction action;
-
 	private ChatCondition condition;
 
 	/**
@@ -25,9 +34,6 @@ public class BlockTarget extends AreaEntity {
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("blocktarget");
 		clazz.isA("area");
-		clazz.addAttribute("x", Type.INT);
-		clazz.addAttribute("y", Type.INT);
-		clazz.addAttribute("shape", Type.STRING);
 	}
 
 	/**
@@ -36,10 +42,9 @@ public class BlockTarget extends AreaEntity {
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
-	public BlockTarget(int x, int y) {
+	public BlockTarget() {
 		setRPClass("blocktarget");
 		put("type", "blocktarget");
-		this.setPosition(x, y);
 		hide();
 	}
 
@@ -50,9 +55,9 @@ public class BlockTarget extends AreaEntity {
 	 * @param y y-coordinate
 	 * @param shape accepted shape
 	 */
-	public BlockTarget(int x, int y, String shape) {
-		this(x, y);
-		this.put("shape", shape);
+	public BlockTarget(String shape) {
+		this();
+		this.shape = shape;
 	}
 
 	/**
@@ -97,10 +102,7 @@ public class BlockTarget extends AreaEntity {
 	 * @return the shape or null if this BlockTarget has no shape
 	 */
 	public String getShape() {
-		if(this.has("shape")) {
-			return this.get("shape");
-		}
-		return null;
+		return shape;
 	}
 
 	/**
@@ -118,6 +120,5 @@ public class BlockTarget extends AreaEntity {
 	public void setCondition(ChatCondition condition) {
 		this.condition = condition;
 	}
-
 
 }
