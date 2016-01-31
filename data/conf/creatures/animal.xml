@@ -26,6 +26,10 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="fire" value="0.2"/>
+      <susceptibility type="ice" value="1.5"/>
+    </abilities>
     <ai>
       <profile name="poisonous" params="15,deadly poison"/>
       <profile name="brave"/>
@@ -58,6 +62,10 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <susceptibility type="fire" value="0.2"/>
+      <susceptibility type="ice" value="2.0"/>
+    </abilities>
     <ai>
       <says>
       </says>
