@@ -245,26 +245,26 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		
 		String cartDescription = "You see a straw cart. Can you manage to push it to Karl's barn?";
 		
-		Block cartOne = new Block(87, 100, true, "hay_cart");
+		Block cartOne = new Block(true, "hay_cart");
+		cartOne.setPosition(87, 100);
 		cartOne.setDescription(cartDescription);
-		Block cartTwo = new Block(79, 106, true, "hay_cart");
+		Block cartTwo = new Block(true, "hay_cart");
+		cartOne.setPosition(79, 106);
 		cartTwo.setDescription(cartDescription);
 		
         ChatAction a = new MultipleActions(new IncrementQuestAction(QUEST_SLOT, 1, -1), new ResetBlockChatAction(cartOne), new ResetBlockChatAction(cartTwo));
 
 		zone.add(cartOne);
 		zone.add(cartTwo);
-		zone.addMovementListener(cartOne);
-		zone.addMovementListener(cartTwo);
-		zone.addZoneEnterExitListener(cartOne);
-		zone.addZoneEnterExitListener(cartTwo);
 		
-		BlockTarget targetOne = new BlockTarget(64, 75);
+		BlockTarget targetOne = new BlockTarget();
+		targetOne.setPosition(64, 75);
 		targetOne.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetOne.setCondition(c);
 		targetOne.setAction(a);
 		
-		BlockTarget targetTwo = new BlockTarget(65, 75);
+		BlockTarget targetTwo = new BlockTarget();
+		targetTwo.setPosition(65, 75);
 		targetTwo.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetTwo.setAction(a);
 		targetTwo.setCondition(c);

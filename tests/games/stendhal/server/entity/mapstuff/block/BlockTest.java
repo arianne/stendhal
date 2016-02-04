@@ -41,7 +41,8 @@ public class BlockTest {
 
 	@Test
 	public final void testReset() {
-		Block b = new Block(0, 0, true);
+		Block b = new Block(true);
+		b.setPosition(0, 0);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
 		z.add(b);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
@@ -70,7 +71,8 @@ public class BlockTest {
 
 	@Test
 	public void testPush() {
-		Block b = new Block(0, 0, true);
+		Block b = new Block(true);
+		b.setPosition(0, 0);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
 		Player p = PlayerTestHelper.createPlayer("pusher");
 		z.add(b);
@@ -96,7 +98,8 @@ public class BlockTest {
 	
 	@Test
 	public void testMultiPush() {
-		Block b = new Block(0, 0, false);
+		Block b = new Block(false);
+		b.setPosition(0, 0);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
 		Player p = PlayerTestHelper.createPlayer("pusher");
 		
@@ -128,7 +131,8 @@ public class BlockTest {
 	
 	@Test
 	public void testCoordinatesAfterPush() {
-		Block b = new Block(0, 0, true);
+		Block b = new Block(true);
+		b.setPosition(0, 0);
 		assertThat(Integer.valueOf(b.getXAfterPush(Direction.UP)), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getYAfterPush(Direction.UP)), is(Integer.valueOf(-1)));
 		
@@ -144,7 +148,8 @@ public class BlockTest {
 	
 	@Test
 	public void testCollisionOnPush() throws Exception {
-		Block b1 = new Block(0, 0, true);
+		Block b1 = new Block(true);
+		b1.setPosition(0, 0);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
 		Player p = PlayerTestHelper.createPlayer("pusher");
 		z.add(b1, false);
@@ -154,7 +159,8 @@ public class BlockTest {
 		assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
 		
 		// now we add an obstacle right of b1
-		Block b2 = new Block(2, 0, true);
+		Block b2 = new Block(true);
+		b2.setPosition(02, 0);
 		z.add(b2, false);
 		
 		// push should not be executed now and stay at the former place
@@ -164,7 +170,8 @@ public class BlockTest {
 
     @Test
     public void testTimeOut() throws Exception {
-        Block b1 = new Block(0, 0, true);
+		Block b1 = new Block(true);
+		b1.setPosition(0, 0);
         StendhalRPZone z = new StendhalRPZone("test", 10, 10);
         Player p = PlayerTestHelper.createPlayer("pusher");
         z.add(b1, false);
@@ -189,7 +196,8 @@ public class BlockTest {
      */
     @Test
     public void testTimeOutBlocked() {
-        Block b1 = new Block(0, 0, true);
+		Block b1 = new Block(true);
+		b1.setPosition(0, 0);
         StendhalRPZone z = new StendhalRPZone("test", 10, 10);
         Player p = PlayerTestHelper.createPlayer("pusher");
         z.add(b1, false);

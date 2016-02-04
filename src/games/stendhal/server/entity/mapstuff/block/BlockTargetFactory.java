@@ -1,58 +1,62 @@
+/***************************************************************************
+ *                   (C) Copyright 2016-2016 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.block;
-
-import java.util.Map;
 
 import org.codehaus.groovy.control.CompilationFailedException;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.config.factory.ConfigurableFactory;
+import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
+
 /**
- * Configurator for a block target
- * 
- * required parameters
- * - x and y coordinate
- * 
- * optional parameters
- * - condition the condition to evaluate when a block target can be triggered
- * - action the trigger action when the block target is triggered
- * 
- * @author madmetzger
+ * a factory for movable block targets
+ *
+ * @author hendrik
  */
-public class BlockTargetZoneConfigurator implements ZoneConfigurator {
+public class BlockTargetFactory implements ConfigurableFactory{
 
 	@Override
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		int x = Integer.parseInt(attributes.get("x"));
-		int y = Integer.parseInt(attributes.get("y"));
-		String condition = attributes.get("condition");
-		String action = attributes.get("action");
+	public Object create(ConfigurableFactoryContext ctx) {
+		final String description = ctx.getString("description", "");
+		final String shape = ctx.getString("shape", null);
+		BlockTarget target = new BlockTarget(shape);
 		
-		BlockTarget blockTarget = new BlockTarget();
-		blockTarget.setPosition(x, y);
-		
+		if (description != null) {
+			target.setDescription(description);
+		}
+
 		try {
-			if(condition != null) {
+			String condition = ctx.getString("condition", null);
+			if (condition != null) {
 				ChatCondition created = createCondition(condition);
 				if(created != null) {
-					blockTarget.setCondition(created);
+					target.setCondition(created);
 				}
 			}
-			if(action != null) {
+			String action = ctx.getString("action", null);
+			if (action != null) {
 				ChatAction created = createAction(action);
 				if(created != null) {
-					blockTarget.setAction(created);
+					target.setAction(created);
 				}
 			}
 		} catch (CompilationFailedException e) {
 			throw new IllegalArgumentException(e);
 		}
 		
-		zone.add(blockTarget);
+		return target;
 	}
 
 	/**

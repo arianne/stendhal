@@ -1,4 +1,22 @@
+/***************************************************************************
+ *                   (C) Copyright 2012-2016 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.block;
+
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
@@ -14,21 +32,13 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
-
-import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
-
 /**
- * A solid, movable block on a map
+ * A solid, movable block on a map. It can have different apearances, 
+ * for example a farm cart.
  *
  * @author madmetzger
  */
@@ -45,9 +55,9 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	private static final String Z_ORDER = "z";
 
-	private static final String START_Y = "start-y";
-
-	private static final String START_X = "start-x";
+	private int startX;
+	private int startY;
+	private boolean multi;
 
 	private final List<String> sounds;
 
@@ -57,12 +67,6 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
 		clazz.isA("area");
-		// start_* denotes the initial place of a block to be able resetting it
-		// to that position
-		clazz.addAttribute(START_X, Type.INT, Definition.HIDDEN);
-		clazz.addAttribute(START_Y, Type.INT, Definition.HIDDEN);
-		// flag denoting if this block is multiple times pushable
-		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
 		// z order to control client side drawing
 		clazz.addAttribute(Z_ORDER, Type.INT);
 		clazz.addAttribute("class", Type.STRING);
@@ -79,24 +83,21 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * @param multiPush
 	 *            is pushing multiple times allowed
 	 */
-	public Block(int startX, int startY, boolean multiPush) {
-		this(startX, startY, multiPush, "block", null, Arrays.asList(
-				"scrape-1", "scrape-2"));
+	public Block(boolean multiPush) {
+		this(multiPush, "block", null, Arrays.asList("scrape-1", "scrape-2"));
 	}
 
 	/**
 	 *
-	 * @param startX
-	 * @param startY
 	 * @param multiPush
 	 * @param style
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style) {
-		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
+	public Block(boolean multiPush, String style) {
+		this(multiPush, style, null, Collections.<String> emptyList());
 	}
 
-	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
-		this(startX, startY, multiPush, style, shape, Collections.<String> emptyList());
+	public Block(boolean multiPush, String style, String shape) {
+		this(multiPush, style, shape, Collections.<String> emptyList());
 	}
 
 	/**
@@ -115,12 +116,10 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * @param sounds
 	 *            what sounds should be played on push?
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style, String shape, List<String> sounds) {
+	public Block(boolean multiPush, String style, String shape, List<String> sounds) {
 		super();
-		this.put(START_X, startX);
-		this.put(START_Y, startY);
 		this.put(Z_ORDER, 8000);
-		this.put("multi", Boolean.valueOf(multiPush).toString());
+		this.multi = Boolean.valueOf(multiPush);
 		setRPClass("block");
 		put("type", "block");
 		put("class", "block");
@@ -136,7 +135,6 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		if (shape != null) {
 			put("shape", shape);
 		}
-		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
 	}
 
 	/**
@@ -144,7 +142,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 */
 	public void reset() {
 		wasMoved = false;
-		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
+		this.setPosition(startX, startY);
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 		this.notifyWorldAboutChanges();
 	}
@@ -193,7 +191,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	private void sendSound() {
-		if (!this.sounds.isEmpty()) {
+		if (this.sounds != null && this.sounds.isEmpty()) {
 			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
 			this.addEvent(e);
 			this.notifyWorldAboutChanges();
@@ -209,18 +207,17 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	private boolean wasPushed() {
-		boolean xChanged = this.getInt("x") != this.getInt(START_X);
-		boolean yChanged = this.getInt("y") != this.getInt(START_Y);
+		boolean xChanged = this.getInt("x") != this.startX;
+		boolean yChanged = this.getInt("y") != this.startY;
 		return xChanged || yChanged;
 	}
 
 	private boolean mayBePushed(Direction d) {
 		boolean pushed = wasPushed();
-		boolean multiPush = this.getBool("multi");
 		int newX = this.getXAfterPush(d);
 		int newY = this.getYAfterPush(d);
 
-		if (!multiPush && pushed) {
+		if (!multi && pushed) {
 			return false;
 		}
 
@@ -312,12 +309,28 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		resetIfInitialPositionFree();
 	}
 
+	@Override
+	public void onAdded(StendhalRPZone zone) {
+		super.onAdded(zone);
+		this.startX = getX();
+		this.startY = getY();
+		zone.addMovementListener(this);
+		zone.addZoneEnterExitListener(this);
+	}
+
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		super.onRemoved(zone);
+		zone.removeMovementListener(this);
+		zone.removeZoneEnterExitListener(this);
+	}
+
 	/**
 	 * Reset to initial position if no collision there, try again later if not
 	 * possible
 	 */
 	private void resetIfInitialPositionFree() {
-		if (!this.getZone().collides(this, this.getInt(START_X), this.getInt(START_Y))) {
+		if (!this.getZone().collides(this, this.startX, this.startY)) {
 			this.reset();
 		} else {
 			// try again in a few moments

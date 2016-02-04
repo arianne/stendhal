@@ -1,5 +1,16 @@
 package games.stendhal.server.entity.mapstuff.game;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
@@ -12,19 +23,7 @@ import games.stendhal.server.entity.mapstuff.area.Wall;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.npc.condition.AvailabilityChecker;
 import games.stendhal.server.entity.player.Player;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
 import marauroa.common.Pair;
-
-import org.apache.log4j.Logger;
 
 /**
  * A sokoban board
@@ -200,11 +199,11 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 	 * @param y y-offset
 	 */
 	private void box(int x, int y) {
-		Block block = new Block(this.getX() + x, this.getY() + y, true, "pumpkin_halloween");
+		Block block = new Block(true, "pumpkin_halloween");
+		block.setPosition(this.getX() + x, this.getY() + y);
 		block.setResetBlock(false);
 		block.setDescription("You see a pumpkin, move it to a basket.");
 		this.getZone().add(block);
-		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);
 		boxes.add(block);
 	}
