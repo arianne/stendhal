@@ -47,16 +47,14 @@
       </implementation>
     </entity>
 
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">77</parameter>
-      <parameter name="y">47</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
-
+    <entity x="77" y="47">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
 
     <portal x="61" y="38" ref="kikareukin_entrance">
       <destination zone="1_kikareukin_cave" ref="entrance" />
@@ -1154,46 +1152,46 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     </portal>
     <!-- <portal x="7" y="28" ref="portal_to_malleus_plain"> <destination 
       zone="malleus_plain" ref="portal_to_malleus" /> </portal> -->
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">9</parameter>
-      <parameter name="y">15</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">9</parameter>
-      <parameter name="y">31</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">33</parameter>
-      <parameter name="y">15</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">33</parameter>
-      <parameter name="y">31</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">21</parameter>
-      <parameter name="y">31</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
+
+    <entity x="9" y="15">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="9" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="33" y="15">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="33" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="21" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
   </zone>
 
   <!-- Interiors of the wizards tower -->
@@ -1234,30 +1232,30 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <destination zone="int_semos_wizards_tower_8" ref="portal_from_spire_2" />
       <attribute name="hidden" />
     </portal>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">12</parameter>
-      <parameter name="y">17</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">21</parameter>
-      <parameter name="y">23</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">30</parameter>
-      <parameter name="y">17</parameter>
-      <parameter name="image">wooden_door</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
+
+    <entity x="12" y="17">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="21" y="23">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="30" y="17">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">wooden_door</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="autoclose">300</parameter>
+      </implementation>
+	</entity>
   </zone>
   <!-- Plains of the wizards -->
   <zone name="malleus_plain" file="interiors/abstract/malleus_plain.tmx"
@@ -1274,15 +1272,15 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <destination zone="bone_pillar" ref="exit_bone_pillar_2" />
     </portal>
 
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">32</parameter>
-      <parameter name="y">60</parameter>
-      <parameter name="image">ice_path</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new PlayerHasItemWithHimCondition("ice scroll")</parameter>
-      <parameter name="autoclose">2</parameter>
-    </configurator>
+    <entity x="32" y="60">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">ice_path</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new PlayerHasItemWithHimCondition("ice scroll")</parameter>
+        <parameter name="autoclose">2</parameter>
+      </implementation>
+	</entity>
+
   </zone>
 
   <zone name="bone_pillar" file="interiors/abstract/malleus_plain_bone_pillar.tmx"
@@ -1324,23 +1322,23 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <parameter name="width">16</parameter>
       <parameter name="height">26</parameter>
     </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">75</parameter>
-      <parameter name="y">109</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">83</parameter>
-      <parameter name="y">89</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="autoclose">2</parameter>
-    </configurator>
+
+    <entity x="75" y="109">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
+
+    <entity x="83" y="89">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="autoclose">2</parameter>
+      </implementation>
+	</entity>
 
     <portal x="92" y="101" ref="catacombs_entrance">
       <destination zone="-1_semos_catacombs_se" ref="entrance" />
@@ -1579,15 +1577,15 @@ The sharper minded amongst you might prefer to click directly on the creature. I
     <portal x="29" y="40" ref="hostel_entrance">
       <destination zone="int_semos_hostel" ref="entrance_right" />
     </portal>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">38</parameter>
-      <parameter name="y">42</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+
+    <entity x="38" y="42">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
 
     <!-- <entity x="1" y="1"> <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource"> 
       <parameter name="sound">wind-2</parameter> <parameter name="volume">5</parameter> 
@@ -1719,15 +1717,16 @@ Mature sheep wanted: please speak to Sato.
     <configurator class-name="games.stendhal.server.maps.semos.city.PuppyNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.city.RudolphNPC"
       condition="stendhal.christmas" />
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">53</parameter>
-      <parameter name="y">23</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+
+    <entity x="53" y="23">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
+
 
     <!-- writing on the wooden arch -->
 
@@ -3128,15 +3127,14 @@ Holy mackerel! These chips are tasty.
       <parameter name="weather" condition="!stendhal.christmas">varying</parameter>
       <parameter name="weather" condition="stendhal.christmas">snow_light</parameter>
     </attributes>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">103</parameter>
-      <parameter name="y">49</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="103" y="49">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
 
     <portal x="108" y="47" ref="pad_entrance">
       <destination zone="int_semos_swanky_pad" ref="entrance" />
@@ -4428,15 +4426,6 @@ Southwest: Or'ril Castle and Fado City
     file="Level -4/semos/dungeon.tmx">
     <configurator
       class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC" />
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">61</parameter>
-      <parameter name="y">18</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
 
     <entity x="1" y="1">
       <implementation
@@ -4444,6 +4433,15 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="sound">the_forsaken_mine</parameter>
       </implementation>
     </entity>
+
+    <entity x="61" y="18">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
   </zone>
 
 
