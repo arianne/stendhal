@@ -689,50 +689,50 @@ areas.
     <configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
     
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">48</parameter>
-      <parameter name="y">38</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="48" y="38">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>    
+        
+    <entity x="48" y="41">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
     
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">48</parameter>
-      <parameter name="y">41</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="54" y="30">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
     
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">54</parameter>
-      <parameter name="y">30</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="66" y="38">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
     
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">66</parameter>
-      <parameter name="y">38</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
-    
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">66</parameter>
-      <parameter name="y">41</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="66" y="41">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
     
     <entity x="56" y="30">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -1362,14 +1362,14 @@ Please leave my mail at my neighbour's house.
   <zone name="int_ados_bank" file="interiors/ados/bank.tmx">
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.bank.BankNPC" />
-    
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">17</parameter>
-      <parameter name="y">4</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="autoclose">2</parameter>
-    </configurator>
+
+    <entity x="17" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="autoclose">2</parameter>
+      </implementation>
+	</entity>
     
     <portal x="22" y="17" ref="0">
       <destination zone="0_ados_city_n" ref="6" />

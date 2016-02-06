@@ -40,25 +40,23 @@
     <configurator class-name="games.stendhal.server.maps.fado.city.RabbitNPC" />
 
     <!-- Gates -->
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">55</parameter>
-      <parameter name="y">22</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="55" y="22">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>    
 
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">79</parameter>
-      <parameter name="y">88</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
+    <entity x="79" y="88">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">v</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>    
 
     <!-- Signs -->
     <entity x="29" y="2">
@@ -597,16 +595,14 @@ where panning for gold is possible. this spot is south of Or'ril castle.
       <destination zone="0_fado_city" ref="shepherd_house_entrance" />
     </portal>
 
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">15</parameter>
-      <parameter name="y">20</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">h</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-    </configurator>
-
+    <entity x="15" y="20">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
+        <parameter name="image">fence_gate</parameter>
+        <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
+        <parameter name="message">The gate is locked.</parameter>
+      </implementation>
+	</entity>
   </zone>
 
   <zone name="int_fado_dressing_rooms" file="interiors/fado/dressing_rooms.tmx">
