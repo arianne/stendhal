@@ -1,13 +1,15 @@
-/*
- * @(#) src/games/stendhal/server/config/zone/EntitySetupXMLReader.java
- *
- * $Id$
- */
-
+/***************************************************************************
+ *                   (C) Copyright 2007-2016 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.core.config.zone;
-
-//
-//
 
 import games.stendhal.server.core.config.XMLUtil;
 
@@ -41,8 +43,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	 * 
 	 * @return An entity setup descriptor.
 	 */
-	protected EntitySetupDescriptor read(final Element element, final int x,
-			final int y) {
+	protected EntitySetupDescriptor read(final Element element, final int x, final int y) {
 		return new EntitySetupDescriptor(x, y);
 	}
 
@@ -81,7 +82,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		if (element.hasAttribute("class-name")) {
 			desc.setImplementation(element.getAttribute("class-name"));
 		} else {
-			LOGGER.error("Implmentation without class-name");
+			LOGGER.error("Implementation without class-name");
 		}
 
 		readParameters(desc, element);
