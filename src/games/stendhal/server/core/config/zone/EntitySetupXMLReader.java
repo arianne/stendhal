@@ -61,10 +61,37 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 
 		for (final Element attr : list) {
 			if (attr.hasAttribute("name")) {
-				desc.setAttribute(attr.getAttribute("name"), XMLUtil.getText(
-						attr).trim());
+				desc.setAttribute(attr.getAttribute("name"), 
+						XMLUtil.getText(attr).trim());
 			} else {
 				LOGGER.error("Unnamed attribute");
+			}
+		}
+	}
+	/**
+	 * Read a connector from an XML element.
+	 * 
+	 * @param desc
+	 *            The descriptor to load.
+	 * @param element
+	 *            The XML element.
+	 */
+	protected void readConnector(final EntitySetupDescriptor desc, final Element element) {
+		final List<Element> connectors = XMLUtil.getElements(element, "connector");
+		if (connectors.isEmpty()) {
+			return;
+		}
+		Element connector = connectors.get(0);
+		if (connector.hasAttribute("name")) {
+			desc.setConnectorName(connector.getAttribute("name"));
+		}
+
+		final List<Element> list = XMLUtil.getElements(connector, "port");
+		for (final Element port : list) {
+			if (port.hasAttribute("name") && port.hasAttribute("expression")) {
+				desc.addPort(port.getAttribute("name"), port.getAttribute("expression")); 
+			} else {
+				LOGGER.error("<port> without name or expression");
 			}
 		}
 	}
@@ -77,8 +104,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	 * @param element
 	 *            The XML element.
 	 */
-	protected void readImplementation(final EntitySetupDescriptor desc,
-			final Element element) {
+	protected void readImplementation(final EntitySetupDescriptor desc,	final Element element) {
 		if (element.hasAttribute("class-name")) {
 			desc.setImplementation(element.getAttribute("class-name"));
 		} else {
@@ -146,6 +172,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 		}
 
 		readAttributes(desc, element);
+		readConnector(desc, element);
 
 		return desc;
 	}

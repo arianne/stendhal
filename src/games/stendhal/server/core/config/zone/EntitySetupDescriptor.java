@@ -1,22 +1,28 @@
-/*
- * @(#) src/games/stendhal/server/config/zone/EntitySetupDescriptor.java
- *
- * $Id$
- */
-
+/***************************************************************************
+ *                   (C) Copyright 2007-2016 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
-//
-//
-
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.EntityFactoryHelper;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.EntityFactoryHelper;
+import games.stendhal.server.entity.mapstuff.PuzzleEntity;
+import games.stendhal.server.entity.mapstuff.puzzle.PuzzleBuildingBlock;
+import games.stendhal.server.entity.mapstuff.puzzle.PuzzleEventDispatcher;
 
 /**
  * A generic entity setup descriptor.
@@ -46,6 +52,10 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 	 * The generic entity attributes.
 	 */
 	protected HashMap<String, String> attributes;
+
+	private String connectorName;
+
+	private Map<String, String> ports = new HashMap<String, String>();
 
 	/**
 	 * Create an entity setup descriptor.
@@ -125,6 +135,26 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 		this.className = className;
 	}
 
+	/**
+	 * sets the connection name
+	 *
+	 * @param connectorName name
+	 */
+	public void setConnectorName(String connectorName) {
+		this.connectorName = connectorName;
+	}
+
+	/**
+	 * adds a port
+	 *
+	 * @param key key
+	 * @param expression expression
+	 */
+	public void addPort(String key, String expression) {
+		this.ports.put(key, expression);
+	}
+
+
 	//
 	// SetupDescriptor
 	//
@@ -151,15 +181,24 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 			if (entity == null) {
 				LOGGER.warn("Unable to create entity: " + classNameTemp);
-
 				return;
 			}
 
 			entity.setPosition(getX(), getY());
+
+			if (connectorName != null || !ports.isEmpty()) {
+				PuzzleBuildingBlock puzzleBuildingBlock = new PuzzleBuildingBlock(zone.getName(), connectorName, (PuzzleEntity) entity);
+				((PuzzleEntity) entity).setPuzzleBuildingBlock(puzzleBuildingBlock);
+				for (Map.Entry<String, String> port : ports.entrySet()) {
+					puzzleBuildingBlock.defineProperty(port.getKey(), port.getValue());
+				}
+				PuzzleEventDispatcher.get().register(puzzleBuildingBlock);
+			}
 
 			zone.add(entity);
 		} catch (final IllegalArgumentException ex) {
 			LOGGER.error("Error with entity factory", ex);
 		}
 	}
+
 }
