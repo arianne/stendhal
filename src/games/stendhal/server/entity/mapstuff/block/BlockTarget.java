@@ -103,6 +103,15 @@ public class BlockTarget extends AreaEntity implements PuzzleEntity {
 	}
 
 	/**
+	 * Untriggeres this BlockTarget
+	 */
+	public void untrigger() {
+		if (puzzleBuildingBlock != null) {
+			puzzleBuildingBlock.put("active", false);
+		}
+	}
+
+	/**
 	 * Get the shape of this BlockTarget
 	 *
 	 * @return the shape or null if this BlockTarget has no shape
