@@ -11,7 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.block;
 
+import games.stendhal.server.entity.mapstuff.PuzzleEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.mapstuff.puzzle.PuzzleBuildingBlock;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -22,11 +24,12 @@ import marauroa.common.game.RPClass;
  *
  * @author madmetzger
  */
-public class BlockTarget extends AreaEntity {
+public class BlockTarget extends AreaEntity implements PuzzleEntity {
 	private String shape = null;
 
 	private ChatAction action;
 	private ChatCondition condition;
+	private PuzzleBuildingBlock puzzleBuildingBlock;
 
 	/**
 	 * Generate the RPClass
@@ -94,6 +97,9 @@ public class BlockTarget extends AreaEntity {
 		if(this.action != null) {
 			this.action.fire(p, null, null);
 		}
+		if (puzzleBuildingBlock != null) {
+			puzzleBuildingBlock.put("active", true);
+		}
 	}
 
 	/**
@@ -119,6 +125,16 @@ public class BlockTarget extends AreaEntity {
 	 */
 	public void setCondition(ChatCondition condition) {
 		this.condition = condition;
+	}
+
+	@Override
+	public void puzzleExpressionsUpdated() {
+		// do nothing
+	}
+
+	@Override
+	public void setPuzzleBuildingBlock(PuzzleBuildingBlock buildingBlock) {
+		this.puzzleBuildingBlock = buildingBlock;
 	}
 
 }
