@@ -121,7 +121,6 @@
 
 
 	<complexType name="implementation">
-
 		<sequence>
 			<element name="attribute" type="Q1:attributeType" minOccurs="0" />
 			<element name="parameter" type="Q1:parameterType" minOccurs="0"
@@ -130,13 +129,31 @@
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>
 
+	<complexType name="port">
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="expression" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="connector">
+		<sequence>
+			<element name="port" type="Q1:port"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="name" type="string" use="required"></attribute>
+	</complexType>
+
 	<complexType name="entity">
 		<sequence>
 			<element name="implementation" type="Q1:implementation"
 				minOccurs="1" maxOccurs="1">
 			</element>
-			<element name="attribute" type="Q1:attributeType" minOccurs="0"
-				maxOccurs="unbounded"></element>
+			<element name="connector" type="Q1:connector"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="attribute" type="Q1:attributeType"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
 		</sequence>
 		<attribute name="x" type="int"></attribute>
 		<attribute name="y" type="int"></attribute>

@@ -142,6 +142,10 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 */
 	public void reset() {
 		wasMoved = false;
+		List<BlockTarget> blockTargetsAt = this.getZone().getEntitiesAt(getX(), getY(), BlockTarget.class);
+		for (BlockTarget blockTarget : blockTargetsAt) {
+			blockTarget.untrigger();
+		}
 		this.setPosition(startX, startY);
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 		this.notifyWorldAboutChanges();
@@ -155,29 +159,34 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 *            the direction, this block is pushed into
 	 */
 	public void push(Player p, Direction d) {
-		if (this.mayBePushed(d)) {
-			int x = getXAfterPush(d);
-			int y = getYAfterPush(d);
-			this.setPosition(x, y);
-			List<Entity> entitiesAt = this.getZone().getEntitiesAt(x, y);
-			for (Entity entity : entitiesAt) {
-				if (entity instanceof BlockTarget) {
-					BlockTarget t = (BlockTarget) entity;
-					if (t.doesTrigger(this, p)) {
-						t.trigger(this, p);
-					}
-				}
+		if (!this.mayBePushed(d)) {
+			return;
+		}
+		// before push
+		List<BlockTarget> blockTargetsAt = this.getZone().getEntitiesAt(getX(), getY(), BlockTarget.class);
+		for (BlockTarget blockTarget : blockTargetsAt) {
+			blockTarget.untrigger();
+		}
+		
+		// after push
+		int x = getXAfterPush(d);
+		int y = getYAfterPush(d);
+		this.setPosition(x, y);
+		blockTargetsAt = this.getZone().getEntitiesAt(x, y, BlockTarget.class);
+		for (BlockTarget blockTarget : blockTargetsAt) {
+			if (blockTarget.doesTrigger(this, p)) {
+				blockTarget.trigger(this, p);
 			}
-			if (resetBlock) {
-				SingletonRepository.getTurnNotifier().dontNotify(this);
-				SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
-			}
-			wasMoved = true;
-			this.sendSound();
-			this.notifyWorldAboutChanges();
-			if (logger.isDebugEnabled()) {
-				logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
-			}
+		}
+		if (resetBlock) {
+			SingletonRepository.getTurnNotifier().dontNotify(this);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
+		}
+		wasMoved = true;
+		this.sendSound();
+		this.notifyWorldAboutChanges();
+		if (logger.isDebugEnabled()) {
+			logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
 		}
 	}
 

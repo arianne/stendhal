@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,19 +19,23 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.mapstuff.PuzzleEntity;
+import games.stendhal.server.entity.mapstuff.puzzle.PuzzleBuildingBlock;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
-public class Gate extends Entity implements UseListener, TurnListener {
+public class Gate extends Entity implements UseListener, TurnListener, PuzzleEntity {
 	private static final String HORIZONTAL = "h";
 	private static final String VERTICAL = "v";
 	private static final String ORIENTATION = "orientation";
 	private static final String IMAGE = "image";
 	private static final String GATE_ID = "identifier";
 	private static final String DEFAULT_IMAGE = "fence_gate";
+
+	private PuzzleBuildingBlock puzzleBuildingBlock; 
 
 	public static void generateGateRPClass() {
 		if (!RPClass.hasRPClass("gate")) {
@@ -244,5 +247,17 @@ public class Gate extends Entity implements UseListener, TurnListener {
 			final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
 			turnNotifier.notifyInSeconds(autoCloseDelay, this);
 		}
+	}
+
+	@Override
+	public void puzzleExpressionsUpdated() {
+		setOpen(puzzleBuildingBlock.get("active", Boolean.class).booleanValue());
+	}
+
+	@Override
+	public void setPuzzleBuildingBlock(PuzzleBuildingBlock buildingBlock) {
+		puzzleBuildingBlock = buildingBlock;
+		buildingBlock.put("active", isOpen);
+		buildingBlock.put("enabled", true);
 	}
 }

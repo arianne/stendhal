@@ -1131,6 +1131,31 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return entities;
 	}
 
+
+	/**
+	 * Finds all entities at the given coordinates.
+	 * @param x coordinate
+	 * @param y coordinate
+	 * @return list of entities at (x, y)
+	 */
+	public synchronized <T extends Entity> List<T> getEntitiesAt(final double x, final double y, Class<T> clazz) {
+		List<T> entities = new LinkedList<T>();
+
+		for (final RPObject other : objects.values()) {
+			final Entity entity = (Entity) other;
+			if (!clazz.isInstance(entity)) {
+				continue;
+			}
+
+			final Rectangle2D rect = entity.getArea();
+			if (rect.contains(x, y)) {
+				entities.add(clazz.cast(entity));
+			}
+		}
+
+		return entities;
+	}
+
 	/**
 	 * Get the zone name. This is the same as <code>getID().getID()</code>,
 	 * only cleaner to use.
