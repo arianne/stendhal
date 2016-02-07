@@ -140,7 +140,7 @@
 				minOccurs="0" maxOccurs="unbounded">
 			</element>
 		</sequence>
-		<attribute name="name" type="string" use="optional"></attribute>
+		<attribute name="name" type="string" use="required"></attribute>
 	</complexType>
 
 	<complexType name="entity">

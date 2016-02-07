@@ -64,9 +64,10 @@ Walk on, and you will be returned to the land of the living...
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
         <parameter name="image">fence_gate</parameter>
         <parameter name="orientation">h</parameter>
+        <parameter name="condition">new AlwaysFalseCondition()</parameter>
         <parameter name="autoclose">2</parameter>
       </implementation>
-      <connector>
+      <connector name="gate1">
       	<port name="active" expression="floorbutton1.active" />
       </connector>
 	</entity>
