@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableList;
 
-import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.PuzzleEntity;
 import groovy.lang.Script;
 
 /**
@@ -31,7 +31,7 @@ import groovy.lang.Script;
 public class PuzzleBuildingBlock {
 	private String zoneName;
 	private String name;
-	private Entity entity;
+	private PuzzleEntity entity;
 	private List<String> dependencies = new LinkedList<>();
 	private HashMap<String, Object> values = new HashMap<>();
 	private HashMap<String, Script> definitions = new HashMap<>();
@@ -43,7 +43,7 @@ public class PuzzleBuildingBlock {
 	 * @param name unique name of entity in zone
 	 * @param entity Entity
 	 */
-	public PuzzleBuildingBlock(String zoneName, String name, Entity entity) {
+	public PuzzleBuildingBlock(String zoneName, String name, PuzzleEntity entity) {
 		this.zoneName = zoneName;
 		this.name = name;
 		this.entity = entity;
@@ -55,10 +55,8 @@ public class PuzzleBuildingBlock {
 	 *
 	 * @param variable name of property
 	 * @param expression expression
-	 * @param defaultValue default value
 	 */
-	public void defineProperty(String variable, String expression, Object defaultValue) {
-		values.put(variable, defaultValue);
+	public void defineProperty(String variable, String expression) {
 		if (expression != null) {
 			definitions.put(variable, 
 					PuzzleEventDispatcher.get().parseExpression(this, expression));
@@ -138,6 +136,17 @@ public class PuzzleBuildingBlock {
 	}
 
 	/**
+	 * gets the value of a property
+	 *
+	 * @param variable name of property
+	 * @param clazz class to cast the value to
+	 * @return value of property
+	 */
+	public <T> T get(String variable, Class<T> clazz) {
+		return clazz.cast(values.get(variable));
+	}
+
+	/**
 	 * gets the name of the zone
 	 *
 	 * @return zone
@@ -161,7 +170,7 @@ public class PuzzleBuildingBlock {
 	public void onInputChanged() {
 		processExpressions();
 		if (entity != null) {
-			entity.update();
+			entity.puzzleExpressionsUpdated();
 		}
 	}
 

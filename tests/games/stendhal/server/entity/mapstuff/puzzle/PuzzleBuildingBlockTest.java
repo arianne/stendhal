@@ -31,7 +31,8 @@ public class PuzzleBuildingBlockTest {
 	@Test
 	public void testDefineProperty() {
 		PuzzleBuildingBlock block = new PuzzleBuildingBlock("zone", "name", null);
-		block.defineProperty("variable", "local.active == testzone.remote.active", Boolean.FALSE);
+		block.put("variable", Boolean.FALSE);
+		block.defineProperty("variable", "local.active == testzone.remote.active");
 
 		assertThat(block.getDependencies(), 
 			allOf(hasItem("local"), hasItem("testzone.remote")));
@@ -46,7 +47,8 @@ public class PuzzleBuildingBlockTest {
 		StendhalRPWorld.get().addRPZone("testing", new StendhalRPZone("testzone"));
 
 		PuzzleBuildingBlock door = new PuzzleBuildingBlock("zone", "name", null);
-		door.defineProperty(ACTIVE, "local.active == testzone.remote.active", Boolean.FALSE);
+		door.put(ACTIVE, Boolean.FALSE);
+		door.defineProperty(ACTIVE, "local.active == testzone.remote.active");
 
 		PuzzleBuildingBlock localSwitch = new PuzzleBuildingBlock("zone", "local", null);
 		localSwitch.put(ACTIVE, Boolean.TRUE);
