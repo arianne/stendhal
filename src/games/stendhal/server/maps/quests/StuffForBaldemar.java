@@ -33,6 +33,7 @@ import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -69,6 +70,9 @@ import java.util.TreeMap;
  * </ul>
  */
 public class StuffForBaldemar extends AbstractQuest {
+
+	static final String TALK_NEED_KILL_GIANT = "This shield can only be given to those who have killed a black giant, and without the help of others.";
+
 	private static Map<Integer, ItemData> neededItems = initNeededItems();
 	private static Map<Integer, ItemData> initNeededItems() {
 		neededItems = new TreeMap<Integer, ItemData>();
@@ -246,7 +250,7 @@ public class StuffForBaldemar extends AbstractQuest {
 							+ REQUIRED_DIAMOND
 							+ " diamond, "
 							+ REQUIRED_EMERALD
-							+ " emeralds," 
+							+ " emeralds, "
 							+ REQUIRED_CARBUNCLE
 							+ " carbuncles, "
 							+ REQUIRED_SAPPHIRE
@@ -267,7 +271,7 @@ public class StuffForBaldemar extends AbstractQuest {
 							+ " marbles and "
 							+ REQUIRED_SNOWGLOBE
 							+ " snowglobe. Come back when you have them in the same #exact order!";
-	
+
 	private static final int REQUIRED_MINUTES = 10;
 
 	private static final String QUEST_SLOT = "mithrilshield_quest";
@@ -361,7 +365,7 @@ public class StuffForBaldemar extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 					} else {
 						if (!player.hasKilledSolo("black giant") && !missingSomething) {
-							raiser.say("This shield can only be given to those who have killed a black giant, and without the help of others.");
+							raiser.say(TALK_NEED_KILL_GIANT);
 						}
 
 						StringBuilder sb = new StringBuilder(30);
@@ -373,7 +377,7 @@ public class StuffForBaldemar extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, sb.toString());
 					}
 				}
-	
+
 				private boolean proceedItem(final Player player,
 						final EventRaiser engine, final ItemData itemData) {
 					if (itemData.getStillNeeded() > 0) {
@@ -435,53 +439,53 @@ public class StuffForBaldemar extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-
-					final int neededMithrilBar = REQUIRED_MITHRIL_BAR
-							- Integer.parseInt(tokens[1]);
-					final int neededObsidian = REQUIRED_OBSIDIAN
-							- Integer.parseInt(tokens[2]);
-					final int neededDiamond = REQUIRED_DIAMOND
-							- Integer.parseInt(tokens[3]);
-					final int neededEmerald = REQUIRED_EMERALD
-							- Integer.parseInt(tokens[4]);
-					final int neededCarbuncle = REQUIRED_CARBUNCLE
-							- Integer.parseInt(tokens[5]);
-					final int neededSapphire = REQUIRED_SAPPHIRE
-							- Integer.parseInt(tokens[6]);
-					final int neededBlackShield = REQUIRED_BLACK_SHIELD
-							- Integer.parseInt(tokens[7]);
-					final int neededMagicPlateShield = REQUIRED_MAGIC_PLATE_SHIELD
-							- Integer.parseInt(tokens[8]);
-					final int neededGoldBars = REQUIRED_GOLD_BAR
-							- Integer.parseInt(tokens[9]);
-					final int neededIron = REQUIRED_IRON
-							- Integer.parseInt(tokens[10]);
-					final int neededBlackPearl = REQUIRED_BLACK_PEARL
-							- Integer.parseInt(tokens[11]);
-					final int neededShuriken = REQUIRED_SHURIKEN
-							- Integer.parseInt(tokens[12]);
-					final int neededMarbles = REQUIRED_MARBLES
-							- Integer.parseInt(tokens[13]);
-					final int neededSnowglobe = REQUIRED_SNOWGLOBE
-							- Integer.parseInt(tokens[14]);
-					
-					raiser.say("I will need " + neededMithrilBar + " mithril bars, "
-							+ neededObsidian + " obsidian, "
-							+ neededDiamond + " diamond, "
-							+ neededEmerald + " emeralds, "
-							+ neededCarbuncle + " carbuncles, "
-							+ neededSapphire + " sapphires, "
-							+ neededBlackShield + " black shield, "
-							+ neededMagicPlateShield + " magic plate shield, "
-							+ neededGoldBars + " gold bars, "
-							+ neededIron + " iron bars, "
-							+ neededBlackPearl + " black pearls, "
-							+ neededShuriken + " shuriken, "
-							+ neededMarbles + " marbles and "
-							+ neededSnowglobe + " snowglobe");
+					final String questState = player.getQuest(QUEST_SLOT);
+					if (!broughtAllItems(questState)) {
+						raiser.say("I need " + itemsStillNeeded(player) + ".");
+					} else {
+						if(!player.hasKilledSolo("black giant")) {
+							raiser.say(TALK_NEED_KILL_GIANT);
+						}
+					}
 				}
 			});
+	}
+
+	private String itemsStillNeeded(final Player player) {
+		List<String> neededItemsWithAmounts = neededItemsWithAmounts(player);
+
+		StringBuilder all = new StringBuilder();
+		for (int i = 0; i < neededItemsWithAmounts.size(); i++) {
+			if (i != 0 && i == neededItemsWithAmounts.size() - 1) {
+				all.append(" and ");
+			}
+			all.append(neededItemsWithAmounts.get(i));
+			if (i < neededItemsWithAmounts.size() - 2) {
+				all.append(", ");
+			}
+		}
+		return all.toString();
+	}
+
+	private List<String> neededItemsWithAmounts(final Player player) {
+		String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+
+		List<String> neededItemsWithAmounts = new LinkedList<>();
+		for (int i = 1; i <= neededItems.size(); i++) {
+			ItemData item = neededItems.get(i);
+			int required = item.requiredAmount;
+			int brought = Integer.parseInt(tokens[i]);
+			int neededAmount = required - brought;
+			if (neededAmount > 0) {
+				neededItemsWithAmounts.add(neededItem(neededAmount, item.itemName));
+			}
+		}
+
+		return neededItemsWithAmounts;
+	}
+
+	private String neededItem(int neededAmount, String itemName) {
+		return Grammar.quantityplnoun(neededAmount, itemName, "a");
 	}
 
 	@Override
@@ -512,14 +516,13 @@ public class StuffForBaldemar extends AbstractQuest {
 				res.add("I'm not interested in his ideas about shields made from mithril.");
 				return res;
 			} 
-			res.add("Baldemar told me: " + I_WILL_NEED_MANY_THINGS);
-			// yes, yes. this is the most horrible quest code and so you get a horrible quest history. 
-			if(questState.startsWith("start") && !"start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState)){
-				res.add("I haven't brought everything yet. Baldemar will tell me what I need to take next.");
-			} else if ("start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState) || !questState.startsWith("start")) {
+			res.add("Baldemar asked me to bring him many things.");
+			if(questState.startsWith("start") && !broughtAllItems(questState)){
+				res.add("I still need to bring " + itemsStillNeeded(player) + ", in this order.");
+			} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
 				res.add("I took all the special items to Baldemar.");
 			}
-			if("start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState) && !player.hasKilledSolo("black giant")){
+			if(broughtAllItems(questState) && !player.hasKilledSolo("black giant")){
 				res.add("I will need to bravely face a black giant alone, before I am worthy of this shield.");
 			}
 			if (questState.startsWith("forging")) {
@@ -529,6 +532,10 @@ public class StuffForBaldemar extends AbstractQuest {
 				res.add("I brought Baldemar many items, killed a black giant solo, and he forged me a mithril shield.");
 			}
 			return res;
+	}
+
+	private boolean broughtAllItems(final String questState) {
+		return "start;20;1;1;5;10;10;1;1;10;20;10;20;15;1".equals(questState);
 	}
 
 	@Override

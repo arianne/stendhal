@@ -81,7 +81,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 	public void testAcceptQuest() {
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
-		assertEquals("I will need many, many things: 20 mithril bars, 1 obsidian, 1 diamond, 5 emeralds,10 carbuncles, 10 sapphires, 1 black shield, 1 magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shuriken, 15 marbles and 1 snowglobe. Come back when you have them in the same #exact order!", getReply(baldemar));
+		assertEquals("I will need many, many things: 20 mithril bars, 1 obsidian, 1 diamond, 5 emeralds, 10 carbuncles, 10 sapphires, 1 black shield, 1 magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shuriken, 15 marbles and 1 snowglobe. Come back when you have them in the same #exact order!", getReply(baldemar));
 		
 		en.step(player, "exact");
 		assertEquals("As I have listed them here, you must provide them in that order.", getReply(baldemar));
@@ -268,12 +268,47 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
-	public void testAskToForgeWithoutAllItems() {
-		Engine en = baldemar.getEngine();
+	public void testAskToForgeWithoutAnyItem() {
+		en.setCurrentState(ConversationStates.ATTENDING);
+		player.setQuest(questSlot, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
+		en.step(player, "forge");
 
+		assertEquals("I need 20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe.", getReply(baldemar));
+	}
+
+	@Test
+	public void testAskToForgeWithoutLastThreeItems() {
+		en.setCurrentState(ConversationStates.ATTENDING);
+		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;10;0;0");
+		en.step(player, "forge");
+
+		assertEquals("I need 10 shurikens, 15 marbles and a snowglobe.", getReply(baldemar));
+	}
+
+	@Test
+	public void testAskToForgeWithoutLastTwoItems() {
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;12;0");
 		en.step(player, "forge");
-		assertEquals("I will need 0 mithril bars, 0 obsidian, 0 diamond, 0 emeralds, 0 carbuncles, 0 sapphires, 0 black shield, 0 magic plate shield, 0 gold bars, 0 iron bars, 0 black pearls, 0 shuriken, 3 marbles and 1 snowglobe", getReply(baldemar));
+
+		assertEquals("I need 3 marbles and a snowglobe.", getReply(baldemar));
+	}
+
+	@Test
+	public void testAskToForgeWithoutLastItem() {
+		en.setCurrentState(ConversationStates.ATTENDING);
+		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;15;0");
+		en.step(player, "forge");
+
+		assertEquals("I need a snowglobe.", getReply(baldemar));
+	}
+
+	@Test
+	public void testAskToForgeWithAllItems() {
+		en.setCurrentState(ConversationStates.ATTENDING);
+		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;15;1");
+		en.step(player, "forge");
+
+		assertEquals(StuffForBaldemar.TALK_NEED_KILL_GIANT, getReply(baldemar));
 	}
 }
