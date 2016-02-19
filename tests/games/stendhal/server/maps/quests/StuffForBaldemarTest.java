@@ -257,8 +257,6 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(15, id.getStillNeeded());
 		assertEquals(needed, id.getRequired());
 		assertEquals("name", id.getName());
-		assertEquals("prefix ", id.getPrefix());
-		assertEquals(" suffix", id.getSuffix());
 
 		id.subAmount("10");
 		assertEquals(5, id.getStillNeeded());

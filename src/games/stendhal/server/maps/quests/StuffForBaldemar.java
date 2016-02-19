@@ -178,19 +178,11 @@ public class StuffForBaldemar extends AbstractQuest {
 			return itemName;
 		}
 
-		public String getPrefix() {
-			return itemPrefix;
-		}
-
-		public String getSuffix() {
-			return itemSuffix;
-		}
-
 		public void subAmount(final String string) {
 			subAmount(Integer.parseInt(string));
 		}
 
-		String getAnswer() {
+		public String getAnswer() {
 			return itemPrefix
 				+ Grammar.quantityplnoun(
 						neededAmount, itemName, "a")
@@ -443,19 +435,12 @@ public class StuffForBaldemar extends AbstractQuest {
 	}
 
 	private List<String> neededItemsWithAmounts(final Player player) {
-		String[] broughtTokens;
-		if (player.getQuest(QUEST_SLOT) != null) {
-			broughtTokens = player.getQuest(QUEST_SLOT).split(";");
-		} else {
-			broughtTokens = new String[neededItems.size() + 1];
-			Arrays.fill(broughtTokens, "0");
-		}
-
+		int[] broughtItems = broughtItems(player);
 		List<String> neededItemsWithAmounts = new LinkedList<>();
 		for (int i = 1; i <= neededItems.size(); i++) {
 			ItemData item = neededItems.get(i);
 			int required = item.requiredAmount;
-			int brought = Integer.parseInt(broughtTokens[i]);
+			int brought = broughtItems[i - 1];
 			int neededAmount = required - brought;
 			if (neededAmount > 0) {
 				neededItemsWithAmounts.add(neededItem(neededAmount, item.itemName));
@@ -463,6 +448,19 @@ public class StuffForBaldemar extends AbstractQuest {
 		}
 
 		return neededItemsWithAmounts;
+	}
+
+	private int[] broughtItems(final Player player) {
+		int[] brought = new int[neededItems.size()];
+		if (player.getQuest(QUEST_SLOT) != null) {
+			String[] broughtTokens = player.getQuest(QUEST_SLOT).split(";");
+			for (int i = 1; i < broughtTokens.length; i++) {
+				brought[i - 1] = Integer.parseInt(broughtTokens[i]);
+			}
+		} else {
+			Arrays.fill(brought, 0);
+		}
+		return brought;
 	}
 
 	private String neededItem(int neededAmount, String itemName) {
@@ -484,7 +482,7 @@ public class StuffForBaldemar extends AbstractQuest {
 	public String getName() {
 		return "StuffForBaldemar";
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -528,7 +526,7 @@ public class StuffForBaldemar extends AbstractQuest {
 	public String getNPCName() {
 		return "Baldemar";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.FADO_CAVES;
