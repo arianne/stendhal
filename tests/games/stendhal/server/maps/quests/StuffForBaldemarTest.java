@@ -81,7 +81,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 	public void testAcceptQuest() {
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
-		assertEquals("I will need many, many things: 20 mithril bars, 1 obsidian, 1 diamond, 5 emeralds, 10 carbuncles, 10 sapphires, 1 black shield, 1 magic plate shield, 10 gold bars, 20 iron bars, 10 black pearls, 20 shuriken, 15 marbles and 1 snowglobe. Come back when you have them in the same #exact order!", getReply(baldemar));
+		assertEquals("I will need many, many things: 20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe. Come back when you have them in the same #exact order!", getReply(baldemar));
 		
 		en.step(player, "exact");
 		assertEquals("As I have listed them here, you must provide them in that order.", getReply(baldemar));

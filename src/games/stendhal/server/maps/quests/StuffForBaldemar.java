@@ -242,35 +242,9 @@ public class StuffForBaldemar extends AbstractQuest {
 
 	private static final int REQUIRED_SNOWGLOBE = 1;
 
-	private static final String I_WILL_NEED_MANY_THINGS = "I will need many, many things: "
-							+ REQUIRED_MITHRIL_BAR
-							+ " mithril bars, "
-							+ REQUIRED_OBSIDIAN
-							+ " obsidian, "
-							+ REQUIRED_DIAMOND
-							+ " diamond, "
-							+ REQUIRED_EMERALD
-							+ " emeralds, "
-							+ REQUIRED_CARBUNCLE
-							+ " carbuncles, "
-							+ REQUIRED_SAPPHIRE
-							+ " sapphires, "
-							+ REQUIRED_BLACK_SHIELD
-							+ " black shield, "
-							+ REQUIRED_MAGIC_PLATE_SHIELD
-							+ " magic plate shield, "
-							+ REQUIRED_GOLD_BAR
-							+ " gold bars, "
-							+ REQUIRED_IRON
-							+ " iron bars, "
-							+ REQUIRED_BLACK_PEARL
-							+ " black pearls, " 
-							+ REQUIRED_SHURIKEN
-							+ " shuriken, "
-							+ REQUIRED_MARBLES
-							+ " marbles and "
-							+ REQUIRED_SNOWGLOBE
-							+ " snowglobe. Come back when you have them in the same #exact order!";
+	private static final String I_WILL_NEED_MANY_THINGS = "I will need many, many things: ";
+
+	private static final String IN_EXACT_ORDER = "Come back when you have them in the same #exact order!";
 
 	private static final int REQUIRED_MINUTES = 10;
 
@@ -280,7 +254,7 @@ public class StuffForBaldemar extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Baldemar");
 
@@ -308,7 +282,8 @@ public class StuffForBaldemar extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					raiser.say(I_WILL_NEED_MANY_THINGS);
+					String need = I_WILL_NEED_MANY_THINGS + itemsStillNeeded(player) + ". " + IN_EXACT_ORDER;
+					raiser.say(need);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
 
 				}
@@ -468,13 +443,19 @@ public class StuffForBaldemar extends AbstractQuest {
 	}
 
 	private List<String> neededItemsWithAmounts(final Player player) {
-		String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+		String[] broughtTokens;
+		if (player.getQuest(QUEST_SLOT) != null) {
+			broughtTokens = player.getQuest(QUEST_SLOT).split(";");
+		} else {
+			broughtTokens = new String[neededItems.size() + 1];
+			Arrays.fill(broughtTokens, "0");
+		}
 
 		List<String> neededItemsWithAmounts = new LinkedList<>();
 		for (int i = 1; i <= neededItems.size(); i++) {
 			ItemData item = neededItems.get(i);
 			int required = item.requiredAmount;
-			int brought = Integer.parseInt(tokens[i]);
+			int brought = Integer.parseInt(broughtTokens[i]);
 			int neededAmount = required - brought;
 			if (neededAmount > 0) {
 				neededItemsWithAmounts.add(neededItem(neededAmount, item.itemName));
