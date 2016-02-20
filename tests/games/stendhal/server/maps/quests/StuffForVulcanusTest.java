@@ -141,6 +141,30 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
+	public void testNeedTwoMoreIronBars() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;13;0;0;0");
+
+		en.step(player, "hi");
+		assertEquals("I cannot #forge it without the missing 2 pieces of iron.", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 2 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+	}
+
+	@Test
+	public void testNeedOneMoreIronBar() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;14;0;0;0");
+
+		en.step(player, "hi");
+		assertEquals("I cannot #forge it without the missing a piece of iron.", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 1 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+	}
+
+	@Test
 	public void testBroughtGoldButNotEnoughIronBars() {
 		en.setCurrentState(ConversationStates.IDLE);
 		player.setQuest(questSlot, "start;10;0;0;0");
@@ -185,6 +209,54 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
+	public void testNeedTwoMoreWood() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;15;24;0;0");
+
+		en.step(player, "hi");
+		assertEquals("How do you expect me to #forge it without missing 2 wood logs for the fire?", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 0 #iron, 2 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+	}
+
+	@Test
+	public void testNeedOneMoreWood() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;15;25;0;0");
+
+		en.step(player, "hi");
+		assertEquals("How do you expect me to #forge it without missing a wood log for the fire?", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 0 #iron, 1 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+	}
+
+	@Test
+	public void testNeedTwoMoreGoldBars() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;15;26;10;0");
+
+		en.step(player, "hi");
+		assertEquals("I must pay a bill to spirits in order to cast the enchantment over the sword. I need 2 gold bars more.", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 0 #iron, 0 #wood logs, 2 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+	}
+
+	@Test
+	public void testNeedOneMoreGoldBar() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;15;26;11;0");
+
+		en.step(player, "hi");
+		assertEquals("I must pay a bill to spirits in order to cast the enchantment over the sword. I need one gold bar more.", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 0 #iron, 0 #wood logs, 1 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+	}
+
+	@Test
 	public void testBrought2GiantHearts() {
 		en.setCurrentState(ConversationStates.IDLE);
 		player.setQuest(questSlot, "start;15;26;12;0");
@@ -192,6 +264,18 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		assertEquals("It is the base element of the enchantment. I need 4 giant hearts still.", getReply(vulcanus));
+	}
+
+	@Test
+	public void testNeedOneMoreGiantHeart() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;15;26;12;5");
+
+		en.step(player, "hi");
+		assertEquals("It is the base element of the enchantment. I need one giant heart still.", getReply(vulcanus));
+
+		en.step(player, "forge");
+		assertEquals("I will need 0 #iron, 0 #wood logs, 0 #gold bars and 1 #giant hearts.", getReply(vulcanus));
 	}
 
 	@Test
