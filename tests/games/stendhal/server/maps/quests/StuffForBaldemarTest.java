@@ -13,7 +13,11 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
@@ -36,6 +40,16 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "int_magic_theater";
 	private static final String NPC_NAME = "Baldemar";
+
+	private static final String HISTORY_DEFAULT = "I met Baldemar in the magic theater.";
+	private static final String HISTORY_REJECTED = "I'm not interested in his ideas about shields made from mithril.";
+	private static final String HISTORY_START = "Baldemar asked me to bring him many things.";
+	private static final String HISTORY_NEED_ITEMS_PREFIX = "I still need to bring ";
+	private static final String HISTORY_NEED_ITEMS_SUFFIX = ", in this order.";
+	private static final String HISTORY_BROUGHT_ALL_ITEMS = "I took all the special items to Baldemar.";
+	private static final String HISTORY_NEED_KILL_GIANT = "I will need to bravely face a black giant alone, before I am worthy of this shield.";
+	private static final String HISTORY_REWARD_PENDING = "Baldemar is forging my mithril shield!";
+	private static final String HISTORY_COMPLETED = "I brought Baldemar many items, killed a black giant solo, and he forged me a mithril shield.";
 
 	private Player player;
 	private SpeakerNPC baldemar;
@@ -78,22 +92,39 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
+	public void testRejectQuest() {
+		en.setCurrentState(ConversationStates.QUEST_OFFERED);
+		en.step(player, "no");
+		assertEquals("I can't believe you are going to pass up this opportunity! You must be daft!!!", getReply(baldemar));
+
+		assertEquals("rejected", player.getQuest(questSlot));
+		assertHistory(HISTORY_DEFAULT, HISTORY_REJECTED);
+	}
+
+	@Test
 	public void testAcceptQuest() {
+		String neededItems = "20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe";
+
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
-		assertEquals("I will need many, many things: 20 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe. Come back when you have them in the same #exact order!", getReply(baldemar));
-		
+		assertEquals("I will need many, many things: " + neededItems + ". Come back when you have them in the same #exact order!", getReply(baldemar));
+
 		en.step(player, "exact");
 		assertEquals("As I have listed them here, you must provide them in that order.", getReply(baldemar));
 		assertEquals("start;0;0;0;0;0;0;0;0;0;0;0;0;0;0", player.getQuest(questSlot));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
 	}
 
 	@Test
 	public void testBroughtNotEnoughMithrilBars() {
 		en.setCurrentState(ConversationStates.IDLE);
 		player.setQuest(questSlot, "start;5;0;0;0;0;0;0;0;0;0;0;0;0;0");
+
 		en.step(player, "hi");
+
 		assertEquals("I cannot #forge it without the missing 15 mithril bars. After all, this IS a mithril shield.", getReply(baldemar));
+		String neededItems = "15 mithril bars, an obsidian, a diamond, 5 emeralds, 10 carbuncles, 10 sapphires, a black shield, a magic plate shield, 10 gold bars, 20 pieces of iron, 10 black pearls, 20 shurikens, 15 marbles and a snowglobe";
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
 	}
 
 	@Test
@@ -206,6 +237,43 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;15;1");
 		en.step(player, "hi");
 		assertEquals("This shield can only be given to those who have killed a black giant, and without the help of others.", getReply(baldemar));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_NEED_KILL_GIANT);
+	}
+
+	@Test
+	public void testBroughtEverythingAndKilledGiant() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;15;1");
+		player.setSoloKill("black giant");
+
+		en.step(player, "hi");
+
+		assertEquals("You've brought everything I need to forge the shield. Come back in 10 minutes and it will be ready.", getReply(baldemar));
+		assertTrue(player.getQuest(questSlot).startsWith("forging;"));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_REWARD_PENDING);
+	}
+
+	@Test
+	public void testForgingNotComplete() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "forging;" + (System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(5)));
+
+		en.step(player, "hi");
+
+		assertTrue(getReply(baldemar).startsWith("I haven't finished forging your shield. Please check back in"));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_REWARD_PENDING);
+	}
+
+	@Test
+	public void testForgingComplete() {
+		en.setCurrentState(ConversationStates.IDLE);
+		player.setQuest(questSlot, "forging;" + (System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(20)));
+
+		en.step(player, "hi");
+
+		assertTrue(getReply(baldemar).startsWith("I have finished forging your new mithril shield. Enjoy."));
+		assertEquals("done", player.getQuest(questSlot));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_COMPLETED);
 	}
 
 	@Test
@@ -308,5 +376,9 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "forge");
 
 		assertEquals(StuffForBaldemar.TALK_NEED_KILL_GIANT, getReply(baldemar));
+	}
+
+	private void assertHistory(String... entries) {
+		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }
