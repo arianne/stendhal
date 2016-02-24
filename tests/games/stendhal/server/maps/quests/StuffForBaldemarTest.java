@@ -31,7 +31,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC;
-import games.stendhal.server.maps.quests.StuffForBaldemar.ItemData;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -228,7 +227,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.setCurrentState(ConversationStates.IDLE);
 		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;15;0");
 		en.step(player, "hi");
-		assertEquals("I just LOVE those trinkets from athor. I need a snowglobe still.", getReply(baldemar));
+		assertEquals("I just LOVE those trinkets from Athor. I need a snowglobe still.", getReply(baldemar));
 	}
 
 	@Test
@@ -310,27 +309,6 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 
 		assertEquals("start;20;1;1;5;10;10;1;1;10;20;10;20;15;1", player.getQuest(questSlot));
-	}
-
-	/**
-	 * Tests for itemData.
-	 */
-	@Test
-	public void testItemData() {
-		int needed = 20;
-		ItemData id = new ItemData("name", needed, "prefix ", " suffix");
-		assertEquals(needed, id.getStillNeeded());
-
-		id.setAmount(15);
-		assertEquals(15, id.getStillNeeded());
-		assertEquals(needed, id.getRequired());
-		assertEquals("name", id.getName());
-
-		id.subAmount("10");
-		assertEquals(5, id.getStillNeeded());
-		assertEquals(needed, id.getRequired());
-		assertEquals(15, id.getAlreadyBrought());
-		assertEquals("prefix 5 names suffix", id.getAnswer());
 	}
 
 	@Test

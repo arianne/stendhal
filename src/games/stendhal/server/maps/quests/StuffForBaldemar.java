@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -29,14 +34,9 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.logic.ItemCollector;
+import games.stendhal.server.maps.quests.logic.ItemCollectorData;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * QUEST: The mithril shield forging.
@@ -73,167 +73,6 @@ public class StuffForBaldemar extends AbstractQuest {
 
 	static final String TALK_NEED_KILL_GIANT = "This shield can only be given to those who have killed a black giant, and without the help of others.";
 
-	private static Map<Integer, ItemData> neededItems = initNeededItems();
-	private static Map<Integer, ItemData> initNeededItems() {
-		neededItems = new TreeMap<Integer, ItemData>();
-		ItemData data;
-
-		data = new ItemData("mithril bar", REQUIRED_MITHRIL_BAR,
-				"I cannot #forge it without the missing ",
-				". After all, this IS a mithril shield.");
-		neededItems.put(1, data);
-
-		data = new ItemData("obsidian",	REQUIRED_OBSIDIAN,
-				"I need several gems to grind into dust to mix with the mithril. I need ",
-				" still.");
-		neededItems.put(2, data);
-
-		data = new ItemData("diamond", REQUIRED_DIAMOND,
-				"I need several gems to grind into dust to mix with the mithril. I need ",
-				" still.");
-		neededItems.put(3, data);
-		
-		data = new ItemData("emerald", REQUIRED_EMERALD,
-				"I need several gems to grind into dust to mix with the mithril. I need ",
-				" still.");
-		neededItems.put(4, data);
-		
-		data = new ItemData("carbuncle", REQUIRED_CARBUNCLE,
-				"I need several gems to grind into dust to mix with the mithril. I need ",
-				" still.");
-		neededItems.put(5, data);
-		
-		data = new ItemData("sapphire",	REQUIRED_SAPPHIRE,
-				"I need several gems to grind into dust to mix with the mithril. I need ",
-				" still.");
-		neededItems.put(6, data);
-
-		data = new ItemData("black shield",	REQUIRED_BLACK_SHIELD,
-				"I need ",
-				" to form the framework for your new shield.");
-		neededItems.put(7, data);
-		
-		data = new ItemData("magic plate shield", REQUIRED_MAGIC_PLATE_SHIELD,
-				"I need ",
-				" for the pieces and parts for your new shield.");
-		neededItems.put(8, data);
-	
-		data = new ItemData("gold bar",	REQUIRED_GOLD_BAR,
-				"I need ",
-				" to melt down with the mithril and iron.");
-		neededItems.put(9, data);
-
-		data = new ItemData("iron",	REQUIRED_IRON,
-				"I need ",
-				" to melt down with the mithril and gold.");
-		neededItems.put(10, data);
-
-		data = new ItemData("black pearl", REQUIRED_BLACK_PEARL,
-				"I need ",
-				" to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
-		neededItems.put(11, data);
-
-		data = new ItemData("shuriken",	REQUIRED_SHURIKEN,
-				"I need ",
-				" to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
-		neededItems.put(12, data);
-
-		data = new ItemData("marbles", REQUIRED_MARBLES,
-				"My son wants some new toys. I need ",
-				" still.");
-		neededItems.put(13, data);
-
-		data = new ItemData("snowglobe", REQUIRED_SNOWGLOBE,
-				"I just LOVE those trinkets from athor. I need ",
-				" still.");
-		neededItems.put(14, data);
-		return neededItems;
-	}
-
-	protected static final class ItemData {
-
-		private int neededAmount;
-		private final String itemName;
-		private final String itemPrefix;
-		private final String itemSuffix;
-		private final int requiredAmount;
-
-		public ItemData(final String name, final int needed, final String prefix, final String suffix) {
-			this.requiredAmount = needed;
-			this.neededAmount = needed;
-			this.itemName = name;
-			this.itemPrefix = prefix;
-			this.itemSuffix = suffix;
-		}
-
-		public int getStillNeeded() {
-			return neededAmount;
-		}
-
-		public void setAmount(final int needed) {
-			neededAmount = needed;
-		}
-
-		public String getName() {
-			return itemName;
-		}
-
-		public void subAmount(final String string) {
-			subAmount(Integer.parseInt(string));
-		}
-
-		public String getAnswer() {
-			return itemPrefix
-				+ Grammar.quantityplnoun(
-						neededAmount, itemName, "a")
-				+ itemSuffix;
-		}
-
-		public int getRequired() {
-			return requiredAmount;
-		}
-
-		public int getAlreadyBrought() {
-			return requiredAmount - neededAmount;
-		}
-
-		public void subAmount(final int amount) {
-			neededAmount -= amount;
-		}
-
-		public void resetAmount() {
-			neededAmount = requiredAmount;
-		}
-	}
-
-	private static final int REQUIRED_MITHRIL_BAR = 20;
-
-	private static final int REQUIRED_OBSIDIAN = 1;
-
-	private static final int REQUIRED_DIAMOND = 1;
-
-	private static final int REQUIRED_EMERALD = 5;
-	
-	private static final int REQUIRED_CARBUNCLE = 10;
-
-	private static final int REQUIRED_SAPPHIRE = 10;
-
-	private static final int REQUIRED_BLACK_SHIELD = 1;
-
-	private static final int REQUIRED_MAGIC_PLATE_SHIELD = 1;
-
-	private static final int REQUIRED_GOLD_BAR = 10;
-
-	private static final int REQUIRED_IRON = 20;
-
-	private static final int REQUIRED_BLACK_PEARL = 10;
-
-	private static final int REQUIRED_SHURIKEN = 20;
-	
-	private static final int REQUIRED_MARBLES = 15;
-
-	private static final int REQUIRED_SNOWGLOBE = 1;
-
 	private static final String I_WILL_NEED_MANY_THINGS = "I will need many, many things: ";
 
 	private static final String IN_EXACT_ORDER = "Come back when you have them in the same #exact order!";
@@ -241,6 +80,35 @@ public class StuffForBaldemar extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 10;
 
 	private static final String QUEST_SLOT = "mithrilshield_quest";
+
+	private final ItemCollector itemCollector = new ItemCollector();
+
+	public StuffForBaldemar() {
+		itemCollector.require().item("mithril bar").pieces(20)
+				.bySaying("I cannot #forge it without the missing %s. After all, this IS a mithril shield.");
+		itemCollector.require().item("obsidian")
+				.bySaying("I need several gems to grind into dust to mix with the mithril. I need %s still.");
+		itemCollector.require().item("diamond")
+				.bySaying("I need several gems to grind into dust to mix with the mithril. I need %s still.");
+		itemCollector.require().item("emerald").pieces(5)
+				.bySaying("I need several gems to grind into dust to mix with the mithril. I need %s still.");
+		itemCollector.require().item("carbuncle").pieces(10)
+				.bySaying("I need several gems to grind into dust to mix with the mithril. I need %s still.");
+		itemCollector.require().item("sapphire").pieces(10)
+				.bySaying("I need several gems to grind into dust to mix with the mithril. I need %s still.");
+		itemCollector.require().item("black shield").bySaying("I need %s to form the framework for your new shield.");
+		itemCollector.require().item("magic plate shield")
+				.bySaying("I need %s for the pieces and parts for your new shield.");
+		itemCollector.require().item("gold bar").pieces(10)
+				.bySaying("I need %s to melt down with the mithril and iron.");
+		itemCollector.require().item("iron").pieces(20).bySaying("I need %s to melt down with the mithril and gold.");
+		itemCollector.require().item("black pearl").pieces(10)
+				.bySaying("I need %s to crush into fine powder to sprinkle onto shield to give it a nice sheen.");
+		itemCollector.require().item("shuriken").pieces(20).bySaying(
+				"I need %s to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
+		itemCollector.require().item("marbles").pieces(15).bySaying("My son wants some new toys. I need %s still.");
+		itemCollector.require().item("snowglobe").bySaying("I just LOVE those trinkets from Athor. I need %s still.");
+	}
 
 	@Override
 	public String getSlotName() {
@@ -310,19 +178,18 @@ public class StuffForBaldemar extends AbstractQuest {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
 					int idx1 = 1;
-					for (ItemData itemdata : neededItems.values()) {
+					for (ItemCollectorData itemdata: itemCollector.requiredItems()) {
 							itemdata.resetAmount();
-							itemdata.subAmount(tokens[idx1]);
+							itemdata.subtractAmount(tokens[idx1]);
 							idx1++;
 					}
 
 					boolean missingSomething = false;
 
-					int size = neededItems.size();
-					for (int idx = 1; !missingSomething && idx <= size; idx++) {
-						ItemData itemData = neededItems.get(idx);
-						missingSomething = proceedItem(player, raiser,
-								itemData);
+					int size = itemCollector.requiredItems().size();
+					for (int idx = 0; !missingSomething && idx < size; idx++) {
+						ItemCollectorData itemData = itemCollector.requiredItems().get(idx);
+						missingSomething = proceedItem(player, raiser, itemData);
 					}
 					
 					if (player.hasKilledSolo("black giant") && !missingSomething) {
@@ -337,7 +204,7 @@ public class StuffForBaldemar extends AbstractQuest {
 
 						StringBuilder sb = new StringBuilder(30);
 						sb.append("start");
-						for (ItemData id : neededItems.values()) {
+						for (ItemCollectorData id : itemCollector.requiredItems()) {
 							sb.append(";");
 							sb.append(id.getAlreadyBrought());
 						}
@@ -346,17 +213,17 @@ public class StuffForBaldemar extends AbstractQuest {
 				}
 
 				private boolean proceedItem(final Player player,
-						final EventRaiser engine, final ItemData itemData) {
+						final EventRaiser engine, final ItemCollectorData itemData) {
 					if (itemData.getStillNeeded() > 0) {
 						
 						if (player.isEquipped(itemData.getName(), itemData.getStillNeeded())) {
 							player.drop(itemData.getName(), itemData.getStillNeeded());
-							itemData.setAmount(0);
+							itemData.subtractAmount(itemData.getStillNeeded());
 						} else {
 							final int amount = player.getNumberOfEquipped(itemData.getName());
 							if (amount > 0) {
 								player.drop(itemData.getName(), amount);
-								itemData.subAmount(amount);
+								itemData.subtractAmount(amount);
 							}
 
 							engine.say(itemData.getAnswer());
@@ -437,13 +304,13 @@ public class StuffForBaldemar extends AbstractQuest {
 	private List<String> neededItemsWithAmounts(final Player player) {
 		int[] broughtItems = broughtItems(player);
 		List<String> neededItemsWithAmounts = new LinkedList<>();
-		for (int i = 1; i <= neededItems.size(); i++) {
-			ItemData item = neededItems.get(i);
-			int required = item.requiredAmount;
-			int brought = broughtItems[i - 1];
+		for (int i = 0; i < itemCollector.requiredItems().size(); i++) {
+			ItemCollectorData item = itemCollector.requiredItems().get(i);
+			int required = item.getRequiredAmount();
+			int brought = broughtItems[i];
 			int neededAmount = required - brought;
 			if (neededAmount > 0) {
-				neededItemsWithAmounts.add(neededItem(neededAmount, item.itemName));
+				neededItemsWithAmounts.add(neededItem(neededAmount, item.getName()));
 			}
 		}
 
@@ -451,7 +318,7 @@ public class StuffForBaldemar extends AbstractQuest {
 	}
 
 	private int[] broughtItems(final Player player) {
-		int[] brought = new int[neededItems.size()];
+		int[] brought = new int[itemCollector.requiredItems().size()];
 		if (player.getQuest(QUEST_SLOT) != null) {
 			String[] broughtTokens = player.getQuest(QUEST_SLOT).split(";");
 			for (int i = 1; i < broughtTokens.length; i++) {
