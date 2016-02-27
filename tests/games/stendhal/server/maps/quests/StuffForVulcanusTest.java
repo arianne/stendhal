@@ -116,7 +116,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testAcceptQuest() {
-		String neededItems = "15 iron, 26 wood logs, 12 gold bars and 6 giant hearts";
+		String neededItems = "15 pieces of iron, 26 pieces of wood, 12 gold bars and 6 giant hearts";
 
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
@@ -137,7 +137,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I cannot #forge it without the missing 5 pieces of iron.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 5 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need 5 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -149,7 +149,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I cannot #forge it without the missing 2 pieces of iron.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 2 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need 2 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -161,7 +161,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I cannot #forge it without the missing a piece of iron.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 1 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need a #'piece of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -174,7 +174,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I cannot #forge it without the missing 5 pieces of iron.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 5 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need 5 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 
 		assertTrue(player.isEquipped("gold bar", 12));
 	}
@@ -187,10 +187,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		PlayerTestHelper.equipWithStackableItem(player, "iron", 10);
 
 		en.step(player, "hi");
-		assertEquals("How do you expect me to #forge it without missing 26 wood logs for the fire?", getReply(vulcanus));
+		assertEquals("How do you expect me to #forge it without missing 26 pieces of wood for the fire?", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 
 		assertTrue(player.isEquipped("gold bar", 12));
 	}
@@ -214,10 +214,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;15;24;0;0");
 
 		en.step(player, "hi");
-		assertEquals("How do you expect me to #forge it without missing 2 wood logs for the fire?", getReply(vulcanus));
+		assertEquals("How do you expect me to #forge it without missing 2 pieces of wood for the fire?", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 2 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need 2 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -226,10 +226,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;15;25;0;0");
 
 		en.step(player, "hi");
-		assertEquals("How do you expect me to #forge it without missing a wood log for the fire?", getReply(vulcanus));
+		assertEquals("How do you expect me to #forge it without missing a piece of wood for the fire?", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 1 #wood logs, 12 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need a #'piece of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -241,7 +241,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I must pay a bill to spirits in order to cast the enchantment over the sword. I need 2 gold bars more.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 0 #wood logs, 2 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need 2 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -250,10 +250,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;15;26;11;0");
 
 		en.step(player, "hi");
-		assertEquals("I must pay a bill to spirits in order to cast the enchantment over the sword. I need one gold bar more.", getReply(vulcanus));
+		assertEquals("I must pay a bill to spirits in order to cast the enchantment over the sword. I need a gold bar more.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 0 #wood logs, 1 #gold bars and 6 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need a #'gold bar' and 6 #'giant hearts'.", getReply(vulcanus));
 	}
 
 	@Test
@@ -272,10 +272,10 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;15;26;12;5");
 
 		en.step(player, "hi");
-		assertEquals("It is the base element of the enchantment. I need one giant heart still.", getReply(vulcanus));
+		assertEquals("It is the base element of the enchantment. I need a giant heart still.", getReply(vulcanus));
 
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 0 #wood logs, 0 #gold bars and 1 #giant hearts.", getReply(vulcanus));
+		assertEquals("I will need a #'giant heart'.", getReply(vulcanus));
 	}
 
 	@Test

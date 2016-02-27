@@ -12,8 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -29,11 +32,9 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.logic.BringOrderedListOfItemsQuestLogic;
+import games.stendhal.server.maps.quests.logic.ItemCollector;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: The immortal sword forging.
@@ -67,17 +68,28 @@ import java.util.List;
  * </ul>
  */
 public class StuffForVulcanus extends AbstractQuest {
-	private static final int REQUIRED_IRON = 15;
 
-	private static final int REQUIRED_GOLD_BAR = 12;
+	private static final String I_WILL_NEED_SEVERAL_THINGS = "I will need several things: ";
 
-	private static final int REQUIRED_WOOD = 26;
-
-	private static final int REQUIRED_GIANT_HEART = 6;
+	private static final String IN_EXACT_ORDER = "Come back when you have them in the same #exact order!";
 
 	private static final int REQUIRED_MINUTES = 10;
 
 	private static final String QUEST_SLOT = "immortalsword_quest";
+
+	private final ItemCollector itemCollector = new ItemCollector();
+
+	private final BringOrderedListOfItemsQuestLogic questLogic = new BringOrderedListOfItemsQuestLogic();
+
+	public StuffForVulcanus() {
+		itemCollector.require().item("iron").pieces(15).bySaying("I cannot #forge it without the missing %s.");
+		itemCollector.require().item("wood").pieces(26).bySaying("How do you expect me to #forge it without missing %s for the fire?");
+		itemCollector.require().item("gold bar").pieces(12).bySaying("I must pay a bill to spirits in order to cast the enchantment over the sword. I need %s more.");
+		itemCollector.require().item("giant heart").pieces(6).bySaying("It is the base element of the enchantment. I need %s still.");
+
+		questLogic.setItemCollector(itemCollector);
+		questLogic.setQuest(this);
+	}
 
 	@Override
 	public String getSlotName() {
@@ -111,17 +123,8 @@ public class StuffForVulcanus extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					raiser.say("I will need several things: "
-						+ REQUIRED_IRON
-						+ " iron, "
-						+ REQUIRED_WOOD
-						+ " wood logs, "
-						+ REQUIRED_GOLD_BAR
-						+ " gold bars and "
-						+ REQUIRED_GIANT_HEART
-						+ " giant hearts. Come back when you have them in the same #exact order!");
+					raiser.say(I_WILL_NEED_SEVERAL_THINGS + questLogic.itemsStillNeeded(player) + ". " + IN_EXACT_ORDER);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0");
-
 				}
 			});
 
@@ -152,86 +155,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-
-					int neededIron = REQUIRED_IRON
-							- Integer.parseInt(tokens[1]);
-					int neededWoodLogs = REQUIRED_WOOD
-							- Integer.parseInt(tokens[2]);
-					int neededGoldBars = REQUIRED_GOLD_BAR
-							- Integer.parseInt(tokens[3]);
-					int neededGiantHearts = REQUIRED_GIANT_HEART
-							- Integer.parseInt(tokens[4]);
-					boolean missingSomething = false;
-
-					if (!missingSomething && neededIron > 0) {
-						if (player.isEquipped("iron", neededIron)) {
-							player.drop("iron", neededIron);
-							neededIron = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("iron");
-							if (amount > 0) {
-								player.drop("iron", amount);
-								neededIron -= amount;
-							}
-
-							raiser.say("I cannot #forge it without the missing "
-								+ Grammar.quantityplnoun(
-										neededIron, "iron", "a")
-								+ ".");
-							missingSomething = true;
-						}
-					}
-
-					if (!missingSomething && neededWoodLogs > 0) {
-						if (player.isEquipped("wood", neededWoodLogs)) {
-							player.drop("wood", neededWoodLogs);
-							neededWoodLogs = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("wood");
-							if (amount > 0) {
-								player.drop("wood", amount);
-								neededWoodLogs -= amount;
-							}
-
-							raiser.say("How do you expect me to #forge it without missing "
-								+ Grammar.quantityplnoun(neededWoodLogs, "wood log", "a")
-								+ " for the fire?");
-							missingSomething = true;
-						}
-					}
-
-					if (!missingSomething && neededGoldBars > 0) {
-						if (player.isEquipped("gold bar", neededGoldBars)) {
-							player.drop("gold bar", neededGoldBars);
-							neededGoldBars = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("gold bar");
-							if (amount > 0) {
-								player.drop("gold bar", amount);
-								neededGoldBars -= amount;
-							}
-							raiser.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
-									+ Grammar.quantityplnoun(neededGoldBars, "gold bar", "one") + " more.");
-							missingSomething = true;
-						}
-					}
-
-					if (!missingSomething && neededGiantHearts > 0) {
-						if (player.isEquipped("giant heart", neededGiantHearts)) {
-							player.drop("giant heart", neededGiantHearts);
-							neededGiantHearts = 0;
-						} else {
-							final int amount = player.getNumberOfEquipped("giant heart");
-							if (amount > 0) {
-								player.drop("giant heart", amount);
-								neededGiantHearts -= amount;
-							}
-							raiser.say("It is the base element of the enchantment. I need "
-								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart", "one") + " still.");
-							missingSomething = true;
-						}
-					}
+					boolean missingSomething = questLogic.proceedItems(player, raiser);
 
 					if (player.hasKilled("giant") && !missingSomething) {
 						raiser.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
@@ -243,15 +167,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							raiser.say("Did you really get those giant hearts yourself? I don't think so! This powerful sword can only be given to those that are strong enough to kill a #giant.");
 						}
 
-						player.setQuest(QUEST_SLOT,
-							"start;"
-							+ (REQUIRED_IRON - neededIron)
-							+ ";"
-							+ (REQUIRED_WOOD - neededWoodLogs)
-							+ ";"
-							+ (REQUIRED_GOLD_BAR - neededGoldBars)
-							+ ";"
-							+ (REQUIRED_GIANT_HEART - neededGiantHearts));
+						questLogic.updateQuantitiesInQuestStatus(player);
 					}
 				}
 			});
@@ -295,46 +211,37 @@ public class StuffForVulcanus extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-
-					final int neededIron = REQUIRED_IRON
-							- Integer.parseInt(tokens[1]);
-					final int neededWoodLogs = REQUIRED_WOOD
-							- Integer.parseInt(tokens[2]);
-					final int neededGoldBars = REQUIRED_GOLD_BAR
-							- Integer.parseInt(tokens[3]);
-					final int neededGiantHearts = REQUIRED_GIANT_HEART
-							- Integer.parseInt(tokens[4]);
-
-					raiser.say("I will need " + neededIron + " #iron, "
-							+ neededWoodLogs + " #wood logs, "
-							+ neededGoldBars + " #gold bars and "
-							+ neededGiantHearts + " #giant hearts.");
+					final String questState = player.getQuest(QUEST_SLOT);
+					if (!broughtAllItems(questState)) {
+						raiser.say("I will need " + questLogic.itemsStillNeededWithHash(player) + ".");
+					}
 				}
 			});
 
-		npc.add(
-			ConversationStates.ANY,
-			"iron",
-			null,
-			ConversationStates.ATTENDING,
-			"Collect some iron ore from the mines which are rich in minerals.",
-			null);
-
-		npc.add(ConversationStates.ANY, "wood", null,
+		npc.add(ConversationStates.ANY,
+				"iron",
+				null,
 				ConversationStates.ATTENDING,
-				"The forest is full of wood logs.", null);
-		npc.add(ConversationStates.ANY, "gold", null,
+				"Collect some iron ore from the mines which are rich in minerals.",
+				null);
+		npc.add(ConversationStates.ANY,
+				"wood",
+				null,
+				ConversationStates.ATTENDING,
+				"The forest is full of wood logs.",
+				null);
+		npc.add(ConversationStates.ANY,
+				Arrays.asList("gold", "gold bar"),
+				null,
 				ConversationStates.ATTENDING,
 				"A smith in Ados can forge the gold into gold bars for you.",
 				null);
-		npc.add(
-			ConversationStates.ANY,
-			"giant",
-			null,
-			ConversationStates.ATTENDING,
-			"There are ancient stories of giants living in the mountains at the north of Semos and Ados.",
-			null);
+		npc.add(ConversationStates.ANY,
+				Arrays.asList("giant", "giant heart"),
+				null,
+				ConversationStates.ATTENDING,
+				"There are ancient stories of giants living in the mountains at the north of Semos and Ados.",
+				null);
 	}
 
 	@Override
@@ -365,21 +272,13 @@ public class StuffForVulcanus extends AbstractQuest {
 				res.add("I don't want an immortal sword.");
 				return res;
 			} 
-			res.add("To forge the immortal sword I must bring " + REQUIRED_IRON
-					+ " iron, "
-					+ REQUIRED_WOOD
-					+ " wood logs, "
-					+ REQUIRED_GOLD_BAR
-					+ " gold bars and "
-					+ REQUIRED_GIANT_HEART
-					+ " giant hearts, in that order.");
-			// yes, yes. this is the most horrible quest code and so you get a horrible quest history. 
-			if(questState.startsWith("start") && !"start;15;26;12;6".equals(questState)){
-				res.add("I haven't brought everything yet. Vulcanus will tell me what I need to take next.");
-			} else if ("start;15;26;12;6".equals(questState) || !questState.startsWith("start")) {
+			res.add("To forge the immortal sword I must bring several things to Vulcanus.");
+			if (questState.startsWith("start") && !broughtAllItems(questState)) {
+				res.add("I still need to bring " + questLogic.itemsStillNeeded(player) + ", in this order.");
+			} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
 				res.add("I took all the special items to Vulcanus.");
 			}
-			if("start;15;26;12;6".equals(questState) && !player.hasKilled("giant")){
+			if(broughtAllItems(questState) && !player.hasKilled("giant")){
 				res.add("I must prove my worth and kill a giant, before I am worthy of this prize.");
 			} 
 			if (questState.startsWith("forging")) {
@@ -390,7 +289,11 @@ public class StuffForVulcanus extends AbstractQuest {
 			}
 			return res;
 	}
-	
+
+	private boolean broughtAllItems(final String questState) {
+		return "start;15;26;12;6".equals(questState);
+	}
+
 	// match to the min level of the immortal sword
 	@Override
 	public int getMinLevel() {

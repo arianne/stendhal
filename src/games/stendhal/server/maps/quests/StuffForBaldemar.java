@@ -14,11 +14,9 @@ package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -34,8 +32,8 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.maps.quests.logic.BringOrderedListOfItemsQuestLogic;
 import games.stendhal.server.maps.quests.logic.ItemCollector;
-import games.stendhal.server.maps.quests.logic.ItemCollectorData;
 import games.stendhal.server.util.TimeUtil;
 
 /**
@@ -83,6 +81,8 @@ public class StuffForBaldemar extends AbstractQuest {
 
 	private final ItemCollector itemCollector = new ItemCollector();
 
+	private final BringOrderedListOfItemsQuestLogic questLogic = new BringOrderedListOfItemsQuestLogic();
+
 	public StuffForBaldemar() {
 		itemCollector.require().item("mithril bar").pieces(20)
 				.bySaying("I cannot #forge it without the missing %s. After all, this IS a mithril shield.");
@@ -108,6 +108,9 @@ public class StuffForBaldemar extends AbstractQuest {
 				"I need %s to melt down with the mithril, gold and iron. It is a 'secret' ingredient that only you and I know about. ;)");
 		itemCollector.require().item("marbles").pieces(15).bySaying("My son wants some new toys. I need %s still.");
 		itemCollector.require().item("snowglobe").bySaying("I just LOVE those trinkets from Athor. I need %s still.");
+
+		questLogic.setItemCollector(itemCollector);
+		questLogic.setQuest(this);
 	}
 
 	@Override
@@ -142,7 +145,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					String need = I_WILL_NEED_MANY_THINGS + itemsStillNeeded(player) + ". " + IN_EXACT_ORDER;
+					String need = I_WILL_NEED_MANY_THINGS + questLogic.itemsStillNeeded(player) + ". " + IN_EXACT_ORDER;
 					raiser.say(need);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
 
@@ -175,23 +178,8 @@ public class StuffForBaldemar extends AbstractQuest {
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					
-					int idx1 = 1;
-					for (ItemCollectorData itemdata: itemCollector.requiredItems()) {
-							itemdata.resetAmount();
-							itemdata.subtractAmount(tokens[idx1]);
-							idx1++;
-					}
+					boolean missingSomething = questLogic.proceedItems(player, raiser);
 
-					boolean missingSomething = false;
-
-					int size = itemCollector.requiredItems().size();
-					for (int idx = 0; !missingSomething && idx < size; idx++) {
-						ItemCollectorData itemData = itemCollector.requiredItems().get(idx);
-						missingSomething = proceedItem(player, raiser, itemData);
-					}
-					
 					if (player.hasKilledSolo("black giant") && !missingSomething) {
 						raiser.say("You've brought everything I need to forge the shield. Come back in "
 							+ REQUIRED_MINUTES
@@ -202,35 +190,8 @@ public class StuffForBaldemar extends AbstractQuest {
 							raiser.say(TALK_NEED_KILL_GIANT);
 						}
 
-						StringBuilder sb = new StringBuilder(30);
-						sb.append("start");
-						for (ItemCollectorData id : itemCollector.requiredItems()) {
-							sb.append(";");
-							sb.append(id.getAlreadyBrought());
-						}
-						player.setQuest(QUEST_SLOT, sb.toString());
+						questLogic.updateQuantitiesInQuestStatus(player);
 					}
-				}
-
-				private boolean proceedItem(final Player player,
-						final EventRaiser engine, final ItemCollectorData itemData) {
-					if (itemData.getStillNeeded() > 0) {
-						
-						if (player.isEquipped(itemData.getName(), itemData.getStillNeeded())) {
-							player.drop(itemData.getName(), itemData.getStillNeeded());
-							itemData.subtractAmount(itemData.getStillNeeded());
-						} else {
-							final int amount = player.getNumberOfEquipped(itemData.getName());
-							if (amount > 0) {
-								player.drop(itemData.getName(), amount);
-								itemData.subtractAmount(amount);
-							}
-
-							engine.say(itemData.getAnswer());
-							return true;
-						}
-					}
-					return false;
 				}
 			});
 
@@ -275,7 +236,7 @@ public class StuffForBaldemar extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String questState = player.getQuest(QUEST_SLOT);
 					if (!broughtAllItems(questState)) {
-						raiser.say("I need " + itemsStillNeeded(player) + ".");
+						raiser.say("I need " + questLogic.itemsStillNeeded(player) + ".");
 					} else {
 						if(!player.hasKilledSolo("black giant")) {
 							raiser.say(TALK_NEED_KILL_GIANT);
@@ -283,55 +244,6 @@ public class StuffForBaldemar extends AbstractQuest {
 					}
 				}
 			});
-	}
-
-	private String itemsStillNeeded(final Player player) {
-		List<String> neededItemsWithAmounts = neededItemsWithAmounts(player);
-
-		StringBuilder all = new StringBuilder();
-		for (int i = 0; i < neededItemsWithAmounts.size(); i++) {
-			if (i != 0 && i == neededItemsWithAmounts.size() - 1) {
-				all.append(" and ");
-			}
-			all.append(neededItemsWithAmounts.get(i));
-			if (i < neededItemsWithAmounts.size() - 2) {
-				all.append(", ");
-			}
-		}
-		return all.toString();
-	}
-
-	private List<String> neededItemsWithAmounts(final Player player) {
-		int[] broughtItems = broughtItems(player);
-		List<String> neededItemsWithAmounts = new LinkedList<>();
-		for (int i = 0; i < itemCollector.requiredItems().size(); i++) {
-			ItemCollectorData item = itemCollector.requiredItems().get(i);
-			int required = item.getRequiredAmount();
-			int brought = broughtItems[i];
-			int neededAmount = required - brought;
-			if (neededAmount > 0) {
-				neededItemsWithAmounts.add(neededItem(neededAmount, item.getName()));
-			}
-		}
-
-		return neededItemsWithAmounts;
-	}
-
-	private int[] broughtItems(final Player player) {
-		int[] brought = new int[itemCollector.requiredItems().size()];
-		if (player.getQuest(QUEST_SLOT) != null) {
-			String[] broughtTokens = player.getQuest(QUEST_SLOT).split(";");
-			for (int i = 1; i < broughtTokens.length; i++) {
-				brought[i - 1] = Integer.parseInt(broughtTokens[i]);
-			}
-		} else {
-			Arrays.fill(brought, 0);
-		}
-		return brought;
-	}
-
-	private String neededItem(int neededAmount, String itemName) {
-		return Grammar.quantityplnoun(neededAmount, itemName, "a");
 	}
 
 	@Override
@@ -364,7 +276,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			} 
 			res.add("Baldemar asked me to bring him many things.");
 			if(questState.startsWith("start") && !broughtAllItems(questState)){
-				res.add("I still need to bring " + itemsStillNeeded(player) + ", in this order.");
+				res.add("I still need to bring " + questLogic.itemsStillNeeded(player) + ", in this order.");
 			} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
 				res.add("I took all the special items to Baldemar.");
 			}
