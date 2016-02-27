@@ -44,6 +44,14 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String HISTORY_DEFAULT = "I met Vulcanus in Kotoch.";
 	private static final String HISTORY_REJECTED = "I don't want an immortal sword.";
+	private static final String HISTORY_START = "To forge the immortal sword I must bring several things to Vulcanus.";
+	private static final String HISTORY_NEED_ITEMS_PREFIX = "I still need to bring ";
+	private static final String HISTORY_NEED_ITEMS_SUFFIX = ", in this order.";
+	private static final String HISTORY_NEED_ONE_ITEM_SUFFIX = ".";
+	private static final String HISTORY_BROUGHT_ALL_ITEMS = "I took all the special items to Vulcanus.";
+	private static final String HISTORY_NEED_KILL_GIANT = "I must prove my worth and kill a giant, before I am worthy of this prize.";
+	private static final String HISTORY_REWARD_PENDING = "Vulcanus, son of gods himself, now forges my immortal sword.";
+	private static final String HISTORY_COMPLETED = "Gold bars and giant hearts together with the forging from a god's son made me a sword of which I can be proud.";
 
 	private Player player;
 	private SpeakerNPC vulcanus;
@@ -125,7 +133,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "exact");
 		assertEquals("This archaic magic requires that the ingredients are added on an exact order.", getReply(vulcanus));
 		assertEquals("start;0;0;0;0", player.getQuest(questSlot));
-		//TODO assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
 	}
 
 	@Test
@@ -138,6 +146,9 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "forge");
 		assertEquals("I will need 5 #'pieces of iron', 26 #'pieces of wood', 12 #'gold bars' and 6 #'giant hearts'.", getReply(vulcanus));
+
+		String neededItems = "5 pieces of iron, 26 pieces of wood, 12 gold bars and 6 giant hearts";
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ITEMS_SUFFIX);
 	}
 
 	@Test
@@ -276,6 +287,9 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "forge");
 		assertEquals("I will need a #'giant heart'.", getReply(vulcanus));
+
+		String neededItems = "a giant heart";
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ONE_ITEM_SUFFIX);
 	}
 
 	@Test
@@ -290,6 +304,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("There are ancient stories of giants living in the mountains at the north of Semos and Ados.", getReply(vulcanus));
 
 		assertFalse(player.isEquipped("giant heart"));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_NEED_KILL_GIANT);
 	}
 
 	@Test
@@ -301,6 +316,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 
 		assertEquals("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in 10 minutes and it will be ready.", getReply(vulcanus));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_REWARD_PENDING);
 	}
 
 	@Test
@@ -311,6 +327,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 
 		assertTrue(getReply(vulcanus).startsWith("I haven't finished forging the sword. Please check back in"));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_REWARD_PENDING);
 	}
 
 	@Test
@@ -322,6 +339,7 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(getReply(vulcanus).startsWith("I have finished forging the mighty immortal sword. You deserve this."));
 		assertEquals("done", player.getQuest(questSlot));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_BROUGHT_ALL_ITEMS, HISTORY_COMPLETED);
 	}
 
 	@Test
