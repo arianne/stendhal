@@ -20,16 +20,41 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.IQuest;
 
+/**
+ * Basic behavior for quests which are based on bringing a list of items to an
+ * NPC, in a specific order. The NPC keeps track of the items already brought to
+ * him.
+ */
 public class BringOrderedListOfItemsQuestLogic {
 
 	private ItemCollector itemCollector;
 
 	private IQuest quest;
 
+	/**
+	 * Gets a sentence to be said by the NPC, enumerating the items that still
+	 * need to be brought. The item names are not prefixed by a hash. For a
+	 * variant where they are, see {@link #itemsStillNeededWithHash(Player)}.
+	 *
+	 * @param player
+	 *            the player which needs to bring items
+	 * @return an enumeration of still needed items
+	 * @see #itemsStillNeededWithHash(Player)
+	 */
 	public String itemsStillNeeded(final Player player) {
 		return itemsStillNeeded(player, false);
 	}
 
+	/**
+	 * Gets a sentence to be said by the NPC, enumerating the items that still
+	 * need to be brought. The item names are prefixed by a hash. For a variant
+	 * where they aren't, see {@link #itemsStillNeeded(Player)}.
+	 *
+	 * @param player
+	 *            the player which needs to bring items
+	 * @return an enumeration of still needed items
+	 * @see #itemsStillNeeded(Player)
+	 */
 	public String itemsStillNeededWithHash(final Player player) {
 		return itemsStillNeeded(player, true);
 	}
@@ -51,6 +76,18 @@ public class BringOrderedListOfItemsQuestLogic {
 		return all.toString();
 	}
 
+	/**
+	 * Gets a list of items that still need to be brought. Each item is prefixed
+	 * by the quantity still needed. An example list element: "5 iron bars". For
+	 * a sentence that groups the list items, see
+	 * {@link #itemsStillNeeded(Player)}.
+	 *
+	 * @param player
+	 *            the player which needs to bring items
+	 * @return a list of still needed items, along with their respective
+	 *         quantities
+	 * @see #itemsStillNeeded(Player)
+	 */
 	public List<String> neededItemsWithAmounts(final Player player) {
 		return neededItemsWithAmounts(player, false);
 	}
@@ -93,6 +130,16 @@ public class BringOrderedListOfItemsQuestLogic {
 		}
 	}
 
+	/**
+	 * Give items to the NPC, in the required order.
+	 *
+	 * @param player
+	 *            the player which needs to bring items
+	 * @param eventRaiser
+	 *            the NPC that should say what's the next item to bring
+	 * @return {@code true} if there are still items to bring after this, {@code
+	 *         false} otherwise
+	 */
 	public boolean proceedItems(final Player player, final EventRaiser eventRaiser) {
 		String questStatus = player.getQuest(quest.getSlotName());
 		final String[] tokens = questStatus.split(";");
@@ -135,6 +182,13 @@ public class BringOrderedListOfItemsQuestLogic {
 		return false;
 	}
 
+	/**
+	 * Updates the status of the player's quest with the quantities of already
+	 * brought items.
+	 *
+	 * @param player
+	 *            the player for which to update the quest status
+	 */
 	public void updateQuantitiesInQuestStatus(final Player player) {
 		StringBuilder sb = new StringBuilder(30);
 		sb.append("start");
@@ -145,10 +199,22 @@ public class BringOrderedListOfItemsQuestLogic {
 		player.setQuest(quest.getSlotName(), sb.toString());
 	}
 
+	/**
+	 * Sets the item collector to be used.
+	 *
+	 * @param itemCollector
+	 *            an {@link ItemCollector}
+	 */
 	public void setItemCollector(ItemCollector itemCollector) {
 		this.itemCollector = itemCollector;
 	}
 
+	/**
+	 * Sets the quest on which to apply the logic.
+	 *
+	 * @param quest
+	 *            a quest
+	 */
 	public void setQuest(IQuest quest) {
 		this.quest = quest;
 	}
