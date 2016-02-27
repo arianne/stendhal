@@ -40,6 +40,10 @@ public class BringOrderedListOfItemsQuestLogic {
 		return all.toString();
 	}
 
+	public List<String> neededItemsWithAmounts(final Player player) {
+		return neededItemsWithAmounts(player, false);
+	}
+
 	private List<String> neededItemsWithAmounts(final Player player, boolean withHash) {
 		int[] broughtItems = broughtItems(player);
 		List<String> neededItemsWithAmounts = new LinkedList<>();

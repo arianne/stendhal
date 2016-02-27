@@ -45,6 +45,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 	private static final String HISTORY_START = "Baldemar asked me to bring him many things.";
 	private static final String HISTORY_NEED_ITEMS_PREFIX = "I still need to bring ";
 	private static final String HISTORY_NEED_ITEMS_SUFFIX = ", in this order.";
+	private static final String HISTORY_NEED_ONE_ITEM_SUFFIX = ".";
 	private static final String HISTORY_BROUGHT_ALL_ITEMS = "I took all the special items to Baldemar.";
 	private static final String HISTORY_NEED_KILL_GIANT = "I will need to bravely face a black giant alone, before I am worthy of this shield.";
 	private static final String HISTORY_REWARD_PENDING = "Baldemar is forging my mithril shield!";
@@ -228,6 +229,9 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		player.setQuest(questSlot, "start;20;1;1;5;10;10;1;1;10;20;10;20;15;0");
 		en.step(player, "hi");
 		assertEquals("I just LOVE those trinkets from Athor. I need a snowglobe still.", getReply(baldemar));
+
+		String neededItems = "a snowglobe";
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_NEED_ITEMS_PREFIX + neededItems + HISTORY_NEED_ONE_ITEM_SUFFIX);
 	}
 
 	@Test

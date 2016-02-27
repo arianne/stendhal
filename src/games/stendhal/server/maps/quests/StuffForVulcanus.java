@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.MathHelper;
@@ -28,7 +28,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -205,7 +204,7 @@ public class StuffForVulcanus extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("forge", "missing"), 
-			new QuestStartedCondition(QUEST_SLOT),
+			new QuestStateStartsWithCondition(QUEST_SLOT, "start;"),
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
@@ -259,35 +258,39 @@ public class StuffForVulcanus extends AbstractQuest {
 	public String getName() {
 		return "StuffForVulcanus";
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
-			final List<String> res = new ArrayList<String>();
-			if (!player.hasQuest(QUEST_SLOT)) {
-				return res;
-			}
-			final String questState = player.getQuest(QUEST_SLOT);
-			res.add("I met Vulcanus in Kotoch.");
-			if (questState.equals("rejected")) {
-				res.add("I don't want an immortal sword.");
-				return res;
-			} 
-			res.add("To forge the immortal sword I must bring several things to Vulcanus.");
-			if (questState.startsWith("start") && !broughtAllItems(questState)) {
-				res.add("I still need to bring " + questLogic.itemsStillNeeded(player) + ", in this order.");
-			} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
-				res.add("I took all the special items to Vulcanus.");
-			}
-			if(broughtAllItems(questState) && !player.hasKilled("giant")){
-				res.add("I must prove my worth and kill a giant, before I am worthy of this prize.");
-			} 
-			if (questState.startsWith("forging")) {
-				res.add("Vulcanus, son of gods himself, now forges my immortal sword.");
-			} 
-			if (isCompleted(player)) {
-				res.add("Gold bars and giant hearts together with the forging from a god's son made me a sword of which I can be proud.");
-			}
+		final List<String> res = new LinkedList<>();
+		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
+		}
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("I met Vulcanus in Kotoch.");
+		if (questState.equals("rejected")) {
+			res.add("I don't want an immortal sword.");
+			return res;
+		}
+		res.add("To forge the immortal sword I must bring several things to Vulcanus.");
+		if (questState.startsWith("start") && !broughtAllItems(questState)) {
+			String suffix = ".";
+			if (questLogic.neededItemsWithAmounts(player).size() > 1) {
+				suffix = ", in this order.";
+			}
+			res.add("I still need to bring " + questLogic.itemsStillNeeded(player) + suffix);
+		} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
+			res.add("I took all the special items to Vulcanus.");
+		}
+		if (broughtAllItems(questState) && !player.hasKilled("giant")) {
+			res.add("I must prove my worth and kill a giant, before I am worthy of this prize.");
+		}
+		if (questState.startsWith("forging")) {
+			res.add("Vulcanus, son of gods himself, now forges my immortal sword.");
+		}
+		if (isCompleted(player)) {
+			res.add("Gold bars and giant hearts together with the forging from a god's son made me a sword of which I can be proud.");
+		}
+		return res;
 	}
 
 	private boolean broughtAllItems(final String questState) {

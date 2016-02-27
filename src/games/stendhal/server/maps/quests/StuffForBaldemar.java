@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.MathHelper;
@@ -28,7 +28,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -228,7 +227,7 @@ public class StuffForBaldemar extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("forge", "missing"), 
-			new QuestStartedCondition(QUEST_SLOT),
+			new QuestStateStartsWithCondition(QUEST_SLOT, "start;"),
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
@@ -264,32 +263,36 @@ public class StuffForBaldemar extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(final Player player) {
-			final List<String> res = new ArrayList<String>();
-			if (!player.hasQuest(QUEST_SLOT)) {
-				return res;
-			}			
-			final String questState = player.getQuest(QUEST_SLOT);
-			res.add("I met Baldemar in the magic theater.");
-			if (questState.equals("rejected")) {
-				res.add("I'm not interested in his ideas about shields made from mithril.");
-				return res;
-			} 
-			res.add("Baldemar asked me to bring him many things.");
-			if(questState.startsWith("start") && !broughtAllItems(questState)){
-				res.add("I still need to bring " + questLogic.itemsStillNeeded(player) + ", in this order.");
-			} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
-				res.add("I took all the special items to Baldemar.");
-			}
-			if(broughtAllItems(questState) && !player.hasKilledSolo("black giant")){
-				res.add("I will need to bravely face a black giant alone, before I am worthy of this shield.");
-			}
-			if (questState.startsWith("forging")) {
-				res.add("Baldemar is forging my mithril shield!");
-			} 
-			if (isCompleted(player)) {
-				res.add("I brought Baldemar many items, killed a black giant solo, and he forged me a mithril shield.");
-			}
+		final List<String> res = new LinkedList<>();
+		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
+		}
+		final String questState = player.getQuest(QUEST_SLOT);
+		res.add("I met Baldemar in the magic theater.");
+		if (questState.equals("rejected")) {
+			res.add("I'm not interested in his ideas about shields made from mithril.");
+			return res;
+		}
+		res.add("Baldemar asked me to bring him many things.");
+		if (questState.startsWith("start") && !broughtAllItems(questState)) {
+			String suffix = ".";
+			if (questLogic.neededItemsWithAmounts(player).size() > 1) {
+				suffix = ", in this order.";
+			}
+			res.add("I still need to bring " + questLogic.itemsStillNeeded(player) + suffix);
+		} else if (broughtAllItems(questState) || !questState.startsWith("start")) {
+			res.add("I took all the special items to Baldemar.");
+		}
+		if (broughtAllItems(questState) && !player.hasKilledSolo("black giant")) {
+			res.add("I will need to bravely face a black giant alone, before I am worthy of this shield.");
+		}
+		if (questState.startsWith("forging")) {
+			res.add("Baldemar is forging my mithril shield!");
+		}
+		if (isCompleted(player)) {
+			res.add("I brought Baldemar many items, killed a black giant solo, and he forged me a mithril shield.");
+		}
+		return res;
 	}
 
 	private boolean broughtAllItems(final String questState) {
