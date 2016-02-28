@@ -137,7 +137,8 @@ public class HttpClient {
 									connection = (HttpURLConnection) new URL(newUrl).openConnection();
 									redirect = isRedirect(connection.getResponseCode());
 								} else {
-									throw new IOException(String.format("The URL '%s' lead to a redirect circle!", url));
+									System.err.println(String.format("The URL '%s' leads into a circular redirect.", url));
+									connection = null;
 								}
 							}
 						} else {
