@@ -21,7 +21,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * a very simple http client.
@@ -117,12 +119,34 @@ public class HttpClient {
 					connection.setConnectTimeout(myTimeout);
 					connection.setInstanceFollowRedirects(true);
 					connection.setUseCaches(false);
-					if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-						System.err.println("HttpServer returned an error code ("
-								+ urlString
-								+ "): "
-								+ connection.getResponseCode());
-						connection = null;
+					int responseCode = connection.getResponseCode();
+					if (responseCode != HttpURLConnection.HTTP_OK) {
+						// handle redirects
+						if(isRedirect(responseCode)) {
+							boolean redirect = true;
+							Set<String> passedRedirects = new HashSet<String>();
+							passedRedirects.add(urlString);
+							
+							while(redirect) {
+								String newUrl = connection.getHeaderField("Location");
+								
+								// check if we already were redirected to this url
+								if(!passedRedirects.contains(newUrl)) {
+									// open the new connnection again
+									passedRedirects.add(newUrl);
+									connection = (HttpURLConnection) new URL(newUrl).openConnection();
+									redirect = isRedirect(connection.getResponseCode());
+								} else {
+									throw new IOException(String.format("The URL '%s' lead to a redirect circle!", url));
+								}
+							}
+						} else {
+							System.err.println("HttpServer returned an error code ("
+									+ urlString
+									+ "): "
+									+ responseCode);
+							connection = null;
+						}
 					}
 					if (connection != null) {
 						is = connection.getInputStream();
@@ -145,6 +169,16 @@ public class HttpClient {
 			e.printStackTrace(System.err);
 		}
 		return;
+	}
+
+	/**
+	 * Determine if a repsonse code is a redirect
+	 * 
+	 * @param responseCode
+	 * @return
+	 */
+	private boolean isRedirect(int responseCode) {
+		return responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_SEE_OTHER;
 	}
 
 	/**
