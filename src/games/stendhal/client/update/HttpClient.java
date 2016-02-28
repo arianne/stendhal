@@ -21,10 +21,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 /**
  * a very simple http client.
@@ -125,7 +124,8 @@ public class HttpClient {
 						// handle redirects
 						if(isRedirect(responseCode)) {
 							boolean redirect = true;
-							Set<String> passedRedirects = Sets.newHashSet(url.toString());
+							Set<String> passedRedirects = new HashSet<String>();
+							passedRedirects.add(urlString);
 							
 							while(redirect) {
 								String newUrl = connection.getHeaderField("Location");
