@@ -55,7 +55,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 	private static final String RUDOLPH_TALK_QUEST_ACCEPT = "I heard about the wonderful #goodies you have here in Semos. If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.";
 	private static final String RUDOLPH_TALK_QUEST_GOODIES_REFUSED = "Well then, I certainly hope you find those goodies before I pass out from hunger.";
 	private static final String RUDOLPH_TALK_QUEST_GOODIES_OFFERED = "Oh, I am so excited! I have wanted to eat these things for so long. Thanks so much. And to borrow a phrase, Ho Ho Ho, Merry Christmas.";
-	private static final String RUDOLPH_TALK_QUEST_OFFER_AGAIN = RUDOLPH_TALK_QUEST_ACCEPT;
 	private static final String RUDOLPH_TALK_QUEST_TOO_SOON = "Thank you very much for the goodies, but I don't have any other task for you this year. Have a wonderful holiday season.";
 
 	private static final String HISTORY_DEFAULT = "I have met Rudolph. He is the Red-Nosed Reindeer running around in Semos.";
@@ -243,12 +242,31 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(RUDOLPH_TALK_GREETING_DEFAULT, responseToGreeting);
 
 		en.step(player, "task");
-		assertEquals(RUDOLPH_TALK_QUEST_OFFER_AGAIN, getReply(npc));
+		assertEquals(RUDOLPH_TALK_QUEST_OFFER, getReply(npc));
 
 		assertTrue(quest.isRepeatable(player));
 		assertEquals("done", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_GOODIES,
 				HISTORY_COMPLETED_REPEATABLE);
+	}
+
+	@Test
+	public void testAskQuestAgainAndAccept() {
+		player.setQuest(questSlot, 0, "done");
+		PlayerTestHelper.setPastTime(player, questSlot, 1,
+				TimeUnit.DAYS.toSeconds(365));
+
+		String responseToGreeting = startTalkingToNpc(NPC_RUDOLPH);
+		assertEquals(RUDOLPH_TALK_GREETING_DEFAULT, responseToGreeting);
+
+		en.step(player, "task");
+		assertEquals(RUDOLPH_TALK_QUEST_OFFER, getReply(npc));
+
+		en.step(player, "yes");
+		assertEquals(RUDOLPH_TALK_QUEST_ACCEPT, getReply(npc));
+
+		assertEquals("start", player.getQuest(questSlot));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START);
 	}
 
 	@Test
