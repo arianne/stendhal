@@ -77,7 +77,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 60 * 24 * 30 * REQUIRED_MONTHS;
 
 	private static final String RUDOLPH_TALK_QUEST_ACCEPT = "I heard about the wonderful #goodies you have here in Semos. If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.";
-	private static final String RUDOLPH_TALK_QUEST_OFFER_AGAIN = RUDOLPH_TALK_QUEST_ACCEPT;
+	private static final String RUDOLPH_TALK_QUEST_OFFER = "I want some delicious goodies only you can help me get. Do you think you can help me?";
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -117,7 +117,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"I want some delicious goodies only you can help me get. Do you think you can help me?",
+			RUDOLPH_TALK_QUEST_OFFER,
 			null);
 
 		npc.add(
@@ -132,8 +132,8 @@ public class GoodiesForRudolph extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
-			ConversationStates.ATTENDING,
-			RUDOLPH_TALK_QUEST_OFFER_AGAIN,
+			ConversationStates.QUEST_OFFERED,
+			RUDOLPH_TALK_QUEST_OFFER,
 			null);
 
 		// player is willing to help
