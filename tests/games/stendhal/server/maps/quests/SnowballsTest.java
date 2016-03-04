@@ -6,7 +6,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.hamcrest.collection.IsIn.isOneOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.oneOf;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -117,7 +118,7 @@ public class SnowballsTest {
 		en.step(player, "hi");
 		assertEquals("Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?", getReply(npc));
 		en.step(player, "yes");
-		assertThat(getReply(npc), isOneOf("Thank you! Here, take some perch! I do not like to eat them.", "Thank you! Here, take some cod! I do not like to eat them."));
+		assertThat(getReply(npc), is(oneOf("Thank you! Here, take some perch! I do not like to eat them.", "Thank you! Here, take some cod! I do not like to eat them.")));
 		// [09:49] kymara earns 50 experience points.
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));

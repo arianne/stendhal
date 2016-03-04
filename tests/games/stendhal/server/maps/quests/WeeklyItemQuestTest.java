@@ -13,7 +13,8 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.isOneOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.oneOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -102,8 +103,8 @@ public class WeeklyItemQuestTest {
 		en.step(player, "hi");
 		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
-		assertThat(getReply(npc), isOneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.", 
-				                            "The museum can only afford to send you to fetch an item once a week. Please check back in 1 week."));
+		assertThat(getReply(npc), is(oneOf("The museum can only afford to send you to fetch an item once a week. Please check back in 7 days.",
+				                            "The museum can only afford to send you to fetch an item once a week. Please check back in 1 week.")));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
 
