@@ -18,7 +18,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -291,14 +290,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		return getReply(npc);
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
-	}
-
-	private void assertNoHistory() {
-		assertTrue(quest.getHistory(player).isEmpty());
 	}
 
 	private void assertGainKarma(double delta) {

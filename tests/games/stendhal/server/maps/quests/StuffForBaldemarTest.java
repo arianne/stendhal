@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -355,9 +354,5 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "forge");
 
 		assertEquals(StuffForBaldemar.TALK_NEED_KILL_GIANT, getReply(baldemar));
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }

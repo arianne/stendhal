@@ -17,7 +17,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -346,9 +345,5 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "task");
 		assertEquals("Oh! I am so tired. Look for me later. I need a few years of relaxing.", getReply(vulcanus));
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }

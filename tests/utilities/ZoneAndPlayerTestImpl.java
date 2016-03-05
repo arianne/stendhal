@@ -12,7 +12,12 @@
  ***************************************************************************/
 package utilities;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -114,4 +119,11 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 		removePlayer(player);
 	}
 
+	protected void assertHistory(String... entries) {
+		assertEquals(Arrays.asList(entries), quest.getHistory(player));
+	}
+
+	protected void assertNoHistory() {
+		assertTrue(quest.getHistory(player).isEmpty());
+	}
 }

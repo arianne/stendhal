@@ -16,8 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -247,9 +245,5 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		startTalkingToNpc("Ilisa");
 		en.step(player, "herbs");
 		assertFalse(new QuestStartedCondition(questSlot).fire(player, null, null));
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }
