@@ -57,7 +57,7 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		new CowardSoldierNPC().configureZone(zone, null);
 		new SergeantNPC().configureZone(zone, null);
 
-		AbstractQuest quest = new KanmararnSoldiers();
+		quest = new KanmararnSoldiers();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();

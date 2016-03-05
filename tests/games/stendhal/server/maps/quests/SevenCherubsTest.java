@@ -15,16 +15,14 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -35,9 +33,8 @@ import utilities.ZonePlayerAndNPCTestImpl;
  */
 public class SevenCherubsTest extends ZonePlayerAndNPCTestImpl {
 
-	private Player player = null;
-	private SpeakerNPC npc = null;
-	private Engine en = null;
+	private SpeakerNPC npc;
+	private Engine en;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -49,10 +46,6 @@ public class SevenCherubsTest extends ZonePlayerAndNPCTestImpl {
 		setupZone("0_orril_mountain_w2");
 		setupZone("0_semos_mountain_n2_w2");
 		setupZone("0_ados_rock");
-
-		final SevenCherubs quest = new SevenCherubs();
-		quest.addToWorld();
-
 	}
 
 	/**
@@ -64,8 +57,11 @@ public class SevenCherubsTest extends ZonePlayerAndNPCTestImpl {
 
 	@Override
 	@Before
-	public void setUp() {
-		player = PlayerTestHelper.createPlayer("bob");
+	public void setUp() throws Exception {
+		super.setUp();
+
+		quest = new SevenCherubs();
+		quest.addToWorld();
 	}
 
 	/**

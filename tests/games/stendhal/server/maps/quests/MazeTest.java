@@ -40,7 +40,6 @@ public class MazeTest extends ZonePlayerAndNPCTestImpl {
 	private Engine en = null;
 
 	private String questSlot;
-	private Maze maze;
 	private static final String ZONE_NAME = "int_ados_magician_house";
 
 	@BeforeClass
@@ -60,10 +59,10 @@ public class MazeTest extends ZonePlayerAndNPCTestImpl {
 
 		new WizardNPC().configureZone(zone, null);	
 
-		maze = new Maze();
-		maze.addToWorld();
+		quest = new Maze();
+		quest.addToWorld();
 
-		questSlot = maze.getSlotName();
+		questSlot = quest.getSlotName();
 	}
 
 	@Test
@@ -104,7 +103,7 @@ public class MazeTest extends ZonePlayerAndNPCTestImpl {
 		// jump back to the quest start state
 		player.setQuest(questSlot, questStarted);
 		// solve the maze
-		Portal portal = maze.getPortal();
+		Portal portal = ((Maze) quest).getPortal();
 		player.setPosition(portal.getX(), portal.getY());
 		portal.onUsed(player);
 		assertTrue(PlayerTestHelper.getPrivateReply(player).matches("You used 0 seconds to solve the maze. That was worth [0-9]+ points."));

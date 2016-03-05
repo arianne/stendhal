@@ -28,7 +28,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.hostel.BoyNPC;
 import games.stendhal.server.maps.semos.temple.HealerNPC;
 import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
@@ -45,11 +44,9 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 	private static final String TAD_TALK_SSSHH_COME_HERE = "Ssshh! Come here, player! I have a #task for you.";
 	private static final String TAD_TALK_REMIND_TASK = "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.";
 
-	private Player player;
 	private SpeakerNPC npc;
 	private Engine en;
 
-	private AbstractQuest quest;
 	private String questSlot;
 
 	@BeforeClass

@@ -56,7 +56,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		new BBQGrillmasterNPC().configureZone(zone, null);
 		new MinerNPC().configureZone(zone, null);
 
-		AbstractQuest quest = new CoalForHaunchy();
+		quest = new CoalForHaunchy();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();

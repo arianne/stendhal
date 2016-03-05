@@ -56,7 +56,7 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 
 		new OrcKillGiantDwarfNPC().configureZone(zone, null);
 
-		AbstractQuest quest = new KillDhohrNuggetcutter();
+		quest = new KillDhohrNuggetcutter();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();

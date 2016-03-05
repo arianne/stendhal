@@ -58,7 +58,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 
 		// Add creature
 		SingletonRepository.getEntityManager().getCreature("deer");
-		AbstractQuest quest = new GuessKills();
+		quest = new GuessKills();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();

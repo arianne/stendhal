@@ -57,7 +57,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		new BarMaidNPC().configureZone(zone, null);
 
-		AbstractQuest quest = new FruitsForCoralia();
+		quest = new FruitsForCoralia();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();

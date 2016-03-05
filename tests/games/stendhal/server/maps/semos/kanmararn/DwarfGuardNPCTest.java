@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.quests.JailedDwarf;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -42,9 +43,6 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new DwarfGuardNPC());
-
-		final JailedDwarf quest = new JailedDwarf();
-		quest.addToWorld();
 	}
 
 	@AfterClass
@@ -53,6 +51,15 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	public DwarfGuardNPCTest() {
 		super(ZONE_NAME, "Hunel");
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		quest = new JailedDwarf();
+		quest.addToWorld();
 	}
 
 	/**

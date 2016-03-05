@@ -1,35 +1,30 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.ados.library.WriterNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
-import utilities.ZonePlayerAndNPCTestImpl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.ados.library.WriterNPC;
+import utilities.QuestHelper;
+import utilities.ZonePlayerAndNPCTestImpl;
+
 
 public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
-	
-	//private static final String QUEST_SLOT = "meet_marie_henri";
+
 	private static final String ZONE_NAME = "testzone";
-	
-	private static MeetMarieHenri quest;
-	private Player player = null;
-	private SpeakerNPC npc = null;
-	private Engine en = null;
+
+	private SpeakerNPC npc;
+	private Engine en;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -37,24 +32,24 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new WriterNPC());
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		npc = SingletonRepository.getNPCList().get("Marie-Henri");
+		en = npc.getEngine();
 
 		quest = new MeetMarieHenri();
 		quest.addToWorld();
-		
-	}
-	
-	@Override
-	@Before
-	public void setUp() {
-		player = PlayerTestHelper.createPlayer("player");
-		npc = SingletonRepository.getNPCList().get("Marie-Henri");
-		en = npc.getEngine();
 	}
 
 	public MeetMarieHenriTest() {
 		super(ZONE_NAME, "Marie-Henri");
 	}
-	
+
 	/**
 	 * Tests for dialogues of npc.
 	 */

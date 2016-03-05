@@ -269,7 +269,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	/**
 	 * Tests for successful placement of an offer of daisies.
-	 *
+	 */
 	@Test
 	public void testSellDaisies() {
 		final SpeakerNPC npc = getNPC("Harold");
@@ -290,5 +290,5 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
-	}*/
+	}
 }

@@ -18,13 +18,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.fado.forest.OldWomanNPC;
-import games.stendhal.server.maps.kirdneh.city.GossipNPC;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +26,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.fado.forest.OldWomanNPC;
+import games.stendhal.server.maps.kirdneh.city.GossipNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -61,12 +60,10 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 	private static final String HISTORY_COMPLETED_REPEATABLE = "Its been a while since I checked on Jef's mother and should ask Jef, if he wants me to take a look after her again.";
 	private static final String HISTORY_COMPLETED_NOT_REPEATABLE = "I told Jef that his mother is fine. He wants to leave his mother alone for some time now.";
 
-	private Player player;
 	private SpeakerNPC npc;
 	private Engine en;
 	private double initialKarma;
 
-	private AbstractQuest quest;
 	private String questSlot;
 
 	@BeforeClass
@@ -82,7 +79,9 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 
 	@Override
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
+		super.setUp();
+
 		final StendhalRPZone cityZone = new StendhalRPZone(CITY_ZONE_NAME);
 		new GossipNPC().configureZone(cityZone, null);
 
@@ -94,7 +93,6 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 
 		questSlot = quest.getSlotName();
 
-		player = PlayerTestHelper.createPlayer("bob");
 		initialKarma = player.getKarma();
 	}
 

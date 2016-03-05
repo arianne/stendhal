@@ -17,6 +17,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.AbstractQuest;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,6 +34,8 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 
 	/** Player object to be used in the test. */
 	protected Player player;
+
+	protected AbstractQuest quest;
 
 	/**
 	 * Protected constructor to initialize the zone member variable.
