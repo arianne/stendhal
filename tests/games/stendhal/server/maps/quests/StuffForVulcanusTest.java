@@ -12,27 +12,24 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.kotoch.SmithNPC;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.kotoch.SmithNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -53,11 +50,9 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 	private static final String HISTORY_REWARD_PENDING = "Vulcanus, son of gods himself, now forges my immortal sword.";
 	private static final String HISTORY_COMPLETED = "Gold bars and giant hearts together with the forging from a god's son made me a sword of which I can be proud.";
 
-	private Player player;
 	private SpeakerNPC vulcanus;
 	private Engine en;
 
-	private StuffForVulcanus quest;
 	private String questSlot;
 
 	@BeforeClass
@@ -350,9 +345,5 @@ public class StuffForVulcanusTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "task");
 		assertEquals("Oh! I am so tired. Look for me later. I need a few years of relaxing.", getReply(vulcanus));
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }

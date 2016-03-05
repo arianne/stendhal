@@ -12,9 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.oneOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.hamcrest.collection.IsIn.isOneOf;
 import static org.junit.Assert.assertThat;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -116,9 +117,9 @@ public class MithrilCloakTest {
 		assertEquals("My sewing machine is broken, will you help me fix it?", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.QUEST_OFFERED);
 		en.step(player, "yes");
-		assertThat(getReply(npc) , isOneOf("Thank you! To fix it, it needs a #'can of oil'. I'm ever so grateful for your help.",
+		assertThat(getReply(npc) , is(oneOf("Thank you! To fix it, it needs a #'can of oil'. I'm ever so grateful for your help.",
 				"Thank you! To fix it, it needs a #bobbin. I'm ever so grateful for your help.",
-				"Thank you! To fix it, it needs a #'suit of leather armor'. I'm ever so grateful for your help."));
+				"Thank you! To fix it, it needs a #'suit of leather armor'. I'm ever so grateful for your help.")));
 
 		player.setQuest(questSlot, "machine;bobbin=1");
 		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
@@ -487,7 +488,7 @@ public class MithrilCloakTest {
 		en.step(player, "hi");
 		assertEquals("Hello there.", getReply(npc));
 		en.step(player, "task");
-		assertThat(getReply(npc), isOneOf("I'm still sewing your cloak, come back in 24 hours - and don't rush me, or I'm more likely to break the needle.", "I'm still sewing your cloak, come back in 1 day - and don't rush me, or I'm more likely to break the needle."));
+		assertThat(getReply(npc), is(oneOf("I'm still sewing your cloak, come back in 24 hours - and don't rush me, or I'm more likely to break the needle.", "I'm still sewing your cloak, come back in 1 day - and don't rush me, or I'm more likely to break the needle.")));
 		en.step(player, "bye");
 		assertEquals("Bye, thanks for stepping in.", getReply(npc));
 		

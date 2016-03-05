@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -29,7 +28,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
@@ -51,11 +49,9 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 	private static final String HISTORY_REWARD_PENDING = "Baldemar is forging my mithril shield!";
 	private static final String HISTORY_COMPLETED = "I brought Baldemar many items, killed a black giant solo, and he forged me a mithril shield.";
 
-	private Player player;
 	private SpeakerNPC baldemar;
 	private Engine en;
 
-	private StuffForBaldemar quest;
 	private String questSlot;
 
 	@BeforeClass
@@ -358,9 +354,5 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "forge");
 
 		assertEquals(StuffForBaldemar.TALK_NEED_KILL_GIANT, getReply(baldemar));
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }

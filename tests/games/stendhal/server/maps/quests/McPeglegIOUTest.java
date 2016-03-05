@@ -56,7 +56,7 @@ public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 
 		new RareWeaponsSellerNPC().configureZone(zone, null);	
 
-		AbstractQuest quest = new McPeglegIOU();
+		quest = new McPeglegIOU();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();

@@ -13,7 +13,8 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.collection.IsIn.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.oneOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -103,8 +104,8 @@ public class DailyItemQuestTest {
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "task");
 		assertThat(getReply(npc), 
-				isOneOf("I can only give you a new quest once a day. Please check back in 24 hours.",
-						"I can only give you a new quest once a day. Please check back in 1 day."));
+				is(oneOf("I can only give you a new quest once a day. Please check back in 24 hours.",
+						"I can only give you a new quest once a day. Please check back in 1 day.")));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 

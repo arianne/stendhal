@@ -12,7 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import static org.hamcrest.Matchers.isOneOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.oneOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -103,8 +104,8 @@ public class DragonLairTest {
 		en.step(player, "hi");
 		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertThat(getReply(npc), isOneOf("I think they've had enough excitement for a while. Come back in 7 days.",
-										  "I think they've had enough excitement for a while. Come back in 1 week."));
+		assertThat(getReply(npc), is(oneOf("I think they've had enough excitement for a while. Come back in 7 days.",
+										  "I think they've had enough excitement for a while. Come back in 1 week.")));
 		en.step(player, "bye");
 		assertEquals("Farewell. May your days be many and your heart be free.", getReply(npc));
 		

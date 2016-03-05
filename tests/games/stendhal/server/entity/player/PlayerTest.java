@@ -18,9 +18,9 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -117,17 +117,13 @@ public class PlayerTest {
 	public void testOnAdded() {
 		player.onAdded(new StendhalRPZone("playertest"));
 		RPObject object = KeyedSlotUtil.getKeyedSlotObject(player, "!visited");
-		if (object == null) {
-			fail("slot not found");
-		}
+		assertNotNull("slot not found", object);
 		assertTrue(object.has("playertest"));
 		assertThat(player.get("visibility"), is("100"));
 		player.onAdded(new StendhalRPZone(PlayerDieer.DEFAULT_DEAD_AREA));
-		object = KeyedSlotUtil.getKeyedSlotObject(player, "!visited");
-		if (object == null) {
-			fail("slot not found");
 
-		}
+		object = KeyedSlotUtil.getKeyedSlotObject(player, "!visited");
+		assertNotNull("slot not found", object);
 		assertTrue(object.has(PlayerDieer.DEFAULT_DEAD_AREA));
 		assertThat(player.get("visibility"), is("50"));
 		player.onRemoved(new StendhalRPZone(PlayerDieer.DEFAULT_DEAD_AREA));

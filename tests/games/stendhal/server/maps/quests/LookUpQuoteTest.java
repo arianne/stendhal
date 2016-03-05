@@ -27,6 +27,7 @@ import games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC;
 import java.util.Arrays;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -52,18 +53,12 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 	private static final char CHARBY_FIRST_LETTER = 'C';
 	private static final char ALLY_FIRST_LETTER = 'A';
 
-	private static LookUpQuote quest;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new FishermanNPC());
-
-		quest = new LookUpQuote();
-		quest.addToWorld();
-		
 	}
 
 	@AfterClass
@@ -72,6 +67,15 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 	public LookUpQuoteTest() {
 		super(ZONE_NAME, "Pequod");
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		quest = new LookUpQuote();
+		quest.addToWorld();
 	}
 
 	/**

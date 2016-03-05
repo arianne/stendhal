@@ -16,8 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import java.util.Arrays;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -28,7 +26,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.hostel.BoyNPC;
 import games.stendhal.server.maps.semos.temple.HealerNPC;
 import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
@@ -45,11 +42,9 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 	private static final String TAD_TALK_SSSHH_COME_HERE = "Ssshh! Come here, player! I have a #task for you.";
 	private static final String TAD_TALK_REMIND_TASK = "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.";
 
-	private Player player;
 	private SpeakerNPC npc;
 	private Engine en;
 
-	private AbstractQuest quest;
 	private String questSlot;
 
 	@BeforeClass
@@ -250,9 +245,5 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		startTalkingToNpc("Ilisa");
 		en.step(player, "herbs");
 		assertFalse(new QuestStartedCondition(questSlot).fire(player, null, null));
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
 	}
 }

@@ -280,10 +280,10 @@ public class CreatureAnimationPreview {
 						getImageViewerSwing1().setImage(buf);
 						if (animations == null) {
 							animations = new AnimationRunner[4];
-							animations[0] = AnimationCreate(buf, 0, getImageViewerSwing());
-							animations[1] = AnimationCreate(buf, 1, getImageViewerSwing2());
-							animations[2] = AnimationCreate(buf, 2, getImageViewerSwing3());
-							animations[3] = AnimationCreate(buf, 3, getImageViewerSwing4());
+							animations[0] = createAnimation(getImageViewerSwing());
+							animations[1] = createAnimation(getImageViewerSwing2());
+							animations[2] = createAnimation(getImageViewerSwing3());
+							animations[3] = createAnimation(getImageViewerSwing4());
 
 						} else {
 							animations[0].stopAnimation();
@@ -304,7 +304,7 @@ public class CreatureAnimationPreview {
 		return jTree;
 	}
 
-	AnimationRunner AnimationCreate(final BufferedImage buf, final int row, final ImageViewerSwing imageViewer) {
+	private AnimationRunner createAnimation(final ImageViewerSwing imageViewer) {
 		return new AnimationRunner(imageViewer);
 	}
 

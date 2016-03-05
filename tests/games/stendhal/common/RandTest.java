@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-
-import static org.hamcrest.Matchers.isIn;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.in;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -47,11 +47,11 @@ public class RandTest {
 	@Test
 	public void testRandUniform2() {
 		for (int i = 0; i < 10; i++) {
-			assertThat(Rand.randUniform(-1, 0), isIn(Arrays.asList(0, -1)));
-			assertThat(Rand.randUniform(0, -1), isIn(Arrays.asList(0, -1)));
-			assertThat(Rand.randUniform(1, -1), isIn(Arrays.asList(1, 0, -1)));
-			assertThat(Rand.randUniform(-1, 1), isIn(Arrays.asList(1, 0, -1)));
-			assertThat(Rand.randUniform(100, 102), isIn(Arrays.asList(100, 101, 102)));
+			assertThat(Rand.randUniform(-1, 0), is(in(Arrays.asList(0, -1))));
+			assertThat(Rand.randUniform(0, -1), is(in(Arrays.asList(0, -1))));
+			assertThat(Rand.randUniform(1, -1), is(in(Arrays.asList(1, 0, -1))));
+			assertThat(Rand.randUniform(-1, 1), is(in(Arrays.asList(1, 0, -1))));
+			assertThat(Rand.randUniform(100, 102), is(in(Arrays.asList(100, 101, 102))));
 		}
 	}
 

@@ -22,6 +22,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -40,9 +41,6 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
-
-		final WizardBank wb = new WizardBank();
-		wb.addToWorld();
 	}
 
 	@AfterClass
@@ -52,6 +50,15 @@ public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 	public WizardBankTest() {
 		super(ZONE_NAME, "Javier X");
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		quest = new WizardBank();
+		quest.addToWorld();
 	}
 
 	/**

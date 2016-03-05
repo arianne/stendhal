@@ -17,20 +17,18 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.semos.city.RudolphNPC;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.semos.city.RudolphNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -64,12 +62,10 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 	private static final String HISTORY_COMPLETED_REPEATABLE = "It's been a year since I helped Rudolph. I should ask him if he needs help again.";
 	private static final String HISTORY_COMPLETED_NOT_REPEATABLE = "I took the goodies to Rudolph. As a little thank you, he gave ME some goodies. :)";
 
-	private Player player;
 	private SpeakerNPC npc;
 	private Engine en;
 	private double initialKarma;
 
-	private AbstractQuest quest;
 	private String questSlot;
 
 	@BeforeClass
@@ -84,7 +80,9 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 	@Override
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
+		super.setUp();
+
 		final StendhalRPZone cityZone = new StendhalRPZone(ZONE_SEMOS);
 		new RudolphNPC().configureZone(cityZone, null);
 
@@ -93,7 +91,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 		questSlot = quest.getSlotName();
 
-		player = PlayerTestHelper.createPlayer("bob");
 		initialKarma = player.getKarma();
 	}
 
@@ -293,14 +290,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		return getReply(npc);
-	}
-
-	private void assertHistory(String... entries) {
-		assertEquals(Arrays.asList(entries), quest.getHistory(player));
-	}
-
-	private void assertNoHistory() {
-		assertTrue(quest.getHistory(player).isEmpty());
 	}
 
 	private void assertGainKarma(double delta) {

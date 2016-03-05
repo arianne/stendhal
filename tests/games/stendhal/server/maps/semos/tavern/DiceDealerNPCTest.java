@@ -49,8 +49,6 @@ public class DiceDealerNPCTest extends ZonePlayerAndNPCTestImpl {
 	DiceDealerNPC dealer = new DiceDealerNPC();
 	private Engine en = null;
 
-	private final DiceGambling quest = new DiceGambling();
-
 	private static final String ZONE_NAME = "int_semos_tavern_0";
 
 	@BeforeClass
@@ -70,6 +68,7 @@ public class DiceDealerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		dealer.configureZone(zone, null);
 
+		quest = new DiceGambling();
 		quest.addToWorld();
 
 		Area table = dealer.getPlayingArea();
