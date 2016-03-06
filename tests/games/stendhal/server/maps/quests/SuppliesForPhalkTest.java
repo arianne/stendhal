@@ -29,6 +29,7 @@ import games.stendhal.server.maps.ados.barracks.BuyerNPC;
 import games.stendhal.server.maps.semos.mines.DwarfGuardianNPC;
 import games.stendhal.server.maps.wofol.house4.TraderNPC;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -66,7 +67,14 @@ public class SuppliesForPhalkTest {
 		player.setXP(9753800);
 		questSlot = new SuppliesForPhalk().getSlotName();
 	}
-	
+
+	@After
+	public void tearDown() {
+		PlayerTestHelper.removeNPC("Mrotho");
+		PlayerTestHelper.removeNPC("Phalk");
+		PlayerTestHelper.removeNPC("Wrvil");
+	}
+
 	/**
 	 * Tests for getSlotName.
 	 */

@@ -12,6 +12,12 @@
  ***************************************************************************/
 package utilities;
 
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Events;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -31,18 +37,10 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
-
 import utilities.RPClass.ItemTestHelper;
 
 public abstract class PlayerTestHelper {
@@ -278,8 +276,6 @@ public abstract class PlayerTestHelper {
 	public static void removeNPC(final String npcName) {
 		SingletonRepository.getNPCList().remove(npcName);
 	}
-
-
 
 	public static void addEmptySlots(final Player player) {
 		//		"bag", "rhand", "lhand", "head", "armor",

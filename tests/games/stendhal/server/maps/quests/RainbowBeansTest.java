@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.pad.DealerNPC;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,12 +39,12 @@ import utilities.QuestHelper;
 
 public class RainbowBeansTest {
 
-	private Player player = null;
-	private SpeakerNPC npc = null;
-	private Engine en = null;
+	private Player player;
+	private SpeakerNPC npc;
+	private Engine en;
 
 	private String questSlot;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -53,15 +54,19 @@ public class RainbowBeansTest {
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new DealerNPC().configureZone(zone, null);	
-		
 
 		AbstractQuest quest = new RainbowBeans();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-		
+
 		player = PlayerTestHelper.createPlayer("bob");
 		zone.add(player);
+	}
+
+	@After
+	public void tearDown() {
+		PlayerTestHelper.removeNPC("Pdiddi");
 	}
 
 	@Test

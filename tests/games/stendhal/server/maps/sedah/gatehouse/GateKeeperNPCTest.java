@@ -15,16 +15,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -51,8 +51,13 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
+		setupZone(ZONE_NAME);
+	}
 
-		setupZone(ZONE_NAME, new GateKeeperNPC());
+	public GateKeeperNPCTest() {
+		setNpcNames(NPC_NAME);
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new GateKeeperNPC(), ZONE_NAME);
 	}
 
 	@Override
@@ -63,10 +68,6 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		player = createPlayer("player");
 		npc = SingletonRepository.getNPCList().get(NPC_NAME);
 		engine = npc.getEngine();
-	}
-
-	public GateKeeperNPCTest() {
-		super(ZONE_NAME, NPC_NAME);
 	}
 
 	@Test

@@ -17,14 +17,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CatTestHelper;
@@ -39,20 +36,16 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		MockStendlRPWorld.get();
-		
 		CatTestHelper.generateRPClasses();
 		QuestHelper.setUpBeforeClass();
 
-		setupZone(ZONE_NAME, new CatSellerNPC());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public CatSellerNPCTest() {
-		super(ZONE_NAME, "Felina");
+		setNpcNames("Felina");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new CatSellerNPC(), ZONE_NAME);
 	}
 
 	/**

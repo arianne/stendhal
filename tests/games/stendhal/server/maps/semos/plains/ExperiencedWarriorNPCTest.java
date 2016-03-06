@@ -16,14 +16,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -39,19 +37,13 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-		
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new ExperiencedWarriorNPC().configureZone(zone, null);
-
 		setupZone(ZONE_NAME);
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	public ExperiencedWarriorNPCTest() {
-		super(ZONE_NAME, "Starkad");
+		setNpcNames("Starkad");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new ExperiencedWarriorNPC(), ZONE_NAME);
 	}
 
 	/**

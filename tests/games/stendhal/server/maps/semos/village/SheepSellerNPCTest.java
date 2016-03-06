@@ -17,15 +17,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -42,15 +38,13 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 
-		setupZone(ZONE_NAME, new SheepSellerNPC());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public SheepSellerNPCTest() {
-		super(ZONE_NAME, "Nishiya");
+		setNpcNames("Nishiya");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new SheepSellerNPC(), ZONE_NAME);
 	}
 
 	/**
@@ -73,9 +67,6 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testBuySheep() {
-		final StendhalRPWorld world = SingletonRepository.getRPWorld();
-		registerPlayer(player, world.getZone(ZONE_NAME));
-
 		final SpeakerNPC npc = getNPC("Nishiya");
 		final Engine en = npc.getEngine();
 

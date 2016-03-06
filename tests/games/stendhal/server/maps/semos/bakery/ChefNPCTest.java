@@ -16,16 +16,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import marauroa.common.game.RPObject.ID;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -38,15 +37,13 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-		
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new ChefNPC().configureZone(zone, null);
-		
 		setupZone(ZONE_NAME);
 	}
 
 	public ChefNPCTest() {
-		super(ZONE_NAME, "Leander");
+		setNpcNames("Leander");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new ChefNPC(), ZONE_NAME);
 	}
 
 	@Override

@@ -26,7 +26,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.fado.forest.OldWomanNPC;
@@ -73,19 +72,16 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	public FindJefsMomTest() {
-		super(CITY_ZONE_NAME, "Jef");
+		setNpcNames("Jef", "Amber");
+		setZoneForPlayer(CITY_ZONE_NAME);
+		addZoneConfigurator(new GossipNPC(), CITY_ZONE_NAME);
+		addZoneConfigurator(new OldWomanNPC(), FOREST_ZONE_NAME);
 	}
 
 	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-
-		final StendhalRPZone cityZone = new StendhalRPZone(CITY_ZONE_NAME);
-		new GossipNPC().configureZone(cityZone, null);
-
-		StendhalRPZone forestZone = new StendhalRPZone(FOREST_ZONE_NAME);
-		new OldWomanNPC().configureZone(forestZone, null);
 
 		quest = new FindJefsMom();
 		quest.addToWorld();

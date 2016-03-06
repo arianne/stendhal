@@ -39,14 +39,17 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class AdosHouseSellerTest {
-	HousePortal housePortal;
-	StoredChest chest;
+
+	private HousePortal housePortal;
+	private StoredChest chest;
+	private AdosHouseSeller seller;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -55,7 +58,6 @@ public class AdosHouseSellerTest {
 		Portal.generateRPClass();
 		HousePortal.generateRPClass();
 		MockStendlRPWorld.get();
-		SingletonRepository.getNPCList().add(new SpeakerNPC("Mr Taxman"));
 	}
 
 	@AfterClass
@@ -63,6 +65,12 @@ public class AdosHouseSellerTest {
 		SingletonRepository.getNPCList().clear();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 		HouseUtilities.clearCache();
+	}
+
+	@Before
+	public void setUp() {
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Mr Taxman"));
+		seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 	}
 
 	/**
@@ -80,7 +88,7 @@ public class AdosHouseSellerTest {
 				housePortal = null;
 			}
 		}
-		
+
 		if (chest != null) {
 			StendhalRPZone zone = chest.getZone();
 			if (zone != null) {
@@ -88,6 +96,8 @@ public class AdosHouseSellerTest {
 				chest = null;
 			}
 		}
+
+		PlayerTestHelper.removeNPC("Mr Taxman");
 	}
 
 	/**
@@ -95,7 +105,6 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testGetCost() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		assertEquals(120000, seller.getCost());
 	}
 
@@ -104,9 +113,7 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testGetLowestHouseNumber() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		assertEquals(50, seller.getLowestHouseNumber());
-
 	}
 
 	/**
@@ -114,10 +121,8 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testGetHighestHouseNumber() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		assertEquals(77, seller.getHighestHouseNumber());
 		assertThat(seller.getLowestHouseNumber(), is(lessThan(seller.getHighestHouseNumber())));
-
 	}
 
 	/**
@@ -125,7 +130,6 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testAdosHouseSellerTooYoungNoQuests() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		Engine en = seller.getEngine();
 		assertThat(en.getCurrentState(), is(IDLE));
 		
@@ -156,7 +160,6 @@ public class AdosHouseSellerTest {
 	@Test
 	public void testAdosHouseSellerNoZones() {
 		HouseUtilities.clearCache();
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
 	
@@ -182,7 +185,6 @@ public class AdosHouseSellerTest {
 		ados.add(chest);
 		HouseUtilities.clearCache();
 		
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
 		

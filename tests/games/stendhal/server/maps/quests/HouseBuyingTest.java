@@ -17,6 +17,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -27,12 +34,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.quests.houses.HouseUtilities;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -40,10 +42,10 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
 	private static final String ZONE_NAME3 = "int_kirdneh_townhall";
-	
+
 	private HousePortal housePortal;
 	private StoredChest chest;
-	
+
 	private static final String[] CITY_ZONES = { 
 		"0_kalavan_city",
 		"0_kirdneh_city",
@@ -66,18 +68,23 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		for (String zone : CITY_ZONES) {
 			setupZone(zone);
 		}
-		
-		SpeakerNPC taxman = new SpeakerNPC("Mr Taxman");
-		SingletonRepository.getNPCList().add(taxman);
-
-		new HouseBuying().addToWorld();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		HouseUtilities.clearCache();
 	}
-	
+
+	@Before
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Mr Taxman"));
+
+		new HouseBuying().addToWorld();
+	}
+
 	/**
 	 * Remove added stored entities.
 	 * <p>
@@ -101,6 +108,10 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 				chest = null;
 			}
 		}
+
+		PlayerTestHelper.removeNPC("Cyk");
+		PlayerTestHelper.removeNPC("Mr Taxman");
+		PlayerTestHelper.removeNPC("Roger Frampton");
 	}
 
 	public HouseBuyingTest() {

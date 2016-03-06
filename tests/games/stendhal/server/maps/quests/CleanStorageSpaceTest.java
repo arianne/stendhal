@@ -16,18 +16,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.semos.storage.HousewifeNPC;
-import marauroa.common.Log4J;
-import marauroa.server.game.db.DatabaseFactory;
 
-import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.semos.storage.HousewifeNPC;
+import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
@@ -36,24 +33,23 @@ public class CleanStorageSpaceTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Log4J.init();
-		new DatabaseFactory().initializeDatabase();
-		MockStendhalRPRuleProcessor.get();
-
-		MockStendlRPWorld.get();
-
-		setupZone(ZONE_NAME, new HousewifeNPC());
-
-		final CleanStorageSpace cf = new CleanStorageSpace();
-		cf.addToWorld();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		QuestHelper.setUpBeforeClass();
+		setupZone(ZONE_NAME);
 	}
 
 	public CleanStorageSpaceTest() {
-		super(ZONE_NAME, "Eonna");
+		setNpcNames("Eonna");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new HousewifeNPC(), ZONE_NAME);
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		final CleanStorageSpace cf = new CleanStorageSpace();
+		cf.addToWorld();
 	}
 
 	/**

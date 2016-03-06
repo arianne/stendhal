@@ -16,15 +16,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.bar.BarMaidNPC;
 import games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -40,18 +39,14 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new BarMaidNPC());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public SellingTest() {
-		super(ZONE_NAME, "Siandra");
-
-		new RareWeaponsSellerNPC().configureZone(zone, null);	
+		setNpcNames("Siandra", "McPegleg");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new RareWeaponsSellerNPC(), ZONE_NAME);
+		addZoneConfigurator(new BarMaidNPC(), ZONE_NAME);
 	}
 
 	/**
