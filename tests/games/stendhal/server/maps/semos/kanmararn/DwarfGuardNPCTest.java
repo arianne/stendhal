@@ -17,15 +17,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.quests.JailedDwarf;
-
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.quests.JailedDwarf;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -41,16 +39,13 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new DwarfGuardNPC());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public DwarfGuardNPCTest() {
-		super(ZONE_NAME, "Hunel");
+		setNpcNames("Hunel");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new DwarfGuardNPC(), ZONE_NAME);
 	}
 
 	@Override

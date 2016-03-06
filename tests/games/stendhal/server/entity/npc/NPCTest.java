@@ -16,12 +16,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.ados.felinashouse.CatSellerNPC;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.ados.felinashouse.CatSellerNPC;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CatTestHelper;
@@ -39,13 +39,13 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		CatTestHelper.generateRPClasses();
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new CatSellerNPC());
-
+		setupZone(ZONE_NAME);
 	}
 
-	public NPCTest() throws Exception {
-		super(ZONE_NAME, "Felina");
+	public NPCTest() {
+		setNpcNames("Felina");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new CatSellerNPC(), ZONE_NAME);
 	}
 
 	/**

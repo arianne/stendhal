@@ -13,7 +13,6 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.library.WriterNPC;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -28,10 +27,15 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		MockStendlRPWorld.get();
 		QuestHelper.setUpBeforeClass();
 
-		setupZone(ZONE_NAME, new WriterNPC());
+		setupZone(ZONE_NAME);
+	}
+
+	public MeetMarieHenriTest() {
+		setNpcNames("Marie-Henri");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new WriterNPC(), ZONE_NAME);
 	}
 
 	@Override
@@ -44,10 +48,6 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 
 		quest = new MeetMarieHenri();
 		quest.addToWorld();
-	}
-
-	public MeetMarieHenriTest() {
-		super(ZONE_NAME, "Marie-Henri");
 	}
 
 	/**

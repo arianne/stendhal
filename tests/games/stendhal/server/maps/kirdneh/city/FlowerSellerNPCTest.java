@@ -16,14 +16,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -37,17 +35,14 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		new DatabaseFactory().initializeDatabase();
-		MockStendlRPWorld.get();
-
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new FlowerSellerNPC());
+		setupZone(ZONE_NAME);
 	}
 
-
 	public FlowerSellerNPCTest() {
-		super(ZONE_NAME, "Fleur");
+		setNpcNames("Fleur");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new FlowerSellerNPC(), ZONE_NAME);
 	}
 
 	/**

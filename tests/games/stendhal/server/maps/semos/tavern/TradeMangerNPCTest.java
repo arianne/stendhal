@@ -18,6 +18,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -27,12 +32,6 @@ import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.maps.semos.tavern.market.MarketManagerNPC;
 import games.stendhal.server.maps.semos.tavern.market.TradeCenterZoneConfigurator;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -49,12 +48,13 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new TradeCenterZoneConfigurator());
+		setupZone(ZONE_NAME);
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	public TradeMangerNPCTest() {
+		setNpcNames("Harold");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new TradeCenterZoneConfigurator(), ZONE_NAME);
 	}
 
 	/**
@@ -69,10 +69,6 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		if (npc instanceof MarketManagerNPC) {
 			((MarketManagerNPC) npc).getOfferMap().clear();
 		}
-	}
-
-	public TradeMangerNPCTest() {
-		super(ZONE_NAME, "Harold");
 	}
 
 	/**

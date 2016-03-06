@@ -18,6 +18,12 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -28,12 +34,6 @@ import games.stendhal.server.maps.orril.dungeon.RatChild2NPC;
 import games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC;
 import games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC;
 import games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -65,6 +65,15 @@ public class FindRatChildrenTest {
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer("bob");
+	}
+
+	@After
+	public void tearDown() {
+		PlayerTestHelper.removeNPC("Agnus");
+		PlayerTestHelper.removeNPC("Avalon");
+		PlayerTestHelper.removeNPC("Cody");
+		PlayerTestHelper.removeNPC("Mariel");
+		PlayerTestHelper.removeNPC("Opal");
 	}
 
 	@Test
@@ -294,8 +303,6 @@ public class FindRatChildrenTest {
 		assertEquals("Bye", getReply(npc));
 	}
 
-
-	@Ignore
     @Test
 	public void testReturningAfterTimePassed() {
 		

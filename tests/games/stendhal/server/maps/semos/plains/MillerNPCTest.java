@@ -16,15 +16,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -42,18 +40,13 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new MillerNPC().configureZone(zone, null);
-
 		setupZone(ZONE_NAME);
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	public MillerNPCTest() {
-		super(ZONE_NAME, "Jenny");
+		setNpcNames("Jenny");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new MillerNPC(), ZONE_NAME);
 	}
 
 	/**

@@ -17,13 +17,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -42,16 +41,13 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new HouseKeeperNPC());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public HouseKeeperNPCTest() {
-		super(ZONE_NAME, "Granny Graham");
+		setNpcNames("Granny Graham");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new HouseKeeperNPC(), ZONE_NAME);
 	}
 
 	/**

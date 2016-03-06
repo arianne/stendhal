@@ -15,15 +15,16 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.fado.city.GreeterNPC;
 import games.stendhal.server.maps.fado.hotel.HotelChefNPC;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -41,13 +42,22 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-		setupZone(ZONE_NAME, new HotelChefNPC());
-		setupZone(ZONE_NAME, new GreeterNPC());
-		new WaterForXhiphin().addToWorld();
+		setupZone(ZONE_NAME);
 	}
 
 	public WaterForXhiphinTest() {
-		super(ZONE_NAME, "Xhiphin Zohos", "Stefan");
+		setNpcNames("Xhiphin Zohos", "Stefan");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new HotelChefNPC(), ZONE_NAME);
+		addZoneConfigurator(new GreeterNPC(), ZONE_NAME);
+	}
+
+	@Before
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+
+		new WaterForXhiphin().addToWorld();
 	}
 
 	@Test

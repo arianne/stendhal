@@ -19,18 +19,15 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC;
-
 import java.util.Arrays;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -55,18 +52,14 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		MockStendlRPWorld.get();
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new FishermanNPC());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public LookUpQuoteTest() {
-		super(ZONE_NAME, "Pequod");
+		setNpcNames("Pequod");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new FishermanNPC(), ZONE_NAME);
 	}
 
 	@Override

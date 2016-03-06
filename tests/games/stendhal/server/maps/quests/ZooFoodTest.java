@@ -18,6 +18,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -26,11 +30,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
 import marauroa.common.game.RPObject.ID;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -41,19 +40,23 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-
-		setupZone(ZONE_NAME, new AnimalKeeperNPC(), new VeterinarianNPC());
-
-		final ZooFood zf = new ZooFood();
-		zf.addToWorld();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+		setupZone(ZONE_NAME);
 	}
 
 	public ZooFoodTest() {
-		super(ZONE_NAME, "Katinka", "Dr. Feelgood");
+		setNpcNames("Katinka", "Dr. Feelgood");
+		setZoneForPlayer(ZONE_NAME);
+		addZoneConfigurator(new AnimalKeeperNPC(), ZONE_NAME);
+		addZoneConfigurator(new VeterinarianNPC(), ZONE_NAME);
+	}
+
+	@Override
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		final ZooFood zf = new ZooFood();
+		zf.addToWorld();
 	}
 
 	/**
