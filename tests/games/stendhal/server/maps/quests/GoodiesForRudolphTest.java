@@ -64,7 +64,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 	private SpeakerNPC npc;
 	private Engine en;
-	private double initialKarma;
 
 	private String questSlot;
 
@@ -90,8 +89,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-
-		initialKarma = player.getKarma();
 	}
 
 	@Test
@@ -290,14 +287,6 @@ public class GoodiesForRudolphTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		return getReply(npc);
-	}
-
-	private void assertGainKarma(double delta) {
-		assertEquals(delta, player.getKarma() - initialKarma, 0.01);
-	}
-
-	private void assertLoseKarma(double delta) {
-		assertEquals(delta, initialKarma - player.getKarma(), 0.01);
 	}
 
 	private void prepareGoodies() {

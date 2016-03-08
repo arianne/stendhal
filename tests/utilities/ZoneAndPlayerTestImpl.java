@@ -42,6 +42,8 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 
 	protected AbstractQuest quest;
 
+	private double initialKarma;
+
 	protected ZoneAndPlayerTestImpl() {
 	}
 
@@ -120,6 +122,8 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 		player = createPlayer("player");
 
 		registerPlayer(player, zone);
+
+		initialKarma = player.getKarma();
 	}
 
 	/**
@@ -138,5 +142,13 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 
 	protected void assertNoHistory() {
 		assertTrue(quest.getHistory(player).isEmpty());
+	}
+
+	protected void assertGainKarma(double delta) {
+		assertEquals(delta, player.getKarma() - initialKarma, 0.01);
+	}
+
+	protected void assertLoseKarma(double delta) {
+		assertEquals(delta, initialKarma - player.getKarma(), 0.01);
 	}
 }
