@@ -325,7 +325,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start","mummy") || isCompleted(player)) {
 			res.add("Little Elisabeth wants a chocolate bar.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("chocolate") || isCompleted(player)) {
+		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("chocolate bar") || isCompleted(player)) {
 			res.add("I found a tasty chocolate bar for Elisabeth.");
 		}
         if ("mummy".equals(questState) || isCompleted(player)) {

@@ -142,6 +142,16 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
+	public void testFoundChocolate() {
+		player.setQuest(questSlot, "start");
+
+		equipWithItem(player, CHOCOLATE);
+
+		assertEquals("start", player.getQuest(questSlot));
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE);
+	}
+
+	@Test
 	public void testBringChocolateBeforeTalkingToMum() {
 		player.setQuest(questSlot, "start");
 
@@ -152,7 +162,7 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(player.isEquipped(CHOCOLATE));
 		assertEquals("start", player.getQuest(questSlot));
-		assertHistory(HISTORY_DEFAULT, HISTORY_START);
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE);
 	}
 
 	@Test
@@ -212,7 +222,7 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(isEquippedWithFlower());
 		assertLoseKarma(5);
 		assertEquals("mummy", player.getQuest(questSlot));
-		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_MUM_APPROVES);
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE, HISTORY_MUM_APPROVES);
 	}
 
 	@Test
