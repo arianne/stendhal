@@ -60,7 +60,6 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 
 	private SpeakerNPC npc;
 	private Engine en;
-	private double initialKarma;
 
 	private String questSlot;
 
@@ -87,8 +86,6 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
-
-		initialKarma = player.getKarma();
 	}
 
 	@Test
@@ -200,14 +197,6 @@ public class FindJefsMomTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals("See you around.", getReply(npc));
 		assertHistory(HISTORY_DEFAULT, HISTORY_COMPLETED_NOT_REPEATABLE);
-	}
-
-	private void assertGainKarma(double delta) {
-		assertEquals(delta, player.getKarma() - initialKarma, 0.01);
-	}
-
-	private void assertLoseKarma(double delta) {
-		assertEquals(delta, initialKarma - player.getKarma(), 0.01);
 	}
 
 	@Test
