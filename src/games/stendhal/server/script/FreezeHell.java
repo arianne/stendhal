@@ -101,7 +101,7 @@ public class FreezeHell extends ScriptImpl {
 		} else {
 			//attr.put("color", "882200");
 			attr.remove("blend_method");
-			attr.put("color_method", "soflight");
+			attr.put("color_method", "softlight");
 		}
 	}
 	
