@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003-2015 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2003-2016 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.config.zone.TMXLoader;
@@ -18,47 +25,53 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-
-import java.io.IOException;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 
 /**
- * Freezes or thaws the hell.
+ * Freezes the hell for 1st of April. The script should be run <em>before</em>
+ * the day, not during it.
  */
 public class FreezeHell extends ScriptImpl {
-	String newColor;
+	private static final Logger LOGGER = Logger.getLogger(FreezeHell.class);
+	
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		final StendhalRPWorld world = SingletonRepository.getRPWorld();
-		
-		boolean freeze = true;
-		boolean fail = false;
-		newColor = null;
-		if (args.size() >= 1) {
-			switch (args.get(0)) {
-			case "freeze":
-				freeze = true;
-				break;
-			case "thaw":
-				freeze = false;
-				break;
-			default:
-				fail = true;
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, Calendar.APRIL);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 1);
+		long waitTime = cal.getTimeInMillis() - System.currentTimeMillis();
+		// Starting the script 1st of April is too late - the event will be
+		// scheduled for the next year.
+		if (waitTime < 0) {
+			cal.add(Calendar.YEAR, 1);
+			cal.set(Calendar.MONTH, Calendar.APRIL);
+			cal.set(Calendar.DAY_OF_MONTH, 1);
+			cal.set(Calendar.HOUR_OF_DAY, 0);
+			cal.set(Calendar.MINUTE, 0);
+			waitTime = cal.getTimeInMillis() - System.currentTimeMillis();
+		}
+		// wait time in seconds
+		int waitSec = (int) waitTime / 1000;
+		LOGGER.info("Scheduling freezing hell in " + waitSec + " seconds.");
+		SingletonRepository.getTurnNotifier().notifyInSeconds(waitSec, new TurnListener() {
+			@Override
+			public void onTurnReached(int currentTurn) {
+				freezeOrThaw(true);
 			}
-			if (args.size() == 2)
-				newColor = args.get(1);
-		} else {
-			fail = true;
-		}
-		if (fail) {
-			sandbox.privateText(admin, "Usage: /script FreezeHell [freeze|thaw]");
-			return;
-		}
-		
+		});
+	}
+	
+	/**
+	 * The actual freezing and thawing routine.
+	 * 
+	 * @param freeze <code>true</code> if the hell freezes
+	 */
+	private void freezeOrThaw(boolean freeze) {
 		String newMap;
 		if (freeze) {
 			newMap = "tiled/Level -2/nalwor/frozen_hell.tmx";
@@ -66,40 +79,53 @@ public class FreezeHell extends ScriptImpl {
 			newMap = "tiled/Level -2/nalwor/hell.tmx";
 		}
 
+		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		IRPZone zn = world.getRPZone("hell");
 		StendhalRPZone zone = (StendhalRPZone) zn;
 		StendhalMapStructure map;
 		try {
 			map = TMXLoader.load(newMap);
 		} catch (Exception e) {
-			sandbox.privateText(admin, "Failed to load map: " + e);
+			LOGGER.error("Failed to load map", e);
 			return;
 		}
 		try {
-			setAttributes(zone, freeze);
 			updateZone(zone, map);
+			setAttributes(zone, freeze);
 			zone.notifyOnlinePlayers();
+			String msg;
+			if (freeze) {
+				msg = "Grim Reaper shouts: Why is it suddenly cold here?";
+				LOGGER.info("Hell just froze, thawing in " + 60 * 60 * 24 + " seconds.");
+				// Schedule thawing too
+				SingletonRepository.getTurnNotifier().notifyInSeconds(60 * 60 * 24, new TurnListener() {
+					@Override
+					public void onTurnReached(int currentTurn) {
+						freezeOrThaw(false);
+					}
+				});
+			} else {
+				msg = "Grim Reaper shouts: Phew, it's comfortably warm again.";
+				LOGGER.info("Hell is back to normal");
+			}
+			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.PRIVMSG, msg);
 		} catch (IOException e) {
-			sandbox.privateText(admin, "Failed to update map: " + e);
+			LOGGER.error("Failed to update map", e);
 		}
 	}
 	
+	/**
+	 * Change zone attributes depending on the freezing state.
+	 * 
+	 * @param zone hell zone
+	 * @param freeze freezing state. <code>true</code> if the hell freezes
+	 */
 	private void setAttributes(StendhalRPZone zone, boolean freeze) {
 		ZoneAttributes attr = zone.getAttributes();
-		// attr.put("color_method", "soflight");
-		//attr.remove("color");
 		if (freeze) {
-			System.err.println(newColor);
-			/*
-			if (newColor != null)
-				attr.put("color", newColor);
-			else
-				attr.put("color", "0088aa");
-				*/
 			attr.remove("color_method");
 			attr.put("blend_method", "truecolor");
 		} else {
-			//attr.put("color", "882200");
 			attr.remove("blend_method");
 			attr.put("color_method", "softlight");
 		}
