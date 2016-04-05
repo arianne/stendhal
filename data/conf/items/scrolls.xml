@@ -20,6 +20,44 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+   <item name="summon pet scroll">
+    <type class="scroll" subclass="summon_pet" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.SummonPetScroll"/>
+    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="blank pet scroll">
+    <type class="scroll" subclass="blank_pet_scroll" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.BlankPetScroll"/>
+    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 
   <item name="nalwor city scroll">
     <type class="scroll" subclass="nalwor" tileid="-1"/>
