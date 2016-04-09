@@ -67,6 +67,8 @@ public abstract class Pet extends DomesticAnimal {
 	protected List<String> foodName = getFoodNames();
 
 	protected int HP = 100;
+	
+	protected int LVCap = 598;
 
 	protected int ATK = 10;
 
@@ -304,7 +306,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	@Override
 	public String describe() {
-		String text = "You see a cute " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + ".";
+		String text = "You see a cute " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + " and is level " + getLevel() + ".";
 		if (hasDescription()) {
 			text = getDescription();
 		}

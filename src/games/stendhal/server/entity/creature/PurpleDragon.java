@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.common.ItemTools;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -46,11 +47,13 @@ public class PurpleDragon extends Pet {
 		incHP = 100;
 		ATK = 535;
 		DEF = 250;
+		LVCap = 25;
 		XP = 6750;
 		baseSpeed = 0.9;
 
 		setAtk(ATK);
 		setDef(DEF);
+		//setLVCap(LVCap);
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);
@@ -119,5 +122,14 @@ public class PurpleDragon extends Pet {
 	protected
 	List<String> getFoodNames() {
 		return Arrays.asList("ham", "pizza", "meat");
+	}
+	
+	@Override
+	public String describe() {
+		String text = "You see a cute " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + " and is level " + getLevel() + ". Def XP: " +  getDefXP() + "";
+		if (hasDescription()) {
+			text = getDescription();
+		}
+		return (text); //return (text + getHungerType(hunger));
 	}
 }
