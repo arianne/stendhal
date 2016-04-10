@@ -36,6 +36,10 @@ class UpdateManager {
 	private String fromVersion;
 	private String toVersion;
 
+	public UpdateManager() {
+		SignatureVerifier.get().registerTrustedCertificatesGlobally();
+	}
+
 	/**
 	 * Connects to the server and loads a Property object which contains
 	 * information about the files available for update.
