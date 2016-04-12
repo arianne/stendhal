@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,9 +49,9 @@ class UpdateManager {
 	private void downloadUpdateProp(final boolean initialDownload) {
 		// user configuration (for testing)
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder-0.95", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
+			serverFolder = bootProp.getProperty("server.folder-1.20", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
 					+ "/";
-			String updatePropertiesFile = bootProp.getProperty("server.update-prop-0.95", serverFolder + "update-0.95.properties");
+			String updatePropertiesFile = bootProp.getProperty("server.update-prop-1.20", serverFolder + "update-1.20.properties");
 			final HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
 			updateProp = httpClient.fetchProperties();
 			if (updateProp != null && updateProp.containsKey("init.version")) {
@@ -60,7 +60,7 @@ class UpdateManager {
 		}
 
 		// primary location
-		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER") + "/update-0.95.properties";
+		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER") + "/update-1.20.properties";
 		HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
 		updateProp = httpClient.fetchProperties();
 		if (updateProp != null && updateProp.containsKey("init.version")) {
@@ -68,10 +68,10 @@ class UpdateManager {
 		}
 
 		// fallback location
-		updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER_FALLBACK") + "/update-0.95.properties";
+		updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER_FALLBACK") + "/update-1.20.properties";
 		httpClient = new HttpClient(updatePropertiesFile, initialDownload);
 		updateProp = httpClient.fetchProperties();
-}
+	}
 
 	/**
 	 * Processes the update.
@@ -411,9 +411,9 @@ class UpdateManager {
 			sb.append(file + ",");
 		}
 
-		if (!bootProp.getProperty("load-0.95", "").startsWith(sb.toString())) {
-			sb.append(bootProp.getProperty("load-0.95", ""));
-			bootProp.put("load-0.95", sb.toString());
+		if (!bootProp.getProperty("load-1.20", "").startsWith(sb.toString())) {
+			sb.append(bootProp.getProperty("load-1.20", ""));
+			bootProp.put("load-1.20", sb.toString());
 		}
 	}
 }
