@@ -1,16 +1,27 @@
 ﻿Changelog
 ---------
 1.20
+
 *world*
-- player loses conscious when scuba gear is take off under water
-- improved thunderstorms
+- Humans lose conscious when scuba gear is take off under water
+- Improved thunderstorms
+- Archer combat is now visible
+- Harold understands "prolong all" now
 
 *code*
-- support Postgres databases in addition to H2 (recommanded) and MySQL
-- setup Travis for continuous integration tests 
-- git repository is mirrored instantaneously between Github and Sourceforge in both directions
-- we went through the list of old bug an checked which ones have been fixed in the mean time
-- yearly special event quests now pick up the current year as part of their quest slot automatically
+- Support Postgres databases in addition to H2 (recommended) and MySQL
+- Setup Travis for continuous integration tests and fixed some order dependent tests 
+- Migrated test coverage analysis from Cobertura to Jacoco 
+- Git repository is mirrored instantaneously between Github and Sourceforge in both directions
+- Yearly special event quests now pick up the current year as part of their quest slot automatically
+- Backend for puzzles
+
+*fixes*
+- Christmas quest "Goodies for Rudolph" is now repeatable next year
+- Fixed maximization state being sometimes saved incorrectly.
+- Database index are now created automatically
+
+
 
 
 1.19
