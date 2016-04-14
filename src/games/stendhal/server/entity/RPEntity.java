@@ -32,6 +32,7 @@ import games.stendhal.server.core.engine.dbcommand.LogKillEventCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.CaptureTheFlagFlag;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -115,6 +116,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private int base_hp;
 
 	private int hp;
+	
+	private int lv_cap;
 
 	private int xp;
 
@@ -528,6 +531,9 @@ public abstract class RPEntity extends GuidedEntity {
 			hp = getInt("hp");
 		}
 
+		if (has("lv_cap")) {
+			lv_cap = getInt("lv_cap");
+		}
 		if (has("level")) {
 			level = getInt("level");
 		}
@@ -1066,6 +1072,15 @@ public abstract class RPEntity extends GuidedEntity {
 	public int getHP() {
 		return this.hp;
 	}
+	
+	/**
+	 * Get the lv_cap.
+	 *
+	 * @return The current lv_cap.
+	 */
+	public int getLVCap() {
+		return this.lv_cap;
+	}
 
 	/**
 	 * Gets the mana (magic).
@@ -1124,6 +1139,12 @@ public abstract class RPEntity extends GuidedEntity {
 	public void addBaseMana(final int newBaseMana) {
 		base_mana += newBaseMana;
 		put("base_mana", base_mana);
+	}
+	
+	public void setLVCap(final int newLVCap) {
+		lv_cap = newLVCap;
+		put("lv_cap", newLVCap);
+		this.updateModifiedAttributes();
 	}
 
 	public final void setXP(final int newxp) {
@@ -1583,6 +1604,20 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		return killer;
 	}
+	
+	protected Pet entityAsPet(Entity entity) {
+		if (!(entity instanceof Pet)) {
+			return null;
+		}
+		Pet killerPet = (Pet) entity;
+		/* isDisconnected is undefined in object Pet;
+		if (killer.isDisconnected()) {
+			// Try to get the corresponding online player:
+			killer = SingletonRepository.getRuleProcessor().getPlayer(killer.getName());
+		}
+		*/
+		return killerPet;
+	}
 
 	/**
 	 * Gives XP to every player who has helped killing this RPEntity.
@@ -1652,6 +1687,77 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			}
 
 			SingletonRepository.getAchievementNotifier().onKill(killer);
+
+			killer.notifyWorldAboutChanges();
+		}
+	}
+	
+	/*
+	 * Reward pets who kill enemies.  don't perks like AchievementNotifier that players.
+	 */
+	protected void rewardKillerAnimals(final int oldXP) {
+		final int xpReward = (int) (oldXP * 0.05);
+
+		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			final int damageDone = entry.getValue();
+			if (damageDone == 0) {
+				continue;
+			}
+			
+			Pet killer = entityAsPet(entry.getKey());
+			if (killer == null) {
+				
+				continue;
+			}
+
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				final String killName;
+				if (killer.has("name")) {
+					killName = killer.get("name");
+				} else {
+					killName = killer.get("type");
+				}
+
+				logger.debug(killName + " did " + damageDone + " of "
+						+ totalDamageReceived + ". Reward was " + xpReward);
+			}
+
+			final int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
+
+			if (logger.isDebugEnabled() || Testing.DEBUG) {
+				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
+						+ totalDamageReceived + "\t");
+			}
+
+			int reward = xpEarn;
+
+			// We ensure it gets at least 1 experience
+			// point, because getting nothing lowers motivation.
+			if (reward == 0) {
+				reward = 1;
+			}
+
+			killer.addXP(reward);
+
+			/*
+			// For some quests etc., it is required that the player kills a
+			// certain creature without the help of others.
+			// Find out if the player killed this RPEntity on his own, but
+			// don't overwrite solo with shared.
+			final String killedName = getName();
+
+			if (killedName == null) {
+				logger.warn("This entity returns null as name: " + this);
+			} else {
+				if (damageDone == totalDamageReceived) {
+					killer.setSoloKill(killedName);
+				} else {
+					killer.setSharedKill(killedName);
+				}
+			}
+
+			SingletonRepository.getAchievementNotifier().onKill(killer);
+			*/
 
 			killer.notifyWorldAboutChanges();
 		}
@@ -1737,8 +1843,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// Establish how much xp points your are rewarded
 		// give XP to everyone who helped killing this RPEntity
 		rewardKillers(oldXP);
+		rewardKillerAnimals(oldXP);
 
-		if (!(killer instanceof Player) && !(killer instanceof Status)) {
+		if (!(killer instanceof Player) && !(killer instanceof Status) && !(killer instanceof Pet)) {
 			/*
 			 * Prettify the killer name for the corpse. Should be done only
 			 * after the more plain version has been used for the killer list.
