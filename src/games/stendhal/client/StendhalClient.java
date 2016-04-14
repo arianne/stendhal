@@ -847,7 +847,11 @@ public class StendhalClient extends ClientFramework {
 		return pressedStateKeys.contains(KeyEvent.VK_UP)
 				|| pressedStateKeys.contains(KeyEvent.VK_DOWN)
 				|| pressedStateKeys.contains(KeyEvent.VK_LEFT)
-				|| pressedStateKeys.contains(KeyEvent.VK_RIGHT);
+				|| pressedStateKeys.contains(KeyEvent.VK_RIGHT)
+				|| pressedStateKeys.contains(KeyEvent.VK_KP_LEFT)
+				|| pressedStateKeys.contains(KeyEvent.VK_KP_RIGHT)
+				|| pressedStateKeys.contains(KeyEvent.VK_KP_UP)
+				|| pressedStateKeys.contains(KeyEvent.VK_KP_DOWN);
 	}
 
 	/**
