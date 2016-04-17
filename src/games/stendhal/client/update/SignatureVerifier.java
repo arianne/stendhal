@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,30 +15,46 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.util.Enumeration;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 /**
  * verifies a signature
  */
 class SignatureVerifier {
 	private static SignatureVerifier instance;
-	private KeyStore ks;
+	private KeyStore ks = null;
 
 	private SignatureVerifier() {
+		String keystoreFilename = ClientGameConfiguration.get("UPDATE_CERTSTORE");
+		InputStream is = UpdateManager.class.getClassLoader().getResourceAsStream(keystoreFilename);
+		if (is != null) {
+			ks = loadKeystore(is);
+		} else {
+			System.err.println("Certstore " + keystoreFilename + " not found, configured as UPDATE_CERTSTORE in game.properties.");
+		}
+	}
+
+	/**
+	 * loads a keystore
+	 *
+	 * @param is InputStream, will be closed
+	 * @return KeyStore or null in case of an error
+	 */
+	private KeyStore loadKeystore(InputStream is) {
+		KeyStore keystore = null;
 		try {
-			ks = KeyStore.getInstance(KeyStore.getDefaultType());
-			String keystoreFilename = ClientGameConfiguration.get("UPDATE_CERTSTORE");
-			InputStream is = UpdateManager.class.getClassLoader().getResourceAsStream(keystoreFilename);
-			if (is != null) {
-				ks.load(is, null);
-				is.close();
-			} else {
-				System.err.println("Certstore " + keystoreFilename + " not found, configured as UPDATE_CERTSTORE in game.properties.");
-			}
+			keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+			keystore.load(is, null);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} catch (KeyStoreException e) {
@@ -49,7 +65,14 @@ class SignatureVerifier {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return keystore;
 	}
 
 	/**
@@ -128,5 +151,37 @@ class SignatureVerifier {
 					.digit(s.charAt(i + 1), 16));
 		}
 		return data;
+	}
+
+	/**
+	 * register trusted certificates in order for Oracle Java to
+	 * support StartSSL and Let's encrypt for https connections
+	 * such as the updater.
+	 */
+	void registerTrustedCertificatesGlobally() {
+		try {
+			String javaTrustStoreFile = System.getProperty("java.home") + "/lib/security/cacerts";
+			KeyStore trustStore = loadKeystore(new FileInputStream(javaTrustStoreFile));
+            Enumeration<String> aliases = ks.aliases();
+            while (aliases.hasMoreElements()) {
+                String alias = aliases.nextElement();
+                Certificate cert = ks.getCertificate(alias);
+                trustStore.setCertificateEntry(alias, cert);
+            }
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            tmf.init(trustStore);
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, tmf.getTrustManagers(), null);
+            SSLContext.setDefault(sslContext);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (KeyManagementException e) {
+			e.printStackTrace();
+		}
 	}
 }

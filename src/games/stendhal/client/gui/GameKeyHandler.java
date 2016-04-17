@@ -85,6 +85,10 @@ class GameKeyHandler implements KeyListener {
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_KP_LEFT:
+			case KeyEvent.VK_KP_RIGHT:
+			case KeyEvent.VK_KP_UP:
+			case KeyEvent.VK_KP_DOWN:
 				/*
 				 * Ctrl means face, otherwise move. Alt turns on auto-walk.
 				 */
@@ -152,6 +156,10 @@ class GameKeyHandler implements KeyListener {
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_KP_LEFT:
+			case KeyEvent.VK_KP_RIGHT:
+			case KeyEvent.VK_KP_UP:
+			case KeyEvent.VK_KP_DOWN:
 				/*
 				 * Ctrl means face, otherwise move
 				 */
@@ -188,14 +196,15 @@ class GameKeyHandler implements KeyListener {
 	private Direction keyCodeToDirection(final int keyCode) {
 		switch (keyCode) {
 		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_KP_LEFT:
 			return Direction.LEFT;
-
 		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_KP_RIGHT:
 			return Direction.RIGHT;
-
+		case KeyEvent.VK_KP_UP:
 		case KeyEvent.VK_UP:
 			return Direction.UP;
-
+		case KeyEvent.VK_KP_DOWN:
 		case KeyEvent.VK_DOWN:
 			return Direction.DOWN;
 
