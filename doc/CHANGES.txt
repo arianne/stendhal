@@ -1,11 +1,5 @@
 ﻿Changelog
 ---------
-1.21
-
-*world*
-- Fighting pets gain exp and level up.
-- -For testing- Dragon Keeper NPC beside Semos Townhall to make testing the changes more convenient. 
-
 1.20
 
 *world*
