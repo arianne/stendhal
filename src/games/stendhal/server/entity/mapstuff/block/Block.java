@@ -200,7 +200,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	private void sendSound() {
-		if (this.sounds != null && this.sounds.isEmpty()) {
+		if (this.sounds != null && !this.sounds.isEmpty()) {
 			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
 			this.addEvent(e);
 			this.notifyWorldAboutChanges();
