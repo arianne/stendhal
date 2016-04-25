@@ -2,6 +2,25 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
   
+    <item name="backpack">
+    <type class="container" subclass="backpack" tileid="-1"/>
+    <description>You see an backpack.</description>
+     <implementation class-name="games.stendhal.server.entity.item.Container"/>
+    <attributes>
+      <slot_name value="bag"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+<!--       <slot name="content"/>  -->
+      <slot name="back"/>
+<!--      <slot name="bag"/>
+      <slot name="trade"/>
+ -->      
+    </equipable>
+  </item>
+  
   <item name="empty sack">
     <type class="container" subclass="empty_sack" tileid="-1"/>
     <description>You see an empty sack. It will not stand up, unless you fill it first.</description>
