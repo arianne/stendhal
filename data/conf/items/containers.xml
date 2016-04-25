@@ -8,6 +8,9 @@
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
       <slot_name value="bag"/>
+      <undroppableondeath value="1" />
+      <autobind value="1" />
+      <slot_size value="15"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
