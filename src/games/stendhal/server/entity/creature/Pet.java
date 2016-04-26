@@ -15,6 +15,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Killer;
+import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -214,11 +215,11 @@ public abstract class Pet extends DomesticAnimal {
 		}
 	}
 	
-	private void heal(final Item medicine) {
+	private void drink(final ConsumableItem medicine) {
 		medicine.removeOne();
 		if (getHP() < getBaseHP()) {
 			// directly increase the pet's health points
-			heal(incHP); 
+			heal(((ConsumableItem) medicine.splitOff(1)).getAmount(), true); 
 		}
 	}
 
@@ -256,7 +257,7 @@ public abstract class Pet extends DomesticAnimal {
 				if (nextTo(medicine)) {
 					LOGGER.debug("Pet heals");
 					setIdea("heal");
-					heal(medicine);
+					drink((ConsumableItem) medicine);
 					clearPath();
 					stop();
 				} else {
