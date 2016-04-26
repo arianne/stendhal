@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.game.Definition.Type;
@@ -65,6 +66,8 @@ public abstract class Pet extends DomesticAnimal {
 	public final int FAT_FACTOR = 5;
 
 	protected List<String> foodName = getFoodNames();
+	
+	protected List<String> medicineName = getMedicineNames();
 
 	protected int HP = 100;
 	
@@ -110,6 +113,10 @@ public abstract class Pet extends DomesticAnimal {
 	}
 	
 	protected abstract List<String> getFoodNames();
+	
+	protected List<String> getMedicineNames() {
+		return Arrays.asList("mini potion", "potion", "greater potion", "mega potion");
+	}
 	
 	public static void generateRPClass() {
 		try {
@@ -166,10 +173,32 @@ public abstract class Pet extends DomesticAnimal {
 
 		return chosen;
 	}
+	
+	private Item getNearestHealItem(final double range) {
+		// This way we save several sqrt operations
+		double squaredDistance = range * range; 
+
+		Item chosen = null;
+		
+		for (final Item item : getZone().getItemsOnGround()) {
+			if (canHeal(item) && (this.squaredDistance(item) < squaredDistance)) {
+				chosen = item;
+				squaredDistance = this.squaredDistance(item);
+			}
+		}
+
+		return chosen;
+	}
 
 	boolean canEat(final Item i) {
 
 		return foodName.contains(i.getName());
+
+	}
+	
+	boolean canHeal(final Item i) {
+
+		return medicineName.contains(i.getName());
 
 	}
 
@@ -179,6 +208,14 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		food.removeOne();
 		hunger = START_HUNGER_VALUE;
+		if (getHP() < getBaseHP()) {
+			// directly increase the pet's health points
+			heal(incHP); 
+		}
+	}
+	
+	private void heal(final Item medicine) {
+		medicine.removeOne();
 		if (getHP() < getBaseHP()) {
 			// directly increase the pet's health points
 			heal(incHP); 
@@ -209,6 +246,26 @@ public abstract class Pet extends DomesticAnimal {
 			increaseHunger();
 		} else if (Rand.rand(FAT_FACTOR) == 1) {
 			increaseHunger();
+		}
+		
+		// Healing Logic
+		if (getHP() < getBaseHP()) {
+			final Item medicine = getNearestHealItem(6);
+			
+			if ((medicine != null)) {
+				if (nextTo(medicine)) {
+					LOGGER.debug("Pet heals");
+					setIdea("heal");
+					heal(medicine);
+					clearPath();
+					stop();
+				} else {
+					LOGGER.debug("Pet moves to medicine");
+					setIdea("heal");
+					setMovement(medicine, 0, 0, getMovementRange());
+				}
+				
+			}
 		}
 
 		if (hunger > HUNGER_HUNGRY) {

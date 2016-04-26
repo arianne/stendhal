@@ -1,5 +1,15 @@
 ﻿Changelog
 ---------
+1.21 *developing*
+
+*world*
+- Pets gain xp and level up.
+- Pets can drink 'medicine' even when they aren't hungry. Note: They still only heal for a base amount.
+- New bag item backpack. Still missing the porting and questing steps.
+
+*fixes*
+- Help For the Harvest quest should work again.
+
 1.20
 
 *world*
