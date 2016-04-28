@@ -250,7 +250,7 @@ public abstract class Pet extends DomesticAnimal {
 			increaseHunger();
 		}
 		
-		// Healing Logic
+		
 		if (getHP() < getBaseHP()) {
 			final Item medicine = getNearestHealItem(6);
 			
@@ -267,7 +267,7 @@ public abstract class Pet extends DomesticAnimal {
 				
 			}
 		}
-
+		else
 		if (hunger > HUNGER_HUNGRY) {
 			// Show 'food' idea whenever hungry
 			setIdea("food");
@@ -330,7 +330,7 @@ public abstract class Pet extends DomesticAnimal {
 				clearPath();
 			}
 		}
-
+		
 		// bring the pet to the owner if he/she calls it
 		if (isOwnerCallingMe()) {
 			clearPath();
