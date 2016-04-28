@@ -125,6 +125,7 @@ public abstract class Pet extends DomesticAnimal {
 			pet.isA("creature");
 			pet.addAttribute("weight", Type.BYTE);
 			pet.addAttribute("eat", Type.FLAG);
+			pet.addAttribute("drink", Type.FLAG);
 		} catch (final SyntaxException e) {
 			LOGGER.error("cannot generate RPClass", e);
 		}
@@ -216,10 +217,10 @@ public abstract class Pet extends DomesticAnimal {
 	}
 	
 	private void drink(final ConsumableItem medicine) {
-		medicine.removeOne();
 		if (getHP() < getBaseHP()) {
 			// directly increase the pet's health points
 			heal(((ConsumableItem) medicine.splitOff(1)).getAmount(), true); 
+			medicine.removeOne();
 		}
 	}
 
