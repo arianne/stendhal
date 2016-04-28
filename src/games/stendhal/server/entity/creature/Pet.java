@@ -116,7 +116,7 @@ public abstract class Pet extends DomesticAnimal {
 	protected abstract List<String> getFoodNames();
 	
 	protected List<String> getMedicineNames() {
-		return Arrays.asList("mini potion", "potion", "greater potion", "mega potion");
+		return Arrays.asList("minor potion", "potion", "greater potion", "mega potion");
 	}
 	
 	public static void generateRPClass() {
@@ -256,13 +256,11 @@ public abstract class Pet extends DomesticAnimal {
 			if ((medicine != null)) {
 				if (nextTo(medicine)) {
 					LOGGER.debug("Pet heals");
-					setIdea("heal");
 					drink((ConsumableItem) medicine);
 					clearPath();
 					stop();
 				} else {
 					LOGGER.debug("Pet moves to medicine");
-					setIdea("heal");
 					setMovement(medicine, 0, 0, getMovementRange());
 				}
 				
