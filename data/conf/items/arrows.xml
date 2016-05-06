@@ -66,6 +66,98 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+  <item name="fire arrow">
+    <type class="ammunition" subclass="fire_arrow" tileid="-1"/>
+    <description>You see a fire arrow. The tip burns brightly.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk value="6"/>
+      <range value="4"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="2160"/>
+    <damage type="fire"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+    <item name="ice arrow">
+    <type class="ammunition" subclass="ice_arrow" tileid="-1"/>
+    <description>You see an ice arrow. It can deliver a bitter sting.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk value="6"/>
+      <range value="4"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="2160"/>
+    <damage type="ice"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+    <item name="light arrow">
+    <type class="ammunition" subclass="light_arrow" tileid="-1"/>
+    <description>You see a light arrow. It shines with a holy radiance.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk value="6"/>
+      <range value="4"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="2160"/>
+    <damage type="light"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  <item name="dark arrow">
+    <type class="projectiles" subclass="dark_arrow" tileid="-1"/>
+    <description>You see a dark arrow. It's hard to describe.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk value="6"/>
+      <range value="4"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="2160"/>
+    <damage type="dark"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 
   <item name="power arrow">
     <type class="ammunition" subclass="power_arrow" tileid="-1"/>
