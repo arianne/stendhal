@@ -28,9 +28,9 @@ public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 	 * @param itemName
 	 *            name of item to drop
 	 */
-	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC,
+	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter,
 			final String repeatedText, final String itemName) {
-		super(speakerNPC, repeatedText);
+		super(speakerNPC, zoneStartsWithLimiter, repeatedText);
 		this.speakerNPC = speakerNPC;
 		this.itemName = itemName;
 	}
@@ -48,8 +48,8 @@ public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 	 * @param itemName
 	 *            name of item to drop
 	 */
-	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText, final boolean useHighProbabilityZones, final String itemName) {
-		super(speakerNPC, repeatedText, useHighProbabilityZones);
+	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones, final String itemName) {
+		super(speakerNPC, zoneStartsWithLimiter, repeatedText, useHighProbabilityZones);
 		this.speakerNPC = speakerNPC;
 		this.itemName = itemName;
 	}

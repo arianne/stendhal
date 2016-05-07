@@ -36,6 +36,7 @@ public class TeleporterBehaviour implements TurnListener {
 	private ArrayList<StendhalRPZone> zones;
 
 	private final SpeakerNPC speakerNPC;
+	private final String zoneStartsWithLimiter;
 	private final String repeatedText;
 	
 	/**
@@ -46,9 +47,10 @@ public class TeleporterBehaviour implements TurnListener {
 	 * @param repeatedText
 	 *            text to repeat
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC,
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter,
 			final String repeatedText) {
 		this.speakerNPC = speakerNPC;
+		this.zoneStartsWithLimiter = zoneStartsWithLimiter;
 		this.repeatedText = repeatedText;
 		listZones();
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, this);
@@ -74,8 +76,8 @@ public class TeleporterBehaviour implements TurnListener {
 	 *            true to make teleportation to a hand 
 	 *            selected list of zones more likely
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText, final boolean useHighProbabilityZones) {
-		this(speakerNPC, repeatedText);
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones) {
+		this(speakerNPC, zoneStartsWithLimiter, repeatedText);
 		if (useHighProbabilityZones) {
 			addHighProbability();
 		}
@@ -122,7 +124,7 @@ public class TeleporterBehaviour implements TurnListener {
 		while (itr.hasNext()) {
 			final StendhalRPZone aZone = (StendhalRPZone) itr.next();
 			final String zoneName = aZone.getName();
-			if (zoneName.startsWith("0") && !badZones.contains(zoneName)) {
+			if (zoneName.startsWith(zoneStartsWithLimiter) && !badZones.contains(zoneName)) {
 				zones.add(aZone);
 			}
 		}

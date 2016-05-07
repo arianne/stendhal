@@ -11,6 +11,11 @@
 *fixes*
 - Help For the Harvest quest should work again.
 
+*code*
+- In TeleporterBehaviour, zoneName.startsWith() 
+  now checks a variable so teleporting NPCs can a 
+  little more customizable.
+
 1.20
 
 *world*
