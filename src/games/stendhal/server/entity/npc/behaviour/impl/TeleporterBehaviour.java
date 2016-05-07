@@ -47,12 +47,27 @@ public class TeleporterBehaviour implements TurnListener {
 	 * @param repeatedText
 	 *            text to repeat
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter,
-			final String repeatedText) {
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones, 
+			final String zoneStartsWithLimiter, final String repeatedText) {
 		this.speakerNPC = speakerNPC;
 		this.zoneStartsWithLimiter = zoneStartsWithLimiter;
 		this.repeatedText = repeatedText;
-		listZones();
+		if (setZones != null)
+		{
+			final Iterator<IRPZone> itr = SingletonRepository.getRPWorld().iterator();
+			zones = new ArrayList<StendhalRPZone>();
+			while (itr.hasNext()) {
+				final StendhalRPZone aZone = (StendhalRPZone) itr.next();
+				final String zoneName = aZone.getName();
+				if (zoneName.startsWith(zoneStartsWithLimiter) && setZones.contains(zoneName)) {
+					zones.add(aZone);
+				}
+			}
+		}
+		else //get default zones;
+		{
+			listZones();
+		}
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, this);
 		// say something every minute so that can be noticed more easily
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, new TurnListener() {
@@ -76,8 +91,8 @@ public class TeleporterBehaviour implements TurnListener {
 	 *            true to make teleportation to a hand 
 	 *            selected list of zones more likely
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones) {
-		this(speakerNPC, zoneStartsWithLimiter, repeatedText);
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones) {
+		this(speakerNPC, setZones, zoneStartsWithLimiter, repeatedText);
 		if (useHighProbabilityZones) {
 			addHighProbability();
 		}

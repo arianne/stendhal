@@ -228,7 +228,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		if (System.getProperty("stendhal.santa") != null) {
 			// activate santa here
 			createSanta();
-			teleporterBehaviour = new TeleporterBehaviour(santa, "0", "Ho, ho, ho! Merry Christmas!", false);
+			teleporterBehaviour = new TeleporterBehaviour(santa, null, "0", "Ho, ho, ho! Merry Christmas!", false);
 		}
 	}
 

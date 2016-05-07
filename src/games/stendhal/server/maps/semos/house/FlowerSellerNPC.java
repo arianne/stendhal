@@ -30,7 +30,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 
-        	new TeleporterBehaviour(buildSemosHouseArea(), "0", "Flowers! Get your fresh flowers here!");
+        	new TeleporterBehaviour(buildSemosHouseArea(), null, "0", "Flowers! Get your fresh flowers here!");
 	}
 
 	private SpeakerNPC buildSemosHouseArea() {

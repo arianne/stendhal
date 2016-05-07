@@ -15,6 +15,7 @@
 - In TeleporterBehaviour, zoneName.startsWith() 
   now checks a variable so teleporting NPCs can a 
   little more customizable.
+- TeleporterBehaviour can now be passed an array of zones to choose from or leave null for the default list.
 
 1.20
 

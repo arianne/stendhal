@@ -2,6 +2,9 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import marauroa.common.game.IRPZone;
+
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -28,9 +31,9 @@ public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 	 * @param itemName
 	 *            name of item to drop
 	 */
-	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter,
+	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones, final String zoneStartsWithLimiter,
 			final String repeatedText, final String itemName) {
-		super(speakerNPC, zoneStartsWithLimiter, repeatedText);
+		super(speakerNPC, setZones, zoneStartsWithLimiter, repeatedText);
 		this.speakerNPC = speakerNPC;
 		this.itemName = itemName;
 	}
@@ -48,8 +51,8 @@ public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 	 * @param itemName
 	 *            name of item to drop
 	 */
-	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones, final String itemName) {
-		super(speakerNPC, zoneStartsWithLimiter, repeatedText, useHighProbabilityZones);
+	public ItemDroppingTeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones, final String itemName) {
+		super(speakerNPC, setZones, zoneStartsWithLimiter, repeatedText, useHighProbabilityZones);
 		this.speakerNPC = speakerNPC;
 		this.itemName = itemName;
 	}
