@@ -379,6 +379,9 @@ public abstract class Pet extends DomesticAnimal {
 		final PurpleDragon purpledragon = new PurpleDragon(owner);
 		owner.setPet(purpledragon);
 		purpledragon.setPosition(owner.getX(), owner.getY() + 1);
+		purpledragon.setTitle(this.getTitle());
+		purpledragon.setXP(this.getXP());
+		purpledragon.setLevel(this.getLevel());
 		this.getZone().remove(this);
 		owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
 	}

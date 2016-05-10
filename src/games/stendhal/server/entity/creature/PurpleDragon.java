@@ -48,7 +48,7 @@ public class PurpleDragon extends Pet {
 		ATK = 535;
 		DEF = 250;
 		LVCap = 25;
-		XP = 6750;
+		XP = 28900;
 		baseSpeed = 0.9;
 
 		setAtk(ATK);
