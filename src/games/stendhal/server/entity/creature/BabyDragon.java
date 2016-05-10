@@ -44,6 +44,7 @@ public class BabyDragon extends Pet {
 	void setUp() {
 		HP = 500;
 		incHP = 6;
+		LVCap = 15;
 		ATK = 15;
 		DEF = 40;
 		XP = 100;
@@ -115,5 +116,10 @@ public class BabyDragon extends Pet {
 	protected
 	List<String> getFoodNames() {
 		return Arrays.asList("ham", "pizza", "meat");
+	}
+	
+	@Override
+	public boolean canGrow() {
+		return true;
 	}
 }

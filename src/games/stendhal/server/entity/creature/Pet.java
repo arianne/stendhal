@@ -250,6 +250,11 @@ public abstract class Pet extends DomesticAnimal {
 			increaseHunger();
 		}
 		
+		if ((this.getLevel() >= LVCap) && (canGrow() == true))
+		{
+			grow();
+		}
+		
 		
 		if (getHP() < getBaseHP()) {
 			final Item medicine = getNearestHealItem(6);
@@ -368,6 +373,18 @@ public abstract class Pet extends DomesticAnimal {
 			text = getDescription();
 		}
 		return (text + getHungerType(hunger));
+	}
+	
+	public void grow() {
+		final PurpleDragon purpledragon = new PurpleDragon(owner);
+		owner.setPet(purpledragon);
+		purpledragon.setPosition(owner.getX(), owner.getY() + 1);
+		this.getZone().remove(this);
+		owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
+	}
+	
+	public boolean canGrow() {
+		return false;
 	}
 
 }
