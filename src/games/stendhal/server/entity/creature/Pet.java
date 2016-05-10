@@ -15,6 +15,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Killer;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -248,6 +249,14 @@ public abstract class Pet extends DomesticAnimal {
 			increaseHunger();
 		} else if (Rand.rand(FAT_FACTOR) == 1) {
 			increaseHunger();
+		}
+		
+		//fight whatever owner is targeting
+		if ((takesPartInCombat() == true) && (owner != null) 
+				&& (owner.getAttackTarget() != null))
+		{
+			RPEntity myTarget = owner.getAttackTarget();
+			this.setTarget(myTarget);
 		}
 		
 		if ((this.getLevel() >= LVCap) && (canGrow() == true))
