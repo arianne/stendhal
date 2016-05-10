@@ -541,16 +541,6 @@ public class j2DClient implements UserInterface {
 		horizSplit.setDividerLocation(leftColumn.getPreferredSize().width);
 		setInitialWindowStates();
 
-		/*
-		 *  A bit roundabout way to calculate the desired minsize, but
-		 *  different java versions seem to take the window decorations
-		 *  in account in rather random ways.
-		 */
-		final int width = frame.getWidth()
-				- minimap.getComponent().getWidth() - containerPanel.getWidth();
-		final int height = frame.getHeight() - chatLogArea.getHeight();
-
-		frame.setMinimumSize(new Dimension(width, height));
 		frame.setVisible(true);
 
 		/*
