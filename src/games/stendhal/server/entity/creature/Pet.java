@@ -255,8 +255,8 @@ public abstract class Pet extends DomesticAnimal {
 			grow();
 		}
 		
-		
-		if (getHP() < getBaseHP()) {
+		//drinking logic
+		if ((getHP() < getBaseHP()) && (getNearestHealItem(6) != null)) {
 			final Item medicine = getNearestHealItem(6);
 			
 			if ((medicine != null)) {
