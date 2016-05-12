@@ -7,6 +7,7 @@
 - Pets can drink 'medicine' even when they aren't hungry. Note: They still only heal for a base amount.
 - New bag item backpack. Still missing the porting and questing steps.
 - Fire, Ice, and Light arrows now defined in ammunition.xml ready to be quest rewards.
+- New trader NPC (Mizuno) travels around remote parts of Ados selling ice arrows for black pearls.
 
 *fixes*
 - Help For the Harvest quest should work again.
