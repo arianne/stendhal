@@ -59,7 +59,7 @@ public class TeleporterBehaviour implements TurnListener {
 			while (itr.hasNext()) {
 				final StendhalRPZone aZone = (StendhalRPZone) itr.next();
 				final String zoneName = aZone.getName();
-				if (zoneName.startsWith(zoneStartsWithLimiter) && setZones.contains(zoneName)) {
+				if (setZones.contains(zoneName)) {
 					zones.add(aZone);
 				}
 			}

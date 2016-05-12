@@ -3067,6 +3067,7 @@ Holy mackerel! These chips are tasty.
     accessible="false">
     <configurator
       class-name="games.stendhal.server.maps.semos.house.FlowerSellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.house.SpiritTrapperNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC" />
 
     <portal x="1" y="11" ref="exit_1">
