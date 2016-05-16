@@ -4,17 +4,19 @@
 
 *world*
 - Pets gain xp and level up.
-- Pets can drink 'medicine' even when they aren't hungry. Note: They still only heal for a base amount.
+- Pets can drink 'medicine' even when they aren't hungry. Making them easier to maintain in battle.
+- Fighting pets will attack things along side their owners. Instead of just in self-defense.
 - New bag item backpack. Still missing the porting and questing steps.
 - Fire, Ice, and Light arrows now defined in ammunition.xml ready to be quest rewards.
 - New trader NPC (Mizuno) travels around remote parts of Ados selling ice arrows for black pearls.
+- Rebalancing vampire, chaos swords. 
 
 *fixes*
 - Help For the Harvest quest should work again.
 
 *code*
 - In TeleporterBehaviour, zoneName.startsWith() 
-  now checks a variable so teleporting NPCs can a 
+  now checks a variable so teleporting NPCs can be a 
   little more customizable.
 - TeleporterBehaviour can now be passed an array of zones to choose from or leave null for the default list.
 
