@@ -12,6 +12,23 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
@@ -45,31 +62,12 @@ import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.rp.MarauroaRPZone;
-
-import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 	/**
@@ -999,7 +997,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return true if there is a collision
 	 */
 	public boolean collidesOnLine(final int x1, final int y1, final int x2, final int y2) {
-		Vector<Point> points;
+		List<Point> points;
 		// Always draw the line to the same direction, so that if A to B
 		// collides, then so does B to A
 		if ((x1 < x2) || ((x1 == x2) && (y1 < y2))) {
