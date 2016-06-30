@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2016 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,22 +12,13 @@
 package games.stendhal.common;
 
 import java.awt.Point;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * a line consiting of points
+ * a line consisting of points
  */
 public class Line {
-
-	// TODO: Don't use stattic mutable attributes
-	// TODO: Don't use Vector but unsynchronized Lists
-
-	private static int deltax;
-	private static int deltay;
-	private static int x;
-	private static int y;
-	private static int numsteps;
-
 	/**
 	 * callback which is invoked for each point
 	 */
@@ -42,19 +32,36 @@ public class Line {
 		 */
 		public abstract void fire(int x, int y);
 	}
+	
+	/**
+	 * Class for holding data common to the line calculations.
+	 */
+	private static final class State {
+		final int deltay;
+		final int deltax;
+		final int steps;
+		
+		State(int x1, int y1, int x2, int y2) {
+			deltay = y2 - y1;
+			deltax = x2 - x1;
+			steps = Math.max(Math.abs(deltax), Math.abs(deltay));
+		}
+	}
 
 	/**
 	 * renders a line from (x1, y2) to (x2, y2)
 	 *
-	 * @param x1 x-cooridinate of start point
-	 * @param y1 y-cooridinate of start point
-	 * @param x2 x-cooridinate of end point
-	 * @param y2 y-cooridinate of end point
+	 * @param x1 x-coordinate of start point
+	 * @param y1 y-coordinate of start point
+	 * @param x2 x-coordinate of end point
+	 * @param y2 y-coordinate of end point
 	 * @return vector of points
 	 */
-	public static Vector<Point> renderLine(final int x1, final int y1, final int x2, final int y2) {
-		final Vector<Point> points = new Vector<Point>(numsteps);
-		renderLine(x1, y1, x2, y2, new Action() {
+	public static List<Point> renderLine(final int x1, final int y1, final int x2, final int y2) {
+		State state = new State(x1, y1, x2, y2);
+		final List<Point> points = new ArrayList<Point>(state.steps);
+
+		renderLine(x1, y1, state, new Action() {
 			@Override
 			public void fire(final int x, final int y) {
 				points.add(new Point(x, y));
@@ -64,38 +71,30 @@ public class Line {
 		return points;
 	}
 
-	private static void preparefields(final int x1, final int y1, final int x2, final int y2) {
-		deltay = y2 - y1;
-		deltax = x2 - x1;
-		numsteps = Math.max(Math.abs(deltax), Math.abs(deltay));
-		x = x1;
-		y = y1;
-
-	}
-
 	/**
 	 * renders a line from (x1, y2) to (x2, y2)
 	 *
-	 * @param x1 x-cooridinate of start point
-	 * @param y1 y-cooridinate of start point
-	 * @param x2 x-cooridinate of end point
-	 * @param y2 y-cooridinate of end point
+	 * @param x1 x-coordinate of start point
+	 * @param y1 y-coordinate of start point
+	 * @param x2 x-coordinate of end point
+	 * @param y2 y-coordinate of end point
 	 * @param action callback to call for each point
 	 */
 	public static void renderLine(final int x1, final int y1, final int x2, final int y2, final Action action) {
-		preparefields(x1, y1, x2, y2);
+		State state = new State(x1, y1, x2, y2);
 
-		for (int curpixel = 1; curpixel <= numsteps + 1; curpixel++) {
+		renderLine(x1, y1, state, action);
+	}
+	
+	private static void renderLine(int x1, int y1, State state, Action action) {
+		int x = x1;
+		int y = y1;
 
+		for (int curpixel = 1; curpixel <= state.steps + 1; curpixel++) {
 			action.fire(x, y);
-			recalculateXY(x1, y1, deltay, deltax, numsteps, curpixel);
-			// recalculateXY();
+
+			x = x1 + ((state.deltax * curpixel) / state.steps);
+			y = y1 + ((state.deltay * curpixel) / state.steps);
 		}
 	}
-
-	private static void recalculateXY(final int x1, final int y1, final int deltaY, final int deltaX, final int steps, final int curpixel) {
-		x = x1 + ((deltaX * curpixel) / steps);
-		y = y1 + ((deltaY * curpixel) / steps);
-	}
-
 }
