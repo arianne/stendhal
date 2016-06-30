@@ -23,7 +23,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -84,24 +83,16 @@ public class MapUpdater extends Task {
 	 * @param map
 	 */
 	private void removeUnusedLayers(final Map map) {
-		boolean modified = true;
-		while (modified) {
-			modified = false;
-			Vector<MapLayer> layers = map.getLayers();
-			for (int i = 0; i < layers.size(); i++) {
-				MapLayer layer = layers.get(i);
-				if (layer.isEmpty()) {
-					// Client merges floor layers, and removing anything there
-					// prevents it doing that. Removing unused roof layers, however
-					// saves drawing effort.
-					if ("3_roof".equals(layer.getName()) 
-							|| "4_roof_add".equals(layer.getName())) {
-						map.removeLayer(i);
-						// Removing a layer can mess up the indices. Restart
-						// checking.
-						modified = true;
-						break;
-					}
+		Iterator<MapLayer> iter = map.iterator();
+		while (iter.hasNext()) {
+			MapLayer layer = iter.next();
+			if (layer.isEmpty()) {
+				// Client merges floor layers, and removing anything there
+				// prevents it doing that. Removing unused roof layers, however
+				// saves drawing effort.
+				if ("3_roof".equals(layer.getName()) 
+						|| "4_roof_add".equals(layer.getName())) {
+					iter.remove();
 				}
 			}
 		}
