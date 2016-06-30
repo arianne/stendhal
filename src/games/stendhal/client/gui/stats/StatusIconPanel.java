@@ -26,15 +26,9 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 class StatusIconPanel extends JComponent {
-    private static Map<StatusID, JLabel> statusIDMap;
-    
     /** Status bar icons */
     private static final String iconFolder = "data/sprites/status/panel/";
     
-	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = -6263002049434805442L;
 	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
 	private static final ImageIcon poisonIcon = new ImageIcon(DataLoader.getResource(iconFolder + "poison.png"));
@@ -52,6 +46,7 @@ class StatusIconPanel extends JComponent {
 
 	final JLabel eating, choking;
 	final AnimatedIcon away, grumpy;
+    private final Map<StatusID, JLabel> statusIDMap;
 	
 	protected StatusIconPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
@@ -94,13 +89,12 @@ class StatusIconPanel extends JComponent {
 		grumpy.setVisible(false);
 		
 		/** Initialize map */
-        statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class); {
-            statusIDMap.put(StatusID.CONFUSE, confuse);
-            statusIDMap.put(StatusID.POISON, poison);
-            statusIDMap.put(StatusID.SHOCK, shock);
-            statusIDMap.put(StatusID.ZOMBIE, zombie);
-            statusIDMap.put(StatusID.HEAVY, heavy);
-        }
+        statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class);
+        statusIDMap.put(StatusID.CONFUSE, confuse);
+        statusIDMap.put(StatusID.POISON, poison);
+        statusIDMap.put(StatusID.SHOCK, shock);
+        statusIDMap.put(StatusID.ZOMBIE, zombie);
+        statusIDMap.put(StatusID.HEAVY, heavy);
 	}
 	
 	/**
