@@ -81,7 +81,7 @@ public class CrownForTheWannaBeKingTest {
 			bob.setQuest(QUEST_SLOT, "");
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
-			assertThat(npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
+			assertThat("Used greeting: " + playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertEquals("Oh it's you again. Did you bring me any #items for my new crown?", getReply(npc));
 		}
 	}

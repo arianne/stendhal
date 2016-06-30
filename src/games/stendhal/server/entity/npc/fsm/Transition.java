@@ -367,10 +367,7 @@ public class Transition {
 	 * @return - check result
 	 */
 	public boolean isEmptyLabel() {
-		if (this.label.equals("")) {
-			return true;
-		}
-		return false;
+		return this.label.isEmpty();
 	}
 	
 	/**

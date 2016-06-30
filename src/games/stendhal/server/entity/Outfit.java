@@ -451,10 +451,7 @@ public class Outfit {
 	 * @return true if the outfit is compatible with clothes, false otherwise
 	 */
 	public boolean isCompatibleWithClothes() {
-		if (body > 80 && body < 99) {
-			return false;
-		}
-		return true;
+		return !(body > 80 && body < 99);
 	}
 
 	@Override

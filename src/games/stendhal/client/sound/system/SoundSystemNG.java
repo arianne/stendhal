@@ -168,10 +168,7 @@ public class SoundSystemNG extends Thread
 			if(numRemainingBytesInBuffer < frameSize)
 				reset();
 
-			if(mNumBytesToWrite < frameSize)
-				return false;
-			
-			return true;
+			return (mNumBytesToWrite >= frameSize);
         }
 	}
 

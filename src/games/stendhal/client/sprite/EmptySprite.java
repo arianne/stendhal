@@ -190,15 +190,7 @@ public class EmptySprite implements Sprite {
 			if (obj instanceof ESRef) {
 				final ESRef esref = (ESRef) obj;
 
-				if (width != esref.width) {
-					return false;
-				}
-
-				if (height != esref.height) {
-					return false;
-				}
-
-				return true;
+				return (width == esref.width) && (height == esref.height);
 			}
 
 			return false;

@@ -30,13 +30,8 @@ public class Node {
 			return false;
 		}
 		final Node other = (Node) obj;
-		if (x != other.x) {
-			return false;
-		}
-		if (y != other.y) {
-			return false;
-		}
-		return true;
+		
+		return (x == other.x) && (y == other.y);
 	}
 
 	public Node(final int x, final int y) {

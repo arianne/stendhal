@@ -253,24 +253,9 @@ class TileSprite implements Sprite {
 				if (!parent.equals(tsref.parent)) {
 					return false;
 				}
-
-				if (x != tsref.x) {
-					return false;
-				}
-
-				if (y != tsref.y) {
-					return false;
-				}
-
-				if (width != tsref.width) {
-					return false;
-				}
-
-				if (height != tsref.height) {
-					return false;
-				}
-
-				return true;
+				
+				return (x == tsref.x) && (y == tsref.y) 
+						&& (width == tsref.width) && (height == tsref.height);
 			}
 
 			return false;

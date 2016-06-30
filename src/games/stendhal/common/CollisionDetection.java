@@ -130,15 +130,7 @@ public class CollisionDetection {
 		final double w = shape.getWidth();
 		final double h = shape.getHeight();
 
-		if ((x < 0) || (x + w > width)) {
-			return true;
-		}
-
-		if ((y < 0) || (y + h > height)) {
-			return true;
-		}
-
-		return false;
+		return (x < 0) || (x + w > width) || (y < 0) || (y + h > height);
 	}
 
 	/**

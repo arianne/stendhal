@@ -1264,11 +1264,8 @@ public class Grammar {
 	 * @return ambiguity flag
 	 */
 	public static boolean isAmbiguousNounVerb(final String normalized) {
-		if (normalized.equals("mill") || normalized.equals("fish") || normalized.equals("esacpe")) {
-			return true;
-		} else {
-			return false;
-		}
+		return normalized.equals("mill") || normalized.equals("fish")
+				|| normalized.equals("esacpe");
 	}
 
 	/**

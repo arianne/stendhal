@@ -405,11 +405,7 @@ public abstract class GuidedEntity extends ActiveEntity {
         
         // Set the maximum movement distance at exact radius
         int max = movementRadius - 1;
-        if (movementRadius > 0 && (difference.getX() > max || difference.getY() > max)) {
-            return true;
-        }
-        
-        return false;
+        return (movementRadius > 0 && (difference.getX() > max || difference.getY() > max));
     }
     
     protected final Direction getDirectionFromOrigin() {

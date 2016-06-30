@@ -184,11 +184,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		/*
 		 * Admins see all
 		 */
-		if (User.isAdmin()) {
-			return true;
-		}
-
-		return false;
+		return User.isAdmin();
 	}
 
 	//

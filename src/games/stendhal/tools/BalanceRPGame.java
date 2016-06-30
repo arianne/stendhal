@@ -355,11 +355,7 @@ public class BalanceRPGame {
 			return false;
 		}
 
-		if ((relativeLeftHP > 0.1) || (relativeLeftHP < 0)) {
-			return false;
-		}
-
-		return true;
+		return (relativeLeftHP <= 0.1) && (relativeLeftHP >= 0);
 	}
 
 	private static boolean isWithinDurationRange(final double preferred,

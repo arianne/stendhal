@@ -1213,9 +1213,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	@Override
 	public boolean canAccept(IEntity entity) {
-		if ((entity instanceof Item) || (entity instanceof Corpse)) {
-			return true;
-		}
-		return false;
+		return (entity instanceof Item) || (entity instanceof Corpse);
 	}
 }
