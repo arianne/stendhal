@@ -1,6 +1,5 @@
-/* $Id$
- /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+/***************************************************************************
+ *                   (C) Copyright 2016 - Faiumoni e.V.                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,6 +18,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 //import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.creature.Cat;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.creature.PurpleDragon;
 //import games.stendhal.server.entity.creature.Sheep;
@@ -88,40 +88,38 @@ public class SummonPetScroll extends Scroll {
 			logger.info("Too many npcs to summon another creature");
 			return false;
 		}
-
-		final String type = getInfoString();
-
-		if (type == null) {
-			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
+		
+		if (player.hasPet()) {
+			player.sendPrivateText("The magic is not strong enough to give you more than one pet.");
 			return false;
 		}
 
-		// create it 
-		if (type == "cat")
-		{
-			//PlayerTransformer.placeSheepAndPetIntoWorld(player);
-			final Cat cat = new Cat(player);
-			player.setPet(cat);
-			cat.setPosition(player.getX(), player.getY() + 1);
-			dropBlank(player);
+		String type = getInfoString();
+		if (type == null) {
+			// default to cat, if no other type is specified
+			type = "cat";
 		}
-		else if (type == "baby_dragon")
-		{
-			//PlayerTransformer.placeSheepAndPetIntoWorld(player);
-			final BabyDragon babydragon = new BabyDragon(player);
-			player.setPet(babydragon);
-			babydragon.setPosition(player.getX(), player.getY() + 1);
-			dropBlank(player);
-		}
-		else if (type == "purple_dragon")
-		{
-			//PlayerTransformer.placeSheepAndPetIntoWorld(player);
-			final PurpleDragon purpledragon = new PurpleDragon(player);
-			player.setPet(purpledragon);
-			purpledragon.setPosition(player.getX(), player.getY() + 1);
-			dropBlank(player);
+
+		// create it
+		Pet pet = null;
+		switch (type) {
+		case "cat":
+			pet = new Cat(player);
+			break;
+		case "baby dragon":
+			pet = new BabyDragon(player);
+			break;
+		case "purple dragon":
+			pet = new PurpleDragon(player);
+			break;
+		default:
+			// Didn't match a known pet type
+			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
+			return false;
 		}
 		
+		pet.setPosition(player.getX(), player.getY() + 1);
+		dropBlank(player);
 		return true;
 	}
 	
