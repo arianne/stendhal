@@ -21,6 +21,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.EnumMap;
 import java.util.Map;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -31,11 +32,6 @@ class StatusIconPanel extends JComponent {
     
 	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
-	private static final ImageIcon poisonIcon = new ImageIcon(DataLoader.getResource(iconFolder + "poison.png"));
-	private static final ImageIcon confuseIcon = new ImageIcon(DataLoader.getResource(iconFolder + "confuse.png"));
-	private static final ImageIcon shockIcon = new ImageIcon(DataLoader.getResource(iconFolder + "shock.png"));
-	private static final ImageIcon zombieIcon = new ImageIcon(DataLoader.getResource(iconFolder + "zombie.png"));
-	private static final ImageIcon heavyIcon = new ImageIcon(DataLoader.getResource(iconFolder + "heavy.png"));
 	
 	private final static Sprite awaySprite, grumpySprite;
 	static {
@@ -60,26 +56,6 @@ class StatusIconPanel extends JComponent {
 		add(choking);
 		choking.setVisible(false);
 		
-		JLabel poison = new JLabel(poisonIcon);
-		add(poison);
-		poison.setVisible(false);
-		
-		JLabel confuse = new JLabel(confuseIcon);
-		add(confuse);
-		confuse.setVisible(false);
-		
-		JLabel shock = new JLabel(shockIcon);
-		add(shock);
-		shock.setVisible(false);
-		
-		JLabel zombie = new JLabel(zombieIcon);
-		add(zombie);
-		zombie.setVisible(false);
-		
-		JLabel heavy = new JLabel(heavyIcon);
-		add(heavy);
-		heavy.setVisible(false);
-		
 		away = new AnimatedIcon(awaySprite, 2000);
 		add(away);
 		away.setVisible(false);
@@ -90,11 +66,26 @@ class StatusIconPanel extends JComponent {
 		
 		/** Initialize map */
         statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class);
-        statusIDMap.put(StatusID.CONFUSE, confuse);
-        statusIDMap.put(StatusID.POISON, poison);
-        statusIDMap.put(StatusID.SHOCK, shock);
-        statusIDMap.put(StatusID.ZOMBIE, zombie);
-        statusIDMap.put(StatusID.HEAVY, heavy);
+        statusIDMap.put(StatusID.CONFUSE, createStatusIndicator("confuse"));
+        statusIDMap.put(StatusID.POISON, createStatusIndicator("poison"));
+        statusIDMap.put(StatusID.SHOCK, createStatusIndicator("shock"));
+        statusIDMap.put(StatusID.ZOMBIE, createStatusIndicator("zombie"));
+        statusIDMap.put(StatusID.HEAVY, createStatusIndicator("heavy"));
+	}
+	
+	/**
+	 * Create and add a status indicator label.
+	 * 
+	 * @param identifier string identifier used to look up for the label icon
+	 * @return the created label
+	 */
+	private JLabel createStatusIndicator(String identifier) {
+		Icon icon = new ImageIcon(DataLoader.getResource(iconFolder + identifier + ".png"));
+		JLabel label = new JLabel(icon);
+		label.setVisible(false);
+		add(label);
+		
+		return label;
 	}
 	
 	/**
