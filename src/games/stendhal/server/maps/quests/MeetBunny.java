@@ -53,8 +53,6 @@ public class MeetBunny extends AbstractQuest {
 	/** the Bunny NPC. */
 	protected SpeakerNPC bunny;
 
-	private StendhalRPZone zone;
-
 	private ItemDroppingTeleporterBehaviour teleporterBehaviour;
 
 	/** the name of the quest */
@@ -107,7 +105,8 @@ public class MeetBunny extends AbstractQuest {
 		bunny.setPlayerChatTimeout(TIME_OUT);
 		bunny.setDescription("You see a friendly bunny carrying brightly coloured Easter baskets.");
 		// start in int_admin_playground
-		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
+
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		bunny.setPosition(17, 13);
 		zone.add(bunny);
 

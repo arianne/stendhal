@@ -54,8 +54,6 @@ public class ToysCollector extends AbstractQuest implements
 
 	private static final String QUEST_SLOT = "toys_collector";
 	
-	private BringListOfItemsQuestLogic bringItems;
-	
 	private static final List<String> neededToys = 
 		Arrays.asList("teddy", "dice", "dress");
 
@@ -77,7 +75,7 @@ public class ToysCollector extends AbstractQuest implements
 
 	private void setupAbstractQuest() {
 		final BringListOfItemsQuest concreteQuest = this;
-		bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 

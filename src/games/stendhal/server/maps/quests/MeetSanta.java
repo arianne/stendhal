@@ -64,8 +64,6 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	/** the Santa NPC. */
 	protected SpeakerNPC santa;
 
-	private StendhalRPZone zone;
-
 	private TeleporterBehaviour teleporterBehaviour;
 
 	@Override
@@ -141,7 +139,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		santa.setSounds(Arrays.asList("ho-ho-ho-1", "ho-ho-ho-2"));
 
 		// start in int_admin_playground
-		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		santa.setPosition(17, 13);
 		zone.add(santa);
 

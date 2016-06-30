@@ -50,9 +50,6 @@ class UpdateProgressBar extends JFrame implements
 	/** the size of the downloaded files */
 	private int sizeOfLastFiles;
 
-	/** content pane which manages the components */
-	private JPanel contentPane;
-
 	/** bar showing the download progress */
 	private JProgressBar progressBar;
 
@@ -93,7 +90,7 @@ class UpdateProgressBar extends JFrame implements
 	}
 
 	private void initializeComponents() {
-		contentPane = (JPanel) this.getContentPane();
+		JPanel contentPane = (JPanel) this.getContentPane();
 
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));

@@ -79,15 +79,12 @@ class KTextEdit extends JComponent {
 
 	/** The actual text component for showing the chat log. */
 	JTextPane textPane;
-	/** Scroll pane containing the text component. */
-	private JScrollPane scrollPane;
 	/** Name of the log. */
 	private String name = "";
 	/** Background color when not highlighting unread messages. */
 	private Color defaultBackground = Color.white;
 	/** Formatting class for text containing stendhal markup. */
 	private final StringFormatter<Style, StyleSet> formatter = new StringFormatter<Style, StyleSet>();
-	private StyleSet defaultAttributes;
 	private final Format dateFormatter = new SimpleDateFormat("[HH:mm] ");
 
 	/** Listener for opening the popup menu when it's requested. */
@@ -173,7 +170,7 @@ class KTextEdit extends JComponent {
 		initStylesForTextPane(textPane, textPane.getFont().getSize());
 		setLayout(new BorderLayout());
 
-		scrollPane = new JScrollPane(textPane) {
+		JScrollPane scrollPane = new JScrollPane(textPane) {
 			@Override
 			public JScrollBar createVerticalScrollBar() {
 				JScrollBar bar = super.createVerticalScrollBar();
@@ -249,7 +246,7 @@ class KTextEdit extends JComponent {
 		StyleConstants.setFontSize(s, mainTextSize - 1);
 		
 		//****** Styles used by the string formatter ******
-		defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
+		StyleSet defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
 		
 		StyleSet attributes = defaultAttributes.copy();
 		attributes.setAttribute(StyleConstants.Italic, Boolean.TRUE);

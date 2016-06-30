@@ -28,7 +28,6 @@ public class MultiZonesFixedPath implements Observer {
 	private final GuidedEntity ent;
 	private final List<RPZonePath> route;
 	private Integer count;
-	private StendhalRPZone zone;
 	private final Registrator finishnotifier = new Registrator();
 
 	/**
@@ -65,7 +64,7 @@ public class MultiZonesFixedPath implements Observer {
 		int x = route.get(count).get().second().get(0).getX();
 		int y = route.get(count).get().second().get(0).getY();
 		ent.setPosition(x, y);
-		zone = route.get(count).get().first();
+		StendhalRPZone zone = route.get(count).get().first();
 		ent.setPath(new FixedPath(route.get(count).get().second(), false));
 		if (ent.getZone() != null) {
 			ent.getZone().remove(ent);

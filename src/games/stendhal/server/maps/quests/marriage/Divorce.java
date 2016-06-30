@@ -31,7 +31,6 @@ import marauroa.server.db.command.DBCommandQueue;
 
 class Divorce {
 	private final NPCList npcs = SingletonRepository.getNPCList();
-	private SpeakerNPC clerk;
 	private MarriageQuestInfo marriage;
 
 	public Divorce(final MarriageQuestInfo marriage) {
@@ -52,7 +51,7 @@ class Divorce {
 		 * 
 		 */
 
-		clerk = npcs.get("Wilfred");
+		SpeakerNPC clerk = npcs.get("Wilfred");
 
 		clerk.add(ConversationStates.ATTENDING, 
 				"divorce",

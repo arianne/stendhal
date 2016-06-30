@@ -32,8 +32,6 @@ import java.util.Map;
  *
  */
 public class PriestNPC implements ZoneConfigurator {
-	private SpeakerNPC priest;
-
 	/**
 	 * Configure a zone.
 	 *
@@ -46,7 +44,7 @@ public class PriestNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		priest = new SpeakerNPC("Priest") {
+		SpeakerNPC priest = new SpeakerNPC("Priest") {
 
 			@Override
 			protected void createPath() {

@@ -53,25 +53,11 @@ class SoundSettings {
 	/** Container for the setting components. */
 	private final JComponent page;
 	
-	/** Toggle for mute. */
-	private final JCheckBox muteToggle;
 	/**
 	 * Container for the volume sliders. Exist to help turning them all,
 	 * and their labels easily on or off.
 	 */
 	private List<JComponent> sliderComponents = new ArrayList<JComponent>(14);
-	/** Volume adjuster for master channel. */
-	private final JSlider masterVolume;
-	/** Volume adjuster for GUI channel. */
-	private final JSlider guiVolume;
-	/** Volume adjuster for effects channel. */
-	private final JSlider effectsVolume;
-	/** Volume adjuster for creatures channel. */
-	private final JSlider creaturesVolume;
-	/** Volume adjuster for ambient channel. */
-	private final JSlider ambientVolume;
-	/** Volume adjuster for music channel. */
-	private final JSlider musicVolume;
 
 	/**
 	 * Create sound settings page.
@@ -81,8 +67,7 @@ class SoundSettings {
 		page = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 
-		// click mode
-		muteToggle = new JCheckBox("Play Sounds");
+		JCheckBox muteToggle = new JCheckBox("Play Sounds");
 		boolean soundOn = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(SOUND_PROPERTY, "true"));
 		muteToggle.setSelected(soundOn);
 		muteToggle.addItemListener(new MuteListener());
@@ -107,7 +92,7 @@ class SoundSettings {
 		JLabel label = new JLabel("Master");
 		row.add(label);
 		SBoxLayout.addSpring(row);
-		masterVolume = createMasterVolumeSlider();
+		JSlider masterVolume = createMasterVolumeSlider();
 		masterVolume.setToolTipText("Volume of all sound channels");
 		row.add(masterVolume);
 		sliderComponents.add(label);
@@ -118,7 +103,7 @@ class SoundSettings {
 		label = new JLabel("GUI");
 		row.add(label);
 		SBoxLayout.addSpring(row);
-		guiVolume = createVolumeSlider("gui");
+		JSlider guiVolume = createVolumeSlider("gui");
 		guiVolume.setToolTipText("Volume of interactive operations, such as closing windows");
 		row.add(guiVolume);
 		sliderComponents.add(label);
@@ -129,7 +114,7 @@ class SoundSettings {
 		label = new JLabel("Effects");
 		row.add(label);
 		SBoxLayout.addSpring(row);
-		effectsVolume = createVolumeSlider("sfx");
+		JSlider effectsVolume = createVolumeSlider("sfx");
 		effectsVolume.setToolTipText("Volume of fighting, and other effects");
 		row.add(effectsVolume);
 		sliderComponents.add(label);
@@ -140,7 +125,7 @@ class SoundSettings {
 		label =new JLabel("Creatures");
 		row.add(label);
 		SBoxLayout.addSpring(row);
-		creaturesVolume = createVolumeSlider("creature");
+		JSlider creaturesVolume = createVolumeSlider("creature");
 		creaturesVolume.setToolTipText("Volume of creature noises");
 		row.add(creaturesVolume);
 		sliderComponents.add(label);
@@ -151,7 +136,7 @@ class SoundSettings {
 		label = new JLabel("Ambient");
 		row.add(label);
 		SBoxLayout.addSpring(row);
-		ambientVolume = createVolumeSlider("ambient");
+		JSlider ambientVolume = createVolumeSlider("ambient");
 		row.add(ambientVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(ambientVolume);
@@ -161,7 +146,7 @@ class SoundSettings {
 		label = new JLabel("Music");
 		row.add(label);
 		SBoxLayout.addSpring(row);
-		musicVolume = createVolumeSlider("music");
+		JSlider musicVolume = createVolumeSlider("music");
 		musicVolume.setToolTipText("Music volume");
 		row.add(musicVolume);
 		sliderComponents.add(label);

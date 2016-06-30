@@ -28,15 +28,13 @@ class GetOutfits {
 	private final MarriageQuestInfo marriage;
 	
 	private final NPCList npcs = SingletonRepository.getNPCList();
-	private SpeakerNPC tam;
-	private SpeakerNPC tim;
 	
 	public GetOutfits(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
 	
 	private void getOutfitsStep() {
-		tam = npcs.get("Tamara");
+		SpeakerNPC tam = npcs.get("Tamara");
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(tam.getName()),
 						new ChatCondition() {
@@ -60,7 +58,7 @@ class GetOutfits {
 				"Sorry, I can't help you, I am busy getting dresses ready for brides-to-be!",
 				null);
 
-		tim = npcs.get("Timothy");
+		SpeakerNPC tim = npcs.get("Timothy");
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(tim.getName()),
 					new ChatCondition() {
