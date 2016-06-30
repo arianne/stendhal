@@ -252,15 +252,13 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		
 		//fight whatever owner is targeting
-		if ((takesPartInCombat() == true) && (owner != null) 
-				&& (owner.getAttackTarget() != null))
-		{
+		if (takesPartInCombat() && (owner != null)
+				&& (owner.getAttackTarget() != null)) 		{
 			RPEntity myTarget = owner.getAttackTarget();
 			this.setTarget(myTarget);
 		}
 		
-		if ((this.getLevel() >= LVCap) && (canGrow() == true))
-		{
+		if ((this.getLevel() >= LVCap) && canGrow()) {
 			grow();
 		}
 		

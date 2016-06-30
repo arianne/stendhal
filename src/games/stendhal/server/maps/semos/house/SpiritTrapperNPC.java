@@ -222,8 +222,7 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 						new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						if (behaviour.transactAgreedDeal(currentBehavRes, npc, player) == true)
-						{
+						if (behaviour.transactAgreedDeal(currentBehavRes, npc, player)) {
 							behaviour.giveProduct(npc, player);
 						}
 
