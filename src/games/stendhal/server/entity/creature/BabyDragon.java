@@ -119,4 +119,23 @@ public class BabyDragon extends Pet {
 	public boolean canGrow() {
 		return true;
 	}
+	
+	/**
+	 * If this pet 'canGrow' into another form it's handled here.
+	 */
+	@Override
+	public void grow() {
+		final PurpleDragon purpledragon = new PurpleDragon(owner);
+		owner.setPet(purpledragon);
+		purpledragon.setPosition(owner.getX(), owner.getY() + 1);
+
+		//nicknames carry over otherwise the name should update to reflect new form.
+		if (!this.getTitle().startsWith("baby dragon"))	{
+			purpledragon.setTitle(this.getTitle());
+		}
+		purpledragon.setXP(this.getXP());
+		purpledragon.setLevel(this.getLevel());
+		this.getZone().remove(this);
+		owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
+	}
 }
