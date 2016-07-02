@@ -259,7 +259,7 @@ public abstract class Pet extends DomesticAnimal {
 		//drinking logic
 		boolean busyWithHealing = false;
 		if (getHP() < getBaseHP()) {
-			busyWithHealing = logicHealing(busyWithHealing);
+			busyWithHealing = logicHealing();
 		}
 
 		if (!busyWithHealing) {
@@ -336,10 +336,14 @@ public abstract class Pet extends DomesticAnimal {
 		}
 	}
 
-	private boolean logicHealing(boolean busyWithHealing) {
+	/**
+	 * handles logic regarding healing
+	 *
+	 * @return busy with healing
+	 */
+	private boolean logicHealing() {
 		final Item medicine = getNearestHealItem(6);
 		if ((medicine != null)) {
-			busyWithHealing = true;
 			if (nextTo(medicine)) {
 				LOGGER.debug("Pet heals");
 				drink((ConsumableItem) medicine);
@@ -349,9 +353,9 @@ public abstract class Pet extends DomesticAnimal {
 				LOGGER.debug("Pet moves to medicine");
 				setMovement(medicine, 0, 0, getMovementRange());
 			}
-		
+			return true;
 		}
-		return busyWithHealing;
+		return false;
 	}
 
 	private void increaseHunger() {
