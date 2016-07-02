@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2015-2016 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,9 +31,6 @@ import org.apache.log4j.Logger;
  * They move much faster than sheep
  * <p>
  * Purple dragons attack animals which attack them
- * 
- * @author kymara (based on sheep by Daniel Herding)
- * 
  */
 public class PurpleDragon extends Pet {
 
@@ -65,8 +61,6 @@ public class PurpleDragon extends Pet {
 		try {
 			final RPClass purple_dragon = new RPClass("purple_dragon");
 			purple_dragon.isA("pet");
-			// purple_dragon.add("weight", Type.BYTE);
-			// purple_dragon.add("eat", Type.FLAG);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -126,10 +120,10 @@ public class PurpleDragon extends Pet {
 	
 	@Override
 	public String describe() {
-		String text = "You see a cute " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + " and is level " + getLevel() + ". Def XP: " +  getDefXP() + "";
+		String text = "You see a " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + " and is level " + getLevel() + ". Def XP: " +  getDefXP() + "";
 		if (hasDescription()) {
 			text = getDescription();
 		}
-		return (text); //return (text + getHungerType(hunger));
+		return (text);
 	}
 }

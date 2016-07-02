@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2106 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -179,30 +178,24 @@ public abstract class Pet extends DomesticAnimal {
 	
 	private Item getNearestHealItem(final double range) {
 		// This way we save several sqrt operations
-		double squaredDistance = range * range; 
+		double squaredDistance = range * range;
 
 		Item chosen = null;
-		
 		for (final Item item : getZone().getItemsOnGround()) {
 			if (canHeal(item) && (this.squaredDistance(item) < squaredDistance)) {
 				chosen = item;
 				squaredDistance = this.squaredDistance(item);
 			}
 		}
-
 		return chosen;
 	}
 
 	boolean canEat(final Item i) {
-
 		return foodName.contains(i.getName());
-
 	}
 	
 	boolean canHeal(final Item i) {
-
 		return medicineName.contains(i.getName());
-
 	}
 
 	private void eat(final Item food) {
@@ -278,9 +271,7 @@ public abstract class Pet extends DomesticAnimal {
 				}
 				
 			}
-		}
-		else
-		if (hunger > HUNGER_HUNGRY) {
+		} else if (hunger > HUNGER_HUNGRY) {
 			// Show 'food' idea whenever hungry
 			setIdea("food");
 			

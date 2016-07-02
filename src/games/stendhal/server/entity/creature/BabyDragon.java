@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2016 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,8 +60,6 @@ public class BabyDragon extends Pet {
 		try {
 			final RPClass baby_dragon = new RPClass("baby_dragon");
 			baby_dragon.isA("pet");
-			// baby_dragon.add("weight", Type.BYTE);
-			// baby_dragon.add("eat", Type.FLAG);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
