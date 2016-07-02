@@ -126,8 +126,10 @@ public class BabyDragon extends Pet {
 	@Override
 	public void grow() {
 		final PurpleDragon purpledragon = new PurpleDragon(owner);
-		owner.setPet(purpledragon);
-		purpledragon.setPosition(owner.getX(), owner.getY() + 1);
+		if (owner != null) {
+			owner.setPet(purpledragon);
+		}
+		purpledragon.setPosition(getX(), getY());
 
 		//nicknames carry over otherwise the name should update to reflect new form.
 		if (!this.getTitle().startsWith("baby dragon"))	{
