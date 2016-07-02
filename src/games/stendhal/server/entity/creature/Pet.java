@@ -256,8 +256,9 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		
 		//drinking logic
-		if ((getHP() < getBaseHP()) && (getNearestHealItem(6) != null)) {
-			final Item medicine = getNearestHealItem(6);
+		final Item medicine = getNearestHealItem(6);
+		if ((getHP() < getBaseHP()) && (medicine != null)) {
+			
 			
 			if ((medicine != null)) {
 				if (nextTo(medicine)) {
