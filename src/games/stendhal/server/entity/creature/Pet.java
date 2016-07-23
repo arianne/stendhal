@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2106 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -179,30 +178,24 @@ public abstract class Pet extends DomesticAnimal {
 	
 	private Item getNearestHealItem(final double range) {
 		// This way we save several sqrt operations
-		double squaredDistance = range * range; 
+		double squaredDistance = range * range;
 
 		Item chosen = null;
-		
 		for (final Item item : getZone().getItemsOnGround()) {
 			if (canHeal(item) && (this.squaredDistance(item) < squaredDistance)) {
 				chosen = item;
 				squaredDistance = this.squaredDistance(item);
 			}
 		}
-
 		return chosen;
 	}
 
 	boolean canEat(final Item i) {
-
 		return foodName.contains(i.getName());
-
 	}
 	
 	boolean canHeal(final Item i) {
-
 		return medicineName.contains(i.getName());
-
 	}
 
 	private void eat(final Item food) {
@@ -229,6 +222,7 @@ public abstract class Pet extends DomesticAnimal {
 	// RPEntity
 	//
 
+
 	/**
 	 * Determines what the pet shall do next.
 	 */
@@ -250,7 +244,7 @@ public abstract class Pet extends DomesticAnimal {
 		} else if (Rand.rand(FAT_FACTOR) == 1) {
 			increaseHunger();
 		}
-		
+
 		//fight whatever owner is targeting
 		if (takesPartInCombat() && (owner != null)
 				&& (owner.getAttackTarget() != null)) 		{
@@ -263,86 +257,19 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		
 		//drinking logic
-		if ((getHP() < getBaseHP()) && (getNearestHealItem(6) != null)) {
-			final Item medicine = getNearestHealItem(6);
-			
-			if ((medicine != null)) {
-				if (nextTo(medicine)) {
-					LOGGER.debug("Pet heals");
-					drink((ConsumableItem) medicine);
-					clearPath();
-					stop();
-				} else {
-					LOGGER.debug("Pet moves to medicine");
-					setMovement(medicine, 0, 0, getMovementRange());
-				}
-				
-			}
+		boolean busyWithHealing = false;
+		if (getHP() < getBaseHP()) {
+			busyWithHealing = logicHealing();
 		}
-		else
-		if (hunger > HUNGER_HUNGRY) {
-			// Show 'food' idea whenever hungry
-			setIdea("food");
-			
-			final Item food = getNearestFood(6);
 
-			if ((food != null)) {
-				if (nextTo(food)) {
-					LOGGER.debug("Pet eats");
-					setIdea("eat");
-					eat(food);
-					clearPath();
-					stop();
-				} else {
-					LOGGER.debug("Pet moves to food");
-					setIdea("food");
-					setMovement(food, 0, 0, getMovementRange());
-					// setAsynchonousMovement(food,0,0);
-				}
-			} else if (hunger > HUNGER_STARVATION) {
-				// move crazy if starving
-				moveRandomly();
-				
-				hunger /= 2;
-				 if (owner != null) {
-					 owner.sendPrivateText("Your pet is starving!");
-				 }
-				LOGGER.debug("Pet starves");
-				if (weight > 0) {
-					setWeight(weight - 1);
-				} else {
-					// apply starvation damage at a safe moment 
-					delayedDamage(2, "starvation");
-				}
+		if (!busyWithHealing) {
+			if (hunger > HUNGER_HUNGRY) {
+				logicEating();
 			} else {
-				// here, (hunger_hungry < hunger < starvation) && not near food
-				// so, here, we follow owner, if we have one
-				// and if we don't, we do the other stuff
-				if (owner == null) {
-					LOGGER.debug("Pet (ownerless and hungry but not starving) moves randomly");
-					moveRandomly();
-				} else if (!nextTo(owner)) {
-					moveToOwner();
-				} else {
-					LOGGER.debug("Pet has nothing to do and is hungry but not starving");
-					stop();
-					clearPath();
-				}
-			}
-		} else {
-			if (owner == null) {
-				LOGGER.debug("Pet (ownerless) moves randomly");
-				moveRandomly();
-			} else if (!nextTo(owner)) {
-				moveToOwner();
-			} else {
-				LOGGER.debug("Pet has nothing to do");
-				setIdea(null);
-				stop();
-				clearPath();
+				logicStandard(null);
 			}
 		}
-		
+
 		// bring the pet to the owner if he/she calls it
 		if (isOwnerCallingMe()) {
 			clearPath();
@@ -350,8 +277,85 @@ public abstract class Pet extends DomesticAnimal {
 		}
 
 		this.applyMovement();
-
 		notifyWorldAboutChanges();
+	}
+
+	private void logicStandard(String idleIdea) {
+		if (owner == null) {
+			LOGGER.debug("Pet (ownerless) moves randomly");
+			moveRandomly();
+		} else if (!nextTo(owner)) {
+			moveToOwner();
+		} else {
+			LOGGER.debug("Pet has nothing to do");
+			setIdea(idleIdea);
+			stop();
+			clearPath();
+		}
+	}
+
+	private void logicEating() {
+		// Show 'food' idea whenever hungry
+		setIdea("food");
+		
+		final Item food = getNearestFood(6);
+
+		if ((food != null)) {
+			if (nextTo(food)) {
+				LOGGER.debug("Pet eats");
+				setIdea("eat");
+				eat(food);
+				clearPath();
+				stop();
+			} else {
+				LOGGER.debug("Pet moves to food");
+				setIdea("food");
+				setMovement(food, 0, 0, getMovementRange());
+				// setAsynchonousMovement(food,0,0);
+			}
+		} else if (hunger > HUNGER_STARVATION) {
+			// move crazy if starving
+			moveRandomly();
+			
+			hunger /= 2;
+			 if (owner != null) {
+				 owner.sendPrivateText("Your pet is starving!");
+			 }
+			LOGGER.debug("Pet starves");
+			if (weight > 0) {
+				setWeight(weight - 1);
+			} else {
+				// apply starvation damage at a safe moment 
+				delayedDamage(2, "starvation");
+			}
+		} else {
+			// here, (hunger_hungry < hunger < starvation) && not near food
+			// so, here, we follow owner, if we have one and if we don't, 
+			// we do the other stuff
+			logicStandard("food");
+		}
+	}
+
+	/**
+	 * handles logic regarding healing
+	 *
+	 * @return busy with healing
+	 */
+	private boolean logicHealing() {
+		final Item medicine = getNearestHealItem(6);
+		if ((medicine != null)) {
+			if (nextTo(medicine)) {
+				LOGGER.debug("Pet heals");
+				drink((ConsumableItem) medicine);
+				clearPath();
+				stop();
+			} else {
+				LOGGER.debug("Pet moves to medicine");
+				setMovement(medicine, 0, 0, getMovementRange());
+			}
+			return true;
+		}
+		return false;
 	}
 
 	private void increaseHunger() {
@@ -381,32 +385,19 @@ public abstract class Pet extends DomesticAnimal {
 		}
 		return (text + getHungerType(hunger));
 	}
-	
-	/**
-	 * If this pet 'canGrow' into another form it's handled here.
-	 * 
-	*/
-	public void grow() {
-		final PurpleDragon purpledragon = new PurpleDragon(owner);
-		owner.setPet(purpledragon);
-		purpledragon.setPosition(owner.getX(), owner.getY() + 1);
-		
-		//nicknames carry over otherwise the name should update to reflect new form.
-		if (!this.getTitle().startsWith("baby dragon"))
-		{
-			purpledragon.setTitle(this.getTitle());
-		}
-		purpledragon.setXP(this.getXP());
-		purpledragon.setLevel(this.getLevel());
-		this.getZone().remove(this);
-		owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
-	}
-	
+
 	/**
 	 * does this pet even have another form?
 	 */
 	public boolean canGrow() {
 		return false;
+	}
+
+	/**
+	 * grow this pet into a new form
+	 */
+	public void grow() {
+		LOGGER.error("Subclass of Pet claimed to be growable, but did not implement grow()");
 	}
 
 }

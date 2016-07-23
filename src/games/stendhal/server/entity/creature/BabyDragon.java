@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2016 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,8 +60,6 @@ public class BabyDragon extends Pet {
 		try {
 			final RPClass baby_dragon = new RPClass("baby_dragon");
 			baby_dragon.isA("pet");
-			// baby_dragon.add("weight", Type.BYTE);
-			// baby_dragon.add("eat", Type.FLAG);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -121,5 +118,26 @@ public class BabyDragon extends Pet {
 	@Override
 	public boolean canGrow() {
 		return true;
+	}
+	
+	/**
+	 * If this pet 'canGrow' into another form it's handled here.
+	 */
+	@Override
+	public void grow() {
+		final PurpleDragon purpledragon = new PurpleDragon(owner);
+		if (owner != null) {
+			owner.setPet(purpledragon);
+		}
+		purpledragon.setPosition(getX(), getY());
+
+		//nicknames carry over otherwise the name should update to reflect new form.
+		if (!this.getTitle().startsWith("baby dragon"))	{
+			purpledragon.setTitle(this.getTitle());
+		}
+		purpledragon.setXP(this.getXP());
+		purpledragon.setLevel(this.getLevel());
+		this.getZone().remove(this);
+		owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
 	}
 }
