@@ -138,6 +138,8 @@ public class BabyDragon extends Pet {
 		purpledragon.setXP(this.getXP());
 		purpledragon.setLevel(this.getLevel());
 		this.getZone().remove(this);
-		owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
+		if (owner != null) {
+			owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
+		}
 	}
 }
