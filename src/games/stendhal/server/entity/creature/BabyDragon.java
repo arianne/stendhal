@@ -117,7 +117,8 @@ public class BabyDragon extends Pet {
 	
 	@Override
 	public boolean canGrow() {
-		return true;
+		// TODO: Enable growing after fixing CoMod in grow() and carefully checking balancing
+		return false;
 	}
 	
 	/**
@@ -137,6 +138,8 @@ public class BabyDragon extends Pet {
 		}
 		purpledragon.setXP(this.getXP());
 		purpledragon.setLevel(this.getLevel());
+
+		// TODO: This causes a java.util.ConcurrentModificationException in StendhalRPZone.logic
 		this.getZone().remove(this);
 		if (owner != null) {
 			owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
