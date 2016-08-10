@@ -60,7 +60,11 @@ public class ExamineEvent extends RPEvent {
 	 */
 	public ExamineEvent(final String image, final String title, final String caption) {
 		super(RPCLASS_NAME);
-		super.put(PATH, IMAGE_PATH + image);
+		String path = image;
+		if (!image.startsWith("http://") && !image.startsWith("https://")) {
+			path = IMAGE_PATH + image;
+		}
+		super.put(PATH, path);
 		super.put(TITLE, title);
 		super.put(CAPTION, caption);
 	}

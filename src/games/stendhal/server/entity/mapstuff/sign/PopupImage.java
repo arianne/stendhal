@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                    (C) Copyright 2003-2010 - Stendhal                   *
+ *                    (C) Copyright 2003-2016 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,7 +20,7 @@ import games.stendhal.server.events.ExamineEvent;
  * A sign (or transparent area) which is placed on the ground and can be looked at closely.
  */
 public class PopupImage extends Sign implements UseListener {
-	private final String image;
+	private String image;
 	private final String title;
 	private final String caption;
 
@@ -35,13 +34,16 @@ public class PopupImage extends Sign implements UseListener {
 	public PopupImage(final String image, final String title, final String caption) {
 		put(Actions.ACTION, Actions.LOOK_CLOSELY);
 		this.image = image;
+		if (!image.startsWith("http://") && !image.startsWith("https://")) {
+			this.image = "examine/" + image;
+		}
 		this.title = title;
 		this.caption = caption;
 	}
 
 	@Override
 	public boolean onUsed(RPEntity user) {
-		user.addEvent(new ExamineEvent("examine/" + image, title, caption));
+		user.addEvent(new ExamineEvent(image, title, caption));
 		user.notifyWorldAboutChanges();
 		return true;
 	}
