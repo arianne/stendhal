@@ -53,7 +53,7 @@ public final class RPEventImageViewer {
 	private URL genURL() {
 		try {
 			URL url = null;
-			if (path.startsWith("http://")) {
+			if (path.startsWith("http://") || path.startsWith("https://")) {
 				url = new URL(path);
 			} else {
 				url = DataLoader.getResource(path);
