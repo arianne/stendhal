@@ -137,7 +137,7 @@
   </item>
   
   <item name="dark arrow">
-    <type class="projectiles" subclass="dark_arrow" tileid="-1"/>
+    <type class="ammunition" subclass="dark_arrow" tileid="-1"/>
     <description>You see a dark arrow. It's hard to describe.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
