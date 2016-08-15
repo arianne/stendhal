@@ -28,7 +28,7 @@ import games.stendhal.server.events.ExamineEvent;
  */
 @Dev(category=Category.CHAT, label="Image")
 public class ExamineChatAction implements ChatAction {
-	private final String image;
+	private String image;
 	private final String title;
 	private final String caption;
 
@@ -41,13 +41,16 @@ public class ExamineChatAction implements ChatAction {
 	 */
 	public ExamineChatAction(final String image, final String title, final String caption) {
 		this.image = checkNotNull(image);
+		if (!image.startsWith("http://") && !image.startsWith("https://")) {
+			this.image = "examine/" + image;
+		}
 		this.title = checkNotNull(title);
 		this.caption = checkNotNull(caption);
 	}
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		player.addEvent(new ExamineEvent("examine/" + image, title, caption));
+		player.addEvent(new ExamineEvent(image, title, caption));
 		player.notifyWorldAboutChanges();
 	}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2016 - Faiumoni e. V.                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,17 +14,19 @@ package games.stendhal.server.maps.quests.revivalweeks;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 
 /**
- * Soldiers protecting the entrance to Semos Mine.
+ * NPCs who creates photos
  */
-public class SoldierNPCs implements LoadableContent {
+public class PhotographerNPC implements LoadableContent {
 
 	private void createNPC() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
-		final SpeakerNPC npc1 = new SpeakerNPC("Hibitus") {
+		final SpeakerNPC npc1 = new SpeakerNPC("Bibos") {
 
 			@Override
 			protected void createPath() {
@@ -33,40 +35,25 @@ public class SoldierNPCs implements LoadableContent {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("...");
-				addJob("I protect the festival from the evil creatures lurking deep inside the mines.");
-				addGoodbye("Be careful.");
+				addGreeting("#Pictures! Good #Pictures! Memory #Pictures! Buy #Pictures!");
+				addJob("I create #pictures from your memories.");
+				addGoodbye("Take care.");
+
+				add(ConversationStates.ATTENDING,
+					"picture",
+					null,
+					ConversationStates.ATTENDING,
+					"Ohmmmmm, I see blury mist, Ohmmmmm. The picture is getting clearer, Ohmmmmm. Just a view more seconds...",
+					new ExamineChatAction("https://stendhalgame.org/content/game/photo.php?outfit=7080202&i=8&h=c072c96d5d3dac664a743d8a2b5149ede2bad4f425174b8123a4639fb1f81da3", "title", "caption"));
 			}
 		};
 
-		npc1.setPosition(88, 98);
+		npc1.setPosition(90, 111);
 		npc1.setEntityClass("youngsoldiernpc");
 		npc1.setDirection(Direction.RIGHT);
-		npc1.setDescription("You see Hibitus. He guards the entrance to Semos Mine.");
+		npc1.setDescription("You see Bibos. He creates pictures.");
 		npc1.initHP(100);
 		zone.add(npc1);
-
-		final SpeakerNPC npc2 = new SpeakerNPC("Lucanus") {
-
-			@Override
-			protected void createPath() {
-				setPath(null);
-			}
-
-			@Override
-			protected void createDialog() {
-				addGreeting("...");
-				addJob("I protect the festival from the evil creatures lurking deep inside the mines.");
-				addGoodbye("Be careful.");
-			}
-		};
-		
-		npc2.setPosition(92, 98);
-		npc2.setEntityClass("youngsoldiernpc");
-		npc2.setDirection(Direction.LEFT);
-		npc2.setDescription("You see Lucanus. He guards the entrance to Semos Mine.");
-		npc2.initHP(100);
-		zone.add(npc2);
 	}
 
 
@@ -90,14 +77,13 @@ public class SoldierNPCs implements LoadableContent {
 
 
 	/**
-	 * removes NPCs from the Mine Town
+	 * removes NPC from the Mine Town
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
 	@Override
 	public boolean removeFromWorld() {
-		removeNPC("Hibitus");
-		removeNPC("Lucanus");
+		removeNPC("Bibos");
 		return true;
 	}
 }

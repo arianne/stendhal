@@ -25,6 +25,7 @@ import games.stendhal.server.maps.quests.revivalweeks.LoadableContent;
 import games.stendhal.server.maps.quests.revivalweeks.MakeupArtist;
 import games.stendhal.server.maps.quests.revivalweeks.NineSwitchesGame;
 import games.stendhal.server.maps.quests.revivalweeks.PaperChaseSign;
+import games.stendhal.server.maps.quests.revivalweeks.PhotographerNPC;
 import games.stendhal.server.maps.quests.revivalweeks.SokobanGame;
 import games.stendhal.server.maps.quests.revivalweeks.SoldierNPCs;
 import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
@@ -55,6 +56,7 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 		content.add(new MakeupArtist());
 		content.add(new FishermansDaughterSellingNPC());
 		content.add(new PaperChaseSign());
+		content.add(new PhotographerNPC());
 		content.add(new TicTacToeGame());
 		content.add(new NineSwitchesGame());
 		content.add(new SokobanGame());
