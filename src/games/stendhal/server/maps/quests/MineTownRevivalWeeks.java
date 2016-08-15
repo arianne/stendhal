@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.revivalweeks.DadNPC;
@@ -22,11 +26,8 @@ import games.stendhal.server.maps.quests.revivalweeks.MakeupArtist;
 import games.stendhal.server.maps.quests.revivalweeks.NineSwitchesGame;
 import games.stendhal.server.maps.quests.revivalweeks.PaperChaseSign;
 import games.stendhal.server.maps.quests.revivalweeks.SokobanGame;
+import games.stendhal.server.maps.quests.revivalweeks.SoldierNPCs;
 import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * <p>Creates a special version of Susi by the mine town.
@@ -50,6 +51,7 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 
 		content.add(new FoundGirl());
 		content.add(new DadNPC());
+		content.add(new SoldierNPCs());
 		content.add(new MakeupArtist());
 		content.add(new FishermansDaughterSellingNPC());
 		content.add(new PaperChaseSign());
