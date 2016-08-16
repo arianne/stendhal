@@ -17,7 +17,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.ExamineChatAction;
 
 /**
  * NPCs who creates photos
@@ -44,7 +43,7 @@ public class PhotographerNPC implements LoadableContent {
 					null,
 					ConversationStates.ATTENDING,
 					"Ohmmmmm, I see blury mist, Ohmmmmm. The picture is getting clearer, Ohmmmmm. Just a view more seconds...",
-					new ExamineChatAction("https://stendhalgame.org/content/game/photo.php?outfit=7080202&i=8&h=c072c96d5d3dac664a743d8a2b5149ede2bad4f425174b8123a4639fb1f81da3", "title", "caption"));
+					new PhotographerChatAction());
 			}
 		};
 
