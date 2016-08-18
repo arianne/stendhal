@@ -25,7 +25,7 @@ public class PhotographerNPC implements LoadableContent {
 
 	private void createNPC() {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
-		final SpeakerNPC npc1 = new SpeakerNPC("Bibos") {
+		final SpeakerNPC npc1 = new SpeakerNPC("Kirla") {
 
 			@Override
 			protected void createPath() {
@@ -48,9 +48,9 @@ public class PhotographerNPC implements LoadableContent {
 		};
 
 		npc1.setPosition(90, 111);
-		npc1.setEntityClass("youngsoldiernpc");
+		npc1.setEntityClass("photographernpc");
 		npc1.setDirection(Direction.RIGHT);
-		npc1.setDescription("You see Bibos. He creates pictures.");
+		npc1.setDescription("You see Kirla. She creates pictures.");
 		npc1.initHP(100);
 		zone.add(npc1);
 	}
@@ -82,7 +82,7 @@ public class PhotographerNPC implements LoadableContent {
 	 */
 	@Override
 	public boolean removeFromWorld() {
-		removeNPC("Bibos");
+		removeNPC("Kirla");
 		return true;
 	}
 }
