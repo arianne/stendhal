@@ -14,6 +14,8 @@ package games.stendhal.server.maps.quests.revivalweeks;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.crypto.Mac;
@@ -23,6 +25,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -42,15 +45,52 @@ public class PhotographerChatAction implements ChatAction {
 		" discovering the Gnome village",
 		" visiting Ados",
 		" discovering a huge tower",
-		" sneaking into Ados Wildlife Refuge"
+		" sneaking into Ados Wildlife Refuge",
+		" looking out of the wizzard tower"
 	};
 
 	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		String outfit = Integer.toString(player.getOutfit().getCode());
-		int i = Rand.rand(9);
+		int i = determinePhoto(player);
 		player.addEvent(new ExamineEvent(generateUrl(outfit, i), "Picture", player.getName() + CAPTIONS[i]));
 		player.notifyWorldAboutChanges();
+	}
+
+	private int determinePhoto(Player player) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		List<Integer> photos = new LinkedList<Integer>();
+		if (player.hasQuest("weapons_collector")) {
+			photos.add(Integer.valueOf(0));
+		}
+		if (player.getLevel() < 50) {
+			photos.add(Integer.valueOf(1));
+		}
+		if (player.hasVisitedZone(world.getZone("-1_semos_dungeon"))) {
+			photos.add(Integer.valueOf(2));
+		}
+		if (player.hasVisitedZone(world.getZone("int_afterlife"))) {
+			photos.add(Integer.valueOf(3));
+		}
+		if (player.hasQuest("jenny_mill_flour")) {
+			photos.add(Integer.valueOf(4));
+		}
+		if (player.hasVisitedZone(world.getZone("0_semos_mountain_n_w2"))) {
+			photos.add(Integer.valueOf(5));
+		}
+		if (player.hasVisitedZone(world.getZone("0_ados_wall_n"))) {
+			photos.add(Integer.valueOf(6));
+		}
+		if (player.hasVisitedZone(world.getZone("int_semos_wizards_tower_basement"))) {
+			photos.add(Integer.valueOf(7));
+		}
+		if (player.hasVisitedZone(world.getZone("-1_ados_outside_nw"))) {
+			photos.add(Integer.valueOf(8));
+		}
+		if (player.hasVisitedZone(world.getZone("int_semos_wizards_tower_9"))) {
+			photos.add(Integer.valueOf(9));
+		}
+		return Rand.rand(photos).intValue();
 	}
 
 	private String generateUrl(String outfit, int i) {
