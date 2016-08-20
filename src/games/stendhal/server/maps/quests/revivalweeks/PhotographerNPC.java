@@ -47,9 +47,9 @@ public class PhotographerNPC implements LoadableContent {
 			}
 		};
 
-		npc1.setPosition(90, 111);
+		npc1.setPosition(68, 119);
 		npc1.setEntityClass("photographernpc");
-		npc1.setDirection(Direction.RIGHT);
+		npc1.setDirection(Direction.DOWN);
 		npc1.setDescription("You see Kirla. She creates pictures.");
 		npc1.initHP(100);
 		zone.add(npc1);
