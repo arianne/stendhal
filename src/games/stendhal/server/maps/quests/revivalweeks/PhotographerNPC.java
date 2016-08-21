@@ -43,7 +43,7 @@ public class PhotographerNPC implements LoadableContent {
 					null,
 					ConversationStates.ATTENDING,
 					"Ohmmmmm, I see blury mist, Ohmmmmm. The picture is getting clearer, Ohmmmmm. Just a view more seconds...",
-					new PhotographerChatAction());
+					new PhotographerChatAction(zone));
 			}
 		};
 
