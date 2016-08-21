@@ -156,6 +156,29 @@ public class PhotographerChatAction implements ChatAction {
 		if (player.hasVisitedZone(world.getZone("int_semos_wizards_tower_9"))) {
 			photos.add(Integer.valueOf(9));
 		}
+		if (player.hasQuest("icecream_for_annie")) {
+			photos.add(Integer.valueOf(10));
+		}
+		if (player.hasQuest("solve_riddles")) {
+			photos.add(Integer.valueOf(11));
+		}
+		if (player.hasVisitedZone(world.getZone("int_imorgens_house"))) {
+			photos.add(Integer.valueOf(12));
+		}
+		/*
+		if (player.hasVisitedZone(world.getZone("int_semos_wizards_tower_9"))) {
+			photos.add(Integer.valueOf(13));
+		}
+		*/
+		if (player.hasVisitedZone(world.getZone("0_nalwor_city"))) {
+			photos.add(Integer.valueOf(14));
+		}
+		if (player.hasVisitedZone(world.getZone("int_oni_palace_2"))) {
+			photos.add(Integer.valueOf(15));
+		}
+		if (player.hasQuest("campfire")) {
+			photos.add(Integer.valueOf(16));
+		}
 		return Rand.rand(photos).intValue();
 	}
 
