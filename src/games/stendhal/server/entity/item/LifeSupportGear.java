@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.GlobalVisualEffectEvent;
 import marauroa.common.game.RPObject;
@@ -99,5 +100,21 @@ public class LifeSupportGear extends Item {
 				player.sendPrivateText("You recover slowly, wondering where you are.");
 			}
 		});
+	}
+
+	@Override
+	public int getDefense() {
+		StendhalRPZone zone = ((RPEntity) this.getBaseContainer()).getZone();
+		if (zone == null) {
+			return super.getDefense();
+		}
+		String requireLifeSupport = zone.getAttributes().get("life_support_environment");
+		if (requireLifeSupport == null) {
+			return 0;
+		}
+		if (!requireLifeSupport.equals(this.get("life_support"))) {
+			return 0;
+		}
+		return super.getDefense();		
 	}
 }

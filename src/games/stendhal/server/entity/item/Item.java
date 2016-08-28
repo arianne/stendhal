@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
@@ -27,20 +35,11 @@ import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * This is an item.
@@ -743,6 +742,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		if (has("min_level")) {
 			stats.append(" MIN-LEVEL: ");
 			stats.append(get("min_level"));
+		}
+		if (has("life_support")) {
+			stats.append(" LIFE-SUPPORT: ");
+			stats.append(get("life_support"));
 		}
 		String statString = "";
 		if (stats.length() > 0) {
