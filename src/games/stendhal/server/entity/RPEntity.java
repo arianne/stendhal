@@ -13,6 +13,21 @@
 package games.stendhal.server.entity;
 
 
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.WeakHashMap;
+
+import org.apache.log4j.Logger;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Level;
 import games.stendhal.common.NotificationType;
@@ -49,17 +64,6 @@ import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.util.CounterMap;
-
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.WeakHashMap;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -67,11 +71,6 @@ import marauroa.common.game.SyntaxException;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
-
-import org.apache.log4j.Logger;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
 
 public abstract class RPEntity extends GuidedEntity {
 
@@ -1696,6 +1695,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Reward pets who kill enemies.  don't perks like AchievementNotifier that players.
 	 */
 	protected void rewardKillerAnimals(final int oldXP) {
+		if (!System.getProperty("stendhal.petleveling", "false").equals("true")) {
+			return;
+		}
 		final int xpReward = (int) (oldXP * 0.05);
 
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {

@@ -11,23 +11,24 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A pet is a domestic animal that can be owned by a player. It eats chicken
@@ -246,14 +247,27 @@ public abstract class Pet extends DomesticAnimal {
 		}
 
 		//fight whatever owner is targeting
-		if (takesPartInCombat() && (owner != null)
+		if (System.getProperty("stendhal.petleveling", "false").equals("true")
+				&& takesPartInCombat() && (owner != null)
 				&& (owner.getAttackTarget() != null)) 		{
 			RPEntity myTarget = owner.getAttackTarget();
 			this.setTarget(myTarget);
 		}
 		
 		if ((this.getLevel() >= LVCap) && canGrow()) {
-			grow();
+
+			// Postpone growing to the next turn because it may involve 
+			// removing this NPC-entity from the zone and adding a 
+			// different one.
+			// But we are called from within a for-loop over all NPC-entity
+			// in StendhalRPZone.logic, so we may not modify that list 
+			TurnNotifier.get().notifyInTurns(1, new TurnListener() {
+				
+				@Override
+				public void onTurnReached(int currentTurn) {
+					grow();
+				}
+			});
 		}
 		
 		//drinking logic

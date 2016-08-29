@@ -11,16 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A baby dragon is a domestic animal that can be owned by a player.
@@ -117,8 +116,7 @@ public class BabyDragon extends Pet {
 	
 	@Override
 	public boolean canGrow() {
-		// TODO: Enable growing after fixing CoMod in grow() and carefully checking balancing
-		return false;
+		return !System.getProperty("stendhal.petleveling", "false").equals("true");
 	}
 	
 	/**
@@ -126,6 +124,9 @@ public class BabyDragon extends Pet {
 	 */
 	@Override
 	public void grow() {
+		if (owner != null) {
+			owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
+		}
 		final PurpleDragon purpledragon = new PurpleDragon(owner);
 		if (owner != null) {
 			owner.setPet(purpledragon);
@@ -139,10 +140,10 @@ public class BabyDragon extends Pet {
 		purpledragon.setXP(this.getXP());
 		purpledragon.setLevel(this.getLevel());
 
-		// TODO: This causes a java.util.ConcurrentModificationException in StendhalRPZone.logic
+		// Note: It is save to do this here because we are not directly called
+		// from the NPC logic loop in StendalRPZone. Pet.logic() postpones the
+		// invocation of this method to a Turn Listener.
 		this.getZone().remove(this);
-		if (owner != null) {
-			owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
-		}
+		this.getZone().add(purpledragon);
 	}
 }
