@@ -247,7 +247,8 @@ public abstract class Pet extends DomesticAnimal {
 		}
 
 		//fight whatever owner is targeting
-		if (takesPartInCombat() && (owner != null)
+		if (System.getProperty("stendhal.petleveling", "false").equals("true")
+				&& takesPartInCombat() && (owner != null)
 				&& (owner.getAttackTarget() != null)) 		{
 			RPEntity myTarget = owner.getAttackTarget();
 			this.setTarget(myTarget);
