@@ -140,7 +140,9 @@ public class BabyDragon extends Pet {
 		purpledragon.setXP(this.getXP());
 		purpledragon.setLevel(this.getLevel());
 
-		// TODO: This causes a java.util.ConcurrentModificationException in StendhalRPZone.logic
+		// Note: It is save to do this here because we are not directly called
+		// from the NPC logic loop in StendalRPZone. Pet.logic() postpones the
+		// invocation of this method to a Turn Listener.
 		this.getZone().remove(this);
 		this.getZone().add(purpledragon);
 	}
