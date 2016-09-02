@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -22,6 +24,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -32,8 +35,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.log4j.Logger;
 
 public class ProducerAdder {
 	private static final Logger logger = Logger.getLogger(ProducerAdder.class);
@@ -77,7 +78,7 @@ public class ProducerAdder {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npcName),
 						new QuestNotActiveCondition(QUEST_SLOT)),
-				false, ConversationStates.ATTENDING, thisWelcomeMessage, null);
+				false, ConversationStates.ATTENDING, null, new SayTextAction(thisWelcomeMessage));
 
 		engine.add(ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),

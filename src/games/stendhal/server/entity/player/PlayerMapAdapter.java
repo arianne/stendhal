@@ -1,12 +1,13 @@
 package games.stendhal.server.entity.player;
 
-import games.stendhal.common.MathHelper;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.rp.DaylightPhase;
 
 /**
  * makes player properties available using the Map interface
@@ -57,6 +58,8 @@ public class PlayerMapAdapter implements Map<String, String> {
 			return player.getName();
 		} else if (key.startsWith("quest.")) {
 			return getQuestValue(key);
+		} else if (key.equals("daylightphase")) {
+			return DaylightPhase.current().getGreetingName();
 		} else {
 			logger.warn("Unknown key: " + key, new Throwable());
 			// Extend here
