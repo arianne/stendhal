@@ -179,7 +179,7 @@
 
   <item name="suntan cream">
     <type class="misc" subclass="suntan_cream" tileid="-1"/>
-    <description/>
+    <description>You see a clear bottle of suntan cream and notice that the outside is slippery. A nice scent of coconut mixed with bannana wafts into the air from it.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
