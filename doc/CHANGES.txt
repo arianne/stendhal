@@ -7,9 +7,14 @@
 - New trader NPC (Mizuno) travels around remote parts of Ados selling ice arrows for black pearls.
 - Rebalancing vampire, chaos swords.
 - Photo booth at Mine Town Revival festival
+- Small improvements to maps
+- Small improvements to item and monster descriptions
+
+*client*
+- Default action of chest changed to open/inspect instead of look
 
 *fixes*
-- Help For the Harvest quest should work again.
+- Help For the Harvest quest works again.
 
 *code*
 - In TeleporterBehaviour, zoneName.startsWith() 

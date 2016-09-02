@@ -13,22 +13,22 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.SwingUtilities;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.InternalWindow;
-import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.InternalWindow.CloseListener;
+import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.SwingUtilities;
 
 /**
  * The 2D view of a chest.
@@ -252,6 +252,15 @@ class Chest2DView extends StateEntity2DView<Chest> {
 		default:
 			super.onAction(at);
 			break;
+		}
+	}
+
+	@Override
+	public void onAction() {
+		if (entity.isOpen()) {
+			this.onAction(ActionType.INSPECT);
+		} else {
+			this.onAction(ActionType.OPEN);
 		}
 	}
 

@@ -21,31 +21,34 @@ import java.util.Calendar;
 public enum DaylightPhase {
 
 	/** during the night */
-	NIGHT (0x47408c),
+	NIGHT (0x47408c, "night"),
 
 	/** early morning before sunrise at */
-	DAWN (0x774590),
+	DAWN (0x774590, "night"),
 
 	/** the sun is rising */
-	SUNRISE (0xc0a080),
+	SUNRISE (0xc0a080, "sunrise"),
 
 	/** during the day */
-	DAY (),
+	DAY ("day"),
 
 	/** the sun is setting */
-	SUNSET (0xc0a080),
+	SUNSET (0xc0a080, "unset"),
 
 	/** early night */
-	DUSK (0x774590);
+	DUSK (0x774590, "night");
 
 	private Integer color;
+	private String greetingName;
 
-	private DaylightPhase(int color) {
+	private DaylightPhase(int color, String greetingName) {
 		this.color = Integer.valueOf(color);
+		this.greetingName = greetingName;
 	}
 
-	private DaylightPhase() {
+	private DaylightPhase(String greetingName) {
 		this.color = null;
+		this.greetingName = greetingName;
 	}
 
 	/**
@@ -86,4 +89,14 @@ public enum DaylightPhase {
 	public Integer getColor() {
 		return color;
 	}
+
+	/**
+	 * Gets the greeting name
+	 * 
+	 * @return greeting name
+	 */
+	public String getGreetingName() {
+		return greetingName;
+	}
+
 }

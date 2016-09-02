@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
@@ -30,14 +38,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Builds the gardener in Kalavan city gardens.
@@ -209,7 +209,7 @@ public class GardenerNPC implements ZoneConfigurator {
 				final ProducerBehaviour behaviour = new SpecialProducerBehaviour("swap", "kalavan city scroll", requiredResources, 1 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Fine day, isn't it?");
+				        "Fine [daylightphase], isn't it?");
 				addQuest("I'd love a cup of #tea, it's thirsty work, gardening. If you bring me a #sandwich too I'll #swap you for a magic scroll.");
 				addReply(Arrays.asList("tea", "cup of tea"), "Old Granny Graham may brew you a cup. She's in that big cottage over there.");
 				addGoodbye("Bye. Enjoy the rest of the gardens.");
