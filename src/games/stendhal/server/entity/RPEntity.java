@@ -764,6 +764,13 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		return super.getName();
 	}
+	
+	@Override
+	public void onAdded(final StendhalRPZone zone) {
+		super.onAdded(zone);
+		this.updateItemAtkDef();
+	}
+
 
 	public void setLevel(final int level) {
 		this.level = level;
@@ -816,14 +823,8 @@ public abstract class RPEntity extends GuidedEntity {
 		// Handle level changes
 		final int newLevel = Level.getLevel(atk_xp);
 		final int levels = newLevel - (this.atk - 10);
-
-		// In case we level up several levels at a single time.
-		for (int i = 0; i < Math.abs(levels); i++) {
-			setAtkInternal(this.atk + (int) Math.signum(levels) * 1, notify);
-			if (this.atk > 0) {
-				new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
-			}
-		}
+		setAtkInternal(this.atk + levels, notify);
+		new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
 	}
 
 	public int getAtkXP() {
@@ -878,14 +879,8 @@ public abstract class RPEntity extends GuidedEntity {
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
 		final int levels = newLevel - (this.def - 10);
-
-		// In case we level up several levels at a single time.
-		for (int i = 0; i < Math.abs(levels); i++) {
-			setDefInternal(this.def + (int) Math.signum(levels) * 1, notify);
-			if (this.def > 0) {
-				new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
-			}
-		}
+		setDefInternal(this.def + levels, notify);
+		new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
 	}
 
 	public int getDefXP() {
