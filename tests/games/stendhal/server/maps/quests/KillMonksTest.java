@@ -45,7 +45,10 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String NPC_TALK_BYE = "Goodbye, thank you for talking with me.";
 
-	private static final String HISTORY_START = "I must kill 25 monks and 25 darkmonks to get revenge for Andy's wife.";
+	private static final String HISTORY_DEFAULT = "I met Andy in Ados city. He asked me to get revenge for his wife.";
+	private static final String HISTORY_REJECTED = "I rejected his request.";
+	private static final String HISTORY_START = "I promised to kill 25 monks and 25 darkmonks to get revenge for Andy's wife.";
+	private static final String HISTORY_STATUS = "I still need to kill ";
 	private static final String HISTORY_COMPLETED_REPEATABLE = "Now, after more than two weeks, I should check on Andy again. Maybe he needs my help!";
 	private static final String HISTORY_COMPLETED_NOT_REPEATABLE = "I've killed some monks and Andy finally can sleep a bit better!";
 	private static final String HISTORY_COMPLETED_ONCE = "I have taken revenge for Andy 1 time now.";
@@ -93,7 +96,7 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("rejected", player.getQuest(questSlot));
 		assertTrue(npc.isTalking());
 		assertLoseKarma(5);
-		assertHistory(HISTORY_START);
+		assertHistory(HISTORY_DEFAULT, HISTORY_REJECTED);
 	}
 
 	@Test
@@ -108,7 +111,7 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 
 		assertEquals("start", player.getQuest(questSlot, 0));
 		assertGainKarma(5);
-		assertHistory(HISTORY_START);
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_STATUS + "25 monks and 25 darkmonks.");
 	}
 
 	@Test
@@ -131,7 +134,7 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "bye");
 		assertEquals(NPC_TALK_BYE, getReply(npc));
-		assertHistory(HISTORY_COMPLETED_NOT_REPEATABLE, HISTORY_COMPLETED_ONCE);
+		assertHistory(HISTORY_DEFAULT, HISTORY_COMPLETED_NOT_REPEATABLE, HISTORY_COMPLETED_ONCE);
 	}
 
 	@Test
@@ -146,7 +149,7 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(NPC_TALK_QUEST_REMIND, getReply(npc));
 
 		assertEquals(QUEST_STATE_JUST_STARTED, player.getQuest(questSlot));
-		assertHistory(HISTORY_START);
+		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_STATUS + "24 monks and 23 darkmonks.");
 	}
 
 	@Test
@@ -161,7 +164,7 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(quest.isRepeatable(player));
 		assertEquals("killed", player.getQuest(questSlot, 0));
-		assertHistory(HISTORY_COMPLETED_REPEATABLE);
+		assertHistory(HISTORY_DEFAULT, HISTORY_COMPLETED_REPEATABLE);
 	}
 
 	@Test
@@ -176,7 +179,7 @@ public class KillMonksTest extends ZonePlayerAndNPCTestImpl {
 
 		assertFalse(quest.isRepeatable(player));
 		assertEquals("killed", player.getQuest(questSlot, 0));
-		assertHistory(HISTORY_COMPLETED_NOT_REPEATABLE);
+		assertHistory(HISTORY_DEFAULT, HISTORY_COMPLETED_NOT_REPEATABLE);
 	}
 
 	private void startTalkingToNpc(String name) {
