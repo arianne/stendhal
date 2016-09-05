@@ -42,7 +42,7 @@ public class BabyDragon extends Pet {
 	void setUp() {
 		HP = 500;
 		incHP = 6;
-		LVCap = 6;
+		lv_cap = 6;
 		ATK = 15;
 		DEF = 40;
 		XP = 100;

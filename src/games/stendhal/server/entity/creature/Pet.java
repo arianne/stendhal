@@ -72,8 +72,6 @@ public abstract class Pet extends DomesticAnimal {
 	protected List<String> medicineName = getMedicineNames();
 
 	protected int HP = 100;
-	
-	protected int LVCap = 598;
 
 	protected int ATK = 10;
 
@@ -254,7 +252,7 @@ public abstract class Pet extends DomesticAnimal {
 			this.setTarget(myTarget);
 		}
 		
-		if ((this.getLevel() >= LVCap) && canGrow()) {
+		if ((this.getLevel() >= this.getLVCap()) && canGrow()) {
 
 			// Postpone growing to the next turn because it may involve 
 			// removing this NPC-entity from the zone and adding a 

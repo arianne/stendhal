@@ -116,7 +116,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private int hp;
 	
-	private int lv_cap;
+	protected int lv_cap;
 
 	private int xp;
 
@@ -1733,7 +1733,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			if (reward == 0) {
 				reward = 1;
 			}
-
+			
+			if (killer.getLevel() >= killer.getLVCap())
+			{
+				reward = 0;
+			}
+			
 			killer.addXP(reward);
 
 			/*

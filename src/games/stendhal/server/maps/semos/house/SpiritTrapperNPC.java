@@ -187,8 +187,9 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 							player.equipOrPutOnGround(products);
 							npc.say("Here " + Grammar.isare(numberOfProductItems) 
 									+ " your " + Grammar.quantityplnoun(numberOfProductItems,
-											getProductName(), "") + ".");
+											getProductName(), "") + ". Now get going I can't get anyting done with you mucking about.");
 							player.setQuest(QUEST_SLOT, "done");
+							npc.setCurrentState(ConversationStates.IDLE);
 							player.notifyWorldAboutChanges();
 						}
 					}
