@@ -76,6 +76,7 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 			}
 	        @Override
 			protected void createDialog() {
+	        	addGreeting("What do you want?");
 			    addJob("I prefer to keep that to myself.");
 			    addOffer("Look I must move on soon but, quickly, if you have any #black #pearls I will trade some of my magic #arrows for them. Care to #buy some #arrows?");
 			    addGoodbye("Then get going... I can't get any work done with you mucking around.");
@@ -135,14 +136,14 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 						int amount = res.getAmount();
 
 						if (getMaximalAmount(player) < amount) {
-							npc.say(Grammar.quantityplnoun(amount, getProductName(), "a") 
+							npc.say(Grammar.quantityplnoun(amount, getProductName(), "A") 
 									+ " costs "
 									+ getRequiredResourceNamesWithHashes(amount) + ". "
 									+ " You don't have enough.");
 							return false;
 						} else {
 							res.setAmount(amount);
-							npc.say(Grammar.quantityplnoun(amount, getProductName(), "a") 
+							npc.say(Grammar.quantityplnoun(amount, getProductName(), "A") 
 									+ " for "
 									+ getRequiredResourceNamesWithHashes(amount) + ". "
 									+ " Correct?");
