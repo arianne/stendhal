@@ -41,6 +41,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.KillsForQuestCounter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -209,16 +210,28 @@ public class KillMonks extends AbstractQuest {
 	
 	@Override
 	public List<String> getHistory(final Player player) {
-			final List<String> res = new ArrayList<String>();
+			final List<String> res = new ArrayList<>();
 			if (!player.hasQuest(QUEST_SLOT)) {
 				return res;
 			}
-			if (!isCompleted(player)) {
-				res.add("I must kill 25 monks and 25 darkmonks to get revenge for Andy's wife.");
-			} else if(isRepeatable(player)){
-				res.add("Now, after more than two weeks, I should check on Andy again. Maybe he needs my help!");
-			} else {
-				res.add("I've killed some monks and Andy finally can sleep a bit better!");
+			res.add("I met Andy in Ados city. He asked me to get revenge for his wife.");
+			final String questStateFull = player.getQuest(QUEST_SLOT);
+			final String[] parts = questStateFull.split(";");
+			final String questState = parts[0];
+
+			if ("rejected".equals(questState)) {
+				res.add("I rejected his request.");
+			}
+			if ("start".equals(questState)) {
+				res.add("I promised to kill 25 monks and 25 darkmonks to get revenge for Andy's wife.");
+				res.add(howManyWereKilled(player, parts[1]));
+			}
+			if (isCompleted(player)) {
+				if(isRepeatable(player)){
+					res.add("Now, after more than two weeks, I should check on Andy again. Maybe he needs my help!");
+				} else {
+					res.add("I've killed some monks and Andy finally can sleep a bit better!");
+				}
 			}
 			int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
 			if (repetitions > 0) {
@@ -228,6 +241,20 @@ public class KillMonks extends AbstractQuest {
 			return res;
 	}
 
+	private String howManyWereKilled(final Player player, final String questState) {
+		KillsForQuestCounter killsCounter = new KillsForQuestCounter(questState);
+		int remainingMonks = killsCounter.remainingKills(player, "monk");
+		int remainingDarkMonks = killsCounter.remainingKills(player, "darkmonk");
+		if (remainingMonks > 0 && remainingDarkMonks > 0) {
+			return "I still need to kill " + Grammar.quantityplnoun(remainingMonks, "monk")  + " and " + Grammar.quantityplnoun(remainingDarkMonks, "darkmonk") + ".";
+		} else if (remainingMonks > 0) {
+			return "I still need to kill " + Grammar.quantityplnoun(remainingMonks, "monk") + ".";
+		} else if (remainingDarkMonks > 0) {
+			return "I still need to kill " + Grammar.quantityplnoun(remainingDarkMonks, "darkmonk") + ".";
+		} else {
+			return "I have killed 25 monks and 25 darkmonks.";
+		}
+	}
 
 	@Override
 	public String getName() {
