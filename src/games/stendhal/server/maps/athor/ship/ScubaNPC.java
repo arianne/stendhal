@@ -63,6 +63,9 @@ public class ScubaNPC implements ZoneConfigurator  {
 				
 				//quest phrases;
 				addReply("license","Scuba diving can be dangerous before I can give you scuba gear you need to pass an #exam.");
+				addReply("Mizuno","Do I know that name? Hmm... why yes! Come to think of it we sometimes see a man by that name wandering the #swamp during our breaks on the mainland.");
+				addReply("swamp","Ai it lies just north of the dock but, beware that marsh has been haunted since the days of #Blordrough.");
+				addReply("Blordrough","The demon lord Blordrough waged war in these lands some years ago until the day his army was routed by a coalition of the wood elves and Deniran forces. The three armies fought tooth and nail but, in the end, the demon lord flooded the lake and fled out to sea.");
 				add(ConversationStates.ATTENDING,
 						"status",
 						null,
