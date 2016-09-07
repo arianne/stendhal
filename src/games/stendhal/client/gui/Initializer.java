@@ -11,18 +11,16 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.stendhal;
-import games.stendhal.client.sprite.DataLoader;
-
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.stendhal;
+import games.stendhal.client.sprite.DataLoader;
 
 /**
  * Code that needs to be run once before the initializing of any actual game
@@ -33,14 +31,15 @@ import org.apache.log4j.Logger;
  */
 class Initializer {
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
-	private static final String FONT_NAME = "BlackChancery";
-	/** Font used for the html areas */
-	private static final String FONT = "data/gui/" + FONT_NAME + ".ttf";
+	private static final String DECORATIVE_FONT_NAME = "BlackChancery";
+	/** Name of the font used for the tally marks. Should match the file name without .ttf */
+	private static final String TALLY_FONT_NAME = "Tally";
 	
 	private static final Logger logger = Logger.getLogger(Initializer.class);
 	
 	static {
-		initFont();
+		initFont(DECORATIVE_FONT_NAME);
+		initFont(TALLY_FONT_NAME);
 		initApplicationName();
 	}
 	
@@ -54,37 +53,26 @@ class Initializer {
 	}
 	
 	/**
-	 * Load the default decorative font.
+	 * Load a custom font.
+	 * 
+	 * @param fontName Name of the font
 	 */
-	private static void initFont() {
+	private static void initFont(String fontName) {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		// Don't needlessly load the font if user already has it installed
 		boolean needsLoading = true;
 		for (String font : ge.getAvailableFontFamilyNames()) {
-			if (FONT_NAME.equals(font)) {
+			if (fontName.equals(font)) {
 				needsLoading = false;
 				break;
 			}
 		}
 		if (needsLoading) {
+			String resource = "data/gui/" + fontName + ".ttf";
 			try {
-				// Call via reflection to keep supporting java 1.5
-				Method m = ge.getClass().getMethod("registerFont", Font.class);
-				m.invoke(ge, Font.createFont(Font.TRUETYPE_FONT, DataLoader.getResourceAsStream(FONT)));
-			} catch (IOException e) {
-				logger.error("Error loading custom font", e);
-			} catch (FontFormatException e) {
-				logger.error("Error loading custom font", e);
-			} catch (SecurityException e) {
-				logger.error("Error loading custom font", e);
-			} catch (NoSuchMethodException e) {
-				logger.error("Error loading custom font. Java version 6 or later is required for that to work.");
-			} catch (IllegalArgumentException e) {
-				logger.error("Error loading custom font", e);
-			} catch (IllegalAccessException e) {
-				logger.error("Error loading custom font", e);
-			} catch (InvocationTargetException e) {
-				logger.error("Error loading custom font", e);
+				ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, DataLoader.getResourceAsStream(resource)));
+			} catch (IOException|FontFormatException e) {
+				logger.error("Error loading custom font '" + resource + '"', e);
 			}
 		}
 	}
