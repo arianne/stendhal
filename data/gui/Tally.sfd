@@ -1,0 +1,201 @@
+SplineFontDB: 3.0
+FontName: Tally
+FullName: Tally
+FamilyName: Tally
+Weight: Regular
+Copyright: Copyright (c) 2016, Kimmo Rundelin
+UComments: "2016-9-7: Created with FontForge (http://fontforge.org)"
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -102.4
+UnderlineWidth: 51.2
+Ascent: 819
+Descent: 205
+InvalidEm: 0
+LayerCount: 2
+Layer: 0 0 "Back" 1
+Layer: 1 0 "Fore" 0
+XUID: [1021 567 2030019708 8889167]
+StyleMap: 0x0000
+FSType: 0
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1473226979
+ModificationTime: 1473250660
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 92
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+MarkAttachClasses: 1
+DEI: 91125
+Encoding: ISO8859-1
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 0 16 4
+BeginPrivate: 0
+EndPrivate
+BeginChars: 256 6
+
+StartChar: one
+Encoding: 49 49 0
+Width: 400
+VWidth: 0
+Flags: HW
+HStem: 0 22G<150 253>
+VStem: 150 102<0 819>
+LayerCount: 2
+Fore
+SplineSet
+150 819 m 25
+ 250 819 l 29
+ 250 0 l 25
+ 150 0 l 25
+ 150 819 l 25
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: two
+Encoding: 50 50 1
+Width: 650
+VWidth: 0
+Flags: HW
+HStem: 0 22G<102 205>
+VStem: 102 102<0 819>
+LayerCount: 2
+Fore
+SplineSet
+400 819 m 25
+ 500 819 l 25
+ 500 0 l 25
+ 400 0 l 25
+ 400 819 l 25
+150 819 m 25
+ 250 819 l 25
+ 250 0 l 25
+ 150 0 l 25
+ 150 819 l 25
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: three
+Encoding: 51 51 2
+Width: 900
+VWidth: 0
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+650 819 m 25
+ 750 819 l 25
+ 750 0 l 25
+ 650 0 l 25
+ 650 819 l 25
+400 819 m 25
+ 500 819 l 25
+ 500 0 l 25
+ 400 0 l 25
+ 400 819 l 25
+150 819 m 25
+ 250 819 l 25
+ 250 0 l 25
+ 150 0 l 25
+ 150 819 l 25
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: four
+Encoding: 52 52 3
+Width: 1150
+VWidth: 0
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+900 819 m 25
+ 1000 819 l 25
+ 1000 0 l 25
+ 900 0 l 25
+ 900 819 l 25
+650 819 m 25
+ 750 819 l 25
+ 750 0 l 25
+ 650 0 l 25
+ 650 819 l 25
+400 819 m 25
+ 500 819 l 25
+ 500 0 l 25
+ 400 0 l 25
+ 400 819 l 25
+150 819 m 25
+ 250 819 l 25
+ 250 0 l 25
+ 150 0 l 25
+ 150 819 l 25
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: five
+Encoding: 53 53 4
+Width: 1150
+VWidth: 0
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+900 819 m 25
+ 1000 819 l 25
+ 1000 0 l 25
+ 900 0 l 25
+ 900 819 l 25
+650 819 m 25
+ 750 819 l 25
+ 750 0 l 25
+ 650 0 l 25
+ 650 819 l 25
+400 819 m 25
+ 500 819 l 25
+ 500 0 l 25
+ 400 0 l 25
+ 400 819 l 25
+150 819 m 25
+ 250 819 l 25
+ 250 0 l 25
+ 150 0 l 25
+ 150 819 l 25
+50 0 m 25
+ -2 85 l 25
+ 1100 820 l 25
+ 1152 735 l 25
+ 50 0 l 25
+EndSplineSet
+Validated: 5
+EndChar
+
+StartChar: zero
+Encoding: 48 48 5
+Width: 500
+VWidth: 0
+Flags: WO
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+EndChars
+EndSplineFont
