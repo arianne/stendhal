@@ -82,6 +82,8 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 			    addGoodbye("Then get going... I can't get any work done with you mucking around.");
 			    
 			    addReply("arrows","I enchant arrows with elemental power. I have #ice, #fire, and #light.");
+			    addReply("buy fire","Maybe later when I don't have need of them.");
+			    addReply("buy light","Maybe later when I don't have need of them.");
 			    // the rest is in the MessageInABottle quest
 			    
 			 // Mizuno exchanges elemental arrows for black pearls.
