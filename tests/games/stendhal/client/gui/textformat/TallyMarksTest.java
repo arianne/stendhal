@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.util;
+package games.stendhal.client.gui.textformat;
 
 import static org.junit.Assert.assertEquals;
 

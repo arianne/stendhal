@@ -42,7 +42,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.KillsForQuestCounter;
-import games.stendhal.server.util.TallyMarks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -268,8 +267,8 @@ public class KillMonks extends AbstractQuest {
 		int killedDarkMonks = 25 - killsCounter.remainingKills(player, "darkmonk");
 
 		List<String> entries = new ArrayList<>();
-		entries.add("Monks: <span style=\"font-family: 'Tally'\">" + new TallyMarks(killedMonks) + "</span>");
-		entries.add("Darkmonks: <span style=\"font-family: 'Tally'\">" + new TallyMarks(killedDarkMonks) + "</span>");
+		entries.add("Monks: <tally>" + killedMonks + "</tally>");
+		entries.add("Darkmonks: <tally>" + killedDarkMonks + "</tally>");
 		return entries;
 	}
 

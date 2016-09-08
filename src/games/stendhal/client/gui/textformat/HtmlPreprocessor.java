@@ -9,34 +9,32 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.util;
+package games.stendhal.client.gui.textformat;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Tally marks representation of an integer number. The number is split into
- * groups of fives. For example, 12 is transformed into 552 (12 = 5+5+2).
+ * Pre-processes custom HTML tags, such as @{code &lt;tally/&gt;}.
  */
-public class TallyMarks {
+public class HtmlPreprocessor {
 
-	private final int value;
+	private static final Pattern TALLY_PATTERN = Pattern.compile("(.*)\\<tally\\>([0-9]+)\\</tally\\>(.*)");
 
-	public TallyMarks(int value) {
-		this.value = value;
+	public String preprocess(String input) {
+		return handleTallyTag(input);
 	}
 
-	@Override
-	public String toString() {
-		if (value < 0) {
-			return "0";
+	private String handleTallyTag(String input) {
+		Matcher matcher = TALLY_PATTERN.matcher(input);
+		if (matcher.matches()) {
+			String prefix = matcher.group(1);
+			String number = matcher.group(2);
+			String suffix = matcher.group(3);
+			int numberValue = Integer.parseInt(number);
+			return prefix + "<span style=\"font-family: 'Tally'\">" + new TallyMarks(numberValue) + "</span>" + suffix;
+		} else {
+			return input;
 		}
-		int quotient = value / 5;
-		int remainder = value % 5;
-		StringBuilder digits = new StringBuilder();
-		for (int i = 0; i < quotient; i++) {
-			digits.append("5");
-		}
-		if ((quotient > 0 && remainder > 0) || quotient == 0) {
-			digits.append(String.valueOf(remainder));
-		}
-		return digits.toString();
 	}
 }

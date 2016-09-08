@@ -45,6 +45,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.BackgroundPainter;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.textformat.HtmlPreprocessor;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.DataLoader;
@@ -436,11 +437,12 @@ class ProgressLog {
 			}
 
 			// details
+			HtmlPreprocessor preprocessor = new HtmlPreprocessor();
 			if (!contents.isEmpty()) {
 				text.append("<ul>");
 				for (String elem : contents) {
 					text.append("<li>");
-					text.append(elem);
+					text.append(preprocessor.preprocess(elem));
 					text.append("</li>");
 				}
 				text.append("</ul>");
