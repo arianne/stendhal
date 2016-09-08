@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1473226979
-ModificationTime: 1473250660
+ModificationTime: 1473321229
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -53,9 +53,9 @@ StartChar: one
 Encoding: 49 49 0
 Width: 400
 VWidth: 0
-Flags: HW
-HStem: 0 22G<150 253>
-VStem: 150 102<0 819>
+Flags: W
+HStem: 0 21G<150 250>
+VStem: 150 100<0 819>
 LayerCount: 2
 Fore
 SplineSet
@@ -72,9 +72,9 @@ StartChar: two
 Encoding: 50 50 1
 Width: 650
 VWidth: 0
-Flags: HW
-HStem: 0 22G<102 205>
-VStem: 102 102<0 819>
+Flags: W
+HStem: 0 21G<150 250 400 500>
+VStem: 150 100<0 819> 400 100<0 819>
 LayerCount: 2
 Fore
 SplineSet
@@ -96,7 +96,10 @@ StartChar: three
 Encoding: 51 51 2
 Width: 900
 VWidth: 0
-Flags: HW
+Flags: W
+HStem: 0 21G<150 250 400 500 650 750>
+VStem: 150 100<0 819> 400 100<0 819> 650 100<0 819>
+CounterMasks: 1 70
 LayerCount: 2
 Fore
 SplineSet
@@ -123,7 +126,9 @@ StartChar: four
 Encoding: 52 52 3
 Width: 1150
 VWidth: 0
-Flags: HW
+Flags: W
+HStem: 0 21G<150 250 400 500 650 750 900 1000>
+VStem: 150 100<0 819> 400 100<0 819> 650 100<0 819> 900 100<0 819>
 LayerCount: 2
 Fore
 SplineSet
@@ -155,44 +160,57 @@ StartChar: five
 Encoding: 53 53 4
 Width: 1150
 VWidth: 0
-Flags: HW
+Flags: HWO
+HStem: 0 21G<37.7647 79.9864 150 250 400 500 650 750 900 1000>
+VStem: 150 100<0 66.6969 253.076 819> 400 100<0 233.439 419.819 819> 650 100<0 400.181 586.561 819> 900 100<0 566.924 753.303 819>
 LayerCount: 2
 Fore
 SplineSet
-900 819 m 25
- 1000 819 l 25
- 1000 0 l 25
- 900 0 l 25
- 900 819 l 25
-650 819 m 25
- 750 819 l 25
- 750 0 l 25
- 650 0 l 25
- 650 819 l 25
-400 819 m 25
- 500 819 l 25
- 500 0 l 25
- 400 0 l 25
- 400 819 l 25
-150 819 m 25
- 250 819 l 25
- 250 0 l 25
- 150 0 l 25
- 150 819 l 25
-50 0 m 25
- -2 85 l 25
- 1100 820 l 25
- 1152 735 l 25
- 50 0 l 25
+50 0 m 1
+ -2 85 l 1
+ 150 186 l 1
+ 150 819 l 1
+ 250 819 l 1
+ 250 253 l 1
+ 400 353 l 1
+ 400 819 l 1
+ 500 819 l 1
+ 500 420 l 1
+ 650 520 l 1
+ 650 819 l 1
+ 750 819 l 1
+ 750 587 l 1
+ 900 687 l 1
+ 900 819 l 1
+ 1000 819 l 1
+ 1000 753 l 1
+ 1100 820 l 1
+ 1152 735 l 1
+ 1000 634 l 1
+ 1000 0 l 1
+ 900 0 l 1
+ 900 567 l 1
+ 750 467 l 1
+ 750 0 l 1
+ 650 0 l 1
+ 650 400 l 1
+ 500 300 l 1
+ 500 0 l 1
+ 400 0 l 1
+ 400 233 l 1
+ 250 133 l 1
+ 250 0 l 1
+ 150 0 l 1
+ 150 67 l 1
+ 50 0 l 1
 EndSplineSet
-Validated: 5
 EndChar
 
 StartChar: zero
 Encoding: 48 48 5
 Width: 500
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 2
 Fore
 Validated: 1
