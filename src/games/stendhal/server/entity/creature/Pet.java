@@ -81,6 +81,8 @@ public abstract class Pet extends DomesticAnimal {
 
 	protected int hunger;
 	
+	RPEntity myTarget = null;
+	
 
 	/**
 	 * Creates a new wild Pet.
@@ -247,10 +249,17 @@ public abstract class Pet extends DomesticAnimal {
 		//fight whatever owner is targeting
 		if (System.getProperty("stendhal.petleveling", "false").equals("true")
 				&& takesPartInCombat() && (owner != null)
-				&& (owner.getAttackTarget() != null)) 		{
-			RPEntity myTarget = owner.getAttackTarget();
+				&& (owner.getAttackTarget() != null)) {
+			myTarget = owner.getAttackTarget();
 			this.setTarget(myTarget);
+			this.setIdea("agressive");
+			
+			if (!nextTo(myTarget)) {
+				clearPath();
+				this.setMovement(myTarget, 0, 0, this.getMovementRange());
+			}
 		}
+		
 		
 		if ((this.getLevel() >= this.getLVCap()) && canGrow()) {
 
@@ -277,6 +286,12 @@ public abstract class Pet extends DomesticAnimal {
 		if (!busyWithHealing) {
 			if (hunger > HUNGER_HUNGRY) {
 				logicEating();
+			} else if (this.getIdea() == "agressive") {
+				if (myTarget == null)
+				{
+					this.setIdea(null);
+				}
+				this.setMovement(myTarget, 0, 0, this.getMovementRange());
 			} else {
 				logicStandard(null);
 			}
