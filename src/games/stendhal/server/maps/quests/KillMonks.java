@@ -42,6 +42,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.KillsForQuestCounter;
+import games.stendhal.server.util.TallyMarks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -207,9 +208,18 @@ public class KillMonks extends AbstractQuest {
 		step_2();
 		step_3();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
+		return getHistory(player, false);
+	}
+
+	@Override
+	public List<String> getFormattedHistory(final Player player) {
+		return getHistory(player, true);
+	}
+
+	private List<String> getHistory(final Player player, boolean formatted) {
 			final List<String> res = new ArrayList<>();
 			if (!player.hasQuest(QUEST_SLOT)) {
 				return res;
@@ -224,7 +234,11 @@ public class KillMonks extends AbstractQuest {
 			}
 			if ("start".equals(questState)) {
 				res.add("I promised to kill 25 monks and 25 darkmonks to get revenge for Andy's wife.");
-				res.add(howManyWereKilled(player, parts[1]));
+				if (formatted) {
+					res.addAll(howManyWereKilledFormatted(player, parts[1]));
+				} else {
+					res.add(howManyWereKilled(player, parts[1]));
+				}
 			}
 			if (isCompleted(player)) {
 				if(isRepeatable(player)){
@@ -243,17 +257,20 @@ public class KillMonks extends AbstractQuest {
 
 	private String howManyWereKilled(final Player player, final String questState) {
 		KillsForQuestCounter killsCounter = new KillsForQuestCounter(questState);
-		int remainingMonks = killsCounter.remainingKills(player, "monk");
-		int remainingDarkMonks = killsCounter.remainingKills(player, "darkmonk");
-		if (remainingMonks > 0 && remainingDarkMonks > 0) {
-			return "I still need to kill " + Grammar.quantityplnoun(remainingMonks, "monk")  + " and " + Grammar.quantityplnoun(remainingDarkMonks, "darkmonk") + ".";
-		} else if (remainingMonks > 0) {
-			return "I still need to kill " + Grammar.quantityplnoun(remainingMonks, "monk") + ".";
-		} else if (remainingDarkMonks > 0) {
-			return "I still need to kill " + Grammar.quantityplnoun(remainingDarkMonks, "darkmonk") + ".";
-		} else {
-			return "I have killed 25 monks and 25 darkmonks.";
-		}
+		int killedMonks = 25 - killsCounter.remainingKills(player, "monk");
+		int killedDarkMonks = 25 - killsCounter.remainingKills(player, "darkmonk");
+		return "I have killed " + Grammar.quantityplnoun(killedMonks, "monk") + " and " + Grammar.quantityplnoun(killedDarkMonks, "darkmonk") + ".";
+	}
+
+	private List<String> howManyWereKilledFormatted(final Player player, final String questState) {
+		KillsForQuestCounter killsCounter = new KillsForQuestCounter(questState);
+		int killedMonks = 25 - killsCounter.remainingKills(player, "monk");
+		int killedDarkMonks = 25 - killsCounter.remainingKills(player, "darkmonk");
+
+		List<String> entries = new ArrayList<>();
+		entries.add("Monks: <span style=\"font-family: 'Tally'\">" + new TallyMarks(killedMonks) + "</span>");
+		entries.add("Darkmonks: <span style=\"font-family: 'Tally'\">" + new TallyMarks(killedDarkMonks) + "</span>");
+		return entries;
 	}
 
 	@Override
