@@ -84,6 +84,8 @@ public interface IQuest {
 	 */
 	List<String> getHistory(Player player);
 
+	List<String> getFormattedHistory(Player player);
+
 	/**
 	 * Gets a list of possible hint-names.
 	 * <p>

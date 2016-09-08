@@ -444,7 +444,7 @@ public class StendhalQuestSystem {
 		for (final IQuest quest : quests) {
 			final QuestInfo questInfo = quest.getQuestInfo(player);
 			if (questInfo.getName().equals(questName)) {
-				final List<String> history = quest.getHistory(player);
+				final List<String> history = quest.getFormattedHistory(player);
 				for (final String entry : history) {
 					res.add(entry);
 				}

@@ -91,7 +91,9 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	@Override
-	public abstract List<String> getHistory(final Player player);
+	public List<String> getFormattedHistory(final Player player) {
+		return getHistory(player);
+	}
 
 	@Override
 	public boolean isCompleted(final Player player) {
