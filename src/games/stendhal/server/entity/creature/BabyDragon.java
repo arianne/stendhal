@@ -127,23 +127,32 @@ public class BabyDragon extends Pet {
 		if (owner != null) {
 			owner.sendPrivateText("Your baby dragon grew into a purple dragon.");
 		}
+		
+		//get important info before anything happens to them.
+		final Player player = this.owner;
+		final String currentTitle = this.getTitle();
+		final int currentXP = this.getXP();
+		final int currentLevel = this.getLevel();
+		
 		final PurpleDragon purpledragon = new PurpleDragon(owner);
-		if (owner != null) {
-			owner.setPet(purpledragon);
-		}
 		purpledragon.setPosition(getX(), getY());
+		
+		if (owner != null) {
+			player.removePet(this);
+			player.setPet(purpledragon);
+		}
+		
 
 		//nicknames carry over otherwise the name should update to reflect new form.
-		if (!this.getTitle().startsWith("baby dragon"))	{
-			purpledragon.setTitle(this.getTitle());
+		if (!currentTitle.startsWith("baby dragon"))	{
+			purpledragon.setTitle(currentTitle);
 		}
-		purpledragon.setXP(this.getXP());
-		purpledragon.setLevel(this.getLevel());
+		purpledragon.setXP(currentXP);
+		purpledragon.setLevel(currentLevel);
 
 		// Note: It is save to do this here because we are not directly called
 		// from the NPC logic loop in StendalRPZone. Pet.logic() postpones the
 		// invocation of this method to a Turn Listener.
-		owner.removePet(this);
 		this.getZone().remove(this);
 	}
 }
