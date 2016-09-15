@@ -143,7 +143,7 @@ public class BabyDragon extends Pet {
 		// Note: It is save to do this here because we are not directly called
 		// from the NPC logic loop in StendalRPZone. Pet.logic() postpones the
 		// invocation of this method to a Turn Listener.
+		owner.removePet(this);
 		this.getZone().remove(this);
-		this.getZone().add(purpledragon);
 	}
 }

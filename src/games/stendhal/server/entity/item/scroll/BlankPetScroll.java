@@ -73,6 +73,7 @@ public class BlankPetScroll extends Scroll {
 
 			if (pet != null) {
 				//petOwner.storePet(pet);
+				player.removePet(pet);
 				pet.getZone().remove(pet);
 				player.sendPrivateText("Amazingly your pet melds with the scroll. It just walked right into the page!");
 			}
