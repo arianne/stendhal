@@ -63,7 +63,14 @@ public class PhotographerChatAction implements ChatAction {
 		" visiting Ados",
 		" discovering a huge tower",
 		" sneaking into Ados Wildlife Refuge",
-		" looking out of the wizzard tower"
+		" looking out of the wizzard tower",
+		" providing ice cream",
+		" visiting hell",
+		" looking around",
+		" getting to the top of the tower",
+		" visiting elves",
+		" visiting oni",
+		" relaxing at a camp fire"
 	};
 
 	@Override
