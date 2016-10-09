@@ -102,7 +102,7 @@ import marauroa.common.Pair;
 		enemyForces.put("mountain dwarf",
 				new Pair<Integer, String>(150,"They are my historical neighbors, living in Semos mines."));
 		enemyForces.put("mountain orc",
-				new Pair<Integer, String>(150,"Stupid creatures, but very strong. Can be found in Semos mines somewhere."));
+				new Pair<Integer, String>(150,"Stupid creatures, but very strong. Can be found in an abandoned underground keep somewhere near Ados."));
 		enemyForces.put("imperial",
 				new Pair<Integer, String>(200,"They come from their castle in the underground Sedah city, ruled by their Emperor Dalmung."));
 		enemyForces.put("barbarian",
