@@ -392,6 +392,40 @@
   
   <!-- END: kobold -->
   
+  <!-- START mermaid -->
+  
+    <creature name="mermaid">
+    <type class="hybrid" subclass="mermaid" tileid="hybrid.png:15"/>
+     <description>You see a mermaid. They perfer they own company and are not too happy to see you here.</description>
+    <attributes>
+      <atk value="547"/>
+      <def value="76"/>
+      <hp value="680"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="76"/>
+    <experience value="5140"/>
+    <respawn value="2570"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="greater antidote" quantity="[1,3]" probability="70.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="35.0"/>
+       <item value="black pearl" quantity="[1,1]" probability="30"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,30"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END mermaid -->
+  
   <!-- START: minotaur -->
   
   <creature name="minotaur">
