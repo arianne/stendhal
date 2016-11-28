@@ -2095,7 +2095,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
     <entity x="30" y="16" condition="stendhal.christmas">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-        <parameter name="sound">snowflakelittlewhiteskirt</parameter>
+        <parameter name="sound">ohhowjoyfully</parameter>
         <parameter name="volume">80</parameter>
         <parameter name="radius">15</parameter>
       </implementation>
