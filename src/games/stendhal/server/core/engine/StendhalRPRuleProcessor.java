@@ -581,7 +581,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 				new GameEvent(player.getName(), "logout", reason).raise();
 				logger.debug("removed player " + player);
-
+				
+				SingletonRepository.getLogoutNotifier().onPlayerLoggedOut(player);
 				return true;
 			} catch (final Exception e) {
 				logger.error("error in onExit", e);

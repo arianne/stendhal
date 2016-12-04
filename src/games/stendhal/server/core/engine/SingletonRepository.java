@@ -13,10 +13,12 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.events.LoginNotifier;
+import games.stendhal.server.core.events.LogoutNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.core.rp.group.GroupManager;
+import games.stendhal.server.core.rp.pvp.PlayerVsPlayerChallengeManager;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.npc.NPCList;
@@ -48,6 +50,7 @@ public class SingletonRepository {
 	private static EntityManager entityManager;
 	private static Jail jailInstance;
 	private static GroupManager groupManager;
+	private static PlayerVsPlayerChallengeManager challengeManager;
 
 	/**
 	 * @return the actual StendhalRPRuleProcessor instance
@@ -82,6 +85,13 @@ public class SingletonRepository {
 	 */
 	public static LoginNotifier getLoginNotifier() {
 		return LoginNotifier.get();
+	}
+	
+	/**
+	 * @return the actual LogoutNotifier instance
+	 */
+	public static LogoutNotifier getLogoutNotifier() {
+		return LogoutNotifier.get();
 	}
 
 	/**
@@ -184,6 +194,18 @@ public class SingletonRepository {
 			groupManager = new GroupManager();
 		}
 		return groupManager;
+	}
+	
+	/**
+	 * gets the PlayerVsPlayerChallengeManager
+	 * 
+	 * @return PlayerVsPlayerChallengeManager
+	 */
+	public static PlayerVsPlayerChallengeManager getChallengeManager() {
+		if (challengeManager == null) {
+			challengeManager = PlayerVsPlayerChallengeManager.create();
+		}
+		return challengeManager;
 	}
 	
 	/**
