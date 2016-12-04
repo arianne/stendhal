@@ -39,7 +39,7 @@ public class PlayerVsPlayerChallenge {
 
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return Objects.hashCode(this.challenger, this.challenged);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class PlayerVsPlayerChallenge {
 	}
 
 	private boolean isAccepted() {
-		return this.accepted < 0;
+		return this.accepted > 0;
 	}
 
 	public void accept(long acceptanceTurn, Player challenged) {

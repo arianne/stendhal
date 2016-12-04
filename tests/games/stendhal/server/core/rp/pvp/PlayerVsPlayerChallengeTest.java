@@ -16,7 +16,7 @@ public class PlayerVsPlayerChallengeTest {
 				 PlayerTestHelper.createPlayer(challenger), 
 				 challengedPlayer);
 		if(accepted) {
-			challenge.accept(0l, challengedPlayer);
+			challenge.accept(1l, challengedPlayer);
 		}
 		return challenge;
 	}
