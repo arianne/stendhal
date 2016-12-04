@@ -1,6 +1,18 @@
 ﻿Changelog
 ---------
-1.21 *developing*
+1.22
+
+*world*
+- Winter has started and the weather shows it
+- Semos is decorated for Christmas
+- New Christmas song: "O how joyfully"  
+- KillMonks quest history shows tally marks
+
+*client*
+- fixed "under the ocean" layer on clients without support for full alpha.
+
+
+1.21
 
 *world*
 - Pets can drink 'medicine' even when they aren't hungry. Making them easier to maintain in battle.
