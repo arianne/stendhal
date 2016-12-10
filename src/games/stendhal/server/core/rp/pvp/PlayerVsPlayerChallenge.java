@@ -51,7 +51,10 @@ public class PlayerVsPlayerChallenge {
 		return helper.toString();
 	}
 
-	private boolean isAccepted() {
+	/**
+	 * @return true iff the challenged player has accepted the challenge
+	 */
+	public boolean isAccepted() {
 		return this.accepted > 0;
 	}
 
@@ -71,7 +74,12 @@ public class PlayerVsPlayerChallenge {
 	public boolean isInvolved(Player player) {
 		return this.challenger.equals(player) || this.challenged.equals(player);
 	}
-	
-	
 
+	/**
+	 * @return the turn number in which this challenge was opened
+	 */
+	public long getOpened() {
+		return opened;
+	}
+	
 }
