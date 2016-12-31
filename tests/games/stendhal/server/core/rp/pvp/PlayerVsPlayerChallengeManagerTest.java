@@ -65,5 +65,20 @@ public class PlayerVsPlayerChallengeManagerTest {
 		challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
 		assertThat(challenge, nullValue());
 	}
+	
+	@Test
+	public void testCreateChallengeAndLogout() throws Exception {
+manager.createChallenge(challenger, challenged, 0);
+		
+		PlayerVsPlayerChallenge challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
+		assertThat(challenge, notNullValue());
+		assertThat(challenge.isAccepted(), is(Boolean.FALSE));
+		assertThat(challenge.getOpened(), is(Long.valueOf(0)));
+		
+		manager.onLoggedOut(challenger);
+		challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
+		assertThat(challenge, nullValue());
+		
+	}
 
 }

@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
 
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LogoutListener;
 import games.stendhal.server.core.events.TurnListener;
@@ -23,7 +24,7 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	
 	private static final Logger logger = Logger.getLogger(PlayerVsPlayerChallengeManager.class);
 	
-	private static final long TIMEOUT_FOR_ACCEPTANCE = 60 * 1000 / 300; 
+	protected static final int TIMEOUT_FOR_ACCEPTANCE = 60 * 1000 / 300; 
 	
 	private final Collection<PlayerVsPlayerChallenge> currentChallenges = Sets.newHashSet();
 	
@@ -75,8 +76,21 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 		}
 	}
 	
-	private PlayerVsPlayerChallenge getOpenChallengeForPlayers(Player challenger, Player challenged) {
-		// TODO Auto-generated method stub
+	/**
+	 * Finds an open challenge for the given pair of players if existing
+	 * 
+	 * @param challenger
+	 * @param challenged
+	 * @return a currently open challenge object or null
+	 */
+	protected PlayerVsPlayerChallenge getOpenChallengeForPlayers(Player challenger, Player challenged) {
+		for (PlayerVsPlayerChallenge challenge : currentChallenges) {
+			if(challenge.getChallenger().equals(challenger) && challenge.getChallenged().equals(challenged)) {
+				if(!challenge.isAccepted()) {
+					return challenge;
+				}
+			}
+		}
 		return null;
 	}
 
@@ -100,8 +114,10 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 			}
 		});
 		logger.debug(String.format("Challenges ran into time out: %s", timeouts.toString()));
+		for (PlayerVsPlayerChallenge timeout : timeouts) {
+			raiseGameEvent(timeout, "challenge-timeout");
+		}
 		this.currentChallenges.removeAll(timeouts);
-		//TODO game event
 	}
 
 	/**
@@ -113,11 +129,19 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 		for (PlayerVsPlayerChallenge playerVsPlayerChallenge : currentChallenges) {
 			if(playerVsPlayerChallenge.isInvolved(player)) {
 				removals.add(playerVsPlayerChallenge);
-				// TODO game event
-				// logger.debug
+				logger.debug(String.format("%s will be removed as %s logged out.", playerVsPlayerChallenge.toString(), player.getName()));
 			}
 		}
+		for (PlayerVsPlayerChallenge removal : removals) {
+			raiseGameEvent(removal, "challenge-removal-logout");
+		}
 		this.currentChallenges.removeAll(removals);
+	}
+
+	private void raiseGameEvent(PlayerVsPlayerChallenge removal, String gameEvent) {
+		String challengerName = removal.getChallenger().getName();
+		String challengedName = removal.getChallenged().getName();
+		new GameEvent(challengerName, gameEvent, challengedName).raise();
 	}
 
 }
