@@ -53,7 +53,7 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 			return;
 		}
 		this.currentChallenges.add(newChallenge);
-		// TODO game event
+		raiseGameEvent(newChallenge, "challenge-create");
 		challenger.sendPrivateText(String.format("You successfully challenged %s!", challenged.getName()));
 		challenged.sendPrivateText(String.format("%s send you a challenge. If you accept you can fight a duel.", challenger.getName()));
 	}
