@@ -9,7 +9,7 @@ public class PlayerVsPlayerChallenge {
 	
 	private final long opened;
 	private long accepted = -1l;
-	private long lastAction = -1l;
+	//private long lastAction = -1l;
 	private final Player challenger;
 	private final Player challenged;
 
@@ -80,6 +80,20 @@ public class PlayerVsPlayerChallenge {
 	 */
 	public long getOpened() {
 		return opened;
+	}
+	
+	/**
+	 * @return the player who started this challenge
+	 */
+	public Player getChallenger() {
+		return challenger;
+	}
+
+	/**
+	 * @return the player who was challenged
+	 */
+	public Player getChallenged() {
+		return challenged;
 	}
 	
 }
