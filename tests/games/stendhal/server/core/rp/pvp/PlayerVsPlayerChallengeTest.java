@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 @RunWith(Suite.class)
-@SuiteClasses({PlayerVsPlayerChallengeTestHashCode.class, PlayerVsPlayerChallengeTestEquals.class, PlayerVsPlayerChallengeTestToString.class})
+@SuiteClasses({PlayerVsPlayerChallengeTestHashCode.class, PlayerVsPlayerChallengeTestEquals.class, 
+	PlayerVsPlayerChallengeTestToString.class, PlayerVsPlayerChallengeManagerTest.class})
 public class PlayerVsPlayerChallengeTest {
 
 	static PlayerVsPlayerChallenge createChallenge(String challenger, String challenged, boolean accepted, long opened, long acceptTurn) {
