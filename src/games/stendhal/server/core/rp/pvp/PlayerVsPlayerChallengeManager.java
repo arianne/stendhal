@@ -69,8 +69,8 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 		PlayerVsPlayerChallenge openChallenge = this.getOpenChallengeForPlayers(challenger, challenged);
 		if(openChallenge != null) {
 			openChallenge.accept(currentTurn, challenged);
-			// TODO game event
-			// logger.debug
+			raiseGameEvent(openChallenge, "challenge-accept");
+			logger.debug(String.format("%s accepted a challenge from %s.", challenged.getName(), challenger.getName()));
 		} else {
 			logger.debug(String.format("%s is trying to accept a challenge with %s but no such challenge exists.", challenged.getName(), challenger.getName()));
 		}
