@@ -823,8 +823,10 @@ public abstract class RPEntity extends GuidedEntity {
 		// Handle level changes
 		final int newLevel = Level.getLevel(atk_xp);
 		final int levels = newLevel - (this.atk - 10);
-		setAtkInternal(this.atk + levels, notify);
-		new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
+		if (levels != 0) {
+			setAtkInternal(this.atk + levels, notify);
+			new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
+		}
 	}
 
 	public int getAtkXP() {
@@ -879,8 +881,10 @@ public abstract class RPEntity extends GuidedEntity {
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
 		final int levels = newLevel - (this.def - 10);
-		setDefInternal(this.def + levels, notify);
-		new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+		if (levels != 0) {
+			setDefInternal(this.def + levels, notify);
+			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+		}
 	}
 
 	public int getDefXP() {
@@ -972,8 +976,8 @@ public abstract class RPEntity extends GuidedEntity {
 		final int levels = newLevel - (this.ratk - 10);
 
 		// In case we level up several levels at a single time.
-		for (int i = 0; i < Math.abs(levels); i++) {
-			setRatkInternal(this.ratk + (int) Math.signum(levels) * 1, notify);
+		if (levels != 0) {
+			setRatkInternal(this.ratk + levels, notify);
 			new GameEvent(getName(), "ratk", Integer.toString(this.ratk)).raise();
 		}
 	}
