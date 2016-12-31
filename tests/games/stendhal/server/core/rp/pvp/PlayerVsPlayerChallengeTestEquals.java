@@ -31,7 +31,10 @@ public class PlayerVsPlayerChallengeTestEquals {
         		Boolean.FALSE},
         	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
             		PlayerVsPlayerChallengeTest.createChallenge("a", "b", false, 1, 2),
-            		Boolean.FALSE}
+            		Boolean.FALSE},
+        	{PlayerVsPlayerChallengeTest.createChallenge("a", "b", false, 1, 2),
+                		PlayerVsPlayerChallengeTest.createChallenge("a", "b", false),
+                		Boolean.FALSE}
         });
     }
 	

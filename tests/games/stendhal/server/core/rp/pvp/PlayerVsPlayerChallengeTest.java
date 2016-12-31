@@ -11,6 +11,10 @@ import utilities.PlayerTestHelper;
 public class PlayerVsPlayerChallengeTest {
 
 	static PlayerVsPlayerChallenge createChallenge(String challenger, String challenged, boolean accepted, long opened, long acceptTurn) {
+		if(opened > acceptTurn) {
+			throw new IllegalArgumentException("The turn of acceptance must be after the openening turn.");
+		}
+		
 		Player challengedPlayer = PlayerTestHelper.createPlayer(challenged);
 		PlayerVsPlayerChallenge challenge = new PlayerVsPlayerChallenge(opened, 
 				 PlayerTestHelper.createPlayer(challenger), 
