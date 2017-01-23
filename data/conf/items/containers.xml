@@ -4,7 +4,7 @@
   
     <item name="backpack">
     <type class="container" subclass="backpack" tileid="-1"/>
-    <description>You see an backpack.</description>
+    <description>You see a backpack.</description>
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
       <slot_name value="bag"/>

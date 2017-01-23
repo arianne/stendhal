@@ -642,7 +642,7 @@
   
   <creature name="dark elf matronmother">
     <type class="dark_elf" subclass="dark_elf_matronmother" tileid="dark_elf.png:5"/>
-    <description></description>
+    <description>Dusky and shrouded, this matriarch rules her clan with a soft touch and sharp fangs. An expert in venoms and poisons, you wouldn't ever want to turn your back on her. </description>
     <attributes>
       <atk value="869"/>
       <def value="136"/>
