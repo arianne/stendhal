@@ -464,12 +464,16 @@
     <description>You see a scuba suit with a heavy helmet attached. It is dense enough to offer protection under the waves but of little use on land.</description>
     <implementation class-name="games.stendhal.server.entity.item.LifeSupportGear"/>
     <attributes>
-      <def value="18"/>
+      <def value="15"/>
 	  <min_level value="50"/>
 	  <life_support value="water"/>
     </attributes>
     <weight value="45.0"/>
     <value value="34391"/>
+    <susceptibility type="ice" value="1.8"/>
+    <susceptibility type="fire" value="0.85"/>
+    <susceptibility type="light" value="1.8"/>
+    <susceptibility type="dark" value="1.8"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
