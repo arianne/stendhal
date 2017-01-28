@@ -1,0 +1,16 @@
+<link rel="import" href="../../../lib/polymer/polymer.html">
+		
+<dom-module id="stendhal-stats">
+    <link rel="stylesheet" href="stendhal-stats.css">
+	<template>
+		<div id="stats">
+		HP: {{hp}} / {{base_hp}}<br>
+		ATK: {{atk}} x {{atk_multiplier}} ({{atk_xp_remainder}})<br>
+		DEF: {{def}} x {{def_multiplier}} ({{def_xp_remainder}})<br>
+		XP: {{xp}}<br>
+		Level: {{level}} ({{xp_remainder}})<br>
+		Money: {{money}}
+		</div>
+	</template>
+</dom-module>
+<script src="stendhal-stats.js"></script>
