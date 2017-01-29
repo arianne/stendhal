@@ -1,8 +1,8 @@
 #stats {
 	border: 1px solid black; 
 	width: 128px;
-	height: 100px;
 	float: left; 
 	font-size: 0.8em;
-	overflow:scroll
+	white-space: pre;
+	padding: 0.1em;
 }
