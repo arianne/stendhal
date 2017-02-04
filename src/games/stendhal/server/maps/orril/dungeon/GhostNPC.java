@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.orril.dungeon;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.GhostNPCBase;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds a Ghost NPC.
@@ -63,7 +63,7 @@ public class GhostNPC implements ZoneConfigurator {
 
 		ghost.setDescription("You see a ghostly figure of a man. He appears to have died in battle.");
 		ghost.setResistance(0);
-		ghost.setEntityClass("deadmannpc");
+		ghost.setEntityClass("noimagenpc"); // "deadmannpc"
 		// he is a ghost so he is see through
 		ghost.setVisibility(70);
 		ghost.setPosition(216, 127);

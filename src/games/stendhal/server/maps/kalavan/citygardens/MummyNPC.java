@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Builds the mother of Annie Jones.
@@ -67,7 +67,7 @@ public class MummyNPC implements ZoneConfigurator {
 		};
 
 		mummyNPC.setDescription("You see a woman, resting on a bench while watching her daughter playing.");
-		mummyNPC.setEntityClass("woman_000_npc");
+		mummyNPC.setEntityClass("noimpagenpc"); // "woman_000_npc"
 		mummyNPC.setPosition(53, 88);
 		mummyNPC.initHP(100);
 		zone.add(mummyNPC);

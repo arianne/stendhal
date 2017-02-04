@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.wall;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates a boy NPC to help populate Ados
@@ -63,7 +63,7 @@ public class HolidayingBoyNPC implements ZoneConfigurator {
 				}
 		};
 
-		npc.setEntityClass("boynpc");
+		npc.setEntityClass("noimagenpc"); // "boynpc"
 		npc.setPosition(114, 77);
 		npc.initHP(100);
 		npc.setDescription("You see Finn Farmer. He is a cute looking boy who has fun while playing in the backyard.");

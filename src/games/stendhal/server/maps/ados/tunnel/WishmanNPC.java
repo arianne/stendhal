@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.tunnel;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Outside entrance to dragon lair in -1_ados_outside_w.
@@ -54,7 +54,7 @@ public class WishmanNPC implements ZoneConfigurator {
 		};
 
 		wishman.setDescription("You see Wishman, once a mighty storm trooper in Blordrough's dark legion, now guardian of all thats left of their dragons.");
-		wishman.setEntityClass("stormtroopernpc");
+		wishman.setEntityClass("noimagenpc"); // "stormtroopernpc"
 		wishman.setPosition(30, 28);
 		wishman.initHP(100);
 		zone.add(wishman);

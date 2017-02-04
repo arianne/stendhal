@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.farmhouse;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Mother NPC
@@ -61,7 +61,7 @@ public class MotherNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye.");
 			}
 		};
-		npc.setEntityClass("woman_006_npc");
+		npc.setEntityClass("noimagenpc"); // "woman_006_npc"
 		npc.setPosition(30, 9);
 		npc.initHP(100);
 		npc.setDescription("You see Anastasia, looking worried.");

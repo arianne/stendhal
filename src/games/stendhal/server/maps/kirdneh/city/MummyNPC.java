@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kirdneh.city;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Builds a information giving NPC in Kirdneh city. 
@@ -71,7 +71,7 @@ public class MummyNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("mothernpc");
+		npc.setEntityClass("noimagenpc"); // "mothernpc"
 		npc.setPosition(84, 9);
 		npc.initHP(100);
 		npc.setDescription("You see Carey. She takes care of her daughter Elisabeth.");
