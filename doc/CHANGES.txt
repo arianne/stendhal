@@ -1,5 +1,13 @@
 ﻿Changelog
 ---------
+1.23
+
+*world*
+- Mizuno sells ice, fire, and light arrows. 
+- Because of a bad curse, many creatures, animals and people have lost their appearance
+- Please join us at https://stendhalgame.org/chat/ if you want to help with creating new graphics 
+
+
 1.22
 
 *world*
