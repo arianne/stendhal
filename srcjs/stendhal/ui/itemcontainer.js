@@ -87,7 +87,10 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			e.dataTransfer.setDragImage(img, 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-item", item.getIdPath());
+			e.dataTransfer.setData("text/x-stendhal-item", JSON.stringify({
+				"path": item.getIdPath(),
+				"zone": marauroa.currentZoneName
+			}));
 		} else {
 			e.preventDefault();
 		}
@@ -100,16 +103,15 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 	}
 	
 	function onDrop(e) {
-		var data = e.dataTransfer.getData("text/x-stendhal-item");
-		if (data) {
+		var datastr = e.dataTransfer.getData("text/x-stendhal-item");
+		if (datastr) {
+			var data = JSON.parse(datastr);
 			var targetPath = "[" + marauroa.me.id + "\t" + name + "]";
 			var action = {
 				"type": "equip",
-				"source_path": data,
+				"source_path": data.path,
 				"target_path": targetPath,
-				// FIXME: This is not necessarily true. What to do when the drag
-				// started on previous zone?
-				// "zone" : marauroa.currentZoneName
+				"zone" : data.zone
 			};
 			marauroa.clientFramework.sendAction(action);
 		}
@@ -209,7 +211,10 @@ stendhal.ui.window.container = {
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			e.dataTransfer.setDragImage(img, 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-item", item.getIdPath());
+			e.dataTransfer.setData("text/x-stendhal-item", JSON.stringify({
+				"path": item.getIdPath(),
+				"zone": marauroa.currentZoneName
+			}));
 		} else {
 			e.preventDefault();
 		}
@@ -222,19 +227,18 @@ stendhal.ui.window.container = {
 	},
 	
 	onDrop: function(e) {
-		var data = e.dataTransfer.getData("text/x-stendhal-item");
-		if (data) {
+		var datastr = e.dataTransfer.getData("text/x-stendhal-item");
+		if (datastr) {
+			var data = JSON.parse(datastr);
 			var targetPath = this.object.getIdPath();
 			// add the slot name to the path
 			targetPath = targetPath.substr(0, targetPath.length - 1) + "\t" +
 					this.slotName + "]";
 			var action = {
 				"type": "equip",
-				"source_path": data,
+				"source_path": data.path,
 				"target_path": targetPath,
-				// FIXME: This is not necessarily true. What to do when the drag
-				// started on previous zone?
-				// "zone" : marauroa.currentZoneName
+				"zone" : data.zone
 			};
 			marauroa.clientFramework.sendAction(action);
 		}
