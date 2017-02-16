@@ -75,8 +75,6 @@ stendhal.main = {
 				stendhal.ui.minimap.draw();
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
-				stendhal.ui.bag.update();
-				stendhal.ui.keyring.update();
 				stendhal.ui.stats.update();
 				stendhal.data.map.load(marauroa.currentZoneName);
 			}

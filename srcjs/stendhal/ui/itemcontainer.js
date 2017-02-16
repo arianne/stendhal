@@ -14,35 +14,6 @@
 window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
-/**
- * windows for items: character, bag, keyring
- */
-stendhal.ui.equip = {
-	slots: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet"],
-
-	update: function() {
-		for (var i in this.slots) {
-			var s = marauroa.me[this.slots[i]];
-			var e = document.getElementById(this.slots[i]);
-			if (typeof(s) != "undefined") {
-				var o = s.first();
-				if (typeof(o) != "undefined") {
-					e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png" + ")";
-					e.textContent = o.formatQuantity();
-					e.dataItem = o;
-				} else {
-					e.style.backgroundImage = "none";
-					e.textContent = "";
-					e.dataItem = null;
-				}
-			} else {
-				e.style.backgroundImage = "none";
-				e.textContent = "";
-				e.dataItem = null;
-			}
-		}
-	}
-};
 
 /**
  * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
@@ -128,6 +99,30 @@ stendhal.ui.ItemContainerWindow = function(name, size, object) {
 
 stendhal.ui.bag = new stendhal.ui.ItemContainerWindow("bag", 12, null);
 stendhal.ui.keyring = new stendhal.ui.ItemContainerWindow("keyring", 8, null);
+
+
+stendhal.ui.equip = {
+	slotNames: ["head", "lhand", "rhand", "finger", "armor", "cloak", "legs", "feet", "bag", "keyring"],
+	slotSizes: [1,    1,      1,       1,        1,       1,        1,     1,       12,     8   ],
+
+	init: function() {
+		this.inventory = [];
+		for (var i in this.slotNames) {
+			this.inventory.push(
+				new stendhal.ui.ItemContainerWindow(
+					this.slotNames[i], this.slotSizes[i], null));
+		}
+	},
+
+	update: function() {
+		for (var i in this.inventory) {
+			this.inventory[i].update();
+		}
+	}
+};
+
+stendhal.ui.equip.init();
+
 
 stendhal.ui.window = {};
 stendhal.ui.window.container = {
