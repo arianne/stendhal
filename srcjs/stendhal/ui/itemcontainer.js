@@ -44,7 +44,11 @@ stendhal.ui.equip = {
 	}
 };
 
-stendhal.ui.ItemContainerWindow = function(name, size) {
+/**
+ * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
+ * which changes on zone change.
+ */
+stendhal.ui.ItemContainerWindow = function(name, size, object) {
 	var initialized = false;
 	
 	this.update = function() {
@@ -62,10 +66,11 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 	};
 	
 	function render(name, size) {
+		var myobject = object || marauroa.me;
 		var cnt = 0;
-		if (marauroa.me[name]) {
-			for (var i = 0; i < marauroa.me[name].count(); i++) {
-				var o = marauroa.me[name].getByIndex(i);
+		if (myobject[name]) {
+			for (var i = 0; i < myobject[name].count(); i++) {
+				var o = myobject[name].getByIndex(i);
 				var e = document.getElementById(name + cnt);
 				e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
 				e.textContent = o.formatQuantity();
@@ -82,8 +87,9 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 	}
 	
 	function onDragStart(e) {
+		var myobject = object || marauroa.me;
 		var slotNumber = e.target.id.slice(name.length);
-		var item = marauroa.me[name].getByIndex(slotNumber);
+		var item = myobject[name].getByIndex(slotNumber);
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			e.dataTransfer.setDragImage(img, 0, 0);
@@ -95,7 +101,7 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 			e.preventDefault();
 		}
 	}
-	
+
 	function onDragOver(e) {
 		e.preventDefault();
 		e.dataTransfer.dropEffect = "move";
@@ -103,10 +109,11 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 	}
 	
 	function onDrop(e) {
+		var myobject = object || marauroa.me;
 		var datastr = e.dataTransfer.getData("text/x-stendhal-item");
 		if (datastr) {
 			var data = JSON.parse(datastr);
-			var targetPath = "[" + marauroa.me.id + "\t" + name + "]";
+			var targetPath = "[" + myobject.id + "\t" + name + "]";
 			var action = {
 				"type": "equip",
 				"source_path": data.path,
@@ -119,8 +126,8 @@ stendhal.ui.ItemContainerWindow = function(name, size) {
 	}
 }
 
-stendhal.ui.bag = new stendhal.ui.ItemContainerWindow("bag", 12);
-stendhal.ui.keyring = new stendhal.ui.ItemContainerWindow("keyring", 8);
+stendhal.ui.bag = new stendhal.ui.ItemContainerWindow("bag", 12, null);
+stendhal.ui.keyring = new stendhal.ui.ItemContainerWindow("keyring", 8, null);
 
 stendhal.ui.window = {};
 stendhal.ui.window.container = {
