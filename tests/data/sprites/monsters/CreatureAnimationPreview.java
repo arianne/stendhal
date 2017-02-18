@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,17 +20,29 @@ import java.util.prefs.Preferences;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
 
 public class CreatureAnimationPreview {
 	private static final int NUMBER_OF_ROWS = 4;
-
 	private static final int NUMBER_OF_FRAMES = 3;
+	
+	private JFrame jFrame;
+	private JSplitPane jSplitPane;
+	private JScrollPane jScrollPane;
+	private FileTree jTree;
+	private JPanel jPanel;
+	private final JLabel[] animationPanel = new JLabel[NUMBER_OF_ROWS];
+	private final JLabel mainPanel = new JLabel();
+	private AnimationRunner[] animations;
+
 
 	/**
 	 * This method initializes jPanel.
@@ -46,108 +57,27 @@ public class CreatureAnimationPreview {
 			row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
 			jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
 
-			row.add(getImageViewerSwing());
-			row.add(getImageViewerSwing2());
-			row.add(getImageViewerSwing3());
-			row.add(getImageViewerSwing4());
+			for (int i = 0; i < NUMBER_OF_ROWS; i++) {
+				JLabel l = new JLabel();
+				animationPanel[i] = l;
+				row.add(l);
+			}
 			jPanel.add(row);
-			jPanel.add(getImageViewerSwing1());
+			jPanel.add(mainPanel);
 		}
 		return jPanel;
 	}
 
-	/**
-	 * This method initializes imageViewerSwing.
-	 * 
-	 * @return data.sprites.monsters.ImageViewerSwing
-	 */
-	private ImageViewerSwing getImageViewerSwing() {
-		if (imageViewerSwing == null) {
-			imageViewerSwing = new ImageViewerSwing();
-			imageViewerSwing.setName("imageViewerSwing");
-		}
-		return imageViewerSwing;
-	}
-
-	/**
-	 * This method initializes imageViewerSwing1.
-	 * 
-	 * @return data.sprites.monsters.ImageViewerSwing
-	 */
-	private ImageViewerSwing getImageViewerSwing1() {
-		if (imageViewerSwing1 == null) {
-			imageViewerSwing1 = new ImageViewerSwing();
-			imageViewerSwing1.setName("imageViewerSwing1");
-		}
-		return imageViewerSwing1;
-	}
-
-	/**
-	 * This method initializes imageViewerSwing2.
-	 * 
-	 * @return data.sprites.monsters.ImageViewerSwing
-	 */
-	private ImageViewerSwing getImageViewerSwing2() {
-		if (imageViewerSwing2 == null) {
-			imageViewerSwing2 = new ImageViewerSwing();
-			imageViewerSwing2.setName("imageViewerSwing2");
-		}
-		return imageViewerSwing2;
-	}
-
-	/**
-	 * This method initializes imageViewerSwing3.
-	 * 
-	 * @return data.sprites.monsters.ImageViewerSwing
-	 */
-	private ImageViewerSwing getImageViewerSwing3() {
-		if (imageViewerSwing3 == null) {
-			imageViewerSwing3 = new ImageViewerSwing();
-			imageViewerSwing3.setName("imageViewerSwing3");
-		}
-		return imageViewerSwing3;
-	}
-
-	/**
-	 * This method initializes imageViewerSwing4.
-	 * 
-	 * @return data.sprites.monsters.ImageViewerSwing
-	 */
-	private ImageViewerSwing getImageViewerSwing4() {
-		if (imageViewerSwing4 == null) {
-			imageViewerSwing4 = new ImageViewerSwing();
-			imageViewerSwing4.setName("imageViewerSwing4");
-		}
-		return imageViewerSwing4;
-	}
-
 	public static void main(final String[] args) {
-
-		(new CreatureAnimationPreview()).getJFrame().setVisible(true);
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new CreatureAnimationPreview().getJFrame().setVisible(true);	
+			}
+		});
 	}
 
-	private JFrame jFrame;
-
-	private JSplitPane jSplitPane;
-
-	private JScrollPane jScrollPane;
-
-	private FileTree jTree;
-
-	private JPanel jPanel;
-
-	private ImageViewerSwing imageViewerSwing;
-
-	private ImageViewerSwing imageViewerSwing1;
-
-	private ImageViewerSwing imageViewerSwing2;
-
-	private ImageViewerSwing imageViewerSwing3;
-
-	private ImageViewerSwing imageViewerSwing4;
-
-	private AnimationRunner[] animations;
-
+	
 	/**
 	 * This method initializes jFrame.
 	 * 
@@ -161,32 +91,7 @@ public class CreatureAnimationPreview {
 
 			jFrame.setContentPane(getJSplitPane());
 			jFrame.setTitle("animated Monsters test");
-			jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
-
-				@Override
-				public void windowClosing(final java.awt.event.WindowEvent e) {
-					if (animations != null) {
-						for (int i = 0; i < animations.length; i++) {
-							if (animations[i] != null) {
-								animations[i].stopAnimation();
-								animations[i].tearDown();
-							}
-						}
-					}
-
-					jSplitPane = null;
-					jScrollPane = null;
-					jTree = null;
-					jPanel = null;
-					imageViewerSwing = null;
-					imageViewerSwing1 = null;
-					imageViewerSwing2 = null;
-					imageViewerSwing3 = null;
-					imageViewerSwing4 = null;
-					super.windowClosing(e);
-					System.exit(0);
-				}
-			});
+			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 
 		return jFrame;
@@ -201,7 +106,6 @@ public class CreatureAnimationPreview {
 		if (jSplitPane == null) {
 			jSplitPane = new JSplitPane();
 			jSplitPane.setLeftComponent(getJScrollPane());
-			// jSplitPane.setRightComponent(getImageViewer());
 			jSplitPane.setRightComponent(getJPanel());
 		}
 		return jSplitPane;
@@ -277,26 +181,18 @@ public class CreatureAnimationPreview {
 							return;
 						}
 
-						getImageViewerSwing1().setImage(buf);
+						mainPanel.setIcon(new ImageIcon(buf));
 						if (animations == null) {
 							animations = new AnimationRunner[4];
-							animations[0] = createAnimation(getImageViewerSwing());
-							animations[1] = createAnimation(getImageViewerSwing2());
-							animations[2] = createAnimation(getImageViewerSwing3());
-							animations[3] = createAnimation(getImageViewerSwing4());
-
-						} else {
-							animations[0].stopAnimation();
-							animations[1].stopAnimation();
-							animations[2].stopAnimation();
-							animations[3].stopAnimation();
+							for (int i = 0; i < NUMBER_OF_ROWS; i++) {
+								animations[i] = createAnimation(animationPanel[i]);
+							}
 						}
 
 						animations[0].startAnimation(buffersCreate(buf, 0));
 						animations[1].startAnimation(buffersCreate(buf, 1));
 						animations[2].startAnimation(buffersCreate(buf, 2));
 						animations[3].startAnimation(buffersCreate(buf, 3));
-
 					}
 				});
 			}
@@ -304,8 +200,8 @@ public class CreatureAnimationPreview {
 		return jTree;
 	}
 
-	private AnimationRunner createAnimation(final ImageViewerSwing imageViewer) {
-		return new AnimationRunner(imageViewer);
+	private AnimationRunner createAnimation(JLabel viewer) {
+		return new AnimationRunner(viewer);
 	}
 
 	private BufferedImage[] buffersCreate(final BufferedImage buf, final int row) {
