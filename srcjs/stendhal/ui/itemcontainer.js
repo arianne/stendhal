@@ -20,19 +20,7 @@ stendhal.ui = stendhal.ui || {};
  * which changes on zone change.
  */
 stendhal.ui.ItemContainerWindow = function(name, size, object) {
-	var initialized = false;
-	
 	this.update = function() {
-		if (!initialized) {
-			for (var i = 0; i < size; i++) {
-				var e = document.getElementById(name + i);
-				e.setAttribute("draggable", true);
-				e.addEventListener("dragstart", onDragStart);
-				e.addEventListener("dragover", onDragOver);
-				e.addEventListener("drop", onDrop);
-			}
-			initialized = true;
-		}
 		render(name, size);
 	};
 	
@@ -95,10 +83,15 @@ stendhal.ui.ItemContainerWindow = function(name, size, object) {
 		}
 		e.stopPropagation();
 	}
+	
+	for (var i = 0; i < size; i++) {
+		var e = document.getElementById(name + i);
+		e.setAttribute("draggable", true);
+		e.addEventListener("dragstart", onDragStart);
+		e.addEventListener("dragover", onDragOver);
+		e.addEventListener("drop", onDrop);
+	}
 }
-
-stendhal.ui.bag = new stendhal.ui.ItemContainerWindow("bag", 12, null);
-stendhal.ui.keyring = new stendhal.ui.ItemContainerWindow("keyring", 8, null);
 
 
 stendhal.ui.equip = {
@@ -119,6 +112,7 @@ stendhal.ui.equip = {
 			this.inventory[i].update();
 		}
 	}
+	
 };
 
 stendhal.ui.equip.init();
