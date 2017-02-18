@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2015-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,28 +11,16 @@
  ***************************************************************************/
 
 "use strict";
+window.stendhal = window.stendhal || {};
+stendhal.ui = stendhal.ui || {};
 
-marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
-
-	minimapShow: false,
-	zIndex: 5500,
-
-	set: function(key, value) {
-		marauroa.rpobjectFactory.corpse.proto.set.apply(this, arguments);
-
-		this.sprite = this.sprite || {};
-		if (stendhal.config.gamescreen.blood && (key == "image")) {
-			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
-		} else if (!stendhal.config.gamescreen.blood && (key == "harmless_image")) {
-			this.sprite.fFilename = "/data/sprites/corpse/" + value + ".png";
-		}
-	},
-
-	isVisibleToAction: function(filter) {
-		return true;
-	},
-
-	onclick: function(x, y) {
-		stendhal.ui.equip.createInventoryWindow("content", 2, 2, this)
+stendhal.ui.popup = function(content) {
+	this.close = function() {
+		document.getElementById("popupcontainer").removeChild(this.popupdiv);
 	}
-});
+
+	var popupcontainer = document.getElementById("popupcontainer");
+	this.popupdiv = document.createElement('div');
+	this.popupdiv.innerHTML = content;
+	popupcontainer.appendChild(this.popupdiv);
+}
