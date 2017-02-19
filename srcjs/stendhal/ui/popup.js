@@ -24,11 +24,11 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	}
 
 	function close(e) {
-		var popupcontainer = document.getElementById("popupcontainer");
-		popupcontainer.removeChild(that.popupdiv);
 		if (that.onClose) {
 			that.onClose.call(that);
 		}
+		var popupcontainer = document.getElementById("popupcontainer");
+		popupcontainer.removeChild(that.popupdiv);
 		e.preventDefault();
 	}
 

@@ -124,12 +124,13 @@ stendhal.ui.equip = {
 		}
 		html += "</div>";
 
-		var popup = new stendhal.ui.Popup(title, html, 160, 50);
+		var popup = new stendhal.ui.Popup(title, html, 160, 370);
 		var itemContainer = new stendhal.ui.ItemContainerWindow(slot, sizeX * sizeY, object, suffix);
 		stendhal.ui.equip.inventory.push(itemContainer);
 		popup.onClose = function() {
 			stendhal.ui.equip.inventory.splice(stendhal.ui.equip.inventory.indexOf(itemContainer), 1)
 		}
+		return popup;
 	}
 };
 
