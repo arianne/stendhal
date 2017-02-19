@@ -20,7 +20,7 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	}
 
 	function createTitleHtml() {
-		return "<div class='popuptitle' style='cursor: default'><div class='popuptitleclose' style='float:right'>X</div>" + stendhal.ui.html.esc(title) + "</div>";
+		return "<div class='popuptitle' style='cursor: default; background-color: #FFF'><div class='popuptitleclose' style='float:right'>X</div>" + stendhal.ui.html.esc(title) + "</div>";
 	}
 
 	function close(e) {
@@ -32,10 +32,35 @@ stendhal.ui.Popup = function(title, content, x, y) {
 		e.preventDefault();
 	}
 
+	/**
+	 * start draging of popup window
+	 */
 	function onMouseDown(e) {
 		console.log("down", that, that.popupdiv, title);
+		window.addEventListener("mousemove", onMouseMovedDuringDrag, true);
+		window.addEventListener("mouseup", onMouseUpDuringDrag, true);
 		e.preventDefault();
+		var box = that.popupdiv.getBoundingClientRect();
+		that.offsetX = e.clientX - box.left - window.scrollX;
+		that.offsetY = e.clientY - box.top - window.scrollY;
 	}
+
+	/**
+	 * updates position of popup window during drag
+	 */
+	function onMouseMovedDuringDrag(e) {
+	    that.popupdiv.style.left = e.clientX - that.offsetX + 'px';
+	    that.popupdiv.style.top = e.clientY - that.offsetY + 'px';
+	}
+
+	/**
+	 * deregister global event listeners used for dragging popup window
+	 */
+	function onMouseUpDuringDrag(e) {
+		window.removeEventListener("mousemove", onMouseMovedDuringDrag, true);
+		window.removeEventListener("mouseup", onMouseUpDuringDrag, true);
+	}
+
 
 	var that = this;
 	var popupcontainer = document.getElementById("popupcontainer");
