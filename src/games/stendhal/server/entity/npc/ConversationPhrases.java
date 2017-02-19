@@ -46,6 +46,8 @@ public class ConversationPhrases {
 	public static final List<String> FINISH_MESSAGES = Arrays.asList("done",
 			"finish", "complete");
 
+	public static final List<String> QUEST_FINISH_MESSAGES = combine(QUEST_MESSAGES, FINISH_MESSAGES);
+
 	public static final List<String> ABORT_MESSAGES = Arrays.asList("another", "abort");
 
 	public static final List<String> OFFER_MESSAGES = Arrays.asList("offer", "deal", "trade");

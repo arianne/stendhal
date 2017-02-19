@@ -110,7 +110,6 @@ import marauroa.common.Pair;
 		enemyForces.put("oni",
 				new Pair<Integer, String>(200,"Very strange race, living in their castle in Fado forest. There are rumors that they have agreed an alliance with the Magic city wizards."));
 
-
 		/*
 		 * those are not interesting
 		enemyForces.put("dwarf",
@@ -466,7 +465,7 @@ import marauroa.common.Pair;
 
 			  // player killed enough enemies.
 		      npc.add(ConversationStates.ATTENDING,
-		    		  ConversationPhrases.QUEST_MESSAGES,
+		    		  ConversationPhrases.QUEST_FINISH_MESSAGES,
 		    		  new AndCondition(
 		    				  new QuestInStateCondition(QUEST_SLOT, 1, enemy),
 		    				  new KilledInSumForQuestCondition(QUEST_SLOT, 2, enemyForces.get(enemy).first())),
@@ -483,7 +482,7 @@ import marauroa.common.Pair;
 
 		      // player killed not enough enemies.
 		      npc.add(ConversationStates.ATTENDING,
-		    		  ConversationPhrases.QUEST_MESSAGES,
+		    		  ConversationPhrases.QUEST_FINISH_MESSAGES,
 		    		  new AndCondition(
 		    				  new QuestInStateCondition(QUEST_SLOT, 1, enemy),
 		    				  new NotCondition(
