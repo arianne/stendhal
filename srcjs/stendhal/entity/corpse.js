@@ -33,6 +33,6 @@ marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFacto
 	},
 
 	onclick: function(x, y) {
-		stendhal.ui.equip.createInventoryWindow("content", 2, 2, this)
+		stendhal.ui.equip.createInventoryWindow("content", 2, 2, this, "Corpse");
 	}
 });
