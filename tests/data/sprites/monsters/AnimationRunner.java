@@ -25,18 +25,14 @@ public class AnimationRunner implements ActionListener {
 	private BufferedImage[] frames;
 	private final JLabel viewer;
 	private int currentframe;
-	private int number_of_frames;
 
 	public AnimationRunner(JLabel viewer) {
 		this.viewer = viewer;
-		timer = new Timer(200, this);
+		timer = new Timer(100, this);
 	}
-
-	// Set up the components in the GUI.
 
 	public synchronized void startAnimation(final BufferedImage[] frames) {
 		this.frames = frames;
-		number_of_frames = frames.length;
 		timer.start();
 	}
 
@@ -48,7 +44,7 @@ public class AnimationRunner implements ActionListener {
 	public void actionPerformed(final ActionEvent e) {
 		viewer.setIcon(new ImageIcon(frames[currentframe]));
 
-		if (currentframe == number_of_frames - 1) {
+		if (currentframe == frames.length - 1) {
 			direction = -1;
 		}
 		if (currentframe == 0) {
