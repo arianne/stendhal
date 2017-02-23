@@ -127,6 +127,7 @@ stendhal.ui.equip = {
 		var popup = new stendhal.ui.Popup(title, html, 160, 370);
 		var itemContainer = new stendhal.ui.ItemContainerWindow(slot, sizeX * sizeY, object, suffix);
 		stendhal.ui.equip.inventory.push(itemContainer);
+		itemContainer.update();
 		popup.onClose = function() {
 			stendhal.ui.equip.inventory.splice(stendhal.ui.equip.inventory.indexOf(itemContainer), 1)
 		}
