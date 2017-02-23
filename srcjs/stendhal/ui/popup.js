@@ -16,19 +16,19 @@ stendhal.ui = stendhal.ui || {};
 
 stendhal.ui.Popup = function(title, content, x, y) {
 	this.close = function() {
-		document.getElementById("popupcontainer").removeChild(this.popupdiv);
+		if (that.onClose) {
+			that.onClose.call(that);
+		}
+		var popupcontainer = document.getElementById("popupcontainer");
+		popupcontainer.removeChild(that.popupdiv);
 	}
 
 	function createTitleHtml() {
 		return "<div class='popuptitle' style='cursor: default; background-color: #FFF'><div class='popuptitleclose' style='float:right'>X</div>" + stendhal.ui.html.esc(title) + "</div>";
 	}
 
-	function close(e) {
-		if (that.onClose) {
-			that.onClose.call(that);
-		}
-		var popupcontainer = document.getElementById("popupcontainer");
-		popupcontainer.removeChild(that.popupdiv);
+	function onClose(e) {
+		that.close();
 		e.preventDefault();
 	}
 
@@ -73,6 +73,6 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	this.popupdiv.innerHTML = temp;
 
 	this.popupdiv.querySelector(".popuptitle").addEventListener("mousedown", onMouseDown);
-	this.popupdiv.querySelector(".popuptitleclose").addEventListener("click", close);
+	this.popupdiv.querySelector(".popuptitleclose").addEventListener("click", onClose);
 	popupcontainer.appendChild(this.popupdiv);
 }
