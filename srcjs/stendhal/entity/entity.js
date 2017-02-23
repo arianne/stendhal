@@ -34,6 +34,27 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	},
 
 	/**
+	 * is the other entity next to this entity?
+	 *
+	 * @return true, if the other entity is right next to us; false otherwise 
+	 */
+	isNextTo: function(other) {
+		if (!other || !this.x || !this.y || !other.x || !other.y) {
+			return false;
+		}
+
+		var nextX = ((this.x + this.width >= other.x) && this.x <= other.x)
+				|| ((other.x + other.width >= this.x) && other.x <= this.x)
+		if (!nextX) {
+			return false;
+		}
+
+		var nextY = ((this.y + this.height >= other.y) && this.y <= other.y)
+			|| ((other.y + other.height >= this.y) && other.y <= this.y)
+		return nextY;
+	},
+
+	/**
 	 * is this entity visible to a specific action
 	 *
 	 * @param filter 0: short left click
