@@ -155,18 +155,24 @@ public enum ActionType {
 	CHALLENGE("challenge", "Challenge") {
 
 		@Override
-		public void send(RPAction rpaction) {
-			rpaction.put("action", "open");
-			super.send(rpaction);
+		public RPAction fillTargetInfo(IEntity entity) {
+			RPAction a = super.fillTargetInfo(entity);
+			a.put("type", "challenge");
+			a.put("action", "open");
+			a.put("target", entity.getName());
+			return a;
 		}
 		
 	},
 	ACCEPT_CHALLENGE("challenge", "Accept") {
 
 		@Override
-		public void send(RPAction rpaction) {
-			rpaction.put("action", "accept");
-			super.send(rpaction);
+		public RPAction fillTargetInfo(IEntity entity) {
+			RPAction a = super.fillTargetInfo(entity);
+			a.put("type", "challenge");
+			a.put("action", "accept");
+			a.put("target", entity.getName());
+			return a;
 		}
 		
 	};

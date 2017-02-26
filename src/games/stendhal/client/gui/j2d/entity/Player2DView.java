@@ -266,6 +266,8 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		}
 		switch (at) {
 		case ADD_BUDDY:
+		case CHALLENGE:
+		case ACCEPT_CHALLENGE:
 		case IGNORE:
 		case INVITE:
 		case UNIGNORE:
