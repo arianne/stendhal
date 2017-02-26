@@ -24,7 +24,7 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	
 	private static final Logger logger = Logger.getLogger(PlayerVsPlayerChallengeManager.class);
 	
-	protected static final int TIMEOUT_FOR_ACCEPTANCE = 60 * 1000 / 300; 
+	protected static final int TIMEOUT_FOR_ACCEPTANCE = 300 * 1000 / 300; 
 	
 	private final Collection<PlayerVsPlayerChallenge> currentChallenges = Sets.newHashSet();
 	
@@ -85,7 +85,9 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	 */
 	protected PlayerVsPlayerChallenge getOpenChallengeForPlayers(Player challenger, Player challenged) {
 		for (PlayerVsPlayerChallenge challenge : currentChallenges) {
-			if(challenge.getChallenger().equals(challenger) && challenge.getChallenged().equals(challenged)) {
+			boolean challengerEquals = challenge.getChallenger().equals(challenger);
+			boolean challengedEquals = challenge.getChallenged().equals(challenged);
+			if(challengerEquals && challengedEquals) {
 				if(!challenge.isAccepted()) {
 					return challenge;
 				}

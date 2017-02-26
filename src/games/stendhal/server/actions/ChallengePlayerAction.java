@@ -29,7 +29,7 @@ public class ChallengePlayerAction implements ActionListener {
 	public void onAction(Player player, RPAction action) {
 		
 		String target = action.get("target");
-		Entity targetEntity = EntityHelper.entityFromTargetName("target", player);
+		Entity targetEntity = EntityHelper.entityFromTargetName(target, player);
 		String challengeAction = action.get("action");
 		
 		if (targetEntity == null) {
@@ -44,13 +44,18 @@ public class ChallengePlayerAction implements ActionListener {
 		
 		Player targetPlayer = (Player) targetEntity;
 		
+		if(target != null && target.equals(player.getName())) {
+			logger.debug(String.format("Player %s tried to open or accept a challenge with himself.", player.getName()));
+			return;
+		}
+		
 		if("open".equals(challengeAction)) {
 			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeCreatorTurnListener(player, targetPlayer));
 			return;
 		}
 		
 		if("accept".equals(challengeAction)) {
-			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeAcceptedTurnListener(player, targetPlayer));
+			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeAcceptedTurnListener(targetPlayer, player));
 			return;
 		}
 	}

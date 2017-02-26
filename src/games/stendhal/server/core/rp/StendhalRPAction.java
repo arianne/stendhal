@@ -130,8 +130,7 @@ public class StendhalRPAction {
 					if(!activeChallenge) {
 						StringBuilder msgBuilder = new StringBuilder();
 						msgBuilder.append("You cannot attack ");
-						msgBuilder.append(victim.getName());
-						msgBuilder.append(" unless ");
+						msgBuilder.append("unless ");
 						msgBuilder.append(victim.getName());
 						msgBuilder.append(" has accepted a challenge from you.");
 						player.sendPrivateText(msgBuilder.toString());
