@@ -38,6 +38,7 @@ public class PlayerVsPlayerChallengeManagerTest {
 		assertThat(challenge, notNullValue());
 		assertThat(challenge.isAccepted(), is(Boolean.FALSE));
 		assertThat(challenge.getOpened(), is(Long.valueOf(0)));
+		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.FALSE));
 	}
 	
 	@Test
@@ -47,14 +48,17 @@ public class PlayerVsPlayerChallengeManagerTest {
 		assertThat(challenge, notNullValue());
 		assertThat(challenge.isAccepted(), is(Boolean.FALSE));
 		assertThat(challenge.getOpened(), is(Long.valueOf(0)));
+		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.FALSE));
 		manager.accpetChallenge(challenger, challenged, 1);
 		challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
 		assertThat(challenge, nullValue());
+		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.TRUE));
 	}
 	
 	@Test
 	public void testCreateChallengeAndTimeout() throws Exception {
 		manager.createChallenge(challenger, challenged, 0);
+		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.FALSE));
 		
 		PlayerVsPlayerChallenge challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
 		assertThat(challenge, notNullValue());
@@ -68,17 +72,18 @@ public class PlayerVsPlayerChallengeManagerTest {
 	
 	@Test
 	public void testCreateChallengeAndLogout() throws Exception {
-manager.createChallenge(challenger, challenged, 0);
+		manager.createChallenge(challenger, challenged, 0);
 		
 		PlayerVsPlayerChallenge challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
 		assertThat(challenge, notNullValue());
 		assertThat(challenge.isAccepted(), is(Boolean.FALSE));
 		assertThat(challenge.getOpened(), is(Long.valueOf(0)));
+		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.FALSE));
 		
 		manager.onLoggedOut(challenger);
 		challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
 		assertThat(challenge, nullValue());
-		
+		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.FALSE));
 	}
 
 }

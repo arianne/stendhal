@@ -25,6 +25,7 @@ import games.stendhal.server.core.events.ZoneNotifier;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rp.group.Group;
+import games.stendhal.server.core.rp.pvp.PlayerVsPlayerChallengeManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
@@ -122,6 +123,21 @@ public class StendhalRPAction {
 			}
 
 			if (victim instanceof Player) {
+				// if challenges system property is set, use challenge manager instead.
+				if (System.getProperty("stendhal.pvpchallenge") != null) {
+					PlayerVsPlayerChallengeManager cm = SingletonRepository.getChallengeManager();
+					boolean activeChallenge = cm.playersHaveActiveChallenge(player, (Player) victim);
+					if(!activeChallenge) {
+						StringBuilder msgBuilder = new StringBuilder();
+						msgBuilder.append("You cannot attack ");
+						msgBuilder.append(victim.getName());
+						msgBuilder.append(" unless ");
+						msgBuilder.append(victim.getName());
+						msgBuilder.append(" has accepted a challenge from you.");
+						player.sendPrivateText(msgBuilder.toString());
+						return;
+					}
+				}
 				// disable attacking much weaker players, except in/ self defense
 				if (!mayAttackPlayer(player, (Player) victim)) {
 					player.sendPrivateText("Your conscience would trouble you if you carried out this attack.");

@@ -144,4 +144,17 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 		new GameEvent(challengerName, gameEvent, challengedName).raise();
 	}
 
+	public boolean playersHaveActiveChallenge(Player attacker, Player victim) {
+		for (PlayerVsPlayerChallenge c : this.currentChallenges) {
+			boolean challengeInvolvesAttacker = c.isInvolved(attacker);
+			boolean challengeInvolvesVictim = c.isInvolved(victim);
+			if(challengeInvolvesAttacker && challengeInvolvesVictim) {
+				if(c.isAccepted()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }
