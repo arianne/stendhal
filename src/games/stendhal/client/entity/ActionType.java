@@ -151,7 +151,25 @@ public enum ActionType {
 		
 	},
 	WALK_START("walk", "Walk"),
-	WALK_STOP("walk", "Stop");
+	WALK_STOP("walk", "Stop"), 
+	CHALLENGE("challenge", "Challenge") {
+
+		@Override
+		public void send(RPAction rpaction) {
+			rpaction.put("action", "open");
+			super.send(rpaction);
+		}
+		
+	},
+	ACCEPT_CHALLENGE("challenge", "Accept") {
+
+		@Override
+		public void send(RPAction rpaction) {
+			rpaction.put("action", "accept");
+			super.send(rpaction);
+		}
+		
+	};
 
 	/**
 	 * the String send to the server, if so.

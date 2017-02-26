@@ -220,6 +220,10 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			if ((serverVersion == null) || (Version.compare(serverVersion, "0.92") > 0)) {
 				list.add(ActionType.INVITE.getRepresentation());
 			}
+			if ((serverVersion == null) || (Version.compare(serverVersion, "1.23") > 0)) {
+				list.add(ActionType.CHALLENGE.getRepresentation());
+				list.add(ActionType.ACCEPT_CHALLENGE.getRepresentation());
+			}
 		}
 	}
 
