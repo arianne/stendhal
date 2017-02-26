@@ -1,5 +1,7 @@
 package games.stendhal.server.actions;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.pvp.PlayerVsPlayerChallengeAcceptedTurnListener;
 import games.stendhal.server.core.rp.pvp.PlayerVsPlayerChallengeCreatorTurnListener;
@@ -14,6 +16,8 @@ import marauroa.common.game.RPAction;
  */
 public class ChallengePlayerAction implements ActionListener {
 	
+	private static final Logger logger = Logger.getLogger(ChallengePlayerAction.class);
+	
 	/**
 	 * registers the ChallengePlayerAction action
 	 */
@@ -24,20 +28,28 @@ public class ChallengePlayerAction implements ActionListener {
 	@Override
 	public void onAction(Player player, RPAction action) {
 		
+		String target = action.get("target");
 		Entity targetEntity = EntityHelper.entityFromTargetName("target", player);
-		String type = action.get("type");
-		if(!(targetEntity instanceof Player)){
+		String challengeAction = action.get("action");
+		
+		if (targetEntity == null) {
+			logger.debug(String.format("Unable to locate target %s for challenge action from player %s", target, player.getName()));
+			return;
+		}
+		
+		if (!(targetEntity instanceof Player)){
+			logger.debug(String.format("Found target for name %s is not a player object.", target));
 			return;
 		}
 		
 		Player targetPlayer = (Player) targetEntity;
 		
-		if("open".equals(type)) {
+		if("open".equals(challengeAction)) {
 			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeCreatorTurnListener(player, targetPlayer));
 			return;
 		}
 		
-		if("accept".equals(type)) {
+		if("accept".equals(challengeAction)) {
 			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeAcceptedTurnListener(player, targetPlayer));
 			return;
 		}
