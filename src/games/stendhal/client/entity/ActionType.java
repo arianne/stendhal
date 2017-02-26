@@ -151,7 +151,31 @@ public enum ActionType {
 		
 	},
 	WALK_START("walk", "Walk"),
-	WALK_STOP("walk", "Stop");
+	WALK_STOP("walk", "Stop"), 
+	CHALLENGE("challenge", "Challenge") {
+
+		@Override
+		public RPAction fillTargetInfo(IEntity entity) {
+			RPAction a = super.fillTargetInfo(entity);
+			a.put("type", "challenge");
+			a.put("action", "open");
+			a.put("target", entity.getName());
+			return a;
+		}
+		
+	},
+	ACCEPT_CHALLENGE("challenge", "Accept") {
+
+		@Override
+		public RPAction fillTargetInfo(IEntity entity) {
+			RPAction a = super.fillTargetInfo(entity);
+			a.put("type", "challenge");
+			a.put("action", "accept");
+			a.put("target", entity.getName());
+			return a;
+		}
+		
+	};
 
 	/**
 	 * the String send to the server, if so.

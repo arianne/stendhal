@@ -117,6 +117,10 @@ public class SlashActionRepository {
 		
 		actions.put("walk", new AutoWalkAction());
 		actions.put("stopwalk", new AutoWalkStopAction());
+		
+		// PvP challenge actions
+		actions.put("challenge", new CreateChallengeAction());
+		actions.put("accept", new AcceptChallengeAction());
 	}
 
 	/**

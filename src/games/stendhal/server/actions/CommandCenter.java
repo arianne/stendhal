@@ -97,6 +97,7 @@ public class CommandCenter {
 		BanAction.register();
 		BuddyAction.register();
 		CastSpellAction.register();
+		ChallengePlayerAction.register();
 		ChatAction.register();
 		CStatusAction.register();
 		DisplaceAction.register();

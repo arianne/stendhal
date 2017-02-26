@@ -18,66 +18,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Other classes can register here to be notified when a player logs in.
+ * Other classes can register here to be notified when a player logs out.
  * 
- * It is the responsibility of the LoginListener to determine which players are
+ * It is the responsibility of the LogoutListener to determine which players are
  * of interest for it, and to store this information persistently.
  * 
- * @author daniel
+ * @author markus
  */
-public final class LoginNotifier {
+public final class LogoutNotifier {
 
 	/** The Singleton instance. */
-	private static final LoginNotifier instance = new LoginNotifier();
+	private static final LogoutNotifier instance = new LogoutNotifier();
 
 	/**
 	 * Holds a list of all registered LoginListeners.
 	 */
-	private final List<LoginListener> loginListeners;
+	private final List<LogoutListener> logoutListeners;
 
 	// singleton
-	private LoginNotifier() {
-		loginListeners = new ArrayList<LoginListener>();
+	private LogoutNotifier() {
+		logoutListeners = new ArrayList<>();
 	}
 
 	/**
-	 * Returns the LoginNotifier instance.
+	 * Returns the LogoutNotifier instance.
 	 * 
-	 * @return LoginNotifier the Singleton instance
+	 * @return LogoutNotifier the Singleton instance
 	 */
-	public static LoginNotifier get() {
+	public static LogoutNotifier get() {
 		return instance;
 	}
 
 	/**
-	 * Adds a LoginListener.
+	 * Adds a LogoutListener.
 	 * 
 	 * @param listener
-	 *            LoginListener to add
+	 *            LogoutListener to add
 	 */
-	public void addListener(final LoginListener listener) {
-		loginListeners.add(listener);
+	public void addListener(final LogoutListener listener) {
+		logoutListeners.add(listener);
 	}
 
 	/**
-	 * Removes a LoginListener.
+	 * Removes a LogoutListener.
 	 * 
 	 * @param listener
-	 *            LoginListener to remove
+	 *            LogoutListener to remove
 	 */
-	public void removeListener(final LoginListener listener) {
-		loginListeners.remove(listener);
+	public void removeListener(final LogoutListener listener) {
+		logoutListeners.remove(listener);
 	}
 
 	/**
-	 * This method is invoked by Player.create().
+	 * This method is invoked by TODO
 	 * 
 	 * @param player
-	 *            the player who logged in
+	 *            the player who logged out
 	 */
-	public void onPlayerLoggedIn(final Player player) {
-		for (final LoginListener listener : loginListeners) {
-			listener.onLoggedIn(player);
+	public void onPlayerLoggedOut(final Player player) {
+		for (final LogoutListener listener : logoutListeners) {
+			listener.onLoggedOut(player);
 		}
 	}
 }
