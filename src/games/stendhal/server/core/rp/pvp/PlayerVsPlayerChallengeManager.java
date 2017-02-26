@@ -105,7 +105,7 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	 * Filters out challenges that have to time out at the given turn
 	 * @param currentTurn
 	 */
-	public void timeOutCurrentChallenges(int currentTurn) {
+	public void timeOutCurrentChallenges(final int currentTurn) {
 		Collection<PlayerVsPlayerChallenge> timeouts = Collections2.filter(this.currentChallenges, new Predicate<PlayerVsPlayerChallenge>() {
 			@Override
 			public boolean apply(PlayerVsPlayerChallenge challenge) {
