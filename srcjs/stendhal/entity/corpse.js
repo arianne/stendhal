@@ -32,9 +32,15 @@ marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFacto
 		return true;
 	},
 
+	destroy: function() {
+		if (this.inventory) {
+			this.inventory.close();
+		}
+	},
+
 	onclick: function(x, y) {
-		var inventory = Object.create(stendhal.ui.window.container);
-		inventory.init(this, "content", 2, 2);
-		inventory.draw();
+		if (!this.inventory || !this.inventory.popupdiv.parentNode) {
+			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 2, 2, this, "Corpse");
+		}
 	}
 });

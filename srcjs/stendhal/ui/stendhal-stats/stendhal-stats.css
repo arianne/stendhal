@@ -1,0 +1,8 @@
+#stats {
+	border: 1px solid black; 
+	width: 128px;
+	float: left; 
+	font-size: 0.8em;
+	white-space: pre;
+	padding: 0.1em;
+}

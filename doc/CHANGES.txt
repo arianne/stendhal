@@ -1,6 +1,26 @@
 ﻿Changelog
 ---------
-1.21 *developing*
+1.23
+
+*world*
+- Mizuno sells ice, fire, and light arrows. 
+- Because of a bad curse, many creatures, animals and people have lost their appearance
+- Please join us at https://stendhalgame.org/chat/ if you want to help with creating new graphics 
+
+
+1.22
+
+*world*
+- Winter has started and the weather shows it
+- Semos is decorated for Christmas
+- New Christmas song: "O how joyfully"  
+- KillMonks quest history shows tally marks
+
+*client*
+- fixed "under the ocean" layer on clients without support for full alpha.
+
+
+1.21
 
 *world*
 - Pets can drink 'medicine' even when they aren't hungry. Making them easier to maintain in battle.

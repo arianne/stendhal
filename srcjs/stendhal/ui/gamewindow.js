@@ -200,10 +200,16 @@ stendhal.ui.gamewindow = {
 		if (draggedEntity.type === "item") {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
 			e.dataTransfer.setDragImage(img, 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-item", draggedEntity.getIdPath());
+			e.dataTransfer.setData("text/x-stendhal-item", JSON.stringify({
+				"path": draggedEntity.getIdPath(),
+				"zone": marauroa.currentZoneName
+			}));
 		} else if (draggedEntity.type === "corpse") {
 			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-corpse", draggedEntity.getIdPath());
+			e.dataTransfer.setData("text/x-stendhal-corpse", JSON.stringify({
+				"path": draggedEntity.getIdPath(),
+				"zone": marauroa.currentZoneName
+			}));
 		} else {
 			e.preventDefault();
 		}
@@ -214,22 +220,21 @@ stendhal.ui.gamewindow = {
 		e.dataTransfer.dropEffect = "move";
 		return false;
 	},
-	
+
 	onDrop: function(e) {
-		var data = e.dataTransfer.getData("text/x-stendhal-item") || e.dataTransfer.getData("text/x-stendhal-corpse");
-		if (data) {
+		var datastr = e.dataTransfer.getData("text/x-stendhal-item") || e.dataTransfer.getData("text/x-stendhal-corpse");
+		if (datastr) {
+			var data = JSON.parse(datastr);
 			var action = {
 				"x": Math.floor((e.offsetX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((e.offsetY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
-				// FIXME: This is not necessarily true. What to do when the drag
-				// started on previous zone?
-				// "zone" : marauroa.currentZoneName
+				"zone" : data.zone
 			};
-			var id = data.substr(1, data.length - 2);
+			var id = data.path.substr(1, data.path.length - 2);
 			var drop = /\t/.test(id);
 			if (drop) {
 				action["type"] = "drop";
-				action["source_path"] = data;
+				action["source_path"] = data.path;
 			} else {
 				action["type"] = "displace";
 				action["baseitem"] = id;

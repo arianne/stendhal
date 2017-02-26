@@ -24,9 +24,7 @@ import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.SimilarExprMatcher;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -187,11 +185,8 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 					final Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
 
 					if (answer.matchesFull(expected)) {
-						npc.say("Correct, well done! You are now licensed to go scuba diving! Here is your gear.");
-						//For now I'm just handing out scuba gear until there's a license to give.
-						final Item ScubaGear = SingletonRepository.getEntityManager().getItem("scuba gear");
-						ScubaGear.setBoundTo(player.getName());
-						player.equipOrPutOnGround(ScubaGear);
+						npc.say("Correct, well done! You are now licensed to go scuba diving! But you'll need #buy set of #scuba #gear first. Afraid I don't give 'em away for free anymore.");
+						//Free samples are over.
 						player.addXP(100);
 						player.addKarma(5);
 						player.setQuest(QUEST_SLOT, "done");

@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.dressingrooms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Dressing rooms at fado hotel.
@@ -65,7 +65,7 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("woman_003_npc");
+		npc.setEntityClass("noimagenpc"); // "woman_003_npc"
 		npc.setDirection(Direction.RIGHT);
 		npc.setPosition(3, 10);
 		npc.initHP(100);

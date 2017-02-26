@@ -396,7 +396,7 @@
   
     <creature name="mermaid">
     <type class="hybrid" subclass="mermaid" tileid="hybrid.png:15"/>
-     <description>You see a mermaid. They perfer they own company and are not too happy to see you here.</description>
+     <description>You see a mermaid. They perfer their own company and are not too happy to see you here.</description>
     <attributes>
       <atk value="547"/>
       <def value="76"/>

@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.castle;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds the king in Kalavan castle.
@@ -64,7 +64,7 @@ public class KingNPC implements ZoneConfigurator {
 			}
 		};
 
-		kingNPC.setEntityClass("kingcozartnpc");
+		kingNPC.setEntityClass("noimagenpc"); // "kingcozartnpc"
 		kingNPC.setPosition(40, 22);
 		kingNPC.initHP(100);
 		kingNPC.setDescription("You see King Cozart, the king of Kalavan and its citizens.");

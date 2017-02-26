@@ -449,7 +449,7 @@ public final class ShopList {
 		shops.add("buypoisons", "rodent trap", 50);
 		
 		//Scuba Instructor Edward
-		shops.add("sellScubaStuff", "scuba gear", 45000);
+		shops.add("sellScubaStuff", "scuba gear", 22000);
 		
 		// Mine Town Revival Weeks Caroline
 		shops.add("sellrevivalweeks", "cherry pie", 195);
