@@ -27,7 +27,7 @@ public class PlayerVsPlayerChallengeTest {
 	}
 
 	static PlayerVsPlayerChallenge createChallenge(String challenger, String challenged, boolean accepted) {
-		return createChallenge(challenger, challenged, accepted, 0l, 1l);
+		return createChallenge(challenger, challenged, accepted, 0L, 1L);
 	}
 
 	//suite class
