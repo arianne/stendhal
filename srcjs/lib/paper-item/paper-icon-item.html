@@ -9,10 +9,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="paper-item-behavior.html">
+<link rel="import" href="paper-item-shared-styles.html">
 
 <!--
-`<paper-icon-item>` is a convenience element to make an item with icon. It is a non interactive list
+`<paper-icon-item>` is a convenience element to make an item with icon. It is an interactive list
 item with a fixed-width icon area, according to Material Design. This is useful if the icons are of
 varying widths, but you want the item bodies to line up. Use this like a `<paper-item>`. The child
 node with the attribute `item-icon` is placed in the icon area.
@@ -30,57 +33,54 @@ node with the attribute `item-icon` is placed in the icon area.
 
 The following custom properties and mixins are available for styling:
 
-Custom property | Description | Default
-----------------|-------------|----------
-`--paper-item-icon-width` | Width of the icon area     | `56px`
-`--paper-icon-item`       | Mixin applied to the item  | `{}`
-
+Custom property               | Description                                    | Default
+------------------------------|------------------------------------------------|----------
+`--paper-item-icon-width`     | Width of the icon area                         | `56px`
+`--paper-item-icon`           | Mixin applied to the icon area                 | `{}`
+`--paper-icon-item`           | Mixin applied to the item                      | `{}`
+`--paper-item-selected-weight`| The font weight of a selected item             | `bold`
+`--paper-item-selected`       | Mixin applied to selected paper-items                | `{}`
+`--paper-item-disabled-color` | The color for disabled paper-items             | `--disabled-text-color`
+`--paper-item-disabled`       | Mixin applied to disabled paper-items        | `{}`
+`--paper-item-focused`        | Mixin applied to focused paper-items         | `{}`
+`--paper-item-focused-before` | Mixin applied to :before focused paper-items | `{}`
 -->
 
 <dom-module id="paper-icon-item">
-
-  <link rel="import" type="css" href="paper-item-shared.css">
-
-  <style>
-
-    :host {
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-      @apply(--paper-font-subhead);
-
-      @apply(--paper-item);
-      @apply(--paper-icon-item);
-    }
-
-    .content-icon {
-      width: var(--paper-item-icon-width, 56px);
-    }
-
-  </style>
-
   <template>
-    <div id="contentIcon" class="content-icon layout horizontal center">
+    <style include="paper-item-shared-styles"></style>
+    <style>
+      :host {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--paper-font-subhead);
+
+        @apply(--paper-item);
+        @apply(--paper-icon-item);
+      }
+
+      .content-icon {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+
+        width: var(--paper-item-icon-width, 56px);
+        @apply(--paper-item-icon);
+      }
+    </style>
+
+    <div id="contentIcon" class="content-icon">
       <content select="[item-icon]"></content>
     </div>
     <content></content>
   </template>
 
+  <script>
+    Polymer({
+      is: 'paper-icon-item',
+
+      behaviors: [
+        Polymer.PaperItemBehavior
+      ]
+    });
+  </script>
 </dom-module>
-
-<script>
-
-(function() {
-
-  Polymer({
-
-    is: 'paper-icon-item',
-
-    hostAttributes: {
-      'role': 'listitem'
-    }
-
-  });
-
-})();
-
-</script>
