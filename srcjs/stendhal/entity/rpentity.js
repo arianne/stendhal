@@ -307,7 +307,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		var localX = this._x * 32;
 		var localY = this._y * 32;
 		var image = stendhal.data.sprites.get(filename);
-		if (image.complete) {
+		if (image.height) { // image.complete is true on missing image files
 			var nFrames = 3;
 			var nDirections = 4;
 			var yRow = this.dir - 1;
