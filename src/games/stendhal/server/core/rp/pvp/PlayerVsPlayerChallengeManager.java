@@ -56,7 +56,6 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 		raiseGameEvent(newChallenge, "challenge-create");
 		challenger.sendPrivateText(String.format("You successfully challenged %s!", challenged.getName()));
 		challenged.sendPrivateText(String.format("%s send you a challenge. If you accept you can fight a duel.", challenger.getName()));
-		challenged.addEvent(new PlayerVsPlayerNewChallengeEvent(challenger.getName(), currentTurn));
 	}
 
 	/**
@@ -87,8 +86,8 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	 */
 	protected PlayerVsPlayerChallenge getOpenChallengeForPlayers(Player challenger, Player challenged) {
 		for (PlayerVsPlayerChallenge c : currentChallenges) {
-			boolean challengerEquals = c.isInvolved(challenger);
-			boolean challengedEquals = c.isInvolved(challenged);
+			boolean challengerEquals = c.getChallenger().equals(challenger) || c.getChallenged().equals(challenger);
+			boolean challengedEquals = c.getChallenged().equals(challenged) || c.getChallenger().equals(challenged);
 			if(challengerEquals && challengedEquals) {
 				if(!c.isAccepted()) {
 					return c;
@@ -143,8 +142,8 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	}
 
 	private void raiseGameEvent(PlayerVsPlayerChallenge removal, String gameEvent) {
-		String challengerName = removal.getChallenger();
-		String challengedName = removal.getChallenged();
+		String challengerName = removal.getChallenger().getName();
+		String challengedName = removal.getChallenged().getName();
 		new GameEvent(challengerName, gameEvent, challengedName).raise();
 	}
 
