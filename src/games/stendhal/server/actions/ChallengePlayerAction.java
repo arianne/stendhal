@@ -50,7 +50,12 @@ public class ChallengePlayerAction implements ActionListener {
 		}
 
 		if("open".equals(challengeAction)) {
-			TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeCreatorTurnListener(player, targetPlayer));
+			String ignore = targetPlayer.getIgnore(player.getName());
+			if(ignore != null) {
+				TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeCreatorTurnListener(player, targetPlayer));
+			} else {
+				// TODO handle ignore message
+			}
 			return;
 		}
 
