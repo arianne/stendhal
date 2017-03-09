@@ -1,49 +1,6 @@
 ﻿Changelog
 ---------
 
-1.26
-*world*
-- made new image for Gashadokuro
-- made new image for Stone Golem
-- made new image for Chicken
-- made new image for mithrilforgernpc
-- limited time in Hell due to the heat
-- improved dialogues of some NPCs near Ados
-
-*experimental webclient*
-- removed outdated text and admin clients
-- added popup windows
-- added group management commands
-- implemented stacked item management
-- display zone name
-- implemented gate, walk blocker and PassiveNPC
- 
-*bugfixes*
-- fixed a double login bug resulting in item duplication (thanks to pepsz for the report)
-- fixed a NullPointerException on quit dialog
-
-1.25
-
-*world*
-- made new images for rams and lions 
-- made new images for pine, locust trees and new old ents
-- made new ship tiles
-- added soldiers to Ados wall
-- added city wall gate to Ados south
-- added a fisher hut south of ados city
-- widened pathways in hell
-
-*experimental webclient*
-- use "ant compilejs" to invoke closure compiler
-- zone change by clicking near the zone border
-- performance optimisations
-- added growing spawner (grain, carrots, etc...)
-- right click popup menu
-- highlight npc triggers and item names in chatlog
-- removed dependency on polymer
-
-
-
 1.24
 
 *world*
@@ -906,12 +863,12 @@
 
 **** IMPORTANT****
 If you package Stendhal or have forked your own game based on it
-read https://stendhalgame.org/wiki/Automatic_Software_Updater
+read http://stendhalgame.org/wiki/Automatic_Software_Updater
 ******************
 
 - rewrote the updater so that it will not break onces a year anymore because the certificate expires
 - on Unix/Linux the home folder now defaults to $HOME/.config/stendhal for new installs
-- improved the best player score for low level players: https://stendhalgame.org/wiki/Fixing_RP_Score_2011
+- improved the best player score for low level players: http://stendhalgame.org/wiki/Fixing_RP_Score_2011
 
 * Marauroa*
 - updated to Marauroa 3.8.7 which greatly improves server side performance
@@ -1317,7 +1274,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - Tab completion for online nick names works now without /who called before
 - orc spearman creature
 - /atlas /faq and /manual commands to open useful pages in browser
-- Harold tweets trades, the official stendhal server uses https://twitter.com/stendhaltrade
+- Harold tweets trades, the official stendhal server uses http://twitter.com/stendhaltrade
 - magical damage types of weapons (fire, ice ...)
 - resistance/vulnerability of creatures to magical weapons (fire, ice, ...)
 - attack sweeps look different depending on the attack type
@@ -1489,8 +1446,8 @@ your error log files and pleace continue to do so.
 - NPC chat and creature noises using RPEvent
 *website*
 - nicer urls for subpages on the website
-- a new version of the atlas with dungeon entrances: https://stendhalgame.org/wiki/File:WorldWithMarkedDungeons091122.png
-- dedicated testing page on wiki https://stendhalgame.org/wiki/Stendhal_Testing
+- a new version of the atlas with dungeon entrances: http://stendhalgame.org/wiki/File:WorldWithMarkedDungeons091122.png
+- dedicated testing page on wiki http://stendhalgame.org/wiki/Stendhal_Testing
 - Stendhal Manual on the wiki updated with new images
 
 
@@ -1590,8 +1547,8 @@ your error log files and pleace continue to do so.
 - black dragon, flying golden dragon
 - skeletons, fallens of all kinds
 * Admin
-  - support log available at https://stendhalgame.org
-  - player history available at https://stendhalgame.org
+  - support log available at http://stendhalgame.org
+  - player history available at http://stendhalgame.org/?id=content%2Fadmin%2Fplayerhistory&name=NAME&sublogin=Search
   - new command /adminnote
   - /gmhelp_script and /gmehlp_alter replaced by /gmhelp script and /gmhelp alter
 
