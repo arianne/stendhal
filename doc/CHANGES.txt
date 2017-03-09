@@ -1,5 +1,26 @@
 ﻿Changelog
 ---------
+
+1.24
+
+*world*
+- Mermaids linger around near the outer edge of grotto 
+- New images for farm animals: cow and bull
+- New images for dragons: green and red as well as green and red dragon riders
+- New images for ghost, death, black death and golden death
+- New images for brown, green and black slimes 
+
+*client*
+- none
+
+*changes to the experimental webclient*
+- fixed crash on missing images
+- updated polymer and webcomponentsjs, but MS Edge is still broken :-/
+- improved drag and drop of items from corpse and chest
+- added dragable PopupWindow (e. g. for corpse inventory, menus and dialogs)
+
+
+
 1.23
 
 *world*
