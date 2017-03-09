@@ -91,7 +91,7 @@
   
   <creature name="green dragon">
     <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
-    <description>You see a green dragon. His wings may be too small for him to fly with them but nevertheless he looks very strong and his thick green skin seems to protect him quite well.</description>
+    <description>You see a green dragon. He looks very tall and strong.</description>
     <attributes>
       <atk value="403"/>
       <def value="75"/>
