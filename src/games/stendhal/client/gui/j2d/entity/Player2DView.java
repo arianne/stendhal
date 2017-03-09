@@ -221,8 +221,10 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 				list.add(ActionType.INVITE.getRepresentation());
 			}
 			if ((serverVersion == null) || (Version.compare(serverVersion, "1.23") > 0)) {
-				list.add(ActionType.CHALLENGE.getRepresentation());
-				list.add(ActionType.ACCEPT_CHALLENGE.getRepresentation());
+				if(System.getProperty("stendhal.pvpchallenge") != null) {
+					list.add(ActionType.CHALLENGE.getRepresentation());
+					list.add(ActionType.ACCEPT_CHALLENGE.getRepresentation());
+				}
 			}
 		}
 	}
