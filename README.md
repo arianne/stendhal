@@ -48,4 +48,4 @@ This program is free software; you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [LICENSE.txt](LICENSE.txt) file for more details.
 
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008, arianne_rpg at users dot sourceforge dot net and others<br>
-Stendhal(c) is copyright of the Arianne Project, 2006-2015, arianne-general at lists dot sourceforge dot net
+Stendhal(c) is copyright of the Arianne Project, 2006-2017, arianne-general at lists dot sourceforge dot net
