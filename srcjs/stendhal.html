@@ -16,13 +16,34 @@ padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; fon
 #cloak0 {position:absolute; top:90px; left:80px}
 #legs0 {position:absolute; top:80px; left:40px}
 #feet0 {position:absolute; top:120px; left:40px}
+
+
+#chat {
+	height:190px; border: 1px solid #000; padding:0.5em; 
+	overflow-y: scroll; word-wrap:break-word; display: block
+}
+div.logerror {color: #F00}
+div.logprivmsg {color: #444}
+div.logclient {color: #888}
+div.logerror {color: #F00}
+div.loginformation {color: #ffc800}
+div.lognegative {color: #f00}
+div.lognormal {color: #000}
+div.logpositive {color: #0f0}
+div.loggroup {color: #633d8b}
+div.logemote {color: #633d8b}
+div.logresponse {color: #006400}
+div.logscene_setting {color: #572002}
+div.logsignificant_negative {color: #ff8f8f}
+div.logsignificant_positive {color: #4169e1}
+div.logtutorial {color: #ac00ac}
+div.logsupport {color: #ff7200}
 </style>
 
 <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
 <link rel="import" href="lib/polymer/polymer.html">
 
 <link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
-<link rel="import" href="stendhal/ui/stendhal-chatlog/stendhal-chatlog.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 <link rel="import" href="stendhal/ui/stendhal-minimap/stendhal-minimap.html">
 <link rel="import" href="stendhal/ui/stendhal-stats/stendhal-stats.html">
@@ -123,8 +144,7 @@ padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; fon
 </div>
 
 <input is="stendhal-chatbar" type="text" name="chatbar" style="width:98%" id="chatbar" autocomplete="off">
-<stendhal-chatlog id="chat" style="height:190px">
-</stendhal-chatlog>
+<div id="chat"></div>
 
 <div id="popupcontainer"></div>
 

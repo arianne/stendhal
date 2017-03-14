@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,14 +18,34 @@ stendhal.ui = stendhal.ui || {};
  * Chat Log
  */
 stendhal.ui.chatLog = {
-	addLine: function(type, msg) {
+	addLine: function(type, message) {
 		var chatElement = document.getElementById("chat");
-		if (chatElement) {
-			chatElement.addLine(type, msg);
+		if (!chatElement) {
+			return;
+		}
+		var date = new Date();
+		var time = "" + date.getHours() + ":";
+		if (date.getHours < 10) {
+			time = "0" + time;
+		}
+		if (date.getMinutes() < 10) {
+			time = time + "0";
+		};
+		time = time + date.getMinutes();
+
+		var div = document.createElement("div");
+		div.className = "log" + type;
+		div.innerHTML = "[" + time + "] " + message;
+		
+		var isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) == chatElement.scrollTop;
+		chatElement.appendChild(div);
+
+		if (isAtBottom) {
+			chatElement.scrollTop = chatElement.scrollHeight;
 		}
 	},
 
 	clear: function() {
-		document.getElementById("chat").clear();
+		document.getElementById("chat").innerHTML = "";
 	}
 }
