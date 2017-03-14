@@ -1,13 +1,8 @@
 "use strict";
 
-function parseLogEntry(input) {
-	var res = "";
-	res += stendhal.ui.html.esc(input);
-	return res;
-}
 
 function test(input, output) {
-	var res = parseLogEntry(input);
+	var res = stendhal.ui.chatLog.formatLogEntry(input);
 	if (res == output) {
 		console.log(input, "|", output);
 	} else {
@@ -18,10 +13,14 @@ function test(input, output) {
 test("",            "");
 test("a",           "a");
 test("a <oops",     "a &lt;oops");
-test("#a",          "<span class=\"h\">a</span>");
-test("#a.",         "<span class=\"h\">a</span>.");
-test("a #b c d",    "a <span class=\"h\">b</span> c d");
-test("a #'b c' d",  "a <span class=\"h\">b c</span> d");
-test("a §b c d",    "a <span class=\"i\">b</span> c d");   // not used
-test("a §'b c' d",  "a <span class=\"i\">b c</span> d");
-test("a #§'b c' d", "a <span class=\"h\"><span class=\"i\">b c</span></span> d");
+test("#a",          "<span class=\"logh\">a</span>");
+test("##a",         "#a");
+test("#a#b",        "<span class=\"logh\">a#b</span>");
+test("#a.",         "<span class=\"logh\">a</span>.");
+test("a #b c d",    "a <span class=\"logh\">b</span> c d");
+test("a #'b c' d",  "a <span class=\"logh\">b c</span> d");
+test("a §b c d",    "a <span class=\"logi\">b</span> c d");   // not used
+test("a §'b c' d",  "a <span class=\"logi\">b c</span> d");
+test("a #§'b c' d", "a <span class=\"logh\"><span class=\"logi\">b c</span></span> d");
+test("\\\\a",       "\\a");
+test("\\§a",        "§a");
