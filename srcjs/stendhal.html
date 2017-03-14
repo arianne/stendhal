@@ -1,40 +1,109 @@
 <!doctype html>
 <html>
-<!-- 
-/***************************************************************************
- *                   (C) Copyright 2014-2017 - Stendhal                    *
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
- *                                                                         *
- ***************************************************************************/
--->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Stendhal Alpha Client</title>
-<link rel="stylesheet" type="text/css" href="stendhal.css">
+<style type="text/css">
+body {font-family: "Arial"}
+div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; 
+padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; font-size:10px}
+.equipment {position:relative; height:160px; border: 1px solid black}
+#head0 {position:absolute; top:0px; left:40px}
+#lhand0 {position:absolute; top:50px; left:80px}
+#rhand0 {position:absolute; top:50px; left:0px}
+#finger0 {position:absolute; top:90px; left:0px}
+#armor0 {position:absolute; top:40px; left:40px}
+#cloak0 {position:absolute; top:90px; left:80px}
+#legs0 {position:absolute; top:80px; left:40px}
+#feet0 {position:absolute; top:120px; left:40px}
+
+
+#chat {
+	height:190px; border: 1px solid #000; padding:0.5em; 
+	overflow-y: scroll; word-wrap:break-word; display: block
+}
+div.logerror {color: #F00}
+div.logprivmsg {color: #444}
+div.logclient {color: #888}
+div.logerror {color: #F00}
+div.loginformation {color: #ffc800}
+div.lognegative {color: #f00}
+div.lognormal {color: #000}
+div.logpositive {color: #0f0}
+div.loggroup {color: #633d8b}
+div.logemote {color: #633d8b}
+div.logresponse {color: #006400}
+div.logscene_setting {color: #572002}
+div.logsignificant_negative {color: #ff8f8f}
+div.logsignificant_positive {color: #4169e1}
+div.logtutorial {color: #ac00ac}
+div.logsupport {color: #ff7200}
+</style>
+
+<script src="lib/webcomponentsjs/webcomponents.min.js"></script>
+<link rel="import" href="lib/polymer/polymer.html">
+
+<link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
+<link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
+<link rel="import" href="stendhal/ui/stendhal-minimap/stendhal-minimap.html">
+<link rel="import" href="stendhal/ui/stendhal-stats/stendhal-stats.html">
+
+<script type="text/javascript" src="marauroa/marauroa.js"></script>
+<script type="text/javascript" src="marauroa/client-framework.js"></script>
+<script type="text/javascript" src="marauroa/message-factory.js"></script>
+<script type="text/javascript" src="marauroa/perception.js"></script>
+<script type="text/javascript" src="marauroa/rpfactory.js"></script>
+
+<script type="text/javascript" src="jsxgraph-util.js"></script>
+
+<script type="text/javascript" src="stendhal/data/map.js"></script>
+<script type="text/javascript" src="stendhal/data/sprites.js"></script>
+
+<script type="text/javascript" src="stendhal/entity/entity.js"></script>
+<script type="text/javascript" src="stendhal/entity/blood.js"></script>
+<script type="text/javascript" src="stendhal/entity/corpse.js"></script>
+<script type="text/javascript" src="stendhal/entity/chest.js"></script>
+<script type="text/javascript" src="stendhal/entity/food.js"></script>
+<script type="text/javascript" src="stendhal/entity/gate.js"></script>
+<script type="text/javascript" src="stendhal/entity/item.js"></script>
+<script type="text/javascript" src="stendhal/entity/portal.js"></script>
+<script type="text/javascript" src="stendhal/entity/activeentity.js"></script>
+<script type="text/javascript" src="stendhal/entity/rpentity.js"></script>
+<script type="text/javascript" src="stendhal/entity/player.js"></script>
+<script type="text/javascript" src="stendhal/entity/creature.js"></script>
+<script type="text/javascript" src="stendhal/entity/domesticanimal.js"></script>
+<script type="text/javascript" src="stendhal/entity/npc.js"></script>
+<script type="text/javascript" src="stendhal/entity/sign.js"></script>
+<script type="text/javascript" src="stendhal/entity/zone.js"></script>
+<script type="text/javascript" src="stendhal/entity/ground.js"></script>
+
+<script type="text/javascript" src="stendhal/ui/buddylist.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatlog.js"></script>
+<script type="text/javascript" src="stendhal/ui/gamewindow.js"></script>
+<script type="text/javascript" src="stendhal/ui/html.js"></script>
+<script type="text/javascript" src="stendhal/ui/minimap.js"></script>
+<script type="text/javascript" src="stendhal/ui/sound.js"></script>
+<script type="text/javascript" src="stendhal/ui/stats.js"></script>
+
+<script type="text/javascript" src="stendhal/actions.js"></script>
+<script type="text/javascript" src="stendhal/config.js"></script>
+<script type="text/javascript" src="stendhal/events.js"></script>
 </head>
 <body id="body">
 
 
-<div id="leftColumn">
-	<canvas id="minimap" width="128" height="128"></canvas>
-	<div id="zoneinfo"></div>
-	<div id="stats"></div>
-	<div id="buddyList">
-		<ul id="buddyListUL"></ul>
-	</div>
+<div style="float:left; width:130px">
+	<stendhal-minimap id="minimap"></stendhal-minimap>
+	<stendhal-stats id="stats"></stendhal-stats>
+	<stendhal-buddylist id="buddyList"></stendhal-buddylist>
 </div>
 
-<canvas id="gamewindow" width="640" height="480">Sorry, this pages only works in modern web browsers.</canvas>
+<canvas id="gamewindow" width="640" height="480" style="float:left">Sorry, this pages only works in modern web browsers.</canvas>
 
 
-<div id="rightColumn">
+<div style="float:left; width:130px">
 
-<div id="equipmentborder">
+<div style="float: left; width:130px">
 <div id="equipment" class="equipment">
 <div id="head0" class="itemSlot"></div>
 <div id="lhand0" class="itemSlot"></div>
@@ -47,7 +116,7 @@
 </div>
 </div>
 
-<div id="bag">
+<div id="bag" style="border: 1px solid black; width: 120px; padding: 2px; float: left">
 <div id="bag0" class="itemSlot"></div>
 <div id="bag1" class="itemSlot"></div>
 <div id="bag2" class="itemSlot"></div>
@@ -62,7 +131,7 @@
 <div id="bag11" class="itemSlot"></div>
 </div>
 
-<div id="keyring">
+<div id="keyring" style="border: 1px solid black; width: 80px; padding: 2px; float: left">
 <div id="keyring0" class="itemSlot"></div>
 <div id="keyring1" class="itemSlot"></div>
 <div id="keyring2" class="itemSlot"></div>
@@ -74,11 +143,13 @@
 </div>
 </div>
 
-<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
+<input is="stendhal-chatbar" type="text" name="chatbar" style="width:98%" id="chatbar" autocomplete="off">
 <div id="chat"></div>
 
 <div id="popupcontainer"></div>
 
-<script type="text/javascript" src="stendhal-compiled.js"></script>
+<script type="text/javascript" src="stendhal/ui/popup.js"></script>
+<script type="text/javascript" src="stendhal/ui/itemcontainer.js"></script>
+<script type="text/javascript" src="stendhal/main.js"></script>
 </body>
 </html>
