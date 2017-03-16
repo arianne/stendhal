@@ -32,4 +32,5 @@ stendhal.zone.ground = {
 			};
 		marauroa.clientFramework.sendAction(action);
 	}
+
 };

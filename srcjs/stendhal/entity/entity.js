@@ -64,6 +64,21 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		return false;
 	},
 
+	buildActions: function(list) {
+		if (this["menu"]) {
+			var pos = this["menu"].indexOf("|");
+			list.push({
+				title: this["menu"].substring(0, pos),
+				type: this["menu"].substring(pos) + 1
+			});
+			console.log(list);
+		}
+		list.push({
+			title: "Look",
+			type: "look"
+		});
+	},
+
 	/**
 	 *  Ensure that the drawing code can rely on _x and _y
 	 */

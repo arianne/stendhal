@@ -93,6 +93,7 @@ stendhal.main = {
 			gamewindow.addEventListener("dragstart", stendhal.ui.gamewindow.onDragStart);
 			gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
 			gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
+			gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 		}
 	},
 
