@@ -117,15 +117,18 @@ stendhal.ui.chatLog = {
 
 			// End of word
 			} else if (delims.indexOf(c) > -1) {
-				if (inUnderline && !inUnderlineQuote && !inHighlightQuote) {
-					inUnderline = false;
-					res += "</span>" + c;
-					continue;
-				}
-				if (inHighlight && !inUnderlineQuote && !inHighlightQuote) {
-					inHighlight = false;
-					res += "</span>" + c;
-					continue;
+				var n = message[i + 1];
+				if (c == " " || n == " " || n == undefined) {
+					if (inUnderline && !inUnderlineQuote && !inHighlightQuote) {
+						inUnderline = false;
+						res += "</span>" + c;
+						continue;
+					}
+					if (inHighlight && !inUnderlineQuote && !inHighlightQuote) {
+						inHighlight = false;
+						res += "</span>" + c;
+						continue;
+					}
 				}
 				res += c;
 
