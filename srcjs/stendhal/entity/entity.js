@@ -1,35 +1,33 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-
 /**
  * General entity
  */
-marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFactory["_default"], { 
+marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default, { 
 	minimapShow: false,
 	minimapStyle: "rgb(200,255,200)",
 	zIndex: 10000,
 
 	set: function(key, value) {
-		marauroa.rpobjectFactory["entity"].proto.set.apply(this, arguments);
-		if (key === 'name') {
-			if (typeof(this['title']) === "undefined") {
+		marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);
+		if (key == 'name') {
+			if (typeof(this['title']) == "undefined") {
 				this['title'] = value;
 			}
 		} else if (['x', 'y', 'height', 'width'].indexOf(key) > -1) {
-			this[key] = parseInt(value, 10);
+			this[key] = parseInt(value);
 		} else {
 			this[key] = value;
 		}
@@ -41,18 +39,18 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	 * @return true, if the other entity is right next to us; false otherwise 
 	 */
 	isNextTo: function(other) {
-		if (!other || !this["x"] || !this["y"] || !other["x"] || !other["y"]) {
+		if (!other || !this.x || !this.y || !other.x || !other.y) {
 			return false;
 		}
 
-		var nextX = ((this["x"] + this["width"] >= other["x"]) && this["x"] <= other["x"])
-				|| ((other["x"] + other["width"] >= this["x"]) && other["x"] <= this["x"]);
+		var nextX = ((this.x + this.width >= other.x) && this.x <= other.x)
+				|| ((other.x + other.width >= this.x) && other.x <= this.x)
 		if (!nextX) {
 			return false;
 		}
 
-		var nextY = ((this["y"] + this["height"] >= other["y"]) && this["y"] <= other["y"])
-			|| ((other["y"] + other["height"] >= this["y"]) && other["y"] <= this["y"]);
+		var nextY = ((this.y + this.height >= other.y) && this.y <= other.y)
+			|| ((other.y + other.height >= this.y) && other.y <= this.y)
 		return nextY;
 	},
 
@@ -71,8 +69,9 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			var pos = this["menu"].indexOf("|");
 			list.push({
 				title: this["menu"].substring(0, pos),
-				type: this["menu"].substring(pos + 1).toLowerCase()
+				type: this["menu"].substring(pos) + 1
 			});
+			console.log(list);
 		}
 		list.push({
 			title: "Look",
@@ -86,8 +85,8 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	updatePosition: function(time) {
 		// The position of non active entities can change too, so always copy
 		// the position
-		this["_y"] = this["y"];
-		this["_x"] = this["x"];
+		this._y = this.y;
+		this._x = this.x;
 	},
 
 	draw: function(ctx) {
@@ -100,12 +99,12 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	 * draws a standard sprite
 	 */
 	drawSprite: function(ctx) {
-		this.drawSpriteAt(ctx, this["x"] * 32, this["y"] * 32);
+		this.drawSpriteAt(ctx, this.x * 32, this.y * 32);
 	},
 	
 	drawSpriteAt: function(ctx, x, y) {
 		var image = stendhal.data.sprites.get(this.sprite.filename);
-		if (image.height) {
+		if (image.complete) {
 			var offsetX = this.sprite.offsetX || 0;
 			var offsetY = this.sprite.offsetY || 0;
 			var width = this.sprite.width || image.width;
@@ -141,7 +140,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		var object = this;
 		var res = "";
 		while (object) {
-			res = object["id"] + "\t" + res;
+			res = object.id + "\t" + res;
 			var slot = object._parent;
 			if (!slot) {
 				break;
@@ -183,7 +182,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		}
 		return {
 			"type": actionCommand,
-			"target": "#" + this["id"]
+			"target": "#" + this.id
 		};
 	},
 
@@ -191,3 +190,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		marauroa.clientFramework.sendAction(this.getDefaultAction());
 	}
 });
+
+
+
+marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.entity;
