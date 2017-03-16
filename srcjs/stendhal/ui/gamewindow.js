@@ -157,23 +157,47 @@ stendhal.ui.gamewindow = {
 		var entity;
 		var startX;
 		var startY;
+		var timestampMouseDown;
 		
 		function _onMouseDown(e) {
+			if (this.menu) {
+				this.menu.popup.close();
+				this.menu = null;
+			}
+
 			e.target.addEventListener("mousemove", onDrag);
 			e.target.addEventListener("mouseup", onMouseUp);
 			startX = e.offsetX;
 			startY = e.offsetY;
-			
+
 			var x = e.offsetX + stendhal.ui.gamewindow.offsetX;
 			var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
 			entity = stendhal.zone.entityAt(x, y);
+			timestampMouseDown = +new Date();
+		}
+		
+		function isRightClick(e) {
+			if (+new Date() - timestampMouseDown > 2000) {
+				return true;
+			}
+			if (e.which) {
+				return (e.which == 3);
+			} else {
+				return (e.button == 2);
+			}
 		}
 		
 		function onMouseUp(e) {
-			entity.onclick(e.offsetX, e.offsetY);
+			if (isRightClick(e)) {
+				if (entity != stendhal.zone.ground) {
+					this.menu = new stendhal.ui.Menu(entity, e.pageX - 20, e.pageY - 5);
+				}
+			} else {
+				entity.onclick(e.offsetX, e.offsetY);
+			}
 			cleanUp(e);
 		}
-		
+
 		function onDrag(e) {
 			var xDiff = startX - e.offsetX;
 			var yDiff = startY - e.offsetY;
@@ -189,7 +213,7 @@ stendhal.ui.gamewindow = {
 			e.target.removeEventListener("mousemove", onDrag);
 			document.getElementById("chatbar").focus();
 		}
-		
+
 		return _onMouseDown;
 	})(),
 	
@@ -242,5 +266,9 @@ stendhal.ui.gamewindow = {
 			marauroa.clientFramework.sendAction(action);
 		}
 		e.stopPropagation();
+	},
+	
+	onContentMenu: function(e) {
+		e.preventDefault();
 	}
 };

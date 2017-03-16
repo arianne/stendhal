@@ -20,7 +20,9 @@ stendhal.ui.Popup = function(title, content, x, y) {
 			that.onClose.call(that);
 		}
 		var popupcontainer = document.getElementById("popupcontainer");
-		popupcontainer.removeChild(that.popupdiv);
+		if (popupcontainer.contains(that.popupdiv)) {
+			popupcontainer.removeChild(that.popupdiv);
+		}
 	}
 
 	function createTitleHtml() {
@@ -36,7 +38,6 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	 * start draging of popup window
 	 */
 	function onMouseDown(e) {
-		console.log("down", that, that.popupdiv, title);
 		window.addEventListener("mousemove", onMouseMovedDuringDrag, true);
 		window.addEventListener("mouseup", onMouseUpDuringDrag, true);
 		e.preventDefault();
@@ -71,8 +72,40 @@ stendhal.ui.Popup = function(title, content, x, y) {
 		temp = createTitleHtml() + content;
 	}
 	this.popupdiv.innerHTML = temp;
-
 	this.popupdiv.querySelector(".popuptitle").addEventListener("mousedown", onMouseDown);
 	this.popupdiv.querySelector(".popuptitleclose").addEventListener("click", onClose);
 	popupcontainer.appendChild(this.popupdiv);
+}
+
+
+
+stendhal.ui.Menu = function(entity, x, y) {
+	var actions = [];
+	var that = this;
+	entity.buildActions(actions);
+	var content = "<div style=\"border: 1px solid #000; background-color:#FFF\">";
+	for (var i = 0; i < actions.length; i++) {
+		content += "<button id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(actions[i].title) + "</button><br>";
+	}
+	content += "</div>";
+	this.popup = new stendhal.ui.Popup("Action", content, x, y);
+	
+	this.popup.popupdiv.addEventListener("click", function(e) {
+		var i = e.target.id.substring(13);
+		that.popup.close();
+		
+		if (actions && i < actions.length) {
+			if (actions[i].action) {
+				actions[i].action(entity);
+			} else {
+				var action = {
+					"type": actions[i].type, 
+					"target": "#" + entity.id
+				};
+				marauroa.clientFramework.sendAction(action);
+			}
+		}
+	});
+
+	
 }
