@@ -22,6 +22,17 @@ padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; fon
 	height:190px; border: 1px solid #000; padding:0.5em; 
 	overflow-y: scroll; word-wrap:break-word; display: block
 }
+
+#stats {
+	border: 1px solid black; 
+	width: 128px;
+	float: left; 
+	font-size: 0.8em;
+	white-space: pre;
+	padding: 0.1em;
+}
+
+
 div.logerror {color: #F00}
 div.logprivmsg {color: #444}
 div.logclient {color: #888}
@@ -48,7 +59,6 @@ span.logi {text-decoration: underline}
 <link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
 <link rel="import" href="stendhal/ui/stendhal-minimap/stendhal-minimap.html">
-<link rel="import" href="stendhal/ui/stendhal-stats/stendhal-stats.html">
 
 <script type="text/javascript" src="marauroa/marauroa.js"></script>
 <script type="text/javascript" src="marauroa/client-framework.js"></script>
@@ -96,7 +106,7 @@ span.logi {text-decoration: underline}
 
 <div style="float:left; width:130px">
 	<stendhal-minimap id="minimap"></stendhal-minimap>
-	<stendhal-stats id="stats"></stendhal-stats>
+	<div id="stats"></div>
 	<stendhal-buddylist id="buddyList"></stendhal-buddylist>
 </div>
 
