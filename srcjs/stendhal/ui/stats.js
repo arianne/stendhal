@@ -20,6 +20,12 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.stats = {
 	update: function() {
 		var div = document.getElementById("stats");
-		div.update(marauroa.me);
+		var object = marauroa.me;
+		div.innerText = 
+			"HP: " + object.hp + " / " + object.base_hp + "\r\n"
+			+ "ATK: " + object.atk + " x " + object.atk_item + "\r\n"
+			+ "DEF: " + object.def + " x " + object.def_item + "\r\n"
+		    + "XP: " + object.xp + "\r\n"
+		    + "Level: " + object.xp;
 	}
 }
