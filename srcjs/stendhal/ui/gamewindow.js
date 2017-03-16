@@ -1,18 +1,17 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
-
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
+window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
@@ -28,10 +27,13 @@ stendhal.ui.gamewindow = {
 	draw: function() {
 		var startTime = new Date().getTime();
 
-		if (marauroa.me && document.visibilityState === "visible") {
+		if (marauroa.me && document.visibilityState == "visible") {
+
 			var canvas = document.getElementById("gamewindow");
 			this.targetTileWidth = 32;
 			this.targetTileHeight = 32;
+			canvas.width = stendhal.data.map.sizeX * this.targetTileWidth;
+			canvas.height = stendhal.data.map.sizeY * this.targetTileHeight;
 			this.drawingError = false;
 
 			this.ctx = canvas.getContext("2d");
@@ -43,16 +45,22 @@ stendhal.ui.gamewindow = {
 
 			for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 				var name = stendhal.data.map.layerNames[drawingLayer];
-				if (name !== "protection" && name !== "collision" && name !== "objects"
-					&& name !== "blend_ground" && name !== "blend_roof") {
+				if (name != "protection" && name != "collision" && name != "objects"
+					&& name != "blend_ground" && name != "blend_roof") {
 					this.paintLayer(canvas, drawingLayer, tileOffsetX, tileOffsetY);
 				}
-				if (name === "2_object") {
+				if (name == "2_object") {
 					this.drawEntities();
 					this.drawTextSprites();
 				}
 			}
 			this.drawEntitiesTop();
+			
+/*			this.ctx.font = "14px Arial";
+			this.ctx.fillStyle = "#000000";
+			this.ctx.fillText((1000/20) - (new Date().getTime()-startTime) + "  " + Math.floor(1000 / (new Date().getTime()-startTime)), 10, 10);
+			console.log((1000/20) - (new Date().getTime()-startTime), Math.floor(1000 / (new Date().getTime()-startTime)))
+*/
 		}
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
@@ -112,7 +120,7 @@ stendhal.ui.gamewindow = {
 			}
 		}
 	},
-
+	
 	drawTextSprites: function(ctx) {
 		for (var i = 0; i < this.textSprites.length; i++) {
 			var sprite = this.textSprites[i];
@@ -122,19 +130,16 @@ stendhal.ui.gamewindow = {
 			}
 		}
 	},
-
+	
 	adjustView: function(canvas) {
-		// IE does not support ctx.resetTransform(), so use the following workaround:
-		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-
 		// Coordinates for a screen centered on player
-		var centerX = marauroa.me["_x"] * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
-		var centerY = marauroa.me["_y"] * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
+		var centerX = marauroa.me._x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
+		var centerY = marauroa.me._y * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
 
 		// Keep the world within the screen view
 		centerX = Math.min(centerX, stendhal.data.map.zoneSizeX * this.targetTileWidth - canvas.width);
 		centerX = Math.max(centerX, 0);
-
+		
 		centerY = Math.min(centerY, stendhal.data.map.zoneSizeY * this.targetTileHeight - canvas.height);
 		centerY = Math.max(centerY, 0);
 
@@ -142,11 +147,11 @@ stendhal.ui.gamewindow = {
 		this.offsetY = Math.round(centerY);
 		this.ctx.translate(-this.offsetX, -this.offsetY);
 	},
-
+	
 	addTextSprite: function(sprite) {
 		this.textSprites.push(sprite);
 	},
-
+	
 	// Mouse click handling
 	onMouseDown: (function() {
 		var entity;
@@ -155,8 +160,9 @@ stendhal.ui.gamewindow = {
 		var timestampMouseDown;
 		
 		function _onMouseDown(e) {
-			if (stendhal.ui.globalpopup) {
-				stendhal.ui.globalpopup.close();
+			if (this.menu) {
+				this.menu.popup.close();
+				this.menu = null;
 			}
 
 			e.target.addEventListener("mousemove", onDrag);
@@ -171,20 +177,20 @@ stendhal.ui.gamewindow = {
 		}
 		
 		function isRightClick(e) {
-			if (+new Date() - timestampMouseDown > 300) {
+			if (+new Date() - timestampMouseDown > 2000) {
 				return true;
 			}
 			if (e.which) {
-				return (e.which === 3);
+				return (e.which == 3);
 			} else {
-				return (e.button === 2);
+				return (e.button == 2);
 			}
 		}
 		
 		function onMouseUp(e) {
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					new stendhal.ui.Menu(entity, e.pageX - 50, e.pageY - 5);
+					this.menu = new stendhal.ui.Menu(entity, e.pageX - 20, e.pageY - 5);
 				}
 			} else {
 				entity.onclick(e.offsetX, e.offsetY);
@@ -205,7 +211,7 @@ stendhal.ui.gamewindow = {
 			entity = null;
 			e.target.removeEventListener("mouseup", onMouseUp);
 			e.target.removeEventListener("mousemove", onDrag);
-			document.getElementById("chatinput").focus();
+			document.getElementById("chatbar").focus();
 		}
 
 		return _onMouseDown;
@@ -215,22 +221,22 @@ stendhal.ui.gamewindow = {
 	onDragStart: function(e) {
 		var draggedEntity = stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX,
 				e.offsetY + stendhal.ui.gamewindow.offsetY);
-
-		var img = undefined;
 		if (draggedEntity.type === "item") {
-			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
+			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
+			e.dataTransfer.setDragImage(img, 0, 0);
+			e.dataTransfer.setData("text/x-stendhal-item", JSON.stringify({
+				"path": draggedEntity.getIdPath(),
+				"zone": marauroa.currentZoneName
+			}));
 		} else if (draggedEntity.type === "corpse") {
-			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
+			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
+			e.dataTransfer.setData("text/x-stendhal-corpse", JSON.stringify({
+				"path": draggedEntity.getIdPath(),
+				"zone": marauroa.currentZoneName
+			}));
 		} else {
 			e.preventDefault();
-			return;
 		}
-		window.event = e; // required by setDragImage polyfil
-		e.dataTransfer.setDragImage(img, 0, 0);
-		e.dataTransfer.setData("Text", JSON.stringify({
-			path: draggedEntity.getIdPath(),
-			zone: marauroa.currentZoneName
-		}));
 	},
 	
 	onDragOver: function(e) {
@@ -240,7 +246,7 @@ stendhal.ui.gamewindow = {
 	},
 
 	onDrop: function(e) {
-		var datastr = e.dataTransfer.getData("Text") || e.dataTransfer.getData("text/x-stendhal");
+		var datastr = e.dataTransfer.getData("text/x-stendhal-item") || e.dataTransfer.getData("text/x-stendhal-corpse");
 		if (datastr) {
 			var data = JSON.parse(datastr);
 			var action = {
@@ -256,17 +262,10 @@ stendhal.ui.gamewindow = {
 			} else {
 				action["type"] = "displace";
 				action["baseitem"] = id;
-			}
-
-			// if ctrl is pressed, we ask for the quantity
-			if (e.ctrlKey) {
-				new stendhal.ui.DropNumberDialog(action, e.pageX - 50, e.pageY - 25);
-			} else {
-				marauroa.clientFramework.sendAction(action);
-			}
+			};
+			marauroa.clientFramework.sendAction(action);
 		}
 		e.stopPropagation();
-		e.preventDefault();
 	},
 	
 	onContentMenu: function(e) {

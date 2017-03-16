@@ -116,6 +116,33 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 	},
 
+	buildActions: function(list) {
+		marauroa.rpobjectFactory.rpentity.proto.buildActions.apply(this, arguments);
+		/*
+		 * Menu is used to provide an alternate action for some entities (like
+		 * puppies - and they should not be attackable).
+		 * 
+		 * For now normally attackable entities get a menu only in Capture The
+		 * Flag, and then they don't need attack. If that changes, this code
+		 * will need to be adjusted.
+		 */
+		if (!this["menu"]) {
+			/* TODO
+			if (entity.isAttackedBy(User.get())) {
+				list.add(ActionType.STOP_ATTACK.getRepresentation());
+			} else {
+				list.add(ActionType.ATTACK.getRepresentation());
+			}
+			*/
+		}
+		if (this != marauroa.me) {
+			list.push({
+				title: "Push",
+				type: "push"
+			});
+		}
+	},
+
 	/** 
 	 * says a text
 	 */
