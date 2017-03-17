@@ -71,7 +71,6 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 				title: this["menu"].substring(0, pos),
 				type: this["menu"].substring(pos) + 1
 			});
-			console.log(list);
 		}
 		list.push({
 			title: "Look",
