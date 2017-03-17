@@ -83,7 +83,15 @@ stendhal.ui.Menu = function(entity, x, y) {
 	var actions = [];
 	var that = this;
 	entity.buildActions(actions);
-	var content = "<div style=\"border: 1px solid #000; background-color:#FFF\">";
+	if (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600) {
+		actions.push({
+			title: "(*) Inspect",
+			action: function(entity) {
+				console.log(entity);
+			}
+		});
+	}
+	var content = "<div class=\"actionmenu\">";
 	for (var i = 0; i < actions.length; i++) {
 		content += "<button id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(actions[i].title) + "</button><br>";
 	}
