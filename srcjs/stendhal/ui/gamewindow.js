@@ -190,7 +190,7 @@ stendhal.ui.gamewindow = {
 		function onMouseUp(e) {
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					this.menu = new stendhal.ui.Menu(entity, e.pageX - 20, e.pageY - 5);
+					this.menu = new stendhal.ui.Menu(entity, e.pageX - 50, e.pageY - 5);
 				}
 			} else {
 				entity.onclick(e.offsetX, e.offsetY);
