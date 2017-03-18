@@ -58,7 +58,9 @@ Polymer({
 		var canvas = this.$.minimap;
 		
 		var ctx = canvas.getContext("2d");
-		ctx.resetTransform();
+		// IE does not support ctx.resetTransform(), so use the following workaround:
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+
 		// The area outside of the map
 		ctx.fillStyle = "#606060";
 		ctx.fillRect(0, 0, this.width, this.height);
