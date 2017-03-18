@@ -115,7 +115,7 @@ stendhal.ui.equip = {
 		}
 	},
 
-	createInventoryWindow(slot, sizeX, sizeY, object, title) {
+	createInventoryWindow: function(slot, sizeX, sizeY, object, title) {
 		stendhal.ui.equip.counter++;
 		var suffix = "." + stendhal.ui.equip.counter + ".";
 		var html = "<div style='border: 1px solid black; background-color: #FFF; width: " + (sizeX * 40) + "px; padding: 2px; float: left'>";
