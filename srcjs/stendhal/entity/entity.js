@@ -69,7 +69,7 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 			var pos = this["menu"].indexOf("|");
 			list.push({
 				title: this["menu"].substring(0, pos),
-				type: this["menu"].substring(pos) + 1
+				type: this["menu"].substring(pos + 1).toLowerCase()
 			});
 		}
 		list.push({
@@ -189,7 +189,3 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		marauroa.clientFramework.sendAction(this.getDefaultAction());
 	}
 });
-
-
-
-marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.entity;
