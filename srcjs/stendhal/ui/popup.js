@@ -100,8 +100,11 @@ stendhal.ui.Menu = function(entity, x, y) {
 	
 	this.popup.popupdiv.addEventListener("click", function(e) {
 		var i = e.target.id.substring(13);
+		if (i === undefined || i === "" || i < 0) {
+			return;
+		}
 		that.popup.close();
-		
+
 		if (actions && i < actions.length) {
 			if (actions[i].action) {
 				actions[i].action(entity);
