@@ -223,14 +223,18 @@ stendhal.ui.gamewindow = {
 				e.offsetY + stendhal.ui.gamewindow.offsetY);
 		if (draggedEntity.type === "item") {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
-			e.dataTransfer.setDragImage(img, 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-item", JSON.stringify({
+			if (e.dataTransfer.setDragImage) {
+				e.dataTransfer.setDragImage(img, 0, 0);
+			}
+			e.dataTransfer.setData("Text", JSON.stringify({
 				"path": draggedEntity.getIdPath(),
 				"zone": marauroa.currentZoneName
 			}));
 		} else if (draggedEntity.type === "corpse") {
-			e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-corpse", JSON.stringify({
+			if (e.dataTransfer.setDragImage) {
+				e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
+			}
+			e.dataTransfer.setData("Text", JSON.stringify({
 				"path": draggedEntity.getIdPath(),
 				"zone": marauroa.currentZoneName
 			}));
@@ -246,7 +250,7 @@ stendhal.ui.gamewindow = {
 	},
 
 	onDrop: function(e) {
-		var datastr = e.dataTransfer.getData("text/x-stendhal-item") || e.dataTransfer.getData("text/x-stendhal-corpse");
+		var datastr = e.dataTransfer.getData("Text");
 		if (datastr) {
 			var data = JSON.parse(datastr);
 			var action = {
