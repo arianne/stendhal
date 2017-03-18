@@ -66,7 +66,9 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	var that = this;
 	var popupcontainer = document.getElementById("popupcontainer");
 	this.popupdiv = document.createElement('div');
-	this.popupdiv.style = "position: absolute; left: " + x + "px; top: " + y + "px";
+	this.popupdiv.style.position = "absolute";
+	this.popupdiv.style.left = x + "px";
+	this.popupdiv.style.top = y + "px";
 	var temp = content;
 	if (title) {
 		temp = createTitleHtml() + content;
