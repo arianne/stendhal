@@ -52,8 +52,10 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		var item = myobject[slot].getByIndex(slotNumber);
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
-			e.dataTransfer.setDragImage(img, 0, 0);
-			e.dataTransfer.setData("text/x-stendhal-item", JSON.stringify({
+			if (e.dataTransfer.setDragImage) {
+				e.dataTransfer.setDragImage(img, 0, 0);
+			}
+			e.dataTransfer.setData("Text", JSON.stringify({
 				"path": item.getIdPath(),
 				"zone": marauroa.currentZoneName
 			}));
@@ -70,7 +72,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 
 	function onDrop(e) {
 		var myobject = object || marauroa.me;
-		var datastr = e.dataTransfer.getData("text/x-stendhal-item");
+		var datastr = e.dataTransfer.getData("Text");
 		if (datastr) {
 			var data = JSON.parse(datastr);
 			var targetPath = "[" + myobject.id + "\t" + slot + "]";
