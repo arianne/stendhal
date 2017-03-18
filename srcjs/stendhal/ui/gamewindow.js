@@ -177,7 +177,7 @@ stendhal.ui.gamewindow = {
 		}
 		
 		function isRightClick(e) {
-			if (+new Date() - timestampMouseDown > 2000) {
+			if (+new Date() - timestampMouseDown > 300) {
 				return true;
 			}
 			if (e.which) {
