@@ -1,26 +1,24 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
+ ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
+window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 
 /**
  * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
  * which changes on zone change.
- *
- * @constructor
  */
 stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 	this.update = function() {
@@ -34,7 +32,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 			for (var i = 0; i < myobject[slot].count(); i++) {
 				var o = myobject[slot].getByIndex(i);
 				var e = document.getElementById(slot + suffix + cnt);
-				e.style.backgroundImage = "url(/data/sprites/items/" + o["class"] + "/" + o["subclass"] + ".png " + ")";
+				e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
 				e.textContent = o.formatQuantity();
 				e.dataItem = o;
 				cnt++;
@@ -54,11 +52,12 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		var item = myobject[slot].getByIndex(slotNumber);
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
-			window.event = e; // required by setDragImage polyfil
-			e.dataTransfer.setDragImage(img, 0, 0);
+			if (e.dataTransfer.setDragImage) {
+				e.dataTransfer.setDragImage(img, 0, 0);
+			}
 			e.dataTransfer.setData("Text", JSON.stringify({
-				path: item.getIdPath(),
-				zone: marauroa.currentZoneName
+				"path": item.getIdPath(),
+				"zone": marauroa.currentZoneName
 			}));
 		} else {
 			e.preventDefault();
@@ -73,25 +72,19 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 
 	function onDrop(e) {
 		var myobject = object || marauroa.me;
-		var datastr = e.dataTransfer.getData("Text") || e.dataTransfer.getData("text/x-stendhal");
+		var datastr = e.dataTransfer.getData("Text");
 		if (datastr) {
 			var data = JSON.parse(datastr);
-			var targetPath = "[" + myobject["id"] + "\t" + slot + "]";
+			var targetPath = "[" + myobject.id + "\t" + slot + "]";
 			var action = {
 				"type": "equip",
 				"source_path": data.path,
 				"target_path": targetPath,
 				"zone" : data.zone
 			};
-			// if ctrl is pressed, we ask for the quantity
-			if (e.ctrlKey) {
-				new stendhal.ui.DropNumberDialog(action, e.pageX - 50, e.pageY - 25);
-			} else {
-				marauroa.clientFramework.sendAction(action);
-			}
+			marauroa.clientFramework.sendAction(action);
 		}
 		e.stopPropagation();
-		e.preventDefault();
 	}
 
 	for (var i = 0; i < size; i++) {
@@ -101,7 +94,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		e.addEventListener("dragover", onDragOver);
 		e.addEventListener("drop", onDrop);
 	}
-};
+}
 
 
 stendhal.ui.equip = {
@@ -127,7 +120,7 @@ stendhal.ui.equip = {
 	createInventoryWindow: function(slot, sizeX, sizeY, object, title) {
 		stendhal.ui.equip.counter++;
 		var suffix = "." + stendhal.ui.equip.counter + ".";
-		var html = "<div class=\"inventorypopup inventorypopup_" + sizeX + "\">";
+		var html = "<div style='border: 1px solid black; background-color: #FFF; width: " + (sizeX * 40) + "px; padding: 2px; float: left'>";
 		for (var i = 0; i < sizeX * sizeY; i++) {
 			html += "<div id='" + slot + suffix + i + "' class='itemSlot'></div>";
 		}
@@ -138,7 +131,7 @@ stendhal.ui.equip = {
 		stendhal.ui.equip.inventory.push(itemContainer);
 		itemContainer.update();
 		popup.onClose = function() {
-			stendhal.ui.equip.inventory.splice(stendhal.ui.equip.inventory.indexOf(itemContainer), 1);
+			stendhal.ui.equip.inventory.splice(stendhal.ui.equip.inventory.indexOf(itemContainer), 1)
 		}
 		return popup;
 	}
