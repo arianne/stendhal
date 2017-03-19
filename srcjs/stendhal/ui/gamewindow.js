@@ -221,26 +221,26 @@ stendhal.ui.gamewindow = {
 	onDragStart: function(e) {
 		var draggedEntity = stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX,
 				e.offsetY + stendhal.ui.gamewindow.offsetY);
+
+		var img = undefined;
 		if (draggedEntity.type === "item") {
-			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
-			if (e.dataTransfer.setDragImage) {
-				e.dataTransfer.setDragImage(img, 0, 0);
-			}
-			e.dataTransfer.setData("Text", JSON.stringify({
-				"path": draggedEntity.getIdPath(),
-				"zone": marauroa.currentZoneName
-			}));
+			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
 		} else if (draggedEntity.type === "corpse") {
-			if (e.dataTransfer.setDragImage) {
-				e.dataTransfer.setDragImage(stendhal.data.sprites.get(draggedEntity.sprite.filename), 0, 0);
-			}
-			e.dataTransfer.setData("Text", JSON.stringify({
-				"path": draggedEntity.getIdPath(),
-				"zone": marauroa.currentZoneName
-			}));
+			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
 		} else {
 			e.preventDefault();
+			return;
 		}
+		var type = "text/x-stendhal";
+		if (e.dataTransfer.setDragImage) {
+			e.dataTransfer.setDragImage(img, 0, 0);
+		} else {
+			type = "Text";
+		}
+		e.dataTransfer.setData(type, JSON.stringify({
+			"path": draggedEntity.getIdPath(),
+			"zone": marauroa.currentZoneName
+		}));
 	},
 	
 	onDragOver: function(e) {
@@ -250,7 +250,7 @@ stendhal.ui.gamewindow = {
 	},
 
 	onDrop: function(e) {
-		var datastr = e.dataTransfer.getData("Text");
+		var datastr = e.dataTransfer.getData("Text") || e.dataTransfer.getData("text/x-stendhal");
 		if (datastr) {
 			var data = JSON.parse(datastr);
 			var action = {
