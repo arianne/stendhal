@@ -42,8 +42,8 @@ stendhal.ui.Popup = function(title, content, x, y) {
 		window.addEventListener("mouseup", onMouseUpDuringDrag, true);
 		e.preventDefault();
 		var box = that.popupdiv.getBoundingClientRect();
-		that.offsetX = e.clientX - box.left - window.scrollX;
-		that.offsetY = e.clientY - box.top - window.scrollY;
+		that.offsetX = e.clientX - box.left - window.pageXOffset;
+		that.offsetY = e.clientY - box.top - window.pageYOffset;
 	}
 
 	/**
