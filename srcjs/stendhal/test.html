@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<pre id="result">
+</pre>
+
+<script>
+window.failedtests = [];
+</script>
+<script src="ui/html.js"></script>
+<script src="ui/chatlog.js"></script>
+<script src="ui/chatlog.test.js"></script>
+<script>
+var pre = document.getElementById("result");
+if (window.failedtests.length == 0) {
+	pre.textContent = "OK";
+} else {
+	pre.textContent = window.failedtests.join("\r\n");
+}
+</script>
+</body>
+</html>
