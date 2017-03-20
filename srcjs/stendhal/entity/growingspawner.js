@@ -1,6 +1,7 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
+<<<<<<< Upstream, based on origin/master
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
@@ -55,6 +56,59 @@ marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(mar
 	draw: function(ctx) {
 		var localX = this["x"] * 32;
 		var localY = this["y"] * 32;
+=======
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+"use strict";
+
+/**
+ * Creature
+ */
+marauroa.rpobjectFactory.growing_entity_spawner = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+	zIndex: 3000,
+
+	/**
+	 * is this entity visible to a specific action
+	 *
+	 * @param filter 0: short left click
+	 * @return true, if the entity is visible, false otherwise
+	 */
+	isVisibleToAction: function(filter) {
+		return true;
+	},
+
+	buildActions: function(list) {
+		if (!this["menu"]) {
+			list.push({
+				title: "Harvest",
+				type: "use"
+			});
+		}
+		marauroa.rpobjectFactory.rpentity.proto.buildActions.apply(this, arguments);
+	},
+
+	onclick: function(x, y) {
+		var action = {
+			"type": "use", 
+			"target": "#" + this.id
+		};
+		marauroa.clientFramework.sendAction(action);
+	},
+
+	/** 
+	 * draw RPEntities
+	 */
+	draw: function(ctx) {
+		var localX = this.x * 32;
+		var localY = this.y * 32;
+>>>>>>> ca8ca82 added growing spawner (grain, carrots, etc...)
 		var image = stendhal.data.sprites.get("data/sprites/" + this["class"] + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;
