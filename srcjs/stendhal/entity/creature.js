@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,7 +21,6 @@ marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFac
 	titleStyle: "#ffc8c8",
 
 	onclick: function(x, y) {
-		console.log(this, x, y);
 		var action = {
 				"type": "attack", 
 				"target": "#" + this.id
