@@ -88,13 +88,23 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 		 * will need to be adjusted.
 		 */
 		if (!this["menu"]) {
-			/* TODO
-			if (entity.isAttackedBy(User.get())) {
-				list.add(ActionType.STOP_ATTACK.getRepresentation());
+			if (marauroa.me._target == this) {
+				list.push({
+					title: "Stop attack",
+					action: function(entity) {
+						var action = {
+							"type": "stop",
+							"attack": "" 
+						};
+						marauroa.clientFramework.sendAction(action);
+					}
+				});
 			} else {
-				list.add(ActionType.ATTACK.getRepresentation());
+				list.push({
+					title: "Attack",
+					type: "attack"
+				});
 			}
-			*/
 		}
 		if (this != marauroa.me) {
 			list.push({
