@@ -9,7 +9,7 @@ marauroa.rpobjectFactory.sign = marauroa.util.fromProto(marauroa.rpobjectFactory
 			this.imagePath = "/data/sprites/signs/" + this["class"] + ".png";
 		}
 		var image = stendhal.data.sprites.get(this.imagePath);
-		if (image.complete) {
+		if (image.height) {
 			var localX = this.x * 32;
 			var localY = this.y * 32;
 			ctx.drawImage(image, localX, localY);

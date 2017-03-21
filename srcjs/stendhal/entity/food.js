@@ -10,7 +10,7 @@ marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory
 	
 	draw: function(ctx) {
 		var image = stendhal.data.sprites.get("/data/sprites/food.png");
-		if (image.complete) {
+		if (image.height) {
 			var localX = this.x * 32;
 			var localY = this.y * 32;
 			var offset = this._amount * 32;

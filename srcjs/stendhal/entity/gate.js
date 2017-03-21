@@ -18,7 +18,7 @@ marauroa.rpobjectFactory.gate = marauroa.util.fromProto(marauroa.rpobjectFactory
 			 var filename = "/data/sprites/doors/" + this.image + "_" + this.orientation + ".png";
 			 this._image = stendhal.data.sprites.get(filename);
 		}
-		if (this._image.complete) {
+		if (this._image.height) {
 			var xOffset = -32 * Math.floor(this._image.width / 32 / 2);
 			var height = this._image.height / 2;
 			var yOffset = -32 * Math.floor(height / 32 / 2);

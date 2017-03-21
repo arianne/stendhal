@@ -5,7 +5,7 @@ marauroa.rpobjectFactory.domesticanimal = marauroa.util.fromProto(marauroa.rpobj
 		var localX = this._x * 32;
 		var localY = this._y * 32;
 		var image = stendhal.data.sprites.get(this.imagePath);
-		if (image.complete) {
+		if (image.height) {
 			var nFrames = 3;
 			var nDirections = 4;
 			var yRow = this.dir - 1;

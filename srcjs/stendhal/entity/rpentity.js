@@ -593,7 +593,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 						return Date.now() - this.initTime > 180;
 					},
 					draw: function(ctx, x, y, entityWidth, entityHeight) {
-						if (!this.image.complete) {
+						if (!this.image.height) {
 							return;
 						}
 						var yRow = dir - 1;
