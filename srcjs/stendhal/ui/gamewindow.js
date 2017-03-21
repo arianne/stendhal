@@ -28,12 +28,9 @@ stendhal.ui.gamewindow = {
 		var startTime = new Date().getTime();
 
 		if (marauroa.me && document.visibilityState == "visible") {
-
 			var canvas = document.getElementById("gamewindow");
 			this.targetTileWidth = 32;
 			this.targetTileHeight = 32;
-			canvas.width = stendhal.data.map.sizeX * this.targetTileWidth;
-			canvas.height = stendhal.data.map.sizeY * this.targetTileHeight;
 			this.drawingError = false;
 
 			this.ctx = canvas.getContext("2d");
@@ -55,12 +52,6 @@ stendhal.ui.gamewindow = {
 				}
 			}
 			this.drawEntitiesTop();
-			
-/*			this.ctx.font = "14px Arial";
-			this.ctx.fillStyle = "#000000";
-			this.ctx.fillText((1000/20) - (new Date().getTime()-startTime) + "  " + Math.floor(1000 / (new Date().getTime()-startTime)), 10, 10);
-			console.log((1000/20) - (new Date().getTime()-startTime), Math.floor(1000 / (new Date().getTime()-startTime)))
-*/
 		}
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
@@ -120,7 +111,7 @@ stendhal.ui.gamewindow = {
 			}
 		}
 	},
-	
+
 	drawTextSprites: function(ctx) {
 		for (var i = 0; i < this.textSprites.length; i++) {
 			var sprite = this.textSprites[i];
@@ -130,8 +121,11 @@ stendhal.ui.gamewindow = {
 			}
 		}
 	},
-	
+
 	adjustView: function(canvas) {
+		// IE does not support ctx.resetTransform(), so use the following workaround:
+		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+
 		// Coordinates for a screen centered on player
 		var centerX = marauroa.me._x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
 		var centerY = marauroa.me._y * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
@@ -139,7 +133,7 @@ stendhal.ui.gamewindow = {
 		// Keep the world within the screen view
 		centerX = Math.min(centerX, stendhal.data.map.zoneSizeX * this.targetTileWidth - canvas.width);
 		centerX = Math.max(centerX, 0);
-		
+
 		centerY = Math.min(centerY, stendhal.data.map.zoneSizeY * this.targetTileHeight - canvas.height);
 		centerY = Math.max(centerY, 0);
 
@@ -147,11 +141,11 @@ stendhal.ui.gamewindow = {
 		this.offsetY = Math.round(centerY);
 		this.ctx.translate(-this.offsetX, -this.offsetY);
 	},
-	
+
 	addTextSprite: function(sprite) {
 		this.textSprites.push(sprite);
 	},
-	
+
 	// Mouse click handling
 	onMouseDown: (function() {
 		var entity;
