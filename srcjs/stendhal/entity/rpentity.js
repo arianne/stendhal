@@ -1,28 +1,27 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
-
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
 
 (function() {
 
 	var HEALTH_BAR_HEIGHT = 6;
 
 
+
 /**
  * RPEntity
  */
-marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobjectFactory["activeEntity"], {
+marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.activeEntity, {
 	zIndex: 8000,
 	drawY: 0,
 	spritePath: "",
@@ -37,15 +36,15 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		// longer available after .apply()
 		var oldValue = this[key];
 
-		marauroa.rpobjectFactory["rpentity"].proto.set.apply(this, arguments);
+		marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 		if (key == "text") {
 			this.say(value);
 		} else if (["hp", "base_hp"].indexOf(key) !== -1) {
-			this[key] = parseInt(value, 10);
+			this[key] = parseInt(value);
 			if (key === "hp" && oldValue != undefined) {
 				this.onHPChanged(this[key] - oldValue);
 			}
-		} else if (key === "target") {
+		} else if (key == "target") {
 			if (this._target) {
 				this._target.onAttackStopped(this);
 			}
@@ -63,7 +62,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 	
 	unset: function(key) {
-		if (key === "target" && this._target) {
+		if (key == "target" && this._target) {
 			this._target.onAttackStopped(this);
 			this._target = null;
 		} else if (key === "away") {
@@ -75,45 +74,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 
 	isVisibleToAction: function(filter) {
-		return typeof(this["ghostmode"]) == "undefined" || marauroa.me && marauroa.me.isAdmin();
-	},
-
-	buildActions: function(list) {
-		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
-		/*
-		 * Menu is used to provide an alternate action for some entities (like
-		 * puppies - and they should not be attackable).
-		 * 
-		 * For now normally attackable entities get a menu only in Capture The
-		 * Flag, and then they don't need attack. If that changes, this code
-		 * will need to be adjusted.
-		 */
-		if (!this["menu"]) {
-			if (marauroa.me._target === this) {
-				list.push({
-					title: "Stop attack",
-					action: function(entity) {
-						var action = {
-							"type": "stop",
-							"zone": marauroa.currentZoneName,
-							"attack": "" 
-						};
-						marauroa.clientFramework.sendAction(action);
-					}
-				});
-			} else {
-				list.push({
-					title: "Attack",
-					type: "attack"
-				});
-			}
-		}
-		if (this != marauroa.me) {
-			list.push({
-				title: "Push",
-				type: "push"
-			});
-		}
+		return typeof(this.ghostmode) == "undefined" || marauroa.me && marauroa.me.isAdmin();
 	},
 
 	buildActions: function(list) {
@@ -157,22 +118,22 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * says a text
 	 */
 	say: function (text) {
+		this.addSpeechBubble(text);
 		if (!marauroa.me) {
 			return;
 		}
 		if (marauroa.me.isInHearingRange(this)) {
 			if (text.match("^!me") == "!me") {
-				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this["title"]));
+				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
 			} else {
-				this.addSpeechBubble(text);
-				stendhal.ui.chatLog.addLine("normal", this["title"] + ": " + text);
+				stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
 			}
 		}
 	},
 	
 	addSpeechBubble: function(text) {
-		var x = this["_x"] * 32 + 32;
-		var y = this["_y"] * 32 - 16;
+		var x = this._x * 32 + 32;
+		var y = this._y * 32 - 16;
 		stendhal.ui.gamewindow.addTextSprite({
 			realText: (text.length > 30) ? (text.substring(0, 30) + "...") : text,
 			timeStamp: Date.now(),
@@ -223,19 +184,19 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * draw RPEntities
 	 */
 	draw: function(ctx) {
-		if (typeof(this["ghostmode"]) != "undefined" && marauroa.me && !marauroa.me.isAdmin()) {
+		if (typeof(this.ghostmode) != "undefined" && marauroa.me && !marauroa.me.isAdmin()) {
 			return;
 		}
 		this.drawCombat(ctx);
 		var filename;
-		if (typeof(this["outfit"]) != "undefined") {
-			this.drawOutfitPart(ctx, "body", (this["outfit"] % 100));
-			this.drawOutfitPart(ctx, "dress", (Math.floor(this["outfit"]/100) % 100));
-			this.drawOutfitPart(ctx, "head", (Math.floor(this["outfit"]/10000) % 100));
-			this.drawOutfitPart(ctx, "hair", (Math.floor(this["outfit"]/1000000) % 100));
+		if (typeof(this.outfit) != "undefined") {
+			this.drawOutfitPart(ctx, "body", (this.outfit % 100));
+			this.drawOutfitPart(ctx, "dress", (Math.floor(this.outfit/100) % 100));
+			this.drawOutfitPart(ctx, "head", (Math.floor(this.outfit/10000) % 100));
+			this.drawOutfitPart(ctx, "hair", (Math.floor(this.outfit/1000000) % 100));
 		} else {
 			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
-			if (typeof(this["subclass"]) != "undefined") {
+			if (typeof(this.subclass) != "undefined") {
 				filename = filename + "/" + this["subclass"];
 			}
 			filename = filename + ".png";
@@ -264,8 +225,8 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			_drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y);
 		}
 		
-		var x = this["_x"] * 32 - 10;
-		var y = (this["_y"] + 1) * 32;
+		var x = this._x * 32 - 10;
+		var y = (this._y + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
 			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/choking.png"), x, y - 10);
 		} else if (this.hasOwnProperty("eating")) {
@@ -273,20 +234,19 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 		// NPC and pet idea icons
 		if (this.hasOwnProperty("idea")) {
-			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/" + this["idea"] + ".png"),
-					x + 32 * this["width"], y - this["drawHeight"]);
+			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/ideas/" + this.idea + ".png"), x + 32 * this.width, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("away")) {
-			drawAnimatedIcon("/data/sprites/ideas/away.png", 1500, x + 32 * this["width"], y - this["drawHeight"]);
+			drawAnimatedIcon("/data/sprites/ideas/away.png", 1500, x + 32 * this.width, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("grumpy")) {
-			drawAnimatedIcon("/data/sprites/ideas/grumpy.png", 1000, x + 5, y - this["drawHeight"]);
+			drawAnimatedIcon("/data/sprites/ideas/grumpy.png", 1000, x + 5, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("last_player_kill_time")) {
-			drawAnimatedIconWithFrames("/data/sprites/ideas/pk.png", 12, 300, x, y - this["drawHeight"]);
+			drawAnimatedIconWithFrames("/data/sprites/ideas/pk.png", 12, 300, x, y - this.drawHeight);
 		}
 		if (this.hasOwnProperty("poisoned")) {
-			drawAnimatedIcon("/data/sprites/status/poison.png", 100, x + 32 * this["width"] - 10, y - this["drawHeight"]);
+			drawAnimatedIcon("/data/sprites/status/poison.png", 100, x + 32 * this.width - 10, y - this.drawHeight);
 		}
 		// NPC job icons
 		if (this.hasOwnProperty("job_healer")) {
@@ -315,10 +275,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			 * browsers catch up. Probably.
 			 */
 			if (ctx.ellipse instanceof Function) {
-				var xRad = this["width"] * 16;
-				var yRad = this["height"] * 16 / Math.SQRT2;
-				var centerX = this["_x"] * 32 + xRad;
-				var centerY = (this["_y"] + this["height"]) * 32 - yRad;
+				var xRad = this.width * 16;
+				var yRad = this.height * 16 / Math.SQRT2;
+				var centerX = this._x * 32 + xRad;
+				var centerY = (this._y + this.height) * 32 - yRad;
 				ctx.strokeStyle = "#4a0000";
 				ctx.beginPath();
 				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, false);
@@ -329,17 +289,17 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 				ctx.stroke();
 			} else {
 				ctx.strokeStyle = "#e60a0a";
-				ctx.strokeRect(32 * this["_x"], 32 * this["_y"], 32 * this["width"], 32 * this["height"]);
+				ctx.strokeRect(32 * this._x, 32 * this._y, 32 * this.width, 32 * this.height);
 			}
 		}
 		if (this.getAttackTarget() === marauroa.me) {
 			ctx.lineWidth = 1;
 			// See above about ellipses.
 			if (ctx.ellipse instanceof Function) {
-				var xRad = this["width"] * 16 - 1;
-				var yRad = this["height"] * 16 / Math.SQRT2 - 1;
-				var centerX = this["_x"] * 32 + xRad + 1;
-				var centerY = (this["_y"] + this["height"]) * 32 - yRad - 1;
+				var xRad = this.width * 16 - 1;
+				var yRad = this.height * 16 / Math.SQRT2 - 1;
+				var centerX = this._x * 32 + xRad + 1;
+				var centerY = (this._y + this.height) * 32 - yRad - 1;
 				ctx.strokeStyle = "#ffc800";
 				ctx.beginPath();
 				ctx.ellipse(centerX, centerY, xRad, yRad, 0, Math.PI, false);
@@ -350,11 +310,11 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 				ctx.stroke();
 			} else {
 				ctx.strokeStyle = "#ffdd0a";
-				ctx.strokeRect(32 * this["_x"] + 1, 32 * this["_y"] + 1, 32 * this["width"] - 2, 32 * this["height"] - 2);
+				ctx.strokeRect(32 * this._x + 1, 32 * this._y + 1, 32 * this.width - 2, 32 * this.height - 2);
 			}
 		}
 		if (this.attackResult) {
-			if (this.attackResult.draw(ctx, (this["_x"] + this["width"]) * 32 - 10, (this["_y"] + this["height"]) * 32 - 10)) {
+			if (this.attackResult.draw(ctx, (this._x + this.width) * 32 - 10, (this._y + this.height) * 32 - 10)) {
 				this.attackResult = null;
 			}
 		} 
@@ -368,8 +328,8 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 */
 	drawFloaters: function(ctx) {
 		if (this.hasOwnProperty("floaters")) {
-			var centerX = (this["_x"] + this["width"] / 2) * 32;
-			var topY = (this["_y"] + 1) * 32 - this["drawHeight"];
+			var centerX = (this._x + this.width / 2) * 32;
+			var topY = (this._y + 1) * 32 - this.drawHeight;
 			// Grab an unchanging copy
 			var currentFloaters = this.floaters;
 			for (var i = 0; i < currentFloaters.length; i++) {
@@ -384,79 +344,79 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 	
 	drawSprite: function(ctx, filename) {
-		var localX = this["_x"] * 32;
-		var localY = this["_y"] * 32;
+		var localX = this._x * 32;
+		var localY = this._y * 32;
 		var image = stendhal.data.sprites.get(filename);
 		if (image.height) { // image.complete is true on missing image files
 			var nFrames = 3;
 			var nDirections = 4;
-			var yRow = this["dir"] - 1;
+			var yRow = this.dir - 1;
 			// Ents are a hack in Java client too
 			if (this["class"] == "ent") {
 				nFrames = 1;
 				nDirections = 2;
-				yRow = Math.floor((this["dir"] - 1) / 2);
+				yRow = Math.floor((this.dir - 1) / 2);
 			}
-			this["drawHeight"] = image.height / nDirections;
-			this["drawWidth"] = image.width / nFrames;
-			var drawX = ((this["width"] * 32) - this["drawWidth"]) / 2;
+			this.drawHeight = image.height / nDirections;
+			this.drawWidth = image.width / nFrames;
+			var drawX = ((this.width * 32) - this.drawWidth) / 2;
 			var frame = 0;
-			if (this["speed"] > 0 && nFrames != 1) {
+			if (this.speed > 0 && nFrames != 1) {
 				// % Works normally with *floats* (just whose bright idea was
 				// that?), so use floor() as a workaround
 				frame = Math.floor(Date.now() / 100) % nFrames;
 			}
-			var drawY = (this["height"] * 32) - this["drawHeight"];
-			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
+			var drawY = (this.height * 32) - this.drawHeight;
+			ctx.drawImage(image, frame * this.drawWidth, yRow * this.drawHeight, this.drawWidth, this.drawHeight, localX + drawX, localY + drawY, this.drawWidth, this.drawHeight);
 		}
 	},
 
 	drawTop: function(ctx) {
-		var localX = this["_x"] * 32;
-		var localY = this["_y"] * 32;
+		var localX = this._x * 32;
+		var localY = this._y * 32;
 
 		this.drawHealthBar(ctx, localX, localY);
 		this.drawTitle(ctx, localX, localY);
 	},
 
 	drawHealthBar: function(ctx, x, y) {
-		var drawX = x + ((this["width"] * 32) - this["drawWidth"]) / 2;
-		var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
+		var drawX = x + ((this.width * 32) - this.drawWidth) / 2;
+		var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
 		
 		ctx.strokeStyle = "#000000";
 		ctx.lineWidth = 2;
 		ctx.beginPath();
-		ctx.rect(drawX, drawY, this["drawWidth"], HEALTH_BAR_HEIGHT - 2);
+		ctx.rect(drawX, drawY, this.drawWidth, HEALTH_BAR_HEIGHT - 2);
 		ctx.stroke();
 		
 		ctx.fillStyle = "#E0E0E0";
-		ctx.fillRect(drawX, drawY, this["drawWidth"], HEALTH_BAR_HEIGHT - 2);
+		ctx.fillRect(drawX, drawY, this.drawWidth, HEALTH_BAR_HEIGHT - 2);
 
 		// Bar color
-		var hpRatio = this["hp"] / this["base_hp"];
+		var hpRatio = this.hp / this.base_hp;
 		var red = Math.floor(Math.min((1 - hpRatio) * 2, 1) * 255);
 		var green = Math.floor(Math.min(hpRatio * 2, 1) * 255);
 		ctx.fillStyle = "rgb(".concat(red, ",", green, ",0)");
-		ctx.fillRect(drawX, drawY, this["drawWidth"] * hpRatio, HEALTH_BAR_HEIGHT - 2);
+		ctx.fillRect(drawX, drawY, this.drawWidth * hpRatio, HEALTH_BAR_HEIGHT - 2);
 	},
 
 	drawTitle: function(ctx, x, y) {
-		var title = this["title"];
+		var title = this.title;
 		if (title == undefined) {
-			title = this["name"];
+			title = this.name;
 			if (title == undefined || title == "") {
 				title = this["class"];
 				if (title == undefined) {
-					title = this["type"];
+					title = this.type;
 				}
 			}
 		}
-
+		
 		if (typeof(title) != "undefined") {
 			ctx.font = "14px Arial";
 			var textMetrics = ctx.measureText(title);
-			var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
-			this.drawOutlineText(ctx, title, this.titleStyle, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
+			var drawY = y + (this.height * 32) - this.drawHeight - HEALTH_BAR_HEIGHT;
+			this.drawOutlineText(ctx, title, this.titleStyle, x + (this.width * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	},
 	
@@ -468,9 +428,9 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.attackSprite = null;
 			return;
 		}
-		var localX = this["_x"] * 32;
-		var localY = this["_y"] * 32;
-		this.attackSprite.draw(ctx, localX, localY, this["drawWidth"], this["drawHeight"]);
+		var localX = this._x * 32;
+		var localY = this._y * 32;
+		this.attackSprite.draw(ctx, localX, localY, this.drawWidth, this.drawHeight);
 	},
 
 	// attack handling
@@ -478,8 +438,8 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		// If the attack target id was read before the target was available,
 		// _target does not point to the correct entity. Look up the target
 		// again, if _target does not exist, but it should.
-		if (!this._target && this["target"]) {
-			this._target = marauroa.currentZone[this["target"]];
+		if (!this._target && this.target) {
+			this._target = marauroa.currentZone[this.target];
 			if (this._target) {
 				this._target.onTargeted(this);
 			}
@@ -510,10 +470,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	onXPChanged: function(change) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#4169e1");
-			stendhal.ui.chatLog.addLine("significant_positive", this["title"] + " earns " + change + " experience points.");
+			stendhal.ui.chatLog.addLine("significant_positive", this.title + " earns " + change + " experience points.");
 		} else if (change < 0) {
 			this.addFloater(change.toString(), "#ff8f8f");
-			stendhal.ui.chatLog.addLine("significant_negative", this["title"] + " loses " + Math.abs(change) + " experience points.");
+			stendhal.ui.chatLog.addLine("significant_negative", this.title + " loses " + Math.abs(change) + " experience points.");
 		}
 	},
 	
@@ -650,7 +610,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 								drawWidth, drawHeight, centerX, centerY, drawWidth, drawHeight);
 					}
 				};
-			})(imagePath, ranged, this["dir"]);
+			})(imagePath, ranged, this.dir);
 		}
 	},
 	
@@ -663,8 +623,8 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		if (!this.attackers) {
 			this.attackers = { size: 0 };
 		}
-		if (!(attacker["id"] in this.attackers)) {
-			this.attackers[attacker["id"]] = true;
+		if (!(attacker.id in this.attackers)) {
+			this.attackers[attacker.id] = true;
 			this.attackers.size += 1;
 		}
 	},
@@ -676,8 +636,8 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * 	stopped attacking
 	 */
 	onAttackStopped: function(attacker) {
-		if (attacker["id"] in this.attackers) {
-			delete this.attackers[attacker["id"]];
+		if (attacker.id in this.attackers) {
+			delete this.attackers[attacker.id];
 			this.attackers.size -= 1;
 		}
 	},
