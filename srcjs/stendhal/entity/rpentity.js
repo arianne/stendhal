@@ -74,7 +74,7 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	},
 
 	isVisibleToAction: function(filter) {
-		return true;
+		return typeof(this.ghostmode) == "undefined" || marauroa.me && marauroa.me.isAdmin();
 	},
 
 	buildActions: function(list) {
@@ -184,6 +184,9 @@ marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFac
 	 * draw RPEntities
 	 */
 	draw: function(ctx) {
+		if (typeof(this.ghostmode) != "undefined" && marauroa.me && !marauroa.me.isAdmin()) {
+			return;
+		}
 		this.drawCombat(ctx);
 		var filename;
 		if (typeof(this.outfit) != "undefined") {
