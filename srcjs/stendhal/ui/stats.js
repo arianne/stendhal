@@ -18,7 +18,13 @@ stendhal.ui = stendhal.ui || {};
  * buddylist
  */
 stendhal.ui.stats = {
+	keys: ['hp', 'base_hp', 'atk', 'atk_item', 'atk_xp', 'def', 'def_item', 'def_xp', 'xp', 'level'],
+
 	update: function() {
+		if (!stendhal.ui.stats.dirty) {
+			return;
+		}
+		stendhal.ui.stats.dirty = false;
 		var div = document.getElementById("stats");
 		var object = marauroa.me;
 		div.innerText = 
@@ -26,6 +32,6 @@ stendhal.ui.stats = {
 			+ "ATK: " + object.atk + " x " + object.atk_item + "\r\n"
 			+ "DEF: " + object.def + " x " + object.def_item + "\r\n"
 		    + "XP: " + object.xp + "\r\n"
-		    + "Level: " + object.xp;
+		    + "Level: " + object.level;
 	}
 }
