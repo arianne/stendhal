@@ -32,7 +32,6 @@ stendhal.zone.ground = {
 	 * @return Direction of the zone to change to, <code>null</code> if no zone change should happen
 	 */
 	calculateZoneChangeDirection: function(x, y) {
-		console.log(x, y, stendhal.data.map.zoneSizeX, stendhal.data.map.zoneSizeY)
 		if (x < 15) {
 			return "4"; // LEFT
 		}
@@ -60,7 +59,6 @@ stendhal.zone.ground = {
 		if (extend) {
 			action.extend = extend;
 		}
-		console.log(action);
 		marauroa.clientFramework.sendAction(action);
 	}
 

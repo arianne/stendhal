@@ -1,18 +1,17 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
-
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
+window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
@@ -39,8 +38,8 @@ stendhal.ui.minimap = {
 		var imageWidth = stendhal.ui.minimap.mapWidth * stendhal.ui.minimap.scale;
 		var imageHeight = stendhal.ui.minimap.mapHeight * stendhal.ui.minimap.scale;
 
-		var xpos = Math.round((marauroa.me["x"] * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
-		var ypos = Math.round((marauroa.me["y"] * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
+		var xpos = Math.round((marauroa.me.x * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
+		var ypos = Math.round((marauroa.me.y * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
 
 		if (imageWidth > stendhal.ui.minimap.width) {
 			// need to pan width
@@ -145,7 +144,7 @@ stendhal.ui.minimap = {
 
 		for (var i in marauroa.currentZone) {
 			var o = marauroa.currentZone[i];
-			if (typeof(o["x"]) != "undefined" && typeof(o["y"]) != "undefined" && (o.minimapShow || (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600))) {
+			if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined" && (o.minimapShow || (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600))) {
 				// not supported by IE <= 8
 				if (typeof(ctx.fillText) != "undefined") {
 //					stendhal.ui.minimap.ctx.fillText(o.id, o.x * stendhal.ui.minimap.scale, o.y * stendhal.ui.minimap.scale);
@@ -155,7 +154,7 @@ stendhal.ui.minimap = {
 				} else {
 					ctx.strokeStyle = "rgb(128, 128, 128)";
 				}
-				ctx.strokeRect(o["x"] * stendhal.ui.minimap.scale, o["y"] * stendhal.ui.minimap.scale, o["width"] * stendhal.ui.minimap.scale, o["height"] * stendhal.ui.minimap.scale);
+				ctx.strokeRect(o.x * stendhal.ui.minimap.scale, o.y * stendhal.ui.minimap.scale, o.width * stendhal.ui.minimap.scale, o.height * stendhal.ui.minimap.scale);
 			}
 		}
 	},
@@ -171,6 +170,6 @@ stendhal.ui.minimap = {
 			};
 			marauroa.clientFramework.sendAction(action);
 		}
-		document.getElementById("chatinput").focus();
+		document.getElementById("chatbar").focus();
 	}
-};
+}
