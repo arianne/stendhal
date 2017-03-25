@@ -66,7 +66,6 @@ span.logi {text-decoration: underline}
 
 <link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
 <link rel="import" href="stendhal/ui/stendhal-buddylist/stendhal-buddylist.html">
-<link rel="import" href="stendhal/ui/stendhal-minimap/stendhal-minimap.html">
 
 <script type="text/javascript" src="marauroa/marauroa.js"></script>
 <script type="text/javascript" src="marauroa/client-framework.js"></script>
@@ -115,7 +114,7 @@ span.logi {text-decoration: underline}
 
 
 <div style="float:left; width:130px">
-	<stendhal-minimap id="minimap"></stendhal-minimap>
+	<canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128"></canvas>
 	<div id="stats"></div>
 	<stendhal-buddylist id="buddyList"></stendhal-buddylist>
 </div>

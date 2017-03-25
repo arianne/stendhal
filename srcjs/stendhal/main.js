@@ -87,14 +87,14 @@ stendhal.main = {
 	 */
 	registerBrowserEventHandlers: function() {
 		var gamewindow = document.getElementById('gamewindow');
-		if (gamewindow) {
-			gamewindow.setAttribute("draggable", true);
-			gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
-			gamewindow.addEventListener("dragstart", stendhal.ui.gamewindow.onDragStart);
-			gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
-			gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
-			gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
-		}
+		gamewindow.setAttribute("draggable", true);
+		gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
+		gamewindow.addEventListener("dragstart", stendhal.ui.gamewindow.onDragStart);
+		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
+		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
+		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
+		var minimap = document.getElementById('minimap');
+		minimap.addEventListener("click", stendhal.ui.minimap.onClick);
 	},
 
 	/**
