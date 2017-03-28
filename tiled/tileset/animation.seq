@@ -163,13 +163,6 @@ tileset/ground/water/channels_grassy.png	3	3:4:5:4
 tileset/ground/water/channels_grassy.png	4	3:4:5:4
 tileset/ground/water/channels_grassy.png	5	3:4:5:4
 
-tileset/ground/water/channels_icy.png	0	0:1:2:1
-tileset/ground/water/channels_icy.png	1	0:1:2:1
-tileset/ground/water/channels_icy.png	2	0:1:2:1
-tileset/ground/water/channels_icy.png	3	3:4:5:4
-tileset/ground/water/channels_icy.png	4	3:4:5:4
-tileset/ground/water/channels_icy.png	5	3:4:5:4
-
 tileset/ground/water/water.png	0	0:1:2:1
 tileset/ground/water/water.png	1	0:1:2:1
 tileset/ground/water/water.png	2	0:1:2:1
@@ -579,38 +572,6 @@ tileset/furniture/light/sparkle_middle.png * 2:0
 tileset/furniture/light/sparkle_middle.png * 3:1
 # make bees buzzing bees
 tileset/item/buzzing_bees.png * 0:1:2:3:4
-# cloudset1 
-tileset/sky/cloud/cloudset1.png *@2150 5:0:35:30:65:60:95:90:125:120:125:90:95:90:125:120:125:90:95:60:65:30:35:0
-tileset/sky/cloud/cloudset1.png *@2150 6:1:36:31:66:61:96:91:126:121:126:91:96:91:126:121:126:91:96:61:66:31:36:1
-tileset/sky/cloud/cloudset1.png *@2150 7:2:37:32:67:62:97:92:127:122:127:92:97:92:127:122:127:92:97:62:67:32:37:2
-tileset/sky/cloud/cloudset1.png *@2150 8:3:38:33:68:63:98:93:128:123:128:93:98:93:128:123:128:93:98:63:68:33:38:3
-tileset/sky/cloud/cloudset1.png *@2150 9:4:39:34:69:64:99:94:129:124:129:94:99:94:129:124:129:94:99:64:69:34:39:4
-tileset/sky/cloud/cloudset1.png *@2150 15:10:45:40:75:70:105:100:135:130:135:100:105:100:135:130:135:100:105:70:75:40:45:10
-tileset/sky/cloud/cloudset1.png *@2150 16:11:46:41:76:71:106:101:136:131:136:101:106:101:136:131:136:101:106:71:76:41:46:11
-tileset/sky/cloud/cloudset1.png *@2150 17:12:47:42:77:72:107:102:137:132:137:102:107:102:137:132:137:102:107:72:77:42:47:12
-tileset/sky/cloud/cloudset1.png *@2150 18:13:48:43:78:73:108:103:138:133:138:103:108:103:138:133:138:103:108:73:78:43:48:13
-tileset/sky/cloud/cloudset1.png *@2150 19:14:49:44:79:74:109:104:139:134:139:104:109:104:139:134:139:104:109:74:79:44:49:14
-tileset/sky/cloud/cloudset1.png *@2150 25:20:55:50:85:80:115:110:145:140:145:110:115:110:145:140:145:110:115:80:85:50:55:20
-tileset/sky/cloud/cloudset1.png *@2150 26:21:56:51:86:81:116:111:146:141:146:111:116:111:146:141:146:111:116:81:86:51:56:21
-tileset/sky/cloud/cloudset1.png *@2150 27:22:57:52:87:82:117:112:147:142:147:112:117:112:147:142:147:112:117:82:87:52:57:22
-tileset/sky/cloud/cloudset1.png *@2150 28:23:58:53:88:83:118:113:148:143:148:113:118:113:148:143:148:113:118:83:88:53:58:23
-tileset/sky/cloud/cloudset1.png *@2150 29:24:59:54:89:84:119:114:149:144:149:114:119:114:149:144:149:114:119:84:89:54:59:24
-# cloudset2
-tileset/sky/cloud/cloudset2.png *@2150 125:120:95:90:65:60:35:30:5:0:5:30:35:30:5:0:5:30:35:60:65:90:95:120
-tileset/sky/cloud/cloudset2.png *@2150 126:121:96:91:66:61:36:31:6:1:6:31:36:31:6:1:6:31:36:61:66:91:96:121
-tileset/sky/cloud/cloudset2.png *@2150 127:122:97:92:67:62:37:32:7:2:7:32:37:32:7:2:7:32:37:62:67:92:97:122
-tileset/sky/cloud/cloudset2.png *@2150 128:123:98:93:68:63:38:33:8:3:8:33:38:33:8:3:8:33:38:63:68:93:98:123
-tileset/sky/cloud/cloudset2.png *@2150 129:124:99:94:69:64:39:34:9:4:9:34:39:34:9:4:9:34:39:64:69:94:99:124
-tileset/sky/cloud/cloudset2.png *@2150 135:130:105:100:75:70:45:40:15:10:15:40:45:40:15:10:15:40:45:70:75:100:105:130
-tileset/sky/cloud/cloudset2.png *@2150 136:131:106:101:76:71:46:41:16:11:16:41:46:41:16:11:16:41:46:71:76:101:106:131
-tileset/sky/cloud/cloudset2.png *@2150 137:132:107:102:77:72:47:42:17:12:17:42:47:42:17:12:17:42:47:72:77:102:107:132
-tileset/sky/cloud/cloudset2.png *@2150 138:133:108:103:78:73:48:43:18:13:18:43:48:43:18:13:18:43:48:73:78:103:108:133
-tileset/sky/cloud/cloudset2.png *@2150 139:134:109:104:79:74:49:44:19:14:19:44:49:44:19:14:19:44:49:74:79:104:109:134
-tileset/sky/cloud/cloudset2.png *@2150 145:140:115:110:85:80:55:50:25:20:25:50:55:50:25:20:25:50:55:80:85:110:115:140
-tileset/sky/cloud/cloudset2.png *@2150 146:141:116:111:86:81:56:51:26:21:26:51:56:51:26:21:26:51:56:81:86:111:116:141
-tileset/sky/cloud/cloudset2.png *@2150 147:142:117:112:87:82:57:52:27:22:27:52:57:52:27:22:27:52:57:82:87:112:117:142
-tileset/sky/cloud/cloudset2.png *@2150 148:143:118:113:88:83:58:53:28:23:28:53:58:53:28:23:28:53:58:83:88:113:118:143
-tileset/sky/cloud/cloudset2.png *@2150 149:144:119:114:89:84:59:54:29:24:29:54:59:54:29:24:29:54:59:84:89:114:119:144
 # friendly cloud
 tileset/sky/cloud/friendlycloud.png *@2150 225:0:9:54:63:108:117:162:171:216:171:162:117:162:171:216:171:162:117:108:63:54:9:0
 tileset/sky/cloud/friendlycloud.png *@2150 226:1:10:55:64:109:118:163:172:217:172:163:118:163:172:217:172:163:118:109:64:55:10:1
@@ -715,65 +676,6 @@ tileset/furniture/light/torch_2.png    *    6:7:8
 
 # bubbles
 tileset/ground/water/foaming.png    *    0:1:2:3:4:5:6:7
-
-# torchlight
-tileset/light/torchlight_5x5.png    *    0:0:5:0:5
-tileset/light/torchlight_5x5.png    *    1:1:6:1:6
-tileset/light/torchlight_5x5.png    *    2:2:7:2:7
-tileset/light/torchlight_5x5.png    *    3:3:8:3:8
-tileset/light/torchlight_5x5.png    *    4:4:9:4:9
-tileset/light/torchlight_5x5.png    *    12:12:17:12:17
-tileset/light/torchlight_5x5.png    *    13:13:18:13:18
-tileset/light/torchlight_5x5.png    *    14:14:19:14:19
-tileset/light/torchlight_5x5.png    *    15:15:20:15:20
-tileset/light/torchlight_5x5.png    *    16:16:21:16:21
-tileset/light/torchlight_5x5.png    *    24:24:29:24:29
-tileset/light/torchlight_5x5.png    *    25:25:30:25:30
-tileset/light/torchlight_5x5.png    *    26:26:31:26:31
-tileset/light/torchlight_5x5.png    *    27:27:32:27:32
-tileset/light/torchlight_5x5.png    *    28:28:33:28:33
-tileset/light/torchlight_5x5.png    *    36:36:41:36:41
-tileset/light/torchlight_5x5.png    *    37:37:42:37:42
-tileset/light/torchlight_5x5.png    *    38:38:43:38:43
-tileset/light/torchlight_5x5.png    *    39:39:44:39:44
-tileset/light/torchlight_5x5.png    *    40:40:45:40:45
-tileset/light/torchlight_5x5.png    *    41:41:46:41:46
-tileset/light/torchlight_5x5.png    *    48:48:54:48:54
-tileset/light/torchlight_5x5.png    *    49:49:55:49:55
-tileset/light/torchlight_5x5.png    *    50:50:56:50:56
-tileset/light/torchlight_5x5.png    *    51:51:57:51:57
-tileset/light/torchlight_5x5.png    *    52:52:58:52:58
-tileset/light/torchlight_5x5.png    *    53:53:59:53:59
-tileset/light/torchlight_5x5.png    *    60:60:66:60:66
-tileset/light/torchlight_5x5.png    *    61:61:67:61:67
-tileset/light/torchlight_5x5.png    *    62:62:68:62:68
-tileset/light/torchlight_5x5.png    *    63:63:69:63:69
-tileset/light/torchlight_5x5.png    *    64:64:70:64:70
-tileset/light/torchlight_5x5.png    *    65:65:71:65:71
-tileset/light/torchlight_5x5.png    *    72:72:78:72:78
-tileset/light/torchlight_5x5.png    *    73:73:79:73:79
-tileset/light/torchlight_5x5.png    *    74:74:80:74:80
-tileset/light/torchlight_5x5.png    *    75:75:81:75:81
-tileset/light/torchlight_5x5.png    *    76:76:82:76:82
-tileset/light/torchlight_5x5.png    *    77:77:83:77:83
-tileset/light/torchlight_5x5.png    *    84:84:90:84:90
-tileset/light/torchlight_5x5.png    *    85:85:91:85:91
-tileset/light/torchlight_5x5.png    *    86:86:92:86:92
-tileset/light/torchlight_5x5.png    *    87:87:93:87:93
-tileset/light/torchlight_5x5.png    *    88:88:94:88:94
-tileset/light/torchlight_5x5.png    *    89:89:95:89:95
-tileset/light/torchlight_5x5.png    *    96:96:102:96:102
-tileset/light/torchlight_5x5.png    *    97:97:103:97:103
-tileset/light/torchlight_5x5.png    *    98:98:104:98:104
-tileset/light/torchlight_5x5.png    *    99:99:105:99:105
-tileset/light/torchlight_5x5.png    *    100:100:106:100:106
-tileset/light/torchlight_5x5.png    *    101:101:107:101:107
-tileset/light/torchlight_5x5.png    *    108:108:114:108:114
-tileset/light/torchlight_5x5.png    *    109:109:115:109:115
-tileset/light/torchlight_5x5.png    *    110:110:116:110:116
-tileset/light/torchlight_5x5.png    *    111:111:117:111:117
-tileset/light/torchlight_5x5.png    *    112:112:118:112:118
-tileset/light/torchlight_5x5.png    *    113:113:119:113:119
 
 # Rotating crystal
 tileset/object/rotating_crystal.png  *@125  0:1:2:3:4:5:6:7
