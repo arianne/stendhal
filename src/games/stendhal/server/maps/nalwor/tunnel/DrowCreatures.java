@@ -28,6 +28,14 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.CircumstancesOfDeath;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.Area;
+
 /**
  * Configure Drow Tunnel -1 to include a Thing Creature who carries an amulet.
  * Then it should give an amulet that is bound to the player.
