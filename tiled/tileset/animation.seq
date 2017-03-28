@@ -310,8 +310,6 @@ tileset/furniture/light/lights_candle.png	*	24:25
 
 tileset/furniture/light/torch_top.png * 0:1:2:3
 
-tileset/ground/water/whirlpool.png	*	0:1:2:3
-
 tileset/ground/water/dungeon_water.png	0	0:1:2:1
 tileset/ground/water/dungeon_water.png	1	1:2:1:0
 tileset/ground/water/dungeon_water.png	2	2:1:0:1
@@ -537,6 +535,8 @@ tileset/ground/fire/flame.png * 2:0:1
 tileset/ground/fire/flames.png * 0:1
 tileset/ground/fire/flames.png * 1:0
 
+# whirlpool
+tileset/ground/water/whirlpool.png	*	0:1:2:3
 # whirlies for wading in square whirlpool
 tileset/ground/water/whirlpool.png  * 4:5:6:7
 tileset/ground/water/whirlpool.png  * 5:6:7:4
