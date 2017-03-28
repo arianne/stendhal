@@ -42,7 +42,7 @@ import org.apache.log4j.Logger;
  */
 @Dev(category=Category.IGNORE, label="Kills?")
 public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
-	private static Logger logger = Logger.getLogger(KilledInSumForQuestCondition.class);
+	private static Logger logger = Logger.getLogger(KillsQuestSlotNeedUpdateCondition.class);
 	private final String questSlot;
 	private final int questIndex;
 	private final int questGroupIndex;

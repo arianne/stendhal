@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 
 public class TPPQuest implements ITPPQuest {
 	
-	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);	
+	protected static final Logger logger = Logger.getLogger(TPPQuest.class);	
 	protected Map<String, Integer> timings;
 	
 	@Override

@@ -24,7 +24,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public final class NPCsXMLLoader extends DefaultHandler {
     
     /** the logger instance. */
-    private static final Logger logger = Logger.getLogger(ItemsXMLLoader.class);
+    private static final Logger logger = Logger.getLogger(NPCsXMLLoader.class);
     
     private String name;
     

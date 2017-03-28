@@ -12,15 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.tunnel;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.creature.CircumstancesOfDeath;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.magic.school.SpidersCreatures;
-import games.stendhal.server.util.Area;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +19,14 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.CircumstancesOfDeath;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.Area;
 
 /**
  * Configure Drow Tunnel -1 to include a Thing Creature who carries an amulet. 
@@ -65,7 +64,7 @@ public class DrowCreatures implements ZoneConfigurator {
 	private void updatePlayerQuest(final CircumstancesOfDeath circ) {
 		final RPEntity killer = circ.getKiller();
 		final String victim = circ.getVictim().getName();
-		Logger.getLogger(SpidersCreatures.class).debug(
+		Logger.getLogger(getClass()).debug(
 				"in "+circ.getZone().getName()+
 				": "+circ.getVictim().getName()+
 				" killed by "+circ.getKiller().getName());

@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class ItemDumper {
-	private static Logger logger = Logger.getLogger(AgeDumper.class);
+	private static Logger logger = Logger.getLogger(ItemDumper.class);
 	java.sql.Date date;
 
 	/**

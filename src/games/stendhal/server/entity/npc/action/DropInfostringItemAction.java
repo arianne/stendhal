@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
  */
 @Dev(category=Category.ITEMS_OWNED, label="Item-")
 public class DropInfostringItemAction implements ChatAction {
-	private static Logger logger = Logger.getLogger(DropItemAction.class);
+	private static Logger logger = Logger.getLogger(DropInfostringItemAction.class);
 	private final String itemName;
 	private final String infostring;
 	private final int amount;
