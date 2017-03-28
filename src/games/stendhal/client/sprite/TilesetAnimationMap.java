@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                 (C) Copyright 2003-2017 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +14,8 @@ package games.stendhal.client.sprite;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 /**
  * A tileset animation map.
  */
@@ -23,6 +24,7 @@ public class TilesetAnimationMap {
 	 * The default frame delay (in ms).
 	 */
 	static final int DEFAULT_DELAY = 500;
+	private static final Logger LOGGER = Logger.getLogger(TilesetAnimationMap.class);
 
 	/**
 	 * The map of tileset animations.
@@ -120,6 +122,11 @@ public class TilesetAnimationMap {
 
 		for (int i = 0; i < frameIndexes.length; i++) {
 			frames[i] = tileset.getSprite(frameIndexes[i]);
+			if (frames[i] == null) {
+				LOGGER.error("Invalid animation mapping. Tileset does not have "
+						+ "tile index " + frameIndexes[i] + ".");
+				return null;
+			}
 		}
 
 		// Use the reference of the first frame as the reference for the whole
