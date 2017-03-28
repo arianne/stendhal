@@ -1,8 +1,5 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.PassiveNPC;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -10,13 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.log4j.Logger;
+import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.PassiveNPC;
 
 public class DefaultNPC {
-    
-    /** the logger instance. */
-    private static final Logger logger = Logger.getLogger(DefaultCreature.class);
-    
     /** NPC class. */
     private String clazz;
     

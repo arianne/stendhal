@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
  */
 @Dev(category=Category.ITEMS_OWNED, label="\"...\"")
 public class SayRequiredItemAction implements ChatAction {
-	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);
+	private static Logger logger = Logger.getLogger(SayRequiredItemAction.class);
 
 	private final String questname;
 	private final String message;
