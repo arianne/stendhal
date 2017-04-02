@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2017 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +10,18 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.entity;
+
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameLoop;
@@ -24,21 +35,8 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
-
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
-
-import org.apache.log4j.Logger;
 
 /**
  * This class is a link between client graphical objects and server attributes
@@ -1094,7 +1092,7 @@ public abstract class RPEntity extends AudibleEntity {
 		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "attack",
 			"punch-1"   , "punch-2", "punch-3",
 			"punch-4"   , "punch-5", "punch-6",
-			"swingaxe-1", "slap-1" , "arrow-1");
+			"swingaxe-1", "slap-1");
 		
 		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
 		        "clang-metallic-1");
