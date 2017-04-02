@@ -45,7 +45,7 @@ import marauroa.common.game.RPObject.ID;
  */
 public abstract class RPEntity extends AudibleEntity {
 	private static final Logger LOGGER = Logger.getLogger(RPEntity.class);
-
+	
 	/**
 	 * Square of the distance where to observe various events, such as speech.
 	 */
@@ -82,11 +82,11 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Hp and max HP property.
 	 */
 	public static final Property PROP_HP_RATIO = new Property();
-	/**
+	/** 
 	 * Property for showing and hiding the HP bar.
 	 */
 	public static final Property PROP_HP_DISPLAY = new Property();
-
+	
 	// Job properties
 	/**
 	 * Healer
@@ -96,7 +96,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Merchant
 	 */
 	public static final Property PROP_MERCHANT = new Property();
-
+	
     // Status properties
     /**
      * Confused property
@@ -106,7 +106,7 @@ public abstract class RPEntity extends AudibleEntity {
      * Eating property
      */
     public static final Property PROP_EATING = new Property();
-    /**
+    /** 
      * Poisoned property
      */
     public static final Property PROP_POISONED = new Property();
@@ -122,7 +122,7 @@ public abstract class RPEntity extends AudibleEntity {
      * Heavy property
      */
     public static final Property PROP_HEAVY = new Property();
-
+    
     private static final Map<StatusID, Property> statusProp;
     static {
         statusProp = new EnumMap<StatusID, Property>(StatusID.class);
@@ -132,12 +132,12 @@ public abstract class RPEntity extends AudibleEntity {
         statusProp.put(StatusID.ZOMBIE, PROP_ZOMBIE);
         statusProp.put(StatusID.HEAVY, PROP_HEAVY);
     }
-
+    
 	/**
 	 * Attacking property. (for attack events)
 	 */
 	public static final Property PROP_ATTACK = new Property();
-
+	
 	/**
 	 * The value of an outfit that isn't set.
 	 */
@@ -153,7 +153,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * The entities attacking this entity.
 	 */
 	private final Collection<Entity> attackers = new ConcurrentLinkedQueue<Entity>();
-
+	
 	/**
 	 * The nature of the current attack done by this entity, or
 	 * <code>null</code> if there's no ongoing attack.
@@ -166,7 +166,7 @@ public abstract class RPEntity extends AudibleEntity {
 	private String weapon;
 	/**
 	 * <code>true</code> if the previously done attack event was ranged,
-	 * 	otherwise <code>false</code>.
+	 * 	otherwise <code>false</code>. 
 	 */
 	private boolean isDoingRangedAttack;
 	/**
@@ -178,7 +178,7 @@ public abstract class RPEntity extends AudibleEntity {
 	private int atk;
 
 	private int def;
-
+	
 	private int ratk;
 
 	private int xp;
@@ -191,7 +191,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * The outfit code.
 	 */
 	private int outfit;
-
+	
 	private int baseHP;
 
 	private float hpRatio;
@@ -199,14 +199,14 @@ public abstract class RPEntity extends AudibleEntity {
 	private int level;
 
 	private boolean eating;
-
+	
 	/** Currently active statuses. */
 	private final Set<StatusID> statuses = EnumSet.noneOf(StatusID.class);
 
 	private boolean choking;
-
+	
 	private boolean showTitle = true;
-
+	
 	private boolean showHP = true;
 
 	/**
@@ -224,7 +224,7 @@ public abstract class RPEntity extends AudibleEntity {
 	private int baseMana;
 
 	private boolean ghostmode;
-
+	
 	private boolean ignoreCollision;
 
 	private String titleType;
@@ -238,18 +238,18 @@ public abstract class RPEntity extends AudibleEntity {
 	private int atkXP;
 
 	private int defXP;
-
+	
 	private int ratkXP;
 
 	private int atkItem = -1;
 
 	private int defItem = -1;
-
+	
 	private int ratkItem = -1;
-
+	
 	/** A flag that gets set once the entity has been released. */
 	private boolean released;
-
+	
 	/** Possible attack results. */
 	public enum Resolution {
 		HIT,
@@ -269,7 +269,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Create/add a text indicator message.
-	 *
+	 * 
 	 * @param text
 	 *            The text message.
 	 * @param type
@@ -283,7 +283,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the admin level.
-	 *
+	 * 
 	 * @return The admin level.
 	 */
 	public int getAdminLevel() {
@@ -369,7 +369,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the ratio of HP to base HP.
-	 *
+	 * 
 	 * @return The HP ratio (0.0 - 1.0).
 	 */
 	public float getHpRatio() {
@@ -378,7 +378,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the list of text indicator elements.
-	 *
+	 * 
 	 * @return An iterator of text indicators.
 	 */
 	public Iterator<TextIndicator> getTextIndicators() {
@@ -387,7 +387,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the entity level.
-	 *
+	 * 
 	 * @return level
 	 */
 	int getLevel() {
@@ -403,25 +403,25 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the outfit code.
-	 *
+	 * 
 	 * @return The outfit code.
 	 */
 	public int getOutfit() {
 		return outfit;
 	}
-
+	
 	/**
 	 * The result of previous attack against this entity.
-	 *
+	 * 
 	 * @return attack result
 	 */
 	public Resolution getResolution() {
 		return resolution;
 	}
-
+	
 	/**
 	 * Get the attack target of an entity.
-	 *
+	 * 
 	 * @return the target, or <code>null</code> if there is none
 	 */
 	public RPEntity getAttackTarget() {
@@ -430,13 +430,13 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Update the target.
-	 *
+	 * 
 	 * @param targetString The target id as a string
 	 * @param zoneId zone of the entity
 	 */
 	private void setTarget(String targetString, String zoneId) {
 		final int target = Integer.parseInt(targetString);
-
+		
 		final RPObject.ID targetEntityID = new RPObject.ID(target, zoneId);
 		final RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
 				targetEntityID);
@@ -456,10 +456,10 @@ public abstract class RPEntity extends AudibleEntity {
 			}
 		}
 	}
-
+	
 	/**
 	 * Update the target.
-	 *
+	 * 
 	 * @param targetString The target id as a string
 	 */
 	private void setTarget(String targetString) {
@@ -469,10 +469,10 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the nicely formatted entity title.
-	 *
+	 * 
 	 * This searches the follow attribute order: title, name (w/o underscore),
 	 * class (w/o underscore), type (w/o underscore).
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override
@@ -493,7 +493,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get title type.
-	 *
+	 * 
 	 * @return The title type, or <code>null</code> if the entity has no special
 	 * 	title type
 	 */
@@ -507,7 +507,7 @@ public abstract class RPEntity extends AudibleEntity {
 	public int getXP() {
 		return xp;
 	}
-
+	
 	/**
 	 * @return Returns the entities attacking this entity
 	 */
@@ -519,7 +519,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Get the ID of the current attack target. Try to resolve targets that
 	 * have been added to the zone after this. This is meant to be called from
 	 * the EDT.
-	 *
+	 * 
 	 * @return attack target, or <code>null</code> if the entity is not
 	 * 	attacking
 	 */
@@ -528,7 +528,7 @@ public abstract class RPEntity extends AudibleEntity {
 			/*
 			 * Check for disagreement, and update if needs be.
 			 * Can happen when the target is added to the zone after the attacker.
-			 *
+			 * 
 			 * Fire and forget. The update likely won't be ready for this screen
 			 * redraw, but it'll be ready for some redraw later.
 			 */
@@ -551,7 +551,7 @@ public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * Check if the entity is attacking a specified entity. This is meant to be
 	 * called from the EDT when drawing entities.
-	 *
+	 * 
 	 * @param defender the potential target
 	 * @return <code>true</code> if defender is attacked by this entity,
 	 * 	otherwise <code>false</code>
@@ -560,14 +560,14 @@ public abstract class RPEntity extends AudibleEntity {
 		if (defender == null) {
 			return false;
 		}
-
+		
 		final ID defenderID = defender.getID();
 		return defenderID.equals(getTargetID());
 	}
 
 	/**
 	 * Check if the entity is a target of an attack.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is being attacked, otherwise
 	 * 	<code>false</code>
 	 */
@@ -577,7 +577,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Check if a specific entity is attacking this RPEntity.
-	 *
+	 * 
 	 * @param attacker potential attacker
 	 * @return <code>true</code> if attacker is attacking this RPEntity,
 	 * 	otherwise <code>false</code>
@@ -588,25 +588,25 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the damage type of the current strike.
-	 *
+	 * 
 	 * @return type of damage, or <code>null</code> if the entity is not striking
 	 */
 	public Nature getShownDamageType() {
 		return attackNature;
 	}
-
+	
 	/**
 	 * Get the weapon used in the current attack.
-	 *
+	 * 
 	 * @return weapon, or <code>null</code> if not specified
 	 */
 	public String getShownWeapon() {
 		return weapon;
 	}
-
+	
 	/**
 	 * Check if the currently performed attack is ranged.
-	 *
+	 * 
 	 * @return <code>true</code> if the attack is ranged, <code>false</code>
 	 * 	otherwise
 	 */
@@ -617,9 +617,9 @@ public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * Check if the entity is defending against an attack right now. The entity
 	 * is defending if the last attack happened within 1.2s.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is defending against an attack,
-	 * 	<code>false</code> otherwise
+	 * 	<code>false</code> otherwise 
 	 */
 	public boolean isDefending() {
 		return (isBeingAttacked() && (System.currentTimeMillis()
@@ -628,7 +628,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Check if the entity is eating.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is eating, otherwise
 	 * 	<code>false</code>
 	 */
@@ -638,7 +638,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Determine if in full ghostmode.
-	 *
+	 * 
 	 * @return <code>true</code> is in full ghostmode.
 	 */
 	public boolean isGhostMode() {
@@ -647,27 +647,27 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Check if the entity can pass through static collisions.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity can pass through walls, otherwise
 	 * 	<code>false</code>
 	 */
 	public boolean ignoresCollision() {
 		return ignoreCollision;
 	}
-
+	
 	/**
 	 * Check if the entity is confused or poisoned.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is confused or poisoned,
 	 * 	otherwise <code>false</code>
 	 */
 	public boolean isConfused() {
 		return hasStatus(StatusID.POISON) || hasStatus(StatusID.CONFUSE);
 	}
-
+	
 	/**
 	 * Check if the entity has a certain status.
-	 *
+	 * 
 	 * @param status status id
 	 * @return <code>true</code> if the entity has the status, otherwise
 	 * 	<code>false</code>.
@@ -678,7 +678,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Check if the entity is choking.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is choking, otherwise
 	 * 	<code>false</code>
 	 */
@@ -694,16 +694,16 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when this entity attacks target.
-	 *
+	 * 
 	 * @param target attack target
 	 */
 	private void onAttack(final IEntity target) {
 		attacking = target.getID();
 	}
-
+	
 	/**
 	 * When this entity performs an attack.
-	 *
+	 * 
 	 * @param type attack nature
 	 * @param ranged <code>true</code> if it's a ranged attack, otherwise
 	 * 	<code>false</code>
@@ -719,7 +719,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * When attacker attacks this entity.
-	 *
+	 * 
 	 * @param attacker attacking entity
 	 */
 	private void onAttacked(final Entity attacker) {
@@ -736,10 +736,10 @@ public abstract class RPEntity extends AudibleEntity {
 		combatIconTime = System.currentTimeMillis();
 	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
 	}
-
+	
 	/**
 	 * Called when this entity is damaged by attacker with damage amount.
-	 *
+	 * 
 	 * @param attacker attacking entity
 	 * @param damage amount of damage
 	 */
@@ -760,12 +760,12 @@ public abstract class RPEntity extends AudibleEntity {
 					NotificationType.NEGATIVE));
 		}
 	}
-
+	
 	/**
 	 * Process eating and choking status changes. Avoids firing the PROP_EATING
 	 * property more often than needed and ensures both of the properties are
 	 * in the new state before firing.
-	 *
+	 * 
 	 * @param newStatus the status where to change eating or choking, if changes
 	 * 	are needed
 	 * @param setEat if <code>true</code> then eating status should be set
@@ -788,16 +788,16 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when the entity gets healed.
-	 *
+	 * 
 	 * @param amount amount healed
 	 */
 	public void onHealed(final int amount) {
 		// do nothing for normal rpentities
 	}
-
+	
 	/**
 	 * Called When entity adjusts HP.
-	 *
+	 * 
 	 * @param amount change amount
 	 */
 	private void onHPChange(final int amount) {
@@ -822,7 +822,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when entity is poisoned.
-	 *
+	 * 
 	 * @param amount lost HP
 	 */
 	private void onPoisoned(final int amount) {
@@ -834,10 +834,10 @@ public abstract class RPEntity extends AudibleEntity {
 							+ ".", NotificationType.POISON));
 		}
 	}
-
+	
     /**
      * Set the status.
-     *
+     * 
      * @param status
      *         New status
      * @param show
@@ -854,7 +854,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when entity listen to text from talker.
-	 *
+	 * 
 	 * @param texttype type of talk (normal private talk, administrator message)
 	 * @param text message contents
 	 */
@@ -867,7 +867,7 @@ public abstract class RPEntity extends AudibleEntity {
 			type = NotificationType.PRIVMSG;
 		}
 
-
+		
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, type));
 
 		// Scene settings messages should not disturb playing, just create some atmosphere
@@ -884,19 +884,19 @@ public abstract class RPEntity extends AudibleEntity {
 	private void onStopAttack() {
 		attacking = null;
 	}
-
+	
 	/**
 	 * Called when attacker stop attacking us.
-	 *
+	 * 
 	 * @param attacker the attacked that stopped attacking
 	 */
 	private void onStopAttacked(final IEntity attacker) {
 		attackers.remove(attacker);
 	}
-
+	
 	/**
 	 * Called when the entity reaches an achievement.
-	 *
+	 * 
 	 * @param achievementTitle title of the achievement
 	 * @param achievementDescription description of the achievement
 	 * @param achievementCategory achievement category
@@ -907,7 +907,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Called when entity says something.
-	 *
+	 * 
 	 * @param text message contents
 	 */
 	public void onTalk(String text) {
@@ -917,13 +917,13 @@ public abstract class RPEntity extends AudibleEntity {
 			if (text.startsWith("!me")) {
 				text = text.replace("!me", getTitle());
 				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, NotificationType.EMOTE));
-
+				
 				return;
 			} else {
 				//add the original version
 				nonCreatureClientAddEventLine(text);
 			}
-
+			
 			text = trimText(text);
 
 			ClientSingletonRepository.getUserInterface().addGameScreenText(
@@ -931,10 +931,10 @@ public abstract class RPEntity extends AudibleEntity {
 					NotificationType.NORMAL, true);
 		}
 	}
-
+	
 	/**
 	 * Trim text for a speech bubble.
-	 *
+	 * 
 	 * @param text text to be trimmed
 	 * @return text suitably trimmed for a speech bubble
 	 */
@@ -962,7 +962,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Get the resistance this has on other entities (0-100).
-	 *
+	 * 
 	 * @return The resistance, or 0 if in ghostmode.
 	 */
 	@Override
@@ -976,10 +976,10 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see #release()
 	 */
 	@Override
@@ -1047,7 +1047,7 @@ public abstract class RPEntity extends AudibleEntity {
 		 * Ghost mode feature.
 		 */
 		ghostmode = object.has("ghostmode");
-
+		
 		/*
 		 * Ignoring collision.
 		 */
@@ -1081,10 +1081,10 @@ public abstract class RPEntity extends AudibleEntity {
 
 		showTitle = !object.has("unnamed");
 		showHP = !object.has("no_hpbar");
-
+		
 		initializeSounds();
 	}
-
+	
 	/**
 	 * Initialize the fighting sounds.
 	 */
@@ -1093,16 +1093,16 @@ public abstract class RPEntity extends AudibleEntity {
 			"punch-1"   , "punch-2", "punch-3",
 			"punch-4"   , "punch-5", "punch-6",
 			"swingaxe-1", "slap-1");
-
+		
 		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
 		        "clang-metallic-1");
-
+		
 	}
 
 	/**
 	 * Release this entity. This should clean anything that isn't automatically
 	 * released (such as unregister callbacks, cancel external operations, etc).
-	 *
+	 * 
 	 * @see #initialize(RPObject)
 	 */
 	@Override
@@ -1120,7 +1120,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * Update cycle.
-	 *
+	 * 
 	 * @param delta
 	 *            The time (in ms) since last call.
 	 */
@@ -1153,7 +1153,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -1261,7 +1261,7 @@ public abstract class RPEntity extends AudibleEntity {
 				}
 				fireChange(PROP_HP_RATIO);
 			}
-
+			
 			if (changes.has("no_hpbar")) {
 				showHP = false;
 				fireChange(PROP_HP_DISPLAY);
@@ -1346,7 +1346,7 @@ public abstract class RPEntity extends AudibleEntity {
 		if (changes.has("def_xp")) {
 			defXP = changes.getInt("def_xp");
 		}
-
+		
 		/* TODO: Remove condition when ranged stat testing is finished. */
 		if (Testing.COMBAT) {
 			if (changes.has("ratk_xp")) {
@@ -1361,7 +1361,7 @@ public abstract class RPEntity extends AudibleEntity {
 		if (changes.has("def_item")) {
 			defItem = changes.getInt("def_item");
 		}
-
+		
 		/* TODO: Remove condition when ranged stat testing is finished. */
 		if (Testing.COMBAT) {
 			if (changes.has("ratk_item")) {
@@ -1389,8 +1389,8 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 
 		if (changes.has("xp")) {
-			int newXp = changes.getInt("xp");
-
+			int newXp = changes.getInt("xp"); 
+			
 			if (object.has("xp") && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 				final int amount = newXp - xp;
 				if (amount > 0) {
@@ -1413,7 +1413,7 @@ public abstract class RPEntity extends AudibleEntity {
 									NotificationType.SIGNIFICANT_NEGATIVE));
 				}
 			}
-
+			
 			xp = newXp;
 		}
 
@@ -1438,7 +1438,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -1456,7 +1456,7 @@ public abstract class RPEntity extends AudibleEntity {
 			fireChange(PROP_OUTFIT);
 		}
 
-		/*
+		/* 
 		 * No longer has status. The iterator of EnumSet is safe despite the
 		 * modification in the loop.
 		 */
@@ -1487,7 +1487,7 @@ public abstract class RPEntity extends AudibleEntity {
 				attackTarget = null;
 			}
 		}
-
+		
 		/*
 		 * Title
 		 */
@@ -1495,26 +1495,26 @@ public abstract class RPEntity extends AudibleEntity {
 			showTitle = true;
 			fireChange(PROP_TITLE);
 		}
-
+		
 		if (changes.has("no_hpbar")) {
 			showHP = true;
 			fireChange(PROP_HP_DISPLAY);
 		}
 	}
-
+	
 	/**
 	 * Check if the entity view should show the title.
-	 *
+	 * 
 	 * @return <code>true</code>, if the title should be displayed,
 	 * 	<code>false</code> if it should be hidden
 	 */
 	public boolean showTitle() {
 		return showTitle;
 	}
-
+	
 	/**
 	 * Check if the entity view should show the HP indicator.
-	 *
+	 * 
 	 * @return <code>true</code>, if the HP bar should be displayed,
 	 * 	<code>false</code> if it should be hidden
 	 */
