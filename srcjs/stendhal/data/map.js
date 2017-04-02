@@ -228,17 +228,25 @@ stendhal.data.map = {
 	},
 
 	load: function(locat) {
+		var filename = "";
 		if (this.lastMap != locat) {
 			this.lastMap = locat;
 			var body = document.getElementById("body");
 			body.style.cursor = "wait";
+			console.log(locat);
 			var temp = /([^_]*)_([^_]*)_(.*)/.exec(locat);
-			if (temp[1] == "int") {
-				temp[1] = "interiors";
+			if (temp) {
+				if (temp[1] == "int") {
+					temp[1] = "interiors";
+				} else {
+					temp[1] = "Level " + temp[1];
+				}
+				filename = "/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx";
 			} else {
-				temp[1] = "Level " + temp[1];
+				var temp = /[^_]*_(.*)/.exec(locat);
+				filename = "/tiled/interiors/abstract/" + escape(temp[1]) + ".tmx";
 			}
-			this.requestMap("/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx");
+			this.requestMap(filename);
 		}
 	},
 	
