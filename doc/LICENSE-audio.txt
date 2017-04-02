@@ -1,139 +1,404 @@
-All files declared in this document do not specify a file extensions and fall under their respective license regarless of file extension.
+data/music/adventurers_wish.ogg,      Storyteller, GPL
+data/music/ambiance-church-1.ogg,     Natalie, public domain, http://soundbible.com/253-Church-Bells-Ringing.html
+data/music/ambiance-demon-1.ogg,      Adam Webb, public domain, http://soundbible.com/1883-Scary-Demon-Haunting.html
+data/music/ambiance-restaurant-1.ogg, stephan, public domain, http://soundbible.com/1664-Restaurant-Ambiance.html
+data/music/a_weird_place.ogg,         Storyteller, GPL
+data/music/bongos.ogg,                MarleneAyni, CC0, http://freesound.org/people/MarleneAyni/sounds/89608/
+data/music/bongos.wav.xz,             MarleneAyni, CC0, http://freesound.org/people/MarleneAyni/sounds/89608/
+data/music/christmastree.mid,         Markus Keunecke, public domain, based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+data/music/christmastree.mscz,        Markus Keunecke, public domain, based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+data/music/christmastree.ogg,         Markus Keunecke, public domain, based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+data/music/christmastree.wav,         Markus Keunecke, public domain, based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+data/music/christmastree.wav.xz,      Markus Keunecke, public domain, based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+data/music/come_to_rest.ogg,          Storyteller, GPL
+data/music/deep_forest.ogg,           Storyteller, GPL
+data/music/dungeon_entrance.ogg,      Storyteller, GPL
+data/music/lost_in_the_fog.ogg,       Storyteller, GPL
+data/music/medieval_harp.ogg,         Storyteller, GPL
+data/music/mystical_aura.ogg,         Storyteller, GPL
+data/music/new_hope.ogg,              Storyteller, GPL
+data/music/ohhowjoyfully.mid,         Markus Keunecke, public domain, based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
+data/music/ohhowjoyfully.mscz,        Markus Keunecke, public domain, based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
+data/music/ohhowjoyfully.ogg,         Markus Keunecke, public domain, based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
+data/music/sacred_moments.ogg,        Storyteller, GPL
+data/music/sewers.ogg,                Norien, GPL
+data/music/snowflakelittlewhiteskirt.mid,     Markus Keunecke, public domain, based on score by Hedwig Haberkern (1837–1902) 
+data/music/snowflakelittlewhiteskirt.mp3,     Markus Keunecke, public domain, based on score by Hedwig Haberkern (1837–1902) 
+data/music/snowflakelittlewhiteskirt.mscz,    Markus Keunecke, public domain, based on score by Hedwig Haberkern (1837–1902) 
+data/music/snowflakelittlewhiteskirt.ogg,     Markus Keunecke, public domain, based on score by Hedwig Haberkern (1837–1902) 
+data/music/snowflakelittlewhiteskirt.wav.xz,  Markus Keunecke, public domain, based on score by Hedwig Haberkern (1837–1902) 
+data/music/the_forsaken_mine.ogg,     Storyteller, GPL
+data/music/the_magical_tower.ogg,     Storyteller, GPL
+data/music/the_old_tavern.ogg,        Storyteller, GPL
+data/music/warriors_fight.ogg,        Storyteller, GPL
+data/sounds/alligator-1.ogg,          U.S. Fish and Wildlife Service, public domain, http://www.fws.gov/video/sound.htm 
+data/sounds/ambiance/river-1.ogg,             Adam_N, CC0, http://freesound.org/people/Adam_N/sounds/166310/
+data/sounds/ambiance/river-1.wav.xz,          Adam_N, CC0, http://freesound.org/people/Adam_N/sounds/166310/
+data/sounds/ambiance/water-sloshing-1.ogg,    pawsound, CC0, http://freesound.org/people/pawsound/sounds/154879/
+data/sounds/ambiance/water-sloshing-1.wav.xz, pawsound, CC0, http://freesound.org/people/pawsound/sounds/154879/
+data/sounds/arrow-hit-1.ogg,          Storyteller, GPL
+data/sounds/attack-fire-1.ogg,        Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
+data/sounds/attack-fire-1.wav.xz,     Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
+data/sounds/attack-fire-2.ogg,        Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
+data/sounds/attack-fire-2.wav.xz,     Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
+data/sounds/attack-fire-3.ogg,        Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
+data/sounds/attack-fire-3.wav.xz,     Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
+data/sounds/bat-1.ogg,                polymorpheva, CC0, http://www.freesound.org/people/polymorpheva/sounds/104205/
+data/sounds/bat-1.wav.xz,             polymorpheva, CC0, http://www.freesound.org/people/polymorpheva/sounds/104205/
+data/sounds/bat-2.ogg,                polymorpheva, CC0, http://www.freesound.org/people/polymorpheva/sounds/104205/
+data/sounds/bat-2.wav.xz,             polymorpheva, CC0, http://www.freesound.org/people/polymorpheva/sounds/104205/
+data/sounds/bat-3.ogg,                polymorpheva, CC0, http://www.freesound.org/people/polymorpheva/sounds/104205/
+data/sounds/bat-3.wav.xz,             polymorpheva, CC0, http://www.freesound.org/people/polymorpheva/sounds/104205/
+data/sounds/bear-1.ogg,               free sound pack
+data/sounds/bear-2.ogg,               free sound pack
+data/sounds/bear-2.wav.xz,            free sound pack
+data/sounds/bear-3.ogg,               free sound pack
+data/sounds/bear-3.wav.xz,            free sound pack
+data/sounds/bee-1.ogg,                nps.gov, public domain, http://soundbible.com/971-Bee.html 
+data/sounds/bell-1.ogg,               Storyteller, GPL
+data/sounds/bird-1b.ogg,              free sound pack
+data/sounds/bird-2b.ogg,              free sound pack
+data/sounds/bird-3b.ogg,              free sound pack
+data/sounds/bird-pigeon-1.ogg,        winsx87, CC0, http://freesound.org/people/winsx87/sounds/152024/
+data/sounds/bird-pigeon-1.wav.xz,     winsx87, CC0, http://freesound.org/people/winsx87/sounds/152024/
+data/sounds/bird-pigeon-flap-1.ogg,   winsx87, CC0, http://freesound.org/people/winsx87/sounds/152024/
+data/sounds/bird-pigeon-flap-1.wav.xz, winsx87, CC0, http://freesound.org/people/winsx87/sounds/152024/
+data/sounds/blackbird-11.ogg,         free sound pack
+data/sounds/blackbird-6b.ogg,         free sound pack
+data/sounds/blackbird-7b.ogg,         free sound pack
+data/sounds/blackbird-8b.ogg,         free sound pack
+data/sounds/bobcat-1.ogg,             free sound pack
+data/sounds/bobcat-1.wav.xz,          free sound pack
+data/sounds/bones-1.ogg,              free sound pack
+data/sounds/bones-2.ogg,              AntumDeluge, GPL
+data/sounds/bones-2.wav.xz,           AntumDeluge, GPL
+data/sounds/book-1.ogg,               Storyteller, GPL
+data/sounds/book-2.ogg,               Storyteller, GPL
+data/sounds/bottle-2.ogg,             free sound pack
+data/sounds/cat-purr-1.ogg,           Belhene, CC0, http://freesound.org/people/Belhene/sounds/157837/
+data/sounds/cat-purr-1.wav.xz,        Belhene, CC0, http://freesound.org/people/Belhene/sounds/157837/
+data/sounds/chicken-1.ogg,            free sound pack
+data/sounds/chicken-2.ogg,            unknown, public domain, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/chicken-chick-1.ogg,      Barbamiz, CC0, http://www.freesound.org/people/Barbamiz/sounds/116135/
+data/sounds/chicken-chick-1.wav.xz,   Barbamiz, CC0, http://www.freesound.org/people/Barbamiz/sounds/116135/
+data/sounds/chicken-chick-2.ogg,      Barbamiz, CC0, http://www.freesound.org/people/Barbamiz/sounds/116135/
+data/sounds/chicken-chick-2.wav.xz,   Barbamiz, CC0, http://www.freesound.org/people/Barbamiz/sounds/116135/
+data/sounds/clang-dull-1.ogg,         alienistcog, CC0, http://www.freesound.org/people/alienistcog/sounds/124711/
+data/sounds/clang-dull-1.wav.xz,      alienistcog, CC0, http://www.freesound.org/people/alienistcog/sounds/124711/
+data/sounds/clang-metallic-1.ogg,     lostchocolatelab, CC0, http://www.freesound.org/people/lostchocolatelab/sounds/1468/
+data/sounds/clang-metallic-1.wav.xz,  lostchocolatelab, CC0, http://www.freesound.org/people/lostchocolatelab/sounds/1468/
+data/sounds/click-10.ogg,             free sound pack
+data/sounds/click-1.ogg,              satrebor, CC0, http://www.freesound.org/people/satrebor/sounds/113218/
+data/sounds/click-1.wav.xz,           satrebor, CC0, http://www.freesound.org/people/satrebor/sounds/113218/
+data/sounds/click-4.ogg,              free sound pack
+data/sounds/click-5.ogg,              free sound pack
+data/sounds/click-6.ogg,              free sound pack
+data/sounds/click-8.ogg,              free sound pack
+data/sounds/click-clack-1.ogg,        satrebor, CC0, http://www.freesound.org/people/satrebor/sounds/113218/
+data/sounds/click-clack-1.wav.xz,     satrebor, CC0, http://www.freesound.org/people/satrebor/sounds/113218/
+data/sounds/clock-1.ogg               Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/clock-1.wav.xz            Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/coins-1.ogg,              free sound pack
+data/sounds/cork-pop-1.ogg,           fryzu82, CC0, http://www.freesound.org/people/fryzu82/sounds/142325/
+data/sounds/cork-pop-1.wav.xz,        fryzu82, CC0, http://www.freesound.org/people/fryzu82/sounds/142325/
+data/sounds/cough-11.ogg,             free sound pack
+data/sounds/cough-2.ogg,              free sound pack
+data/sounds/cough-3.ogg,              free sound pack
+data/sounds/cow-1.ogg,                unknown, public domain, http://soundbible.com/1143-Cow-And-Bell.html
+data/sounds/cow-2.ogg,                FunnyMan374, CC0, http://freesound.org/people/FunnyMan374/sounds/112068/
+data/sounds/cow-2.wav.xz,             FunnyMan374, CC0, http://freesound.org/people/FunnyMan374/sounds/112068/
+data/sounds/cowbell-1.ogg,            cloudyeyetavern, CC0, http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
+data/sounds/cowbell-1.wav.xz,         cloudyeyetavern, CC0, http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
+data/sounds/creak-1.ogg,              free sound pack
+data/sounds/creak-2.ogg,              stephan, public domain, http://soundbible.com/1717-Creaking-Door-Spooky.html
+data/sounds/creak-2.wav.xz,           stephan, public domain, http://soundbible.com/1717-Creaking-Door-Spooky.html
+data/sounds/creak-tree-2.ogg,         Department64, CC0, http://www.freesound.org/people/Department64/sounds/95262/
+data/sounds/creak-tree-2.wav.xz,      Department64, CC0, http://www.freesound.org/people/Department64/sounds/95262/
+data/sounds/creaky-door-1.ogg,        free sound pack
+data/sounds/creaky-door-2.ogg,        free sound pack
+data/sounds/creaky-door-close-1.ogg,  Storyteller, GPL
+data/sounds/creaky-door-open-1.ogg,   Storyteller, GPL
+data/sounds/creaky-door-open-2.ogg,   Storyteller, GPL
+data/sounds/dishbreak-1.ogg,          free sound pack
+data/sounds/dishbreak-2.ogg,          free sound pack
+data/sounds/dishes-1.ogg,             free sound pack
+data/sounds/dishes-21.ogg,            free sound pack
+data/sounds/dog-angry-low-1.ogg,      Lisa Redfern, public domain, http://soundbible.com/2034-Growling-Snarling-Dogs.html
+data/sounds/dog-small-bark-1.ogg,     nfrae, CC0, http://freesound.org/people/nfrae/sounds/100032/
+data/sounds/dog-small-bark-1.wav.xz,  nfrae, CC0, http://freesound.org/people/nfrae/sounds/100032/
+data/sounds/dog-small-bark-2.ogg,     nfrae, CC0, http://freesound.org/people/nfrae/sounds/100032/
+data/sounds/dog-small-bark-2.wav.xz,  nfrae, CC0, http://freesound.org/people/nfrae/sounds/100032/
+data/sounds/dog-snarl-1.ogg,          Lisa Redfern, public domain, http://soundbible.com/2034-Growling-Snarling-Dogs.html
+data/sounds/dog-snarl-2.ogg,          Lisa Redfern, public domain, http://soundbible.com/2034-Growling-Snarling-Dogs.html
+data/sounds/drain-water-11.ogg,       free sound pack
+data/sounds/eat-1.ogg,                free sound pack
+data/sounds/elephant-1.ogg,           vataaa, CC0, http://www.freesound.org/people/vataaa/sounds/148873/
+data/sounds/elephant-1.wav.xz,        vataaa, CC0, http://www.freesound.org/people/vataaa/sounds/148873/
+data/sounds/elephant-2.ogg,           vataaa, CC0, http://www.freesound.org/people/vataaa/sounds/148873/
+data/sounds/elephant-2.wav.xz,        vataaa, CC0, http://www.freesound.org/people/vataaa/sounds/148873/
+data/sounds/elephant-rumble-1.ogg,    unknown, public domain, https://sf.net/projects/myabcs
+data/sounds/elephant-rumble-1.wav.xz, unknown, public domain, https://sf.net/projects/myabcs
+data/sounds/fart-1.ogg,               free sound pack
+data/sounds/fart-1.wav.xz,            free sound pack
+data/sounds/fire-1.ogg,               AntumDeluge, GPL, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/fire-1.wav.xz,            AntumDeluge, GPL, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/fire-2.ogg,               free sound pack
+data/sounds/fire-3.ogg,               free sound pack
+data/sounds/fire-5.ogg,               free sound pack
+data/sounds/fire-8.ogg,               free sound pack
+data/sounds/fire-sparkes-1.ogg,       free sound pack
+data/sounds/fishing-1.ogg,            vibe_crc + j1987, CC0, http://www.freesound.org/people/vibe_crc/sounds/50623/ + http://www.freesound.org/people/j1987/sounds/95564/
+data/sounds/fishing-1.wav.xz,         vibe_crc + j1987, CC0, http://www.freesound.org/people/vibe_crc/sounds/50623/ + http://www.freesound.org/people/j1987/sounds/95564/
+data/sounds/frog-1.ogg,               free sound pack
+data/sounds/frog-1.wav.xz,            free sound pack
+data/sounds/ghost-1.ogg,              free sound pack
+data/sounds/ghost-1.wav.xz,           free sound pack
+data/sounds/ghost-2.ogg,              free sound pack
+data/sounds/ghost-2.wav.xz,           free sound pack
+data/sounds/giggle-1.ogg,             free sound pack
+data/sounds/giggle-1.wav.xz,          free sound pack
+data/sounds/giggle-2.ogg,             free sound pack
+data/sounds/giggle-2.wav.xz,          free sound pack
+data/sounds/glass-break-1.ogg,        free sound pack
+data/sounds/glass-break-2.ogg,        martinimeniscus, CC0, http://www.freesound.org/people/martinimeniscus/sounds/164462/
+data/sounds/glass-break-2.wav.xz,     martinimeniscus, CC0, http://www.freesound.org/people/martinimeniscus/sounds/164462/
+data/sounds/goat-1.ogg,               stephan, public domain, http://soundbible.com/1662-Farm.html
+data/sounds/goat-1.wav.xz,            stephan, public domain, http://soundbible.com/1662-Farm.html
+data/sounds/goat-2.ogg,               stephan, public domain, http://soundbible.com/1632-On-The-Farm.html
+data/sounds/goat-2.wav.xz,            stephan, public domain, http://soundbible.com/1632-On-The-Farm.html
+data/sounds/gorilla-1.ogg,            free sound pack
+data/sounds/gorilla-1.wav.xz,         free sound pack
+data/sounds/gorilla-2.ogg,            free sound pack
+data/sounds/gorilla-2.wav.xz,         free sound pack
+data/sounds/gorilla-3.ogg,            free sound pack
+data/sounds/gorilla-3.wav.xz,         free sound pack
+data/sounds/gorilla-4.ogg,            free sound pack
+data/sounds/gorilla-4.wav.xz,         free sound pack
+data/sounds/gorilla-5.ogg,            free sound pack
+data/sounds/gorilla-5.wav.xz,         free sound pack
+data/sounds/groan-1.ogg,              free sound pack
+data/sounds/growl-large-3.ogg,        SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+data/sounds/growl-large-3.wav.xz,     SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+data/sounds/grunt-1.ogg,              free sound pack
+data/sounds/grunt-2.ogg,              free sound pack
+data/sounds/grunt-large-1.ogg,        SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+data/sounds/grunt-large-1.wav.xz,     SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+data/sounds/grunt-large-2.ogg,        SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+data/sounds/grunt-large-2.wav.xz,     SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+data/sounds/guitar-1.ogg,             AntumDeluge, public domain, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/guitar-1.wav.xz,          free sound pack
+data/sounds/hammer-1.ogg,             free sound pack
+data/sounds/hammer-1.wav.xz,          free sound pack
+data/sounds/harp-1.ogg,               free sound pack
+data/sounds/hiccup-1.ogg,             free sound pack
+data/sounds/hiccup-2.ogg,             free sound pack
+data/sounds/hiccup-3.ogg,             free sound pack
+data/sounds/ho-ho-ho-1.ogg,           canucklovingbrit, CC0, http://freesound.org/people/canucklovingbrit/sounds/110641/
+data/sounds/ho-ho-ho-1.wav.xz,        canucklovingbrit, CC0, http://freesound.org/people/canucklovingbrit/sounds/110641/
+data/sounds/ho-ho-ho-2.ogg,           canucklovingbrit, CC0,  http://freesound.org/people/canucklovingbrit/sounds/110642/
+data/sounds/ho-ho-ho-2.wav.xz,        canucklovingbrit, CC0,  http://freesound.org/people/canucklovingbrit/sounds/110642/
+data/sounds/horse-1.ogg,              unknown, public domain, http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html 
+data/sounds/horse-1.wav.xz,           unknown, public domain, http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html 
+data/sounds/horse-2.ogg,              unknown, public domain, http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
+data/sounds/howl-11.ogg,              free sound pack
+data/sounds/howl-11.wav.xz,           free sound pack
+data/sounds/howl-1.ogg,               free sound pack
+data/sounds/howl-1.wav.xz,            free sound pack
+data/sounds/howl-2.ogg,               free sound pack
+data/sounds/howl-2.wav.xz,            free sound pack
+data/sounds/howl-5.ogg,               free sound pack
+data/sounds/howl-5.wav.xz,            free sound pack
+data/sounds/hyena-1.ogg,              free sound pack
+data/sounds/hyena-2.ogg,              free sound pack
+data/sounds/hyena-2.wav.xz,           free sound pack
+data/sounds/hyena-3.ogg,              free sound pack
+data/sounds/ice-cubes-1.ogg,          free sound pack
+data/sounds/kettle-1.ogg,             free sound pack
+data/sounds/keys-1.ogg,               Storyteller, GPL
+data/sounds/kitten-meow-1.ogg,        videog, CC0,  http://freesound.org/people/videog/sounds/149191/
+data/sounds/kitten-meow-1.wav.xz,     videog, CC0,  http://freesound.org/people/videog/sounds/149191/
+data/sounds/kitten-meow-2.ogg,        videog, CC0,  http://freesound.org/people/videog/sounds/149191/
+data/sounds/kitten-meow-2.wav.xz,     videog, CC0,  http://freesound.org/people/videog/sounds/149191/
+data/sounds/kitten-meow-3.ogg,        videog, CC0,  http://freesound.org/people/videog/sounds/149191/
+data/sounds/kitten-meow-3.wav.xz,     videog, CC0,  http://freesound.org/people/videog/sounds/149191/
+data/sounds/kitten-mew-1.ogg,         AntumDeluge, GPL
+data/sounds/kitten-mew-1.wav.xz,      AntumDeluge, GPL
+data/sounds/kitten-purr-1.ogg,        Belhene, CC0, http://freesound.org/people/Belhene/sounds/157837/
+data/sounds/kitten-purr-1.wav.xz,     Belhene, CC0, http://freesound.org/people/Belhene/sounds/157837/
+data/sounds/lama-1.ogg,               free sound pack
+data/sounds/lama-1.wav.xz,            free sound pack
+data/sounds/lark-1.ogg,               free sound pack
+data/sounds/lark-2.ogg,               free sound pack
+data/sounds/laugh-1.ogg,              free sound pack
+data/sounds/laugh-2.ogg,              free sound pack
+data/sounds/laugh-33.ogg,             free sound pack
+data/sounds/laugh-33.wav.xz,          free sound pack
+data/sounds/laugh-evil-1.ogg,         Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/laugh-evil-3.ogg,         free sound pack
+data/sounds/laugh-evil-4.ogg,         free sound pack
+data/sounds/laugh-evil-5.ogg,         free sound pack
+data/sounds/leopard-11.ogg,           free sound pack
+data/sounds/lion-11.ogg,              free sound pack
+data/sounds/lion-11.wav.xz,           free sound pack
+data/sounds/lion-1.ogg,               Info-farmer, public domain, http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
+data/sounds/lion-22.ogg,              free sound pack
+data/sounds/lion-2.ogg,               unknown, public domain, https://sf.net/projects/myabcs
+data/sounds/lion-2.wav.xz,            unknown, public domain, https://sf.net/projects/myabcs
+data/sounds/loop-drag-slimy-1.ogg,    altfuture, CC0, http://www.freesound.org/people/altfuture/sounds/174634/
+data/sounds/loop-drag-slimy-1.wav.xz, altfuture, CC0, http://www.freesound.org/people/altfuture/sounds/174634/
+data/sounds/loop-grind-stone-1.ogg,   j1987, CC0, http://www.freesound.org/people/j1987/sounds/95007/
+data/sounds/loop-grind-stone-1.wav.xz, j1987, CC0, http://www.freesound.org/people/j1987/sounds/95007/
+data/sounds/metal-can-1.ogg,          free sound pack
+data/sounds/moan-1.ogg,               free sound pack
+data/sounds/monkey-1.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monkey-1.wav.xz,          Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monkey-2.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monkey-2.wav.xz,          Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monkey-3.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monkey-3.wav.xz,          Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monster-11.ogg,           Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-11.wav.xz,        Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-12.ogg,           Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-12.wav.xz,        Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-14.ogg,           Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-14.wav.xz,        Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-16.ogg,           Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-16.wav.xz,        Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-1.ogg,            Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-1.wav.xz,         Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-2.ogg,            Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/monster-2.wav.xz,         Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
+data/sounds/mouse-2.ogg,              AntumDeluge, public domain, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/mouse-2.wav.xz,           AntumDeluge, public domain, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/mutant-frog-1.ogg,        Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/mutant-frog-2.ogg,        Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/mutant-frog-2.wav.xz,     Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/panda-1.ogg,              free sound pack
+data/sounds/panda-1.wav.xz,           free sound pack
+data/sounds/panda-2.ogg,              free sound pack
+data/sounds/penguin-1.ogg,            Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
+data/sounds/penguin-1.wav.xz,         Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
+data/sounds/penguin-2.ogg,            Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
+data/sounds/penguin-2.wav.xz,         Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
+data/sounds/piano-1.ogg,              AntumDeluge, public domain
+data/sounds/piano-1.wav.xz,           AntumDeluge, public domain
+data/sounds/pick-metallic-1.ogg,      qubodup, CC0, http://freesound.org/people/qubodup/sounds/182821/
+data/sounds/pick-metallic-1.wav.xz,   qubodup, CC0, http://freesound.org/people/qubodup/sounds/182821/
+data/sounds/pig-1.ogg,                free sound pack
+data/sounds/pig-2.ogg,                free sound pack
+data/sounds/pig-3.ogg,                unknown, public domain, http://www.mediacollege.com/downloads/sound-effects/animals/pig/
+data/sounds/pop-2.ogg,                free sound pack
+data/sounds/punch-1.ogg,              free sound pack
+data/sounds/punch-2.ogg,              free sound pack
+data/sounds/punch-3.ogg,              free sound pack
+data/sounds/punch-4.ogg,              free sound pack
+data/sounds/punch-5.ogg,              free sound pack
+data/sounds/punch-6.ogg,              free sound pack
+data/sounds/puppy-bark-1.ogg,         moffet, CC0, http://www.freesound.org/people/moffet/sounds/72579/
+data/sounds/puppy-bark-1.wav.xz,      moffet, CC0, http://www.freesound.org/people/moffet/sounds/72579/
+data/sounds/raccoon-1.ogg,            free sound pack
+data/sounds/raccoon-1.wav.xz,         free sound pack
+data/sounds/rats-1.ogg,               free sound pack
+data/sounds/rats-2.ogg,               free sound pack
+data/sounds/rats-3.ogg                free sound pack
+data/sounds/rats-41.ogg,              free sound pack
+data/sounds/rattlesnake-1.ogg,        fws.gov, public domain, http://soundbible.com/237-Rattlesnake-Rattle.html
+data/sounds/rattlesnake-1.wav.xz,     fws.gov, public domain, http://soundbible.com/237-Rattlesnake-Rattle.html
+data/sounds/roar-dragon-1.ogg,        JoelAudio, CC0, http://freesound.org/people/JoelAudio/sounds/85568/
+data/sounds/roar-dragon-1.wav.xz,     JoelAudio, CC0, http://freesound.org/people/JoelAudio/sounds/85568/
+data/sounds/roar-dragon-2.ogg,        frasbr, CC0, http://freesound.org/people/frasbr/sounds/145729/
+data/sounds/roar-dragon-2.wav.xz,     frasbr, CC0, http://freesound.org/people/frasbr/sounds/145729/
+data/sounds/roar-large-1.ogg,         ibm5155, CC0, http://freesound.org/people/ibm5155/sounds/174913/
+data/sounds/roar-large-1.wav.xz,      ibm5155, CC0, http://freesound.org/people/ibm5155/sounds/174913/
+data/sounds/rocks-1.ogg,              ALLANZ10D, CC0, http://freesound.org/people/ALLANZ10D/sounds/155934/
+data/sounds/rocks-1.wav.xz,           ALLANZ10D, CC0, http://freesound.org/people/ALLANZ10D/sounds/155934/
+data/sounds/saur-3.ogg,               free sound pack
+data/sounds/saur-4.ogg,               free sound pack
+data/sounds/scrape-1.ogg,             AntumDeluge, GPL
+data/sounds/scrape-1.wav.xz,          AntumDeluge, GPL
+data/sounds/scrape-2.ogg,             AntumDeluge, GPL
+data/sounds/scrape-2.wav.xz,          AntumDeluge, GPL
+data/sounds/scream-fem-2.ogg,         NeoPhyTe, public domain: http://soundbible.com/1627-Female-Scream-Horror.html
+data/sounds/shake-leaves-1.ogg,       vibe_crc, CC0, http://www.freesound.org/people/vibe_crc/sounds/59315/
+data/sounds/shake-leaves-1.wav.xz,    vibe_crc, CC0, http://www.freesound.org/people/vibe_crc/sounds/59315/
+data/sounds/sheep-1.ogg,              free sound pack
+data/sounds/sheep-2.ogg,              free sound pack
+data/sounds/sheep-3.ogg,              free sound pack
+data/sounds/sheep-4.ogg,              free sound pack
+data/sounds/sheep-5.ogg,              cognito perceptu, CC0, http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
+data/sounds/sheep-5.wav.xz,           cognito perceptu, CC0, http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
+data/sounds/slap-1.ogg,               free sound pack
+data/sounds/sleep-1.ogg,              Storyteller, GPL
+data/sounds/smith-1.ogg,              free sound pack
+data/sounds/snake-1.ogg,              free sound pack
+data/sounds/snake-cobra-1.ogg,        unknown, public domain, https://archive.org/details/unknowncobracobrabitewmv
+data/sounds/snake-cobra-2.ogg,        unknown, public domain, https://archive.org/details/unknowncobracobrabitewmv
+data/sounds/snap-branch-1.ogg,        mrjingles, CC0, http://www.freesound.org/people/mrjingles/sounds/17184/
+data/sounds/snap-branch-1.wav.xz,     mrjingles, CC0, http://www.freesound.org/people/mrjingles/sounds/17184/
+data/sounds/sneeze-1.ogg,             free sound pack
+data/sounds/sneeze-baby-1.ogg,        Stephan, public domain, http://soundbible.com/23-Baby-Sneeze.html
+data/sounds/swingaxe-1.ogg,           free sound pack
+data/sounds/tadaa-1.ogg,              Katie Russell (kymara), GPL
+data/sounds/tiger-1.ogg,              unknown, public domain, http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
+data/sounds/tiger-2.ogg,              unknown, public domain, http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
+data/sounds/toilet-flush-1.ogg,       KevanGC, public domain, http://soundbible.com/1657-Toilet-Flushing.html
+data/sounds/toilet-flush-1.wav.xz     KevanGC, public domain, http://soundbible.com/1657-Toilet-Flushing.html
+data/sounds/trash-1.ogg,              free sound pack
+data/sounds/trash-21.ogg,             free sound pack
+data/sounds/trash-3.ogg,              free sound pack
+data/sounds/trash-3.wav.xz,           free sound pack
+data/sounds/treecreak-1.ogg,          free sound pack
+data/sounds/undead-1.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/undead-2.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/undead-3.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/undead-4.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/undead-5.ogg,             ArriGD, CC0, http://www.freesound.org/people/ArriGD/sounds/144005/
+data/sounds/undead-5.wav.xz,          ArriGD, CC0, http://www.freesound.org/people/ArriGD/sounds/144005/
+data/sounds/water-2.ogg,              free sound pack
+data/sounds/water-3.ogg,              free sound pack
+data/sounds/water-4.ogg,              free sound pack
+data/sounds/water-5.ogg,              Storyteller, GPL
+data/sounds/water-faucet-1.ogg,       unknown, public domain, http://www.pdsounds.org/sounds/faucet_water_into_sink
+data/sounds/water-faucet-1.wav.x      free sound pack
+data/sounds/wave-11.ogg,              free sound pack
+data/sounds/weather/rain_heavy.ogg,           Marcus Dellicompagni - www.PoundSound.co.uk, CC0, http://freesound.org/people/dingo1/sounds/134721
+data/sounds/weather/rain_heavy.wav.xz,        Marcus Dellicompagni - www.PoundSound.co.uk, CC0, http://freesound.org/people/dingo1/sounds/134721
+data/sounds/weather/rain_light.ogg,           Zepp2010, CC0, http://freesound.org/people/Zepp2010/sounds/163264
+data/sounds/weather/rain_light.wav.xz,        Zepp2010, CC0, http://freesound.org/people/Zepp2010/sounds/163264
+data/sounds/weather/rain.ogg,                 klangfabrik, CC0, http://freesound.org/people/klangfabrik/sounds/157149/
+data/sounds/weather/rain.wav.xz,              klangfabrik, CC0, http://freesound.org/people/klangfabrik/sounds/157149/
+data/sounds/weather/thunder-01.ogg,           vonz, CC0, http://freesound.org/people/vonz/sounds/188767/
+data/sounds/weather/thunder-01.wav.xz,        vonz, CC0, http://freesound.org/people/vonz/sounds/188767/
+data/sounds/weather/thunder-02.ogg,           Andy_Gardner, CC0, http://freesound.org/people/Andy_Gardner/sounds/238145/
+data/sounds/weather/thunder-02.wav.xz,        Andy_Gardner, CC0, http://freesound.org/people/Andy_Gardner/sounds/238145/
+data/sounds/weather/thunder-03.ogg,           sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
+data/sounds/weather/thunder-03.wav.xz,        sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
+data/sounds/weather/thunder-04.ogg,           sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
+data/sounds/weather/thunder-04.wav.xz,        sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
+data/sounds/weather/thunder-05.ogg,           Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
+data/sounds/weather/thunder-05.wav.xz,        Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
+data/sounds/weather/thunder-06.ogg,           Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
+data/sounds/weather/thunder-06.wav.xz,        Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
+data/sounds/weather/thunder-07.ogg,           Xythe, CC0, http://freesound.org/people/Xythe/sounds/37299/
+data/sounds/weather/thunder-07.wav.xz,        Xythe, CC0, http://freesound.org/people/Xythe/sounds/37299/
+data/sounds/weather/thunder-08.ogg,           Yoyodaman234, CC0, http://freesound.org/people/Yoyodaman234/sounds/253953/      
+data/sounds/weather/thunder-08.wav.xz,        Yoyodaman234, CC0, http://freesound.org/people/Yoyodaman234/sounds/253953/
+data/sounds/weather/wind_heavy.ogg,           stewdio2003, CC0, http://freesound.org/people/stewdio2003/sounds/238374/
+data/sounds/weather/wind_heavy.wav.xz,        stewdio2003, CC0, http://freesound.org/people/stewdio2003/sounds/238374/
+data/sounds/weather/wind_light.ogg,           MrAuralization, CC0, http://freesound.org/people/MrAuralization/sounds/243617/
+data/sounds/weather/wind_light.wav.xz,        MrAuralization, CC0, http://freesound.org/people/MrAuralization/sounds/243617/
+data/sounds/weather/wind.ogg,                 felix.blume, CC0, http://freesound.org/people/felix.blume/sounds/146436/
+data/sounds/weather/wind.wav.xz,              felix.blume, CC0, http://freesound.org/people/felix.blume/sounds/146436/
+data/sounds/wind-2.ogg,               free sound pack
+data/sounds/window-close-1.ogg,       free sound pack
+data/sounds/wings-flap-large-1.ogg,   dave.des/, CC0, http://freesound.org/people/dave.des/sounds/127197/
+data/sounds/wings-flap-large-1.wav.xz, dave.des/, CC0, http://freesound.org/people/dave.des/sounds/127197/
+data/sounds/witch-cackle-1.ogg,       Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/woodpecker-1.ogg,         free sound pack
+data/sounds/woodpecker-1.wav.xz,      free sound pack
+data/sounds/xylophone-1.ogg,          Storyteller, GPL
+data/sounds/xylophone-1.wav.xz,       Storyteller, GPL
+data/sounds/yay-1.ogg,                Katie Russell (kymara), GPL
+data/sounds/yell-1.ogg,               free sound pack
 
 
-The following files are released and can be distributed under the terms and conditions of the BSD-style, MIT-style, or the Creative Commons Attribution 3.0 (or later) licenses provided (See Licenses/BSD.txt, Licenses/MIT.txt, and Licenses/CC-BY-3.0.txt):
-
-  Copyright © 2013 Jordan Irwin a.k.a. AntumDeluge:
-    • data/sounds/
-        laugh-evil-1        monkey-1            monkey-2
-        monkey-3            mutant-frog-1       mutant-frog-2
-        robot-1             snake-2             undead-1
-        undead-2            undead-3            undead-4
-        witch-cackle-1
-
-
-The following files are released into the public domain and can be distributed under the terms and conditions of the Creative Commons 0 license (See Licenses/CC0-1.0.txt). For any areas that do not legally accept the public domain or CC0 these files can be distributed under the terms and conditions of the GPL (See license.txt):
-
-    • data/music/
-        ambiance-church-1   ambiance-demon-1    ambiance-restaurant-1
-        • Sources:
-            http://soundbible.com/1664-Restaurant-Ambiance.html
-            http://soundbible.com/1883-Scary-Demon-Haunting.html
-            http://soundbible.com/253-Church-Bells-Ringing.html
-    • data/sounds/
-        alligator-1         attack-fire-1       attack-fire-2
-        attack-fire-3       bat-1               bat-2
-        bat-3               bee-1               bird-pigeon-1
-        bird-pigeon-flap-1  bones-2             bongos
-        cat-purr-1          cat-purr-kitten-1   chicken-2
-        chicken-chick-1     chicken-chick-2     clang-dull-1
-        clang-metallic-1    click-1             click-clack-1
-        cork-pop-1          cow-1               cow-2
-        cowbell-1           creak-2             creak-tree-2
-        dog-angry-low-1     dog-snarl-1         dog-snarl-2
-        dog-bark-small-1    dog-small-bark-2    elephant-1
-        elephant-2          elephant-rumble-1   fire-1
-        fishing-1           flame-burst-1       flame-burst-2
-        flame-burst-3       glass-break-1       goat-1
-        goat-2              growl-large-3       grunt-large-1
-        grunt-large-2       ho-ho-ho-1			ho-ho-ho-2			horse-1             horse-2
-        kitten-mew-1        kiteen-meow-1       kitten-meow-2
-        kitten-meow-3       lion-1              lion-2
-        loop-drag-slimy-1   loop-grind-stone-1  monster-1
-        monster-2           monster-11          monster-12
-        monster-14          monster-16          mouse-2
-        penguin-1           penguin-2           piano-1 (need source)
-        pick-metallic-1     pig-3               rattlesnake-1
-        roar-dragon-1       roar-dragon-2       roar-large-1
-        robot-2             robot-3             rocks-1
-        scream-fem-2        scream-wilhelm      shake-leaves-1
-        sheep-5             snake-cobra-1       snake-cobra-2
-        snap-branch-1       sneeze-baby-1       tiger-1
-        tiger-2             toilet-flush-1      undead-5
-        water-faucet-1      wings-flap-large-1
-        • Sources:
-            http://archive.org/details/unknowncobracobrabitewmv
-            http://archive.org/details/WilhelmScreamSample
-            http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
-            http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
-            http://freesound.org/people/alienistcog/sounds/124711/
-            http://freesound.org/people/ALLANZ10D/sounds/155934/
-            http://freesound.org/people/altfuture/sounds/174634/
-            http://freesound.org/people/ArriGD/sounds/144005/
-            http://freesound.org/people/Barbamiz/sounds/116135/
-            http://freesound.org/people/Belhene/sounds/157837/
-            http://freesound.org/people/Bidone/sounds/66150/
-            http://freesound.org/people/canucklovingbrit/sounds/110641/
-            http://freesound.org/people/canucklovingbrit/sounds/110642/
-            http://freesound.org/people/cloudyeyetavern/sounds/148931/
-            http://freesound.org/people/cognito%20perceptu/sounds/88423/
-            http://freesound.org/people/dave.des/sounds/127197/
-            http://freesound.org/people/Department64/sounds/95262/
-            http://freesound.org/people/frasbr/sounds/145729/
-            http://freesound.org/people/fryzu82/sounds/142325/
-            http://freesound.org/people/FunnyMan374/sounds/112068/
-            http://freesound.org/people/gcmax/sounds/147351/
-            http://freesound.org/people/ibm5155/sounds/174913/
-            http://freesound.org/people/j1987/sounds/95564/
-            http://freesound.org/people/j1987/sounds/95007/
-            http://freesound.org/people/JoelAudio/sounds/85568/
-            http://freesound.org/people/lostchocolatelab/sounds/1468/
-            http://freesound.org/people/MarleneAyni/sounds/89608/
-            http://freesound.org/people/martinimeniscus/sounds/164462/
-            http://freesound.org/people/mrjingles/sounds/17184/
-            http://freesound.org/people/Nic3_one/sounds/166555/
-            http://freesound.org/people/nfrae/sounds/100032/
-            http://freesound.org/people/polymorpheva/sounds/104205/
-            http://freesound.org/people/qubodup/sounds/182821/
-            http://freesound.org/people/satrebor/sounds/113218/
-            http://freesound.org/people/SmallQuadruped/sounds/42201
-            http://freesound.org/people/vataaa/sounds/148873/
-            http://freesound.org/people/vibe_crc/sounds/50623/
-            http://freesound.org/people/vibe_crc/sounds/59315/
-            http://freesound.org/people/videog/sounds/149191/
-            http://freesound.org/people/winsx87/sounds/152024/
-            http://www.freewebs.com/jordansroom/sounds.html
-            http://www.fws.gov/video/sound.htm
-            http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
-            http://www.mediacollege.com/downloads/sound-effects/animals/pig/
-            http://opengameart.org/content/monster-sound-effects-2
-            http://www.pdsounds.org/sounds/faucet_water_into_sink
-            http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
-            http://soundbible.com/1143-Cow-And-Bell.html
-            http://soundbible.com/1627-Female-Scream-Horror.html
-            http://soundbible.com/1632-On-The-Farm.html
-            http://soundbible.com/1657-Toilet-Flushing.html
-            http://soundbible.com/1662-Farm.html
-            http://soundbible.com/1717-Creaking-Door-Spooky.html
-            http://soundbible.com/1758-Door-Entry-Notification.html
-            http://soundbible.com/2034-Growling-Snarling-Dogs.html
-            http://soundbible.com/23-Baby-Sneeze.html
-            http://soundbible.com/237-Rattlesnake-Rattle.html
-            http://soundbible.com/971-Bee.html
-            http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
-            http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
-            http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
-            http://sourceforge.net/projects/myabcs
-    • data/sounds/ambiance/
-        river-1             water-sloshing-1
-        • Sources:
-            http://freesound.org/people/Adam_N/sounds/166310/
-            http://freesound.org/people/pawsound/sounds/154879/
-    • data/sounds/weather/
-        rain        rain_heavy  rain_light  thunder-01  thunder-02  thunder-03
-        thunder-04  thunder-05  thunder-06  thunder-07  thunder-08  wind
-        wind_light  wind_heavy
-        • Sources:
-            http://freesound.org/people/Andy_Gardner/sounds/238145/
-            http://freesound.org/people/Dave%20Welsh/sounds/194364/
-            http://freesound.org/people/dingo1/sounds/134721/
-            http://freesound.org/people/felix.blume/sounds/146436/
-            http://freesound.org/people/klangfabrik/sounds/157149/
-            http://freesound.org/people/MrAuralization/sounds/243617/
-            http://freesound.org/people/sphion/sounds/158525/
-            http://freesound.org/people/stewdio2003/sounds/238374/
-            http://freesound.org/people/vonz/sounds/188767/
-            http://freesound.org/people/Xythe/sounds/37299/
-            http://freesound.org/people/Yoyodaman234/sounds/253953/
-            http://freesound.org/people/Zepp2010/sounds/163264/
-            
