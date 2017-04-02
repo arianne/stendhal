@@ -519,7 +519,6 @@
 		<copy todir="${build_client_music_data}/data/music">
 			<fileset dir="data/music">
 				<include name="**.ogg"/>
-				<exclude name="demiurgo_a_new_homeland.ogg" />
 			</fileset>
 		</copy>
 
@@ -685,15 +684,11 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data">
-				<exclude name="music/demiurgo_a_new_homeland.ogg" />
-				<exclude name="music/demon_haunting.ogg" />
-				<exclude name="music/*.wav" />				
 			</fileset>
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-${version}-src/tiled">
 			<fileset dir="${tiled}">
-				<exclude name="miragetilesets/**" />
 				<exclude name="world/**" />
 			</fileset>
 		</copy>
