@@ -205,7 +205,7 @@ stendhal.ui.gamewindow = {
 			entity = null;
 			e.target.removeEventListener("mouseup", onMouseUp);
 			e.target.removeEventListener("mousemove", onDrag);
-			document.getElementById("chatbar").focus();
+			document.getElementById("chatinput").focus();
 		}
 
 		return _onMouseDown;
