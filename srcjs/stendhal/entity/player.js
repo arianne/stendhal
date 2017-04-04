@@ -29,7 +29,9 @@ marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFacto
 		if (stendhal.ui.stats.keys.indexOf(key) > -1) {
 			stendhal.ui.stats.dirty = true;
 		}
-		if (key == "ghostmode") {
+		if (key == "text") {
+			this.say(value);
+		} else if (key == "ghostmode") {
 			minimapShow = false;
 		}
 	},
