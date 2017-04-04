@@ -33,7 +33,7 @@ stendhal.main = {
 		marauroa.clientFramework.onLoginFailed = function(reason, text) {
 			alert("Login failed. Please login on the Stendhal website first and make sure you open the client on an https://-URL");
 			marauroa.clientFramework.close();
-			document.getElementById("chatbar").disabled = true;
+			document.getElementById("chatinput").disabled = true;
 			document.getElementById("chat").style.backgroundColor = "#AAA";
 		}
 
@@ -93,8 +93,14 @@ stendhal.main = {
 		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
 		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
+
 		var minimap = document.getElementById('minimap');
 		minimap.addEventListener("click", stendhal.ui.minimap.onClick);
+
+		var chatinput = document.getElementById("chatinput");
+		chatinput.addEventListener("keydown", stendhal.ui.chatinput.onKeyDown);
+		chatinput.addEventListener("keyup", stendhal.ui.chatinput.onKeyUp);
+		chatinput.addEventListener("keypress", stendhal.ui.chatinput.onKeyPress);
 	},
 
 	/**
@@ -152,5 +158,5 @@ stendhal.main = {
 	}
 }
 
-document.addEventListener('WebComponentsReady', stendhal.main.startup);
+document.addEventListener('DOMContentLoaded', stendhal.main.startup);
 window.addEventListener('error', stendhal.main.onerror);
