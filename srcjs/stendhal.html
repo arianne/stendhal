@@ -67,10 +67,7 @@ span.logi {text-decoration: underline}
 }
 </style>
 
-<script src="lib/webcomponentsjs/webcomponents.min.js"></script>
-<link rel="import" href="lib/polymer/polymer.html">
-
-<link rel="import" href="stendhal/ui/stendhal-chatbar/stendhal-chatbar.html">
+<script type="text/javascript" src="stendhal/config.js"></script>
 
 <script type="text/javascript" src="marauroa/marauroa.js"></script>
 <script type="text/javascript" src="marauroa/client-framework.js"></script>
@@ -110,9 +107,9 @@ span.logi {text-decoration: underline}
 <script type="text/javascript" src="stendhal/ui/minimap.js"></script>
 <script type="text/javascript" src="stendhal/ui/sound.js"></script>
 <script type="text/javascript" src="stendhal/ui/stats.js"></script>
+<script type="text/javascript" src="stendhal/ui/chatinput.js"></script>
 
 <script type="text/javascript" src="stendhal/actions.js"></script>
-<script type="text/javascript" src="stendhal/config.js"></script>
 <script type="text/javascript" src="stendhal/events.js"></script>
 </head>
 <body id="body">
@@ -171,7 +168,7 @@ span.logi {text-decoration: underline}
 </div>
 </div>
 
-<input is="stendhal-chatbar" type="text" name="chatbar" style="width:98%" id="chatbar" autocomplete="off">
+<input id="chatinput" type="text" name="chatinput" style="width:98%" autocomplete="off">
 <div id="chat"></div>
 
 <div id="popupcontainer"></div>
