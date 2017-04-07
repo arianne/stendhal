@@ -1087,6 +1087,64 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			</fileset>
 		</schemavalidate>
 	</target>
-	
+
+	<target name="compilejs">
+		<java jar="buildtools/closure-compiler/compiler.jar"
+				fork="true"
+				failonerror="true"
+				maxmemory="128m">
+			<arg value="  '../marauroa/src/js/*.js' 'srcjs/stendhal/**.js' '!**/stendhal-*/**' '!**/admin.js' '!**/*.test.js'"/>
+			<arg value="--compilation_level"/>
+			<arg value="WHITESPACE_ONLY"/>
+			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
+			<arg value="--create_source_map=srcjs/stendhal-compiled.map"/>
+			<arg value="srcjs/stendhal/config.js" />
+
+			<arg value="../marauroa/src/js/marauroa.js" />
+			<arg value="../marauroa/src/js/client-framework.js" />
+			<arg value="../marauroa/src/js/message-factory.js" />
+			<arg value="../marauroa/src/js/perception.js" />
+			<arg value="../marauroa/src/js/rpfactory.js" />
+
+			<arg value="srcjs/jsxgraph-util.js" />
+
+			<arg value="srcjs/stendhal/data/map.js" />
+			<arg value="srcjs/stendhal/data/sprites.js" />
+
+			<arg value="srcjs/stendhal/entity/entity.js" />
+			<arg value="srcjs/stendhal/entity/unknown.js" />
+			<arg value="srcjs/stendhal/entity/blood.js" />
+			<arg value="srcjs/stendhal/entity/corpse.js" />
+			<arg value="srcjs/stendhal/entity/chest.js" />
+			<arg value="srcjs/stendhal/entity/food.js" />
+			<arg value="srcjs/stendhal/entity/gate.js" />
+			<arg value="srcjs/stendhal/entity/item.js" />
+			<arg value="srcjs/stendhal/entity/portal.js" />
+			<arg value="srcjs/stendhal/entity/activeentity.js" />
+			<arg value="srcjs/stendhal/entity/rpentity.js" />
+			<arg value="srcjs/stendhal/entity/player.js" />
+			<arg value="srcjs/stendhal/entity/creature.js" />
+			<arg value="srcjs/stendhal/entity/domesticanimal.js" />
+			<arg value="srcjs/stendhal/entity/npc.js" />
+			<arg value="srcjs/stendhal/entity/sign.js" />
+			<arg value="srcjs/stendhal/entity/growingspawner.js" />
+			<arg value="srcjs/stendhal/entity/zone.js" />
+			<arg value="srcjs/stendhal/entity/ground.js" />
+
+			<arg value="srcjs/stendhal/ui/buddylist.js" />
+			<arg value="srcjs/stendhal/ui/chatlog.js" />
+			<arg value="srcjs/stendhal/ui/gamewindow.js" />
+			<arg value="srcjs/stendhal/ui/html.js" />
+			<arg value="srcjs/stendhal/ui/minimap.js" />
+			<arg value="srcjs/stendhal/ui/sound.js" />
+			<arg value="srcjs/stendhal/ui/stats.js" />
+			<arg value="srcjs/stendhal/ui/chatinput.js" />
+			<arg value="srcjs/stendhal/actions.js" />
+			<arg value="srcjs/stendhal/events.js" />
+			<arg value="srcjs/stendhal/ui/popup.js" />
+			<arg value="srcjs/stendhal/ui/itemcontainer.js" />
+			<arg value="srcjs/stendhal/main.js" />
+		</java>
+	</target>
 	
 </project>
