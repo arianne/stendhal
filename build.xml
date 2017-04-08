@@ -1096,6 +1096,11 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg value="  '../marauroa/src/js/*.js' 'srcjs/stendhal/**.js' '!**/stendhal-*/**' '!**/admin.js' '!**/*.test.js'"/>
 			<arg value="--compilation_level"/>
 			<arg value="WHITESPACE_ONLY"/>
+			<!--
+			<arg value="ADVANCED"/>
+			<arg value="- -debug"/>
+			<arg value="- -formatting=PRETTY_PRINT"/>
+			-->
 			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
 			<arg value="--create_source_map=srcjs/stendhal-compiled.map"/>
 			<arg value="srcjs/stendhal/config.js" />
