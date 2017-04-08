@@ -123,7 +123,7 @@ stendhal.ui.equip = {
 	createInventoryWindow: function(slot, sizeX, sizeY, object, title) {
 		stendhal.ui.equip.counter++;
 		var suffix = "." + stendhal.ui.equip.counter + ".";
-		var html = "<div style='border: 1px solid black; background-color: #FFF; width: " + (sizeX * 40) + "px; padding: 2px; float: left'>";
+		var html = "<div class=\"inventorypopup inventorypopup_" + sizeX + "\">";
 		for (var i = 0; i < sizeX * sizeY; i++) {
 			html += "<div id='" + slot + suffix + i + "' class='itemSlot'></div>";
 		}
