@@ -2,19 +2,8 @@ body {font-family: "Arial"}
 
 li.online {color: #0A0}
 li.offline {color: #A00}
-#buddyList {
-	border: 1px solid black;
-	width: 128px;
-	height: 250px;
-	float: left;
-	overflow:scroll
-}
-#buddyList ul {
-	cursor: default;
-	list-style-type: none;
-	margin:0;
-	padding:0.1em;
-}
+#buddyList {border: 1px solid black; width: 128px; height: 250px; float: left; overflow:scroll}
+#buddyList ul {list-style-type: none; margin:0; padding:0.1em}
 
 div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; 
 padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; font-size:10px}
@@ -35,8 +24,7 @@ padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; fon
 }
 
 #stats {
-	border: 1px solid black;
-	cursor: default;
+	border: 1px solid black; 
 	width: 128px;
 	float: left; 
 	font-size: 0.8em;
@@ -125,8 +113,4 @@ span.logi {text-decoration: underline}
 
 .popuptitleclose {
 	float:right
-}
-
-#dropnumberdialogvalue {
-	width: 4em;
 }
