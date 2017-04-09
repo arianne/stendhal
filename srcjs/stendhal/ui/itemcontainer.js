@@ -19,6 +19,8 @@ stendhal.ui = stendhal.ui || {};
 /**
  * slot name, slot size, object (a corpse or chest) or null for marauroa.me,
  * which changes on zone change.
+ *
+ * @constructor
  */
 stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 	this.update = function() {

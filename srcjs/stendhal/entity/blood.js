@@ -31,7 +31,7 @@ marauroa.rpobjectFactory.blood = marauroa.util.fromProto(marauroa.rpobjectFactor
 	set: function(key, value) {
 		marauroa.rpobjectFactory.blood.proto.set.apply(this, arguments);
 		if (key == "amount") {
-			this.sprite.offsetY = parseInt(value) * 32;
+			this.sprite.offsetY = parseInt(value, 10) * 32;
 		}
 	}
 });
