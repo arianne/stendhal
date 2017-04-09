@@ -1,17 +1,17 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
+ ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 "use strict";
 
-var stendhal = window.stendhal = window.stendhal || {};
+window.stendhal = window.stendhal || {};
 
 stendhal.slashActionRepository = {
 	"adminnote": {
@@ -42,22 +42,6 @@ stendhal.slashActionRepository = {
 		},
 		getMinParams: 1,
 		getMaxParams: 2
-	},
-
-	"alter": {
-		execute: function(type, params, remainder) {
-			var action = {
-				"type": type,
-				"target": params[0],
-				"stat": params[1],
-				"mode": params[2],
-				"value": remainder
-			};
-			marauroa.clientFramework.sendAction(action);
-			return true;
-		},
-		getMinParams: 3,
-		getMaxParams: 3
 	},
 
 	"ban": {
@@ -270,43 +254,6 @@ stendhal.slashActionRepository = {
 		getMinParams: 0,
 		getMaxParams: 0
 	},
-	
-	"challenge": {
-		execute: function(type, params, remainder) {
-			var action = {
-					"type": "challenge",
-					"action": "open",
-					"target": params[0]
-			};
-			marauroa.clientFramework.sendAction(action);
-			return true;
-		},
-		getMinParams: 1,
-		getMaxParams: 1
-	},
-	
-	"accept": {
-		execute: function(type, params, remainder) {
-			var action = {
-					"type": "challenge",
-					"action": "accept",
-					"target": params[0]
-			};
-			marauroa.clientFramework.sendAction(action);
-			return true;
-		},
-		getMinParams: 1,
-		getMaxParams: 1
-	},
-	
-	"reject": {
-		execute: function(type, params, remainder) {
-			// just for having a counterpart to accept.
-			return true;
-		},
-		getMinParams: 1,
-		getMaxParams: 1
-	},
 
 
 	"_default": {
@@ -315,9 +262,9 @@ stendhal.slashActionRepository = {
 				"type": type
 			};
 			if (typeof(params[0] != "undefined")) {
-				action["target"] = params[0];
+				action.target = params[0];
 				if (remainder != "") {
-					action["args"] = remainder;
+					action.args = remainder;
 				}
 			}
 			marauroa.clientFramework.sendAction(action);
@@ -355,7 +302,5 @@ stendhal.slashActionRepository = {
 			return false;
 		}
 	}
-	
-};
-
-stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
+}
+stendhal.slashActionRepository.supporta = stendhal.slashActionRepository.supportanswer;

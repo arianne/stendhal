@@ -14,6 +14,9 @@
 window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+/**
+ * @constructor
+ */
 stendhal.ui.Popup = function(title, content, x, y) {
 	this.close = function() {
 		if (that.onClose) {
@@ -80,7 +83,9 @@ stendhal.ui.Popup = function(title, content, x, y) {
 }
 
 
-
+/**
+ * @constructor
+ */
 stendhal.ui.Menu = function(entity, x, y) {
 	var actions = [];
 	var that = this;
