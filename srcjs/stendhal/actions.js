@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -284,10 +284,10 @@ stendhal.slashActionRepository = {
 		}
 		name = name.substr(1);
 		var action;
-		if (typeof(this[name]) == "undefined") {
-			action = this["_default"];
+		if (typeof(stendhal.slashActionRepository[name]) == "undefined") {
+			action = stendhal.slashActionRepository["_default"];
 		} else {
-			action = this[name];
+			action = stendhal.slashActionRepository[name];
 		}
 		
 		if (action.getMinParams <= array.length) {

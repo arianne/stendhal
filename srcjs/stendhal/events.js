@@ -20,7 +20,7 @@ marauroa.rpeventFactory.attack = marauroa.util.fromProto(marauroa.rpeventFactory
 			return;
 		}
 		if (this.hasOwnProperty("hit")) {
-			var damage = parseInt(this.damage);
+			var damage = parseInt(this.damage, 10);
 			if (damage != 0) {
 				target.onDamaged(entity, damage);
 			} else {
@@ -53,7 +53,7 @@ marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFa
 		var volume = 1;
 		// Adjust by the server specified volume, if any
 		if (this.hasOwnProperty("volume")) {
-			volume *= parseInt(this.volume) / 100;
+			volume *= parseInt(this.volume, 10) / 100;
 		}
 		// Further adjustments if the sound has a radius
 		if (this.hasOwnProperty("radius")) {
@@ -61,7 +61,7 @@ marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFa
 				// Can't calculate the distance yet. Ignore the sound.
 				return;
 			}
-			var radius = parseInt(this.radius);
+			var radius = parseInt(this.radius, 10);
 			var xdist = marauroa.me._x - rpobject._x;
 			var ydist = marauroa.me._y - rpobject._y;
 			var dist2 = xdist * xdist + ydist * ydist;

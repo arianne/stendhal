@@ -14,8 +14,14 @@
 window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 
-
-// Start http://www.webreference.com/programming/javascript/gr/column3/ 
+	/**
+	 * preloads images
+	 * 
+	 * @param images image url to load
+	 * @param callback callback to invoke
+	 * @constructor
+	 */
+	// Start http://www.webreference.com/programming/javascript/gr/column3/ 
 	function ImagePreloader(images, callback) {
 		// store the call-back
 		this.callback = callback;

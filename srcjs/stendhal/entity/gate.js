@@ -6,7 +6,7 @@ marauroa.rpobjectFactory.gate = marauroa.util.fromProto(marauroa.rpobjectFactory
 	set: function(key, value) {
 		marauroa.rpobjectFactory.entity.set.apply(this, arguments);
 		if (key === "resistance") {
-			this.locked = parseInt(value) != 0;
+			this.locked = parseInt(value, 10) != 0;
 		} else if (key === "image" || key === "orientation") {
 			// Force re-evaluation of the sprite
 			delete this["_image"];

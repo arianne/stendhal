@@ -27,7 +27,7 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 				this['title'] = value;
 			}
 		} else if (['x', 'y', 'height', 'width'].indexOf(key) > -1) {
-			this[key] = parseInt(value);
+			this[key] = parseInt(value, 10);
 		} else {
 			this[key] = value;
 		}
