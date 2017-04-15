@@ -12,13 +12,13 @@
 
 "use strict";
 
-marauroa.rpobjectFactory.corpse = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 
 	minimapShow: false,
 	zIndex: 5500,
 
 	set: function(key, value) {
-		marauroa.rpobjectFactory.corpse.proto.set.apply(this, arguments);
+		marauroa.rpobjectFactory["corpse"].proto.set.apply(this, arguments);
 
 		this.sprite = this.sprite || {};
 		if (stendhal.config.gamescreen.blood && (key == "image")) {

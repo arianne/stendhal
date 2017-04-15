@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,8 @@
  ***************************************************************************/
 
 "use strict";
-window.stendhal = window.stendhal || {};
+
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.zone = stendhal.zone || {};
 
 
@@ -25,8 +26,8 @@ stendhal.zone = {
 		var res = stendhal.zone.ground;
 		for (var i in stendhal.zone.entities) {
 			var obj = stendhal.zone.entities[i];
-			if (obj.isVisibleToAction(filter) && (obj._x <= x) && (obj._y <= y)
-				&& (obj._x + obj.width >= x) && (obj._y + obj.height >= y)) {
+			if (obj.isVisibleToAction(filter) && (obj["_x"] <= x) && (obj["_y"] <= y)
+				&& (obj["_x"] + obj["width"] >= x) && (obj["_y"] + obj["height"] >= y)) {
 
 				res = obj;
 			}

@@ -11,7 +11,8 @@
  ***************************************************************************/
 
 "use strict";
-window.stendhal = window.stendhal || {};
+
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
@@ -25,7 +26,7 @@ stendhal.ui.chatLog = {
 		}
 		var date = new Date();
 		var time = "" + date.getHours() + ":";
-		if (date.getHours < 10) {
+		if (date.getHours() < 10) {
 			time = "0" + time;
 		}
 		if (date.getMinutes() < 10) {

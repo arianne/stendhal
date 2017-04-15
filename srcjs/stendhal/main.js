@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2015 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,8 @@
  ***************************************************************************/
 
 "use strict";
-window.stendhal = window.stendhal || {};
+
+var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.main = {
 	errorCounter: 0,
@@ -42,13 +43,13 @@ stendhal.main = {
 			if (window.location.hash) {
 				name = window.location.hash.substring(1);
 			} else {
-				name = marauroa.util.first(characters).a.name;
+				name = marauroa.util.first(characters)["a"]["name"];
 				var admin = 0;
 				for (var i in characters) {
 					if (characters.hasOwnProperty(i)) {
-						if (characters[i].a.adminlevel > admin) {
-							admin = characters[i].a.adminlevel;
-							name = characters[i].a.name;
+						if (characters[i]["a"]["adminlevel"] > admin) {
+							admin = characters[i]["a"]["adminlevel"];
+							name = characters[i]["a"]["name"];
 						}
 					}
 				}
@@ -62,7 +63,7 @@ stendhal.main = {
 
 		marauroa.clientFramework.onTransferREQ = function(items) {
 			for (var i in items) {
-				if (typeof(items[i].name) != "undefined" && items[i].name.match(".collision$")) {
+				if (typeof(items[i]["name"]) != "undefined" && items[i]["name"].match(".collision$")) {
 					items[i].ack = true;
 				}
 			}

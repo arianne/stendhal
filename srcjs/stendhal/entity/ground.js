@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -28,7 +28,8 @@ stendhal.zone.ground = {
 	 * Calculates whether the click was close enough to a zone border to trigger
 	 * a zone change.
 	 *
-	 * @param point click point in world coordinates
+	 * @param x x of click point in world coordinates
+	 * @param y y of click point in world coordinates
 	 * @return Direction of the zone to change to, <code>null</code> if no zone change should happen
 	 */
 	calculateZoneChangeDirection: function(x, y) {

@@ -11,7 +11,7 @@
  ***************************************************************************/
 "use strict";
 
-window.stendhal = window.stendhal || {};
+var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.slashActionRepository = {
 	"adminnote": {
@@ -303,4 +303,4 @@ stendhal.slashActionRepository = {
 		}
 	}
 }
-stendhal.slashActionRepository.supporta = stendhal.slashActionRepository.supportanswer;
+stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];

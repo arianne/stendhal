@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,8 +15,7 @@
 /**
  * Item
  */
-marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
-
+marauroa.rpobjectFactory["item"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 
 	minimapShow: false,
 	minimapStyle: "rgb(0,255,0)",
@@ -34,15 +33,15 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 	},
 
 	set: function(key, value) {
-		marauroa.rpobjectFactory.item.proto.set.apply(this, arguments);
+		marauroa.rpobjectFactory["item"].proto.set.apply(this, arguments);
 		if (key == "class" || key == "subclass") {
 			this.sprite.filename = "/data/sprites/items/" 
-				+ this.class + "/" + this.subclass + ".png";
+				+ this["class"] + "/" + this["subclass"] + ".png";
 		}
 	},
 	
 	draw: function(ctx) {
-		this.drawAt(ctx, this.x * 32, this.y * 32);
+		this.drawAt(ctx, this["x"] * 32, this["y"] * 32);
 	},
 	
 	drawAt: function(ctx, x, y) {
@@ -55,16 +54,16 @@ marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory
 	},
 	
 	formatQuantity: function() {
-		if (!this.quantity || this.quantity === "1") {
+		if (!this["quantity"] || this["quantity"] === "1") {
 			return "";
 		}
-		if (this.quantity > 10000000) {
-			return Math.floor(this.quantity / 1000000) + "m"; 
+		if (this["quantity"] > 10000000) {
+			return Math.floor(this["quantity"] / 1000000) + "m"; 
 		}
-		if (this.quantity > 10000) {
-			return Math.floor(this.quantity / 1000) + "k"; 
+		if (this["quantity"] > 10000) {
+			return Math.floor(this["quantity"] / 1000) + "k"; 
 		}
-		return this.quantity;
+		return this["quantity"];
 	}
 });
 

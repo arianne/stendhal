@@ -1,6 +1,6 @@
 "use strict";
 
-marauroa.rpobjectFactory.sign = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory["sign"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 5000,
 	"class": "default",
 	
@@ -10,8 +10,8 @@ marauroa.rpobjectFactory.sign = marauroa.util.fromProto(marauroa.rpobjectFactory
 		}
 		var image = stendhal.data.sprites.get(this.imagePath);
 		if (image.height) {
-			var localX = this.x * 32;
-			var localY = this.y * 32;
+			var localX = this["x"] * 32;
+			var localY = this["y"] * 32;
 			ctx.drawImage(image, localX, localY);
 		}
 	},
