@@ -11,7 +11,8 @@
  ***************************************************************************/
 
 "use strict";
-window.stendhal = window.stendhal || {};
+
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
@@ -28,10 +29,10 @@ stendhal.ui.stats = {
 		var div = document.getElementById("stats");
 		var object = marauroa.me;
 		div.innerText = 
-			"HP: " + object.hp + " / " + object.base_hp + "\r\n"
-			+ "ATK: " + object.atk + " x " + object.atk_item + "\r\n"
-			+ "DEF: " + object.def + " x " + object.def_item + "\r\n"
-		    + "XP: " + object.xp + "\r\n"
-		    + "Level: " + object.level;
+			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
+			+ "ATK: " + object["atk"] + " x " + object["atk_item"] + "\r\n"
+			+ "DEF: " + object["def"] + " x " + object["def_item"] + "\r\n"
+		    + "XP: " + object["xp"] + "\r\n"
+		    + "Level: " + object["level"];
 	}
 }

@@ -15,14 +15,14 @@
 /**
  * Item
  */
-marauroa.rpobjectFactory.unknown = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory["unknown"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 1,
 
 	init: function() {
-		marauroa.rpobjectFactory.unknown.proto.init.apply(this, arguments);
+		marauroa.rpobjectFactory["unknown"].proto.init.apply(this, arguments);
 		var that = this;
 		setTimeout(function() {
-			console.log("Unknown entity", that._rpclass, that.x, that.y);
+			console.log("Unknown entity", that["_rpclass"], that["x"], that["y"]);
 		}, 1);
 	},
 	
@@ -31,4 +31,4 @@ marauroa.rpobjectFactory.unknown = marauroa.util.fromProto(marauroa.rpobjectFact
 	}
 });
 
-marauroa.rpobjectFactory._default = marauroa.rpobjectFactory.unknown;
+marauroa.rpobjectFactory["_default"] = marauroa.rpobjectFactory["unknown"];

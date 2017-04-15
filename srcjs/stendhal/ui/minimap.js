@@ -11,7 +11,8 @@
  ***************************************************************************/
 
 "use strict";
-window.stendhal = window.stendhal || {};
+
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
@@ -144,7 +145,7 @@ stendhal.ui.minimap = {
 
 		for (var i in marauroa.currentZone) {
 			var o = marauroa.currentZone[i];
-			if (typeof(o.x) != "undefined" && typeof(o.y) != "undefined" && (o.minimapShow || (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600))) {
+			if (typeof(o["x"]) != "undefined" && typeof(o["y"]) != "undefined" && (o.minimapShow || (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600))) {
 				// not supported by IE <= 8
 				if (typeof(ctx.fillText) != "undefined") {
 //					stendhal.ui.minimap.ctx.fillText(o.id, o.x * stendhal.ui.minimap.scale, o.y * stendhal.ui.minimap.scale);
@@ -154,7 +155,7 @@ stendhal.ui.minimap = {
 				} else {
 					ctx.strokeStyle = "rgb(128, 128, 128)";
 				}
-				ctx.strokeRect(o.x * stendhal.ui.minimap.scale, o.y * stendhal.ui.minimap.scale, o.width * stendhal.ui.minimap.scale, o.height * stendhal.ui.minimap.scale);
+				ctx.strokeRect(o["x"] * stendhal.ui.minimap.scale, o["y"] * stendhal.ui.minimap.scale, o["width"] * stendhal.ui.minimap.scale, o["height"] * stendhal.ui.minimap.scale);
 			}
 		}
 	},
