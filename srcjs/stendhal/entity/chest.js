@@ -15,13 +15,13 @@ var CLOSED_SPRITE = {
 	width: 32
 };
 
-marauroa.rpobjectFactory.chest = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory["chest"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 5000,
 	sprite: CLOSED_SPRITE,
 	open: false,
 
 	set: function(key, value) {
-		marauroa.rpobjectFactory.entity.set.apply(this, arguments);
+		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
 		if (key === "open") {
 			this.sprite = OPEN_SPRITE;
 			this.open = true;
@@ -32,7 +32,7 @@ marauroa.rpobjectFactory.chest = marauroa.util.fromProto(marauroa.rpobjectFactor
 	},
 
 	unset: function(key) {
-		marauroa.rpobjectFactory.entity.proto.unset.call(this, key);
+		marauroa.rpobjectFactory["entity"].proto.unset.call(this, key);
 		if (key === "open") {
 			this.sprite = CLOSED_SPRITE;
 			this.open = false;
@@ -51,7 +51,7 @@ marauroa.rpobjectFactory.chest = marauroa.util.fromProto(marauroa.rpobjectFactor
 			// If we are next to the chest, open or close it.
 			var action = {
 				"type": "use",
-				"target": "#" + this.id
+				"target": "#" + this["id"]
 			};
 			marauroa.clientFramework.sendAction(action);
 		} else {

@@ -11,7 +11,7 @@
  ***************************************************************************/
 "use strict";
 
-window.stendhal = window.stendhal || {};
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 
 	/**

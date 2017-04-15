@@ -15,7 +15,7 @@
 /**
  * Creature
  */
-marauroa.rpobjectFactory.growing_entity_spawner = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 3000,
 
 	/**
@@ -35,13 +35,13 @@ marauroa.rpobjectFactory.growing_entity_spawner = marauroa.util.fromProto(maraur
 				type: "use"
 			});
 		}
-		marauroa.rpobjectFactory.rpentity.proto.buildActions.apply(this, arguments);
+		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
 	},
 
 	onclick: function(x, y) {
 		var action = {
 			"type": "use", 
-			"target": "#" + this.id
+			"target": "#" + this["id"]
 		};
 		marauroa.clientFramework.sendAction(action);
 	},
@@ -50,8 +50,8 @@ marauroa.rpobjectFactory.growing_entity_spawner = marauroa.util.fromProto(maraur
 	 * draw RPEntities
 	 */
 	draw: function(ctx) {
-		var localX = this.x * 32;
-		var localY = this.y * 32;
+		var localX = this["x"] * 32;
+		var localY = this["y"] * 32;
 		var image = stendhal.data.sprites.get("data/sprites/" + this["class"] + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;

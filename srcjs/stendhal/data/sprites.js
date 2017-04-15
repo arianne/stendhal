@@ -11,7 +11,7 @@
  ***************************************************************************/
 "use strict";
 
-window.stendhal = window.stendhal || {};
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 
 stendhal.data.sprites = {
@@ -51,8 +51,8 @@ stendhal.data.sprites = {
 	 * @param image original image
 	 * @param width width of the area
 	 * @param height height of the area
-	 * @param offsetX optional. left x coordinate of the area
-	 * @param offsetY optional. top y coordinate of the area
+	 * @param {number=} offsetX optional. left x coordinate of the area
+	 * @param {number=} offsetY optional. top y coordinate of the area
 	 */
 	getAreaOf: function(image, width, height, offsetX, offsetY) {
 		offsetX = offsetX || 0;

@@ -16,7 +16,7 @@
 /**
  * NPC
  */
-marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
+marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
 	minimapStyle: "rgb(0,0,255)",
 	spritePath: "npc",
 	titleStyle: "#c8c8ff",
