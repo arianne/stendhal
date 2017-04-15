@@ -1,18 +1,16 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
-
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
 
 /**
  * ActiveEntity
@@ -50,7 +48,7 @@ marauroa.rpobjectFactory["activeEntity"] = marauroa.util.fromProto(marauroa.rpob
 				this["_x"] = this["_x"] - movement;
 				this["_y"] = serverY;
 			}
-			if (this.collidesMap() || this.collidesEntities()) {
+			if (this.collidesMap()) {
 				this["_x"] = oldX;
 				this["_y"] = oldY;
 			}
@@ -77,36 +75,5 @@ marauroa.rpobjectFactory["activeEntity"] = marauroa.util.fromProto(marauroa.rpob
 			}
 		}
 		return false;
-	},
-
-
-	/**
-	 * Check if the entity with another entity;
-	 */
-	collidesEntities: function() {
-		var thisStartX = Math.floor(this["_x"]);
-		var thisStartY = Math.floor(this["_y"]);
-		var thisEndX = Math.ceil(this["_x"] + this["width"]);
-		var thisEndY = Math.ceil(this["_y"] + this["height"]);
-
-		var i;
-		for (i in stendhal.zone.entities) {
-			var other = stendhal.zone.entities[i];
-			if (!this.isObstacle(other)) {
-				continue;
-			}
-			var otherStartX = Math.floor(other["_x"]);
-			var otherStartY = Math.floor(other["_y"]);
-			var otherEndX = Math.ceil(other["_x"] + other["width"]);
-			var otherEndY = Math.ceil(other["_y"] + other["height"]);
-			
-			if (thisStartX < otherEndX && thisEndX > otherStartX
-				&& thisStartY < otherEndY && thisEndY > otherStartY) {
-				return true;
-			}
-		}
-
-		return false;
 	}
-
 });

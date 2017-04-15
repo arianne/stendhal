@@ -12,7 +12,7 @@
 
 "use strict";
 
-window.stendhal = window.stendhal || {};
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 stendhal.ui.chatinput = {

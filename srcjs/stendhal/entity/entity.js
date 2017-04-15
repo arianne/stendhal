@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,13 +15,13 @@
 /**
  * General entity
  */
-marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFactory._default, { 
+marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFactory["_default"], { 
 	minimapShow: false,
 	minimapStyle: "rgb(200,255,200)",
 	zIndex: 10000,
 
 	set: function(key, value) {
-		marauroa.rpobjectFactory.entity.proto.set.apply(this, arguments);
+		marauroa.rpobjectFactory["entity"].proto.set.apply(this, arguments);
 		if (key == 'name') {
 			if (typeof(this['title']) == "undefined") {
 				this['title'] = value;
@@ -39,18 +39,18 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	 * @return true, if the other entity is right next to us; false otherwise 
 	 */
 	isNextTo: function(other) {
-		if (!other || !this.x || !this.y || !other.x || !other.y) {
+		if (!other || !this["x"] || !this["y"] || !other["x"] || !other["y"]) {
 			return false;
 		}
 
-		var nextX = ((this.x + this.width >= other.x) && this.x <= other.x)
-				|| ((other.x + other.width >= this.x) && other.x <= this.x)
+		var nextX = ((this["x"] + this["width"] >= other["x"]) && this["x"] <= other["x"])
+				|| ((other["x"] + other["width"] >= this["x"]) && other["x"] <= this["x"])
 		if (!nextX) {
 			return false;
 		}
 
-		var nextY = ((this.y + this.height >= other.y) && this.y <= other.y)
-			|| ((other.y + other.height >= this.y) && other.y <= this.y)
+		var nextY = ((this["y"] + this["height"] >= other["y"]) && this["y"] <= other["y"])
+			|| ((other["y"] + other["height"] >= this["y"]) && other["y"] <= this["y"])
 		return nextY;
 	},
 
@@ -84,8 +84,8 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	updatePosition: function(time) {
 		// The position of non active entities can change too, so always copy
 		// the position
-		this._y = this.y;
-		this._x = this.x;
+		this["_y"] = this["y"];
+		this["_x"] = this["x"];
 	},
 
 	draw: function(ctx) {
@@ -98,7 +98,7 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 	 * draws a standard sprite
 	 */
 	drawSprite: function(ctx) {
-		this.drawSpriteAt(ctx, this.x * 32, this.y * 32);
+		this.drawSpriteAt(ctx, this["x"] * 32, this["y"] * 32);
 	},
 	
 	drawSpriteAt: function(ctx, x, y) {
@@ -139,7 +139,7 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		var object = this;
 		var res = "";
 		while (object) {
-			res = object.id + "\t" + res;
+			res = object["id"] + "\t" + res;
 			var slot = object._parent;
 			if (!slot) {
 				break;
@@ -181,7 +181,7 @@ marauroa.rpobjectFactory.entity = marauroa.util.fromProto(marauroa.rpobjectFacto
 		}
 		return {
 			"type": actionCommand,
-			"target": "#" + this.id
+			"target": "#" + this["id"]
 		};
 	},
 

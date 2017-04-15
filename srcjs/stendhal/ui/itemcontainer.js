@@ -12,7 +12,7 @@
 
 "use strict";
 
-window.stendhal = window.stendhal || {};
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 
@@ -34,7 +34,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 			for (var i = 0; i < myobject[slot].count(); i++) {
 				var o = myobject[slot].getByIndex(i);
 				var e = document.getElementById(slot + suffix + cnt);
-				e.style.backgroundImage = "url(/data/sprites/items/" + o['class'] + "/" + o.subclass + ".png " + ")";
+				e.style.backgroundImage = "url(/data/sprites/items/" + o["class"] + "/" + o["subclass"] + ".png " + ")";
 				e.textContent = o.formatQuantity();
 				e.dataItem = o;
 				cnt++;
@@ -61,10 +61,10 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 				type = "Text";
 			}
 			e.dataTransfer.setData(type, JSON.stringify({
-				"path": item.getIdPath(),
-				"zone": marauroa.currentZoneName
+				path: item.getIdPath(),
+				zone: marauroa.currentZoneName
 			}));
-		} else {
+		} else {s
 			e.preventDefault();
 		}
 	}
@@ -80,7 +80,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		var datastr = e.dataTransfer.getData("Text") || e.dataTransfer.getData("text/x-stendhal");
 		if (datastr) {
 			var data = JSON.parse(datastr);
-			var targetPath = "[" + myobject.id + "\t" + slot + "]";
+			var targetPath = "[" + myobject["id"] + "\t" + slot + "]";
 			var action = {
 				"type": "equip",
 				"source_path": data.path,
