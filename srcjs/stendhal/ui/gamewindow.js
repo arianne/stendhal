@@ -11,7 +11,8 @@
  ***************************************************************************/
 
 "use strict";
-window.stendhal = window.stendhal || {};
+
+var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
@@ -127,8 +128,8 @@ stendhal.ui.gamewindow = {
 		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
 
 		// Coordinates for a screen centered on player
-		var centerX = marauroa.me._x * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
-		var centerY = marauroa.me._y * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
+		var centerX = marauroa.me["_x"] * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
+		var centerY = marauroa.me["_y"] * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
 
 		// Keep the world within the screen view
 		centerX = Math.min(centerX, stendhal.data.map.zoneSizeX * this.targetTileWidth - canvas.width);
@@ -232,8 +233,8 @@ stendhal.ui.gamewindow = {
 			type = "Text";
 		}
 		e.dataTransfer.setData(type, JSON.stringify({
-			"path": draggedEntity.getIdPath(),
-			"zone": marauroa.currentZoneName
+			path: draggedEntity.getIdPath(),
+			zone: marauroa.currentZoneName
 		}));
 	},
 	

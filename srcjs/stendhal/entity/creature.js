@@ -15,7 +15,7 @@
 /**
  * Creature
  */
-marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity, {
+marauroa.rpobjectFactory["creature"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
 	minimapStyle: "rgb(255,255,0)",
 	spritePath: "monsters",
 	titleStyle: "#ffc8c8",
@@ -23,7 +23,7 @@ marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFac
 	onclick: function(x, y) {
 		var action = {
 				"type": "attack", 
-				"target": "#" + this.id
+				"target": "#" + this["id"]
 			};
 		marauroa.clientFramework.sendAction(action);
 	},

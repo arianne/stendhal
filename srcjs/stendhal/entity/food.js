@@ -1,8 +1,8 @@
 "use strict";
 
-marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory.entity, {
+marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	set: function(key, value) {
-		marauroa.rpobjectFactory.entity.set.apply(this, arguments);
+		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
 		if (key === "amount") {
 			this._amount = parseInt(value, 10);
 		}
@@ -11,8 +11,8 @@ marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory
 	draw: function(ctx) {
 		var image = stendhal.data.sprites.get("/data/sprites/food.png");
 		if (image.height) {
-			var localX = this.x * 32;
-			var localY = this.y * 32;
+			var localX = this["x"] * 32;
+			var localY = this["y"] * 32;
 			var offset = this._amount * 32;
 			ctx.drawImage(image, 0, offset, 32, 32, localX, localY, 32, 32);
 		}
@@ -22,7 +22,7 @@ marauroa.rpobjectFactory.food = marauroa.util.fromProto(marauroa.rpobjectFactory
 		console.log(this, x, y);
 		var action = {
 				"type": "look",
-				"target": "#" + this.id
+				"target": "#" + this["id"]
 			};
 		marauroa.clientFramework.sendAction(action);
 	},

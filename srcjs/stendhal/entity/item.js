@@ -1,17 +1,16 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
+ ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
- *   License, or (at your option) any later version.                       *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
-
-var marauroa = window.marauroa = window.marauroa || {};
 
 /**
  * Item
@@ -35,7 +34,7 @@ marauroa.rpobjectFactory["item"] = marauroa.util.fromProto(marauroa.rpobjectFact
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory["item"].proto.set.apply(this, arguments);
-		if (key === "class" || key === "subclass") {
+		if (key == "class" || key == "subclass") {
 			this.sprite.filename = "/data/sprites/items/" 
 				+ this["class"] + "/" + this["subclass"] + ".png";
 		}

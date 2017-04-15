@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,7 +25,7 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 			return;
 		}
 		if (this.hasOwnProperty("hit")) {
-			var damage = parseInt(this.damage, 10);
+			var damage = parseInt(this["damage"], 10);
 			if (damage != 0) {
 				target.onDamaged(entity, damage);
 			} else {
@@ -34,11 +34,12 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 		} else {
 			target.onMissed(entity);
 		}
-		entity.onAttackPerformed(this.type, this.hasOwnProperty("ranged"));
+		entity.onAttackPerformed(this["type"], this.hasOwnProperty("ranged"));
 	}
 });
 
 
+<<<<<<< Upstream, based on origin/master
 <<<<<<< Upstream, based on origin/master
 marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
@@ -57,26 +58,33 @@ marauroa.rpeventFactory["text"] = marauroa.util.fromProto(marauroa.rpeventFactor
 marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 =======
 marauroa.rpeventFactory.private_text = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
+=======
+marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+>>>>>>> 1882b37 Support closure compiler advanced mode
 	execute: function(rpobject) {
-		stendhal.ui.chatLog.addLine(this.texttype.toLowerCase(), this.text);
+		stendhal.ui.chatLog.addLine(this["texttype"].toLowerCase(), this["text"]);
 	}
 });
 
 
-marauroa.rpeventFactory.text = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
+marauroa.rpeventFactory["text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		rpobject.say(this.text);
+		rpobject.say(this["text"]);
 	}
 });
 
 
+<<<<<<< Upstream, based on origin/master
 marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
 >>>>>>> b562fb1 fixed warnings from closure compiler
+=======
+marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+>>>>>>> 1882b37 Support closure compiler advanced mode
 	execute: function(rpobject) {
 		var volume = 1;
 		// Adjust by the server specified volume, if any
 		if (this.hasOwnProperty("volume")) {
-			volume *= parseInt(this.volume, 10) / 100;
+			volume *= parseInt(this["volume"], 10) / 100;
 		}
 		// Further adjustments if the sound has a radius
 		if (this.hasOwnProperty("radius")) {
@@ -84,9 +92,9 @@ marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFa
 				// Can't calculate the distance yet. Ignore the sound.
 				return;
 			}
-			var radius = parseInt(this.radius, 10);
-			var xdist = marauroa.me._x - rpobject._x;
-			var ydist = marauroa.me._y - rpobject._y;
+			var radius = parseInt(this["radius"], 10);
+			var xdist = marauroa.me["_x"] - rpobject["_x"];
+			var ydist = marauroa.me["_y"] - rpobject["_y"];
 			var dist2 = xdist * xdist + ydist * ydist;
 			if (dist2 > radius * radius) {
 				// Outside the specified radius
@@ -97,18 +105,23 @@ marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFa
 			volume *= Math.min(radius * radius / (dist2 * 20), 1);
 		}
 		if (stendhal.ui.sound) {
-			stendhal.ui.sound.playEffect(this.sound, volume);
+			stendhal.ui.sound.playEffect(this["sound"], volume);
 		}
 	}
 });
 
 <<<<<<< Upstream, based on origin/master
+<<<<<<< Upstream, based on origin/master
 marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 =======
 marauroa.rpeventFactory.show_item_list = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
 >>>>>>> b562fb1 fixed warnings from closure compiler
+=======
+marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+>>>>>>> 1882b37 Support closure compiler advanced mode
 	execute: function(rpobject) {
 		if (this.hasOwnProperty("title")) {
+<<<<<<< Upstream, based on origin/master
 <<<<<<< Upstream, based on origin/master
 			stendhal.ui.chatLog.addLine("normal", this["title"]);
 		}
@@ -123,18 +136,25 @@ marauroa.rpeventFactory.show_item_list = marauroa.util.fromProto(marauroa.rpeven
 					var data = this["content"][obj]["a"];
 =======
 			stendhal.ui.chatLog.addLine("normal", this.title);
+=======
+			stendhal.ui.chatLog.addLine("normal", this["title"]);
+>>>>>>> 1882b37 Support closure compiler advanced mode
 		}
 		if (this.hasOwnProperty("caption")) {
-			stendhal.ui.chatLog.addLine("normal", this.caption);
+			stendhal.ui.chatLog.addLine("normal", this["caption"]);
 		}
 		if (this.hasOwnProperty("content")) {
 			stendhal.ui.chatLog.addLine("normal", "Item\t-\tPrice\t-\tDescription");
-			for (var obj in this.content) {
-				if (this.content.hasOwnProperty(obj)) {
-					var slotObj = this.content[obj];
+			for (var obj in this["content"]) {
+				if (this["content"].hasOwnProperty(obj)) {
+					var slotObj = this["content"][obj];
 					console.log("logging thingy: " + obj + " : " + typeof(slotObj));
+<<<<<<< Upstream, based on origin/master
 					var data = this.content[obj].a;
 >>>>>>> b562fb1 fixed warnings from closure compiler
+=======
+					var data = this["content"][obj]["a"];
+>>>>>>> 1882b37 Support closure compiler advanced mode
 					stendhal.ui.chatLog.addLine("normal", data["subclass"] + "\t"
 							+ data["price"] + "\t" + data["description_info"]);
 				}
