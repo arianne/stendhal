@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,8 +10,6 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.common.parser;
-
-import games.stendhal.common.grammar.Grammar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,11 +23,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
-
-import marauroa.common.Log4J;
-import marauroa.common.io.UnicodeSupportingInputStreamReader;
+import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.grammar.Grammar;
+import marauroa.common.Log4J;
+import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
 /**
  * WordList stores a list of words recognized by the ConversationParser. Words
@@ -597,7 +596,9 @@ final public class WordList {
     	Set<CompoundName> candidates = compoundNames.get(first.getOriginal().toLowerCase());
 
 		if (candidates != null) {
-    		for(CompoundName compName : candidates) {
+	    	TreeSet<CompoundName> candidatesSortedFromLongestToShortest = new TreeSet<CompoundName>(new ArrayLengthDescSorter<CompoundName>());
+	    	candidatesSortedFromLongestToShortest.addAll(candidates);
+    		for (CompoundName compName : candidatesSortedFromLongestToShortest) {
     			if (compName.matches(expressions, idx)) {
     				return compName;
     			}
