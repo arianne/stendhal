@@ -29,15 +29,11 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 	public static StendhalRPWorld get() {
 		if (!(instance instanceof MockStendlRPWorld)) {
 			instance = new MockStendlRPWorld();
-			((MockStendlRPWorld) instance).createRPClasses();
+			((MockStendlRPWorld) instance).initialize();
 		}
 		return instance;
 	}
 
-	@Override
-	protected void initialize() {
-	}
-	
 	public static void  reset() {
 		instance = null;
 	}
