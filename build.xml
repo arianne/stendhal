@@ -1117,6 +1117,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build" />
 
 	<target name="js-invoke-compiler">
+		<property name="js-debug"          value="" />
 
 		<property name="js-files-marauroa" value="build/js/marauroa.js build/js/client-framework.js build/js/message-factory.js build/js/perception.js build/js/rpfactory.js" />
 		<property name="js-files-config"   value="srcjs/stendhal/config.js build/js/build.js" />
