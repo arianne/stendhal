@@ -26,7 +26,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		if (key == "text") {
 			this.say(value);
 		} else if (key == "ghostmode") {
-			minimapShow = false;
+			this.minimapShow = false;
 		}
 		
 		// stats
