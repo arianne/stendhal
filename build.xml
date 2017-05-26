@@ -45,6 +45,8 @@
 	
 	<property name="cobertura.dir" value="${libdir}/cobertura" />
 
+	<import file="build-private.xml" optional="true" />
+
 	<condition property="exclude.signing" value="true">
 		<not>
 			<available file="keystore.ks"/>
@@ -56,6 +58,9 @@
 		</not>
 	</condition>
 
+	<tstamp>
+		<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
 
 	<target name="init">
 		<mkdir dir="${lib}"/>
@@ -349,7 +354,7 @@
 	<target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
 
 	<!-- Runs the server -->
-	<target name="server_run" depends="server_build" description="Runs the server">
+	<target name="server_run" depends="server_build, compilejs" description="Runs the server">
 		<mkdir dir="run_srvr"/>
 
 		<copy todir="run_srvr">
@@ -387,11 +392,7 @@
 				<include name="**/*.txt"/>
 			</fileset>
 		</copy>
-
 		
-		<tstamp>
-			<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
-		</tstamp>
 		<echo file="${src}/games/stendhal/client/StendhalBuild.java">
 			package games.stendhal.client;
 			public class StendhalBuild {
@@ -563,12 +564,12 @@
 		</javadoc>
 	</target>
 
-	<target name="compile" depends="server_build, client_build" description="Generates JAR files for both client and server"/>
+	<target name="compile" depends="server_build, client_build, server_build" description="Generates JAR files for both client and server"/>
 
 	<target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
 
-	<target name="dist_server_binary" depends="server_build">
+	<target name="dist_server_binary" depends="server_build, compilejs">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
@@ -1088,68 +1089,84 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		</schemavalidate>
 	</target>
 
-	<target name="compilejs">
+	<target name="compilejs" depends="js-prepare, js-invoke-compiler" />
+
+	<target name="js-prepare-marauroa">
+		<mkdir dir="build/js" />
+		<unzip dest="build" src="libs/marauroa.jar">
+			<patternset>
+				<include name="js/**"/>
+			</patternset>
+		</unzip>
+	</target>
+
+	<target name="js-prepare-build">
+		
+		<echo file="build/js/build.js">
+			var stendhal = window.stendhal = window.stendhal || {};
+			stendhal.data = stendhal.data || {};
+
+			stendhal.data.build = {
+				version: "${version}",
+				build: "${timestamp}",
+				dist: "webclient"
+			}
+		</echo>
+	</target>
+
+	<extension-point name="js-prepare" depends="js-prepare-marauroa, js-prepare-build" />
+
+	<target name="js-invoke-compiler">
+
+		<property name="js-files-marauroa" value="build/js/marauroa.js build/js/client-framework.js build/js/message-factory.js build/js/perception.js build/js/rpfactory.js" />
+		<property name="js-files-config"   value="srcjs/stendhal/config.js build/js/build.js" />
+		<property name="js-files-lib"      value="srcjs/jsxgraph-util.js" />
+		<property name="js-files-data1"    value="srcjs/stendhal/data/cache.js srcjs/stendhal/data/cstatus.js srcjs/stendhal/data/map.js srcjs/stendhal/data/sha3.js srcjs/stendhal/data/sprites.js" />
+		<property name="js-files-data2"    value="" />
+		<property name="js-files-entity1"  value="srcjs/stendhal/entity/entity.js srcjs/stendhal/entity/unknown.js srcjs/stendhal/entity/blood.js srcjs/stendhal/entity/corpse.js" />
+		<property name="js-files-entity2"  value="srcjs/stendhal/entity/chest.js srcjs/stendhal/entity/food.js srcjs/stendhal/entity/gate.js srcjs/stendhal/entity/item.js srcjs/stendhal/entity/portal.js" />
+		<property name="js-files-entity3"  value="srcjs/stendhal/entity/activeentity.js srcjs/stendhal/entity/rpentity.js srcjs/stendhal/entity/player.js srcjs/stendhal/entity/creature.js" />
+		<property name="js-files-entity4"  value="srcjs/stendhal/entity/domesticanimal.js srcjs/stendhal/entity/npc.js srcjs/stendhal/entity/sign.js srcjs/stendhal/entity/growingspawner.js" />
+		<property name="js-files-entity5"  value="srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" /> 
+		<property name="js-files-entity6"  value="" /> 
+		<property name="js-files-ui1"      value="srcjs/stendhal/ui/buddylist.js srcjs/stendhal/ui/chatlog.js srcjs/stendhal/ui/gamewindow.js srcjs/stendhal/ui/html.js srcjs/stendhal/ui/minimap.js" />
+		<property name="js-files-ui2"      value="srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/stats.js srcjs/stendhal/ui/chatinput.js" />
+		<property name="js-files-ui3"      value="" />
+		<property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js" />
+		<property name="js-files-ui4"      value="srcjs/stendhal/ui/popup.js srcjs/stendhal/ui/itemcontainer.js" />
+		<property name="js-files-main2"    value="srcjs/stendhal/main.js" />
+		<property name="js-files-main3"    value="" />
+
+
 		<java jar="buildtools/closure-compiler/compiler.jar"
 				fork="true"
 				failonerror="true"
 				maxmemory="128m">
 			<arg value="--language_in=ECMASCRIPT5_STRICT"/>
-			<arg value="--compilation_level"/>
-			<!--
-			<arg value="SIMPLE"/>
-			-->
-			<arg value="ADVANCED"/>
-			<arg value="--debug"/>
-			<arg value="--formatting=PRETTY_PRINT"/>
+			<arg value="--compilation_level" />
+			<arg value="ADVANCED" />
+			<arg line="${js-debug}" />			
 			
 			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
-			<arg value="--create_source_map=srcjs/stendhal-compiled.map"/>
-			<arg value="srcjs/stendhal/config.js" />
 
-			<arg value="../marauroa/src/js/marauroa.js" />
-			<arg value="../marauroa/src/js/client-framework.js" />
-			<arg value="../marauroa/src/js/message-factory.js" />
-			<arg value="../marauroa/src/js/perception.js" />
-			<arg value="../marauroa/src/js/rpfactory.js" />
-
-			<arg value="srcjs/jsxgraph-util.js" />
-
-			<arg value="srcjs/stendhal/data/map.js" />
-			<arg value="srcjs/stendhal/data/sprites.js" />
-
-			<arg value="srcjs/stendhal/entity/entity.js" />
-			<arg value="srcjs/stendhal/entity/unknown.js" />
-			<arg value="srcjs/stendhal/entity/blood.js" />
-			<arg value="srcjs/stendhal/entity/corpse.js" />
-			<arg value="srcjs/stendhal/entity/chest.js" />
-			<arg value="srcjs/stendhal/entity/food.js" />
-			<arg value="srcjs/stendhal/entity/gate.js" />
-			<arg value="srcjs/stendhal/entity/item.js" />
-			<arg value="srcjs/stendhal/entity/portal.js" />
-			<arg value="srcjs/stendhal/entity/activeentity.js" />
-			<arg value="srcjs/stendhal/entity/rpentity.js" />
-			<arg value="srcjs/stendhal/entity/player.js" />
-			<arg value="srcjs/stendhal/entity/creature.js" />
-			<arg value="srcjs/stendhal/entity/domesticanimal.js" />
-			<arg value="srcjs/stendhal/entity/npc.js" />
-			<arg value="srcjs/stendhal/entity/sign.js" />
-			<arg value="srcjs/stendhal/entity/growingspawner.js" />
-			<arg value="srcjs/stendhal/entity/zone.js" />
-			<arg value="srcjs/stendhal/entity/ground.js" />
-
-			<arg value="srcjs/stendhal/ui/buddylist.js" />
-			<arg value="srcjs/stendhal/ui/chatlog.js" />
-			<arg value="srcjs/stendhal/ui/gamewindow.js" />
-			<arg value="srcjs/stendhal/ui/html.js" />
-			<arg value="srcjs/stendhal/ui/minimap.js" />
-			<arg value="srcjs/stendhal/ui/sound.js" />
-			<arg value="srcjs/stendhal/ui/stats.js" />
-			<arg value="srcjs/stendhal/ui/chatinput.js" />
-			<arg value="srcjs/stendhal/actions.js" />
-			<arg value="srcjs/stendhal/events.js" />
-			<arg value="srcjs/stendhal/ui/popup.js" />
-			<arg value="srcjs/stendhal/ui/itemcontainer.js" />
-			<arg value="srcjs/stendhal/main.js" />
+			<arg line="${js-files-marauroa}" />
+			<arg line="${js-files-config}" />
+			<arg line="${js-files-lib}" />
+			<arg line="${js-files-data1}" />
+			<arg line="${js-files-data2}" />
+			<arg line="${js-files-entity1}" />
+			<arg line="${js-files-entity2}" />
+			<arg line="${js-files-entity3}" />
+			<arg line="${js-files-entity4}" />
+			<arg line="${js-files-entity5}" />
+			<arg line="${js-files-entity6}" />
+			<arg line="${js-files-ui1}" />
+			<arg line="${js-files-ui2}" />
+			<arg line="${js-files-ui3}" />
+			<arg line="${js-files-main1}" />
+			<arg line="${js-files-ui4}" />
+			<arg line="${js-files-main2}" />
+			<arg line="${js-files-main3}" />
 		</java>
 	</target>
 	
