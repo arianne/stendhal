@@ -157,7 +157,7 @@ public class CloakCollector2Test {
 
 		// does not exist
 		en.stepTest(player, "pink cloak");
-		assertEquals("I don't know pink cloak. Can you name me another cloak please?", getReply(npc));
+		assertEquals("Sorry, I don't know about that. Please name me another cloak.", getReply(npc));
 
 		en.stepTest(player, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals("Brilliant! I'm all excited again! Bye!", getReply(npc));
