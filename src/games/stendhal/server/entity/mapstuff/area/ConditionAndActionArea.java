@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,9 @@ public class ConditionAndActionArea extends AreaEntity {
 
     private ChatCondition condition;
 
+    private String soundStart;
+    private String soundSuccess;
+    private String soundFail;
 
     ConditionAndActionArea(final ChatCondition condition, final ChatAction action) {
         this.action = action;

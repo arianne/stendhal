@@ -224,8 +224,8 @@ public class SolveRiddles extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
-	private void setRiddle(String npcName) {
-		final SpeakerNPC reaper = npcs.get(npcName);
+	private void setRiddle() {
+		final SpeakerNPC reaper = npcs.get("Grim Reaper");
 
 		// player has no unsolved riddle active
 		reaper.add(ConversationStates.ATTENDING,
@@ -301,9 +301,7 @@ public class SolveRiddles extends AbstractQuest {
 				"Solve Riddles",
 				"The Grim Reapers pose tricky riddles for those who want to leave the hottest place in Faiumoni.",
 				false);
-		setRiddle("Grim Reaper");
-		// Reaper clone in the pit
-		setRiddle("Grim\u00A0Reaper");
+		setRiddle();
 	}
 
 	@Override
