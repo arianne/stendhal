@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Speak with Io PARTICIPANTS: - Io
@@ -125,7 +125,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_5,
-			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.freenode.net'. There is a web frontend at #http://stendhalgame.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
+			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.freenode.net'. There is a web frontend at #https://stendhalgame.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
 			null);
 
 		npc.add(

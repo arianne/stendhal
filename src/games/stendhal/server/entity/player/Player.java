@@ -20,6 +20,19 @@ import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Random;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
@@ -56,22 +69,9 @@ import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map.Entry;
-import java.util.Random;
-import java.util.Set;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 public class Player extends RPEntity implements UseListener {
 
@@ -2752,7 +2752,7 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public int getCappedAtk() {
-		// Blue line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		// Blue line in https://sourceforge.net/p/arianne/feature-requests/1330/
 		// reduced using median instead of average as reference
 		return Math.min(this.atk, getMaxAtkForLevel(level));
 	}
@@ -2765,7 +2765,7 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public int getCappedDef() {
-		// Red line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		// Red line in https://sourceforge.net/p/arianne/feature-requests/1330/
 		return Math.min(this.def, getMaxDefForLevel(level));
 	}
 

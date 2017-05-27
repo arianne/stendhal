@@ -27,10 +27,10 @@ class BareBonesBrowserLaunchCommandsFactory {
 	
 	private static void initialize() {
 		commandsAndUrls = new HashMap<String, String>();
-		commandsAndUrls.put("beginnersguide", "http://stendhalgame.org/wiki/BeginnersGuide");
-		commandsAndUrls.put("faq", "http://stendhalgame.org/wiki/StendhalFAQ");
-		commandsAndUrls.put("manual", "http://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings");
-		commandsAndUrls.put("rules", "http://stendhalgame.org/wiki/Stendhal_Rules");
+		commandsAndUrls.put("beginnersguide", "https://stendhalgame.org/wiki/BeginnersGuide");
+		commandsAndUrls.put("faq", "https://stendhalgame.org/wiki/StendhalFAQ");
+		commandsAndUrls.put("manual", "https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings");
+		commandsAndUrls.put("rules", "https://stendhalgame.org/wiki/Stendhal_Rules");
 		commandsAndUrls.put("changepassword", "https://stendhalgame.org/account/change-password.html");
 		commandsAndUrls.put("loginhistory", "https://stendhalgame.org/account/history.html");
 		commandsAndUrls.put("merge", "https://stendhalgame.org/account/merge.html");

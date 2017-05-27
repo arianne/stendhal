@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
@@ -117,7 +117,7 @@ public class MeetZynn extends AbstractQuest {
 		npc
 				.addReply(
 						"get",
-						"You can get a scaled-down composite aerial map of Stendhal at #http://arianne.sourceforge.net/wiki_images/atlas_world.png if you want one. Careful you don't spoil any surprises for yourself, though!");
+						"You can get a map of Stendhal at #https://stendhalgame.org/world/atlas.html if you want one. Careful you don't spoil any surprises for yourself, though!");
 
 		npc
 				.addReply(

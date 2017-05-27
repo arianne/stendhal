@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -30,12 +36,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * QUEST: Speak with Hayunn 
@@ -198,7 +198,7 @@ public class MeetHayunn extends AbstractQuest {
 			"Simple, really; just click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
-		final String epilog = "You can find answers to frequently asked questions by typing #/faq \nYou can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n ";
+		final String epilog = "You can find answers to frequently asked questions by typing #/faq \nYou can read about some of the currently most powerful and successful warriors at #https://stendhalgame.org\n ";
 		
 			//This is used if the player returns, asks for #help and then say #yes
 			npc.add(ConversationStates.ATTENDING,

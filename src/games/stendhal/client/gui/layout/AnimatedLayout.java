@@ -11,7 +11,7 @@
  ***************************************************************************/
 /*
  * Inspired by MadProgrammer's example at
- * http://stackoverflow.com/a/14541651/2471439
+ * https://stackoverflow.com/a/14541651/2471439
  */
 package games.stendhal.client.gui.layout;
 

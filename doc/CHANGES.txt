@@ -863,12 +863,12 @@
 
 **** IMPORTANT****
 If you package Stendhal or have forked your own game based on it
-read http://stendhalgame.org/wiki/Automatic_Software_Updater
+read https://stendhalgame.org/wiki/Automatic_Software_Updater
 ******************
 
 - rewrote the updater so that it will not break onces a year anymore because the certificate expires
 - on Unix/Linux the home folder now defaults to $HOME/.config/stendhal for new installs
-- improved the best player score for low level players: http://stendhalgame.org/wiki/Fixing_RP_Score_2011
+- improved the best player score for low level players: https://stendhalgame.org/wiki/Fixing_RP_Score_2011
 
 * Marauroa*
 - updated to Marauroa 3.8.7 which greatly improves server side performance
@@ -1274,7 +1274,7 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 - Tab completion for online nick names works now without /who called before
 - orc spearman creature
 - /atlas /faq and /manual commands to open useful pages in browser
-- Harold tweets trades, the official stendhal server uses http://twitter.com/stendhaltrade
+- Harold tweets trades, the official stendhal server uses https://twitter.com/stendhaltrade
 - magical damage types of weapons (fire, ice ...)
 - resistance/vulnerability of creatures to magical weapons (fire, ice, ...)
 - attack sweeps look different depending on the attack type
@@ -1446,8 +1446,8 @@ your error log files and pleace continue to do so.
 - NPC chat and creature noises using RPEvent
 *website*
 - nicer urls for subpages on the website
-- a new version of the atlas with dungeon entrances: http://stendhalgame.org/wiki/File:WorldWithMarkedDungeons091122.png
-- dedicated testing page on wiki http://stendhalgame.org/wiki/Stendhal_Testing
+- a new version of the atlas with dungeon entrances: https://stendhalgame.org/wiki/File:WorldWithMarkedDungeons091122.png
+- dedicated testing page on wiki https://stendhalgame.org/wiki/Stendhal_Testing
 - Stendhal Manual on the wiki updated with new images
 
 
@@ -1547,8 +1547,8 @@ your error log files and pleace continue to do so.
 - black dragon, flying golden dragon
 - skeletons, fallens of all kinds
 * Admin
-  - support log available at http://stendhalgame.org
-  - player history available at http://stendhalgame.org/?id=content%2Fadmin%2Fplayerhistory&name=NAME&sublogin=Search
+  - support log available at https://stendhalgame.org
+  - player history available at https://stendhalgame.org
   - new command /adminnote
   - /gmhelp_script and /gmehlp_alter replaced by /gmhelp script and /gmhelp alter
 

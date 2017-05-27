@@ -12,12 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
-import games.stendhal.common.parser.WordList;
-import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
-import games.stendhal.server.entity.mapstuff.portal.Portal;
-
 import java.net.URI;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,11 +19,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.parser.WordList;
+import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.IRPZone.ID;
 import marauroa.server.game.rp.RPWorld;
-
-import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
 	/** the logger instance. */
@@ -107,7 +106,7 @@ public class StendhalRPWorld extends RPWorld {
 	
 	/**
 	 * This method is a workaround for a groovy bug:
-	 * http://jira.codehaus.org/browse/GROOVY-1484
+	 * https://jira.codehaus.org/browse/GROOVY-1484
 	 * 
 	 * Don't use it in Java code, only in Groovy. Remove this method once the
 	 * Groovy bug has been resolved.

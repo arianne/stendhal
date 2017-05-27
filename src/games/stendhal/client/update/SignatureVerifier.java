@@ -133,7 +133,7 @@ class SignatureVerifier {
 	 * @param hexString hexadecimal encoded string
 	 * @return byte[]
 	 */
-	// http://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java/140861#140861
+	// https://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java/140861#140861
 	static byte[] hexStringToByteArray(String hexString) {
 		String s = hexString;
 

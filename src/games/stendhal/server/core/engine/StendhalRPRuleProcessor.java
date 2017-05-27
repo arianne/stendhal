@@ -12,6 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Debug;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.filter.FilterCriteria;
@@ -34,20 +50,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
 import games.stendhal.server.extension.StendhalServerExtension;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import marauroa.common.Configuration;
 import marauroa.common.Pair;
 import marauroa.common.game.AccountResult;
@@ -62,9 +64,6 @@ import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 /**
  * adds game rules for Stendhal to the marauroa environment.
  *
@@ -519,7 +518,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			final Configuration config = Configuration.getConfiguration();
 			if (config.has("server_welcome")) {
 				msg = config.get("server_welcome");
-				if (msg.startsWith("http://")) {
+				if (msg.startsWith("http://") || msg.startsWith("https://")) {
 					final URL url = new URL(msg);
 					HttpURLConnection.setFollowRedirects(false);
 					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();

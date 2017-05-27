@@ -36,7 +36,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 	public boolean execute(final String[] params, final String remainder) {
 		StringBuilder url = new StringBuilder();
 		User user = User.get();
-		url.append("http://stendhalgame.org/world/atlas.html");
+		url.append("https://stendhalgame.org/world/atlas.html");
 		if (user != null) {
 			url.append("?me=");
 			url.append(user.getZoneName());

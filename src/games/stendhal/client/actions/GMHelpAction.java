@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.common.NotificationType;
-import games.stendhal.common.messages.SupportMessageTemplatesFactory;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
@@ -43,7 +43,7 @@ class GMHelpAction implements SlashAction {
 	    List<String> lines;
 		if (params[0] == null) {
 			lines = Arrays.asList(
-				"For a detailed reference, visit #http://stendhalgame.org/wiki/Stendhal:Administration",
+				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal:Administration",
 				"Here are the most-used GM commands:",
 				"- /gmhelp [alter|script|support]  \t for more info about alter, script or the supportanswer shortcuts", 
 				"- /supportanswer <player> <message> \t Replies to a support question. Replace <message> with $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam shortcuts if desired.",

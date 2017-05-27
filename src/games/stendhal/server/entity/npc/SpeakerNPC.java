@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.ExpressionMatcher;
@@ -29,16 +36,9 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
  * This is a finite state machine that implements a chat system. See:
- * http://en.wikipedia.org/wiki/Finite_state_machine In fact, it is a
+ * https://en.wikipedia.org/wiki/Finite_state_machine In fact, it is a
  * transducer.
  * States are denoted by the enum ConversationStates. Input is the text
  * that the player says to the SpeakerNPC. Output is the text that the

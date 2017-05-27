@@ -12,21 +12,21 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-import static org.junit.Assert.assertEquals;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class MeetHayunnTest {
 
@@ -92,7 +92,7 @@ public class MeetHayunnTest {
 		en.step(player, "yes");
 		// [15:14] omerob earns 20 experience points.
 		assertEquals("You can find answers to frequently asked questions by typing #/faq \n" +
-				"You can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n"
+				"You can read about some of the currently most powerful and successful warriors at #https://stendhalgame.org\n"
 			+ " Well, good luck in the dungeons! This shield should help you. Here's hoping you find fame and glory, and keep watch for monsters!", getReply(npc));
 
 		// -----------------------------------------------

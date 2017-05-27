@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -26,11 +31,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.StoreMessageAction;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A crazy old man (original name: Diogenes) who walks around the city.
@@ -50,7 +50,7 @@ public class RetireeNPC implements ZoneConfigurator {
 			public void createDialog() {
 				addGreeting();
 				addJob("Ha ha! Job? I retired from my job as the #postman decades ago! Ha ha!");
-				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://stendhalgame.org and see how you can help!");
+				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit https://stendhalgame.org and see how you can help!");
 				addGoodbye();
 				addReply("postman", "I used to deliver messages. But now there's a new kid doing it. Tell you what, I'll send him a message now, to give you.", new StoreMessageAction("Diogenes", "Hello it was nice chatting to you earlier in Semos. If you want to use postman to send messages to others who aren't here right now, just /msg postman"));
 				addOffer("Well well... I could still carry your letters around, but I'm retired and someone else got my job. You can visit that guy, new #postman is in Semos plains in the north of here.");

@@ -14,13 +14,13 @@ package games.stendhal.server.actions;
 import static games.stendhal.common.constants.Actions.CID;
 import static games.stendhal.common.constants.Actions.CSTATUS;
 import static games.stendhal.common.constants.Actions.ID;
-import games.stendhal.common.NotificationType;
-import games.stendhal.common.Version;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.Version;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
@@ -78,7 +78,7 @@ public class CStatusAction implements ActionListener {
 									+ serverVersion
 									+ " but your client is version "
 									+ clientVersion
-									+ ".\nYou can download the most recent version from http://arianne.sourceforge.net ");
+									+ ".\nYou can download the most recent version from https://arianne-project.org ");
 				}
 			}
 		}
