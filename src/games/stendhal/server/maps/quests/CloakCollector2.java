@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
@@ -34,11 +39,6 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Cloak Collector 2
@@ -225,6 +225,12 @@ public class CloakCollector2 extends AbstractQuest {
 					}
 			});
 		}
+		npc.add(ConversationStates.QUEST_2_OFFERED, 
+				"", 
+				null,
+				ConversationStates.QUEST_2_OFFERED, 
+				"Sorry, I don't know about that. Please name me another cloak.",
+				null);
 	}
 
 	private void step_2() {
