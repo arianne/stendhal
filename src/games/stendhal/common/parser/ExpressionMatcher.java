@@ -206,15 +206,15 @@ public class ExpressionMatcher {
         txt = ConversationParser.detectSentenceType(txt, sentence);
 
         if (typeMatching) {
-            readTypeMatchExpressions(txt, sentence);
+            readTypeMatchExpressions(txt, ctx, sentence);
         } else if (exactMatching) {
-            readSimpleExpressions(txt, sentence);
+            readSimpleExpressions(txt, ctx, sentence);
         } else if (similarMatching) {
-            readSimpleExpressions(txt, sentence);
+            readSimpleExpressions(txt, ctx, sentence);
         } else if (jokerMatching) {
-            readJokerExpressions(txt, sentence);
+            readJokerExpressions(txt, ctx, sentence);
         } else if (caseInsensitive) {
-            readSimpleExpressions(txt, sentence);
+            readSimpleExpressions(txt, ctx, sentence);
         }
 
         return sentence;
@@ -225,9 +225,10 @@ public class ExpressionMatcher {
      * "&lt;expression&gt;/&lt;TYPESTRING&gt; &lt;expression&gt;/&lt;TYPESTRING&gt; ..."
      *
      * @param text to be parsed
+     * @param ctx
      * @param sentence
      */
-    private void readTypeMatchExpressions(final String text, final Sentence sentence) {
+    private void readTypeMatchExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         final StringTokenizer tok = new StringTokenizer(text, "/");
 
         while (tok.hasMoreTokens()) {
@@ -251,9 +252,10 @@ public class ExpressionMatcher {
      * Read in the words from the given string and create the Sentence object using this unchanged expressions.
      *
      * @param text to be parsed
+     * @param ctx
      * @param sentence
      */
-    private void readSimpleExpressions(final String text, final Sentence sentence) {
+    private void readSimpleExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         final StringTokenizer tok = new StringTokenizer(text);
 
         while (tok.hasMoreTokens()) {
@@ -271,9 +273,10 @@ public class ExpressionMatcher {
      * with activated 'forMatching' flag.
      *
      * @param text to be parsed
+     * @param ctx
      * @param sentence
      */
-    private void readJokerExpressions(final String text, final Sentence sentence) {
+    private void readJokerExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
         final StringTokenizer tok = new StringTokenizer(text);
 
         while (tok.hasMoreTokens()) {

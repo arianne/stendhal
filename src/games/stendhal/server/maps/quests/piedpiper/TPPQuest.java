@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,35 +24,30 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 public class TPPQuest implements ITPPQuest {
-	
-	protected static final Logger logger = Logger.getLogger(TPPQuest.class);	
+
+	protected static final Logger logger = Logger.getLogger(TPPQuest.class);
 	protected Map<String, Integer> timings;
-	
+
 	@Override
 	public String getSwitchingToNextPhaseMessage() {
 		return null;
 	}
-	
+
 	@Override
 	public String getSwitchingToDefPhaseMessage() {
 		return null;
 	}
-	
+
 	@Override
 	public TPP_Phase getPhase() {
 		return null;
 	}
-	
+
 	public TPPQuest(Map<String, Integer> timings) {
 		this.timings=timings;
 	}
-	
+
 	/**
 	 * wrapper for shout to all function
 	 * @param msg
@@ -58,33 +58,33 @@ public class TPPQuest implements ITPPQuest {
 		}
 	}
 
-	
+
 	/**
 	 * timer for npc's shouts to player.
 	 */
 	class ShouterTimer implements TurnListener {
 		private String shoutMsg;
 		private int shoutTime;
-		
+
 		public void start() {
 			shoutMessage(shoutMsg);
 			TurnNotifier.get().dontNotify(this);
 			TurnNotifier.get().notifyInSeconds(shoutTime, this);
 		}
-		
+
 		public void stop() {
 			TurnNotifier.get().dontNotify(this);
 		}
-		
+
 		@Override
-		public void onTurnReached(int currentTurn) {			
+		public void onTurnReached(int currentTurn) {
 			start();
 		}
-		
+
 		public void setShouts(final String msg) {
 			shoutMsg = msg;
 		}
-		
+
 		public void setTime(int time) {
 			shoutTime = time;
 		}
@@ -95,25 +95,25 @@ public class TPPQuest implements ITPPQuest {
 		}
 
 	}
-	
+
 	private final ShouterTimer shouterTimer = new ShouterTimer(-1, null);
-	
+
 	protected void changeShouts(final int time, final String msg) {
 		shouterTimer.setTime(time);
 		shouterTimer.setShouts(msg);
 	}
-	
+
 	protected void startShouts(int time, String msg) {
 		shouterTimer.setTime(time);
 		shouterTimer.setShouts(msg);
 		shouterTimer.start();
 	}
-	
+
 	protected void stopShouts() {
 		shouterTimer.stop();
 	}
 
-	
+
 	@Override
 	public void phaseToDefaultPhase(List<String> comments) {
 		shoutMessage(getSwitchingToDefPhaseMessage());
@@ -125,7 +125,7 @@ public class TPPQuest implements ITPPQuest {
 		stopShouts();
 		ThePiedPiper.setNewNotificationTime(
 				ThePiedPiper.getDefaultPhaseClass().getMinTimeOut(),
-				ThePiedPiper.getDefaultPhaseClass().getMaxTimeOut());	
+				ThePiedPiper.getDefaultPhaseClass().getMaxTimeOut());
 		ThePiedPiper.getDefaultPhaseClass().prepare();
 		if(!comments.isEmpty()) {
 			new GameEvent(null, "raid", comments).raise();
@@ -142,16 +142,16 @@ public class TPPQuest implements ITPPQuest {
 		ThePiedPiper.setPhase(nextPhase.getPhase());
 		stopShouts();
 		ThePiedPiper.setNewNotificationTime(
-				nextPhase.getMinTimeOut(), 
+				nextPhase.getMinTimeOut(),
 				nextPhase.getMaxTimeOut());
 		nextPhase.prepare();
 	}
-	
+
 	@Override
 	public void prepare() {
-		
+
 	}
-	
+
 	@Override
 	public int getMaxTimeOut() {
 		return 0;
@@ -161,6 +161,6 @@ public class TPPQuest implements ITPPQuest {
 	public int getMinTimeOut() {
 		return 0;
 	}
-	
+
 }
 

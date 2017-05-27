@@ -369,7 +369,12 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 * 		The resistance value
 	 */
 	public double getStatusResistanceValue(StatusType type) {
-		return resistances.getStatusResistance(type);
+		Double resistValue = resistances.getStatusResistance(type);
+		if (resistValue == null) {
+			return 0.0;
+		}
+
+		return resistValue.doubleValue();
 	}
 
 	/**

@@ -17,7 +17,7 @@ import java.util.Comparator;
 /**
  * sorts a array lists based on the length, the order of
  * list with the same length is undefined but consistent.
- * 
+ *
  * @param <T> ArrayList
  */
 public class ArrayLengthDescSorter<T extends ArrayList<?>> implements Comparator<T> {

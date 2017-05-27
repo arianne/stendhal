@@ -1,7 +1,5 @@
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultNPC;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,53 +19,55 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import games.stendhal.server.core.rule.defaultruleset.DefaultNPC;
+
 public final class NPCsXMLLoader extends DefaultHandler {
-    
+
     /** the logger instance. */
     private static final Logger logger = Logger.getLogger(NPCsXMLLoader.class);
-    
+
     private String name;
-    
+
     private String clazz;
-    
+
     private String subclass;
-    
+
     private String description;
-    
+
     private String text;
-    
+
     private String tileid;
-    
+
     private double speed;
-    
+
     private int sizeWidth;
-    
+
     private int sizeHeight;
-    
+
     /** List of possible sound events. */
     private List<String> sounds;
-    
+
     /** Looped sound effect for moving creature */
     private String movementSound;
-    
+
     private LinkedHashMap<String, LinkedList<String>> npcSays;
-    
+
     private Map<String, String> aiProfiles;
-    
+
     private List<DefaultNPC> list;
-    
+
     private boolean ai;
-    
+
     private boolean says;
-    
+
     private boolean attributes;
-    
+
     private String condition;
-    
+
     NPCsXMLLoader() {
         // hide constructor, use NPCGroupsXMLLoader instead
     }
-    
+
     public List<DefaultNPC> load(final URI uri) throws SAXException {
         list = new LinkedList<DefaultNPC>();
         // Use the default (non-validating) parser
@@ -75,14 +75,14 @@ public final class NPCsXMLLoader extends DefaultHandler {
         try {
             // Parse the input
             final SAXParser saxParser = factory.newSAXParser();
-            
+
             final InputStream is = NPCsXMLLoader.class.getResourceAsStream(uri.getPath());
-            
+
             if (is == null) {
                 throw new FileNotFoundException("cannot find resource '" + uri
                         + "' in classpath");
             }
-            
+
             try {
                 saxParser.parse(is, this);
             } finally {
@@ -94,20 +94,20 @@ public final class NPCsXMLLoader extends DefaultHandler {
             logger.error(e);
             throw new SAXException(e);
         }
-        
+
         return list;
     }
-    
+
     @Override
     public void startDocument() {
         // do nothing
     }
-    
+
     @Override
     public void endDocument() {
         // do nothing
     }
-    
+
     @Override
     public void startElement(final String namespaceURI, final String lName, final String qName,
             final Attributes attrs) {
@@ -178,25 +178,25 @@ public final class NPCsXMLLoader extends DefaultHandler {
             }
         }
     }
-    
+
     @Override
     public void endElement(final String namespaceURI, final String sName, final String qName) {
         if (qName.equals("npc")) {
-            
+
             if (!XMLUtil.checkCondition(condition)) {
                 return;
             }
-            
+
             if (!tileid.contains(":")) {
                 logger.error("Corrupt XML file: Bad tileid for NPC (" + name + ")");
                 return;
             }
-            
+
             final DefaultNPC npc = new DefaultNPC(clazz, subclass, tileid);
-            
+
             npc.setRPStats(speed);
             npc.setSize(sizeWidth, sizeHeight);
-            
+
             npc.setAIProfiles(aiProfiles);
             npc.setNoiseLines(npcSays);
             npc.setDescription(description);
@@ -216,7 +216,7 @@ public final class NPCsXMLLoader extends DefaultHandler {
             text = "";
         }
     }
-    
+
     @Override
     public void characters(final char[] buf, final int offset, final int len) {
         text = text + (new String(buf, offset, len)).trim() + " ";

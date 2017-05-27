@@ -52,9 +52,9 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * A woman who bakes bread for players.
- * 
+ *
  * Erna will lend tools.
- * 
+ *
  * @author daniel / kymara
  */
 public class ShopAssistantNPC implements ZoneConfigurator  {
@@ -64,7 +64,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 
 	private static final List<String> ITEMS = Arrays.asList("sugar mill", "pestle and mortar");
 
-			
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
@@ -106,100 +106,100 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 
 				new ProducerAdder().addProducer(this, behaviour,
 				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.");
-				
+
 				addOffer("Our pizza delivery team can #borrow some kitchen equipment from me.");
-				 
-				add(ConversationStates.ATTENDING, "borrow", 
-				    new LevelLessThanCondition(6), 
-				    ConversationStates.ATTENDING, 
+
+				add(ConversationStates.ATTENDING, "borrow",
+				    new LevelLessThanCondition(6),
+				    ConversationStates.ATTENDING,
 				    "Oh sorry, I don't lend equipment to people with so little experience as you.",
 				    null);
-				 
-				add(ConversationStates.ATTENDING, "borrow", 
-				    new AndCondition(new LevelGreaterThanCondition(5), new QuestNotCompletedCondition("pizza_delivery")),  
-				    ConversationStates.ATTENDING, 
+
+				add(ConversationStates.ATTENDING, "borrow",
+				    new AndCondition(new LevelGreaterThanCondition(5), new QuestNotCompletedCondition("pizza_delivery")),
+				    ConversationStates.ATTENDING,
 				    "You'll have to speak to Leander and ask if you can help with the pizza before I'm allowed to lend you anything.",
 				    null);
 
-				add(ConversationStates.ATTENDING, "borrow", 
+				add(ConversationStates.ATTENDING, "borrow",
 				    new AndCondition(
-				        new LevelGreaterThanCondition(5), 
+				        new LevelGreaterThanCondition(5),
 				        new QuestCompletedCondition("pizza_delivery"),
-				        new QuestNotActiveCondition(QUEST_SLOT)), 
-				    ConversationStates.ATTENDING, 
-				    "I lend out " + Grammar.enumerateCollectionWithHash(ITEMS) + ". If you're interested, please say which you want.", 
+				        new QuestNotActiveCondition(QUEST_SLOT)),
+				    ConversationStates.ATTENDING,
+				    "I lend out " + Grammar.enumerateCollectionWithHash(ITEMS) + ". If you're interested, please say which you want.",
 				    null);
 
 				// player already has borrowed something it didn't return and will pay for it
-				add(ConversationStates.ATTENDING, "borrow", 
-				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),  
-				    ConversationStates.QUESTION_1, 
+				add(ConversationStates.ATTENDING, "borrow",
+				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
+				    ConversationStates.QUESTION_1,
 				    "You didn't return what I last lent you! Do you want to pay for it at a cost of " + COST + " money?",
 				    null);
-				 
+
 				// player already has borrowed something it didn't return and will return it
-				add(ConversationStates.ATTENDING, "borrow", 
-				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT)),  
-				    ConversationStates.QUESTION_2, 
+				add(ConversationStates.ATTENDING, "borrow",
+				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT)),
+				    ConversationStates.QUESTION_2,
 				    "You didn't return what I last lent you! Do you want to return it now?",
 				    null);
-				 
+
 				// player wants to pay for previous item
 				final List<ChatAction> payment = new LinkedList<ChatAction>();
 				payment.add(new DropItemAction("money", COST));
 				payment.add(new SetQuestAction(QUEST_SLOT, "done"));
 				payment.add(new DecreaseKarmaAction(10));
-				add(ConversationStates.QUESTION_1, 
-				    ConversationPhrases.YES_MESSAGES, 
-				    new PlayerHasItemWithHimCondition("money", COST),  
-				    ConversationStates.ATTENDING, 
+				add(ConversationStates.QUESTION_1,
+				    ConversationPhrases.YES_MESSAGES,
+				    new PlayerHasItemWithHimCondition("money", COST),
+				    ConversationStates.ATTENDING,
 				    "Thanks. Just let me know if you want to #borrow any tools again.",
 				    new MultipleActions(payment));
-				 
+
 				// player already has borrowed something and wants to return it
 				final List<ChatAction> returnitem = new LinkedList<ChatAction>();
 				returnitem.add(new DropRecordedItemAction(QUEST_SLOT));
 				returnitem.add(new SetQuestAction(QUEST_SLOT, "done"));
-				add(ConversationStates.QUESTION_2, 
-				    ConversationPhrases.YES_MESSAGES, 
-				    new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT),  
-				    ConversationStates.ATTENDING, 
+				add(ConversationStates.QUESTION_2,
+				    ConversationPhrases.YES_MESSAGES,
+				    new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT),
+				    ConversationStates.ATTENDING,
 				    "Thank you! Just let me know if you want to #borrow any tools again.",
 				    new MultipleActions(returnitem));
-				 
+
 				// don't want to pay for it now
-				add(ConversationStates.QUESTION_1, 
-				    ConversationPhrases.NO_MESSAGES, 
-				    null,  
-				    ConversationStates.ATTENDING, 
+				add(ConversationStates.QUESTION_1,
+				    ConversationPhrases.NO_MESSAGES,
+				    null,
+				    ConversationStates.ATTENDING,
 				    "No problem. Take as long as you need, but you can't borrow other tools till you return the last, or pay for it.",
 				    null);
 				// does want to pay for it now
-				add(ConversationStates.QUESTION_1, 
-				    ConversationPhrases.YES_MESSAGES, 
-				    new NotCondition(new PlayerHasItemWithHimCondition("money", COST)),  
-				    ConversationStates.ATTENDING, 
+				add(ConversationStates.QUESTION_1,
+				    ConversationPhrases.YES_MESSAGES,
+				    new NotCondition(new PlayerHasItemWithHimCondition("money", COST)),
+				    ConversationStates.ATTENDING,
 				    "Sorry, but it seems you dont have enough money with you.",
 				    null);
-				 
+
 				// don't want to return it now
-				add(ConversationStates.QUESTION_2, 
-				    ConversationPhrases.NO_MESSAGES, 
-				    null,  
-				    ConversationStates.ATTENDING, 
+				add(ConversationStates.QUESTION_2,
+				    ConversationPhrases.NO_MESSAGES,
+				    null,
+				    ConversationStates.ATTENDING,
 				    "No problem. Take as long as you need, but you can't borrow other tools till you return the last, or pay for it.",
 				    null);
-				 
-				 
+
+
 				// saying the item name and storing that item name into the quest slot, and giving the item
 				for(final String itemName : ITEMS) {
 					add(ConversationStates.ATTENDING,
 					    itemName,
 					    new AndCondition(
-					        new LevelGreaterThanCondition(5), 
+					        new LevelGreaterThanCondition(5),
 					        new QuestCompletedCondition("pizza_delivery"),
 					        new QuestNotActiveCondition(QUEST_SLOT)),
-					    ConversationStates.ATTENDING, 
+					    ConversationStates.ATTENDING,
 					    null,
 					    new ChatAction() {
 							@Override
@@ -220,10 +220,10 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				add(ConversationStates.ATTENDING,
 					    "sugar",
 					    new AndCondition(
-					        new LevelGreaterThanCondition(5), 
+					        new LevelGreaterThanCondition(5),
 					        new QuestCompletedCondition("pizza_delivery"),
 					        new QuestNotActiveCondition(QUEST_SLOT)),
-					    ConversationStates.ATTENDING, 
+					    ConversationStates.ATTENDING,
 					    "Sorry, I can't lend out sugar, only a #sugar #mill.",
 					    null);
 
@@ -231,52 +231,52 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				add(ConversationStates.ATTENDING,
 					    ITEMS,
 					    new LevelLessThanCondition(6),
-					    ConversationStates.ATTENDING, 
+					    ConversationStates.ATTENDING,
 					    "Sorry, as you have little experience in this world I can't trust you with my tools.",
 					    null);
-				
+
 				// currently has borrowed an item
 				add(ConversationStates.ATTENDING,
 					    ITEMS,
 					    new QuestActiveCondition(QUEST_SLOT),
-					    ConversationStates.ATTENDING, 
+					    ConversationStates.ATTENDING,
 					    "You can't borrow from me again till you #return the last tool I lent you.",
 					    null);
-				
+
 				// haven't done pizza
 				add(ConversationStates.ATTENDING,
 					    ITEMS,
 					    new QuestNotCompletedCondition("pizza_delivery"),
-					    ConversationStates.ATTENDING, 
+					    ConversationStates.ATTENDING,
 					    "Only pizza deliverers can borrow tools, please deliver one for Leander and then ask me again.",
 					    null);
-				
+
 				// player asks about pay from attending state
-				add(ConversationStates.ATTENDING, "pay", 
-				    new QuestActiveCondition(QUEST_SLOT),  
-				    ConversationStates.QUESTION_1, 
+				add(ConversationStates.ATTENDING, "pay",
+				    new QuestActiveCondition(QUEST_SLOT),
+				    ConversationStates.QUESTION_1,
 				    "If you lost what I lent you, you can pay " + COST + " money. Do you want to pay now?",
 				    null);
-				 
+
 				// player asks about return from attending state
-				add(ConversationStates.ATTENDING, "return", 
-				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT)),  
-				    ConversationStates.QUESTION_2, 
+				add(ConversationStates.ATTENDING, "return",
+				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT)),
+				    ConversationStates.QUESTION_2,
 				    "Do you want to return what you borrowed now?",
 				    null);
-				
+
 				// player asks about return from attending state
-				add(ConversationStates.ATTENDING, "return", 
-				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),  
-				    ConversationStates.QUESTION_1, 
+				add(ConversationStates.ATTENDING, "return",
+				    new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT))),
+				    ConversationStates.QUESTION_1,
 				    "You don't have it with you! Do you want to pay " + COST + " money for it now?",
 				    null);
-				
+
 			}};
 			npc.setPosition(26, 9);
 			npc.setEntityClass("housewifenpc");
 			npc.setDescription("You see Erna. She's worked a long time for Leander and is his loyal assistant.");
-			zone.add(npc);		
+			zone.add(npc);
 	}
 }
 

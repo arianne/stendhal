@@ -119,7 +119,7 @@ public class ServerDown extends ScriptImpl {
 				addReply("reality", "To get you to this place beyond reality, I had to suspend disbelief.");
 				addReply("stendhal", "The powers, that be, are currently restoring the Stendhal reality. Just wait and relax.");
 				addReply("pacman", "Oh, that is just one reality among the ones we are watching here. See #https://stendhalgame.org/-49 for details.");
-				
+
 				addGoodbye();
 			}
 		};
