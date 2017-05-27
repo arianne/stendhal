@@ -18,7 +18,7 @@ Stendhal is platform independent, and completely open source.
 So what are you waiting for?! A whole new world awaits...
 
 
-## How to play
+##How to play
 
 [![Play now](https://arianne-project.org/images/playbutton.png)](https://stendhalgame.org/account/mycharacters.html) &nbsp; &nbsp; &nbsp; &nbsp;
 [![Download](https://stendhalgame.org/images/downloadbutton.png)](https://arianne-project.org/download/stendhal.zip)
@@ -42,7 +42,7 @@ There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there i
 * [Building Stendhal](https://stendhalgame.org/wiki/HowToBuildStendhal)
 
 
-## Legal
+##Legal
 The server and java client is free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** 2 or later as published by the Free Software Foundation.
 
 The web client is free software; you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License** 3 or later as published by the Free Software Foundation.
