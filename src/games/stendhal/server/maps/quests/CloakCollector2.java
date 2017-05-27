@@ -48,10 +48,10 @@ import games.stendhal.server.maps.Region;
  * STEPS:
  * <ul>
  * <li> Josephine asks you to bring her a cloak in colours she didn't get already from you
- * <li> You bring cloaks to Josephine
+ * <li> You bring cloaks to Josephine 
  * <li> Repeat until Josephine
  * received all cloaks. (Of course you can bring several cloaks at the same
- * time.)
+ * time.) 
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
@@ -70,8 +70,8 @@ public class CloakCollector2 extends AbstractQuest {
 								       "elvish cloak", "chaos cloak", "mainio cloak",
 								       "golden cloak", "black dragon cloak");
     private static final String OLD_QUEST = "cloaks_collector";
-    private static final String QUEST_SLOT = "cloaks_collector_2";
-
+    private static final String QUEST_SLOT = "cloaks_collector_2";   
+    
     @Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -125,10 +125,10 @@ public class CloakCollector2 extends AbstractQuest {
 				null);
 
 		// player asks what cloaks are needed
-		npc.add(ConversationStates.QUEST_2_OFFERED,
-				"collection",
+		npc.add(ConversationStates.QUEST_2_OFFERED, 
+				"collection", 
 				null,
-				ConversationStates.QUEST_2_OFFERED,
+				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
 					@Override
@@ -148,10 +148,10 @@ public class CloakCollector2 extends AbstractQuest {
 				});
 		// player says yes
 		npc.add(ConversationStates.QUEST_2_OFFERED,
-				ConversationPhrases.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES, 
 				null,
-				ConversationStates.IDLE,
-				null,
+				ConversationStates.IDLE, 
+				null, 
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
@@ -166,11 +166,11 @@ public class CloakCollector2 extends AbstractQuest {
 				});
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_2_OFFERED,
-				ConversationPhrases.NO_MESSAGES,
+		npc.add(ConversationStates.QUEST_2_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, 
 				null,
-				ConversationStates.QUEST_2_OFFERED,
-				null,
+				ConversationStates.QUEST_2_OFFERED, 
+				null, 
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
@@ -184,18 +184,18 @@ public class CloakCollector2 extends AbstractQuest {
 					}
 				});
 
-		// player asks about an individual cloak. We used the trick before that all cloaks were named by colour
+		// player asks about an individual cloak. We used the trick before that all cloaks were named by colour 
 		// (their subclass) - so she would tell them what colour it was. In this case it fails for elvish,
 		// xeno and shadow which are not named by colour. So, this time she'll say, e.g.
 		// It's a shadow cloak, sorry if that's not much help, so will you find them all?
 		// rather than say for elf cloak she'd said 'It's a white cloak, so will you find them all?'
-		// it will still work for red (red_spotted is the subclass), black dragon (black),
+		// it will still work for red (red_spotted is the subclass), black dragon (black), 
 		// golden, mainio (primary coloured), chaos (multicoloured).
 		for(final String itemName : NEEDEDCLOAKS2) {
-			npc.add(ConversationStates.QUEST_2_OFFERED,
-				itemName,
+			npc.add(ConversationStates.QUEST_2_OFFERED, 
+				itemName, 
 				null,
-				ConversationStates.QUEST_2_OFFERED,
+				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
 					@Override
@@ -225,10 +225,10 @@ public class CloakCollector2 extends AbstractQuest {
 					}
 			});
 		}
-		npc.add(ConversationStates.QUEST_2_OFFERED,
-				"",
+		npc.add(ConversationStates.QUEST_2_OFFERED, 
+				"", 
 				null,
-				ConversationStates.QUEST_2_OFFERED,
+				ConversationStates.QUEST_2_OFFERED, 
 				"Sorry, I don't know about that. Please name me another cloak.",
 				null);
 	}
@@ -249,10 +249,10 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2,
 				"Welcome back! Have you brought any #cloaks with you?", null);
 		// player asks what exactly is missing
-		npc.add(ConversationStates.QUESTION_2,
-				"cloaks",
+		npc.add(ConversationStates.QUESTION_2, 
+				"cloaks", 
 				null,
-				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
 					@Override
@@ -272,10 +272,10 @@ public class CloakCollector2 extends AbstractQuest {
 				});
 		// player says he has a required cloak with him
 		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES, 
 				null,
 				ConversationStates.QUESTION_2,
-				"Woo! What #cloaks did you bring?",
+				"Woo! What #cloaks did you bring?", 
 				null);
 
 		for(final String itemName : NEEDEDCLOAKS2) {
@@ -327,20 +327,20 @@ public class CloakCollector2 extends AbstractQuest {
 			});
 		}
 
-		npc.add(ConversationStates.ATTENDING,
+		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
 					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
-				},
+				}, 
 				ConversationStates.ATTENDING,
-				"Ok. If you want help, just say.",
+				"Ok. If you want help, just say.", 
 				null);
 
 		// player says he didn't bring any cloaks to different question
-		npc.add(ConversationStates.QUESTION_2,
+		npc.add(ConversationStates.QUESTION_2, 
 				ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
 					@Override
@@ -351,19 +351,19 @@ public class CloakCollector2 extends AbstractQuest {
 				null);
 
 		// player returns after finishing the quest but not rewarded
-		npc.add(ConversationStates.IDLE,
+		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "done")),
+						new QuestInStateCondition(QUEST_SLOT, "done")), 
 				ConversationStates.ATTENDING,
-				"Oh! I didn't reward you for helping me again! Here, take these boots. I think they're gorgeous but they don't fit me :(",
+				"Oh! I didn't reward you for helping me again! Here, take these boots. I think they're gorgeous but they don't fit me :(", 
 				new MultipleActions(new EquipItemAction("killer boots", 1, true), new SetQuestAction(QUEST_SLOT, "done;rewarded")));
-
+	
 		//		 player returns after finishing the quest and was rewarded
-		npc.add(ConversationStates.IDLE,
+		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "done;rewarded")),
+						new QuestInStateCondition(QUEST_SLOT, "done;rewarded")), 
 				ConversationStates.ATTENDING,
 				"Thanks again for helping me! The cloaks look great!",
 				null);
@@ -379,17 +379,17 @@ public class CloakCollector2 extends AbstractQuest {
 				"Josephine wants even more cloaks!",
 				false);
 	}
-
+	
 	private static void rewardPlayer(final Player player) {
 		player.addKarma(100.0);
 		player.addXP(100000);
       	}
-
+	
 	@Override
 	public String getName() {
 		return "CloakCollector2";
 	}
-
+	
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -403,14 +403,14 @@ public class CloakCollector2 extends AbstractQuest {
 			}
 			return res;
 	}
-
-	// The previous quest likely requires at least this level.
+	
+	// The previous quest likely requires at least this level. 
 	// When adding the hint check, remember to check if the CloakCollector quest is completed.
 	@Override
 	public int getMinLevel() {
 		return 100;
 	}
-
+	
 	@Override
 	public String getRegion() {
 		return Region.FADO_CITY;
