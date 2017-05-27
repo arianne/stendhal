@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern;
 
+import java.awt.Rectangle;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.util.Area;
-
-import java.awt.Rectangle;
-import java.util.Map;
 
 /*
  * Inside Semos Tavern - Level 0 (ground floor)
@@ -54,7 +54,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 			addHelp("If you are looking for Ouchit: he's upstairs.");
 			addGoodbye();
 		}
-		
+
 		@Override
 		protected void onGoodbye(RPEntity player) {
 			setDirection(Direction.DOWN);

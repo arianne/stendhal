@@ -21,19 +21,18 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.nalwor.postoffice.PostNPC;
 import games.stendhal.server.maps.nalwor.bank.BankNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import games.stendhal.server.maps.nalwor.postoffice.PostNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -41,7 +40,7 @@ public class TakeGoldforGrafindleTest {
 
 
 	private static String questSlot = "grafindle_gold";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -51,12 +50,12 @@ public class TakeGoldforGrafindleTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new PostNPC().configureZone(zone, null);
 		new BankNPC().configureZone(zone, null);
-				
+
 		final AbstractQuest quest = new TakeGoldforGrafindle();
 		quest.addToWorld();
 
@@ -71,12 +70,12 @@ public class TakeGoldforGrafindleTest {
 	 */
 	@Test
 	public void testStartQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Grafindle");
 		en = npc.getEngine();
-		
+
 		final double karma = player.getKarma();
-		
+
 		en.step(player, "hi");
 		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "help");
@@ -93,7 +92,7 @@ public class TakeGoldforGrafindleTest {
 		assertEquals("Goodbye, young human.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		assertThat(player.getKarma(), lessThan(karma));
-		
+
 		en.step(player, "hi");
 		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "quest");
@@ -106,16 +105,16 @@ public class TakeGoldforGrafindleTest {
 		en.step(player, "yes");
 		assertEquals("Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("start"));
-		
+
 		en.step(player, "hi");
 		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I need someone who can be trusted with #gold.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, young human.", getReply(npc));
-		
+
 	}
-	
+
 
 	/**
 	 * Tests for speaking to Lorithien to get the gold
@@ -125,16 +124,16 @@ public class TakeGoldforGrafindleTest {
 
 		npc = SingletonRepository.getNPCList().get("Lorithien");
 		en = npc.getEngine();
-		
+
 		player.setQuest(questSlot, "start");
-		
+
 		en.step(player, "hi");
 		assertEquals("I'm so glad you're here! I'll be much happier when this gold is safely in the bank.", getReply(npc));
 		assertTrue(player.isEquipped("gold bar", 25));
 		assertThat(player.getQuest(questSlot), is("lorithien"));
 		en.step(player, "bye");
 		assertEquals("Bye - nice to meet you!", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("Oh, please take that gold back to #Grafindle before it gets lost!", getReply(npc));
 		en.step(player, "grafindle");
@@ -142,31 +141,31 @@ public class TakeGoldforGrafindleTest {
 		en.step(player, "bye");
 		assertEquals("Bye - nice to meet you!", getReply(npc));
 	}
-	
+
 	/**
 	 * Tests for taking the gold
 	 */
 	@Test
 	public void testTakeGold() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Grafindle");
 		en = npc.getEngine();
-		
+
 		player.setQuest(questSlot, "lorithien");
-		
+
 		// the player in this case hasn't got the gold bars (we started a new test) so it's like he did get them but he put them on the ground
-		
+
 		en.step(player, "hi");
 		assertEquals("Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, young human.", getReply(npc));
-		
+
 		// the player did actually get them before so lets now equip him with them
 		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 25);
-		
+
 		final int xp = player.getXP();
 		final double karma3 = player.getKarma();
-		
+
 		en.step(player, "hi");
 		// [09:40] kymara earns 200 experience points.
 		assertEquals("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.", getReply(npc));
@@ -177,27 +176,27 @@ public class TakeGoldforGrafindleTest {
 		assertThat(player.getKarma(), greaterThan(karma3));
 		assertFalse(player.isEquipped("gold bar"));
 		assertTrue(player.isEquipped("nalwor bank key"));
-		
+
 		en.step(player, "hi");
 		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I ask only that you are honest.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Goodbye, young human.", getReply(npc));	
+		assertEquals("Goodbye, young human.", getReply(npc));
 	}
-	
-	
+
+
 	/**
 	 * Tests for speaking to lorithien after completed quest
 	 */
 	@Test
 	public void testSpeaToLorithienAfterQuestCompleted() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Lorithien");
 		en = npc.getEngine();
-		
+
 		player.setQuest(questSlot, "done");
-		
+
 		// return to post elf after quest done
 		en.step(player, "hi");
 		assertEquals("Hi, can I #help you?", getReply(npc));

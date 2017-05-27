@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -26,12 +31,6 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.Pair;
 
 public class DiceGambling extends AbstractQuest {
@@ -94,9 +93,9 @@ public class DiceGambling extends AbstractQuest {
 					player.equipOrPutOnGround(dice);
 				}
 			});
-		
+
 		ricardo.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new NotCondition(new PlayerHasItemWithHimCondition("money", STAKE)),
 			ConversationStates.ATTENDING,
 			"Hey! You don't have enough money!", null);
@@ -108,7 +107,7 @@ public class DiceGambling extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Coward! How will you ever become a hero when you risk nothing?",
 			null);
-		
+
 		fillQuestInfo(
 				"Dice Gambling",
 				"Try your luck at Semos Tavern's gambling table.",
@@ -143,7 +142,7 @@ public class DiceGambling extends AbstractQuest {
 		"You're going to look great in this fashionable red cloak!"));
 		map.put(18, new Pair<String, String>("magic chain helmet",
 				"You have hit the JACKPOT! A magic chain helmet!"));
-		
+
 		return map;
 	}
 
@@ -151,17 +150,17 @@ public class DiceGambling extends AbstractQuest {
 	public String getName() {
 		return "DiceGambling";
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  * A map from classes to a list of instances
- * 
+ *
  * @author hendrik
  * @param <V>  type of value
  */
@@ -98,7 +98,7 @@ public class ClassToInstancesMap<V> implements Map<Class<V>, List<V>> {
 
 	/**
 	 * adds an entry
-	 * 
+	 *
 	 * @param value
 	 *            value
 	 */
@@ -115,7 +115,7 @@ public class ClassToInstancesMap<V> implements Map<Class<V>, List<V>> {
 
 	/**
 	 * removes an entry
-	 * 
+	 *
 	 * @param value
 	 *            value
 	 */

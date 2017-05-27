@@ -1,5 +1,9 @@
 package games.stendhal.server.script;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -8,10 +12,6 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * sets the path of an NPC

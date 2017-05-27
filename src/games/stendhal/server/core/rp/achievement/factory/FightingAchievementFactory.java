@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.KilledRareCreatureCondition;
@@ -19,10 +23,6 @@ import games.stendhal.server.core.rp.achievement.condition.KilledSharedAllCreatu
 import games.stendhal.server.core.rp.achievement.condition.KilledSoloAllCreaturesCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 /**
  * Factory for fighting achievements
  *

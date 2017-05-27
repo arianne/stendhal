@@ -17,6 +17,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.awt.Rectangle;
+import java.util.Iterator;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -26,17 +34,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.quests.DiceGambling;
 import games.stendhal.server.util.Area;
-
-import java.awt.Rectangle;
-import java.util.Iterator;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -127,7 +126,7 @@ public class DiceDealerNPCTest extends ZonePlayerAndNPCTestImpl {
 						if (!(obj instanceof Money)) {
 							player.drop((Item)obj);
 							found = true;
-							break; 
+							break;
 						}
 					}
 

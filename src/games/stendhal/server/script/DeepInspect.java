@@ -12,13 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
-import games.stendhal.server.entity.player.Player;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -26,6 +19,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.CharacterDAO;
@@ -33,7 +32,7 @@ import marauroa.server.game.db.DAORegister;
 
 /**
  * Deep inspects a player and all his/her items.
- * 
+ *
  * @author hendrik
  */
 public class DeepInspect extends ScriptImpl {
@@ -91,7 +90,7 @@ public class DeepInspect extends ScriptImpl {
 
 	/**
 	 * Inspects a player
-	 * 
+	 *
 	 * @param admin  Inspector
 	 * @param target player being inspected
 	 */
@@ -102,7 +101,7 @@ public class DeepInspect extends ScriptImpl {
 		for (final String value : target) {
 			sb.append(value + ": " + target.get(value) + "\n");
 		}
-		
+
 		admin.sendPrivateText(sb.toString());
 		sb.setLength(0);
 
@@ -119,20 +118,20 @@ public class DeepInspect extends ScriptImpl {
 			for (final RPObject object : slot) {
 				sb.append("   " + object + "\n");
 			}
-			
+
 			sb.append("\n");
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 		}
-		
+
 		if (target instanceof Player) {
 			Player player = (Player) target;
-			
+
 			// Produced items
 			sb.append("Production:\n   ");
 			final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 		    final List<String> produceList = new LinkedList<String>();
-		    
+
 		    for (String food : producerRegister.getProducedItemNames("food")) {
 		    	produceList.add(food);
 		    }
@@ -142,24 +141,24 @@ public class DeepInspect extends ScriptImpl {
 		    for (String resource : producerRegister.getProducedItemNames("resource")) {
 		    	produceList.add(resource);
 		    }
-		    
+
 			for (String product : produceList) {
 				int quant = player.getQuantityOfProducedItems(product);
 				if (quant > 0) {
 					sb.append("[" + product + "=" + Integer.toString(quant) + "]");
 				}
 			}
-			
+
 			sb.append("\n");
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
-			
-			
+
+
 			Collection<Item> itemList = SingletonRepository.getEntityManager().getItems();
-			
+
 			// Looted items
 			sb.append("Loots:\n   ");
-			
+
 			int itemCount = 0;
 			for (Item item : itemList) {
 				itemCount = player.getNumberOfLootsForItem(item.getName());
@@ -167,12 +166,12 @@ public class DeepInspect extends ScriptImpl {
 					sb.append("[" + item.getName() + "=" + Integer.toString(itemCount) + "]");
 				}
 			}
-			
+
 			sb.append("\n");
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
-			
-			
+
+
 			// Harvested items
 			sb.append("Harvested Items (FishSource, FlowerGrower, VegetableGrower):\n   ");
 			itemCount = 0;
@@ -182,7 +181,7 @@ public class DeepInspect extends ScriptImpl {
 					sb.append("[" + item.getName() + "=" + Integer.toString(itemCount) + "]");
 				}
 			}
-			
+
 			sb.append("\n");
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);

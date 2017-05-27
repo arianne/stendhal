@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.rp.achievement.Achievement;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -21,6 +19,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import games.stendhal.server.core.rp.achievement.Achievement;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 /**

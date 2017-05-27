@@ -26,7 +26,7 @@ import javax.swing.event.MouseInputListener;
  */
 public class ColorSwatch extends JPanel {
   /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5148427974120905902L;
 
@@ -144,9 +144,9 @@ public class ColorSwatch extends JPanel {
     int colorSize = getColorSize();
     int colorSpacing = getColorSpacing();
     int margin = getMargin();
-    return new Dimension((colorSize + colorSpacing) * colors[0].length 
+    return new Dimension((colorSize + colorSpacing) * colors[0].length
                               + (2 * margin) - colorSpacing
-                       , (colorSize + colorSpacing) * colors.length 
+                       , (colorSize + colorSpacing) * colors.length
                               + (2 * margin) - colorSpacing);
   }
 
@@ -175,7 +175,7 @@ public class ColorSwatch extends JPanel {
     int marginedY = y - margin;
     int col = marginedX / (colorSize + colorSpacing);
     int row = marginedY / (colorSize + colorSpacing);
-    if ((col < 0) || (col >= colors[0].length) || (row < 0) 
+    if ((col < 0) || (col >= colors[0].length) || (row < 0)
                        || (row >= colors.length)) {
       return null;
     }

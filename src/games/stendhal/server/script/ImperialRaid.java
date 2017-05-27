@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Not safe for players below level 150
  */
 public class ImperialRaid extends CreateRaid {
@@ -37,7 +37,7 @@ public class ImperialRaid extends CreateRaid {
 		attackArmy.put("imperial general giant", 2);
 		return attackArmy;
 	}
-	
+
 	@Override
 	protected String getInfo() {
 		return "Not safe for players below level 150";

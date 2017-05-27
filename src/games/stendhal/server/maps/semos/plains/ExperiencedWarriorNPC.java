@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.plains;
 
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -27,11 +32,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Experienced warrior knowing a lot about creatures (location semos_plains_s).
@@ -214,6 +214,7 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 						new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 						final String creatureName = sentence.getTriggerExpression().getNormalized();
 						final DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
@@ -248,6 +249,7 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 						ConversationPhrases.YES_MESSAGES, null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
@@ -287,7 +289,7 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 		npc.setPosition(37, 2);
 		npc.setEntityClass("experiencedwarriornpc");
 		npc.setDescription("You see Starkad, the mighty warrior and defender of Semos.");
-		zone.add(npc);	
+		zone.add(npc);
 	}
 
 	private static String getCreatureInfo(final Player player, final String creatureName) {

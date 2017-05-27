@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.util;
 
-import games.stendhal.common.grammar.Grammar;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import games.stendhal.common.grammar.Grammar;
 
 /**
  * ItemCollection is a collection of items with associated amount.
@@ -40,16 +40,16 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	public void addFromQuestStateString(final String str) {
 		addFromQuestStateString(str, 0);
 	}
-	
+
     public void addFromQuestStateString(final String str, final int position) {
 	    if (str != null) {
 	    	final String[] slots = str.split(",");
 	    	if (slots[position] != null) {
 		        final List<String> items = Arrays.asList(slots[position].split(";"));
-	
+
 	    		for (final String item : items) {
 	    			final String[] pair = item.split("=");
-	
+
 	    			if (pair.length == 2) {
 	        			addItem(pair[0], Integer.parseInt(pair[1]));
 	    			}

@@ -23,12 +23,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import games.stendhal.common.constants.Nature;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;
 import java.lang.reflect.Constructor;
@@ -36,12 +30,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -134,7 +133,7 @@ public class ItemTest {
 		item.put("amount", 5);
 		item.put("range", 6);
 		item.put("lifesteal", 7);
-		
+
 		assertThat(item.describe(), equalTo("Description. It is a special reward for hero, and cannot be used by others. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7 MIN-LEVEL: 1)."));
 
 		item.setDamageType(Nature.FIRE);

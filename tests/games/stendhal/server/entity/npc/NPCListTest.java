@@ -16,10 +16,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-import games.stendhal.server.core.engine.SingletonRepository;
 
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import utilities.PlayerTestHelper;
 
 public class NPCListTest {

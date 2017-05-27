@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.in;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -32,7 +32,7 @@ public class RandTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	/**
 	 * Tests for randUniform.
 	 */
@@ -40,7 +40,7 @@ public class RandTest {
 	public void testRandUniform() {
 		assertEquals(0, Rand.randUniform(0, 0));
 	}
-	
+
 	/**
 	 * Tests for randUniform2.
 	 */

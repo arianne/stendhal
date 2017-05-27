@@ -12,14 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.creature.AttackableCreature;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,6 +19,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.creature.AttackableCreature;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Represents a creature summon scroll.
@@ -39,7 +39,7 @@ public class SummonScroll extends Scroll {
 
 	/**
 	 * Creates a new summon scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -52,7 +52,7 @@ public class SummonScroll extends Scroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -62,7 +62,7 @@ public class SummonScroll extends Scroll {
 
 	/**
 	 * Is invoked when a summon scroll is used.
-	 * 
+	 *
 	 * @param player
 	 *            The player who used the scroll
 	 * @return true iff summoning was successful
@@ -126,7 +126,7 @@ public class SummonScroll extends Scroll {
 			profiles.remove("stupid coward");
 			creature.setAIProfiles(profiles);
 		}
-	
+
 		StendhalRPAction.placeat(zone, creature, x, y);
 
 		creature.init();
@@ -136,7 +136,7 @@ public class SummonScroll extends Scroll {
 
 		return true;
 	}
-	
+
 	@Override
 	public String describe() {
 		String text = super.describe();

@@ -13,15 +13,15 @@
 package games.stendhal.server.entity.item;
 
 import marauroa.common.game.Definition;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 public class ItemInformation extends Item {
 
 
 	/**
 	 * copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */

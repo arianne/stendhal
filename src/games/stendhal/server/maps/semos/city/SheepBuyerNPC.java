@@ -1,5 +1,12 @@
 package games.stendhal.server.maps.semos.city;
 
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -17,23 +24,15 @@ import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
 import games.stendhal.server.util.Area;
-
-import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
 
 /**
  * A merchant (original name: Sato) who buys sheep from players.
  */
 public class SheepBuyerNPC implements ZoneConfigurator {
-	
+
 	// The sheep pen where Sato moves what he buys
-	/** Left X coordinate of the sheep pen */ 
+	/** Left X coordinate of the sheep pen */
 	private static final int SHEEP_PEN_X = 39;
 	/** Top Y coordinate of the sheep pen */
 	private static final int SHEEP_PEN_Y = 24;
@@ -41,9 +40,9 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 	private static final int SHEEP_PEN_WIDTH = 16;
 	/** Height of the sheep pen */
 	private static final int SHEEP_PEN_HEIGHT = 6;
-	/** 
+	/**
 	 * The maximum number of sheep Sato keeps in his sheep pen.
-	 */ 
+	 */
 	private static final int MAX_SHEEP_IN_PEN = 8;
 	/** The area covering the sheep pen in Semos */
 	private Area pen;
@@ -57,11 +56,11 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 			setBaseHP(100);
 			setHP(100);
 		}
-		
+
 		/**
-		 * Get the area of the sheep pen where bought sheep 
+		 * Get the area of the sheep pen where bought sheep
 		 * should be moved.
-		 * 
+		 *
 		 * @param zone the zone of the sheep pen
 		 * @return area of the sheep pen
 		 */
@@ -71,22 +70,22 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				rect.setRect(SHEEP_PEN_X, SHEEP_PEN_Y, SHEEP_PEN_WIDTH, SHEEP_PEN_HEIGHT);
 				pen = new Area(zone, rect);
 			}
-			
+
 			return pen;
 		}
-		
+
 		/**
 		 * Try to get rid of the big bad wolf that could have spawned in the pen,
 		 * but miss it sometimes.
-		 *  
+		 *
 		 * @param zone the zone to check
 		 */
 		private void killWolves(StendhalRPZone zone) {
-			if (Rand.throwCoin() == 1) { 
+			if (Rand.throwCoin() == 1) {
 				for (RPObject obj : zone) {
 					if (obj instanceof Creature) {
 						Creature wolf = (Creature) obj;
-						
+
 						if ("wolf".equals(wolf.get("subclass")) && getPen(zone).contains(wolf)) {
 							wolf.onDamaged(this, wolf.getHP());
 							return;
@@ -95,17 +94,17 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				}
 			}
 		}
-		
+
 		/**
 		 * Get a list of the sheep in the pen.
-		 * 
+		 *
 		 * @param zone the zone to check
 		 * @return list of sheep in the pen
 		 */
 		private List<Sheep> sheepInPen(StendhalRPZone zone) {
 			List<Sheep> sheep = new LinkedList<Sheep>();
 			Area pen = getPen(zone);
-			
+
 			for (RPEntity entity : zone.getPlayerAndFriends()) {
 				if (entity instanceof Sheep) {
 					if (pen.contains(entity)) {
@@ -113,15 +112,15 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 					}
 				}
 			}
-			
+
 			return sheep;
 		}
-		
+
 		/**
-		 * Move a bought sheep to the den if there's space, or remove it 
+		 * Move a bought sheep to the den if there's space, or remove it
 		 * from the zone otherwise. Remove old sheep if there'd be more
 		 * than <code>MAX_SHEEP_IN_PEN</code> after the addition.
-		 * 
+		 *
 		 * @param sheep the sheep to be moved
 		 */
 		public void moveSheep(Sheep sheep) {
@@ -130,25 +129,25 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 			int y = Rand.randUniform(SHEEP_PEN_Y, SHEEP_PEN_Y + SHEEP_PEN_HEIGHT - 1);
 			StendhalRPZone zone = sheep.getZone();
 			List<Sheep> oldSheep = sheepInPen(zone);
-			
+
 			killWolves(zone);
 			/*
 			 * Keep the amount of sheep reasonable. Sato's
-			 * a business man and letting the sheep starve 
+			 * a business man and letting the sheep starve
 			 * would be bad for busines.
 			 */
 			if (oldSheep.size() >= MAX_SHEEP_IN_PEN) {
 				// Sato sells the oldest sheep
 				zone.remove(oldSheep.get(0));
 			}
-			
+
 			if (!StendhalRPAction.placeat(zone, sheep, x, y)) {
 				// there was no room for the sheep. Simply eat it
-				sheep.getZone().remove(sheep);  
+				sheep.getZone().remove(sheep);
 			}
 		}
 	}
-	
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
@@ -200,7 +199,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				final Sheep sheep = player.getSheep();
 				return getValue(res, sheep);
 			} else {
-				// npc's answer was moved to BuyerAdder. 
+				// npc's answer was moved to BuyerAdder.
 				return 0;
 			}
 		}

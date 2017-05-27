@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.wizardstower;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,14 +22,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FirstFloorCreatures implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
+	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
@@ -47,12 +47,12 @@ public class FirstFloorCreatures implements ZoneConfigurator {
 		creature1.setName("fire demon");
 
 		creature1.setDescription("You see a fire demon. His body is paled in flames, which will burn your skin.");
-	
+
 		creature.setAIProfiles(new HashMap<String, String>());
 		creature1.setAIProfiles(new HashMap<String, String>());
 		creature2.setAIProfiles(new HashMap<String, String>());
-		creature3.setAIProfiles(new HashMap<String, String>());		
-		
+		creature3.setAIProfiles(new HashMap<String, String>());
+
 		creature.clearDropItemList();
 		creature1.clearDropItemList();
 		creature2.clearDropItemList();
@@ -62,7 +62,7 @@ public class FirstFloorCreatures implements ZoneConfigurator {
 		creature1.setXP(0);
 		creature2.setXP(0);
 		creature3.setXP(0);
-		
+
 		creature.setPosition(15,28);
 		creature1.setPosition(29,15);
 		creature2.setPosition(1,15);
@@ -71,14 +71,14 @@ public class FirstFloorCreatures implements ZoneConfigurator {
 		creature.setDirection(Direction.UP);
 		creature1.setDirection(Direction.LEFT);
 		creature2.setDirection(Direction.RIGHT);
-		
+
 		// Claim these spawned creatures to hide them from
 		// /script EntitySearch.class nonrespawn
 		creature.setRespawned(true);
 		creature1.setRespawned(true);
 		creature2.setRespawned(true);
 		creature3.setRespawned(true);
-		
+
 		zone.add(creature);
 		zone.add(creature1);
 		zone.add(creature2);

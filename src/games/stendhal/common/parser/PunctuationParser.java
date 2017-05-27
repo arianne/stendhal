@@ -15,7 +15,7 @@ package games.stendhal.common.parser;
 /**
  * PunctuationParser is used to trim preceding and trailing punctuation
  * characters from a string.
- * 
+ *
  */
 public final class PunctuationParser {
 
@@ -60,7 +60,7 @@ public final class PunctuationParser {
 
 	/**
 	 * Evaluates if the passed char is one of . , ! or ? .
-	 * @param c 
+	 * @param c
 	 * @return true if one of  . , ! or ? .
 	 */
 	private boolean isPunctuation(final char c) {
@@ -69,7 +69,7 @@ public final class PunctuationParser {
 
 	/**
 	 * Return preceding punctuation characters.
-	 * 
+	 *
 	 * @return a new string containing preceding punctuation
 	 */
 	public String getPrecedingPunctuation() {
@@ -78,7 +78,7 @@ public final class PunctuationParser {
 
 	/**
 	 * Return trailing punctuation characters.
-	 * 
+	 *
 	 * @return a new String containing trailing punctuation
 	 */
 	public String getTrailingPunctuation() {
@@ -87,7 +87,7 @@ public final class PunctuationParser {
 
 	/**
 	 * Return remaining text.
-	 * 
+	 *
 	 * @return a new string containg the stripped and trimmed text
 	 */
 	public String getText() {

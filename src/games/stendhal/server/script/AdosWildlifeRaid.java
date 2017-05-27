@@ -25,7 +25,7 @@ public class AdosWildlifeRaid implements TurnListener {
 
 	/**
 	 * Creates a soldier
-	 * 
+	 *
 	 * @param zone zone
 	 * @param name Name of the NPC
 	 * @param x x-postion
@@ -42,8 +42,8 @@ public class AdosWildlifeRaid implements TurnListener {
 
 	/**
 	 * Creates three soldiers to block the entrance
-	 * 
-	 * @param zone zone 
+	 *
+	 * @param zone zone
 	 */
 	public void createSoldiers(StendhalRPZone zone) {
 
@@ -58,8 +58,8 @@ public class AdosWildlifeRaid implements TurnListener {
 
 	/**
 	 * Creates a sheep for the Orcs to target
-	 * 
-	 * @param zone zone 
+	 *
+	 * @param zone zone
 	 */
 	public void createSheep(StendhalRPZone zone) {
 		Creature creature = new Sheep();
@@ -113,13 +113,13 @@ public class AdosWildlifeRaid implements TurnListener {
 				// shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
 				wait = 600 * 3;
 				break;
-			
+
 			case 9:
 				// remove the portal
 				StendhalRPWorld.get().remove(portal.getID());
 				StendhalRPWorld.get().remove(portalDestination.getID());
 				return;
-			
+
 		}
 		TurnNotifier.get().notifyInTurns(wait, this);
 		turnCounter++;

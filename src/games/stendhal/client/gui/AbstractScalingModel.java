@@ -29,10 +29,10 @@ public abstract class AbstractScalingModel implements ScalingModel {
 	public void addChangeListener(ChangeListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	/**
 	 * Set the representation, and notify listeners if it changed.
-	 * 
+	 *
 	 * @param representation new representation
 	 * @return <code>true</code> if the representation changed, otherwise
 	 * 	<code>false</code>
@@ -51,7 +51,7 @@ public abstract class AbstractScalingModel implements ScalingModel {
 	public int getRepresentation() {
 		return representation;
 	}
-	
+
 	/**
 	 * Notify change listeners.
 	 */

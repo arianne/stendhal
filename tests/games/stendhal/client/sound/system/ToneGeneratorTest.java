@@ -14,9 +14,10 @@ package games.stendhal.client.sound.system;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.client.sound.system.processors.ToneGenerator;
 
 import org.junit.Test;
+
+import games.stendhal.client.sound.system.processors.ToneGenerator;
 
 /**
  * Tests for the ToneGenerator class.

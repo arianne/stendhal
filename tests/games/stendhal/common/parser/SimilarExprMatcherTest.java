@@ -15,27 +15,22 @@ package games.stendhal.common.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.common.parser.Expression;
-import games.stendhal.common.parser.ExpressionMatcher;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.common.parser.SimilarExprMatcher;
 
 import org.junit.Test;
 
 /**
  * Test the SimilarExprMatcher class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class SimilarExprMatcherTest {
 
 	@Test
 	public final void testIsSimilarOnlyOneIsNull() {
-		assertFalse(SimilarExprMatcher.isSimilar(null, "", 0.1));	
+		assertFalse(SimilarExprMatcher.isSimilar(null, "", 0.1));
 		assertFalse(SimilarExprMatcher.isSimilar("", null, 0.1));
 	}
-	
+
 	/**
 	 * Tests for isSimilar.
 	 */

@@ -13,6 +13,10 @@
 package games.stendhal.server.entity.mapstuff.sign;
 
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
@@ -21,10 +25,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.events.ShowItemListEvent;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A sign for a ShopList.
@@ -48,7 +48,7 @@ public class ShopSign extends Sign implements UseListener {
 
 	/**
 	 * Create a shop list sign.
-	 * 
+	 *
 	 * @param name
 	 *            the shop name.
 	 * @param title
@@ -56,7 +56,7 @@ public class ShopSign extends Sign implements UseListener {
 	 * @param caption
 	 *            the caption above the table
 	 * @param seller
-	 *            true, if this sign is for items sold by an NPC 
+	 *            true, if this sign is for items sold by an NPC
 	 */
 	public ShopSign(final String name, final String title, final String caption, final boolean seller) {
 		super();

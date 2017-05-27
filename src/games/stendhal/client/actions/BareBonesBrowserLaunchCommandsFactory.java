@@ -18,13 +18,13 @@ import java.util.Map.Entry;
 
 /**
  * Factory to create all known {@link SlashAction}s that open a specified URL in the browser
- * 
+ *
  * @author madmetzger
  */
 class BareBonesBrowserLaunchCommandsFactory {
-	
+
 	private static Map<String, String> commandsAndUrls;
-	
+
 	private static void initialize() {
 		commandsAndUrls = new HashMap<String, String>();
 		commandsAndUrls.put("beginnersguide", "https://stendhalgame.org/wiki/BeginnersGuide");
@@ -39,7 +39,7 @@ class BareBonesBrowserLaunchCommandsFactory {
 
 	/**
 	 * creates {@link SlashAction}s for all in initialize specified values
-	 * 
+	 *
 	 * @return map of the created actions
 	 */
 	static Map<String, SlashAction> createBrowserCommands() {

@@ -13,11 +13,11 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Item;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
-
-import java.util.List;
 
 /**
  * The 2D view of a box.
@@ -31,7 +31,7 @@ class Box2DView extends Item2DView<Item> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -57,7 +57,7 @@ class Box2DView extends Item2DView<Item> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -66,7 +66,7 @@ class Box2DView extends Item2DView<Item> {
 		if (isReleased()) {
 			return;
 		}
-		
+
 		switch (at) {
 		case OPEN:
 				at.send(at.fillTargetInfo(entity));

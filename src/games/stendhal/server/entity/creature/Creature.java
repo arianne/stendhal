@@ -12,6 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Observer;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
@@ -47,24 +58,12 @@ import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusAttackerFactory;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
-
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Observer;
-
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * Server-side representation of a creature.
@@ -473,7 +472,7 @@ public class Creature extends NPC {
 	public final void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.setAIProfiles(aiProfiles, true);
 	}
-	
+
 	private void setAIProfiles(final Map<String, String> aiProfiles, boolean initStatusAttacker) {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
@@ -483,7 +482,7 @@ public class Creature extends NPC {
 			if (poisoner != null) {
 				this.addStatusAttacker(poisoner);
 			}
-			
+
 			String statusAttackerProfiles = aiProfiles.get("status_attackers");
 			if (statusAttackerProfiles != null) {
     			String[] statusAttackers = statusAttackerProfiles.split(";");

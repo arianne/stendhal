@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.game;
 
+import java.util.ArrayList;
+
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -19,8 +21,6 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.ArrayList;
 
 /**
  * The game board for the 9 switches game.
@@ -86,7 +86,7 @@ public class NineSwitchesGameBoard implements TurnListener {
 			balloonOutfit = new Outfit(1, null, null, null, null);
 			user.setOutfit(balloonOutfit);
 			user.put("outfit_colors", "detail", Rand.rand(balloonColors));
-			
+
 			playerName = null;
 			TurnNotifier.get().dontNotify(this);
 		}

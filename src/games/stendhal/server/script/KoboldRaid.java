@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Less safe for players below level 10
  */
 public class KoboldRaid extends CreateRaid {

@@ -32,10 +32,10 @@ public class StyleSet implements FormatSet<Style, StyleSet> {
 	 * the values we have actually changed.
 	 */
 	private final Map<Object, Object> modified = new HashMap<Object, Object>();
-	
+
 	/**
 	 * Create a new StyleSet.
-	 * 
+	 *
 	 * @param sc style context
 	 * @param style wrapped style
 	 */
@@ -51,7 +51,7 @@ public class StyleSet implements FormatSet<Style, StyleSet> {
 		for (Entry<Object, Object> entry : additional.modified.entrySet()) {
 			rval.setAttribute(entry.getKey(), entry.getValue());
 		}
-		
+
 		return rval;
 	}
 
@@ -64,11 +64,11 @@ public class StyleSet implements FormatSet<Style, StyleSet> {
 	public Style contents() {
 		return style;
 	}
-	
+
 	/**
 	 * Set a text attribute. See {@link javax.swing.text.StyleConstants} for
 	 * valid keys and values.
-	 * 
+	 *
 	 * @param key attribute key
 	 * @param value attribute value
 	 */

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.weaponshop;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,10 +25,6 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds an NPC to buy previously un bought weapons.
@@ -67,7 +67,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I #deal in rare weapons. Ognir there is the ring maker, he buys the odd gem too.");
 				addOffer("Please look at the blackboard on the wall to see what I buy.");
 				addQuest("Thanks, but no thanks. I don't need anything.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare2")), false); 
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare2")), false);
 				addGoodbye("Bye - and see you soon.");
 			}
 		};

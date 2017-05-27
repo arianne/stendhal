@@ -17,24 +17,24 @@ import games.stendhal.server.entity.player.Player;
 
 public class ConditionAndActionArea extends AreaEntity {
     private ChatAction action;
-    
+
     private ChatCondition condition;
-    
+
     private String soundStart;
     private String soundSuccess;
     private String soundFail;
-    
+
     ConditionAndActionArea(final ChatCondition condition, final ChatAction action) {
         this.action = action;
         this.condition = condition;
     }
-    
+
     ConditionAndActionArea(final ChatCondition condition, final ChatAction action, final int width, final int height) {
         super(width, height);
         this.action = action;
         this.condition = condition;
     }
-    
+
     public boolean use(Player player) {
         if (action != null) {
             if ((condition == null) || (condition.fire(player, null, null))) {
@@ -44,19 +44,19 @@ public class ConditionAndActionArea extends AreaEntity {
         }
         return false;
     }
-    
+
     public ChatAction getAction() {
         return action;
     }
-    
+
     public ChatCondition getCondition() {
         return condition;
     }
-    
+
     public void setAction(ChatAction action) {
         this.action = action;
     }
-    
+
     public void setCondition(ChatCondition condition) {
         this.condition = condition;
     }

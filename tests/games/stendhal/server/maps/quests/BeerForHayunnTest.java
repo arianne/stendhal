@@ -12,6 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
@@ -21,22 +33,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class BeerForHayunnTest {
 
@@ -47,7 +46,7 @@ public class BeerForHayunnTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		
+
 		MockStendhalRPRuleProcessor.get();
 
 		MockStendlRPWorld.reset();
@@ -68,7 +67,7 @@ public class BeerForHayunnTest {
 
 	@Test
 	public void quest() {
-	
+
 		final Player player = PlayerTestHelper.createPlayer("player");
 
 		final Engine en = hayunn.getEngine();
@@ -130,11 +129,11 @@ public class BeerForHayunnTest {
 		final List<String> history = new LinkedList<String>();
 		history.add("I have talked to Hayunn.");
 		assertEquals(history, bfh.getHistory(player));
-		
+
 		player.setQuest("beer_hayunn", "rejected");
 		history.add("I do not want to make Hayunn drunk.");
 		assertEquals(history, bfh.getHistory(player));
-	
+
 		player.setQuest("beer_hayunn", "start");
 		history.remove("I do not want to make Hayunn drunk.");
 		history.add("I promised to buy him a beer from Margaret in Semos Tavern.");

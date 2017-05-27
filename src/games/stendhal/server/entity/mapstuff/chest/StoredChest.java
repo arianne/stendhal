@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,18 +24,12 @@ import games.stendhal.server.core.engine.transformer.ItemTransformer;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.ChestSlot;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
-
 /**
  * A Chest whose contents are stored by the zone.
- * 
+ *
  * @author kymara
  */
 public class StoredChest extends Chest {
@@ -39,7 +38,7 @@ public class StoredChest extends Chest {
 
 	/**
 	 * Creates a new StoredChest.
-	 * 
+	 *
 	 */
 	public StoredChest() {
 		super();
@@ -49,7 +48,7 @@ public class StoredChest extends Chest {
 	/**
 	 * Creates a StoredChest based on an existing RPObject. This is just for
 	 * loading a chest from the database, use the other constructors.
-	 * 
+	 *
 	 * @param rpobject
 	 */
 	public StoredChest(final RPObject rpobject) {
@@ -96,13 +95,13 @@ public class StoredChest extends Chest {
 
 			final RPSlot newSlot = new ChestSlot(this);
 			addSlot(newSlot);
-			
+
 			// Restore the stored items
 			ItemTransformer transformer = new ItemTransformer();
 			for (final RPObject rpobject : objects) {
 				try {
 					Item item = transformer.transform(rpobject);
-					
+
 					// log removed items
 					if (item == null) {
 						int quantity = 1;
@@ -131,7 +130,7 @@ public class StoredChest extends Chest {
 
 	/**
 	 * Checks if it should close the chest
-	 * 
+	 *
 	 * @return <code>true</code> if it should be called again.
 	 */
 	protected boolean chestCloser() {
@@ -154,7 +153,7 @@ public class StoredChest extends Chest {
 	protected class ChestListener implements TurnListener {
 		/**
 		 * This method is called when the turn number is reached.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            The current turn number.
 		 */

@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SeedSellerBehaviour extends SellerBehaviour {
 

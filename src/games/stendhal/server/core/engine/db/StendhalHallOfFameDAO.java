@@ -18,10 +18,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
-
-import org.apache.log4j.Logger;
 
 /**
  * database access for the hall of fame used in deathmatch
@@ -34,7 +34,7 @@ public class StendhalHallOfFameDAO {
 
 	/**
 	 * Returns the points in the specified hall of fame.
-	 * 
+	 *
 	 * @param transaction
 	 *            Transaction
 	 * @param charname
@@ -66,7 +66,7 @@ public class StendhalHallOfFameDAO {
 
 	/**
 	 * Stores an entry in the hall of fame.
-	 * 
+	 *
 	 * @param transaction
 	 *            Transaction
 	 * @param charname
@@ -90,7 +90,7 @@ public class StendhalHallOfFameDAO {
 			params.put("charname", charname);
 			params.put("fametype", fametype);
 
-			
+
 			final int count = transaction.execute(query, params);
 
 			if (count == 0) {
@@ -142,7 +142,7 @@ public class StendhalHallOfFameDAO {
 
 	/**
 	 * Returns the points in the specified hall of fame.
-	 * 
+	 *
 	 * @param charname name of the player
 	 * @param fametype type of the hall of fame
 	 * @return points or 0 in case there is no entry
@@ -161,7 +161,7 @@ public class StendhalHallOfFameDAO {
 
 	/**
 	 * Stores an entry in the hall of fame.
-	 * 
+	 *
 	 * @param charname name of the player
 	 * @param fametype type of the hall of fame
 	 * @param points points to store

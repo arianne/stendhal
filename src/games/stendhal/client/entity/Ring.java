@@ -40,7 +40,7 @@ public class Ring extends Item {
 
 	/**
 	 * Determine if a ring is working.
-	 * 
+	 *
 	 * @return <code>true</code> if a ring is working.
 	 */
 	public boolean isWorking() {
@@ -53,10 +53,10 @@ public class Ring extends Item {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -79,7 +79,7 @@ public class Ring extends Item {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -100,7 +100,7 @@ public class Ring extends Item {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

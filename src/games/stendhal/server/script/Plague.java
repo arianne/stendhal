@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 
 /**
  * @author hendrik
@@ -49,25 +49,25 @@ public class Plague extends ScriptImpl {
 			ringcount = 1;
 			startArgIndex = 0;
 		}
-		
+
 		// concatenate torn words into one
-		
+
 		StringBuilder sb = new StringBuilder();
 		final List <String>  templist = args.subList(startArgIndex, args.size());
 		for (final String part : templist) {
-			sb.append(part).append(' '); 
+			sb.append(part).append(' ');
 		}
-		
+
 		String creatureClass  = sb.toString().trim();
 
 		final Creature tempCreature = sandbox.getCreature(creatureClass);
-		
+
 		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
 		} else if (tempCreature.isRare() && !ServerModeUtil.isTestServer()) {
 			// Rare creatures should not be summoned even in raids
 			// Require parameter -Dstendhal.testserver=junk
-			admin.sendPrivateText("Creatures with the rare property may only be summoned on test servers " 
+			admin.sendPrivateText("Creatures with the rare property may only be summoned on test servers "
 												+ "which are activated with the vm parameter: -Dstendhal.testserver=junk");
 		} else {
 			final Creature creature = new RaidCreature(tempCreature);

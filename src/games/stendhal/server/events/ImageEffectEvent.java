@@ -12,9 +12,9 @@
 package games.stendhal.server.events;
 
 import games.stendhal.common.constants.Events;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.Type;
 
 /**
  * An event that tells the client to display an image sequence at an entity or
@@ -36,7 +36,7 @@ public class ImageEffectEvent extends RPEvent {
 	 */
 	private static final String Y_ATTR = "y";
 
-	
+
 	/**
 	 * Creates the rpclass.
 	 */
@@ -50,7 +50,7 @@ public class ImageEffectEvent extends RPEvent {
 
 	/**
 	 * Create a new ImageEffectEvent.
-	 * 
+	 *
 	 * @param image image name
 	 * @param attached if <code>true</code>, the effect will be bound for its
 	 * life time to the source entity
@@ -62,10 +62,10 @@ public class ImageEffectEvent extends RPEvent {
 			put(ATTACH_ATTR, "");
 		}
 	}
-	
+
 	/**
 	 * Create a new ImageEffectEvent at a specified location.
-	 * 
+	 *
 	 * @param image image name
 	 * @param x x coordinate of the effect
 	 * @param y y coordinate of the effect

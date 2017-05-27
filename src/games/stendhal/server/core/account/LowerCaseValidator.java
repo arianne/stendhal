@@ -18,7 +18,7 @@ import marauroa.common.game.Result;
 
 /**
  * checks that only lower case letters are used.
- * 
+ *
  * @author hendrik
  */
 public class LowerCaseValidator implements AccountParameterValidator {
@@ -26,7 +26,7 @@ public class LowerCaseValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a LowerCaseValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */

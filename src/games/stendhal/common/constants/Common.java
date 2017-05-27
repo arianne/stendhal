@@ -13,7 +13,7 @@ package games.stendhal.common.constants;
 
 /**
  * Generic constants.
- * 
+ *
  * @author
  *         AntumDeluge
  */

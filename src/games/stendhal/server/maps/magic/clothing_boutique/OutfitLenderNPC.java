@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.clothing_boutique;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -26,20 +31,14 @@ import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.Pair;
 
 public class OutfitLenderNPC implements ZoneConfigurator {
-	
-	// outfits to last for 10 hours normally 
+
+	// outfits to last for 10 hours normally
 	public static final int endurance = 10 * 60;
 
-	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions 
+	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions
 	private static final double N = 1;
 
 	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
@@ -56,8 +55,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 	}
 
 	private void initOutfits() {
-		// these outfits must be put on over existing outfit 
-		// (what's null doesn't change that part of the outfit)	
+		// these outfits must be put on over existing outfit
+		// (what's null doesn't change that part of the outfit)
 		// so true means we put on over
 		// FIXME: Use new outfit system
 		  final Pair<Outfit, Boolean> JUMPSUIT = new Pair<Outfit, Boolean>(new Outfit(null, null, null, Integer.valueOf(83), null), true);
@@ -76,8 +75,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		  final Pair<Outfit, Boolean> GIRL_HORSE = new Pair<Outfit, Boolean>(new Outfit(0, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(96)), false);
 		  final Pair<Outfit, Boolean> ALIEN = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(95)), false);
 
-		
-		
+
+
 			outfitTypes.put("jumpsuit", JUMPSUIT);
 			outfitTypes.put("dungarees", DUNGAREES);
 			outfitTypes.put("green dress", GREEN_DRESS);
@@ -91,8 +90,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 			outfitTypes.put("girl horse", GIRL_HORSE);
 			outfitTypes.put("alien", ALIEN);
 	}
-		
-	
+
+
 
 	private void buildBoutiqueArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Liliana") {
@@ -115,7 +114,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 					@Override
 					public void putOnOutfit(final Player player, final String outfitType) {
-						
+
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final Outfit outfit = outfitPair.first();
 						final boolean type = outfitPair.second();
@@ -152,7 +151,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 							return false;
 						}
 					}
-					
+
 					// These outfits are not on the usual OutfitChangerBehaviour's
 					// list, so they need special care when looking for them
 					@Override
@@ -179,7 +178,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				priceList.put("hat", (int) (N * 400));
 				priceList.put("horse", (int) (N * 1200));
 				priceList.put("girl horse", (int) (N * 1200));
-				priceList.put("alien", (int) (N * 1200));	
+				priceList.put("alien", (int) (N * 1200));
 			       	addGreeting("Hi! How may I help you?");
 				addQuest("I can't think of anything for you, sorry.");
 				add(

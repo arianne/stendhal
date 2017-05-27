@@ -28,7 +28,7 @@ public class HealedEventTest {
         HealedEvent event = new HealedEvent(1);
         assertThat(Integer.valueOf(event.getInt("amount")), is(Integer.valueOf(1)));
     }
-    
+
 	/**
 	 * Tests for healedEventTryBroken.
 	 */

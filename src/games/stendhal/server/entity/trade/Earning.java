@@ -12,32 +12,32 @@
  ***************************************************************************/
 package games.stendhal.server.entity.trade;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.Entity;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
-
-import org.apache.log4j.Logger;
 /**
  * Represents the earned sum of money for a sold {@link Offer} in the {@link Market}
- *  
+ *
  * @author madmetzger
  */
 public class Earning extends Entity implements Dateable {
-	
+
 	/**
 	 * RPClass name for an Earning
 	 */
 	public static final String EARNING_RPCLASS_NAME = "earning";
-	
+
 	private static final String VALUE_ATTRIBUTE = "value";
 	private static final String REWARD_ATTRIBUTE = "reward";
 	private static final String NAME_ATTRIBUTE = "sellerName";
 	private static final String TIMESTAMP_ATTRIBUTE = "timestamp";
-	
+
 	private final Integer value;
 	private final String sellerName;
-	
+
 	public static void generateRPClass() {
 		final RPClass earningClass = new RPClass(EARNING_RPCLASS_NAME);
 		earningClass.isA("entity");
@@ -64,10 +64,10 @@ public class Earning extends Entity implements Dateable {
 		put(REWARD_ATTRIBUTE, shouldReward ? 1 : 0);
 		put(TIMESTAMP_ATTRIBUTE, Long.toString(System.currentTimeMillis()));
 	}
-	
+
 	/**
 	 * Create an Earning from a RPObject
-	 * 
+	 *
 	 * @param object
 	 */
 	public Earning(final RPObject object) {

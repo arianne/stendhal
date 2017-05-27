@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.j2DClient;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import games.stendhal.client.gui.j2DClient;
 
 class TalkBuddyAction implements ActionListener {
 	private final String buddyName;
@@ -26,7 +26,7 @@ class TalkBuddyAction implements ActionListener {
 			this.buddyName = buddyName;
 		}
 
-		
+
 	}
 
 	@Override

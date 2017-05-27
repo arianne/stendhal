@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -20,8 +22,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Present;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * @author Martin Fuchs

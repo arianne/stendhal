@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.equipping.builder;
 
+import java.util.Iterator;
+import java.util.List;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.actions.equip.EquipUtil;
@@ -19,10 +22,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.GroundSlot;
-
-import java.util.Iterator;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;

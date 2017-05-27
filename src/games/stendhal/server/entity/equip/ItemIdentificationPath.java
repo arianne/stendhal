@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.equip;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,8 +23,6 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.GroundSlot;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * Identifies an item in a slot, in a nested slot or on the ground.
@@ -119,7 +119,7 @@ public class ItemIdentificationPath {
 	private void fillBySlotSource(final RPAction action) {
 		findSlotByObjectIdAndSlotName(
 				action,
-				EquipActionConsts.TARGET_OBJECT, 
+				EquipActionConsts.TARGET_OBJECT,
 				EquipActionConsts.TARGET_SLOT);
 
 		RPObject.ID itemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), "");
@@ -169,7 +169,7 @@ public class ItemIdentificationPath {
 	private void fillBySlotTarget(RPAction action) {
 		findSlotByObjectIdAndSlotName(
 			action,
-			EquipActionConsts.TARGET_OBJECT, 
+			EquipActionConsts.TARGET_OBJECT,
 			EquipActionConsts.TARGET_SLOT);
 	}
 

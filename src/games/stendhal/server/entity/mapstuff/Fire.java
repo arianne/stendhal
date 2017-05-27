@@ -28,7 +28,7 @@ public class Fire extends Entity implements UseListener {
 
 	/**
 	 * creates a new fire.
-	 * 
+	 *
 	 * @param width
 	 *            width in grid units
 	 * @param height

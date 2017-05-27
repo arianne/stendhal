@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.slot;
 
-import games.stendhal.server.entity.Entity;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.entity.Entity;
+
 /**
  * Keeps track of "personal chests" which are an interface to the bank slots.
- * 
+ *
  * @author hendrik
  */
 public class BankAccessorManager {
@@ -34,7 +34,7 @@ public class BankAccessorManager {
 
 	/**
 	 * Gets the BankAccessorManager.
-	 * 
+	 *
 	 * @return BankAccessorManager
 	 */
 	public static BankAccessorManager get() {
@@ -46,7 +46,7 @@ public class BankAccessorManager {
 
 	/**
 	 * Adds an accessor for this bank.
-	 * 
+	 *
 	 * @param bank
 	 *            Banks
 	 * @param entity
@@ -60,9 +60,9 @@ public class BankAccessorManager {
 	}
 
 	/**
-	 * Gets the list of accessors for the specified bank. 
+	 * Gets the list of accessors for the specified bank.
 	 * <p> In case the bank is unknown, an empty list is automatically created
-	 * 
+	 *
 	 * @param bank
 	 *            Banks
 	 * @return list of accessors
@@ -78,7 +78,7 @@ public class BankAccessorManager {
 
 	/**
 	 * gets the list of accessors for think bank.
-	 * 
+	 *
 	 * @param bank
 	 *            Banks
 	 * @return list of accessors or an empty list if this bank is unknown

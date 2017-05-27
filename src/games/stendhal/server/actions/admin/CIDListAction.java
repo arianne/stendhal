@@ -13,14 +13,14 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.CIDLIST;
 import static games.stendhal.common.constants.Actions.TARGET;
+
+import java.util.Map;
+
 import games.stendhal.server.actions.CStatusAction;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
-
 import marauroa.common.game.RPAction;
 
 class CIDListAction extends AdministrationAction {

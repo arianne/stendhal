@@ -18,7 +18,7 @@ package games.stendhal.client.gui.login;
 public class Profile {
 	/** Default server port. */
 	static final int DEFAULT_SERVER_PORT = 32160;
-	
+
 	/** Old server names to remap. */
 	private static final String[] OLD_SERVER_HOSTS = { "stendhal.ath.cx", "stendhal.game-host.org" };
 
@@ -55,7 +55,7 @@ public class Profile {
 
 	/**
 	 * Encode the login profile as a string.
-	 * 
+	 *
 	 * @return A string excoded form (with newlines).
 	 */
 	String encode() {
@@ -70,9 +70,9 @@ public class Profile {
 		sbuf.append('\n');
 		sbuf.append(getPort());
 		sbuf.append('\n');
-		
+
 		// TCP
-		sbuf.append(true); 
+		sbuf.append(true);
 
 		return sbuf.toString();
 	}
@@ -103,10 +103,10 @@ public class Profile {
 
 	/**
 	 * Decode a login profile from a string.
-	 * 
+	 *
 	 * @param info
 	 *            The string encoded profile.
-	 * 
+	 *
 	 * @return A login profile.
 	 */
 	static Profile decode(final String info) {
@@ -168,7 +168,7 @@ public class Profile {
 				try {
 					profile.setPort(Integer.parseInt(s));
 				} catch (final NumberFormatException ex) {
-					// use default port if port is not a number number 
+					// use default port if port is not a number number
 				}
 			}
 		}
@@ -248,12 +248,12 @@ public class Profile {
 		this.user = user;
 	}
 
-	
+
 	public void setCharacter(String character) {
 		this.character = character;
 	}
 
-	
+
 	public void setSeed(String seed) {
 		this.seed = seed;
 	}
@@ -288,7 +288,7 @@ public class Profile {
 
 	/**
 	 * Get the label string. This label is used for the profile selection list.
-	 * 
+	 *
 	 * @return The label in the form of <em>user</em><strong>@</strong><em>server-host</em>[<strong>:</strong><em>port</em>].
 	 */
 	@Override

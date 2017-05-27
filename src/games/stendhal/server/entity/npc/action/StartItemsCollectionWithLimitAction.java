@@ -12,19 +12,20 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * For quests that use collections with random quantities for each item.
- * 
+ *
  * @author AntumDeluge
  */
 public class StartItemsCollectionWithLimitAction implements ChatAction {
@@ -38,7 +39,7 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 
 	/**
 	 * Creates a new StartItemsCollectionWithLimitsAction.
-	 * 
+	 *
 	 * @param quest
 	 * 			Quest slot name
 	 * @param items
@@ -51,10 +52,10 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		this.items = new LinkedList<String>(items);
 		this.limit = limit;
 	}
-	
+
 	/**
 	 * Creates a new StartItemsCollectionWithLimitsAction.
-	 * 
+	 *
 	 * @param quest
 	 * 			Quest slot name
 	 * @param index
@@ -70,11 +71,11 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		this.limit = limit;
 		this.itemIndex = index;
 	}
-	
+
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		int[] requestedQuantities = randomVector(items.size(), limit);
-		
+
 		final StringBuilder sb = new StringBuilder("");
 
 		for (int i = 0; i < items.size(); i++) {
@@ -83,15 +84,15 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 				sb.append(items.get(i) + "=" + quantity + ";");
 			}
 		}
-		
+
 		final String result = sb.toString().substring(0, sb.toString().length() - 1);
 		player.setQuest(questSlot, itemIndex, result);
 	}
-	
+
 	/**
 	 * Create an integer array of defined length, and random contents with a
 	 * defined total sum.
-	 * 
+	 *
 	 * @param length length of the requested array
 	 * @param sum sum of the array contents
 	 * @return array of random integers
@@ -144,5 +145,5 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		return true;
 	}
 
-	
+
 }

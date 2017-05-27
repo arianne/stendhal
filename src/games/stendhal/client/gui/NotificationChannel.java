@@ -11,38 +11,38 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.NotificationType;
-
 import java.util.EnumSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.NotificationType;
 
 /**
  * A chat log container that allows filtering by event type.
  */
 class NotificationChannel {
 	private static final Logger logger = Logger.getLogger(NotificationChannel.class);
-	
+
 	/** Name of the channel. */
 	private final String name;
 	/** Chat log where to write allowed content. */
 	private final KTextEdit channel;
 	/** Event types that should be displayed at the channel. */
 	private final Set<NotificationType> eventTypes;
-	
+
 	/**
 	 * Create a new NotificationChannel.
-	 * 
+	 *
 	 * @param channelName name of the channel
 	 * @param channel text area for showing the event log
 	 * @param blackList if <code>true</code>, the channel will default to
 	 *	showing everything that has not been explicitly blacklisted. Otherwise
 	 *	it'll show only whitelisted content. The main channel should default
 	 *	to blacklisting, as it should show types that have been added in new
-	 *	game versions 
+	 *	game versions
 	 * @param defaultTypes default value of the saved notification type list
 	 * 	(white- or blacklist depending on the value of <code>showUnknown</code>)
 	 */
@@ -55,8 +55,8 @@ class NotificationChannel {
 		} else {
 			eventTypes = EnumSet.noneOf(NotificationType.class);
 		}
-		
-		// Load 
+
+		// Load
 		WtWindowManager wm = WtWindowManager.getInstance();
 		String value = wm.getProperty("ui.channel." + name, defaultTypes);
 		for (String typeString : value.split(",")) {
@@ -75,19 +75,19 @@ class NotificationChannel {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the name of the channel.
-	 * 
+	 *
 	 * @return channel name
 	 */
 	String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Set filtering of a notification type.
-	 * 
+	 *
 	 * @param type
 	 * @param allow if <code>true</code> then messages of the type are
 	 * 	displayed, otherwise not
@@ -99,11 +99,11 @@ class NotificationChannel {
 			eventTypes.remove(type);
 		}
 	}
-	
+
 	/**
 	 * Add an event line to the channel, if it's of type that should be
 	 * displayed.
-	 * 
+	 *
 	 * @param line
 	 * @return <code>true</code> if the channel accepted the message,
 	 * 	<code>false</code> otherwise
@@ -115,7 +115,7 @@ class NotificationChannel {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Clear the channel log.
 	 */

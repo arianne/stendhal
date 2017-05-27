@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.mines;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,15 +27,10 @@ import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Builds a NPC in Semos Mine (name:Barbarus) who is a miner and informs players about his job
- * 
- * @author storyteller and Vanessa Julius 
+ *
+ * @author storyteller and Vanessa Julius
  *
  */
 public class MinerNPC implements ZoneConfigurator {
@@ -42,17 +42,17 @@ public class MinerNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Barbarus") {
-		    
+
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(57, 78));
 				nodes.add(new Node(55, 78));
                 nodes.add(new Node(55, 80));
-                nodes.add(new Node(53, 80));  
+                nodes.add(new Node(53, 80));
                 nodes.add(new Node(53, 82));
-                nodes.add(new Node(55, 82)); 
-                nodes.add(new Node(55, 84)); 
+                nodes.add(new Node(55, 82));
+                nodes.add(new Node(55, 84));
                 nodes.add(new Node(59, 84));
                 nodes.add(new Node(59, 78));
                 nodes.add(new Node(58, 78));
@@ -74,12 +74,12 @@ public class MinerNPC implements ZoneConfigurator {
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("pick", 400);
                 new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
-				addQuest("Sorry but as you can see, I'm covered with dust and still didn't finish my work up yet. I can't think about any quests for you, but you can help me to gain some coal."); 
+				addQuest("Sorry but as you can see, I'm covered with dust and still didn't finish my work up yet. I can't think about any quests for you, but you can help me to gain some coal.");
 				addJob("I am a miner. Working in a mine is quite hard work. If you get deep and deeper into the earth it gets very warm and even more dusty. And you can hardly see anything in this low light...");
 				addReply("map","This is a map of the Semos Mine which I have drawn by myself some time ago. It may help you to find the way. But take care, not everything is exactly right!",
 						new ExamineChatAction("map-semos-mine.png", "Semos Mine", "Rough map of Semos Mine"));
 				addGoodbye("Nice to meet you. Good luck!");
-				
+
 			}
 		};
 

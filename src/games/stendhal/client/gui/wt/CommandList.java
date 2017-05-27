@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.gui.wt.core.WtPopupMenu;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -23,9 +21,11 @@ import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
 
+import games.stendhal.client.gui.wt.core.WtPopupMenu;
+
 /**
  * This is a command list .
- * 
+ *
  * @author mtotz
  */
 abstract class CommandList extends WtPopupMenu {
@@ -33,7 +33,7 @@ abstract class CommandList extends WtPopupMenu {
 
 	/**
 	 * Create a command list.
-	 * 
+	 *
 	 * @param name
 	 *            The menu name (needed?).
 	 * @param items
@@ -46,7 +46,7 @@ abstract class CommandList extends WtPopupMenu {
 
 	/**
 	 * Populate the menu.
-	 * 
+	 *
 	 * @param items menu items
 	 */
 	private void populate(final String[] items) {
@@ -65,7 +65,7 @@ abstract class CommandList extends WtPopupMenu {
 				populate(sublist);
 				continue;
 			}
-			
+
 			if (item.startsWith("(*)")) {
 				icon = adminIcon;
 				label = item.substring(3);
@@ -77,7 +77,7 @@ abstract class CommandList extends WtPopupMenu {
 			 * Deal with '|' definitions. (Coming from server side).
 			 * Before the break is the user representation, after it is the
 			 * usual representation of the actual command.
-			 * 
+			 *
 			 * That is, a teddy might have a menu item definition "Hug|Use".
 			 */
 			int breakPoint = label.indexOf('|');
@@ -93,7 +93,7 @@ abstract class CommandList extends WtPopupMenu {
 		}
 	}
 
-	/** an action has been chosen. 
+	/** an action has been chosen.
 	 * @param command */
 	protected abstract void doAction(final String command);
 
@@ -109,10 +109,10 @@ abstract class CommandList extends WtPopupMenu {
 
 	/**
 	 * A pretty icon to indicate an admin option.
-	 *  
+	 *
 	 * <p>
 	 * It looks something like:
-	 * 
+	 *
 	 * <pre>
 	 *      :
 	 *      :

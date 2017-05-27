@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.extension;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -21,11 +23,9 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-import org.apache.log4j.Logger;
-
 /**
  * Stendhal TeleportSend Extenstion
- * 
+ *
  * This extension adds teleportsend to the game world. there is 1 command:
  * /teleportsend [Player] [Player|NPC_Destination] which will teleport the first
  * player to the second player/npc This command is an admin command of the same
@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  * server.ini file: # load StendhalServerExtension(s)
  * teleportsend=games.stendhal.server.extension.TeleportSendExtension
  * server_extension=...,teleportsend
- * 
+ *
  * @author Seather
  */
 public class TeleportSendExtension extends StendhalServerExtension implements

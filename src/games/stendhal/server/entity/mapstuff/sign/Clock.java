@@ -11,11 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
+import java.util.Calendar;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
-
-import java.util.Calendar;
 
 /**
  * A map object that when looked at shows the server time.
@@ -23,13 +23,13 @@ import java.util.Calendar;
 public class Clock extends Sign {
 	/** Maximum seconds the clock can be wrong to either direction */
 	private static final int MAX_IMPRECISION = 300;
-	
+
 	/**
 	 * The amount of seconds this clock is wrong.
 	 * [ -MAX_IMPRECISION, MAX_IMPRECISION - 1 ]
 	 */
 	private final int imprecisionSeconds;
-	
+
 	/**
 	 * Create a new clock.
 	 */
@@ -38,15 +38,15 @@ public class Clock extends Sign {
 		put("class", "transparent");
 		imprecisionSeconds = Rand.rand(2 * MAX_IMPRECISION) - MAX_IMPRECISION;
 	}
-	
+
 	@Override
 	public String describe() {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.SECOND, imprecisionSeconds);
-		
+
 		// Add 2.5 minutes so that the rounding is what humans expect
 		cal.add(Calendar.SECOND, 150);
-		
+
 		int min = cal.get(Calendar.MINUTE);
 		// Round down to nearest multiple of 5
 		min = (min / 5) * 5;
@@ -58,18 +58,18 @@ public class Clock extends Sign {
 		if (hour == 0) {
 			hour = 12;
 		}
-		
+
 		StringBuilder msg = new StringBuilder("The time is ");
 		msg.append(describeMinute(min));
 		msg.append(Grammar.numberString(hour));
 		msg.append('.');
-		
+
 		return msg.toString();
 	}
-	
+
 	/**
 	 * Textual description of the minute part.
-	 * 
+	 *
 	 * @param m minute
 	 * @return description of the minute. Empty string if it's even.
 	 */

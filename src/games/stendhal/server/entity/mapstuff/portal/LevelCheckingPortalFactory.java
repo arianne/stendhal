@@ -18,7 +18,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the maximum player level from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The level.
@@ -31,7 +31,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the minimum player level from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The level.
@@ -48,17 +48,17 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Create a level checking portal.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A Portal.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see LevelCheckingPortal
 	 */
 	@Override

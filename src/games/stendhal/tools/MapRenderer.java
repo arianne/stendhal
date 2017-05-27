@@ -55,7 +55,7 @@ public class MapRenderer extends Task {
 	private final List<FileSet> filesets = new ArrayList<FileSet>();
 
 	private double zoom;
-	
+
 	/** Layers that should be rendered on the map image. */
 	private static final List<String> visibleLayers = Arrays.asList( "0_floor",
 			"1_terrain", "2_object", "3_roof", "4_roof_add");
@@ -137,17 +137,17 @@ public class MapRenderer extends Task {
 		g.dispose();
 
 		i = scaleImage(i, realZoom);
-		
+
 		try {
 			ImageIO.write(i, "png", new File(filename));
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Scale an image. Downscaling is done using a multi-stage method.
-	 * 
+	 *
 	 * @param orig
 	 * @param scale
 	 * @return scaled image

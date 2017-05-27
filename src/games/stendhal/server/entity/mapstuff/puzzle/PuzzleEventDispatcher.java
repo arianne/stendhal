@@ -46,7 +46,7 @@ public class PuzzleEventDispatcher {
 	/**
 	 * gets the PuzzleEventDispatcher
 	 *
-	 * @return 
+	 * @return
 	 */
 	public static PuzzleEventDispatcher get() {
 		if (instance == null) {
@@ -60,22 +60,22 @@ public class PuzzleEventDispatcher {
 	 */
 	private PuzzleEventDispatcher() {
 		CompilerConfiguration config = new CompilerConfiguration();
-		config.setScriptBaseClass(GroovyPuzzlePropertyAdapter.class.getName());                                         
+		config.setScriptBaseClass(GroovyPuzzlePropertyAdapter.class.getName());
 		shell = new GroovyShell(this.getClass().getClassLoader(), new Binding(), config);
 	}
 
 	/**
 	 * registers a building block
 	 *
-	 * @param zone 
-	 * @param name 
-	 * @param block 
+	 * @param zone
+	 * @param name
+	 * @param block
 	 */
 	public void register(PuzzleBuildingBlock block) {
 		if (block.getName().contains(SEP)) {
 			throw new RuntimeException("Entity \"" + block.getName() + "\" in zone " + block.getZoneName() + " must not contain " + SEP + ".");
 		}
-			
+
 		String prefix = block.getZoneName() + SEP;
 		String qualifiedName = prefix + block.getName();
 		buildingBlocks.put(qualifiedName, block);
@@ -89,7 +89,7 @@ public class PuzzleEventDispatcher {
 	}
 
 	/**
-	 * notifies about property changes 
+	 * notifies about property changes
 	 *
 	 * @param sourceBlock PuzzleBuildingBlock which had a property changed
 	 */

@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
@@ -35,22 +40,17 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Plink's Toy
  * <p>
  * PARTICIPANTS: <ul><li> Plink <li> some wolves </ul>
- * 
+ *
  * STEPS: <ul><li> Plink tells you that he got scared by some wolves and ran away
  * dropping his teddy. <li> Find the teddy in the Park Of Wolves <li> Bring it back to
  * Plink </ul>
- * 
+ *
  * REWARD: <ul><li> a smile <li> 20 XP <li> 10 Karma </ul>
- * 
+ *
  * REPETITIONS: <ul><li> None. </ul>
  */
 public class PlinksToy extends AbstractQuest {
@@ -61,7 +61,7 @@ public class PlinksToy extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -143,20 +143,20 @@ public class PlinksToy extends AbstractQuest {
 
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Plink");
-		
+
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("teddy"));
 		reward.add(new IncreaseXPAction(20));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
-		
+
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 							new OrCondition(
 									new QuestNotStartedCondition(QUEST_SLOT),
 									new QuestNotCompletedCondition(QUEST_SLOT)),
 							new PlayerHasItemWithHimCondition("teddy")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"You found him! *hugs teddy* Thank you, thank you! *smile*",
 			new MultipleActions(reward));
 
@@ -167,12 +167,12 @@ public class PlinksToy extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I lost my teddy in the #park over east, where all those #wolves are hanging about.",
 			null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestCompletedCondition(QUEST_SLOT)),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"You found my teddy already near by the wolves! I still squeeze and hug it :)", null);
 	}
 
@@ -201,5 +201,5 @@ public class PlinksToy extends AbstractQuest {
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;
 	}
-	
+
 }

@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset.creator;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
-import games.stendhal.server.entity.spell.Spell;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+
+import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
+import games.stendhal.server.entity.spell.Spell;
 
 public class FullSpellCreator extends AbstractSpellCreator {
 

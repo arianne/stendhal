@@ -16,10 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.RPClassGenerator;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +23,10 @@ import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.RPClassGenerator;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 
 public class SellerBehaviourTest {
@@ -65,7 +65,7 @@ public class SellerBehaviourTest {
 		assertTrue(sb.dealtItems().contains("item1"));
 		assertTrue(sb.dealtItems().contains("item2"));
 	}
-	
+
 	/**
 	 * Tests for bottlesGlasses.
 	 */
@@ -74,13 +74,13 @@ public class SellerBehaviourTest {
 		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
 		pricelist.put("dingo", 3);
 		pricelist.put("dagger", 200);
-		
+
 		final SellerBehaviour sb = new SellerBehaviour(pricelist);
 		final SpeakerNPC npc = new SpeakerNPC("npc");
 		npc.addGreeting("blabla");
 		new SellerAdder().addSeller(npc, sb);
 	    final Player player = PlayerTestHelper.createPlayer("bob");
-	    
+
 	    npc.getEngine().step(player, "hi");
 	    npc.getEngine().step(player, "buy 1 potion");
 		assertEquals("Sorry, I don't sell bottles of potion.", getReply(npc));

@@ -22,7 +22,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	/**
 	 * The position change listeners.
 	 */
-	private final CopyOnWriteArrayList<PositionChangeListener> listeners = 
+	private final CopyOnWriteArrayList<PositionChangeListener> listeners =
 		new CopyOnWriteArrayList<PositionChangeListener>();
 
 	//
@@ -31,7 +31,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 
 	/**
 	 * Add a position change listener.
-	 * 
+	 *
 	 * @param listener
 	 *            The listener.
 	 */
@@ -45,7 +45,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 
 	/**
 	 * Call position change event on all registered listeners.
-	 * 
+	 *
 	 * @param x
 	 *            The new X coordinate (in world units).
 	 * @param y

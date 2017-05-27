@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.outside;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Builds a NPC outside Magician house in Ados  (name:Venethiel) who is the pupil of Magician Haizen

@@ -13,16 +13,16 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Portal;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
-import java.util.List;
-
 /**
  * The 2D view of a portal.
- * 
- * @param <T> type of Portal 
+ *
+ * @param <T> type of Portal
  */
 class Portal2DView<T extends Portal> extends InvisibleEntity2DView<T> {
 
@@ -33,13 +33,13 @@ class Portal2DView<T extends Portal> extends InvisibleEntity2DView<T> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		Portal portal = entity; 
+		Portal portal = entity;
 		if ((portal != null) && !portal.isHidden()) {
 			list.add(ActionType.USE.getRepresentation());
 
@@ -64,7 +64,7 @@ class Portal2DView<T extends Portal> extends InvisibleEntity2DView<T> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

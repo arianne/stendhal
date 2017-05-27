@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -21,13 +24,10 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.trade.Offer;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public final class MarketManagerNPC extends SpeakerNPC {
-	
+
 	private Map<String,Offer> offers = new HashMap<String, Offer>();
-	
+
 	MarketManagerNPC(String name) {
 		super(name);
 		// Use smaller than normal range to not interfere players trying to talk
@@ -39,7 +39,7 @@ public final class MarketManagerNPC extends SpeakerNPC {
 	protected void createPath() {
 		// npc is lazy and does not move
 	}
-	
+
 	@Override
 	protected void onGoodbye(RPEntity player) {
 		//clean the offer map on leaving of a player

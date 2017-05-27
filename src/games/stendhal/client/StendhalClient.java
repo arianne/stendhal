@@ -12,16 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.login.CharacterDialog;
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.update.ClientGameConfiguration;
-import games.stendhal.client.update.HttpClient;
-import games.stendhal.common.Direction;
-import games.stendhal.common.NotificationType;
-import games.stendhal.common.Version;
-
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -40,6 +30,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.login.CharacterDialog;
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.client.update.HttpClient;
+import games.stendhal.common.Direction;
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.Version;
 import marauroa.client.BannedAddressException;
 import marauroa.client.ClientFramework;
 import marauroa.client.TimeoutException;
@@ -52,8 +53,6 @@ import marauroa.common.game.RPObject;
 import marauroa.common.net.InvalidVersionException;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
-
-import org.apache.log4j.Logger;
 
 /**
  * This class is the glue to Marauroa, it extends ClientFramework and allows us
@@ -104,15 +103,15 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private boolean inBatchUpdate;
 	private final ReentrantLock drawingSemaphore = new ReentrantLock();
-	
+
 	/** The zone currently under loading. */
 	private Zone currentZone;
-	
+
 	private JFrame splashScreen;
 
 	/**
 	 * Get the client instance.
-	 * 
+	 *
 	 * @return client instance
 	 */
 	public static StendhalClient get() {
@@ -128,7 +127,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Create a new StendhalClient.
-	 *  
+	 *
 	 * @param userContext
 	 * @param perceptionDispatcher
 	 */
@@ -166,7 +165,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Get the map layers.
-	 * 
+	 *
 	 * @return map layers
 	 */
 	public StaticGameLayers getStaticGameLayers() {
@@ -175,7 +174,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Get the game objects container.
-	 * 
+	 *
 	 * @return game objects
 	 */
 	public GameObjects getGameObjects() {
@@ -455,7 +454,7 @@ public class StendhalClient extends ClientFramework {
 	 * @param dir
 	 *            The direction.
 	 * @param face If to face direction only.
-	 *         
+	 *
 	 * @return <code>true</code> if an action was sent, otherwise <code>false</code>
 	 */
 	public boolean addDirection(final Direction dir, final boolean face) {
@@ -571,7 +570,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Set the account name.
-	 * 
+	 *
 	 * @param username account name
 	 */
 	public void setAccountUsername(final String username) {
@@ -581,7 +580,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Get the character name.
-	 * 
+	 *
 	 * @return character name
 	 */
 	public String getCharacter() {
@@ -590,16 +589,16 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Set the character name.
-	 * 
+	 *
 	 * @param character name
 	 */
 	public void setCharacter(String character) {
 		this.character = character;
 	}
-	
+
 	/**
 	 * Set the splash screen window. Used for transient windows.
-	 * 
+	 *
 	 * @param splash first screen window
 	 */
 	public void setSplashScreen(JFrame splash) {
@@ -608,7 +607,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Get the account name.
-	 * 
+	 *
 	 * @return account name
 	 */
 	public String getAccountUsername() {
@@ -641,14 +640,14 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
-	
+
 	/**
 	 * Action for moving by direction.
 	 */
 	private static final class MoveRPAction extends RPAction {
 		/**
 		 * Create a MoveRPAction.
-		 * 
+		 *
 		 * @param dir movement direction
 		 */
 		private MoveRPAction(final Direction dir) {
@@ -663,7 +662,7 @@ public class StendhalClient extends ClientFramework {
 	private static final class FaceRPAction extends RPAction {
 		/**
 		 * Create a FaceRPAction.
-		 * 
+		 *
 		 * @param dir looking direction
 		 */
 		private FaceRPAction(final Direction dir) {
@@ -674,7 +673,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Get the RPObject of the user.
-	 * 
+	 *
 	 * @return player object
 	 */
 	public RPObject getPlayer() {
@@ -701,7 +700,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Try to acquire the drawing semaphore.
-	 * 
+	 *
 	 * @return <code>true</code> if the semaphore was acquired, otherwise
 	 * 	<code>false</code>
 	 */
@@ -716,20 +715,20 @@ public class StendhalClient extends ClientFramework {
 	public interface ZoneChangeListener {
 		/**
 		 * Called when the user is changing zone.
-		 * 
+		 *
 		 * @param zone the new zone to be changed to. <b>This is not guaranteed
 		 * 	to have complete zone data at this stage.</b>
 		 */
 		void onZoneChange(Zone zone);
 		/**
 		 * Called when the user has changed zone.
-		 * 
+		 *
 		 * @param zone the new zone
 		 */
 		void onZoneChangeCompleted(Zone zone);
 		/**
 		 * Called when the zone is updated, such as when the coloring changes.
-		 * 
+		 *
 		 * @param zone the updated zone
 		 */
 		void onZoneUpdate(Zone zone);
@@ -827,7 +826,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Check if a keyboard key is in the "pressed" state.
-	 * 
+	 *
 	 * @param keyCode
 	 *        The integer code for the key
 	 * @return
@@ -839,7 +838,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Check if any direction key is in "pressed" state.
-	 * 
+	 *
 	 * @return
 	 *         Direction key found in pressedStateKeys list
 	 */
@@ -856,7 +855,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Add a keypress to pressedStateKeys list.
-	 * 
+	 *
 	 * @param keyCode
 	 *        Key to add
 	 */
@@ -868,7 +867,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Remove a keypress from pressedStateKeys list.
-	 * 
+	 *
 	 * @param keyCode
 	 *        Key to remove
 	 */

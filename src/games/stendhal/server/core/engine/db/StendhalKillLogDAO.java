@@ -11,21 +11,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Killer;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.player.Player;
-
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
-
-import org.apache.log4j.Logger;
 
 /**
  * database access to the kill log
@@ -35,10 +34,10 @@ import org.apache.log4j.Logger;
 public class StendhalKillLogDAO {
 	private static Logger logger = Logger.getLogger(StendhalKillLogDAO.class);
 
-	
+
 	/**
 	 * Logs a kill.
-	 * 
+	 *
 	 * @param transaction transaction
 	 * @param killed killed entity
 	 * @param killer killer
@@ -85,7 +84,7 @@ public class StendhalKillLogDAO {
 			TransactionPool.get().rollback(transaction);
 		}
 	}
-	
+
 	/**
 	 * Creates a one letter type string based on the class of the entity.
 	 *

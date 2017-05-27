@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kirdneh.city;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.Map;
-
 /**
- * Builds a information giving NPC in Kirdneh city. 
+ * Builds a information giving NPC in Kirdneh city.
  *
  * @author kymara
  */
@@ -51,7 +51,7 @@ public class GossipNPC implements ZoneConfigurator {
 			protected void createPath() {
 				setPath(null);
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -24,16 +28,12 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * QUEST: Toys Collector
- * 
+ *
  * PARTICIPANTS: <ul>
  * <li> Anna, a girl who live in Ados </ul>
- * 
+ *
  * STEPS:
  * <ul><li> Anna asks for some toys
  * <li> You guess she might like a teddy, dice or dress
@@ -53,8 +53,8 @@ public class ToysCollector extends AbstractQuest implements
 		BringListOfItemsQuest {
 
 	private static final String QUEST_SLOT = "toys_collector";
-	
-	private static final List<String> neededToys = 
+
+	private static final List<String> neededToys =
 		Arrays.asList("teddy", "dice", "dress");
 
 	// don't want to use the standard history for this kind of quest for anna as we dont want to say what she needs.
@@ -168,13 +168,13 @@ public class ToysCollector extends AbstractQuest implements
 	public String respondToQuestRefusal() {
 		return "Oh ... you're mean.";
 	}
-	
+
 	// not used
 	@Override
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?";
 	}
-	
+
 	@Override
 	public String askForMissingItems(final List<String> missingItems) {
 		return "What toys did you bring?";
@@ -230,7 +230,7 @@ public class ToysCollector extends AbstractQuest implements
 	public String getName() {
 		return "ToysCollector";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

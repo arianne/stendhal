@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.mithrilbourgh.throne_room;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -23,11 +25,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 
-import java.util.Map;
-
 /**
  * Builds an NPC to buy previously un bought mainio weapons.
- * He is the 
+ * He is the
  *
  * @author kymara
  */
@@ -65,12 +65,12 @@ public class BuyerNPC implements ZoneConfigurator {
 				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buymainio")), true);
  				addGoodbye("Bye.");
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
-			
+
 		};
 		npc.setDescription("You see an impatient man. He has a military air about him.");
 		npc.setEntityClass("blacklordnpc");

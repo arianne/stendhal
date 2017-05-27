@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
-import games.stendhal.server.entity.item.behavior.UseBehavior;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,20 +31,23 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.entity.item.behavior.UseBehavior;
+
 public final class ItemsXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(ItemsXMLLoader.class);
 
 	private Class< ? > implementation;
-	
+
 	/** Class of the use behavior, if the item has one. */
 	private Class<?> behaviorClass;
 	/** Parameters to the UseBehavior constructor. */
 	private Map<String, String> behaviorMap;
 	/** UseBehavior. Can be <code>null</code>. */
 	private UseBehavior useBehavior;
-	
+
 	private String name;
 
 	private String clazz;
@@ -71,17 +71,17 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	private List<DefaultItem> list;
 
 	private boolean attributesTag;
-	
+
 	private String damageType;
-	
+
 	private Map<String, Double> susceptibilities = new HashMap<String, Double>();
-	
+
 	/* Slots where SlotActivatedItem can be activated when equipped. */
 	private String activeSlots;
-	
+
 	/* Statuses that StatusResistantItem resists. */
 	private Map<String, Double> resistances = new HashMap<String, Double>();
-	
+
 
 	public List<DefaultItem> load(final URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();
@@ -191,19 +191,19 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			}
 			item.setSusceptibilities(susceptibilities);
 			susceptibilities.clear();
-			
+
 			/* SlotActivatedItem */
 			if (this.activeSlots != null) {
 				item.initializeActiveSlotsList(this.activeSlots);
 				this.activeSlots = null;
 			}
-			
+
 			/* StatusResistantItem */
 			if ((this.resistances != null) && !this.resistances.isEmpty()) {
 				item.initializeStatusResistancesList(this.resistances);
 				this.resistances.clear();
 			}
-			
+
 			if (implementation == null) {
 				LOGGER.error("Item without defined implementation: " + name);
 				return;

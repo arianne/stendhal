@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 
 /**
  * fixed negative hp
@@ -30,7 +30,7 @@ public class FixNegativeHp extends ScriptImpl implements LoginListener {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		
+
 		LoginNotifier.get().addListener(this);
 	}
 
@@ -42,5 +42,5 @@ public class FixNegativeHp extends ScriptImpl implements LoginListener {
 		}
 	}
 
-	
+
 }

@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.slot;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 
-import java.util.List;
-
 /**
  * a bank slot.
- * 
+ *
  * @author hendrik
  */
 public class BankSlot extends PlayerSlot {
@@ -27,7 +27,7 @@ public class BankSlot extends PlayerSlot {
 
 	/**
 	 * Creates a new keyed slot.
-	 * 
+	 *
 	 * @param bank
 	 *            Bank
 	 */

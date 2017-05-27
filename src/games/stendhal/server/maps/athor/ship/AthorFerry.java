@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This class simulates a ferry going back and forth between the mainland and
  * the island. Note that, even though this class lies in a maps package, this is
  * not a zone configurator.
- * 
+ *
  * NPCs that have to do with the ferry:
  * <li> Eliza - brings players from the mainland docks to the ferry.
  * <li>Jessica - brings players from the island docks to the ferry.
@@ -31,24 +31,24 @@ import java.util.List;
  * captain.
  * <li>Laura - the ship galley maid.
  * <li>Ramon - offers blackjack on the ship.
- * 
+ *
  * @see games.stendhal.server.maps.athor.ship.CaptainNPC
  * @author daniel
- * 
+ *
  */
 public final class AthorFerry implements TurnListener {
 
 	/** How much it costs to board the ferry. */
 	public static final int PRICE = 25;
-	
+
 	/** The Singleton instance. */
 	private static AthorFerry instance;
-	
+
 	private Status current;
 
-	
 
-	
+
+
 
 	/**
 	 * A list of non-player characters that get notice when the ferry arrives or
@@ -56,7 +56,7 @@ public final class AthorFerry implements TurnListener {
 	 */
 	private final List<IFerryListener> listeners;
 
-	
+
 
 	private AthorFerry() {
 		listeners = new LinkedList<IFerryListener>();
@@ -80,7 +80,7 @@ public final class AthorFerry implements TurnListener {
 	public Status getState() {
 		return current;
 	}
-	
+
 	/**
 	 * Gets a textual description of the ferry's status.
 	 *
@@ -111,7 +111,7 @@ public final class AthorFerry implements TurnListener {
 	public void addListener(final IFerryListener npc) {
 		listeners.add(npc);
 	}
-	
+
 	/**
 	 * Auto registers the listener to Athorferry.
 	 * deregistration must be implemented if it is used for short living objects
@@ -123,7 +123,7 @@ public final class AthorFerry implements TurnListener {
 			SingletonRepository.getAthorFerry().addListener(this);
 		}
 
-		
+
 	}
 
 	public interface IFerryListener {

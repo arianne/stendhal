@@ -11,9 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.slot;
 
-import games.stendhal.common.Constants;
-
 import com.google.common.collect.ImmutableList;
+
+import games.stendhal.common.Constants;
 
 /**
  * slot types

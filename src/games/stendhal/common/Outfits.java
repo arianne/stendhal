@@ -41,10 +41,10 @@ public class Outfits {
 	public static final int BODY_OUTFITS = 15;
 	// TODO: Remove when testing outfits is finished
 	public static final int BODY_OUTFITS_TESTING = 4;
-	
+
 	/** number of player selectable eyes */
 	public static final int EYES_OUTFITS = 10;
-	
+
 	/** number of player selectable mouths */
 	public static final int MOUTH_OUTFITS = 4;
 }

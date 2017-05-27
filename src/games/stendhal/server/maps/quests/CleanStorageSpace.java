@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -31,13 +37,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Pair;
 
 /**
@@ -64,7 +63,7 @@ public class CleanStorageSpace extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -86,35 +85,35 @@ public class CleanStorageSpace extends AbstractQuest {
 		}
 		return res;
 	}
-	
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Eonna");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				"My #basement is absolutely crawling with rats. Will you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thanks again! I think it's still clear down there.", null);
 
 		final List<ChatAction> start = new LinkedList<ChatAction>();
-		
-		final HashMap<String, Pair<Integer, Integer>> toKill = 
+
+		final HashMap<String, Pair<Integer, Integer>> toKill =
 			new HashMap<String, Pair<Integer, Integer>>();
 		// first number is required solo kills, second is required shared kills
 		toKill.put("rat", new Pair<Integer, Integer>(0,1));
 		toKill.put("caverat", new Pair<Integer, Integer>(0,1));
 		toKill.put("snake", new Pair<Integer, Integer>(0,1));
-		
-		start.add(new SetQuestAction(QUEST_SLOT, 0, "start"));		
+
+		start.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
 		start.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
-		
+
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -144,7 +143,7 @@ public class CleanStorageSpace extends AbstractQuest {
 	private void step_3() {
 
 		final SpeakerNPC npc = npcs.get("Eonna");
-		
+
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseKarmaAction(5.0));
 		reward.add(new IncreaseXPAction(100));
@@ -189,12 +188,12 @@ public class CleanStorageSpace extends AbstractQuest {
 	public String getName() {
 		return "CleanStorageSpace";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

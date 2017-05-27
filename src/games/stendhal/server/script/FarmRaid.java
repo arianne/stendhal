@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * A raid safe for lowest level players
  */
 public class FarmRaid extends CreateRaid {
@@ -37,7 +37,7 @@ public class FarmRaid extends CreateRaid {
 		attackArmy.put("white horse", 2);
 		return attackArmy;
 	}
-	
+
 	@Override
 	protected String getInfo() {
 		return "A raid safe for lowest level Player.";

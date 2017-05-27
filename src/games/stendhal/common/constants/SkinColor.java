@@ -13,7 +13,7 @@ package games.stendhal.common.constants;
 
 /**
  * Acceptable colors that can be used for skin
- * 
+ *
  * @author AntumDeluge, kiheru
  */
 public enum SkinColor {
@@ -33,34 +33,34 @@ public enum SkinColor {
 	COLOR14(0xffbfb4ae),
 	COLOR15(0xff966c00),
 	COLOR16(0xffb59d55);
-	
+
 	private final int color;
-	
+
 	/**
 	 * Constructor that sets the value of SkinColor.
-	 * 
+	 *
 	 * @param color
 	 * 		Color to use for this skin tone
 	 */
 	private SkinColor(int color) {
 		this.color = color;
 	}
-	
+
 	/**
 	 * Get the corresponding color RGB.
-	 * 
+	 *
 	 * @return color
 	 */
 	public int getColor() {
 		return color;
 	}
-	
+
 	/**
 	 * Find the skin color corresponding to an integer color value.
-	 *  
+	 *
 	 * @param color color as RGB int
 	 * @return skin color corresponding to the integer value, or a default value
-	 * 	if no skin color matches 
+	 * 	if no skin color matches
 	 */
 	public static SkinColor fromInteger(int color) {
 		for (SkinColor c : values()) {

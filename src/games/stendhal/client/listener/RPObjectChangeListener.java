@@ -20,7 +20,7 @@ import marauroa.common.game.RPObject;
 public interface RPObjectChangeListener {
 	/**
 	 * An object was added.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
 	 */
@@ -28,7 +28,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -38,7 +38,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -48,7 +48,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * An object was removed.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
 	 */
@@ -56,7 +56,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * A slot object was added.
-	 * 
+	 *
 	 * @param object
 	 *            The container object.
 	 * @param slotName
@@ -68,7 +68,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base container object.
 	 * @param slotName
@@ -83,7 +83,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * A slot object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base container object.
 	 * @param slotName
@@ -98,7 +98,7 @@ public interface RPObjectChangeListener {
 
 	/**
 	 * A slot object was removed.
-	 * 
+	 *
 	 * @param object
 	 *            The container object.
 	 * @param slotName

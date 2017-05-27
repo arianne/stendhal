@@ -11,9 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
-import games.stendhal.client.gui.WindowUtils;
-import games.stendhal.client.gui.layout.SBoxLayout;
-
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +20,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 
+import games.stendhal.client.gui.WindowUtils;
+import games.stendhal.client.gui.layout.SBoxLayout;
+
 /**
  * Dialog for game settings.
  */
@@ -30,7 +30,7 @@ import javax.swing.JTabbedPane;
 public class SettingsDialog extends JDialog {
 	/**
 	 * Create a new SettingsDialog.
-	 * 
+	 *
 	 * @param parent parent window, or <code>null</code>
 	 */
 	public SettingsDialog(Frame parent) {

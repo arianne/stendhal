@@ -15,17 +15,12 @@ package games.stendhal.common.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.ConversationContext;
-import games.stendhal.common.parser.ExactExprMatcher;
-import games.stendhal.common.parser.Expression;
-import games.stendhal.common.parser.ExpressionMatcher;
-import games.stendhal.common.parser.Sentence;
 
 import org.junit.Test;
 
 /**
  * Test the ExpressionMatcher class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class ExpressionMatcherTest {

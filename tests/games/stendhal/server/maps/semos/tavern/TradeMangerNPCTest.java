@@ -221,13 +221,13 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final int expectedTradingFee = 1500;
         Integer price = Integer.valueOf(expectedTradingFee);
 		playersMoney.setQuantity(price);
-		
+
 		//player needs belt slot to equip keyring
 		if(!player.hasSlot("belt")) {
 		    player.addSlot(new PlayerSlot("belt"));
 		}
 		assertThat(player.hasSlot("belt"), is(Boolean.TRUE));
-		
+
 		assertTrue("Equipping player with keyring in belt should be successfull.", player.equip("belt", keyring));
 		assertTrue("Equipping player with money in bag should be successfull.", player.equipToInventoryOnly(playersMoney));
 		assertTrue("Player is not equipped with money for trading fee.", player.isEquipped("money", expectedTradingFee));
@@ -240,7 +240,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
 
 		// Try first selling it when it's not empty
-		
+
 		assertTrue(en.step(player, "sell keyring 150000"));
 		assertEquals("Please empty your keyring first.", getReply(npc));
 		assertTrue(player.isEquipped("keyring"));
@@ -259,7 +259,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals(
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
-		
+
 	}
 
 
@@ -272,8 +272,8 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 		player.addXP(1700);
 
-		QuestHelper.equipWithStackableItem(player, "daisies", 5);
-		QuestHelper.equipWithMoney(player, 100);
+		PlayerTestHelper.equipWithStackableItem(player, "daisies", 5);
+		PlayerTestHelper.equipWithMoney(player, 100);
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));

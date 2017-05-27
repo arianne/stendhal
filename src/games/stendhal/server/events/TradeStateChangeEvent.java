@@ -38,7 +38,7 @@ public class TradeStateChangeEvent extends RPEvent {
 
 	/**
 	 * Creates a new trade state change event.
-	 * 
+	 *
 	 * @param partnerId  id of partner
 	 * @param userTradeState    my state of the trade
 	 * @param partnerTradeState the state of the partner

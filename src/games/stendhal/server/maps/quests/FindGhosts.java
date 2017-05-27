@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -33,21 +40,14 @@ import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
  * QUEST: Find Ghosts
- * 
- * PARTICIPANTS: 
+ *
+ * PARTICIPANTS:
  * <ul>
  * <li> Carena</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Carena asks you to find the 4 other spirits on Faiumoni</li>
@@ -56,15 +56,15 @@ import org.apache.log4j.Logger;
  * <li> Carena checks you have met them, then gives reward</li>
  * <li> Note: you can meet the ghosts before you started the quest with her</li>
  * </ul>
- * 
- * REWARD: 
+ *
+ * REWARD:
  * <ul>
  * <li> base HP bonus of 50</li>
  * <li> 5000 XP</li>
  * <li> Karma: 15</li>
  * </ul>
- * 
- * REPETITIONS: 
+ *
+ * REPETITIONS:
  * <ul>
  * <li> None.</li>
  * </ul>
@@ -74,15 +74,15 @@ public class FindGhosts extends AbstractQuest {
 	private static Logger logger = Logger.getLogger(FindGhosts.class);
 
 	public static final String QUEST_SLOT = "find_ghosts";
-	
-	private static final List<String> NEEDED_SPIRITS = 
+
+	private static final List<String> NEEDED_SPIRITS =
 		Arrays.asList("mary", "ben", "zak", "goran");
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private List<String> missingNames(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return NEEDED_SPIRITS;
@@ -131,7 +131,7 @@ public class FindGhosts extends AbstractQuest {
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"That's lovely of you. Good luck searching for them.",
@@ -179,7 +179,7 @@ public class FindGhosts extends AbstractQuest {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String name = spiritName;
 
-						// although all names are stored as lower case from now on, 
+						// although all names are stored as lower case from now on,
 						// older versions did not,
 						// so we have to be compatible with them
 						final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
@@ -265,11 +265,11 @@ public class FindGhosts extends AbstractQuest {
 			null);
 
 		// the player goes to Carena and says hi, and has no quest or is completed.
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new NotCondition(new QuestActiveCondition(QUEST_SLOT))),
-				ConversationStates.ATTENDING, "Wooouhhhhhh!", 
+				ConversationStates.ATTENDING, "Wooouhhhhhh!",
 				null);
 	}
 
@@ -302,12 +302,12 @@ public class FindGhosts extends AbstractQuest {
 			}
 			return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "FindGhosts";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 10;
@@ -317,7 +317,7 @@ public class FindGhosts extends AbstractQuest {
 	public String getNPCName() {
 		return "Carena";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

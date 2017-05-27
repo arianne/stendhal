@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Boost an entity's def
- * 
+ *
  * @author madmetzger
  */
 public class ModifyAtkEffect extends AbstractEffect {

@@ -13,11 +13,21 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.entity.TextIndicator;
@@ -32,27 +42,15 @@ import games.stendhal.client.sprite.TextSprite;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Nature;
-
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of an RP entity.
- * 
+ *
  * @param <T> type of RPEntity
  */
 abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> {
-	
+
 	private static final int ICON_OFFSET = 8;
 	private static final int HEALTH_BAR_HEIGHT = 4;
 
@@ -60,11 +58,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite blockedSprite;
 	private static final Sprite hitSprite;
 	private static final Sprite missedSprite;
-	
+
 	// Job icons
 	private static final Sprite healerSprite;
 	private static final Sprite merchantSprite;
-	
+
 	// Status icons
 	private static final Sprite chokingSprite;
 	private static final Sprite confusedSprite;
@@ -72,14 +70,14 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite poisonedSprite;
 	private static final Sprite shockedSprite;
 	private static final Sprite heavySprite;
-	
+
 	/** Colors of the ring/circle around the player while attacking or being attacked. */
 	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
 	private static final Color RING_COLOR_DARK_RED = new Color(74, 0, 0);
 	private static final Color RING_COLOR_ORANGE = new Color(255, 200, 0);
-	
+
 	private static final double SQRT2 = 1.414213562;
-	
+
 	/** Temporary text sprites, like HP and XP changes. */
 	private Map<TextIndicator, Sprite> floaters = new HashMap<TextIndicator, Sprite>();
 
@@ -104,9 +102,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected int width;
 	/** Status icon managers. */
 	private final List<AbstractStatusIconManager> iconManagers = new ArrayList<AbstractStatusIconManager>();
-	private HealthBar healthBar; 
+	private HealthBar healthBar;
 
-	/** 
+	/**
 	 * Flag for detecting if any of the icon manager managed icons have
 	 * changed.
 	 */
@@ -121,7 +119,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/** Object for drawing the attack. */
 	private AttackPainter attackPainter;
-	
+
 	static {
 		final SpriteStore st = SpriteStore.get();
 
@@ -129,11 +127,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		hitSprite = st.getCombatSprite("hitted.png");
 		blockedSprite = st.getCombatSprite("blocked.png");
 		missedSprite = st.getCombatSprite("missed.png");
-		
+
 		// Job icons
 		healerSprite = st.getStatusSprite("healer.png");
 		merchantSprite = st.getStatusSprite("merchant.png");
-		
+
 		// Status icons
 		confusedSprite = st.getAnimatedSprite(st.getStatusSprite("confuse.png"), 200);
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
@@ -148,14 +146,14 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	public RPEntity2DView() {
 		// Job icons
-		addIconManager(new StatusIconManager(Player.PROP_HEALER, healerSprite,
+		addIconManager(new StatusIconManager(RPEntity.PROP_HEALER, healerSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.HEALER));
-		addIconManager(new StatusIconManager(Player.PROP_MERCHANT, merchantSprite,
+		addIconManager(new StatusIconManager(RPEntity.PROP_MERCHANT, merchantSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.MERCHANT));
 
 		// Status icons
 		/* choking status */
-		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, chokingSprite,
+		addIconManager(new AbstractStatusIconManager(RPEntity.PROP_EATING, chokingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
 			@Override
 			boolean show(T rpentity) {
@@ -164,11 +162,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		});
 
 		/* confused status */
-		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
+		addIconManager(new StatusIconManager(RPEntity.PROP_CONFUSED, confusedSprite,
 				HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, StatusID.CONFUSE));
 
 		/* eating status */
-		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, eatingSprite,
+		addIconManager(new AbstractStatusIconManager(RPEntity.PROP_EATING, eatingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
 			@Override
 			boolean show(T rpentity) {
@@ -177,17 +175,17 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		});
 
 		/* poison status */
-		StatusIconManager poisonManager = new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
+		StatusIconManager poisonManager = new StatusIconManager(RPEntity.PROP_POISONED, poisonedSprite,
 				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, StatusID.POISON);
 		poisonManager.setOffsets(10, -13);
 		addIconManager(poisonManager);
 
 		/* shock status */
-		addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
+		addIconManager(new StatusIconManager(RPEntity.PROP_SHOCK, shockedSprite,
 				HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
 
 		/* heavy status */
-		StatusIconManager heavyManager = new StatusIconManager(Player.PROP_HEAVY,
+		StatusIconManager heavyManager = new StatusIconManager(RPEntity.PROP_HEAVY,
 				heavySprite, HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE,
 				StatusID.HEAVY);
 		heavyManager.setOffsets(0, 32);
@@ -207,14 +205,14 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		titleChanged = false;
 		iconsChanged = true;
 	}
-	
+
 	//
 	// RPEntity2DView
 	//
 
 	/**
 	 * Populate keyed state sprites.
-	 * 
+	 *
 	 * @param map
 	 *            The map to populate.
 	 * @param tiles
@@ -241,7 +239,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Create the title sprite.
-	 * 
+	 *
 	 * @return The title sprite.
 	 */
 	private Sprite createTitleSprite() {
@@ -275,7 +273,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	/**
 	 * Extract a walking animation for a specific row. The source sprite
 	 * contains 3 animation tiles, but this is converted to 4 frames.
-	 * 
+	 *
 	 * @param tiles
 	 *            The tile image.
 	 * @param y
@@ -284,7 +282,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 *            The frame width.
 	 * @param height
 	 *            The frame height.
-	 * 
+	 *
 	 * @return A sprite.
 	 */
 	protected Sprite createWalkSprite(final Sprite tiles, final int y,
@@ -306,10 +304,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 		return new AnimatedSprite(frames, 100, false);
 	}
-	
+
 	/**
 	 * Add a new status icon manager.
-	 * 
+	 *
 	 * @param manager
 	 */
 	final void addIconManager(AbstractStatusIconManager manager) {
@@ -318,7 +316,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Draw the floating text indicators (floaters).
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -334,7 +332,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			final TextIndicator indicator = floater.getKey();
 			final Sprite sprite = floater.getValue();
 			final int age = indicator.getAge();
-			
+
 			final int tx = x + (width - sprite.getWidth()) / 2;
 			final int ty = y - (int) (age * 5L / 300L);
 			sprite.draw(g2d, tx, ty);
@@ -343,7 +341,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Draw the entity HP bar.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -361,7 +359,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Draw the entity status bar. The status bar show the title and HP bar.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -383,7 +381,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Draw the entity title.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -403,8 +401,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 
 	/**
-	 * Draw the combat indicators. 
-	 * 
+	 * Draw the combat indicators.
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -421,29 +419,29 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		Rectangle2D wrect = entity.getArea();
 		final Rectangle srect = new Rectangle(
 				(int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
-				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS), 
+				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS)
 		);
-		
+
 		// Calculating the circle's height
 		int circleHeight = (int) ((srect.height - 2) / SQRT2);
 		circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2);
-		
+
 		// When the entity is attacking the user give him a orange ring
 		if (entity.isAttacking(User.get())) {
-			g2d.setColor(RING_COLOR_ORANGE); 
+			g2d.setColor(RING_COLOR_ORANGE);
 			g2d.drawOval(srect.x - 1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 			g2d.drawOval(srect.x, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 			g2d.drawOval(srect.x + 1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 			drawShadedOval(g2d, srect.x + 1, srect.y + srect.height - circleHeight + 1, srect.width - 2, circleHeight - 2, RING_COLOR_ORANGE, true, false);
 		}
-		
+
 		// When the entity is attacked by another entity
 		if (entity.isBeingAttacked()) {
 			Color lineColor;
 			g2d.setColor(RING_COLOR_RED);
-			
+
 			// When it is also attacking the user give him only a red outline
 			if (entity.isAttacking(User.get())) {
 				lineColor = RING_COLOR_RED;
@@ -457,21 +455,21 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				drawShadedOval(g2d, srect.x + 1, srect.y + srect.height - circleHeight + 1, srect.width - 2, circleHeight - 2, RING_COLOR_RED, true, false);
 				drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_ORANGE, false, false);
 			}
-			
+
 			// Get the direction of his opponents and draw an arrow to those
 			EnumSet<Direction> directions = EnumSet.noneOf(Direction.class);
 			for (Entity attacker : entity.getAttackers()) {
-				directions.add(Direction.getAreaDirectionTowardsArea(entity.getArea(), attacker.getArea()));	
+				directions.add(Direction.getAreaDirectionTowardsArea(entity.getArea(), attacker.getArea()));
 			}
 			drawArrows(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, directions, lineColor);
-		
+
 		// When the entity is attacked by the user, but still is attacking the user, give him a dark orange outline
 		} else if (entity.isAttacking(User.get())) {
 			drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_ORANGE, false, false);
 		}
-		
+
 		drawAttack(g2d, x, y, width, height);
-		
+
 		if (entity.isDefending()) {
 			// Draw bottom right combat icon
 			final int sx = srect.x + srect.width - ICON_OFFSET;
@@ -494,10 +492,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			}
 		}
 	}
-	
+
 	/**
 	 * Function to draw the arrows on the attack/being attacked ring.
-	 * 
+	 *
 	 * @param g2d The graphic context
 	 * @param x The x-center of the arrows
 	 * @param y The y-center of the arrows
@@ -558,7 +556,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					3);
 		}
 	}
-	
+
 	/**
 	 * @param g2d The graphic context
 	 * @param x The x-position of the upperleft of the oval
@@ -570,7 +568,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param light
 	 */
 	private void drawShadedOval(final Graphics2D g2d, final int x, final int y, final int width, final int height, final Color color, final boolean reversed, final boolean light) {
-		
+
 		// Calculate how much darker the ring must be made (depends on the boolean 'light')
 		float multi1;
 		float multi2;
@@ -581,22 +579,22 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			multi1 = reversed ? 0.24f : 0.39f;
 			multi2 = reversed ? 0.39f : 0.24f;
 		}
-		
+
 		// Darken the colors by the given multiplier
 		Color color1 = new Color((int) (color.getRed() * multi1), (int) (color.getGreen() * multi1), (int) (color.getBlue() * multi1));
 		Color color2 = new Color((int) (color.getRed() * multi2), (int) (color.getGreen() * multi2), (int) (color.getBlue() * multi2));
-		
+
 		// Draw with two arcs a oval
 		g2d.setColor(color1);
 		g2d.drawArc(x, y, width, height, 0, 180);
 		g2d.setColor(color2);
 		g2d.drawArc(x, y, width, height, 180, 180);
 	}
-	
+
 	/**
 	 * Draw the attacking effect.
-	 * 
-	 * @param g2d The graphics context 
+	 *
+	 * @param g2d The graphics context
 	 * @param x x coordinate of the attacker
 	 * @param y y coordinate of the attacker
 	 * @param width width of the attacker
@@ -606,7 +604,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		if (isAttacking) {
 			if (!attackPainter.isDoneAttacking()) {
 				RPEntity target = entity.getAttackTarget();
-				
+
 				if (target != null) {
 					if (rangedAttack) {
 						attackPainter.drawDistanceAttack(g2d, entity, target, x, y, width, height);
@@ -618,18 +616,18 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				isAttacking = false;
 			}
 		}
-	}	
+	}
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 * 
+	 *
 	 * @return A tile sprite containing all animation images.
 	 */
 	protected abstract Sprite getAnimationSprite();
 
 	/**
 	 * Get the number of tiles in the X axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	protected int getTilesX() {
@@ -638,7 +636,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Get the number of tiles in the Y axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	protected int getTilesY() {
@@ -647,7 +645,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
-	 * 
+	 *
 	 * @return <code>true</code> if the client user can see this entity while in
 	 *         ghostmode.
 	 */
@@ -661,7 +659,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Populate keyed state sprites.
-	 * 
+	 *
 	 * @param entity the entity to build sprites for
 	 * @param map
 	 *            The map to populate.
@@ -675,18 +673,18 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 		buildSprites(map, tiles, width, height);
 		calculateOffset(entity, width, height);
-		
+
 		/*
 		 * Set icons for a newly created entity.
 		 */
 		checkIcons();
-		
+
 		// Prepare the health bar
 		int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
 		healthBar = new HealthBar(barWidth, HEALTH_BAR_HEIGHT);
 		healthBar.setHPRatio(entity.getHpRatio());
 	}
-	
+
 	/**
 	 * Check if icon states have changed.
 	 */
@@ -697,11 +695,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if icon states have changed.
-	 * 
-	 * @param property the changed property 
+	 *
+	 * @param property the changed property
 	 */
 	private void checkIcons(Object property) {
 		for (AbstractStatusIconManager handler : iconManagers) {
@@ -718,7 +716,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -729,7 +727,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		/*
 		 * Menu is used to provide an alternate action for some entities (like
 		 * puppies - and they should not be attackable).
-		 * 
+		 *
 		 * For now normally attackable entities get a menu only in Capture The
 		 * Flag, and then they don't need attack. If that changes, this code
 		 * will need to be adjusted.
@@ -747,7 +745,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Draw the entity.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -776,7 +774,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	/**
 	 * Draw the top layer parts of an entity. This will be on down after all
 	 * other game layers are rendered.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -796,7 +794,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Get the height.
-	 * 
+	 *
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -806,7 +804,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Get the entity's visibility.
-	 * 
+	 *
 	 * @return The visibility value (0-100).
 	 */
 	@Override
@@ -827,7 +825,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Get the width.
-	 * 
+	 *
 	 * @return The width (in pixels).
 	 */
 	@Override
@@ -839,9 +837,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -862,7 +860,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				titleSprite = null;
 			}
 		}
-		
+
 		if (iconsChanged) {
 			iconsChanged = false;
 			for (AbstractStatusIconManager handler : iconManagers) {
@@ -908,7 +906,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				isAttacking = true;
 			}
 		}
-		
+
 		checkIcons(property);
 	}
 
@@ -918,17 +916,17 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private void onFloatersChanged() {
 		Iterator<TextIndicator> it = entity.getTextIndicators();
 		Map<TextIndicator, Sprite> newFloaters = new HashMap<TextIndicator, Sprite>();
-		
+
 		while (it.hasNext()) {
 			TextIndicator floater = it.next();
 			Sprite sprite = floaters.get(floater);
 			if (sprite == null) {
 				sprite = TextSprite.createTextSprite(floater.getText(), floater.getType().getColor());
 			}
-			
+
 			newFloaters.put(floater, sprite);
 		}
-		
+
 		floaters = newFloaters;
 	}
 
@@ -946,7 +944,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param action
 	 *            The action.
 	 */
@@ -982,7 +980,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			break;
 		}
 	}
-	
+
 	/**
 	 * An icon manager whose visibility check is just checking a status of the
 	 * entity.
@@ -990,7 +988,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private class StatusIconManager extends AbstractStatusIconManager {
 		/** The followed status. */
 		private final StatusID status;
-		
+
 		/**
 		 * Create a StatusIconManager.
 		 *
@@ -1011,7 +1009,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			return entity.hasStatus(status);
 		}
 	}
-	
+
 	/**
 	 * A manager for a status icon. Observes property changes and shows and
 	 * hides the icon as needed.
@@ -1039,10 +1037,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * Flag for detecting that the visibility status has changed.
 		 */
 		private volatile boolean changed;
-		
+
 		/**
 		 * Create a new StatusIconManager.
-		 * 
+		 *
 		 * @param property observed property
 		 * @param sprite icon sprite
 		 * @param xAlign Horizontal alignment of the sprite related to the
@@ -1057,20 +1055,20 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			this.xAlign = xAlign;
 			this.yAlign = yAlign;
 		}
-		
+
 		/**
 		 * Check if the icon should be shown.
-		 * 
+		 *
 		 * @param entity checked entity
 		 * @return <code>true</code> if the icon should be shown,
 		 * 	<code>false</code> otherwise
 		 */
 		abstract boolean show(T entity);
-		
+
 		/**
 		 * Check the entity at a property change. Show or hide the icon if
 		 * needed.
-		 * 
+		 *
 		 * @param changedProperty property that changed
 		 * @param entity changed entity
 		 * @return <code>true</code> if the visibility status changed, otherwise
@@ -1080,10 +1078,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			if (property == changedProperty) {
 				return check(entity);
 			}
-			
+
 			return false;
 		}
-		
+
 		/**
 		 * Apply visibility changes if needed.
 		 */
@@ -1093,7 +1091,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				setVisible(shouldBeVisible);
 			}
 		}
-		
+
 		/**
 		 * Set the icon offsets compared to the normal position determined by
 		 * the alignment. <b>The horizontal offset will be ignored, unless
@@ -1105,11 +1103,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			this.xOffset = xOffset;
 			this.yOffset = yOffset;
 		}
-		
+
 		/**
 		 * Check the status of an entity, and show or hide the icon if
 		 * needed.
-		 * 
+		 *
 		 * @param entity checked entity
 		 * @return <code>true</code> if the visibility status changed, otherwise
 		 * 	<code>false</code>
@@ -1121,10 +1119,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			if (tmp) {
 				changed = true;
 			}
-			
+
 			return tmp;
 		}
-		
+
 		/**
 		 * Find the correct location for the icon when it has been set visible.
 		 */
@@ -1154,9 +1152,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		/**
 		 * Reposition any visible icons following this when the visibility has
 		 * changed.
-		 * 
+		 *
 		 * @param startIndex the position of this manager in the iconManagers
-		 * 	list 
+		 * 	list
 		 */
 		private void reposition(int startIndex) {
 			for (int j = startIndex; j < iconManagers.size(); j++) {
@@ -1172,11 +1170,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				}
 			}
 		}
-		
+
 		/**
 		 * Check if a manager shares position with this, and is in visible
 		 * state.
-		 * 
+		 *
 		 * @param manager manager to be checked
 		 * @return <code>true</code> if the manages shares alignment properties
 		 * with this, and its icon is visible.
@@ -1185,10 +1183,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			return manager.xAlign == xAlign && manager.yAlign == yAlign
 					&& manager.shouldBeVisible;
 		}
-		
+
 		/**
 		 * Attach or detach the icon sprite, depending on visibility.
-		 * 
+		 *
 		 * @param visible new visibility status
 		 */
 		private void setVisible(boolean visible) {

@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
@@ -29,23 +34,17 @@ import games.stendhal.server.entity.spell.exception.LevelRequirementNotFulfilled
 import games.stendhal.server.entity.spell.exception.SpellException;
 import games.stendhal.server.entity.spell.exception.SpellNotCooledDownException;
 import games.stendhal.server.entity.trade.Dateable;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
-
 /**
  * The base spell class
- * 
+ *
  * @author timothyb89, madmetzger
  */
 public abstract class Spell extends PassiveEntity implements EquipListener, Dateable {
-	
+
 	private static final Logger LOGGER = Logger.getLogger(Spell.class);
 
 	public static final String RPCLASS_SPELL = "spell";
@@ -90,10 +89,10 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 *  - cooldown time expired
 	 *  - caster has the minimum level
 	 *  - target is valid for the spell
-	 *  
+	 *
 	 * @param caster the player who tries to cast this spell
 	 * @param target the entity the spell is aimed at
-	 * @throws SpellException 
+	 * @throws SpellException
 	 */
 	public void cast(final Player caster, final Entity target) throws SpellException {
 		if(checkPreConditions(caster, target)) {
@@ -166,7 +165,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Provides the concrete behaviour of each concrete spell, i.e. a healing effect should done here
-	 * 
+	 *
 	 * @param caster
 	 * @param target
 	 */
@@ -175,9 +174,9 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	/**
 	 * Checks if the target Entity is applicable for this spell. Basically each Entity can target of a spell.
 	 * Subclasses have to override this method if they want to be more strict in the choice of the target.
-	 * 
+	 *
 	 * @param caster the user of the spell
-	 * @param target the target Entity to check the applicability for 
+	 * @param target the target Entity to check the applicability for
 	 * @return true iff target is applicable to this spell
 	 */
 	protected boolean isTargetValid(final Entity caster, final Entity target) {
@@ -211,7 +210,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Creates a spell from an RPObject
-	 * 
+	 *
 	 * @param object the RPObject to create the spell from
 	 */
 	public Spell(final RPObject object) {
@@ -226,7 +225,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	/**
 	 * Creates a new {@link Spell}
 	 * Sub classes of {@link Spell} *have to* provide a constructor with this order of parameters!
-	 * 
+	 *
 	 * @param name the name of the spell
 	 * @param nature the nature of the spell
 	 * @param amount the amount of the effect of this spell
@@ -239,7 +238,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param range the max distance for the spell target
 	 * @param rate the frequency of the effect of this spell
 	 * @param regen the amount to regen with each effect turn
-	 * @param modifier 
+	 * @param modifier
 	 */
 	public Spell(	final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 			final int def, final double lifesteal, final int mana, final int minimumlevel,
@@ -271,7 +270,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell name.
-	 * 
+	 *
 	 * @return The spell's name, or <code>null</code> if undefined.
 	 */
 	@Override
@@ -284,7 +283,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell amount.
-	 * 
+	 *
 	 * @return The spell's amount, or <code>0</code> if undefined.
 	 */
 	public int getAmount() {
@@ -296,7 +295,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell atk.
-	 * 
+	 *
 	 * @return The spell's atk, or <code>0</code> if undefined.
 	 */
 	public int getAtk() {
@@ -308,7 +307,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell cooldown.
-	 * 
+	 *
 	 * @return The spell's cooldown, or <code>0</code> if undefined.
 	 */
 	public int getCooldown() {
@@ -320,7 +319,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell def.
-	 * 
+	 *
 	 * @return The spell's def, or <code>0</code> if undefined.
 	 */
 	public int getDef() {
@@ -332,7 +331,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell lifesteal.
-	 * 
+	 *
 	 * @return The spell's lifesteal, or <code>0</code> if undefined.
 	 */
 	public double getLifesteal() {
@@ -344,7 +343,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell mana.
-	 * 
+	 *
 	 * @return The spell's mana, or <code>0</code> if undefined.
 	 */
 	public int getMana() {
@@ -356,7 +355,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell minimum level.
-	 * 
+	 *
 	 * @return The spell's minimum level, or <code>0</code> if undefined.
 	 */
 	public int getMinimumLevel() {
@@ -368,7 +367,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell range.
-	 * 
+	 *
 	 * @return The spell's range, or <code>0</code> if undefined.
 	 */
 	public int getRange() {
@@ -380,7 +379,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell rate.
-	 * 
+	 *
 	 * @return The spell's rate, or <code>0</code> if undefined.
 	 */
 	public int getRate() {
@@ -392,7 +391,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	/**
 	 * Get the spell regen.
-	 * 
+	 *
 	 * @return The spell's regen, or <code>0</code> if undefined.
 	 */
 	public int getRegen() {
@@ -431,7 +430,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0d;
 	}
-	
+
 	public void setModifier(double modifier) {
 		put(ATTR_MODIFIER, modifier);
 	}

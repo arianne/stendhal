@@ -2,6 +2,16 @@
 
 package games.stendhal.server.core.scripting;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.CommandlineParser;
 import games.stendhal.common.ErrorBuffer;
 import games.stendhal.common.ErrorDrain;
@@ -11,22 +21,11 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
-
-import java.io.File;
-import java.io.FilenameFilter;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * ServerExtension to load Groovy and Java scripts.
- * 
+ *
  * @author intensifly
  */
 public class ScriptRunner extends StendhalServerExtension implements
@@ -76,8 +75,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 	public synchronized boolean perform(final String name) {
 		return perform(name, "load", null, null);
 	}
-	
-	// need that function to filter scripts names 
+
+	// need that function to filter scripts names
 	public String searchTermToRegex(String searchTerm) {
 		final String metaSymbols = "*?()[]{}+-.^$|\\";
 		StringBuilder stringBuilder = new StringBuilder();
@@ -103,16 +102,16 @@ public class ScriptRunner extends StendhalServerExtension implements
 		}
 		return stringBuilder.toString();
 	}
-	
+
 	private synchronized boolean perform(final String name, final String mode,
 			final Player player, final List<String> args) {
 		boolean ret = false;
-		
+
 		// block exploit
 		if (name.indexOf("..") >= 0) {
 			return false;
 		}
-		
+
 		// list mode
 		if ("list".equals(mode)) {
 			return listScripts(player, args);
@@ -190,7 +189,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 					return (name.endsWith(".class") && (name.indexOf('$') == -1));
 				}
 			});
-        		
+
 		int scriptsGroovyLength = 0;
 		if (scriptsGroovy!=null) {
 			scriptsGroovyLength=scriptsGroovy.length;
@@ -199,18 +198,18 @@ public class ScriptRunner extends StendhalServerExtension implements
 		if (scriptsJava!=null) {
 			scriptsJavaLength=scriptsJava.length;
 		}
-		final int scriptsLength = scriptsGroovyLength + scriptsJavaLength; 
+		final int scriptsLength = scriptsGroovyLength + scriptsJavaLength;
 		// concatenating String arrays scriptsGroovy and scriptsJava to scripts
 		final String[] scripts= new String[scriptsLength];
-		
+
 		if (scriptsGroovy!=null) {
 		System.arraycopy(scriptsGroovy, 0, scripts, 0, scriptsGroovyLength);
 		}
-		
+
 		if (scriptsJava!=null) {
 		System.arraycopy(scriptsJava, 0, scripts, scriptsGroovyLength, scriptsJavaLength);
 		}
-		
+
 		StringBuilder stringBuilder = new StringBuilder();
 
 		if (!filterTerm.isEmpty()) {
@@ -224,7 +223,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 		for (int i = 0; i < scriptsLength; i++) {
 			// if arguments given, will look for matches.
 			if (!filterTerm.isEmpty()) {
-				int j = 0;					
+				int j = 0;
 				for (j = 0; j < filterTerm.size(); j++) {
 					if (scripts[i].matches(searchTermToRegex(filterTerm.get(j)))) {
 						stringBuilder.append(scripts[i]+"\n");
@@ -233,7 +232,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 			} else {
 				stringBuilder.append(scripts[i]+"\n");
 			}
-		}	
+		}
 		stringBuilder.append("(end of listing).");
 		player.sendPrivateText(stringBuilder.toString());
 		return true;
@@ -271,8 +270,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 			// script name
 			String mode = "execute";
 			String script = cmd;
-			
-			/* 
+
+			/*
 			 // parse args if there is a space
 			 int pos = cmd.indexOf(' ');
 			 if (pos > -1) {
@@ -294,8 +293,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 				script = temp;
 			 }
 			 */
-			
-			// parts of script command. 
+
+			// parts of script command.
 			final List<String> parts = Arrays.asList(cmd.split(" "));
 			cmd = "";
 			int scp = 0;
@@ -312,7 +311,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 				StringBuilder sb = new StringBuilder(cmd);
 				// concatenating script arguments
 				for (int i = scp+1; i<parts.size(); i++) {
-					 sb.append(' ').append(parts.get(i));				
+					 sb.append(' ').append(parts.get(i));
 				}
 				cmd = sb.toString();
 				// for list mode we dont have script name

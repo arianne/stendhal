@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
-
 import java.io.IOException;
 import java.net.URI;
 import java.util.LinkedList;
@@ -22,21 +20,23 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
 /**
  * XML based loader of spell groups
- * 
+ *
  * @author madmetzger
  */
 public class SpellGroupsXMLLoader extends DefaultHandler {
-	
+
 	private static final Logger logger = Logger.getLogger(SpellGroupsXMLLoader.class);
-	
+
 	protected URI uri;
-	
+
 
 	/**
 	 * Create an XML based loader of spell groups.
-	 * 
+	 *
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
@@ -46,7 +46,7 @@ public class SpellGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Load spells.
-	 * 
+	 *
 	 * @return list of spells
 	 * @throws SAXException
 	 *             If a SAX error occurred.
@@ -55,7 +55,7 @@ public class SpellGroupsXMLLoader extends DefaultHandler {
 	 */
 	public List<DefaultSpell> load() throws SAXException, IOException {
 		final GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
-		
+
 		final List<URI> groups = groupsLoader.load();
 		final SpellXMLLoader loader = new SpellXMLLoader();
 

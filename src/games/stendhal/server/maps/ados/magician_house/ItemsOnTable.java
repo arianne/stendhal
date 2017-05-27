@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.magician_house;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
-
-import java.util.Map;
 
 /**
  * Creates the items on the table in the magician house.
@@ -57,7 +57,7 @@ public class ItemsOnTable implements ZoneConfigurator {
 		final Item item = SingletonRepository.getEntityManager().getItem(name);
 		item.setPosition(x, y);
 		zone.add(item, false);
-		
+
 		return item;
 	}
 }

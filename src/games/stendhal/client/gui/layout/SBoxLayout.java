@@ -46,31 +46,31 @@ public class SBoxLayout implements LayoutManager2 {
 	/*
 	 * Implementation considerations:
 	 * 	- MaxSize is not fully supported. It could be done the same way as MinSize is now
-	 * 
-	 * 	- Expanding and contracting the components is done by same amount for all 
-	 * 	the components that are resized (unless forbidden by minimum/maximum size 
+	 *
+	 * 	- Expanding and contracting the components is done by same amount for all
+	 * 	the components that are resized (unless forbidden by minimum/maximum size
 	 * 	constraints). Should it be relative to the component size instead?
-	 * 
+	 *
 	 * Further refinement:
 	 * 	Layout management in swing is dumb (and not just buggy for the fundamental
 	 * 	layout managers). Any change in a child component will result in revalidation
-	 * 	of the whole component tree until the first validation root (which normally 
-	 *	is the top level window). This is a huge performance problem as changing a 
-	 *	single number in the StatsPanel will result in the whole window layout being 
+	 * 	of the whole component tree until the first validation root (which normally
+	 *	is the top level window). This is a huge performance problem as changing a
+	 *	single number in the StatsPanel will result in the whole window layout being
 	 *	redone - and 3 changes in a second is normal.
 	 *		Therefore, investigate if it's feasible to make a component that acts as
 	 *	a validation root, and passes the invalidation upwards only if its size changes.
 	 */
-	
+
 	public static final boolean VERTICAL = false;
 	public static final boolean HORIZONTAL = true;
-	
+
 	/** Common padding width where padding or border is wanted. */
 	public static final int COMMON_PADDING = 5;
-	
+
 	/**
 	 * Create a constraints object.
-	 * 
+	 *
 	 * @param flags constraint flags
 	 * @return constraints object
 	 */
@@ -81,32 +81,32 @@ public class SBoxLayout implements LayoutManager2 {
 		}
 		return obj;
 	}
-	
+
 	private static final Direction horizontalDirection = new HDirection();
 	private static final Direction verticalDirection = new VDirection();
-	
-	/** 
+
+	/**
 	 * Layout constraints of the child components.
 	 */
 	private final Map<Component, EnumSet<SLayout>> constraints;
-	
+
 	/**
 	 * The direction object. All the dimension calculations are
 	 * delegated to this.
 	 */
 	private final Direction d;
-	
-	/** Preciously calculated dimension data, or <code>null</code> if it has been invalidated. */ 
+
+	/** Preciously calculated dimension data, or <code>null</code> if it has been invalidated. */
 	private Dimension cachedMinimum, cachedMaximum, cachedPreferred;
-	
+
 	/** Amount of axially expandable components. */
 	private int expandable;
 	/** Amount of padding between components. */
 	private int padding = 0;
-	
+
 	/**
 	 * Create a new SBoxLayout.
-	 * 
+	 *
 	 * @param direction layout direction
 	 */
 	public SBoxLayout(boolean direction) {
@@ -117,10 +117,10 @@ public class SBoxLayout implements LayoutManager2 {
 			d = horizontalDirection;
 		}
 	}
-	
+
 	/**
 	 * Create a new SBoxLayout with padding between components.
-	 * 
+	 *
 	 * @param direction layout direction
 	 * @param padding component padding in pixels
 	 */
@@ -128,12 +128,12 @@ public class SBoxLayout implements LayoutManager2 {
 		this(direction);
 		setPadding(padding);
 	}
-	
+
 	/**
 	 * Set the padding between the components. Typically you should use either
 	 * 0 (the default), or COMMON_PADDING for consistent look. For the padding
 	 * around everything use appropriate empty border instead.
-	 * 
+	 *
 	 * @param padding pixel width of the padding
 	 */
 	public final void setPadding(int padding) {
@@ -149,7 +149,7 @@ public class SBoxLayout implements LayoutManager2 {
 		EnumSet<SLayout> constraintFlags = EnumSet.noneOf(SLayout.class);
 		if (flags != null) {
 			if (flags instanceof SLayout) {
-				constraintFlags.add(d.translate((SLayout) flags)); 
+				constraintFlags.add(d.translate((SLayout) flags));
 			} else if (flags instanceof EnumSet<?> || flags instanceof SLayout) {
 				// Type checking within the rather poor limits of generics
 				EnumSet<?> eflags = (EnumSet<?>) flags;
@@ -163,7 +163,7 @@ public class SBoxLayout implements LayoutManager2 {
 			} else {
 				throw new IllegalArgumentException("Invalid flags: " + flags);
 			}
-			
+
 			// Keep count of expandable items
 			if (constraintFlags.contains(SLayout.EXPAND_AXIAL)) {
 				expandable++;
@@ -171,7 +171,7 @@ public class SBoxLayout implements LayoutManager2 {
 		}
 		constraints.put(component, constraintFlags);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String, java.awt.Component)
@@ -179,21 +179,21 @@ public class SBoxLayout implements LayoutManager2 {
 	@Override
 	public void addLayoutComponent(String id, Component component) {
 	}
-	
+
 	/**
 	 * Add to the primary dimension.
-	 * 
+	 *
 	 * @param result the dimension to be expanded
 	 * @param length the expanding amount
 	 */
 	private void addToPrimary(Dimension result, int length) {
 		d.setPrimary(result, d.getPrimary(result) + length);
 	}
-	
+
 	/**
 	 * Expand a <code>Dimension</code> so that it can include
 	 * another <code>Dimension</code>.
-	 * 
+	 *
 	 * @param result The dimension to be expanded
 	 * @param dim limiting dimension
 	 */
@@ -201,7 +201,7 @@ public class SBoxLayout implements LayoutManager2 {
 		result.width = Math.max(result.width, dim.width);
 		result.height = Math.max(result.height, dim.height);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#getLayoutAlignmentX(java.awt.Container)
@@ -211,7 +211,7 @@ public class SBoxLayout implements LayoutManager2 {
 		// The specs don't tell what this actually should do
 		return 0;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#getLayoutAlignmentY(java.awt.Container)
@@ -221,23 +221,23 @@ public class SBoxLayout implements LayoutManager2 {
 		// The specs don't tell what this actually should do
 		return 0;
 	}
-	
+
 	/**
 	 * Get a components preferred dimensions restricted by
 	 * the maximum and minimum constraints.
-	 * 
+	 *
 	 * @param comp the component to examine
 	 * @return constraint adjusted preferred dimensions
 	 */
 	private Dimension getPreferred(Component comp) {
 		Dimension dim = comp.getPreferredSize();
-		
+
 		expand(dim, comp.getMinimumSize());
 		shrink(dim, comp.getMaximumSize());
 
 		return dim;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#invalidateLayout(java.awt.Container)
@@ -258,17 +258,17 @@ public class SBoxLayout implements LayoutManager2 {
 		// Maximum dimensions available for use
 		Dimension realDim = parent.getSize();
 		Insets insets = parent.getInsets();
-		
+
 		Dimension preferred = preferredLayoutSize(parent);
-		
+
 		final int stretch = d.getPrimary(realDim) - d.getPrimary(preferred);
-	
+
 		// remove the insets for the actual area we have in use
 		realDim.width -= insets.left + insets.right;
 		realDim.height -= insets.top + insets.bottom;
 
 		Dimension position = new Dimension(insets.left, insets.top);
-		
+
 		// Check the conditions, and pass the task to the proper layout method
 		if (stretch >= 0) {
 			layoutSufficientSpace(parent, realDim, position, stretch);
@@ -285,20 +285,20 @@ public class SBoxLayout implements LayoutManager2 {
 			}
 		}
 	}
-	
+
 	/**
 	 * Lay out the components, when we have sufficient space to do so.
-	 * 
+	 *
 	 * @param parent the parent container of the components
 	 * @param realDim the dimensions of the space in use
 	 * @param startPosition top left corner
-	 * @param stretch the total amount to stretch the components 
+	 * @param stretch the total amount to stretch the components
 	 */
-	private void layoutSufficientSpace(Container parent, Dimension realDim, 
+	private void layoutSufficientSpace(Container parent, Dimension realDim,
 			Dimension startPosition, int stretch) {
 		int remainingStretch = stretch;
 		int remainingExpandable = expandable;
-		
+
 		// Easy - we got at least the dimensions we asked for
 		for (Component c : parent.getComponents()) {
 			// Skip hidden components
@@ -307,7 +307,7 @@ public class SBoxLayout implements LayoutManager2 {
 				shrink(cPref, realDim);
 				int xAlign = 0;
 				int yAlign = 0;
-				
+
 				EnumSet<SLayout> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(cPref, d.getSecondary(realDim));
@@ -315,7 +315,7 @@ public class SBoxLayout implements LayoutManager2 {
 					xAlign = getXAlignment(c, realDim);
 					yAlign = getYAlignment(c, realDim);
 				}
-				
+
 				if ((remainingStretch > 0) && flags.contains(SLayout.EXPAND_AXIAL)) {
 					// Stretch the components that allow it, if needed
 					int add = Math.max(1, remainingStretch / remainingExpandable);
@@ -324,7 +324,7 @@ public class SBoxLayout implements LayoutManager2 {
 					remainingExpandable--;
 				}
 				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, cPref.width, cPref.height);
-				
+
 				// Move the coordinates of the next component by the size of the
 				// previous + padding
 				shiftByPrimary(startPosition, cPref);
@@ -332,11 +332,11 @@ public class SBoxLayout implements LayoutManager2 {
 			}
 		}
 	}
-	
+
 	/**
 	 * Lay out the components in a smaller space than the specified minimum.
 	 * Just gives the components their required minimum, until the space runs out.
-	 * 
+	 *
 	 * @param parent the parent container of the components
 	 * @param realDim the dimensions of the space in use
 	 * @param startPosition top left corner
@@ -349,7 +349,7 @@ public class SBoxLayout implements LayoutManager2 {
 				shrink(compSize, realDim);
 				int xAlign = 0;
 				int yAlign = 0;
-				
+
 				EnumSet<SLayout> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(compSize, d.getSecondary(realDim));
@@ -357,7 +357,7 @@ public class SBoxLayout implements LayoutManager2 {
 					xAlign = getXAlignment(c, realDim);
 					yAlign = getYAlignment(c, realDim);
 				}
-				
+
 				int shrink = d.getPrimary(realDim) - d.getPrimary(compSize) - d.getPrimary(startPosition);
 				if (shrink < 0) {
 					// avoid < 0 sizes
@@ -365,7 +365,7 @@ public class SBoxLayout implements LayoutManager2 {
 					addToPrimary(compSize, shrink);
 				}
 				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, compSize.width, compSize.height);
-				
+
 				// Move the coordinates of the next component by the size of the
 				// previous + padding
 				shiftByPrimary(startPosition, compSize);
@@ -373,7 +373,7 @@ public class SBoxLayout implements LayoutManager2 {
 			}
 		}
 	}
-	
+
 	/**
 	 * Lay out in sufficient, but smaller space than preferred.
 	 * Respects the minimum dimensions, and squeezes only the components
@@ -384,7 +384,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 * @param startPosition top left corner
 	 * @param stretch the total amount to stretch the components (negative)
 	 */
-	private void layoutWithSqueeze(Container parent, Dimension realDim, 
+	private void layoutWithSqueeze(Container parent, Dimension realDim,
 			Dimension startPosition, int stretch) {
 		/*
 		 * We can squeeze the components without violating the constraints,
@@ -392,9 +392,9 @@ public class SBoxLayout implements LayoutManager2 {
 		 */
 		int numComponents = parent.getComponents().length;
 		int[] dim;
-		boolean[] violations = new boolean[numComponents]; 
+		boolean[] violations = new boolean[numComponents];
 		int numViolations = 0;
-		
+
 		// Only visible components can be squeezed
 		int numVisible = 0;
 		for (Component c : parent.getComponents()) {
@@ -402,12 +402,12 @@ public class SBoxLayout implements LayoutManager2 {
 				numVisible++;
 			}
 		}
-		
+
 		int numSqueezable;
 		/*
 		 * Start by trying to squeeze all, and then mark as
 		 * incompressible the components whose size would become
-		 * too small. Repeat until only those components that can 
+		 * too small. Repeat until only those components that can
 		 * take it, get squeezed.
 		 */
 		do {
@@ -421,13 +421,13 @@ public class SBoxLayout implements LayoutManager2 {
 			}
 			int remainingSqueeze = -stretch;
 			numViolations = 0;
-			
+
 			for (int i = 0; i < numComponents; i++) {
 				Component c = parent.getComponents()[i];
-				
+
 				if (c.isVisible()) {
 					Dimension cPref = getPreferred(c);
-					
+
 					int adjust = 0;
 					if (remainingSqueeze > 0 && !violations[i]) {
 						adjust = Math.max(1, remainingSqueeze / numSqueezable);
@@ -444,7 +444,7 @@ public class SBoxLayout implements LayoutManager2 {
 				}
 			}
 		} while (numViolations != 0);
-		
+
 		// Done with the dimensions, now lay it out
 		for (int i = 0; i < numComponents; i++) {
 			Component c = parent.getComponents()[i];
@@ -454,7 +454,7 @@ public class SBoxLayout implements LayoutManager2 {
 				shrink(cPref, realDim);
 				int xAlign = 0;
 				int yAlign = 0;
-				
+
 				EnumSet<?> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(cPref, d.getSecondary(realDim));
@@ -464,7 +464,7 @@ public class SBoxLayout implements LayoutManager2 {
 				}
 				d.setPrimary(cPref, dim[i]);
 				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, cPref.width, cPref.height);
-				
+
 				// Move the coordinates of the next component by the size of the
 				// previous + padding
 				shiftByPrimary(startPosition, cPref);
@@ -472,10 +472,10 @@ public class SBoxLayout implements LayoutManager2 {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the x alignment of a child component.
-	 * 
+	 *
 	 * @param c component
 	 * @param available available space
 	 * @return x alignment in pixels
@@ -487,10 +487,10 @@ public class SBoxLayout implements LayoutManager2 {
 			return getPerpendicularAlignment(c, available);
 		}
 	}
-	
+
 	/**
 	 * Get the y alignment of a child component.
-	 * 
+	 *
 	 * @param c component
 	 * @param available available space
 	 * @return y alignment in pixels
@@ -502,24 +502,24 @@ public class SBoxLayout implements LayoutManager2 {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Get the pixel alignment of a component in the perpendicular direction.
-	 *  
+	 *
 	 * @param c component
 	 * @param available size of the container of the component
 	 * @return pixel alignment
 	 */
 	private int getPerpendicularAlignment(Component c, Dimension available) {
 		int align = 0;
-		int extra = d.getSecondary(available) - d.getSecondary(c.getPreferredSize()); 
+		int extra = d.getSecondary(available) - d.getSecondary(c.getPreferredSize());
 		if (extra > 0) {
 			align = (int) (extra * d.getComponentAlignment(c));
 		}
-		
+
 		return align;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#maximumLayoutSize(java.awt.Container)
@@ -527,15 +527,15 @@ public class SBoxLayout implements LayoutManager2 {
 	@Override
 	public Dimension maximumLayoutSize(Container parent) {
 		/*
-		 * The specs are *very* vague about what this should do (and 
-		 * helpfully name the parameter "target", sigh), but returning 
-		 * the max size of the whole layout seems to be what's wanted, 
+		 * The specs are *very* vague about what this should do (and
+		 * helpfully name the parameter "target", sigh), but returning
+		 * the max size of the whole layout seems to be what's wanted,
 		 * and most other tries crash in a way or another.
 		 */
 		if (cachedMaximum != null) {
 			return new Dimension(cachedMaximum);
 		}
-		
+
 		Dimension result = new Dimension();
 
 		int numVisible = 0;
@@ -546,21 +546,21 @@ public class SBoxLayout implements LayoutManager2 {
 				d.addComponentDimensions(result, c.getMaximumSize());
 			}
 		}
-		
+
 		// Take padding in account
 		if (numVisible > 1) {
 			d.setPrimary(result, safeAdd(d.getPrimary(result), (numVisible - 1) * padding));
 		}
-		
+
 		// Expand by the insets
 		Insets insets = parent.getInsets();
 		result.width = safeAdd(result.width, insets.left + insets.right);
 		result.height = safeAdd(result.height, insets.top + insets.bottom);
-		
+
 		cachedMaximum = result;
 		return result;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
@@ -580,17 +580,17 @@ public class SBoxLayout implements LayoutManager2 {
 				d.addComponentDimensions(result, c.getMinimumSize());
 			}
 		}
-		
+
 		// Take padding in account
 		if (numVisible > 1) {
 			d.setPrimary(result, safeAdd(d.getPrimary(result), (numVisible - 1) * padding));
 		}
-		
+
 		// Expand by the insets
 		Insets insets = parent.getInsets();
 		result.width += insets.left + insets.right;
 		result.height += insets.top + insets.bottom;
-		
+
 		cachedMinimum = result;
 		return result;
 	}
@@ -614,12 +614,12 @@ public class SBoxLayout implements LayoutManager2 {
 				d.addComponentDimensions(result, getPreferred(c));
 			}
 		}
-		
+
 		// Take padding in account
 		if (numVisible > 1) {
 			d.setPrimary(result, safeAdd(d.getPrimary(result), (numVisible - 1) * padding));
 		}
-		
+
 		// Expand by the insets
 		Insets insets = parent.getInsets();
 		result.width = safeAdd(result.width, insets.left + insets.right);
@@ -628,23 +628,23 @@ public class SBoxLayout implements LayoutManager2 {
 		/*
 		 * Check the constraints of the parent. Unlike the standard layout
 		 * managers we should never suggest sizes outside the range that
-		 * the parent should do. 
+		 * the parent should do.
 		 */
 		Dimension maxDim = parent.getMaximumSize();
 		Dimension minDim = parent.getMinimumSize();
 
 		/*
 		 *  Despite what said above, the return value can still be smaller
-		 *  than the specified minimum values, if the user has set 
-		 *  inconsistent minimum and maximum constraints.  
+		 *  than the specified minimum values, if the user has set
+		 *  inconsistent minimum and maximum constraints.
 		 */
 		expand(result, minDim);
 		shrink(result, maxDim);
-		
+
 		cachedPreferred = result;
 		return result;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
@@ -661,7 +661,7 @@ public class SBoxLayout implements LayoutManager2 {
 
 	/**
 	 * Expand a dimension by the primary dimension of another.
-	 * 
+	 *
 	 * @param result the dimension to be expanded
 	 * @param dim the expanding dimension
 	 */
@@ -672,7 +672,7 @@ public class SBoxLayout implements LayoutManager2 {
 	/**
 	 * Shrink a <code>Dimension</code> so that it does not exceed
 	 * the limits of another.
-	 * 
+	 *
 	 * @param result The dimension to be shrunk
 	 * @param dim limiting dimension
 	 */
@@ -680,12 +680,12 @@ public class SBoxLayout implements LayoutManager2 {
 		result.width = Math.min(result.width, dim.width);
 		result.height = Math.min(result.height, dim.height);
 	}
-	
+
 	/**
 	 * A safe addition for dimensions. Returns Integer.MAX_VALUE if the
 	 * addition would overflow. Some components do set that to their maximum
 	 * size so they'd overflow if there are other components or insets.
-	 *  
+	 *
 	 * @param a
 	 * @param b
 	 * @return sum of a and b, or Integer.MAX_VALUE
@@ -698,7 +698,7 @@ public class SBoxLayout implements LayoutManager2 {
 			return Integer.MAX_VALUE;
 		}
 	}
-	
+
 	/**
 	 * An abstraction for various direction dependent operations.
 	 */
@@ -709,56 +709,56 @@ public class SBoxLayout implements LayoutManager2 {
 		 * @return SLayout
 		 */
 		SLayout translate(SLayout dir);
-		
+
 		/**
 		 * Get the alignment of the component perpendicular to the layout axis.
-		 * 
+		 *
 		 * @param component component to examine
 		 * @return component alignment
 		 */
 		float getComponentAlignment(Component component);
-		
+
 		/**
 		 * Expand a dimension by a component's dimensions.
-		 * 
+		 *
 		 * @param result the dimension to be expanded
 		 * @param dim the dimensions to be added
 		 */
 		void addComponentDimensions(Dimension result, Dimension dim);
-		
+
 		/**
 		 * Set primary dimension.
-		 * 
+		 *
 		 * @param result the dimension to be modified
-		 * @param length 
+		 * @param length
 		 */
 		void setPrimary(Dimension result, int length);
-		
+
 		/**
 		 * Set secondary dimension.
-		 * 
+		 *
 		 * @param result the dimension to be modified
-		 * @param length 
+		 * @param length
 		 */
 		void setSecondary(Dimension result, int length);
-		
+
 		/**
 		 * Get the dimension along the layout axis.
-		 * 
+		 *
 		 * @param dim
 		 * @return primary dimension
 		 */
 		int getPrimary(Dimension dim);
-		
+
 		/**
 		 * Get the dimension perpendicular to the layout axis.
-		 *  
+		 *
 		 * @param dim
 		 * @return secondary dimension
 		 */
 		int getSecondary(Dimension dim);
 	}
-	
+
 	/**
 	 * Horizontal direction calculations.
 	 */
@@ -770,10 +770,10 @@ public class SBoxLayout implements LayoutManager2 {
 			} else if (dir == SLayout.EXPAND_Y) {
 				dir = SLayout.EXPAND_PERPENDICULAR;
 			}
-			
+
 			return dir;
 		}
-		
+
 		@Override
 		public void addComponentDimensions(Dimension result, Dimension dim) {
 			// Avoid integer overflows
@@ -793,7 +793,7 @@ public class SBoxLayout implements LayoutManager2 {
 
 		@Override
 		public void setPrimary(Dimension result, int length) {
-			result.width = length;		
+			result.width = length;
 		}
 
 		@Override
@@ -806,7 +806,7 @@ public class SBoxLayout implements LayoutManager2 {
 			return component.getAlignmentY();
 		}
 	}
-	
+
 	/**
 	 * Vertical dimension calculations.
 	 */
@@ -818,10 +818,10 @@ public class SBoxLayout implements LayoutManager2 {
 			} else if (dir == SLayout.EXPAND_Y) {
 				dir = SLayout.EXPAND_AXIAL;
 			}
-			
+
 			return dir;
 		}
-		
+
 		@Override
 		public void addComponentDimensions(Dimension result, Dimension dim) {
 			result.width = Math.max(result.width, dim.width);
@@ -838,7 +838,7 @@ public class SBoxLayout implements LayoutManager2 {
 		public int getSecondary(Dimension dim) {
 			return dim.width;
 		}
-		
+
 		@Override
 		public void setPrimary(Dimension result, int length) {
 			result.height = length;
@@ -854,47 +854,47 @@ public class SBoxLayout implements LayoutManager2 {
 			return component.getAlignmentX();
 		}
 	}
-	
+
 	/**
 	 * An utility component for layout.
 	 */
 	private static class Spring extends JComponent {
 		private static final long serialVersionUID = -6405699460017588727L;
 	}
-	
+
 	/**
 	 * Add a utility component that expands by default, to a container using
 	 * SBoxLayout. Adding it rather than just creating the component is a
 	 * workaround for components not passing information about new subcomponents
-	 * if the user explicitly specifies the constraints. 
-	 * 
+	 * if the user explicitly specifies the constraints.
+	 *
 	 * @param target the container where to add a string to
 	 * @return A spring with preferred dimensions 0, 0.
 	 */
 	public static JComponent addSpring(Container target) {
 		JComponent spring = new Spring();
 		target.add(spring, SLayout.EXPAND_AXIAL);
-		
+
 		return spring;
 	}
-	
+
 	/**
 	 * A convenience method for creating a container using SBoxLayout.
-	 * 
+	 *
 	 * @param direction layout direction
 	 * @return A component using SBoxLayout
 	 */
 	public static JComponent createContainer(boolean direction) {
 		JComponent container = new Spring();
 		container.setLayout(new SBoxLayout(direction));
-		
+
 		return container;
 	}
-	
+
 	/**
 	 * A convenience method for creating a container using SBoxLayout with
 	 * padding between the components.
-	 * 
+	 *
 	 * @param direction layout direction
 	 * @param padding padding in pixels between the components
 	 * @return A component using SBoxLayout
@@ -902,7 +902,7 @@ public class SBoxLayout implements LayoutManager2 {
 	public static JComponent createContainer(boolean direction, int padding) {
 		JComponent container = new Spring();
 		container.setLayout(new SBoxLayout(direction, padding));
-		
+
 		return container;
 	}
 }

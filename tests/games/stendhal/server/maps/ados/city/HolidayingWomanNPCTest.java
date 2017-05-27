@@ -4,6 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -11,11 +16,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
 import games.stendhal.server.maps.semos.bakery.ShopAssistantNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -36,12 +36,12 @@ public class HolidayingWomanNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		setupZone(ZONE_NAME, new HolidayingWomanNPC(), new ChefNPC(), new ShopAssistantNPC());
 	}
-	
+
 	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		
+
 		player = createPlayer("player");
 		aliceNpc = SingletonRepository.getNPCList().get("Alice Farmer");
 		aliceEngine = aliceNpc.getEngine();
@@ -62,13 +62,13 @@ public class HolidayingWomanNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		endConversation();
 	}
-	
+
 	private void startConversation() {
 		aliceEngine.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(aliceNpc.isTalking());
 		assertEquals("Hello.", getReply(aliceNpc));
 	}
-	
+
 	private void askForFoodList() {
 		aliceEngine.step(player, "food");
 		assertTrue(aliceNpc.isTalking());
@@ -77,7 +77,7 @@ public class HolidayingWomanNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(listOfFoodReply.contains("#bread"));
 		assertTrue(listOfFoodReply.contains("#sandwich"));
 	}
-	
+
 	private void endConversation() {
 		aliceEngine.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(aliceNpc.isTalking());

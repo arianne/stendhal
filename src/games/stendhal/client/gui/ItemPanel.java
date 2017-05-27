@@ -12,6 +12,20 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.swing.JComponent;
+import javax.swing.JPopupMenu;
+
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
@@ -29,47 +43,32 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.constants.Actions;
-
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Transparency;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JComponent;
-import javax.swing.JPopupMenu;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * A component representing space in a slot. 
+ * A component representing space in a slot.
  */
 class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/** serial version uid. */
 	private static final long serialVersionUID = 3409932623156446910L;
 
-	/** 
+	/**
 	 * Amount in pixels to shift the popup menu under the mouse, compared to
 	 * the left up corner.
 	 */
 	private static final int POPUP_MENU_OFFSET = 10;
 	private static final CursorRepository cursorRepository = new CursorRepository();
-	
+
 	/**
 	 * The background surface sprite.
 	 */
 	private static final Sprite background = SpriteStore.get().getSprite("data/gui/slot.png");
-	
+
 	/** The placeholder sprite, or <code>null</code>. */
 	private final Sprite placeholder;
-	
+
 	/**
 	 * The entity view being held.
 	 */
@@ -89,36 +88,36 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/** The inspector the included entity should use. */
 	private Inspector inspector;
 	private int itemNumber;
-	
+
 	/** Object types the panel can accept. */
 	private List<Class<? extends IEntity>> acceptedTypes = new ArrayList<Class<? extends IEntity>>();
-	
+
 	/**
 	 * Create a new ItemPanel.
-	 * 
-	 * @param slotName name of the slot this refers to 
+	 *
+	 * @param slotName name of the slot this refers to
 	 * @param placeholder image used in an empty panel, or <code>null</code>
 	 */
 	ItemPanel(final String slotName, final Sprite placeholder) {
 		this.placeholder = preparePlaceholder(placeholder);
 		setName(slotName);
-		
-		Dimension size = new Dimension(background.getWidth(), background.getHeight()); 
+
+		Dimension size = new Dimension(background.getWidth(), background.getHeight());
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
 		setOpaque(false);
-		
+
 		// DnD handling
 		ItemPanelMouseHandler drag = new ItemPanelMouseHandler();
 		addMouseMotionListener(drag);
 		addMouseListener(drag);
 	}
-	
+
 	/**
 	 * Prepare a version of the place holder Sprite, that is suitable for the
 	 * transparency mode of the client.
-	 * 
+	 *
 	 * @param original original placeholder Sprite
 	 * @return an adjusted Sprite, or the original if no adjusting is needed
 	 */
@@ -128,11 +127,11 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		}
 		/*
 		 * Using full alpha in the client.
-		 * 
+		 *
 		 * Create a black and white, but translucent version of the same image.
 		 * The filtering has been chosen so that the slot images we use become
 		 * suitably B&W, not for any general rule.
-		 * 
+		 *
 		 * What we'd really want is drawing an opaque B&W image in soft light
 		 * mode, but swing back buffer does not actually support Composites
 		 * despite being accessed via Graphics2D.
@@ -143,33 +142,33 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		RescaleOp rescaleOp = new RescaleOp(new float[] {3.0f, 3.0f, 3.0f, 0.5f }, new float[] {-450f, -450f, -450f, 0f}, null);
 		rescaleOp.filter(img, img);
 		g.dispose();
-		
+
 		return new ImageSprite(img);
 	}
-	
+
 	/**
 	 * Set item number for purposes of reordering slot contents.
-	 * 
+	 *
 	 * @param itemNumber the index, corresponding to this panel, of the space
 	 * in the slot
 	 */
 	void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
 	}
-	
+
 	/**
 	 * Set the inspector the contained entity should use.
-	 * 
+	 *
 	 * @param inspector used inspector
 	 */
 	@Override
 	public void setInspector(Inspector inspector) {
 		this.inspector = inspector;
 	}
-	
+
 	/**
 	 * Set the slot entity.
-	 * 
+	 *
 	 * @param entity The new entity, or <code>null</code>.
 	 */
 	protected void setEntity(final IEntity entity) {
@@ -189,15 +188,15 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		} else {
 			setEntityView(null);
 		}
-		
+
 		// The old popup menu is no longer valid
 		popupMenu = null;
 		repaint();
 	}
-	
+
 	/**
 	 * Set the entity view.
-	 * 
+	 *
 	 * @param view new view, or <code>null</code>
 	 */
 	private void setEntityView(EntityView<?> view) {
@@ -215,10 +214,10 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		}
 		popupMenu = null;
 	}
-	
+
 	/**
 	 * Get the shown entity.
-	 * 
+	 *
 	 * @return entity, or <code>null</code> if the panel contains no entity
 	 */
 	IEntity getEntity() {
@@ -227,20 +226,20 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Move the contents of the panel to another ItemPanel.
-	 * 
+	 *
 	 * @param other the panel to move the contents
 	 */
 	void moveViewTo(ItemPanel other) {
 		other.setEntityView(view);
 		setEntityView(null);
 	}
-	
+
 	/**
 	 * Set the containing entity.
-	 * 
+	 *
 	 * @param parent entity owning the slot to which this panel belongs to
 	 */
 	protected void setParent(IEntity parent) {
@@ -251,7 +250,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	public void paintComponent(Graphics g) {
 		// draw the background image
 		background.draw(g, 0, 0);
-		
+
 		// Take a temporary copy in case the game loop destroys the view under
 		// us.
 		EntityView<?> entityView = view;
@@ -266,7 +265,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			entityView.draw(vg);
 			vg.dispose();
 		} else if (placeholder != null) {
-			placeholder.draw(g, (getWidth() - placeholder.getWidth()) / 2, 
+			placeholder.draw(g, (getWidth() - placeholder.getWidth()) / 2,
 					(getHeight() - placeholder.getHeight()) / 2);
 		}
 	}
@@ -277,7 +276,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		if ((view != null) && (entity == view.getEntity())) {
 			return;
 		}
-		
+
 		// Reorder, instead of a move
 		if (entity.getRPObject().getContainerSlot() == parent.getSlot(getName())) {
 			// Don't reorder, if the user has chosen a non-standard amount
@@ -287,7 +286,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			reorder(entity);
 			return;
 		}
-		
+
 		// Fill in appropriate action data
 		RPAction action = new RPAction();
 		action.put(EquipActionConsts.TYPE, "equip");
@@ -295,7 +294,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		List<String> targetPath = parent.getPath();
 		targetPath.add(getName());
 		action.put(Actions.TARGET_PATH, targetPath);
-		
+
 		if (amount >= 1) {
 			action.put(EquipActionConsts.QUANTITY, amount);
 		}
@@ -314,13 +313,13 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		// 'move to'
 		action.put(EquipActionConsts.TARGET_OBJECT, parent.getID().getObjectID());
 		action.put(EquipActionConsts.TARGET_SLOT, getName());
-		
+
 		StendhalClient.get().send(action);
 	}
-	
+
 	/**
 	 * Generate a reordering action for an entity in the slot.
-	 * 
+	 *
 	 * @param entity moved entity
 	 */
 	private void reorder(final IEntity entity) {
@@ -344,7 +343,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 							action.put(EquipActionConsts.TYPE, "reorder");
 							action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
 							action.put("new_position", itemNumber);
-							
+
 							StendhalClient.get().send(action);
 							return;
 						}
@@ -354,9 +353,9 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			}
 		});
 	}
-	
+
 	/**
-	 * Handler for mouse use. Takes care of both drags and clicks. 
+	 * Handler for mouse use. Takes care of both drags and clicks.
 	 */
 	private class ItemPanelMouseHandler extends MouseHandler {
 		@Override
@@ -374,7 +373,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			if (view == null) {
 				return true;
 			}
-			
+
 			boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 			if (doubleClick) {
 				return false;
@@ -411,10 +410,10 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			moveItemToBag();
 			return true;
 		}
-		
+
 		/**
 		 * Check if the slot is carried by the user.
-		 * 
+		 *
 		 * @return <code>true</code> if the slot belongs to the user, or to an
 		 * 	item carried by the user, otherwise <code>false</code>
 		 */
@@ -444,25 +443,25 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 						point.y - POPUP_MENU_OFFSET);
 			}
 		}
-		
+
 		/**
 		 * Send an action for grabbing the item to the bag.
 		 */
 		private void moveItemToBag() {
 			final RPAction action = new RPAction();
-			
+
 			// Views and entities can be destroyed by game loop. Grab copies
 			EntityView<?> entityView = view;
 			IEntity parentEntity = parent;
 			if ((entityView == null) || (parentEntity == null)) {
 				return;
 			}
-			
+
 			action.put(EquipActionConsts.TYPE, "equip");
 			action.put(EquipActionConsts.SOURCE_PATH, entityView.getEntity().getPath());
-			action.put(Actions.TARGET_PATH, 
+			action.put(Actions.TARGET_PATH,
 					Arrays.asList(Integer.toString(User.get().getID().getObjectID()), "bag"));
-			
+
 			// Compatibility item identification data
 			// source object and content from THIS container
 			final RPObject content = entityView.getEntity().getRPObject();
@@ -472,24 +471,24 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			// target is player's bag
 			action.put(EquipActionConsts.TARGET_OBJECT, User.get().getID().getObjectID());
 			action.put(EquipActionConsts.TARGET_SLOT, "bag");
-			
+
 			StendhalClient.get().send(action);
 		}
 	}
-	
+
 	/**
 	 * Set the types the panel can accept.
-	 * 
+	 *
 	 * @param types accepted types
 	 */
 	@SafeVarargs
 	final void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		acceptedTypes = Arrays.asList(types);
 	}
-	
+
 	/**
 	 * Set the types the panel can accept.
-	 * 
+	 *
 	 * @param types list of accepted types
 	 */
 	void setAcceptedTypes(List<Class<? extends IEntity>> types) {

@@ -13,13 +13,12 @@
 package games.stendhal.common.parser;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.common.parser.PunctuationParser;
 
 import org.junit.Test;
 
 /**
  * Test the NPC conversation PunctuationParser class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class PunctuationParserTest {
@@ -56,7 +55,7 @@ public class PunctuationParserTest {
 		assertEquals(".,?!", p.getPrecedingPunctuation());
 		assertEquals("", p.getTrailingPunctuation());
 	}
-	
+
 	/**
 	 * Tests for emptyString.
 	 */

@@ -22,12 +22,12 @@ class InvisibleAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	@Override
@@ -43,7 +43,7 @@ class InvisibleAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -53,7 +53,7 @@ class InvisibleAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

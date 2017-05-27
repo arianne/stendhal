@@ -15,13 +15,13 @@ import static games.stendhal.common.constants.Actions.DURATION;
 import static games.stendhal.common.constants.Actions.LIST;
 import static games.stendhal.common.constants.Actions.REASON;
 import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;

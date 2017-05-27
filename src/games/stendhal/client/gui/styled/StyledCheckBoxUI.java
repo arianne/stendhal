@@ -34,7 +34,7 @@ import javax.swing.plaf.basic.BasicCheckBoxUI;
 
 public class StyledCheckBoxUI extends BasicCheckBoxUI {
 	private static final int ICON_WIDTH = 14;
-	
+
 	private static StyledCheckBoxUI instance;
 	private final Style style;
 	/** Icon for active, non selected state */
@@ -45,10 +45,10 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 	private Icon disabledIcon;
 	/** Icon for disabled, selected state*/
 	private Icon disabledSelectedIcon;
-	
+
 	/**
 	 * Create StyledCheckBoxUI for a check box.
-	 * 
+	 *
 	 * @param checkBox <code>JCheckBox</code> to create an UI for
 	 * @return a ComponentUI instance
 	 */
@@ -58,35 +58,35 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 		if (instance == null) {
 			instance = new StyledCheckBoxUI(StyleUtil.getStyle());
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new StyledCheckBoxUI.
-	 * 
+	 *
 	 * @param style pixmap style
 	 */
 	public StyledCheckBoxUI(Style style) {
 		this.style = style;
 		createIcons();
 	}
-	
+
 	/*
 	 * Copied from StyledButtonUI. Unfortunately we do not inherit that.
 	 */
 	@Override
-	protected void paintText(Graphics graphics, AbstractButton button, 
+	protected void paintText(Graphics graphics, AbstractButton button,
 			Rectangle textRect, String text) {
 		if (button.isEnabled()) {
 			super.paintText(graphics, button, textRect, text);
 		} else {
 			int shift = graphics.getFontMetrics().getAscent();
-			
+
 			StyleUtil.paintDisabledText(style, graphics, text, textRect.x, textRect.y + shift);
 		}
 	}
-	
+
 	@Override
 	public void installUI(JComponent component) {
 		super.installUI(component);
@@ -109,11 +109,11 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 	private void createIcons() {
 		Border border = style.getBorderDown();
 		Insets insets = border.getBorderInsets(null);
-		
+
 		// Image used as the template for the icons
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		BufferedImage image = gc.createCompatibleImage(ICON_WIDTH, ICON_WIDTH, Transparency.OPAQUE);
-		
+
 		// Active, not selected
 		Graphics2D g = image.createGraphics();
 		g.setColor(style.getForeground());
@@ -122,7 +122,7 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 		border.paintBorder(null, g, 0, 0, ICON_WIDTH, ICON_WIDTH);
 		g.dispose();
 		defaultIcon = new ImageIcon(image);
-		
+
 		// Active, selected
 		// Icon does not copy the image, so we need a new one
 		BufferedImage image2 = gc.createCompatibleImage(ICON_WIDTH, ICON_WIDTH, Transparency.OPAQUE);
@@ -136,7 +136,7 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 		drawTick(g, insets);
 		g.dispose();
 		defaultSelectedIcon = new ImageIcon(image2);
-		
+
 		// Inactive, not selected
 		image2 = gc.createCompatibleImage(ICON_WIDTH, ICON_WIDTH, Transparency.OPAQUE);
 		g = image2.createGraphics();
@@ -146,7 +146,7 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 		border.paintBorder(null, g, 0, 0, ICON_WIDTH, ICON_WIDTH);
 		g.dispose();
 		disabledIcon = new ImageIcon(image2);
-		
+
 		// Inactive, selected
 		image = gc.createCompatibleImage(ICON_WIDTH, ICON_WIDTH, Transparency.OPAQUE);
 		g = image.createGraphics();
@@ -158,10 +158,10 @@ public class StyledCheckBoxUI extends BasicCheckBoxUI {
 		g.dispose();
 		disabledSelectedIcon = new ImageIcon(image);
 	}
-	
+
 	/**
 	 * Draw selection marker.
-	 * 
+	 *
 	 * @param g graphics
 	 * @param insets component insets
 	 */

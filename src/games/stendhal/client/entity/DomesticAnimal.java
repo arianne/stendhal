@@ -38,7 +38,7 @@ public abstract class DomesticAnimal extends NPC {
 
 	/**
 	 * Get the weight.
-	 * 
+	 *
 	 * @return The animal's weight.
 	 */
 	public int getWeight() {
@@ -51,10 +51,10 @@ public abstract class DomesticAnimal extends NPC {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -79,7 +79,7 @@ public abstract class DomesticAnimal extends NPC {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

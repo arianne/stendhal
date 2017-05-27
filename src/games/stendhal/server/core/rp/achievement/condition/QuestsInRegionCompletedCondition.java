@@ -13,13 +13,14 @@
 package games.stendhal.server.core.rp.achievement.condition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 
 /**
  * Are all the quests in this region completed?
@@ -27,10 +28,10 @@ import java.util.List;
 public class QuestsInRegionCompletedCondition implements ChatCondition {
 
 	private final String region;
-	
+
 	/**
 	 * Creates a new QuestsInRegionCompletedCondition.
-	 * 
+	 *
 	 * @param region
 	 *            name of Region to check
 	 */

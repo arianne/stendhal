@@ -107,10 +107,10 @@ public class StendhalFirstScreen extends JFrame {
 	private void initializeComponent() {
 		URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
 		ImageIcon icon = new ImageIcon(url);
-		
+
 		JComponent contentPane = new ResizableLabel(icon);
 		setContentPane(contentPane);
-		
+
 		Font font = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
 
 		//
@@ -126,7 +126,7 @@ public class StendhalFirstScreen extends JFrame {
 		loginAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_L);
 		loginAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to login to a "
 				+ gameName + " server");
-		
+
 		loginButton = new JButton();
 		loginButton.setAction(loginAction);
 		loginButton.setFont(font);
@@ -143,7 +143,7 @@ public class StendhalFirstScreen extends JFrame {
 		createAccountAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A);
 		createAccountAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to create an account on a "
 				+ gameName + " server.");
-		
+
 		createAccountButton = new JButton();
 		createAccountButton.setFont(font);
 		createAccountButton.setAction(createAccountAction);
@@ -158,7 +158,7 @@ public class StendhalFirstScreen extends JFrame {
 			}
 		};
 		helpAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_H);
-		
+
 		helpButton = new JButton();
 		helpButton.setFont(font);
 		helpButton.setAction(helpAction);
@@ -189,16 +189,16 @@ public class StendhalFirstScreen extends JFrame {
 		// space.
 		gbc.ipadx = 2 * COMMON_PADDING;
 		gbc.ipady = 2;
-		
+
 		// All extra space should be abobe
 		gbc.weighty = 1.0;
 		contentPane.add(Box.createVerticalGlue(), gbc);
 		gbc.weighty = 0.0;
-		
+
 		gbc.gridy++;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(COMMON_PADDING, COMMON_PADDING, COMMON_PADDING, COMMON_PADDING);
-		
+
 		contentPane.add(loginButton, gbc);
 		gbc.gridy++;
 		contentPane.add(createAccountButton, gbc);
@@ -230,17 +230,17 @@ public class StendhalFirstScreen extends JFrame {
 		helpButton.setEnabled(b);
 		creditButton.setEnabled(b);
 	}
-	
+
 	/**
 	 * A Resizable label with an icon.
 	 */
 	private static class ResizableLabel extends JLabel {
 		private final Image image;
 		private Rectangle bounds;
-		
+
 		/**
 		 * Create a new ResizableLabel.
-		 *  
+		 *
 		 * @param icon initial icon. The image of the icon will be used as the
 		 *  template for any scaled versions
 		 */
@@ -248,7 +248,7 @@ public class StendhalFirstScreen extends JFrame {
 			super(icon);
 			this.image = icon.getImage();
 		}
-		
+
 		/*
 		 * A resize listener is run *after* the actual resizing happens, which
 		 * would result in layout being ready before the image is redrawn. The
@@ -260,7 +260,7 @@ public class StendhalFirstScreen extends JFrame {
 			super.setBounds(x, y, width, height);
 			scale();
 		}
-		
+
 		/**
 		 * Scale the image to component size.
 		 */

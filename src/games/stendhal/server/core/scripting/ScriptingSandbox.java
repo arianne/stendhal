@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -24,16 +32,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.TransitionContext;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.WeakHashMap;
-
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 public abstract class ScriptingSandbox {
 

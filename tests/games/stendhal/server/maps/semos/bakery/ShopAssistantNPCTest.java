@@ -63,10 +63,10 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testHiAndBye() {
-		
+
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -84,7 +84,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testHiAndMakeNoStuff() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -108,7 +108,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBakeSingleBread() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -128,8 +128,8 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QBAKEBREAD).split(";");
 		final String[] expected = { "1", "bread", "" };
-		assertEquals("amount", expected[0], questStatus[0]); 
-		assertEquals("item", expected[1], questStatus[1]); 
+		assertEquals("amount", expected[0], questStatus[0]);
+		assertEquals("item", expected[1], questStatus[1]);
 
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -155,7 +155,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBakeMultipleBreads() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -176,7 +176,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		final String[] questStatus = player.getQuest(QBAKEBREAD).split(";");
 		final String[] expected = { "2", "bread", "" };
 		assertEquals("amount", expected[0], questStatus[0]);
-		assertEquals("item", expected[1], questStatus[1]); 
+		assertEquals("item", expected[1], questStatus[1]);
 
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -202,7 +202,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBakeMultipleWithoutName() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -223,7 +223,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		final String[] questStatus = player.getQuest(QBAKEBREAD).split(";");
 		final String[] expected = { "3", "bread", "" };
 		assertEquals("amount", expected[0], questStatus[0]);
-		assertEquals("item", expected[1], questStatus[1]); 
+		assertEquals("item", expected[1], questStatus[1]);
 
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -250,7 +250,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBorrowSugarMill() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -305,7 +305,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBorrowSugar() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -358,7 +358,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBorrowPestleMortar() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -414,7 +414,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testBorrowPestleAndMortarWithSpace() {
 		final SpeakerNPC npc = getNPC("Erna");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -461,7 +461,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 				"Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.",
 				getReply(npc));
 	}
-	
+
 /**
  * Erna dialog - ID: 3427142
 Last Update: Comment added ( wmbec7718 )

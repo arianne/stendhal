@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.forest;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -19,11 +24,6 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds Karl, the farmer NPC.
@@ -48,16 +48,16 @@ public class FarmerNPC implements ZoneConfigurator {
 	private void buildFarmer(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Karl") {
 
-			/* 
+			/*
 			 * Karl walks around near the red barn and along the path some way.
 			 */
-			
+
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(64, 76));
-				nodes.add(new Node(64, 86));	
-				nodes.add(new Node(68, 86));	
+				nodes.add(new Node(64, 86));
+				nodes.add(new Node(68, 86));
 				nodes.add(new Node(68, 84));
 				nodes.add(new Node(76, 84));
 				nodes.add(new Node(68, 84));
@@ -68,7 +68,7 @@ public class FarmerNPC implements ZoneConfigurator {
 				nodes.add(new Node(64, 86));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 			@Override
 			protected void createDialog() {
 				addGreeting("Heyho! Nice to see you here at our farm.");

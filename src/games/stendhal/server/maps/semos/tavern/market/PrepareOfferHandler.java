@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
-import marauroa.server.db.command.DBCommandQueue;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
@@ -31,36 +30,37 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
 import games.stendhal.server.util.AsynchronousProgramExecutor;
+import marauroa.server.db.command.DBCommandQueue;
 
 
 public class PrepareOfferHandler {
 	private Item item;
 	private int price;
 	private int quantity;
-	
+
 	public void add(SpeakerNPC npc) {
-		npc.add(ConversationStates.ATTENDING, "sell", 
-				new LevelLessThanCondition(6), 
-				ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING, "sell",
+				new LevelLessThanCondition(6),
+				ConversationStates.ATTENDING,
 				"I am sorry, I only accept offers from people who have a good reputation. You can gain experience by helping people with their tasks or defending the city from evil creatures.", null);
-		npc.add(ConversationStates.ATTENDING, "sell", 
-				new LevelGreaterThanCondition(5), 
-				ConversationStates.ATTENDING, null, 
+		npc.add(ConversationStates.ATTENDING, "sell",
+				new LevelGreaterThanCondition(5),
+				ConversationStates.ATTENDING, null,
 				new PrepareOfferChatAction());
-		npc.add(ConversationStates.ATTENDING, "sell", null, ConversationStates.ATTENDING, null, 
+		npc.add(ConversationStates.ATTENDING, "sell", null, ConversationStates.ATTENDING, null,
 				new PrepareOfferChatAction());
-		npc.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, 
+		npc.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES,
 				ConversationStates.ATTENDING, null, new ConfirmPrepareOfferChatAction());
-		npc.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.NO_MESSAGES, null, 
+		npc.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
 	}
-	
+
 	private void setData(Item item, int price, int quantity) {
 		this.item = item;
 		this.price = price;
 		this.quantity = quantity;
 	}
-	
+
 	/**
 	 * Builds the message for the tweet to be posted
 	 * @param i the offered item
@@ -84,7 +84,7 @@ public class PrepareOfferHandler {
 		message.append(stats);
 		return message.toString();
 	}
-	
+
 	private class PrepareOfferChatAction implements ChatAction {
 		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
@@ -115,13 +115,13 @@ public class PrepareOfferHandler {
 					}
 
 					if (item == null) {
-						npc.say("Sorry, but I don't think you have any " 
+						npc.say("Sorry, but I don't think you have any "
 								+ Grammar.plural(itemName)+ ".");
 						return;
 					}
 					// The item name might not be what was used for looking it up (plurals)
 					itemName = item.getName();
-					
+
 					if ((number > 1) && !(item instanceof StackableItem)) {
 						npc.say("Sorry, you can only put those for sale as individual items.");
 						return;
@@ -162,7 +162,7 @@ public class PrepareOfferHandler {
 					msg.append(fee);
 					msg.append(" money.");
 					npc.say(msg.toString());
-					
+
 					npc.setCurrentState(ConversationStates.SELL_PRICE_OFFERED);
 					return;
 				}
@@ -186,7 +186,7 @@ public class PrepareOfferHandler {
 			return sentence.getNumeral().getAmount();
 		}
 	}
-	
+
 	private class ConfirmPrepareOfferChatAction implements ChatAction {
 		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
@@ -208,7 +208,7 @@ public class PrepareOfferHandler {
 
 		/**
 		 * Try creating an offer.
-		 * 
+		 *
 		 * @param player the player who makes the offer
 		 * @param item item for sale
 		 * @param price price for the item

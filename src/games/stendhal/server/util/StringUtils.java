@@ -86,7 +86,7 @@ public class StringUtils {
     	return substitute(string, map);
     }
 
-	
+
     /**
      * Replaces [variables] in a string
      *

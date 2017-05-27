@@ -15,7 +15,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * Checks that the player is on the same zone, as indicated by the zone 
+ * Checks that the player is on the same zone, as indicated by the zone
  * information of the action.
  */
 public class ZoneNotChanged implements ActionValidator {

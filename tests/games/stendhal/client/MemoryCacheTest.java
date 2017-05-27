@@ -11,8 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -27,9 +27,9 @@ public class MemoryCacheTest {
 		String val = cache.get(null);
 		assertNull(val);
 	}
-	
+
 	/**
-	 * Test that items stored to the cache can be retrieved properly. 
+	 * Test that items stored to the cache can be retrieved properly.
 	 */
 	@Test
 	public void testStoreNormal() {
@@ -46,7 +46,7 @@ public class MemoryCacheTest {
 		assertEquals(val2, cache.get("b"));
 		assertEquals(val3, cache.get("c"));
 	}
-	
+
 	/**
 	 * Test that assigning new values to cache items works properly.
 	 */
@@ -68,9 +68,9 @@ public class MemoryCacheTest {
 		assertEquals(val3, cache.get("b"));
 		assertEquals(val3, cache.get("c"));
 	}
-	
+
 	/**
-	 * A small test for MemoryCache.Entry 
+	 * A small test for MemoryCache.Entry
 	 */
 	@Test
 	public void testEntry() {

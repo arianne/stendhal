@@ -64,13 +64,13 @@ class ScrollerPanel extends JComponent {
 	private int lineHeight;
 
 	private boolean scrollingStarted;
-	
+
 	private GradientPaint gp;
 
 	/**
 	 * Creates an ScrollerPane which scrolls the given text and uses the given
 	 * attributes.
-	 * 
+	 *
 	 * @param text
 	 *            the text array which should be scrolled - one string per line
 	 *            is scrolled
@@ -155,7 +155,7 @@ class ScrollerPanel extends JComponent {
 				if (startPos >= 0) {
 					g2d.drawString(s, this.getWidth() / 2 - width / 2, startPos);
 				}
-				
+
 				++i;
 			}
 		}

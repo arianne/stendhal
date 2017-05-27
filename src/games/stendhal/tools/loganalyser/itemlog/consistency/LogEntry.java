@@ -31,8 +31,8 @@ public class LogEntry {
 
 	/**
 	 * Creates a new LogEntry.
-	 * 
-	 * @param id 
+	 *
+	 * @param id
 	 * @param timestamp timestamp
 	 * @param itemid id of the item
 	 * @param source name of player
@@ -104,7 +104,7 @@ public class LogEntry {
     	sb.append(param3);
     	sb.append('\t');
     	sb.append(param4);
-    	
+
     	return sb.toString();
     }
 

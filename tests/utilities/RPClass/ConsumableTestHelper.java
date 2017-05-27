@@ -12,10 +12,10 @@
  ***************************************************************************/
 package utilities.RPClass;
 
-import games.stendhal.server.entity.item.ConsumableItem;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import games.stendhal.server.entity.item.ConsumableItem;
 
 public class ConsumableTestHelper {
 
@@ -27,7 +27,7 @@ public class ConsumableTestHelper {
 		attributes.put("frequency", "1");
 		return new ConsumableItem(name, "class", "subclass", attributes);
 	}
-	
+
 	public static ConsumableItem createImmunizer(final String name) {
 		ItemTestHelper.generateRPClasses();
 		Map<String, String> attributes = new HashMap<String, String>();
@@ -37,6 +37,6 @@ public class ConsumableTestHelper {
 		return new ConsumableItem(name, "class", "subclass", attributes);
 	}
 
-	
+
 
 }

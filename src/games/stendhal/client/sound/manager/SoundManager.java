@@ -12,18 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.client.sound.facade.AudibleArea;
-import games.stendhal.client.sound.facade.InfiniteAudibleArea;
-import games.stendhal.client.sound.facade.SoundFileType;
-import games.stendhal.client.sound.facade.Time;
-import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.client.sound.system.SoundSystem;
-import games.stendhal.client.sound.system.processors.DirectedSound;
-import games.stendhal.client.sound.system.processors.Interruptor;
-import games.stendhal.client.sound.system.processors.SoundLayers;
-import games.stendhal.client.sound.system.processors.VolumeAdjustor;
-import games.stendhal.common.math.Algebra;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,6 +23,18 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.sound.sampled.AudioFormat;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.InfiniteAudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.Time;
+import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.client.sound.system.SoundSystem;
+import games.stendhal.client.sound.system.processors.DirectedSound;
+import games.stendhal.client.sound.system.processors.Interruptor;
+import games.stendhal.client.sound.system.processors.SoundLayers;
+import games.stendhal.client.sound.system.processors.VolumeAdjustor;
+import games.stendhal.common.math.Algebra;
 
 /**
  * Old implementation of the sound manager.

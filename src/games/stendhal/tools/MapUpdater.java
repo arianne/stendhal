@@ -39,7 +39,7 @@ import tiled.io.TMXMapWriter;
 
 /**
  * Fix maps by loading and saving them.
- * 
+ *
  * @author mtotz, miguel
  */
 public class MapUpdater extends Task {
@@ -76,10 +76,10 @@ public class MapUpdater extends Task {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove unused roof layers.
-	 * 
+	 *
 	 * @param map
 	 */
 	private void removeUnusedLayers(final Map map) {
@@ -90,7 +90,7 @@ public class MapUpdater extends Task {
 				// Client merges floor layers, and removing anything there
 				// prevents it doing that. Removing unused roof layers, however
 				// saves drawing effort.
-				if ("3_roof".equals(layer.getName()) 
+				if ("3_roof".equals(layer.getName())
 						|| "4_roof_add".equals(layer.getName())) {
 					iter.remove();
 				}
@@ -98,8 +98,8 @@ public class MapUpdater extends Task {
 		}
 	}
 
-	/** Converts the map files. 
-	 * @param tmxFile 
+	/** Converts the map files.
+	 * @param tmxFile
 	 * @throws Exception */
 	public void convert(final String tmxFile) throws Exception {
 		final File file = new File(tmxFile);
@@ -113,7 +113,7 @@ public class MapUpdater extends Task {
 
 	/**
 	 * Adds a set of files to copy.
-	 * 
+	 *
 	 * @param set
 	 *            a set of files to copy
 	 */

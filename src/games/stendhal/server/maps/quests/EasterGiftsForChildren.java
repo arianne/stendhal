@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -33,11 +38,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Easter gifts for children
@@ -71,7 +71,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "easter_gifts_[year]";
 
-	
+
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -103,7 +103,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"I need some help with packing Easter baskets for children around Faiumoni. I know that the bunny will meet them, but they are so lovely that I want to make them happy, too. Do you think you can help me?",
 			null);
 
@@ -111,10 +111,10 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Thank you very much for the sweets! I already gave all Easter baskets away to children around Faiumoni and they were really happy! :) Unfortunately I don't have any other task for you at the moment. Have wonderful Easter holidays!",
 			null);
-		
+
 		// Player asks for quests after it is already started
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -148,7 +148,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"There are lots of chocolate sweets around but I would also like to fill my basket with fruits as well.", null);
-		
+
 		// player wants to know where he can get this sweets from
 		npc.add(
 				ConversationStates.ATTENDING,
@@ -156,21 +156,21 @@ public class EasterGiftsForChildren extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Chocolate bars are sold in taverns and I've heard that some evil children carry them, too. If you find some, remember that Elizabeth in Kirdneh loves chocolate, too. :)", null);
-		
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("apple", "apples"),
 				null,
 				ConversationStates.ATTENDING,
 				"Apples are found at the farm to the east of the city. They are really healthy and you can bake an awesome apple pie from these. You can also get one by Martha in Kalavan City gardens.", null);
-		
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("cherry", "cherries"),
 				null,
 				ConversationStates.ATTENDING,
 				"Old Mother Helena in Fado sells the most beautifully red cherries. They are really tasty! I hope you tasted the lovely cherry pie already, made by Gertha in Kalavan City gardens.", null);
-		
+
 		npc.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("small easter egg", "chocolate egg"),
@@ -191,19 +191,19 @@ public class EasterGiftsForChildren extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("small easter egg",1),
 					new PlayerHasItemWithHimCondition("apple", 5),
 					new PlayerHasItemWithHimCondition("cherry", 5))),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Oh nice! I see you have delicious sweets with you. Are they for the Easter baskets which I'm currently preparing?",
 			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new QuestInStateCondition(QUEST_SLOT, "start"), 
+				new QuestInStateCondition(QUEST_SLOT, "start"),
 				new NotCondition(new AndCondition(
 					new PlayerHasItemWithHimCondition("chocolate bar", 5),
 					new PlayerHasItemWithHimCondition("small easter egg",1),
 					new PlayerHasItemWithHimCondition("apple", 5),
 					new PlayerHasItemWithHimCondition("cherry", 5)))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Oh no. There are still some sweets missing which I need for my Easter baskets. Hope you can find them, soon...",
 			null);
 
@@ -217,15 +217,15 @@ public class EasterGiftsForChildren extends AbstractQuest {
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(50));
-		
-		
-		
+
+
+
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the sweets
 			// away and then saying "yes"
-			
+
 			new AndCondition(
 					new PlayerHasItemWithHimCondition("chocolate bar", 5),
 					new PlayerHasItemWithHimCondition("small easter egg", 1),
@@ -264,17 +264,17 @@ public class EasterGiftsForChildren extends AbstractQuest {
 	public String getName() {
 		return "EasterGiftsForChildren";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Caroline";

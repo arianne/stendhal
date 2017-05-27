@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import java.util.Map.Entry;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.DeathmatchState;
-
-import java.util.Map.Entry;
 
 /**
  * <p>A creature that will give no XP to killers.
@@ -28,13 +28,13 @@ import java.util.Map.Entry;
 public class DeathMatchCreature extends Creature {
 
 	private int points;
-	
+
 	// save only the name to enable GC of the player object
-	private String playerName; 
+	private String playerName;
 
 	/**
 	 * DeathCreature.
-	 * 
+	 *
 	 * @param copy
 	 *            creature to wrap
 	 */
@@ -44,14 +44,14 @@ public class DeathMatchCreature extends Creature {
 
 	/**
 	 * Only this player gets a points reward.
-	 * 
+	 *
 	 * @param player
 	 *            Player to reward
 	 */
 	public void setPlayerToReward(final Player player) {
 		this.playerName = player.getName();
 	}
-    
+
 	@Override
 	public Creature getNewInstance() {
 		return new DeathMatchCreature(this);
@@ -64,12 +64,12 @@ public class DeathMatchCreature extends Creature {
 			if (damageDone == 0) {
 				continue;
 			}
-			
+
 			Player killer = entityAsOnlinePlayer(entry.getKey());
 			if (killer == null) {
 				continue;
 			}
-			
+
 			// set the DM points score only for the player who started the DM
 			if (killer.getName().equals(playerName)) {
 				points = (int) (killer.getLevel()
@@ -78,13 +78,13 @@ public class DeathMatchCreature extends Creature {
 				deathmatchState.addPoints(points);
 				killer.setQuest("deathmatch", deathmatchState.toQuestString());
 			}
-			
+
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
 			// don't overwrite solo with shared.
 			final String killedName = getName();
-			
+
 			if (killedName != null) {
 				if (damageDone == totalDamageReceived) {
 					killer.setSoloKill(killedName);
@@ -92,14 +92,14 @@ public class DeathMatchCreature extends Creature {
 					killer.setSharedKill(killedName);
 				}
 			}
-			
+
 			killer.notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
 	 * Calculates the deathmatch points for this kill.
-	 * 
+	 *
 	 * @return number of points to reward
 	 */
 	public int getDMPoints() {

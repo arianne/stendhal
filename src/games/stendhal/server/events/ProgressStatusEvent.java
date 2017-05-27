@@ -12,10 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
-import games.stendhal.common.constants.Events;
-
 import java.util.List;
 
+import games.stendhal.common.constants.Events;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;

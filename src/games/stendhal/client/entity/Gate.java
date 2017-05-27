@@ -44,7 +44,7 @@ public class Gate implements IEntity {
 	}
 
 	public Rectangle2D getAudibleArea() {
-	
+
 		return new Rectangle2D.Double(getX() - radius / 2, getY() - radius / 2, radius, radius);
 	}
 
@@ -76,7 +76,7 @@ public class Gate implements IEntity {
 		} else {
 			return rpObject.getID();
 		}
-		
+
 	}
 
 	@Override
@@ -92,12 +92,12 @@ public class Gate implements IEntity {
 	@Override
 	public int getResistance() {
 		if (rpObject == null) {
-			return 0;	
+			return 0;
 		}
-		
+
 		return rpObject.getInt("resistance");
 	}
-	
+
 	@Override
 	public int getResistance(final IEntity entity) {
 		return getResistance();
@@ -162,7 +162,7 @@ public class Gate implements IEntity {
 	public boolean isOnGround() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isUser() {
 		return false;
@@ -179,7 +179,7 @@ public class Gate implements IEntity {
 	}
 
 	public void setAudibleRange(final double range) {
-		radius = range;	
+		radius = range;
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class Gate implements IEntity {
 
 	/**
 	 * Get identifier path for the entity.
-	 * 
+	 *
 	 * @return List of object identifiers and slot names that make up the
 	 * 	complete path to the entity
 	 */

@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface ITPPQuestConstants {
-	
+
 	/**
 	 * related to quest part.
 	 * <ul>
@@ -37,16 +37,16 @@ public interface ITPPQuestConstants {
 		TPP_CHILDRENS,
 		TPP_FINAL
 	}
-	
+
 	public TPP_Phase INACTIVE = TPP_Phase.TPP_INACTIVE;
 	public TPP_Phase INVASION = TPP_Phase.TPP_INVASION;
 	public TPP_Phase AWAITING = TPP_Phase.TPP_AWAITING;
 	public TPP_Phase OUTGOING = TPP_Phase.TPP_OUTGOING;
 	public TPP_Phase CHILDRENS = TPP_Phase.TPP_CHILDRENS;
 	public TPP_Phase FINAL = TPP_Phase.TPP_FINAL;
-	
+
 	final String QUEST_SLOT = "the_pied_piper";
-	
+
 	final String INACTIVE_TIME_MAX = "QUEST_INACTIVE_TIME_MAX";
 	final String INACTIVE_TIME_MIN = "QUEST_INACTIVE_TIME_MIN";
 	final String INVASION_TIME_MIN = "QUEST_INVASION_TIME_MIN";
@@ -60,7 +60,7 @@ public interface ITPPQuestConstants {
 	final String FINAL_TIME_MIN = "QUEST_FINAL_TIME_MIN";
 	final String FINAL_TIME_MAX = "QUEST_FINAL_TIME_MAX";
 	final String SHOUT_TIME = "QUEST_SHOUT_TIME";
-	
+
 	/**
 	 * List of game zones, where rats will appears.
 	 *
@@ -86,7 +86,7 @@ public interface ITPPQuestConstants {
 			"int_ados_meat_market",
 			"int_ados_ross_house",
 			"int_ados_sewing_room",
-//			"int_ados_storage",	
+//			"int_ados_storage",
 //			"int_ados_tavern_0",
 			"int_ados_town_hall",
 			"int_ados_town_hall_1",
@@ -117,5 +117,5 @@ public interface ITPPQuestConstants {
 			160,
 			360,
 			800);
-	
+
 }

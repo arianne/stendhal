@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,20 +27,12 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import marauroa.common.game.IRPZone;
 
 /**
- * Calculates item rarity metric for every dropped item. The rarity is 
+ * Calculates item rarity metric for every dropped item. The rarity is
  * <code>1/p</code>, where <code>p</code> is the probability of a creature
- * that would drop (taking in account the creature drop probability) 
+ * that would drop (taking in account the creature drop probability)
  * the item spawning anywhere in an empty world.
  */
 public class ItemRarity extends ScriptImpl {
@@ -50,15 +49,15 @@ public class ItemRarity extends ScriptImpl {
 			for (CreatureRespawnPoint point : zone.getRespawnPointList()) {
 				CountCreature creature = new CountCreature(point.getPrototypeCreature());
 				processCreature(creature);
-			}			
+			}
 		}
-		
+
 		sendResults(admin);
 	}
-	
+
 	/**
 	 * Process the drop probabilities of a creature.
-	 * 
+	 *
 	 * @param creature the creature to be processed
 	 */
 	private void processCreature(CountCreature creature) {
@@ -71,10 +70,10 @@ public class ItemRarity extends ScriptImpl {
 			addToProbability(item.name, probability);
 		}
 	}
-	
+
 	/**
 	 * Add drop probability to items old probability.
-	 * 
+	 *
 	 * @param item the item to add to
 	 * @param probability additional probability
 	 */
@@ -84,21 +83,21 @@ public class ItemRarity extends ScriptImpl {
 		if (oldProbability != null) {
 			old = oldProbability;
 		}
-		
+
 		// Calculate through complements to add them up properly
 		double newProb = 1 - (1 - old) * (1 - probability);
 		rarity.put(item, newProb);
 	}
-	
+
 	/**
 	 * Send the admin a nicely formatted version of the results.
-	 * 
+	 *
 	 * @param admin recipient
 	 */
 	private void sendResults(Player admin) {
 		admin.sendPrivateText("Item\tRarity");
 		List<Entry<String, Double>> items = new ArrayList<Entry<String, Double>>(rarity.entrySet());
-		
+
 		java.util.Collections.sort(items, new EntryComparator());
 		StringBuilder msg = new StringBuilder();
 		for (Entry<String, Double> entry : items) {
@@ -109,7 +108,7 @@ public class ItemRarity extends ScriptImpl {
 		}
 		admin.sendPrivateText(msg.toString());
 	}
-	
+
 	/**
 	 * Comparator for sorting the item list.
 	 */
@@ -128,10 +127,10 @@ public class ItemRarity extends ScriptImpl {
 		public CountCreature(Creature copy) {
 			super(copy);
 		}
-		
+
 		/**
 		 * Get list of droppable items
-		 * 
+		 *
 		 * @return list of droppable items
 		 */
 		public List<DropItem> getDropList() {

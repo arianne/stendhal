@@ -13,6 +13,17 @@
 package games.stendhal.server.entity;
 
 import static games.stendhal.server.core.engine.Translate._;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+
+import org.apache.log4j.Logger;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterators;
+
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.common.grammar.Grammar;
@@ -20,22 +31,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.SlotNameInList;
 import games.stendhal.server.entity.slot.Slots;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
-
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
-
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterators;
 
 public abstract class Entity extends RPObject implements Killer {
 	/**

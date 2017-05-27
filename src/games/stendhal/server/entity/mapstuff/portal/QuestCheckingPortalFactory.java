@@ -25,7 +25,7 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the quest name from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @throws IllegalArgumentException
@@ -39,7 +39,7 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Create a quest checking portal.
-	 * 
+	 *
 	 * @param ctx Configuration context.
 	 * @return A Portal.
 	 * @throws IllegalArgumentException

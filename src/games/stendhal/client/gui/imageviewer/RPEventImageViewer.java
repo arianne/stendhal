@@ -12,18 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.sprite.DataLoader;
-
 import java.net.URL;
 
-import marauroa.common.game.RPEvent;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.sprite.DataLoader;
+import marauroa.common.game.RPEvent;
 
 /**
  * Opens an image in a styled internal frame with (possibly) some alternate
  * text.
- * 
+ *
  * @author timothyb89
  */
 public final class RPEventImageViewer {

@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
@@ -27,9 +30,6 @@ import games.stendhal.server.entity.npc.condition.TriggerMatchesQuestSlotConditi
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * QUEST: Coded Message from Finn Farmer
@@ -56,7 +56,7 @@ import java.util.List;
  * <ul>
  *   <li>You can repeat it once per day.</li>
  * </ul>
- * 
+ *
  * @author kymara, hendrik
  */
 public class CodedMessageFromFinnFarmer extends AbstractQuest {
@@ -93,7 +93,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		if (questState.equals("deliver_to_finn")) {
 			return res;
 		}
-		
+
 		res.add("I completed my mission as messenger. Finn Farmer went almost crazy of join when I told him George's answer.");
 		return res;
 	}
@@ -158,7 +158,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				new SayTextAction("[quest.coded_message:1]"));
 
 
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new QuestNotActiveCondition(QUEST_SLOT),
@@ -168,7 +168,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				"Perhaps, I have another message tomorrow.",
 				null);
 
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new QuestNotActiveCondition(QUEST_SLOT),
@@ -177,14 +177,14 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				"I have an urgent message for #George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to him?",
 				null);
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"george",
 				null,
 				ConversationStates.QUEST_OFFERED,
 				"Just find Tommy. Perhaps in Ados Park. George won't be far away. Could you please deliver a message to him?",
 				null);
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				ConversationStates.IDLE,
 				"Okay, then I better don't tell you no secrets.",
@@ -193,7 +193,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 						new SetQuestAction(QUEST_SLOT, QUEST_INDEX_STATUS, "rejected")
 				));
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				ConversationStates.ATTENDING,
 				null,
@@ -223,12 +223,12 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				"Thank you for agreeing to tell Finn this message:",
 				new SayTextAction("[quest.coded_message:1]"));
 
-		npc.add(ConversationStates.ATTENDING, 
-				"", 
+		npc.add(ConversationStates.ATTENDING,
+				"",
 				new AndCondition(
 					new TriggerMatchesQuestSlotCondition(QUEST_SLOT, QUEST_INDEX_MESSAGE),
 					new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george")
-				), 
+				),
 				ConversationStates.IDLE,
 				"This is indeed quite interesting. Please let Finn know:",
 				new MultipleActions(
@@ -236,8 +236,8 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 					new SetQuestAction(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_finn")
 				));
 
-		npc.add(ConversationStates.ATTENDING, 
-				"", 
+		npc.add(ConversationStates.ATTENDING,
+				"",
 				new AndCondition(
 					new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george"),
 					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
@@ -253,7 +253,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	 */
 	private void step3() {
 		final SpeakerNPC npc = npcs.get("Finn Farmer");
-		
+
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_finn"),
@@ -261,7 +261,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				"And, what did George say?",
 				null);
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				"",
 				new TriggerMatchesQuestSlotCondition(QUEST_SLOT, QUEST_INDEX_MESSAGE),
 				ConversationStates.ATTENDING,
@@ -281,8 +281,8 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 					new SayTextAction("Perhaps, I have another message for you tomorrow.")
 				));
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
-				"", 
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				"",
 				new AndCondition(
 					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, QUEST_INDEX_MESSAGE)),
 					new TriggerMightbeACodedMessageCondition()
@@ -317,7 +317,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

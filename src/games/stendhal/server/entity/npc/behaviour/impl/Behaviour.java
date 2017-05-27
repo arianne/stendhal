@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.Set;
+
 import games.stendhal.common.grammar.ItemParser;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 
-import java.util.Set;
-
 /**
  * Behaviour is the base class for all quest behaviours parsing a sentence to
  * get an amount and an item name.
- * 
+ *
  * @author Martin Fuchs
  */
 public class Behaviour extends ItemParser {
@@ -40,7 +40,7 @@ public class Behaviour extends ItemParser {
 
 	/**
 	 * a chat condition that checks whether transactions are possible at all
-	 * 
+	 *
 	 * @return ChatCondition
 	 */
 	public ChatCondition getTransactionCondition() {

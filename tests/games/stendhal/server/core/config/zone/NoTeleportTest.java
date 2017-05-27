@@ -19,14 +19,14 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPZone;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 public class NoTeleportTest {
 
@@ -45,7 +45,7 @@ public class NoTeleportTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	/**
 	 * Tests for configureZone.
 	 */
@@ -73,12 +73,12 @@ public class NoTeleportTest {
 		attributes.put("width", "5");
 		attributes.put("height", "5");
 		conf.configureZone(zone, attributes);
-		
+
 		assertTrue("Outside the blocked area", zone.isTeleportOutAllowed(0, 0));
 		assertFalse("Inside the blocked area", zone.isTeleportOutAllowed(1, 1));
 		assertFalse("Inside the blocked area", zone.isTeleportOutAllowed(5, 5));
 		assertTrue("Outside the blocked area", zone.isTeleportOutAllowed(6, 6));
-		
+
 		assertTrue("Outside the blocked area", zone.isTeleportInAllowed(0, 0));
 		assertFalse("Inside the blocked area", zone.isTeleportInAllowed(1, 1));
 		assertFalse("Inside the blocked area", zone.isTeleportInAllowed(5, 5));

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -23,13 +27,9 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
  * Moves players away that spend to much time in an restricted area
- * 
+ *
  * @author hendrik
  */
 public class UnblockTradeTable extends ScriptImpl implements TurnListener {
@@ -37,7 +37,7 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 	private static final int GRACE_PERIOD_IN_TURNS = 200;
 
 	private static Logger logger = Logger.getLogger(UnblockTradeTable.class);
-	
+
 	private StendhalRPZone zone;
 	private Area pathArea;
 	private Area tablePathArea;

@@ -15,9 +15,10 @@ package games.stendhal.server.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.Outfits;
 
 import org.junit.Test;
+
+import games.stendhal.common.Outfits;
 
 public class OutfitTest {
 

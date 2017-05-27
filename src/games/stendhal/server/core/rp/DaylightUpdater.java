@@ -1,11 +1,11 @@
 package games.stendhal.server.core.rp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.events.TurnListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Manager for daylight colored zones.

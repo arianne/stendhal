@@ -1,13 +1,14 @@
 package games.stendhal.server.core.engine;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 public class StendhalRPZoneTest {
 
@@ -23,22 +24,22 @@ public class StendhalRPZoneTest {
 	public void setUp() throws Exception {
 		final StendhalRPZone fado_tavern = new StendhalRPZone("int_fado_tavern");
 		MockStendlRPWorld.get().addRPZone(fado_tavern);
-		
+
 		final StendhalRPZone semos_city = new StendhalRPZone("0_semos_city");
 		MockStendlRPWorld.get().addRPZone(semos_city);
-		
+
 		final StendhalRPZone semos_mountain = new StendhalRPZone("0_semos_mountain_n_w4");
 		MockStendlRPWorld.get().addRPZone(semos_mountain);
-		
+
 		final StendhalRPZone semos_dungeon = new StendhalRPZone("-3_semos_dungeon");
 		MockStendlRPWorld.get().addRPZone(semos_dungeon);
-		
+
 		final StendhalRPZone ados_cave = new StendhalRPZone("-1_ados_caves");
 		MockStendlRPWorld.get().addRPZone(ados_cave);
-		
+
 		final StendhalRPZone kikareukin_islands = new StendhalRPZone("6_kikareukin_islands");
 		MockStendlRPWorld.get().addRPZone(kikareukin_islands);
-		
+
 		final StendhalRPZone hell = new StendhalRPZone("hell");
 		MockStendlRPWorld.get().addRPZone(hell);
 	}

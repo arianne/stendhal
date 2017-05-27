@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.MeetBunny;
-
-import java.util.List;
 
 /**
  * Starts or stops EasterBunny.
@@ -43,7 +43,7 @@ public class EasterBunny extends ScriptImpl {
 
 	/**
 	 * Starts Easter.
-	 * 
+	 *
 	 * @param admin adminstrator running the script
 	 */
 	private void startEaster(Player admin) {
@@ -57,7 +57,7 @@ public class EasterBunny extends ScriptImpl {
 
 	/**
 	 * Ends Easter.
-	 * 
+	 *
 	 * @param admin adminstrator running the script
 	 */
 	private void stopEaster(Player admin) {

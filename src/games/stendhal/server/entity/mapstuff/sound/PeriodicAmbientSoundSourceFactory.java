@@ -36,12 +36,12 @@ public class PeriodicAmbientSoundSourceFactory extends SoundSourceFactory {
 
 	/**
 	 * Create an PeriodicAmbientSoundSource.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return An AmbientSoundSource.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource

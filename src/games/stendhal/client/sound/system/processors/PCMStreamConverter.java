@@ -12,11 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.common.memory.Field;
 import java.io.IOException;
 import java.io.InputStream;
+
 import javax.sound.sampled.AudioFormat;
+
+import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.common.memory.Field;
 
 /**
  *
@@ -44,8 +46,9 @@ public class PCMStreamConverter extends SignalProcessor
 
     public void open(InputStream stream, AudioFormat format, int outputNumSamplesPerChannel)
     {
-        if(!mConverterIsOpened)
-            init(stream, format, outputNumSamplesPerChannel);
+        if(!mConverterIsOpened) {
+			init(stream, format, outputNumSamplesPerChannel);
+		}
     }
 
     public void close()
@@ -102,12 +105,14 @@ public class PCMStreamConverter extends SignalProcessor
                 int  index = i * numBytesPerSample;
                 long value  = 0;
 
-                for(int b=0; b<numBytesPerSample; ++b)
-                    value |= (mInputBuffer[index + b] & 0x00000000000000FF) << (b * 8);
-                
-                if(value >= maxValueHalf)
-                    value -= maxValue;
-                
+                for(int b=0; b<numBytesPerSample; ++b) {
+					value |= (mInputBuffer[index + b] & 0x00000000000000FF) << (b * 8);
+				}
+
+                if(value >= maxValueHalf) {
+					value -= maxValue;
+				}
+
                 mOutputBuffer[i] = ((float)value / (float)maxValueHalf);
             }
         }
@@ -122,12 +127,14 @@ public class PCMStreamConverter extends SignalProcessor
                 {
                     long value = 0;
 
-                    for(int b=0; b<numBytesPerSample; ++b)
-                        value |= (mInputBuffer[frame + b] & 0x00000000000000FF) << (b * 8);
+                    for(int b=0; b<numBytesPerSample; ++b) {
+						value |= (mInputBuffer[frame + b] & 0x00000000000000FF) << (b * 8);
+					}
 
-                    if(value >= maxValueHalf)
-                        value -= maxValue;
-                    
+                    if(value >= maxValueHalf) {
+						value -= maxValue;
+					}
+
                     mOutputBuffer[index + c] = (float)value / (float)maxValueHalf;
                     frame                   += numBytesPerSample;
                 }
@@ -143,7 +150,7 @@ public class PCMStreamConverter extends SignalProcessor
             super.quit();
             return false;
         }
-        
+
         try
         {
             int numBytesToRead      = mNumSamplesToBuffer * mAudioFormat.getFrameSize();
@@ -153,8 +160,9 @@ public class PCMStreamConverter extends SignalProcessor
             convertToUniformPCM(numSamplesToConvert);
             super.propagate(mOutputBuffer, numSamplesToConvert, mAudioFormat.getChannels(), (int)mAudioFormat.getSampleRate());
 
-            if(numBytesRead < numBytesToRead)
-                close();
+            if(numBytesRead < numBytesToRead) {
+				close();
+			}
         }
         catch(IOException exception)
         {

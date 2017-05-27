@@ -32,15 +32,15 @@ import games.stendhal.server.maps.Region;
 
 /**
  * QUEST: Speak with Monogenes PARTICIPANTS: - Monogenes
- * 
+ *
  * STEPS: - Talk to Monogenes to activate the quest and keep speaking with
  * Monogenes. - Be polite and say "bye" at the end of the conversation to get a
  * small reward.
- * 
+ *
  * REWARD: broken (- 10 XP (check that user's level is lesser than 2) - No money)
- * 
+ *
  * REPETITIONS: - None
- * 
+ *
  */
 public class MeetMonogenes extends AbstractQuest {
 	@Override
@@ -54,24 +54,24 @@ public class MeetMonogenes extends AbstractQuest {
 				"A wise old man in Semos has a map to guide newcomers through the town.",
 				false);
 		final SpeakerNPC npc = npcs.get("Monogenes");
-		
+
 		npc.addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
-		
+
 		// A little trick to make NPC remember if it has met
         // player before and react accordingly
         // NPC_name quest doesn't exist anywhere else neither is
         // used for any other purpose
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new GreetingMatchesNameCondition(npc.getName()),
-						new QuestNotCompletedCondition("Monogenes")), 
-				ConversationStates.INFORMATION_1, 
+						new QuestNotCompletedCondition("Monogenes")),
+				ConversationStates.INFORMATION_1,
 				"Hello there, stranger! Don't be too intimidated if people are quiet and reserved... " +
 				"the fear of Blordrough and his forces has spread all over the country, and we're all " +
 				"a bit concerned. I can offer a few tips on socializing though, would you like to hear them?",
 				new SetQuestAction("Monogenes", "done"));
-				
+
 		npc.add(
 			ConversationStates.ATTENDING,
 			ConversationPhrases.HELP_MESSAGES,
@@ -99,11 +99,11 @@ public class MeetMonogenes extends AbstractQuest {
 			ConversationStates.IDLE,
 			"And how are you supposed to know what's happening? By reading the Semos Tribune? Hah! Bye, then.",
 			null);
-		
+
 		final List<String> yesnotriggers = new ArrayList<String>();
 		yesnotriggers.addAll(ConversationPhrases.YES_MESSAGES);
 		yesnotriggers.addAll(ConversationPhrases.NO_MESSAGES);
-		
+
 		npc.add(
 				ConversationStates.INFORMATION_1,
 				"",
@@ -116,14 +116,14 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.addReply(
 				"like this",
 				"That's right, like that! Now, I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.");
-		
+
 		npc.addReply(
 			"buildings",
 			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, the #public #chest or the old #village.");
 
 		npc.add(
 			ConversationStates.ATTENDING,
-			"map", null, ConversationStates.ATTENDING, 
+			"map", null, ConversationStates.ATTENDING,
 			"I have marked the following locations on my map:\n"
 			+ "1 Townhall, Mayor lives here,   2 Library,   3 Bank,   4 Bakery,\n"
 			+ "5 Storage,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
@@ -131,7 +131,7 @@ public class MeetMonogenes extends AbstractQuest {
         	+ "10 Public Chest, \n"
         	+ "A Semos Village,   B Northern Plains and Mine, \n"
         	+ "C Very long path to Ados, \n"
-        	+ "D Southern Plains and Nalwor Forest, \n" 
+        	+ "D Southern Plains and Nalwor Forest, \n"
         	+ "E Semos Village Open Field",
         	new ExamineChatAction("map-semos-city.png", "Semos City", "Map of Semos City"));
 
@@ -161,7 +161,7 @@ public class MeetMonogenes extends AbstractQuest {
 
 		npc.addReply(Arrays.asList("public", "public chest", "community chest", "chest"),
 			"Follow the orange path on the map to arrive at the public chest. Inhabitants of Faiumoni and brave warriors throw some useful stuff in there which you can take for free. Remember: It is always good to share and give what you don't need anymore.");
-		
+
 		npc.addReply(
 			"village",
 			"Just keep heading southwest, past the #blacksmith, and you will shortly come to the old Semos village. Nishiya still sells sheep there.");
@@ -192,7 +192,7 @@ public class MeetMonogenes extends AbstractQuest {
 	public String getName() {
 		return "MeetMonogenes";
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -201,10 +201,10 @@ public class MeetMonogenes extends AbstractQuest {
 			}
 			if (isCompleted(player)) {
 				res.add("I spoke with Monogenes and he offered to give me a map. I can always get that map from him at any time, just by asking.");
-			} 
+			}
 			return res;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

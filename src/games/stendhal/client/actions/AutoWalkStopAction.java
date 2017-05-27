@@ -15,20 +15,21 @@ import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
 /**
  * Stops player's movement.
- * 
+ *
  * @author
  *         AntumDeluge
  */
 public class AutoWalkStopAction implements SlashAction {
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *        The formal parameters.
 	 * @param remainder
@@ -51,7 +52,7 @@ public class AutoWalkStopAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return
 	 *         Parameter count.
 	 */
@@ -62,7 +63,7 @@ public class AutoWalkStopAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return
 	 *         Parameter count.
 	 */

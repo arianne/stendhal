@@ -21,7 +21,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
- * Builds a information giving NPC in Kirdneh city. 
+ * Builds a information giving NPC in Kirdneh city.
  *
  * @author Vanessa Julius idea by miasma
  */
@@ -64,7 +64,7 @@ public class MummyNPC implements ZoneConfigurator {
 				addReply("Elisabeth", "She is such a lovely child, I will always care of her!");
 				addGoodbye("Thank you for meeting us here.");
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);

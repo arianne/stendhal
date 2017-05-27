@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
@@ -29,33 +34,28 @@ import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
- * QUEST: Quest to get a fishing rod 
+ * QUEST: Quest to get a fishing rod
  * <p>
- * 
+ *
  * PARTICIPANTS: <ul><li> Pequod the fisherman</ul>
- * 
- * 
+ *
+ *
  * STEPS: <ul><li> The fisherman asks you to go to the library to get him a quote of a
  * famous fisherman. <li> The player goes to the library where a book with some
  * quotes lies on the table and looks the correct one up. <li>The player goes back
  * to the fisherman and tells him the quote.</ul>
- * 
- * 
+ *
+ *
  * REWARD:
  * <ul>
  * <li> 750 XP
  * <li> some karma (10)
  * <li> A fishing rod
  * </ul>
- * 
+ *
  * REPETITIONS: <ul><li> no repetitions</ul>
- * 
+ *
  * @author dine
  */
 
@@ -212,7 +212,7 @@ public class LookUpQuote extends AbstractQuest {
 	public String getName() {
 		return "LookUpQuote";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

@@ -6,113 +6,112 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * An access checking portal is a special kind of portal which requires some
  * condition to use.
  */
 abstract class AccessCheckingPortal extends Portal {
-    
+
     /** the logger instance. */
     private static final Logger logger = Logger.getLogger(AccessCheckingPortal.class);
-    
+
     /** Immediate execution of action when player says password. */
     protected boolean instantAction = false;
-    
+
     /** Radius at which portal will "listen" for speaking players. */
     protected int listeningRadius;
-    
+
     /** Optional message to give when correct password used. */
     protected String passwordAcceptedMessage;
-    
+
     /** Optional message to give when incorrect password used. */
     protected String passwordRejectedMessage;
-    
+
     /** ID for the portal */
     protected int portalID;
     protected static int portalIDCounter = 100;
-    
+
     /** The message to give when rejected. */
     protected String rejectedMessage;
-    
+
     /** Optional password to use portal. */
     protected String requiredPassword;
-    
+
     /**
      * Creates an access checking portal with default values.
      */
     public AccessCheckingPortal() {
         this.rejectedMessage = "Why should i go down there?. It looks very dangerous.";
-        
+
         portalID = portalIDCounter;
         portalIDCounter += 1;
     }
 
 	/**
 	 * Creates an access checking portal.
-	 * 
+	 *
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
 	public AccessCheckingPortal(final String rejectMessage) {
 		this.rejectedMessage = rejectMessage;
-        
-        portalID = portalIDCounter;
-        portalIDCounter += 1;
-	}
-	
-	/**
-	 * 
-	 * @param object
-	 */
-	public AccessCheckingPortal(final RPObject object) {
-		super(object);
-        
+
         portalID = portalIDCounter;
         portalIDCounter += 1;
 	}
 
 	/**
-	 * 
+	 *
+	 * @param object
+	 */
+	public AccessCheckingPortal(final RPObject object) {
+		super(object);
+
+        portalID = portalIDCounter;
+        portalIDCounter += 1;
+	}
+
+	/**
+	 *
 	 * @return
 	 *      Message when password is accepted.
 	 */
     public String getPasswordAcceptedMessage() {
         return passwordAcceptedMessage;
     }
-    
+
     /**
-     * 
+     *
      * @return
      *      Messager when password is rejected.
      */
     public String getPasswordRejectedMessage() {
         return passwordRejectedMessage;
     }
-    
+
     /**
-     * 
+     *
      * @return
      *      Radius at which portal detects player speech.
      */
     public int getListeningRadius() {
         return listeningRadius;
     }
-    
+
     /**
      * Finds players nearby that have spoken.
-     * 
+     *
      * @return
      *      List of players
      */
@@ -139,30 +138,30 @@ abstract class AccessCheckingPortal extends Portal {
 
         return players;
     }
-    
+
     /**
      * Gets the message to send when player is denied access to portal.
-     * 
+     *
      * @return
      *      Rejected message
      */
     public String getRejectedMessage() {
         return rejectedMessage;
     }
-    
+
     /**
      * Gets the password required to use the portal.
-     * 
+     *
      * @return
      *      Required password
      */
     public String getRequiredPassword() {
         return requiredPassword;
     }
-    
+
     /**
      * Checks if the portal executes an action immediately after password is said.
-     * 
+     *
      * @return
      *      instantAction
      */
@@ -172,14 +171,14 @@ abstract class AccessCheckingPortal extends Portal {
 
 	/**
 	 * Determine if this portal can be used.
-	 * 
+	 *
 	 * @param user
 	 *            The user to be checked.
-	 * 
+	 *
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	protected abstract boolean isAllowed(RPEntity user);
-	
+
 	public boolean playerIsPortalUnlocked(final Player player, final Portal portal) {
 	    if (player.getUnlockedPortals().contains(portalID)) {
 	        return true;
@@ -192,9 +191,9 @@ abstract class AccessCheckingPortal extends Portal {
         // Execute action for password portal if required password is set.
         if (requiredPassword != null) {
             List<Player> players = getNearbyPlayersThatHaveSpoken();
-            
+
             String text;
-            
+
             for (Player player : players) {
                 text = player.get("text");
                 if (text.equals(requiredPassword)) {
@@ -209,10 +208,10 @@ abstract class AccessCheckingPortal extends Portal {
             }
         }
     }
-    
+
     /**
      * Use the portal, if allowed.
-     * 
+     *
      * @param user
      *            that wants to pass.
      * @return true if passed , false otherwise.
@@ -241,7 +240,7 @@ abstract class AccessCheckingPortal extends Portal {
 	/**
 	 * Called when the user is rejected. This sends a rejection message to the
 	 * user if set.
-	 * 
+	 *
 	 * @param user
 	 *            The rejected user.
 	 */
@@ -260,7 +259,7 @@ abstract class AccessCheckingPortal extends Portal {
 
 	/**
 	 * Wrapper to send a message to a user, without getting lost.
-	 * 
+	 *
 	 * @param user
 	 *            The user to send to.
 	 * @param text
@@ -269,9 +268,9 @@ abstract class AccessCheckingPortal extends Portal {
 	protected void sendMessage(final RPEntity user, final String text) {
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
 	}
-	
+
     /**
-     * 
+     *
      * @param instant
      *         Use portal automatically.
      */
@@ -280,31 +279,31 @@ abstract class AccessCheckingPortal extends Portal {
 //      logger.info("\nSetting instant action to \"" + Boolean.toString(instant) + "\" for portal at "
 //              + getZone().getName() + " (" + Integer.toString(getX()) + "," + Integer.toString(getY()) + "\n");
     }
-    
+
 	/**
 	 * Set the password accepted message.
-	 * 
+	 *
 	 * @param message
 	 *            Optional message to be given when correct password used.
 	 */
 	public void setPasswordAcceptedMessage(final String message) {
 	    passwordAcceptedMessage = message;
 	}
-	
+
     /**
      * Set the password rejected message.
-     * 
+     *
      * @param message
      *            Optional message to be given when incorrect password used.
      */
     public void setPasswordRejectedMessage(final String message) {
         passwordRejectedMessage = message;
     }
-    
-	
+
+
 	/**
 	 * Sets the radius at which the portal will "hear" speaking players.
-	 * 
+	 *
 	 * @param radius
 	 *         Distance at wich portal listens for players speaking.
 	 */
@@ -314,24 +313,24 @@ abstract class AccessCheckingPortal extends Portal {
 	    }
 	    listeningRadius = radius;
 	}
-	
+
 	/**
 	 * Set the rejection message.
-	 * 
+	 *
 	 * @param message The message to give when rejected.
 	 */
 	public void setRejectedMessage(final String message) {
 		rejectedMessage = message;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param password
 	 */
 	public void setRequiredPassword(final String password) {
 	    requiredPassword = password;
 	}
-	
+
 	/**
 	 * A turn listener that sends a user message. Once sendPrivateText() is
 	 * fixed (via a queue or something) to always work, this can go away.
@@ -345,7 +344,7 @@ abstract class AccessCheckingPortal extends Portal {
 
 		/**
 		 * Create a message sending turn listener.
-		 * 
+		 *
 		 * @param user
 		 *            The user to send to.
 		 * @param text
@@ -358,7 +357,7 @@ abstract class AccessCheckingPortal extends Portal {
 
 		/**
 		 * This method is called when the turn number is reached.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            Current turn number.
 		 */

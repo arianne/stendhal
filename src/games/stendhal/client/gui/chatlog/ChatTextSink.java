@@ -25,19 +25,19 @@ import games.stendhal.client.gui.textformat.StyleSet;
 public class ChatTextSink implements AttributedTextSink<StyleSet> {
 	/** Logger instance. */
 	private static final Logger logger = Logger.getLogger(ChatTextSink.class);
-	
+
 	/** DEstination document. */
 	private final Document document;
-	
+
 	/**
 	 * Create a new ChatTextSink.
-	 * 
+	 *
 	 * @param document destination document
 	 */
 	public ChatTextSink(Document document) {
 		this.document = document;
 	}
-	
+
 	@Override
 	public void append(String s, StyleSet attrs) {
 		try {

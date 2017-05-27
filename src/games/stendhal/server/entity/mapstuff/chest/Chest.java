@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import java.util.Iterator;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
@@ -19,13 +21,10 @@ import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.ChestSlot;
-
-import java.util.Iterator;
-
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.Definition.Type;
 
 /**
  * A chest is an unmovable container. It can be opened and closed. While it is
@@ -39,7 +38,7 @@ public class Chest extends Entity implements UseListener {
 	 * Whether the chest is open.
 	 */
 	private boolean open;
-	
+
 	/**
 	 * Creates a new chest.
 	 */
@@ -51,10 +50,10 @@ public class Chest extends Entity implements UseListener {
 		final RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
-	
+
 	/**
 	 * Creates a new chest.
-	 * 
+	 *
 	 * @param object
 	 *            RPObject
 	 */
@@ -79,8 +78,8 @@ public class Chest extends Entity implements UseListener {
 			chest.addRPSlot("content", 30);
 		}
 	}
-	
-	
+
+
 	//
 	// Chest
 	//
@@ -120,7 +119,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Determine if the chest is open.
-	 * 
+	 *
 	 * @return <code>true</code> if the chest is open.
 	 */
 	public boolean isOpen() {
@@ -129,7 +128,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Adds a passive entity (like an item) to the chest.
-	 * 
+	 *
 	 * @param entity
 	 *            entity to add
 	 */
@@ -145,7 +144,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Returns the content.
-	 * 
+	 *
 	 * @return iterator for the content
 	 */
 	public Iterator<RPObject> getContent() {

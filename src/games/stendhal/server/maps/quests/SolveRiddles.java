@@ -12,6 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.apache.log4j.Logger;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
@@ -30,40 +46,24 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.apache.log4j.Logger;
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
-
 /**
  * QUEST: Quest to solve a riddle to leave hell
  * <p>
- * 
+ *
  * PARTICIPANTS: <ul><li>Grim Reaper</ul>
- * 
- * 
- * STEPS: <ul><li> Reaper sets you a riddle 
+ *
+ *
+ * STEPS: <ul><li> Reaper sets you a riddle
  * <li> Player tries to answer
- * <li> Reaper compares answer to configuration file on server 
+ * <li> Reaper compares answer to configuration file on server
  * </ul>
- * 
- * 
+ *
+ *
  * REWARD: <ul><li>100 XP - Leaving hell</ul>
- * 
+ *
  * REPETITIONS: <ul><li>Any time you wish to leave hell, but if you ask for a riddle when you didn't solve the previous
  *  one yet, nor asked the other NPC to let you leave with karma loss, then you have to solve same one still</ul>
- * 
+ *
  * @author kymara
  */
 
@@ -87,7 +87,7 @@ public class SolveRiddles extends AbstractQuest {
 
 		/**
 		 * Check if an answer matches the riddle.
-		 * 
+		 *
 		 * @param riddle The riddle to be answered
 		 * @param sentence The answer given by the player
 		 * @return <code>true</code> iff the answer is correct
@@ -114,7 +114,7 @@ public class SolveRiddles extends AbstractQuest {
 
 		/**
 		 * Get a random riddle.
-		 * 
+		 *
 		 * @return A random ridde
 		 */
 		String getRiddle() {
@@ -226,10 +226,10 @@ public class SolveRiddles extends AbstractQuest {
 
 	private void setRiddle() {
 		final SpeakerNPC reaper = npcs.get("Grim Reaper");
-		
+
 		// player has no unsolved riddle active
 		reaper.add(ConversationStates.ATTENDING,
-				"leave", 
+				"leave",
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				null,
@@ -237,15 +237,15 @@ public class SolveRiddles extends AbstractQuest {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						// randomly choose from available riddles
-						final String riddle = riddles.getRiddle(); 
+						final String riddle = riddles.getRiddle();
 						npc.say("Try this riddle: " + riddle);
 						player.setQuest(QUEST_SLOT, riddle);
 					}
 				});
-		
+
 		// player already was set a riddle he couldn't solve
 		reaper.add(ConversationStates.ATTENDING,
-				"leave", 
+				"leave",
 				new QuestStartedCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				null,
@@ -256,7 +256,7 @@ public class SolveRiddles extends AbstractQuest {
 					npc.say("You must solve the riddle which I previously set you: " + riddle);
 				}
 		});
-		
+
 		reaper.add(ConversationStates.QUESTION_1, "", null,
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
@@ -308,18 +308,18 @@ public class SolveRiddles extends AbstractQuest {
 	public String getName() {
 		return "SolveRiddles";
 	}
-	
+
 	// there is a minimum level requirement to get into hell - this quest is in hell
 	@Override
 	public int getMinLevel() {
 		return 200;
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
@@ -329,7 +329,7 @@ public class SolveRiddles extends AbstractQuest {
 	public String getNPCName() {
 		return "Grim Reaper";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.HELL;

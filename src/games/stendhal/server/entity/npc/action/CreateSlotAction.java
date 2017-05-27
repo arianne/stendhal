@@ -11,15 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import java.util.List;
+
+import com.google.common.collect.ImmutableList;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
-
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
 
 /**
  * creates a slot

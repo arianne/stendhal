@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.sprite.DataLoader;
-
 import java.awt.Color;
 import java.awt.Component;
 
@@ -21,6 +19,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+
+import games.stendhal.client.sprite.DataLoader;
 
 /**
  * Rendering component for buddies in a JList.
@@ -44,10 +44,10 @@ class BuddyLabel extends JLabel implements ListCellRenderer<Buddy> {
 		initialize();
 		this.setText("bobbele");
 	}
-	
+
 	/**
 	 * Set the buddy online or away.
-	 * 
+	 *
 	 * @param online <code>true</code> if the buddy is online,
 	 * <code>false</code> if away
 	 */

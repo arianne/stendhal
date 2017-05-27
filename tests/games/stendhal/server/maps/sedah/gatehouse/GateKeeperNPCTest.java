@@ -139,7 +139,7 @@ public class GateKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	/**
 	 * Check for exact amount of money on the player.
-	 * 
+	 *
 	 * @param exactAmount
 	 */
 	private void assertMoneyLeft(int exactAmount) {

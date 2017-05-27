@@ -11,14 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.condition;
 
+import java.util.Collection;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Collection;
 
 /**
  * Did the player kill all creatures, solo? (excluding rare)

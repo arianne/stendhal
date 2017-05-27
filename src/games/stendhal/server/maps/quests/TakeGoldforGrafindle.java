@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -34,22 +38,18 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Take gold for Grafindle
- * 
+ *
  * PARTICIPANTS: <ul>
  * <li> Grafindle
  * <li> Lorithien </ul>
- * 
+ *
  * STEPS:<ul>
  * <li> Talk with Grafindle to activate the quest.
  * <li> Talk with Lorithien for the money.
  * <li> Return the gold bars to Grafindle</ul>
- * 
+ *
  * REWARD:<ul>
  * <li> 200 XP
  * <li> some karma (10)
@@ -58,7 +58,7 @@ import java.util.List;
  * REPETITIONS: <ul><li> None.</ul>
  */
 public class TakeGoldforGrafindle extends AbstractQuest {
-	
+
 	private static final int GOLD_AMOUNT = 25;
 
 	private static final String QUEST_SLOT = "grafindle_gold";
@@ -102,15 +102,15 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Grafindle");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, "I need someone who can be trusted with #gold.",
 			null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I ask only that you are honest.",
 				null);
 
@@ -137,7 +137,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
 			new SetQuestAction(QUEST_SLOT,"start"));
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Well, at least you are honest and told me from the start.",
@@ -174,8 +174,8 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		 */
 		final List<ChatAction> givegold = new LinkedList<ChatAction>();
 		givegold.add(new EquipItemAction("gold bar",GOLD_AMOUNT, true));
-		givegold.add(new SetQuestAction(QUEST_SLOT, "lorithien"));	
-		
+		givegold.add(new SetQuestAction(QUEST_SLOT, "lorithien"));
+
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -220,7 +220,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		reward.add(new IncreaseXPAction(200));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
-		
+
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(getName()),
 						new QuestInStateCondition(QUEST_SLOT, "lorithien"),
@@ -228,7 +228,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.",
 				new MultipleActions(reward));
-		
+
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(getName()),
 						new QuestInStateCondition(QUEST_SLOT, "lorithien"),
@@ -253,13 +253,13 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	public String getName() {
 		return "TakeGoldforGrafindle";
 	}
-	
+
 	// it is not easy to get to Nalwor
 	@Override
 	public int getMinLevel() {
 		return 50;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.NALWOR_CITY;

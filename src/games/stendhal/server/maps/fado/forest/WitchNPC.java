@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.forest;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Creates Imorgen, a young witch who lives in Fado Forest.
@@ -44,9 +44,9 @@ public class WitchNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				setPath(null);
-			
+
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);

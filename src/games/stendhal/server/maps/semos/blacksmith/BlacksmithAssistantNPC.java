@@ -31,7 +31,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 /**
  * The blacksmith's young assistant (original name: Hackim Easso).
  * He smuggles out weapons.
- * 
+ *
  * @see games.stendhal.server.maps.quests.MeetHackim
  */
 public class BlacksmithAssistantNPC implements ZoneConfigurator  {
@@ -65,10 +65,10 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
                 nodes.add(new Node(5,5));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 			@Override
 			public void createDialog() {
-				
+
 				// A little trick to make NPC remember if it has met
 		        // player before and react accordingly
 		        // NPC_name quest doesn't exist anywhere else neither is
@@ -80,9 +80,9 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 				        ConversationStates.ATTENDING,
 				        "Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?",
 				        new SetQuestAction("meet_hackim","start"));
-				
+
 				addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
-				
+
 				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
 				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
 				addOffer("You might ask Xoderos. He sells some of his selfmade weapons.");
@@ -93,8 +93,8 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 		npc.setPosition(5, 2);
 		npc.setEntityClass("naughtyteennpc");
 		npc.setDescription("You see Hackim Easso, the blacksmiths assistant.");
-		zone.add(npc);		
+		zone.add(npc);
 	}
 }
 
-		
+

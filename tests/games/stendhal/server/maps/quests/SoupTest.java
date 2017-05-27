@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -19,16 +26,9 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.fado.tavern.MaidNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
-import static org.junit.Assert.assertEquals;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class SoupTest {
 
@@ -46,8 +46,8 @@ public class SoupTest {
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone("int_fado_tavern");
 		MockStendlRPWorld.get().addRPZone(zone);
-		new MaidNPC().configureZone(zone, null);	
-		
+		new MaidNPC().configureZone(zone, null);
+
 
 		AbstractQuest quest = new Soup();
 		quest.addToWorld();
@@ -57,7 +57,7 @@ public class SoupTest {
 
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Old Mother Helena");
 		en = npc.getEngine();
 		player.setXP(100);

@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -33,11 +38,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Armor for Dagobert
@@ -71,7 +71,7 @@ public class ArmorForDagobert extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "armor_dagobert";
 
-	
+
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -103,7 +103,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?",
 			null);
 
@@ -111,7 +111,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Thank you very much for the armor, but I don't have any other task for you.",
 			null);
 
@@ -152,17 +152,17 @@ public class ArmorForDagobert extends AbstractQuest {
 				new OrCondition(
 					new PlayerHasItemWithHimCondition("leather cuirass"),
 					new PlayerHasItemWithHimCondition("pauldroned leather cuirass"))),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?",
 			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new QuestInStateCondition(QUEST_SLOT, "start"), 
+				new QuestInStateCondition(QUEST_SLOT, "start"),
 				new NotCondition(new OrCondition(
 					new PlayerHasItemWithHimCondition("leather cuirass"),
 					new PlayerHasItemWithHimCondition("pauldroned leather cuirass")))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Luckily I haven't been robbed while you were away. I would be glad to receive a leather cuirass. Anyway, how can I #help you?",
 			null);
 
@@ -180,7 +180,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the armor
 			// away and then saying "yes"
-			new PlayerHasItemWithHimCondition("leather cuirass"), 
+			new PlayerHasItemWithHimCondition("leather cuirass"),
 			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
 			new MultipleActions(reward1));
 
@@ -193,7 +193,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			// away and then saying "yes"
 			new AndCondition(
 				new NotCondition(new PlayerHasItemWithHimCondition("leather cuirass")),
-				new PlayerHasItemWithHimCondition("pauldroned leather cuirass")), 
+				new PlayerHasItemWithHimCondition("pauldroned leather cuirass")),
 			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere. Now that you have proven yourself a trusted customer, you may have access to your own private banking #vault any time you like.",
 			new MultipleActions(reward2));
 
@@ -225,17 +225,17 @@ public class ArmorForDagobert extends AbstractQuest {
 	public String getName() {
 		return "ArmorForDagobert";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Dagobert";

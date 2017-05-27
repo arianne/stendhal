@@ -26,13 +26,13 @@ public class DummyWeapon extends Item {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item copied item
 	 */
 	public DummyWeapon(Item item) {
 		super(item);
 	}
-	
+
 	@Override
 	public String getWeaponType() {
 		// Null value prevents the client from trying to look up sprites

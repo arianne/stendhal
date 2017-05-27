@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Not safe for players below level 150
  */
 public class DragonRaid extends CreateRaid {

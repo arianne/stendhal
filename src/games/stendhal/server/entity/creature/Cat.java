@@ -12,16 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A cat is a domestic animal that can be owned by a player.
@@ -31,9 +30,9 @@ import org.apache.log4j.Logger;
  * They move much faster than sheep
  * <p>
  * Ideally cats attack rats for you
- * 
+ *
  * @author kymara (based on sheep by Daniel Herding)
- * 
+ *
  */
 public class Cat extends Pet {
 
@@ -44,7 +43,7 @@ public class Cat extends Pet {
 	void setUp() {
 		HP = 200;
 		// each chicken or fish would give +5 HP
-		incHP = 4; 
+		incHP = 4;
 		ATK = 10;
 		DEF = 30;
 		XP = 100;
@@ -100,7 +99,7 @@ public class Cat extends Pet {
 	/**
 	 * Creates a Cat based on an existing cat RPObject, and assigns it to a
 	 * player.
-	 * 
+	 *
 	 * @param object object containing the data for the Cat
 	 * @param owner
 	 *            The player who should own the cat
@@ -128,5 +127,5 @@ public class Cat extends Pet {
 		return false;
 	}
 
-	
+
 }

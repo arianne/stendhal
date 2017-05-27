@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
@@ -23,12 +28,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -40,7 +39,7 @@ import marauroa.common.game.RPSlot;
 public class ShowOffersChatAction implements ChatAction {
 	/** Maximum list length that is shown to the players */
 	private static final int MAX_SHOWN_OFFERS = 20;
-	
+
 	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
@@ -53,13 +52,13 @@ public class ShowOffersChatAction implements ChatAction {
 	}
 
 	private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
-		
+
 		boolean onlyMyOffers = checkForMineFilter(sentence);
 		boolean onlyMyExpiredOffers = checkForMyExpiredFilter(sentence);
 		boolean filterForMine = false;
-		
+
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
-		
+
 		// Figure out what to look for
 		RPSlot offersSlot = market.getSlot(Market.OFFERS_SLOT_NAME);
 		if (onlyMyExpiredOffers) {
@@ -73,14 +72,14 @@ public class ShowOffersChatAction implements ChatAction {
 		if (!filterForMine) {
 			wordFilter = getWordFilter(sentence);
 		}
-		
+
 		//if the wordFilter is "offers" delegate back to ShowOfferItemsChatAction to prevent
 		//the messages saying there are no offers in the market
 		if(wordFilter != null && wordFilter.startsWith("offer")) {
 			new ShowOfferItemsChatAction().fire(player, sentence, npc);
 			return;
 		}
-		
+
 		// Get the list of offers, and filter out all that we don't need
 		List<Offer> offers = getOffers(offersSlot);
 		if (filterForMine) {
@@ -89,10 +88,10 @@ public class ShowOffersChatAction implements ChatAction {
 		if (wordFilter != null) {
 			filterForWord(offers, wordFilter);
 		}
-		
+
 		StringBuilder offersMessage = new StringBuilder();
 		MarketManagerNPC marketNPC = (MarketManagerNPC) npc.getEntity();
-		
+
 		boolean usingFilter = filterForMine || (wordFilter != null);
 		int counter = buildMessage(offersMessage, offers, marketNPC.getOfferMap(), usingFilter);
 		if (counter > 0) {
@@ -112,7 +111,7 @@ public class ShowOffersChatAction implements ChatAction {
 		}
 		return false;
 	}
-	
+
 	private boolean checkForMyExpiredFilter(Sentence sentence) {
 		for (Expression expression : sentence) {
 			if (expression.getNormalized().equals("expire")) {
@@ -121,7 +120,7 @@ public class ShowOffersChatAction implements ChatAction {
 		}
 		return false;
 	}
-	
+
 	private String getWordFilter(Sentence sentence) {
 		if (sentence.getObjectCount() > 0) {
 			// A proper recognised item name. Look for those
@@ -133,10 +132,10 @@ public class ShowOffersChatAction implements ChatAction {
 				return expressions.get(1).getNormalized();
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	private List<Offer> getOffers(RPSlot slot) {
 		LinkedList<Offer> offers = new LinkedList<Offer>();
 		for (RPObject rpObject : slot) {
@@ -144,10 +143,10 @@ public class ShowOffersChatAction implements ChatAction {
 		}
 		return offers;
 	}
-	
+
 	/**
 	 * Filter out offers that do not belong to a given player.
-	 * 
+	 *
 	 * @param offers list of offers to be filtered
 	 * @param player player whose offers should be retained on the list
 	 */
@@ -159,10 +158,10 @@ public class ShowOffersChatAction implements ChatAction {
 			}
 		}
 	}
-	
+
 	/**
 	 * Filter out offers that do not match a given word.
-	 *  
+	 *
 	 * @param offers list of offers to be filtered
 	 * @param word a word to check in item name or type
 	 */
@@ -178,20 +177,20 @@ public class ShowOffersChatAction implements ChatAction {
 			}
 		}
 	}
-	
+
 	/**
 	 * Format a message out of an offer list, and update an offermap to match it.
-	 * 
+	 *
 	 * @param message message to fill with the offer list
 	 * @param offers list of offers to format
 	 * @param map offermap to be filled
 	 * @param usingFilter was a filter used?
-	 * 
+	 *
 	 * @return number of offers added to the list and map
 	 */
 	private int buildMessage(StringBuilder message, List<Offer> offers, Map<String, Offer> map, boolean usingFilter) {
 		int counter = 0;
-		
+
 		for (Offer offer : offers) {
 			counter++;
 			if (counter > MAX_SHOWN_OFFERS) {
@@ -201,13 +200,13 @@ public class ShowOffersChatAction implements ChatAction {
 				}
 				return counter;
 			}
-			
+
 			Item item = offer.getItem();
 			int quantity = 1;
 			if (item instanceof StackableItem) {
 				quantity = ((StackableItem) item).getQuantity();
 			}
-			
+
 			message.append(counter);
 			message.append(": ");
 			message.append(Grammar.quantityplnoun(quantity, offer.getItemName(), "a"));
@@ -217,7 +216,7 @@ public class ShowOffersChatAction implements ChatAction {
 			message.append("\n");
 			map.put(Integer.toString(counter), offer);
 		}
-		
+
 		return counter;
 	}
 }

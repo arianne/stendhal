@@ -23,13 +23,13 @@ import marauroa.common.game.RPClass;
 /**
  * A well source is a spot where a player can make a wish to gain an item. He
  * needs time and luck.
- * 
+ *
  * Wishing takes 10 seconds + randomized 4 seconds; during this time, the player keep standing next to
  * the well source. At every well are two sources next to each other, so the
  * player can actually make 2 wishes at once.
- * 
+ *
  * @author kymara (based on FishSource by daniel)
- * 
+ *
  */
 public class WellSource extends PlayerActivityEntity {
 	/**
@@ -39,14 +39,14 @@ public class WellSource extends PlayerActivityEntity {
 			"gold nugget", "potion", "home scroll", "greater potion",
 			"sapphire", "carbuncle", "horned golden helmet", "dark dagger",
 			"present" };
-	
+
 	/**
 	 * The chance that wishing is successful.
 	 */
 	private static final double FINDING_PROBABILITY = 0.05;
 
 	/**
-	 * How long it takes to wish at a well (in seconds). 
+	 * How long it takes to wish at a well (in seconds).
 	 */
 	private static final int DURATION = 10;
 
@@ -60,7 +60,7 @@ public class WellSource extends PlayerActivityEntity {
 		setDescription("You see a wishing well. Something in it catches your eye.");
 		setResistance(0);
 	}
-	
+
 	/**
 	 * source name.
 	 */
@@ -84,7 +84,7 @@ public class WellSource extends PlayerActivityEntity {
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 * 
+	 *
 	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
@@ -94,7 +94,7 @@ public class WellSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity can be done.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -113,7 +113,7 @@ public class WellSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity was successful.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -138,7 +138,7 @@ public class WellSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has finished.
-	 * 
+	 *
 	 * @param player
 	 *            The player that did the activity.
 	 * @param successful
@@ -176,7 +176,7 @@ public class WellSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has started.
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
 	 */

@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.mithrilcloak;
 
+import java.util.Arrays;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -28,17 +30,15 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-
 
 /**
  * @author kymara
 */
 
 class CloakForJosephine {
-	
+
 	private final MithrilCloakQuestInfo mithrilcloak;
-	
+
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
 	public CloakForJosephine(final MithrilCloakQuestInfo mithrilcloak) {
@@ -48,7 +48,7 @@ class CloakForJosephine {
 	private void takeStripedCloakStep() {
 
 		// Deliberately overlap with conversation states from the cloak collector quests.
-		// Since if you're on one of these quests she will always ask 'did you bring any cloaks?' 
+		// Since if you're on one of these quests she will always ask 'did you bring any cloaks?'
 		// and waits for you to say yes or the name of the cloak you brought
 		// if she just said about 'blue striped cloak' "well i don't want that" then that's confusing for player
 		// so we let player give her that cloak even if she was asking about the other quests
@@ -68,7 +68,7 @@ class CloakForJosephine {
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							npc.say("You don't have a blue striped cloak with you.");
-						}						
+						}
 					}
 			});
 
@@ -84,27 +84,27 @@ class CloakForJosephine {
 							player.setQuest(mithrilcloak.getQuestSlot(), "gave_striped_cloak");
 						} else {
 							npc.say("You don't have a blue striped cloak with you.");
-						}						
+						}
 					}
 			});
-				
+
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("blue striped cloak", "mithril", "mithril cloak", "ida"),
 				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_striped_cloak"), new PlayerHasItemWithHimCondition("blue striped cloak")),
 				ConversationStates.ATTENDING,
 				"Oh that's from Ida isn't it?! Oh yay! Thank you! Please tell her thanks from me!!",
 				new MultipleActions(
-									 new DropItemAction("blue striped cloak"), 
-									 new SetQuestAction(mithrilcloak.getQuestSlot(), "gave_striped_cloak") 
+									 new DropItemAction("blue striped cloak"),
+									 new SetQuestAction(mithrilcloak.getQuestSlot(), "gave_striped_cloak")
 									 )
 				);
 
 
 	}
 	private void askforClaspStep() {
-		
+
 		final SpeakerNPC npc = npcs.get("Ida");
-		
+
 		// acknowledge that player took cloak and ask for clasp
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("thanks", "josephine", "mithril", "cloak", "mithril cloak", "task", "quest"),
@@ -117,7 +117,7 @@ class CloakForJosephine {
 		npc.addReply("Josephine", "Surely you know Josephine? That flirty flighty girl from Fado, bless her heart.");
 		npc.addReply("Pedinghaus", "I mean the wizard who works with Joshua in the Ados smithy.");
 	}
-	
+
 	public void addToWorld() {
 		takeStripedCloakStep();
 		askforClaspStep();

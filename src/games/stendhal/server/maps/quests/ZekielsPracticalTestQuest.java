@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -34,18 +38,14 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Zekiels practical test
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Zekiel, guardian of the wizard's tower </li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Zekiel the guardian asks you to bring him 6 beeswax and 2 iron to make magic candles with. </li>
@@ -53,15 +53,15 @@ import java.util.List;
  * <li> You can start the practical test. </li>
  * <li> Zekiel informs you about the test and wizards. </li>
  * <li> You will be send to 6 levels now at which you have to choose the right creature. </li>
- * <li> If you made the right choices, you'll be able to reach the spire everytime you want. </li>  
+ * <li> If you made the right choices, you'll be able to reach the spire everytime you want. </li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 9,000 XP total </li>
  * <li> some karma (20 total) </li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li> None </li>
@@ -85,60 +85,60 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 
 		// player asks about quest when he has not started it
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"First you need six magic candles. Bring me six pieces of #beeswax and two pieces of #iron, " +
 				"then I will summon the candles for you. After this you can start the practical test.",
 				new SetQuestAction(QUEST_SLOT,"start"));
-		
+
 		// player asks about quest when he has already completed it
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"You have already passed the practical test and you are free to explore this tower. I will #teleport you " +
 			"to the spire, or I can #help you some other way.",
 			null);
-		
+
 		// player asks about quest when he is in the initial bringing candles stage
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"You haven't brought me the #ingredients for the magic candles.",
 				null);
 
 		// player asks about quest when he is in the practical test stage
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "candles_done"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"You haven't finished the practical test. You can #start with it, or you can learn " +
 				"more about the #wizards before you begin.",
 				null);
-		
+
 		// we should only answer to these ingredients questions if the candles stage is not yet done
 		npc.add(ConversationStates.ATTENDING,
-				"beeswax", 
+				"beeswax",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 			    "I will summon magic candles for you, but I will need beeswax for that. Beekeepers usually sell beeswax.",
 			    null);
-		
+
 		// we should only answer to these ingredients questions if the candles stage is not yet done
 		npc.add(ConversationStates.ATTENDING,
-				"iron", 
+				"iron",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"The candlestick needs to be made of iron. The blacksmith in Semos can help you.",
 				null);
-		
+
 		// we should only answer to these ingredients questions if the candles stage is not yet done
 		npc.add(ConversationStates.ATTENDING,
-				"ingredients", 
+				"ingredients",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I will need six pieces of #beeswax and two pieces of #iron to summon the candles.",
 				null);
 	}
@@ -153,9 +153,9 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 					new QuestInStateCondition(QUEST_SLOT,"start"),
 					new NotCondition(new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
 					new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON)),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Greetings, I see you have the iron, but I still need six pieces of beeswax. Please come back when you " +
-			"have all #ingredients with you.", 
+			"have all #ingredients with you.",
 			null);
 
 		// player returns with beeswax but no iron
@@ -165,11 +165,11 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 					new QuestInStateCondition(QUEST_SLOT,"start"),
 					new NotCondition(new PlayerHasItemWithHimCondition("iron",REQUIRED_IRON)),
 					new PlayerHasItemWithHimCondition("beeswax",REQUIRED_BEESWAX)),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Greetings, I see you have the beeswax, but I still need two pieces of iron. Please come back when you " +
-			"have all #ingredients with you.", 
+			"have all #ingredients with you.",
 			null);
-		
+
 		//player returns with beeswax and iron
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
@@ -198,7 +198,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 								new QuestInStateCondition(QUEST_SLOT,"fifth_step"),
 								new QuestInStateCondition(QUEST_SLOT,"sixth_step"),
 								new QuestInStateCondition(QUEST_SLOT,"last_step"))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Greetings! You have so far failed the practical test. Tell me, if you want me to #send you on it again " +
 			"right now, or if there is anything you want to #learn about it first.",
 			new SetQuestAction(QUEST_SLOT, "candles_done"));
@@ -208,11 +208,11 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Zekiel the guardian");
 
 		// player returns after bringing the candles but hasn't tried to climb tower
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"candles_done")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Greetings, I suppose you came back to #start with the practical test.",
 			null);
 
@@ -220,7 +220,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"start",
 			new QuestInStateCondition(QUEST_SLOT,"candles_done"),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"First you should #know some important things about the test and the wizards. " +
 			"I will #send you to the first step, if you are ready.",
 			null);
@@ -229,7 +229,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("know", "learn"),
 			new QuestInStateCondition(QUEST_SLOT,"candles_done"),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"At each step there is a northern, southern, eastern and western cell, which contains a creature." +
 			" Choose the creature, that you associate with the #wizards domain and history, by using the magical spot" +
 			" between the two warlock statues in front of the cell. Don't worry, you don't have to fight the creature" +
@@ -238,13 +238,13 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			" leave the practical test, just use the magical spot in the middle of the hexagramm." +
 			" So if you think are ready, I will #send you to the first step.",
 			null);
-		
-		// player asks about wizards: give him a parchment of information. 
+
+		// player asks about wizards: give him a parchment of information.
 		// this overrides the normal answer to wizards if the player is in the correct quest slot
 		npc.add(ConversationStates.ATTENDING,
 				"wizards",
 				new QuestInStateCondition(QUEST_SLOT,"candles_done"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Take this parchment with hints about the seven wizards, you will need it at each step I #send you on. " +
 				"Listen for my message telling you whose domain you entered, at each step, or you cannot choose the correct creature.",
 				new ExamineChatAction("wizards-parchment.png", "Parchment", "The wizards circle"));
@@ -255,7 +255,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new AndCondition(
 					new QuestInStateCondition(QUEST_SLOT,"candles_done"),
 					new PlayerHasItemWithHimCondition("candle")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Before I can send you on the first step, you have to drop any candles you are carrying.",
 			null);
 
@@ -265,7 +265,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 			new AndCondition(
 					new QuestInStateCondition(QUEST_SLOT,"candles_done"),
 					new NotCondition(new PlayerHasItemWithHimCondition("candle"))),
-			ConversationStates.IDLE, 
+			ConversationStates.IDLE,
 			null,
 			new MultipleActions(
 					new SetQuestAction(QUEST_SLOT, "first_step"),
@@ -273,17 +273,17 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	}
 
 	private void finishQuestStep() {
-		
+
 		// NOTE: this is a different NPC from Zekiel the guardian used above. This one 'finishes' the quest
 		// and is in int_semos_wizards_tower_7, not the basement.
 		final SpeakerNPC npc = npcs.get("Zekiel");
 
 		// player got to the last level of the tower
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT,"last_step")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Very well, adventurer! You have passed the practical test. You can now enter the spire whenever you want.",
 			new MultipleActions(
 				new IncreaseXPAction(5000),
@@ -292,7 +292,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	}
 
 	private void questFinished() {
-		
+
 		// this is the basement level normal Zekiel the guardian again
 		final SpeakerNPC npc = npcs.get("Zekiel the guardian");
 
@@ -300,12 +300,12 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestCompletedCondition(QUEST_SLOT)),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Greetings adventurer, how can I #help you this time?",
 			null);
-		
+
 		// player asks for help, having completed the quest
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.HELP_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
@@ -342,7 +342,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				"Zekiels Practical Test",
 				"Zekiel, the guardian of the magic tower, knows all about the wizards domain and history.",
 				true);
-		
+
 		prepareQuestOfferingStep();
 		bringItemsStep();
 		practicalTestStep();
@@ -380,12 +380,12 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	public String getNPCName() {
 		return "Zekiel the guardian";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 30;

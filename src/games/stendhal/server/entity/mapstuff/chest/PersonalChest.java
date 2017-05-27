@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,14 +25,8 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PersonalChestSlot;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows different
@@ -37,10 +36,10 @@ import org.apache.log4j.Logger;
  * <p>
  * Caution: each PersonalChest must be placed in such a way that only one player
  * can stand next to it at a time, to prevent other players from stealing while
- * the owner is looking at his items. 
+ * the owner is looking at his items.
  */
 public class PersonalChest extends Chest {
-	
+
 	/**
 	 * The default bank slot name.
 	 */
@@ -48,7 +47,7 @@ public class PersonalChest extends Chest {
 
 	private static Logger LOGGER = Logger.getLogger(PersonalChest.class);
 
-	
+
 	private RPEntity attending;
 
 	private final String bankName;
@@ -64,7 +63,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Create a personal chest using a specific bank slot.
-	 * 
+	 *
 	 * @param bankName
 	 *            The name of the bank slot.
 	 */
@@ -87,8 +86,8 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Copies an item.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param item
 	 *            item to copy
 	 * @return copy
@@ -110,7 +109,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Get the slot that holds items for this chest.
-	 * 
+	 *
 	 * @return A per-player/per-bank slot.
 	 */
 	public RPSlot getBankSlot() {
@@ -123,7 +122,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Sync the slot contents.
-	 * 
+	 *
 	 * @return <code>true</code> if it should be called again.
 	 */
 	protected boolean syncContent() {
@@ -156,7 +155,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Open the chest for an attending user.
-	 * 
+	 *
 	 * @param user
 	 *            The attending user.
 	 */
@@ -230,7 +229,7 @@ public class PersonalChest extends Chest {
 	protected class SyncContent implements TurnListener {
 		/**
 		 * This method is called when the turn number is reached.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
@@ -241,7 +240,7 @@ public class PersonalChest extends Chest {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onRemoved(final StendhalRPZone zone) {
 		SingletonRepository.getTurnNotifier().dontNotify(chestSynchronizer);

@@ -15,17 +15,17 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 
 	/**
 	 * Create a locked door.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A KeyDestroyingDoor.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see KeyDestroyingDoor
 	 */
 	@Override

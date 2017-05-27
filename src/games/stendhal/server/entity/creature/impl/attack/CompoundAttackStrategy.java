@@ -14,10 +14,9 @@ package games.stendhal.server.entity.creature.impl.attack;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Pair;
-
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import marauroa.common.Pair;
 
 /**
  * Strategy that combines different sub-strategies for attacking, targeting and
@@ -27,17 +26,17 @@ class CompoundAttackStrategy implements AttackStrategy {
 	private final TargetSelectionStrategy targeter;
 	private final PositioningStrategy positioner;
 	private final AttackStrategy base;
-	
+
 	/**
 	 * Create a new strategy.
-	 * 
+	 *
 	 * @param params String describing the sub-strategies. It should be a comma
 	 *	separated list of strategy names of the form "attack,target,position".
 	 *	Parameters to the sub-strategies can be passed in parentheses. Example:
 	 *	"archer(5),attack weakest,dual attack", will create a strategy of using
 	 *	range 5 archer for attacking, preferring the weakest opponent next to
 	 *	the creature, and using "dual attack" profile for positioning.
-	 * 
+	 *
 	 * @return compound strategy
 	 */
 	static AttackStrategy create(String params) {
@@ -53,13 +52,13 @@ class CompoundAttackStrategy implements AttackStrategy {
 		return new CompoundAttackStrategy(getSubStrategy(arg[0]),
 				targeter, positioner);
 	}
-	
+
 	/**
 	 * Extract strategy name and an optional parameter from a strategy
 	 * description.
-	 * 
+	 *
 	 * @param desc strategy description
-	 * 
+	 *
 	 * @return a pair where the first object is the strategy name, and second is
 	 * 	the parameter to that strategy, or empty string if none is provided.
 	 */
@@ -71,10 +70,10 @@ class CompoundAttackStrategy implements AttackStrategy {
 		}
 		return rval;
 	}
-	
+
 	/**
 	 * Get a sub-strategy corresponding to a strategy description string.
-	 * 
+	 *
 	 * @param desc description
 	 * @return strategy
 	 */
@@ -82,13 +81,13 @@ class CompoundAttackStrategy implements AttackStrategy {
 		Pair<String, String> args = parseStrategy(desc);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put(args.first(), args.second());
-		
+
 		return AttackStrategyFactory.get(map);
 	}
-	
+
 	/**
 	 * Create a new CompoundAttackStrategy.
-	 * 
+	 *
 	 * @param base strategy used for attacking
 	 * @param targeter strategy used for choosing the target
 	 * @param positioner strategy used for choosing the attacking position

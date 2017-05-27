@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 /**
  * Represents an empty/unmarked teleport scroll.
@@ -28,7 +28,7 @@ public class EmptyScroll extends Scroll {
 
 	/**
 	 * Creates a new empty scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -41,7 +41,7 @@ public class EmptyScroll extends Scroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -51,7 +51,7 @@ public class EmptyScroll extends Scroll {
 
 	/**
 	 * Use a [empty] scroll.
-	 * 
+	 *
 	 * @param player
 	 * @return always true
 	 */

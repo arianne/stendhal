@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.common.constants.Testing;
 
-import java.util.List;
-
 /**
  * The 2D view of a user.
- * 
- * @param <T> user 
+ *
+ * @param <T> user
  */
 class User2DView<T extends User> extends Player2DView<T> {
 	@Override
@@ -41,7 +41,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
-	 * 
+	 *
 	 * @return <code>true</code> if the client user can see this entity while in
 	 *         ghostmode.
 	 */
@@ -57,7 +57,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -72,7 +72,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 		list.remove(ActionType.PUSH.getRepresentation());
 		list.remove(ActionType.TRADE.getRepresentation());
 		list.remove(ActionType.INVITE.getRepresentation());
-		
+
 		/* Walk/Stop action. */
 		if (Testing.MOVEMENT) {
 			if (this.getEntity().stopped()) {
@@ -111,7 +111,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -126,7 +126,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 		case SET_OUTFIT:
 			j2DClient.get().chooseOutfit();
 			break;
-			
+
 		case WALK_START:
 		case WALK_STOP:
 		case WHERE:

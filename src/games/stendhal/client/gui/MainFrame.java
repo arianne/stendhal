@@ -12,11 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.stendhal;
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.update.ClientGameConfiguration;
-import games.stendhal.common.Debug;
-
 import java.awt.GraphicsConfiguration;
 import java.awt.MouseInfo;
 import java.net.URL;
@@ -24,6 +19,11 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+
+import games.stendhal.client.stendhal;
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.common.Debug;
 
 /**
  * Utility class for preparing the main game window.
@@ -35,7 +35,7 @@ final class MainFrame {
 
 	/**
 	 * Set the window icon.
-	 * 
+	 *
 	 * @param frame window
 	 */
 	private static void setIcon(JFrame frame) {
@@ -46,7 +46,7 @@ final class MainFrame {
 
 	/**
 	 * Set the window title.
-	 * 
+	 *
 	 * @param frame window
 	 */
 	private static void setTitle(JFrame frame) {
@@ -62,7 +62,7 @@ final class MainFrame {
 	/**
 	 * Prepare a frame for use as the main window, or create a new one if
 	 * needed.
-	 * 
+	 *
 	 * @param frame frame to be used as the main game window. If
 	 * 	<code>null</code>, then a new frame will be created
 	 * @return frame suitable for use as the main game window
@@ -76,7 +76,7 @@ final class MainFrame {
 		}
 		setTitle(frame);
 		setIcon(frame);
-		// Splash screen uses the same identifier on purpose. It is the same 
+		// Splash screen uses the same identifier on purpose. It is the same
 		// window.
 		WindowUtils.trackLocation(frame, "main", true);
 		/*

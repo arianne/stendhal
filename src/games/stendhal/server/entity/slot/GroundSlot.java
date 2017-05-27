@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.slot;
 
+import java.awt.Rectangle;
+import java.util.List;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-
-import java.awt.Rectangle;
-import java.util.List;
 
 
 /**
@@ -114,7 +114,7 @@ public class GroundSlot extends EntitySlot {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 * 
+	 *
 	 * @param player the player in respect to whom the check is done
 	 * @return name of other player standing on the item or <code>null</code>
 	 * 	if nobody, or the player themselves is standing on the item

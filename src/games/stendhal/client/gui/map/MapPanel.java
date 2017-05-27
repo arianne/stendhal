@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.common.CollisionDetection;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -28,6 +25,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.common.CollisionDetection;
 import marauroa.common.game.RPAction;
 
 class MapPanel extends JComponent {
@@ -58,7 +57,7 @@ class MapPanel extends JComponent {
 	private static final int MAP_HEIGHT = 128;
 	/** Minimum scale of the map; the minimum size of one tile in pixels */
 	private static final int MINIMUM_SCALE = 2;
-	
+
 	private final StendhalClient client;
 	private final MapPanelController controller;
 
@@ -74,13 +73,13 @@ class MapPanel extends JComponent {
 	private int xOffset;
 	/** Y offset of the background image */
 	private int yOffset;
-	
-	/** 
+
+	/**
 	 * Maximum width of visible part of the map image. This should be accessed
 	 * only in the event dispatch thread.
 	 */
 	private int width;
-	/** 
+	/**
 	 * Maximum height of visible part of the map image. This should be accessed
 	 * only in the event dispatch thread.
 	 */
@@ -90,17 +89,17 @@ class MapPanel extends JComponent {
 	 * dimension. This should be accessed only in the event dispatch thread.
 	 */
 	private int scale;
-	
+
 	/**
 	 * Map background. This should be accessed only in the event dispatch
 	 * thread.
 	 */
 	private Image mapImage;
-	
+
 	/**
 	 * Create a new MapPanel.
-	 * 
-	 * @param controller 
+	 *
+	 * @param controller
 	 * @param client
 	 */
 	MapPanel(final MapPanelController controller, final StendhalClient client) {
@@ -110,7 +109,7 @@ class MapPanel extends JComponent {
 		setBackground(Color.black);
 		updateSize(new Dimension(MAP_WIDTH, MAP_HEIGHT));
 		setOpaque(true);
-		
+
 		// handle clicks for moving.
 		this.addMouseListener(new MouseAdapter() {
 			@Override
@@ -119,30 +118,30 @@ class MapPanel extends JComponent {
 			}
 		});
 	}
-	
+
 	@Override
 	public void paintComponent(final Graphics g) {
 		// Set this first, so that any changes made during the drawing will
 		// flag the map changed
 		controller.setNeedsRefresh(false);
-		
+
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		// The rest of the things should be drawn inside the actual map area
 		g.clipRect(0, 0, width, height);
-		// also choose the origin so that we can simply draw to the 
+		// also choose the origin so that we can simply draw to the
 		// normal coordinates
 		g.translate(-xOffset, -yOffset);
-		
+
 		drawMap(g);
 		drawEntities(g);
-		
+
 		g.dispose();
 	}
-	
+
 	/**
 	 * Draw the entities on the map.
-	 *  
+	 *
 	 * @param g The graphics context
 	 */
 	private void drawEntities(final Graphics g) {
@@ -150,11 +149,11 @@ class MapPanel extends JComponent {
 			object.draw(g, scale);
 		}
 	}
-	
+
 	/**
 	 * Set the dimensions of the component. This must be called from the event
 	 * dispatch thread.
-	 *  
+	 *
 	 * @param dim the new dimensions
 	 */
 	private void updateSize(final Dimension dim) {
@@ -167,20 +166,20 @@ class MapPanel extends JComponent {
 		controller.setNeedsRefresh(true);
 		revalidate();
 	}
-	
+
 	/**
 	 * Draw the map background. This must be called from the event dispatch
 	 * thread.
-	 * 
+	 *
 	 * @param g The graphics context
 	 */
 	private void drawMap(final Graphics g) {
 		g.drawImage(mapImage, 0, 0, null);
 	}
-	
+
 	/**
 	 * The player's position changed.
-	 * 
+	 *
 	 * @param x
 	 *            The X coordinate (in world units).
 	 * @param y
@@ -192,12 +191,12 @@ class MapPanel extends JComponent {
 
 		updateView();
 	}
-	
+
 	@Override
 	public void paintImmediately(int x, int y, int w, int h) {
 		/*
 		 * Try to keep the view screen while the user is switching maps.
-		 * 
+		 *
 		 * NOTE: Relies on the repaint() requests to eventually come to
 		 * this, so if swing internals change some time in the future,
 		 * a new solution may be needed.
@@ -210,7 +209,7 @@ class MapPanel extends JComponent {
 			}
 		}
 	}
-	
+
 	/**
 	 * Update the view pan. This should be done when the map size or player
 	 * position changes. This must be called from the event dispatch thread.
@@ -249,14 +248,14 @@ class MapPanel extends JComponent {
 			}
 		}
 	}
-	
+
 	/**
 	 * Update the map with new data. This method can be called outside the
-	 * event dispatch thread. 
-	 * 
+	 * event dispatch thread.
+	 *
 	 * @param cd
 	 *            The collision map.
-	 * @param pd  
+	 * @param pd
 	 *      	  The protection map.
 	 */
 	void update(final CollisionDetection cd, final CollisionDetection pd) {
@@ -266,7 +265,7 @@ class MapPanel extends JComponent {
 		final int scale = Math.max(MINIMUM_SCALE, Math.min(MAP_HEIGHT / mapHeight, MAP_WIDTH / mapWidth));
 		final int width = Math.min(MAP_WIDTH, mapWidth * scale);
 		final int height = Math.min(MAP_HEIGHT, mapHeight * scale);
-		
+
 		// this.getGraphicsConfiguration is not thread safe
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		// create the map image, and fill it with the wanted details
@@ -274,7 +273,7 @@ class MapPanel extends JComponent {
 		final Graphics g = newMapImage.getGraphics();
 		g.setColor(COLOR_BACKGROUND);
 		g.fillRect(0, 0, mapWidth * scale, mapHeight * scale);
-		
+
 		for (int x = 0; x < mapWidth; x++) {
 			for (int y = 0; y < mapHeight; y++) {
 				if (cd.collides(x, y)) {
@@ -304,16 +303,16 @@ class MapPanel extends JComponent {
 		});
 		repaint();
 	}
-	
+
 	/**
 	 * Tell the player to move to point p
-	 * 
+	 *
 	 * @param p the point
 	 * @param doubleClick <code>true</code> if the movement was requested with
 	 * 	a double click, <code>false</code> otherwise
 	 */
 	private void movePlayer(final Point p, boolean doubleClick) {
-		// Ignore clicks to the title area 
+		// Ignore clicks to the title area
 		if (p.y <= height) {
 			final RPAction action = new RPAction();
 			action.put("type", "moveto");

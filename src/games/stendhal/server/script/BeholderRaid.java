@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Not safe for players below level 10
  */
 public class BeholderRaid extends CreateRaid {
@@ -33,7 +33,7 @@ public class BeholderRaid extends CreateRaid {
 		attackArmy.put("grass snake", 4);
 		return attackArmy;
 	}
-	
+
 	@Override
 	protected String getInfo() {
 		return "Not safe for players below level 12";

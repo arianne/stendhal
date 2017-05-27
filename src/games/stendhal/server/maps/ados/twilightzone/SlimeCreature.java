@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.twilightzone;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,15 +22,13 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
-import java.util.Map;
-
 /**
- * Configure twilight zone to include a slime Creature which drops twilight elixir. 
- * 
+ * Configure twilight zone to include a slime Creature which drops twilight elixir.
+ *
  */
 public class SlimeCreature implements ZoneConfigurator {
 
-	
+
 	/**
 	 * Configure a zone.
 	 *

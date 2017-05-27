@@ -12,6 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.sound.sound;
 
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+import javax.sound.sampled.AudioFormat;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.MemoryCache;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.facade.AudibleArea;
@@ -22,15 +31,6 @@ import games.stendhal.client.sound.manager.AudioResource;
 import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.common.math.Numeric;
-
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-
-import javax.sound.sampled.AudioFormat;
-
-import org.apache.log4j.Logger;
 
 /**
  * this class is the main interface between the game logic and the low level

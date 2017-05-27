@@ -66,16 +66,16 @@ public final class Triple<P, S, T> {
 		if (!(obj instanceof Triple)) {
 			return false;
 		}
-		
+
 		final Triple<P, S , T> other = (Triple <P, S, T>) obj;
-		
+
 		return Objects.equals(prim, other.prim) && Objects.equals(sec, other.sec)
 				&& Objects.equals(third, other.third);
 	}
 
 	/**
 	 * Create a triple.
-	 * 
+	 *
 	 * @param prim first object
 	 * @param sec second object
 	 * @param third third object

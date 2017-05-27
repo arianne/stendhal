@@ -1,12 +1,10 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.script;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,11 +13,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 /**
  * Tests for OfflineClearSentence script
- * 
+ *
  * @author madmetzger
  */
 public class OfflineClearSentenceTest {
@@ -43,7 +43,7 @@ public class OfflineClearSentenceTest {
 
     /**
      * Test for parameter validation with a valid set of parameters
-     * 
+     *
      * @throws Exception
      */
 	@Test
@@ -55,7 +55,7 @@ public class OfflineClearSentenceTest {
 
     /**
      * Test for parameter validation with an invalid empty set of parameters
-     * 
+     *
      * @throws Exception
      */
 	@Test
@@ -68,7 +68,7 @@ public class OfflineClearSentenceTest {
 
     /**
      * Test for parameter validation with too many parameters
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -80,7 +80,7 @@ public class OfflineClearSentenceTest {
 
     /**
      * Test processing a player object without a sentence
-     * 
+     *
      * @throws Exception
      */
 	@Test
@@ -94,7 +94,7 @@ public class OfflineClearSentenceTest {
 
     /**
      * Test processing a player with a sentence
-     * 
+     *
      * @throws Exception
      */
     @Test

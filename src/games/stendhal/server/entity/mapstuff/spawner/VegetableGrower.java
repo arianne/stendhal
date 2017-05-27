@@ -22,7 +22,7 @@ import marauroa.common.game.RPObject;
 
 /**
  * A growing carrot which can be picked.
- * 
+ *
  * @author hendrik
  */
 public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
@@ -49,11 +49,11 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 	/**
      * Create a VegetableGrower from an RPObject. Used when restoring growers
      * from the DB.
-     * 
+     *
      * @param object object to be converted
      * @param name item name
      * @param maxRipeness maximum ripeness of the object
-     * @param growthRate average time between growth steps 
+     * @param growthRate average time between growth steps
      */
 	public VegetableGrower(final RPObject object, final String name,
 			final int maxRipeness, final int growthRate) {
@@ -66,7 +66,7 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 
 	/**
 	 * Create a new VegetableGrower for an item.
-	 * 
+	 *
 	 * @param name item name
 	 */
 	public VegetableGrower(final String name) {
@@ -75,12 +75,12 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		setDescription("It looks like there's "
 				+ Grammar.a_noun(name) + " sprouting here.");
 	}
-	
+
 	/**
 	 * Create a new VegetableGrower for an item.
-	 * 
+	 *
 	 * @param name item name
-	 * @param notRipeEnoughMessage 
+	 * @param notRipeEnoughMessage
 	 * 		The message displayed when the
 	 * 		player tries to pick the item but it is
 	 * 		not yet ripe enough.

@@ -11,14 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.io.IOException;
-import java.sql.SQLException;
-
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
@@ -26,7 +25,7 @@ import marauroa.server.game.db.DAORegister;
 /**
  * Logs a Harold trade event
  *
- * @author hendrik 
+ * @author hendrik
  */
 public class LogTradeEventCommand extends AbstractDBCommand {
 	private String charname;

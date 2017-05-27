@@ -12,8 +12,6 @@
 
 package games.stendhal.client.gui.styled.cursor;
 
-import games.stendhal.client.sprite.DataLoader;
-
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
@@ -27,6 +25,8 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.sprite.DataLoader;
 
 /**
  * Loads and caches cursors

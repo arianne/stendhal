@@ -12,14 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.gui.trade;
 
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.common.TradeState;
-
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
-
 import marauroa.common.game.RPAction;
 
 /**
@@ -30,36 +29,36 @@ public final class TradingController {
 	private static TradingController instance;
 	/** Trading window component. */
 	private final TradingWindow window;
-	
+
 	private IEntity tradingPartner;
 	private IEntity user;
-	
+
 	private TradeState myState;
 	private TradeState partnerState;
-	
+
 	/**
 	 * Create the controller instance.
 	 */
 	private TradingController() {
 		window = new TradingWindow(this);
 	}
-	
+
 	/**
 	 * Get the trading window component.
-	 * 
+	 *
 	 * @return trading window
 	 */
 	public JComponent getWindow() {
 		return window;
 	}
-	
+
 	/**
 	 * Set the new trading state.
-	 * 
+	 *
 	 * @param user the trading user
 	 * @param partner the trading partner
 	 * @param myState state of the user
-	 * @param partnerState state of the trading partner 
+	 * @param partnerState state of the trading partner
 	 */
 	public void setState(IEntity user, IEntity partner, TradeState myState, TradeState partnerState) {
 		setMyState(myState);
@@ -89,10 +88,10 @@ public final class TradingController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the current trading partner.
-	 * 
+	 *
 	 * @param partner new trading partner
 	 */
 	private void setPartner(final IEntity partner) {
@@ -101,7 +100,7 @@ public final class TradingController {
 			/*
 			 * Partner gets set to null on cancelled trade. Do not show the
 			 * window if the user already closed it
-			 */  
+			 */
 			if (partner != null) {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
@@ -113,10 +112,10 @@ public final class TradingController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the current user, if it has changed.
-	 * 
+	 *
 	 * @param user current user
 	 */
 	private void setUser(final IEntity user) {
@@ -130,10 +129,10 @@ public final class TradingController {
 			});
 		}
 	}
-	
+
 	/**
 	 * Set the trading state of the user.
-	 * 
+	 *
 	 * @param state user trade state
 	 */
 	private void setMyState(TradeState state) {
@@ -142,10 +141,10 @@ public final class TradingController {
 			onMyStateChanged();
 		}
 	}
-	
+
 	/**
 	 * Set the trading status of the partner.
-	 * 
+	 *
 	 * @param state partner trade state
 	 */
 	private void setPartnerState(TradeState state) {
@@ -154,10 +153,10 @@ public final class TradingController {
 			onPartnerStateChanged();
 		}
 	}
-	
+
 	/**
 	 * Process changes of the user's trade state. Modify the window so that it
-	 * allows the same operations as the server. 
+	 * allows the same operations as the server.
 	 */
 	private void onMyStateChanged() {
 		Runnable guiChange = null;
@@ -215,16 +214,16 @@ public final class TradingController {
 		default:
 				// do nothing
 		}
-		
-		
+
+
 		if (guiChange != null) {
 			SwingUtilities.invokeLater(guiChange);
 		}
 	}
-	
+
 	/**
 	 * Process changes of the trading partner's trade state. Modify the window
-	 * so that it allows the same operations as the server. 
+	 * so that it allows the same operations as the server.
 	 */
 	private void onPartnerStateChanged() {
 		Runnable guiChange = null;
@@ -266,28 +265,28 @@ public final class TradingController {
 		default:
 				// do nothing
 		}
-		
+
 		if (guiChange != null) {
 			SwingUtilities.invokeLater(guiChange);
 		}
 	}
-	
+
 	/**
 	 * Get the trading controller instance.
-	 * 
+	 *
 	 * @return controller instance
 	 */
 	public static synchronized TradingController get() {
 		if (instance == null) {
 			instance = new TradingController();
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Make a trading action.
-	 * 
+	 *
 	 * @return a trading action
 	 */
 	private RPAction makeAction() {
@@ -295,7 +294,7 @@ public final class TradingController {
 		action.put("type", "trade");
 		return action;
 	}
-	
+
 	/**
 	 * Send a trade cancelled action to the server.
 	 */
@@ -304,7 +303,7 @@ public final class TradingController {
 		action.put("action", "cancel");
 		ClientSingletonRepository.getClientFramework().send(action);
 	}
-	
+
 	/**
 	 * Send a lock offer action to the server.
 	 */
@@ -313,7 +312,7 @@ public final class TradingController {
 		action.put("action", "lock");
 		ClientSingletonRepository.getClientFramework().send(action);
 	}
-	
+
 	/**
 	 * Send an accept trade action to the server.
 	 */

@@ -27,26 +27,26 @@ public interface SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if command was handled.
 	 */
 	boolean execute(String[] params, String remainder);
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	int getMaximumParameters();
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	int getMinimumParameters();

@@ -16,7 +16,7 @@ import marauroa.common.game.Result;
 
 /**
  * validates the character used in the email address.
- * 
+ *
  * @author hendrik
  */
 public class EMailCharacterValidator implements AccountParameterValidator {
@@ -25,7 +25,7 @@ public class EMailCharacterValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a EMailValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */

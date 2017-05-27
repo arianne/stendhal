@@ -11,11 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
-import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.sprite.DataLoader;
-
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -28,6 +23,11 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.sprite.DataLoader;
+
 /**
  * Area for displaying information about a zone.
  */
@@ -36,7 +36,7 @@ class InformationPanel extends JComponent {
 	private static final int MAX_SKULLS = 5;
 	/**
 	 * Value to added to the player level when calculating the amount of skulls
-	 * to show. <b>Must be at least 1.</b>. Higher values mean that low level 
+	 * to show. <b>Must be at least 1.</b>. Higher values mean that low level
 	 * players require higher danger level at a zone for a certain amount of
 	 * skulls.
 	 */
@@ -53,7 +53,7 @@ class InformationPanel extends JComponent {
 		"The area feels very dangerous!",
 		"The area feels extremely dangerous. Run away!"
 	};
-	
+
 	/** Zone name display. */
 	private final JTextPane nameField;
 	/** Attribute set needed for centering the zone name text. */
@@ -63,12 +63,12 @@ class InformationPanel extends JComponent {
 	/** Current relative danger level. */
 	private int dangerLevel;
 	/**
-	 * A component overlaying the zone text and the danger indicator. This is 
+	 * A component overlaying the zone text and the danger indicator. This is
 	 * for holding a common tool tip for them both. JTextPane consumes mouse
 	 * events so setting a tool tip for the common parent does not work.
 	 */
 	private final JComponent glassPane;
-	
+
 	/**
 	 * Create a new InformationPanel.
 	 */
@@ -78,7 +78,7 @@ class InformationPanel extends JComponent {
 		glassPane = new JComponent(){};
 		add(glassPane);
 		add(container);
-		
+
 		// ** Zone name **
 		nameField = new JTextPane();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
@@ -89,7 +89,7 @@ class InformationPanel extends JComponent {
 		nameField.setFocusable(false);
 		nameField.setEditable(false);
 		container.add(nameField, SLayout.EXPAND_X);
-		
+
 		// ** Danger display **
 		dangerIndicator = new DangerIndicator(MAX_SKULLS);
 		dangerIndicator.setAlignmentX(CENTER_ALIGNMENT);
@@ -97,19 +97,19 @@ class InformationPanel extends JComponent {
 		// Default to safe, so that we always have a tooltip
 		describeDanger(0);
 	}
-	
+
 	/**
 	 * Set the tool tip describing zone danger level.
-	 * 
+	 *
 	 * @param dangerLevel zone danger level, value in range [0-5].
 	 */
 	private void describeDanger(int dangerLevel) {
 		glassPane.setToolTipText(dangerLevelStrings[dangerLevel]);
 	}
-	
+
 	/**
 	 * Set the name of the zone.
-	 * 
+	 *
 	 * @param name
 	 */
 	void setZoneName(String name) {
@@ -124,10 +124,10 @@ class InformationPanel extends JComponent {
 			}
 		});
 	}
-	
+
 	/**
 	 * Set the zone danger level.
-	 * 
+	 *
 	 * @param dangerLevel danger level
 	 */
 	void setDangerLevel(double dangerLevel) {
@@ -138,7 +138,7 @@ class InformationPanel extends JComponent {
 			describeDanger(skulls);
 		}
 	}
-	
+
 	/**
 	 * A skull row component for danger level display.
 	 */
@@ -148,10 +148,10 @@ class InformationPanel extends JComponent {
 
 		/** The indicator icons */
 		private final JComponent[] indicators;
-		
+
 		/**
 		 * Create a new DangerIndicator.
-		 * 
+		 *
 		 * @param maxSkulls maximum number of skulls to display
 		 */
 		DangerIndicator(int maxSkulls) {
@@ -165,10 +165,10 @@ class InformationPanel extends JComponent {
 				indicators[i] = indicator;
 			}
 		}
-		
+
 		/**
 		 * Set the relative danger level.
-		 * 
+		 *
 		 * @param skulls amount of skulls to show
 		 */
 		void setRelativeDanger(int skulls) {

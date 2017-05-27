@@ -12,14 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.group;
 
-import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.GroupChangeEvent;
-import games.stendhal.server.events.GroupInviteEvent;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,6 +21,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.GroupChangeEvent;
+import games.stendhal.server.events.GroupInviteEvent;
 import marauroa.common.game.RPEvent;
 
 /**

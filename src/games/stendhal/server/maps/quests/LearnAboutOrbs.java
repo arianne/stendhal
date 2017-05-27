@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -25,31 +28,28 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * QUEST: Learn about Orbs
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Ilisa, the summon healer in Semos temple</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Ilisa offers to teach you about orbs</li>
  * <li>You use the orb</li>
  * <li>You tell her if you were successful.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>50 XP</li>
  * <li>Ability to use orb in semos temple which teleports you outside into city</li>
  * <li>Ability to use other orbs e.g. in orril lich palace</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>Can always learn about orbs but not get the xp each time</li>
@@ -60,7 +60,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 	private static final String QUEST_SLOT = "learn_scrying";
 
 
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -82,22 +82,22 @@ public class LearnAboutOrbs extends AbstractQuest {
 
 	private void step1() {
 		final SpeakerNPC npc = npcs.get("Ilisa");
-		
+
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"Some orbs have special properties. I can teach you how to #use an orb, like the one on this table.", null);
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"I can remind you how to #use orbs.", null);
 
 		// player interested in orb
 		npc.add(ConversationStates.QUEST_OFFERED,
-			"use", 
+			"use",
 			new LevelGreaterThanCondition(10),
 			ConversationStates.QUESTION_1,
 			"Just right click on the orb and select Use. Did you get any message?",
@@ -105,7 +105,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 
 		// player interested in orb but level < 10
 		npc.add(ConversationStates.QUEST_OFFERED,
-			"use", 
+			"use",
 			new NotCondition(new LevelGreaterThanCondition(10)),
 			ConversationStates.ATTENDING,
 			"Oh oh, I just noticed you are still new here. Perhaps you better come back when you have more experience. Until then if you need any #help just ask!",
@@ -147,12 +147,12 @@ public class LearnAboutOrbs extends AbstractQuest {
 	public String getName() {
 		return "LearnAboutOrbs";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 11;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

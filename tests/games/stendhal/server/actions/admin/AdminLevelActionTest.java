@@ -12,18 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class AdminLevelActionTest {
@@ -49,9 +50,9 @@ public class AdminLevelActionTest {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
-	
+
 		pl.put("adminlevel", 5000);
-	
+
 		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
@@ -68,9 +69,9 @@ public class AdminLevelActionTest {
 	public final void testAdminLevelActioncasterNotSuper() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 4999);
-	
+
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
-	
+
 		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
@@ -91,9 +92,9 @@ public class AdminLevelActionTest {
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
-	
+
 		pl.put("adminlevel", 5000);
-	
+
 		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
@@ -114,9 +115,9 @@ public class AdminLevelActionTest {
 	public final void testAdminLevelActionPlayerFound() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
-	
+
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
-	
+
 		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
@@ -126,7 +127,7 @@ public class AdminLevelActionTest {
 	/**
 	 * Tests for adminLevelActionPlayerGhosted.
 	 */
-	@Test 
+	@Test
 	public final void testAdminLevelActionPlayerGhosted() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
@@ -135,15 +136,15 @@ public class AdminLevelActionTest {
 		final Player nonAdmin = PlayerTestHelper.createPlayer("nonAdmin");
 		final Player admin = PlayerTestHelper.createPlayer("admin");
 		admin.setAdminLevel(5000);
-		
+
 		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
-		
+
 		CommandCenter.execute(admin, action);
 		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin, "ghostmode", false));
 		assertEquals("bob has adminlevel 5000", admin.events().get(0).get("text"));
-		
+
 		CommandCenter.execute(nonAdmin, action);
 		assertEquals("Player \"bob\" not found", nonAdmin.events().get(0).get("text"));
 
@@ -156,9 +157,9 @@ public class AdminLevelActionTest {
 	public final void testAdminLevelActionPlayerFoundNoInteger() {
 		final Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
-	
+
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
-	
+
 		final RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
@@ -179,7 +180,7 @@ public class AdminLevelActionTest {
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
-	
+
 		assertEquals("Player \"bob\" not found", pl.events().get(0).get("text"));
 	}
 

@@ -15,7 +15,7 @@ package games.stendhal.server.entity.item;
 import games.stendhal.server.entity.RPEntity;
 
 /**
- * A faster rotting corpse for raid use with time limited access 
+ * A faster rotting corpse for raid use with time limited access
  * to the contents only by the player having been last attacked by it.
  */
 public class RaidCreatureCorpse extends Corpse {
@@ -24,7 +24,7 @@ public class RaidCreatureCorpse extends Corpse {
 
 	/**
 	 * Create a corpse.
-	 * 
+	 *
 	 * @param victim
 	 *            The killed entity.
 	 * @param killerName

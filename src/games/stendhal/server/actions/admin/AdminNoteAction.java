@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 public class AdminNoteAction extends AdministrationAction {
 	@Override

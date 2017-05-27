@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author gummipferd
- * 
+ *
  * Less safe for players below level 30
  */
 public class ElfRaid extends CreateRaid {

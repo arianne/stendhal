@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -29,15 +35,9 @@ import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.PoisonStatus;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Find the seven cherubs that are all around the world.
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Cherubiel </li>
@@ -47,7 +47,7 @@ import java.util.List;
  * <li> Uriel </li>
  * <li> Zophiel </li>
  * <li> Azazel </li>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Find them and they will reward you. </li>
@@ -59,14 +59,14 @@ import java.util.List;
  * <li> some karma (35) </li>
  * <li> either fire sword, golden boots, golden armor, or golden helmet </li>
  * </ul>
- * 
+ *
  * REPETITIONS: - Just once.
  */
 public class SevenCherubs extends AbstractQuest {
 	private static final String QUEST_SLOT = "seven_cherubs";
-	
+
 	private final HashMap<String, String> cherubsHistory = new HashMap<String,String>();
-	
+
 	private void fillHistoryMap() {
 		cherubsHistory.put("Cherubiel", "I met Cherubiel in Semos Village.");
 		cherubsHistory.put("Ophaniel",  "I met Ophaniel by Orril River.");
@@ -74,14 +74,14 @@ public class SevenCherubs extends AbstractQuest {
 		cherubsHistory.put("Raphael",   "I met Raphael between Orril River and the bridge to Fado.");
 		cherubsHistory.put("Zophiel",   "I met Zophiel on Semos Mountain.");
 		cherubsHistory.put("Azazel",    "I met Azazel by Ados Rock.");
-		cherubsHistory.put("Uriel",     "I met Uriel on Orril Mountain.");		
+		cherubsHistory.put("Uriel",     "I met Uriel on Orril Mountain.");
 	}
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {

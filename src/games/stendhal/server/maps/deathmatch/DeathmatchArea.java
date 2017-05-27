@@ -48,7 +48,7 @@ public class DeathmatchArea implements LoginListener {
 	}
 
 	private void teleportToCowardPlace(final Player player) {
-		
+
 		if (cowardSpot == null) {
 			cowardSpot = new Spot(SingletonRepository.getRPWorld().getZone(
 			"0_semos_mountain_n2_w"), 104, 123);
@@ -65,7 +65,7 @@ public class DeathmatchArea implements LoginListener {
 
 		return area.contains(player);
 	}
-	
+
 	public List<Player> getPlayers() {
 		return area.getPlayers();
 	}

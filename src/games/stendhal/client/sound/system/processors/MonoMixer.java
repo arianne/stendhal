@@ -29,8 +29,9 @@ public class MonoMixer extends SignalProcessor
         {
             float value = 0;
 
-            for(int c=0; c<channels; ++c)
-                value += data[i * channels + c];
+            for(int c=0; c<channels; ++c) {
+				value += data[i * channels + c];
+			}
 
             value  /= channels;
             data[i] = value;

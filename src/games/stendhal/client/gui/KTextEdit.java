@@ -113,7 +113,7 @@ class KTextEdit extends JComponent {
 
 			popup.show(e.getComponent(), e.getX(), e.getY());
 		}
-		
+
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			StyledDocument doc = (StyledDocument) textPane.getDocument();
@@ -244,15 +244,15 @@ class KTextEdit extends JComponent {
 			StyleConstants.setForeground(s, HEADER_COLOR);
 		}
 		StyleConstants.setFontSize(s, mainTextSize - 1);
-		
+
 		//****** Styles used by the string formatter ******
 		StyleSet defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
-		
+
 		StyleSet attributes = defaultAttributes.copy();
 		attributes.setAttribute(StyleConstants.Italic, Boolean.TRUE);
 		attributes.setAttribute(StyleConstants.Foreground, Color.blue);
 		attributes.setAttribute("linkact", new LinkListener());
-		
+
 		formatter.addStyle('#', attributes);
 
 		attributes = defaultAttributes.copy();
@@ -500,7 +500,7 @@ class KTextEdit extends JComponent {
 			super.setRangeProperties(value, extent, min, max, adjusting);
 		}
 	}
-	
+
 
 	/**
 	 * Listener for clicking text marked with "#".
@@ -511,7 +511,7 @@ class KTextEdit extends JComponent {
 
 		/**
 		 * Called when a text marked with "#" is clicked.
-		 * 
+		 *
 		 * @param text content of the marked text
 		 */
 		void linkClicked(String text) {
@@ -522,7 +522,7 @@ class KTextEdit extends JComponent {
 			}
 		}
 	}
-	
+
 	/**
 	 * This is a workaround to line break behavior change between java versions
 	 * 6 and 7. Long words do not get line breaks and no officially supported

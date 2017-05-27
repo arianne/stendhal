@@ -155,7 +155,7 @@ public enum Direction {
 	public int get() {
 		return val;
 	}
-	
+
 	/**
 	 * Compares two area and return the direction of area2 towards area1. So if area2 is left of
 	 * area1, it will return Direction.LEFT

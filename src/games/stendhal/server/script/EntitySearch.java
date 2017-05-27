@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -19,11 +23,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 
@@ -41,7 +40,7 @@ import marauroa.common.game.RPObject;
  * names containing: 0_semos_plain Respawn points for 0_semos_plains_ne [1]
  * gnome(2) [17] rat(0) Respawn points for 0_semos_plains_n_e2 [2] snake(3) [1]
  * gnome(2) ...
- * 
+ *
  */
 
 public class EntitySearch extends ScriptImpl {
@@ -98,7 +97,7 @@ public class EntitySearch extends ScriptImpl {
 			final StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			for (final RPObject rpObj : zone) {
-				if (isACreatureButNoPet(rpObj)) { 
+				if (isACreatureButNoPet(rpObj)) {
 					final Creature c = (Creature) rpObj;
 					if (!c.isSpawned()) {
 						final String zoneName = zone.getName();
@@ -114,7 +113,7 @@ public class EntitySearch extends ScriptImpl {
 
 		sandbox.privateText(player, res.toString());
 	}
-	
+
 
 	private void findPet(Player player) {
 		final StringBuilder res = new StringBuilder();
@@ -125,7 +124,7 @@ public class EntitySearch extends ScriptImpl {
 			final StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			for (final RPObject rpObj : zone) {
-				if (rpObj instanceof DomesticAnimal) { 
+				if (rpObj instanceof DomesticAnimal) {
 					final DomesticAnimal pet = (DomesticAnimal) rpObj;
 					final String zoneName = zone.getName();
 					res.append("\r\n" + pet.getRPClass().getName());

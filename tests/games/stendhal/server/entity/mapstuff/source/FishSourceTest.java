@@ -15,6 +15,10 @@ package games.stendhal.server.entity.mapstuff.source;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.useable.FishSource;
 import games.stendhal.server.entity.player.Player;
@@ -22,10 +26,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.FishSourceTestHelper;
 
@@ -36,7 +36,7 @@ public class FishSourceTest {
 		MockStendhalRPRuleProcessor.get();
 
 		MockStendlRPWorld.get();
-		
+
 	}
 
 	/**

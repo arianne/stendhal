@@ -23,7 +23,7 @@ public class ViewChangeEntityFactory implements ConfigurableFactory {
 		int x = ctx.getRequiredInt("x");
 		int y = ctx.getRequiredInt("y");
 		ViewChangeEntity entity = new ViewChangeEntity(x, y);
-		
+
 		return entity;
 	}
 }

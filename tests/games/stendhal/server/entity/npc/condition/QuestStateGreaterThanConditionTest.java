@@ -12,43 +12,42 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import games.stendhal.server.entity.player.Player;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 
 /**
  * Tests for the {@link QuestStateGreaterThanCondition}
- * 
+ *
  * @author madmetzger
  */
 public class QuestStateGreaterThanConditionTest {
-	
+
 	private static Player player;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		player = PlayerTestHelper.createPlayer("testplayer");
 		player.setQuest("testquest", "done;5");
 	}
-	
+
 	@Test
 	public void testNotOftenEnoughFinished() {
 		QuestStateGreaterThanCondition c = new QuestStateGreaterThanCondition("testquest", 1, 10);
 		assertFalse(c.fire(player, null, null));
 	}
-	
+
 	@Test
 	public void testExactlyMatched() {
 		QuestStateGreaterThanCondition c = new QuestStateGreaterThanCondition("testquest", 1, 5);
 		assertFalse(c.fire(player, null, null));
 	}
-	
+
 	@Test
 	public void testMoreThanNeeded() {
 		QuestStateGreaterThanCondition c = new QuestStateGreaterThanCondition("testquest", 1, 3);

@@ -11,13 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.StendhalItemDAO;
-import games.stendhal.server.entity.RPEntity;
-
 import java.sql.SQLException;
 
 import com.google.common.base.Objects;
 
+import games.stendhal.server.core.engine.db.StendhalItemDAO;
+import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.game.db.DAORegister;
@@ -59,11 +58,11 @@ public class LogMergeItemEventCommand extends AbstractLogItemEventCommand {
 		final String oldOutlivingQuantity = getQuantity(frozenOutlivingItem);
 		final String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
 
-		stendhalItemDAO.itemLogWriteEntry(transaction, liveOldItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merge in", 
-				liveOutlivingItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity, 
+		stendhalItemDAO.itemLogWriteEntry(transaction, liveOldItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merge in",
+				liveOutlivingItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity,
 				oldOutlivingQuantity, newQuantity);
 		stendhalItemDAO.itemLogWriteEntry(transaction, liveOutlivingItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merged in",
-				liveOldItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldOutlivingQuantity, 
+				liveOldItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldOutlivingQuantity,
 				oldQuantity, newQuantity);
 	}
 

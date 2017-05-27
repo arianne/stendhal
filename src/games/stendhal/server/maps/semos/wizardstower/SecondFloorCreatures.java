@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.wizardstower;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,14 +22,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class SecondFloorCreatures implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
+	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
@@ -62,7 +62,7 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 		creature1.setXP(0);
 		creature2.setXP(0);
 		creature3.setXP(0);
-		
+
 		creature.setPosition(29,15);
 		creature1.setPosition(1,15);
 		creature2.setPosition(15,28);
@@ -71,7 +71,7 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 		creature.setDirection(Direction.LEFT);
 		creature1.setDirection(Direction.RIGHT);
 		creature2.setDirection(Direction.UP);
-		
+
 		// Claim these spawned creatures to hide them from
 		// /script EntitySearch.class nonrespawn
 		creature.setRespawned(true);

@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Not safe for players below level 20
  */
 public class FairyRaid extends CreateRaid {
@@ -32,7 +32,7 @@ public class FairyRaid extends CreateRaid {
 		attackArmy.put("leprechaun", 7);
 		return attackArmy;
 	}
-	
+
 	@Override
 	protected String getInfo() {
 		return "Not safe for players below level 20";

@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled.styles;
 
-import games.stendhal.client.gui.styled.Style;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,15 +20,17 @@ import javax.swing.border.BevelBorder;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.gui.styled.Style;
+
 /**
  * Factory for creating Styles.
  */
 public class StyleFactory {
 	private static final Logger logger = Logger.getLogger(StyleFactory.class);
-	
+
 	/**
 	 * Create the appropriate style for a style identifier.
-	 * 
+	 *
 	 * @param styleId style name
 	 * @return pixmap style matching the name
 	 */
@@ -38,10 +38,10 @@ public class StyleFactory {
 		StyleDefinition creator = StyleDefinition.parse(styleId);
 		return creator.create();
 	}
-	
+
 	/**
 	 * Get names of all available styles.
-	 * 
+	 *
 	 * @return style names
 	 */
 	public static Collection<String> getAvailableStyles() {
@@ -49,10 +49,10 @@ public class StyleFactory {
 		for (StyleDefinition s : StyleDefinition.values()) {
 			rval.add(s.toString());
 		}
-		
+
 		return rval;
 	}
-	
+
 	/**
 	 * Available style definitions.
 	 */
@@ -65,7 +65,7 @@ public class StyleFactory {
 						new Color(107, 72, 50), Color.white);
 			}
 		},
-		
+
 		AUBERGINE("Aubergine") {
 			@Override
 			Style create() {
@@ -74,7 +74,7 @@ public class StyleFactory {
 				Color shadow = new Color(42, 7, 51);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_aubergine_001.png",
 						false, highlight, shadow, Color.white, Color.white);
-				
+
 				// Border
 				Color bhighdark = new Color (119,74,130);
 				Color bshadowlight = new Color(84, 42, 95);
@@ -86,7 +86,7 @@ public class StyleFactory {
 				return style;
 			}
 		},
-		
+
 		BRICK_BROWN("Brick Brown") {
 			@Override
 			Style create() {
@@ -105,7 +105,7 @@ public class StyleFactory {
 				return style;
 			}
 		},
-		
+
 		HONEYCOMB("Honeycomb") {
 			@Override
 			Style create() {
@@ -114,7 +114,7 @@ public class StyleFactory {
 				Color highlight = new Color(142, 90, 0); // Light brown (also text shadow)
 				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb_001.png",
 						false, highlight, Color.white, Color.white, foreground);
-				
+
 				// Border
 				Color blightout = new Color(255, 255, 180);
 				Color blightin = new Color(202, 202, 101);
@@ -127,7 +127,7 @@ public class StyleFactory {
 				return style;
 			}
 		},
-		
+
 		LEATHER_BLACK("Leather Black") {
 			@Override
 			Style create() {
@@ -136,7 +136,7 @@ public class StyleFactory {
 				Color highlight = new Color(130, 130, 130); // Grey
 				PixmapStyle style = new PixmapStyle("data/gui/panel_leather_black_001.png",
 						false, highlight, Color.black, Color.white, foreground);
-				
+
 				// Border
 				Color bhighout = new Color(120, 120, 120);
 				Color bhighin = new Color(80, 80, 80);
@@ -148,7 +148,7 @@ public class StyleFactory {
 				return style;
 			}
 		},
-		
+
 		PARQUET_BROWN("Parquet Brown") {
 			@Override
 			Style create() {
@@ -156,17 +156,17 @@ public class StyleFactory {
 				Color shadow = new Color(225, 173, 110);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_parquet_brown_001.png",
 						false, highlight, shadow, Color.white, Color.white);
-				
+
 				// Border
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 						Color.white, shadow, highlight, Color.black));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
 						Color.white, shadow, highlight, Color.black));
-				
+
 				return style;
 			}
 		},
-		
+
 		STONE("Stone") {
 			@Override
 			Style create() {
@@ -177,7 +177,7 @@ public class StyleFactory {
 				Color bhighout = new Color(130, 130, 130);
 				Color bhighin = new Color(100, 100, 100);
 				Color bshadow = new Color(20, 20, 20);
-				
+
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 						bhighout, bhighin, highlight, bshadow));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
@@ -185,7 +185,7 @@ public class StyleFactory {
 				return style;
 			}
 		},
-		
+
 		TILE_AQUA("Tile Aqua") {
 			@Override
 			Style create() {
@@ -193,7 +193,7 @@ public class StyleFactory {
 				Color highlight = new Color(137, 157, 157);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_tile_aqua_001.png",
 						false, highlight, Color.black, Color.white, Color.white);
-				
+
 				// Border
 				Color blightout = new Color(187, 240, 240);
 				Color bshadowin = new Color(23, 71, 71);
@@ -205,35 +205,35 @@ public class StyleFactory {
 				return style;
 			}
 		};
-		
+
 		// ---- implementation ----
-		
-		/** Human readable name of the style. */ 
+
+		/** Human readable name of the style. */
 		private final String name;
 		/**
 		 * Create the Style.
-		 * 
+		 *
 		 * @return style corresponding to the definition
 		 */
 		abstract Style create();
-		
+
 		/**
 		 * Create a new StyleDefinition.
-		 * 
+		 *
 		 * @param name human readable name of the style
 		 */
 		private StyleDefinition(String name) {
 			this.name = name;
 		}
-		
+
 		@Override
 		public String toString() {
 			return name;
 		}
-		
+
 		/**
 		 * Find the StyleDefinition matching a style name.
-		 * 
+		 *
 		 * @param name style name to look up
 		 * @return StyleDefinition with the name, or the default definition if
 		 * 	no matching style was found
@@ -244,9 +244,9 @@ public class StyleFactory {
 					return s;
 				}
 			}
-			
+
 			logger.warn("Style '" + name + "'not found. Using the default.");
-			
+
 			return WOOD;
 		}
 	}

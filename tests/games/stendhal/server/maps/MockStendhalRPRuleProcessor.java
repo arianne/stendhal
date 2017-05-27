@@ -18,7 +18,7 @@ import games.stendhal.server.entity.player.Player;
 
 public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	private int turn;
-	
+
 	public static MockStendhalRPRuleProcessor get() {
 		if (!(instance instanceof MockStendhalRPRuleProcessor)) {
 			instance = new MockStendhalRPRuleProcessor();
@@ -31,10 +31,10 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	public int getTurn() {
 		return turn;
 	}
-	
+
 	/**
 	 * Set the current fake game turn.
-	 * 
+	 *
 	 * @param turn
 	 */
 	public void setTurn(int turn) {

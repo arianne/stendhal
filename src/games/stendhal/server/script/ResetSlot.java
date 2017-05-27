@@ -12,19 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
  * Resets an RPSlot.
- * 
+ *
  * @author kymara
  */
 public class ResetSlot extends ScriptImpl {
@@ -59,7 +58,7 @@ public class ResetSlot extends ScriptImpl {
 		slot.add(new RPObject());
 
 		// notify the player
-		player.sendPrivateText(NotificationType.SUPPORT, 
+		player.sendPrivateText(NotificationType.SUPPORT,
 				"Your " + args.get(1) + " state was reset by "
 				+ admin.getTitle());
 	}

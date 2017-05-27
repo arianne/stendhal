@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
@@ -33,15 +36,12 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.maze.MazeGenerator;
 import games.stendhal.server.maps.quests.maze.MazeSign;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Maze extends AbstractQuest {
 	/** Minimum time between repeats. */
 	private static final int COOLING_TIME = MathHelper.MINUTES_IN_ONE_HOUR * 24;
 	private MazeSign sign;
 	private MazeGenerator maze = null;
-	
+
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -51,7 +51,7 @@ public class Maze extends AbstractQuest {
 		addMazeSign();
 		setupConversation();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -91,40 +91,40 @@ public class Maze extends AbstractQuest {
 	public String getSlotName() {
 		return "maze";
 	}
-	
+
 	@Override
 	public boolean isRepeatable(Player player) {
 		return new TimePassedCondition(getSlotName(), 1, COOLING_TIME).fire(player, null, null);
 	}
-	
+
 	private SpeakerNPC getNPC() {
 		return npcs.get("Haizen");
 	}
-	
+
 	private void addMazeSign() {
 		setSign(new MazeSign());
 		getSign().setPosition(10, 7);
 		getNPC().getZone().add(getSign());
 	}
-	
+
 	private void setupConversation() {
 		SpeakerNPC npc = getNPC();
-		
+
 		npc.addQuest("I can send you to a #maze you need to find your way out. I keep the a list of the fast and frequent maze solvers in that blue book on the table.");
-	
+
 		npc.add(ConversationStates.ATTENDING,
 				"maze",
 				new TimePassedCondition(getSlotName(), 1, COOLING_TIME),
 				ConversationStates.QUEST_OFFERED,
 				"There will be a portal out in the opposite corner of the maze. I'll also add scrolls to the two other corners you can try to get if you are fast enough. Do you want to try?",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				"maze",
 				new NotCondition(new TimePassedCondition(getSlotName(), 1, COOLING_TIME)),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(getSlotName(), 1, 
+				new SayTimeRemainingAction(getSlotName(), 1,
 						COOLING_TIME, "I can send you to the maze only once in a day. You can go there again in"));
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -133,7 +133,7 @@ public class Maze extends AbstractQuest {
 				ConversationStates.IDLE,
 				null,
 				new SendToMazeChatAction());
-		
+
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
@@ -141,7 +141,7 @@ public class Maze extends AbstractQuest {
 				"OK. You look like you'd only get lost anyway.",
 				null);
 	}
-	
+
 	private void setSign(MazeSign sign) {
 		this.sign = sign;
 	}
@@ -171,7 +171,7 @@ public class Maze extends AbstractQuest {
 
 	/**
 	 * Access the portal from MazeTest.
-	 * 
+	 *
 	 * @return return portal from the maze
 	 */
 	protected Portal getPortal() {
@@ -182,7 +182,7 @@ public class Maze extends AbstractQuest {
 	public String getNPCName() {
 		return "Haizen";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_SURROUNDS;

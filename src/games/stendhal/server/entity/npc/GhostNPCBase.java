@@ -12,19 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.FindGhosts;
-
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.FindGhosts;
+
 /**
  * Base class for ghost NPCs.
- * 
+ *
  * @author Martin Fuchs
  */
 //TODO: replace this base class with the normal way quests actions are written, join RatKidsNPCBase and GhostNPCBase, split XXXGreetingAction to use ChatConditions
@@ -49,7 +49,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 
 	/**
 	 * ChatAction common to all ghost NPCs.
-	 * 
+	 *
 	 * @author Martin Fuchs
 	 */
 	private static class GhostGreetingAction implements ChatAction {
@@ -60,17 +60,17 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 			}
 			final String npcQuestText = player.getQuest(QUEST_SLOT);
 			final String[] npcDoneText = npcQuestText.split(":");
-			// although all names our stored as lower case from now on, 
+			// although all names our stored as lower case from now on,
 			// older versions did not,
 			// so we have to be compatible with them
 			final String lookStr;
 			final String saidStr;
 			if (npcDoneText.length > 1) {
 				lookStr = npcDoneText[0].toLowerCase();
-				saidStr = npcDoneText[1].toLowerCase();			 
+				saidStr = npcDoneText[1].toLowerCase();
 
 				final List<String> list = Arrays.asList(lookStr.split(";"));
-				String npcName = npc.getName().toLowerCase();			
+				String npcName = npc.getName().toLowerCase();
 				if (list.contains(npcName) || player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Please, let the dead rest in peace.");
 				} else {

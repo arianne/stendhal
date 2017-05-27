@@ -13,6 +13,7 @@ package games.stendhal.server.core.rp.equipping.builder;
 
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
+
 import games.stendhal.server.core.rp.equipping.EquipmentActionData;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.GroundSlot;

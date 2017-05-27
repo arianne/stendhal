@@ -6,11 +6,11 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.creature.Creature;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.creature.Creature;
 
 /**
  * An area prevents creatures from entering. This allows a layered chain of
@@ -37,7 +37,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Create a creature protection area.
-	 * 
+	 *
 	 * @param width
 	 *            The area width.
 	 * @param height
@@ -49,7 +49,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Create a creature protection area.
-	 * 
+	 *
 	 * @param width
 	 *            The area width.
 	 * @param height
@@ -74,7 +74,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Add a blocked criteria entry.
-	 * 
+	 *
 	 * @param clazz
 	 *            A creature class to match (or <code>null</code> for any).
 	 */
@@ -84,7 +84,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Add a blocked criteria entry.
-	 * 
+	 *
 	 * @param clazz
 	 *            A creature class to match (or <code>null</code> for any).
 	 * @param subclazz
@@ -96,7 +96,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Add a criteria entry.
-	 * 
+	 *
 	 * @param clazz
 	 *            A creature class to match (or <code>null</code> for any).
 	 * @param subclazz
@@ -110,12 +110,12 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Does a creature match a criteria entry.
-	 * 
+	 *
 	 * @param creature
 	 *            The creature to compare.
 	 * @param defaultAnswer
 	 *            The answer if no match is found.
-	 * 
+	 *
 	 * @return The matching criteria, or default response.
 	 */
 	protected boolean matchesCriteria(final Creature creature, final boolean defaultAnswer) {
@@ -153,7 +153,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Checks whether a creature can enter.
-	 * 
+	 *
 	 * @return <code>true</code> if a matching creature is given.
 	 */
 	@Override
@@ -193,7 +193,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Create a criteria entry.
-		 * 
+		 *
 		 * @param clazz
 		 *            A creature class to match (or <code>null</code> for
 		 *            any).
@@ -215,7 +215,7 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Determine if a creature matching this criteria is blocked.
-		 * 
+		 *
 		 * @return <code>true</code> if it should be blocked.
 		 */
 		public boolean isBlocked() {
@@ -224,12 +224,12 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Check if a class/subclass matches.
-		 * @param clazz 
-		 * @param subclazz 
+		 * @param clazz
+		 * @param subclazz
 		 * @return true if both are equals to fields
-		 * 
-		 * 
-		 * 
+		 *
+		 *
+		 *
 		 */
 		public boolean matches(final String clazz, final String subclazz) {
 			if ((this.clazz != null) && !clazz.equals(this.clazz)) {

@@ -21,10 +21,10 @@ public class SequenceSprite extends AnimatedSprite {
 	private final SequenceSpriteListener listener;
 	/** A flag for book keeping so that the listener gets notified only once. */
 	private boolean done;
-	
+
 	/**
 	 * Create a new SequenceSprite with constant delay between the frames.
-	 * 
+	 *
 	 * @param listener listener that gets notified when drawing the sprite
 	 * 	sequence has finished
 	 * @param frames animation frames
@@ -36,7 +36,7 @@ public class SequenceSprite extends AnimatedSprite {
 		lastUpdate = System.currentTimeMillis();
 		this.listener = listener;
 	}
-	
+
 	@Override
 	public void draw(final Graphics g, final int x, final int y) {
 		super.draw(g, x, y);
@@ -45,7 +45,7 @@ public class SequenceSprite extends AnimatedSprite {
 			done = true;
 		}
 	}
-	
+
 	/**
 	 * Interface for objects that receive notifications at the end of the
 	 * sprite sequence.

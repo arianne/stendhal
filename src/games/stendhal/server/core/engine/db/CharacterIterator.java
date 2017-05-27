@@ -15,12 +15,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.RPObjectDAO;
-
-import org.apache.log4j.Logger;
 
 /**
  * iterates over all characters

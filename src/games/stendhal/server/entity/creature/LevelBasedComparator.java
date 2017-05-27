@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.entity.RPEntity;
-
 import java.io.Serializable;
 import java.util.Comparator;
 
+import games.stendhal.server.entity.RPEntity;
+
 /**
  * Compares two RPEntities based on their level.
- * 
+ *
  * @author hendrik
  */
 public class LevelBasedComparator implements Comparator<RPEntity>, Serializable {

@@ -3,23 +3,24 @@ package games.stendhal.server.maps.quests.thepiedpiper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.maps.quests.ThePiedPiper;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.maps.quests.ThePiedPiper;
+
 public class InactivePhaseTest extends TPPTestHelper {
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		TPPTestHelper.setUpBeforeClass();
 	}
-	
+
 	/**
 	 * Tests for quest.
 	 */
 	@Test
-	public void testInactivePhase() {	
+	public void testInactivePhase() {
 		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
 		assertTrue(quest.getHistory(player).isEmpty());
 		en.step(player, "hi");

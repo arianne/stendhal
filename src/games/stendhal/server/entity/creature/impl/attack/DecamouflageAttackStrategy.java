@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.entity.creature.impl.attack;
 
@@ -9,7 +9,7 @@ import games.stendhal.server.entity.creature.Creature;
 
 /**
  * The attacking creature loses its camouflage on attacking its target and becomes visible
- * 
+ *
  * @author madmetzger
  */
 class DecamouflageAttackStrategy implements AttackStrategy {
@@ -18,7 +18,7 @@ class DecamouflageAttackStrategy implements AttackStrategy {
 
     /**
      * Create a new DecamouflageAttackStrategy with a base strategy
-     * 
+     *
      * @param base
      */
     public DecamouflageAttackStrategy(AttackStrategy base) {

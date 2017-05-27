@@ -12,6 +12,11 @@
 
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,11 +24,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 /**
  * Represents the behaviour of a NPC who is able to sell items to a player.
@@ -45,7 +45,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	/**
 	 * Creates a new SellerBehaviour with a pricelist.
-	 * 
+	 *
 	 * @param priceList
 	 *            list of item names and their prices
 	 */
@@ -56,7 +56,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	/**
 	 * Transacts the sale that has been agreed on earlier via setChosenItem()
 	 * and setAmount().
-	 * 
+	 *
 	 * @param seller
 	 *            The NPC who sells
 	 * @param player

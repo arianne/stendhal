@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: McPegleg's IOU
@@ -111,7 +111,7 @@ public class McPeglegIOU extends AbstractQuest {
 		step_1();
 		step_2();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -121,10 +121,10 @@ public class McPeglegIOU extends AbstractQuest {
 			}
 			if (isCompleted(player)) {
 				res.add("McPegleg did honour the IOU - I got 250 money!");
-			} 
+			}
 			return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "McPeglegIOU";
@@ -138,7 +138,7 @@ public class McPeglegIOU extends AbstractQuest {
 	public String getNPCName() {
 		return "McPegleg";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_DUNGEONS;

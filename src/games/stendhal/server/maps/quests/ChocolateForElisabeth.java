@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -45,27 +50,22 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Quest to buy chocolate for a little girl called Elisabeth.
  * Ask her mother Carey for a quest and she will ask you to get some chocolate for her daughter.
  * Get some chocolate and bring it to Elisabeth.
  *
  * @author Vanessa Julius idea by miasma
- * 
- * 
+ *
+ *
  * QUEST: Chocolate for Elisabeth
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Elisabeth (a young girl who loves chocolate)</li>
  * <li>Carey (Elisabeth's mother)</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Elisabeth asks you to bring her a chocolate bar.</li>
@@ -73,14 +73,14 @@ import java.util.List;
  * <li>Ask Carey if she allows you to give the chocolate to her daughter.</li>
  * <li>Make Elisabeth happy and get a lovely reward.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>a random flower</li>
  * <li>500 XP</li>
  * <li>10 karma</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>Every 60 minutes</li>
@@ -99,130 +99,130 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	}
 	private void chocolateStep() {
 		final SpeakerNPC npc = npcs.get("Elisabeth");
-		
+
 		// first conversation with Elisabeth.
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I can't remember when I smelt the good taste of #chocolate the last time...",
 				null);
-		
+
 		npc.addReply("chocolate", "My mom told me, that chocolate can be found in an assassin school, which is quite #dangerous. She said also that someone sells it in Ados...");
-		
+
 		npc.addReply("dangerous", "Some bandits wait on the road to the school and assassins guard the way there, so mom and I have to stay in Kirdneh because it's safe here...");
-		
+
 		// player is supposed to speak to mummy now
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("chocolate bar")),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				"My mum wants to know who I was asking for chocolate from now :(",
 				null);
-		
+
 		// player didn't get chocolate, meanie
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I hope that someone will bring me some chocolate soon...:(",
 				null);
-		
+
 		// player got chocolate and spoke to mummy
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "mummy"), new PlayerHasItemWithHimCondition("chocolate bar")),
-				ConversationStates.QUESTION_1, 
+				ConversationStates.QUESTION_1,
 				"Awesome! Is that chocolate for me?",
 				null);
-		
+
 		// player spoke to mummy and hasn't got chocolate
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "mummy"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I hope that someone will bring me some chocolate soon...:(",
 				null);
-		
-		// player is in another state like eating 
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES, 
+
+		// player is in another state like eating
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestNotInStateCondition(QUEST_SLOT, "mummy")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Hello.",
 				null);
-		
+
 		// player rejected quest
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "rejected")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Hello.",
 				null);
-		
+
 		// player asks about quest for first time (or rejected)
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I would really love to have some chocolate. I'd like one bar, please. A dark brown one or a sweet white one or some with flakes. Will you get me one?",
 				null);
-		
+
 		// shouldn't happen
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I still enjoy the last chocolate bar you brought me, thanks!",
 				null);
-		
+
 		// player can repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I hope another chocolate bar wouldn't be greedy. Can you get me another one?",
-				null);	
-		
+				null);
+
 		// player can't repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I've had too much chocolate. I feel sick.",
-				null);	
-		
+				null);
+
 		// player should be bringing chocolate not asking about the quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"))),
-				ConversationStates.ATTENDING,	
+				ConversationStates.ATTENDING,
 				"Waaaaaaaa! Where is my chocolate ...",
 				null);
-		
+
 		// Player agrees to get the chocolate
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you!",
 				new SetQuestAction(QUEST_SLOT, "start"));
-		
+
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, 
-				null, 
+				ConversationPhrases.NO_MESSAGES,
+				null,
 				ConversationStates.IDLE,
 				"Ok, I'll wait till mommy finds some helpers...",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
-		
+
 		// Player has got chocolate bar and spoken to mummy
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("chocolate bar"));
@@ -231,7 +231,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				// pick a random flower
 				String rewardClass = Rand.rand(Arrays.asList("daisies","zantedeschia","pansy"));
-				
+
 				final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
 				item.setQuantity(1);
 				player.equipOrPutOnGround(item);
@@ -245,35 +245,35 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		reward.add(new InflictStatusOnNPCAction("chocolate bar"));
 
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("chocolate bar"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you EVER so much! You are very kind. Here, take a fresh flower as a present.",
 				new MultipleActions(reward));
-		
-	
+
+
 		// player did have chocolate but put it on ground after question?
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Hey, where's my chocolate gone?!",
 				null);
-		
+
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.NO_MESSAGES, 
-				null, 
+				ConversationPhrases.NO_MESSAGES,
+				null,
 				ConversationStates.IDLE,
 				"Waaaaaa! You're a big fat meanie.",
 				new DecreaseKarmaAction(5.0));
 	}
-	
+
 	private void meetMummyStep() {
 		final SpeakerNPC mummyNPC = npcs.get("Carey");
 
 		// player speaks to mummy before Elisabeth
-		mummyNPC.add(ConversationStates.IDLE, 
+		mummyNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
 							new QuestNotStartedCondition(QUEST_SLOT)),
@@ -281,22 +281,22 @@ public class ChocolateForElisabeth extends AbstractQuest {
 					null);
 
 		// player is supposed to begetting chocolate
-		mummyNPC.add(ConversationStates.IDLE, 
+		mummyNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
 							new QuestInStateCondition(QUEST_SLOT, "start")),
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					"Oh you met my daughter Elisabeth already. You seem like a nice person so it would be really kind, if you can bring her a chocolate bar because I'm not #strong enough for that.",
 					new SetQuestAction(QUEST_SLOT, "mummy"));
 
 		mummyNPC.addReply("strong", "I tried to get some chocolate for Elisabeth a few times, but I couldn't make my way through the assassins and bandits running around #there.");
-		
+
 		mummyNPC.addReply("there", "They live in and around the Ados castle. Take care there! I also heard about #someone who sells chocolate bars.");
-		
+
 		mummyNPC.addReply("someone", "I never visited that guy because he seems to be really... well he works somewhere where I don't want to be in Ados.");
-		
+
 		// any other state
-		mummyNPC.add(ConversationStates.IDLE, 
+		mummyNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES, new GreetingMatchesNameCondition(mummyNPC.getName()), true,
 					ConversationStates.ATTENDING, "Hello again.", null);
 	}
@@ -329,14 +329,14 @@ public class ChocolateForElisabeth extends AbstractQuest {
 			res.add("I found a tasty chocolate bar for Elisabeth.");
 		}
         if ("mummy".equals(questState) || isCompleted(player)) {
-            res.add("I spoke to Carey, Elisabeth's mom and she agreed I could give a chocolate bar to her daughter.");        
+            res.add("I spoke to Carey, Elisabeth's mom and she agreed I could give a chocolate bar to her daughter.");
         }
         if (isCompleted(player)) {
             if (isRepeatable(player)) {
                 res.add("I took some chocolate to Elisabeth, she gave me some flowers in return. Perhaps she'd like more chocolate now.");
             } else {
                 res.add("Elisabeth is eating the chocolate bar I gave her, and she gave me some flowers in return.");
-            }			
+            }
 		}
 		return res;
 	}
@@ -344,24 +344,24 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	public String getName() {
 		return "ChocolateForElisabeth";
 	}
-	
+
 	// Getting to Kirdneh is not too feasible till this level
 	@Override
 	public int getMinLevel() {
 		return 10;
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"eating;"),
 				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"eating;").fire(player, null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.KIRDNEH;

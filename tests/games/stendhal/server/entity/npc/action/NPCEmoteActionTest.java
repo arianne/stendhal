@@ -15,20 +15,20 @@ package games.stendhal.server.entity.npc.action;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 public class NPCEmoteActionTest {
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
@@ -49,8 +49,8 @@ public class NPCEmoteActionTest {
 				new NPCEmoteAction("hugs").equals(new NPCEmoteAction("hugs") {
 					// this is an anonymous sub class
 				}));
-	}	
-	
+	}
+
 	/**
 	 * Tests for fire.
 	 */

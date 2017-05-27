@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -23,8 +25,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
-
-import java.util.Map;
 
 /** Factory for the captain of Athor Ferry. */
 
@@ -68,11 +68,11 @@ public class CaptainNPC implements ZoneConfigurator  {
 			protected void onGoodbye(final RPEntity player) {
 				// Turn back to the wheel
 				setDirection(Direction.DOWN);
-			}	
+			}
 		};
 
 		new AthorFerry.FerryListener() {
-			
+
 			@Override
 			public void onNewFerryState(final Status status) {
 				ferrystate = status;
@@ -92,11 +92,11 @@ public class CaptainNPC implements ZoneConfigurator  {
 
 			}
 		};
-		
+
 		npc.setPosition(23, 38);
 		npc.setEntityClass("piratenpc");
 		npc.setDescription ("You see Brownbeard, Captain of Athor Ferry. He will bring you from the mainland to the island.");
 		npc.setDirection(Direction.DOWN);
-		zone.add(npc);	
+		zone.add(npc);
 	}
 }

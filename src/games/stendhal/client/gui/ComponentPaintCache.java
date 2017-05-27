@@ -43,16 +43,16 @@ public class ComponentPaintCache {
 
 	/**
 	 * Create a new paint cache.
-	 * 
+	 *
 	 * @param component the cached component
 	 */
 	public ComponentPaintCache(Cacheable component) {
 		this.component = component;
 	}
-	
+
 	/**
 	 * Paint the cached component.
-	 * 
+	 *
 	 * @param g graphics
 	 */
 	public void paintComponent(Graphics g) {
@@ -66,7 +66,7 @@ public class ComponentPaintCache {
 		if (cachedImage == null || (oldWidth != width) || (oldHeight != height)) {
 			oldWidth = width;
 			oldHeight = height;
-			
+
 			// Create a new image, and draw the components onto it
 			cachedImage = component.getGraphicsConfiguration().createCompatibleImage(width, height, Transparency.OPAQUE);
 			Graphics imageGraphics = cachedImage.getGraphics();
@@ -83,23 +83,23 @@ public class ComponentPaintCache {
 				 */
 				component.paintChildren(imageGraphics);
 			}
-			imageGraphics.dispose();				
+			imageGraphics.dispose();
 		}
 		g.drawImage(cachedImage, 0, 0, null);
 	}
-	
+
 	/**
 	 * Set if the child components should be cached as images as well. The
 	 * default is not caching. Do change it to true unless the children are
 	 * static images or you take care of calling invalidate() when they change.
-	 *   
+	 *
 	 * @param paint <code>true</code> if the child components should be included
 	 * 	in the cached image, <code>false</code> otherwise
 	 */
 	public void setPaintChildren(boolean paint) {
 		paintChildren = paint;
 	}
-	
+
 	/**
 	 * Interface for components that use <code>ComponentPaintCache</code>.
 	 * <code>JComponents</code> support by default all but
@@ -109,7 +109,7 @@ public class ComponentPaintCache {
 	public interface Cacheable {
 		/**
 		 * Get the total width of the component, including borders.
-		 * 
+		 *
 		 * @return component width.
 		 */
 		int getWidth();
@@ -120,25 +120,25 @@ public class ComponentPaintCache {
 		int getHeight();
 		/**
 		 * Paint the component.
-		 * 
+		 *
 		 * @param g graphics
 		 */
 		void paintComponent(Graphics g);
 		/**
 		 * Paint the component border.
-		 * 
+		 *
 		 * @param g graphics
 		 */
 		void paintBorder(Graphics g);
 		/**
 		 * Paint everything, including the child components.
-		 * 
+		 *
 		 * @param g graphics
 		 */
 		void paintChildren(Graphics g);
 		/**
 		 * Get the component graphics configuration.
-		 * 
+		 *
 		 * @return graphics configuration
 		 */
 		GraphicsConfiguration getGraphicsConfiguration();

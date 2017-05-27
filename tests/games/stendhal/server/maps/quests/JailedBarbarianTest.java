@@ -15,6 +15,10 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -23,12 +27,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.amazon.hut.JailedBarbNPC;
-
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -37,7 +35,7 @@ public class JailedBarbarianTest {
 
 
 	//private static String questSlot = "jailedbarb";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -47,13 +45,13 @@ public class JailedBarbarianTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new JailedBarbNPC().configureZone(zone, null);
 		new games.stendhal.server.maps.amazon.hut.PrincessNPC().configureZone(zone, null);
-		new games.stendhal.server.maps.kalavan.castle.PrincessNPC().configureZone(zone, null); 
-				
+		new games.stendhal.server.maps.kalavan.castle.PrincessNPC().configureZone(zone, null);
+
 		final AbstractQuest quest = new JailedBarbarian();
 		// princess Esclara's greeting response is defined in her quest
 		final AbstractQuest quest2 = new AmazonPrincess();
@@ -71,10 +69,10 @@ public class JailedBarbarianTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Lorenz");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Flowers, flowers. All over here these ugly flowers!", getReply(npc));
 		en.step(player, "quest");
@@ -91,7 +89,7 @@ public class JailedBarbarianTest {
 		// -----------------------------------------------
 		Item item = ItemTestHelper.createItem("scythe", 1);
 		player.getSlot("bag").add(item);
-		
+
 		en.step(player, "hi");
 		assertEquals("Flowers, flowers. All over here these ugly flowers!", getReply(npc));
 		en.step(player, "quest");
@@ -114,7 +112,7 @@ public class JailedBarbarianTest {
 		// -----------------------------------------------
 		npc = SingletonRepository.getNPCList().get("Princess Esclara");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Huh, what are you doing here?", getReply(npc));
 		en.step(player, "task");
@@ -140,7 +138,7 @@ public class JailedBarbarianTest {
 		// -----------------------------------------------
 		npc = SingletonRepository.getNPCList().get("Lorenz");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Flowers, flowers. All over here these ugly flowers!", getReply(npc));
 		en.step(player, "quest");
@@ -177,7 +175,7 @@ public class JailedBarbarianTest {
 		assertEquals("I need you to go tell Princess Ylflia that I am #jailed here.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye bye, and cut down some of these ugly flowers!", getReply(npc));
-		
+
 		npc = SingletonRepository.getNPCList().get("Princess Ylflia");
 		en = npc.getEngine();
 		en.step(player, "hi");
@@ -187,10 +185,10 @@ public class JailedBarbarianTest {
 		en.step(player, "greetings");
 		assertEquals("Please, go and give Lorenz my #greetings.", getReply(npc));
 
-		
+
 		npc = SingletonRepository.getNPCList().get("Lorenz");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Flowers, flowers. All over here these ugly flowers!", getReply(npc));
 		en.step(player, "greetings");

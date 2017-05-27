@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import java.sql.SQLException;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.core.engine.db.PendingAchievementDAO;
 import games.stendhal.server.core.engine.db.PostmanDAO;
@@ -24,16 +28,11 @@ import games.stendhal.server.core.engine.db.StendhalNPCDAO;
 import games.stendhal.server.core.engine.db.StendhalRPZoneDAO;
 import games.stendhal.server.core.engine.db.StendhalSearchIndexDAO;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
-
-import java.sql.SQLException;
-
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.JDBCSQLHelper;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
-
-import org.apache.log4j.Logger;
 
 /**
  * initializes the database by setting up or updating the database structure and defining

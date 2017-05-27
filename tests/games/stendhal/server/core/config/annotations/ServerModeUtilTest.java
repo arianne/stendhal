@@ -1,7 +1,7 @@
 package games.stendhal.server.core.config.annotations;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
@@ -13,16 +13,16 @@ public class ServerModeUtilTest {
 	private static final class TestClass {
 		//
 	}
-	
+
 	@TestServerOnly
 	private static final class TestClassTestServerOnly {
 		//
 	}
-	
+
 	private void deactivateTestServerMode() {
 		System.getProperties().remove(TestServerOnly.TEST_SERVER_PROPERTY);
 	}
-	
+
 	private void activateTestServerMode() {
 		System.setProperty(TestServerOnly.TEST_SERVER_PROPERTY, "XXX");
 	}
@@ -32,7 +32,7 @@ public class ServerModeUtilTest {
 		deactivateTestServerMode();
 		assertThat(ServerModeUtil.isTestServer(), is(Boolean.FALSE));
 	}
-	
+
 	@Test
 	public void testIsTestServerForTestServer() {
 		activateTestServerMode();
@@ -47,7 +47,7 @@ public class ServerModeUtilTest {
 		assertThat(ServerModeUtil.isActiveInCurrentServerContext(testClass), is(Boolean.TRUE));
 		assertThat(ServerModeUtil.isActiveInCurrentServerContext(testClassTestServerOnly), is(Boolean.FALSE));
 	}
-	
+
 	@Test
 	public void testIsActiveInCurrentServerContextForTestServer() {
 		activateTestServerMode();

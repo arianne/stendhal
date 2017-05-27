@@ -11,17 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
-
-import org.apache.log4j.Logger;
 
 /**
  * Stendhal specific extensions to the normal CharacterDAO which will update
@@ -51,7 +50,7 @@ public class StendhalCharacterDAO extends CharacterDAO {
 			throw sqle;
 		}
 	}
-	
+
 	@Override
 	public void storeCharacter(final DBTransaction transaction, final String username,
 			final String character, final RPObject player) throws SQLException, IOException {

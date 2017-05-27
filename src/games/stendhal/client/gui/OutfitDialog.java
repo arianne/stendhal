@@ -58,7 +58,7 @@ import marauroa.common.game.RPAction;
 class OutfitDialog extends JDialog {
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(OutfitDialog.class);
-	
+
 	private static final int PLAYER_WIDTH = 48;
 	private static final int PLAYER_HEIGHT = 64;
 	private static final int SLIDER_WIDTH = 80;
@@ -69,7 +69,7 @@ class OutfitDialog extends JDialog {
 	private final SelectorModel head = new SelectorModel(Outfits.HEAD_OUTFITS);
 	private final SelectorModel body = new SelectorModel(Outfits.BODY_OUTFITS);
 	private final SelectorModel dress = new SelectorModel(Outfits.CLOTHES_OUTFITS);
-	
+
 	/**
 	 * Coloring data used to get the initial colors, and to adjust colors should
 	 * the player want those.
@@ -81,7 +81,7 @@ class OutfitDialog extends JDialog {
 
 	private final SpriteStore store = SpriteStore.get();
 	private final OutfitStore ostore = OutfitStore.get();
-	
+
 	private final List<ResetListener> resetListeners = new ArrayList<ResetListener>();
 
 	/** Label containing the hair image. */
@@ -104,24 +104,24 @@ class OutfitDialog extends JDialog {
 
 	/**
 	 * Create a new OutfitDialog.
-	 * 
+	 *
 	 * @param parent parent window
 	 * @param title title of the dialog
 	 * @param outfit number of the outfit
 	 * @param outfitColor coloring information. <b>Note that outfitColor
-	 *	can be modified by the dialog.</b> 
+	 *	can be modified by the dialog.</b>
 	 */
 	OutfitDialog(final Frame parent, final String title, int outfit,
 			final OutfitColor outfitColor) {
 		super(parent, false);
-		
+
 		this.outfitColor = outfitColor;
-		
+
 		// Needs to be after initializing the models
 		initComponents();
 		applyStyle();
 		setTitle(title);
-		
+
 		// Follow the model changes; the whole outfit follows them all
 		hair.addListener(hairLabel);
 		hair.addListener(outfitLabel);
@@ -146,7 +146,7 @@ class OutfitDialog extends JDialog {
 		headsIndex = checkIndex(headsIndex, head);
 		bodiesIndex = checkIndex(bodiesIndex, body);
 		clothesIndex = checkIndex(clothesIndex, dress);
-		
+
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
 		head.setIndex(headsIndex);
@@ -157,11 +157,11 @@ class OutfitDialog extends JDialog {
 		WindowUtils.closeOnEscape(this);
 		WindowUtils.trackLocation(this, "outfit", false);
 	}
-	
+
 	/**
 	 * Create a new outfit dialog with extended outfit features: Currently
 	 * mouth and eyes.
-	 * 
+	 *
 	 * @param parent
 	 * 		The parent object of this dialog
 	 * @param title
@@ -176,32 +176,32 @@ class OutfitDialog extends JDialog {
 	OutfitDialog(final Frame parent, final String title, long outfit,
 			final OutfitColor outfitColor) {
 		this(parent, title, (int)(outfit / 10000), outfitColor);
-		
+
 		// Follow the model changes
 		eyes.addListener(eyesLabel);
 		eyes.addListener(outfitLabel);
 		mouth.addListener(mouthLabel);
 		mouth.addListener(outfitLabel);
-		
+
 		// Analyze current outfit
 		int mouthsIndex = (int) (outfit % 100);
 		outfit = outfit / 100;
 		int eyesIndex = (int) (outfit % 100);
-		
+
 		// Reset special outfits
 		mouthsIndex = checkIndex(mouthsIndex, mouth);
 		eyesIndex = checkIndex(eyesIndex, eyes);
-		
+
 		// Set the current outfit indices; this will update the labels as well
 		eyes.setIndex(eyesIndex);
 		mouth.setIndex(mouthsIndex);
-		
+
 		pack();
 	}
-	
+
 	/**
 	 * Check an index is within player accessible limits.
-	 * 
+	 *
 	 * @param index current index
 	 * @param model to determine the limits
 	 * @return index, if the supplied index is within limits, otherwise 0
@@ -232,7 +232,7 @@ class OutfitDialog extends JDialog {
 		content.add(partialsColumn);
 
 		// --------- outfit parts column ----------
-		
+
 		// Hair
 		SpriteRetriever hairRetriever = new SpriteRetriever() {
 			@Override
@@ -242,7 +242,7 @@ class OutfitDialog extends JDialog {
 		};
 		hairLabel = new OutfitLabel(hairRetriever);
 		partialsColumn.add(createSelector(hair, hairLabel));
-		
+
 		/* TODO: Remove condition after outfit testing is finished. */
 		SpriteRetriever eyesRetriever = null, mouthRetriever = null;
 		if (Testing.OUTFITS) {
@@ -255,7 +255,7 @@ class OutfitDialog extends JDialog {
 			};
 			eyesLabel = new OutfitLabel(eyesRetriever);
 			partialsColumn.add(createSelector(eyes, eyesLabel));
-			
+
 			// Mouth
 			mouthRetriever = new SpriteRetriever() {
 				@Override
@@ -266,7 +266,7 @@ class OutfitDialog extends JDialog {
 			mouthLabel = new OutfitLabel(mouthRetriever);
 			partialsColumn.add(createSelector(mouth, mouthLabel));
 		}
-		
+
 		// Head
 		SpriteRetriever headRetriever = new SpriteRetriever() {
 			@Override
@@ -276,7 +276,7 @@ class OutfitDialog extends JDialog {
 		};
 		headLabel = new OutfitLabel(headRetriever);
 		partialsColumn.add(createSelector(head, headLabel));
-		
+
 		// Body
 		SpriteRetriever bodyRetriever = new SpriteRetriever() {
 			@Override
@@ -286,7 +286,7 @@ class OutfitDialog extends JDialog {
 		};
 		bodyLabel = new OutfitLabel(bodyRetriever);
 		partialsColumn.add(createSelector(body, bodyLabel));
-		
+
 		// Dress
 		SpriteRetriever dressRetriever = new SpriteRetriever() {
 			@Override
@@ -296,7 +296,7 @@ class OutfitDialog extends JDialog {
 		};
 		dressLabel = new OutfitLabel(dressRetriever);
 		partialsColumn.add(createSelector(dress, dressLabel));
-		
+
 		// --------- Color selection column ---------
 		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		content.add(column, SLayout.EXPAND_Y);
@@ -305,14 +305,14 @@ class OutfitDialog extends JDialog {
 				hairLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
-		
+
 		// TODO: Remove condition after outfit testing is finished
 		if (Testing.OUTFITS) {
 			/* eyes color */
 			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
-			
+
 			/* skin color */
 			selector = createColorSelector("Skin", OutfitColor.SKIN, true,
 					bodyLabel, headLabel);
@@ -324,12 +324,12 @@ class OutfitDialog extends JDialog {
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 		SBoxLayout.addSpring(column);
-		
+
 		// --------- whole outfit side ----------
 		column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		column.setAlignmentY(CENTER_ALIGNMENT);
 		content.add(column);
-		
+
 		/* TODO: Remove condition after outfit testing is finished. */
 		if (Testing.OUTFITS) {
 			outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
@@ -383,14 +383,14 @@ class OutfitDialog extends JDialog {
 
 	/**
 	 * Create a selector for outfit part.
-	 * 
+	 *
 	 * @param model model that the buttons should modify
 	 * @param label central image label
 	 * @return selector component
 	 */
 	private JComponent createSelector(final SelectorModel model, OutfitLabel label) {
 		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
-	
+
 		JButton button = new JButton("<");
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -408,7 +408,7 @@ class OutfitDialog extends JDialog {
 			}
 		});
 		row.add(button);
-		
+
 		return row;
 	}
 
@@ -428,10 +428,10 @@ class OutfitDialog extends JDialog {
 		bodyLabel.changed();
 		dressLabel.changed();
 	}
-	
+
 	/**
 	 * Get the hair sprite.
-	 * 
+	 *
 	 * @return hair sprite
 	 */
 	private Sprite getHairSprite() {
@@ -439,10 +439,10 @@ class OutfitDialog extends JDialog {
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
-	
+
 	/**
 	 * Get the eyes sprite.
-	 * 
+	 *
 	 * @return eyes sprite
 	 */
 	private Sprite getEyesSprite() {
@@ -450,10 +450,10 @@ class OutfitDialog extends JDialog {
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
-	
+
 	/**
 	 * Get the mouth sprite.
-	 * 
+	 *
 	 * @return mouth sprite
 	 */
 	private Sprite getMouthSprite() {
@@ -461,10 +461,10 @@ class OutfitDialog extends JDialog {
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
-	
+
 	/**
 	 * Get the head sprite.
-	 * 
+	 *
 	 * @return head sprite
 	 */
 	private Sprite getHeadSprite() {
@@ -472,10 +472,10 @@ class OutfitDialog extends JDialog {
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
-	
+
 	/**
 	 * Get the body sprite.
-	 * 
+	 *
 	 * @return body sprite
 	 */
 	private Sprite getBodySprite() {
@@ -483,20 +483,20 @@ class OutfitDialog extends JDialog {
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
-	
+
 	/**
 	 * Get the dress sprite.
-	 * 
+	 *
 	 * @return dress sprite
 	 */
 	private Sprite getDressSprite() {
 		return store.getTile(ostore.getDressSprite(dress.getIndex(), outfitColor), PLAYER_WIDTH,
 				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
-	
+
 	/**
 	 * Create a color selection component for an outfit part.
-	 * 
+	 *
 	 * @param niceName outfit part name that is capitalizes for user to see
 	 * @param key outfit part identifier
 	 * @param labels outfit part displays that should be kept up to date with
@@ -507,11 +507,11 @@ class OutfitDialog extends JDialog {
 			OutfitLabel... labels) {
 		return this.createColorSelector(niceName, key, false, labels);
 	}
-	
+
 	/**
 	 * Create a color selection component for an outfit part optionally with
 	 * defined skin colors only.
-	 * 
+	 *
 	 * @param niceName
 	 * 		Outfit part name that is capitalizes for user to see
 	 * @param key
@@ -526,15 +526,15 @@ class OutfitDialog extends JDialog {
 	 */
 	private JComponent createColorSelector(final String niceName, final String key,
 			boolean skinPalette, final OutfitLabel... labels) {
-		
+
 		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		final JCheckBox enableToggle = new JCheckBox(niceName + " color");
-		
+
 		container.add(enableToggle);
 		// get the current state
 		boolean colored = outfitColor.getColor(key) != null;
 		enableToggle.setSelected(colored);
-		
+
 		final AbstractColorSelector<?> selector;
 		if (skinPalette) {
 			selector = new SkinColorSelector();
@@ -556,7 +556,7 @@ class OutfitDialog extends JDialog {
 				outfitLabel.changed();
 			}
 		});
-		
+
 		enableToggle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -574,7 +574,7 @@ class OutfitDialog extends JDialog {
 				outfitLabel.changed();
 			}
 		});
-		
+
 		// For restoring the state
 		resetListeners.add(new ResetListener() {
 			@Override
@@ -586,10 +586,10 @@ class OutfitDialog extends JDialog {
 					 * Changing the model triggers setting the color in
 					 * outfitColor, and null color is interpreted as grey in the
 					 * selector model, so avoid setting that.
-					 * 
+					 *
 					 * As a side effect, the color selector remembers the
 					 * previously selected color for non colored outfit parts.
-					 * That is likely a better default than mid grey anyway.  
+					 * That is likely a better default than mid grey anyway.
 					 */
 					model.setSelectedColor(color);
 				}
@@ -597,17 +597,17 @@ class OutfitDialog extends JDialog {
 				enableToggle.setSelected(colored);
 			}
 		});
-		
+
 		return container;
 	}
-	
+
 	/**
 	 * OK Button action.
 	 */
 	private void okActionPerformed() {
 		sendAction();
 		this.dispose();
-	} 
+	}
 
 	/**
 	 * Sent the outfit change action to the server.
@@ -633,25 +633,25 @@ class OutfitDialog extends JDialog {
 					+ (head.getIndex() * 100 * 100)
 					+ (hair.getIndex() * 100 * 100 * 100));
 		}
-		
+
 		/* hair color */
 		color = outfitColor.getColor(OutfitColor.HAIR);
 		if (color != null) {
 			rpOutfitAction.put(OutfitColor.HAIR, color.getRGB());
 		}
-		
+
 		/* body and head color */
 		color = outfitColor.getColor(OutfitColor.SKIN);
 		if (color != null) {
 			rpOutfitAction.put(OutfitColor.SKIN, color.getRGB());
 		}
-		
+
 		/* dress color */
 		color = outfitColor.getColor(OutfitColor.DRESS);
 		if (color != null) {
 			rpOutfitAction.put(OutfitColor.DRESS, color.getRGB());
 		}
-		
+
 		/* TODO: Remove condition after outfit testing is finished. */
 		if (Testing.OUTFITS) {
 			/* eyes color */
@@ -660,10 +660,10 @@ class OutfitDialog extends JDialog {
 				rpOutfitAction.put(OutfitColor.EYES, color.getRGB());
 			}
 		}
-		
+
 		client.send(rpOutfitAction);
 	}
-		
+
 	/**
 	 * Apply Stendhal style to all components.
 	 */
@@ -683,10 +683,10 @@ class OutfitDialog extends JDialog {
 			headLabel.setBorder(style.getBorderDown());
 		}
 	}
-	
+
 	/**
 	 * Set the state of the selector.
-	 * 
+	 *
 	 * @param outfit outfit code
 	 * @param colors color state. Unlike the one passed to the constructor, this
 	 * 	will not be modified
@@ -699,7 +699,7 @@ class OutfitDialog extends JDialog {
 		if (Testing.OUTFITS) {
 			outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
 		}
-		
+
 		// analyze the outfit code
 		int bodiesIndex = outfit % 100;
 		outfit = outfit / 100;
@@ -708,7 +708,7 @@ class OutfitDialog extends JDialog {
 		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
 		int hairsIndex = outfit % 100;
-		
+
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
 		head.setIndex(headsIndex);
@@ -719,11 +719,11 @@ class OutfitDialog extends JDialog {
 			l.reset();
 		}
 	}
-	
+
 	/**
 	 * Set the state of the selector for extened outfit features: Currently
 	 * mouth and eyes.
-	 * 
+	 *
 	 * @param outfit
 	 * 		14-digit integer representing extended features
 	 * @param colors
@@ -736,30 +736,30 @@ class OutfitDialog extends JDialog {
 		outfit = outfit / 100;
 		int eyesIndex = (int) (outfit % 100);
 		outfit = outfit / 100;
-		
+
 		mouth.setIndex(mouthsIndex);
 		eyes.setIndex(eyesIndex);
-		
+
 		// Run code for original (old) outfit system to update listeners
 		this.setState((int)outfit, colors);
 	}
-	
+
 	/**
-	 * Interface for components that can be reseted to a default state. 
+	 * Interface for components that can be reseted to a default state.
 	 */
 	private interface ResetListener {
 		void reset();
 	}
-	
+
 	/**
 	 * An image label for outfit and outfit parts.
 	 */
 	private static class OutfitLabel extends JLabel implements IndexChangeListener {
 		final SpriteRetriever[] retrievers;
-		
+
 		/**
 		 * Create a new OutfitLabel.
-		 * 
+		 *
 		 * @param retrievers sprite sources used to update the image, when
 		 *	changed() is called
 		 */
@@ -767,7 +767,7 @@ class OutfitDialog extends JDialog {
 			setOpaque(true);
 			this.retrievers = retrievers;
 		}
-		
+
 		@Override
 		public void changed() {
 			// Update image
@@ -783,7 +783,7 @@ class OutfitDialog extends JDialog {
 			setIcon(icon);
 		}
 	}
-	
+
 	/**
 	 * A ranged, circular, index model.
 	 */
@@ -791,10 +791,10 @@ class OutfitDialog extends JDialog {
 		final int n;
 		int index;
 		final List<IndexChangeListener> listeners = new ArrayList<IndexChangeListener>();
-		
+
 		/**
 		 * Create a new SelectorModel. Valid indices are 0 to n - 1.
-		 * 
+		 *
 		 * @param n maximum value
 		 */
 		SelectorModel(int n) {
@@ -803,31 +803,31 @@ class OutfitDialog extends JDialog {
 			}
 			this.n = n;
 		}
-		
+
 		/**
 		 * Add a new listener for value changes.
-		 * 
+		 *
 		 * @param listener added listener
 		 */
 		void addListener(IndexChangeListener listener) {
 			listeners.add(listener);
 		}
-		
+
 		/**
 		 * Set index.
-		 *  
+		 *
 		 * @param index new index
 		 */
 		void setIndex(int index) {
 			if (!isAllowed(index)) {
-				LOGGER.warn("Index out of allowed range [0-" + n + "]: " + index, 
+				LOGGER.warn("Index out of allowed range [0-" + n + "]: " + index,
 						new Throwable());
 				index = 0;
 			}
 			this.index = index;
 			fire();
 		}
-		
+
 		/**
 		 * Scroll index value downwards.
 		 */
@@ -837,7 +837,7 @@ class OutfitDialog extends JDialog {
 			index %= n;
 			fire();
 		}
-		
+
 		/**
 		 * Scroll the index value upwards.
 		 */
@@ -846,19 +846,19 @@ class OutfitDialog extends JDialog {
 			index %= n;
 			fire();
 		}
-		
+
 		/**
 		 * Get the current index value.
-		 * 
+		 *
 		 * @return index
 		 */
 		int getIndex() {
 			return index;
 		}
-		
+
 		/**
 		 * Check if an index is within allowed limits.
-		 * 
+		 *
 		 * @param index checked index
 		 * @return <code>true</code> if the index is valid, otherwise
 		 * 	<code>false</code>
@@ -866,7 +866,7 @@ class OutfitDialog extends JDialog {
 		boolean isAllowed(int index) {
 			return (index >= 0) && (index < n);
 		}
-		
+
 		/**
 		 * Notify listeners that the value has changed.
 		 */
@@ -883,12 +883,12 @@ class OutfitDialog extends JDialog {
 	private interface SpriteRetriever {
 		/**
 		 * Get the sprite.
-		 * 
+		 *
 		 * @return sprite
 		 */
 		Sprite getSprite();
 	}
-	
+
 	/**
 	 * Interface for listening SelectorModel changes.
 	 */

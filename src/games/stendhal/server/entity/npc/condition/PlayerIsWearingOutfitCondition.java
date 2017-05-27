@@ -51,7 +51,7 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 	public String toString() {
 		final String outfitCode;
 		outfitCode = Integer.toString(this.outfitToCheck.getCode());
-		
+
 		return "Player is wearing " + outfitCode + " ?";
 	}
 

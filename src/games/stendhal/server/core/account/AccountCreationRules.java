@@ -14,7 +14,7 @@ package games.stendhal.server.core.account;
 
 /**
  * rules for account creation.
- * 
+ *
  * @author hendrik
  */
 class AccountCreationRules {
@@ -26,7 +26,7 @@ class AccountCreationRules {
 
 	/**
 	 * creates a new AccountCreationRules instance.
-	 * 
+	 *
 	 * @param username
 	 *            name of the user
 	 * @param password
@@ -50,7 +50,7 @@ class AccountCreationRules {
 		validators.add(new ReservedSubStringValidator(username));
 		validators.add(new NPCNameValidator(username));
 		validators.add(new CreatureNameValidator(username));
-		
+
 		validators.add(new IsNotCharacterNameValidator(username));
 	}
 
@@ -72,7 +72,7 @@ class AccountCreationRules {
 	/**
 	 * returns a complete list of all rules which must be enforced during.
 	 * account creation
-	 * 
+	 *
 	 * @return ValidatorList
 	 */
 	public ValidatorList getAllRules() {

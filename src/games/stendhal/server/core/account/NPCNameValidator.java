@@ -18,7 +18,7 @@ import marauroa.common.game.Result;
 
 /**
  * validates name is not an NPC name
- * 
+ *
  * @author kymara
  */
 public class NPCNameValidator implements AccountParameterValidator {
@@ -26,7 +26,7 @@ public class NPCNameValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a NPCNameValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */
@@ -40,7 +40,7 @@ public class NPCNameValidator implements AccountParameterValidator {
 		for (final String name : npcs.getNPCs()) {
 			if (name.equals(parameterValue)) {
 				return Result.FAILED_RESERVED_NAME;
-			}	
+			}
 		}
 		return null;
 	}

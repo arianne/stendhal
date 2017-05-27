@@ -1,19 +1,18 @@
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
-
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
 /**
  * Summon a spell into the spells slot for the given player.
- * 
+ *
  * @author madmetzger
  *
  */

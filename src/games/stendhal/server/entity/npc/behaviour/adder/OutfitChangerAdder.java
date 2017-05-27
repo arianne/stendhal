@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
@@ -28,13 +30,11 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-import org.apache.log4j.Logger;
-
 public class OutfitChangerAdder {
 	private static Logger logger = Logger.getLogger(OutfitChangerAdder.class);
-	
+
     private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
-    
+
 	/**
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
@@ -44,7 +44,7 @@ public class OutfitChangerAdder {
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
 	 * special outfits.
-	 * 
+	 *
 	 * @param npc
 	 *            SpeakerNPC
 	 * @param behaviour
@@ -60,7 +60,7 @@ public class OutfitChangerAdder {
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
 	 * special outfits.
-	 * 
+	 *
 	 * @param npc
 	 *            SpeakerNPC
 	 * @param outfitBehaviour
@@ -76,7 +76,7 @@ public class OutfitChangerAdder {
 	public void addOutfitChanger(final SpeakerNPC npc,
 			final OutfitChangerBehaviour outfitBehaviour, final String action,
 			final boolean offer, final boolean canReturn) {
-		
+
 		servicersRegister.add(npc.getName(), outfitBehaviour);
 
 		final Engine engine = npc.getEngine();
@@ -127,7 +127,7 @@ public class OutfitChangerAdder {
 						if (outfitBehaviour.transactAgreedDeal(currentBehavRes, npc, player)) {
 							if (canReturn) {
 								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
-								// -1 is also the public static final int NEVER_WEARS_OFF = -1; 
+								// -1 is also the public static final int NEVER_WEARS_OFF = -1;
 								// but it doesn't recognise it here ...
 							} else if (outfitBehaviour.getEndurance() != -1) {
 								// timeUntil takes a parameter in seconds so we multiply the endurance in minutes by 60

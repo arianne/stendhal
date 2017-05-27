@@ -16,6 +16,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -24,19 +34,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -315,12 +314,12 @@ public class BringListOfItemsQuestLogicTest {
 		public String askForMissingItems(final List<String> missingItems) {
 			return Grammar.enumerateCollection(missingItems);
 		}
-		
+
 		@Override
 		public String firstAskForMissingItems(final List<String> missingItems) {
 			return "firstAskForMissingItems";
 		}
-		
+
 		@Override
 		public List<String> getAdditionalTriggerPhraseForQuest() {
 			return Arrays.asList(new String[] { "getAdditionalTriggerPhraseForQuest" });
@@ -403,7 +402,7 @@ public class BringListOfItemsQuestLogicTest {
 
 		@Override
 		public void rewardPlayer(final Player player) {
-			
+
 		}
 
 		@Override
@@ -438,9 +437,9 @@ public class BringListOfItemsQuestLogicTest {
 
 	/**
 	 * returns null for everything except name.
-	 * 
+	 *
 	 * @author astridemma
-	 * 
+	 *
 	 */
 	class NullValueMockBringListOfItemsQuest implements BringListOfItemsQuest {
 		private SpeakerNPC npc;
@@ -454,11 +453,11 @@ public class BringListOfItemsQuestLogicTest {
 		public String askForMissingItems(final List<String> missingItems) {
 			return null;
 		}
-		
+
 		@Override
 		public String firstAskForMissingItems(final List<String> missingItems) {
 			return null;
-		}		
+		}
 
 		@Override
 		public List<String> getAdditionalTriggerPhraseForQuest() {

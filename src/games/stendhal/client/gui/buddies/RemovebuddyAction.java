@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.actions.SlashActionRepository;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import games.stendhal.client.actions.SlashActionRepository;
 
 final class RemovebuddyAction implements ActionListener {
 	private final String buddyName;
@@ -28,7 +28,7 @@ final class RemovebuddyAction implements ActionListener {
 	public void actionPerformed(final ActionEvent e) {
 		final String [] args = new String [1];
 		args[0] = buddyName;
-		
+
 		SlashActionRepository.get("remove").execute(args, null);
 	}
 }

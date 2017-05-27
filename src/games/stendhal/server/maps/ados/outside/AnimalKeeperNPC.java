@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.outside;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -29,10 +33,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class AnimalKeeperNPC implements ZoneConfigurator {
 
@@ -77,10 +77,10 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 											final Entity engine) {
 							return player.hasPet();
 						}
-					}, 
+					},
 					ConversationStates.SERVICE_OFFERED, "Have you brought that pet to be taken care of here?",
 					null);
-				
+
 				add(ConversationStates.SERVICE_OFFERED,
 					ConversationPhrases.YES_MESSAGES, null,
 					ConversationStates.ATTENDING, null,
@@ -105,7 +105,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 								notifyWorldAboutChanges();
 							} else {
 								// there was no room for the pet
-								npc.say("It looks like we don't have any space left in our pet sanctuary! I hope you can look after this " + petName + " a little longer.");  
+								npc.say("It looks like we don't have any space left in our pet sanctuary! I hope you can look after this " + petName + " a little longer.");
 							}
 						}
 					});
@@ -113,7 +113,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				add(ConversationStates.SERVICE_OFFERED,
 					ConversationPhrases.NO_MESSAGES, null,
 					ConversationStates.ATTENDING, "Oh, it's so nice to see an owner and their pet happy together. Good luck both of you.", null);
-				
+
 				add(ConversationStates.ATTENDING,
 					ConversationPhrases.HELP_MESSAGES,
 					new ChatCondition() {
@@ -122,12 +122,12 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 											final Entity engine) {
 							return !player.hasPet();
 						}
-					}, 
+					},
 					ConversationStates.ATTENDING, "If you should ever find an abandoned pet, please bring it to me.",
 					null);
 
 				addGoodbye("Goodbye!");
-				
+
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};

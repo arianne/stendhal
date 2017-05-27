@@ -21,7 +21,7 @@ public class DrunkStatusHandler implements StatusHandler<DrunkStatus> {
 
 	/**
 	 * inflicts a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 * @param attacker the attacker
@@ -37,7 +37,7 @@ public class DrunkStatusHandler implements StatusHandler<DrunkStatus> {
 
 	/**
 	 * removes a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */

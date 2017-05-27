@@ -25,15 +25,15 @@ import games.stendhal.client.sprite.SpriteStore;
  */
 public class ImageEffect implements SequenceSprite.SequenceSpriteListener {
 	private final static String IMAGE_LOCATION = "data/sprites/effects/";
-	
+
 	private final Entity2DView<? extends IEntity> view;
 	private final Sprite sequence;
-	
+
 	/**
 	 * Create a new ImageEffect.
-	 * 
+	 *
 	 * @param view the view where the effect binds itself to
-	 * @param image name of the image that is used for the the animation 
+	 * @param image name of the image that is used for the the animation
 	 */
 	public ImageEffect(Entity2DView<? extends IEntity> view, String image) {
 		this.view = view;

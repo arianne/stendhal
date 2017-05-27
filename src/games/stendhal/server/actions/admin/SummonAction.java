@@ -15,6 +15,7 @@ import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.SUMMON;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.config.annotations.ServerModeUtil;
@@ -25,9 +26,9 @@ import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.BabyDragon;
-import games.stendhal.server.entity.creature.PurpleDragon;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.PurpleDragon;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.mapstuff.block.Block;
@@ -65,7 +66,7 @@ public class SummonAction extends AdministrationAction {
 
 		/**
 		 * Create the named entity (creature, pet or sheep) of type 'type'.
-		 * 
+		 *
 		 * @param type
 		 */
 		private void createEntity(final String type) {
@@ -113,7 +114,7 @@ public class SummonAction extends AdministrationAction {
 			player.getZone().add(gate);
 			return;
 		}
-		
+
         if ("block".equals(action.get(CREATURE))) {
 		    final Block block = new Block(true);
 		    block.setPosition(action.getInt(X), action.getInt(Y));

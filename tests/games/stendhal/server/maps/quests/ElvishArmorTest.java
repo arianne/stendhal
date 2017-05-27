@@ -23,13 +23,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +32,13 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 public class ElvishArmorTest {
@@ -243,7 +243,7 @@ public class ElvishArmorTest {
 		assertThat(npcEngine.getCurrentState(), is(QUESTION_1));
 		assertThat(getReply(npc), is("I don't think that's a piece of elvish armor..."));
 	}
-	
+
 	/**
 	 * Tests for question1toIdle.
 	 */

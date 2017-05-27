@@ -20,8 +20,6 @@ import static games.stendhal.common.color.ARGB.splitRgb;
 import static games.stendhal.common.color.HSL.hsl2rgb;
 import static games.stendhal.common.color.HSL.rgb2hsl;
 
-import games.stendhal.client.MemoryCache;
-
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.CompositeContext;
@@ -30,13 +28,15 @@ import java.awt.image.ColorModel;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 
+import games.stendhal.client.MemoryCache;
+
 /**
  * Blending composite modes.
  */
 public class Blend implements Composite {
 	/** Cached composers. */
 	private static final MemoryCache<Object, CompositeContext> cache = new MemoryCache<Object, CompositeContext>();
-	
+
 	/**
 	 * Possible blending modes.
 	 */
@@ -82,9 +82,9 @@ public class Blend implements Composite {
 
 	/**
 	 * Create a new Blend.
-	 * 
+	 *
 	 * @param mode Blending mode
-	 * @param color Color for modes that need it 
+	 * @param color Color for modes that need it
 	 */
 	private Blend(Mode mode, Color color) {
 		this.mode = mode;
@@ -110,22 +110,22 @@ public class Blend implements Composite {
 			return new BlendContext(mode, color);
 		}
 	}
-	
+
 	/**
 	 * Create a new Bleach blend for a color. The blend removes the effect of
 	 * multiplying with the color, using the lightness of the source image
 	 * as the degree to bleach the color.
-	 * 
+	 *
 	 * @param color
 	 * @return Bleach blend for color
 	 */
 	public static Blend createBleach(Color color) {
 		return new Blend(Mode.BLEACH, color);
 	}
-	
+
 	@Override
 	public String toString() {
-		// Sprite cache uses blend names, so give it something constant 
+		// Sprite cache uses blend names, so give it something constant
 		if (name == null) {
 			String colorName = "";
 			if (color != null) {
@@ -145,7 +145,7 @@ public class Blend implements Composite {
 		/**
 		 * Create a new ColorBlendContext. The result is treated as a bitmask
 		 * transparency image, if either of the images does not have alpha.
-		 * 
+		 *
 		 * @param mode blending mode
 		 * @param color Color for modes that need it
 		 */
@@ -202,21 +202,21 @@ public class Blend implements Composite {
 		public void dispose() {
 		}
 	}
-	
+
 	/**
 	 * Interface for blending 2 pixels.
 	 */
 	private interface Composer {
 		/**
 		 * Blend 2 pixels.
-		 * 
+		 *
 		 * @param srcPixel upper pixel color data
 		 * @param dstPixel lower pixel color data
 		 * @return blended pixel
 		 */
 		int compose(int[] srcPixel, int[] dstPixel);
 	}
-	
+
 	/**
 	 * Blend composer for removing effect of color multiply. This is yet another
 	 * Stendhal specific blend mode that does not have an established name. Both
@@ -226,10 +226,10 @@ public class Blend implements Composite {
 		// Using floats is faster than doing everything in integer
 		/** Color components of the color to be removed. */
 		final float red, green, blue;
-		
+
 		/**
 		 * Create a new BleachComposer for a color.
-		 * 
+		 *
 		 * @param c color to be bleached
 		 */
 		BleachComposer(Color c) {
@@ -240,7 +240,7 @@ public class Blend implements Composite {
 			green = Math.max(1, components[GREEN]);
 			blue = Math.max(1, components[BLUE]);
 		}
-		
+
 		/**
 		 * Blend 2 pixels. Removes the effect of color multiplication on the
 		 * underlaying image, using the brightness of the original version of the
@@ -250,7 +250,7 @@ public class Blend implements Composite {
 		 * <b>A</b>. The added brightness to the underlaying image is multiplied
 		 * with the hypothesized color <b>A</b>, so that the overall effect
 		 * looks like colored light.
-		 * 
+		 *
 		 * @param srcPixel upper pixel color data
 		 * @param dstPixel lower pixel color data
 		 * @return blended pixel
@@ -261,7 +261,7 @@ public class Blend implements Composite {
 			float srcRed = srcPixel[RED] / red;
 			float srcGreen = srcPixel[GREEN] / green;
 			float srcBlue = srcPixel[BLUE] / blue;
-			
+
 			float light = limitMin(Math.max(srcRed, Math.max(srcGreen, srcBlue)));
 			/*
 			 * Treat lightness of color like it was grey scale, but had been
@@ -270,35 +270,35 @@ public class Blend implements Composite {
 			float multRed = limitMin(srcRed / light);
 			float multGreen = limitMin(srcGreen / light);
 			float multBlue = limitMin(srcBlue / light);
-			
+
 			dstPixel[RED] = bleachComponent(light, dstPixel[RED], red, multRed);
 			dstPixel[GREEN] = bleachComponent(light, dstPixel[GREEN], green, multGreen);
 			dstPixel[BLUE] = bleachComponent(light, dstPixel[BLUE], blue, multBlue);
 
 			return mergeRgb(dstPixel);
 		}
-		
+
 		/**
 		 * Limit a color value to > 0, so that when it is used as a divisor the
 		 * result will not overflow.
-		 * 
+		 *
 		 * @param colorComponent
 		 * @return colorComponent, or at least 0.001
 		 */
 		private float limitMin(float colorComponent) {
 			return Math.max(0.001f, colorComponent);
 		}
-		
+
 		/**
 		 * Bleach an individual color component.
-		 * 
+		 *
 		 * @param light amount to be bleached. The relative brightness of the
 		 * 	source image pixel
 		 * @param bg bleached pixel
 		 * @param color component value of the bleaching color
 		 * @param multColor color of the source image (the value of the
 		 * 	source pixel = light × multColor)
-		 * 
+		 *
 		 * @return bleached value of the color component
 		 */
 		private int bleachComponent(float light, int bg, float color, float multColor) {
@@ -307,7 +307,7 @@ public class Blend implements Composite {
 			return (int) (bg + change * multColor);
 		}
 	}
-	
+
 	/**
 	 * A composer for the generic lighting blend.
 	 */
@@ -317,7 +317,7 @@ public class Blend implements Composite {
 		 * very bright.
 		 */
 		private static final int DIMMING_FACTOR = 0x200;
-		
+
 		@Override
 		public int compose(int[] srcPixel, int[] dstPixel) {
 			int sum = 0;
@@ -329,13 +329,13 @@ public class Blend implements Composite {
 			for (int i = RED; i <= BLUE; i++) {
 				dstPixel[i] = composeComponent(avg, dstPixel[i]);
 			}
-			
+
 			return mergeRgb(dstPixel);
 		}
-		
+
 		/**
 		 * Apply composition to an individual color component of a pixel.
-		 * 
+		 *
 		 * @param a
 		 * @param b
 		 * @return composed color value
@@ -344,7 +344,7 @@ public class Blend implements Composite {
 			return Math.min(b + b * a / DIMMING_FACTOR, 0xff);
 		}
 	}
-	
+
 	/**
 	 * Composer for simple blends that only need the individual source and
 	 * destination color components to calculate the new color component.
@@ -358,24 +358,24 @@ public class Blend implements Composite {
 
 			return mergeRgb(dstPixel);
 		}
-		
+
 		/**
 		 * Apply composition to an individual color component of a pixel.
-		 * 
+		 *
 		 * @param a upper layer color value
 		 * @param b lower layer color value
 		 * @return composed color value
 		 */
 		abstract int composeComponent(int a, int b);
 	}
-	
+
 	/**
 	 * A composer that implements the gimp style soft light blend mode.
 	 */
 	private static class SoftLightComposer implements Composer {
 		/** Lookup table. */
 		private final byte[] table;
-		
+
 		/**
 		 * Create a SoftLightComposer. Initializes the lookup table.
 		 */
@@ -383,7 +383,7 @@ public class Blend implements Composite {
 			table = new byte[256 * 256];
 			for (int a = 0; a < 256; a++) {
 				for (int b = 0; b < 256; b++) {
-					table[(a * 256) + b] = (byte) ((b + 2 * a * (0xff - b) / 0xff) * b / 0xff); 
+					table[(a * 256) + b] = (byte) ((b + 2 * a * (0xff - b) / 0xff) * b / 0xff);
 				}
 			}
 		}
@@ -400,7 +400,7 @@ public class Blend implements Composite {
 			return rval;
 		}
 	}
-	
+
 	/**
 	 * A composer that implements the screen blend mode.
 	 */
@@ -410,7 +410,7 @@ public class Blend implements Composite {
 			return 0xff - (((0xff - a) * (0xff - b)) >> 8);
 		}
 	}
-			
+
 	/**
 	 * Composer for the special Stendhal color blend.
 	 */
@@ -418,12 +418,12 @@ public class Blend implements Composite {
 		private final float[] srcHsl = new float[3];
 		private final float[] dstHsl = new float[3];
 		private final int[] result = new int[4];
-		
+
 		/**
 		 * Blend 2 pixels, taking the color from upper, and lightness from
 		 * the lower pixel. Adjusts the lightness slightly by the lightness of
 		 * the upper pixel.
-		 * 
+		 *
 		 * @param srcPixel upper pixel color data
 		 * @param dstPixel lower pixel color data
 		 * @return blended pixel
@@ -446,7 +446,7 @@ public class Blend implements Composite {
 			return mergeRgb(result);
 		}
 	}
-		
+
 	/**
 	 * A fast, approximate multiply mode blend context. The results differ from
 	 * correct multiply by factor of 1 - 255/256.

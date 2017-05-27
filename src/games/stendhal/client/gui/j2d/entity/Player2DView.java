@@ -13,6 +13,14 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Graphics2D;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
@@ -28,17 +36,9 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Version;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Graphics2D;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
  * The 2D view of a player.
- * 
+ *
  * @param <T> player type
  */
 class Player2DView<T extends Player> extends RPEntity2DView<T> {
@@ -53,7 +53,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	 * Sprite representing away.
 	 */
 	private static final Sprite awaySprite;
-	
+
 	/**
 	 * Sprite representing grumpy.
 	 */
@@ -74,7 +74,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	}
 
 	private boolean ignored = false;
-	
+
 	/**
 	 * Create a new Player2DView.
 	 */
@@ -105,7 +105,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	/**
 	 * Draw the entity status bar.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -135,7 +135,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 * 
+	 *
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
@@ -145,25 +145,25 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		try {
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
 			ZoneInfo info = ZoneInfo.get();
-			
+
 			/* TODO: Remove condition and duplicate code after outfit testing
 			 * is finished.
 			 */
 			Sprite outfit;
 			outfit = store.getAdjustedOutfit(entity.getOutfit(),
 					color, info.getZoneColor(), info.getColorMethod());
-			
+
 			if (entity.hasStatus(StatusID.ZOMBIE)) {
 				outfit = SpriteStore.get().modifySprite(outfit, ZOMBIE_COLOR, Blend.TrueColor, null);
 			}
-			
+
 			return outfit;
 		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
 		}
 	}
-	
+
 	@Override
 	protected AlphaComposite getComposite() {
 		// Check for ghostmode to avoid ignored ghostmode admins becoming visible
@@ -175,7 +175,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
-	 * 
+	 *
 	 * @return <code>true</code> if the client user can see this entity while in
 	 *         ghostmode.
 	 */
@@ -194,7 +194,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -202,12 +202,12 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	protected void buildActions(final List<String> list) {
 		if (!entity.isGhostMode()) {
 			super.buildActions(list);
-			
+
 			boolean hasBuddy = User.hasBuddy(entity.getName());
 			if (!hasBuddy) {
 				list.add(ActionType.ADD_BUDDY.getRepresentation());
 			}
-			
+
 			if (User.isIgnoring(entity.getName())) {
 				list.add(ActionType.UNIGNORE.getRepresentation());
 			} else if (!hasBuddy)  {
@@ -231,7 +231,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	/**
 	 * Draw the entity.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
@@ -243,7 +243,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			ignored = newIgnoreStatus;
 			markChanged();
 		}
-		
+
 		super.draw(g2d, x, y, width, height);
 	}
 
@@ -253,7 +253,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

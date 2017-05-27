@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -33,13 +40,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * QUEST: Find Rat children
@@ -77,7 +77,7 @@ public class FindRatChildren extends AbstractQuest {
 
 	// twenty four hours
 	private static final int REQUIRED_MINUTES = 24 * 60;
-	
+
 	// children names must be lower text as this is what we compare against
 	private static final List<String> NEEDED_KIDS =
 		Arrays.asList("avalon", "cody", "mariel", "opal");
@@ -172,7 +172,7 @@ public class FindRatChildren extends AbstractQuest {
 
 	private void findingStep() {
 		// Player goes to look for the children
-		
+
 	}
 
 	private void retrievingStep() {
@@ -289,7 +289,7 @@ public class FindRatChildren extends AbstractQuest {
 	public String getName() {
 		return "FindRatChildren";
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -318,7 +318,7 @@ public class FindRatChildren extends AbstractQuest {
 	public String getNPCName() {
 		return "Agnus";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ORRIL_DUNGEONS;

@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -27,8 +29,6 @@ import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.QuestCompletedSellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
-
-import java.util.Map;
 
 /** Factory for the Scuba Diver on Athor Ferry. */
 
@@ -53,14 +53,14 @@ public class ScubaNPC implements ZoneConfigurator  {
 				addOffer("To licensed divers I can sell #scuba #gear.");
 				new SellerAdder().addSeller(this, new QuestCompletedSellerBehaviour("get_diving_license", "I can't sell #scuba #gear to just anyone!", shops.get("sellScubaStuff")), false);
 				addJob("I'm an assistant on this ship.");
-				
+
 				//scuba gear phrases
 				addReply("scuba gear","You need scuba gear to explore the beautiful world below the sea.");
 				addReply("scuba","You need scuba gear to explore the beautiful world below the sea.");
 				addReply("gear","You need scuba gear to explore the beautiful world below the sea.");
 				//clue for the player.
 				addReply("study","Go to a library and check out the Diver's Handbook.");
-				
+
 				//quest phrases;
 				addReply("license","Scuba diving can be dangerous before I can give you scuba gear you need to pass an #exam.");
 				addReply("Mizuno","Do I know that name? Hmm... why yes! Come to think of it we sometimes see a man by that name wandering the #swamp during our breaks on the mainland.");
@@ -84,11 +84,11 @@ public class ScubaNPC implements ZoneConfigurator  {
 			protected void onGoodbye(final RPEntity player) {
 				// Turn back to the sea.
 				setDirection(Direction.LEFT);
-			}	
+			}
 		};
 
 		new AthorFerry.FerryListener() {
-			
+
 			@Override
 			public void onNewFerryState(final Status status) {
 				ferrystate = status;
@@ -108,11 +108,11 @@ public class ScubaNPC implements ZoneConfigurator  {
 
 			}
 		};
-		
+
 		npc.setPosition(17, 40);
 		npc.setEntityClass("pirate_sailornpc");
 		npc.setDescription ("You see a well seasoned sailor, but he seems preoccupied with something.");
 		npc.setDirection(Direction.LEFT);
-		zone.add(npc);	
+		zone.add(npc);
 	}
 }

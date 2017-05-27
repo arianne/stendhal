@@ -21,7 +21,7 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the portal key from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The key name.
@@ -34,7 +34,7 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the portal key quantity from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The required key quantity.
@@ -51,12 +51,12 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Create a keyed portal.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
-	 * 
+	 *
 	 * @return The portal.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */

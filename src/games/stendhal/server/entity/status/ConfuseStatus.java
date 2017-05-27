@@ -14,8 +14,8 @@ package games.stendhal.server.entity.status;
 
 /**
  * A status effect that causes the entity to get confused of directions
- * 
- * 
+ *
+ *
  * @author Jordan
  */
 public class ConfuseStatus extends Status {

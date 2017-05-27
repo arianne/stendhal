@@ -1,20 +1,19 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Pair;
-
-import org.apache.log4j.Logger;
 
 /**
  * Runs the calculator for best creature of moneys amount (converting all to moneys from their corpse).
@@ -51,7 +50,7 @@ public class CreaturesRatioCalculator extends ScriptImpl {
 	/**
 	 * Search for max price of item.
 	 * @param item
-	 * 
+	 *
 	 * @return maximum price
 	 */
 	private Integer getMaxPrice(String item) {

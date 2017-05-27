@@ -1,6 +1,7 @@
 package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;

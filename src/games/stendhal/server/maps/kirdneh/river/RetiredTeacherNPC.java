@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kirdneh.river;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,14 +23,10 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Builds a npc in the house at Kirdneh River (name:Ortiv Milquetoast) who is a coward retired teacher
- * 
- * @author Vanessa Julius 
+ *
+ * @author Vanessa Julius
  *
  */
 public class RetiredTeacherNPC implements ZoneConfigurator {
@@ -38,17 +38,17 @@ public class RetiredTeacherNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Ortiv Milquetoast") {
-		    
+
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(15, 28));
 				nodes.add(new Node(27, 28));
                 nodes.add(new Node(27, 19));
-                nodes.add(new Node(26, 19));  
+                nodes.add(new Node(26, 19));
                 nodes.add(new Node(26, 16));
-                nodes.add(new Node(28, 16)); 
-                nodes.add(new Node(28, 11)); 
+                nodes.add(new Node(28, 16));
+                nodes.add(new Node(28, 11));
                 nodes.add(new Node(24, 11));
                 nodes.add(new Node(24, 20));
                 nodes.add(new Node(27, 20));

@@ -12,15 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.GameObjects;
-import games.stendhal.client.entity.ContentChangeListener;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.User;
-import games.stendhal.client.entity.factory.EntityMap;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,11 +21,19 @@ import javax.swing.Box;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.ContentChangeListener;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.factory.EntityMap;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.SpriteStore;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * Window for showing the equipment the player is wearing.
@@ -51,27 +50,27 @@ Inspectable {
 	/** The pixel amount the hand slots should be below the armor slot. */
 	private static final int HAND_YSHIFT = 10;
 	private static final Logger logger = Logger.getLogger(Character.class);
-	
+
 	/** ItemPanels searchable by the respective slot name. */
 	private final Map<String, ItemPanel> slotPanels = new HashMap<String, ItemPanel>();
 	private User player;
 
 	private JComponent specialSlots;
-	
+
 	/**
 	 * Create a new character window.
 	 */
 	public Character() {
 		super("character", "Character");
 		createLayout();
-		// Don't allow the user close this. There's no way to get it back. 
+		// Don't allow the user close this. There's no way to get it back.
 		setCloseable(false);
 	}
-	
+
 	/**
 	 * Sets the player entity. It is safe to call this method outside the event
 	 * dispatch thread.
-	 * 
+	 *
 	 * @param userEntity new user
 	 */
 	public void setPlayer(final User userEntity) {
@@ -90,7 +89,7 @@ Inspectable {
 		}
 		refreshContents();
 	}
-	
+
 	/**
 	 * Create the content layout and add the ItemPanels.
 	 */
@@ -107,7 +106,7 @@ Inspectable {
 		row.add(middle);
 		row.add(right);
 		content.add(row);
-		
+
 		Class<? extends IEntity> itemClass = EntityMap.getClass("item", null, null);
 		SpriteStore store = SpriteStore.get();
 
@@ -117,13 +116,13 @@ Inspectable {
 		 * Add filler to shift the hand slots down. Shift * 2 because centering
 		 * the column uses the other half at the bottom.
 		 */
-		left.add(Box.createVerticalStrut(HAND_YSHIFT * 2)); 
+		left.add(Box.createVerticalStrut(HAND_YSHIFT * 2));
 
 		ItemPanel panel = createItemPanel(itemClass, store, "rhand", "data/gui/weapon-slot.png");
 		left.add(panel);
 		panel = createItemPanel(itemClass, store, "finger", "data/gui/ring-slot.png");
 		left.add(panel);
-		
+
 		// Fill the middle column
 		panel = createItemPanel(itemClass, store, "head", "data/gui/helmet-slot.png");
 		middle.add(panel);
@@ -133,7 +132,7 @@ Inspectable {
 		middle.add(panel);
 		panel = createItemPanel(itemClass, store, "feet", "data/gui/boots-slot.png");
 		middle.add(panel);
-	
+
 		/*
 		 *  Fill the right column
 		 *
@@ -146,40 +145,40 @@ Inspectable {
 		panel = createItemPanel(itemClass, store, "cloak", "data/gui/cloak-slot.png");
 
 		right.add(panel);
-		
+
 		// Bag, keyring, etc
 		specialSlots = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, PADDING);
 		specialSlots.setAlignmentX(CENTER_ALIGNMENT);
 		// Compatibility. See the note at setPlayer().
 		specialSlots.setVisible(false);
 		content.add(specialSlots);
-		
+
 		panel = createItemPanel(itemClass, store, "back", "data/gui/bag-slot.png");
 		specialSlots.add(panel);
 		panel = createItemPanel(itemClass, store, "belt", "data/gui/key-slot.png");
 		specialSlots.add(panel);
-		
+
 		setContent(content);
 	}
-	
+
 	/**
 	 * Create an item panel to be placed to the character window.
-	 * 
+	 *
 	 * @param itemClass acceptable drops to the slot
 	 * @param store sprite store
 	 * @param id slot identifier
 	 * @param image empty slot image
-	 * 
+	 *
 	 * @return item panel
 	 */
 	private ItemPanel createItemPanel(Class<? extends IEntity> itemClass, SpriteStore store, String id, String image) {
 		ItemPanel panel = new ItemPanel(id, store.getSprite(image));
 		slotPanels.put(id, panel);
 		panel.setAcceptedTypes(itemClass);
-		
+
 		return panel;
 	}
-	
+
 	/**
 	 * Updates the player slot panels.
 	 */
@@ -191,7 +190,7 @@ Inspectable {
 				// Set the parent entity for all slots, even if they are not
 				// visible. They may become visible without zone changes
 				entitySlot.setParent(player);
-				
+
 				final RPSlot slot = player.getSlot(entry.getKey());
 				if (slot == null) {
 					continue;
@@ -229,7 +228,7 @@ Inspectable {
 			// Not a slot we are interested in
 			return;
 		}
-		
+
 		String slotName = added.getName();
 		if (("belt".equals(slotName) || "back".equals(slotName)) && !player.getRPObject().hasSlot(slotName)) {
 			// One of the new slots was added to the player. Set them visible.
@@ -240,7 +239,7 @@ Inspectable {
 				}
 			});
 		}
-		
+
 		for (RPObject obj : added) {
 			ID id = obj.getID();
 			IEntity entity = panel.getEntity();

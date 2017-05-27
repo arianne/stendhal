@@ -98,8 +98,9 @@ public class Recorder extends SignalProcessor
     @Override
     protected synchronized void modify(float[] data, int samples, int channels, int rate)
     {
-        if(data == null || samples == 0)
-            return;
+        if(data == null || samples == 0) {
+			return;
+		}
 
         if(mData == null)
         {
@@ -114,8 +115,9 @@ public class Recorder extends SignalProcessor
         int requiredBufferSpace  = samples * channels;
 
         // if the buffer is to small to hold the whole data, we expand it
-        if(remainingBufferSpace < requiredBufferSpace)
+        if(remainingBufferSpace < requiredBufferSpace) {
 			mData = Field.expand(mData, (mNumSamplesBuffered + requiredBufferSpace) * 2, true);
+		}
 
         System.arraycopy(data, 0, mData, mNumSamplesBuffered, requiredBufferSpace);
         mNumSamplesBuffered += requiredBufferSpace;

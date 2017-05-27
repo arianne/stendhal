@@ -13,33 +13,33 @@
 package games.stendhal.server.actions.admin;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.game.RPAction;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPAction;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CorpseTestHelper;
 
 public class DestroyActionTest {
 
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 		CorpseTestHelper.generateRPClasses();
 	}
-	
+
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		MockStendlRPWorld.reset();
 	}
-	
+
 	/**
 	 * Tests for perform.
 	 */

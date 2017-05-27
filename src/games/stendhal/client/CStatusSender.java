@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.common.Debug;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -23,12 +21,13 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.Debug;
 import marauroa.common.crypto.Hash;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPClass;
 import marauroa.common.io.Persistence;
-
-import org.apache.log4j.Logger;
 
 /**
  * sends client status information

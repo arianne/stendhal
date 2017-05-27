@@ -12,23 +12,22 @@
  ***************************************************************************/
 package games.stendhal.tools.statistics;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.db.CharacterIterator;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.db.CharacterIterator;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
 
-import org.apache.log4j.Logger;
-
 /**
  * Dumps the items of all players into a table called items.
- * 
+ *
  * @author hendrik
  */
 public class ItemDumper {
@@ -37,8 +36,8 @@ public class ItemDumper {
 
 	/**
 	 * dumps the items.
-	 * 
-	 * @param transaction 
+	 *
+	 * @param transaction
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
@@ -54,7 +53,7 @@ public class ItemDumper {
 			DBTransaction writeTransaction = TransactionPool.get().beginWork();
 			try {
 				PreparedStatement ps = writeTransaction.prepareStatement(query, null);
-				
+
 				final String name = object.get("name");
 				final int id = object.getInt("#db_id");
 				System.out.println(id + " " + name);
@@ -77,8 +76,8 @@ public class ItemDumper {
 
 	/**
 	 * Logs an item.
-	 * 
-	 * @param ps 
+	 *
+	 * @param ps
 	 * @param name
 	 *            character name
 	 * @param slotName
@@ -108,7 +107,7 @@ public class ItemDumper {
 		ps.executeUpdate();
 	}
 
-	
+
 	public void dump() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -122,14 +121,14 @@ public class ItemDumper {
 
 	/**
 	 * starts the ItemDumper.
-	 * 
+	 *
 	 * @param args
 	 *            ignored
 	 * @throws Exception
 	 *             in case of an unexpected item
 	 */
 	public static void main(final String[] args) throws Exception {
-		new DatabaseFactory().initializeDatabase();	
+		new DatabaseFactory().initializeDatabase();
 		SingletonRepository.getRPWorld();
 		//Configuration.setConfigurationFile("marauroa-prod.ini");
 		final ItemDumper itemDumper = new ItemDumper();

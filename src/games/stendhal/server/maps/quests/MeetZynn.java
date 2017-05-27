@@ -24,9 +24,9 @@ import games.stendhal.server.maps.Region;
 
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
- * 
+ *
  * STEPS: - Talk to Zynn to activate the quest and keep speaking with Zynn.
- * 
+ *
  * REWARD: - 10 XP (check that user's level is lower than 5) - 5 gold
  * REPETITIONS: - As much as wanted.
  */
@@ -156,24 +156,24 @@ public class MeetZynn extends AbstractQuest {
 				false);
 		step_1();
 	}
-	
+
 	@Override
 	public String getName() {
 		return "MeetZynn";
 	}
-	
+
 	// no quest slots ever get set so making it visible seems silly
-	// however, there is an entry for another quest slot in the games.stendhal.server.maps.semos.library.HistorianGeographerNPC file 
+	// however, there is an entry for another quest slot in the games.stendhal.server.maps.semos.library.HistorianGeographerNPC file
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

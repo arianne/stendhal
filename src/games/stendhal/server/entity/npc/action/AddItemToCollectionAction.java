@@ -12,19 +12,20 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Joiner;
 
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.player.Player;
+
 /**
  * Adds an item to a player's quest slot string
- * 
+ *
  * @author AntumDeluge
  */
 public class AddItemToCollectionAction implements ChatAction {
@@ -36,7 +37,7 @@ public class AddItemToCollectionAction implements ChatAction {
 
 	/**
 	 * Creates a new AddItemToCollectionAction
-	 * 
+	 *
 	 * @param quest
 	 * 			Quest slot name
 	 * @param item
@@ -49,10 +50,10 @@ public class AddItemToCollectionAction implements ChatAction {
 		this.item = checkNotNull(item);
 		this.quantity = quantity;
 	}
-	
+
 	/**
 	 * Creates a new StartItemsCollectionWithLimitsAction
-	 * 
+	 *
 	 * @param quest
 	 * 			Quest slot name
 	 * @param index
@@ -68,7 +69,7 @@ public class AddItemToCollectionAction implements ChatAction {
 		this.item = checkNotNull(item);
 		this.quantity = quantity;
 	}
-	
+
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		String result = item + "=" + quantity;

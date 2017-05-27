@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.office;
 
+import java.awt.Shape;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
-import java.awt.Shape;
-
 /**
  * A list of RentedSign as frontend for the zone storage.
- * 
+ *
  * @author hendrik
  */
 public class RentedSignList extends StorableEntityList<RentedSign> {
@@ -27,9 +27,9 @@ public class RentedSignList extends StorableEntityList<RentedSign> {
 
 	/**
 	 * Creates a new RentedSignList.
-	 * 
+	 *
 	 * @param zone  zone to store the rented signs in
-	 * @param shape 
+	 * @param shape
 	 */
 	public RentedSignList(final StendhalRPZone zone, final Shape shape) {
 		super(zone, shape, RentedSign.class);

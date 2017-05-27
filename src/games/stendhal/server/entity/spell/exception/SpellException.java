@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.spell.exception;
 /**
  * Exception super class in spell casting area
- * 
+ *
  * @author madmetzger
  */
 public class SpellException extends Exception {

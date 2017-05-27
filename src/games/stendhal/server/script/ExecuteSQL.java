@@ -11,18 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.player.Player;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -67,7 +66,7 @@ public class ExecuteSQL extends ScriptImpl {
 				logger.error(e, e);
 			}
 		}
-	
+
 	}
 
 	private void printMedian(Object lastGroup, ArrayList<Integer> data) {

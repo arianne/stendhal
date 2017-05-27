@@ -11,19 +11,18 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.item.Container;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * This listener handles all entity movements from a slot to either another slot

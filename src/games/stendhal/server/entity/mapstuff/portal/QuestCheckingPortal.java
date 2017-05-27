@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * checks the state of a quest
- * 
+ *
  * @author hendrik
  */
 public class QuestCheckingPortal extends AccessCheckingPortal {
@@ -26,7 +26,7 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * creates a quest checking portal
-	 * 
+	 *
 	 * @param questslot name of quest slot
 	 */
 	public QuestCheckingPortal(final String questslot) {
@@ -35,7 +35,7 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * creates a quest checking portal
-	 * 
+	 *
 	 * @param questslot name of quest slot
 	 * @param rejectMessage message to tell the player, if the condition is not met
 	 */
@@ -47,7 +47,7 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * creates a quest checking portal
-	 * 
+	 *
 	 * @param questslot name of quest slot
 	 * @param state expected state
 	 * @param rejectMessage message to tell the player, if the condition is not met
@@ -64,10 +64,10 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * Determine if this portal can be used.
-	 * 
+	 *
 	 * @param user
 	 *            The user to be checked.
-	 * 
+	 *
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override

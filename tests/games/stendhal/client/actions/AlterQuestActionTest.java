@@ -15,12 +15,13 @@ package games.stendhal.client.actions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.client.MockStendhalClient;
-import games.stendhal.client.StendhalClient;
-import marauroa.common.game.RPAction;
 
 import org.junit.After;
 import org.junit.Test;
+
+import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
+import marauroa.common.game.RPAction;
 
 public class AlterQuestActionTest {
 
@@ -41,7 +42,7 @@ public class AlterQuestActionTest {
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnack", action.get("name"));
 				assertEquals("schnuck", action.get("state"));
-				
+
 			}
 		};
 		final AlterQuestAction action = new AlterQuestAction();
@@ -56,11 +57,11 @@ public class AlterQuestActionTest {
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnick", action.get("name"));
 				assertEquals(null, action.get("state"));
-				
+
 			}
 		};
-		
+
 		assertTrue(action.execute(new String[] { "schnick", "schnick" }, null));
-		
+
 	}
 }

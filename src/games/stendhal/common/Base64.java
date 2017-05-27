@@ -25,14 +25,14 @@
 ////////////////////end license & copyright header///////////////////////
 
 //Added 10May04 by Adam Turk for distribution as part
-package games.stendhal.common; 
+package games.stendhal.common;
 
 //of the Tiled codebase
 
 /**
  * Provides encoding of raw bytes to base64-encoded characters, and decoding of
  * base64 characters to raw bytes.
- * 
+ *
  * @author Kevin Kelley (kelley@ruralnet.net)
  * @version 1.3
  */
@@ -41,7 +41,7 @@ public class Base64 {
 	/**
 	 * returns an array of base64-encoded characters to represent the passed
 	 * data array.
-	 * 
+	 *
 	 * @param data
 	 *            the array of bytes to encode
 	 * @return base64-coded character array.
@@ -83,7 +83,7 @@ public class Base64 {
 	 * Decodes a BASE-64 encoded stream to recover the original data. White
 	 * space before and after will be trimmed away, but no other manipulation of
 	 * the input will be performed.
-	 * 
+	 *
 	 * As of version 1.2 this method will properly handle input containing junk
 	 * characters (newlines and the like) rather than throwing an error. It does
 	 * this by pre-parsing the input and generating from that a count of VALID
@@ -103,7 +103,7 @@ public class Base64 {
 		for (int ix = 0; ix < data.length; ix++) {
 			if ((data[ix] > 255) || (codes[data[ix]] < 0)) {
 				// ignore non-valid chars and padding
-				--tempLen; 
+				--tempLen;
 			}
 		}
 		// calculate required length:
@@ -122,33 +122,33 @@ public class Base64 {
 		final byte[] out = new byte[len];
 
 		// # of excess bits stored in accum
-		int shift = 0; 
-		
+		int shift = 0;
+
 		// excess bits
-		int accum = 0; 
+		int accum = 0;
 		int index = 0;
 
 		// we now go through the entire array (NOT using the 'tempLen' value)
 		for (int ix = 0; ix < data.length; ix++) {
 			final int value = (data[ix] > 255) ? -1 : codes[data[ix]];
 
-			if (value >= 0) { 
+			if (value >= 0) {
 				// skip over non-code
-				
+
 				// bits shift up by 6 each time thru
 				accum <<= 6;
-				
+
 				// loop, with new bits being put in
-				shift += 6; 
-				
+				shift += 6;
+
 				// at the bottom.
-				accum |= value; 
-				if (shift >= 8) { 
+				accum |= value;
+				if (shift >= 8) {
 					// whenever there are 8 or more shifted in,
 					// write them out (from the top, leaving any
 					// excess at the bottom for next iteration.
-					shift -= 8; 
-					
+					shift -= 8;
+
 					out[index++] = 	(byte) ((accum >> shift) & 0xff);
 				}
 			}

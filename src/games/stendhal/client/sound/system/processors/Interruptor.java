@@ -12,10 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.client.sound.facade.Time;
-import games.stendhal.client.sound.system.SignalProcessor;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
+import games.stendhal.client.sound.facade.Time;
+import games.stendhal.client.sound.system.SignalProcessor;
 
 /**
  * Signal processor stage to pause sound signals.
@@ -63,7 +64,7 @@ public class Interruptor extends SignalProcessor
                 return false;
             }
         }
-        
+
         return super.request();
     }
 

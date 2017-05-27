@@ -21,6 +21,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -29,11 +33,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -42,7 +41,7 @@ public class DailyItemQuestTest {
 
 
 	private static String questSlot = "daily_item";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -52,11 +51,11 @@ public class DailyItemQuestTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		
+
 		new MayorNPC().configureZone(zone, null);
-			
+
 		final AbstractQuest quest = new DailyItemQuest();
 		quest.addToWorld();
 
@@ -71,7 +70,7 @@ public class DailyItemQuestTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Mayor Chalmers");
 		en = npc.getEngine();
 
@@ -83,27 +82,27 @@ public class DailyItemQuestTest {
 		assertTrue(getReply(npc).startsWith("You didn't fetch "));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		player.setQuest(questSlot, "pina colada;100");
 		Item item = ItemTestHelper.createItem("pina colada");
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
-		
+
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "complete");
 		assertFalse(player.isEquipped("pina colada"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertTrue(player.isQuestCompleted(questSlot));
-		// [10:50] kymara earns 455960 experience points. 
+		// [10:50] kymara earns 455960 experience points.
 		assertEquals("Good work! Let me thank you on behalf of the people of Ados!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "task");
-		assertThat(getReply(npc), 
+		assertThat(getReply(npc),
 				is(oneOf("I can only give you a new quest once a day. Please check back in 24 hours.",
 						"I can only give you a new quest once a day. Please check back in 1 day.")));
 		en.step(player, "bye");
@@ -111,7 +110,7 @@ public class DailyItemQuestTest {
 
 		// -----------------------------------------------
 		player.setQuest(questSlot, "done;0");
-		// [10:51] Changed the state of quest 'daily_item' from 'done;1219834233092;1' to 'done;0' 
+		// [10:51] Changed the state of quest 'daily_item' from 'done;1219834233092;1' to 'done;0'
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "task");
@@ -121,7 +120,7 @@ public class DailyItemQuestTest {
 
 		// -----------------------------------------------
 
-		// [10:53] Changed the state of quest 'daily_item' from 'dwarf cloak;1219834342834;0' to 'dwarf cloak;0' 
+		// [10:53] Changed the state of quest 'daily_item' from 'dwarf cloak;1219834342834;0' to 'dwarf cloak;0'
 		player.setQuest(questSlot, "dwarf cloak;0");
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
@@ -131,6 +130,6 @@ public class DailyItemQuestTest {
 		assertTrue(getReply(npc).startsWith("Ados is in need of supplies. Go fetch "));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
-		
+
 	}
 }

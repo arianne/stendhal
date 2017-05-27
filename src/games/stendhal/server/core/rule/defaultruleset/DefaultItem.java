@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.AttributesItemCreator;
@@ -21,24 +28,17 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.status.StatusType;
 
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 /**
  * All default items which can be reduced to stuff that increase the attack
  * point and stuff that increase the defense points.
- * 
+ *
  * @author Matthias Totz, chad3f
  */
 public class DefaultItem {
 
 	/** Implementation creator. */
 	private AbstractCreator<Item> creator;
-	
+
 	/** items class. */
 	private String clazz;
 
@@ -66,17 +66,17 @@ public class DefaultItem {
 	private Class< ? > implementation = null;
 
 	private int value;
-	
+
 	private Nature damageType;
-	
+
 	private Map<Nature, Double> susceptibilities;
-	
+
 	/* List of status effects to be added to StatusResistantIte. */
 	private Map<StatusType, Double> resistances;
-	
+
 	/* Slots where SlotActivatedItem can be activated when equipped. */
 	private List<String> activeSlotsList;
-	
+
 	/**
 	 * Use behavior of the item, or <code>null</code> if no special behaviors
 	 * are attached.
@@ -121,31 +121,31 @@ public class DefaultItem {
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public void setDamageType(String type) {
 		damageType = Nature.parse(type);
 	}
-	
+
 	/**
 	 * Set the susceptibilities. The key of each map entry should be a
 	 * string corresponding to a damage type. The value is the susceptibility
 	 * value of that damage type. The content of the mapping is copied, so
 	 * it can be safely modified afterwards.
-	 *  
+	 *
 	 * @param sus susceptibility mapping
 	 */
 	public void setSusceptibilities(Map<String, Double> sus) {
 		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
-		
+
 		for (Entry<String, Double> entry : sus.entrySet()) {
 			susceptibilities.put(Nature.parse(entry.getKey()), entry.getValue());
 		}
 	}
-	
+
 	/**
 	 * Add slots to list where SlotActivatedItem can be activated when
 	 * equipped.
-	 * 
+	 *
 	 * @param slots
 	 * 		String list of slots separated by semicolon
 	 */
@@ -154,34 +154,34 @@ public class DefaultItem {
 		if (activeSlotsList == null) {
 			activeSlotsList = new ArrayList<String>();
 		}
-		
+
 		for (String s : slots.split(";")) {
 			activeSlotsList.add(s);
 		}
 	}
-	
+
 	/**
 	 * Set the types of status attacks that this StatusResistantItem can resist.
-	 * 
+	 *
 	 * @param res
 	 * 		The status type and the resistance value
 	 */
 	public void initializeStatusResistancesList(Map<String, Double> res) {
 		resistances = new EnumMap<StatusType, Double>(StatusType.class);
-		
+
 		for (Entry<String, Double> entry : res.entrySet()) {
 			resistances.put(StatusType.parse(entry.getKey()), entry.getValue());
 		}
 	}
-	
+
 	public void setImplementation(final Class< ? > implementation) {
 		this.implementation = implementation;
 		creator = buildCreator(implementation);
 	}
-	
+
 	/**
 	 * Set the use behavior.
-	 * 
+	 *
 	 * @param behavior new behavior
 	 */
 	public void setBehavior(UseBehavior behavior) {
@@ -195,17 +195,17 @@ public class DefaultItem {
 	/**
 	 * Build a creator for the class. It uses the following constructor search
 	 * order:<br>
-	 * 
+	 *
 	 * <ul>
 	 * <li><em>Class</em>(<em>name</em>, <em>clazz</em>,
 	 * <em>subclazz</em>, <em>attributes</em>)
 	 * <li><em>Class</em>(<em>attributes</em>)
 	 * <li><em>Class</em>()
 	 * </ul>
-	 * 
+	 *
 	 * @param implementation
 	 *            The implementation class.
-	 * 
+	 *
 	 * @return A creator, or <code>null</code> if none found.
 	 */
 	protected AbstractCreator<Item> buildCreator(final Class< ? > implementation) {
@@ -250,7 +250,7 @@ public class DefaultItem {
 
 	/**
 	 * Returns an item-instance.
-	 * 
+	 *
 	 * @return An item, or <code>null</code> on error.
 	 */
 	public Item getItem() {
@@ -270,18 +270,18 @@ public class DefaultItem {
 				item.setDamageType(damageType);
 			}
 			item.setSusceptibilities(susceptibilities);
-			
+
 			/* Set a list of status resistances for StatusResistantItem. */
 			if ((this.resistances != null) && (!this.resistances.isEmpty())) {
 				item.initializeStatusResistancesList(resistances);
 			}
-			
+
 			/* Set a list of active slots for SlotActivatedItem. */
 			if ((this.activeSlotsList != null)
 					&& (!this.activeSlotsList.isEmpty())) {
 				item.initializeActiveSlotsList(this.activeSlotsList);
 			}
-			
+
 			item.setUseBehavior(useBehavior);
 		}
 

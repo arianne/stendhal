@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.hotel;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,14 +21,12 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
-import java.util.Map;
-
 /**
  * Provides a Troublesome Customer in Fado's Hotel.
- * 
+ *
  * Offers a quest to bring him the meal he's been awaiting to order.
- * 
- * @author omero 
+ *
+ * @author omero
  *
  */
 public class TroublesomeCustomerNPC implements ZoneConfigurator {
@@ -46,7 +46,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Groongo Rahnnt") {
-		    
+
 			@Override
 			protected void createPath() {
 				setPath(null);
@@ -55,11 +55,11 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Gah! It was about time that someone showed up eventually!");
-				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!"); 
+				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!");
 				addJob("Ah! Finally... Want a #task?");
 				addOffer("Do a #task for me and you get a generous tip!");
 				addGoodbye("Buzz off now!");
-                
+
 				/**
                  * Additional behavior code is in games.stendhal.server.maps.quests.MealForGroongo
                  */
@@ -70,7 +70,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.RIGHT);
 			}
-		
+
 		};
 
 		npc.setEntityClass("customeronchairnpc");

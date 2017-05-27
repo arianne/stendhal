@@ -1,12 +1,12 @@
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.client.sprite.DataLoader;
-
 import java.io.InputStream;
+
+import games.stendhal.client.sprite.DataLoader;
 
 /**
  * the last remaining piece of the very complicated resource framework, which has been replaced by DataLoader.
- * 
+ *
  * This class is a helper for refactoring, it should be made obsolate.
  */
 public class AudioResource {

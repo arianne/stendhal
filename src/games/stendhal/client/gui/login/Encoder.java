@@ -32,7 +32,7 @@ class Encoder {
 	public String decode(final String str) {
 		try {
 			// create a BitSet based on the binary representation
-			final BitSet nameSet = createBitSet(str); 
+			final BitSet nameSet = createBitSet(str);
 			 // xor the BitSet with the key
 			nameSet.xor(key);
 
@@ -60,12 +60,12 @@ class Encoder {
 
 	public String encode(final String str) {
 		// create binary representationn of input string
-		String binaryString = stringToBinary(str); 
+		String binaryString = stringToBinary(str);
 
 		// add the length (in binary number format) of entire encoded string to
 		// the begging of the encoded string.
 		// the size of total binaryString
-		String sizeOfEncodedString = String.valueOf(binaryString.length() / 7); 
+		String sizeOfEncodedString = String.valueOf(binaryString.length() / 7);
 		String stringSizeBinary = "";
 		// if the size of the encoded string isnt two digits in length then add
 		// a zero as padding
@@ -81,7 +81,7 @@ class Encoder {
 		// create a BitSet based on the binary representation
 		final BitSet nameSet = createBitSet(binaryString);
 		// xor the BitSet with the key
-		nameSet.xor(key); 
+		nameSet.xor(key);
 
 		// turn the xor'd BitSet back into a String so it can be written to file
 		final StringBuilder strBuff = new StringBuilder(str.length() * 7);
@@ -112,9 +112,9 @@ class Encoder {
 		return strBuff.toString();
 	}
 
-	/** creates a BitSet based on a string representation of binary digits. 
-	 * @param binaryString 
-	 * @return the created BitSet 
+	/** creates a BitSet based on a string representation of binary digits.
+	 * @param binaryString
+	 * @return the created BitSet
 	 * */
 	private BitSet createBitSet(final String binaryString) {
 		final BitSet bset = new BitSet(binaryString.length());
@@ -142,9 +142,9 @@ class Encoder {
 			binary = Integer.toBinaryString(theString.charAt(i));
 			len = binary.length();
 			// somtimes integers do not take up the total 7 bits. So padding is necessary
-			if (len < 7) { 
+			if (len < 7) {
 				// how many binary digits are missing to be complete
-				paddingNeededSize = 7 - len; 
+				paddingNeededSize = 7 - len;
 				for (int k = 0; k < paddingNeededSize; k++) {
 					padding = padding.concat("0");
 				}

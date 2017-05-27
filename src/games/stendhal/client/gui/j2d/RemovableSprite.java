@@ -12,22 +12,22 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.client.sprite.Sprite;
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import games.stendhal.client.sprite.Sprite;
 
 /**
  * Container sprite for texboxes etc. Keeps track of the time when the sprite
  * should be removed. Also implements Comparable in a way that more important
  * sprites can be placed above less important ones.
- * 
+ *
  * <br>
  * Note: this class has a natural ordering that is inconsistent with equals.
  */
 public class RemovableSprite implements Comparable<RemovableSprite> {
 	public static final long STANDARD_PERSISTENCE_TIME = 5000;
-	
+
 	private final int x;
 
 	private final int y;
@@ -40,7 +40,7 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 
 	/**
 	 * Create a new text object.
-	 * 
+	 *
 	 * @param sprite
 	 * @param x x coordinate relative to the game screen
 	 * @param y y coordinate relative to the game screen
@@ -62,16 +62,16 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 
 	/**
 	 * Draw the contained sprite.
-	 * 
+	 *
 	 * @param g graphics
 	 */
 	public void draw(final Graphics g) {
 		sprite.draw(g, x, y);
 	}
-	
+
 	/**
 	 * Get the area the sprite covers.
-	 * 
+	 *
 	 * @return sprite area
 	 */
 	public Rectangle getArea() {
@@ -80,7 +80,7 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 
 	/**
 	 * Get the position of the left side of the sprite.
-	 * 
+	 *
 	 * @return x coordinate
 	 */
 	public int getX() {
@@ -89,17 +89,17 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 
 	/**
 	 * Get the position of the top of the sprite.
-	 * 
+	 *
 	 * @return y coordinate
 	 */
 	public int getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Set the priority of the message. Higher priority messages are kept above
 	 * others; sprites of the same priority are ordered newest on top.
-	 * 
+	 *
 	 * @param priority
 	 */
 	public void setPriority(int priority) {
@@ -108,7 +108,7 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 
 	/**
 	 * Check if the <code>Text</code> is old enough to be removed.
-	 * 
+	 *
 	 * @return <code>true</code> if the text should be removed
 	 */
 	public boolean shouldBeRemoved() {

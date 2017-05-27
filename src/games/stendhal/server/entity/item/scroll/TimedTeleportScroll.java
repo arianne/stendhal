@@ -3,16 +3,16 @@
  */
 package games.stendhal.server.entity.item.scroll;
 
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
-import java.util.StringTokenizer;
-
-import org.apache.log4j.Logger;
 
 /**
  * Represents a teleport scroll that takes the player to a specified location
@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
  * <li>-1 and -1 are the return x and y positions (negative value means a random
  * position)
  * </ul>
- * 
+ *
  * TODO: This class isn't fully self-containing as the LoginHandler (that
  * handles the players logging in the target zone) must be implemented
  * elsewhere, i.e. in a quest file.
@@ -43,7 +43,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * Teleport the player back from the target zone.
-	 * 
+	 *
 	 * @param player
 	 * @return true if teleport was successful
 	 */
@@ -57,15 +57,15 @@ public class TimedTeleportScroll extends TeleportScroll {
 			final StringTokenizer st = new StringTokenizer(infoString);
 			if (st.countTokens() == 7) {
 				targetZoneName = st.nextToken();
-				
-				// targetX 
-				st.nextToken(); 
-				
-				// targetY 
-				st.nextToken(); 
-				
-				// timeInTurns 
-				st.nextToken(); 
+
+				// targetX
+				st.nextToken();
+
+				// targetY
+				st.nextToken();
+
+				// timeInTurns
+				st.nextToken();
 				returnZoneName = st.nextToken();
 				returnX = Integer.parseInt(st.nextToken());
 				returnY = Integer.parseInt(st.nextToken());
@@ -74,22 +74,22 @@ public class TimedTeleportScroll extends TeleportScroll {
 						"the infostring attribute is malformed");
 			}
 		}
-	
+
 		if ((player == null) || (player.getZone() == null)
 				|| (targetZoneName == null)) {
 			return true;
 		}
 
 		if (notInTargetZone(player, targetZoneName)) {
-			return true; 
+			return true;
 		}
 
 		final StendhalRPZone returnZone = SingletonRepository.getRPWorld().getZone(
 				returnZoneName);
-		
+
 		int x = initCoord(returnX, returnZone.getWidth());
 		int y = initCoord(returnY, returnZone.getHeight());
-	
+
 		final boolean result = player.teleport(returnZone, x, y, null, player);
 
 		sendAfterTransportMessage(player);
@@ -110,7 +110,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * Evaluates the given coord to be non negative.
-	 * 
+	 *
 	 * @param coord
 	 * @param max
 	 * @return the coord if coord non negative or a randomized value between 0 and max.
@@ -127,7 +127,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * Creates a new timed marked teleport scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -140,7 +140,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -151,7 +151,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the player on
 	 * the scroll's destination, or near it.
-	 * 
+	 *
 	 * @param player
 	 *            The player who used the scroll and who will be teleported
 	 * @return true if teleport was successful
@@ -178,11 +178,11 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 		return useTeleportScroll(player, targetZoneName, targetX, targetY, timeInTurns);
 	}
-	
+
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the player on
 	 * the destination, or near it.
-	 * 
+	 *
 	 * @param player
 	 * 	The player who used the scroll
 	 * @param targetZoneName
@@ -192,7 +192,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param y
 	 * 	y coordinate of the target location
 	 * @param timeInTurns
-	 * 	The time on turns that the player should spend on the the target 
+	 * 	The time on turns that the player should spend on the the target
 	 * 	zone unless she leaves by other means than the scrolls timeout feature
 	 * @return true if teleport was succesful
 	 */
@@ -211,20 +211,20 @@ public class TimedTeleportScroll extends TeleportScroll {
 			return teleportPlayer(player, x, y, targetZone);
 		}
 	}
-	
+
 	/**
 	 * Teleports the player to the given position in the given zone.
 	 * Uses player as teleporter to give report to him in case something goes wrong while transport.
-	 * 
+	 *
 	 * @param player the person to teleport
-	 * @param targetX 
+	 * @param targetX
 	 * @param targetY
 	 * @param targetZone the zone to teleport to.
 	 * @return true if successful
 	 */
 	private boolean teleportPlayer(final Player player, final int targetX,
 			final int targetY, final StendhalRPZone targetZone) {
-		
+
 		return player.teleport(targetZone, targetX, targetY, null, player);
 	}
 
@@ -251,7 +251,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * override this to show a message before teleporting the player back.
-	 * 
+	 *
 	 * @return the message to shown or null for no message
 	 */
 	protected String getBeforeReturnMessage() {
@@ -260,7 +260,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * override this to show a message after teleporting the player back.
-	 * 
+	 *
 	 * @return the message to shown or null for no message
 	 */
 	protected String getAfterReturnMessage() {
@@ -313,5 +313,5 @@ public class TimedTeleportScroll extends TeleportScroll {
 			}
 		}
 	}
-	
+
 }

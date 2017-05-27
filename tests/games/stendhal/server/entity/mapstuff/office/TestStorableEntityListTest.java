@@ -13,16 +13,19 @@
 package games.stendhal.server.entity.mapstuff.office;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 public class TestStorableEntityListTest {
 
@@ -34,7 +37,7 @@ public class TestStorableEntityListTest {
 
 		@Override
 		public void onRemoved(final StendhalRPZone zone) {
-			
+
 			removecounter++;
 			super.onRemoved(zone);
 		}
@@ -89,7 +92,7 @@ public class TestStorableEntityListTest {
 		storelist.removeByName(ent.getTitle());
 		assertThat(removecounter, is(2));
 		assertThat(storelist.getList().size(), is(0));
-		
+
 		assertThat("removebyname() removes all instances", storelist.getList().size(), is(0));
 	}
 

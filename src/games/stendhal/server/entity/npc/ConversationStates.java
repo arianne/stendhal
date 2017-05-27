@@ -62,7 +62,7 @@ public enum ConversationStates {
 	 * the offer.
 	 */
 	SERVICE_OFFERED,
-	
+
 	/**
 	 * The player wants the NPC to repair an item. The NPC told the price and
 	 * awaits the player's response accepting or rejecting the offer.

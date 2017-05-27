@@ -134,14 +134,14 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(enFeelgood.step(player, "bye"));
 		assertFalse(feelgoodNpc.isTalking());
 		assertEquals(null, getReply(feelgoodNpc));
-		
+
 		// test compatibility with old
 		player.setQuest("zoo_food","start");
 		// bother katinka again
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
 				getReply(katinkaNpc));
-		assertTrue("lie", enKatinka.step(player, "yes")); 
+		assertTrue("lie", enKatinka.step(player, "yes"));
 		assertEquals(
 				"*sigh* I SPECIFICALLY said that we need 10 pieces of ham!",
 				getReply(katinkaNpc));
@@ -158,7 +158,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
 				getReply(katinkaNpc));
-		assertTrue("lie", enKatinka.step(player, "yes")); 
+		assertTrue("lie", enKatinka.step(player, "yes"));
 		assertEquals(
 				"*sigh* I SPECIFICALLY said that we need 10 pieces of ham!",
 				getReply(katinkaNpc));
@@ -179,9 +179,9 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 				getReply(katinkaNpc));
 		assertTrue(enKatinka.step(player, "bye"));
 		assertEquals("Goodbye!", getReply(katinkaNpc));
-		
+
 		assertTrue(player.getQuest("zoo_food").startsWith("done;"));
-		
+
 		// feelgood is reacting
 		assertTrue(enFeelgood.step(player, "hi"));
 		assertTrue(feelgoodNpc.isTalking());

@@ -12,29 +12,28 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.awt.Graphics2D;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.awt.Graphics2D;
-import java.util.HashMap;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 class Gate2DView extends Entity2DView<IEntity> {
 	private static final HashMap<String, Sprite[]> sprites = new HashMap<String, Sprite[]>();
 
 	private Sprite openSprite, closedSprite;
-	
+
 	/**
 	 * Get the zone color adjusted sprite
-	 * 
+	 *
 	 * @param base base sprite
 	 * @return color adjusted sprite, or original sprite if no adjusting is
 	 * 	needed
@@ -44,7 +43,7 @@ class Gate2DView extends Entity2DView<IEntity> {
 		if ((info.getColorMethod() == null) || (info.getZoneColor() == null)) {
 			return base;
 		}
-		
+
 		SpriteStore store = SpriteStore.get();
 		String ref = store.createModifiedRef(base.getReference().toString(),
 				info.getZoneColor(), info.getColorMethod());
@@ -53,7 +52,7 @@ class Gate2DView extends Entity2DView<IEntity> {
 			rval = store.modifySprite(base, info.getZoneColor(),
 					info.getColorMethod(), ref);
 		}
-		
+
 		return rval;
 	}
 
@@ -67,10 +66,10 @@ class Gate2DView extends Entity2DView<IEntity> {
 	protected void buildRepresentation(IEntity entity) {
 		final RPObject rpobject = entity.getRPObject();
 		final String baseImage = rpobject.get("image");
-		final String orientation = rpobject.get("orientation"); 
-		
+		final String orientation = rpobject.get("orientation");
+
 		SpriteStore store = SpriteStore.get();
-		
+
 		String imageName = "data/sprites/doors/" + baseImage + "_" + orientation +".png";
 		Sprite[] s = sprites.get(imageName);
 		if (s == null) {
@@ -80,7 +79,7 @@ class Gate2DView extends Entity2DView<IEntity> {
 			s[1] = sprite.createRegion(0, 96, 96, 96, imageName + "[1]");
 			sprites.put(imageName, s);
 		}
-		
+
 		openSprite = getModifiedSprite(s[0]);
 		closedSprite = getModifiedSprite(s[1]);
 	}
@@ -107,16 +106,16 @@ class Gate2DView extends Entity2DView<IEntity> {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Check if the gate is open.
-	 * 
+	 *
 	 * @return <code>true</code> iff the gate is open
 	 */
 	private boolean isOpen() {
 		return entity.getResistance() == 0;
 	}
-	
+
 	@Override
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width,
 			final int height) {

@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -26,11 +32,11 @@ import games.stendhal.server.actions.equip.DisplaceAction;
 import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.actions.equip.EquipAction;
 import games.stendhal.server.actions.equip.ReorderAction;
+import games.stendhal.server.actions.move.AutoWalkAction;
 import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveToAction;
 import games.stendhal.server.actions.move.PushAction;
-import games.stendhal.server.actions.move.AutoWalkAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
@@ -45,15 +51,8 @@ import games.stendhal.server.actions.query.WhoAction;
 import games.stendhal.server.actions.spell.CastSpellAction;
 import games.stendhal.server.core.engine.Translate;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * Handles actions sent by the client. They are dispatched to the

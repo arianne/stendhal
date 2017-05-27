@@ -12,16 +12,15 @@
  ***************************************************************************/
 package games.stendhal.bot.textclient;
 
-import games.stendhal.bot.core.StandardClientFramework;
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.CStatusSender;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
-import games.stendhal.common.NotificationType;
-
 import java.io.IOException;
 import java.net.SocketException;
 
+import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.client.CStatusSender;
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
+import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;

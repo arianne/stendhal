@@ -22,17 +22,17 @@ public class ConfigurableFactoryHelper {
 	 * target class and returns <code>null</code> if the factory returns an
 	 * incompatible object. This allows the called to cast the return values
 	 * without worrying about ClassCastExceptions.
-	 * 
+	 *
 	 * @param factory
 	 *            Object factory.
 	 * @param ctx
 	 *            Configuration context.
 	 * @param clazz
 	 *            The target class.
-	 * 
+	 *
 	 * @return A new object, or <code>null</code> if allowed by the factory
 	 *         type, or of the wrong class.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
@@ -54,7 +54,7 @@ public class ConfigurableFactoryHelper {
 	/**
 	 * Create an object factory using a [logical] class name.
 	 * <p>
-	 * 
+	 *
 	 * <p>
 	 * This will attempt to create a factory for the class in the following
 	 * order:
@@ -62,24 +62,24 @@ public class ConfigurableFactoryHelper {
 	 * <li>If a class named <em>&lt;class-name&gt</em><code>Factory</code>
 	 * exists and implements <code>ConfigurableFactory</code>, return an
 	 * instance of it.
-	 * 
+	 *
 	 * <li>If a class named <em>&lt;class-name&gt</em> exists and implements
 	 * <code>ConfigurableFactory</code>, return an instance of it.
-	 * 
+	 *
 	 * <li>If a class named <em>&lt;class-name&gt</em> exists and accepts a
 	 * constructor with ConfigurableFactoryContext, return a factory that
 	 * creates an instance with that constructor when used.
-	 * 
+	 *
 	 * <li>If a class named <em>&lt;class-name&gt</em> exists and has a
 	 * default constructor, return a factory that creates an instance with that
 	 * constructor when used.
-	 * 
+	 *
 	 * <li>Returns <code>null</code>,
 	 * </ul>
-	 * 
+	 *
 	 * @param className
 	 *            A base class name to load.
-	 * 
+	 *
 	 * @return A factory, or <code>null</code> if no valid class was found.
 	 */
 	public static ConfigurableFactory getFactory(final String className) {

@@ -18,6 +18,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.Scanner;
+
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -29,26 +37,17 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
-
-import java.util.Scanner;
-
 import marauroa.common.Log4J;
-
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class RingMakerTest {
 
 	private static final String QUEST_SLOT = "fix_emerald_ring";
-	
+
 	private static SpeakerNPC npc;
 	private static Engine en;
 	private Player player;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		Log4J.init();
@@ -67,7 +66,7 @@ public class RingMakerTest {
 	@AfterClass
 	public static void tearDownAftereClass() {
 		MockStendlRPWorld.reset();
-		
+
 		 npc = null;
 		 en = null;
 	}
@@ -77,7 +76,7 @@ public class RingMakerTest {
 		player = PlayerTestHelper.createPlayer("player");
 		en.setCurrentState(ConversationStates.IDLE);
 	}
-	
+
 	/**
 	 * Tests for hiandBye.
 	 */
@@ -86,17 +85,17 @@ public class RingMakerTest {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "bye"));
-		assertEquals("Bye, my friend.", getReply(npc));	
-		
+		assertEquals("Bye, my friend.", getReply(npc));
+
 	}
-	
-	
+
+
 	/**
 	 * Tests for orderEmeraldRingWithoutEnoughmoney.
 	 */
 	@Test
 	public void testOrderEmeraldRingWithoutEnoughmoney() {
-		
+
 		// **at ringsmith**
 		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
@@ -127,13 +126,13 @@ public class RingMakerTest {
 		assertEquals("Come back when you have the money, the gem and the gold. Goodbye.", getReply(npc));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
-	
+
 	/**
 	 * Tests for orderEmeraldRingDeny.
 	 */
 	@Test
 	public void testOrderEmeraldRingDeny() {
-		
+
 		// -----------------------------------------------
 		// this time say no they don't want to pay yet
 		npc = SingletonRepository.getNPCList().get("Ognir");
@@ -161,15 +160,15 @@ public class RingMakerTest {
 	 */
 	@Test
 	public void testOrderEmeraldRing() {
-		
+
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
 		ring.damage();
 		player.equipToInventoryOnly(ring);
-		
+
 		PlayerTestHelper.equipWithMoney(player, 80000);
 		PlayerTestHelper.equipWithStackableItem(player, "gold bar", 2);
 		PlayerTestHelper.equipWithStackableItem(player, "emerald", 1);
-		
+
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", getReply(npc));
@@ -178,7 +177,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", getReply(npc));
 		assertTrue(en.step(player, "price"));
-		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));		
+		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Okay, that's all I need to fix the ring. Come back in 10 minutes and it will be ready. Bye for now.", getReply(npc));
 
@@ -193,7 +192,7 @@ public class RingMakerTest {
 	public void testFetchOrderedEmeraldRing() {
 
 		player.setQuest("fix_emerald_ring", "forging;" + Long.MAX_VALUE);
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
@@ -203,10 +202,10 @@ public class RingMakerTest {
 		en.step(player, "bye");
 
 		// Jump relatively forward in time (by pushing the past events to the beginning of time
-		
+
 		assertTrue(player.getQuest("fix_emerald_ring").startsWith("forging;"));
 		player.setQuest("fix_emerald_ring", "forging;1");
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
@@ -215,7 +214,7 @@ public class RingMakerTest {
 		en.step(player, "emerald");
 		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", getReply(npc));
 		assertEquals("player earns 500 experience points.", oldXP + 500, player.getXP());
-		
+
 		final Item ring = player.getFirstEquipped("emerald ring");
 		assertTrue(ring.isBound());
 		assertTrue(player.isBoundTo(ring));
@@ -226,7 +225,7 @@ public class RingMakerTest {
 		en.step(player, "bye");
 		assertEquals("Bye, my friend.", getReply(npc));
 	}
-	
+
 	/**
 	 * Tests for ringIsboundAfterfix.
 	 */
@@ -243,7 +242,7 @@ public class RingMakerTest {
 		assertTrue(bob.isEquipped("emerald ring"));
 		assertTrue(bob.getFirstEquipped("emerald ring").isBound());
 	}
-	
+
 	/**
 	 * Tests for ringIsUnboundAfterfix.
 	 */
@@ -260,7 +259,7 @@ public class RingMakerTest {
 		assertTrue(bob.isEquipped("emerald ring"));
 		assertFalse(bob.getFirstEquipped("emerald ring").isBound());
 	}
-	
+
 	/**
 	 * Tests for deliverBoundRinghasnoRing.
 	 */
@@ -269,7 +268,7 @@ public class RingMakerTest {
 		RingMaker rm = new RingMaker();
 		SpeakerNPC testNpc = new SpeakerNPC("jack");
 		Player hasnoRingPlayer = PlayerTestHelper.createPlayer("hasnoRingPlayer");
-		
+
 		rm.fixRingStep(testNpc);
 		Engine engine = testNpc.getEngine();
 		engine.setCurrentState(ConversationStates.ATTENDING);
@@ -281,8 +280,8 @@ public class RingMakerTest {
 
 		assertFalse(hasnoRingPlayer.isEquipped("emerald ring"));
 	}
-	
-	
+
+
 	/**
 	 * Tests for giveBoundRingGetBoundRing.
 	 */
@@ -314,15 +313,15 @@ public class RingMakerTest {
 		assertTrue(en.step(testplayer, "emerald"));
 		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", getReply(npc));
 		assertTrue(en.step(testplayer, "price"));
-		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));		
+		assertEquals("The charge for my service is 80000 money, and I need 2 gold bars and 1 emerald to fix the ring. Do you want to pay now?", getReply(npc));
 		assertTrue(en.step(testplayer, "yes"));
 		assertEquals("Okay, that's all I need to fix the ring. Come back in 10 minutes and it will be ready. Bye for now.", getReply(npc));
 
 		assertTrue(testplayer.getQuest(QUEST_SLOT).startsWith("forging"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		
-		
-		
+
+
+
 		en.step(testplayer, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(testplayer, "help");
@@ -332,11 +331,11 @@ public class RingMakerTest {
 		en.step(testplayer, "bye");
 
 		// Jump relatively forward in time (by pushing the past events to the beginning of time
-		
+
 		assertTrue(testplayer.getQuest("fix_emerald_ring").startsWith("forging"));
 		String[] tokens = testplayer.getQuest(QUEST_SLOT).split(";");
 		testplayer.setQuest(QUEST_SLOT, tokens[0] + ";1");
-		
+
 		en.step(testplayer, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(testplayer, "help");
@@ -347,8 +346,8 @@ public class RingMakerTest {
 		assertEquals("player earns 500 experience points.", oldXP + 500, testplayer.getXP());
 		en.step(testplayer, "bye");
 	}
-	
-	
+
+
 	/**
 	 * Tests for giveUnboundRingGetUnboundRing.
 	 */
@@ -357,14 +356,14 @@ public class RingMakerTest {
 		final RingOfLife ring = (RingOfLife) SingletonRepository.getEntityManager().getItem("emerald ring");
 		ring.damage();
 		player.equipToInventoryOnly(ring);
-		
+
 		assertFalse(ring.isBound());
 		orderfixandfetchordered(player);
 		final Item ringafter = player.getFirstEquipped("emerald ring");
 		assertFalse(ringafter.isBound());
-	
+
 	}
-	
+
 	/**
 	 * Tests for name.
 	 */

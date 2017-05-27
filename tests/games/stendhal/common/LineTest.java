@@ -13,9 +13,10 @@
 package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.common.Line.Action;
 
 import org.junit.Test;
+
+import games.stendhal.common.Line.Action;
 
 public class LineTest {
 
@@ -98,7 +99,7 @@ public class LineTest {
 				expected, sb.toString());
 
 	}
-	
+
 	/**
 	 * Tests for line1_0_10_0.
 	 */

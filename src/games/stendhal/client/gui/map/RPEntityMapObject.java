@@ -23,9 +23,9 @@ class RPEntityMapObject extends MovingMapObject {
 	private static final Color COLOR_DOMESTIC_ANIMAL = new Color(255, 150, 0);
 	private static final Color COLOR_CREATURE = Color.YELLOW;
 	private static final Color COLOR_NPC = new Color(0, 150, 0);
-	
+
 	protected Color drawColor;
-	
+
 	RPEntityMapObject(final IEntity entity) {
 		super(entity);
 		if (entity instanceof NPC) {
@@ -36,7 +36,7 @@ class RPEntityMapObject extends MovingMapObject {
 			drawColor = COLOR_CREATURE;
 		}
 	}
-	
+
 	@Override
 	void draw(final Graphics g, final int scale) {
 		draw(g, scale, drawColor);

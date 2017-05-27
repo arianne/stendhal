@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.forest;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates Jefs mother Amber in Fado Forest and other areas (she moves in different zones)
@@ -53,7 +53,7 @@ public class OldWomanNPC implements ZoneConfigurator {
 				nodes.add(new Node(45,47));
 				nodes.add(new Node(45,61));
 				nodes.add(new Node(70,61));
-				nodes.add(new Node(70,74));		
+				nodes.add(new Node(70,74));
 				nodes.add(new Node(52,74));
 				nodes.add(new Node(52,70));
 				nodes.add(new Node(29,70));

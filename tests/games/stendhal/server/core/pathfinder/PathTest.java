@@ -13,9 +13,6 @@
 package games.stendhal.server.core.pathfinder;
 
 import static org.junit.Assert.assertArrayEquals;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +20,10 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 public class PathTest {
 	static List<Node> expected;
@@ -63,14 +64,14 @@ public class PathTest {
 		zone.add(entity);
 		assertArrayEquals(expected.toArray(), Path.searchPath(entity, 6, 6).toArray());
 	}
-	
+
 	/**
-	 * Test the entity free path finder. 
+	 * Test the entity free path finder.
 	 */
 	@Test
 	public void testSearchPathSimpleIntInt() {
 		final StendhalRPZone zone = new StendhalRPZone("test", 10, 10);
-		
+
 		assertArrayEquals(expected.toArray(), Path.searchPath(zone, 0, 0, 6, 6, 20).toArray());
 	}
 }

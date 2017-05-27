@@ -33,7 +33,7 @@ import org.xml.sax.SAXParseException;
 
 import marauroa.common.Log4J;
 
-public class PortalMatchTest { 
+public class PortalMatchTest {
 	private final transient List<PortalTestObject> portals = new LinkedList<PortalTestObject>();
 
 	@Test
@@ -43,7 +43,7 @@ public class PortalMatchTest {
 
 			final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 			final DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			
+
 			final File directory = new File("data/conf/zones/");
 			final File[] files = directory.listFiles(new FileFilter() {
 
@@ -60,14 +60,14 @@ public class PortalMatchTest {
 			}
 
 		} catch (final SAXParseException err) {
-		
+
 			fail(err.toString());
 
 		} catch (final SAXException e) {
-			
+
 			fail(e.toString());
 		} catch (final Exception t) {
-			
+
 			fail(t.toString());
 		}
 
@@ -86,12 +86,12 @@ public class PortalMatchTest {
 
 		final NodeList listOfPortals = xmldoc.getElementsByTagName("portal");
 		if (listOfPortals.getLength() > 0) {
-			
+
 			for (int s = 0; s < listOfPortals.getLength(); s++) {
 				zone = listOfPortals.item(s).getParentNode().getAttributes().getNamedItem(
 						"name").getNodeValue();
 				name = listOfPortals.item(s).getAttributes().getNamedItem("ref").getNodeValue();
-				
+
 				final NodeList listofChildren = listOfPortals.item(s).getChildNodes();
 				for (int i = 0; i < listofChildren.getLength(); i++) {
 					if ("destination".equals(listofChildren.item(i).getNodeName())) {

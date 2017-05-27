@@ -33,16 +33,16 @@ import org.apache.log4j.Logger;
 public class CharacterMap extends JButton {
 	/**
 	 * Create a new CharacterMap.
-	 * 
+	 *
 	 * @param textField text field where selected character should be inserted
 	 */
 	public CharacterMap(final JTextComponent textField) {
 		super("☺");
 		setFocusable(false);
 		setToolTipText("Insert a special character");
-		
+
 		final JPopupMenu menu = new JPopupMenu();
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -50,7 +50,7 @@ public class CharacterMap extends JButton {
 				menu.show(CharacterMap.this, getWidth() - menu.getPreferredSize().width, getHeight());
 			}
 		});
-		
+
 		ActionListener selectionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -66,13 +66,13 @@ public class CharacterMap extends JButton {
 				}
 			}
 		};
-		
+
 		fillMenu(menu, selectionListener);
 	}
 
 	/**
 	 * Fill the popup menu with characters.
-	 * 
+	 *
 	 * @param menu popup menu
 	 * @param listener action listener that should be attached to the menu items
 	 */

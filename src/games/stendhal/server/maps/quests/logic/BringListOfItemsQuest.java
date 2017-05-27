@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.logic;
 
+import java.util.List;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 
 /**
  * a quest which is based on bringing a list of item to an NPC.
@@ -38,7 +38,7 @@ public interface BringListOfItemsQuest {
 	List<String> getTriggerPhraseToEnumerateMissingItems();
 
 	List<String> getAdditionalTriggerPhraseForQuest();
-	
+
 	double getKarmaDiffForQuestResponse();
 
 	String welcomeBeforeStartingQuest();
@@ -78,7 +78,7 @@ public interface BringListOfItemsQuest {
 	void rewardPlayer(Player player);
 
 	String respondToOfferOfNotExistingItem(String itemName);
-	
+
 	String respondToOfferOfNotMissingItem();
 
 	String respondToOfferOfNotNeededItem();

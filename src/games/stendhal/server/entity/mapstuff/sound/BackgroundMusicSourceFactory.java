@@ -15,12 +15,12 @@ public class BackgroundMusicSourceFactory extends SoundSourceFactory {
 
 	/**
 	 * Create an BackgroundMusicSource.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return An BackgroundMusicSource.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource

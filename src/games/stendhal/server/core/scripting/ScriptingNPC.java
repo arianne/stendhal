@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
-
-import java.util.List;
-import java.util.Map;
 
 public class ScriptingNPC extends SpeakerNPC {
 

@@ -24,11 +24,11 @@ import org.apache.log4j.Logger;
 /**
  * A sprite that merges several {@link Sprite} objects to one, and pre-renders
  * those it can so that they do not need to be composited every time the sprite
- * is drawn. 
+ * is drawn.
  */
 public class CompositeSprite implements Sprite {
 	private static final Logger logger = Logger.getLogger(CompositeSprite.class);
-	
+
 	/**
 	 * Composition status flag. <code>true</code> it the static image layers
 	 * have been merged, <code>false</code> otherwise.
@@ -39,16 +39,16 @@ public class CompositeSprite implements Sprite {
 	private List<Sprite> slaves;
 	private Composite blend;
 	private Sprite adjSprite;
-	/** Reference object made up from the meaningful slave references */ 
+	/** Reference object made up from the meaningful slave references */
 	private final CompositeRef reference;
-	
+
 	/**
 	 * Get a composite of at least one {@link Sprite}. Note that the result
 	 * is not necessarily a CompositeSprite, but can well be one of the slave
 	 * sprites if the said sprite is enough to represent the entire composite.
 	 * The composite can have also one sprite, which is composited above the
 	 * others using a special blend mode.
-	 * 
+	 *
 	 * @param cache Cache to look up a previously stored, and storing
 	 * 	newly created composites
 	 * @param slaves Sprites making up the composite. The list should be
@@ -84,7 +84,7 @@ public class CompositeSprite implements Sprite {
 				previous = sprite;
 			}
 		}
-		
+
 		int size = slaves.size();
 		switch (size) {
 		case 0:
@@ -109,19 +109,19 @@ public class CompositeSprite implements Sprite {
 			return composite;
 		}
 	}
-	
+
 	/**
-	 * Create a new CompositeSprite. Meaningless slave Sprites (ie. 
+	 * Create a new CompositeSprite. Meaningless slave Sprites (ie.
 	 * {@link EmptySprite}s must be dropped before this to have well behaving
 	 * references for all equal composites.
-	 *  
+	 *
 	 * @param slaves Non empty slave Sprites. The first is the bottom of the
 	 * 	Sprite stack
 	 * @param blend blending mode for the blend layer
 	 * @param adj sprite for the blend layer
 	 * @param reference Identifier for cache lookups
 	 */
-	private CompositeSprite(List<Sprite> slaves, Composite blend, Sprite adj, 
+	private CompositeSprite(List<Sprite> slaves, Composite blend, Sprite adj,
 			CompositeRef reference) {
 		// Get a copy. The caller can modify the list
 		this.slaves = new ArrayList<Sprite>(slaves);
@@ -183,7 +183,7 @@ public class CompositeSprite implements Sprite {
 		ImageSprite floor = null;
 		ListIterator<Sprite> iter = slaves.listIterator();
 		boolean copied = false;
-		
+
 		// Go through the layers and merge what can be reasonably merged.
 		while (iter.hasNext()) {
 			Sprite current = iter.next();
@@ -191,10 +191,10 @@ public class CompositeSprite implements Sprite {
 				if (floor != null) {
 					if (!copied) {
 						/*
-						 * Copy the image to avoid messing with the actual 
+						 * Copy the image to avoid messing with the actual
 						 * tiles. Deferred to this stage to avoid unnecessary
 						 * copying in the case the floor does not have a static
-						 * image on top of it. 
+						 * image on top of it.
 						 */
 						floor = new ImageSprite(floor);
 						copied = true;
@@ -225,7 +225,7 @@ public class CompositeSprite implements Sprite {
 		}
 		newSlaves.trimToSize();
 		slaves = newSlaves;
-		
+
 		// Adjustment effect
 		if (blend != null) {
 			// Blend individual stacks
@@ -235,10 +235,10 @@ public class CompositeSprite implements Sprite {
 		}
 		composited = true;
 	}
-	
+
 	/**
 	 * Apply blend to individual sprites of the otherwise merged sprite stack.
-	 *  
+	 *
 	 * @param stack
 	 */
 	private void applyBlend(List<Sprite> stack) {
@@ -263,7 +263,7 @@ public class CompositeSprite implements Sprite {
 					 * be no other way. There's no way to tell java that we have
 					 * stopped modifying the image, and it's safe to tuck it in
 					 * VRAM.
-					 * 
+					 *
 					 * Using ImageSprite for the copying is the simplest method.
 					 */
 					iter.set(new ImageSprite(sprite));
@@ -297,7 +297,7 @@ public class CompositeSprite implements Sprite {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reference object for identifying equal composite sprite stacks.
 	 */
@@ -306,10 +306,10 @@ public class CompositeSprite implements Sprite {
 		private final Object[] refs;
 		/** hash code */
 		private final int hash;
-		
+
 		/**
 		 * Create a new CompositeRef.
-		 * 
+		 *
 		 * @param slaves Meaningful sprites making up the composite,
 		 * 	<em>before</em> merging them.
 		 * @param blend composite mode of the adjustment sprite, or
@@ -335,15 +335,15 @@ public class CompositeSprite implements Sprite {
 			}
 			hash = tmphash;
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof CompositeRef) {
-				return Arrays.equals(refs, ((CompositeRef) obj).refs); 
+				return Arrays.equals(refs, ((CompositeRef) obj).refs);
 			}
 			return false;
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return hash;

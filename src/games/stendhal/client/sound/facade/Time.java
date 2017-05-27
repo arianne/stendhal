@@ -17,7 +17,7 @@ package games.stendhal.client.sound.facade;
  * to and from samples per sample rate
  * <p>
  * internally this class will calculate in nanosecond resolution only
- * 
+ *
  * @author silvio
  */
 public class Time implements Cloneable
@@ -54,7 +54,7 @@ public class Time implements Cloneable
     {
         mNanoSeconds = nanos;
     }
-    
+
     /**
      * Creates an instance of the Time class
      * from a time value and a time unit
@@ -99,11 +99,11 @@ public class Time implements Cloneable
 	void sub(Time time ) { mNanoSeconds -= time.mNanoSeconds; }
 	void add(long nanos) { mNanoSeconds += nanos;             }
 	void sub(long nanos) { mNanoSeconds -= nanos;             }
-	
+
     /**
      * Calculates the number of samples for a given sample rate
      * that would fit into this time range
-     * 
+     *
      * @param sampleRate any sample rate
      * @return           number of samples
      */
@@ -112,7 +112,7 @@ public class Time implements Cloneable
         double seconds = (double)mNanoSeconds / (double)Unit.SEC.getNanos();
         return seconds * sampleRate;
     }
-	
+
 	@Override
 	public Time clone()
 	{

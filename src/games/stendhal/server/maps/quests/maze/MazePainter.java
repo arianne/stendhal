@@ -45,26 +45,26 @@ public class MazePainter {
 		 *  <li>bottom right concave corner</li>
 		 * 	<li>outside</li>
 		 * </ol>
-		 * 
+		 *
 		 * @return list of indices
 		 */
 		abstract int[] getWallIndices();
 		/**
 		 * Get the index of the ground tile.
-		 * 
+		 *
 		 * @return ground tile index
 		 */
 		abstract int getGroundIndex();
 		/**
 		 * Get the index of the portal tile.
-		 * 
+		 *
 		 * @return portal tile index
 		 */
 		abstract int getPortalIndex();
 
 		/**
 		 * Select tile to a location.
-		 * 
+		 *
 		 * @param collision collision layer
 		 * @param x
 		 * @param y
@@ -81,7 +81,7 @@ public class MazePainter {
 
 		/**
 		 * Select a wall tile.
-		 * 
+		 *
 		 * @param collision collision layer
 		 * @param x
 		 * @param y
@@ -136,7 +136,7 @@ public class MazePainter {
 		/**
 		 * Check if the tile at location (x, y) is a collision or outside the
 		 * map.
-		 * 
+		 *
 		 * @param collision
 		 * @param x
 		 * @param y
@@ -151,7 +151,7 @@ public class MazePainter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Style that paints the walls using the int_wall_dark_red_* set.
 	 */
@@ -191,21 +191,21 @@ public class MazePainter {
 			return 59;
 		}
 	}
-	
+
 	/**
 	 * Style that paints the walls using the grey decorated wall tiles.
 	 */
 	private static class GreyWallStyle extends Style {
 		// Pick a random one from the base ground colors
 		private int groundIndex = 122 + Rand.rand(3);
-		
+
 		public GreyWallStyle(StendhalMapStructure map) {
 			TileSetDefinition set = new TileSetDefinition("wall", "../../tileset/building/wall/int_grey.png", 1);
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("floor", "../../tileset/ground/indoor/floor.png", 122);
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("portal", "../../tileset/building/decoration/floor_sparkle.png", 125);
 			map.addTileset(set);
 		}
@@ -225,22 +225,22 @@ public class MazePainter {
 			return 138;
 		}
 	}
-	
+
 	private Style style;
 
 	/**
 	 * Paint tiles to a map according to a maps collision layer.
-	 * 
+	 *
 	 * @param map
 	 */
 	public void paint(StendhalMapStructure map) {
 		LayerDefinition collision = map.getLayer("collision");
-		
+
 		int i = Rand.rand(2);
 		switch (i) {
 		case 0: style = new GreyWallStyle(map);
 		break;
-		case 1: 
+		case 1:
 		default:
 			style = new RedWallStyle(map);
 		}
@@ -249,7 +249,7 @@ public class MazePainter {
 		// prepare the floor data arrays for for painting
 		ground.build();
 		fillFloor(style, ground);
-		
+
 		// Walls
 		ground = map.getLayer("1_terrain");
 		ground.build();
@@ -259,7 +259,7 @@ public class MazePainter {
 	/**
 	 * Paint the portal tile at specified location. Can not be called before
 	 * paint().
-	 * 
+	 *
 	 * @param map
 	 * @param x
 	 * @param y
@@ -271,10 +271,10 @@ public class MazePainter {
 		LayerDefinition ground = map.getLayer("0_floor");
 		ground.set(x, y, style.getPortalIndex());
 	}
-	
+
 	/**
 	 * Fill the ground layer with the ground tile.
-	 * 
+	 *
 	 * @param style
 	 * @param floor
 	 */
@@ -292,7 +292,7 @@ public class MazePainter {
 
 	/**
 	 * Paint the walls.
-	 * 
+	 *
 	 * @param style
 	 * @param terrain
 	 * @param collision

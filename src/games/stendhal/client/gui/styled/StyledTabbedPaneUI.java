@@ -19,7 +19,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import javax.swing.JComponent;
-import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -31,10 +31,10 @@ import games.stendhal.common.MathHelper;
  */
 public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 	private final Style style;
-	
+
 	/**
 	 * Required by UIManager.
-	 * 
+	 *
 	 * @param pane the component to create the UI for
 	 * @return UI delegate
 	 */
@@ -42,10 +42,10 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		// BasicTabbedPaneUI can not be shared
 		return new StyledTabbedPaneUI(StyleUtil.getStyle());
 	}
-	
+
 	/**
 	 * Create a new StyledTabbedPaneUI.
-	 * 
+	 *
 	 * @param style pixmap style
 	 */
 	StyledTabbedPaneUI(Style style) {
@@ -58,20 +58,20 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		int width = tabPane.getWidth();
 		int height = tabPane.getHeight();
 		Insets insets = tabPane.getInsets();
-		
+
 		int x = insets.left;
 		int y = insets.top;
 		// Adjust for tabs. Only top and bottom positions are supported for now.
 		int tabHeight = calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
 		switch (tabPlacement) {
-		case JTabbedPane.TOP:
+		case SwingConstants.TOP:
 			y += tabHeight;
 			break;
 		default:
 			// keep at top
-		} 
+		}
 		height -= tabHeight;
-		
+
 		// Drawing the background is this method's responsibility, even though
 		// Thats not obvious from the name
 		StyleUtil.fillBackground(style, g, x, y, width, height);
@@ -83,22 +83,22 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		int selected = tabPane.getSelectedIndex();
 		Rectangle r = getTabBounds(selected, calcRect);
 		r = r.intersection(new Rectangle(x, y, width, height));
-		// Find out the border width 
+		// Find out the border width
 		int bwidth = style.getBorder().getBorderInsets(tabPane).left;
 		StyleUtil.fillBackground(style, g, r.x + bwidth, r.y,
 				r.width - 2 * bwidth, r.height);
 	}
-	
+
 	@Override
-	protected void paintFocusIndicator(Graphics g, int tabPlacement, 
-			Rectangle[] rects, int tabIndex, Rectangle iconRect, 
+	protected void paintFocusIndicator(Graphics g, int tabPlacement,
+			Rectangle[] rects, int tabIndex, Rectangle iconRect,
 			Rectangle textRect, boolean isSelected) {
 		if (tabIndex == getFocusIndex() && tabPane.isFocusOwner()) {
 			g.setColor(focus);
 			g.drawRect(textRect.x, textRect.y, textRect.width, textRect.height);
 		}
 	}
-	
+
 	@Override
 	protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex,
 			int x, int y, int width, int height, boolean isSelected) {
@@ -110,16 +110,16 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 			g.fillRect(x, y, width, height);
 		}
 	}
-	
+
 	@Override
 	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex,
 			int x, int y, int width, int height, boolean isSelected) {
 		style.getBorder().paintBorder(tabPane, g, x, y, width, height);
 	}
-	
+
 	/**
 	 * Set the empty space at the sides of the tab label.
-	 * 
+	 *
 	 * @param margin margin width in pixels
 	 */
 	public void setTabLabelMargins(int margin) {
@@ -127,7 +127,7 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		tabInsets.left = margin;
 		tabInsets.right = margin;
 	}
-	
+
 	@Override
 	public void installUI(JComponent component) {
 		super.installUI(component);
@@ -135,13 +135,13 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		component.setForeground(style.getForeground());
 		focus = style.getShadowColor();
 	}
-	
+
 	@Override
 	protected void installListeners() {
 		super.installListeners();
 		tabPane.addMouseWheelListener(new MouseWheelHandler());
 	}
-	
+
 	/**
 	 * Implements changing tabs using the mouse wheel.
 	 */

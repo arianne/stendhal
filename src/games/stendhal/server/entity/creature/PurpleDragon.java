@@ -11,17 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.common.ItemTools;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.ItemTools;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A purple dragon is a domestic animal that can be owned by a player.
@@ -96,15 +95,15 @@ public class PurpleDragon extends Pet {
 	/**
 	 * Creates a Purple Dragon based on an existing pet RPObject, and assigns it
 	 * to a player.
-	 * 
+	 *
 	 * @param object
 	 * @param owner
 	 *            The player who should own the purple dragon
 	 */
 	public PurpleDragon(final RPObject object, final Player owner) {
-		
+
 		super(object, owner);
-		
+
 
 		setRPClass("purple_dragon");
 		put("type", "purple_dragon");
@@ -117,7 +116,7 @@ public class PurpleDragon extends Pet {
 	List<String> getFoodNames() {
 		return Arrays.asList("ham", "pizza", "meat");
 	}
-	
+
 	@Override
 	public String describe() {
 		String text = "You see a " + ItemTools.itemNameToDisplayName(get("type")) + "; it looks like it weighs about " + weight + " and is level " + getLevel() + ". Def XP: " +  getDefXP() + "";

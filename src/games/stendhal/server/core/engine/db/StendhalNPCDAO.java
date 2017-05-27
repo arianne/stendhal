@@ -11,16 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
-
-import org.apache.log4j.Logger;
 
 /**
  * database base access for the NPC dump used on the website

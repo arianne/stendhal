@@ -33,7 +33,7 @@ public class PlayerSheepManager {
 
 		/*
 		 * RPSlot.add() destroys zoneid, so preserve/restore it.
-		 * 
+		 *
 		 * TODO: Remove if getID()/setID() are made purely virtual.
 		 */
 		String zoneid;
@@ -55,7 +55,7 @@ public class PlayerSheepManager {
 
 	/**
 	 * Recreate a saved sheep.
-	 * 
+	 *
 	 * @return A sheep, or <code>null</code> if none.
 	 */
 	public Sheep retrieveSheep() {

@@ -1,12 +1,12 @@
 package games.stendhal.server.entity.npc.interaction;
 
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
+
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
  * class for make one npc follower of other.
@@ -16,7 +16,7 @@ public final class NPCFollowing implements Observer {
 	final private SpeakerNPC follower;
 	final private SpeakerNPC leader;
 	final private Observer finish;
-	
+
 	/**
 	 * constructor
 	 * @param leader - NPC for follow him.
@@ -28,14 +28,14 @@ public final class NPCFollowing implements Observer {
 		this.follower=follower;
 		this.finish=finish;
 	}
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		follower.clearPath();
 		follower.pathnotifier.deleteObservers();
 		moveToProperDistance();
 	}
-	
+
 	/**
 	 * return 1/3 of follower's path
 	 * @param path
@@ -64,5 +64,5 @@ public final class NPCFollowing implements Observer {
 			follower.pathnotifier.deleteObservers();
 			finish.update(null, null);
 		}
-	}		
+	}
 }

@@ -12,40 +12,40 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.Inspectable;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
-
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 
 //
 //
 
 /**
  * The view of an entity.
- * 
+ *
  * @param <T> type of the entity
  */
 public interface EntityView<T extends IEntity> extends Inspectable {
 	/**
 	 * Get the list of actions.
-	 * 
+	 *
 	 * @return The list of actions.
 	 */
 	public String[] getActions();
 
 	/**
 	 * Get the view's entity.
-	 * 
+	 *
 	 * @return The view's entity.
 	 */
 	public T getEntity();
 
 	/**
 	 * Determine if this entity can be moved (e.g. via dragging).
-	 * 
+	 *
 	 * @return <code>true</code> if the entity is movable.
 	 */
 	public boolean isMovable();
@@ -57,7 +57,7 @@ public interface EntityView<T extends IEntity> extends Inspectable {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -77,7 +77,7 @@ public interface EntityView<T extends IEntity> extends Inspectable {
 	public void release();
 
 	public Rectangle getArea();
-	
+
 	public void draw(final Graphics2D g2d);
 
 	public int getZIndex();
@@ -90,7 +90,7 @@ public interface EntityView<T extends IEntity> extends Inspectable {
 
 	/**
 	 * is this entity interactive so that the player can click or move it?
-	 * 
+	 *
 	 * @return true if the player can interact with it, false otherwise.
 	 */
 	boolean isInteractive();

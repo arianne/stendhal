@@ -20,10 +20,10 @@ import games.stendhal.server.entity.item.Item;
 public interface UseBehavior {
 	/**
 	 * Called when the item is used.
-	 * 
+	 *
 	 * @param user entity using the item
 	 * @param item used item
-	 * 
+	 *
 	 * @return <code>true</code> on successful use, <code>false</code> on
 	 * 	failure
 	 */

@@ -12,25 +12,24 @@
  ***************************************************************************/
 package games.stendhal.bot.shouter;
 
-import games.stendhal.bot.core.StandardClientFramework;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.SocketException;
 
+import games.stendhal.bot.core.StandardClientFramework;
 import marauroa.common.game.RPAction;
 
 /**
  * Connects to the server and shouts a message.
- * 
+ *
  * @author hendrik
  */
 public class ShouterMain extends StandardClientFramework {
 
 	/**
 	 * Creates a ShouterMain.
-	 * 
+	 *
 	 * @param h
 	 *            host
 	 * @param u
@@ -71,7 +70,7 @@ public class ShouterMain extends StandardClientFramework {
 
 	/**
 	 * Main entry point.
-	 * 
+	 *
 	 * @param args
 	 *            see help
 	 */

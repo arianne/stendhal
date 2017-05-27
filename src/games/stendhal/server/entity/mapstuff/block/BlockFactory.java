@@ -30,19 +30,19 @@ public class BlockFactory implements ConfigurableFactory{
 		final String description = ctx.getString("description", "");
 		final String sounds = ctx.getString("sounds", null);
 		final String shape = ctx.getString("shape", null);
-		
+
 		List<String> soundList = null;
 		if(sounds!= null) {
 			soundList = Arrays.asList(sounds.split(","));
 		}
-		
+
 		String style = ctx.getString("style", null);
 		Block block = new Block(multiPush, style, shape, soundList);
-		
+
 		if (description != null) {
 			block.setDescription(description);
 		}
-		
+
 		return block;
 	}
 

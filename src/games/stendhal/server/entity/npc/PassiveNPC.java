@@ -16,7 +16,7 @@ import games.stendhal.server.entity.CollisionAction;
 
 /**
  * A stripped down SpeakerNPC that does not interact with players
- * 
+ *
  * @author AntumDeluge
  *
  */
@@ -27,31 +27,31 @@ public class PassiveNPC extends NPC {
 	public PassiveNPC() {
 		baseSpeed = 0.2;
 		createPath();
-		
+
 		put("title_type", "npc");
-		
+
 		// Entity name is not drawn because of "unnamed" attribute
         setName("PassiveNPC");
 		put("unnamed", "");
-		
+
 		// Health bar drawing is supressed
 		put("no_hpbar", "");
-		
+
 		setSize(1, 1);
-		
+
 		updateModifiedAttributes();
 	}
-	
+
 	/**
 	 * Create path for the NPC. Sub classes can implement this method.
 	 */
 	protected void createPath() {
 	}
-	
+
     @Override
     protected void handleObjectCollision() {
     	CollisionAction action = getCollisionAction();
-    	
+
         if (usesRandomPath()) {
             setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
         } else if (action == CollisionAction.REVERSE) {
@@ -62,7 +62,7 @@ public class PassiveNPC extends NPC {
             stop();
         }
     }
-    
+
     @Override
     protected void handleSimpleCollision(final int nx, final int ny) {
     	CollisionAction action = getCollisionAction();

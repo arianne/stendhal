@@ -12,6 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import java.util.LinkedList;
+
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -24,23 +36,11 @@ import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
-import games.stendhal.common.Rand;
-import games.stendhal.common.grammar.Grammar;
-
-import java.util.LinkedList;
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class KillBlordroughsTest {
-	
+
 	private Player player = null;
 	private static SpeakerNPC npc = null;
 	private static Engine en = null;
@@ -49,7 +49,7 @@ public class KillBlordroughsTest {
 	private final static int Xpos = 10;
 	private final static int Ypos = 10;
 	private static Logger logger = Logger.getLogger(KillBlordroughsTest.class);
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -57,14 +57,14 @@ public class KillBlordroughsTest {
 		MockStendlRPWorld.get();
 		playerzone = new StendhalRPZone("int_semos_guard_house",100,100);
 		SingletonRepository.getRPWorld().addRPZone(playerzone);
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new BuyerNPC().configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Despot Halb Errvl");
-		en = npc.getEngine();		
+		en = npc.getEngine();
 		quest.addToWorld();
 	}
-	
+
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
@@ -76,8 +76,8 @@ public class KillBlordroughsTest {
 		PlayerTestHelper.equipWithItem(player, "mithril armor");
 		PlayerTestHelper.equipWithItem(player, "black helmet");
 		PlayerTestHelper.equipWithItem(player, "money");
-		
-		
+
+
 		player.setAdminLevel(1000);
 		player.addXP(2000000000);
 		player.setAtkXP(100000000);
@@ -88,10 +88,10 @@ public class KillBlordroughsTest {
 		//player.setInvisible(true);
 		player.teleport(playerzone, Xpos, Ypos, null, player);
 	}
-	
+
 	public void KillRandomBlordrough() {
 		final LinkedList<Creature> blrs = quest.getBlordroughs();
-		Creature blr = blrs.get(Rand.rand(blrs.size()));	
+		Creature blr = blrs.get(Rand.rand(blrs.size()));
 		// cheat! :-)
 		blr.setHP(1);
 		StendhalRPAction.placeat(playerzone, blr, Xpos+1, Ypos);
@@ -110,9 +110,9 @@ public class KillBlordroughsTest {
 		} while (player.isAttacking());
 		MockStendhalRPRuleProcessor.get().beginTurn();
 		MockStendhalRPRuleProcessor.get().endTurn();
-		logger.debug("killed creature ("+blr.getName()+").");		
+		logger.debug("killed creature ("+blr.getName()+").");
 	}
-	
+
 	/**
 	 * function for emulating killing of blordrough soldiers by player.
 	 * @param numb - number of creatures for killing
@@ -123,7 +123,7 @@ public class KillBlordroughsTest {
 		}
 		logger.debug("killed "+ numb + " creatures.");
 	}
-	
+
 	@Test
 	public void TestChatting() {
 		en.step(player, "hi");
@@ -136,17 +136,17 @@ public class KillBlordroughsTest {
 				"blordrough soldiers and i will reward you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #blordroughs?", getReply(npc));		
+		assertEquals("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #blordroughs?", getReply(npc));
 		en.step(player, "blordrough");
 		assertEquals("My Mithrilbourgh army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));		
+		assertEquals("Bye.", getReply(npc));
 	}
-	
+
 	@Test
 	public void TestKilling() {
 		int killed;
@@ -182,13 +182,13 @@ public class KillBlordroughsTest {
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
         en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-	}	
-	
+	}
+
 	@Test
 	public void TestExtraKilling() {
 		int killed;
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));		
+		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Well state what you want then!", getReply(npc));
 		en.step(player, "quest");
@@ -199,19 +199,19 @@ public class KillBlordroughsTest {
 		assertEquals("Bye.", getReply(npc));
 		// killing 351 creature
 		killed = quest.killsnumber*3+quest.killsnumber/2+1;
-		KillRandomBlordroughs(killed);	
+		KillRandomBlordroughs(killed);
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));		
+		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Well state what you want then!", getReply(npc));
 		double tempkarma = player.getKarma();
-		en.step(player, "quest");		
+		en.step(player, "quest");
 		assertEquals("Pretty good! You killed "+(killed-quest.killsnumber)+" extra "+
 				Grammar.plnoun(killed-quest.killsnumber, "soldier")+
-				"! Take this moneys, and remember, i may wish you to do this job again in one week!", 
+				"! Take this moneys, and remember, i may wish you to do this job again in one week!",
 				getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-30, 0.000001);
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));	
+		assertEquals("Bye.", getReply(npc));
 	}
 }

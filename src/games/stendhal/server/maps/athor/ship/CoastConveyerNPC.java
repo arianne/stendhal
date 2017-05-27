@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -24,9 +27,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
-
-import java.util.Arrays;
-import java.util.Map;
 
 /** Factory for cargo worker on Athor Ferry. */
 
@@ -64,7 +64,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 			@Override
 			public void createDialog() {
 
-				addGoodbye("Goodbye!"); 
+				addGoodbye("Goodbye!");
 				addGreeting("Ahoy, Matey! How can I #help you?");
 				addHelp("Ye can #disembark, but only when we're anchored a harbor. Just ask me for the #status if ye have no idea where we are.");
 				addJob("I'm taking passengers who want to #disembark to the coast with me rowing boat.");
@@ -164,7 +164,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 			npc.setEntityClass("pirate_sailor2npc");
 			npc.setDescription ("Jackie helps passangers to disembark to the coast. She is a real pirate girl!");
 			npc.setDirection(Direction.LEFT);
-			zone.add(npc);	
+			zone.add(npc);
 	}
 
 	private static StendhalRPZone getMainlandDocksZone() {

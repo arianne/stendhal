@@ -14,17 +14,11 @@ package games.stendhal.common.parser;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.common.parser.ExpressionType;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.common.parser.WordEntry;
-import games.stendhal.common.parser.WordList;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -33,7 +27,7 @@ import org.junit.Test;
 
 /**
  * Test the NPC conversation WordList class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class WordListTest {

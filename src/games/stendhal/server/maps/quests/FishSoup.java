@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -35,29 +40,23 @@ import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.PoisonStatus;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 
 /**
  * QUEST: Special Fish Soup.
  * <p>
  * PARTICIPANTS: <ul><li> Florence Boullabaisse on Ados market</ul>
- * 
+ *
  * STEPS: <ul><li> Florence Boullabaisse tells you the ingredients of a special fish soup <li> You
  * collect the ingredients <li> You bring the ingredients to Florence <li> The soup
  * is served at a market table<li> Eating the soup heals you fully over time <li> Making it adds karma
  * </ul>
- * 
+ *
  * REWARD: <ul><li>healing soup <li> Karma bonus of 10 (if ingredients given individually)<li>50 XP</ul>
- * 
+ *
  * REPETITIONS: <ul><li> as many as desired <li> Only possible to repeat once every twenty
  * minutes</ul>
- * 
+ *
  * @author Vanessa Julius and Krupi (idea)
  */
 public class FishSoup extends AbstractQuest {
@@ -74,11 +73,11 @@ public class FishSoup extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	/**
 	 * Returns a list of the names of all food that the given player still has
 	 * to bring to fulfil the quest.
-	 * 
+	 *
 	 * @param player
 	 *            The player doing the quest
 	 * @param hash
@@ -142,7 +141,7 @@ public class FishSoup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestCompletedCondition(QUEST_SLOT),
-					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
+					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 			ConversationStates.QUEST_OFFERED,
 			"Hello again. Have you returned for more of my special fish soup?",
 			null);
@@ -153,22 +152,22 @@ public class FishSoup extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestCompletedCondition(QUEST_SLOT),
-						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
-				ConversationStates.ATTENDING, 
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
+				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES , "Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in")
 			);
 
 		// player responds to word 'revive'
-		npc.add(ConversationStates.INFORMATION_1, 
+		npc.add(ConversationStates.INFORMATION_1,
 				"revive",
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				null,
 				new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
+					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("I have everything for the fish soup recipe now.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					} else {
@@ -197,7 +196,7 @@ public class FishSoup extends AbstractQuest {
 		// player is willing to collect
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUESTION_1, 
+			ConversationStates.QUESTION_1,
 			"You made a good choice and I bet you'll not be disappointed. Do you have anything I need already?",
 			new SetQuestAction(QUEST_SLOT, ""));
 
@@ -225,14 +224,14 @@ public class FishSoup extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED,
 			"You will find that in allotments in Fado. So will you fetch the ingredients?",
 			null);
-		
+
 		// players asks about the ingredients individually
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			Arrays.asList("tomato", "garlic"),
 			null,
 			ConversationStates.QUEST_OFFERED,
-			"There is a nice gardener, Sue, in the Kalavan City gardens who sells tomatoes and garlic. " 
+			"There is a nice gardener, Sue, in the Kalavan City gardens who sells tomatoes and garlic. "
 			+ "So will you fetch the ingredients?", null);
 	}
 
@@ -317,7 +316,7 @@ public class FishSoup extends AbstractQuest {
 					}
 				});
 		}
-		
+
 		// Perhaps player wants to give all the ingredients at once
 		npc.add(ConversationStates.QUESTION_1, "everything",
 				null,
@@ -356,7 +355,7 @@ public class FishSoup extends AbstractQuest {
 	private void checkForAllIngredients(final Player player, final EventRaiser npc) {
 		List<String> missing = missingFood(player, false);
 		for (final String food : missing) {
-		if (player.drop(food)) {							
+		if (player.drop(food)) {
 			// register ingredient as done
 			final String doneText = player.getQuest(QUEST_SLOT);
 			player.setQuest(QUEST_SLOT, doneText + ";"
@@ -371,7 +370,7 @@ public class FishSoup extends AbstractQuest {
 									"ingredient", "one") + ": "
 							+ Grammar.enumerateCollection(missing)
 							+ ". You'll get bad karma if you keep making mistakes like that!");
-			// to fix bug [ 2517439 ] 
+			// to fix bug [ 2517439 ]
 			player.addKarma(-5.0);
 			return;
 		} else {
@@ -387,7 +386,7 @@ public class FishSoup extends AbstractQuest {
 			npc.setCurrentState(ConversationStates.ATTENDING);
 		}
 	}
-	
+
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -398,7 +397,7 @@ public class FishSoup extends AbstractQuest {
 		step_2();
 		step_3();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -419,13 +418,13 @@ public class FishSoup extends AbstractQuest {
 	public String getName() {
 		return "FishSoup";
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)).fire(player, null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

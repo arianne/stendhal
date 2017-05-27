@@ -12,23 +12,23 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.felinashouse;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.grammar.ItemParserResult;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class CatSellerNPC implements ZoneConfigurator {
 
@@ -87,7 +87,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!");
 
 							final Cat cat = new Cat(player);
-							
+
 							Entity sellerEntity = seller.getEntity();
 							cat.setPosition(sellerEntity.getX(), sellerEntity.getY() + 1);
 
@@ -123,7 +123,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		npc.setDescription("Felina is walking around while taking care of her kittens. They are purring out of all corners.");
 		zone.add(npc);
-		
+
 		// Also put a cat in her bedroom (people can't Own it as it is behind a fence)
 		final Cat hercat = new Cat();
                 hercat.setPosition(19, 3);

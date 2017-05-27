@@ -13,6 +13,7 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static games.stendhal.common.constants.Actions.JAIL;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -30,13 +31,13 @@ import games.stendhal.server.entity.player.Player;
  */
 @Dev(category=Category.OTHER, label="Jail-")
 public class JailAction implements ChatAction {
-	
+
 	private final int minutes;
 	private final String reason;
 
 	/**
 	 * Creates a new JailAction.
-	 * 
+	 *
 	 * @param minutes sentence duration in minutes
 	 * @param reason reason for jailing player
 	 */
@@ -51,7 +52,7 @@ public class JailAction implements ChatAction {
 		if (npc.getEntity() instanceof RPEntity) {
 			SingletonRepository.getJail().imprison(player.getName(), (RPEntity) npc.getEntity(), minutes, reason);
 			new GameEvent(npc.getName(), JAIL, player.getName(), Integer.toString(minutes), reason).raise();
-		} 
+		}
 	}
 
 	@Override

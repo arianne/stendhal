@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.bank;
 
-import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Corpse;
+import marauroa.common.game.RPObject;
 
 /**
  * removes the vault
@@ -29,7 +29,7 @@ public class VaultRemover implements TurnListener {
 	/**
 	 * creates a new VaultRemover
 	 *
-	 * @param zone StendhalRPZone 
+	 * @param zone StendhalRPZone
 	 */
 	public VaultRemover(StendhalRPZone zone) {
 		this.zone = zone;

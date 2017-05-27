@@ -13,10 +13,11 @@
 package games.stendhal.common.math;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.client.sound.system.ToneGeneratorTest;
-import games.stendhal.client.sound.system.processors.ToneGenerator;
 
 import org.junit.Test;
+
+import games.stendhal.client.sound.system.ToneGeneratorTest;
+import games.stendhal.client.sound.system.processors.ToneGenerator;
 
 /**
  * Tests for DSP algorithms.

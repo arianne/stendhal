@@ -1,18 +1,18 @@
 package games.stendhal.server.maps.semos.city;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.grammar.ItemParserResult;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class DragonKeeperNPC implements ZoneConfigurator {
 
@@ -56,7 +56,7 @@ public class DragonKeeperNPC implements ZoneConfigurator {
 							seller.say("Here give this dragon a work out! It should fight at your side and #grow with you.");
 
 							final BabyDragon baby_dragon = new BabyDragon(player);
-							
+
 							Entity sellerEntity = seller.getEntity();
 							baby_dragon.setPosition(sellerEntity.getX(), sellerEntity.getY() + 1);
 

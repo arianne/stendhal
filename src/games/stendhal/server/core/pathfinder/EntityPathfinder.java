@@ -12,14 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.pathfinder;
 
+import java.awt.Point;
+import java.awt.geom.Rectangle2D;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
-
-import java.awt.Point;
-import java.awt.geom.Rectangle2D;
-
 import marauroa.common.game.RPObject;
 
 /**

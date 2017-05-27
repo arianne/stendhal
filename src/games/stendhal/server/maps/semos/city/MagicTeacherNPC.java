@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.semos.city;
 
+import java.util.Collection;
+import java.util.Map;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.config.annotations.TestServerOnly;
@@ -14,27 +17,23 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
-
-import java.util.Collection;
-import java.util.Map;
-
 import marauroa.common.game.RPSlot;
 
 /**
  * An NPC for testing purposes, that easily enables a player to play around with magic
- * 
+ *
  * @author madmetzger
  */
 @TestServerOnly
 public class MagicTeacherNPC implements ZoneConfigurator {
-	
+
 	/**
 	 * This ChatAction prepares a player with all he needs to play around with magic
-	 * 
+	 *
 	 * @author madmetzger
 	 */
 	private final class TeachMagicAction implements ChatAction {
-		
+
 		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			enableSpellsFeature(player);
@@ -42,7 +41,7 @@ public class MagicTeacherNPC implements ZoneConfigurator {
 			equipSpells(player);
 			equipManaPotions(player);
 		}
-		
+
 		private void equipManaPotions(Player player) {
 			StackableItem potion = (StackableItem) SingletonRepository.getEntityManager().getItem("mana");
 			potion.setQuantity(1000);
@@ -67,7 +66,7 @@ public class MagicTeacherNPC implements ZoneConfigurator {
 		private void enableSpellsFeature(Player player) {
 			player.setFeature("spells", true);
 		}
-		
+
 	}
 
 	@Override
@@ -80,7 +79,7 @@ public class MagicTeacherNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, "teach", null, ConversationStates.SERVICE_OFFERED, "Do you want to learn about magic?", null);
 				add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING, null, new TeachMagicAction());
 			}
-			
+
 		};
 		npc.addGreeting("Hello, I am the magic teacher! I can #teach you about magic.");
 		npc.addJob("My job is to #teach you a bit about magic, so you can try it out here.");

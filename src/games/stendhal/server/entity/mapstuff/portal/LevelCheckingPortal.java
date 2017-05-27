@@ -16,7 +16,7 @@ import games.stendhal.server.entity.RPEntity;
 
 /**
  * A portal which allows only certain levels of player to use it.
- * 
+ *
  * @author hendrik
  */
 public class LevelCheckingPortal extends AccessCheckingPortal {
@@ -42,7 +42,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * Creates a level checking portal.
-	 * 
+	 *
 	 * @param minLevel
 	 *            The minimum level allowed to pass.
 	 * @param maxLevel
@@ -54,7 +54,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * Creates a level checking portal.
-	 * 
+	 *
 	 * @param minLevel
 	 *            The minimum level allowed to pass.
 	 * @param maxLevel
@@ -75,10 +75,10 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * Determine if this portal can be used.
-	 * 
+	 *
 	 * @param user
 	 *            The user to be checked.
-	 * 
+	 *
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override
@@ -96,7 +96,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	/**
 	 * Called when the user is rejected. This sends a rejection message to the
 	 * user.
-	 * 
+	 *
 	 * @param user
 	 *            The rejected user.
 	 */

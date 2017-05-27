@@ -17,7 +17,7 @@ import games.stendhal.common.MathHelper;
 /**
  * Object that keeps track of lag between user initiated movement and server
  * responses to them, and calculates appropriate speed based on the lag for the
- * user to be used for movement prediction. 
+ * user to be used for movement prediction.
  */
 class SpeedPredictor {
 	/** Server turn length. */
@@ -31,7 +31,7 @@ class SpeedPredictor {
 	 * assumed to be caused by temporary network glitches, or other
 	 * anomalous conditions (such as user being unable to move to the
 	 * predicted direction, and the next move being initiated by path
-	 * finding instead of keyboard). 
+	 * finding instead of keyboard).
 	 */
 	private static final double DISCARD_THRESHOLD = 2000;
 	/**
@@ -50,7 +50,7 @@ class SpeedPredictor {
 	private static final String SPEED_PROPERTY = "predictor.speed";
 	/** WM property name for saving the recent jitter. */
 	private static final String JITTER_PROPERTY = "predictor.jitter";
-	
+
 	/**
 	 * Stored time averages.
 	 */
@@ -69,7 +69,7 @@ class SpeedPredictor {
 	 * corresponds to milliseconds.
 	 */
 	private double jitter;
-	
+
 	/**
 	 * Create a new SpeedPredictor with default initial prediction and
 	 * history corresponding to that.
@@ -80,7 +80,7 @@ class SpeedPredictor {
 		prediction = MathHelper.parseDoubleDefault(wm.getProperty(SPEED_PROPERTY,
 				Double.toString(INITIAL_PREDICTED_SPEED)), INITIAL_PREDICTED_SPEED);
 		jitter = MathHelper.parseDouble(wm.getProperty(JITTER_PROPERTY, "0.0"));
-		
+
 		// Fill the history with data corresponding to the stored, or default
 		// prediction.
 		double average = TURN_LENGTH / prediction;
@@ -88,11 +88,11 @@ class SpeedPredictor {
 			times[i] = average;
 		}
 	}
-	
+
 	/**
 	 * Create a new SpeedPredictor based on the data collected by another
 	 * predictor.
-	 * 
+	 *
 	 * @param old predictor to be used as the template
 	 */
 	SpeedPredictor(SpeedPredictor old) {
@@ -100,18 +100,18 @@ class SpeedPredictor {
 		prediction = old.prediction;
 		jitter = old.jitter;
 	}
-	
+
 	/**
 	 * Check if the predictor is expecting a move event to end a time
 	 * measurement.
-	 * 
+	 *
 	 * @return <code>true</code> if the predictor should be notified by
 	 * 	the next user move event.
 	 */
 	boolean isActive() {
 		return timeStamp != 0;
 	}
-	
+
 	/**
 	 * Notify the predictor that the user initiated movement using the
 	 * keyboard.
@@ -119,7 +119,7 @@ class SpeedPredictor {
 	void startPrediction() {
 		timeStamp = System.currentTimeMillis();
 	}
-	
+
 	/**
 	 * Called when the user moves. Marks the end of a timing instance.
 	 */
@@ -129,7 +129,7 @@ class SpeedPredictor {
 		if (diff > DISCARD_THRESHOLD) {
 			return;
 		}
-		
+
 		double recentJitter = 0;
 		double sum = 0.0;
 		for (int i = 0; i < VECTOR_LENGTH; i++) {
@@ -143,7 +143,7 @@ class SpeedPredictor {
 		recentJitter /= 8;
 		jitter = (jitter + 2.0 * Math.max(jitter, recentJitter) + recentJitter) / 4.0;
 		prediction = TURN_LENGTH / (sum / VECTOR_LENGTH + jitter);
-		
+
 		// Save for future
 		WtWindowManager wm = WtWindowManager.getInstance();
 		wm.setProperty(SPEED_PROPERTY, Double.toString(prediction));
@@ -152,14 +152,14 @@ class SpeedPredictor {
 
 	/**
 	 * Get the current predicted speed.
-	 * 
+	 *
 	 * @return predicted speed
 	 */
 	double getSpeed() {
 		if (prediction > DISABLING_THRESHDOLD) {
 			return prediction;
 		}
-		
+
 		return 0.0;
 	}
 }

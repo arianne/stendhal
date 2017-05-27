@@ -62,7 +62,7 @@ public class ItemLocation {
 		if (source == null) {
 			return true;
 		}
-		
+
 		if (type == null) {
 			return true;
 		}
@@ -73,7 +73,7 @@ public class ItemLocation {
 	}
 
 	/**
-	 * updates the location in case the event is a location change event. 
+	 * updates the location in case the event is a location change event.
 	 *
 	 * @param event  name of event
 	 * @param param3 param3 from database

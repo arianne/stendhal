@@ -22,7 +22,7 @@ import games.stendhal.common.constants.Nature;
  */
 public class AttackEvent extends Event<RPEntity> {
 	private static final Logger logger = Logger.getLogger(AttackEvent.class);
-	
+
 	@Override
 	public void execute() {
 		Nature dtype;
@@ -33,7 +33,7 @@ public class AttackEvent extends Event<RPEntity> {
 			logger.warn("Unknown damage type: " + idx);
 			dtype = Nature.CUT;
 		}
-		
+
 		RPEntity target = entity.getAttackTarget();
 		if (target != null) {
 			boolean ranged = event.has("ranged");

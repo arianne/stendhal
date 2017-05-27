@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class IdleBehaviourFactory {
 	private static final IdleBehaviour nothing = new StandOnIdle();
-	
+
 	public static IdleBehaviour get(final Map<String, String> aiProfiles) {
 		if (aiProfiles.containsKey("patrolling")) {
 			return new Patroller();

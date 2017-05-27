@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.LinkedList;
+
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
-
-import java.util.LinkedList;
 
 public class HouseBuying extends AbstractQuest {
 	private static final String QUEST_SLOT = "house";
@@ -31,28 +31,28 @@ public class HouseBuying extends AbstractQuest {
 
 		quest = new HouseBuyingMain();
 		quest.addToWorld();
-		
+
 		fillQuestInfo(
 				"House Buying",
 				"Houses can be bought across Faiumoni.",
 				false);
 	}
-	
+
 	@Override
 	public LinkedList<String> getHistory(final Player player) {
 		return quest.getHistory(player);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "HouseBuying";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 50;
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return quest.isCompleted(player);

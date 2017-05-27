@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.tools;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.engine.RPClassGenerator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -21,25 +28,17 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 
-/* 
+/*
  * Running:
  * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame
  * 		calculates balanced atk and def values to all creatures up to HIGHEST_LEVEL
  * 		(defined in the code below)
  * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame creature ...
  * 		calculates the values only for the specified creatures
- * 
+ *
  * 	CLASSPATH should be (with appropriate changes for OS and versions), assuming
  * 		the compiled .class for this file is under "bin":
  *		.:bin:libs/marauroa.jar:libs/log4j.jar:libs/mysql-connector-java-5.1.5-bin.jar:build/lib/stendhal-stendhal-server-0.71.jar
@@ -47,7 +46,7 @@ import marauroa.common.game.RPObject;
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */
 
 public class BalanceRPGame {
-	/** 
+	/**
 	 * A Simple (dumb) optimizer to adjust creature stats.
 	 */
 	private static class Optimizer {
@@ -55,16 +54,16 @@ public class BalanceRPGame {
 
 		/**
 		 * Create an optimizer for a creature.
-		 * 
+		 *
 		 * @param creature
 		 */
 		public Optimizer(final Creature creature) {
 			this.creature = creature;
 		}
-		
+
 		/**
 		 * Adjust creature stats using results from the previous run.
-		 * 
+		 *
 		 * @param leftHP the mean amount of HP the player had left when the
 		 * fights ended
 		 * @param rounds the amount of turns the fights took on average
@@ -72,7 +71,7 @@ public class BalanceRPGame {
 		public void step(final int leftHP, final int rounds) {
 			float stepSize = leftHP / (float) player.getBaseHP();
 			stepSize = Math.signum(stepSize) * Math.min(Math.abs(stepSize), 0.5f);
-			
+
 			final int oldAtk = creature.getAtk();
 			int newAtk = Math.max(1, Math.round(creature.getAtk()
 					+ stepSize * creature.getAtk()));
@@ -80,7 +79,7 @@ public class BalanceRPGame {
 			if ((leftHP < 0) && (newAtk == oldAtk)) {
 				newAtk--;
 			}
-			
+
 			final int level = creature.getLevel();
 			final int oldDef = creature.getDef();
 			int newDef = oldDef;
@@ -92,7 +91,7 @@ public class BalanceRPGame {
 						+ preferred - rounds + 0.5));
 				}
 			} else {
-				newDef = 	Math.max(1, (int) (creature.getDef() 
+				newDef = 	Math.max(1, (int) (creature.getDef()
 					+ 5 * stepSize * creature.getDef() + 0.5f));
 			}
 			// Don't change too fast
@@ -101,12 +100,12 @@ public class BalanceRPGame {
 			} else if (newDef < 0.9 * oldDef) {
 				newDef = Math.max(1, Math.min((int) (0.9 * oldDef), oldDef - 1));
 			}
-	
+
 			creature.setAtk(newAtk);
 			creature.setDef(newDef);
 		}
 	}
-	
+
 	private static final int ROUNDS = 100;
 	private static final int HIGHEST_LEVEL = 500;
 	private static final double DEFAULT_DURATION_THRESHOLD = 0.2;
@@ -176,7 +175,7 @@ public class BalanceRPGame {
 
 			final Creature target = creature.getCreature();
 			final Optimizer optimizer = new Optimizer(target);
-			
+
 			player.setLevel(level);
 			player.setBaseHP(100 + 10 * level);
 			player.setAtk(atkLevels[level]);
@@ -188,7 +187,7 @@ public class BalanceRPGame {
 					+ creature.getCreatureName());
 
 			durationThreshold = DEFAULT_DURATION_THRESHOLD;
-			
+
 			boolean balanced = false;
 			int tries = 0;
 			while (!balanced) {
@@ -199,7 +198,7 @@ public class BalanceRPGame {
 
 				final int proposedXPValue = (int) ((2 * creature.getLevel() + 1) * (meanTurns / 2.0));
 				creature.setLevel(creature.getLevel(), proposedXPValue);
-				
+
 				System.out.println("Target ATK: "
 						+ target.getAtk()
 							+ "/DEF: "
@@ -210,17 +209,17 @@ public class BalanceRPGame {
 							+ meanTurns
 							+ "\tLeft HP:"
 							+ meanLeftHP);
-					
+
 				if (isCorrectResult(level, meanTurns, meanLeftHP / (double) player.getBaseHP())) {
 					balanced = true;
-				} else {		
+				} else {
 					optimizer.step(meanLeftHP, meanTurns);
 
 					System.out.println("New ATK: " + target.getAtk()
 							+ "/DEF: " + target.getDef() + "/HP: "
 							+ target.getBaseHP());
 				}
-				
+
 				// relax convergence criteria for pathological cases
 				tries++;
 				if (tries % 200 == 0) {
@@ -272,8 +271,8 @@ public class BalanceRPGame {
 		int turns = 0;
 		int healAmount = 0;
 		int healRate = 0;
-		
-		String healer = target.getAIProfile("heal"); 
+
+		String healer = target.getAIProfile("heal");
 		if (healer != null) {
 			final String[] healingAttributes = healer.split(",");
 			healAmount = Integer.parseInt(healingAttributes[0]);
@@ -283,7 +282,7 @@ public class BalanceRPGame {
 		while (!combatFinishedWinPlayer) {
 			turns++;
 			if ((healAmount != 0) && (turns % healRate == 0)) {
-				final int newHP = target.getHP() + healAmount; 
+				final int newHP = target.getHP() + healAmount;
 				target.setHP(Math.min(target.getBaseHP(), newHP));
 			}
 
@@ -294,7 +293,7 @@ public class BalanceRPGame {
 				}
 
 				target.setHP(target.getHP() - damage);
-				
+
 				if (target.getHP() <= 0) {
 					combatFinishedWinPlayer = true;
 					break;
@@ -308,7 +307,7 @@ public class BalanceRPGame {
 				}
 				player.setHP(player.getHP() - damage);
 				target.handleLifesteal(target, target.getWeapons(), damage);
-				
+
 				if (player.getHP() <= 0) {
 					combatFinishedWinPlayer = true;
 					break;
@@ -335,7 +334,7 @@ public class BalanceRPGame {
 
 		return new Pair<Integer, Integer>(meanTurns, meanLeftHP);
 	}
-	
+
 	private static void equip(final Player p, final int level) {
 		p.getWeapon().put("atk", 7 + level * 2 / 6);
 		if (level == 0) {
@@ -348,8 +347,8 @@ public class BalanceRPGame {
 		p.getLegs().put("def", 1 + level / 7);
 		p.getBoots().put("def", 1 + level / 10);
 	}
-	
-	private static boolean isCorrectResult(final int level, 
+
+	private static boolean isCorrectResult(final int level,
 			final int meanTurns, final double relativeLeftHP) {
 		if (!isWithinDurationRange(preferredDuration(level), meanTurns)) {
 			return false;

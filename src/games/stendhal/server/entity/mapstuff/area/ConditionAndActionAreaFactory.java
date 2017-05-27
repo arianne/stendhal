@@ -24,10 +24,10 @@ import groovy.lang.GroovyShell;
  * A base factory for <code>ConditionAndActionArea</code> objects.
  */
 public class ConditionAndActionAreaFactory implements ConfigurableFactory {
-    
+
 	/**
 	 * Extracts the height from context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The height, 1 if unspecified.
@@ -38,7 +38,7 @@ public class ConditionAndActionAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extracts the width from context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The width, 1 if unspecified.
@@ -46,7 +46,7 @@ public class ConditionAndActionAreaFactory implements ConfigurableFactory {
 	protected int getWidth(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
-	
+
     protected ChatAction getAction(final ConfigurableFactoryContext ctx) {
         String value = ctx.getString("action", null);
         if (value == null) {
@@ -62,7 +62,7 @@ public class ConditionAndActionAreaFactory implements ConfigurableFactory {
             throw new IllegalArgumentException(e);
         }
     }
-    
+
     protected ChatCondition getCondition(final ConfigurableFactoryContext ctx) {
         String value = ctx.getString("condition", null);
         if (value == null) {
@@ -78,15 +78,15 @@ public class ConditionAndActionAreaFactory implements ConfigurableFactory {
             throw new IllegalArgumentException(e);
         }
     }
-    
+
 	/**
 	 * Create a damaging area.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A OnePlayerArea.
-	 * 
+	 *
 	 * @see OnePlayerArea
 	 */
 	@Override

@@ -12,12 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.entity.StatusID;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -26,13 +20,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import games.stendhal.client.entity.StatusID;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 class StatusIconPanel extends JComponent {
     /** Status bar icons */
     private static final String iconFolder = "data/sprites/status/panel/";
-    
+
 	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
-	
+
 	private final static Sprite awaySprite, grumpySprite;
 	static {
 		final SpriteStore store = SpriteStore.get();
@@ -43,27 +43,27 @@ class StatusIconPanel extends JComponent {
 	final JLabel eating, choking;
 	final AnimatedIcon away, grumpy;
     private final Map<StatusID, JLabel> statusIDMap;
-	
+
 	protected StatusIconPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
 		setOpaque(false);
-		
+
 		eating = new JLabel(eatingIcon);
 		add(eating);
 		eating.setVisible(false);
-		
+
 		choking = new JLabel(chokingIcon);
 		add(choking);
 		choking.setVisible(false);
-		
+
 		away = new AnimatedIcon(awaySprite, 2000);
 		add(away);
 		away.setVisible(false);
-		
+
 		grumpy = new AnimatedIcon(grumpySprite, 2000);
 		add(grumpy);
 		grumpy.setVisible(false);
-		
+
 		/** Initialize map */
         statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class);
         statusIDMap.put(StatusID.CONFUSE, createStatusIndicator("confuse"));
@@ -72,10 +72,10 @@ class StatusIconPanel extends JComponent {
         statusIDMap.put(StatusID.ZOMBIE, createStatusIndicator("zombie"));
         statusIDMap.put(StatusID.HEAVY, createStatusIndicator("heavy"));
 	}
-	
+
 	/**
 	 * Create and add a status indicator label.
-	 * 
+	 *
 	 * @param identifier string identifier used to look up for the label icon
 	 * @return the created label
 	 */
@@ -84,18 +84,18 @@ class StatusIconPanel extends JComponent {
 		JLabel label = new JLabel(icon);
 		label.setVisible(false);
 		add(label);
-		
+
 		return label;
 	}
-	
+
 	/**
 	 * Display or hide eating icon
-	 * 
+	 *
 	 * @param isEating
 	 */
 	protected void setEating(boolean isEating) {
 		if (eating.isVisible() != isEating) {
-			// A hack to prevent eating and choking icons appearing 
+			// A hack to prevent eating and choking icons appearing
 			// at the same time
 			if (isEating) {
 				if (!choking.isVisible()) {
@@ -106,26 +106,26 @@ class StatusIconPanel extends JComponent {
 			}
 		}
 	}
-	
+
 	/**
 	 * Display or hide choking icon
-	 * 
+	 *
 	 * @param isChoking
 	 */
 	protected void setChoking(boolean isChoking) {
 		if (choking.isVisible() != isChoking) {
 			choking.setVisible(isChoking);
 		}
-		// A hack to prevent eating and choking icons appearing 
+		// A hack to prevent eating and choking icons appearing
 		// at the same time
 		if (isChoking) {
 			eating.setVisible(false);
 		}
 	}
-	
+
     /**
      * Display or hide a status icon.
-     * 
+     *
      * @param ID
      *      The ID value of the status
      * @param visible
@@ -137,31 +137,31 @@ class StatusIconPanel extends JComponent {
             status.setVisible(visible);
         }
     }
-    
+
 	/**
 	 * Set the away status message. null value will hide the icon.
-	 * 
+	 *
 	 * @param message
 	 */
 	void setAway(String message) {
 		boolean isAway = message != null;
 		if (isAway) {
-			away.setToolTipText("<html>You are away with the message:<br><b>" + message);	
+			away.setToolTipText("<html>You are away with the message:<br><b>" + message);
 		}
 		if (away.isVisible() != isAway) {
 			away.setVisible(isAway);
 		}
 	}
-	
+
 	/**
 	 * Set the grumpy status message. null value will hide the icon.
-	 * 
+	 *
 	 * @param message
 	 */
 	void setGrumpy(String message) {
 		boolean isGrumpy = message != null;
 		if (isGrumpy) {
-			grumpy.setToolTipText("<html>You are grumpy with the message:<br><b>" + message);	
+			grumpy.setToolTipText("<html>You are grumpy with the message:<br><b>" + message);
 		}
 		if (grumpy.isVisible() != isGrumpy) {
 			grumpy.setVisible(isGrumpy);

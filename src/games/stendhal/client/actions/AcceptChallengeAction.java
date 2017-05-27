@@ -15,7 +15,7 @@ public class AcceptChallengeAction implements SlashAction {
 		action.put("action", "accept");
 		action.put("target", params[0]);
 		ClientSingletonRepository.getClientFramework().send(action);
-		
+
 		return true;
 	}
 

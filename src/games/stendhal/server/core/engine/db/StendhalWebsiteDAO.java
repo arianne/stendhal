@@ -11,23 +11,22 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
-
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -103,7 +102,7 @@ public class StendhalWebsiteDAO {
 
 	/**
 	 * logs a trade event
-	 * 
+	 *
 	 * @param transaction DBTransaction
 	 * @param charname name of character
 	 * @param itemname name of item
@@ -192,7 +191,7 @@ public class StendhalWebsiteDAO {
 
 	/**
 	 * Insert statistics information about a new player
-	 * 
+	 *
 	 *
 	 * @param transaction DBTransaction
 	 * @param player Player
@@ -218,8 +217,8 @@ public class StendhalWebsiteDAO {
 	 * Used to get the items in the hands container, as they can be different to weapons or shields...
 	 * Could also be done using getEquippedItemClass and using all posibble classes for
 	 * the objects that can be used in hands.
-	 * 
-	 * @param instance player 
+	 *
+	 * @param instance player
 	 * @param handSlot hand slot name
 	 * @return item name
 	 */

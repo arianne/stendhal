@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kotoch;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Arrays;
-import java.util.Map;
 
 public class SmithNPC implements ZoneConfigurator {
 	/**
@@ -48,7 +48,7 @@ public class SmithNPC implements ZoneConfigurator {
 				addGoodbye("Farewell");
 				addHelp("I may help you to get a very #special item for only a few others...");
 				addJob("I used to forge weapons for the King of Faiumoni, but this was long ago, since now the way is blocked.");
-				
+
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("special"),

@@ -13,7 +13,7 @@ package games.stendhal.server.core.events;
 
 /**
  * a TurnListener decorator. Multiple instance can point to the same
- * real TurnListener but will be treated as unique listeners by the 
+ * real TurnListener but will be treated as unique listeners by the
  * set in the TurnNotifier.
  *
  * @author hendrik

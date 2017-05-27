@@ -11,6 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import java.awt.Rectangle;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.Actions;
@@ -25,16 +31,9 @@ import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-
-import java.awt.Rectangle;
-import java.util.Iterator;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop destination.

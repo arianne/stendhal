@@ -11,15 +11,15 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.gui.LinearScalingModel;
-import games.stendhal.client.gui.StatusDisplayBar;
-
 import java.awt.Color;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 import javax.swing.SwingUtilities;
+
+import games.stendhal.client.gui.LinearScalingModel;
+import games.stendhal.client.gui.StatusDisplayBar;
 
 /**
  * A bar indicator component for mana.
@@ -28,12 +28,12 @@ public class ManaIndicator extends StatusDisplayBar implements PropertyChangeLis
 	private static final long serialVersionUID = 3462088641737184898L;
 
 	private static ManaIndicator instance;
-	
+
 	private final LinearScalingModel model;
-	
+
 	/**
 	 * Create the ManaIndicator instance.
-	 * 
+	 *
 	 * @return instance
 	 */
 	static synchronized ManaIndicator create() {
@@ -43,13 +43,13 @@ public class ManaIndicator extends StatusDisplayBar implements PropertyChangeLis
 		} else {
 			throw new IllegalStateException("Instance already created");
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new mana indicator.
-	 * 
+	 *
 	 * @param model scaling model used for the indicator
 	 */
 	private ManaIndicator(final LinearScalingModel model) {
@@ -74,7 +74,7 @@ public class ManaIndicator extends StatusDisplayBar implements PropertyChangeLis
 	/**
 	 * Set the mana value. This method may be called outside the event dispatch
 	 * thread.
-	 * 
+	 *
 	 * @param mana
 	 */
 	public void setMana(double mana) {
@@ -84,7 +84,7 @@ public class ManaIndicator extends StatusDisplayBar implements PropertyChangeLis
 	/**
 	 * Set the base_mana value. This method may be called outside the event dispatch
 	 * thread.
-	 * 
+	 *
 	 * @param base_mana
 	 */
 	public void setBaseMana(double base_mana) {

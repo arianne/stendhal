@@ -25,7 +25,7 @@ class DualAttackPositioningStrategy implements PositioningStrategy {
 		if (creature.hasTargetMoved()) {
 			creature.setMovement(creature.getAttackTarget(), 0, 1, creature.getMovementRange());
 		}
-		
+
 		if (!strategy.canAttackNow(creature)) {
 			// First try switching targets, in case the new one is attackable
 			strategy.findNewTarget(creature);

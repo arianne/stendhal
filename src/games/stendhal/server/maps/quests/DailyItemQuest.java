@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -40,12 +46,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * QUEST: Daily Item Fetch Quest.
  * <p>
@@ -60,7 +60,7 @@ import java.util.Map;
  * another instead
  * <p>
  * REWARD:
- * <li> xp 
+ * <li> xp
  * <li> 10 Karma
  * <p>
  * REPETITIONS:
@@ -69,13 +69,13 @@ import java.util.Map;
 public class DailyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily_item";
-	
+
 	/** How long until the player can give up and start another quest */
-	private static final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK; 
-	
+	private static final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK;
+
 	/** How often the quest may be repeated */
-	private static final int delay = MathHelper.MINUTES_IN_ONE_DAY; 
-	
+	private static final int delay = MathHelper.MINUTES_IN_ONE_DAY;
+
 	/**
 	 * All items which are possible/easy enough to find. If you want to do
 	 * it better, go ahead. *
@@ -90,7 +90,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("power arrow",5);
 		items.put("steel arrow",7);
 		items.put("wooden arrow",10);
-		
+
 		// armor
         items.put("blue armor",1);
 		items.put("chain armor",1);
@@ -118,20 +118,20 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("sickle",1);
 		items.put("small axe",1);
 		items.put("twoside axe",1);
-		
+
 		// boots
         items.put("blue boots",1);
 		items.put("chain boots",1);
 		items.put("leather boots",1);
 		items.put("studded boots",1);
-		
+
 		// cloaks
 		items.put("blue elf cloak",1);
 		items.put("cloak",1);
 		items.put("dwarf cloak",1);
 		items.put("elf cloak",1);
 		items.put("green dragon cloak",1);
-		
+
 		// club
 		items.put("club",1);
 		items.put("enhanced mace",1);
@@ -143,12 +143,12 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("morning star",1);
 		items.put("staff",1);
 		items.put("war hammer",1);
-		
+
 		// container
 		items.put("eared bottle",3);
 		items.put("flask",5);
 		items.put("slim bottle",5);
-		
+
 		// drinks
 		items.put("antidote",5);
 		items.put("beer",10);
@@ -161,12 +161,12 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("tea",3);
 		items.put("water",5);
 		items.put("wine",10);
-		
+
 		// flower
 		items.put("daisies",5);
 		items.put("lilia",5);
 		items.put("rose",10);
-		
+
 		// food
 		items.put("apple",5);
 		items.put("apple pie",2);
@@ -211,7 +211,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("tomato",5);
 		items.put("trout",5);
 		items.put("olive",5);
-		
+
 		// helmet
         items.put("blue helmet",1);
 		items.put("aventail",1);
@@ -220,33 +220,33 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("robins hat",1);
 		items.put("studded helmet",1);
 		items.put("viking helmet",1);
-	
+
 		// herb
 		items.put("arandula",5);
 		items.put("sclaria",5);
 		items.put("mandragora",3);
 		items.put("kekik",5);
-		
+
 		// legs
         items.put("blue legs",1);
 		items.put("chain legs",1);
 		items.put("leather legs",1);
 		items.put("studded legs",1);
-		
+
 		// misc
 		items.put("dice",1);
 		items.put("marbles", 2);
 		items.put("rodent trap",5);
 		items.put("teddy",1);
-		
+
 		// money
 		items.put("money",100);
-		
+
 		// ranged
 		items.put("composite bow",1);
 		items.put("longbow",1);
 		items.put("wooden bow",1);
-		
+
 		// resource
 		items.put("coal",10);
 		items.put("flour",5);
@@ -256,7 +256,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("iron",5);
 		items.put("iron ore",10);
 		items.put("wood",10);
-		
+
 		// shield
         items.put("blue shield",1);
 		items.put("buckler",1);
@@ -268,7 +268,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("studded shield",1);
 		items.put("unicorn shield",1);
 		items.put("wooden shield",1);
-		
+
 		// sword
 		items.put("biting sword",1);
 		items.put("broadsword",1);
@@ -280,77 +280,77 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("scimitar",1);
 		items.put("short sword",1);
 		items.put("sword",1);
-		
+
 		// tool
 		items.put("pick",1);
 		items.put("gold pan",1);
 	}
-	
+
 	private ChatAction startQuestAction() {
 		// common place to get the start quest actions as we can both starts it and abort and start again
-		
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new StartRecordingRandomItemCollectionAction(QUEST_SLOT,0,items,"Ados is in need of supplies. Go fetch [item]"
-				+ " and say #complete, once you've brought it."));	
+				+ " and say #complete, once you've brought it."));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-		
+
 		return new MultipleActions(actions);
 	}
-	
+
 	private void getQuest() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,expireDelay))), 
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,expireDelay))),
 				ConversationStates.ATTENDING,
 				null,
 				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
 						+ ". Say #complete if you brought it!"));
-		
+
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								 new TimePassedCondition(QUEST_SLOT,1,expireDelay)), 
+								 new TimePassedCondition(QUEST_SLOT,1,expireDelay)),
 				ConversationStates.ATTENDING,
 				null,
 				new SayRequiredItemAction(QUEST_SLOT,0,"You're already on a quest to fetch [item]"
 						+ ". Say #complete if you brought it! Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you."));
-	
+
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-								 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,delay))), 
+								 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,delay))),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT,1, delay, "I can only give you a new quest once a day. Please check back in"));
-		
-		
 
-		
+
+
+
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT),
 								new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-												 new TimePassedCondition(QUEST_SLOT,1,delay))), 
+												 new TimePassedCondition(QUEST_SLOT,1,delay))),
 				ConversationStates.ATTENDING,
 				null,
 				startQuestAction());
 	}
-	
+
 	private void completeQuest() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.FINISH_MESSAGES, 
+				ConversationPhrases.FINISH_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I'm afraid I didn't send you on a #quest yet.",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.FINISH_MESSAGES, 
+				ConversationPhrases.FINISH_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"You already completed the last quest I had given to you.",
 				null);
-		
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
@@ -358,60 +358,60 @@ public class DailyItemQuest extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		actions.add(new IncreaseXPDependentOnLevelAction(8, 90.0));
 		actions.add(new IncreaseKarmaAction(10.0));
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 								 new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Good work! Let me thank you on behalf of the people of Ados!",
 				new MultipleActions(actions));
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 								 new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new SayRequiredItemAction(QUEST_SLOT,0,"You didn't fetch [item]"
 						+ " yet. Go and get it and say #complete only once you're done."));
-		
+
 	}
-	
+
 	private void abortQuest() {
 		final SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						 		 new TimePassedCondition(QUEST_SLOT,1,expireDelay)), 
-				ConversationStates.ATTENDING, 
-				null, 
+						 		 new TimePassedCondition(QUEST_SLOT,1,expireDelay)),
+				ConversationStates.ATTENDING,
+				null,
 				// start quest again immediately
 				startQuestAction());
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,expireDelay))), 
-				ConversationStates.ATTENDING, 
-				"It hasn't been long since you've started your quest, I won't let you give up so soon.", 
+						 		 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,expireDelay))),
+				ConversationStates.ATTENDING,
+				"It hasn't been long since you've started your quest, I won't let you give up so soon.",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.ABORT_MESSAGES,
 				new QuestNotActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
-				"I'm afraid I didn't send you on a #quest yet.", 
+				ConversationStates.ATTENDING,
+				"I'm afraid I didn't send you on a #quest yet.",
 				null);
-		
+
 	}
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -456,9 +456,9 @@ public class DailyItemQuest extends AbstractQuest {
 				"Daily Item Quest",
 				"Mayor Chalmers needs supplies for Ados City.",
 				true);
-		
+
 		buildItemsMap();
-		
+
 		getQuest();
 		completeQuest();
 		abortQuest();
@@ -473,13 +473,13 @@ public class DailyItemQuest extends AbstractQuest {
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,delay)).fire(player, null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

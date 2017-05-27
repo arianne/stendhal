@@ -12,22 +12,21 @@
  ***************************************************************************/
 package games.stendhal.tools.loganalyser.itemlog.contraband;
 
-import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntry;
-import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntryIterator;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntry;
+import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntryIterator;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.apache.log4j.Logger;
 
 /**
  * Analyses the itemlog for contraband.
@@ -47,7 +46,7 @@ public class Analyser {
 		final ResultSet resultSet = transaction.query(SQL, params);
 		return new LogEntryIterator(resultSet);
 	}
-	
+
 	public void analyse(final String timedate) {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -75,19 +74,19 @@ public class Analyser {
 					logTransfer(oldItemInfo, itemInfo, entry);
 				}
 /*
-| create           | 
-| destroy          | 
-| ground-to-ground | 
-| ground-to-slot   | 
-| market-to-slot   | 
-| merge in         | 
-| merged in        | 
-| register         | 
-| slot-to-ground   | 
-| slot-to-market   | 
-| slot-to-slot     | 
-| split out        | 
-| splitted out     | 
+| create           |
+| destroy          |
+| ground-to-ground |
+| ground-to-slot   |
+| market-to-slot   |
+| merge in         |
+| merged in        |
+| register         |
+| slot-to-ground   |
+| slot-to-market   |
+| slot-to-slot     |
+| split out        |
+| splitted out     |
 */
 				oldItemInfo = itemInfo;
 			}
@@ -110,7 +109,7 @@ public class Analyser {
 			params.put("giver", oldItemInfo.getOwner());
 			params.put("receiver", itemInfo.getOwner());
 			params.put("oldid", entry.getId());
-			
+
 			transaction.execute(query, params);
 			//System.out.println(itemInfo + " " + oldItemInfo.getOwner() + " " + itemInfo.getOwner());
 
@@ -129,7 +128,7 @@ public class Analyser {
 	public static void main(final String[] args) {
 		Log4J.init();
 		Configuration.setConfigurationFile("/home/hendrik/workspace/stendhal/server_strato.ini");
-		new DatabaseFactory().initializeDatabase();	
+		new DatabaseFactory().initializeDatabase();
 		String timedate = "2000-01-01";
 		if (args.length > 0) {
 			timedate = args[0];

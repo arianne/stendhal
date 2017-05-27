@@ -12,16 +12,16 @@
  ***************************************************************************/
 package utilities;
 
-import marauroa.common.game.RPEvent;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import marauroa.common.game.RPEvent;
 
 /**
  * Provides convenience methods for SpeakerNPC creation. the Created NPC extends
  * <p>
  * SpeakerNPC and overrides <code>registerTheNewNameInTheConversationParserWordList</code> to
  * avoid database access
- * 
+ *
  */
 public abstract class SpeakerNPCTestHelper {
 
@@ -41,15 +41,15 @@ public abstract class SpeakerNPCTestHelper {
 	 */
 	public static String getReply(SpeakerNPC npc) {
 		String reply = null;
-		
+
 		for (RPEvent event : npc.events()) {
 			if (event.getName().equals(Events.PUBLIC_TEXT)) {
 				reply = event.get("text");
 			}
 		}
-		
+
 		npc.clearEvents();
-		
+
 		return reply;
 	}
 }

@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author gummipferd
- * 
+ *
  * Less safe for players below level 10
  */
 public class GnomeRaid extends CreateRaid {

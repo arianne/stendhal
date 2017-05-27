@@ -23,15 +23,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 
-import marauroa.common.Pair;
-
 import org.junit.Test;
+
+import marauroa.common.Pair;
 
 /**
  * Tests for the string formatter.
  */
 public class StringFormatTest {
-	private final StringFormatter<Map<TextAttribute, Object>, TextAttributeSet> f = 
+	private final StringFormatter<Map<TextAttribute, Object>, TextAttributeSet> f =
 			new StringFormatter<Map<TextAttribute, Object>, TextAttributeSet>();
 	private final TextAttributeSet normal = new TextAttributeSet();
 	private final TextAttributeSet blue;
@@ -46,22 +46,22 @@ public class StringFormatTest {
 		blue.setAttribute(TextAttribute.FOREGROUND, Color.blue);
 		blue.setAttribute(TextAttribute.POSTURE, TextAttribute.POSTURE_OBLIQUE);
 		f.addStyle('#', blue);
-		
+
 		underline = new TextAttributeSet();
 		underline.setAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		f.addStyle('§', underline);
 	}
-	
+
 	/**
 	 * Format a string.
-	 * 
+	 *
 	 * @param s string with markup
 	 * @return AttributedStringBuilder filled with data from the markup string
 	 */
 	private DebugAttributedStringBuilder format(String s) {
 		DebugAttributedStringBuilder dest = new DebugAttributedStringBuilder();
 		f.format(s, normal, dest);
-		
+
 		return dest;
 	}
 
@@ -74,18 +74,18 @@ public class StringFormatTest {
 		assertEquals("test", dest.toString());
 		dest.checkNext("test", normal);
 		dest.assertEnd();
-		
+
 		dest = format("test string with no markup");
 		assertEquals("test string with no markup", dest.toString());
 		dest.checkNext("test string with no markup", normal);
 		dest.assertEnd();
-		
+
 		dest = format("with a\nnewline");
 		assertEquals("with a\nnewline", dest.toString());
 		dest.checkNext("with a\nnewline", normal);
 		dest.assertEnd();
 	}
-	
+
 	/**
 	 * Test with a single markup character type, no area markings and no
 	 * quoting.
@@ -96,51 +96,51 @@ public class StringFormatTest {
 		assertEquals("test", dest.toString());
 		dest.checkNext("test", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#test");
 		assertEquals("test", dest.toString());
 		dest.checkNext("test", blue);
 		dest.assertEnd();
-		
+
 		dest = format("##test");
 		assertEquals("#test", dest.toString());
 		dest.checkNext("#test", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#test#too");
 		assertEquals("test#too", dest.toString());
 		dest.checkNext("test#too", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#test #too");
 		assertEquals("test too", dest.toString());
 		dest.checkNext("test", blue);
 		dest.checkNext(" ", normal);
 		dest.checkNext("too", blue);
 		dest.assertEnd();
-		
+
 		dest = format("mark at end#");
 		assertEquals("mark at end", dest.toString());
 		dest.checkNext("mark at end", normal);
 		dest.assertEnd();
-		
+
 		dest = format("mark #at middle");
 		assertEquals("mark at middle", dest.toString());
 		dest.checkNext("mark ", normal);
 		dest.checkNext("at", blue);
 		dest.checkNext(" middle", normal);
 		dest.assertEnd();
-		
+
 		dest = format("#");
 		assertEquals("", dest.toString());
 		dest.assertEnd();
-		
+
 		dest = format("##");
 		assertEquals("#", dest.toString());
 		dest.checkNext("#", blue);
 		dest.assertEnd();
 	}
-	
+
 	/**
 	 * Test with two markup character types, no area markings and no
 	 * quoting.
@@ -152,17 +152,17 @@ public class StringFormatTest {
 		dest.checkNext("te", blue);
 		dest.checkNext("st", blue.union(underline));
 		dest.assertEnd();
-		
+
 		dest = format("##test§");
 		assertEquals("#test", dest.toString());
 		dest.checkNext("#test", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#§test#too");
 		assertEquals("testtoo", dest.toString());
 		dest.checkNext("testtoo", blue.union(underline));
 		dest.assertEnd();
-		
+
 		dest = format("#test §too");
 		assertEquals("test too", dest.toString());
 		dest.checkNext("test", blue);
@@ -170,7 +170,7 @@ public class StringFormatTest {
 		dest.checkNext("too", underline);
 		dest.assertEnd();
 	}
-	
+
 	/**
 	 * Test markup with quotes.
 	 */
@@ -180,32 +180,32 @@ public class StringFormatTest {
 		assertEquals("test", dest.toString());
 		dest.checkNext("test", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#'#test");
 		assertEquals("#test", dest.toString());
 		dest.checkNext("#test", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#'test too'");
 		assertEquals("test too", dest.toString());
 		dest.checkNext("test too", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#'test #too'");
 		assertEquals("test #too", dest.toString());
 		dest.checkNext("test #too", blue);
 		dest.assertEnd();
-		
+
 		dest = format("mark at end#'");
 		assertEquals("mark at end", dest.toString());
 		dest.checkNext("mark at end", normal);
 		dest.assertEnd();
-		
+
 		dest = format("#'");
 		assertEquals("", dest.toString());
 		dest.assertEnd();
 	}
-	
+
 	/**
 	 * Test nested markup.
 	 */
@@ -215,32 +215,32 @@ public class StringFormatTest {
 		assertEquals("test ", dest.toString());
 		dest.checkNext("test ", blue);
 		dest.assertEnd();
-		
+
 		dest = format("#'test §too'");
 		assertEquals("test too", dest.toString());
 		dest.checkNext("test ", blue);
 		dest.checkNext("too", blue.union(underline));
 		dest.assertEnd();
-		
+
 		dest = format("#'test §too' 2");
 		assertEquals("test too 2", dest.toString());
 		dest.checkNext("test ", blue);
 		dest.checkNext("too", blue.union(underline));
 		dest.checkNext(" 2", normal);
 		dest.assertEnd();
-		
+
 		dest = format("#'test #'too''");
 		assertEquals("test #too''", dest.toString());
 		dest.checkNext("test #", blue);
 		dest.checkNext("too''", normal);
 		dest.assertEnd();
-		
+
 		dest = format("#'test §'too''");
 		assertEquals("test too", dest.toString());
 		dest.checkNext("test ", blue);
 		dest.checkNext("too", blue.union(underline));
 		dest.assertEnd();
-		
+
 		dest = format("#'test §'too'' 3");
 		assertEquals("test too 3", dest.toString());
 		dest.checkNext("test ", blue);
@@ -248,7 +248,7 @@ public class StringFormatTest {
 		dest.checkNext(" 3", normal);
 		dest.assertEnd();
 	}
-	
+
 	/**
 	 * Test escaping markup characters.
 	 */
@@ -258,30 +258,30 @@ public class StringFormatTest {
 		assertEquals("test §", dest.toString());
 		dest.checkNext("test §", blue);
 		dest.assertEnd();
-		
+
 		dest = format("\\#test");
 		assertEquals("#test", dest.toString());
 		dest.checkNext("#test", normal);
 		dest.assertEnd();
-		
+
 		dest = format("#'test §too\\'");
 		assertEquals("test too'", dest.toString());
 		dest.checkNext("test ", blue);
 		dest.checkNext("too'", blue.union(underline));
 		dest.assertEnd();
-		
+
 		dest = format("#'test #\\'too''");
 		assertEquals("test #'too'", dest.toString());
 		dest.checkNext("test #'too", blue);
 		dest.checkNext("'", normal);
 		dest.assertEnd();
-		
+
 		dest = format("#'test \\\\too'");
 		assertEquals("test \\too", dest.toString());
 		dest.checkNext("test \\too", blue);
 		dest.assertEnd();
 	}
-	
+
 	/**
 	 * A version of AttributedStringBuilder that can return check the formatted
 	 * sequences one by one.
@@ -289,7 +289,7 @@ public class StringFormatTest {
 	private static class DebugAttributedStringBuilder extends AttributedStringBuilder {
 		/** Store of formatted string slices. */
 		private final Queue<Pair<String, TextAttributeSet>> data = new LinkedList<Pair<String, TextAttributeSet>>();
-		
+
 		@Override
 		public void append(String s, TextAttributeSet attrs) {
 			super.append(s, attrs);
@@ -298,7 +298,7 @@ public class StringFormatTest {
 
 		/**
 		 * Check the next string element and its attributes.
-		 * 
+		 *
 		 * @param s string element
 		 * @param attrs attributes
 		 */
@@ -320,9 +320,9 @@ public class StringFormatTest {
 					combined = true;
 				}
 			} while (combined);
-			
+
 			assertEquals("String element differs from expected", s, p.first());
-			
+
 			// Check that all wanted attributes are present and have the right
 			// values
 			for (Entry<TextAttribute, Object> e : attrs.contents().entrySet()) {
@@ -332,11 +332,11 @@ public class StringFormatTest {
 			}
 			// Check that there are no unwanted values
 			for (Entry<TextAttribute, Object> e : p.second().contents().entrySet()) {
-				assertTrue("Unwanted key " + e.getKey() + " with value " + e.getValue(), 
+				assertTrue("Unwanted key " + e.getKey() + " with value " + e.getValue(),
 						attrs.contents().containsKey(e.getKey()));
 			}
 		}
-		
+
 		/**
 		 * Ensure that all the encodings have been checked.
 		 */

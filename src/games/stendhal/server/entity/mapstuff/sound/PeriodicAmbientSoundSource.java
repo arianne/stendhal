@@ -33,7 +33,7 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 
 	/**
 	 * Create an ambient sound area.
-	 * 
+	 *
 	 * @param sound   name of sound (or sounds) to play
 	 * @param radius  hearing radius
 	 * @param volume  volume
@@ -53,7 +53,7 @@ public class PeriodicAmbientSoundSource extends PassiveEntity implements TurnLis
 	}
 
 	/**
-	 * sets the turn notifier up to notify us at a random point in the 
+	 * sets the turn notifier up to notify us at a random point in the
 	 * future between minInterval and maxInterval
 	 */
 	private void setupNotifier() {

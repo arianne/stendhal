@@ -12,22 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.actions.query;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
+
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
-
-import static org.hamcrest.core.IsEqual.equalTo;
-
-import static org.junit.Assert.assertThat;
 
 public class WhoActionTest {
 
@@ -70,7 +68,7 @@ public class WhoActionTest {
 		pq.onAction(player, action);
 		assertThat(player.events().get(0).get("text"), equalTo("1 Players online: player(!0) "));
 		player.clearEvents();
-		
+
 		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode") + 1);
 		player.setGhost(true);
 		pq.onAction(player, action);

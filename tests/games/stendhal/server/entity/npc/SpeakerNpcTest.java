@@ -3,10 +3,6 @@ package games.stendhal.server.entity.npc;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.config.zone.ConfiguratorDescriptor;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -17,6 +13,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import games.stendhal.server.core.config.zone.ConfiguratorDescriptor;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.NpcLoader;
 import utilities.PlayerTestHelper;
 

@@ -31,7 +31,7 @@ class BuddyListModel extends AbstractListModel<Buddy> {
 	 * LinkedHashMap would nicely combine order and fast searches, but
 	 * unfortunately it does not allow sorting after creation. (Likewise for
 	 * TreeMap).
-	 * 
+	 *
 	 * The map is for a quick lookup, the list is needed for the ordering.
 	 */
 	private final List<Buddy> buddyList = new ArrayList<Buddy>();
@@ -46,11 +46,11 @@ class BuddyListModel extends AbstractListModel<Buddy> {
 	public int getSize() {
 		return buddyList.size();
 	}
-	
+
 	/**
 	 * Set the online status of a buddy. Add a new buddy if one by the wanted
 	 * name does not already exist.
-	 * 
+	 *
 	 * @param name name of the buddy
 	 * @param online <code>true</code> if the buddy is at the moment online,
 	 * 	false otherwise
@@ -79,10 +79,10 @@ class BuddyListModel extends AbstractListModel<Buddy> {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove a buddy from the list.
-	 * 
+	 *
 	 * @param name name of the removed player
 	 */
 	void removeBuddy(String name) {

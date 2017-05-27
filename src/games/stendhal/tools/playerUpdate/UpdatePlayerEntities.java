@@ -12,15 +12,16 @@
  ***************************************************************************/
 package games.stendhal.tools.playerUpdate;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.db.CharacterIterator;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.UpdateConverter;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.db.CharacterIterator;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
@@ -28,10 +29,8 @@ import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
 
-import org.apache.log4j.Logger;
-
 /**
- * Loads all Players from the database, performs update operations and saves afterwards. 
+ * Loads all Players from the database, performs update operations and saves afterwards.
  * @author madmetzger
  */
 public class UpdatePlayerEntities {
@@ -43,7 +42,7 @@ public class UpdatePlayerEntities {
 	public void initRPClasses() {
 		StendhalRPWorld.get();
 	}
-    
+
 	private void loadAndUpdatePlayers(DBTransaction transaction) throws SQLException, IOException {
     	final Iterator<RPObject> i = new CharacterIterator(transaction, true);
     	while (i.hasNext()) {
@@ -64,7 +63,7 @@ public class UpdatePlayerEntities {
 	void savePlayer(DBTransaction transaction, final Player player) throws SQLException, IOException {
 		DAORegister.get().get(CharacterDAO.class).storeCharacter(transaction, player.getName(), player.getName(), player);
 	}
-    
+
     private void doUpdate() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -75,9 +74,9 @@ public class UpdatePlayerEntities {
 			TransactionPool.get().rollback(transaction);
 		}
 	}
-    
+
 	public static void main(final String[] args) {
-		new DatabaseFactory().initializeDatabase();	
+		new DatabaseFactory().initializeDatabase();
 		UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
         updatePlayerEntities.initRPClasses();
 		updatePlayerEntities.doUpdate();
@@ -85,4 +84,4 @@ public class UpdatePlayerEntities {
 
 }
 
- 	  	 
+

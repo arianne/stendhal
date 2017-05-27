@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -38,10 +42,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: Coal for Haunchy
@@ -70,7 +70,7 @@ import java.util.List;
  * <ul>
  * <li>You can repeat it each 2 days.</li>
  * </ul>
- * 
+ *
  * @author Vanessa Julius and storyteller
  */
 public class CoalForHaunchy extends AbstractQuest {
@@ -82,12 +82,12 @@ public class CoalForHaunchy extends AbstractQuest {
 
 	private void offerQuestStep() {
 		final SpeakerNPC npc = npcs.get("Haunchy Meatoch");
-		
+
 		// player says quest when he has not ever done the quest before (rejected or just new)
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 25 pieces of #coal for my BBQ please?",
 				null);
 
@@ -114,7 +114,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"The last coal you brought me is mostly gone again. Will you bring me some more?",
 				null);
-		
+
 		// player asks about quest which he has done already but it is not time to repeat it
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -140,11 +140,11 @@ public class CoalForHaunchy extends AbstractQuest {
 	/*
 	 * Get Coal Step :
 	 * Players will get some coal in Semos Mine and with buying some from other players.
-	 * 
+	 *
 	 */
 	private void bringCoalStep() {
 		final SpeakerNPC npc = npcs.get("Haunchy Meatoch");
-		
+
 		final List<String> triggers = new ArrayList<String>();
 		triggers.add("coal");
 		triggers.add("stone coal");
@@ -154,10 +154,10 @@ public class CoalForHaunchy extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING, triggers,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("coal",25)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-						new DropItemAction("coal",25), 
+						new DropItemAction("coal",25),
 						new IncreaseXPAction(200),
 						new IncreaseKarmaAction(20),
 						new ChatAction() {
@@ -169,7 +169,7 @@ public class CoalForHaunchy extends AbstractQuest {
 								new EquipItemAction("grilled steak", grilledsteakAmount, true).fire(player, sentence, npc);
 								npc.say("Thank you!! Take " + Grammar.thisthese(grilledsteakAmount) + " " +
 										Grammar.quantityNumberStrNoun(grilledsteakAmount, "grilled steak") + " from my grill!");
-								new SetQuestAndModifyKarmaAction(getSlotName(), "waiting;" 
+								new SetQuestAndModifyKarmaAction(getSlotName(), "waiting;"
 										+ System.currentTimeMillis(), 10.0).fire(player, sentence, npc);
 							}
 						}));
@@ -181,9 +181,9 @@ public class CoalForHaunchy extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"You don't have the coal amount which I need yet. Go and pick some more pieces up, please.",
 				null);
-		
+
 		npc.add(
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				Arrays.asList("coal","stone coal"),
 				new QuestNotInStateCondition(QUEST_SLOT,"start"),
 				ConversationStates.ATTENDING,
@@ -223,7 +223,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				res.add("I took 25 pieces of coal to the Haunchy, but I'd bet his amount is low again and needs more. Maybe I'll get more grilled tasty steaks.");
 			} else {
 				res.add("Haunchy Meatoch was really happy when I gave him the coal, he has enough for now. He gave me some of the best steaks which I ever ate!");
-			}			
+			}
 		}
 		return res;
 	}
@@ -248,7 +248,7 @@ public class CoalForHaunchy extends AbstractQuest {
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"waiting;").fire(player, null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

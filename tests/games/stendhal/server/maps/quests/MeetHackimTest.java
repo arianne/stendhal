@@ -14,6 +14,11 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -21,11 +26,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -45,7 +45,7 @@ public class MeetHackimTest {
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new BlacksmithAssistantNPC().configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Hackim Easso");
-		
+
 		en = npc.getEngine();
 
 		final AbstractQuest quest = new MeetHackim();

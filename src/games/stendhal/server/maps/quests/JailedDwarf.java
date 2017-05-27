@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -28,14 +31,11 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * QUEST: Jailed Dwarf
- * 
+ *
  * PARTICIPANTS: - Hunel, the guard of the Dwarf Kingdom's Prison
- * 
+ *
  * STEPS:
  * <ul>
  * <li> You see Hunel locked in the cell. </li>
@@ -44,14 +44,14 @@ import java.util.List;
  * <li> Hunel wants to stay in, he is afraid. </li>
  * <li> You can then sell chaos equipment to Hunel. </li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 2,000 XP </li>
  * <li> some karma (20) </li>
  * <li> everlasting place to sell chaos equipment </li>
  * </ul>
- * 
+ *
  * REPETITIONS: - None.
  */
 public class JailedDwarf extends AbstractQuest {
@@ -102,7 +102,7 @@ public class JailedDwarf extends AbstractQuest {
 				true);
 		step_1();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -115,12 +115,12 @@ public class JailedDwarf extends AbstractQuest {
 			}
 			return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "JailedDwarf";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 60;
@@ -130,7 +130,7 @@ public class JailedDwarf extends AbstractQuest {
 	public String getNPCName() {
 		return "Hunel";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_DUNGEONS;

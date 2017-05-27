@@ -17,15 +17,15 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CorpseTestHelper;
 
@@ -48,7 +48,7 @@ public class PlayerDieerTest {
                 final Player hasRingBad = PlayerTestHelper.createPlayer("bob");
                 hasRingBad.setXP(10000);
 		hasRingBad.put("karma", -200.0);
-		
+
 		final Player hasNoRingGood = PlayerTestHelper.createPlayer("bob");
 		hasNoRingGood.setXP(10000);
 		hasNoRingGood.put("karma", 200.0);
@@ -61,7 +61,7 @@ public class PlayerDieerTest {
 		zone.add(hasRingBad);
 		zone.add(hasNoRingGood);
                 zone.add(hasNoRingBad);
-		
+
 		final RingOfLife ring = new RingOfLife();
 		hasRingGood.equip("bag", ring);
 		final RingOfLife ring2 = new RingOfLife();
@@ -95,7 +95,7 @@ public class PlayerDieerTest {
 
 		assertTrue(ring.isBroken());
                 assertTrue(ring2.isBroken());
-		
+
 		assertThat("ring wearer, good loses max 1 percent", hasRingGood.getXP(), greaterThan(9899));
 		assertThat("ring wearer, good loses min 0 percent", hasRingGood.getXP(), lessThan(10001));
 
@@ -105,12 +105,12 @@ public class PlayerDieerTest {
 		assertThat("normal player, good loses min 0 percent", hasNoRingGood.getXP(), lessThan(10001));
 
 		assertThat("normal player, bad loses max 20 percent", hasNoRingBad.getXP(), greaterThan(7999));
-		
+
 		hasRingGood.setXP(10000);
 		dierWithRingGood.onDead(new Entity() {
 		});
 		assertThat("ring wearer, good, with broken ring, loses max 10 percent", hasRingGood.getXP(), greaterThan(8999));
 		assertThat("ring wearer, good, with broken ring, loses min 0 percent", hasRingGood.getXP(), lessThan(10001));
-		
+
 	}
 }

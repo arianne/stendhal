@@ -29,7 +29,7 @@ public interface ErrorDrain {
 	/**
 	 * did an error occur?
 	 *
-	 * @return true, if an error occurred; false otherwise 
+	 * @return true, if an error occurred; false otherwise
 	 */
 	public boolean hasError();
 

@@ -16,38 +16,38 @@ import games.stendhal.common.constants.Nature;
 
 /**
  * abstract super class for all effects to encapsulate common attributes here
- * 
+ *
  * @author madmetzger
  */
 public abstract class AbstractEffect implements Effect {
 
 	private final int amount;
-	
+
 	private final int atk;
-	
+
 	private final int def;
-	
+
 	private final double lifesteal;
-	
+
 	private final Nature nature;
-	
+
 	private final int rate;
-	
+
 	private final int regen;
-	
+
 	private final double modifier;
 
 	/**
 	 * Create a new AbstractEffect.
-	 *  
-	 * @param nature 
+	 *
+	 * @param nature
 	 * @param amount
 	 * @param atk
 	 * @param def
 	 * @param lifesteal
 	 * @param rate
 	 * @param regen
-	 * @param modifier 
+	 * @param modifier
 	 */
 	public AbstractEffect(Nature nature, int amount, int atk, int def, double lifesteal,
 			int rate, int regen, double modifier) {

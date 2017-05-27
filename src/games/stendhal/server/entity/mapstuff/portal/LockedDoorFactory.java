@@ -22,7 +22,7 @@ public class LockedDoorFactory extends DoorFactory {
 
 	/**
 	 * Extract the portal key from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The key name.
@@ -39,17 +39,17 @@ public class LockedDoorFactory extends DoorFactory {
 
 	/**
 	 * Create a locked door.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A LockedDoor.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see LockedDoor
 	 */
 	@Override

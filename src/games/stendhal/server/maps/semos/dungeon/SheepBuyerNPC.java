@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.dungeon;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,11 +28,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * An orcish NPC who buys sheep from players.
@@ -63,7 +63,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				nodes.add(new Node(67, 17));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 		};
 		final Map<String, Integer> buyitems = new HashMap<String, Integer>();
 		buyitems.put("sheep", 1500);
@@ -73,7 +73,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		zone.add(npc);
 		npc.setDescription("You see the stinky orc Tor'Koom. His stomach is making loud noises!");
 	}
-	
+
 	private static final class SheepBuyerBehaviour extends BuyerBehaviour {
 		SheepBuyerBehaviour(final Map<String, Integer> items) {
 			super(items);

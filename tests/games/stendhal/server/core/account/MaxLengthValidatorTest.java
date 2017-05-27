@@ -12,12 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.account;
 
-import static org.junit.Assert.*;
-
-import marauroa.common.game.Result;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import marauroa.common.game.Result;
 
 public class MaxLengthValidatorTest {
 
@@ -35,12 +36,12 @@ public class MaxLengthValidatorTest {
 
 		validator = new MaxLengthValidator("four", 5);
 		assertNull(validator.validate());
-		
+
 		validator = new MaxLengthValidator("four", 3);
 		assertEquals(Result.FAILED_STRING_TOO_LONG, validator.validate());
-		
+
 	}
 
-	
+
 
 }

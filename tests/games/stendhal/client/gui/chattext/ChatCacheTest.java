@@ -13,8 +13,9 @@
 package games.stendhal.client.gui.chattext;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.NoSuchElementException;
 
@@ -51,7 +52,7 @@ public class ChatCacheTest {
 		assertFalse(cache.getLines().isEmpty());
 	}
 
-	
+
 	/**
 	 * Tests for getAndSetCurrent.
 	 */
@@ -94,7 +95,7 @@ public class ChatCacheTest {
 
 		assertThat(cache.previous(), is("two"));
 		assertThat(cache.current(), is("two"));
-		
+
 		assertThat(cache.previous(), is("one"));
 		assertThat(cache.current(), is("one"));
 

@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.rosshouse;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-
-import java.util.Map;
 
 /**
  * Creates the items on the tables and ground in the Ross' house.
@@ -39,7 +39,7 @@ public class ItemsOnTable implements ZoneConfigurator {
 		final Item item = SingletonRepository.getEntityManager().getItem(name);
 		item.setPosition(x, y);
 		zone.add(item, false);
-		
+
 		return item;
 	}
 }

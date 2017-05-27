@@ -13,6 +13,15 @@
 package games.stendhal.server.maps.semos.house;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -27,15 +36,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 
 
 /**
@@ -44,9 +44,9 @@ import java.util.TreeMap;
  * @author soniccuz based on FlowerSellerNPC by kymara and fishermanNPC by dine.
  */
 public class SpiritTrapperNPC implements ZoneConfigurator {
-	
-	
-	
+
+
+
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 
@@ -74,7 +74,7 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 			    addHelp("Look I must move on soon but, quickly, if you have any #black #pearls I will trade some of my magic #arrows for them. Care to #buy for some #arrows?");
 			    addOffer("Look I must move on soon but, quickly, if you have any #black #pearls I will trade some of my magic #arrows for them. Care to #buy for some #arrows?");
 			    addGoodbye("Then get going... I can't get any work done with you mucking around.");
-			    
+
 			    addReply("arrows","I enchant arrows with elemental power. I have #ice, #fire, and #light.");
 			    addReply(Arrays.asList("ice", "ice arrow", "fire", "fire arrow"),
 	                    "I can spare 1 of those arrows for every each black pearl.");
@@ -83,10 +83,10 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 			    addReply(Arrays.asList("black pearls", "pearls"),
 	                    "To me they make for decent talismans. I often find them on those assassin punks.");
 			    // the rest is in the MessageInABottle quest
-			    
-			    
-			    
-			    
+
+
+
+
 			 // Mizuno exchanges elemental arrows for black pearls.
 				// (uses sorted TreeMap instead of HashMap)
 			    final HashSet<String> productsNames = new HashSet<String>();
@@ -118,7 +118,7 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
                 productsBound.put("ice arrow", false);
                 productsBound.put("fire arrow", false);
                 productsBound.put("light arrow", false);
-                
+
                 class SpecialTraderBehaviour extends MultiProducerBehaviour {
 
 					public SpecialTraderBehaviour(String questSlot, String productionActivity,
@@ -130,7 +130,7 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 								productsBound);
 						// TODO Auto-generated constructor stub
 					}
-					
+
 					@Override
 					public boolean askForResources(final ItemParserResult res, final EventRaiser npc, final Player player) {
 						int amount = res.getAmount();
@@ -144,22 +144,22 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 				            return false;
 				        } else {
 							res.setAmount(amount);
-							npc.say(Grammar.quantityplnoun(amount, productName, "a") 
+							npc.say(Grammar.quantityplnoun(amount, productName, "a")
 									+ " for "
 									+ getRequiredResourceNamesWithHashes(productName, amount) + ". "
 									+ " Correct?");
 
-				                   
+
 				            return true;
 				        }
 				    }
-					
-					
+
+
 					@Override
 					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser npc, final Player player) {
 				    	int amount = res.getAmount();
 				        String productName = res.getChosenItemName();
-				        
+
 
 				        if (getMaximalAmount(productName, player) < amount) {
 				            // The player tried to cheat us by placing the resource
@@ -173,9 +173,9 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 				            }
 				            final long timeNow = new Date().getTime();
 				            player.setQuest(getQuestSlot(), amount + ";" + productName + ";" + timeNow);
-				            
+
 				            if (getProductionTime(productName, amount) == 0) {
-				            	
+
 				            	//If production time is 0 just give player the product
 				            	final int numberOfProductItems = amount;
 				            	final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(productName);
@@ -185,21 +185,21 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 				    				products.setBoundTo(player.getName());
 				    			}
 
-				    			if (player.equipToInventoryOnly(products)) {					
-				    				npc.say("Here " + Grammar.isare(numberOfProductItems) 
+				    			if (player.equipToInventoryOnly(products)) {
+				    				npc.say("Here " + Grammar.isare(numberOfProductItems)
 									+ " your " + Grammar.quantityplnoun(numberOfProductItems,
 											productName, "") + ".");
-				    				
+
 				    				player.setQuest(getQuestSlot(), "done");
 				    				player.notifyWorldAboutChanges();
 				    				player.incProducedCountForItem(productName, products.getQuantity());
 				    				SingletonRepository.getAchievementNotifier().onProduction(player);
 				    			} else {
 				    				npc.say("Welcome back! I'm done with your order. But right now you cannot take the "
-				    						+ Grammar.plnoun(numberOfProductItems, productName) 
+				    						+ Grammar.plnoun(numberOfProductItems, productName)
 				    						+ ". Come back when you have space.");
 				    			}
-				            	
+
 				            	return true;
 				            } else {
 				            		npc.say("OK, I will "
@@ -212,8 +212,8 @@ public class SpiritTrapperNPC implements ZoneConfigurator {
 				            	}
 				        }
 				    }
-					
-                	
+
+
                 }
 
                 final MultiProducerBehaviour behaviour = new SpecialTraderBehaviour(

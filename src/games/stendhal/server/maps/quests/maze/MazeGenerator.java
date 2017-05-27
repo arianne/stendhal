@@ -12,6 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.maze;
 
+import java.awt.Point;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.color.ARGB;
@@ -35,20 +46,8 @@ import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.awt.Point;
-import java.awt.geom.Rectangle2D;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 import marauroa.common.game.RPObject;
 import marauroa.server.db.command.DBCommandQueue;
-
-import org.apache.log4j.Logger;
 
 /**
  * A random maze zone.
@@ -173,7 +172,7 @@ public class MazeGenerator {
 
 	/**
 	 * Generate the map.
-	 * 
+	 *
 	 * @param width
 	 * @param height
 	 * @return map
@@ -223,7 +222,7 @@ public class MazeGenerator {
 
 	/**
 	 * Generate random maze collisions.
-	 * 
+	 *
 	 * @param layer collision layer
 	 */
 	private void generateCollisions(LayerDefinition layer) {
@@ -279,8 +278,8 @@ public class MazeGenerator {
 
 	/**
 	 * Get the unvisited neighbors of a node.
-	 * 
-	 * @param point point whose neighbors should be checked 
+	 *
+	 * @param point point whose neighbors should be checked
 	 * @param visited all visited locations
 	 * @return list of unvisited neighbors
 	 */
@@ -317,7 +316,7 @@ public class MazeGenerator {
 	/**
 	 * Enlarge the corridors at the map corners. Creates the "rooms" for the
 	 * portal and the rewards.
-	 * 
+	 *
 	 * @param layer collision layer
 	 */
 	private void widenCorners(LayerDefinition layer) {
@@ -341,7 +340,7 @@ public class MazeGenerator {
 
 	/**
 	 * Get the map corner locations.
-	 * 
+	 *
 	 * @return map corners
 	 */
 	private List<Point> getCorners() {
@@ -360,7 +359,7 @@ public class MazeGenerator {
 
 	/**
 	 * Get the exit portal location.
-	 * 
+	 *
 	 * @return portal location
 	 */
 	private Point getPortalPosition() {
@@ -376,7 +375,7 @@ public class MazeGenerator {
 
 	/**
 	 * Change the collision at a location.
-	 * 
+	 *
 	 * @param layer collision layer
 	 * @param x x coordinate
 	 * @param y y coordinate
@@ -386,32 +385,32 @@ public class MazeGenerator {
 	private void setCollide(LayerDefinition layer, int x, int y, boolean collide) {
 		layer.set(x, y, collide ? 1 : 0);
 	}
-	
+
 	/**
 	 * Make the zone randomly colored using the soft light blend mode.
-	 *  
+	 *
 	 * @param zone
 	 */
 	private void setRandomlyColored(StendhalRPZone zone) {
 		ZoneAttributes attr = new ZoneAttributes(zone);
-		
+
 		// Random hue, Bright color, Medium lightness
 		float[] hsl = new float[] {(float) Rand.rand(), (float) Rand.rand(), 0.5f};
 		hsl[0] = (float) Rand.rand();
 		int[] argb = new int[4];
 		HSL.hsl2rgb(hsl, argb);
 		int color = ARGB.mergeRgb(argb);
-		
+
 		attr.put("color_method", "softlight");
 		attr.put("color", Integer.toString(color));
-		
+
 		zone.setAttributes(attr);
 	}
 
 	/**
 	 * Generate a random map zone with an exit portal and prizes at the other
 	 * corners
-	 * 
+	 *
 	 * @return zone
 	 */
 	private StendhalRPZone generateZone() {
@@ -443,7 +442,7 @@ public class MazeGenerator {
 		// disable double click move and teleport in
 		zone.setMoveToAllowed(false);
 		zone.disallowIn();
-		
+
 		// set the blend mode
 		setRandomlyColored(zone);
 
@@ -543,7 +542,7 @@ public class MazeGenerator {
 
 	/**
 	 * Give the player a reward, and notify him.
-	 * 
+	 *
 	 * @param player
 	 */
 	protected void rewardPlayer(Player player) {

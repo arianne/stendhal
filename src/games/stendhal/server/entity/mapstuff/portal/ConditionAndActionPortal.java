@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.RPEntity;
@@ -19,8 +21,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.log4j.Logger;
 
 public class ConditionAndActionPortal extends AccessCheckingPortal {
 
@@ -54,10 +54,10 @@ public class ConditionAndActionPortal extends AccessCheckingPortal {
 
 	/**
 	 * Determine if this portal can be used.
-	 * 
+	 *
 	 * @param user
 	 *            The user to be checked.
-	 * 
+	 *
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override
@@ -83,5 +83,5 @@ public class ConditionAndActionPortal extends AccessCheckingPortal {
 
 		return res;
 	}
-	
+
 }

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.guardhouse;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -24,16 +28,12 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.maps.quests.BeerForHayunn;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -44,16 +44,16 @@ import java.util.Map;
  */
 public class RetiredAdventurerNPC implements ZoneConfigurator {
 	private static final String QUEST_SLOT="meet_hayunn";
-	
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Hayunn Naratha") {
-			
+
 			@Override
 			public void createDialog() {
 				// A little trick to make NPC remember if it has met
@@ -81,7 +81,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 						ConversationStates.ATTENDING,
 						"Hi again, how can I #help you this time?",
 						null);
-						 
+
 				addHelp("As I say, I'm a retired adventurer, and now I teach people. Do you want me to teach you what I know?");
 				addJob("My job was to guard the people of Semos from any creature that might escape from vile dungeons. I have now retired, and with all our young people away battling Blordrough's evil legions to the south, the monsters down there are getting more confident about coming to the surface. Semos will need help from people like your good self. Ask the Mayor for what task he needs doing.");
 				addGoodbye();
@@ -98,7 +98,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 				nodes.add(new Node(11, 9));
 				setPath(new FixedPath(nodes, true));
 			}
-		
+
 		};
 		npc.setPosition(4, 9);
 		npc.setEntityClass("oldheronpc");

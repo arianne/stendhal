@@ -41,19 +41,19 @@ class Divorce {
 
 		/**
 		 * Creates a clerk NPC who can divorce couples.
-		 * 
+		 *
 		 * Note: in this class, the Player variables are called husband and
 		 * wife. However, the game doesn't know the concept of genders. The
 		 * player who initiates the divorce is just called husband, the other
 		 * wife.
-		 * 
+		 *
 		 * @author immibis
-		 * 
+		 *
 		 */
 
 		SpeakerNPC clerk = npcs.get("Wilfred");
 
-		clerk.add(ConversationStates.ATTENDING, 
+		clerk.add(ConversationStates.ATTENDING,
 				"divorce",
 				new ChatCondition() {
 					@Override
@@ -61,7 +61,7 @@ class Divorce {
 						return (player.isQuestCompleted(marriage.getQuestSlot()))
 								&& player.isEquipped("wedding ring") && player.isEquipped("money",200*player.getLevel());
 					}
-				}, 
+				},
 				ConversationStates.QUESTION_3,
 				null,
 			   	new ChatAction() {
@@ -89,7 +89,7 @@ class Divorce {
 					}
 				});
 
-		clerk.add(ConversationStates.ATTENDING, 
+		clerk.add(ConversationStates.ATTENDING,
 				  "divorce",
 				  new ChatCondition() {
 					  @Override
@@ -97,7 +97,7 @@ class Divorce {
 						  return (player.isQuestCompleted(marriage.getQuestSlot()))
 							  && player.isEquipped("wedding ring") && !player.isEquipped("money",200*player.getLevel());
 					  }
-				  }, 
+				  },
 				  ConversationStates.QUESTION_3,
 				  null,
 				  new ChatAction() {
@@ -123,7 +123,7 @@ class Divorce {
 						  npc.say("There's an offer currently, you can pay to divorce instead of losing xp. It would cost you " + 200* player.getLevel() + " money, but you do not have sufficent money here with you. " + additional + " You can take the penalty of losing 3% of your xp. Do you want to divorce, and lose the xp?");
 					  }
 				  });
-		
+
 		clerk.add(ConversationStates.ATTENDING,
 					"divorce",
 					new ChatCondition() {
@@ -171,17 +171,17 @@ class Divorce {
 
 		// If they say no
 		clerk.add(ConversationStates.QUESTION_3,
-				ConversationPhrases.NO_MESSAGES, 
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"I hope you have a happy marriage, then.", 
+				"I hope you have a happy marriage, then.",
 				null);
 
 		// If they say yes
 		clerk.add(ConversationStates.QUESTION_3,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override

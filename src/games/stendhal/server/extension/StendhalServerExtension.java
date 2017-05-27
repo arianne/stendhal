@@ -35,15 +35,15 @@ public abstract class StendhalServerExtension implements StendhalServerExtension
 	public abstract void init();
 
 	/**
-	 * @param name  
-	 * @return <code>true</code> on success, otherwise <code>false>/code> 
+	 * @param name
+	 * @return <code>true</code> on success, otherwise <code>false>/code>
 	 */
 	public synchronized boolean perform(final String name) {
 		return (false);
 	}
 
 	/**
-	 * @param name  
+	 * @param name
 	 * @return message
 	 */
 	public String getMessage(final String name) {

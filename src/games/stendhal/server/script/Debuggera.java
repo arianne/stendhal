@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -30,15 +37,7 @@ import games.stendhal.server.entity.npc.condition.AdminCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 import marauroa.common.game.IRPZone;
-
-import org.apache.log4j.Logger;
 
 /**
  * code for abstract/int_admin_playground which creates a NPC to help testers.
@@ -396,9 +395,9 @@ public class Debuggera extends ScriptImpl {
 	}
 	/*
 	 * Make new friends, but keep the old. One is silver, And the other gold,
-	 * 
+	 *
 	 * You help me, And I'll help you. And together, We will see it through.
-	 * 
+	 *
 	 * The sky is blue, The Earth Earth is green. I can help, To keep it clean.
 	 */
 

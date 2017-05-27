@@ -12,15 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.core.pathfinder.Path;
-import games.stendhal.server.entity.Killer;
-import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,12 +20,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.entity.Killer;
+import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A sheep is a domestic animal that can be owned by a player. It eats berries
@@ -137,7 +136,7 @@ public class Sheep extends DomesticAnimal {
 			owner.getZone().add(this);
 			owner.setSheep(this);
 		}
-		
+
 		update();
 		updateSoundList();
 		logger.debug("Created Sheep: " + this);
@@ -169,7 +168,7 @@ public class Sheep extends DomesticAnimal {
 		updateSoundList();
 		logger.debug("Created Sheep: " + this);
 	}
-	
+
 	@Override
 	void setUp() {
 		setHP(HP);
@@ -408,13 +407,13 @@ public class Sheep extends DomesticAnimal {
 
 		}
 
-		
+
 		applyMovement();
-		
+
 
 		notifyWorldAboutChanges();
 	}
-	
+
 	/**
 	 * Update the available sound list according to sheep weight.
 	 */

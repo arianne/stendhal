@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -44,16 +51,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SlotIsFullException;
-
-import org.apache.log4j.Logger;
 
 /**
  * QUEST:
@@ -115,7 +114,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	/**
 	 * A CorpseRefiller checks, in regular intervals, if the given corpse.
 	 *
@@ -228,21 +227,21 @@ public class KanmararnSoldiers extends AbstractQuest {
 		final SpeakerNPC henry = npcs.get("Henry");
 
 		henry.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT),
 							 new QuestNotInStateCondition(QUEST_SLOT,"map")),
-			ConversationStates.QUEST_OFFERED, 
-			"Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?", 
+			ConversationStates.QUEST_OFFERED,
+			"Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?",
 			null);
-		
+
 		henry.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new OrCondition(new QuestCompletedCondition(QUEST_SLOT),
 								 new QuestInStateCondition(QUEST_SLOT,"map")),
-				ConversationStates.ATTENDING, 
-				"I'm so sad that most of my friends are dead.", 
+				ConversationStates.ATTENDING,
+				"I'm so sad that most of my friends are dead.",
 				null);
-		
+
 		henry.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
@@ -268,16 +267,16 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"OK. I understand. I'm scared of the #dwarves myself.", 
+				"OK. I understand. I'm scared of the #dwarves myself.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
-		
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(2500));
 		actions.add(new DropInfostringItemAction("leather legs","tom"));
 		actions.add(new DropInfostringItemAction("scale armor","peter"));
-		actions.add(new IncreaseKarmaAction(15.0));	
+		actions.add(new IncreaseKarmaAction(15.0));
 		actions.add(new GiveMapAction(false));
-		
+
 		henry.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(henry.getName()),
@@ -286,7 +285,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 						new PlayerHasInfostringItemWithHimCondition("note", "charles"),
 						new PlayerHasInfostringItemWithHimCondition("scale armor", "peter")),
 				ConversationStates.ATTENDING,
-				"Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.", 
+				"Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.",
 				new MultipleActions(actions));
 
 		henry.add(ConversationStates.IDLE,
@@ -299,24 +298,24 @@ public class KanmararnSoldiers extends AbstractQuest {
 										new PlayerHasInfostringItemWithHimCondition("note", "charles"),
 										new PlayerHasInfostringItemWithHimCondition("scale armor", "peter")))),
 				ConversationStates.ATTENDING,
-				"You didn't prove that you have found them all!", 
+				"You didn't prove that you have found them all!",
 				null);
 
-		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), 
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"),
 				new OrCondition(
-					new	QuestCompletedCondition(QUEST_SLOT), 
+					new	QuestCompletedCondition(QUEST_SLOT),
 					new AndCondition(new HenryQuestCompletedCondition(),
 					new PlayerOwnsItemIncludingBankCondition("map"))),
 				ConversationStates.ATTENDING,
 				"I'm so sad that most of my friends are dead.", null);
 
-		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"), 
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
 				new AndCondition(
-					new	QuestNotCompletedCondition(QUEST_SLOT), 
+					new	QuestNotCompletedCondition(QUEST_SLOT),
 					new HenryQuestCompletedCondition(),
 					new NotCondition(new PlayerOwnsItemIncludingBankCondition("map"))),
 				ConversationStates.ATTENDING,
-				"Luckily I drew a copy of the map, but please don't lose this one.", 
+				"Luckily I drew a copy of the map, but please don't lose this one.",
 				new GiveMapAction(true));
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
@@ -334,7 +333,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Now we create the corpse of the second NPC
 		final Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
 		// he died first
-		tom.setStage(4); 
+		tom.setStage(4);
 		tom.setName("Tom");
 		tom.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
@@ -348,7 +347,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Now we create the corpse of the third NPC
 		final Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
 		// he died second
-		charles.setStage(3); 
+		charles.setStage(3);
 		charles.setName("Charles");
 		charles.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
@@ -361,7 +360,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Now we create the corpse of the fourth NPC
 		final Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
 		// he died recently
-		peter.setStage(2); 
+		peter.setStage(2);
 		peter.setName("Peter");
 		peter.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
@@ -403,35 +402,35 @@ public class KanmararnSoldiers extends AbstractQuest {
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(5000));
 		actions.add(new DropInfostringItemAction("map","Henry"));
-		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 15.0));	
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 15.0));
 		actions.add(new EquipItemAction("mainio boots", 1, true));
-		
-		james.add(ConversationStates.ATTENDING, 
+
+		james.add(ConversationStates.ATTENDING,
 				Arrays.asList("map", "henry"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
 								new PlayerHasInfostringItemWithHimCondition("map", "henry")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"The map! Wonderful! Thank you. And here is your reward. I got these boots while on the #dreamscape.",
 				new MultipleActions(actions));
-		
-		james.add(ConversationStates.ATTENDING, 
+
+		james.add(ConversationStates.ATTENDING,
 				Arrays.asList("map", "henry"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "map"),
 								new NotCondition(new PlayerHasInfostringItemWithHimCondition("map", "henry"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Well, where is the map?",
 				null);
-		
-		james.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
+
+		james.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Thanks again for bringing me the map!", null);
-		
-		james.add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, 
+
+		james.add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Thanks again for bringing me the map!", null);
-		
+
 		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry",
 			 "group", "one"),
 			new QuestCompletedCondition(QUEST_SLOT),
@@ -449,7 +448,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		prepareCorpses();
 		prepareSergeant();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -461,14 +460,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 			if ("rejected".equals(questState)) {
 				res.add("I don't want to help Henry.");
 				return res;
-			} 
+			}
 			if ("start".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("Sadly I only found corpses of Peter, Charles, and Tom. Henry was aghast. He gave me a map and an IOU, but didn't say what I should do with them now.");
 			if ("map".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("I met Sergeant James and gave him the treasure map. He gave me an excellent pair of mainio boots in return.");
 			if (isCompleted(player)) {
 				return res;
@@ -484,7 +483,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public String getName() {
 		return "KanmararnSoldiers";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 40;
@@ -494,7 +493,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public String getNPCName() {
 		return "Henry";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_DUNGEONS;

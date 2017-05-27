@@ -1,7 +1,9 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.maps.ados.church;
+
+import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -10,11 +12,9 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
-import java.util.Map;
-
 /**
  * A praying NPC in ados church
- * 
+ *
  * @author madmetzger and storyteller
  */
 public class VergerNPC implements ZoneConfigurator {
@@ -24,7 +24,7 @@ public class VergerNPC implements ZoneConfigurator {
 		final String[] text = {"... You are not alone because there are so many people to become friends with...", "... Don't worry! Everybody has a bad day sometimes...", "... Ah, just think more positive and life will be much easier...", "... Always keep in mind: Everything is going fine...", "Thanks for being here and sharing your time with me.", "Take care of the bad, give hope to the sad..."};
 		new MonologueBehaviour(buildNPC(zone), text, 3);
 	}
-	
+
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Simon") {
 
@@ -53,7 +53,7 @@ public class VergerNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.UP);
 		npc.initHP(100);
 		zone.add(npc);
-		
+
 		return npc;
 	}
 

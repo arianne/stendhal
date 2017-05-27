@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.Triple;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.Triple;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 /*
  * The entity views are generic, but we don't simply have sufficient data to
@@ -65,7 +65,7 @@ public class EntityViewFactory {
 			}
 
 			final String type = entity.getType();
-			
+
 			// lookup class
 			String eclass = entity.getEntityClass();
 			String subClass = entity.getEntitySubclass();

@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -31,30 +35,26 @@ import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Balloon for Bobby
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Bobby (the boy in fado city)</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Mine town weeks must be on for the quest to work</li>
  * <li>If you have a balloon, Bobby asks you if he can have it</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>200 XP</li>
  * <li>50 Karma</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>Infinite, but only valid during mine town weeks </li>
@@ -183,7 +183,7 @@ public class BalloonForBobby extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT,0,"done"));
 		reward.add(new IncrementQuestAction(QUEST_SLOT,1,1));
-		
+
 		// The player has a balloon and gives it to Bobby
 		npc.add(
 				ConversationStates.QUEST_ITEM_QUESTION,
@@ -199,7 +199,7 @@ public class BalloonForBobby extends AbstractQuest {
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
@@ -214,12 +214,12 @@ public class BalloonForBobby extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.FADO_CITY;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Bobby";

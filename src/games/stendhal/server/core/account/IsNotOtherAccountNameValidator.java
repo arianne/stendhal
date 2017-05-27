@@ -22,18 +22,18 @@ import marauroa.server.game.db.DAORegister;
 
 /**
  * validates the new character name is not an account name, unless player owns that account
- * 
+ *
  * @author kymara
  */
 public class IsNotOtherAccountNameValidator implements AccountParameterValidator {
-	
+
 	private static Logger logger = Logger.getLogger(IsNotOtherAccountNameValidator.class);
-	
+
 	private final String charname;
 	private final String username;
 	/**
 	 * creates an IsNotOtherAccountNameValidator.
-	 * 
+	 *
 	 * @param charname
 	 *            value to validate
      * @param username
@@ -55,7 +55,7 @@ public class IsNotOtherAccountNameValidator implements AccountParameterValidator
 			 }
 		} catch (SQLException e) {
 			logger.error("Error while trying to validate character name", e);
-			return Result.FAILED_EXCEPTION;		
+			return Result.FAILED_EXCEPTION;
 		}
 		 return null;
 	}

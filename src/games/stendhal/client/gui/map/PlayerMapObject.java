@@ -38,17 +38,17 @@ class PlayerMapObject extends RPEntityMapObject {
 	 * The color of ghostmode players, if visible (gray).
 	 */
 	private static final Color COLOR_GHOST = Color.GRAY;
-	
+
 	PlayerMapObject(final IEntity entity) {
 		super(entity);
-		
+
 		if (entity instanceof User) {
 			drawColor = COLOR_USER;
 		} else if (entity instanceof Player) {
 			final Player player = (Player) entity;
 
 			choosePlayerColor(player);
-			
+
 			// Follow the ghost mode changes of other players
 			entity.addChangeListener(new EntityChangeListener<IEntity>() {
 				@Override
@@ -60,18 +60,18 @@ class PlayerMapObject extends RPEntityMapObject {
 			});
 		}
 	}
-	
+
 	@Override
 	void draw(final Graphics g, final int scale) {
 		if ((drawColor != COLOR_GHOST) || User.isAdmin()) {
 			super.draw(g, scale);
 		}
 	}
-	
+
 	/**
 	 * Select a color for drawing the player depending on
 	 * ghostmode status.
-	 * 
+	 *
 	 * @param player
 	 */
 	private void choosePlayerColor(final Player player) {
@@ -85,10 +85,10 @@ class PlayerMapObject extends RPEntityMapObject {
 			}
 		}
 	}
-	
+
 	/**
 	 * Draws a player using given color.
-	 * 
+	 *
 	 * @param g The graphics context
 	 * @param scale Scaling factor
 	 * @param color The draw color

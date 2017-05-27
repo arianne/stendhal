@@ -12,6 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.GameEvent;
@@ -40,15 +49,6 @@ import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
 
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 /**
  * A merchant (original name: Gordon) who rents signs to players.
  *
@@ -59,7 +59,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 
 	// 1.5 minutes
 	private static final int CHAT_TIMEOUT = 90;
-	private static final int MONEY = 100; 
+	private static final int MONEY = 100;
 	protected RentedSignList rentedSignList;
 
 	@Override
@@ -82,19 +82,19 @@ public class SignLessorNPC implements ZoneConfigurator {
 
 				add(ConversationStates.ATTENDING, "",
 					new AndCondition(getRentMatchCond(), new LevelLessThanCondition(6)),
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					"Oh sorry, I don't rent signs to people who have so little experience as you.",
 					null);
 
-				add(ConversationStates.ATTENDING, "", 
-					new AndCondition(getRentMatchCond(), new LevelGreaterThanCondition(5), new NotCondition(new TextHasParameterCondition())), 
-					ConversationStates.ATTENDING, 
+				add(ConversationStates.ATTENDING, "",
+					new AndCondition(getRentMatchCond(), new LevelGreaterThanCondition(5), new NotCondition(new TextHasParameterCondition())),
+					ConversationStates.ATTENDING,
 					"Just tell me #rent followed by the text I should write on it.",
 					null);
 
-				add(ConversationStates.ATTENDING, "", 
-					new AndCondition(getRentMatchCond(), new LevelGreaterThanCondition(5), new TextHasParameterCondition()), 
-					ConversationStates.BUY_PRICE_OFFERED, 
+				add(ConversationStates.ATTENDING, "",
+					new AndCondition(getRentMatchCond(), new LevelGreaterThanCondition(5), new TextHasParameterCondition()),
+					ConversationStates.BUY_PRICE_OFFERED,
 					null,
 					new ChatAction() {
 						@Override
@@ -115,7 +115,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 							return "remember text";
 						}
 				});
-				
+
 				add(ConversationStates.BUY_PRICE_OFFERED,
 					ConversationPhrases.YES_MESSAGES,
 					new NotCondition(new PlayerHasItemWithHimCondition("money", MONEY)),
@@ -128,24 +128,24 @@ public class SignLessorNPC implements ZoneConfigurator {
 					ConversationStates.IDLE, null,
 					new RentSignChatAction());
 
-				add(ConversationStates.BUY_PRICE_OFFERED, 
+				add(ConversationStates.BUY_PRICE_OFFERED,
 					ConversationPhrases.NO_MESSAGES, null,
 					ConversationStates.ATTENDING,
 					"If you change your mind, just talk to me again.", null);
 
-				add(ConversationStates.ATTENDING, "remove", 
+				add(ConversationStates.ATTENDING, "remove",
 					new PlayerHasStorableEntityCondition(rentedSignList),
 					ConversationStates.ATTENDING,
 					"Ok, I am going to remove your sign.",
 					new RemoveStorableEntityAction(rentedSignList));
 
-				add(ConversationStates.ATTENDING, "remove", 
+				add(ConversationStates.ATTENDING, "remove",
 					new NotCondition(new PlayerHasStorableEntityCondition(rentedSignList)),
 					ConversationStates.ATTENDING,
 					"You did not rent any sign, so I cannot remove one.", null);
 
 				// admins may remove signs (even low level admins)
-				add(ConversationStates.ATTENDING, "delete", 
+				add(ConversationStates.ATTENDING, "delete",
 					new AdminCondition(100),
 					ConversationStates.ATTENDING, null,
 					new ChatAction() {
@@ -183,7 +183,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 				nodes.add(new Node(20, 51));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 		};
 		npc.setPosition(20, 50);
 		npc.setEntityClass("signguynpc");

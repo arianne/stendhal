@@ -17,18 +17,17 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -74,7 +73,7 @@ public class CloakCollectorTest {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
 		final CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
-	
+
 		final SpeakerNPC npc = cc.getNPC();
 		final Engine en = npc.getEngine();
 		final Player monica = PlayerTestHelper.createPlayer("monica");

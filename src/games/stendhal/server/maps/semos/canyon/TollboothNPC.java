@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.canyon;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,24 +26,21 @@ import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
-import java.util.Arrays;
-import java.util.Map;
-
 /**
  * The bridge tollbooth NPC
- * 
+ *
  * @author AntumDeluge
  */
 public class TollboothNPC implements ZoneConfigurator  {
-    
+
     private final int REQUIRED_COINS = 25;
-    
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Toller") {
 
@@ -48,7 +48,7 @@ public class TollboothNPC implements ZoneConfigurator  {
 			protected void createPath() {
 				setPath(null);
 			}
-			
+
 			@Override
 			public void createDialog() {
 			    addGreeting("Hello, If you want to cross the bridge to #Antum you need to #pay " + REQUIRED_COINS + " gold coins?");
@@ -56,15 +56,15 @@ public class TollboothNPC implements ZoneConfigurator  {
 				addJob("I guard this bridge which connects Semos and Antum.");
 				addGoodbye("Farewell.");
 				addReply("antum", "Antum is awesome.");
-				
+
 			}
-			
+
             @Override
             protected void onGoodbye(RPEntity player) {
                 setDirection(Direction.LEFT);
             }
 		};
-        
+
         // Player has enough money and pays toll
         npc.add(ConversationStates.ATTENDING,
                 Arrays.asList("pay"),
@@ -74,7 +74,7 @@ public class TollboothNPC implements ZoneConfigurator  {
                 new MultipleActions(new DropItemAction("money", 25),
                         new TeleportAction("0_semos_canyon", 36, 29, Direction.UP))
                 );
-        
+
         // Player does not have enough money for toll
         npc.add(ConversationStates.ATTENDING,
                 Arrays.asList("pay"),
@@ -83,7 +83,7 @@ public class TollboothNPC implements ZoneConfigurator  {
                 "I'm sorry, you do not have enough money.",
                 null
                 );
-        
+
         npc.setPosition(37, 30);
         npc.setDirection(Direction.LEFT);
         npc.setEntityClass("youngsoldiernpc");

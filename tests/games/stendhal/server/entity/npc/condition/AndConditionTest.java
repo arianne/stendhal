@@ -15,15 +15,15 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
@@ -37,8 +37,8 @@ public class AndConditionTest {
 		Log4J.init();
 		MockStendlRPWorld.get();
 	}
-	
-	
+
+
 	@Before
 	public void setUp() {
 		trueCondition = new AlwaysTrueCondition();
@@ -103,8 +103,8 @@ public class AndConditionTest {
 		  assertFalse(andcon.equals(instate));
 		  assertFalse(instate.equals(andcon));
 	}
-	
-	
+
+
 	/**
 	 * Tests for fire.
 	 */

@@ -12,14 +12,14 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 /**
  * Configurator for a block target
- * 
+ *
  * required parameters
  * - x and y coordinate
- * 
+ *
  * optional parameters
  * - condition the condition to evaluate when a block target can be triggered
  * - action the trigger action when the block target is triggered
- * 
+ *
  * @author madmetzger
  */
 public class BlockTargetZoneConfigurator implements ZoneConfigurator {
@@ -31,10 +31,10 @@ public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 		int y = Integer.parseInt(attributes.get("y"));
 		String condition = attributes.get("condition");
 		String action = attributes.get("action");
-		
+
 		BlockTarget blockTarget = new BlockTarget();
 		blockTarget.setPosition(x, y);
-		
+
 		try {
 			if(condition != null) {
 				ChatCondition created = createCondition(condition);
@@ -51,13 +51,13 @@ public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 		} catch (CompilationFailedException e) {
 			throw new IllegalArgumentException(e);
 		}
-		
+
 		zone.add(blockTarget);
 	}
 
 	/**
 	 * Create a ChatAction
-	 * 
+	 *
 	 * @param action the configuration String
 	 * @return the action or null
 	 * @throws CompilationFailedException
@@ -73,7 +73,7 @@ public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 
 	/**
 	 * Create a ChatCondtion
-	 * 
+	 *
 	 * @param condition the configuration String
 	 * @return the condition or null
 	 * @throws CompilationFailedException
@@ -89,7 +89,7 @@ public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 
 	/**
 	 * Create a GroovyShell
-	 * 
+	 *
 	 * @return a fresh GroovyShell
 	 */
 	private GroovyShell createGroovyShell() {
@@ -97,5 +97,5 @@ public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 		final GroovyShell interp = new GroovyShell(groovyBinding);
 		return interp;
 	}
-	
+
 }

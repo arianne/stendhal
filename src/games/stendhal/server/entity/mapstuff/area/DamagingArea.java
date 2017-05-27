@@ -6,19 +6,19 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
+import java.util.Random;
+
+import org.apache.log4j.Logger;
+
 //
 //
 
 import games.stendhal.common.Level;
 import games.stendhal.server.entity.RPEntity;
 
-import java.util.Random;
-
-import org.apache.log4j.Logger;
-
 /**
  * An area that damages an RPEntity while over it.
- * 
+ *
  */
 public class DamagingArea extends OccupantArea {
 
@@ -44,7 +44,7 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Create a damaging area.
-	 * 
+	 *
 	 * @param width
 	 *            Width of this area
 	 * @param height
@@ -75,7 +75,7 @@ public class DamagingArea extends OccupantArea {
 	/**
 	 * Calculate the entity's final defense value. Taken from new (potential
 	 * replacement) combat code.
-	 * @param entity 
+	 * @param entity
 	 * @return defense value
 	 */
 	protected float calculateDefense(final RPEntity entity) {
@@ -117,10 +117,10 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Inflict damage on an entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to damage.
-	 * 
+	 *
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
@@ -169,10 +169,10 @@ public class DamagingArea extends OccupantArea {
 	/**
 	 * An entity has entered the area. This should not apply any actions that
 	 * <code>handleMovement()</code> does.
-	 * 
+	 *
 	 * @param entity
 	 *            The RPEntity that was added.
-	 * 
+	 *
 	 * @return <code>false</code> if this entity should not be processed,
 	 *         <code>true</code> otherwise.
 	 */
@@ -188,10 +188,10 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Apply actions done at regular intervals.
-	 * 
+	 *
 	 * @param entity
 	 *            The RPEntity occupant.
-	 * 
+	 *
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
@@ -202,10 +202,10 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Apply actions done while moving.
-	 * 
+	 *
 	 * @param entity
 	 *            The RPEntity that moved.
-	 * 
+	 *
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
@@ -221,7 +221,7 @@ public class DamagingArea extends OccupantArea {
 	/**
 	 * An entity has left the area. This should not apply any actions that
 	 * <code>handleMovement()</code> does.
-	 * 
+	 *
 	 * @param entity
 	 *            The RPEntity that was added.
 	 */

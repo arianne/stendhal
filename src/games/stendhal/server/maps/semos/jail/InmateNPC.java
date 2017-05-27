@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.jail;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.Map;
-
 /**
- * An elven inmate (original name: Conual). He's just decoration. 
- * 
+ * An elven inmate (original name: Conual). He's just decoration.
+ *
  * @author hendrik
  */
 public class InmateNPC implements ZoneConfigurator  {
@@ -49,8 +49,7 @@ public class InmateNPC implements ZoneConfigurator  {
 			npc.setEntityClass("militiaelfnpc");
 			npc.setDirection(Direction.DOWN);
 			npc.setDescription("You see Conual. He is jailed for ages now. Seems like he really did something badly wrong!");
-			zone.add(npc);		
+			zone.add(npc);
 	}
 }
 
-		

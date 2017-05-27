@@ -34,7 +34,7 @@ public final class TextIndicator {
 
 	/**
 	 * Create a floating message.
-	 * 
+	 *
 	 * @param text
 	 *            The text to drawn.
 	 * @param type
@@ -51,10 +51,10 @@ public final class TextIndicator {
 
 	/**
 	 * Add to the age of this message.
-	 * 
+	 *
 	 * @param time
 	 *            The amout to add.
-	 * 
+	 *
 	 * @return The new age (in milliseconds).
 	 */
 	int addAge(final int time) {
@@ -65,7 +65,7 @@ public final class TextIndicator {
 
 	/**
 	 * Get the age of this message.
-	 * 
+	 *
 	 * @return The age (in milliseconds).
 	 */
 	public int getAge() {
@@ -74,7 +74,7 @@ public final class TextIndicator {
 
 	/**
 	 * Get the text message.
-	 * 
+	 *
 	 * @return The text message.
 	 */
 	public String getText() {
@@ -83,7 +83,7 @@ public final class TextIndicator {
 
 	/**
 	 * Get the indicator type.
-	 * 
+	 *
 	 * @return The indicator type.
 	 */
 	public NotificationType getType() {

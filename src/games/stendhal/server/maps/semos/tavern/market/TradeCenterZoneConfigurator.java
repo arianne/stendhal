@@ -12,18 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.trade.Market;
-
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
 /**
  * adds a market to a zone
- * 
+ *
  * @author madmetzger
  *
  */
@@ -39,7 +38,7 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 		Market market = addShopToZone(zone);
 		// start checking for expired offers
 		new OfferExpirer(market);
-		
+
 		buildTradeCenterAdvisor(zone);
 	}
 
@@ -50,7 +49,7 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 			market.setVisibility(0);
 			zone.add(market, false);
 		}
-		
+
 		return market;
 	}
 
@@ -76,7 +75,7 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 		speaker.setDescription("Harold is a friendly guy who is waiting for setting up some offers...");
 		zone.add(speaker);
 	}
-	
+
 	public static Market getShopFromZone(StendhalRPZone zone) {
 		for (RPObject rpObject : zone) {
 			if(rpObject.getRPClass().getName().equals(Market.MARKET_RPCLASS_NAME)) {

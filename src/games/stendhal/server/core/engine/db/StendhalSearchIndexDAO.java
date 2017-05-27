@@ -11,16 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.rp.searchindex.SearchIndexEntry;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-import marauroa.server.db.DBTransaction;
-
 import com.google.common.collect.Sets;
+
+import games.stendhal.server.core.rp.searchindex.SearchIndexEntry;
+import marauroa.server.db.DBTransaction;
 
 /**
  * database base access for the searchindex used on the website

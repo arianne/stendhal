@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.school;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -21,12 +25,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
- * Builds a Teacher NPC who flies on a broomstick. 
+ * Builds a Teacher NPC who flies on a broomstick.
  *
  * @author kymara
  */
@@ -62,7 +62,7 @@ public class TeacherNPC implements ZoneConfigurator {
 						new GreetingMatchesNameCondition(getName()), true,
 						ConversationStates.IDLE, "Sit down, shut up, and watch me!", null);
 	 	     }
-		    
+
 		};
 
 		npc.setDescription("You see a witch flying on a broomstick. She appears to be instructing some pupils.");

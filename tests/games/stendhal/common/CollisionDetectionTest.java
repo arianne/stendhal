@@ -37,7 +37,7 @@ public class CollisionDetectionTest {
 		assertThat(map.getWidth(), is(42));
 		assertThat(map.getHeight(), is(1));
 	}
-	
+
 	/**
 	 * Test simple collisions
 	 */
@@ -76,7 +76,7 @@ public class CollisionDetectionTest {
 		assertThat(map.collides(1, 0), is(true));
 		assertThat(map.collides(1, 1), is(true));
 	}
-	
+
 	/**
 	 * Test collision for a rectangle. Same map as in previous test
 	 */
@@ -88,9 +88,9 @@ public class CollisionDetectionTest {
 		map.setCollide(1, 0);
 		map.setCollide(1, 2);
 		map.setCollide(2, 1);
-		
+
 		Rectangle r = new Rectangle(1, 1);
-		
+
 		assertThat(map.collides(r), is(false));
 		r.x = 1;
 		assertThat(map.collides(r), is(true));
@@ -111,7 +111,7 @@ public class CollisionDetectionTest {
 		r.x = 2;
 		assertThat(map.collides(r), is(false));
 	}
-	
+
 	/**
 	 * Test collision for a rectangle. Similar to testCollidesShape(), but
 	 * checks a 1x1 rectangle placed at floating point coordinates
@@ -123,9 +123,9 @@ public class CollisionDetectionTest {
 		map.setCollide(0, 1);
 		map.setCollide(1, 0);
 		map.setCollide(2, 1);
-		
+
 		Rectangle2D r = new Rectangle2D.Double(0, 0, 1, 1);
-		
+
 		assertThat(map.collides(r), is(false));
 		r.setRect(0.1, 0, 1, 1);
 		assertThat(map.collides(r), is(true));
@@ -137,7 +137,7 @@ public class CollisionDetectionTest {
 		assertThat(map.collides(r), is(true));
 		r.setRect(2.0, 0, 1, 1);
 		assertThat(map.collides(r), is(false));
-		
+
 		r.setRect(0, 0.1, 1, 1);
 		assertThat(map.collides(r), is(true));
 		r.setRect(0, 0.9, 1, 1);
@@ -152,7 +152,7 @@ public class CollisionDetectionTest {
 		assertThat(map.collides(r), is(false));
 		r.setRect(0, 2.1, 1, 1);
 		assertThat(map.collides(r), is(true));
-		
+
 		r.setRect(0.1, 2, 1, 1);
 		assertThat(map.collides(r), is(false));
 		r.setRect(0.9, 2, 1, 1);
@@ -163,15 +163,15 @@ public class CollisionDetectionTest {
 		assertThat(map.collides(r), is(false));
 		r.setRect(2.1, 2, 1, 1);
 		assertThat(map.collides(r), is(true));
-		
+
 		r.setRect(1.9, 2, 1, 1);
 		assertThat(map.collides(r), is(false));
 		r.setRect(1.9, 1.9, 1, 1);
 		assertThat(map.collides(r), is(true));
 	}
-	
+
 	/**
-	 * Test collision for a rectangle. 
+	 * Test collision for a rectangle.
 	 */
 	@Test
 	public void testCollidesShapeLarge() {
@@ -179,9 +179,9 @@ public class CollisionDetectionTest {
 		map.init(3, 3);
 		map.setCollide(0, 1);
 		map.setCollide(1, 0);
-		
+
 		Rectangle r = new Rectangle(2, 2);
-		
+
 		assertThat(map.collides(r), is(true));
 		r.x = 1;
 		assertThat(map.collides(r), is(true));
@@ -202,7 +202,7 @@ public class CollisionDetectionTest {
 		r.x = 2;
 		assertThat(map.collides(r), is(true));
 	}
-	
+
 	/**
 	 * Test that positions outside the map count for leaving, and those inside
 	 * do not.
@@ -214,12 +214,12 @@ public class CollisionDetectionTest {
 		Rectangle r = new Rectangle(1, 1);
 		for (r.x = -1; r.x <= 3; r.x++) {
 			for (r.y = -1; r.y <= 3; r.y++) {
-				assertThat("Leaves zone at " + r.x + "," + r.y, 
+				assertThat("Leaves zone at " + r.x + "," + r.y,
 						map.leavesZone(r), is(r.x < 0 || r.y < 0 || r.x > 2 || r.y > 2));
 			}
 		}
 	}
-	
+
 	/**
 	 * Test that positions outside the map count for leaving, and those inside
 	 * do not. Large entity
@@ -231,7 +231,7 @@ public class CollisionDetectionTest {
 		Rectangle r = new Rectangle(2, 2);
 		for (r.x = -1; r.x <= 3; r.x++) {
 			for (r.y = -1; r.y <= 3; r.y++) {
-				assertThat("Leaves zone at " + r.x + "," + r.y, 
+				assertThat("Leaves zone at " + r.x + "," + r.y,
 						map.leavesZone(r), is(r.x < 0 || r.y < 0 || r.x > 1 || r.y > 1));
 			}
 		}

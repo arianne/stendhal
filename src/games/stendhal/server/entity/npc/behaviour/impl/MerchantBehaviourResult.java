@@ -1,10 +1,10 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import games.stendhal.common.grammar.ItemParserResult;
-
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.grammar.ItemParserResult;
 
 /**
  * Result of parsing an user request in Behaviour classes.
@@ -19,7 +19,7 @@ public final class MerchantBehaviourResult extends ItemParserResult {
 
 	/**
 	 * Sets the amount that the player wants to buy from the NPC.
-	 * 
+	 *
 	 * @param amount
 	 *            amount
 	 */

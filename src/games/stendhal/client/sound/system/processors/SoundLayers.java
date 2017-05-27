@@ -12,13 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.common.math.Algebra;
-import games.stendhal.common.math.Numeric;
-import games.stendhal.client.sound.system.SignalProcessor;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.common.math.Algebra;
+import games.stendhal.common.math.Numeric;
 
 /**
  *
@@ -39,9 +40,10 @@ public class SoundLayers
 
         public void setLayer(int level)
         {
-            if(mLayer.level == level)
-                return;
-            
+            if(mLayer.level == level) {
+				return;
+			}
+
             synchronized(SoundLayers.this)
             {
                 mLayer.adjustors.remove(this);
@@ -53,36 +55,40 @@ public class SoundLayers
 
         public void setIntensity(float intensity)
         {
-            if(Algebra.isEqual_Scalf(intensity, intToFloat(mIntensity.get())))
-                return;
-            
+            if(Algebra.isEqual_Scalf(intensity, intToFloat(mIntensity.get()))) {
+				return;
+			}
+
             synchronized(SoundLayers.this)
             {
                 mIntensity.set(floatToInt(intensity));
                 mStateChanged = true;
             }
         }
-        
+
         @Override
         protected void modify(float[] data, int frames, int channels, int rate)
         {
             synchronized(SoundLayers.this)
             {
-                if(mStateChanged)
-                    computeVolumes();
+                if(mStateChanged) {
+					computeVolumes();
+				}
             }
 
             float volume = intToFloat(Math.min(mLayer.volume.get(), mIntensity.get()));
 
             // if volume is zero we return without processing the audio data
-            if(Algebra.isEqual_Scalf(volume, 0.0f))
-                return;
+            if(Algebra.isEqual_Scalf(volume, 0.0f)) {
+				return;
+			}
 
             // if volume is 1 we propagate the unmodified audio data
             if(!Algebra.isEqual_Scalf(volume, 1.0f))
             {
-                for(int i=0; i<(frames*channels); ++i)
-                    data[i] *= volume;
+                for(int i=0; i<(frames*channels); ++i) {
+					data[i] *= volume;
+				}
             }
 
             super.propagate(data, frames, channels, rate);
@@ -129,8 +135,9 @@ public class SoundLayers
         {
             int currIntensity = 0;
 
-            for(VolumeAdjustor adjustor: layer.adjustors)
-                currIntensity = Math.max(currIntensity, adjustor.mIntensity.get());
+            for(VolumeAdjustor adjustor: layer.adjustors) {
+				currIntensity = Math.max(currIntensity, adjustor.mIntensity.get());
+			}
 
             currIntensity    = Math.min(currIntensity, floatToInt(1.0f) - summedIntensity);
             currIntensity    = Math.max(currIntensity, 0);

@@ -26,13 +26,13 @@ import games.stendhal.server.entity.player.Player;
 
 class GetOutfits {
 	private final MarriageQuestInfo marriage;
-	
+
 	private final NPCList npcs = SingletonRepository.getNPCList();
-	
+
 	public GetOutfits(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
-	
+
 	private void getOutfitsStep() {
 		SpeakerNPC tam = npcs.get("Tamara");
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -42,7 +42,7 @@ class GetOutfits {
 							public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 								return marriage.isEngaged(player);
 							}
-						}), 
+						}),
 				ConversationStates.ATTENDING,
 				"Welcome! If you're a bride-to-be I can #help you get ready for your wedding",
 				null);

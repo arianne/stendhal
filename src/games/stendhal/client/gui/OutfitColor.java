@@ -13,8 +13,8 @@ package games.stendhal.client.gui;
 
 import java.awt.Color;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
@@ -34,22 +34,22 @@ public class OutfitColor {
 	public static final String SKIN = "skin";
 	/** Identifier for detail color. */
 	public static final String DETAIL = "detail";
-	
+
 	private static final String[] parts = { DRESS, SKIN, HAIR, DETAIL, EYES };
 	public static final OutfitColor PLAIN = new OutfitColor();
 
 	private Map<String, Color> map = new TreeMap<String, Color>();
-	
+
 	/**
 	 * Create a new OutfitColor for no colors.
 	 */
 	private OutfitColor() {
 	}
-	
+
 	/**
 	 * Create a new OutfitColor for an RPObject. Usually you should use get()
 	 * instead.
-	 * 
+	 *
 	 * @param obj
 	 */
 	OutfitColor(RPObject obj) {
@@ -65,11 +65,11 @@ public class OutfitColor {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get an OutfitColor for an RPObject. If the object has no colors
 	 * specified, PLAIN is returned.
-	 * 
+	 *
 	 * @param obj
 	 * @return outfit color
 	 */
@@ -92,7 +92,7 @@ public class OutfitColor {
 		if (obj instanceof OutfitColor) {
 			return map.equals(((OutfitColor) obj).map);
 		}
-		
+
 		return false;
 	}
 
@@ -110,7 +110,7 @@ public class OutfitColor {
 
 	/**
 	 * Get the color of a specific outfit part.
-	 * 
+	 *
 	 * @param key outfit part identifier
 	 * @return color, or <code>null</code> if the part does not have a specified
 	 * 	color
@@ -118,10 +118,10 @@ public class OutfitColor {
 	public Color getColor(String key) {
 		return map.get(key);
 	}
-	
+
 	/**
 	 * Set the color of a specific outfit part.
-	 * 
+	 *
 	 * @param key outfit part identifier
 	 * @param value color, or <code>null</code> if the default colors should be
 	 * 	used

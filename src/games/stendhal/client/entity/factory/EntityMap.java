@@ -12,6 +12,11 @@
 
 package games.stendhal.client.entity.factory;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.Triple;
 import games.stendhal.client.entity.Block;
 import games.stendhal.client.entity.Blood;
@@ -49,11 +54,6 @@ import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.client.entity.Wall;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 /**
  * Registers the relationship between Type, eclass and java class of entity
  * Objects.
@@ -61,7 +61,7 @@ import org.apache.log4j.Logger;
  * eclass represents a subtype of type
  * <p>
  * EntityMap encapsulates the implementation
- * 
+ *
  */
 public final class EntityMap {
 	private static Map<Triple<String, String, String>, Class< ? extends IEntity>> entityMap = new HashMap<Triple<String, String, String>, Class< ? extends IEntity>>();
@@ -151,12 +151,12 @@ public final class EntityMap {
 		register("item", "jewellery", null, StackableItem.class);
 
 		register("item", "token", null, Item.class);
-		
+
 		register("portal", null, null, Portal.class);
 		register("house_portal", null, null, HousePortal.class);
 		register("door", null, null, Door.class);
 		register("fire", null, null, Fire.class);
-		
+
 		register("spell", null, null, Spell.class);
 
 		register("gate", null, null, Gate.class);
@@ -191,7 +191,7 @@ public final class EntityMap {
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
 	 * @param subClass
-	 * 
+	 *
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
 	public static Class< ? extends IEntity> getClass(final String type,
@@ -207,7 +207,7 @@ public final class EntityMap {
 					null, null));
 		}
 		if (result == null) {
-			
+
 			Logger.getLogger(EntityMap.class).error("no class for " + type + "," + eclass + "," + subClass);
 		}
 		// System.out.println(type + "," + eclass + "," + subClass);

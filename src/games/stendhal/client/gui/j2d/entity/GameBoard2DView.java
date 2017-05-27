@@ -26,7 +26,7 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Build the visual representation of this entity.
-	 * 
+	 *
 	 * @param entity entity for which to build the representation
 	 */
 	@Override
@@ -42,9 +42,9 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -54,10 +54,10 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 * 
+	 *
 	 * @param name
 	 *            The resource name.
-	 * 
+	 *
 	 * @return The full resource name.
 	 */
 	@Override

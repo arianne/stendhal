@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
@@ -33,11 +35,9 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
-import org.apache.log4j.Logger;
-
 public class BuyerAdder {
 	private static Logger logger = Logger.getLogger(BuyerAdder.class);
-	
+
     private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
 
 	/**
@@ -48,7 +48,7 @@ public class BuyerAdder {
 
 	public void addBuyer(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
-		
+
 		merchantsRegister.add(npc, buyerBehaviour);
 
 		if (offer) {
@@ -57,7 +57,7 @@ public class BuyerAdder {
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
 					false,
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					"I buy " + Grammar.enumerateCollectionPlural(buyerBehaviour.dealtItems()) + ".",
 					null);
 		}
@@ -98,8 +98,8 @@ public class BuyerAdder {
 									+ player.getName() + " talking to "
 									+ raiser.getName() + " saying "
 									+ sentence);
-							raiser.say("Sorry, the maximum number of " 
-									+ chosenItemName 
+							raiser.say("Sorry, the maximum number of "
+									+ chosenItemName
 									+ " which I can buy at once is 1000.");
 						} else if (res.getAmount() > 0) {
 							final String itemName = chosenItemName;
@@ -125,8 +125,8 @@ public class BuyerAdder {
     							currentBehavRes = res;
     							npc.setCurrentState(ConversationStates.SELL_PRICE_OFFERED); // success
 							} else {
-								raiser.say("Sorry, " 
-										+ Grammar.thatthose(res.getAmount()) + " " 
+								raiser.say("Sorry, "
+										+ Grammar.thatthose(res.getAmount()) + " "
 										+ Grammar.plnoun(res.getAmount(), chosenItemName)
     									+ " " + Grammar.isare(res.getAmount()) + " worth nothing.");
 							}

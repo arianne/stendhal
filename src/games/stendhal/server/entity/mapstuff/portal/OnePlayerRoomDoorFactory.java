@@ -22,17 +22,17 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 
 	/**
 	 * Create a door that lets one player at a time to enter.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A OnePlayerRoomDoor.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see OnePlayerRoomDoor
 	 */
 	@Override

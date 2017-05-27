@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.core.events;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.entity.player.Player;
+
 /**
  * Other classes can register here to be notified on teleports
- * 
+ *
  * @author hendrik
  */
 public final class TeleportNotifier {
@@ -40,7 +40,7 @@ public final class TeleportNotifier {
 
 	/**
 	 * Return the TeleportNotifier instance.
-	 * 
+	 *
 	 * @return TeleportNotifier the Singleton instance
 	 */
 	public static TeleportNotifier get() {
@@ -65,7 +65,7 @@ public final class TeleportNotifier {
 
 	/**
 	 * registers a TeleportListener.
-	 * 
+	 *
 	 * @param listener TeleportListener
 	 */
 	public void registerListener(final TeleportListener listener) {
@@ -78,7 +78,7 @@ public final class TeleportNotifier {
 
 	/**
 	 * unregisters a TeleportListener so that it will not be called anymore.
-	 * 
+	 *
 	 * @param listener TeleportListener
 	 */
 	public void unregisterListener(final TeleportListener listener) {

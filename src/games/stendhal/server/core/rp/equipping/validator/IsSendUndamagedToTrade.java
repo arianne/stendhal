@@ -5,7 +5,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 /**
  * Checks if an item is offered for a trade only undamaged
- * 
+ *
  * @author madmetzger
  */
 public class IsSendUndamagedToTrade implements Validator {

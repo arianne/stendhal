@@ -2,10 +2,10 @@ package games.stendhal.server.script;
 
 import java.util.List;
 
-import marauroa.server.game.container.PlayerEntry;
-import marauroa.server.game.container.PlayerEntryContainer;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
+import marauroa.server.game.container.PlayerEntry;
+import marauroa.server.game.container.PlayerEntryContainer;
 
 /**
  * removes an entry from the PlayerContainer with the specified clientid
@@ -22,7 +22,7 @@ public class RemoveClient extends ScriptImpl {
 
 		PlayerEntry playerEntry = PlayerEntryContainer.getContainer().get(Integer.parseInt(args.get(0)));
 		admin.sendPrivateText("playerEntry: " + playerEntry);
-		
+
 		if (playerEntry != null) {
 			PlayerEntryContainer.getContainer().remove(Integer.parseInt(args.get(0)));
 		}

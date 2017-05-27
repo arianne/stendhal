@@ -14,6 +14,11 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
@@ -24,11 +29,6 @@ import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -51,14 +51,14 @@ public class MeetKettehTest {
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new DecencyAndMannersWardenNPC().configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Ketteh Wehoh");
-		
+
 		en = npc.getEngine();
 
 		quest = new MeetKetteh();
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer("Jeeves");
-		
+
 		StendhalRPZone jailZone = new StendhalRPZone("test_jail", 100, 100);
 		MockStendlRPWorld.get().addRPZone(jailZone);
 		new Jail().configureZone(jailZone, null);
@@ -70,7 +70,7 @@ public class MeetKettehTest {
 		en.step(player, "hi");
 		assertEquals("Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT! If you don't I'll call the guards!", getReply(npc));
 		assertTrue(player.getQuest(quest.getSlotName()).startsWith("seen_naked"));
-		
+
 		en.step(player, "no");
 		assertEquals("If you don't put on some clothes and leave, I shall scream for the guards!", getReply(npc));
 		assertEquals("Ketteh won't talk to players who refuse put on clothes", ConversationStates.IDLE, en.getCurrentState());
@@ -81,14 +81,14 @@ public class MeetKettehTest {
 		assertEquals("Ugh, you STILL haven't put any clothes on. To jail for you!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// Put on some clothes, and go greet her
 		player.setOutfit(Outfit.getRandomOutfit());
 		en.step(player, "hi");
 		assertEquals("Hi again, Jeeves. I'm so glad you have some clothes on now. Now we can continue with the lesson in #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// Check coming back with different conditions after an initial shock
 		player.setQuest(quest.getSlotName(), "seen_naked");
 		// Put on some clothes, and go greet her
@@ -96,7 +96,7 @@ public class MeetKettehTest {
 		assertEquals("Hi again, Jeeves. I'm so glad you have some clothes on now. Now we can continue with the lesson in #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// Try clothed player with a fresh quest state
 		player.removeQuest(quest.getSlotName());
 		en.step(player, "hi");

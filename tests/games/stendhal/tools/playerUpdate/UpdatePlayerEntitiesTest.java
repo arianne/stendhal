@@ -19,6 +19,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeThat;
+
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
@@ -29,10 +34,6 @@ import games.stendhal.tools.modifer.PlayerModifier;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class UpdatePlayerEntitiesTest {
 

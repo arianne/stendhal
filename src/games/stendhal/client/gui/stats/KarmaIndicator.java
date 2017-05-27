@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.gui.AbstractScalingModel;
-import games.stendhal.client.gui.StatusDisplayBar;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.LinearGradientPaint;
@@ -29,6 +26,9 @@ import java.util.Map;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import games.stendhal.client.gui.AbstractScalingModel;
+import games.stendhal.client.gui.StatusDisplayBar;
+
 /**
  * A bar indicator component for karma.
  */
@@ -38,13 +38,13 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	private static final int HIGHLIGHT_TIME = 1000;
 
 	private static KarmaIndicator instance;
-	
+
 	/** Timer for setting the border color to normal after highlighting. */
 	private final Timer timer;
-	
+
 	/**
 	 * Create the KarmaIndicator instance.
-	 * 
+	 *
 	 * @return instance
 	 */
 	static synchronized KarmaIndicator create() {
@@ -53,10 +53,10 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 		} else {
 			throw new IllegalStateException("Instance already created");
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new karma indicator.
 	 */
@@ -89,17 +89,17 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	/**
 	 * Set the karma value. This method may be called outside the event dispatch
 	 * thread.
-	 * 
+	 *
 	 * @param karma new karma
 	 */
 	void setValue(double karma) {
 		setToolTipText(describeKarma(karma));
 		getModel().setValue(karma);
 	}
-	
+
 	/**
 	 * Get textual description of karma value.
-	 * 
+	 *
 	 * @param karma karma value
 	 * @return karma description
 	 */
@@ -150,7 +150,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			});
 		}
 	}
-	
+
 	@Override
 	protected void valueChanged() {
 		if (((KarmaScalingModel) getModel()).isTrueChange()) {
@@ -167,7 +167,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			repaint();
 		}
 	}
-	
+
 	/**
 	 * Painter for the karma bar gradient.
 	 */
@@ -183,14 +183,14 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			g.fillRect(0, 0, width, height);
 		}
 	}
-	
+
 	/**
 	 * Scaling model for karma.
 	 */
 	private static class KarmaScalingModel extends AbstractScalingModel {
-		/** 
+		/**
 		 * Scaling factor for interpreting karma to bar length. Smaller means
-		 * smaller change in karma bar for a karma change. 
+		 * smaller change in karma bar for a karma change.
 		 */
 		private static final double SCALING = 0.02;
 		private int maxRepresentation = 1;
@@ -215,7 +215,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 
 		/**
 		 * Calculate the representation value.
-		 * 
+		 *
 		 * @return <code>true</code> if the representation changed, otherwise
 		 * 	<code>false</code>
 		 */
@@ -225,7 +225,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			// ...and then to ]0, maxRepresentation[
 			return setRepresentation((int) Math.round(normalized * maxRepresentation));
 		}
-		
+
 		/**
 		 * Check if the last change event triggered was for a true karma
 		 * change. The return value is meaningful only when called after change

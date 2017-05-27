@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Available natures.
- * 
+ *
  * Note that Nature is related to the magic system, and is not intended
  * to support other kinds of "effects", like slowdown, drop, paralysis, etc.
  */

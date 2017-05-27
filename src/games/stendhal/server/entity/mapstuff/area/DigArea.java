@@ -25,10 +25,10 @@ public class DigArea extends ConditionAndActionArea {
             int height) {
         super(condition, action, width, height);
     }
-    
+
     /**
      * Override so area cannot be used without a shovel
-     * 
+     *
      * @param player
      *      Player taking the action
      * @return
@@ -39,10 +39,10 @@ public class DigArea extends ConditionAndActionArea {
         // Player did not use a shovel
         return false;
     }
-    
+
     /**
      * Action to take when player uses a shovel
-     * 
+     *
      * @param player
      *      Player taking action
      * @param tool

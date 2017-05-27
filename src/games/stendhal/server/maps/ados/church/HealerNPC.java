@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.church;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -21,13 +26,8 @@ import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
- * The healer (original name: Valo). He makes mega potions. 
+ * The healer (original name: Valo). He makes mega potions.
  */
 
 public class HealerNPC implements ZoneConfigurator {
@@ -43,7 +43,7 @@ public class HealerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>(); 
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(26, 5));
 				nodes.add(new Node(29, 5));
 				nodes.add(new Node(29, 3));
@@ -62,7 +62,7 @@ public class HealerNPC implements ZoneConfigurator {
 
 			@Override
 			public void createDialog() {
-				addJob("Long ago I was a priest of this church. But my #ideas were not approved of by all."); 
+				addJob("Long ago I was a priest of this church. But my #ideas were not approved of by all.");
 				addReply("ideas",
 				"I have read many texts and learnt of strange ways. My healing powers became so strong I can now #concoct a special #'mega potion' for warriors like you.");
 				addReply("giant heart",

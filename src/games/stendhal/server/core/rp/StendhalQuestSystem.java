@@ -13,16 +13,16 @@
 package games.stendhal.server.core.rp;
 
 
-import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.*;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.*;
 
 /**
  * Loads and manages all quests.
@@ -362,10 +362,10 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
-	
+
 	/**
 	 * Get the list of quests a player has completed, and can now do again.
-	 * 
+	 *
 	 * @param player
 	 * @return list of quest names
 	 */
@@ -379,10 +379,10 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
-	
+
 	/**
 	 * Find the quests that a player has completed.
-	 * 
+	 *
 	 * @param player
 	 * @return completed quests
 	 */

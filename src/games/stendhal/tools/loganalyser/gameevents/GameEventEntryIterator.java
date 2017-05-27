@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.tools.loganalyser.gameevents;
 
-import games.stendhal.tools.loganalyser.util.ResultSetIterator;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.tools.loganalyser.util.ResultSetIterator;
 
 /**
  * Iterates over the log entries returned by a database query.
@@ -51,7 +51,7 @@ public class GameEventEntryIterator extends ResultSetIterator<GameEventEntry> {
 	protected GameEventEntry createObject() {
 		try {
 			return new GameEventEntry(resultSet.getString("id"), resultSet.getString("timedate"),
-					resultSet.getString("source"), resultSet.getString("event"), 
+					resultSet.getString("source"), resultSet.getString("event"),
 					resultSet.getString("param1"), resultSet.getString("param2"));
 		} catch (final SQLException e) {
 			logger.error(e, e);

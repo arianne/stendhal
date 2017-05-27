@@ -20,7 +20,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Checks whether the player has a shield equipped
- * 
+ *
  * @author Lumocra
  *
  */
@@ -31,7 +31,7 @@ public class PlayerHasShieldEquippedCondition implements ChatCondition {
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return player.hasShield();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return 43961;
@@ -41,5 +41,5 @@ public class PlayerHasShieldEquippedCondition implements ChatCondition {
 	public boolean equals(final Object obj) {
 		return (obj instanceof PlayerHasShieldEquippedCondition);
 	}
-	
+
 }

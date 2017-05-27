@@ -18,12 +18,12 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.Timer;
+
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * A component that draws an animated sprite.
@@ -35,7 +35,7 @@ class AnimatedIcon extends JComponent {
 
 	/*
 	 * AnimatedSprite is designed to be used in a drawing loop,
-	 * where it updates itself at the wanted intervals. That's 
+	 * where it updates itself at the wanted intervals. That's
 	 * rather wasteful for an image outside the game area, so handle
 	 * our own timing (and stop the timer if the icon is not visible).
 	 */
@@ -57,13 +57,13 @@ class AnimatedIcon extends JComponent {
 	/**
 	 * Create an <code>AnimatedIcon</code> from a Sprite. Each animation frame
 	 * will be a rectangle of the same height that the original sprite.
-	 * 
+	 *
 	 * @param baseSprite animation frames image
 	 * @param delay delay between the frames
 	 */
 	AnimatedIcon(Sprite baseSprite, int delay) {
 		setOpaque(false);
-		
+
 		int height = baseSprite.getHeight();
 		int frames = baseSprite.getWidth() / height;
 
@@ -78,15 +78,15 @@ class AnimatedIcon extends JComponent {
 			sprite[i] = store.getTile(baseSprite, i * height, 0, height, height);
 		}
 	}
-	
+
 	@Override
 	public Dimension getPreferredSize() {
 		Insets insets = getInsets();
-		
+
 		return new Dimension(sprite[0].getWidth() + insets.left + insets.right,
 				sprite[0].getHeight() + insets.top + insets.bottom);
 	}
-	
+
 	@Override
 	public Dimension getMinimumSize() {
 		return getPreferredSize();

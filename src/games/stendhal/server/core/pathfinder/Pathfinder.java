@@ -1,6 +1,6 @@
 /*
  * Based on:
- * 
+ *
  * AStarPathfinder.java
  * Created on 20 October 2004, 13:33
  *
@@ -35,32 +35,32 @@ import java.util.Stack;
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
  * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
- * 
+ *
  * @author James Matthews
- * 
+ *
  */
 public abstract class Pathfinder {
 	/**
 	 * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int PATH_NOT_FOUND = -1;
 
 	/**
 	 * Returned by <code>getStatus</code> if a path has been found.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int PATH_FOUND = 1;
 
 	/**
 	 * Returned by <code>getStatus</code> if the pathfinder is still running.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int IN_PROGRESS = 0;
-	
+
 	/**
 	 * Node weight bonus for nodes that do not change the walking direction.
 	 */
@@ -68,7 +68,7 @@ public abstract class Pathfinder {
 
 	/**
 	 * The current status of the pathfinder.
-	 * 
+	 *
 	 * @see #PATH_FOUND
 	 * @see #PATH_NOT_FOUND
 	 * @see #IN_PROGRESS
@@ -102,19 +102,19 @@ public abstract class Pathfinder {
 	 * every iteration of <code>doStep</code>.
 	 */
 	private TreeNode bestNode;
-	
+
 	/**
 	 * The maximum distance for the path. It is compared with the f value of the
 	 * node. The minimum for working pathfinding is
 	 * heuristicFromStartNode + 1
 	 */
 	private double maxDistance;
-	
+
 	/**
 	 * The goal.
 	 */
 	private final Rectangle2D goalArea;
-	
+
 	/** Initialization data */
 	private final int startX, startY;
 	/** Initialization data */
@@ -131,46 +131,46 @@ public abstract class Pathfinder {
 		this.destination = destination;
 		this.initMaxDist = maxDist;
 
-		openList.clear(); 
+		openList.clear();
 		nodeRegistry.clear();
 
 		bestNode = null;
 		pathStatus = IN_PROGRESS;
 	}
-	
+
 	/**
 	 * Initialization that can not be done safely in the constructor.
 	 */
 	protected void init() {
 		/*
 		 * createNode is defined in child classes, so it may require
-		 * work in the child's constructor. 
+		 * work in the child's constructor.
 		 */
 		startNode = createNode(startX, startY);
 		goalNode = createNode((int) (destination.getCenterX()),
 				(int) (destination.getCenterY()));
 		openList.offer(startNode);
 		nodeRegistry.put(startNode.nodeNumber, startNode);
-		
+
 		// calculate shortest distance and allow a variance of X percent
 		final double startF = 1.1 * startNode.getHeuristic(goalNode) + 1;
 		this.maxDistance = Math.max(initMaxDist, startF);
 	}
-	
+
 	/**
 	 * Return the current status of the pathfinder.
-	 * 
+	 *
 	 * @return the pathfinder status.
 	 * @see #pathStatus
 	 */
 	protected int getStatus() {
 		return pathStatus;
 	}
-	
+
 	public final List<Node> getPath() {
 		init();
 		final List<Node> list = new LinkedList<Node>();
-		
+
 		if (unreachableGoal()) {
 			return list;
 		}
@@ -190,7 +190,7 @@ public abstract class Pathfinder {
 
 		return list;
 	}
-	
+
 	/**
 	 * Iterate the pathfinder through one step.
 	 */
@@ -208,10 +208,10 @@ public abstract class Pathfinder {
 
 		bestNode.createChildren();
 	}
-	
+
 	/**
 	 * Assigns the best node from the open list.
-	 * 
+	 *
 	 * @return the best node.
 	 */
 	private TreeNode getBest() {
@@ -224,10 +224,10 @@ public abstract class Pathfinder {
 
 		return first;
 	}
-	
+
 	/**
 	 * Checks if the goal is reached.
-	 * 
+	 *
 	 * @param nodeBest
 	 *            the currently best node
 	 * @return true if the goal is reached
@@ -235,11 +235,11 @@ public abstract class Pathfinder {
 	private boolean reachedGoal(final TreeNode nodeBest) {
 		return goalArea.contains(nodeBest.getX(), nodeBest.getY());
 	}
-	
+
 	/**
 	 * Checks if the goal is unreachable. Only the outer nodes of the goal are
 	 * checked. There could be other reasons, why a goal is unreachable.
-	 * 
+	 *
 	 * @return true checks if the goal is unreachable
 	 */
 	protected boolean unreachableGoal() {
@@ -260,21 +260,21 @@ public abstract class Pathfinder {
 
 		return true;
 	}
-	
+
 	/**
 	 * Create a new TreeNode
-	 * 
+	 *
 	 * @param x x coordinate of the node
 	 * @param y y coordinate of the node
 	 * @return TreeNode
 	 */
 	// A workaround for java lacking proper generics
 	public abstract TreeNode createNode(final int x, final int y);
-	
-	
+
+
 	/**
 	 * Calculates the manhattan distance between to positions.
-	 * 
+	 *
 	 * @param x1
 	 *            x value for position 1
 	 * @param y1
@@ -291,7 +291,7 @@ public abstract class Pathfinder {
 
 	/**
 	 * Calculates the square distance between to positions.
-	 * 
+	 *
 	 * @param x1
 	 *            x value for position 1
 	 * @param y1
@@ -306,7 +306,7 @@ public abstract class Pathfinder {
 		return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 	}
 
-	
+
 	/**
 	 * The pathfinder node.
 	 */
@@ -353,7 +353,7 @@ public abstract class Pathfinder {
 
 		/**
 		 * The default constructor with positional information.
-		 * 
+		 *
 		 * @param x
 		 *            the x-position of the node.
 		 * @param y
@@ -385,7 +385,7 @@ public abstract class Pathfinder {
 
 		/**
 		 * Add a child to the node.
-		 * 
+		 *
 		 * @param child
 		 *            the child node.
 		 */
@@ -397,22 +397,22 @@ public abstract class Pathfinder {
 
 		/**
 		 * Add a child to the node.
-		 * 
+		 *
 		 * @param child
 		 *            the child node.
 		 */
 		private void updateChild(final TreeNode child) {
 			child.parent = this;
 			child.g = this.g + child.getCost();
-						
+
 			child.weight = calculateChildWeight(child);
 		}
-		
+
 		/**
 		 * Calculate node weight for a child node.
-		 * 
+		 *
 		 * @param child the child to be calculated
-		 * @return weight for the child node 
+		 * @return weight for the child node
 		 */
 		private double calculateChildWeight(final TreeNode child) {
 			double childweight = child.g + child.getHeuristic(goalNode);
@@ -429,13 +429,13 @@ public abstract class Pathfinder {
 					childweight -= STRAIGHT_PATH_PREFERENCE_FACTOR;
 				}
 			}
-			
+
 			return childweight;
 		}
 
 		/**
 		 * Return the x-position of the node.
-		 * 
+		 *
 		 * @return the x-position of the node.
 		 */
 		public int getX() {
@@ -444,7 +444,7 @@ public abstract class Pathfinder {
 
 		/**
 		 * Return the y-position of the node.
-		 * 
+		 *
 		 * @return the y-position of the node.
 		 */
 		public int getY() {
@@ -453,16 +453,16 @@ public abstract class Pathfinder {
 
 		/**
 		 * Return the parent node.
-		 * 
+		 *
 		 * @return the parent node.
 		 */
 		public TreeNode getParent() {
 			return parent;
 		}
-		
+
 		/**
 		 * The cost of moving to this node.
-		 * 
+		 *
 		 * @return movement cost
 		 */
 		protected double getCost() {
@@ -479,7 +479,7 @@ public abstract class Pathfinder {
 		 * the size (abs(startX - goalX) + 1) * (abs(startY - goalY) + 1) So a
 		 * tie-breaker is needed. 1% square distace seems to work fine. A* will
 		 * prefer nodes closer to the goal.
-		 * @param nodeGoal 
+		 * @param nodeGoal
 		 * @return heuristic value for move
 		 */
 		public double getHeuristic(final TreeNode nodeGoal) {
@@ -492,7 +492,7 @@ public abstract class Pathfinder {
 
 		/**
 		 * Checks if the entity could stand on the position of this node.
-		 * 
+		 *
 		 * @return true if the the entity could stand on the position
 		 */
 		public boolean isValid() {
@@ -503,14 +503,14 @@ public abstract class Pathfinder {
 		 * Checks if the entity could stand on the given by the coordinates.
 		 * @param x coordinate of the position to be checked
 		 * @param y coordinate of the position to be checked
-		 * 
+		 *
 		 * @return true if the the entity could stand on the position
 		 */
 		public abstract boolean isValid(int x, int y);
-		
+
 		/**
 		 * Create a new <code>TreeNode</code>.
-		 * 
+		 *
 		 * @param x x coordinate of the created node
 		 * @param y y coordinate of the created node
 		 * @return a <code>TreeNode</code>
@@ -526,7 +526,7 @@ public abstract class Pathfinder {
 		 * <li> a valid position
 		 * <li> a f value less than maxDistance (checked against the given node)
 		 * </ul>
-		 * 
+		 *
 		 */
 		public void createChildren() {
 			if (g < maxDistance) {
@@ -540,8 +540,8 @@ public abstract class Pathfinder {
 		/**
 		 * Links the children to this parent node  and may also update the
 		 * parent path, if a shorter path is found.
-		 * @param x1 
-		 * @param y1 
+		 * @param x1
+		 * @param y1
 		 */
 		private void linkChild(final int x1, final int y1) {
 			if (!isValid(x1, y1)) {
@@ -578,7 +578,7 @@ public abstract class Pathfinder {
 
 		/**
 		 * Update the parents for the new route.
-		 * 
+		 *
 		 * @param node
 		 *            the root node.
 		 */
@@ -609,7 +609,7 @@ public abstract class Pathfinder {
 		 * Calculates the node id.
 		 * @param x of the node
 		 * @param y of the node
-		 * 
+		 *
 		 * @return the id of the node
 		 */
 		protected abstract int createNodeID(int x, int y);

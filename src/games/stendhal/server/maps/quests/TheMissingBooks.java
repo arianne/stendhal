@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.ConvCtxForMatchingSource;
 import games.stendhal.common.parser.ConversationParser;
@@ -28,20 +33,15 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * QUEST: Quest to get a recipe for a potion for Imorgen
  * <p>
- * 
- * PARTICIPANTS: 
+ *
+ * PARTICIPANTS:
  * <ul>
  * <li>Cameron</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> The librarian, Cameron, of Constantines Villa needs to find some books.</li>
@@ -51,17 +51,17 @@ import java.util.Map;
  * <li> He knows then that you found the book and that these aren't lost.</li>
  * <li> You'll reward you for your efforts.</li>
  * </ul>
- * 
+ *
  * REWARD:
  *  <ul>
  *  <li>A recipe which Imorgen needs for her potion</li>
  *  </ul>
- * 
- * REPETITIONS: 
+ *
+ * REPETITIONS:
  * <ul>
  * <li>no repetitions</li>
  * </ul>
- * 
+ *
  * @author storyteller and bluelads4
  */
 
@@ -70,7 +70,7 @@ public class TheMissingBooks extends AbstractQuest {
 
 	private static Map<String, String> quotes = new HashMap<String, String>();
 	static {
-		quotes.put("Down in the deep sea around Athor island...", 
+		quotes.put("Down in the deep sea around Athor island...",
 						"it lays, hidden under soft sand - the mighty treasure of Faiumoni.");
 		quotes.put("As a mighty warrior,...",
 						"you always need to wear a powerful armor in fights.");
@@ -181,7 +181,7 @@ public class TheMissingBooks extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String startsentence = player.getQuest(QUEST_SLOT);
 					final String quote = quotes.get(startsentence);
-					
+
 					final Sentence answer = sentence.parseAsMatchingSource();
 					final Sentence expected = ConversationParser.parse(quote, new ConvCtxForMatchingSource());
 
@@ -215,7 +215,7 @@ public class TheMissingBooks extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "TheMissingBooks";
-	
+
 	}
 	@Override
 	public String getNPCName() {

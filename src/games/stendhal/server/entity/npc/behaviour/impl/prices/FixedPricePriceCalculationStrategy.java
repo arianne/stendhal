@@ -7,12 +7,12 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 /**
  * Calculates prices based on a map containing item name and the fixed price
- * 
+ *
  * @author madmetzger
  */
 public class FixedPricePriceCalculationStrategy implements
 		PriceCalculationStrategy {
-	
+
 	public FixedPricePriceCalculationStrategy(Map<String, Integer> prices) {
 		this.prices = prices;
 	}
@@ -46,5 +46,5 @@ public class FixedPricePriceCalculationStrategy implements
 	public void addCoveredItem(String item, int price) {
 		this.prices.put(item, price);
 	}
-	
+
 }

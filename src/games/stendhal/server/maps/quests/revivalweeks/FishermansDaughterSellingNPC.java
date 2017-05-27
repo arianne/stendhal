@@ -52,7 +52,7 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 				addGoodbye("Bye, hope you'll enjoy the days here!");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrevivalweeks")), false);
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);

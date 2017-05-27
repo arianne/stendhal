@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -37,13 +44,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * QUEST: Supplies For Phalk
@@ -76,34 +76,34 @@ import org.apache.log4j.Logger;
  * <li>Not repeatable.</li>
  * </ul>
  */
- 
+
  public class SuppliesForPhalk extends AbstractQuest {
- 
+
  	private static final String QUEST_SLOT = "supplies_for_phalk";
- 	
+
 	private static Logger logger = Logger.getLogger(SuppliesForPhalk.class);
-	
+
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
 	private void askForFood() {
-		final SpeakerNPC npc = npcs.get("Phalk");	
-		
+		final SpeakerNPC npc = npcs.get("Phalk");
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I've been here a long time, and I can not leave this place. Could you bring me some food?",
 				null);
-							
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Thanks for getting me the food and clothes. I think I can stand here warning people for some months longer now.",
 				null);
-		
+
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
@@ -116,21 +116,21 @@ import org.apache.log4j.Logger;
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
 				"Oh, thats not nice... but ok. Maybe the next visitor can help me.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
-		
+
 		npc.addReply("beer", "In an INN of course!");
 		npc.addReply("wine", "In an INN of course!");
 		npc.addReply(Arrays.asList("sandwiches", "sandwich"), "Come on, ask in a bakery!");
 	}
-	
+
 	private void receiveFood() {
-	final SpeakerNPC npc = npcs.get("Phalk");	
-	
+	final SpeakerNPC npc = npcs.get("Phalk");
+
 		npc.add(ConversationStates.ATTENDING, "food",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"Do you have 3 sandwiches, 3 bottles of beer and 3 glasses of wine?",
 				null);
-		
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(600));
 		actions.add(new DropItemAction("sandwich",3));
@@ -146,12 +146,12 @@ import org.apache.log4j.Logger;
 						new PlayerHasItemWithHimCondition("sandwich",3),
 						new PlayerHasItemWithHimCondition("beer",3),
 						new PlayerHasItemWithHimCondition("wine",3)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Yay, thank you!!! There is another thing you could do for me: my clothes are old and dirty and I need a new #cloak and a new #armor. Please bring them to me and say #clothes.",
 				new MultipleActions(actions)
 		);
-		
-		
+
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
 				new NotCondition(
@@ -159,60 +159,60 @@ import org.apache.log4j.Logger;
 								new PlayerHasItemWithHimCondition("sandwich",3),
 								new PlayerHasItemWithHimCondition("beer",3),
 								new PlayerHasItemWithHimCondition("wine",3)))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I've been around a long time and what's more I am really hungry. You can't trick me.",
 				null);
-		
-		npc.add(ConversationStates.QUEST_ITEM_QUESTION, 
+
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.NO_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"), 
+				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.ATTENDING,
-				"Pff! Then go away! But be sure, you will not get a reward if you don't bring me the items!", 
+				"Pff! Then go away! But be sure, you will not get a reward if you don't bring me the items!",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 				ConversationStates.ATTENDING,
 				"I already asked you to bring me some #food!",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING, "cloak",
 				new QuestInStateCondition(QUEST_SLOT, 0, "clothes") ,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I know Wrvil (he lives in Wofol) has a new cloak for me. Just tell him my name.",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING, "armor",
 				new QuestInStateCondition(QUEST_SLOT, 0, "clothes") ,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Mrotho (he lives in Ados) told me he will look for a golden armor for me. Just tell him my name.",
 				null);
-		
+
 	}
-	
+
 	private void getCloak() {
 	final SpeakerNPC npc = npcs.get("Wrvil");
-	
+
 		npc.add(ConversationStates.ATTENDING, "Phalk",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "none")) ,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Aaah, his cloak... yes, it is ready. But I am still waiting for the #payment!",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING, "payment",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "none")),
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				"Oh yes! it costs 20 steel arrows. Our victims don't bring them back ;) Do you have them?",
-				null);	
-		
-		npc.add(ConversationStates.QUEST_ITEM_QUESTION, 
-				ConversationPhrases.NO_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "none")), 
-				ConversationStates.ATTENDING,
-				"So I can not give you the cloak! First the payment!", 
 				null);
-		
+
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				ConversationPhrases.NO_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "none")),
+				ConversationStates.ATTENDING,
+				"So I can not give you the cloak! First the payment!",
+				null);
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(200));
 		actions.add(new DropItemAction("steel arrow",20));
@@ -230,32 +230,32 @@ import org.apache.log4j.Logger;
 		});
 		// the extra parts in the quest state are for wrvil and mrotho not to give them cloaks and armor twice
 		actions.add(new SetQuestAction(QUEST_SLOT, 1, "cloak"));
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "none")),
 						new PlayerHasItemWithHimCondition("steel arrow",20)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Ok, here you are.",
 				new MultipleActions(actions)
 		);
-		
-		
+
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "none"),
 				new NotCondition(new PlayerHasItemWithHimCondition("steel arrow",20))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Your type are all liars, aren't they? Come back when you have the payment.",
 				null);
-		
-		
+
+
 		// player got the cloak already but lost it?
 		npc.add(ConversationStates.ATTENDING, "Phalk",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak")) ,
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				"Take the cloak I gave you to Phalk. If you lost it the replacement price is 250 money. Do you want to pay for a replacement for Phalk?",
 				null);
-		
+
 		final List<ChatAction> actions2 = new LinkedList<ChatAction>();
 		actions2.add(new DropItemAction("money",250));
 		actions2.add(new ChatAction() {
@@ -269,60 +269,60 @@ import org.apache.log4j.Logger;
 					cloak.setBoundTo(player.getName());
 					player.equipOrPutOnGround(cloak);
 				}
-			});		
+			});
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak")),
 						new PlayerHasItemWithHimCondition("money",250)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Ok, here you are.",
 				new MultipleActions(actions2)
 		);
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak"),
 				new NotCondition(new PlayerHasItemWithHimCondition("money",250))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Sorry, you don't have enough money.",
 				null);
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.NO_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Okay, but Phalk will only accept a dwarf cloak from me, with his name sewn in.",
 				null);
 
 	}
-	
+
 	private void getArmor() {
 		final SpeakerNPC npc = npcs.get("Mrotho");
-		
+
 		npc.add(ConversationStates.ATTENDING, "Phalk",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none")) ,
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				"Ooops, his armor...wait.. where is it.. aah here it is. Did he give you the #payment for me too?",
 				null);
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, "payment",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none")),
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				"Well.. the armor will cost 20 gold bars. Do you have them?",
-				null);	
-		
+				null);
+
 		// incase player goes on to ask something else, accept payment from attending too.
 		npc.add(ConversationStates.ATTENDING, "payment",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none")),
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				"The armor will cost 20 gold bars. Do you have them?",
-				null);	
-		
-		npc.add(ConversationStates.QUEST_ITEM_QUESTION, 
-				ConversationPhrases.NO_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none")), 
-				ConversationStates.ATTENDING,
-				"Bah! I will not give you the armor without payment!", 
 				null);
-		
+
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+				ConversationPhrases.NO_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none")),
+				ConversationStates.ATTENDING,
+				"Bah! I will not give you the armor without payment!",
+				null);
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(200));
 		actions.add(new DropItemAction("gold bar",20));
@@ -340,30 +340,30 @@ import org.apache.log4j.Logger;
 		});
 		// the extra parts in the quest state are for wrvil and mrotho not to give them cloaks and armor twice
 		actions.add(new SetQuestAction(QUEST_SLOT, 2, "armor"));
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none")),
 						new PlayerHasItemWithHimCondition("gold bar",20)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Ok, here you are.",
 				new MultipleActions(actions)
 		);
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "none"),
 				new NotCondition(new PlayerHasItemWithHimCondition("gold bar",20))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Army disciplinary actions are pretty serious, so don't lie to me.",
 				null);
-		
+
 		// player got the armor already but lost it?
 		npc.add(ConversationStates.ATTENDING, "Phalk",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor")) ,
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				"Take the armor I gave you to Phalk. If you lost it the replacement price is 10000 money. Do you want to pay for a replacement for Phalk?",
 				null);
-		
+
 		final List<ChatAction> actions2 = new LinkedList<ChatAction>();
 		actions2.add(new DropItemAction("money",10000));
 		actions2.add(new ChatAction() {
@@ -377,47 +377,47 @@ import org.apache.log4j.Logger;
 				armor.setBoundTo(player.getName());
 				player.equipOrPutOnGround(armor);
 			}
-		});		
+		});
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor")),
 						new PlayerHasItemWithHimCondition("money",10000)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Ok, here you are.",
 				new MultipleActions(actions2)
 		);
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor"),
 				new NotCondition(new PlayerHasItemWithHimCondition("money",10000))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Sorry, you don't have enough money.",
 				null);
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.NO_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Okay, but Phalk will only accept golden armor from me, with his name on it.",
 				null);
-		
+
 	}
-		
-	
+
+
 	private void receiveClothes() {
-	final SpeakerNPC npc = npcs.get("Phalk");	
-	
+	final SpeakerNPC npc = npcs.get("Phalk");
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new IncreaseXPAction(4000));
 		actions.add(new DropInfostringItemAction("golden armor","Phalk"));
 		actions.add(new DropInfostringItemAction("dwarf cloak","Phalk"));
-		actions.add(new SetQuestAction(QUEST_SLOT, "done"));	
+		actions.add(new SetQuestAction(QUEST_SLOT, "done"));
 		actions.add(new EquipItemAction("dwarvish armor", 1, true));
-		
+
 		npc.add(ConversationStates.ATTENDING, "clothes",
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),
 				new PlayerHasInfostringItemWithHimCondition("golden armor","Phalk"),
 				new PlayerHasInfostringItemWithHimCondition("dwarf cloak","Phalk")),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Oh yeah! Thank you so much! Payment?? Erm... *cough* I will give you my old armor as a reward.",
 				new MultipleActions(actions));
 
@@ -427,18 +427,18 @@ import org.apache.log4j.Logger;
 						new AndCondition(
 								new PlayerHasInfostringItemWithHimCondition("golden armor","Phalk"),
 								new PlayerHasInfostringItemWithHimCondition("dwarf cloak","Phalk")))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Hm, I want the special golden #armor from Mrotho and the dwarf #cloak from Wrvil. Tell them my name and they will give you what they made me.",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),
 				ConversationStates.ATTENDING,
 				"I am waiting for you to bring me new #clothes from Wrvil and Mrotho.",
 				null);
 	}
-	
+
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -451,7 +451,7 @@ import org.apache.log4j.Logger;
 		getArmor();
 		receiveClothes();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -464,7 +464,7 @@ import org.apache.log4j.Logger;
 			if ("rejected".equals(questState)) {
 				res.add("I don't want to help Phalk.");
 				return res;
-			} 
+			}
 			if ("start".equals(questState)) {
 				if(player.isEquipped("sandwich",3)) {
 					res.add("I have the sandwiches!");
@@ -476,7 +476,7 @@ import org.apache.log4j.Logger;
 					res.add("I have the wine!");
 				}
 				return res;
-			} 
+			}
 			res.add("Now Phalk needs me to collect a cloak from Wrvil and some armor from Mrotho.");
 			if (questState.startsWith("clothes")) {
 				if(new QuestInStateCondition(QUEST_SLOT, 1, "cloak").fire(player,null, null)){
@@ -486,7 +486,7 @@ import org.apache.log4j.Logger;
 					res.add("Mrotho gave me Phalk's golden armor but I had to cover his debt.");
 				}
 				return res;
-			} 
+			}
 			res.add("I collected Phalk's equipment and he gave me his dwarvish armor in return!");
 			if (isCompleted(player)) {
 				return res;
@@ -497,12 +497,12 @@ import org.apache.log4j.Logger;
 			logger.error("History doesn't have a matching quest state for " + questState);
 			return debug;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "SuppliesForPhalk";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 30;
@@ -511,10 +511,10 @@ import org.apache.log4j.Logger;
 	public String getNPCName() {
 		return "Phalk";
 	}
-		
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_MINES;
 	}
 }
- 
+

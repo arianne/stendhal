@@ -12,11 +12,11 @@
 package games.stendhal.server.actions.chat;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
 
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 import utilities.PlayerTestHelper;
 
 public class AwayActionTest {

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -33,32 +37,28 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Beer For Hayunn
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Hayunn Naratha (the veteran warrior in Semos)</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Hayunn asks you to buy a beer from Margaret.</li>
  * <li>Margaret sells you a beer.</li>
  * <li>Hayunn sees your beer, asks for it and then thanks you.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>50 XP</li>
  * <li>20 gold coins</li>
  * <li>Karma: 10</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>None</li>
@@ -68,7 +68,7 @@ public class BeerForHayunn extends AbstractQuest {
 	public static final String QUEST_SLOT = "beer_hayunn";
 	private static final String OTHER_QUEST_SLOT = "meet_hayunn";
 
-	
+
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -103,14 +103,14 @@ public class BeerForHayunn extends AbstractQuest {
 			// confusing Hayunn in a lot of places later.
 			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT),
 					new QuestCompletedCondition(OTHER_QUEST_SLOT)),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Thanks all the same, but I don't want to get too heavily into drinking; I'm still on duty, you know! I'll need my wits about me if a student shows up...",
 			null);
 
@@ -162,14 +162,14 @@ public class BeerForHayunn extends AbstractQuest {
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestActiveCondition(QUEST_SLOT),
 					new PlayerHasItemWithHimCondition("beer")),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Hey! Is that beer for me?", null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestActiveCondition(QUEST_SLOT),
 					new NotCondition(new PlayerHasItemWithHimCondition("beer"))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?",
 			null);
 
@@ -217,10 +217,10 @@ public class BeerForHayunn extends AbstractQuest {
 	}
 
 	public String getTitle() {
-		
+
 		return "Beer for Hayunn";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
@@ -230,7 +230,7 @@ public class BeerForHayunn extends AbstractQuest {
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Hayunn Naratha";

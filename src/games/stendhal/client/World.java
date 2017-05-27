@@ -21,17 +21,17 @@ public final class World {
 	public static World get() {
 		return instance;
 	}
-	
+
 	private final PlayerList playerList = new PlayerList();
 
 	public PlayerList getPlayerList() {
 		return playerList;
 	}
-	
+
 	public void removePlayerLoggingOut(final String player) {
 		playerList.removePlayer(player);
 	}
-	
+
 	public void addPlayerLoggingOn(final String player) {
 		playerList.addPlayer(player);
 	}

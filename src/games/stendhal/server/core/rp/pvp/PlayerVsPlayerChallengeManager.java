@@ -17,31 +17,31 @@ import games.stendhal.server.entity.player.Player;
 /**
  * The PlayerVsPlayerChallengeManager stores, expires and creates PvP duels to allow
  * two players to fight with each other
- *  
+ *
  * @author markus
  */
 public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutListener {
-	
+
 	private static final Logger logger = Logger.getLogger(PlayerVsPlayerChallengeManager.class);
-	
-	protected static final int TIMEOUT_FOR_ACCEPTANCE = 300 * 1000 / 300; 
-	
+
+	protected static final int TIMEOUT_FOR_ACCEPTANCE = 300 * 1000 / 300;
+
 	private final Collection<PlayerVsPlayerChallenge> currentChallenges = Sets.newHashSet();
-	
+
 	public static PlayerVsPlayerChallengeManager create() {
 		PlayerVsPlayerChallengeManager challengeManager = new PlayerVsPlayerChallengeManager();
 		TurnNotifier.get().notifyInSeconds(60, challengeManager);
 		SingletonRepository.getLogoutNotifier().addListener(challengeManager);
 		return challengeManager;
 	}
-	
+
 	private PlayerVsPlayerChallengeManager() {
 		//do nothing
 	}
-	
+
 	/**
 	 * Create a new challenge between two players if not yet existing.
-	 * 
+	 *
 	 * @param challenger
 	 * @param challenged
 	 * @param currentTurn
@@ -57,10 +57,10 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 		challenger.sendPrivateText(String.format("You successfully challenged %s!", challenged.getName()));
 		challenged.sendPrivateText(String.format("%s send you a challenge. If you accept you can fight a duel.", challenger.getName()));
 	}
-	
+
 	/**
 	 * Mark the challenge between challenger and challenged as accepted
-	 * 
+	 *
 	 * @param challenger
 	 * @param challenged
 	 * @param currentTurn
@@ -75,10 +75,10 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 			logger.debug(String.format("%s is trying to accept a challenge with %s but no such challenge exists.", challenged.getName(), challenger.getName()));
 		}
 	}
-	
+
 	/**
 	 * Finds an open challenge for the given pair of players if existing
-	 * 
+	 *
 	 * @param challenger
 	 * @param challenged
 	 * @return a currently open challenge object or null
@@ -100,7 +100,7 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	public void onTurnReached(int currentTurn) {
 		this.timeOutCurrentChallenges(currentTurn);
 	}
-	
+
 	/**
 	 * Filters out challenges that have to time out at the given turn
 	 * @param currentTurn

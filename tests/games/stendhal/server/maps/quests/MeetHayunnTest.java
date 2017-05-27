@@ -42,7 +42,7 @@ public class MeetHayunnTest {
 	@Before
 	public void setUp() {
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new RetiredAdventurerNPC().configureZone(zone, null); 
+		new RetiredAdventurerNPC().configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Hayunn Naratha");
 		en = npc.getEngine();
 
@@ -54,7 +54,7 @@ public class MeetHayunnTest {
 
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Hayunn Naratha");
 		en = npc.getEngine();
 
@@ -64,8 +64,8 @@ public class MeetHayunnTest {
 		assertEquals("Well, back when I was a young adventurer, I clicked on my enemies to attack them. I'm sure that will work for you, too. Good luck, and come back once you are done.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
-		
+
+
 		en.step(player, "hi");
 		assertEquals("I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?", getReply(npc));
 		en.step(player, "yes");

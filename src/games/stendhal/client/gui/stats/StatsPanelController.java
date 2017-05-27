@@ -12,11 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.entity.StatusID;
-import games.stendhal.common.Level;
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.constants.Testing;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -24,10 +19,14 @@ import java.util.HashMap;
 
 import javax.swing.SwingUtilities;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.entity.StatusID;
+import games.stendhal.common.Level;
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.Testing;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * Object for listening for various user state changes that should
@@ -45,34 +44,34 @@ public final class StatsPanelController {
 	private static final String SPC = "\r\u00a0";
 	private final StatsPanel panel;
 	private static	StatsPanelController instance;
-	
+
 	/**
 	 * The money objects.
 	 * First level keys are the slot name. Second level is the object id.
 	 */
 	private final HashMap<String, HashMap<String, RPObject>> money = new HashMap<String, HashMap<String, RPObject>>();
-	
+
 	private int level;
 	private int xp;
 	private int hp;
 	private int maxhp;
 	private int maxhpModified;
-	
+
 	private int atk;
 	private int atkxp;
 	private int weaponAtk;
-	
+
 	private int def;
 	private int defxp;
 	private int itemDef;
-	
+
 	private int ratk;
 	private int ratkxp;
 	private int weaponRatk;
-	
+
 	private int mana;
 	private int baseMana;
-	
+
 	/**
 	 * Create a new <code>StatsPanelController</code>. There
 	 * should be only one, so the constructor is hidden.
@@ -80,10 +79,10 @@ public final class StatsPanelController {
 	private StatsPanelController() {
 		panel = new StatsPanel();
 	}
-	
+
 	/**
 	 * Get the <code>StatsPanelController</code> instance.
-	 * 
+	 *
 	 * @return the StatsPanelController instance
 	 */
 	public static synchronized StatsPanelController get() {
@@ -92,102 +91,102 @@ public final class StatsPanelController {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Get the <code>StatsPanel</code> component this controller
 	 * is keeping updated.
-	 * 
+	 *
 	 * @return StatsPanel
 	 */
 	public StatsPanel getComponent() {
 		return panel;
 	}
-	
+
 	/**
 	 * Add listeners for all the properties this object follows.
-	 * 
+	 *
 	 * @param pcs property change support of the user
 	 */
 	public void registerListeners(PropertyChangeSupport pcs) {
-		PropertyChangeListener listener = new HPChangeListener(); 
+		PropertyChangeListener listener = new HPChangeListener();
 		addPropertyChangeListenerWithModifiedSupport(pcs, "base_hp", listener);
 		addPropertyChangeListenerWithModifiedSupport(pcs, "hp", listener);
-		
+
 		listener = new ATKChangeListener();
 		addPropertyChangeListenerWithModifiedSupport(pcs, "atk", listener);
 		pcs.addPropertyChangeListener("atk_xp", listener);
-		
+
 		listener = new DEFChangeListener();
 		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
-		
+
 		/* TODO: Remove condition after ranged stat testing is finished. */
 		if (Testing.COMBAT) {
 			listener = new RATKChangeListener();
 			addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
 			pcs.addPropertyChangeListener("ratk_xp", listener);
 		}
-		
+
 		listener = new XPChangeListener();
 		pcs.addPropertyChangeListener("xp", listener);
-		
+
 		listener = new LevelChangeListener();
 		addPropertyChangeListenerWithModifiedSupport(pcs, "level", listener);
-		
+
 		listener = new WeaponChangeListener();
 		pcs.addPropertyChangeListener("atk_item", listener);
-		
+
 		listener = new ArmorChangeListener();
 		pcs.addPropertyChangeListener("def_item", listener);
-		
+
 		/* FIXME: ranged stat is disabled by default until fully implemented */
 		if (Testing.COMBAT) {
 			listener = new RangedWeaponChangeListener();
 			pcs.addPropertyChangeListener("ratk_item", listener);
 		}
-		
+
 		listener = new MoneyChangeListener();
 		for (String slot : MONEY_SLOTS) {
 			pcs.addPropertyChangeListener(slot, listener);
 		}
-		
+
 		listener = new EatingChangeListener();
 		pcs.addPropertyChangeListener("eating", listener);
 		pcs.addPropertyChangeListener("choking", listener);
-		
+
 		listener = new StatusChangeListener();
 		for (StatusID id : StatusID.values()) {
 			pcs.addPropertyChangeListener(id.getAttribute(), listener);
 		}
-		
+
 		listener = new AwayChangeListener();
 		pcs.addPropertyChangeListener("away", listener);
-		
+
 		listener = new GrumpyChangeListener();
 		pcs.addPropertyChangeListener("grumpy", listener);
-		
+
 		listener = new KarmaChangeListener();
 		pcs.addPropertyChangeListener("karma", listener);
-		
+
 		listener = new ManaChangeListener();
 		addPropertyChangeListenerWithModifiedSupport(pcs, "base_mana", listener);
 		addPropertyChangeListenerWithModifiedSupport(pcs, "mana", listener);
 	}
-	
+
 	private void addPropertyChangeListenerWithModifiedSupport(PropertyChangeSupport pcs, String attribute, PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(attribute, listener);
 		pcs.addPropertyChangeListener("modified_" + attribute, listener);
 	}
-	
+
 	/**
 	 * Called when xp or level has changed.
 	 */
 	private void updateLevel() {
 		final int next = Level.getXP(level + 1) - xp;
-		// Show "em-dash" for max level players rather than 
+		// Show "em-dash" for max level players rather than
 		// a confusing negative required xp.
 		final String nextS = (next < 0) ? "\u2014" : Integer.toString(next);
-			
+
 		final String text = "Level:" + SPC + level + SPC + "(" + nextS + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -196,12 +195,12 @@ public final class StatsPanelController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Called when HP or max HP has changed.
 	 */
 	private void updateHP() {
-		
+
 		int maxhpvalue = maxhp;
 		if (maxhpModified != 0) {
 			maxhpvalue = maxhpModified;
@@ -214,7 +213,7 @@ public final class StatsPanelController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Called when atk, atkxp, or weaponAtk changes.
 	 */
@@ -229,7 +228,7 @@ public final class StatsPanelController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Called when def, defxp, or itemDef changes.
 	 */
@@ -244,7 +243,7 @@ public final class StatsPanelController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Called when ratk, ratkxp, or weaponRatk changes.
 	 */
@@ -259,7 +258,7 @@ public final class StatsPanelController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Listener for HP and base_hp changes.
 	 */
@@ -269,7 +268,7 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			
+
 			String newValue = (String) event.getNewValue();
 			if (event.getPropertyName().equals("base_hp")) {
 				maxhp = Integer.parseInt(newValue);
@@ -285,17 +284,17 @@ public final class StatsPanelController {
 			updateHP();
 		}
 	}
-	
+
 	/**
 	 * Called when there are additions to a potential money slot.
-	 * 
+	 *
 	 * @param slot
 	 * @param object
 	 */
 	private void addMoney(String slot, RPObject object) {
 		HashMap<String, RPObject> set = money.get(slot);
-		String id = object.get("id"); 
-		
+		String id = object.get("id");
+
 		boolean add = false;
 		if ("money".equals(object.get("class"))) {
 			add = true;
@@ -306,7 +305,7 @@ public final class StatsPanelController {
 				money.put(slot, set);
 			}
 		} else if (set.containsKey(id) && object.has("quantity")) {
-			// Has been checked to be money before. Add only if there's 
+			// Has been checked to be money before. Add only if there's
 			// quantity though. Adding to empty slots can create add events without.
 			// Then the quantity has arrived in previous event
 			add = true;
@@ -317,7 +316,7 @@ public final class StatsPanelController {
 			updateMoney();
 		}
 	}
-	
+
 	/**
 	 * Remove all the money objects. Called at zone change.
 	 */
@@ -328,7 +327,7 @@ public final class StatsPanelController {
 
 	/**
 	 * Called when items are removed from a potential money slot.
-	 * 
+	 *
 	 * @param slot
 	 * @param obj
 	 */
@@ -338,13 +337,13 @@ public final class StatsPanelController {
 			updateMoney();
 		}
 	}
-	
+
 	/**
 	 * Count the money, and update the label text.
 	 */
 	private void updateMoney() {
 		int amount = 0;
-		
+
 		for (HashMap<String, RPObject> stack : money.values()) {
 			for (RPObject obj : stack.values()) {
 				amount += obj.getInt("quantity");
@@ -358,7 +357,7 @@ public final class StatsPanelController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Listener for atk and atk_xp changes.
 	 */
@@ -368,7 +367,7 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			
+
 			if ("atk_xp".equals(event.getPropertyName())) {
 				atkxp = Integer.parseInt((String) event.getNewValue());
 			} else if ("atk".equals(event.getPropertyName())) {
@@ -377,7 +376,7 @@ public final class StatsPanelController {
 			updateAtk();
 		}
 	}
-	
+
 	/**
 	 * Listener for def and def_xp changes.
 	 */
@@ -387,7 +386,7 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			
+
 			if ("def_xp".equals(event.getPropertyName())) {
 				defxp = Integer.parseInt((String) event.getNewValue());
 			} else if ("def".equals(event.getPropertyName())) {
@@ -396,7 +395,7 @@ public final class StatsPanelController {
 			updateDef();
 		}
 	}
-	
+
 	/**
 	 * Listener for ratk and ratk_xp changes.
 	 */
@@ -406,7 +405,7 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			
+
 			if ("ratk_xp".equals(event.getPropertyName())) {
 				ratkxp = Integer.parseInt((String) event.getNewValue());
 			} else if ("ratk".equals(event.getPropertyName())) {
@@ -415,7 +414,7 @@ public final class StatsPanelController {
 			updateRatk();
 		}
 	}
-	
+
 	/**
 	 * Listener for xp changes.
 	 */
@@ -436,7 +435,7 @@ public final class StatsPanelController {
 			});
 		}
 	}
-	
+
 	/**
 	 * Listener for level changes.
 	 */
@@ -452,7 +451,7 @@ public final class StatsPanelController {
 			updateLevel();
 		}
 	}
-	
+
 	/**
 	 * Listener for weapon atk changes.
 	 */
@@ -466,7 +465,7 @@ public final class StatsPanelController {
 			updateAtk();
 		}
 	}
-	
+
 	/**
 	 * Listener for armor def changes.
 	 */
@@ -480,7 +479,7 @@ public final class StatsPanelController {
 			updateDef();
 		}
 	}
-	
+
 	/**
 	 * Listener for ranged weapon atk changes.
 	 */
@@ -494,7 +493,7 @@ public final class StatsPanelController {
 			updateRatk();
 		}
 	}
-	
+
 	/**
 	 * Listener for eating and choking changes.
 	 */
@@ -512,7 +511,7 @@ public final class StatsPanelController {
 				});
 				return;
 			}
-			
+
 			final boolean newStatus = event.getNewValue() != null;
 			if ("eating".equals(event.getPropertyName())) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -531,7 +530,7 @@ public final class StatsPanelController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Listener for status changes.
 	 */
@@ -552,7 +551,7 @@ public final class StatsPanelController {
 	        });
 	    }
 	}
-	
+
 	/**
 	 * Listener for away status changes.
 	 */
@@ -576,7 +575,7 @@ public final class StatsPanelController {
 			});
 		}
 	}
-	
+
 	/**
 	 * Listener for karma changes.
 	 */
@@ -586,11 +585,11 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-		
+
 			panel.setKarma(MathHelper.parseDouble((String) event.getNewValue()));
 		}
 	}
-	
+
 	/**
 	 * Listener for mana changes.
 	 */
@@ -600,7 +599,7 @@ public final class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-		
+
 			try {
 				if (event.getPropertyName().endsWith("base_mana")) {
 					baseMana = Integer.parseInt((String) event.getNewValue());
@@ -614,7 +613,7 @@ public final class StatsPanelController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Listener for grumpy status changes.
 	 */
@@ -638,7 +637,7 @@ public final class StatsPanelController {
 			});
 		}
 	}
-	
+
 	/**
 	 * Listener for money changes.
 	 * Due to there being no "money" property for the player, this
@@ -656,14 +655,14 @@ public final class StatsPanelController {
 				clearMoney();
 				return;
 			}
-			
+
 			RPSlot slot = (RPSlot) event.getOldValue();
 			if (slot != null) {
 				for (final RPObject object : slot) {
 					removeMoney(slot.getName(), object);
 				}
 			}
-			
+
 			slot = (RPSlot) event.getNewValue();
 			if (slot != null) {
 				for (final RPObject object : slot) {

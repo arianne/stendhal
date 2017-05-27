@@ -23,14 +23,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 
 public class GateTest {
 	@BeforeClass
@@ -58,7 +58,7 @@ public class GateTest {
 	@Test
 	public void testGetArea() {
 		Gate g = new Gate();
-		
+
 		assertEquals(new Rectangle2D.Double(0, 0, 0, 0).toString(), g.getArea().toString());
 		RPObject object = new RPObject();
 		object.put("x", 1);
@@ -67,7 +67,7 @@ public class GateTest {
 		object.put("height", 4);
 		g.initialize(object);
 		assertEquals(new Rectangle2D.Double(1, 2, 3, 4), g.getArea());
-		
+
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class GateTest {
 		object.setID(RPObject.INVALID_ID);
 		g.initialize(object);
 		assertThat(g.getID(), is(object.getID()));
-		
+
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class GateTest {
 		object.put("title", "title");
 		g.initialize(object);
 		assertThat(g.getTitle(), is("title"));
-		
+
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class GateTest {
 		assertTrue(g.isOnGround());
 	}
 
-	
+
 	/**
 	 * Tests for toString.
 	 */

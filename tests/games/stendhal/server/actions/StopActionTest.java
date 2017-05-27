@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.actions.attack.StopAction;
-import games.stendhal.server.entity.player.Player;
-
-import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.actions.attack.StopAction;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 
 public class StopActionTest {

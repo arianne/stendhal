@@ -21,28 +21,28 @@ package games.stendhal.common.parser;
 public class ConversationContext {
 
 	// conversation context states
-	
+
 	/** no current conversation context. */
-    static final int CCS_NONE = 0; 
-    
+    static final int CCS_NONE = 0;
+
     /** Conversation Context wait for a yes/no answer. */
-    static final int CCS_WAIT_FOR_YES_NO = 1; 
-    
+    static final int CCS_WAIT_FOR_YES_NO = 1;
+
     /** Conversation Context wait for a named object. */
-    static final int CCS_WAIT_FOR_OBJECT = 2; 
-  
+    static final int CCS_WAIT_FOR_OBJECT = 2;
+
 
     /** Flag for sentences to be used for matching. */
     protected boolean forMatching = false;
-    
+
     /** Flag to enable Expression merging. */
     protected boolean mergeExpressions = true;
-    
+
     /** Flag to enable ignoring of words marked with the type IGN. */
-    protected boolean ignoreIgnorable = true; 
-    
+    protected boolean ignoreIgnorable = true;
+
     /** stores current Conversation state. */
-    private int state = CCS_NONE; 
+    private int state = CCS_NONE;
 
 
     public void setState(final int state) {
@@ -92,21 +92,28 @@ public class ConversationContext {
     /** Default implementation of equals() */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (!(obj instanceof ConversationContext))
+		}
+		if (!(obj instanceof ConversationContext)) {
 			return false;
+		}
 		ConversationContext other = (ConversationContext) obj;
-		if (forMatching != other.forMatching)
+		if (forMatching != other.forMatching) {
 			return false;
-		if (ignoreIgnorable != other.ignoreIgnorable)
+		}
+		if (ignoreIgnorable != other.ignoreIgnorable) {
 			return false;
-		if (mergeExpressions != other.mergeExpressions)
+		}
+		if (mergeExpressions != other.mergeExpressions) {
 			return false;
-		if (state != other.state)
+		}
+		if (state != other.state) {
 			return false;
+		}
 		return true;
 	}
 }

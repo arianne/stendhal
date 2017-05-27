@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -18,27 +21,24 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.area.ConditionAndActionArea;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-import java.util.Map;
-
 public class AreaUseItem extends Item {
     public AreaUseItem(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
         super(name, clazz, subclass, attributes);
     }
-    
+
     public AreaUseItem(AreaUseItem item) {
         super(item);
     }
-    
+
     @Override
     public boolean onUsed(RPEntity player) {
         boolean success = false;
-        
+
         StendhalRPZone zone = player.getZone();
         Direction facing = player.getDirection();
         int posX = player.getX();
         int posY = player.getY();
-        
+
         // Tarrget one step in front of player
         if (facing == Direction.RIGHT) {
             posX += 1;
@@ -49,14 +49,14 @@ public class AreaUseItem extends Item {
         } else if (facing == Direction.UP) {
             posY += 1;
         }
-        
+
         List<Entity> entityList = zone.getEntitiesAt(posX, posY);
         for (Entity entity : entityList) {
             if (entity instanceof ConditionAndActionArea) {
                 success = ((ConditionAndActionArea) entity).use((Player) player);
             }
         }
-        
+
         return success;
     }
 }

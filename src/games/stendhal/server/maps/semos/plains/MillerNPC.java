@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.plains;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,12 +25,9 @@ import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SeedSellerBehaviour;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
  * The miller (original name: Jenny). She mills flour for players who bring
- * grain. 
+ * grain.
  */
 public class MillerNPC implements ZoneConfigurator {
 
@@ -36,7 +36,7 @@ public class MillerNPC implements ZoneConfigurator {
 			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Jenny") {
 			@Override
@@ -58,7 +58,7 @@ public class MillerNPC implements ZoneConfigurator {
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
-			
+
 		};
 		// Jenny mills flour if you bring her grain.
 		final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
@@ -71,7 +71,7 @@ public class MillerNPC implements ZoneConfigurator {
 		npc.setPosition(19, 39);
 		npc.setDescription("You see Jenny. She is the local miller.");
 		npc.setDirection(Direction.DOWN);
-		npc.setEntityClass("woman_003_npc");	
+		npc.setEntityClass("woman_003_npc");
 		zone.add(npc);
 	}
 

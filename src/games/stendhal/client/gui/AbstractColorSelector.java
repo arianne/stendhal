@@ -11,14 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.j2d.Blend;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.StyleUtil;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteCache;
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -34,6 +26,14 @@ import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import games.stendhal.client.gui.j2d.Blend;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteCache;
+import games.stendhal.client.sprite.SpriteStore;
+
 /**
  * Base class for the outfit color selectors.
  *
@@ -42,10 +42,10 @@ import javax.swing.event.ChangeListener;
 public abstract class AbstractColorSelector<T extends ColorSelectionModel> extends JPanel {
 	/** Selection model. */
 	private final T model;
-	
+
 	/**
 	 * Construct a selector from a model.
-	 * 
+	 *
 	 * @param model selection model
 	 */
 	AbstractColorSelector(T model) {
@@ -53,16 +53,16 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		setBorder(null);
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING));
 	}
-	
+
 	/**
 	 * Get the selection model.
-	 * 
+	 *
 	 * @return selection model
 	 */
 	T getSelectionModel() {
 		return model;
 	}
-	
+
 	/**
 	 * Base class for the color selector sliders.
 	 * @param <T> selection model type
@@ -73,7 +73,7 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 
 		/**
 		 * Create a new Selector.
-		 * 
+		 *
 		 * @param model selection model
 		 */
 		AbstractSelector(T model) {
@@ -119,12 +119,12 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		/**
 		 * User clicked a point, or dragged the adjuster to it. The component
 		 * should recalculate the colors.
-		 * 
+		 *
 		 * @param point clicked point
 		 */
 		abstract void select(Point point);
 	}
-	
+
 	/**
 	 * Base class for color selectors that are based on a sprite.
 	 *
@@ -135,30 +135,30 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 		static final int SPRITE_WIDTH = 80;
 		/** Height of the generated sprite. */
 		static final int SPRITE_HEIGHT = 52;
-		
+
 		/** Background sprites. */
 		private Sprite normalSprite, disabledSprite;
-		
+
 		/**
 		 * Construct a new AbstractSpriteColorSelector.
-		 * 
+		 *
 		 * @param model model for the selector
 		 */
 		AbstractSpriteColorSelector(T model) {
 			super(model);
 		}
-		
+
 		/**
 		 * Create the normal, colored background sprite. The dimensions should
 		 * be {@link #SPRITE_WIDTH} × {@link #SPRITE_HEIGHT}.
-		 * 
+		 *
 		 * @return background sprite
 		 */
 		abstract Sprite createNormalSprite();
-		
+
 		/**
 		 * Fetch the normal background sprite.
-		 * 
+		 *
 		 * @return colored background sprite
 		 */
 		private Sprite getNormalSprite() {
@@ -167,10 +167,10 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 			}
 			return normalSprite;
 		}
-		
+
 		/**
 		 * Get the current background sprite.
-		 * 
+		 *
 		 * @return current background
 		 */
 		Sprite getBackgroundSprite() {
@@ -191,7 +191,7 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 				return disabledSprite;
 			}
 		}
-		
+
 		@Override
 		public Dimension getPreferredSize() {
 			Sprite s = getBackgroundSprite();
@@ -202,14 +202,14 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 			height += ins.top + ins.bottom;
 			return new Dimension(width, height);
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			Insets ins = getInsets();
 			Sprite sprite = getBackgroundSprite();
 			sprite.draw(g, ins.left, ins.right);
 		}
-		
+
 		@Override
 		public void setEnabled(boolean enabled) {
 			boolean old = isEnabled();

@@ -41,12 +41,12 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 	public int getSize() {
 		return memberList.size();
 	}
-	
+
 	/**
 	 * Set the current leader. The leader must be a member of the group, thus
 	 * this method must not be called before setting the members.
-	 * 
-	 * @param name name of the leader 
+	 *
+	 * @param name name of the leader
 	 */
 	void setLeader(String name) {
 		Member leader = memberMap.get(name);
@@ -60,16 +60,16 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 					break;
 				}
 			}
-			
+
 			Collections.sort(memberList);
 			int index2 = memberList.indexOf(leader);
 			fireContentsChanged(this, index1, index2);
 		}
 	}
-	
+
 	/**
 	 * Set the list of current group members.
-	 * 
+	 *
 	 * @param members list of members
 	 */
 	void setMembers(List<String> members) {
@@ -80,7 +80,7 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 			if (size > 0) {
 				this.fireIntervalRemoved(this, 0, size - 1);
 			}
-			
+
 			return;
 		}
 		// Find out the added members
@@ -92,10 +92,10 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 		removedMembers.removeAll(members);
 		removeMembers(removedMembers);
 	}
-	
+
 	/**
 	 * Add a group of new members.
-	 * 
+	 *
 	 * @param newMembers list of new members
 	 */
 	private void addMembers(List<String> newMembers) {
@@ -120,10 +120,10 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 		}
 		fireIntervalAdded(this, startIndex, endIndex);
 	}
-	
+
 	/**
 	 * Remove a group of members.
-	 * 
+	 *
 	 * @param members removed members
 	 */
 	private void removeMembers(List<String> members) {
@@ -146,11 +146,11 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 		}
 		fireIntervalRemoved(this, startIndex, endIndex);
 	}
-	
+
 	/**
 	 * To be called when a member changes a value that makes a difference in
 	 * drawing it.
-	 * 
+	 *
 	 * @param member member whose attributes changed
 	 */
 	void memberChanged(Member member) {
@@ -159,10 +159,10 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 			this.fireContentsChanged(this, index, index);
 		}
 	}
-	
+
 	/**
 	 * Get data of a specified group member.
-	 *  
+	 *
 	 * @param name member name
 	 * @return member data, or <code>null</code> if there's no such player in
 	 * 	the group
@@ -175,7 +175,7 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 	public Iterator<Member> iterator() {
 		return memberList.iterator();
 	}
-	
+
 	/**
 	 * Listener significant HP ratio changes that happen in any of the members.
 	 */
@@ -194,7 +194,7 @@ class MemberListModel extends AbstractListModel<Member> implements Iterable<Memb
 					SwingUtilities.invokeLater(new Runnable() {
 						@Override
 						public void run() {
-							memberChanged((Member) source);						
+							memberChanged((Member) source);
 						}
 					});
 				}

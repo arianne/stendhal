@@ -21,7 +21,7 @@ import org.junit.Test;
 
 /**
  * Tests the CountingMap class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class UniqueIdentifierMapTest {
@@ -41,7 +41,7 @@ public class UniqueIdentifierMapTest {
 		// count map entries
 		int size = 0;
 		for (final Map.Entry<String, String> it : a) {
-			it.toString(); 
+			it.toString();
 			++size;
 		}
 		assertEquals(2, size);

@@ -20,7 +20,7 @@ class ClientRunner {
 
 	/**
 	 * Starts stendhal.
-	 * 
+	 *
 	 * @param args
 	 *            args
 	 */

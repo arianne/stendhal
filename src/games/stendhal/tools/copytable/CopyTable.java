@@ -23,7 +23,7 @@ public class CopyTable {
 	public static void main(String[] args) throws SQLException, InterruptedException {
 		new DatabaseFactory().initializeDatabase();
 		TransactionPool transactionPool = TransactionPool.get();
-		
+
 		for (int i = 1122; i < 346000; i++) {
 			System.out.println("> " + i);
 			String cmd = "INSERT INTO itemlog_new (id, timedate, itemid, source, event, param1, param2, param3, param4)"

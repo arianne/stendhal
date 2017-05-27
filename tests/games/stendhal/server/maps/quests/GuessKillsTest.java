@@ -14,22 +14,22 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.nalwor.city.GuessKillsNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CreatureTestHelper;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 
@@ -71,7 +71,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		npc = SingletonRepository.getNPCList().get("Crearid");
 		CreatureTestHelper.generateRPClasses();
 		en = npc.getEngine();
-		
+
 		//Test default responses and if player does not meet requirement
 		en.step(player, "hi");
 		assertEquals("Greetings", getReply(npc));
@@ -87,7 +87,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I'd like some entertainment but you don't look like you're up to it just yet. Come back when you've gained a bit more experience fighting creatures.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye deary.", getReply(npc));
-		
+
 		// Give player enough kills
 		player.setKeyedSlot("!kills", "solo.deer", "1001");
 
@@ -101,7 +101,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I've been counting how many creatures you have killed, now tell me, how many deer do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, come back when you want to continue.", getReply(npc));
-		
+
 		// Add other creature to test if NPC remembers old creature
 		SingletonRepository.getEntityManager().getCreature("rat");
 		player.setKeyedSlot("!kills", "solo.rat", "10");
@@ -126,25 +126,25 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 
 		// Reset quest because of timestamp
 		player.setQuest(questSlot, "done;0;");
-		
+
 		// Test bogus answers and exact answer
 		en.step(player, "play");
 		assertEquals("I'm a little bored at the moment. Would you like to play a game?", getReply(npc));
 		en.step(player, "yes");
-		
+
 		String reply = getReply(npc);
 		assertEquals(reply.startsWith("I've been counting how many creatures you have killed, now tell me, how many "), true);
 		assertEquals(reply.endsWith(" do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
-		
+
 		en.step(player, "sdf");
 		assertEquals("How could that possibly be an answer? Give me a proper number.", getReply(npc));
-		
+
 		if (reply.contains("rat")) {
 			en.step(player, "10");
 		} else {
 			en.step(player, "1001");
 		}
-		
+
 		assertEquals("Stupendous! That is the exact number! Either you're very lucky or you really pay attention.", getReply(npc));
 
 		// Reset quest because of timestamp
@@ -154,11 +154,11 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "play");
 		assertEquals("I'm a little bored at the moment. Would you like to play a game?", getReply(npc));
 		en.step(player, "yes");
-		
+
 		reply = getReply(npc);
 		assertEquals(reply.startsWith("I've been counting how many creatures you have killed, now tell me, how many "), true);
 		assertEquals(reply.endsWith(" do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
-		
+
 		en.step(player, "98");
 		assertEquals("Nope, that is not right. Try again.", getReply(npc));
 		en.step(player, "o");
@@ -166,11 +166,11 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "023");
 		assertEquals("Wrong again. You have one more try.", getReply(npc));
 		en.step(player, "88");
-		
+
 		reply = getReply(npc);
 		assertEquals(reply.startsWith("Unfortunately that is incorrect. The correct answer is in the region of "), true);
 		assertEquals(reply.endsWith("Good effort though."), true);
-		
+
 		en.step(player, "play");
 		assertEquals(getReply(npc).startsWith("I've had plenty of fun for now, thanks. Come back in, lets say "), true);
 	}

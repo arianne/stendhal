@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.Map;
-
 /**
  * Builds a NPC in a house on Ados market (name:Caroline) who is the daughter of fisherman Fritz
- * 
- * @author Vanessa Julius 
+ *
+ * @author Vanessa Julius
  *
  */
 public class FishermansDaughterNPC implements ZoneConfigurator {
@@ -42,14 +42,14 @@ public class FishermansDaughterNPC implements ZoneConfigurator {
 				setPath(null);
 
 			}
-			
+
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello, nice to meet you!");
 				addHelp("Did you visit the Ados market already? There are so many #nice #people around and some make #awesome #food!");
 				addReply("awesome food", "I tried the fish soup and grilled steaks, they are so delicious!");
 				addReply("nice people", "Florence Boullabaisse is one of my best friends and Haunchy is a really nice guy.");
-				addQuest("I am currently trying to figure out how I can start my own business... I love to cook and might start a #catering #service soon... Meanwhile I enjoy my new renovated house :)"); 
+				addQuest("I am currently trying to figure out how I can start my own business... I love to cook and might start a #catering #service soon... Meanwhile I enjoy my new renovated house :)");
 				addReply("catering service", "I've heard that some #hotels need some dinner for their guests... their kitchens are too small and they need someone who can easily cook and bring them some food they need.");
 				addReply("hotels", "The huge one in Fado is known to newlyweds. It is a really nice location to celebrate your wedding at.");
 				addJob("My father is #Fritz, the fisherman who walks outside infront of our house. Right now, I'm thinking about starting up my own business, a #catering #service.");
@@ -58,7 +58,7 @@ public class FishermansDaughterNPC implements ZoneConfigurator {
 				addOffer("I can't offer you anything at the moment, but hopefully soon.");
 				addGoodbye("Thank you for visiting us here and have a nice day.");
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);

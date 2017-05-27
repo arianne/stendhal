@@ -11,17 +11,16 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.awt.Color;
-
-import marauroa.common.game.RPObject;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+
+import java.awt.Color;
 
 import org.junit.Test;
 
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 
 /**
@@ -29,11 +28,11 @@ import utilities.PlayerTestHelper;
  */
 public class OutfitColorTest {
 	/**
-	 * Check situations when get() should return PLAIN. 
+	 * Check situations when get() should return PLAIN.
 	 */
 	@Test
 	public void testConstructPlain() {
-		// no color 
+		// no color
 		RPObject player = PlayerTestHelper.createPlayer("Mannequin");
 		OutfitColor color = OutfitColor.get(player);
 		// Should be the same, not just equal
@@ -50,7 +49,7 @@ public class OutfitColorTest {
 		assertNotSame(OutfitColor.PLAIN, color);
 		// also should be unequal
 		assertFalse(OutfitColor.PLAIN.equals(color));
-		
+
 		// try the plain constructor
 		player.remove("outfit_colors", "dress");
 		color = new OutfitColor(player);
@@ -59,13 +58,13 @@ public class OutfitColorTest {
 		// but must be equal
 		assertEquals(OutfitColor.PLAIN, color);
 	}
-	
+
 	/**
 	 * Test feeding invalid values to the color map. The server should not do
 	 * that, but it should be handled gracefully.
 	 */
 	@Test
-	public void testInvalidValue() { 
+	public void testInvalidValue() {
 		RPObject player = PlayerTestHelper.createPlayer("Mannequin");
 		// Ensure that the player has an empty color map
 		player.put("outfit_colors", "dress", "foo");
@@ -77,7 +76,7 @@ public class OutfitColorTest {
 		player.put("outfit_colors", "sky", "blue");
 		color = OutfitColor.get(player);
 		assertEquals(OutfitColor.PLAIN, color);
-		
+
 		player.put("outfit_colors", "dress", 1);
 		color = OutfitColor.get(player);
 		// Unrecognized value
@@ -85,7 +84,7 @@ public class OutfitColorTest {
 		// also should be unequal
 		assertFalse(OutfitColor.PLAIN.equals(color));
 	}
-	
+
 	/**
 	 * Test hashCode.
 	 */
@@ -94,20 +93,20 @@ public class OutfitColorTest {
 		RPObject player = PlayerTestHelper.createPlayer("Mannequin");
 		OutfitColor color = OutfitColor.get(player);
 		assertEquals(OutfitColor.PLAIN.hashCode(), color.hashCode());
-		
-		// two equal instances should have the same hashcode 
+
+		// two equal instances should have the same hashcode
 		player.put("outfit_colors", "dress", 0);
 		color = OutfitColor.get(player);
 		assertEquals(color.hashCode(), OutfitColor.get(player).hashCode());
 		// unrecognized part, should not affect
 		player.put("outfit_colors", "sky", 0x0000ff);
 		assertEquals(color.hashCode(), OutfitColor.get(player).hashCode());
-		
+
 		player.put("outfit_colors", "hair", 0xbad);
 		color = OutfitColor.get(player);
 		assertEquals(color.hashCode(), OutfitColor.get(player).hashCode());
 	}
-	
+
 	/**
 	 * Test equals.
 	 */
@@ -118,7 +117,7 @@ public class OutfitColorTest {
 		assertFalse(OutfitColor.PLAIN.equals(42));
 		assertFalse(OutfitColor.PLAIN.equals(new Object()));
 	}
-	
+
 	/**
 	 * Test toString
 	 */
@@ -143,7 +142,7 @@ public class OutfitColorTest {
 		assertEquals("Inconsistent ordering", "detail=" + 0xfff00ba5 +
 				";dress=" + 0xff000000 + ";hair=" + 0xff00beeb + ";", color.toString());
 	}
-	
+
 	/**
 	 * Test getting and setting a color.
 	 */
@@ -154,7 +153,7 @@ public class OutfitColorTest {
 		color.setColor("hair", Color.BLUE);
 		assertEquals(color.getColor("hair"), Color.BLUE);
 		assertFalse(color.getColor("hair").equals(Color.BLACK));
-		
+
 		// set via constructor
 		player.put("outfit_colors", "dress", 0xff00);
 		color = OutfitColor.get(player);

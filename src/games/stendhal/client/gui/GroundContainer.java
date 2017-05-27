@@ -15,6 +15,20 @@ package games.stendhal.client.gui;
 import static games.stendhal.common.constants.Actions.DIR;
 import static games.stendhal.common.constants.Actions.FACE;
 import static games.stendhal.common.constants.Actions.TYPE;
+
+import java.awt.Point;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.geom.Point2D;
+
+import javax.swing.JComponent;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
@@ -30,23 +44,9 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.common.Direction;
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.NotificationType;
-
-import java.awt.Point;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-import java.awt.geom.Point2D;
-
-import javax.swing.JComponent;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * Mouse handler for the game screen floor.
@@ -55,9 +55,9 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 	MouseWheelListener {
 
 	private static final Logger logger = Logger.getLogger(GroundContainer.class);
-	
-	private CursorRepository cursorRepository = new CursorRepository(); 
-	
+
+	private CursorRepository cursorRepository = new CursorRepository();
+
 	/** The game screen this handler is providing mouse processing. */
 	private final IGameScreen screen;
 	/** Client for sending actions. */
@@ -66,15 +66,15 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 	private final JComponent canvas;
 
 	private GroundContainerMouseState state;
-	
+
 	/**
 	 * Create a new GroundContainer.
-	 * 
+	 *
 	 * @param client client
 	 * @param gameScreen screen corresponding to the ground
 	 * @param canvas The component to place popup menus
 	 */
-	public GroundContainer(final StendhalClient client, final IGameScreen gameScreen, 
+	public GroundContainer(final StendhalClient client, final IGameScreen gameScreen,
 			final JComponent canvas) {
 		this.client = client;
 		this.screen = gameScreen;
@@ -85,7 +85,7 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 	@Override
 	public synchronized void mouseMoved(MouseEvent e) {
 		state.mouseMoved(e);
-	
+
 		if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
 			return;
 		}
@@ -93,20 +93,20 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 		StendhalCursor cursor = getCursor(e.getPoint());
 		canvas.setCursor(cursorRepository.get(cursor));
 	}
-	
+
 	/**
 	 * Get cursor for a point.
-	 * 
+	 *
 	 * @param point location of the pointer
 	 * @return cursor
 	 */
 	private StendhalCursor getCursor(Point point) {
 		return state.getCursor(point);
 	}
-	
+
 	/**
 	 * Send a move to command to the server.
-	 * 
+	 *
 	 * @param point destination
 	 * @param doubleClick <code>true</code> if the action was created with a
 	 * 	double click, <code>false</code> otherwise
@@ -119,15 +119,15 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 		if (doubleClick) {
 			action.put("double_click", "");
 		}
-		
+
 		Direction dir = calculateZoneChangeDirection(point);
 		if (dir != null) {
 			action.put("extend", dir.ordinal());
 		}
-		
+
 		client.send(action);
 	}
-	
+
 	/**
 	 * Calculates whether the click was close enough to a zone border to trigger
 	 * a zone change.
@@ -155,28 +155,28 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Drop an entity to the container.
-	 * 
+	 *
 	 * @param entity dropped entity
 	 * @param amount number of entities dropped
 	 * @param point dropping location
 	 */
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		final RPAction action = new RPAction();
-		
+
 		RPObject item = entity.getRPObject();
 		if (item == null) {
 			return;
 		}
-		
+
 		RPObject parent = item.getContainer();
 		action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
 		if (parent != null) {
 			// looks like an drop
 			action.put("type", "drop");
-			
+
 			// Compatibility object addressing
 			action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
 			action.put(EquipActionConsts.BASE_SLOT, item.getContainerSlot().getName());
@@ -236,7 +236,7 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 			}
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see games.stendhal.client.entity.Inspector#inspectMe(games.stendhal.client.entity.IEntity, marauroa.common.game.RPSlot, games.stendhal.client.gui.SlotWindow, int, int)
@@ -265,11 +265,11 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 			}
 		}
 	}
-	
+
 
 	/**
 	 * Get the screen corresponding to the ground container.
-	 * 
+	 *
 	 * @return screen
 	 */
 	public IGameScreen getScreen() {
@@ -278,7 +278,7 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 
 	/**
 	 * Get the JComponent of the container.
-	 * 
+	 *
 	 * @return component
 	 */
 	public JComponent getCanvas() {
@@ -287,7 +287,7 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 
 	/**
 	 * Get the client.
-	 * 
+	 *
 	 * @return client
 	 */
 	public StendhalClient getClient() {
@@ -296,7 +296,7 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 
 	/**
 	 * Set the mouse handler state for the ground.
-	 * 
+	 *
 	 * @param newState new mouse state
 	 */
 	public void setNewMouseHandlerState(
@@ -313,10 +313,10 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 	public void mouseClicked(MouseEvent e) {
 		state.mouseReleased(e);
 	}
-	
+
 	/**
 	 * Remembers whether the client was active on last mouse down.
-	 * 
+	 *
 	 * @param e event
 	 */
 	@Override

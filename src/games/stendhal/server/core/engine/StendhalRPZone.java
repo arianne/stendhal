@@ -146,7 +146,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private int x;
 
 	private int y;
-	
+
 	/** User representable name of the zone. */
 	private final String readableName;
 
@@ -367,7 +367,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				it.remove();
 			}
 		}
-		
+
 		final TransferContent content = new TransferContent();
 		content.name = name;
 		content.cacheable = true;
@@ -377,7 +377,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		contents.add(content);
 	}
-	
+
 	/**
 	 * Resend the zone data to players on the zone. This is meant for situations
 	 * where the map data changes. (Weather and lighting changes, and so on).
@@ -1698,12 +1698,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public String describe() {
 		return StendhalRPZone.translateZoneName(this.getName());
 	}
-	
+
 	/**
 	 * Generate a precise zone name that can be shown to players (in client
 	 * minimap). For vague zone names, use {@link #describe()}.
-	 * 
-	 * @param zoneName game internal zone name 
+	 *
+	 * @param zoneName game internal zone name
 	 * @return human readable zone name
 	 */
 	private String createReadableName(String zoneName) {
@@ -1713,7 +1713,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		if (m.matches()) {
 			final String level = m.group(1);
 			String remainder = m.group(2);
-			
+
 			final String[] directions = new String[] {
 					".+_n(\\d?)e(\\d?)($|_).*", "N$1E$2", "_n\\d?e\\d?($|_)", "_",
 					".+_n(\\d?)w(\\d?)($|_).*", "N$1W$2", "_n\\d?w\\d?($|_)", "_",
@@ -1732,7 +1732,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 							directions[i + 3]);
 				}
 			}
-			
+
 			// here we need to capitalize the city name
 			result.append(Grammar.makeUpperCaseWord(remainder.replaceAll("_", " ")));
 			result.append(dirBuf);
@@ -1747,7 +1747,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		} else {
 			// As of this writing (2014-01-15), the few zone names that do not
-			// match produce good results with this. 
+			// match produce good results with this.
 			logger.info("no match: " + zoneName);
 			return Grammar.makeUpperCaseWord(zoneName.replaceAll("_", " "));
 		}

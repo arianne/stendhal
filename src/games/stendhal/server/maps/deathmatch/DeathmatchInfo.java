@@ -49,7 +49,7 @@ public class DeathmatchInfo {
 		this.entranceSpot = entrance;
 	}
 
-	
+
 	/**
 	 * Gets the arena.
 	 *
@@ -82,6 +82,6 @@ public class DeathmatchInfo {
 		final DeathmatchEngine dmEngine = new DeathmatchEngine(player, this, raiser);
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, dmEngine);
 	}
-	
-	
+
+
 }

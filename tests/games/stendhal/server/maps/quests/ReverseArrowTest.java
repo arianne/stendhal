@@ -12,19 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.mapstuff.portal.Door;
-import games.stendhal.server.entity.mapstuff.sign.Sign;
-import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import marauroa.common.game.RPClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.portal.Door;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPClass;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -37,14 +38,14 @@ public class ReverseArrowTest {
 		StendhalRPZone zone = new StendhalRPZone("int_ados_reverse_arrow");
 		MockStendlRPWorld.get().addRPZone(zone);
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("0_semos_mountain_n2"));
-		
+
 		if (!RPClass.hasRPClass("door")) {
 			Door.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("sign")) {
 			Sign.generateRPClass();
 		}
-		
+
 	}
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -52,7 +53,7 @@ public class ReverseArrowTest {
 		NPCList.get().clear();
 	}
 
-	
+
 	/**
 	 * Tests for getSlotName.
 	 */
@@ -66,7 +67,7 @@ public class ReverseArrowTest {
 	 */
 	@Test
 	public void testAddToWorld() {
-		
+
 		ReverseArrow arrowquest = new ReverseArrow();
 		arrowquest.addToWorld();
 	}
@@ -82,7 +83,7 @@ public class ReverseArrowTest {
 		assertNotNull(arrowquest.player);
 		arrowquest.finish(false, null);
 		assertNotNull(arrowquest.player);
-		
+
 		arrowquest.finish(true, null);
 		assertNull(arrowquest.player);
 	}

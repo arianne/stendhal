@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.mines;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -21,8 +23,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 public class HighPriestNPC implements ZoneConfigurator {
 	/**
@@ -67,13 +67,13 @@ public class HighPriestNPC implements ZoneConfigurator {
 						"The fearest creature that Bolrogh army has.");
 				addGoodbye();
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.LEFT);
 			}
 		};
-		
+
 
 		npc.addInitChatMessage(null, new ChatAction() {
 			@Override
@@ -94,9 +94,9 @@ public class HighPriestNPC implements ZoneConfigurator {
 					player.setQuest("AenihataFirstChat", "done");
 					((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 				}
-				
+
 			}
-			
+
 			});
 
 		npc.setEntityClass("highpriestnpc");

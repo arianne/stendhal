@@ -23,43 +23,43 @@ class MarriageQuestInfo {
 	 * This is necessary to disallow polygamy.
 	 */
 	private static final String SPOUSE_QUEST_SLOT = "spouse";
-	
+
 	/**
 	 * Get the name of the quest slot.
-	 * 
+	 *
 	 * @return quest slot name
 	 */
 	public String getQuestSlot() {
 		return QUEST_SLOT;
 	}
-	
+
 	/**
 	 * Get the name of the spouse slot.
-	 * 
+	 *
 	 * @return spouse slot name
 	 */
 	public String getSpouseQuestSlot() {
 		return SPOUSE_QUEST_SLOT;
 	}
-	
+
 	/**
 	 * Check if a player is married to another player.
-	 * 
+	 *
 	 * @param player the player to be checked
 	 * @return true iff the player is married
 	 */
 	public boolean isMarried(final Player player) {
 		return player.hasQuest(SPOUSE_QUEST_SLOT);
-	} 
-	
+	}
+
 	/**
 	 * Check if a player is engaged with another player.
-	 * 
+	 *
 	 * @param player the player to check
 	 * @return true iff the player is engaged
 	 */
     public boolean isEngaged(final Player player) {
-        return (player.hasQuest(QUEST_SLOT) 
+        return (player.hasQuest(QUEST_SLOT)
         		&& (player.getQuest(QUEST_SLOT).startsWith("engaged") || player.getQuest(QUEST_SLOT).startsWith("forging;")));
     }
 }

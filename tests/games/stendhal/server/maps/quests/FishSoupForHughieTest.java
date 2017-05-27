@@ -7,6 +7,12 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -15,12 +21,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.farmhouse.FarmersWifeNPC;
 import games.stendhal.server.maps.ados.farmhouse.MotherNPC;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -43,8 +43,8 @@ public class FishSoupForHughieTest {
 		final StendhalRPZone zone = new StendhalRPZone("int_ados_farm_house_1");
 		MockStendlRPWorld.get().addRPZone(zone);
 
-		new MotherNPC().configureZone(zone, null);	
-		new FarmersWifeNPC().configureZone(zone, null);	
+		new MotherNPC().configureZone(zone, null);
+		new FarmersWifeNPC().configureZone(zone, null);
 
 		quest = new FishSoupForHughie();
 		quest.addToWorld();
@@ -64,10 +64,10 @@ public class FishSoupForHughieTest {
 	public void testGetSlotName() {
 		assertEquals(questSlot,"fishsoup_for_hughie");
 	}
-	
+
 	@Test
 	public void testMeetPhilomenaToGetHint() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Philomena");
 		en = npc.getEngine();
 
@@ -83,42 +83,42 @@ public class FishSoupForHughieTest {
 		assertEquals("My husband runs this farm, and mostly I look after his younger sister and her boy, they are upstairs. If you could check on them that'd be a help, I heard her crying earlier.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Tot ziens.", getReply(npc));
-		
+
 	}
-	
+
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Anastasia");
 		en = npc.getEngine();
 
 		assertNull(player.getQuest(questSlot));
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi, I really could do with a #favor, please.", getReply(npc));
 		en.step(player, "favor");
 		assertEquals("My poor boy is sick and the potions I give him aren't working! Please could you fetch him some fish soup?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh no, please, he's so sick.", getReply(npc));
-		
+
 		assertEquals(player.getQuest(questSlot), "rejected");
-		
+
 		en.step(player, "task");
 		assertEquals("My poor boy is sick and the potions I give him aren't working! Please could you fetch him some fish soup?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
-		
+
 		assertEquals(player.getQuest(questSlot), "start");
-		
+
 		en.step(player, "hi");
 		assertEquals("You're back already? Hughie is getting sicker! Don't forget the fish soup for him, please. I promise to reward you.", getReply(npc));
 		en.step(player, "task");
 		assertEquals("You already promised me to bring me some fish soup for Hughie! Please hurry!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
-		
+
 		PlayerTestHelper.equipWithItem(player, "fish soup");
 
 		en.step(player, "hi");
@@ -127,11 +127,11 @@ public class FishSoupForHughieTest {
 		assertEquals("Oh...but my poor boy ... ", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
-		
+
 		// get values to test after reward
 		final int xp = player.getXP();
 		final double karma  = player.getKarma();
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi, you've got fish soup, I see, is that for Hughie?", getReply(npc));
 		en.step(player, "yes");
@@ -139,7 +139,7 @@ public class FishSoupForHughieTest {
 		// [17:37] kymara earns 200 experience points.
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
-		
+
         // test reward
 		assertEquals(xp + 200, player.getXP());
 		assertThat(player.getKarma(), greaterThan(karma));
@@ -159,20 +159,20 @@ public class FishSoupForHughieTest {
 		assertEquals("Philomena can sell you milk and butter.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
-		
+
 	}
-		
+
 	@Test
 	public void testRepeatingQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Anastasia");
 		en = npc.getEngine();
-		
+
 		player.setQuest(questSlot, "-1");
-		
+
 		// [17:37] Admin kymara changed your state of the quest 'fishsoup_for_hughie' from '1294594642173' to '-1'
 		// [17:37] Changed the state of quest 'fishsoup_for_hughie' from '1294594642173' to '-1'
-		
+
 		en.step(player, "hi");
 		assertEquals("Hello again.", getReply(npc));
 		en.step(player, "task");
@@ -181,7 +181,7 @@ public class FishSoupForHughieTest {
 		assertEquals("Oh no, please, he's so sick.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi, I really could do with a #favor, please.", getReply(npc));
 		en.step(player, "task");

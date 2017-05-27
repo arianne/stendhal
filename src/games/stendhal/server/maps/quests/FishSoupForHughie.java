@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -40,22 +44,17 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 
 /**
  * QUEST: FishSoupForHughie
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Anastasia, a worried mother in Ados farmhouse</li>
  * <li> Hughie, her son</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Anastasia asks for some fish soup for her sick boy</li>
@@ -63,15 +62,15 @@ import marauroa.common.game.IRPZone;
  * <li> You give the fish soup to Anastasia.</li>
  * <li> Anastasia rewards you.<li>
  * </ul>
- * 
+ *
  * REWARD:
- * <ul> 
+ * <ul>
  * <li> 10 potions</li>
  * <li> xp </li>
  * <li> Karma: 5</li>
  * </ul>
- * 
- * REPETITIONS: 
+ *
+ * REPETITIONS:
  * <ul>
  * <li> Unlimited, but 7 days of waiting are required between repetitions</li>
  * </ul>
@@ -86,7 +85,7 @@ public class FishSoupForHughie extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT)) && !"rejected".equals(player.getQuest(QUEST_SLOT));
@@ -118,7 +117,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		}
 		if(isRepeatable(player)){
 			res.add("Its been a while since I checked on Hughie and Anastasia, I should remember to go see them again.");
-		} 
+		}
 		return res;
 	}
 
@@ -128,25 +127,25 @@ public class FishSoupForHughie extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Anastasia");
 
 		// player returns with the promised fish soup
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("fish soup")),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Hi, you've got fish soup, I see, is that for Hughie?",
 			null);
 
 		//player returns without promised fish soup
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("fish soup"))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"You're back already? Hughie is getting sicker! Don't forget the fish soup for him, please. I promise to reward you.",
 			null);
 
 		// first chat of player with Anastasia
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestNotStartedCondition(QUEST_SLOT)),
@@ -154,18 +153,18 @@ public class FishSoupForHughie extends AbstractQuest {
 			null);
 
 		// player who is rejected or 'done' but waiting to start again, returns
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestNotInStateCondition(QUEST_SLOT, "start"),
 					new QuestStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
-			"Hello again.", 
+			"Hello again.",
 			null);
-		
+
 		// if they ask for quest while on it, remind them
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"You already promised me to bring me some fish soup for Hughie! Please hurry!",
@@ -175,15 +174,15 @@ public class FishSoupForHughie extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"My poor boy is sick and the potions I give him aren't working! Please could you fetch him some fish soup?",
 				null);
-		
+
 		// player returns - enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"My Hughie is getting sick again! Please could you bring another bowl of fish soup? It helped last time.",
 				null);
 
@@ -191,10 +190,10 @@ public class FishSoupForHughie extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Hughie is sleeping off his fever now and I'm hopeful he recovers. Thank you so much.",
 				null);
-		
+
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
@@ -215,7 +214,7 @@ public class FishSoupForHughie extends AbstractQuest {
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Anastasia");
 		// player has fish soup and tells Anastasia, yes, it is for her
-		
+
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("fish soup"));
 		reward.add(new IncreaseXPAction(200));
@@ -228,25 +227,25 @@ public class FishSoupForHughie extends AbstractQuest {
 				final Item soup = SingletonRepository.getEntityManager()
 				.getItem("fish soup");
 				final IRPZone zone = SingletonRepository.getRPWorld().getZone("int_ados_farm_house_1");
-				// place on table 
+				// place on table
 				soup.setPosition(32, 5);
 				// only allow Hughie, our npc, to eat the soup
 				soup.setBoundTo("Hughie");
 				zone.add(soup);
 			}
 		});
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new PlayerHasItemWithHimCondition("fish soup"),
 			ConversationStates.ATTENDING, "Thank you! I will always be in your favour. I will feed it to Hughie when he wakes. Please take these potions, they did nothing for him.",
 			new MultipleActions(reward));
 
 		//player said the fish soup was for her but has dropped it from his bag or hands
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new NotCondition(new PlayerHasItemWithHimCondition("fish soup")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Oh! Where did you put the fish soup?",
 			null);
 
@@ -263,8 +262,8 @@ public class FishSoupForHughie extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Fish Soup For Hughie", 
-				"Anastasia's son Hughie is sick and needs something to heal him.", 
+				"Fish Soup For Hughie",
+				"Anastasia's son Hughie is sick and needs something to heal him.",
 				true);
 		prepareRequestingStep();
 		prepareBringingStep();
@@ -274,7 +273,7 @@ public class FishSoupForHughie extends AbstractQuest {
 	public String getName() {
 		return "Fish Soup For Hughie";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 10;
@@ -284,7 +283,7 @@ public class FishSoupForHughie extends AbstractQuest {
 	public String getNPCName() {
 		return "Anastasia";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_SURROUNDS;

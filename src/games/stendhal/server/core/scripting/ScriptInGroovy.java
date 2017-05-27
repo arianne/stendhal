@@ -11,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.player.Player;
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.player.Player;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 
 /**
  * manages a script written in groovy

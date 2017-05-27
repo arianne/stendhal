@@ -28,10 +28,10 @@ public abstract class MousePopupAdapter extends MouseAdapter {
 	public void mouseReleased(final MouseEvent e) {
 		maybeShowPopup(e);
 	}
-	
+
 	/**
 	 * Called at potential popup triggers.
-	 *  
+	 *
 	 * @param e
 	 */
 	private final void maybeShowPopup(final MouseEvent e) {
@@ -39,12 +39,12 @@ public abstract class MousePopupAdapter extends MouseAdapter {
 			showPopup(e);
 		}
 	}
-	
+
 	/**
 	 * Called when the operating system dependent popup trigger has been
 	 *	triggered. It is still up to the component to decide if it should
 	 *	actually show a popup.
-	 * 
+	 *
 	 * @param e
 	 */
 	protected abstract void showPopup(MouseEvent e);
