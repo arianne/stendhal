@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.events;
 
-import games.stendhal.client.entity.Entity;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.entity.Entity;
 
 /**
  * an unknown event

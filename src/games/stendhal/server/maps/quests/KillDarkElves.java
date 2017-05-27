@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -36,19 +40,15 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Kill Dark Elves
  * <p>
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Maerion
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Maerion asks you fix his dark elf problem
@@ -59,12 +59,12 @@ import java.util.List;
  * </ul>
  * REWARD: <ul><li> emerald ring <li> 10000 XP
  * <li>10 karma in total</ul>
- * 
+ *
  * REPETITIONS: - None.
  */
 public class KillDarkElves extends AbstractQuest {
 	private static final String QUEST_SLOT = "kill_dark_elves";
-	protected final List<String> creatures = 
+	protected final List<String> creatures =
 		Arrays.asList("dark elf captain",
 				      "dark elf general",
 				      "dark elf knight",
@@ -74,7 +74,7 @@ public class KillDarkElves extends AbstractQuest {
 				      "dark elf matronmother",
 					  "dark elf elite archer",
 				      "dark elf archer");
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -84,24 +84,24 @@ public class KillDarkElves extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Maerion");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I already asked you to kill every dark elf in the tunnel below the secret room. And bring me the amulet from the thing.",
 				null);
 
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thanks for your help. I am relieved to have the amulet back.",
 				null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.",
 				null);
 
@@ -118,8 +118,8 @@ public class KillDarkElves extends AbstractQuest {
 			"Good. Please kill every dark elf down there and get the amulet from the mutant thing.",
 			new MultipleActions(actions));
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
-			ConversationPhrases.NO_MESSAGES, 
+		npc.add(ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Then I fear for the safety of the Nalwor elves...",
@@ -143,18 +143,18 @@ public class KillDarkElves extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Maerion");
 
 		// support for old-style quest
-		
+
 		// the player returns to Maerion after having started the quest.
 		// Maerion checks if the player has killed one of enough dark elf types
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new NotCondition(new KilledCondition("dark elf archer", "dark elf captain", "thing"))),
-				ConversationStates.QUEST_STARTED, 
+				ConversationStates.QUEST_STARTED,
 				"Don't you remember promising to sort out my dark elf problem? Kill every dark elf in the #secret room below - especially the snivelling dark elf captain and any evil dark elf archers you find! And bring me the amulet from the mutant thing.",
 				null);
-		
-		npc.add(ConversationStates.IDLE, 
+
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -163,8 +163,8 @@ public class KillDarkElves extends AbstractQuest {
 				, ConversationStates.QUEST_STARTED
 				, "What happened to the amulet? Remember I need it back!"
 				, null);
-	
-		npc.add(ConversationStates.IDLE, 
+
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"),
@@ -177,10 +177,10 @@ public class KillDarkElves extends AbstractQuest {
 						new IncreaseXPAction(10000),
 						new IncreaseKarmaAction(5.0),
 						new SetQuestAction(QUEST_SLOT, "done")));
-		
-		
+
+
 		// support for new-style quest
-		
+
 		// building string for completed quest state
 		StringBuilder sb = new StringBuilder("started");
 		for(int i=0;i<creatures.size();i++) {
@@ -188,7 +188,7 @@ public class KillDarkElves extends AbstractQuest {
 			sb.append(creatures.get(i));
 		}
 		final String completedQuestState = sb.toString();
-		
+
 		// the player returns to Maerion after having started the quest.
 		// Maerion checks if the player has killed one of enough dark elf types
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -196,15 +196,15 @@ public class KillDarkElves extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT,0,"started"),
 						new NotCondition(
 								new QuestInStateCondition(QUEST_SLOT, completedQuestState))),
-				ConversationStates.QUEST_STARTED, 
+				ConversationStates.QUEST_STARTED,
 				"Don't you remember promising to sort out my dark elf problem?"+
 				" Kill every dark elf in the #secret room below - especially"+
 				" the ones who command, do magic or are archers." +
 				"  Don't forget the evil matronmother too."+
 				" And bring me the amulet from the mutant thing.",
 				new ExamineChatAction("dark-elves-wanted.png", "Wanted!", ""));
-		
-		npc.add(ConversationStates.IDLE, 
+
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, completedQuestState),
@@ -213,11 +213,11 @@ public class KillDarkElves extends AbstractQuest {
 				, ConversationStates.QUEST_STARTED
 				, "What happened to the amulet? Remember I need it back!"
 				, null);
-	
-		npc.add(ConversationStates.IDLE, 
+
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, completedQuestState),								   
+						new QuestInStateCondition(QUEST_SLOT, completedQuestState),
 						new PlayerHasItemWithHimCondition("amulet"))
 				, ConversationStates.ATTENDING
 				, "Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.",
@@ -226,7 +226,7 @@ public class KillDarkElves extends AbstractQuest {
 						new IncreaseXPAction(10000),
 						new IncreaseKarmaAction(5.0),
 						new SetQuestAction(QUEST_SLOT, "done")));
-		
+
 		npc.add(
 			ConversationStates.QUEST_STARTED,
 			Arrays.asList("secret", "room", "secret room"),
@@ -251,7 +251,7 @@ public class KillDarkElves extends AbstractQuest {
 	public String getName() {
 		return "KillDarkElves";
 	}
-	
+
 	/**
 	 * function return list of drow creatures to kill
 	 * @return - list of dark elves to kill
@@ -259,13 +259,13 @@ public class KillDarkElves extends AbstractQuest {
 	public List<String> getDrowCreaturesList() {
 		return creatures;
 	}
-	
+
 	// Killing the thing probably requires a level even higher than this - but they can get help
 	@Override
 	public int getMinLevel() {
 		return 100;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
  		LinkedList<String> history = new LinkedList<String>();
@@ -285,23 +285,23 @@ public class KillDarkElves extends AbstractQuest {
 
 		// we can be here only if player accepted this quest.
 		history.add("I agreed to help Maerion.");
-		
-		boolean ak=true;	
-		
+
+		boolean ak=true;
+
 		if("started".equals(player.getQuest(QUEST_SLOT, 0))) {
-			// checking which creatures player killed.		
+			// checking which creatures player killed.
 			for(int i = 0; i<creatures.size();i++) {
 				final boolean sp = creatures.get(i).equals(player.getQuest(QUEST_SLOT, i+1));
 				ak = ak & sp;
 				if(!sp) {
 					history.add("I have not yet killed the "+creatures.get(i)+" in the secret room.");
 				}
-			}		
+			}
 			for(int i = 0; i<creatures.size();i++) {
 				final boolean sp = creatures.get(i).equals(player.getQuest(QUEST_SLOT, i+1));
 				if(sp) {
 					history.add("I have killed the "+creatures.get(i)+" in the secret room.");
-				}		
+				}
 			}
 
 			// all killed
@@ -309,7 +309,7 @@ public class KillDarkElves extends AbstractQuest {
 				history.add("I have killed all required creatures.");
 			}
 		}
-		
+
 		// here is support for old-style quest
 		if ("start".equals(player.getQuest(QUEST_SLOT, 0))) {
 			final boolean osp1 = player.hasKilled("dark elf captain");
@@ -317,33 +317,33 @@ public class KillDarkElves extends AbstractQuest {
 			final boolean osp3 = player.hasKilled("thing");
 			// first add killed creatures
 			if (osp1) {
-				history.add("I have killed the dark elf captain in the secret room.");				
-			}		
+				history.add("I have killed the dark elf captain in the secret room.");
+			}
 			if (osp2) {
-				history.add("I have killed the dark elf archer in the secret room.");				
+				history.add("I have killed the dark elf archer in the secret room.");
 			}
 			if (osp3) {
-				history.add("I have killed the thing.");				
+				history.add("I have killed the thing.");
 			}
-			
+
 			// now add non-killed
 			if (!osp1) {
-				history.add("I have not yet killed the dark elf captain in the secret room.");				
-			}	
-			if (!osp2) {
-				history.add("I have not yet killed the dark elf archer in the secret room.");				
-			}		
-			if (!osp3) {
-				history.add("I have not yet killed the thing.");				
+				history.add("I have not yet killed the dark elf captain in the secret room.");
 			}
-			
+			if (!osp2) {
+				history.add("I have not yet killed the dark elf archer in the secret room.");
+			}
+			if (!osp3) {
+				history.add("I have not yet killed the thing.");
+			}
+
 			// all killed
 			if (osp1 && osp2 && osp3) {
 				history.add("I have killed all required creatures.");
 				ak=true;
-			}	
+			}
 		}
-		
+
 		// for both old- and new-style quests
 		final boolean am = player.isEquipped("amulet");
 		if (am) {
@@ -351,14 +351,14 @@ public class KillDarkElves extends AbstractQuest {
 		} else {
 			history.add("I have no amulet with me.");
 		}
-		
+
 		if (am && ak) {
 			history.add("It's time to go back to Maerion for a reward.");
 		}
-		
-		return history;		
+
+		return history;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.NALWOR_CITY;

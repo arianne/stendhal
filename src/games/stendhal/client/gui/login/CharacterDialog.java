@@ -12,17 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.login;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.gui.TransparencyMode;
-import games.stendhal.client.gui.WindowUtils;
-import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
@@ -49,13 +38,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.TransparencyMode;
+import games.stendhal.client.gui.WindowUtils;
+import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import marauroa.client.BannedAddressException;
 import marauroa.client.TimeoutException;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.InvalidVersionException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A dialog for selecting from the available characters of a user account.
@@ -80,14 +79,14 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 * is client side.
 	 */
 	private static final int MAX_CHARACTERS = 16;
-	
-	
+
+
 	/** Area containing buttons for each character */
 	private final JComponent characterPanel;
-	
+
 	/**
 	 * Create a new <code>CharacterDialog</code>.
-	 * 
+	 *
 	 * @param characters map of available characters, and <code>RPObjects</code>
 	 * 	representing them
 	 * @param owner the parent window
@@ -95,21 +94,21 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	public CharacterDialog(final Map<String, RPObject> characters, JFrame owner) {
 		super(owner);
 		setTitle("Choose character");
-		
+
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				onClose();
 			}
 		});
-		
+
 		int pad = SBoxLayout.COMMON_PADDING;
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
 		Container content = getContentPane();
 		if (content instanceof JComponent) {
 			((JComponent) content).setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		}
-		
+
 		// Create the character area
 		characterPanel = new JPanel();
 		characterPanel.setBorder(null);
@@ -119,16 +118,16 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		characterPanel.setLayout(grid);
 		JScrollPane scroll = new JScrollPane(characterPanel);
 		add(scroll, SLayout.EXPAND_X);
-		
+
 		addCharacters(characters);
-		
+
 		// Create area for additional buttons
 		JComponent buttonBar = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		add(buttonBar, SLayout.EXPAND_X);
-		
+
 		// Align the buttons right
 		SBoxLayout.addSpring(buttonBar);
-		
+
 		// Action buttons. Should these be of uniform size?
 		JButton newCharButton = new JButton("New Character");
 		newCharButton.setMnemonic(KeyEvent.VK_N);
@@ -138,7 +137,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			newCharButton.setEnabled(false);
 		}
 		buttonBar.add(newCharButton);
-		
+
 		JButton exitButton = new JButton("Cancel");
 		exitButton.setMnemonic(KeyEvent.VK_C);
 		exitButton.addActionListener(new ActionListener() {
@@ -148,14 +147,14 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			}
 		});
 		buttonBar.add(exitButton);
-		
+
 		pack();
 		setSize(Math.min(getWidth(), DIALOG_WIDTH), Math.min(getHeight(), DIALOG_HEIGHT));
 		if (owner != null) {
 			owner.setEnabled(false);
 			this.setLocationRelativeTo(owner);
 		}
-		
+
 		Thread thread = new Thread(this, "KeepAlive on character dialog");
 		thread.setDaemon(true);
 		thread.start();
@@ -164,10 +163,10 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		setResizable(false);
 		setVisible(true);
 	}
-	
+
 	/**
 	 * Add the available characters.
-	 * 
+	 *
 	 * @param characters
 	 */
 	private void addCharacters(final Map<String, RPObject> characters) {
@@ -176,14 +175,14 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			characterPanel.add(button);
 		}
 	}
-	
+
 	/**
 	 * Create a button for a character.
-	 * 
+	 *
 	 * @param name Name of the character
 	 * @param character Object representing the character
-	 * 
-	 * @return a button for the character 
+	 *
+	 * @return a button for the character
 	 */
 	private JButton createCharacterButton(final String name, final RPObject character) {
 		// Abusing EntityView code to get the image of the player.
@@ -206,7 +205,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		// ignore player killer skull
 		character.remove("last_player_kill_time");
 		player.initialize(character);
-		
+
 		EntityView<?> view = EntityViewFactory.create(player);
 		// this if-block is there to be compatible with Stendhal 0.84 that is missing information
 		Icon icon = null;
@@ -214,13 +213,13 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			Image image = createCharacterImage(view);
 			icon = new ImageIcon(image);
 		}
-		
+
 		// Construct a label for the player button with the information we
 		// want to show. Needs to be html as that's the only way JButton
 		// can handle multi line labels.
 		StringBuilder label = new StringBuilder("<html>");
 		label.append(name);
-		
+
 		// this if-block is here for compatibility with stendhal server 0.84
 		if (character.has("name")) {
 			label.append("<br>Level: ");
@@ -231,40 +230,40 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			label.append(level);
 		}
 		label.append("</html>");
-		
+
 		JButton playerButton = new JButton(label.toString(), icon);
 		// Reduce the margins. The buttons are large enough as they are.
 		playerButton.setMargin(new Insets(1, 1, 1, 1));
-		
+
 		playerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent evt) {
 				chooseCharacter(name);
 			}
 		});
-		
+
 		return playerButton;
 	}
-	
+
 	/**
 	 * Create a character image from the view.
-	 *  
+	 *
 	 * @param view view of the player
 	 * @return A front view image of the player
 	 */
 	private Image createCharacterImage(EntityView<?> view) {
 		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, TransparencyMode.TRANSPARENCY);
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
-		
+
 		// Adjust the coordinates so that the actual player image gets
 		// drawn to the image area
 		g2d.translate(0, IMAGE_HEIGHT % 32);
 		view.draw(g2d);
 		g2d.dispose();
-		
+
 		return image;
 	}
-	
+
 	/**
 	 * Called when the window is closed or the exit button is pressed.
 	 */
@@ -276,10 +275,10 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		this.setVisible(false);
 		dispose();
 	}
-	
+
 	/**
 	 * Called when a character is selected.
-	 * 
+	 *
 	 * @param character player selected by the user
 	 */
 	private void chooseCharacter(final String character) {
@@ -301,7 +300,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	}
 
 	/**
-	 * Displays the error message, removes the progress bar and 
+	 * Displays the error message, removes the progress bar and
 	 * either enabled the login dialog in interactive mode or exits
 	 * the client in non interactive mode.
 	 *

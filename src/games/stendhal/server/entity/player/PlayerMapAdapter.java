@@ -17,7 +17,7 @@ import games.stendhal.server.core.rp.DaylightPhase;
 public class PlayerMapAdapter implements Map<String, String> {
 	private static Logger logger = Logger.getLogger(PlayerMapAdapter.class);
 	private Player player;
-	
+
 	/**
 	 * a player object to make available using the map interface
 	 *

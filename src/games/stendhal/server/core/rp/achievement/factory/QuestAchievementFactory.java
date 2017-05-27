@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.QuestCountCompletedCondition;
 import games.stendhal.server.core.rp.achievement.condition.QuestsInRegionCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.maps.Region;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 /**
  * Factory for quest achievements
  *
@@ -56,7 +56,7 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		// have completed all quests in Ados City?
 		questAchievements.add(createAchievement("quest.special.ados", "Helper of Ados city dwellers", "Complete all quests in Ados City",
 				Achievement.MEDIUM_BASE_SCORE, true, new QuestsInRegionCompletedCondition(Region.ADOS_CITY)));
-		
+
 		// complete nearly all the quests in the game?
 		questAchievements.add(createAchievement("quest.count.80", "Quest Junkie","Complete at least 80 quests",
 				Achievement.MEDIUM_BASE_SCORE, true, new QuestCountCompletedCondition(80)));

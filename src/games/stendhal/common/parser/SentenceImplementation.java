@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
+import java.util.Iterator;
+
 import games.stendhal.common.ErrorDrain;
 import games.stendhal.common.grammar.Grammar;
-
-import java.util.Iterator;
 
 /**
  * SentenceImplementation contains the implementation details of building Sentence objects.
@@ -39,7 +39,7 @@ public final class SentenceImplementation extends Sentence {
     /**
      * Create a SentenceImplementation object for testing purposes.
      * note: This constructor does not set originalText.
-     * 
+     *
      * @param exprs
      */
     public SentenceImplementation(final Expression... exprs) {
@@ -274,7 +274,7 @@ public final class SentenceImplementation extends Sentence {
             sentenceType = SentenceType.IMPERATIVE;
         } else if (isYouGiveMe(subject1, verb1, subject2)) {
         	// the sentence matches "[you] give me(i)" -> "[I] buy"
-        	
+
             // remove the subjects and replace the verb with "buy" as first word
             // remove "you"
             expressions.remove(subject1);
@@ -352,7 +352,7 @@ public final class SentenceImplementation extends Sentence {
         final Iterator<Expression> it = expressions.iterator();
         SentenceType type = SentenceType.UNDEFINED;
         boolean negate = false;
-        
+
         // As words are not yet merged together at this stage, we have to use Expression.nextValid()
         // in this function to jump over words to ignore.
         Expression first = nextValid(it);
@@ -394,8 +394,9 @@ public final class SentenceImplementation extends Sentence {
                     		negate = true;
                     		expressions.remove(first);
                     	}
-                    } else
-                    	expressions.remove(first);
+                    } else {
+						expressions.remove(first);
+					}
                 } else if (first.getNormalized().equals("it") && second.getNormalized().equals("is")
                         && ((third != null) && (third.getType() != null) && third.getType().isGerund())) {
                     // statement begins with "it is <VER-GER>"
@@ -431,7 +432,7 @@ public final class SentenceImplementation extends Sentence {
     void mergeWords() {
         // use WordList.compoundNames to merge compound names
     	mergeCompoundNames();
- 
+
         // first merge three word expressions of the form "... of ..."
         mergeThreeWordExpressions();
 
@@ -474,7 +475,7 @@ public final class SentenceImplementation extends Sentence {
         	        changed = true;
                     break;
     			}
-        		
+
         		if (changed) {
         			++changes;
         			break;

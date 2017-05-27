@@ -14,6 +14,12 @@ package games.stendhal.server.actions.equip;
 import static games.stendhal.common.constants.Actions.BASEITEM;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
+
+import java.awt.Rectangle;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
@@ -28,13 +34,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
-
-import java.awt.Rectangle;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * Moving of items around on the ground.
@@ -115,7 +115,7 @@ public class DisplaceAction implements ActionListener {
 
 	/**
 	 * Checks whether the player is next to the entity and provides feedback to player if not.
-	 * 
+	 *
 	 * @param player
 	 *            the player doing the displacement
 	 * @param entity
@@ -132,7 +132,7 @@ public class DisplaceAction implements ActionListener {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player and provides feedback to player.
-	 * 
+	 *
 	 * @param player
 	 *            the player doing the displacement
 	 * @param entity
@@ -160,10 +160,10 @@ public class DisplaceAction implements ActionListener {
 
 	/**
 	 * Checks whether the destination is in range and provides feedback to player if not.
-	 * 
+	 *
 	 * @param player
 	 *            the player doing the displacement
-	 * @param entity destination entity 
+	 * @param entity destination entity
 	 * @param x      x-position
 	 * @param y      y-position
 	 * @return true, if in range; false otherwise
@@ -293,7 +293,7 @@ public class DisplaceAction implements ActionListener {
 	 * Removes the entity from the world and returns it (so it may be added
 	 * again). The splitted StackableItem is reduced and a new StackableItem
 	 * with the splitted off amount is returned.
-	 * 
+	 *
 	 * @param player player performing the action
 	 * @param stackableItem splitted item stack
 	 * @param quantity amount to split

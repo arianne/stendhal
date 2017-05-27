@@ -11,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
 
 /**
  * Finds creatures with wrong sized corpses.
@@ -31,36 +31,36 @@ public class FindBrokenCorpses extends ScriptImpl {
 	 * amount.
 	 */
 	private static final int ALLOWED_EXTRA = 1;
-	
+
 	final HashMap<String, List<String>> problems = new HashMap<String, List<String>>();
-	
+
 	@Override
-	public void execute(Player admin, List<String> args) {		
+	public void execute(Player admin, List<String> args) {
 		EntityManager manager = SingletonRepository.getEntityManager();
 		for (Creature creature : manager.getCreatures()) {
-			int wDiff = (int) (creature.getWidth() - creature.getCorpseWidth()); 
+			int wDiff = (int) (creature.getWidth() - creature.getCorpseWidth());
 			int hDiff = (int) (creature.getHeight() - creature.getCorpseHeight());
 			String name = creature.getName();
-			
+
 			if (wDiff > 0) {
 				addProblem(name, "Corpse too narrow by " + wDiff);
 			} else if (wDiff < -ALLOWED_EXTRA) {
 				addProblem(name, "Corpse too wide by " + -wDiff);
 			}
-			
+
 			if (hDiff > 0) {
 				addProblem(name, "Corpse too short by " + hDiff);
 			} else if (hDiff < -ALLOWED_EXTRA) {
 				addProblem(name, "Corpse too tall by " + -hDiff);
 			}
 		}
-		
+
 		reportProblems(admin);
 	}
 
 	/**
 	 * Add a problem description to a creature.
-	 * 
+	 *
 	 * @param creature
 	 * @param problem
 	 */
@@ -75,7 +75,7 @@ public class FindBrokenCorpses extends ScriptImpl {
 
 	/**
 	 * Send a problem report to the admin.
-	 * 
+	 *
 	 * @param admin
 	 */
 	private void reportProblems(Player admin) {
@@ -88,7 +88,7 @@ public class FindBrokenCorpses extends ScriptImpl {
 				builder.append("\n");
 				builder.append(entry.getKey());
 				builder.append(":\n");
-				
+
 				for (String problem : entry.getValue()) {
 					builder.append(problem);
 					builder.append("\n");

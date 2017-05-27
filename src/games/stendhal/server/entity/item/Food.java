@@ -23,7 +23,7 @@ public class Food extends ConsumableItem {
 
 	/**
 	 * copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */

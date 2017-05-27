@@ -67,19 +67,19 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));
 				addGoodbye();
-				
+
 				// A little trick to make NPC remember if it has met
 		        // player before and react accordingly
 		        // NPC_name quest doesn't exist anywhere else neither is
 		        // used for any other purpose
-				add(ConversationStates.IDLE, 
+				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
-								new QuestNotCompletedCondition("Zynn")), 
-						ConversationStates.ATTENDING, 
+								new QuestNotCompletedCondition("Zynn")),
+						ConversationStates.ATTENDING,
 						"Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.",
 						new SetQuestAction("Zynn", "done"));
-				
+
 				addHelp("I can best help you by sharing my knowledge of Faiumoni's #geography and #history, as well as the latest #news.");
 				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");
 

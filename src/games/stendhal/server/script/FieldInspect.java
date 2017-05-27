@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.reflectiondebugger.FieldLister;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 
-import java.util.List;
-
 /**
  * inspects the java fields of an object .
- * 
+ *
  * @author hendrik
  */
 public class FieldInspect extends ScriptImpl {

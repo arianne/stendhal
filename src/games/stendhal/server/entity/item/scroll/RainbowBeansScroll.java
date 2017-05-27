@@ -14,24 +14,24 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 /**
  * Represents the rainbow beans that takes the player to the dream world zone,
  * after which it will teleport player to a random location in 0_semos_plains_s.
  */
 public class RainbowBeansScroll extends TimedTeleportScroll {
-	
+
 	private static final long DELAY = 6 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
-	
+
 	/**
 	 * Creates a new timed marked RainbowBeansScroll scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -44,14 +44,14 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
 	public RainbowBeansScroll(final RainbowBeansScroll item) {
 		super(item);
 	}
-	
+
 	@Override
 	protected boolean useTeleportScroll(final Player player) {
 		final String QUEST_SLOT = "rainbow_beans";
@@ -90,7 +90,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 			return false;
 		}
 	}
-	
+
 	@Override
 	protected String getBeforeReturnMessage() {
 		return "Your head begins to feel clearer...";

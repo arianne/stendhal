@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -24,11 +29,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Speak with Hackim
@@ -51,7 +51,7 @@ public class MeetHackim extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -84,7 +84,7 @@ public class MeetHackim extends AbstractQuest {
 			ConversationStates.INFORMATION_2,
 			"*whisper* Go to the tavern and talk to a man called #Xin #Blanca... he buys and sells equipment that might interest you. Do you want to hear more?",
 			null);
-		
+
 		npc.add(
 			ConversationStates.INFORMATION_2,
 			yesTrigger,
@@ -99,18 +99,18 @@ public class MeetHackim extends AbstractQuest {
 		reward.add(new EquipItemAction("money", 5));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-		
+
 		npc.add(ConversationStates.INFORMATION_3,
 				Arrays.asList("buy", "sell", "offer", "sell studded shield"),
 				new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				answer + "If anybody asks, you don't know me!",
 				new MultipleActions(reward));
 
 		npc.add(ConversationStates.INFORMATION_3,
-				Arrays.asList("buy", "sell", "offer", "sell studded shield"), 
+				Arrays.asList("buy", "sell", "offer", "sell studded shield"),
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				answer + "Where did you get those weapons? A toy shop?",
 				null);
 
@@ -144,7 +144,7 @@ public class MeetHackim extends AbstractQuest {
 	public String getName() {
 		return "MeetHackim";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

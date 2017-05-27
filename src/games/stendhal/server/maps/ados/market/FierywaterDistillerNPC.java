@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,14 +23,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
  * Provides Uncle Dag NPC, in Ados Market.
  * He will produce fierywater bottles if he is given sugar canes (from cane fields)
- * 
+ *
  * @author omero
  */
 public class FierywaterDistillerNPC implements ZoneConfigurator {
@@ -38,7 +38,7 @@ public class FierywaterDistillerNPC implements ZoneConfigurator {
 
     private void buildNPC(final StendhalRPZone zone) {
         final SpeakerNPC npc = new SpeakerNPC("Uncle Dag") {
-            
+
             @Override
             protected void createPath() {
                 setPath(null);
@@ -48,7 +48,7 @@ public class FierywaterDistillerNPC implements ZoneConfigurator {
             protected void createDialog() {
                 addGreeting("Yo!");
                 addHelp("I'm quite new to this area myself. I cannot help you much, sorry!");
-                addQuest("Oh, well... I'm not much into those kind of things... I'm a simple man with simple needs, but thank you for asking."); 
+                addQuest("Oh, well... I'm not much into those kind of things... I'm a simple man with simple needs, but thank you for asking.");
                 addJob("I can #brew #fierywater for you, if you bring to me enough #sugar #canes and #wood!");
                 addOffer("If you need #fierywater, just ask me to #brew some for you!");
                 addReply("fierywater",

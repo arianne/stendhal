@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.token;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Map;
+
+import games.stendhal.server.entity.player.Player;
 
 /**
  * a token to be used on a game board

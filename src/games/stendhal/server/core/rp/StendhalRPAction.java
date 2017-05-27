@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
@@ -36,18 +44,9 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.AttackEvent;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.RPServerManager;
-
-import org.apache.log4j.Logger;
 
 /**
  * fighting and player teleport support
@@ -55,7 +54,7 @@ import org.apache.log4j.Logger;
 public class StendhalRPAction {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPAction.class);
-	
+
 	/**
 	 * The amount to weight ATK and DEF in player strength calculation. Higher
 	 * means more weight to stats vs level. Value 0.73 has been obtained from
@@ -217,7 +216,7 @@ public class StendhalRPAction {
 	private static double getPlayerStrength(final Player player) {
 		int combatSum;
 		combatSum = player.getAtk() + player.getDef();
-		
+
 		return STRENGTH_STATS_MULTIPLIER * combatSum + player.getLevel();
 	}
 
@@ -301,14 +300,14 @@ public class StendhalRPAction {
 				return false;
 			}
 		}
-		
+
 		// Weapon for the purpose of attack image
 		Item attackWeapon = player.getWeapon();
 		String weaponClass = null;
 		if (attackWeapon != null) {
 			weaponClass = attackWeapon.getWeaponType();
 		}
-		
+
 		// Throw dices to determine if the attacker has missed the defender
 		final boolean beaten = player.canHit(defender);
 
@@ -380,7 +379,7 @@ public class StendhalRPAction {
 			if(!defenseItems.isEmpty()) {
 				Rand.rand(defenseItems).deteriorate();
 			}
-			
+
 			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), weaponClass, isRanged));
 			player.notifyWorldAboutChanges();
 		} else {

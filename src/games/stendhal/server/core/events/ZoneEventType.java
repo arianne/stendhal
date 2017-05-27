@@ -14,7 +14,7 @@ package games.stendhal.server.core.events;
 
 /**
  * Event types used in the new Zone notifier.
- * 
+ *
  * @author kymara (based on TutorialEventType by hendrik)
  */
 public enum ZoneEventType {
@@ -32,7 +32,7 @@ public enum ZoneEventType {
 	VISIT_MAGIC_CITY_N(
 			"Your skin prickles as you explore further. There is definitely magic here."),
 	VISIT_MAGIC_CITY(
-			"You now sense a strong magical presence. Perhaps sorcerers are nearby, or some strong enchantments?"),	
+			"You now sense a strong magical presence. Perhaps sorcerers are nearby, or some strong enchantments?"),
 	VISIT_SEMOS_CAVES(
 			"The ground in this cave trembles from the footfalls of GIANTS! The weak should explore no further here. Turn around and run away!"),
 	VISIT_ADOS_CASTLE(
@@ -42,7 +42,7 @@ public enum ZoneEventType {
 
 	/**
 	 * create a new ZoneEventType.
-	 * 
+	 *
 	 * @param message
 	 *            human readable message
 	 */
@@ -52,7 +52,7 @@ public enum ZoneEventType {
 
 	/**
 	 * get the descriptive message.
-	 * 
+	 *
 	 * @return message
 	 */
 	String getMessage() {

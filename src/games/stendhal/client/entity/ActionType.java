@@ -148,10 +148,10 @@ public enum ActionType {
 			a.put("params", entity.getName());
 			return a;
 		}
-		
+
 	},
 	WALK_START("walk", "Walk"),
-	WALK_STOP("walk", "Stop"), 
+	WALK_STOP("walk", "Stop"),
 	CHALLENGE("challenge", "Challenge") {
 
 		@Override
@@ -162,7 +162,7 @@ public enum ActionType {
 			a.put("target", entity.getName());
 			return a;
 		}
-		
+
 	},
 	ACCEPT_CHALLENGE("challenge", "Accept") {
 
@@ -174,7 +174,7 @@ public enum ActionType {
 			a.put("target", entity.getName());
 			return a;
 		}
-		
+
 	};
 
 	/**
@@ -244,7 +244,7 @@ public enum ActionType {
 
 	/**
 	 * Create an RPAction with target information pointing to an entity.
-	 * 
+	 *
 	 * @param entity target entity
 	 * @return action with entity as the target
 	 */
@@ -261,8 +261,8 @@ public enum ActionType {
 		} else {
 			rpaction.put("type", toString());
 		}
-		
-		RPObject rpObject = entity.getRPObject(); 
+
+		RPObject rpObject = entity.getRPObject();
 		final int id = rpObject.getID().getObjectID();
 		// Compatibility: Don't include zone if the action does not support it
 		if (includeZone) {
@@ -288,10 +288,10 @@ public enum ActionType {
 
 		return rpaction;
 	}
-	
+
 	/**
 	 * Add target information for a contained target object.
-	 * 
+	 *
 	 * @param action
 	 * @param entity target entity
 	 * @return the action

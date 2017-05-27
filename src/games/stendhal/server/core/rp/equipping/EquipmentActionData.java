@@ -11,12 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.equipping;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * data use in an equipment action

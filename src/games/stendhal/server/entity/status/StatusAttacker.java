@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.log4j.Logger;
 
 /**
  * a status attacker
@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 public class StatusAttacker {
 	/** The logger instance */
 	private static final Logger logger = Logger.getLogger(StatusAttacker.class);
-	
+
 	private final double probability;
 	private final Status status;
 
@@ -84,14 +84,14 @@ public class StatusAttacker {
 		StatusType statusType = inflictedStatus.getStatusType();
 		String resistAttribute = "resist_"
 				+ statusType.toString().toLowerCase();
-		
+
 		// Create a temporary instance to adjust without affecting entity's
 		// built-in probability.
 		Double actualProbability = probability;
-		
+
 		if (target.has(resistAttribute)) {
 			Double probabilityAdjust = 1.0 - target.getDouble(resistAttribute);
-			
+
 			if (logger.isDebugEnabled()) {
 				logger.info("Adjusting " + statusType.toString()
 						+ " status infliction resistance: "
@@ -99,10 +99,10 @@ public class StatusAttacker {
 						+ Double.toString(probabilityAdjust) + " = "
 						+ Double.toString(probability * probabilityAdjust));
 			}
-			
+
 			actualProbability = probability * probabilityAdjust;
 		}
-		
+
 		// DEBUG
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			if (target.has(resistAttribute)) {
@@ -128,16 +128,16 @@ public class StatusAttacker {
 				}
 			}
 		}
-		
+
 		// Roll dice between 1-100
 		int roll = Rand.randUniform(1, 100);
 		if (roll <= actualProbability) {
 			target.getStatusList().inflictStatus(inflictedStatus, attacker);
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return
 	 *     Name of the status that this attacker can inflict
 	 */

@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * Handles ownership of pets and sheep.
@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class PetOwner {
-	
+
 
 	/**
 	 * The pet ID attribute name.
@@ -36,9 +36,9 @@ public class PetOwner {
 	 * The sheep ID attribute name.
 	 */
 	protected static final String ATTR_SHEEP = "sheep";
-	
+
 	private static Logger LOGGER = Logger.getLogger(PetOwner.class);
-	
+
 	private final Player player;
 
 	private final PlayerSheepManager playerSheepManager;
@@ -50,7 +50,7 @@ public class PetOwner {
 		playerSheepManager = new PlayerSheepManager(player);
 		playerPetManager = new PlayerPetManager(player);
 	}
-	
+
 	public void removeSheep(final Sheep sheep) {
 		if (sheep != null) {
 			sheep.setOwner(null);
@@ -85,7 +85,7 @@ public class PetOwner {
 
 	/**
 	 * Set the player's pet. This will also set the pet's owner.
-	 * 
+	 *
 	 * @param pet
 	 *            The pet.
 	 */
@@ -96,7 +96,7 @@ public class PetOwner {
 
 	/**
 	 * Set the player's sheep. This will also set the sheep's owner.
-	 * 
+	 *
 	 * @param sheep
 	 *            The sheep.
 	 */
@@ -107,7 +107,7 @@ public class PetOwner {
 
 	/**
 	 * Get the player's sheep.
-	 * 
+	 *
 	 * @return The sheep.
 	 */
 	public Sheep getSheep() {

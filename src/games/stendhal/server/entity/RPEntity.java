@@ -107,15 +107,15 @@ public abstract class RPEntity extends GuidedEntity {
 	protected int def;
 
 	private int def_xp;
-	
+
 	protected int ratk;
-	
+
 	private int ratk_xp;
 
 	private int base_hp;
 
 	private int hp;
-	
+
 	protected int lv_cap;
 
 	private int xp;
@@ -129,7 +129,7 @@ public abstract class RPEntity extends GuidedEntity {
 	protected boolean ignoreCollision;
 
 	private String deathSound;
-	
+
 	private String bloodClass;
 
 	/** Entity uses a status attack */
@@ -137,7 +137,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/** a list of current statuses */
 	protected StatusList statusList;
-	
+
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
 	 * the last damage has occurred.
@@ -199,7 +199,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * weak enemies
 	 */
 	private static final double WEIGHT_EFFECT = 0.5;
-	
+
 	/**
 	 * A helper class for building a size limited list of killer names. If there
 	 * are more killers than the limit, then "others" is set as the last killer.
@@ -216,10 +216,10 @@ public abstract class RPEntity extends GuidedEntity {
 		 * maximum size.
 		 */
 		private boolean more;
-		
+
 		/**
 		 * Add an entity to the killer list.
-		 * 
+		 *
 		 * @param e entity
 		 */
 		void addEntity(Entity e) {
@@ -245,7 +245,7 @@ public abstract class RPEntity extends GuidedEntity {
 			}
 			trim();
 		}
-		
+
 		/**
 		 * Set the official killer. If the killer was already on the list, move
 		 * it first. Otherwise prepend the list with the official killer. This
@@ -253,7 +253,7 @@ public abstract class RPEntity extends GuidedEntity {
 		 * killer. Also an item "poison" can be the first on the list this way.
 		 * (And, as of this writing (2015-04-01) it is the only way anything but
 		 * RPEntities can be shown on the killer list).
-		 * 
+		 *
 		 * @param killer The official killer
 		 */
 		void setKiller(String killer) {
@@ -265,7 +265,7 @@ public abstract class RPEntity extends GuidedEntity {
 				trim();
 			}
 		}
-		
+
 		/**
 		 * Keep the name list at most {@link #MAX_SIZE}.
 		 */
@@ -275,10 +275,10 @@ public abstract class RPEntity extends GuidedEntity {
 				more = true;
 			}
 		}
-		
+
 		/**
 		 * Get the name list of the added entities.
-		 * 
+		 *
 		 * @return name list.
 		 */
 		List<String> asList() {
@@ -295,7 +295,7 @@ public abstract class RPEntity extends GuidedEntity {
 			if (logger.isDebugEnabled() || Testing.DEBUG) {
 				logger.debug("Using portal " + portal);
 			}
-			
+
 			return portal.onUsed(this);
 		}
 		return super.handlePortal(portal);
@@ -514,7 +514,7 @@ public abstract class RPEntity extends GuidedEntity {
 			def_xp = getInt("def_xp");
 			setDefXpInternal(def_xp, false);
 		}
-		
+
 		/* TODO: Remove condition after ranged stat testing is finished. */
 		if (Testing.COMBAT) {
 			if (has("ratk_xp")) {
@@ -610,9 +610,9 @@ public abstract class RPEntity extends GuidedEntity {
 		if (!(effectiveDefenderLevel - levelDifferenceToNotNeedKarmaDefending  > effectiveAttackerLevel)) {
 			defence += defence * defender.useKarma(0.1);
 		}
-		
+
 		/* Attacking with ranged weapon uses a separate strength value.
-		 * 
+		 *
 		 * XXX: atkStrength never used outside of debugger.
 		 */
 		final int atkStrength, sourceAtk;
@@ -632,7 +632,7 @@ public abstract class RPEntity extends GuidedEntity {
 			logger.debug("attacker has " + atkStrength + " (" + getCappedAtk()
 					+ ") and uses a weapon of " + getItemAtk());
 		}
-		
+
 		// Make fast weapons efficient against weak enemies, and heavy
 		// better against strong enemies.
 		// Half a parabola; desceding for rate < 5; ascending for > 5
@@ -672,7 +672,7 @@ public abstract class RPEntity extends GuidedEntity {
 		// Apply defense and damage type effect
 		int damage = (int) (defender.getSusceptibility(damageType)
 				* (WEIGHT_ATK * attack - defence) / maxDefence);
-		
+
 		/* FIXME: Can argument be removed and just use
 		 *        RPEntity.usingRangedAttack() here?
 		 */
@@ -764,7 +764,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		return super.getName();
 	}
-	
+
 	@Override
 	public void onAdded(final StendhalRPZone zone) {
 		super.onAdded(zone);
@@ -900,10 +900,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 
 /* ### --- START RANGED --- ### */
-	
+
 	/**
 	 * Set the value of the entity's ranged attack level.
-	 * 
+	 *
 	 * @param ratk
 	 * 		Integer value representing new ranged attack level
 	 */
@@ -913,7 +913,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the entity's ranged attack level.
-	 * 
+	 *
 	 * @param ratk
 	 * 		Integer value representing new ranged attack level
 	 * @param notify
@@ -929,7 +929,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets the entity's current ranged attack level.
-	 * 
+	 *
 	 * @return
 	 * 		Integer value of ranged attack level
 	 */
@@ -961,7 +961,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Sets the entity's ranged attack experience.
-	 * 
+	 *
 	 * @param ratkXP
 	 * 		Integer value of the target experience
 	 * @param notify
@@ -984,7 +984,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get's the entity's current ranged attack experience.
-	 * 
+	 *
 	 * @return
 	 * 		Integer representation of current experience
 	 */
@@ -1070,7 +1070,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public int getHP() {
 		return this.hp;
 	}
-	
+
 	/**
 	 * Get the lv_cap.
 	 *
@@ -1138,7 +1138,7 @@ public abstract class RPEntity extends GuidedEntity {
 		base_mana += newBaseMana;
 		put("base_mana", base_mana);
 	}
-	
+
 	public void setLVCap(final int newLVCap) {
 		lv_cap = newLVCap;
 		put("lv_cap", newLVCap);
@@ -1602,7 +1602,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		return killer;
 	}
-	
+
 	protected Pet entityAsPet(Entity entity) {
 		if (!(entity instanceof Pet)) {
 			return null;
@@ -1631,7 +1631,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			if (damageDone == 0) {
 				continue;
 			}
-			
+
 			Player killer = entityAsOnlinePlayer(entry.getKey());
 			if (killer == null) {
 				continue;
@@ -1689,7 +1689,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			killer.notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/*
 	 * Reward pets who kill enemies.  don't perks like AchievementNotifier that players.
 	 */
@@ -1704,10 +1704,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			if (damageDone == 0) {
 				continue;
 			}
-			
+
 			Pet killer = entityAsPet(entry.getKey());
 			if (killer == null) {
-				
+
 				continue;
 			}
 
@@ -1737,12 +1737,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			if (reward == 0) {
 				reward = 1;
 			}
-			
+
 			if (killer.getLevel() >= killer.getLVCap())
 			{
 				reward = 0;
 			}
-			
+
 			killer.addXP(reward);
 
 			/*
@@ -1801,23 +1801,23 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		die(killer, remove);
 	}
-	
+
 	/**
 	 * Build a list of killer names.
-	 * 
+	 *
 	 * @param killerName The "official" killer. This will be always included in
 	 *	the list
 	 * @return list of killers
 	 */
 	private List<String> buildKillerList(String killerName) {
 		KillerList killers = new KillerList();
-		
+
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
 			final int damageDone = entry.getValue();
 			if (damageDone == 0) {
 				continue;
 			}
-			
+
 			killers.addEntity(entry.getKey());
 		}
 		if (killerName != null) {
@@ -1839,7 +1839,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			logger.warn("RPEntity died but is not in a zone");
 			return;
 		}
-		
+
 		String killerName = killer.getName();
 		// Needs to be done while the killer map still has the contents
 		List<String> killers = buildKillerList(killerName);
@@ -1883,7 +1883,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			corpse.addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
 			corpse.notifyWorldAboutChanges();
 		}
-		
+
 		StringBuilder deathMessage = new StringBuilder(getName());
 		deathMessage.append(" has been killed");
 		if (!killers.isEmpty()) {
@@ -2541,7 +2541,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// no slot, free slot or wrong item type
 		return false;
 	}
-	
+
 	/**
 	 * Finds the first item of class <i>clazz</i> from the slot.
 	 *
@@ -3071,13 +3071,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public boolean canHit(final RPEntity defender) {
 		int roll = Rand.roll1D20();
 		final int defenderDEF = defender.getCappedDef();
-		
+
 		// Check if attacking from distance
 		boolean usesRanged = false;
 		if (!this.nextTo(defender)) {
 			usesRanged = true;
 		}
-		
+
 		final int attackerATK;
 		/* TODO: Remove Testing.COMBAT condition check when ranged stat
 		 * testing is finished.
@@ -3209,7 +3209,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		for (StatusAttacker statusAttacker : statusAttackers) {
 			statusAttacker.onAttackAttempt(defender, this);
 		}
-		
+
 		// Weapon for the use in the attack event
 		Item attackWeapon = getWeapon();
 		String weaponName = null;
@@ -3229,16 +3229,16 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				this.handleLifesteal(this, this.getWeapons(), damage);
 
 				defender.onDamaged(this, damage);
-				
+
 				if (logger.isDebugEnabled() || Testing.DEBUG) {
 					logger.debug("attack from " + this.getID() + " to "
 							+ defender.getID() + ": Damage: " + damage);
 				}
-				
+
 				result = true;
 			} else {
 				// The attack was too weak, it was blocked
-				
+
 				if (logger.isDebugEnabled() || Testing.DEBUG) {
 					logger.debug("attack from " + this.getID() + " to "
 							+ defender.getID() + ": Damage: " + 0);
@@ -3257,7 +3257,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Missed");
 			}
-			
+
 			this.addEvent(new AttackEvent(false, 0, nature, weaponName, isRanged));
 		}
 
@@ -3412,7 +3412,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		Builder<StatusAttacker> builder = ImmutableList.builder();
 		statusAttackers = builder.addAll(statusAttackers).add(statusAttacker).build();
 	}
-	
+
 	/**
 	 * gets the status list
 	 *
@@ -3437,7 +3437,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		return statusList.hasStatus(statusType);
 	}
-	
+
 	@Override
 	public void onRemoved(StendhalRPZone zone) {
 		super.onRemoved(zone);

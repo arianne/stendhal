@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.hotel;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,14 +23,10 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Builds a NPC in a house on Ados market (name:Stefan) who is the daughter of fisherman Fritz
- * 
- * @author Vanessa Julius 
+ *
+ * @author Vanessa Julius
  *
  */
 public class HotelChefNPC implements ZoneConfigurator {
@@ -38,22 +38,22 @@ public class HotelChefNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Stefan") {
-		    
+
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(92, 9));
 				nodes.add(new Node(98, 9));
 	            nodes.add(new Node(98, 2));
-	            nodes.add(new Node(93, 2));  
+	            nodes.add(new Node(93, 2));
 	            nodes.add(new Node(93, 4));
-	            nodes.add(new Node(91, 4)); 
-	            nodes.add(new Node(91, 3)); 
+	            nodes.add(new Node(91, 4));
+	            nodes.add(new Node(91, 3));
 	            nodes.add(new Node(90, 3));
 	            nodes.add(new Node(90, 11));
 	            nodes.add(new Node(98, 11));
 	            nodes.add(new Node(98, 9));
-	           	setPath(new FixedPath(nodes, true));		
+	           	setPath(new FixedPath(nodes, true));
 			}
 
 			@Override
@@ -63,7 +63,7 @@ public class HotelChefNPC implements ZoneConfigurator {
 				addReply("stressed", "It's high season at the moment! We get lots of reservations which means more #guests and more work for everyone.");
 				addReply("guest", "Most of them visit Fado for #getting #married. I can understand their choice of Fado. It's a beautiful city.");
 				addReply("getting married", "Didn't you know, that Fado is the most known wedding town in whole Faiumoni? You have to visit our church, it's so lovely!");
-				addQuest("I'm so busy at the moment thinking about what I can do to get some help #somewhere..."); 
+				addQuest("I'm so busy at the moment thinking about what I can do to get some help #somewhere...");
 				addReply("somewhere", "Yes, somewhere... I doubt that the problem can be solved in my kitchen alone... It's tiny!");
 				addJob("Some weeks ago, I got the job offer to become the hotel chef here. What I didn't know: I'm the only #cook at the moment!");
 				addReply("cook", "Being a cook is awesome! I love all kind of food and experiment around with different dishes is just fun for me.");

@@ -13,9 +13,6 @@
 package games.stendhal.server.entity.npc.condition;
 
 import static org.junit.Assert.assertFalse;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
 import java.util.Arrays;
@@ -23,6 +20,10 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.util.Area;
 
 public class CompareConditionsTests {
 
@@ -63,7 +64,7 @@ public class CompareConditionsTests {
 	public void testname() {
 		for (final ChatCondition cond1 : conditionsA2) {
 			for (final ChatCondition cond2 : conditionsB2) {
-				if (cond1 != cond2) {					
+				if (cond1 != cond2) {
 					assertFalse(cond1.toString() + "should not equal" + cond2.toString(), cond1.equals(cond2));
 					assertFalse(cond2.toString() + "should not equal" + cond1.toString(), cond2.equals(cond1));
 				}
@@ -71,5 +72,5 @@ public class CompareConditionsTests {
 		}
 	}
 
-	
+
 }

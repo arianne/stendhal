@@ -32,38 +32,38 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
  */
 public class StyledSplitPaneUI extends BasicSplitPaneUI {
 	private final Style style;
-	
+
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent pane) {
 		// BasicScrollPaneUI instances can not be shared
 		return new StyledSplitPaneUI(StyleUtil.getStyle());
 	}
-	
+
 	/**
 	 * Create a new StyledSplitPaneUI.
-	 * 
+	 *
 	 * @param style pixmap style
 	 */
 	public StyledSplitPaneUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	public BasicSplitPaneDivider createDefaultDivider() {
 		return new StyledSplitPaneDivider(this, style);
 	}
-	
+
 	@Override
 	public void installUI(JComponent pane) {
 		super.installUI(pane);
 		pane.setBorder(style.getBorderDown());
 	}
-	
+
 	/*
 	 * BasicSplitPaneUI has a bug that the components' maximum sizes are
 	 * ignored. The following overrides are a workaround to it.
 	 */
-	
+
 	// part of the divider location bug workaround
 	@Override
 	public int getMaximumDividerLocation(JSplitPane pane) {
@@ -84,7 +84,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 
 		return rightMax;
 	}
-	
+
 	// Another bug workaround. For whatever reason the left component is given
 	// a preferred size that is too high by the amount of the divider width.
 	@Override
@@ -115,7 +115,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 			/*
 			 * To avoid inconsistency with the maximum location, it would seem
 			 * reasonable to do:
-			 * 
+			 *
 			 *	leftMin = Math.min(leftMin, getMaximumDividerLocation(pane));
 			 *
 			 * however, the parent already calls getMinimumDividerLocation()
@@ -125,7 +125,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		}
 		return leftMin;
 	}
-	
+
 	// part of the divider location bug workaround
 	@Override
 	public void setDividerLocation(JSplitPane pane, int location) {
@@ -137,7 +137,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		} else {
 			super.setDividerLocation(pane, location);
 		}
-		
+
 		/*
 		 * It seems that JSplitPane fails to set lastDividerLocation properly
 		 * at component resizes if the divider location is too high for the new
@@ -155,7 +155,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 			}
 		});
 	}
-	
+
 	// part of the divider location bug workaround
 	@Override
 	protected void dragDividerTo(int location) {
@@ -164,7 +164,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		location = Math.max(location, getMinimumDividerLocation(getSplitPane()));
 		super.dragDividerTo(location);
 	}
-	
+
 	/**
 	 * A split pane divider drawn with style.
 	 */
@@ -175,10 +175,10 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		private static final long serialVersionUID = 3799692779880585757L;
 
 		private final Style style;
-		
+
 		/**
 		 * Create a new StyledSplitPaneDivider.
-		 * 
+		 *
 		 * @param ui UI delegate of the parent <code>JSplitPane</code>
 		 * @param style drawing style
 		 */
@@ -187,12 +187,12 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 			this.style = style;
 			addMouseListener(new DividerMouseListener(this));
 		}
-		
+
 		// There's no paintComponent. This is an awt widget.
 		@Override
 		public void paint(Graphics g) {
 			StyleUtil.fillBackground(style, g, 0, 0, getWidth(), getHeight());
-			
+
 			// Ribbing
 			Insets insets = style.getBorder().getBorderInsets(this);
 			if (splitPane.getOrientation() == JSplitPane.VERTICAL_SPLIT) {
@@ -218,7 +218,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 					x++;
 				}
 			}
-			
+
 			// highlighting
 			if (isMouseOver()) {
 				highLightBorder(g);
@@ -226,10 +226,10 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 				paintBorder(g);
 			}
 		}
-		
+
 		/**
 		 * Paint the handle using the normal border. (No highlighting)
-		 * 
+		 *
 		 * @param g graphics
 		 */
 		private void paintBorder(Graphics g) {
@@ -245,18 +245,18 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 				left = border.getBorderInsets(this).left;
 				right = border.getBorderInsets(this).right;
 			}
-			border.paintBorder(this, g, 0 - left, 0 - top, 
+			border.paintBorder(this, g, 0 - left, 0 - top,
 				getWidth() + right + left, getHeight() + top + bottom);
 		}
-		
+
 		/**
 		 * Paint highlighted borders. Meanot to be used at mouseover.
-		 * 
+		 *
 		 * @param g graphics
 		 */
 		private void highLightBorder(Graphics g) {
 			g.setColor(style.getHighLightColor());
-			
+
 			Border border = style.getBorder();
 			if (orientation == JSplitPane.HORIZONTAL_SPLIT) {
 				int width = border.getBorderInsets(this).left;
@@ -268,7 +268,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 				g.fillRect(0, getHeight() - height, getWidth(), height);
 			}
 		}
-		
+
 		/**
 		 * Listener for mouse entering and leaving messages. Otherwise
 		 * the divider does not get repainted at mouseover, unlike
@@ -276,7 +276,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		 */
 		private static class DividerMouseListener extends MouseAdapter {
 			private final StyledSplitPaneDivider divider;
-			
+
 			public DividerMouseListener(StyledSplitPaneDivider divider) {
 				this.divider = divider;
 			}

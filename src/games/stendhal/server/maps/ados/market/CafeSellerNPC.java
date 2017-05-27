@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,8 +22,6 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
-
-import java.util.Map;
 
 /**
  * Mia works in the Botanical Gardens cafe.
@@ -53,10 +53,10 @@ public class CafeSellerNPC implements ZoneConfigurator {
 				// just to be nice :)
 				addEmotionReply("thanks", "warmly thanks");
 				addEmotionReply("smile", "smiles at");
-				
+
 				addGoodbye("Come back soon!");
 			}
-			
+
 	        @Override
 	        protected void onGoodbye(RPEntity player) {
 	        	setDirection(Direction.DOWN);

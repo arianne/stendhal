@@ -18,14 +18,14 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Slots of players which are use to offer items for trading.
- * 
+ *
  * @author hendrik
  */
 public class PlayerTradeSlot extends PlayerSlot {
 
 	/**
 	 * Creates a new PlayerTradeSlot.
-	 * 
+	 *
 	 * @param name name of slot
 	 */
 	public PlayerTradeSlot(final String name) {

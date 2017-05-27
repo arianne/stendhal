@@ -24,7 +24,7 @@ public interface StatusHandler<T extends Status> {
 
 	/**
 	 * inflicts a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 * @param attacker the attacker
@@ -33,7 +33,7 @@ public interface StatusHandler<T extends Status> {
 
 	/**
 	 * removes a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */

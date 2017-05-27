@@ -14,6 +14,13 @@ package games.stendhal.server.core.engine.transformer;
 
 import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.GRUMPY;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Debug;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Version;
@@ -36,15 +43,8 @@ import games.stendhal.server.entity.slot.PlayerKeyringSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.entity.slot.PlayerTradeSlot;
 import games.stendhal.server.entity.spell.Spell;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 public class PlayerTransformer implements Transformer {
 
@@ -371,9 +371,9 @@ public class PlayerTransformer implements Transformer {
 				boundOldItemsToPlayer(player, item);
 
 				newSlot.add(item);
-				
+
 				/* Check if item has attributes that can be activated by a slot.
-				 * 
+				 *
 				 * XXX: Perhaps onEquipped() should be run for all items when
 				 *      player is created.
 				 */

@@ -74,7 +74,7 @@ public class TelepathNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				
+
 				// player has met io before and has a pk skull
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
@@ -89,7 +89,7 @@ public class TelepathNPC implements ZoneConfigurator {
 				        ConversationStates.QUESTION_1,
 				        null,
 				        new SayTextAction("Hi again, [name]. I sense you have been branded with the mark of a killer. Do you wish to have it removed?"));
-				
+
 				// player has met io before and has not got a pk skull
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
@@ -104,14 +104,14 @@ public class TelepathNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        null,
 				        new SayTextAction("Hi again, [name]. How can I #help you this time? Not that I don't already know..."));
-				
+
 				// first meeting with player
-				add(ConversationStates.IDLE, 
-						ConversationPhrases.GREETING_MESSAGES, 
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestNotStartedCondition("meet_io")),
 						ConversationStates.ATTENDING,
-				        null, 
+				        null,
 				        new MultipleActions(
 				        		new SayTextAction("I awaited you, [name]. How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?"),
 				        		new SetQuestAction("meet_io", "start")));
@@ -124,7 +124,7 @@ public class TelepathNPC implements ZoneConfigurator {
 						       	if ((player.getLastPVPActionTime() > System.currentTimeMillis()
 											- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
 									// player attacked another within the last two weeks
-									long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis() 
+									long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis()
 										+ 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
 									raiser.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
 								} else if (player.getKarma() < 5) {
@@ -135,7 +135,7 @@ public class TelepathNPC implements ZoneConfigurator {
 									raiser.say("Are you really sorry for what you did?");
 									raiser.setCurrentState(ConversationStates.QUESTION_2);
 								}
-							} 
+							}
 					    }
 				);
 				// player didn't want pk icon removed, offer other help
@@ -146,7 +146,7 @@ public class TelepathNPC implements ZoneConfigurator {
 
 					        @Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-								player.rehabilitate(); 	
+								player.rehabilitate();
 							} });
 				// player said no they are not really sorry
 				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE, "I thought not! Good bye!", null);

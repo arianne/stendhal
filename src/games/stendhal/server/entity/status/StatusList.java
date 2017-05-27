@@ -11,17 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
-
 import java.lang.ref.WeakReference;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+
 /**
  * handles a list of status for an entity
- * 
+ *
  * @author hendrik
  */
 public class StatusList {
@@ -46,7 +46,7 @@ public class StatusList {
 
 	/**
 	 * Get statuses that are currently inflicted on the entity
-	 * 
+	 *
 	 * @return List of statuses
 	 */
 	public List<Status> getStatuses() {
@@ -55,7 +55,7 @@ public class StatusList {
 
 	/**
 	 * Count how many occurances of a status are inflicted on the entity
-	 * 
+	 *
 	 * @param statusType type of status being checked
 	 * @return number of times status is found
 	 */
@@ -137,7 +137,7 @@ public class StatusList {
 
 	/**
 	 * Find if the entity has a specified status
-	 * 
+	 *
 	 * @param statusType the status type to check for
 	 * @return true, if the entity has status; false otherwise
 	 */
@@ -152,7 +152,7 @@ public class StatusList {
 
 	/**
 	 * Add status effect to entity
-	 * 
+	 *
 	 * @param status
 	 *            Status to be added
 	 * @param attacker
@@ -169,7 +169,7 @@ public class StatusList {
 
 	/**
 	 * Check if entity is immune to specified status attack.
-	 * 
+	 *
 	 * @param statusType type of status
 	 * @return Entity is immune
 	 */
@@ -179,7 +179,7 @@ public class StatusList {
 
 	/**
 	 * Remove any immunity of specified status effect from entity.
-	 * 
+	 *
 	 * @param statusType type of status
 	 */
 	public void removeImmunity(StatusType statusType) {
@@ -193,7 +193,7 @@ public class StatusList {
 
 	/**
 	 * Make entity immune to a specified status attack.
-	 * 
+	 *
 	 * @param statusType Status type
 	 */
 	public void setImmune(final StatusType statusType) {

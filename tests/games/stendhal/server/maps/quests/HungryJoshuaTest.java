@@ -19,6 +19,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -28,11 +33,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC;
 import games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -41,7 +41,7 @@ public class HungryJoshuaTest {
 
 
 	private static String questSlot = "hungry_joshua";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -51,7 +51,7 @@ public class HungryJoshuaTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new GoldsmithNPC().configureZone(zone, null);
@@ -71,7 +71,7 @@ public class HungryJoshuaTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Xoderos");
 		en = npc.getEngine();
 
@@ -113,11 +113,11 @@ public class HungryJoshuaTest {
 		// -----------------------------------------------
 		npc = SingletonRepository.getNPCList().get("Joshua");
 		en = npc.getEngine();
-		
+
 		Item item = ItemTestHelper.createItem("sandwich", 5);
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi! I'm the local goldsmith. If you require me to #cast you a #'gold bar' just tell me!", getReply(npc));
 		en.step(player, "food");
@@ -135,7 +135,7 @@ public class HungryJoshuaTest {
 		npc = SingletonRepository.getNPCList().get("Xoderos");
 		en = npc.getEngine();
 		final int xp2 = player.getXP();
-		
+
 		en.step(player, "hi");
 		assertEquals("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.", getReply(npc));
 		en.step(player, "task");

@@ -24,19 +24,19 @@ class Immunizer implements Feeder {
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
 		player.getStatusList().setImmune(StatusType.POISONED);
-		
+
 		// set a timer to remove the immunity effect after some time
 		final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
 		// first remove all effects from previously used immunities to
 		// restart the timer
-		
+
 		final TurnListener tl = new AntidoteEater(player);
 		notifier.dontNotify(tl);
 		notifier.notifyInTurns(item.getAmount(), tl);
 		item.removeOne();
-		
+
 		return true;
-		
+
 	}
 
 }

@@ -11,14 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.actions.pet;
 
+import java.util.List;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**

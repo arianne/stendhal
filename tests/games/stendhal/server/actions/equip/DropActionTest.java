@@ -6,6 +6,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -13,10 +16,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
@@ -74,7 +73,7 @@ public class DropActionTest extends ZoneAndPlayerTestImpl {
 		assertEquals(1, items.length);
 		assertEquals(0, items[0].getX());
 		assertEquals(1, items[0].getY());
-		
+
 		// Same using item paths
 		localzone.remove(item);
 		player.equip("bag", item);

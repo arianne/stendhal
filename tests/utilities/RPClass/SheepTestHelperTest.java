@@ -13,14 +13,15 @@
 package utilities.RPClass;
 
 import static org.junit.Assert.assertTrue;
-import marauroa.common.game.RPClass;
 
 import org.junit.Test;
+
+import marauroa.common.game.RPClass;
 
 public class SheepTestHelperTest {
 	@Test
 	public void testGenerateRPClasses() {
-		
+
 		SheepTestHelper.generateRPClasses();
 		assertTrue(RPClass.hasRPClass("sheep"));
 	}

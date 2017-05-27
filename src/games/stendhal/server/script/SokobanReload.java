@@ -3,14 +3,6 @@
  */
 package games.stendhal.server.script;
 
-import games.stendhal.common.filter.FilterCriteria;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.game.SokobanBoard;
-import games.stendhal.server.entity.player.Player;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +12,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.game.SokobanBoard;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * reloads the sokoban data file

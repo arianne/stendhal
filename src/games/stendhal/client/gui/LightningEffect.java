@@ -20,7 +20,7 @@ import java.awt.Graphics;
  */
 public class LightningEffect extends EffectLayer {
 	final Color c;
-	
+
 	public LightningEffect(int duration, int strength) {
 		super(duration);
 		c = new Color(255, 255, 255, alpha((int) (255 * (strength / 100.0))));

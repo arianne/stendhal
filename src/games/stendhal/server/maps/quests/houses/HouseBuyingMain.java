@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
+import java.util.LinkedList;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,8 +21,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
 
 /**
  * Controls house buying.
@@ -41,7 +41,7 @@ public class HouseBuyingMain {
 
 	/**
 	 * The NPC for Kalavan Houses.
-	 *  
+	 *
 	 * @param zone target zone
 	 */
 	public void createKalavanNPC(StendhalRPZone zone) {
@@ -51,7 +51,7 @@ public class HouseBuyingMain {
 
 	/**
 	 * The NPC for Ados Houses.
-	 * 
+	 *
 	 * @param zone target zone
 	 */
 	public void createAdosNPC(StendhalRPZone zone) {
@@ -61,7 +61,7 @@ public class HouseBuyingMain {
 
 	/**
 	 * The NPC for Kirdneh Houses.
-	 * 
+	 *
 	 * @param zone target zone
 	 */
 	public void createKirdnehNPC(StendhalRPZone zone) {
@@ -71,21 +71,21 @@ public class HouseBuyingMain {
 
 	/**
 	 * The NPC for Athor Apartments.
-	 * 
+	 *
 	 * @param zone target zone
 	 */
 	public void createAthorNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new AthorHouseSeller("Cyk", "athor", houseTax);
 		zone.add(npc);
 	}
-	
+
 	public LinkedList<String> getHistory(final Player player) {
 		LinkedList<String> hist = new LinkedList<String>();
 		if(!player.hasQuest("house")) {
 			hist.add("I've never bought a house.");
 			return(hist);
 		}
-		hist.add("I bought " +  HouseUtilities.getHousePortal(MathHelper.parseInt(player.getQuest("house"))).getDoorId() + ".");	
+		hist.add("I bought " +  HouseUtilities.getHousePortal(MathHelper.parseInt(player.getQuest("house"))).getDoorId() + ".");
 		HousePortal playerHousePortal = HouseUtilities.getPlayersHouse(player);
 		if(playerHousePortal!=null) {
 			int unpaidPeriods = houseTax.getUnpaidTaxPeriods(player);
@@ -93,7 +93,7 @@ public class HouseBuyingMain {
 				hist.add("I owe " + Grammar.quantityplnoun(unpaidPeriods, "month", "one") + " worth of tax.");
 			} else {
 				hist.add("I am up to date with my house tax payments.");
-			}	
+			}
 		} else {
 			hist.add("I no longer own that house.");
 		}
@@ -103,7 +103,7 @@ public class HouseBuyingMain {
 	public void addToWorld() {
 		// Start collecting taxes as well
 		houseTax = new HouseTax();
-		
+
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(KALAVAN_CITY);
 		createKalavanNPC(zone);
 
@@ -117,7 +117,7 @@ public class HouseBuyingMain {
 		createAthorNPC(zone);
 
 	}
-	
+
 	public boolean isCompleted(final Player player) {
 		return HouseUtilities.getPlayersHouse(player)!=null;
 	}

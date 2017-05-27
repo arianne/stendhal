@@ -14,6 +14,7 @@ package games.stendhal.common.color;
 import static games.stendhal.common.color.ARGB.BLUE;
 import static games.stendhal.common.color.ARGB.GREEN;
 import static games.stendhal.common.color.ARGB.RED;
+
 import games.stendhal.common.math.Algebra;
 
 /**
@@ -24,7 +25,7 @@ public class HSL {
 	/**
 	 * Transform ARGB color vector to HSL space. Transparency is dropped.
 	 * All returned components are in range [0, 1].
-	 *  
+	 *
 	 * @param rgb red, green, blue value
 	 * @param hsl hue, saturation, lightness
 	 */
@@ -89,7 +90,7 @@ public class HSL {
 	/**
 	 * Transform HSL color vector to ARGB space. Alpha is kept at 0 for
 	 * everything. All HSL should be scaled to range [0, 1].
-	 * 
+	 *
 	 * @param rgb red, green, blue value
 	 * @param hsl hue, saturation, lightness
 	 */
@@ -126,7 +127,7 @@ public class HSL {
 
 	/**
 	 * Keep hue value within [0, 1] circle.
-	 *  
+	 *
 	 * @param hue
 	 * @return normalized hue
 	 */
@@ -142,7 +143,7 @@ public class HSL {
 
 	/**
 	 * Transform a hue to RGB.
-	 * 
+	 *
 	 * @param hue
 	 * @param val1 color dependent value
 	 * @param val2 color dependent value

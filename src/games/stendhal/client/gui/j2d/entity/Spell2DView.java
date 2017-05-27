@@ -16,6 +16,8 @@ package games.stendhal.client.gui.j2d.entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2DClient;
@@ -24,12 +26,8 @@ import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.TextSprite;
-
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a spell.
@@ -151,7 +149,7 @@ class Spell2DView extends Entity2DView<IEntity> {
 		}
 		return position.toString();
 	}
-	
+
 	@Override
 	public boolean isMovable() {
 		return true;

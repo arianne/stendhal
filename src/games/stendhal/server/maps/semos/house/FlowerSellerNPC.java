@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.house;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
-
-import java.util.Map;
 
 /**
  * Builds a Flower Seller NPC for the Elf Princess quest.

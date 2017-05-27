@@ -13,6 +13,9 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -23,8 +26,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
-
-import java.util.List;
 
 /**
  * handles item lists a player has to bring for a quest
@@ -155,9 +156,9 @@ public final class CollectRequestedItemsAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return 5051 * (itemName.hashCode() 
-				+ 5059 * (questSlot.hashCode() 
-				+ 5077 * (questionForMore.hashCode() 
+		return 5051 * (itemName.hashCode()
+				+ 5059 * (questSlot.hashCode()
+				+ 5077 * (questionForMore.hashCode()
 				+ 5081 * (alreadyBrought.hashCode()
 				+ 5087 * (toExecuteOnCompletion.hashCode()
 				+ 5099 * stateAfterCompletion.hashCode())))));

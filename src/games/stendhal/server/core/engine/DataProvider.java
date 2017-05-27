@@ -11,10 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
-import games.stendhal.common.IO;
-import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.entity.player.Player;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,9 +20,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import marauroa.common.net.message.TransferContent;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.IO;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.net.message.TransferContent;
 
 /**
  * provides data to the client
@@ -78,7 +77,7 @@ public class DataProvider {
 		if (data == null) {
 			return;
 		}
-		
+
 		List<TransferContent> contents = data.get(version);
 		if (contents != null) {
 			StendhalRPAction.transferContent(player, contents);

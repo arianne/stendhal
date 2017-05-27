@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.sound.facade;
 
+import java.util.Arrays;
+
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Geometry;
-
-import java.util.Arrays;
 
 /**
  * AudibleCircleAfrea defines a circular area for audible objects.

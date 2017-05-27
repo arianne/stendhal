@@ -12,15 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.awt.Rectangle;
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
-
-import java.awt.Rectangle;
-import java.util.Map;
-
 import marauroa.common.Pair;
 
 // TODO: replace this subclass with normal ChatConditions/ChatActions
@@ -55,7 +54,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 
 	/**
 	 * Sets the playing area (a table or something like that).
-	 * 
+	 *
 	 * @param playingArea
 	 *            shape of the playing area (in the same zone as the NPC)
 	 */

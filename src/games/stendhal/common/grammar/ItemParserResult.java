@@ -59,7 +59,7 @@ public class ItemParserResult {
 
 	/**
 	 * Sets the amount that the player wants to transact with the NPC.
-	 * 
+	 *
 	 * @param amount
 	 *            amount
 	 */

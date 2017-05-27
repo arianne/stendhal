@@ -60,7 +60,7 @@ public class SoldierNPCs implements LoadableContent {
 				addGoodbye("Be careful.");
 			}
 		};
-		
+
 		npc2.setPosition(92, 98);
 		npc2.setEntityClass("youngsoldiernpc");
 		npc2.setDirection(Direction.LEFT);

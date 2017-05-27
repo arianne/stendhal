@@ -12,7 +12,7 @@
 package games.stendhal.common.color;
 
 /**
- * Convenience methods for dealing with ARGB colors. 
+ * Convenience methods for dealing with ARGB colors.
  */
 public class ARGB {
 	// ARGB format
@@ -34,12 +34,12 @@ public class ARGB {
 	private static final int SHIFT_GREEN = (24 - GREEN * 8);
 	/** Amount to need shifting to access blue at an integer */
 	private static final int SHIFT_BLUE = (24 - BLUE * 8);
-	
+
 	/**
 	 * Split ARGB color to its 8 bit color components.
-	 * 
+	 *
 	 * @param rgb red, green, blue value
-	 * @param result array of length 4. 
+	 * @param result array of length 4.
 	 */
 	public static void splitRgb(int rgb, int[] result) {
 		result[ALPHA] = (rgb >> SHIFT_ALPHA) & 0xff;
@@ -47,11 +47,11 @@ public class ARGB {
 		result[GREEN] = (rgb >> SHIFT_GREEN) & 0xff;
 		result[BLUE] = (rgb >> SHIFT_BLUE) & 0xff;
 	}
-	
+
 
 	/**
 	 * Merge 8 bit ARGB color components to one integer color.
-	 * 
+	 *
 	 * @param rgbData data to be merged. Array of length 4.
 	 * @return ARGB as an integer
 	 */

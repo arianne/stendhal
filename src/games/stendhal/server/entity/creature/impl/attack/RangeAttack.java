@@ -14,9 +14,9 @@ package games.stendhal.server.entity.creature.impl.attack;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.Entity;
 
 class RangeAttack implements AttackStrategy {
 	/** Maximum range at which the archer will consider a target valid, squared. */
@@ -24,7 +24,7 @@ class RangeAttack implements AttackStrategy {
 	/** Archer range, if not specified otherwise. */
 	private static final int DEFAULT_RANGE = 7;
 	private final int range;
-	
+
 	RangeAttack(String range) {
 		this.range = MathHelper.parseIntDefault(range, DEFAULT_RANGE);
 	}
@@ -35,7 +35,7 @@ class RangeAttack implements AttackStrategy {
 			creature.attack();
 		}
 	}
-	
+
 	@Override
 	public boolean canAttackNow(final Creature creature) {
 		return canAttackNow(creature, creature.getAttackTarget());
@@ -92,7 +92,7 @@ class RangeAttack implements AttackStrategy {
 				// give to creature good kick
 				creature.setSpeed(creature.getBaseSpeed());
 			}
-		// good distance to attack 
+		// good distance to attack
 		} else {
 			// cant attack enemy, going to him
 			if (!canAttackNow(creature)) {
@@ -129,26 +129,26 @@ class RangeAttack implements AttackStrategy {
 
 	/**
 	 * Get the shortest range that is considered optimal.
-	 * 
+	 *
 	 * @return shortest optimal range
 	 */
 	private int shortRangeSquared() {
 		int tmp = range / 2 + (range % 2);
-		
+
 		return tmp * tmp;
 	}
-	
+
 	/**
 	 * Get the longest range that is considered optimal.
-	 * 
+	 *
 	 * @return longest optimal range
 	 */
 	private int longRangeSquared() {
 		int tmp = range / 2 + (range % 2) + 1;
-		
+
 		return tmp * tmp;
 	}
-	
+
 	@Override
 	public int getRange() {
 		return range;

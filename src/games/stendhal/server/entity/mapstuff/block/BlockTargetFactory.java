@@ -32,7 +32,7 @@ public class BlockTargetFactory implements ConfigurableFactory{
 		final String description = ctx.getString("description", "");
 		final String shape = ctx.getString("shape", null);
 		BlockTarget target = new BlockTarget(shape);
-		
+
 		if (description != null) {
 			target.setDescription(description);
 		}
@@ -55,13 +55,13 @@ public class BlockTargetFactory implements ConfigurableFactory{
 		} catch (CompilationFailedException e) {
 			throw new IllegalArgumentException(e);
 		}
-		
+
 		return target;
 	}
 
 	/**
 	 * Create a ChatAction
-	 * 
+	 *
 	 * @param action the configuration String
 	 * @return the action or null
 	 * @throws CompilationFailedException
@@ -77,7 +77,7 @@ public class BlockTargetFactory implements ConfigurableFactory{
 
 	/**
 	 * Create a ChatCondtion
-	 * 
+	 *
 	 * @param condition the configuration String
 	 * @return the condition or null
 	 * @throws CompilationFailedException
@@ -93,7 +93,7 @@ public class BlockTargetFactory implements ConfigurableFactory{
 
 	/**
 	 * Create a GroovyShell
-	 * 
+	 *
 	 * @return a fresh GroovyShell
 	 */
 	private GroovyShell createGroovyShell() {
@@ -101,5 +101,5 @@ public class BlockTargetFactory implements ConfigurableFactory{
 		final GroovyShell interp = new GroovyShell(groovyBinding);
 		return interp;
 	}
-	
+
 }

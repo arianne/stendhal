@@ -12,6 +12,10 @@
 package games.stendhal.server.actions.buddy;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.GameEvent;
@@ -21,10 +25,6 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.Collection;
-
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -40,7 +40,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 
 	/**
 	 * Starts to handle a buddy action.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @param action
@@ -62,7 +62,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 
 	/**
 	 * Completes handling the buddy action.
-	 * 
+	 *
 	 * @param currentTurn ignored
 	 */
 	@Override

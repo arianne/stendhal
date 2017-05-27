@@ -12,17 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.player.Player;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.player.Player;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
-
-import org.apache.log4j.Logger;
 
 /**
  * save all players
@@ -46,5 +45,5 @@ public class SaveAllPlayers extends ScriptImpl {
 		}
 	}
 
-	
+
 }

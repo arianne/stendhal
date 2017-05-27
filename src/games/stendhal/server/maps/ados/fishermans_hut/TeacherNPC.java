@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.fishermans_hut;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,19 +23,15 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Ados Fisherman's (Inside / Level 0).
  *
  * @author dine
  */
 public class TeacherNPC implements ZoneConfigurator {
-	
+
 	private static final int TIME_OUT = 60;
-	
+
 	/**
 	 * Configure a zone.
 	 *
@@ -66,7 +66,7 @@ public class TeacherNPC implements ZoneConfigurator {
 				addReply("oil", "You've got the wrong fisherman. Go ask Pequod about oil, he's in the next hut.");
 			}
 		};
-		fisherman.setPlayerChatTimeout(TIME_OUT); 
+		fisherman.setPlayerChatTimeout(TIME_OUT);
 		fisherman.setEntityClass("fishermannpc");
 		fisherman.setDirection(Direction.DOWN);
 		fisherman.setPosition(3, 3);

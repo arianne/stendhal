@@ -16,7 +16,7 @@ import marauroa.common.game.Result;
 
 /**
  * validates that the given parameter is neither null nor the empty string.
- * 
+ *
  * @author hendrik
  */
 public class NotEmptyValidator implements AccountParameterValidator {
@@ -24,7 +24,7 @@ public class NotEmptyValidator implements AccountParameterValidator {
 
 	/**
 	 * create a new NotEmptyValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */

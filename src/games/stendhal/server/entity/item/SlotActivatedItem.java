@@ -1,45 +1,45 @@
 package games.stendhal.server.entity.item;
 
-import games.stendhal.common.constants.Testing;
-import games.stendhal.server.entity.RPEntity;
-
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.constants.Testing;
+import games.stendhal.server.entity.RPEntity;
+
 /**
  * An item that can be activated by being held in specific slots.
- * 
+ *
  * @author AntumDeluge
  */
 public abstract class SlotActivatedItem extends Item {
-	
+
 	/* The logger instance */
 	private static final Logger logger = Logger.getLogger(SlotActivatedItem.class);
-	
+
 	/* List of slots where this item is active when equipped. */
 	// XXX: Should java.util.Collection be used instead?
 	private List<String> activeSlotsList = null;
-	
+
 	/* The active state of the item initialized as deactivated. */
 	protected boolean activated = false;
-	
+
 	/* Slot to track previous equipped location. */
 	private String transitionSlot;
-	
+
 	/* Name of slot being transition to/from. Useful for checking previous
 	 * slot on un-equipping.
-	 * 
+	 *
 	 * FIXME: This slot is not necessary. Can call
 	 *        this.getContainerSlot().getName() from onUnequipped().
 	 */
 	//private String transitionSlot;
-	
-	
+
+
 	/**
 	 * Default constructor.
-	 * 
+	 *
 	 * @param name
 	 * 		Item's name
 	 * @param clazz
@@ -53,31 +53,31 @@ public abstract class SlotActivatedItem extends Item {
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-	
+
 	/**
 	 * Copy constructor
-	 * 
+	 *
 	 * @param item
 	 * 		Item to be copied
 	 */
 	public SlotActivatedItem(Item item) {
 		super(item);
 	}
-	
-	
+
+
 /* XXX --- ITEM INITIALIZATION --- XXX */
-	
+
 	/**
 	 * Create a list of slots in which this item can be activated while
 	 * equipped.
-	 * 
+	 *
 	 * @param list
 	 * 		List of slot active slot names
 	 */
 	@Override
 	public void initializeActiveSlotsList(final List<String> list) {
 		this.activeSlotsList = list;
-		
+
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			logger.info("SlotActivatedItem: Initializing active slots list");
 			if (this.activeSlotsList == null) {
@@ -85,20 +85,20 @@ public abstract class SlotActivatedItem extends Item {
 			}
 		}
 	}
-	
-	
+
+
 /* XXX --- ITEM MANIPULATION --- XXX */
-	
+
 	/**
 	 * Fill the list of active slots.
-	 * 
+	 *
 	 * @param slotList
 	 * 		List of slots in which item can be activated
 	 */
 	public void initiateActiveSlotsList(final List<String> slotList) {
 		activeSlotsList = slotList;
 	}
-	
+
 	/**
 	 * Action to take when item is equipped. If successfully equipped item's
 	 * activation state is set to <b>true</b>.
@@ -108,13 +108,13 @@ public abstract class SlotActivatedItem extends Item {
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			logger.info(this.getName() + " moved to \"" + slot + "\"");
 		}
-		
+
 		/* Begin tracking transition slot when the item is equipped. */
 		this.transitionSlot = slot;
-		
+
 		/* Attempt to activate item's attributes if being transitioned to an
 		 * active slot from a non-active one.
-		 * 
+		 *
 		 * FIXME: Should also check !this.activated.
 		 */
 		if (this.isActiveSlot(slot)) {
@@ -122,17 +122,17 @@ public abstract class SlotActivatedItem extends Item {
 			 * this.onActivate() should return <b>true</b>.
 			 */
 			this.activated = this.onActivate();
-			
+
 			/* Check if the item has been activated. */
 			if (!this.activated) {
 				logger.error("Did not activate when equipped to slot \""
 						+ slot + "\"");
 			}
 		}
-		
+
 		return super.onEquipped(owner, slot);
 	}
-	
+
 	/**
 	 * Action to take when item is un-equipped. If successfully un-equipped
 	 * item's activation state is set to <b>false</b>.
@@ -145,10 +145,10 @@ public abstract class SlotActivatedItem extends Item {
 //				logger.info(this.getName() + " removed from \"" +
 //						this.transitionSlot + "\"");
 //			}
-			
+
 			/* Attempt to deactivate item's attributes if being transitioned from
 			 * an active slot to a non-active one.
-			 * 
+			 *
 			 * FIXME: Should also check this.activated.
 			 */
 			if (this.isActiveSlot(this.transitionSlot)) {
@@ -156,12 +156,12 @@ public abstract class SlotActivatedItem extends Item {
 				 * owner. this.onDeactivate() should return <b>false</b>.
 				 */
 				this.activated = this.onDeactivate();
-				
+
 				/* We need to clear transitionSlot in case the item is placed
 				 * on the ground.
 				 */
 				this.transitionSlot = null;
-				
+
 				/* Check if the item is still activated. */
 				if (this.activated) {
 					logger.error("Did not deactivate when removed from slot \""
@@ -174,16 +174,16 @@ public abstract class SlotActivatedItem extends Item {
 				logger.info(this.getName() + " removed from \"null\"");
 			}
 		}
-		
+
 		return super.onUnequipped();
 	}
-	
-	
+
+
 /* XXX --- ITEM CHECKS --- XXX */
-	
+
 	/**
 	 * Checks the activation state of the item for activation.
-	 * 
+	 *
 	 * @return
 	 * 		<b>true</b> if item is not currently activated
 	 */
@@ -193,10 +193,10 @@ public abstract class SlotActivatedItem extends Item {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Checks the activation state of the item for deactivation.
-	 * 
+	 *
 	 * @return
 	 * 		<b>true</b> if item is currently activated
 	 */
@@ -206,20 +206,20 @@ public abstract class SlotActivatedItem extends Item {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Tests whether the item is currently activated.
-	 * 
+	 *
 	 * @return
 	 * 		Item's activation state
 	 */
 	public boolean isActivated() {
 		return this.activated;
 	}
-	
+
 	/**
 	 * Tests whether the item can be activated in specified slot.
-	 * 
+	 *
 	 * @param slot
 	 * 		Slot to be tested
 	 * @return
@@ -238,18 +238,18 @@ public abstract class SlotActivatedItem extends Item {
 			logger.info("Checking slot: " + slot);
 			logger.info("Active slots: " + activeSlotListString);
 		}
-		
+
 		if ((activeSlotsList != null)
 				&& !activeSlotsList.isEmpty() && slot != null) {
 			return activeSlotsList.contains(slot);
 		}
-		
+
 		return false;
 	}
-	
-	
+
+
 /* XXX --- ITEM ACTIVATION --- XXX */
-	
+
 	/**
 	 * Actions to take when equipped. Should return <b>true</b> on successful
 	 * activation.
@@ -260,11 +260,11 @@ public abstract class SlotActivatedItem extends Item {
 	protected boolean onActivate() {
 		return canActivate();
 	}
-	
+
 	/**
 	 * Actions to take when Unequipped. Should return <b>false</b> on
-	 * successful deactivation. 
-	 * 
+	 * successful deactivation.
+	 *
 	 * @return
 	 * 		Non-activated state
 	 */

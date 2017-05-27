@@ -6,7 +6,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 /**
  * An Effect that temporarily modifies a player's base_hp
- * 
+ *
  * @author madmetzger
  */
 public class ModifyBaseHpEffect extends AbstractEffect {

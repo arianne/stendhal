@@ -27,18 +27,18 @@ import marauroa.common.game.RPObject;
 
 /**
  * A healing spell. It the HP of a player by the given amount
- *  
- * @author timothyb89, madmetzger 
+ *
+ * @author timothyb89, madmetzger
  */
 public class HealingSpell extends Spell {
-	
+
 	public HealingSpell(final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 			final int def, final double lifesteal, final int mana, final int minimumlevel, final int range,
 			final int rate, final int regen, double modifier) {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel, range,
 				rate, regen, modifier);
 	}
-	
+
 	public HealingSpell(RPObject object) {
 		super(object);
 	}
@@ -58,5 +58,5 @@ public class HealingSpell extends Spell {
 		}
 		return false;
 	}
-	
+
 }

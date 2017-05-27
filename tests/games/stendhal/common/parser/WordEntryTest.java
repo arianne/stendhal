@@ -13,14 +13,12 @@
 package games.stendhal.common.parser;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.common.parser.ExpressionType;
-import games.stendhal.common.parser.WordEntry;
 
 import org.junit.Test;
 
 /**
  * Test the NPC conversation WordEntry class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class WordEntryTest {

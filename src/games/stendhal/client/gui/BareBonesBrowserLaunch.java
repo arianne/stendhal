@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
  * >www.centerkey.com/java/browser</a><br>
  * Author: Dem Pilafian<br>
  * Public Domain Software -- Free to Use as You Like
- * 
+ *
  * @version 3.0, February 7, 2010
  */
 public class BareBonesBrowserLaunch {
@@ -39,7 +39,7 @@ public class BareBonesBrowserLaunch {
 
 	/**
 	 * Opens the specified web page in the user's default browser
-	 * 
+	 *
 	 * @param url
 	 *            A web address (URL) of a web page (ex:
 	 *            "https://www.google.com/")
@@ -60,22 +60,25 @@ public class BareBonesBrowserLaunch {
 							.getDeclaredMethod("openURL",
 									new Class[] { String.class }).invoke(null,
 									new Object[] { url });
-				} else if (osName.startsWith("Windows"))
+				} else if (osName.startsWith("Windows")) {
 					Runtime.getRuntime().exec(
 							"rundll32 url.dll,FileProtocolHandler " + url);
-				else { // assume Unix or Linux
+				} else { // assume Unix or Linux
 					boolean found = false;
-					for (String browser : browsers)
+					for (String browser : browsers) {
 						if (!found) {
 							found = Runtime.getRuntime().exec(
 									new String[] { "which", browser })
 									.waitFor() == 0;
-							if (found)
+							if (found) {
 								Runtime.getRuntime().exec(
 										new String[] { browser, url });
+							}
 						}
-					if (!found)
+					}
+					if (!found) {
 						throw new Exception(Arrays.toString(browsers));
+					}
 				}
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(j2DClient.get().getMainFrame(), errMsg + url);

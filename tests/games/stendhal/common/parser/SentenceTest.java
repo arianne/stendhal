@@ -16,13 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import games.stendhal.common.parser.ConversationContext;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.common.parser.Expression;
-import games.stendhal.common.parser.NameSearch;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.common.parser.SentenceImplementation;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +23,7 @@ import org.junit.Test;
 
 /**
  * Test the NPC conversation Sentence class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class SentenceTest {
@@ -218,7 +211,7 @@ public class SentenceTest {
 	@Test
 	public final void testTypeMatching() {
 		Sentence s1 = ConversationParser.parse("no");
-		// "0/NUM" is the normalized form of "no" because of the 0/no ambiguity. 
+		// "0/NUM" is the normalized form of "no" because of the 0/no ambiguity.
 		Sentence m1 = ConversationParser.parseAsMatcher("|TYPE|0/NUM");
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());

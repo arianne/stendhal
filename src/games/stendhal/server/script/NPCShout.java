@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * Impersonate a NPC to shout a message to all players.
- * 
+ *
  * @author hendrik
  */
 public class NPCShout extends ScriptImpl {

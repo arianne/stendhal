@@ -12,19 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Map;
-
-import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPObject;
+
 /**
  * a box which can be unwrapped.
- * 
+ *
  * @author hendrik
  */
 public class Box extends Item {
@@ -33,7 +32,7 @@ public class Box extends Item {
 
 	/**
 	 * Creates a new box.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -46,7 +45,7 @@ public class Box extends Item {
 
 	/**
 	 * copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */

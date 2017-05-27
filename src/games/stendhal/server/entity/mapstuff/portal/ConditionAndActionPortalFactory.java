@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import org.codehaus.groovy.control.CompilationFailedException;
+
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-
-import org.codehaus.groovy.control.CompilationFailedException;
 
 /**
  * A factory for <code>ConditionCheckingPortal</code> objects.
@@ -27,7 +27,7 @@ public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory
 
 	/**
 	 * Extract the quest name from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The quest name.
@@ -53,7 +53,7 @@ public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory
 
 	/**
 	 * Extract the quest name from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The quest name.
@@ -78,7 +78,7 @@ public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory
 
 	/**
 	 * Create a condition checking portal.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
 	 * @return A ConditionCheckingPortal

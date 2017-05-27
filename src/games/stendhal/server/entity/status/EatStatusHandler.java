@@ -24,7 +24,7 @@ public class EatStatusHandler implements StatusHandler<EatStatus> {
 
 	/**
 	 * inflicts a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 * @param attacker the attacker
@@ -53,7 +53,7 @@ public class EatStatusHandler implements StatusHandler<EatStatus> {
 
 	/**
 	 * removes a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */

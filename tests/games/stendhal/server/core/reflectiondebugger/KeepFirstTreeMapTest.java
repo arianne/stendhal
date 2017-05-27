@@ -31,7 +31,7 @@ public class KeepFirstTreeMapTest {
 	public void testNormalOperation() {
 		Map<String, String> map = new KeepFirstTreeMap<String, String>();
 		map.put("a", "b");
-		
+
 		assertThat(map.get("a"), is("b"));
 		assertThat(map.get("b"), nullValue());
 	}
@@ -44,11 +44,11 @@ public class KeepFirstTreeMapTest {
 		Map<String, String> map = new KeepFirstTreeMap<String, String>();
 		map.put("a", "b");
 		map.put("a", "c");
-		
+
 		assertThat(map.get("a"), is("b"));
 		assertThat(map.get("b"), nullValue());
 	}
-	
+
 	/**
 	 * Tests for remove.
 	 */
@@ -58,11 +58,11 @@ public class KeepFirstTreeMapTest {
 		map.put("a", "b");
 		map.remove("a");
 		map.put("a", "c");
-		
+
 		assertThat(map.get("a"), is("c"));
 		assertThat(map.get("b"), nullValue());
 	}
-	
+
 	/**
 	 * Tests for putAll.
 	 */
@@ -73,9 +73,9 @@ public class KeepFirstTreeMapTest {
 
 		Map<String, String> otherMap = new HashMap<String, String>();
 		otherMap.put("a", "c");
-		
+
 		map.putAll(otherMap);
-		
+
 		assertThat(map.get("a"), is("b"));
 		assertThat(map.get("b"), nullValue());
 	}

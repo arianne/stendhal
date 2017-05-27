@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -19,10 +23,6 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class DiverNPC implements ZoneConfigurator  {
 
@@ -42,7 +42,7 @@ public class DiverNPC implements ZoneConfigurator  {
 				nodes.add(new Node(36,28));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 			@Override
 			public void createDialog() {
 				addGreeting("Hallo, my friend!");
@@ -57,7 +57,7 @@ public class DiverNPC implements ZoneConfigurator  {
 		npc.setPosition(36, 28);
 		npc.setEntityClass("swimmer2npc");
 		npc.setDescription ("You see Dorinel who enjoys the sun.");
-		zone.add(npc);		
+		zone.add(npc);
 	}
 }
 

@@ -51,11 +51,12 @@ public class AudibleCapsuleArea implements AudibleArea
 	public float getHearingIntensity(float[] hearerPos)
     {
         float distance = Geometry.distanceSqrt_LinePointf(mStartPoint, mEndPoint, hearerPos);
-        
-        if(distance > (mOuterRadius * mOuterRadius))
-            return 0.0f;
-        else if(distance < (mInnerRadius * mInnerRadius))
-            return 1.0f;
+
+        if(distance > (mOuterRadius * mOuterRadius)) {
+			return 0.0f;
+		} else if(distance < (mInnerRadius * mInnerRadius)) {
+			return 1.0f;
+		}
 
         distance = (float)Math.sqrt(distance) - mInnerRadius;
         return 1.0f - distance / (mOuterRadius - mInnerRadius);

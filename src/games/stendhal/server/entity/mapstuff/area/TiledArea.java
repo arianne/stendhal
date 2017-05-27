@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.mapstuff.area;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
-
-import org.apache.log4j.Logger;
 
 /**
  * an area which consists of tiled images
@@ -21,7 +21,7 @@ public class TiledArea extends AreaEntity {
 
 	/**
 	 * Define the RPClass.
-	 * 
+	 *
 	 * @return The configured RPClass.
 	 */
 	public static RPClass createRPClass() {

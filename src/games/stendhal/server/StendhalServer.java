@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import games.stendhal.server.core.engine.GenerateINI;
-
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import games.stendhal.server.core.engine.GenerateINI;
 
 /**
  * Starts a Stendhal server

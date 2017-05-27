@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.bank;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Builds the Ados bank npc.
@@ -63,19 +63,19 @@ public class BankNPC implements ZoneConfigurator {
 				addQuest("Sorry, I have no job for you at the moment.");
  				addGoodbye("Thank you for visiting our bank!");
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 		};
-		
+
 		npc.setDescription("You see Rachel, a smart looking woman. She works in Ados bank.");
 		npc.setEntityClass("adosbankassistantnpc");
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(9, 4);
 		npc.initHP(100);
 		zone.add(npc);
-		
+
 	}
 }

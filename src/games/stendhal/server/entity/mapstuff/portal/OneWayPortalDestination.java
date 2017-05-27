@@ -42,7 +42,7 @@ public class OneWayPortalDestination extends Portal {
 	@Override
 	public boolean loaded() {
 		// Always loaded
-		return true; 
+		return true;
 	}
 
 	@Override

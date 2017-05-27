@@ -14,14 +14,14 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.JAIL;
 import static games.stendhal.common.constants.Actions.MINUTES;
 import static games.stendhal.common.constants.Actions.TARGET;
+
+import java.sql.SQLException;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-
-import java.sql.SQLException;
-
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;

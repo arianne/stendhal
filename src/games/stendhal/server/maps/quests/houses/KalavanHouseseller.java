@@ -40,42 +40,42 @@ final class KalavanHouseseller extends HouseSellerNPCBase {
 	}
 
 	private void init() {
-		// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
-		// For definiteness we will check these conditions in a set order. 
+		// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy.
+		// For definiteness we will check these conditions in a set order.
 		// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
 
 		// player has not done required quest, hasn't got a house at all
-add(ConversationStates.ATTENDING, 
+add(ConversationStates.ATTENDING,
 		Arrays.asList("cost", "house", "buy", "purchase"),
 		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), new QuestNotCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
-		ConversationStates.ATTENDING, 
+		ConversationStates.ATTENDING,
 			"The cost of a new house is "
 		+ getCost()
 		+ " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find "
 		+ " north of here in Kalavan Castle. Try speaking to his daughter first, she is ... friendlier.",
 			null);
 
-// player is not old enough but they have doen princess quest 
+// player is not old enough but they have doen princess quest
 // (don't need to check if they have a house, they can't as they're not old enough)
-add(ConversationStates.ATTENDING, 
+add(ConversationStates.ATTENDING,
 		Arrays.asList("cost", "house", "buy", "purchase"),
 		new AndCondition(
 							 new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT),
 							 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE))),
-		ConversationStates.ATTENDING, 
+		ConversationStates.ATTENDING,
 		"The cost of a new house is "
 		+ getCost()
-		+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least " 
+		+ " money. But I am afraid I cannot trust you with house ownership just yet, come back when you have spent at least "
 		+ Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
 		null);
 
 // player is eligible to buy a house
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 		Arrays.asList("cost", "house", "buy", "purchase"),
-		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), 
-						 new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+		new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
+						 new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
 							 new QuestCompletedCondition(KalavanHouseseller.PRINCESS_QUEST_SLOT)),
-		ConversationStates.QUEST_OFFERED, 
+		ConversationStates.QUEST_OFFERED,
 		"The cost of a new house is "
 		+ getCost()
 		+ " money. Also, you must pay a house tax of " + HouseTax.BASE_TAX
@@ -100,7 +100,7 @@ setDescription("You see a smart looking man.");
 setEntityClass("estateagentnpc");
 setPosition(55, 94);
 initHP(100);
-		
+
 	}
 
 	@Override

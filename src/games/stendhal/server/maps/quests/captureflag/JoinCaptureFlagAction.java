@@ -17,8 +17,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.player.Player;
 
-import games.stendhal.server.maps.quests.captureflag.ProvideArrowsAction;
-
 /**
  * lets the player join a CTF game
  *
@@ -28,14 +26,14 @@ public class JoinCaptureFlagAction implements ChatAction {
 
 	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
-		
+
 		// TODO: set some rpentity slot
-		
+
 		player.setUseListener("Tag", new CaptureFlagUseListener(player));
-		
+
 		// only if player does not have bow already
 		new EquipItemAction("ctf bow").fire(player,  sentence, npc);
-		
+
 		new ProvideArrowsAction().fire(player, sentence, npc);
 	}
 }

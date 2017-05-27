@@ -12,6 +12,7 @@
 package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.KNOCK;
+
 import games.stendhal.server.actions.validator.ActionData;
 import games.stendhal.server.actions.validator.ActionValidation;
 import games.stendhal.server.actions.validator.ExtractEntityValidator;
@@ -47,7 +48,7 @@ public class KnockAction implements ActionListener {
 		if (!VALIDATION.validateAndInformPlayer(player, action, data)) {
 			return;
 		}
-		
+
 		Entity entity = data.getEntity();
 		if ((entity == null) || !(entity instanceof HousePortal)) {
 			// unlikely to happen since players can only see Knock on HousePortal right click menus, but you never know ...

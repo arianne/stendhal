@@ -11,25 +11,25 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
-import games.stendhal.client.actions.SlashActionRepository;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import games.stendhal.client.actions.SlashActionRepository;
+
 /**
  * Popup menu for the member entries in the group listing.
  */
 class MemberPopupMenu extends JPopupMenu {
 	private static final long serialVersionUID = -4373851861705571044L;
-	
+
 	private final String member;
 
 	/**
 	 * Create a popup menu for a group member.
-	 * 
+	 *
 	 * @param member member name
 	 * @param showLeaderOps <code>true</code> if leader operations such as
 	 * 	kicking should be included in the menu
@@ -40,7 +40,7 @@ class MemberPopupMenu extends JPopupMenu {
 		JMenuItem item = new JMenuItem("Where");
 		item.addActionListener(new WhereAction());
 		add(item);
-		
+
 		if (showLeaderOps) {
 			item = new JMenuItem("Kick");
 			add(item);
@@ -51,7 +51,7 @@ class MemberPopupMenu extends JPopupMenu {
 			item.addActionListener(new TransferLeadershipAction());
 		}
 	}
-	
+
 	/**
 	 * Listener for activating the where menu item.
 	 */
@@ -61,7 +61,7 @@ class MemberPopupMenu extends JPopupMenu {
 			SlashActionRepository.get("where").execute(null, member);
 		}
 	}
-	
+
 	/**
 	 * Listener for activating the kick menu item.
 	 */
@@ -72,7 +72,7 @@ class MemberPopupMenu extends JPopupMenu {
 			SlashActionRepository.get("group").execute(args, member);
 		}
 	}
-	
+
 	/**
 	 * Listener for activating the "Make Leader" menu item.
 	 */

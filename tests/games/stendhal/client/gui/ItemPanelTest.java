@@ -13,6 +13,11 @@
 package games.stendhal.client.gui;
 
 import static org.junit.Assert.assertEquals;
+
+import javax.swing.JPanel;
+
+import org.junit.Test;
+
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityFactory;
@@ -20,18 +25,12 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.styled.cursor.CursorRepository;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
-
-import javax.swing.JPanel;
-
 import marauroa.common.game.RPObject;
-
-import org.junit.Test;
-
 import utilities.RPClass.ItemTestHelper;
 
 public class ItemPanelTest {
 	private static final CursorRepository cursors = new CursorRepository();
-	
+
 	/**
 	 * Test getting the cursor.
 	 */
@@ -40,9 +39,9 @@ public class ItemPanelTest {
 		ItemPanel panel = new ItemPanel("blah", null);
 		// For comparing with the default cursor
 		JPanel dummy = new JPanel();
-		
+
 		assertEquals("Default cursor", dummy.getCursor(), panel.getCursor());
-		
+
 		// Check adding an item to the slot
 		RPObject obj = ItemTestHelper.createItem("wedding ring");
 		IEntity item = EntityFactory.createEntity(obj);
@@ -56,10 +55,10 @@ public class ItemPanelTest {
 		 * Comparing the string representations because the cursors come from
 		 * different repositories, and would compare unequal otherwise
 		 */
-		assertEquals("Pick up cursor", 
+		assertEquals("Pick up cursor",
 				cursors.get(StendhalCursor.ITEM_PICK_UP_FROM_SLOT).toString(),
 				panel.getCursor().toString());
-		
+
 		// Repeat the checks with an user owned slot
 		User user = new User();
 		panel.setParent(user);
@@ -73,7 +72,7 @@ public class ItemPanelTest {
 		panel.setEntity(item);
 		// Get the cursor from the view
 		EntityView<?> view = EntityViewFactory.create(item);
-		assertEquals("Cursor from the entity view", 
+		assertEquals("Cursor from the entity view",
 				cursors.get(view.getCursor()).toString(),
 				panel.getCursor().toString());
 	}

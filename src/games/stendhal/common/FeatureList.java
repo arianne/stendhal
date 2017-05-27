@@ -41,7 +41,7 @@ public class FeatureList implements Iterable<String> {
 
 	/**
 	 * Read an encoded features list.
-	 * 
+	 *
 	 * Encoded features are in the form of:<br>
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 * @param encoded encoded string to decode
@@ -95,7 +95,7 @@ public class FeatureList implements Iterable<String> {
 		return list.get(name);
 	}
 
-	
+
 	//
 	// Iterable
 	//

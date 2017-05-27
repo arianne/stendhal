@@ -8,7 +8,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Resets a block to its initial position
- * 
+ *
  * @author madmetzger
  */
 public class ResetBlockChatAction implements ChatAction {
@@ -17,8 +17,8 @@ public class ResetBlockChatAction implements ChatAction {
 
     /**
      * Create a new Action to reset the given Block
-     * 
-     * @param block 
+     *
+     * @param block
      *          The Block to reset
      */
     public ResetBlockChatAction(Block block) {

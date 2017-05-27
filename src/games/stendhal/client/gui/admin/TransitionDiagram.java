@@ -11,11 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.admin;
 
-import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.NotificationType;
-
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Image;
@@ -29,6 +24,11 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.NotificationType;
 
 /**
  * Displays the state-transition chart of an NPC.

@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.CollisionAction;
@@ -18,15 +20,13 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * Sets NPC to reverse path on collision
- * 
+ *
  * @author AntumDeluge
  */
 public class SetNPCPathReversible extends ScriptImpl {
-	
+
 	@Override
 	public void execute(Player admin, List<String> args) {
 		String reverseOnCollision = args.get(1).toLowerCase();

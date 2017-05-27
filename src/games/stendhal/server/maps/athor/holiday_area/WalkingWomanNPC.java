@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class WalkingWomanNPC implements ZoneConfigurator  {
 
@@ -79,7 +79,7 @@ public class WalkingWomanNPC implements ZoneConfigurator  {
 				nodes.add(new Node(52,29));
 				nodes.add(new Node(52,28));
 				nodes.add(new Node(76,28));
-				// The same way back 
+				// The same way back
 				nodes.add(new Node(52,28));
 				nodes.add(new Node(52,29));
 				nodes.add(new Node(47,29));
@@ -135,6 +135,6 @@ public class WalkingWomanNPC implements ZoneConfigurator  {
 		npc.setPosition(5, 49);
 		npc.setEntityClass("swimmer7npc");
 		npc.setDescription ("The girl close to you is Kelicia, a girl who walks along the coast.");
-		zone.add(npc);		
+		zone.add(npc);
 	}
 }

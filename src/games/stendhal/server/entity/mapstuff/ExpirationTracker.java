@@ -26,12 +26,12 @@ public class ExpirationTracker extends Entity {
 	 * The expiration attribute name
 	 */
 	private final static String EXPIRES = "expires";
-	
+
 	/**
 	 * The identifier attribute name
 	 */
 	private final static String TRACKER_ID = "identifier";
-	
+
 	/**
 	 * The player attribute name
 	 */
@@ -49,28 +49,28 @@ public class ExpirationTracker extends Entity {
 			gate.addAttribute(PLAYER_NAME, Type.STRING);
 		}
 	}
-	
+
 	/**
 	 * Constructor to create an empty tracker
 	 */
 	public ExpirationTracker() {
 		super();
-		
+
 		setRPClass(RPCLASS_EXPIRATION_TRACKER);
 		put("type", RPCLASS_EXPIRATION_TRACKER);
 		put(EXPIRES, Long.toString(0));
 		put(TRACKER_ID, "");
 		put(PLAYER_NAME, "");
-		
+
 		setResistance(0);
-		
+
 		hide();
 		store();
 	}
 
 	/**
 	 * Sets the new expiration time
-	 * 
+	 *
 	 * @param newTime the new expiration time
 	 */
 	public void setExpirationTime(final long newTime) {
@@ -81,16 +81,16 @@ public class ExpirationTracker extends Entity {
 
 	/**
 	 * Gets the expiration time
-	 * 
+	 *
 	 * @return the expiration time
 	 */
 	public long getExpirationTime() {
 		return Long.parseLong(get(EXPIRES));
 	}
-	
+
 	/**
 	 * Sets the new player id
-	 * 
+	 *
 	 * @param player the new player id
 	 */
 	public void setPlayerName(final String player) {
@@ -101,7 +101,7 @@ public class ExpirationTracker extends Entity {
 
 	/**
 	 * Gets the player id
-	 * 
+	 *
 	 * @return the player id
 	 */
 	public String getPlayerName() {
@@ -118,21 +118,21 @@ public class ExpirationTracker extends Entity {
 			zone.storeToDatabase();
 		}
 	}
-	
+
 	/**
 	 * Sets this tracker's identifier
-	 * 
+	 *
 	 * @param id the new identifier
 	 */
 	public void setIdentifier(final String id) {
 		put(TRACKER_ID, id);
-		
+
 		saveToDatabase();
 	}
-	
+
 	/**
 	 * Gets this tracker's identifier
-	 * 
+	 *
 	 * @return the identifier
 	 */
 	public String getIdentifier() {

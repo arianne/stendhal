@@ -22,7 +22,7 @@ import org.junit.Test;
 
 /**
  * Test CommandlineParser.
- * 
+ *
  * @author Martin Fuchs
  */
 public class CommandlineParserTest {

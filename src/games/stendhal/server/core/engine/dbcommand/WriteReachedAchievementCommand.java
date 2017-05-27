@@ -12,12 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.AchievementDAO;
-import games.stendhal.server.core.rp.achievement.Category;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
+import games.stendhal.server.core.engine.db.AchievementDAO;
+import games.stendhal.server.core.rp.achievement.Category;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
@@ -33,9 +32,9 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 
 	/**
 	 * Create a new command.
-	 * 
+	 *
 	 * @param id database id of the achievement
-	 * @param title achievement title 
+	 * @param title achievement title
 	 * @param category achievement category
 	 * @param playerName name of player who has reached it
 	 */

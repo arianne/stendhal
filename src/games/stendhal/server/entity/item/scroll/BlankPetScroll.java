@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 //import games.stendhal.server.entity.player.PetOwner;;
-
-import java.util.Map;
 
 /**
  * Represents an empty/blank pet scroll.
@@ -30,7 +30,7 @@ public class BlankPetScroll extends Scroll {
 
 	/**
 	 * Creates a new blank pet scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -43,7 +43,7 @@ public class BlankPetScroll extends Scroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -53,7 +53,7 @@ public class BlankPetScroll extends Scroll {
 
 	/**
 	 * Use a blank pet scroll.
-	 * 
+	 *
 	 * @param player
 	 * @return always true
 	 */
@@ -67,9 +67,9 @@ public class BlankPetScroll extends Scroll {
 					"summon pet scroll");
 			summonPetScroll.setInfoString(petName);
 			player.equipOrPutOnGround(summonPetScroll);
-			
+
 			final Pet pet = player.getPet();
-			
+
 
 			if (pet != null) {
 				//petOwner.storePet(pet);
@@ -77,12 +77,12 @@ public class BlankPetScroll extends Scroll {
 				pet.getZone().remove(pet);
 				player.sendPrivateText("Amazingly your pet melds with the scroll. It just walked right into the page!");
 			}
-			
+
 			return true;
 		} else {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the scroll from working!");
 			return false;
 		}
 	}
-	
+
 }

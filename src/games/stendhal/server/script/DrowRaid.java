@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author miguel
- * 
+ *
  * Not safe for players below level 150
  */
 public class DrowRaid extends CreateRaid {

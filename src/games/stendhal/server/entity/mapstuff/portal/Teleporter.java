@@ -16,17 +16,17 @@ import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.entity.player.Player;
 
 public class Teleporter extends Portal {
-	
+
 	private Spot spot;
 
 	public Teleporter(final Spot spot) {
 		this.spot = spot;
-		
+
 	}
 
 	/**
 	 * Use the portal.
-	 * 
+	 *
 	 * @param player
 	 *            the Player who wants to use this portal
 	 * @return <code>true</code> if the portal worked, <code>false</code>
@@ -41,7 +41,7 @@ public class Teleporter extends Portal {
 
 		if (player.teleport(spot.getZone(), spot.getX(), spot.getY(), null, null)) {
 			player.stop();
-			
+
 		}
 		return true;
 	}

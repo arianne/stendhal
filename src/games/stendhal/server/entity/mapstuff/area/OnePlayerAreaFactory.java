@@ -19,7 +19,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extracts the height from context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The height, 1 if unspecified.
@@ -30,7 +30,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extracts the width from context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The width, 1 if unspecified.
@@ -41,12 +41,12 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a damaging area.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A OnePlayerArea.
-	 * 
+	 *
 	 * @see OnePlayerArea
 	 */
 	@Override

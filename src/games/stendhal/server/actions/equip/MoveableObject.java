@@ -11,15 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import java.util.List;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * source or destination object.
- * 
+ *
  * @author hendrik
  */
 public abstract class MoveableObject {
@@ -33,7 +33,7 @@ public abstract class MoveableObject {
 
 	/**
 	 * Creates a new MoveableObject.
-	 * 
+	 *
 	 * @param player
 	 *            Player to notify about problems
 	 */
@@ -44,14 +44,14 @@ public abstract class MoveableObject {
 
 	/**
 	 * is this object valid?
-	 * 
+	 *
 	 * @return true, if the action may be performed, false otherwise
 	 */
 	public abstract boolean isValid();
 
 	/**
 	 * is the owner of the slot in reach?
-	 * 
+	 *
 	 * @param entity
 	 *            entity to compare to
 	 * @param distance
@@ -62,7 +62,7 @@ public abstract class MoveableObject {
 
 	/**
 	 * gets the name of the slot or null if there is none.
-	 * 
+	 *
 	 * @return slot name
 	 */
 	String getSlot() {

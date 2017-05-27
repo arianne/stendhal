@@ -16,7 +16,7 @@ import marauroa.common.game.Result;
 
 /**
  * validates that the given parameter is provided has a minimum length.
- * 
+ *
  * @author hendrik
  */
 public class MinLengthValidator implements AccountParameterValidator {
@@ -25,7 +25,7 @@ public class MinLengthValidator implements AccountParameterValidator {
 
 	/**
 	 * create a new MinLengthValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 * @param minLength

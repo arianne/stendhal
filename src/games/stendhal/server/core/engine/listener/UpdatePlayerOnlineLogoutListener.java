@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
 /**
  * UpdatePlayerOnlineLogoutListener is responsible for sending PlayerLoggedOutEvents on Logout
- * 
+ *
  * @author markus
  */
 public class UpdatePlayerOnlineLogoutListener implements LogoutListener{
@@ -23,6 +23,6 @@ public class UpdatePlayerOnlineLogoutListener implements LogoutListener{
 		});
 	}
 
-	
-	
+
+
 }

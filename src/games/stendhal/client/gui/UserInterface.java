@@ -38,13 +38,13 @@ public interface UserInterface {
 	 * @param type type of text
 	 * @param isTalking chat?
 	 */
-	public void addGameScreenText(final double x, final double y, 
+	public void addGameScreenText(final double x, final double y,
 			final String text, final NotificationType type,
 			final boolean isTalking);
-	
+
 	/**
 	 * Display a box for a reached achievement
-	 * 
+	 *
 	 * @param title the title of the achievement
 	 * @param description the description of the achievement
 	 * @param category the category of the achievement

@@ -12,11 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import static org.junit.Assert.*;
-
-import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +21,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 /**
@@ -37,7 +36,7 @@ public class OutfitChangerBehaviourTest {
 	 */
 	@BeforeClass
 	public static void setupBeforeClass() {
-		
+
 		MockStendlRPWorld.get();
 	}
 
@@ -61,12 +60,12 @@ public class OutfitChangerBehaviourTest {
 		ExpireOutfit cloth2 = new ExpireOutfit(player.getName());
 		assertTrue(cloth.equals(cloth2));
 		assertTrue(cloth2.equals(cloth));
-		
+
 		ExpireOutfit cloth3 = new ExpireOutfit(PlayerTestHelper.createPlayer("bob").getName());
-		
+
 		assertTrue(cloth.equals(cloth3));
 		assertTrue(cloth3.equals(cloth));
-		
+
 	}
 
 }

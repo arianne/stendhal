@@ -14,10 +14,10 @@ package games.stendhal.server.events;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Events;
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 
 /**
  * A text message.
@@ -25,7 +25,7 @@ import marauroa.common.game.Definition.Type;
  * @author hendrik
  */
 public class PrivateTextEvent extends RPEvent {
-	
+
 	private static final String TEXT_TYPE = "texttype";
 	private static final String CHANNEL = "channel";
 	private static final String TEXT = "text";
@@ -47,7 +47,7 @@ public class PrivateTextEvent extends RPEvent {
 	 * @param text Text
 	 */
 	public PrivateTextEvent(final NotificationType type, final String text) {
-		super(Events.PRIVATE_TEXT);		
+		super(Events.PRIVATE_TEXT);
 		put(TEXT_TYPE, type.name());
 		put(TEXT, text);
 	}

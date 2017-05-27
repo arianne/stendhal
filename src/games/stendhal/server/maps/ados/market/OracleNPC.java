@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -24,18 +29,13 @@ import games.stendhal.server.entity.npc.action.SayUnstartedQuestDescriptionFromN
 import games.stendhal.server.entity.npc.condition.TriggerIsNPCNameForUnstartedQuestCondition;
 import games.stendhal.server.maps.Region;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * An oracle who lets players know how they can help others.
  */
 public class OracleNPC implements ZoneConfigurator {
-	
-	/** 
-	 * region that this NPC can give information about 
+
+	/**
+	 * region that this NPC can give information about
 	 */
 	private final List<String> regions = Arrays.asList(Region.ADOS_SURROUNDS, Region.ADOS_CITY);
 
@@ -47,14 +47,14 @@ public class OracleNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Calla") {
-			
+
 			@Override
 			public void createDialog() {
 				addGreeting("What power the little flower! What power have you? Ados people are looking for #help...");
-				
-				// use a standard action to list the names of NPCs for quests which haven't been started in this region 
+
+				// use a standard action to list the names of NPCs for quests which haven't been started in this region
 				addReply(ConversationPhrases.HELP_MESSAGES, null, new SayNPCNamesForUnstartedQuestsAction(regions));
-				
+
 				// if the player says an NPC name, describe the quest (same description as in the travel log)
 				add(ConversationStates.ATTENDING,
 						"",
@@ -68,7 +68,7 @@ public class OracleNPC implements ZoneConfigurator {
 				addReply("sisters", "My sisters live in other cities. Find them to learn how to #help those nearest them.");
 				addReply("name", "Me and my #sisters all have names of flowers. " +
 						"My name, Calla, is a kind of lily which can have the same colour as my dress. It's so pretty.");
-				
+
 				// just to be nice :)
 				addEmotionReply("hugs", "hugs");
 				addGoodbye("Thank you, nice to see you.");
@@ -108,7 +108,7 @@ public class OracleNPC implements ZoneConfigurator {
 				nodes.add(new Node(56, 90));
 				nodes.add(new Node(56, 88));
 				nodes.add(new Node(58, 88));
-				nodes.add(new Node(58, 87));		
+				nodes.add(new Node(58, 87));
 				nodes.add(new Node(60, 87));
 				nodes.add(new Node(60, 86));
 				setPath(new FixedPath(nodes, true));

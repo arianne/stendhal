@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.tools;
 
+import java.net.URI;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
-
-import java.net.URI;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class GenerateBestiaryAndItems {
 

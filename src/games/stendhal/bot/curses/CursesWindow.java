@@ -12,10 +12,9 @@
  ***************************************************************************/
 package games.stendhal.bot.curses;
 
-import games.stendhal.client.scripting.ChatLineParser;
-
 import java.util.StringTokenizer;
 
+import games.stendhal.client.scripting.ChatLineParser;
 import jcurses.event.ActionEvent;
 import jcurses.event.ActionListener;
 import jcurses.system.CharColor;
@@ -63,7 +62,7 @@ public class CursesWindow extends Window implements ActionListener {
         manager.addWidget(chatLog  , 0,  0, 1, innerHeight - 2, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
         manager.addWidget(textField, 0, innerHeight - 2, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
         manager.addWidget(button   , 0, innerHeight - 1, 1, 1, WidgetsConstants.ALIGNMENT_CENTER, WidgetsConstants.ALIGNMENT_CENTER);
-        
+
     }
 
     /**

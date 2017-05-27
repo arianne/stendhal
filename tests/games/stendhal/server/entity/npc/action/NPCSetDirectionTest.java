@@ -1,12 +1,12 @@
 package games.stendhal.server.entity.npc.action;
 
 import static org.junit.Assert.assertSame;
-import games.stendhal.common.Direction;
-import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import org.junit.Test;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import utilities.SpeakerNPCTestHelper;
 
 public class NPCSetDirectionTest {

@@ -13,9 +13,9 @@
 package games.stendhal.client.gui;
 
 
-import games.stendhal.client.listener.FeatureChangeListener;
-
 import javax.swing.SwingUtilities;
+
+import games.stendhal.client.listener.FeatureChangeListener;
 
 /**
  * A key ring.
@@ -55,7 +55,7 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 
 	/**
 	 * A feature was disabled.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the feature.
 	 */
@@ -68,7 +68,7 @@ class KeyRing extends SlotWindow implements FeatureChangeListener {
 
 	/**
 	 * A feature was enabled.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the feature.
 	 * @param value

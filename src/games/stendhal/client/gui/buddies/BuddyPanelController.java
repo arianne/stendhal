@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -26,6 +23,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+
 /**
  * Controller object for the buddy list.
  */
@@ -35,7 +35,7 @@ public final class BuddyPanelController implements PropertyChangeListener {
 	 * will need the panel anyway, so it's OK to instantiate it right away.
 	 */
 	private static final BuddyPanelController instance = new BuddyPanelController();
-	
+
 	private final JComponent buddyPanel;
 	private final BuddyListModel model;
 
@@ -54,13 +54,13 @@ public final class BuddyPanelController implements PropertyChangeListener {
 
 	/**
 	 * Get the graphical component.
-	 * 
+	 *
 	 * @return buddy panel
 	 */
 	public Component getComponent() {
 		return buddyPanel;
 	}
-	
+
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
 		if (evt == null) {
@@ -74,7 +74,7 @@ public final class BuddyPanelController implements PropertyChangeListener {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						model.removeBuddy(entry.getKey());		
+						model.removeBuddy(entry.getKey());
 					}
 				});
 			}
@@ -97,7 +97,7 @@ public final class BuddyPanelController implements PropertyChangeListener {
 
 	/**
 	 * Get the controller instance.
-	 * 
+	 *
 	 * @return controller
 	 */
 	public static BuddyPanelController get() {

@@ -24,7 +24,7 @@ public class ErrorBuffer implements ErrorDrain {
 
 	/**
 	 * Store error message.
-	 * 
+	 *
 	 * @param error message
 	 */
 	@Override
@@ -39,7 +39,7 @@ public class ErrorBuffer implements ErrorDrain {
 
 	/**
 	 * Return whether some error has been registered.
-	 * 
+	 *
 	 * @return error flag
 	 */
 	@Override
@@ -49,7 +49,7 @@ public class ErrorBuffer implements ErrorDrain {
 
 	/**
 	 * Return the concatenated error message.
-	 * 
+	 *
 	 * @return error string
 	 */
 	@Override

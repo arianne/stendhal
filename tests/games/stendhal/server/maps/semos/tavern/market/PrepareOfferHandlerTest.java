@@ -12,19 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
-import games.stendhal.server.entity.item.Item;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-
+import games.stendhal.server.entity.item.Item;
 import utilities.RPClass.ItemTestHelper;
-
-import static org.junit.Assert.*;
 
 /**
  * Test class for {@link PrepareOfferHandler}
- * 
+ *
  * @author madmetzger
  */
 public class PrepareOfferHandlerTest {

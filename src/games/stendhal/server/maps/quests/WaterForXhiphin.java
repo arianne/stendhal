@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -42,56 +47,51 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Quest to fetch water for a thirsty person.
  * You have to check it is clean with someone knowledgeable first
  *
  * @author kymara
- * 
- * 
+ *
+ *
  * QUEST: Water for Xhiphin
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Xhiphin Zohos </li>
  * <li> Stefan </li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Ask Xhiphin Zohos for a quest. </li>
  * <li> Get some fresh water. </li>
  * <li> Xhiphin Zohos wants to assure that the water is clean. Show the water to Stefan and he will check it. </li>
- * <li> Return the water to Xhiphin Zohos who will then enjoy it. </li> 
+ * <li> Return the water to Xhiphin Zohos who will then enjoy it. </li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 100 XP </li>
  * <li> some karma (5 + (5 | -5)) </li>
  * <li> 3 potions </li>
  * </ul>
- * 
- * REPEATABLE: 
+ *
+ * REPEATABLE:
  */
 
 public class WaterForXhiphin extends AbstractQuest {
 
 	// constants
 	private static final String QUEST_SLOT = "water_for_xhiphin";
-	
+
 	/** To combine with the quest triggers */
 	private static final String EXTRA_TRIGGER = "water";
-	
+
 	/** The delay between repeating quests.
 	 * 7200 minutes */
 	private static final int REQUIRED_MINUTES = 7200;
-	
+
 	/** How the water is marked as clean */
 	private static final String CLEAN_WATER_INFOSTRING = "clean";
 
@@ -100,58 +100,58 @@ public class WaterForXhiphin extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private void requestStep() {
 		final SpeakerNPC npc = npcs.get("Xhiphin Zohos");
-		
+
 		// player asks about quest for first time (or rejected)
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I'm really thirsty, could you possibly get me some fresh water please?",
 				null);
-		
+
 		// player can repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"My throat is dry again from all this talking, could you fetch me a little more water?",
-				null);	
-		
+				null);
+
 		// player can't repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you, I don't need anything right now.",
-				null);	
-		
+				null);
+
 		// if the quest is active we deal with the response to quest/water in a following step
-		
+
 		// Player agrees to get the water
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you! Natural spring water is best, the river that runs from Fado to Nal'wor might provide a source.",
 				new MultipleActions(
 				        new SetQuestAction(QUEST_SLOT, 0, "start"),
 				        new IncreaseKarmaAction(5.0)));
-		
+
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, 
-				null, 
+				ConversationPhrases.NO_MESSAGES,
+				null,
 				ConversationStates.IDLE,
 				"Well, that's not very charitable.",
 				new MultipleActions(
 						new SetQuestAction(QUEST_SLOT, 0, "rejected"),
 						new DecreaseKarmaAction(5.0)));
 	}
-		
-	
+
+
 	private void checkWaterStep() {
 		final SpeakerNPC waterNPC = npcs.get("Stefan");
 
@@ -172,28 +172,28 @@ public class WaterForXhiphin extends AbstractQuest {
 				player.equipOrPutOnGround(water);
 			}
 		});
-		waterNPC.add(ConversationStates.ATTENDING, 
+		waterNPC.add(ConversationStates.ATTENDING,
 					Arrays.asList("water", "clean", "check"),
 					new PlayerHasItemWithHimCondition("water"),
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					"That water looks clean to me! It must be from a pure source.",
 					// take the item and give them a new one with an infostring or mark all?
 					new MultipleActions(actions));
-		
+
 		// player asks about water but doesn't have it with them
-		waterNPC.add(ConversationStates.ATTENDING, 
+		waterNPC.add(ConversationStates.ATTENDING,
 					Arrays.asList("water", "clean", "check"),
 					new NotCondition(new PlayerHasItemWithHimCondition("water")),
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					"You can gather water from natural mountain springs or bigger springs like next to waterfalls. If you bring it to me I can check the purity for you.",
 					null);
 
 	}
 
-	
+
 	private void finishStep() {
 		final SpeakerNPC npc = npcs.get("Xhiphin Zohos");
-		
+
 		// Player has got water and it has been checked
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		// make sure we drop the checked water not any other water
@@ -207,41 +207,41 @@ public class WaterForXhiphin extends AbstractQuest {
 		reward.add(new InflictStatusOnNPCAction("water"));
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.",
 				new MultipleActions(reward));
-		
-        // player returns with no water at all. 
+
+        // player returns with no water at all.
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new PlayerHasItemWithHimCondition("water"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I'm waiting for you to bring me some drinking water, this sun is so hot.",
 				null);
-		
+
         // add the other possibilities
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER),
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("water"),
 						new NotCondition(new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Hmm... it's not that I don't trust you, but I'm not sure that water is okay to drink. Could you go and ask #Stefan to #check it please?",
 				null);
-		
+
 		npc.addReply("Stefan", "Stefan is a chef over in the restaurant at Fado Hotel. I'd trust him to check if anything is safe to eat or drink, he's a professional.");
 		npc.addReply("check", "Sorry, I'm no expert on food or drink myself, try asking #Stefan.");
 
 	}
-	
-	
+
+
 
 	@Override
 	public void addToWorld() {
@@ -281,7 +281,7 @@ public class WaterForXhiphin extends AbstractQuest {
                 res.add("I took the water to Xhiphin Zohos a while ago.");
             } else {
                 res.add("I took the water to Xhiphin Zohos recently and he gave me some potions.");
-            }			
+            }
 		}
 		return res;
 	}
@@ -290,18 +290,18 @@ public class WaterForXhiphin extends AbstractQuest {
 	public String getName() {
 		return "WaterForXhiphin";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 5;
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.FADO_CITY;
@@ -311,5 +311,5 @@ public class WaterForXhiphin extends AbstractQuest {
 	public String getNPCName() {
 		return "Xhiphin Zohos";
 	}
-	
+
 }

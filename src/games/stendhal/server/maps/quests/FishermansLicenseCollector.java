@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -29,24 +34,19 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Fisherman's license Collector
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Santiago the fisherman</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> The player must bring all kinds of fishes to the fisherman</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 2000 XP</li>
@@ -71,8 +71,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
-	private static final List<String> neededFish = 
+
+	private static final List<String> neededFish =
 		Arrays.asList("trout", "perch", "mackerel", "cod", "roach", "char", "clownfish", "surgeonfish");
 
 	/**
@@ -250,7 +250,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		step_3();
 	}
 
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -265,12 +265,12 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			}
 			return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "FishermansLicenseCollector";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

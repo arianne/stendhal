@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Manages messages based on entering a new zone.
- * 
+ *
  * @author kymara (based on Tutorial Notifier by hendrik)
  */
 public class ZoneNotifier {
@@ -24,7 +24,7 @@ public class ZoneNotifier {
 	/**
 	 * If the specified event is unknown, add it to the list and send the text
 	 * to the player.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param type
@@ -44,7 +44,7 @@ public class ZoneNotifier {
 
 	/**
 	 * Zone changes.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param sourceZone

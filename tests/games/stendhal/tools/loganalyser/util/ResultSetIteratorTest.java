@@ -281,12 +281,12 @@ public class ResultSetIteratorTest {
 			// Stub
 			return null;
 		}
-		
+
 		@Override
 		public void closeOnCompletion() throws SQLException {
 			// Stub
 		}
-		
+
 		@Override
 		public boolean isCloseOnCompletion() throws SQLException {
 			// Stub

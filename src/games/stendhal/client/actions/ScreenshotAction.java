@@ -11,12 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.common.NotificationType;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -29,18 +23,24 @@ import javax.swing.SwingWorker;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.common.NotificationType;
+
 /**
  * Take a screenshot, and save it in the game directory.
  */
 class ScreenshotAction implements SlashAction {
 	/**
 	 * Execute save a screenshot command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	@Override
@@ -63,7 +63,7 @@ class ScreenshotAction implements SlashAction {
 				ImageIO.write(img, "png", file);
 				return "Screenshot was saved to " + fileName;
 			}
-			
+
 			@Override
 			public void done() {
 				String msg = "";
@@ -84,13 +84,13 @@ class ScreenshotAction implements SlashAction {
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		}.execute();
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Get a nice descriptive file name for the screenshot image.
-	 * 
+	 *
 	 * @return File name
 	 */
 	private String getFileName() {
@@ -100,7 +100,7 @@ class ScreenshotAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -110,7 +110,7 @@ class ScreenshotAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

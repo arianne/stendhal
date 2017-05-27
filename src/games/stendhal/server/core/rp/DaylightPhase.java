@@ -92,7 +92,7 @@ public enum DaylightPhase {
 
 	/**
 	 * Gets the greeting name
-	 * 
+	 *
 	 * @return greeting name
 	 */
 	public String getGreetingName() {

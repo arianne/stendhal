@@ -11,12 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashSet;
 
+import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.CharacterDAO;

@@ -13,8 +13,14 @@
 package games.stendhal.server.actions.admin;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -26,12 +32,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class SummonActionTest {
@@ -52,7 +52,7 @@ public class SummonActionTest {
 			@Override
 			public synchronized boolean collides(final Entity entity,
 					final double x, final double y) {
-		
+
 				return false;
 			}
 		};
@@ -62,7 +62,7 @@ public class SummonActionTest {
 	public void teardown() {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
-	
+
 	/**
 	 * Tests for summonRat.
 	 */
@@ -132,7 +132,7 @@ public class SummonActionTest {
 		assertEquals(1, pl.getID().getObjectID());
 		assertNull(zone.getEntityAt(0, 0));
 	}
-	
+
 	@Test
 	public final void testSummonFishingRod() {
 		final Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -152,7 +152,7 @@ public class SummonActionTest {
 		final Item item = (Item) zone.getEntityAt(0, 0);
 		assertEquals("fishing_rod", item.get("subclass"));
 	}
-	
+
 	/**
 	 * Tests for avoidNFE.
 	 */

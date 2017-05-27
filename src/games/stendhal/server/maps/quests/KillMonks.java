@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -42,12 +47,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.KillsForQuestCounter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Pair;
 
 /**
@@ -59,10 +58,10 @@ import marauroa.common.Pair;
  * </ul>
  *
  * STEPS:<ul>
- * <li> Andy who is sad about the death of his wife, wants revenge for her death 
+ * <li> Andy who is sad about the death of his wife, wants revenge for her death
  * <li> Kill 25 monks and 25 darkmonks for him for reaching his goal
  * </ul>
- * 
+ *
  *
  * REWARD:<ul>
  * <li> 15000 XP
@@ -71,7 +70,7 @@ import marauroa.common.Pair;
  * </ul>
  *
  * REPETITIONS: <ul><li>once in two weeks</ul>
- * 
+ *
  * @author Vanessa Julius, idea by anoyyou
 
  */
@@ -80,35 +79,35 @@ public class KillMonks extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "kill_monks";
 	protected HashMap<String, Pair<Integer, Integer>> creaturestokill = new HashMap<String, Pair<Integer,Integer>>();
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	public KillMonks() {
 		super();
-		
-		 creaturestokill.put("monk", 
+
+		 creaturestokill.put("monk",
 				 new Pair<Integer, Integer>(0, 25));
 
 		 creaturestokill.put("darkmonk",
 				 new Pair<Integer, Integer>(0, 25));
-		 		
+
 	}
-	
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Andy");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				"My lovely wife was killed when she went to Wo'fol to order some freshmade pizza by Kroip. Some monks stepped into her way and she had no chance. Now I want revenge! May you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2)),
 				ConversationStates.QUEST_OFFERED,
@@ -121,14 +120,14 @@ public class KillMonks extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2, "These monks learned their lesson for now but I could need your help again in"));
-	
+
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
 		actions.add(new IncreaseKarmaAction(5));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, creaturestokill));
 
-		
+
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
@@ -136,8 +135,8 @@ public class KillMonks extends AbstractQuest {
 				"Thank you! Please kill 25 monks and 25 darkmonks in the name of my beloved wife.",
 				new MultipleActions(actions));
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
-				ConversationPhrases.NO_MESSAGES, 
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"That is a pity... Maybe you'll change your mind soon and help a sad man then.",
@@ -153,7 +152,7 @@ public class KillMonks extends AbstractQuest {
 	private void step_3() {
 
 		final SpeakerNPC npc = npcs.get("Andy");
-		
+
 		ChatAction addRandomNumberOfItemsAction = new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -174,25 +173,25 @@ public class KillMonks extends AbstractQuest {
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "killed"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
-		
+
 		LinkedList<String> triggers = new LinkedList<String>();
 		triggers.addAll(ConversationPhrases.FINISH_MESSAGES);
-		triggers.addAll(ConversationPhrases.QUEST_MESSAGES);		
-		npc.add(ConversationStates.ATTENDING, 
+		triggers.addAll(ConversationPhrases.QUEST_MESSAGES);
+		npc.add(ConversationStates.ATTENDING,
 				triggers,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you so much! Now I can sleep a bit better. Please take some soup.",
 				new MultipleActions(actions));
 
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				triggers,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Please help me with reaching my goal of taking revenge!",
 				null);
 	}
@@ -277,13 +276,13 @@ public class KillMonks extends AbstractQuest {
 		return "KillMonks";
 
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 				 new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2)).fire(player,null, null);
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed").fire(player, null, null);
@@ -293,7 +292,7 @@ public class KillMonks extends AbstractQuest {
 	public String getNPCName() {
 		return "Andy";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;

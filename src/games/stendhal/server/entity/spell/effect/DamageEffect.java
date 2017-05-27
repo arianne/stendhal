@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell.effect;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
@@ -20,8 +22,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.AttackEvent;
-
-import org.apache.log4j.Logger;
 /**
  * An effect to cause magical damage with a spell
  *

@@ -11,11 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
-import games.stendhal.client.gui.wt.core.SettingChangeListener;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.MathHelper;
-
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
@@ -40,6 +35,11 @@ import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
 
+import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
+import games.stendhal.client.gui.wt.core.SettingChangeListener;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.MathHelper;
+
 /**
  * Utilities for system level windows.
  */
@@ -50,46 +50,46 @@ public class WindowUtils {
 	private static final String FONT_SIZE_PROPERTY = "ui.font_size";
 	/** Default font point size. */
 	private static final int DEFAULT_FONT_SIZE = 12;
-	
+
 	/** Property name used to determine if window dimensions should be restored. */
 	private static final String SAVE_DIMENSIONS_PROPERTY = "ui.dimensions";
 	/** Prefix for per window size properties. */
 	private static final String PROP_PREFIX = "ui.window.";
-	
+
 	/** Windows whose size is being tracked. */
 	private static final Map<Window, ManagedWindowDecorator> trackedWindows = new HashMap<Window, ManagedWindowDecorator>();
-	
+
 	/**
 	 * Utility class - no instantiation.
 	 */
 	private WindowUtils() {
 	}
 	// getRootPane() in JDialog and JFrame has no common ancestor
-	
+
 	/**
 	 * Make the dialog close when the used presses escape. The event will be
 	 * the same as when the user closes the window using the window manager.
-	 * 
+	 *
 	 * @param dialog dialog to make obey the escape key
 	 */
 	public static void closeOnEscape(final JDialog dialog) {
 		closeOnEscape(dialog, dialog.getRootPane());
 	}
-	
+
 	/**
 	 * Make the window close when the used presses escape. The event will be
 	 * the same as when the user closes the window using the window manager.
-	 * 
+	 *
 	 * @param frame window to make obey the escape key
 	 */
 	static void closeOnEscape(final JFrame frame) {
 		closeOnEscape(frame, frame.getRootPane());
 	}
-	
+
 	/**
 	 * Track the windows location so that it can be restored at next client
 	 * start.
-	 * 
+	 *
 	 * @param window tracked window
 	 * @param windowId identifier for the window. This should be unique for
 	 * 	each window type. The restored location is looked up by the identifier.
@@ -106,16 +106,16 @@ public class WindowUtils {
 		if (followSize) {
 			trackedWindows.put(window, mw);
 		}
-		
+
 		window.addComponentListener(new ComponentAdapter() {
 			final String widthProperty = PROP_PREFIX + mw.getName() + ".width";
 			final String heightProperty = PROP_PREFIX + mw.getName() + ".height";
-			
+
 			@Override
 			public void componentMoved(ComponentEvent e) {
 				WtWindowManager.getInstance().moveTo(mw, mw.getX(), mw.getY());
 			}
-			
+
 			@Override
 			public void componentResized(ComponentEvent event) {
 				// Ignore tracking until the size has been restored, so that the
@@ -131,7 +131,7 @@ public class WindowUtils {
 				}
 			}
 		});
-		
+
 		// Some maximization changes are not for some reason detected by the
 		// size changes. Check the corresponding low level window events.
 		window.addWindowStateListener(new WindowStateListener() {
@@ -142,12 +142,12 @@ public class WindowUtils {
 			}
 		});
 	}
-	
+
 	/**
 	 * Restore the size of a tracked window.
-	 * 
+	 *
 	 * @param window window whose size should be restored
-	 * 
+	 *
 	 * @throws IllegalArgumentException in case restoring a window that is not
 	 *	tracked is tried
 	 */
@@ -161,7 +161,7 @@ public class WindowUtils {
 		if (!"true".equals(wm.getProperty(SAVE_DIMENSIONS_PROPERTY, "true"))) {
 			return;
 		}
-		
+
 		String maximizedProp = PROP_PREFIX + dec.getName() + ".maximized";
 		if ("true".equals(wm.getProperty(maximizedProp, "false"))) {
 			if (window instanceof Frame) {
@@ -178,11 +178,11 @@ public class WindowUtils {
 			window.setSize(width, height);
 		}
 	}
-		
+
 	/**
 	 * Make the window close when the used presses escape. The event will be
 	 * the same as when the user closes the window using the window manager.
-	 * 
+	 *
 	 * @param window window to make obey the escape key
 	 * @param root the root container of the window
 	 */
@@ -197,11 +197,11 @@ public class WindowUtils {
 		};
 		root.getActionMap().put(WINDOW_CLOSE, dispatchClosing);
 	}
-	
+
 	/**
 	 * Register a component that should watch for default font size changes.
 	 * Typically the component should be the top level window.
-	 * 
+	 *
 	 * @param component root component for the tree whose font size shall be
 	 * 	changed at default font size changes
 	 */
@@ -216,9 +216,9 @@ public class WindowUtils {
 				component.setSize(component.getPreferredSize());
 			}
 		};
-		
+
 		WtWindowManager.getInstance().registerSettingChangeListener(FONT_SIZE_PROPERTY, listener);
-		
+
 		/*
 		 * Dialogs typically get disposed when they are closed. Remove the
 		 * listener so that the the dialog and its subcomponents can be
@@ -233,12 +233,12 @@ public class WindowUtils {
 			});
 		}
 	}
-	
+
 	/**
 	 * Scale the font of a component and its subcomponents.
-	 * 
+	 *
 	 * @param component root component
-	 * @param size new font size 
+	 * @param size new font size
 	 */
 	private static void scaleComponentFonts(Component component, float size) {
 		Font f = component.getFont().deriveFont(size);
@@ -249,7 +249,7 @@ public class WindowUtils {
 			}
 		}
 	}
-	
+
 	/**
 	 * A wrapper for system windows that lets the {@link WtWindowManager} store
 	 * and restore their locations.
@@ -261,10 +261,10 @@ public class WindowUtils {
 		private final String name;
 		/** Size restored status of the window. */
 		private boolean restored;
-		
+
 		/**
-		 * Create a managed window decorator with an identity for a window. 
-		 * 
+		 * Create a managed window decorator with an identity for a window.
+		 *
 		 * @param window window to decorate
 		 * @param windowId identifier of the decorated window
 		 */
@@ -272,10 +272,10 @@ public class WindowUtils {
 			this.window = window;
 			name = "system." + windowId;
 		}
-		
+
 		/**
 		 * Check if the window is maximized.
-		 * 
+		 *
 		 * @return <code>true</code> if the window is maximized, otherwise
 		 * 	<code>false</code>
 		 */
@@ -285,46 +285,46 @@ public class WindowUtils {
 			}
 			return false;
 		}
-		
+
 		/**
 		 * Get the size restoration status of the window. The size has been
 		 * restored if {@link WindowUtils#restoreSize} has been called with the
-		 * window of this decorator as the parameter. 
-		 * 
+		 * window of this decorator as the parameter.
+		 *
 		 * @return <code>true</code> if the window size has been restored,
 		 * otherwise <code>false</code>
 		 */
 		boolean getRestored() {
 			return restored;
 		}
-		
+
 		/**
 		 * Set the size restoration status of this window.
-		 * 
+		 *
 		 * @param restored new status
 		 */
 		void setRestored(boolean restored) {
 			this.restored = restored;
 		}
-		
+
 		/**
 		 * Get the window width.
-		 * 
+		 *
 		 * @return width
 		 */
 		int getWidth() {
 			return window.getWidth();
 		}
-		
+
 		/**
 		 * Get the window height.
-		 * 
+		 *
 		 * @return height
 		 */
 		int getHeight() {
 			return window.getHeight();
 		}
-		
+
 		@Override
 		public String getName() {
 			return name;

@@ -1,6 +1,11 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.html.HtmlEscapers;
+
 import games.stendhal.common.parser.Expression;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -12,13 +17,7 @@ import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TransitionGraphEvent;
 import games.stendhal.server.util.UniqueIdentifierMap;
-
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.RPEvent;
-
-import com.google.common.html.HtmlEscapers;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to

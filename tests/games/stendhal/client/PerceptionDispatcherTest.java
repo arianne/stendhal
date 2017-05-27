@@ -15,13 +15,14 @@ package games.stendhal.client;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import marauroa.client.net.IPerceptionListener;
-import marauroa.common.game.RPObject;
-import marauroa.common.net.message.MessageS2CPerception;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import marauroa.client.net.IPerceptionListener;
+import marauroa.common.game.RPObject;
+import marauroa.common.net.message.MessageS2CPerception;
 
 public class PerceptionDispatcherTest {
 
@@ -30,9 +31,9 @@ public class PerceptionDispatcherTest {
 	private static final class ObjectChangeperception implements IPerceptionListener {
 		boolean cleared;
 		boolean onExceptionCalled;
-		
+
 		private final String dispatched;
-	
+
 		private int byteparam;
 
 		private ObjectChangeperception(final String dispatched) {

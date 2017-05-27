@@ -14,10 +14,10 @@ package games.stendhal.common;
 
 
 
-import games.stendhal.common.tiled.LayerDefinition;
-
 import java.awt.geom.Rectangle2D;
 import java.util.BitSet;
+
+import games.stendhal.common.tiled.LayerDefinition;
 
 public class CollisionMap {
 
@@ -67,7 +67,7 @@ public class CollisionMap {
 		if (x < 0 || x - 1 + width >= this.width) {
 			return true;
 		}
-		
+
 		if (y < 0 || y - 1 + height >= this.height) {
 			return true;
 		}
@@ -84,7 +84,7 @@ public class CollisionMap {
 		for (int i = 0; i < this.width; i++) {
 			colls[i].clear();
 		}
-		
+
 	}
 	public static CollisionMap create(final LayerDefinition layer) {
 
@@ -108,10 +108,10 @@ public class CollisionMap {
 	public void set(final Rectangle2D shape) {
 		int y = (int) shape.getY();
 		for (int x = (int) shape.getX(); x < shape.getX() + shape.getWidth(); x++) {
-			
+
 			colls[x].set(y, (int) (y + shape.getHeight()));
 		}
 
 	}
-	
+
 }

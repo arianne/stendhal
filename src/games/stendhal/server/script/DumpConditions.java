@@ -1,6 +1,11 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import games.stendhal.common.parser.Expression;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -11,15 +16,10 @@ import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.fsm.TransitionList;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
  * generate a nice graph.
- * 
+ *
  * @author hendrik
  */
 public class DumpConditions extends ScriptImpl {

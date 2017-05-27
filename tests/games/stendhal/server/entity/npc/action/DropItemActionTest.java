@@ -14,18 +14,18 @@ package games.stendhal.server.entity.npc.action;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
-import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
+import marauroa.server.game.db.DatabaseFactory;
 import utilities.PlayerTestHelper;
 
 public class DropItemActionTest {
-	
+
 	@BeforeClass
 	public static void beforeClass() {
 		Log4J.init();

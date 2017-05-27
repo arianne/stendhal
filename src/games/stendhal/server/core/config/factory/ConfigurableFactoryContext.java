@@ -24,7 +24,7 @@ public class ConfigurableFactoryContext {
 	/**
 	 * Create a configuration context using an attribute map. NOTE: The
 	 * attributes are not copied.
-	 * 
+	 *
 	 * @param attributes
 	 *            The attributes.
 	 */
@@ -34,7 +34,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * Extracts a boolean value from a string.
-	 * 
+	 *
 	 * @param name
 	 *            name of the attribute (only used for error handling)
 	 * @param value
@@ -58,7 +58,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * gets an attribute.
-	 * 
+	 *
 	 * @param name
 	 *            the attribute name.
 	 * @param defaultValue
@@ -78,7 +78,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * gets an attribute.
-	 * 
+	 *
 	 * @param name
 	 *            the attribute name.
 	 * @return the value of the attribute
@@ -92,7 +92,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * gets an attribute.
-	 * 
+	 *
 	 * @param name
 	 *            the attribute name.
 	 * @param defaultValue
@@ -118,7 +118,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * gets an attribute.
-	 * 
+	 *
 	 * @param name
 	 *            the attribute name.
 	 * @return the value of the attribute
@@ -138,7 +138,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * gets an attribute.
-	 * 
+	 *
 	 * @param name
 	 *            the attribute name.
 	 * @param defaultValue
@@ -155,7 +155,7 @@ public class ConfigurableFactoryContext {
 
 	/**
 	 * gets an attribute.
-	 * 
+	 *
 	 * @param name
 	 *            the attribute name.
 	 * @return the value of the attribute

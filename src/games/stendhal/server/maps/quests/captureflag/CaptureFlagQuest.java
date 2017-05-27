@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.captureflag;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -20,22 +23,19 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * sets the capture the flag quest up.
  *
  * @author hendrik, sjtsp
  */
 public class CaptureFlagQuest extends AbstractQuest {
-	
+
 	/** name for the internal slot to store quest data */
 	private static final String SLOT_NAME = "capture_the_flag";
-	
+
 	/** player visible name for the quest */
 	private static final String QUEST_NAME = "CaptureTheFlag";
-	
+
 	private StendhalRPZone zone = null;
 
 	@Override
@@ -67,9 +67,9 @@ public class CaptureFlagQuest extends AbstractQuest {
 				addGreeting("Hi, thanks for helping out with Capture the Flag (CTF) testing.  You can #play, #stop, and request #flag and #arrows.");
 
 				addJob("We are helping to test ideas to make CTF fun.");
-				
+
 				addHelp("You can test CTF with other players.  One of you puts a #flag in your hand.  The others equips fumble arrows (and bow), and tags (left-clicks) the flag carrier, to make the carrier drop.  Note that attacking does not work - you have to left-click each time.");
-				
+
 				// TODO: count the number of *full* matches that player has participated in
 				add(ConversationStates.ATTENDING,
 					"play",
@@ -83,7 +83,7 @@ public class CaptureFlagQuest extends AbstractQuest {
 					ConversationStates.ATTENDING,
 					"You are already playing.",
 					null);
-				
+
 				add(ConversationStates.ATTENDING,
 					"stop",
 					new PlayingCTFCondition(),
@@ -109,7 +109,7 @@ public class CaptureFlagQuest extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"You must #play to be able to receive a test flag.",
 						null);
-				
+
 				// TODO: just use a compound action for all types of ammo
 				add(ConversationStates.ATTENDING,
 					"snowballs",
@@ -137,7 +137,7 @@ public class CaptureFlagQuest extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"You must #play to be able to get more arrows.",
 						null);
-				
+
 				// TODO: remove from game, remove all ctf gear, ...
 				// TODO: the cleanup needs to happen even if player logs out, or walks away (different code path)
 				addGoodbye();

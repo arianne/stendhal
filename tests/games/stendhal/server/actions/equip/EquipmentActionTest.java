@@ -4,6 +4,15 @@ package games.stendhal.server.actions.equip;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -12,18 +21,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
@@ -89,7 +88,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		action.onAction(player, drop);
 		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.events().get(0).get("text"));
-		
+
 		// same with source path
 		player.clearEvents();
 		drop = new RPAction();
@@ -119,7 +118,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		action.onAction(player, drop);
 		// Assert.assertEquals("There is no such item in the bag of bob", player.events().get(0).get("text"));
-		
+
 		// same with source path
 		drop = new RPAction();
 		drop.put("type", "drop");
@@ -251,15 +250,15 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
 		equip.put(EquipActionConsts.QUANTITY, "2");
 
-		
+
 		final EquipmentAction action = new EquipAction();
 		action.onAction(player, equip);
-		
+
 		Assert.assertEquals(0, player.events().size());
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese", 3));
 		assertTrue(player.isEquipped("cheese", 2));
-		
+
 		// Continue the same, but use item path this time
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -267,14 +266,14 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
 		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
-		
+
 		action.onAction(player, equip);
 		Assert.assertEquals(0, player.events().size());
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese", 5));
 		assertTrue(player.isEquipped("cheese", 4));
 	}
-	
+
 	/**
 	 * Test picking up an item from ground, when the item is too far away.
 	 */
@@ -295,14 +294,14 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
 		equip.put(EquipActionConsts.QUANTITY, "2");
 
-		
+
 		final EquipmentAction action = new EquipAction();
 		action.onAction(player, equip);
 
 		assertEquals("You cannot reach that far.", PlayerTestHelper.getPrivateReply(player));
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese"));
-		
+
 		// The same, but using paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -310,13 +309,13 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
 		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
-		
+
 		action.onAction(player, equip);
 		assertEquals("You cannot reach that far.", PlayerTestHelper.getPrivateReply(player));
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese"));
 	}
-	
+
 	/**
 	 * Test picking up an item from ground, when the item is bound to a player
 	 */
@@ -337,7 +336,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
 		equip.put(EquipActionConsts.QUANTITY, "2");
 
-		
+
 		final EquipmentAction action = new EquipAction();
 		action.onAction(player, equip);
 
@@ -351,7 +350,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese", 3));
 		assertTrue(player.isEquipped("cheese", 2));
-		
+
 		// The same, but using paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -359,13 +358,13 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
 		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
-		
+
 		action.onAction(player, equip);
 		assertEquals(0, player.events().size());
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese", 5));
 		assertTrue(player.isEquipped("cheese", 4));
-		
+
 		// Bind it again to croesus. Should fail again.
 		item.setBoundTo("croesus");
 		action.onAction(player, equip);
@@ -375,7 +374,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertTrue(player.isEquipped("cheese", 4));
 		assertEquals(1, item.getQuantity());
 	}
-	
+
 	/**
 	 * Test picking up an item from ground, when the item is below another
 	 * player.
@@ -400,14 +399,14 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
 		equip.put(EquipActionConsts.QUANTITY, "2");
 
-		
+
 		final EquipmentAction action = new EquipAction();
 		action.onAction(player, equip);
 
 		assertEquals("You cannot take items which are below other players", PlayerTestHelper.getPrivateReply(player));
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese"));
-		
+
 		// The same, but using paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -415,13 +414,13 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
 		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
-		
+
 		action.onAction(player, equip);
 		assertEquals("You cannot take items which are below other players", PlayerTestHelper.getPrivateReply(player));
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese"));
 	}
-	
+
 	/**
 	 * Test moving an item from one player slot to another
 	 */
@@ -434,23 +433,23 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		player.equip("rhand", item);
 		localzone.add(player);
 		assertTrue(player.isEquipped("cheese"));
-		
+
 		final EquipmentAction action = new EquipAction();
 		RPAction equip = new RPAction();
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.BASE_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.BASE_SLOT, "rhand");
 		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
-		
+
 		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
-		
+
 		action.onAction(player, equip);
-		
+
 		assertTrue(player.isEquipped("cheese"));
 		assertTrue("Check the cheese is in bag, not in rhand anymore", player.getSlot("bag").getFirst() == item);
 		assertEquals(1, player.getTotalNumberOf("cheese"));
-		
+
 		// The same, but using paths; move the cheese back to hand
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -464,7 +463,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertTrue("Check the cheese is in back in rhand", player.getSlot("rhand").getFirst() == item);
 		assertEquals(1, player.getTotalNumberOf("cheese"));
 	}
-	
+
 	/**
 	 * Test moving an item directly from a bank slot to the bag.
 	 */
@@ -478,24 +477,24 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		localzone.add(player);
 		assertFalse(player.isEquipped("cheese"));
 		assertEquals(1, player.getTotalNumberOf("cheese"));
-		
+
 		final EquipmentAction action = new EquipAction();
-		
+
 		RPAction equip = new RPAction();
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.BASE_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.BASE_SLOT, "bank");
 		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
-		
+
 		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
-		
+
 		action.onAction(player, equip);
-		
+
 		// Should fail - the player is not at a chest
 		assertFalse(player.isEquipped("cheese"));
 		assertEquals(1, player.getTotalNumberOf("cheese"));
-		
+
 		// The same using item paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -509,7 +508,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertFalse(player.isEquipped("cheese"));
 		assertEquals(1, player.getTotalNumberOf("cheese"));
 	}
-	
+
 	/**
 	 * Test moving an item to bank without using a bank chest.
 	 */
@@ -523,24 +522,24 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		localzone.add(player);
 		assertTrue(player.isEquipped("cheese"));
 		assertEquals(1, player.getTotalNumberOf("cheese"));
-		
+
 		final EquipmentAction action = new EquipAction();
-		
+
 		RPAction equip = new RPAction();
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.BASE_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.BASE_SLOT, "bag");
 		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
-		
+
 		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.TARGET_SLOT, "bank");
-		
+
 		action.onAction(player, equip);
-		
+
 		// Should fail - the player is not at a chest
 		assertTrue(player.isEquipped("cheese"));
 		assertEquals(1, player.getTotalNumberOf("cheese"));
-		
+
 		// The same using item paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -555,7 +554,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertEquals(1, player.getTotalNumberOf("cheese"));
 	}
 
-	
+
 	/**
 	 * Test grabbing items form the bag of another player
 	 */
@@ -571,24 +570,24 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		localzone.add(player2);
 		assertFalse(player.isEquipped("cheese"));
 		assertTrue(player2.isEquipped("cheese"));
-		
+
 		final EquipmentAction action = new EquipAction();
-		
+
 		RPAction equip = new RPAction();
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.BASE_OBJECT, player2.getID().getObjectID());
 		equip.put(EquipActionConsts.BASE_SLOT, "bag");
 		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
-		
+
 		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
-		
+
 		action.onAction(player, equip);
-		
+
 		// No stealing
 		assertFalse(player.isEquipped("cheese"));
 		assertTrue(player2.isEquipped("cheese"));
-		
+
 		// The same using item paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -598,12 +597,12 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(Actions.TARGET_PATH, path);
 
 		action.onAction(player, equip);
-		
+
 		// Should fail again
 		assertFalse(player.isEquipped("cheese"));
 		assertTrue(player2.isEquipped("cheese"));
 	}
-	
+
 	/**
 	 * Test moving items to a slot belonging to another player.
 	 */
@@ -619,24 +618,24 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		localzone.add(player2);
 		assertFalse(player.isEquipped("cheese"));
 		assertTrue(player2.isEquipped("cheese"));
-		
+
 		final EquipmentAction action = new EquipAction();
-		
+
 		RPAction equip = new RPAction();
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.BASE_OBJECT, player2.getID().getObjectID());
 		equip.put(EquipActionConsts.BASE_SLOT, "bag");
 		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
-		
+
 		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
 		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
-		
+
 		action.onAction(player2, equip);
-		
+
 		// No charity
 		assertFalse(player.isEquipped("cheese"));
 		assertTrue(player2.isEquipped("cheese"));
-		
+
 		// The same using item paths
 		equip = new RPAction();
 		equip.put("type", "equip");
@@ -646,7 +645,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(Actions.TARGET_PATH, path);
 
 		action.onAction(player2, equip);
-		
+
 		// Should fail again
 		assertFalse(player.isEquipped("cheese"));
 		assertTrue(player2.isEquipped("cheese"));

@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class Dice extends Item {
 
@@ -41,7 +41,7 @@ public class Dice extends Item {
 
 	/**
 	 * copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -60,7 +60,7 @@ public class Dice extends Item {
 	 * CroupierNPC is lost. That's why we store the croupier's name in the
 	 * item's infostring. This method will read out that infostring and set the
 	 * croupier to the NPC with that name.
-	 * 
+	 *
 	 * I tried to do this in the constructor, but somehow it didn't work: the
 	 * item somehow seems to not have an infostring while the constructor is
 	 * running.
@@ -77,7 +77,7 @@ public class Dice extends Item {
 
 	/**
 	 * Get a list of the top faces as a readable string.
-	 * 
+	 *
 	 * @return list of top faces
 	 */
 	private String getTopFacesString() {
@@ -90,7 +90,7 @@ public class Dice extends Item {
 
 	/**
 	 * Get the sum of the thrown dice.
-	 * 
+	 *
 	 * @return sum of the set of dices
 	 */
 	public int getSum() {
@@ -103,8 +103,8 @@ public class Dice extends Item {
 
 	/**
 	 * Player throws the dice, get the new values on the faces.
-	 * 
-	 * @param player player throwing the dice 
+	 *
+	 * @param player player throwing the dice
 	 */
 	private void randomize(final Player player) {
 		topFaces = new int[NUMBER_OF_DICE];
@@ -123,7 +123,7 @@ public class Dice extends Item {
 			topFaces[0] = 2;
 		}
 	}
-	
+
 	/**
 	 * A new die needs values on the faces
 	 */

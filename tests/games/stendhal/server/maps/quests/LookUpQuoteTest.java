@@ -33,7 +33,7 @@ import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test for the "Lookup Quote" quest.
- * 
+ *
  * @author Martin Fuchs
  */
 public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
@@ -132,7 +132,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
 		assertTrue(getReply(pequodNpc).startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		assertTrue("lie", pequodEngine.step(player, "yes")); 
+		assertTrue("lie", pequodEngine.step(player, "yes"));
 		assertEquals("So, what is it?", getReply(pequodNpc));
 		assertTrue(pequodEngine.step(player, "bye"));
 		assertEquals("Good bye - see you next time!", getReply(pequodNpc));
@@ -144,13 +144,13 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
         	case BULLY_FIRST_LETTER:
         		quote = "Clownfish are always good for a laugh.";
         		break;
-        	case JACKY_FIRST_LETTER:	
+        	case JACKY_FIRST_LETTER:
         		quote = "Don't mistake your trout for your old trout, she wouldn't taste so good.";
         		break;
         	case TOMMY_FIRST_LETTER:
         		quote = "I wouldn't trust a surgeonfish in a hospital, there's something fishy about them.";
         		break;
-        	case SODY_FIRST_LETTER:	
+        	case SODY_FIRST_LETTER:
         		quote = "Devout Crustaceans believe in the One True Cod.";
         		break;
         	case HUMPREY_FIRST_LETTER:
@@ -162,7 +162,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
         	case CHARBY_FIRST_LETTER:
         		quote = "That fish restaurant really overcooks everything. It even advertises char fish.";
         		break;
-        	case ALLY_FIRST_LETTER:	
+        	case ALLY_FIRST_LETTER:
         		quote = "Holy mackerel! These chips are tasty.";
         		break;
         	default:
@@ -172,7 +172,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
 		assertTrue(getReply(pequodNpc).startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		assertTrue("lie", pequodEngine.step(player, "yes")); 
+		assertTrue("lie", pequodEngine.step(player, "yes"));
 		assertEquals("So, what is it?", getReply(pequodNpc));
 
 		assertTrue(pequodEngine.step(player, quote));

@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.house;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
-
-import java.util.Map;
 
 public class CommonChest implements ZoneConfigurator {
 

@@ -12,20 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
+
+import games.stendhal.server.entity.player.Player;
 
 /**
  * A script, which can be reloaded at runtime.
- * 
+ *
  * @author hendrik
  */
 public interface Script {
 
 	/**
 	 * Initial load of this script.
-	 * 
+	 *
 	 * @param admin
 	 *            the admin who load it or <code>null</code> on server start.
 	 * @param args
@@ -39,7 +39,7 @@ public interface Script {
 
 	/**
 	 * Unloads this script.
-	 * 
+	 *
 	 * @param admin
 	 *            the admin who load it or <code>null</code> on server start.
 	 * @param args
@@ -50,7 +50,7 @@ public interface Script {
 
 	/**
 	 * Executes this script.
-	 * 
+	 *
 	 * @param admin
 	 *            the admin who load it or <code>null</code> on server start.
 	 * @param args

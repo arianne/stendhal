@@ -12,6 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
@@ -25,18 +35,7 @@ import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrantList;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * This class is responsible of keeping players who have misbehaved in a special

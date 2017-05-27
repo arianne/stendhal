@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.RPClass.GrowingPassiveEntityRespawnPointTestHelper;
 
 public class PassiveEntityRespawnPointFactoryTest {
@@ -66,8 +66,8 @@ public class PassiveEntityRespawnPointFactoryTest {
 				.create(clazz, 4, null, 0, 0);
 		assertNotNull(herb_4);
 		assertEquals("You see a place where reindeer moss grows.",
-				herb_4.getDescription());		
-	
+				herb_4.getDescription());
+
 	}
 
 	/**

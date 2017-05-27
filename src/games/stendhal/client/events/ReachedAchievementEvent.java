@@ -15,7 +15,7 @@ import games.stendhal.client.entity.RPEntity;
 
 /**
  * Handling reaching an achievement client side
- * 
+ *
  * @author madmetzger
  */
 class ReachedAchievementEvent extends Event<RPEntity>{

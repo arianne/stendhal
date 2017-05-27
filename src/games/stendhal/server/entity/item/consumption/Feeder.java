@@ -18,7 +18,7 @@ import games.stendhal.server.entity.player.Player;
 public interface Feeder {
 
 	/**
-	 * 
+	 *
 	 * @param item
 	 * @param player
 	 * @return true iff feeding is possible

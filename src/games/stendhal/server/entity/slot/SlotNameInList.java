@@ -13,10 +13,10 @@ package games.stendhal.server.entity.slot;
 
 import java.util.List;
 
-import marauroa.common.game.RPSlot;
-
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
+
+import marauroa.common.game.RPSlot;
 
 /**
  * a predicate which tests that the name of a slot is in list

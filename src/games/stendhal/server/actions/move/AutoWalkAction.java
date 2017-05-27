@@ -15,6 +15,7 @@ import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.WALK;
 import static games.stendhal.common.constants.Common.PATHSET;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -27,7 +28,7 @@ import marauroa.common.game.RPAction;
  * the action is executed with the MODE attribute set to "stop" it will
  * exclusively stop the entity's movement and set auto-walking off. Otherwise
  * it will toggle auto-walk.
- * 
+ *
  * @author AntumDeluge
  */
 public class AutoWalkAction implements ActionListener {
@@ -57,7 +58,7 @@ public class AutoWalkAction implements ActionListener {
 		final double currentSpeed = player.getSpeed();
 		final double newSpeed = player.getBaseSpeed();
 		final Direction walkDirection = player.getDirection();
-		
+
 		final String mode = action.get(MODE);
 
 		/* Player used "/stop" slash command. */

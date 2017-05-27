@@ -13,11 +13,12 @@
 package games.stendhal.server.entity;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.common.Direction;
 
 import java.awt.Rectangle;
 
 import org.junit.Test;
+
+import games.stendhal.common.Direction;
 
 public class ActiveEntityTest {
 

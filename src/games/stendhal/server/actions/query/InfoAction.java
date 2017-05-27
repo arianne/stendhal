@@ -11,18 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.actions.query;
 
-import games.stendhal.common.Debug;
-import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.entity.player.Player;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import games.stendhal.common.Debug;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
  * Answers with the server time and if this is the test server with the version information.
- * 
+ *
  * @author hendrik
  */
 public class InfoAction implements ActionListener {

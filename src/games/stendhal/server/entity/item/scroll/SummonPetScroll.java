@@ -11,22 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-//import games.stendhal.server.core.rp.StendhalRPAction;
-//import games.stendhal.server.core.rule.EntityManager;
-//import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.creature.Cat;
-import games.stendhal.server.entity.creature.Pet;
-import games.stendhal.server.entity.creature.BabyDragon;
-import games.stendhal.server.entity.creature.PurpleDragon;
-//import games.stendhal.server.entity.creature.Sheep;
-//import games.stendhal.server.core.engine.transformer.PlayerTransformer;
-
-import games.stendhal.server.entity.item.Item;
-
-
 //import java.util.ArrayList;
 //import java.util.Collection;
 //import java.util.HashMap;
@@ -34,6 +18,20 @@ import games.stendhal.server.entity.item.Item;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.BabyDragon;
+import games.stendhal.server.entity.creature.Cat;
+import games.stendhal.server.entity.creature.Pet;
+import games.stendhal.server.entity.creature.PurpleDragon;
+//import games.stendhal.server.entity.creature.Sheep;
+//import games.stendhal.server.core.engine.transformer.PlayerTransformer;
+import games.stendhal.server.entity.item.Item;
+//import games.stendhal.server.core.rp.StendhalRPAction;
+//import games.stendhal.server.core.rule.EntityManager;
+//import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Represents a creature summon pet scroll.
@@ -46,7 +44,7 @@ public class SummonPetScroll extends Scroll {
 
 	/**
 	 * Creates a new summon pet scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -59,7 +57,7 @@ public class SummonPetScroll extends Scroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -69,7 +67,7 @@ public class SummonPetScroll extends Scroll {
 
 	/**
 	 * Is invoked when a summon pet scroll is used.
-	 * 
+	 *
 	 * @param player
 	 *            The player who used the scroll
 	 * @return true iff summoning was successful
@@ -88,7 +86,7 @@ public class SummonPetScroll extends Scroll {
 			logger.info("Too many npcs to summon another creature");
 			return false;
 		}
-		
+
 		if (player.hasPet()) {
 			player.sendPrivateText("The magic is not strong enough to give you more than one pet.");
 			return false;
@@ -117,12 +115,12 @@ public class SummonPetScroll extends Scroll {
 			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
 			return false;
 		}
-		
+
 		pet.setPosition(player.getX(), player.getY() + 1);
 		dropBlank(player);
 		return true;
 	}
-	
+
 	@Override
 	public String describe() {
 		String text = super.describe();
@@ -134,17 +132,17 @@ public class SummonPetScroll extends Scroll {
 		}
 		return (text);
 	}
-	
+
 	public boolean dropBlank (Player player) {
 		//revert to blank
 		final Item blankPetScroll = SingletonRepository.getEntityManager().getItem(
 				"blank pet scroll");
-		
+
 		player.equipOrPutOnGround(blankPetScroll);
 		player.sendPrivateText("You summon your pet back onto this plane. Faint smoke lingers from the page.");
 
 		return true;
 	}
-	
-	
+
+
 }

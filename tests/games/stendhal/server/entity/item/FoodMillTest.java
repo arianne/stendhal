@@ -3,7 +3,6 @@ package games.stendhal.server.entity.item;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -35,7 +35,7 @@ public class FoodMillTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	public void testOnUsedSugarMill() throws Exception {
 		String name = "sugar mill";
@@ -46,22 +46,22 @@ public class FoodMillTest {
 		Player user  =  PlayerTestHelper.createPlayer("fmbob");
 		fm.onUsed(user);
 		assertEquals("You should be carrying the sugar mill in order to use it.", PlayerTestHelper.getPrivateReply(user));
-		
+
 		user.equip("bag", fm);
 		fm.onUsed(user);
 		assertEquals("You should hold the sugar mill in either hand in order to use it.", PlayerTestHelper.getPrivateReply(user));
 		user.equip("lhand", fm);
 		fm.onUsed(user);
-		
+
 		assertEquals("Your other hand looks empty.", PlayerTestHelper.getPrivateReply(user));
 		PlayerTestHelper.equipWithItemToSlot(user, "cheese", "rhand");
 		fm.onUsed(user);
 		assertEquals("You need to have at least a sugar cane in your other hand", PlayerTestHelper.getPrivateReply(user));
-		
+
 		user.drop("cheese");
-		
+
 		PlayerTestHelper.equipWithItemToSlot(user, "sugar cane", "rhand");
-	
+
 		fm.onUsed(user);
 		assertEquals("You don't have an empty sack with you", PlayerTestHelper.getPrivateReply(user));
 		PlayerTestHelper.equipWithItem(user, "empty sack");
@@ -78,25 +78,25 @@ public class FoodMillTest {
 		Player user  =  PlayerTestHelper.createPlayer("fmbob");
 		fm.onUsed(user);
 		assertEquals("You should be carrying the scroll eraser in order to use it.", PlayerTestHelper.getPrivateReply(user));
-		
+
 		user.equip("bag", fm);
 		fm.onUsed(user);
 		assertEquals("You should hold the scroll eraser in either hand in order to use it.", PlayerTestHelper.getPrivateReply(user));
 		user.equip("lhand", fm);
 		fm.onUsed(user);
-		
+
 		assertEquals("Your other hand looks empty.", PlayerTestHelper.getPrivateReply(user));
 		PlayerTestHelper.equipWithItemToSlot(user, "cheese", "rhand");
-		
+
 		fm.onUsed(user);
 		assertEquals("You need to have at least a marked scroll in your other hand", PlayerTestHelper.getPrivateReply(user));
-		
+
 		user.drop("cheese");
-		
+
 		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","bag");
-		
+
 		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","rhand");
-	
+
 		fm.onUsed(user);
 		assertEquals("You don't have a money with you", PlayerTestHelper.getPrivateReply(user));
 		PlayerTestHelper.equipWithItem(user, "money");
@@ -112,7 +112,7 @@ public class FoodMillTest {
 		String subclass = "";
 		Map<String, String> attributes = new HashMap<String, String>();
 		new FoodMill(name, clazz, subclass, attributes);
-	
+
 	}
 
 }

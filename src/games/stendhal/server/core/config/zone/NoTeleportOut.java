@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-
-import java.util.Map;
 
 public class NoTeleportOut implements ZoneConfigurator {
 
@@ -26,7 +26,7 @@ public class NoTeleportOut implements ZoneConfigurator {
 			int y = Integer.parseInt(attributes.get("y"));
 			int width = Integer.parseInt(attributes.get("width"));
 			int height = Integer.parseInt(attributes.get("height"));
-			
+
 			zone.disallowOut(x, y, width, height);
 		} else {
 			zone.disallowOut();

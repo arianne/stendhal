@@ -12,16 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.office;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.Entity;
-
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.Entity;
 import marauroa.common.game.RPObject;
 
 /**
@@ -55,9 +54,9 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 
 	/**
      * Adds a storable entity.
-     * 
+     *
      * @param entity storable entity
-     * @return true in case the entity was added successfully; 
+     * @return true in case the entity was added successfully;
      * 				false in case no free spot for it was found
      */
 	public boolean add(final T entity) {
@@ -74,7 +73,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 	 * calculates a free spot to place this entity into.
 	 *
 	 * @param entity entity
-	 * @return true, in case a spot was found or this entity should 
+	 * @return true, in case a spot was found or this entity should
 	 * 				not be place in the zone; false otherwise
 	 */
 	private boolean calculatePosition(final T entity) {
@@ -99,7 +98,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 
 	/**
      * Returns the storable entity for the specified identifier.
-     * 
+     *
      * @param identifier name of entity
      * @return storable entity or <code>null</code> in case there is none
      */
@@ -115,7 +114,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 
 	/**
      * Removes all storable entities for this identifier.
-     * 
+     *
      * @param identifier name of entity
 	 * @return if removed successfully
      */
@@ -135,7 +134,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 	/**
      * gets a list of storable entities from the zone storage. Note: This is only a
      * temporary snapshot, do not save it outside the scope of a method.
-     * 
+     *
      * @return List of storable entities.
      */
     protected List<T> getList() {
@@ -164,7 +163,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
     			modified = true;
     		}
     	}
-    	
+
     	if (modified) {
     		zone.storeToDatabase();
     	}

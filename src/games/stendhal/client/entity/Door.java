@@ -41,7 +41,7 @@ public class Door extends Entity {
 
 	/**
 	 * Check if the door is open.
-	 * 
+	 *
 	 * @return <code>true</code> if the door is open.
 	 */
 	public boolean isOpen() {
@@ -54,10 +54,10 @@ public class Door extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -76,7 +76,7 @@ public class Door extends Entity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -97,7 +97,7 @@ public class Door extends Entity {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.mithrilcloak;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.ConversationParser;
@@ -42,10 +46,6 @@ import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author kymara
 */
@@ -53,7 +53,7 @@ import java.util.Map;
 class GettingTools {
 
 	private MithrilCloakQuestInfo mithrilcloak;
-	
+
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
 	public GettingTools(final MithrilCloakQuestInfo mithrilcloak) {
@@ -93,11 +93,11 @@ class GettingTools {
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_eggshells"),
 			ConversationStates.SERVICE_OFFERED,
 			"So, did you bring the items I need for the magical scissors?", null);
-									
+
 		// player asks about eggshells, hint to find terry
 		npc.add(
 			ConversationStates.ATTENDING,
-			"eggshells", 
+			"eggshells",
 			null,
 			ConversationStates.ATTENDING,
 			"They must be from dragon eggs. I guess you better find someone who dares to hatch dragons!",
@@ -107,7 +107,7 @@ class GettingTools {
 		// we can't use the nice ChatActions here because the needed number is stored in the quest slot i.e. we need a fire
 		npc.add(
 			ConversationStates.SERVICE_OFFERED,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_eggshells"),
 			ConversationStates.ATTENDING,
 			null,
@@ -122,13 +122,13 @@ class GettingTools {
 							player.drop("iron");
 							player.drop("mithril bar");
 							player.drop("magical eggshells", neededEggshells);
-							npc.say("Good. It will take me some time to make these, come back in " 
+							npc.say("Good. It will take me some time to make these, come back in "
 									   + REQUIRED_MINUTES_SCISSORS + " minutes to get your scissors.");
 							player.addXP(100);
 							player.setQuest(mithrilcloak.getQuestSlot(), "makingscissors;" + System.currentTimeMillis());
 							player.notifyWorldAboutChanges();
 						} else {
-							npc.say("Liar, you don't have everything I need. Ask me about #scissors again when you have an iron bar, a mithril bar, and " 
+							npc.say("Liar, you don't have everything I need. Ask me about #scissors again when you have an iron bar, a mithril bar, and "
 									+ questslot[1] + " magical eggshells. And don't be wasting my time!");
 						}
 				}
@@ -137,14 +137,14 @@ class GettingTools {
 		// player says they didn't bring the stuff yet
 		npc.add(
 			ConversationStates.SERVICE_OFFERED,
-			ConversationPhrases.NO_MESSAGES, 
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"What are you still here for then? Go get them!",
 			null);
 
 		// player returns while hogart is making scissors or has made them
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("scissors", "magical", "magical scissors", "ida", "mithril", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingscissors;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
@@ -204,7 +204,7 @@ class GettingTools {
 							new EquipItemAction("magical eggshells", required, true).fire(player, sentence, npc);
 						} else {
 							npc.say("Ok, ask me again when you have " + Integer.toString(required * REQUIRED_POISONS) + " disease poisons with you.");
-						}						
+						}
 					}
 				});
 
@@ -229,8 +229,8 @@ class GettingTools {
 				ConversationStates.ATTENDING,
 				"You brought those magical scissors! Excellent! Now that I can cut the fabric I need a magical needle. You can buy one from a trader in the abandoned keep of Ados mountains, #Ritati Dragon something or other. Just go to him and ask for his 'specials'.",
 				new MultipleActions(
-									 new DropItemAction("magical scissors"), 
-									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_needle;", 10.0), 
+									 new DropItemAction("magical scissors"),
+									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_needle;", 10.0),
 									 new IncreaseXPAction(100)
 									 )
 				);
@@ -246,7 +246,7 @@ class GettingTools {
 												 new NotCondition(new PlayerHasItemWithHimCondition("magical scissors")))
 								),
 				ConversationStates.ATTENDING,
-				"Ask #Hogart about #scissors, I'm sure he will remember the messages I've sent him!",				
+				"Ask #Hogart about #scissors, I'm sure he will remember the messages I've sent him!",
 				null);
 
 		npc.addReply("Ritati", "He's somewhere in the abandoned keep in the mountains north east from here.");
@@ -257,9 +257,9 @@ class GettingTools {
 	private void getNeedleStep() {
 
 		final int NEEDLE_COST = 1500;
-		
+
 		final Map<Integer, String> jokes = new HashMap<Integer, String>();
-		
+
 			jokes.put(1, "If a man stands in the middle of the forest speaking and there is no woman around to hear him, is he still wrong?");
 			jokes.put(2, "Everyone has a photographic memory, some just don't have film.");
 			jokes.put(3, "Eagles may soar, free and proud, but weasels never get sucked into jet engines.");
@@ -269,7 +269,7 @@ class GettingTools {
 			jokes.put(7, "Always remember you're unique, just like everyone else.");
 			jokes.put(8, "Half the people in the world are below average.");
 
-		
+
 		final SpeakerNPC npc = npcs.get("Ritati Dragontracker");
 
 		// ask for joke when prompted for needle
@@ -277,10 +277,10 @@ class GettingTools {
 				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
 				ConversationStates.ATTENDING,
-				"Ok, but I have a little rule: never do important business with someone unless" 
+				"Ok, but I have a little rule: never do important business with someone unless"
 				+ "they can make you laugh. So, come back to tell me a #joke and I will sell you a needle.",
 				null);
-		
+
 		// ask for joke when player says joke
 		npc.add(ConversationStates.ATTENDING,
 				"joke",
@@ -345,8 +345,8 @@ class GettingTools {
 							}
 			}
 		});
-		
-		
+
+
 		// offer needle when prompted if they already told a joke
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
@@ -358,20 +358,20 @@ class GettingTools {
 
 		// agrees to buy 1 needle
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("money", NEEDLE_COST),
 				ConversationStates.IDLE,
 				"Ok, here you are. Be careful with them, they break easy. "+
 				"And if you break it, all other needles you have already bought from me, will lose their magic. "+
-				"Now, get lost, you have hung around here far too long already.",				
+				"Now, get lost, you have hung around here far too long already.",
 				new MultipleActions(
-					new DropItemAction("money", NEEDLE_COST), 
+					new DropItemAction("money", NEEDLE_COST),
 					new EquipItemAction("magical needle", 1, true)
 					));
 
 		// said he had money but he didn't
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("money", NEEDLE_COST)),
 				ConversationStates.ATTENDING,
 				"What the ... you don't have enough money! Get outta here!",
@@ -379,16 +379,16 @@ class GettingTools {
 
 		// doesn't want to buy needle
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-				ConversationPhrases.NO_MESSAGES, 
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Ok, no pressure, no pressure. Maybe you'll like some of my other #offers.",
 				null);
-		
+
 		// specials response for if the queststate condition is not met
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("needle", "magical", "magical needle", "ida", "cloak", "mithril cloak", "specials"),
-				null, 
+				null,
 				ConversationStates.ATTENDING,
 				"The time will come when you will need my specials, but that time is not now.",
 				null);
@@ -409,20 +409,20 @@ class GettingTools {
 					new ChatAction() {
 						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");		
+							final String[] questslot = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 							int needles = 1;
 							int saidjoke = 1;
 							if (questslot.length > 2) {
 								// if the split works, we had stored a needle number before
 								needles = Integer.parseInt(questslot[1]);
 								saidjoke = Integer.parseInt(questslot[2]);
-								npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak," 
+								npc.say("I'm really sorry about the previous needle breaking. I'll start work again on your cloak,"
 										+ " please return in another " + REQUIRED_HOURS_SEWING + " hours.");
 							 } else if (questslot.length > 1) {
 								// it wasn't split with a needle number, only joke
 								// so this is the first time we brought a needle
 								saidjoke = Integer.parseInt(questslot[1]);
-								npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!" 
+								npc.say("Looks like you found Ritatty then, good. I'll start on the cloak now!"
 										+ " A seamstress needs to take her time, so return in " + REQUIRED_HOURS_SEWING + " hours.");
 								// ida breaks needles - she will need 1 - 3
 								needles = Rand.randUniform(1, 3);
@@ -444,7 +444,7 @@ class GettingTools {
 								)
 						),
 				ConversationStates.ATTENDING,
-				"Please ask Ritati thingummy for his 'specials', or just ask about a #needle.",				
+				"Please ask Ritati thingummy for his 'specials', or just ask about a #needle.",
 				null);
 	}
 
@@ -455,7 +455,7 @@ class GettingTools {
 		// the quest slot that starts with sewing is the form "sewing;number;number" where the first number is the time she started sewing
 		// the second number is the number of needles that she's still going to use - player doesn't know number
 
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("magical", "mithril", "cloak", "mithril cloak", "task", "quest"),
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "sewing;"),
 				ConversationStates.ATTENDING, null, new ChatAction() {
@@ -481,7 +481,7 @@ class GettingTools {
 								final int needles = Integer.parseInt(tokens[2]) - 1;
 								int saidjoke = Integer.parseInt(tokens[3]);
 								player.setQuest(mithrilcloak.getQuestSlot(), "need_needle;" + needles + ";" + saidjoke);
-							}							
+							}
 				}
 			});
 	}

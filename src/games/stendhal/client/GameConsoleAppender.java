@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.common.NotificationType;
-
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;
 
+import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.common.NotificationType;
+
 /**
  * Log4J appender which logs to the game console.
- * 
+ *
  * @author Matthias Totz
  */
 public class GameConsoleAppender extends AppenderSkeleton {

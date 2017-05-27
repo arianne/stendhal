@@ -25,40 +25,40 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 	}
 
 	private void init() {
-		// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy. 
-		// For definiteness we will check these conditions in a set order. 
+		// Other than the condition that you must not already own a house, there are a number of conditions a player must satisfy.
+		// For definiteness we will check these conditions in a set order.
 		// So then the NPC doesn't have to choose which reason to reject the player for (appears as a WARN from engine if he has to choose)
-		
+
 		// player is not old enough
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 				 Arrays.asList("cost", "house", "buy", "purchase"),
 				 new NotCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE)),
-				 ConversationStates.ATTENDING, 
+				 ConversationStates.ATTENDING,
 				 "The cost of a new house in Kirdneh is "
 						 + getCost()
-				 + " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " 
+				 + " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least "
 				 + Integer.toString((HouseSellerNPCBase.REQUIRED_AGE / 60)) + " hours on Faiumoni.",
 				 null);
-		
+
 		// player is old enough and hasn't got a house but has not done required quest
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
-								  new QuestNotCompletedCondition(KirdnehHouseSeller.KIRDNEH_QUEST_SLOT), 
+				 new AndCondition(new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
+								  new QuestNotCompletedCondition(KirdnehHouseSeller.KIRDNEH_QUEST_SLOT),
 									 new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT)),
-				 ConversationStates.ATTENDING, 
+				 ConversationStates.ATTENDING,
 				 "The cost of a new house in Kirdneh is "
 				 + getCost()
 				 + " money. But my principle is never to sell a house without establishing first the good #reputation of the prospective buyer.",
 				 null);
-		
+
 		// player is eligible to buy a house
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 				 Arrays.asList("cost", "house", "buy", "purchase"),
-				 new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT), 
-								  new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE), 
+				 new AndCondition(new QuestNotStartedCondition(HouseSellerNPCBase.QUEST_SLOT),
+								  new AgeGreaterThanCondition(HouseSellerNPCBase.REQUIRED_AGE),
 								  new QuestCompletedCondition(KirdnehHouseSeller.KIRDNEH_QUEST_SLOT)),
-					ConversationStates.QUEST_OFFERED, 
+					ConversationStates.QUEST_OFFERED,
 				 "The cost of a new house is "
 				 + getCost()
 				 + " money.  Also, you must pay a house tax of " + HouseTax.BASE_TAX
@@ -66,13 +66,13 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 				 + "Kirdneh Houses are numbered "
 				 + getLowestHouseNumber() + " to " + getHighestHouseNumber() + ".",
 				 null);
-		
+
 		// handle house numbers 26 to 49
 		addMatching(ConversationStates.QUEST_OFFERED,
 				// match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new BuyHouseChatAction(getCost(), QUEST_SLOT));
 
@@ -84,7 +84,7 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 		setEntityClass("man_004_npc");
 		setPosition(31, 4);
 		initHP(100);
-		
+
 	}
 
 	@Override

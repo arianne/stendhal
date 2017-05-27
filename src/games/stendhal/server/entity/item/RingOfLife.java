@@ -24,13 +24,13 @@ public class RingOfLife extends Item {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item copied item
 	 */
 	public RingOfLife(final RingOfLife item) {
 		super(item);
 	}
-	
+
 	/**
 	 * Create a RingOfLife.
 	 */
@@ -41,7 +41,7 @@ public class RingOfLife extends Item {
 
 	/**
 	 * Check if the ring is broken.
-	 * 
+	 *
 	 * @return <code>true</code> if the ring is broken, <code>true</code> if
 	 *	it's intact
 	 */
@@ -55,17 +55,17 @@ public class RingOfLife extends Item {
 	public void damage() {
 		put("amount", 0);
 	}
-	
+
 	@Override
 	public void repair() {
 		put("amount", 1);
-	}	
+	}
 
 	/**
 	 * Gets the description.
-	 * 
+	 *
 	 * The description of RingOfLife depends on the ring's state.
-	 * 
+	 *
 	 * @return The description text.
 	 */
 	@Override
@@ -76,7 +76,7 @@ public class RingOfLife extends Item {
 		} else {
 			text = "You see an §'emerald ring', known as the ring of life. Wear it, and you risk less from death.";
 		}
-		
+
 		if (isBound()) {
 			text = text + " It is a special quest reward for " + getBoundTo()
 					+ ", and cannot be used by others.";

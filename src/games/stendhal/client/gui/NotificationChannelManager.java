@@ -11,12 +11,12 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.common.NotificationType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.common.NotificationType;
 
 /**
  * Container for NotificationChannels.
@@ -28,34 +28,34 @@ class NotificationChannelManager {
 	private final List<HiddenChannelListener> listeners = new CopyOnWriteArrayList<HiddenChannelListener>();
 	/** The channel with the currently visible log. */
 	private NotificationChannel visibleChannel;
-	
+
 	/**
 	 * Add a new channel.
-	 * 
+	 *
 	 * @param channel
 	 */
 	void addChannel(NotificationChannel channel) {
 		channels.add(channel);
 	}
-	
+
 	/**
 	 * Add a listener for following changes on hidden channel logs.
-	 * 
+	 *
 	 * @param listener
 	 */
 	void addHiddenChannelListener(HiddenChannelListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	/**
 	 * Get available channels.
-	 * 
+	 *
 	 * @return list of available channels
 	 */
 	List<NotificationChannel> getChannels() {
 		return channels;
 	}
-	
+
 	/**
 	 * Add an event line to be displayed at channels that should show events
 	 * of the type of the EventLine.
@@ -77,28 +77,28 @@ class NotificationChannelManager {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the currently visible channel.
-	 * 
+	 *
 	 * @return visible channel
 	 */
 	NotificationChannel getVisibleChannel() {
 		return visibleChannel;
 	}
-	
+
 	/**
 	 * Set the visible channel.
-	 * 
+	 *
 	 * @param channel
 	 */
 	void setVisibleChannel(NotificationChannel channel) {
 		visibleChannel = channel;
 	}
-	
+
 	/**
 	 * Called when a hidden channel is modified.
-	 * 
+	 *
 	 * @param index index of the channel
 	 */
 	private void fireHiddenChannelModified(int index) {
@@ -106,14 +106,14 @@ class NotificationChannelManager {
 			l.channelModified(index);
 		}
 	}
-	
+
 	/**
 	 * Listener for channel modifications on channels whose log is not visible.
 	 */
 	interface HiddenChannelListener {
 		/**
 		 * Called when a channel whose log is not visible is modified.
-		 * 
+		 *
 		 * @param index index of the channel
 		 */
 		void channelModified(int index);

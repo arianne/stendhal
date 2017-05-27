@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -27,30 +30,27 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * QUEST: Learn about Karma
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Sarzina, the friendly wizardess who also sells potions in Fado</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Sarzina asks if you are a helpful person</li>
  * <li>You get good or bad karma depending on what you say</li>
  * <li>You get the chance to learn about karma and find out what yours is.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>Some Karma</li>
  * <li>Knowledge</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>Can always learn about karma but not get the bonus each time</li>
@@ -81,18 +81,18 @@ public class LearnAboutKarma extends AbstractQuest {
 
 	private void step1() {
 		final SpeakerNPC npc = npcs.get("Sarzina");
-		
+
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"Are you someone who likes to help others?", null);
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
-			"If you want to get good #karma all you have to do is be helpful to others. I know a hunter girl called Sally who needs wood, and " 
+			ConversationStates.ATTENDING,
+			"If you want to get good #karma all you have to do is be helpful to others. I know a hunter girl called Sally who needs wood, and "
 			+ "I know another girl called Annie who loves icecream, well, I know many people who needs tasks doing for them regularly and I'm sure if you help them you will be rewarded, that's how karma works after all.", null);
 
 		// player is willing to help other people
@@ -112,7 +112,7 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I knew it ... you probably have bad #karma.",
 			new MultipleActions(
-					new DecreaseKarmaAction(10.0), 
+					new DecreaseKarmaAction(10.0),
 					new SetQuestAction(QUEST_SLOT, "done"),
 					new EnableFeatureAction("karma_indicator")));
 
@@ -122,11 +122,11 @@ public class LearnAboutKarma extends AbstractQuest {
 			"karma",
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUESTION_1,
-			"When you do a good thing like a #task for someone else, you get good karma. Good karma means you're likely to " 
-			+ "do well in battle and when fishing or searching for something like gold. " 
+			"When you do a good thing like a #task for someone else, you get good karma. Good karma means you're likely to "
+			+ "do well in battle and when fishing or searching for something like gold. "
 			+ "Do you want to know what your karma is now?",
 			null);
-		
+
 		// Player wants to know what karma is, but has not yet completed the
 		// quest. Act like the player asked about for a task.
 		npc.add(ConversationStates.ATTENDING,
@@ -168,7 +168,7 @@ public class LearnAboutKarma extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 			null, ConversationStates.ATTENDING,
 			"Fair enough! I could help you another way?", null);
-		
+
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.QUEST_MESSAGES,
 				null, ConversationStates.QUESTION_1,
 				"If you ask around for tasks, and you complete them, you'll increase your karma. Do you want to know what your karma is now?", null);
@@ -177,17 +177,17 @@ public class LearnAboutKarma extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Learn About Karma", 
-				"Sarzina will teach about Karma.", 
+				"Learn About Karma",
+				"Sarzina will teach about Karma.",
 				false);
 		step1();
 	}
-	
+
 	@Override
 	public String getName() {
 		return "LearnAboutKarma";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.FADO_CITY;

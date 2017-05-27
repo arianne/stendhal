@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.assassinhq;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,8 +21,6 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-
-import java.util.Map;
 
 /**
  * Inside Nalwor Assassin Headquarters - cellar .
@@ -52,12 +52,12 @@ public class ChiefFalatheenDishwasherNPC implements ZoneConfigurator  {
 				addQuest("You could try to help me #escape from these hoodlums. Well... maybe not.");
 				addGoodbye("Don't forget where I am now. Come back and see me some time. I do get lonely.");
 				addReply("escape", "Yes! I want to pursue my dream. Mother Helena offered me a most wonderful job.  She needs a dishwasher. Lots of complaining customers!!!");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyveggiesandherbs")), false);			    
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyveggiesandherbs")), false);
 			}};
 			npc.setPosition(20, 3);
 			npc.setDescription("You see a strong looking man. He ate lots of healthy vegetables to look like that!");
 			npc.setEntityClass("chieffalatheennpc");
-			zone.add(npc);		
+			zone.add(npc);
 	}
 }
-			 
+

@@ -13,7 +13,7 @@ package games.stendhal.client.update;
 
 /**
  * Possible States of the Client Version.
- * 
+ *
  * @author hendrik
  */
 enum VersionState {
@@ -42,7 +42,7 @@ enum VersionState {
 
 	/**
 	 * converts a string into VersionState.
-	 * 
+	 *
 	 * @param versionStateString
 	 *            a string representation
 	 * @return VersionState. In case of an error VersionState.ERROR is returned

@@ -12,14 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.house1;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Corpse;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import marauroa.common.game.RPObject;
 
 /**
@@ -32,7 +31,7 @@ public class AdventureIslandRemover implements TurnListener {
 	/**
 	 * creates a new AdventureIslandRemover
 	 *
-	 * @param zone StendhalRPZone 
+	 * @param zone StendhalRPZone
 	 */
 	public AdventureIslandRemover(StendhalRPZone zone) {
 		this.zone = zone;
@@ -54,7 +53,7 @@ public class AdventureIslandRemover implements TurnListener {
 			}
 
 			SingletonRepository.getRPWorld().removeZone(zone);
-		} 
+		}
 	}
 
 }

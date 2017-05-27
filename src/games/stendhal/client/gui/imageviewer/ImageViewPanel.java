@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 
 /**
  * A JPanel to be viewed from an ImageViewWindow.
- * 
+ *
  * @author timothyb89
  */
 class ImageViewPanel extends ViewPanel {
@@ -90,10 +90,10 @@ class ImageViewPanel extends ViewPanel {
 					+ FONT_SIZE + "\">" + caption + "</big></i></b><br>";
 		}
 
-		
+
 		final String img = "<img width=" + width + " height=" + height + " src="
 					+ url.toString() + ">";
-		
+
 		final String text = "<html>" + htmlCaption + img;
 		final JLabel imageLabel = new JLabel(text);
 

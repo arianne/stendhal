@@ -18,7 +18,7 @@ import marauroa.common.game.Result;
 
 /**
  * validates that reserved names (like admin) are not used as substrings.
- * 
+ *
  * @author hendrik
  */
 public class ReservedSubStringValidator implements AccountParameterValidator {
@@ -26,7 +26,7 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a ReservedSubStringValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */

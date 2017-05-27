@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * Enables admins to create portals.
- * 
+ *
  * @author hendrik
  */
 public class AdminPortal extends ScriptImpl {
@@ -38,9 +38,9 @@ public class AdminPortal extends ScriptImpl {
 			// syntax error, print help text
 			sandbox.privateText(
 					admin,
-					"This script creates portals:\n" + 
-					"/script AdminPortal.class <destination-zone> <destination-ref>\n" + 
-					"/script AdminPortal.class <name> <destination-zone> <destination-ref>\n" + 
+					"This script creates portals:\n" +
+					"/script AdminPortal.class <destination-zone> <destination-ref>\n" +
+					"/script AdminPortal.class <name> <destination-zone> <destination-ref>\n" +
 					"/script AdminPortal.class <name> <destination-zone> <destination-ref> level <min-level> <max-level> [<reject-message>]");
 		}
 	}

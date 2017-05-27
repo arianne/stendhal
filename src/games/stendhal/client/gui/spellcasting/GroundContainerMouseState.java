@@ -1,31 +1,31 @@
 /**
- * 
+ *
  */
 package games.stendhal.client.gui.spellcasting;
-
-import games.stendhal.client.gui.GroundContainer;
-import games.stendhal.client.gui.MouseHandler;
-import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
+import games.stendhal.client.gui.GroundContainer;
+import games.stendhal.client.gui.MouseHandler;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
+
 
 /**
- * 
+ *
  * @author madmetzger
  */
 public abstract class GroundContainerMouseState extends MouseHandler {
-	
-	/** 
-	 * The amount to shift popup menus to have the first entry under 
+
+	/**
+	 * The amount to shift popup menus to have the first entry under
 	 * the mouse.
 	 */
 	protected static final int MENU_OFFSET = 10;
-	
+
 	final GroundContainer ground;
-	
+
 	// mouse tweaks for MS windows
 	boolean windowWasActiveOnMousePressed = true;
 	int xOnMousePressed;
@@ -41,9 +41,9 @@ public abstract class GroundContainerMouseState extends MouseHandler {
 	 * was used to hide a context menu).
 	 */
 	boolean ignoreClick;
-	
+
 	public abstract void switchState();
-	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		ignoreClick = contextMenuFlag;
@@ -57,10 +57,10 @@ public abstract class GroundContainerMouseState extends MouseHandler {
 		ground.getCanvas().requestFocus();
 		super.mousePressed(e);
 	}
-	
+
 	/**
 	 * Get cursor for a point.
-	 * 
+	 *
 	 * @param point
 	 * @return cursor
 	 */

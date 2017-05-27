@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.common.NotificationType;
-
 import java.awt.Color;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -32,9 +29,11 @@ import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.StyleSheet;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.StendhalClient;
+import games.stendhal.common.NotificationType;
+import marauroa.common.game.RPAction;
 
 /**
  * A HTML implementation of a KTextEdit component.
@@ -52,7 +51,7 @@ public class KHtmlEdit extends KTextEdit {
 	private static final long serialVersionUID = -8415450500521691744L;
 
 	private static Logger logger = Logger.getLogger(KHtmlEdit.class);
-	
+
 	KHtmlEdit() {
 		textPane.addHyperlinkListener(new ActivateLinkCB());
 	}
@@ -446,7 +445,7 @@ public class KHtmlEdit extends KTextEdit {
 
 		appendString(sbuf.toString());
 	}
-	
+
 	@Override
 	protected void insertTimestamp(final String text) {
 		final StringBuilder sbuf = new StringBuilder();

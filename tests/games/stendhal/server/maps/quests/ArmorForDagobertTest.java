@@ -12,13 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.LinkedList;
 
@@ -26,13 +23,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class ArmorForDagobertTest {
 	private Player player;
@@ -49,7 +49,7 @@ public class ArmorForDagobertTest {
 	public void setUp() {
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new CustomerAdvisorNPC().configureZone(zone, null);
-		
+
 		npc = SingletonRepository.getNPCList().get("Dagobert");
 		quest = new ArmorForDagobert();
 		quest.addToWorld();
@@ -168,5 +168,5 @@ public class ArmorForDagobertTest {
 		assertEquals("Thank you very much for the armor, but I don't have any other task for you.", getReply(npc));
 	}
 
-	
+
 }

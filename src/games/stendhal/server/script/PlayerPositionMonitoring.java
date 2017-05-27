@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
@@ -19,11 +21,9 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * List the players and their positions over a period of time.
- * 
+ *
  * @author hendrik
  */
 public class PlayerPositionMonitoring extends ScriptImpl {
@@ -42,7 +42,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 
 		/**
 		 * creates a new PlayerPositionListener.
-		 * 
+		 *
 		 * @param admin
 		 *            the admin to notify
 		 */
@@ -56,7 +56,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			sb.append(": ");
 
 			SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
-					
+
 				new Task<Player>() {
 
 				@Override
@@ -81,13 +81,13 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 					sb.append(player.getX());
 					sb.append(' ');
 					sb.append(player.getY());
-				
 
-					
+
+
 				}
-				
+
 			});
-			
+
 			admin.sendPrivateText(sb.toString());
 		}
 

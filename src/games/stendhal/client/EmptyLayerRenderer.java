@@ -11,9 +11,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.sprite.Tileset;
-
 import java.awt.Graphics;
+
+import games.stendhal.client.sprite.Tileset;
 
 /**
  * A dummy layer renderer.

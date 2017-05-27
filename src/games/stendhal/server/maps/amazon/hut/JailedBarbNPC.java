@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.amazon.hut;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds the jailed Barbarian in Prison Hut on amazon island.
@@ -70,7 +70,7 @@ public class JailedBarbNPC implements ZoneConfigurator {
 				addJob("I belong to the #Guard of the hidden King! Oops, too much information for you!");
 				addReply("guard", "Uhm as I said, I didn't say anything to you!");
 				addHelp("Kill as much of these ugly Amazonesses as you can, they tried to make me go insane with these ugly flowers all over here.");
-				addOffer("Nothing to offer you!");				
+				addOffer("Nothing to offer you!");
 				addGoodbye("Bye bye, and cut down some of these ugly flowers!");
 			}
 		};

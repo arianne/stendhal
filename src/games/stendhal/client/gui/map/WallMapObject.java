@@ -11,9 +11,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
-import games.stendhal.client.entity.IEntity;
-
 import java.awt.Graphics;
+
+import games.stendhal.client.entity.IEntity;
 
 /**
  * representation of a wall entity on the map

@@ -34,7 +34,7 @@ import javax.swing.event.TreeSelectionListener;
 public class CreatureAnimationPreview {
 	private static final int NUMBER_OF_ROWS = 4;
 	private static final int NUMBER_OF_FRAMES = 3;
-	
+
 	private final JFrame jFrame = new JFrame();
 	private final JLabel[] animationPanel = new JLabel[NUMBER_OF_ROWS];
 	private final JLabel mainPanel = new JLabel();
@@ -46,7 +46,7 @@ public class CreatureAnimationPreview {
 		JScrollPane scroll = new JScrollPane();
 		scroll.setViewportView(createJTree());
 		split.setLeftComponent(scroll);
-		
+
 		JPanel rightPanel = new JPanel();
 		JComponent row = new JComponent() {};
 		row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
@@ -61,7 +61,7 @@ public class CreatureAnimationPreview {
 
 		rightPanel.add(row);
 		rightPanel.add(mainPanel);
-		
+
 		split.setRightComponent(rightPanel);
 		jFrame.setContentPane(split);
 		jFrame.setTitle("animated Monsters test");
@@ -74,14 +74,14 @@ public class CreatureAnimationPreview {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new CreatureAnimationPreview();	
+				new CreatureAnimationPreview();
 			}
 		});
 	}
 
 	/**
 	 * This method initializes jTree.
-	 * 
+	 *
 	 * @return data.sprites.monsters.FileTree
 	 */
 	private FileTree createJTree() {
@@ -116,7 +116,7 @@ public class CreatureAnimationPreview {
 
 		return jTree;
 	}
-	
+
 	private BufferedImage[] buffersCreate(final BufferedImage buf, final int row) {
 		final BufferedImage[] buffers = new BufferedImage[NUMBER_OF_FRAMES];
 		final int framewidth = buf.getWidth() / CreatureAnimationPreview.NUMBER_OF_FRAMES;

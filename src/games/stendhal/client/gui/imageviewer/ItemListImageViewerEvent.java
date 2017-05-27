@@ -12,14 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.gui.ScrolledViewport;
-import games.stendhal.client.gui.textformat.HTMLBuilder;
-import games.stendhal.client.gui.textformat.StringFormatter;
-import games.stendhal.client.gui.textformat.TextAttributeSet;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -35,19 +27,27 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.gui.ScrolledViewport;
+import games.stendhal.client.gui.textformat.HTMLBuilder;
+import games.stendhal.client.gui.textformat.StringFormatter;
+import games.stendhal.client.gui.textformat.TextAttributeSet;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
  * Opens a styled internal frame displaying an item list.
- * 
+ *
  * @author hendrik
  */
 public final class ItemListImageViewerEvent extends ViewPanel {
@@ -68,7 +68,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 	 */
 	public ItemListImageViewerEvent(RPEvent event) {
 		this.event = event;
-		
+
 		// Just formatting § for now. Nothing should currently use #
 		TextAttributeSet set = new TextAttributeSet();
 		set.setAttribute(TextAttribute.UNDERLINE, "u");
@@ -93,7 +93,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			caption.setBorder(BorderFactory.createEmptyBorder(PAD, PAD, PAD, PAD));
 			add(caption, BorderLayout.NORTH);
 		}
-		
+
 		JTable table = createTable(maxPreferredWidth);
 		// Prevents selection
 		table.setEnabled(false);
@@ -101,25 +101,25 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		TableColumn col = table.getColumnModel().getColumn(0);
 		col.setCellRenderer(new SpriteCellRenderer());
-		
+
 		col = table.getColumnModel().getColumn(1);
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
-		r.setHorizontalAlignment(JLabel.CENTER);
+		r.setHorizontalAlignment(SwingConstants.CENTER);
 		col.setCellRenderer(r);
-		
+
 		col = table.getColumnModel().getColumn(2);
 		col.setCellRenderer(new DescriptionCellRenderer());
-		
+
 		HeaderRenderer hr = new HeaderRenderer();
 		Enumeration<TableColumn> cols = table.getColumnModel().getColumns();
 		while (cols.hasMoreElements()) {
 			TableColumn c = cols.nextElement();
 			c.setHeaderRenderer(hr);
 		}
-		
+
 		adjustColumnWidths(table);
 		adjustRowHeights(table);
-		
+
 		ScrolledViewport viewPort = new ScrolledViewport(table);
 		/*
 		 * maxPreferredWidth is incorrect, but java does not seem to support
@@ -131,13 +131,13 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 						+ hr.getPreferredSize().height + 4 * PAD)));
 		viewPort.getComponent().setBackground(table.getBackground());
 		add(viewPort.getComponent(), BorderLayout.CENTER);
-		
+
 		setVisible(true);
 	}
-	
+
 	/**
 	 * Adjust the column widths of a table based on the table contents.
-	 * 
+	 *
 	 * @param table adjusted table
 	 */
 	private void adjustColumnWidths(JTable table) {
@@ -149,14 +149,14 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 				Component comp = table.prepareRenderer(table.getCellRenderer(row, column), row, column);
 				width = Math.max(width, comp.getPreferredSize().width);
 			}
-			
+
 			tc.setPreferredWidth(width);
 		}
 	}
-	
+
 	/**
 	 * Adjust the row heights of a table based on the table contents.
-	 * 
+	 *
 	 * @param table adjusted table
 	 */
 	private void adjustRowHeights(JTable table) {
@@ -171,13 +171,13 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			table.setRowHeight(row, rowHeight);
 		}
 	}
-	
+
 	/**
 	 * Renderer used for the header row items.
 	 */
 	private static class HeaderRenderer extends JPanel implements TableCellRenderer {
 		private final JLabel header = new JLabel();
-		
+
 		/**
 		 * Create a new HeaderRenderer.
 		 */
@@ -187,20 +187,20 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		}
 
 		@Override
-		public Component getTableCellRendererComponent(JTable table, 
+		public Component getTableCellRendererComponent(JTable table,
 				Object value, boolean isSelected, boolean hasFocus, int row,
 				int column) {
 			header.setText(value.toString());
 			return this;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Renderer used for the item description cells.
 	 */
 	private static class DescriptionCellRenderer extends DefaultTableCellRenderer {
 		private final Border border = BorderFactory.createEmptyBorder(PAD, PAD, PAD, PAD);
-		
+
 		@Override
 		public Component getTableCellRendererComponent(JTable table,
 				Object value, boolean isSelected, boolean hasFocus, int row,
@@ -211,13 +211,13 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			return this;
 		}
 	}
-	
+
 	/**
 	 * Renderer for the item sprite cells.
 	 */
 	private static class SpriteCellRenderer extends JComponent implements TableCellRenderer {
 		private Sprite sprite;
-		
+
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object color,
 				boolean isSelected, boolean hasFocus, int row, int col) {
@@ -229,7 +229,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			}
 			return this;
 		}
-		
+
 		@Override
 		public Dimension getPreferredSize() {
 			Dimension d = new Dimension();
@@ -239,7 +239,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			}
 			return d;
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			if (sprite != null) {
@@ -247,10 +247,10 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 			}
 		}
 	}
-	
+
 	/**
 	 * Create a JTable based on the event contents.
-	 * 
+	 *
 	 * @param maxPreferredWidth maximum preferred width of the entire table
 	 * @return new table
 	 */
@@ -265,10 +265,10 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		}
 		return new JTable(data, columnNames);
 	}
-	
+
 	/**
 	 * Create a table data row from item data.
-	 * 
+	 *
 	 * @param item item to use for the row contents
 	 * @param maxPreferredWidth maximum preferred width of the entire table
 	 * @return table content row
@@ -277,7 +277,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		Object[] rval = new Object[3];
 		rval[0] = getItemSprite(item);
 		rval[1] = getFormattedPrice(item);
-		
+
 		StringBuilder html = new StringBuilder("<html><div width=");
 		html.append(maxPreferredWidth - 170);
 		html.append('>');
@@ -293,7 +293,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 	/**
 	 * Formats the price depending on its sign.
 	 *
-	 * @param item representing an item to display 
+	 * @param item representing an item to display
 	 * @return html code to display price
 	 */
 	private String getFormattedPrice(RPObject item) {
@@ -310,10 +310,10 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		}
 		return price;
 	}
-	
+
 	/**
 	 * Get a sprite for an item.
-	 * 
+	 *
 	 * @param item item to fetch sprite for
 	 * @return item sprite
 	 */
@@ -328,7 +328,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		}
 		String itemName = item.get("class") + "/" + itemSubclass;
 		String imagePath = "/data/sprites/items/" + itemName + ".png";
-		
+
 		Sprite sprite = SpriteStore.get().getSprite(imagePath);
 		if (sprite.getWidth() > sprite.getHeight()) {
 			sprite = SpriteStore.get().getAnimatedSprite(sprite, 100);

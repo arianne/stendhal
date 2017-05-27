@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.fsm;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Collection;
-import java.util.LinkedList;
-
-import org.apache.log4j.Logger;
 
 /**
  * A transition brings a conversation from one state to another one (or to the
@@ -55,7 +55,7 @@ public class Transition {
 
 	/** The action that will take place when the transition is triggered. */
 	private final PostTransitionAction action;
-	
+
 	/** Label for search through installed transitions */
 	private final String label;
 
@@ -63,7 +63,7 @@ public class Transition {
 
 	/**
 	 * Creates a new transition.
-	 * 
+	 *
 	 * @param currentState
 	 *            old state
 	 * @param triggers
@@ -96,7 +96,7 @@ public class Transition {
 
 	/**
 	 * Creates a new transition.
-	 * 
+	 *
 	 * @param currentState
 	 *            old state
 	 * @param triggers
@@ -127,7 +127,7 @@ public class Transition {
 
 	/**
 	 * Create transition and copy values from existing transition
-	 * 
+	 *
 	 * @param tr - source transition, must not be null
 	 */
 	public Transition(Transition tr) {
@@ -144,7 +144,7 @@ public class Transition {
 	/**
 	 * Checks whether this is a "wildcard" transition (see class comment of
 	 * SpeakerNPC) which can be fired by the given text.
-	 * 
+	 *
 	 * @param sentence
 	 *            The sentence that the player has said
 	 * @return true iff this is a wildcard transition and the triggering text
@@ -165,7 +165,7 @@ public class Transition {
 	/**
 	 * Checks whether this is a "wildcard" transition (see class comment of
 	 * SpeakerNPC) and the normalized text matches the trigger.
-	 * 
+	 *
 	 * @param sentence
 	 *            trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
@@ -185,7 +185,7 @@ public class Transition {
 	/**
 	 * Checks whether this is a "wildcard" transition (see class comment of
 	 * SpeakerNPC) and the normalized text is similar to the trigger.
-	 * 
+	 *
 	 * @param sentence
 	 *            trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
@@ -210,7 +210,7 @@ public class Transition {
 
 	/**
 	 * Checks whether this transition is possible now.
-	 * 
+	 *
 	 * @param currentState
 	 *            old state
 	 * @param sentence
@@ -223,7 +223,7 @@ public class Transition {
 
 	/**
 	 * Checks whether this transition is possible now.
-	 * 
+	 *
 	 * @param state
 	 *            old state
 	 * @param trigger
@@ -245,7 +245,7 @@ public class Transition {
 	/**
 	 * Checks whether this transition is possible now by using matching
 	 * of the normalized expression.
-	 * 
+	 *
 	 * @param state
 	 *            old state
 	 * @param sentence
@@ -259,7 +259,7 @@ public class Transition {
 	/**
 	 * Checks whether this transition is possible now by using matching
 	 * of the normalized expression.
-	 * 
+	 *
 	 * @param state
 	 *            old state
 	 * @param trigger
@@ -281,7 +281,7 @@ public class Transition {
 	/**
 	 * Checks whether this transition is possible now by checking the similarity of the
 	 * normalized expression.
-	 * 
+	 *
 	 * @param state
 	 *            old state
 	 * @param sentence
@@ -308,7 +308,7 @@ public class Transition {
 
 	/**
 	 * Checks for match with the given state/trigger/condition combination.
-	 * 
+	 *
 	 * @param state
 	 * @param trigger
 	 * @param condition
@@ -329,7 +329,7 @@ public class Transition {
 
 	/**
 	 * Checks for normalized match with the given state/trigger/condition combination.
-	 * 
+	 *
 	 * @param state
 	 * @param trigger
 	 * @param condition
@@ -347,10 +347,10 @@ public class Transition {
 		// no match
 		return false;
     }
-	
+
 	/**
 	 * Checks for labels equality
-	 * 
+	 *
 	 * @param aLabel label to compare
 	 * @return check result
 	 */
@@ -369,10 +369,10 @@ public class Transition {
 	public boolean isEmptyLabel() {
 		return this.label.isEmpty();
 	}
-	
+
 	/**
 	 * Checks whether this transition's condition is fulfilled.
-	 * 
+	 *
 	 * @param player Player
 	 * @param sentence
 	 *            the sentence the player said
@@ -434,7 +434,7 @@ public class Transition {
 
 	/**
 	 * Sets the output for this transition.
-	 * 
+	 *
 	 * @param reply
 	 *            output
 	 */

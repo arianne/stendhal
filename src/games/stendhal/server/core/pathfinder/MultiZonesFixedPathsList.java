@@ -1,13 +1,13 @@
 package games.stendhal.server.core.pathfinder;
 
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.npc.SpeakerNPC;
 
 
 /**
@@ -23,7 +23,7 @@ public class MultiZonesFixedPathsList implements Observer {
 	final Logger logger = Logger.getLogger(this.getClass());
 	int count;
 
-	
+
 	/**
 	 * a kind of iterator over list
 	 */
@@ -38,7 +38,7 @@ public class MultiZonesFixedPathsList implements Observer {
 			end.update(null, null);
 		}
 	}
-	
+
 	/**
 	 * constructor
 	 * @param npc - npc to go
@@ -47,9 +47,9 @@ public class MultiZonesFixedPathsList implements Observer {
 	 * @param end - observer for notifying about road's end.
 	 */
 	public MultiZonesFixedPathsList(
-			 final SpeakerNPC npc, 
-			 final List<List<RPZonePath>> pathes, 
-			 final Observer middle, 
+			 final SpeakerNPC npc,
+			 final List<List<RPZonePath>> pathes,
+			 final Observer middle,
 			 final Observer end) {
 		this.npc = npc;
 		this.middle = middle;
@@ -57,8 +57,8 @@ public class MultiZonesFixedPathsList implements Observer {
 		count = -1;
 		fillMultiZonesList(pathes);
 	}
-	
-	
+
+
 	/**
 	 * filling MultiZonesFixedPath list by content of pathes list.
 	 * @param pathes - list of npc pathes

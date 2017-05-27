@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalClient.ZoneChangeListener;
@@ -31,14 +39,6 @@ import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.CollisionDetection;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
-
 /**
  * Controller object for the map panel.
  */
@@ -53,56 +53,56 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	/**
 	 * <code>true</code> if the map should be repainted, <code>false</code>
 	 * otherwise.
-	 */ 
+	 */
 	private volatile boolean needsRefresh;
-	
+
 	/**
 	 * Create a MapPanelController.
-	 * 
+	 *
 	 * @param client client object
 	 */
 	public MapPanelController(final StendhalClient client) {
 		container = new MapContainer();
 		container.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
-		
+
 		panel = new MapPanel(this, client);
 		container.add(panel);
-		
+
 		infoPanel = new InformationPanel();
 		infoPanel.setBackground(Color.BLACK);
 		container.add(infoPanel, SLayout.EXPAND_X);
-		
+
 		client.getGameObjects().addGameObjectListener(this);
 	}
-	
+
 	/**
 	 * Mark the map contents changed, so that the component should be redrawn.
-	 * 
-	 * @param needed 
+	 *
+	 * @param needed
 	 */
 	void setNeedsRefresh(boolean needed) {
 		needsRefresh = needed;
 	}
-	
+
 	/**
 	 * Get the map panel component.
-	 * 
+	 *
 	 * @return component
 	 */
 	public JComponent getComponent() {
 		return container;
 	}
-	
+
 	/**
 	 * Add an entity to the map, if it should be displayed to the user. This
 	 * method is thread safe.
-	 * 
+	 *
 	 * @param entity the added entity
 	 */
 	@Override
 	public void addEntity(final IEntity entity) {
 		MapObject object = null;
-		
+
 		if (entity instanceof Player) {
 			object = new PlayerMapObject(entity);
 		} else if (entity instanceof Portal) {
@@ -127,16 +127,16 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 				object = new MovingMapObject(entity);
 			}
 		}
-		
+
 		if (object != null) {
 			mapObjects.put(entity, object);
-			
+
 			// changes to objects that should trigger a refresh
 			if (object instanceof MovingMapObject) {
 				entity.addChangeListener(new EntityChangeListener<IEntity>() {
 					@Override
 					public void entityChanged(final IEntity entity, final Object property) {
-						if ((property == IEntity.PROP_POSITION) 
+						if ((property == IEntity.PROP_POSITION)
 								|| (property == RPEntity.PROP_GHOSTMODE)
 								|| (property == RPEntity.PROP_GROUP_MEMBERSHIP)) {
 							needsRefresh = true;
@@ -148,10 +148,10 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 		}
 	}
 
-	
+
 	/**
 	 * Remove an entity from the map entity list.
-	 * 
+	 *
 	 * @param entity the entity to be removed
 	 */
 	@Override
@@ -160,7 +160,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			needsRefresh = true;
 		}
 	}
-	
+
 	/**
 	 * Request redrawing the map screen if the needed.
 	 */
@@ -169,13 +169,13 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			panel.repaint();
 		}
 	}
-	
+
 	/**
 	 * Update the map with new data.
-	 * 
+	 *
 	 * @param cd
 	 *            The collision map.
-	 * @param pd  
+	 * @param pd
 	 *      	  The protection map.
 	 * @param zone
 	 *            The zone name.
@@ -193,10 +193,10 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			}
 		});
 	}
-	
+
 	/**
 	 * The player's position changed.
-	 * 
+	 *
 	 * @param x
 	 *            The X coordinate (in world units).
 	 * @param y
@@ -220,14 +220,14 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 					 * actually updated. The position listener for moving map
 					 * objects sets it, but it happens in the game loop thread
 					 * and may be unset before the map panel has actually got
-					 * the correct map offset. 
+					 * the correct map offset.
 					 */
 					setNeedsRefresh(true);
 				}
 			});
 		}
 	}
-	
+
 	@Override
 	public void onZoneChange(Zone zone) {
 	}

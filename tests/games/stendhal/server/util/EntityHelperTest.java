@@ -15,6 +15,16 @@ package games.stendhal.server.util;
 import static games.stendhal.common.constants.Actions.BASEITEM;
 import static games.stendhal.common.constants.Actions.BASEOBJECT;
 import static games.stendhal.common.constants.Actions.BASESLOT;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -22,28 +32,18 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 
 public class EntityHelperTest {
 
 	private static final String TEST_ENTITY_HELPER = "test_entity_helper";
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		MockStendlRPWorld.get();
 		new DatabaseFactory().initializeDatabase();
 	}
-	
+
 	@AfterClass
 	public static void tearDownAfterClass() {
 		MockStendlRPWorld.reset();

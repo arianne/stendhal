@@ -21,7 +21,7 @@ abstract class MapObject {
 	protected double y;
 	protected int width;
 	protected int height;
-	
+
 	MapObject(final IEntity entity) {
 		x = entity.getX();
 		y = entity.getY();
@@ -31,15 +31,15 @@ abstract class MapObject {
 
 	/**
 	 * Draw the entity
-	 * 
+	 *
 	 * @param g Graphics context
 	 * @param scale Scaling factor
 	 */
 	abstract void draw(Graphics g, int scale);
-	
+
 	/**
 	 * Scale a world coordinate to canvas coordinates
-	 * 
+	 *
 	 * @param crd World coordinate
 	 * @param scale Scaling factor
 	 * @return corresponding canvas coordinate

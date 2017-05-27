@@ -26,7 +26,7 @@ public class PrefixExtractor
 	 * Removes a prefix, if present.
 	 * If the prefix was found at the beginning of the object name, it is removed.
 	 * Otherwise txt remains unchanged.
-	 * 
+	 *
 	 * @param prefix
 	 * @return true if a prefix was removed
 	 */
@@ -47,7 +47,7 @@ public class PrefixExtractor
 	 * Extracts noun from a string, that may be prefixed with a singular
 	 * expression like "piece of", ...
 	 * The result is stored in txt.
-	 * 
+	 *
 	 * @return true on any change of txt
 	 */
 	public boolean extractNounSingular() {
@@ -64,7 +64,7 @@ public class PrefixExtractor
 	 * Extracts noun from a string, that may be prefixed with a plural expression
 	 * like "piece of", ...
 	 * The result is stored in txt.
-	 * 
+	 *
 	 * @return true on any change of txt
 	 */
 	public boolean extractNounPlural() {

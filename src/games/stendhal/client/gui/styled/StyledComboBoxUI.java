@@ -25,27 +25,27 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class StyledComboBoxUI extends BasicComboBoxUI {
 	private final Style style;
-	
+
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent menuItem) {
 		// BasicComboBoxUI can not be shared
 		return new StyledComboBoxUI(StyleUtil.getStyle());
 	}
-	
+
 	/**
 	 * Create a new SytledComboBoxUI.
-	 * 
+	 *
 	 * @param style pixmap style
 	 */
 	public StyledComboBoxUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	protected JButton createArrowButton() {
 		return new StyledArrowButton(SwingConstants.SOUTH, style);
 	}
-	
+
 	@Override
 	protected ListCellRenderer<?> createRenderer() {
 		/*
@@ -63,22 +63,22 @@ public class StyledComboBoxUI extends BasicComboBoxUI {
 		listBox.setSelectionBackground(style.getShadowColor());
 		listBox.setSelectionForeground(style.getForeground());
 	}
-	
+
 	/**
 	 * A ListCellRenderer that returns opaque labels.
 	 */
 	private static class StyledComboBoxRenderer extends BasicComboBoxRenderer {
 		@Override
-		public Component getListCellRendererComponent(@SuppressWarnings("rawtypes") JList list, Object value, 
+		public Component getListCellRendererComponent(@SuppressWarnings("rawtypes") JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
 			Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-			
+
 			// I doubt it can be anything but a JLabel, but better to be safe
 			if (c instanceof JComponent) {
 				JComponent label = (JComponent) c;
 				label.setOpaque(true);
 			}
-			
+
 			return c;
 		}
 	}

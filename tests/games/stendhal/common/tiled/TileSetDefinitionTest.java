@@ -20,11 +20,11 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.net.InputSerializer;
-import marauroa.common.net.OutputSerializer;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import marauroa.common.net.InputSerializer;
+import marauroa.common.net.OutputSerializer;
 
 public class TileSetDefinitionTest {
 	private StendhalMapStructure map;
@@ -47,8 +47,8 @@ public class TileSetDefinitionTest {
 
 	/**
 	 * Tests for serialization.
-	 * 
-	 * @throws IOException 
+	 *
+	 * @throws IOException
 	 */
 	@Test
 	public void testSerialization() throws IOException { //, ClassNotFoundException

@@ -20,11 +20,11 @@ public class PersonalChestFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the slot name from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context. 'slot' must be defined in ctx
 	 * @return The slot name.
-	 * 
+	 *
 	 */
 	protected String getSlot(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("slot", PersonalChest.DEFAULT_BANK);
@@ -36,17 +36,17 @@ public class PersonalChestFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a personal chest.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A PersonalChest.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see PersonalChest
 	 */
 	@Override

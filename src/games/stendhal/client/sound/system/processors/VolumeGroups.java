@@ -27,7 +27,7 @@ public class VolumeGroups
     public VolumeAdjustor add(String group, float volume)
     {
         ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
-        
+
         if(adjustorList == null)
         {
            adjustorList = new ArrayList<VolumeAdjustor>();
@@ -46,8 +46,9 @@ public class VolumeGroups
 
         if(adjustorList != null)
         {
-            for(VolumeAdjustor adjustor: adjustorList)
-                adjustor.disconnect();
+            for(VolumeAdjustor adjustor: adjustorList) {
+				adjustor.disconnect();
+			}
 
             adjustorList.clear();
             mAdjustorGroups.remove(group);
@@ -58,8 +59,9 @@ public class VolumeGroups
     {
         ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
 
-        if(adjustorList != null)
-            adjustorList.remove(adjustor);
+        if(adjustorList != null) {
+			adjustorList.remove(adjustor);
+		}
     }
 
     public void setVolume(String group, float volume)
@@ -68,15 +70,18 @@ public class VolumeGroups
 
         if(adjustorList != null)
         {
-            for(VolumeAdjustor adjustor: adjustorList)
-                adjustor.setVolume(volume);
+            for(VolumeAdjustor adjustor: adjustorList) {
+				adjustor.setVolume(volume);
+			}
         }
     }
 
     public void setVolume(float volume)
     {
-        for(ArrayList<VolumeAdjustor> adjustorList: mAdjustorGroups.values())
-            for(VolumeAdjustor adjustor: adjustorList)
-                adjustor.setVolume(volume);
+        for(ArrayList<VolumeAdjustor> adjustorList: mAdjustorGroups.values()) {
+			for(VolumeAdjustor adjustor: adjustorList) {
+				adjustor.setVolume(volume);
+			}
+		}
     }
 }

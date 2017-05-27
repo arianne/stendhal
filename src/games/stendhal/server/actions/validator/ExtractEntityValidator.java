@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.validator;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.Entity;

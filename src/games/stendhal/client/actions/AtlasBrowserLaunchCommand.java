@@ -27,7 +27,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Opens the atlas URL at the current position
-	 * 
+	 *
 	 * @param params ignored
 	 * @param remainder ignored
 	 * @return <code>true</code>
@@ -45,7 +45,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 			url.append(".");
 			url.append(Math.round(user.getY()));
 		}
-		
+
 		String urlString = url.toString();
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 				"Trying to open #" + urlString + " in your browser.",
@@ -56,7 +56,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -66,7 +66,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

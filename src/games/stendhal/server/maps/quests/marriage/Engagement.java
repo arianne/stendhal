@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.marriage;
 
+import java.awt.Rectangle;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -25,27 +27,25 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
-import java.awt.Rectangle;
-
 class Engagement {
 	private MarriageQuestInfo marriage;
-	
+
 	private final NPCList npcs = SingletonRepository.getNPCList();
 	private SpeakerNPC nun;
 
 	private Player groom;
 	private Player bride;
-	
+
 	public Engagement(final MarriageQuestInfo marriage) {
 		this.marriage = marriage;
 	}
-	
+
 	private void engagementStep() {
 		nun = npcs.get("Sister Benedicta");
 		nun.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
@@ -86,10 +86,10 @@ class Engagement {
 				+ "here, then tell me you would like to #engage #name.",
 				null);
 
-		nun.add(ConversationStates.ATTENDING, 
-				"engage", 
+		nun.add(ConversationStates.ATTENDING,
+				"engage",
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
@@ -107,9 +107,9 @@ class Engagement {
 				});
 
 		nun.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.QUESTION_2, 
+				ConversationStates.QUESTION_2,
 				null,
 				new ChatAction() {
 					@Override
@@ -119,17 +119,17 @@ class Engagement {
 					}
 				});
 
-		nun.add(ConversationStates.QUESTION_1, 
+		nun.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
-				null, 
-				ConversationStates.IDLE, 
-				"What a shame! Goodbye!", 
+				null,
+				ConversationStates.IDLE,
+				"What a shame! Goodbye!",
 				null);
 
 		nun.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
@@ -139,11 +139,11 @@ class Engagement {
 					}
 				});
 
-		nun.add(ConversationStates.QUESTION_2, 
+		nun.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
-				null, 
-				ConversationStates.IDLE, 
-				"What a shame! Goodbye!", 
+				null,
+				ConversationStates.IDLE,
+				"What a shame! Goodbye!",
 				null);
 	}
 
@@ -157,7 +157,7 @@ class Engagement {
 		if (!inFrontOfNun.contains(groom)) {
 			nun.say("My hearing is not so good, please both come close to tell me who you want to get engaged to.");
 		} else if (marriage.isMarried(groom)) {
-			nun.say("You are married already, " 
+			nun.say("You are married already, "
 					+ groom.getName()
 					+ "! You can't marry again.");
 		} else if ((bride == null) || !inFrontOfNun.contains(bride)) {
@@ -165,7 +165,7 @@ class Engagement {
 		} else if (bride.getName().equals(groom.getName())) {
 			nun.say("You can't marry yourself!");
 		} else if (marriage.isMarried(bride)) {
-			nun.say("You are married already, " 
+			nun.say("You are married already, "
 					+ bride.getName()
 					+ "! You can't marry again.");
 		} else {
@@ -201,7 +201,7 @@ class Engagement {
 	}
 
 	private void finishEngagement() {
-		// we check if each of the bride and groom are engaged, or both, and only give invites 
+		// we check if each of the bride and groom are engaged, or both, and only give invites
 		// if they were not already engaged.
 		String additional;
 		if (!marriage.isEngaged(groom)) {
@@ -210,17 +210,17 @@ class Engagement {
 				giveInvite(bride);
 				additional = "And here are some invitations you can give to your guests.";
 			} else {
-				additional = "I have given invitations for your guests to " + groom.getName() + ". " + bride.getName() 
+				additional = "I have given invitations for your guests to " + groom.getName() + ". " + bride.getName()
 					+ ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
 				}
 		} else if (!marriage.isEngaged(bride)) {
 			giveInvite(bride);
-			additional = "I have given invitations for your guests to " + bride.getName() + ". " + groom.getName() 
+			additional = "I have given invitations for your guests to " + bride.getName() + ". " + groom.getName()
 				+ ", if Ognir was already making you a ring, you will now have to go and ask him to make another.";
 		} else {
 			additional = "I have not given you more invitation scrolls, as you were both already engaged, and had "
 				+ "them before. If you were having rings forged you will both need to make them again.";
-		}		
+		}
 		nun.say("Congratulations, "
 				+ groom.getName()
 				+ " and "

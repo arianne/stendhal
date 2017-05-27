@@ -11,13 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.sprite.ImageSprite;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.color.ARGB;
-import games.stendhal.common.color.HSL;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
@@ -31,6 +24,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 import javax.swing.colorchooser.DefaultColorSelectionModel;
+
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.sprite.ImageSprite;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.color.ARGB;
+import games.stendhal.common.color.HSL;
 
 /**
  * A HSL space color selector that should be small enough to fit in the outfit
@@ -60,21 +60,21 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		hueSaturationSelector.setEnabled(enabled);
 		lightnessSelector.setEnabled(enabled);
 	}
-	
+
 	/**
 	 * Hue-Saturation part of the selector component.
 	 */
 	private static class HueSaturationSelector extends AbstractSpriteColorSelector<HSLSelectionModel> {
 		/**
 		 * Create a new HueSaturationSelector.
-		 * 
+		 *
 		 * @param model selection model. Should be the same as for the whole
 		 * 	selector
 		 */
 		HueSaturationSelector(HSLSelectionModel model) {
 			super(model);
 		}
-		
+
 		@Override
 		Sprite createNormalSprite() {
 			BufferedImage img = getGraphicsConfiguration().createCompatibleImage(SPRITE_WIDTH, SPRITE_HEIGHT);
@@ -83,7 +83,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			hsl[2] = 0.5f;
 			int[] rgb = new int[4];
 			rgb[0] = 0xff;
-			
+
 			for (int x = 0; x < SPRITE_WIDTH; x++) {
 				for (int y = 0; y < SPRITE_HEIGHT; y++) {
 					hsl[0] = x / (float) SPRITE_WIDTH;
@@ -99,7 +99,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			
+
 			Insets ins = getInsets();
 			Sprite sprite = getBackgroundSprite();
 
@@ -136,7 +136,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		/**
 		 * Create a new LightnessSelector.
-		 * 
+		 *
 		 * @param model selection model. Should be the same as for the entire
 		 * 	selector component.
 		 */
@@ -166,7 +166,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 				 * should not be a problem because we never show the user the
 				 * actual selected color, so she won't be able to see the slight
 				 * difference.
-				 * 
+				 *
 				 * Do the paint in 2 parts, to get the correct saturation for
 				 * the mid lightness.
 				 */
@@ -198,13 +198,13 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 				// Fake a desaturated gradient.
 				Color startColor = Color.BLACK;
 				Color endColor = Color.WHITE;
-		
+
 				Graphics2D g2d = (Graphics2D) g;
 				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width, ins.top, endColor);
 				g2d.setPaint(p);
 				g2d.fillRect(ins.left, ins.top, width, height);
 			}
-			
+
 			// Draw a line. white is not visible on black, and the vice versa,
 			// so draw them both
 			g.setColor(Color.BLACK);
@@ -229,7 +229,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 			lightness = MathHelper.clamp(lightness, 0.01f, 0.99f);
 			model.setL(lightness);
 		}
-		
+
 		@Override
 		public void setEnabled(boolean enabled) {
 			boolean old = isEnabled();
@@ -262,7 +262,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		/**
 		 * Set hue and saturation.
-		 * 
+		 *
 		 * @param hue new hue value
 		 * @param saturation new saturation value
 		 */
@@ -274,7 +274,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		/**
 		 * Set lightness.
-		 * 
+		 *
 		 * @param lightness new L value
 		 */
 		void setL(float lightness) {
@@ -284,7 +284,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		/**
 		 * Get hue.
-		 * 
+		 *
 		 * @return hue
 		 */
 		float getHue() {
@@ -293,7 +293,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		/**
 		 * Get saturation.
-		 * 
+		 *
 		 * @return saturation
 		 */
 		float getSaturation() {
@@ -302,7 +302,7 @@ class ColorSelector extends AbstractColorSelector<ColorSelector.HSLSelectionMode
 
 		/**
 		 * Get lightness.
-		 * 
+		 *
 		 * @return lightness
 		 */
 		float getLightness() {

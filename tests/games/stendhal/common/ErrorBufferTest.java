@@ -18,7 +18,7 @@ import org.junit.Test;
 
 /**
  * Test the ErrorBuffer class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class ErrorBufferTest {

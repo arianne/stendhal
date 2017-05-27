@@ -12,6 +12,17 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparser;
 
+import java.awt.Cursor;
+import java.io.IOException;
+import java.net.URI;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTMLDocument;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.CaseInsensitiveExprMatcher;
 import games.stendhal.common.parser.ConvCtxForMatchingSource;
 import games.stendhal.common.parser.ConversationParser;
@@ -25,19 +36,7 @@ import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
-
-import java.awt.Cursor;
-import java.io.IOException;
-import java.net.URI;
-
-import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.html.HTMLDocument;
-
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.apache.log4j.Logger;
 
 /**
  * Dialog of the NPC Conversation Parser Test Environment.

@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.kikareukin.islands;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -7,15 +9,13 @@ import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.scroll.BalloonScroll;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Map;
-
 /**
  * Adds the listener for teleporting back to the islands if you login in the clouds
  */
 public class AddBalloonListener implements ZoneConfigurator {
-	
+
 	private static final String BALLOON = "balloon";
-	
+
 	/**
 	 * Configure a zone.
 	 *

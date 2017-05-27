@@ -16,6 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -32,11 +37,6 @@ import games.stendhal.server.maps.fado.dressingrooms.BrideAssistantNPC;
 import games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC;
 import games.stendhal.server.maps.fado.hotel.GreeterNPC;
 import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -54,7 +54,7 @@ public class MarriageTest {
 		QuestHelper.setUpBeforeClass();
 
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_fado_lovers_room_2")); 
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_fado_lovers_room_2"));
 		new PriestNPC().configureZone(zone, null);
 		new VergerNPC().configureZone(zone, null);
 		new NunNPC().configureZone(zone, null);
@@ -145,7 +145,7 @@ public class MarriageTest {
 		player.getSlot("bag").add(item);
 		item = ItemTestHelper.createItem("gold bar", 10);
 		player.getSlot("bag").add(item);
-		
+
 		en.step(player, "hi");
 		en.step(player, "task");
 		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", getReply(npc));
@@ -201,7 +201,7 @@ public class MarriageTest {
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", getReply(npc));
 		en.step(player2, "bye");
 		assertEquals("Good bye, I hope everything goes well for you.", getReply(npc));
-		
+
 		// now test that once you are married you cannot get the outfit again
 		player.setQuest(QUEST_SLOT, "just_married");
 		en.step(player, "hi");
@@ -217,7 +217,7 @@ public class MarriageTest {
 
 		npc = SingletonRepository.getNPCList().get("Tamara");
 		en = npc.getEngine();
-		
+
 		player2.setQuest(QUEST_SLOT, "engaged");
 		en.step(player2, "hi");
 		assertEquals("Welcome! If you're a bride-to-be I can #help you get ready for your wedding", getReply(npc));
@@ -246,7 +246,7 @@ public class MarriageTest {
 
 		player.setQuest("marriage", "forging;" + Long.MAX_VALUE);
 		player2.setQuest("marriage", "forging;" + Long.MAX_VALUE);
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
@@ -256,13 +256,13 @@ public class MarriageTest {
 		en.step(player, "bye");
 
 		// Jump relatively forward in time (by pushing the past events to the beginning of time
-		
+
 		assertTrue(player.getQuest("marriage").startsWith("forging;"));
 		assertTrue(player2.getQuest("marriage").startsWith("forging;"));
 		player.setQuest("marriage", "forging;1");
 		player2.setQuest("marriage", "forging;1");
-		
-		
+
+
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		en.step(player, "help");
@@ -339,7 +339,7 @@ public class MarriageTest {
 		player2.setQuest("marriage", "engaged_with_ring");
 		player.removeQuest("spouse");
 		player2.removeQuest("spouse");
-		
+
 		npc = SingletonRepository.getNPCList().get("Priest");
 		en = npc.getEngine();
 		en.step(player, "hi");
@@ -442,7 +442,7 @@ public class MarriageTest {
 
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		assertEquals("done", player2.getQuest(QUEST_SLOT));
-	} 
+	}
 
 
 	/**

@@ -20,6 +20,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
@@ -44,7 +45,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * serial version uid
 	 */
 	private static final long serialVersionUID = -726066169323112688L;
-	
+
 	private static DragLayer instance;
 	/**
 	 * Icon to show when a dragged object is not in a place where it can be
@@ -58,7 +59,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	private Point point;
 
 	private int oldX, oldY, width, height;
-	
+
 	/**
 	 * A speed hack for detecting the underlying component. Keep it in memory
 	 * unless the mouse location has changed to avoid scanning the component
@@ -141,7 +142,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.translate(point.x, point.y);
 			dragged.draw(g2d);
-			
+
 			// Draw an indicator about invalid dropping area, if needed
 			if (getCurrentDropTarget() == null) {
 				dropForbiddenIcon.draw(g2d, dragged.getWidth() - dropForbiddenIcon.getWidth(),
@@ -149,13 +150,13 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the drop target capable of accepting the dragged entity at the
 	 * current location.
-	 * 
+	 *
 	 * @return drop target, or <code>null</code> if the component below is not a
-	 * 	DropTarget, or it is not capable of accepting the dragged entity 
+	 * 	DropTarget, or it is not capable of accepting the dragged entity
 	 */
 	private DropTarget getCurrentDropTarget() {
 		if (underlyingComponent == null) {
@@ -163,7 +164,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			Point containerPoint = SwingUtilities.convertPoint(this, point, parent);
 			underlyingComponent = SwingUtilities.getDeepestComponentAt(parent, containerPoint.x, containerPoint.y);
 		}
-		if ((underlyingComponent instanceof DropTarget) 
+		if ((underlyingComponent instanceof DropTarget)
 				&& (((DropTarget) underlyingComponent).canAccept(dragged.getEntity()))) {
 			return (DropTarget) underlyingComponent;
 		}
@@ -209,7 +210,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * 	<code>false</code> otherwise
 	 */
 	private boolean showAmountChooser(MouseEvent event, IEntity entity) {
-		if (((event.getModifiersEx() & (MouseEvent.CTRL_DOWN_MASK|MouseEvent.META_DOWN_MASK)) != 0)
+		if (((event.getModifiersEx() & (InputEvent.CTRL_DOWN_MASK|InputEvent.META_DOWN_MASK)) != 0)
 				&& (entity instanceof StackableItem)) {
 			return ((StackableItem) entity).getQuantity() > 1;
 		}

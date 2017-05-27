@@ -17,7 +17,7 @@ package games.stendhal.client.gui.wt.core;
 public interface SettingChangeListener {
 	/**
 	 * Called when the watched setting changes.
-	 * 
+	 *
 	 * @param newValue new value of the setting
 	 */
 	void changed(String newValue);

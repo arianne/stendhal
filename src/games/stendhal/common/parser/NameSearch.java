@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
-import games.stendhal.common.grammar.Grammar;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import games.stendhal.common.grammar.Grammar;
 
 /**
  * Returns structure for Sentence.findMatchingName().
@@ -49,7 +49,7 @@ public final class NameSearch {
         boolean found = false;
 
         final String itemName = item.getNormalized();
-        
+
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
         	if (e.getValue().matchesNormalized(itemName)) {
                 name = e.getKey();
@@ -59,7 +59,7 @@ public final class NameSearch {
         }
 
         if (!found) {
-	    	// see if instead the end matches, this is deliberately done afterwards because of bug #3285554 
+	    	// see if instead the end matches, this is deliberately done afterwards because of bug #3285554
         	found = searchEndMatch(itemName);
         }
 
@@ -123,8 +123,9 @@ public final class NameSearch {
     	if (found) {
             amount = item.getAmount();
             return true;
-    	} else
-    		return false;
+    	} else {
+			return false;
+		}
     }
 
     /**
@@ -135,8 +136,8 @@ public final class NameSearch {
 	private boolean searchEndMatch(final String itemName) {
 		for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
 			Sentence parsed = e.getValue();
-			
-			if (itemName.endsWith(parsed.getOriginalText()) || 
+
+			if (itemName.endsWith(parsed.getOriginalText()) ||
 					itemName.endsWith(parsed.getNormalized())) {
 		        name = e.getKey();
 				return true;

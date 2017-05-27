@@ -11,19 +11,18 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.StendhalSearchIndexDAO;
-import games.stendhal.server.core.rp.searchindex.SearchIndexEntry;
-import games.stendhal.server.core.rp.searchindex.SearchIndexManager;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.db.StendhalSearchIndexDAO;
+import games.stendhal.server.core.rp.searchindex.SearchIndexEntry;
+import games.stendhal.server.core.rp.searchindex.SearchIndexManager;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
-
-import org.apache.log4j.Logger;
 
 /**
  * updates the search index

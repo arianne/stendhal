@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.game;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.item.token.Token.TokenMoveListener;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A Tic Tac Toe board.
@@ -49,7 +49,7 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 
 	/**
 	 * Creates a token and adds it to the world.
-	 * 
+	 *
 	 * @param name token name
 	 * @param x
 	 *            x-position
@@ -155,5 +155,5 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 		}
 	}
 
-	
+
 }

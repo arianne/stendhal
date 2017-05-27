@@ -23,17 +23,17 @@ import marauroa.common.game.RPSlot;
 
 public class ItemTransformer {
 	private static Logger logger = Logger.getLogger(ItemTransformer.class);
-	
+
 	/**
 	 * Transform an <code>RPObject</code> to an item
-	 * 
+	 *
 	 * @param rpobject	the object to be transformed
 	 * @return	Item corresponding to the <code>RPObject</code>
 	 */
 	public Item transform(RPObject rpobject) {
 		// We simply ignore corpses...
 		if (rpobject.get("type").equals("item")) {
-		
+
 			final String name = UpdateConverter.updateItemName(rpobject.get("name"));
 			final Item item = UpdateConverter.updateItem(name);
 
@@ -41,7 +41,7 @@ public class ItemTransformer {
 				// no such item in the game anymore
 				return null;
 			}
-			
+
 			item.setID(rpobject.getID());
 
 			boolean autobind = item.has("autobind");
@@ -95,7 +95,7 @@ public class ItemTransformer {
 			if (rpobject.has("logid")) {
 				item.put("logid", rpobject.get("logid"));
 			}
-			
+
 			// Contents, if the item has slot(s)
 			for (RPSlot slot : rpobject.slots()) {
 				RPSlot itemSlot = item.getSlot(slot.getName());
@@ -104,7 +104,7 @@ public class ItemTransformer {
 					itemSlot.add(transform(obj));
 				}
 			}
-			
+
 			return item;
 		} else {
 			logger.warn("Non-item object found: " + rpobject);

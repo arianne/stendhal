@@ -23,7 +23,7 @@ public class ItemTools {
      * Replace underscores in the given String by spaces.
      * This is used to replace underscore characters in compound item and creature names
      * after loading data from the database.
-     * 
+     *
      * @param name name of item
      * @return transformed String if name contained an underscore,
      * 			or unchanged String object

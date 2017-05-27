@@ -19,7 +19,7 @@ import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntry;
  */
 public interface ItemEventType {
 
-	
+
 	/**
 	 * processes a log entry
 	 *

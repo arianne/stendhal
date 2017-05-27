@@ -25,14 +25,14 @@ import javax.swing.plaf.basic.BasicSliderUI;
  * A SliderUI implementation using {@link Style} settings.
  * <br>
  * <b>IMPORTANT:</b> Only drawing horizontal sliders is implemented, and
- * trying to use this for vertical sliders will most likely fail spectacularly. 
+ * trying to use this for vertical sliders will most likely fail spectacularly.
  */
 public class StyledSliderUI extends BasicSliderUI {
 
 	private static final int TRACK_HEIGHT = 6;
 	private static final int SLIDER_WIDTH = 8;
 	private final Style style;
-	
+
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent slider) {
 		// SliderUI can not be shared
@@ -47,12 +47,12 @@ public class StyledSliderUI extends BasicSliderUI {
 		super(slider);
 		this.style = style;
 	}
-	
+
 	@Override
 	public void paintTrack(Graphics g) {
 		int x = trackRect.x;
 		int y = trackRect.y + (trackRect.height - TRACK_HEIGHT) / 2;
-		
+
 		// Right side of the slider
 		int adjust = xPositionForValue(slider.getValue());
 		/*
@@ -72,7 +72,7 @@ public class StyledSliderUI extends BasicSliderUI {
 		// Center of the slider
 		adjust -= thumbRect.width / 2;
 		adjust = Math.max(0, adjust);
-		
+
 		if (slider.isEnabled()) {
 			g.setColor(slider.getForeground());
 		} else {
@@ -83,31 +83,31 @@ public class StyledSliderUI extends BasicSliderUI {
 		// Anyway, passing it null does not seem to crash it.
 		style.getBorderDown().paintBorder(null, g, x, y, trackRect.width, TRACK_HEIGHT);
 	}
-	
+
 	@Override
 	public void paintThumb(Graphics g) {
 		Rectangle r = getThumbShape();
 		StyleUtil.fillBackground(style, g, r.x, r.y, r.width, r.height);
 		style.getBorder().paintBorder(null, g, r.x, r.y, r.width, r.height);
 	}
-	
+
 	@Override
 	public void paintFocus(Graphics g) {
 		g.setColor(style.getHighLightColor());
 		Rectangle r = getThumbShape();
 		g.drawRect(r.x - 1, r.y, r.width + 1, r.height - 1);
 	}
-	
+
 	private Rectangle getThumbShape() {
 		int x = thumbRect.x - (SLIDER_WIDTH - thumbRect.width) / 2;
-		
+
 		return new Rectangle(x, thumbRect.y, SLIDER_WIDTH, thumbRect.height);
 	}
-	
+
 	@Override
 	public void installUI(JComponent slider) {
 		super.installUI(slider);
-		// A pixmap style will not tile right if we try to draw the background 
+		// A pixmap style will not tile right if we try to draw the background
 		// here
 		slider.setOpaque(false);
 		slider.setForeground(style.getForeground());

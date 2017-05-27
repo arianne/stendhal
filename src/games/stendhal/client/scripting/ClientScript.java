@@ -19,7 +19,7 @@ public interface ClientScript {
 
 	/**
 	 * Entry point on script execution.
-	 * 
+	 *
 	 * @param args
 	 *            arguments
 	 */

@@ -19,7 +19,7 @@ import games.stendhal.common.constants.Actions;
  * It only displays what is written in the "text" attribute.
  */
 public class Reader extends Sign {
-	
+
 	/**
 	 * Creates a Reader.
 	 */
@@ -30,15 +30,15 @@ public class Reader extends Sign {
 		put("class", "transparent");
 		setResistance(0);
 	}
-	
+
 	@Override
 	public String describe() {
 		final String text = getText();
 		if (text == null) {
 			return "The text is empty.";
 		}
-		
+
 		return text;
 	}
-	
+
 }

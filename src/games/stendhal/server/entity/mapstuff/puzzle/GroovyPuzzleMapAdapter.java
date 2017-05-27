@@ -40,5 +40,5 @@ public class GroovyPuzzleMapAdapter extends GroovyObjectSupport {
 		this.lastName = lastName;
 	}
 
-	
+
 }

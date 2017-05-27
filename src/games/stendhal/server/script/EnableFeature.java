@@ -1,11 +1,11 @@
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 /**
  * Script to enable a feature like keyring for a player
  *

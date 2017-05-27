@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
-	
+
 	private final Statement statement;
 	protected ResultSet resultSet;
 	private boolean hasNext;
@@ -139,5 +139,5 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	public Iterator<T> iterator() {
 		return this;
 	}
-	
+
 }

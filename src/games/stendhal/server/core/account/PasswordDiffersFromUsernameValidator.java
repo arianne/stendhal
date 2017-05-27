@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.account;
 
-import marauroa.common.game.Result;
-
 import org.apache.log4j.Logger;
+
+import marauroa.common.game.Result;
 
 /**
  * checks that the password is not closly related to the username.
- * 
+ *
  * @author timothyb89
  */
 public class PasswordDiffersFromUsernameValidator implements
@@ -30,7 +30,7 @@ public class PasswordDiffersFromUsernameValidator implements
 
 	/**
 	 * Creates a new PasswordDiffersFromUsernameValidator validator.
-	 * 
+	 *
 	 * @param username
 	 *            name of user
 	 * @param password

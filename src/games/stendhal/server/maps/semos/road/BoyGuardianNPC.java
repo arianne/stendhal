@@ -12,17 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.road;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
@@ -30,9 +32,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasShieldEquippedCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-
-import java.util.Arrays;
-import java.util.Map;
+import games.stendhal.server.entity.player.Player;
 
 public class BoyGuardianNPC implements ZoneConfigurator {
 	/**
@@ -59,9 +59,9 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				
+
 				String greetingBasis = "Hey you! Take care, you are leaving the city now! ";
-				
+
 				// When the players level is below 15 AND (he has a shield equipped OR he completed the "meet_hayunn" quest)
 				add(
 						ConversationStates.IDLE,
@@ -96,7 +96,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 						ConversationStates.ATTENDING,
 						greetingBasis + "Oh, I see you are mighty and brave already! Have fun :)",
 						null);
-				
+
 				addJob("My job is to watch out for baaad creatures! My parents gave me that special #duty!");
 				addReply("duty", "Yes, a really special and important one!");
 				addHelp("My daddy always tells me to #sneak around in forests which aren't familiar to me... And he said that I should always take something to #eat #and #drink with me, to be on the safe side!");
@@ -107,7 +107,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 				addQuest("I'm on a mission :) I watch out for bad bad guys and warn people, to #help them! But I don't need anything from you...");
 				addGoodbye("Shhhhh, don't talk too loud! Bye and take care!");
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);

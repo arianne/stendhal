@@ -63,7 +63,7 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(npc.isTalking());
 		assertEquals("Au revoir!", getReply(npc));
 	}
-	
+
 	/**
 	 * Tests for the quest
 	 */
@@ -74,7 +74,7 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I am currently testing the general knowledge of the adventurers around here. "
 				+ "If you are able to tell me the #pseudonym I am using for my novels, I'll reward you. "
 				+ "Do you feel smart enough for that?", getReply(npc));
-		//TODO: test the rest of the Marie-Henri quest		
+		//TODO: test the rest of the Marie-Henri quest
 	}
 
 }

@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.city;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -21,10 +25,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ListProducedItemDetailAction;
 import games.stendhal.server.entity.npc.action.ListProducedItemsOfClassAction;
 import games.stendhal.server.entity.npc.condition.TriggerIsProducedItemOfClassCondition;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates a woman NPC to help populate Ados
@@ -64,7 +64,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 				addGreeting("Hello.");
 				addHelp("I walked around a bit and saw a nice looking tavern. Did you take a look inside already? It smells fantastic there!");
 				addOffer("I'm quite a #food expert, after all my travels on lovely holidays!");
-				addQuest("You could try all the #food available from cooks and chefs across the island. I can tell you what I've sampled on my travels."); 
+				addQuest("You could try all the #food available from cooks and chefs across the island. I can tell you what I've sampled on my travels.");
 				addReply("food", null, new ListProducedItemsOfClassAction("food","I think I've tasted everything, [#items]. I can tell you more about each foodstuff, if you like."));
 				add(
 						ConversationStates.ATTENDING,
@@ -72,7 +72,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 						new TriggerIsProducedItemOfClassCondition("food"),
 						ConversationStates.ATTENDING,
 						null,
-						new ListProducedItemDetailAction()				
+						new ListProducedItemDetailAction()
 					);
 				addJob("Aaaah, I am on holiday here, only walking around.");
 				addGoodbye("Bye bye.");

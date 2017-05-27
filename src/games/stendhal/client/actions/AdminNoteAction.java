@@ -17,19 +17,19 @@ import marauroa.common.game.RPAction;
 
 /**
  * Logs a note visible to admins about the specified character.
- * 
+ *
  * @author hendrik
  */
 class AdminNoteAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	@Override
@@ -47,7 +47,7 @@ class AdminNoteAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -57,7 +57,7 @@ class AdminNoteAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

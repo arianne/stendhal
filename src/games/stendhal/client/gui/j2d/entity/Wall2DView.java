@@ -12,15 +12,15 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 /**
  * The 2D view of a wall.
@@ -29,7 +29,7 @@ class Wall2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Build the visual representation of this entity.
-	 * 
+	 *
 	 * @param entity entity for which to build the representation
 	 */
 	@Override
@@ -56,9 +56,9 @@ class Wall2DView extends Entity2DView<IEntity> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -68,7 +68,7 @@ class Wall2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Draw the base entity part.
-	 * 
+	 *
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -78,7 +78,7 @@ class Wall2DView extends Entity2DView<IEntity> {
 	 * @param width
 	 *            The drawn entity width.
 	 * @param height
-	 *            The drawn entity height. 
+	 *            The drawn entity height.
 	 */
 	/*
 	@Override
@@ -94,10 +94,10 @@ class Wall2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 * 
+	 *
 	 * @param name
 	 *            The resource name.
-	 * 
+	 *
 	 * @return The full resource name.
 	 */
 	@Override

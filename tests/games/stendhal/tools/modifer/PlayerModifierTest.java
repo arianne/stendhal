@@ -16,15 +16,16 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
 
 public class PlayerModifierTest {
 
@@ -35,7 +36,7 @@ public class PlayerModifierTest {
 
 	/**
 	 * Tests for loadPlayer.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Ignore
 	@Test
@@ -60,7 +61,7 @@ public class PlayerModifierTest {
 
 	/**
 	 * Tests for loadPlayerNameIsNull.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Test
 	public void testLoadPlayerNameIsNull() throws Exception {
@@ -79,7 +80,7 @@ public class PlayerModifierTest {
 
 	/**
 	 * Tests for modifyPlayer.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Ignore
 	@Test
@@ -95,7 +96,7 @@ public class PlayerModifierTest {
 			int adminlevel;
 			if (player.getAdminLevel() == 100) {
 				adminlevel = 0;
-	
+
 			} else {
 				adminlevel = 100;
 			}

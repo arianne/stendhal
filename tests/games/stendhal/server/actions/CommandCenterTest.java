@@ -14,14 +14,14 @@ package games.stendhal.server.actions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
 import utilities.PlayerTestHelper;
 
 public class CommandCenterTest {
@@ -88,7 +88,7 @@ public class CommandCenterTest {
 	@Test
 	public void testExecuteUnknown() {
 		final RPAction action = new RPAction();
-		
+
 		CommandCenter.register("this", new ActionListener() {
 			@Override
 			public void onAction(final Player player, final RPAction action) {
@@ -107,24 +107,24 @@ public class CommandCenterTest {
 				// do nothing
 			}
 		});
-		
+
 
 		action.put("type", "");
 		final Player caster = PlayerTestHelper.createPlayer("bob");
 		CommandCenter.execute(caster, action);
 		assertEquals("Unknown command /. Please type #/help to get a list.", caster.events().get(0).get("text"));
 		caster.clearEvents();
-		
+
 		action.put("type", "taat");
 		CommandCenter.execute(caster, action);
 		assertEquals("Unknown command /taat. Did you mean #/that? Or type #/help to get a list.", caster.events().get(0).get("text"));
 		caster.clearEvents();
-		
+
 		action.put("type", "thos");
 		CommandCenter.execute(caster, action);
 		assertEquals("Unknown command /thos. Did you mean #/this or #/thus? Or type #/help to get a list.", caster.events().get(0).get("text"));
 		caster.clearEvents();
-		
+
 		action.put("type", "thas");
 		CommandCenter.execute(caster, action);
 		assertEquals("Unknown command /thas. Did you mean #/that, #/this or #/thus? Or type #/help to get a list.", caster.events().get(0).get("text"));

@@ -50,21 +50,21 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Create a tile region of another sprite.
-	 * 
+	 *
 	 * <strong>NOTE: The sprite passed is not copied, and must not be modified
 	 * while this instance exists (unless you are sure you know what you are
 	 * doing).</strong>
-	 * 
+	 *
 	 * @param sprite
 	 *            The source sprite.
-	 * @param x 
-	 * @param y 
-	 * @param width 
-	 * @param height 
-	 * 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 *
 	 * @param reference
 	 *            The sprite identifier reference.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
 	 */
@@ -84,14 +84,14 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Create a tile sprite reference.
-	 * @param sprite 
-	 * @param x 
-	 * @param y 
-	 * @param width 
-	 * @param height 
+	 * @param sprite
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
 	 * @return object that is used as reference
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	static TSRef createReference(final Sprite sprite, final int x, final int y,
 			final int width, final int height) {
@@ -106,7 +106,7 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Get the underlying sprite.
-	 * 
+	 *
 	 * @return The underlying sprite.
 	 */
 	public Sprite getSprite() {
@@ -119,7 +119,7 @@ class TileSprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 * 
+	 *
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -130,7 +130,7 @@ class TileSprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 * 
+	 *
 	 * @return A new sprite.
 	 */
 	@Override
@@ -141,7 +141,7 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -156,7 +156,7 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Draws the image.
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -181,7 +181,7 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite.
-	 * 
+	 *
 	 * @return The height in pixels of this sprite.
 	 */
 	@Override
@@ -193,7 +193,7 @@ class TileSprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 * 
+	 *
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -204,7 +204,7 @@ class TileSprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite.
-	 * 
+	 *
 	 * @return The width in pixels of this sprite.
 	 */
 	@Override
@@ -253,8 +253,8 @@ class TileSprite implements Sprite {
 				if (!parent.equals(tsref.parent)) {
 					return false;
 				}
-				
-				return (x == tsref.x) && (y == tsref.y) 
+
+				return (x == tsref.x) && (y == tsref.y)
 						&& (width == tsref.width) && (height == tsref.height);
 			}
 

@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.Definition;
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 /**
  * An examine event that opens an image viewer with
  * the specified image in the client.

@@ -46,7 +46,7 @@ class GroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Create an xml based loader of groups.
-	 * 
+	 *
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
@@ -56,7 +56,7 @@ class GroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Loads and returns the list.
-	 * 
+	 *
 	 * @return list of group entries
 	 * @throws SAXException
 	 *             If a SAX error occurred.
@@ -82,11 +82,11 @@ class GroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Load and returns the list of files.
-	 * 
+	 *
 	 * @param in
 	 *            The config file stream.
 	 * @return list of group entries
-	 * 
+	 *
 	 * @throws SAXException
 	 *             If a SAX error occurred.
 	 * @throws IOException
@@ -109,14 +109,14 @@ class GroupsXMLLoader extends DefaultHandler {
 		return groups;
 	}
 
-	
+
 	/**
 	 * Is called when a XML-element is started.
 	 * <p>
 	 * The outer groups tag is ignored.
 	 * <p>
-	 * Any exception occurring while examining a group value is ignored and written to the loggers error channel 
-	 * 
+	 * Any exception occurring while examining a group value is ignored and written to the loggers error channel
+	 *
 	 */
 	@Override
 	public void startElement(final String namespaceURI, final String lName, final String qName, final Attributes attrs) {

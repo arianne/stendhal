@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.GrainField;
-
-import java.util.List;
 
 /**
  * The 2D view of a grower.
@@ -29,7 +29,7 @@ class CarrotGrower2DView extends GrainField2DView<GrainField> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -55,7 +55,7 @@ class CarrotGrower2DView extends GrainField2DView<GrainField> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -64,7 +64,7 @@ class CarrotGrower2DView extends GrainField2DView<GrainField> {
 		if (isReleased()) {
 			return;
 		}
-			
+
 		switch (at) {
 		case PICK:
 			at.send(at.fillTargetInfo(entity));

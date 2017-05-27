@@ -63,7 +63,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 * mean time an item is constantly usable in hours
 	 */
 	private static final long MEAN_LIFETIME = 12 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
-	
+
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
@@ -82,9 +82,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	private Nature damageType = Nature.CUT;
 
 	private Map<Nature, Double> susceptibilities;
-	
+
 	private boolean fromCorpse = false;
-	
+
 	/**
 	 * Use behavior implementation, or <code>null</code> if the item does not
 	 * have any, or if the behavior is implemented in a subclass.
@@ -160,7 +160,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// Some items have attack values
 		entity.addAttribute("atk", Type.SHORT, Definition.HIDDEN);
-		
+
 		// Some items have ranged attack values
 		entity.addAttribute("ratk", Type.SHORT, Definition.HIDDEN);
 
@@ -205,7 +205,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// Some items have lifesteal values
 		entity.addAttribute("lifesteal", Type.FLOAT, Definition.HIDDEN);
-		
+
 		// Items that protect against poisoning
 		entity.addAttribute("antipoison", Type.FLOAT, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
@@ -225,14 +225,14 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// Name of the container slot, if the item has one
 		entity.addAttribute("slot_name", Type.STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
-		
+
 		// Size of the container slot, if the item has one, and the size is
 		// other than the default
 		entity.addAttribute("slot_size", Type.STRING, Definition.VOLATILE);
 
 		// Container slot
 		entity.addRPSlot("content", -1, Definition.PRIVATE);
-		
+
 		// True for items that should be bound automatically at loot (or login)
 		entity.addAttribute("autobind", Type.FLAG, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 	}
@@ -455,18 +455,18 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 	/**
 	 * Check if the item is bound to a player
-	 * 
+	 *
 	 * @return <code>true</code> if the item is bound, otherwise
-	 * 	<code>false</code> 
+	 * 	<code>false</code>
 	 */
 	public boolean isBound() {
 		return has("bound");
 	}
-	
+
 	/**
 	 * Bind the item to a player, if the item is one that should be
 	 * automatically bound, and the item is not already bound.
-	 * 
+	 *
 	 * @param player player name
 	 */
 	public void autobind(String player) {
@@ -533,10 +533,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 			remove("undroppableondeath");
 		}
 	}
-	
+
 	/**
 	 * Set behavior to follow when the item is used.
-	 * 
+	 *
 	 * @param behavior new behavior
 	 */
 	public void setUseBehavior(UseBehavior behavior) {
@@ -594,7 +594,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		return value;
 	}
-	
+
 	/**
 	 * Set the susceptibility data of this item.
 	 *
@@ -603,14 +603,14 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
 	}
-	
+
 	/**
 	 * Override in SlotActivatedItem sub-class.
 	 */
 	public void initializeActiveSlotsList(final List<String> slotList) {
 		// Do nothing
 	}
-	
+
 	/**
 	 * Override in StatusResistantItem sub-class.
 	 */
@@ -622,7 +622,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	/**
 	 * Get a weapon type identifier that can be used in attack events, so that
 	 * the client can draw an appropriate item image for the attack.
-	 * 
+	 *
 	 * @return weapon identifier
 	 */
 	public String getWeaponType() {
@@ -668,9 +668,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on the ground
 		if (getZone() != null) {
-			if (this.hasSlot("content"))
-			for (RPObject obj : getSlot("content")) {
-				new ItemLogger().timeout((Item) obj);
+			if (this.hasSlot("content")) {
+				for (RPObject obj : getSlot("content")) {
+					new ItemLogger().timeout((Item) obj);
+				}
 			}
 			getZone().remove(getID());
 			new ItemLogger().timeout(this);
@@ -738,7 +739,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 				stats.append("%");
 			}
 		}
-		
+
 		if (has("min_level")) {
 			stats.append(" MIN-LEVEL: ");
 			stats.append(get("min_level"));
@@ -773,9 +774,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 
 	public void removeFromWorld() {
-		
+
 		this.onUnequipped();
-		
+
 		if (isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = getContainer();
@@ -854,24 +855,24 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 			return 0;
 		}
 	}
-	
-	
+
+
 	/**
 	 * opportunity to affect the player when equipped
-	 * 
+	 *
 	 * currently returns boolean, to indicate whether it made any change
-	 * 
+	 *
 	 * TODO: should this return some sort of undoable thing (if it can be undone?)
-	 * 
-	 * @param equipper entity equipping the item 
+	 *
+	 * @param equipper entity equipping the item
 	 * @param slot slot where the item is equipped
 	 * @return unknown, see the note above
 	 */
 	public boolean onEquipped(RPEntity equipper, String slot) {
-		
+
 		// this.prevEntity = equipper;
 		// this.prevSlot   = slot;
-		
+
 		return false;
 	}
 
@@ -879,12 +880,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 * item is about to be removed from owner.
 	 * at this time, we are still owned by the original owner.
 	 * opportunity to affect the player when equipped
-	 * 
+	 *
 	 * note: use this.getContainerOwner(), rather than the equipper param
-	 * 
+	 *
 	 * TODO: i don't think the parameters are necessary.  can get
-	 *       owner and slot from Item api 
-	 * @return needs documenting 
+	 *       owner and slot from Item api
+	 * @return needs documenting
 	 */
 	public boolean onUnequipped() {
 		return false;
@@ -895,7 +896,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		if (useBehavior != null) {
 			return useBehavior.use(user, this);
 		}
-		
+
 		return false;
 	}
 }

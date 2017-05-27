@@ -12,15 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.semos.city.GreeterNPC;
-import games.stendhal.server.maps.semos.tavern.TraderNPC;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +24,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.semos.city.GreeterNPC;
+import games.stendhal.server.maps.semos.tavern.TraderNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class HatForMonogenesTest {
 
@@ -59,9 +59,9 @@ public class HatForMonogenesTest {
 
 	@Before
 	public void setUp() {
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		
+
 		new GreeterNPC().configureZone(zone, null);
 		npc = SingletonRepository.getNPCList().get("Monogenes");
 		en = npc.getEngine();
@@ -199,7 +199,7 @@ public class HatForMonogenesTest {
 		history.add("I have met Monogenes at the spring in Semos village");
 		history.add("I have to find a hat, something leather to keep his head warm.");
 		assertEquals(history, quest.getHistory(player));
-		
+
 		player.setQuest("hat_monogenes", "start");
 		player.equip("bag", ItemTestHelper.createItem("leather helmet"));
 		history.add("I have found a hat.");

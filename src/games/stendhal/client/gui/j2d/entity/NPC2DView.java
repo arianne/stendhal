@@ -13,6 +13,10 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
@@ -26,16 +30,11 @@ import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.util.List;
-
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an NPC.
- * 
+ *
  * @param <T> type of NPC
  */
 class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
@@ -58,7 +57,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 * 
+	 *
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
@@ -68,7 +67,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 
 		try {
 			final int code = ((RPEntity) entity).getOutfit();
-			
+
 			if (code != RPEntity.OUTFIT_UNSET) {
 				return OutfitStore.get().getAdjustedOutfit(code,
 						OutfitColor.PLAIN,
@@ -106,7 +105,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 			list.add(ActionType.ADMIN_VIEW_NPC_TRANSITIONS.getRepresentation());
 		}
 	}
-	
+
 	/**
 	 * Handle updates.
 	 */
@@ -123,10 +122,10 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the appropriate idea sprite.
-	 * 
+	 *
 	 * @return The sprite representing the current idea, or null.
 	 */
 	private Sprite getIdeaSprite() {
@@ -139,7 +138,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 		return SpriteStore.get().getSprite(
 				"data/sprites/ideas/" + idea + ".png");
 	}
-	
+
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {

@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Enables admins to create (list and remove) signs.
- * 
+ *
  * @author hendrik
  */
 public class AdminSign extends ScriptImpl {
@@ -34,7 +34,7 @@ public class AdminSign extends ScriptImpl {
 
 	/**
 	 * Adds a sign.
-	 * 
+	 *
 	 * @param player
 	 *            admin who put the sign
 	 * @param args
@@ -92,7 +92,7 @@ public class AdminSign extends ScriptImpl {
 
 	/**
 	 * Removes the specified sign.
-	 * 
+	 *
 	 * @param player
 	 *            admin
 	 * @param args
@@ -132,7 +132,7 @@ public class AdminSign extends ScriptImpl {
 
 	/**
 	 * Lists all signs.
-	 * 
+	 *
 	 * @param player
 	 *            admin invoking this script
 	 */

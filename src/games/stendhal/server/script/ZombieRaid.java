@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author gummipferd
- * 
+ *
  * Less safe for players below level 50
  */
 public class ZombieRaid extends CreateRaid {

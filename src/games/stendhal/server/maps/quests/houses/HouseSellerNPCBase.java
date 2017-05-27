@@ -25,7 +25,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Base class for dialogue shared by all houseseller NPCs.
- * 
+ *
  */
 abstract class HouseSellerNPCBase extends SpeakerNPC {
 
@@ -39,40 +39,40 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 	private static final int DEPRECIATION_PERCENTAGE = 40;
 
 	private final String location;
-	
+
 	private final HouseTax houseTax;
-	/**	
+	/**
 	 *	Creates NPC dialog for house sellers.
 	 * @param name
 	 *            the name of the NPC
 	 * @param location
 	 *            where are the houses?
-	 * @param houseTax 
+	 * @param houseTax
 	 * 		      class which controls house tax, and confiscation of houses
 	*/
 	HouseSellerNPCBase(final String name, final String location, final HouseTax houseTax) {
-		super(name);			
+		super(name);
 		this.location = location;
 		this.houseTax =  houseTax;
 		createDialogNowWeKnowLocation();
 	}
-	
+
 	@Override
 	protected abstract void createPath();
-	
+
 	private void createDialogNowWeKnowLocation() {
 		addGreeting(null, new HouseSellerGreetingAction(QUEST_SLOT));
-		
+
 			// quest slot 'house' is started so player owns a house
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 			Arrays.asList("cost", "house", "buy", "purchase"),
 			new PlayerOwnsHouseCondition(),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"As you already know, the cost of a new house is "
 				+ getCost()
 			+ " money. But you cannot own more than one house, the market is too demanding for that! You cannot own another house until you #resell the one you already own.",
 			null);
-		
+
 		// we need to warn people who buy spare keys about the house
 		// being accessible to other players with a key
 		add(ConversationStates.QUESTION_1,
@@ -85,12 +85,12 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 		// player wants spare keys and is OK with house being accessible
 		// to other person.
 		add(ConversationStates.QUESTION_2,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			null,
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			null,
 			new BuySpareKeyChatAction(QUEST_SLOT));
-			
+
 		// refused offer to buy spare key for security reasons
 		add(ConversationStates.QUESTION_2,
 			ConversationPhrases.NO_MESSAGES,
@@ -98,8 +98,8 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 				ConversationStates.ATTENDING,
 			"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
 			null);
-		
-		// refused offer to buy spare key 
+
+		// refused offer to buy spare key
 		add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 			null,
@@ -108,30 +108,30 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 			null);
 
 		// player is eligible to resell a house
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 			Arrays.asList("resell", "sell"),
 			new PlayerOwnsHouseCondition(),
-				ConversationStates.QUESTION_3, 
+				ConversationStates.QUESTION_3,
 			"The state will pay you "
 			+ Integer.toString(DEPRECIATION_PERCENTAGE)
 			+ " percent of the price you paid for your house, minus any taxes you owe. You should remember to collect any belongings from your house before you sell it. Do you really want to sell your house to the state?",
 			null);
-		
+
 		// player is not eligible to resell a house
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 			Arrays.asList("resell", "sell"),
 			new NotCondition(new PlayerOwnsHouseCondition()),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
 			null);
-		
+
 		add(ConversationStates.QUESTION_3,
 			ConversationPhrases.YES_MESSAGES,
 			null,
 				ConversationStates.ATTENDING,
 			null,
 			new ResellHouseAction(getCost(), QUEST_SLOT, DEPRECIATION_PERCENTAGE, houseTax));
-		
+
 		// refused offer to resell a house
 		add(ConversationStates.QUESTION_3,
 			ConversationPhrases.NO_MESSAGES,
@@ -139,21 +139,21 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 			ConversationStates.ATTENDING,
 			"Well, I'm glad you changed your mind.",
 			null);
-		
+
 		// player is eligible to change locks
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 			"change",
 			new PlayerOwnsHouseCondition(),
-			ConversationStates.SERVICE_OFFERED, 
+			ConversationStates.SERVICE_OFFERED,
 			"If you are at all worried about the security of your house or, don't trust anyone you gave a spare key to, "
 			+ "it is wise to change your locks. Do you want me to change your house lock and give you a new key now?",
 			null);
 
 		// player is not eligible to change locks
-		add(ConversationStates.ATTENDING, 
+		add(ConversationStates.ATTENDING,
 			"change",
 			new NotCondition(new PlayerOwnsHouseCondition()),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"You don't own any house at the moment. If you want to buy one please ask about the #cost.",
 			null);
 
@@ -165,7 +165,7 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 			null,
 			new ChangeLockAction(QUEST_SLOT));
 
-		// refused offer to change locks 
+		// refused offer to change locks
 		add(ConversationStates.SERVICE_OFFERED,
 			ConversationPhrases.NO_MESSAGES,
 			null,
@@ -174,8 +174,8 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 			null);
 
 		add(ConversationStates.ANY,
-			Arrays.asList("available", "unbought", "unsold"), 
-			null, 
+			Arrays.asList("available", "unbought", "unsold"),
+			null,
 			ConversationStates.ATTENDING,
 			null,
 			new ListUnboughtHousesAction(location));

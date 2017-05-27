@@ -87,7 +87,7 @@ public class GardenerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				class SpecialProducerBehaviour extends ProducerBehaviour { 
+				class SpecialProducerBehaviour extends ProducerBehaviour {
 					SpecialProducerBehaviour(final String productionActivity,
                         final String productName, final Map<String, Integer> requiredResourcesPerItem,
 											 final int productionTimePerItem) {
@@ -112,7 +112,7 @@ public class GardenerNPC implements ZoneConfigurator {
                                         + "!");
                                 return false;
 							}
-					    } 
+					    }
 						if (amount > MAX_LUNCHES) {
 							npc.say("I can't take more than a week's worth of sandwiches at once! They'll go stale!");
 							return false;
@@ -149,7 +149,7 @@ public class GardenerNPC implements ZoneConfigurator {
 							player.setQuest(QUEST_SLOT, amount + ";" + getProductName() + ";"
 											+ timeNow);
 							npc.say("Thanks! Come back in "
-									+ getApproximateRemainingTime(player) + ", and I'll have got " 
+									+ getApproximateRemainingTime(player) + ", and I'll have got "
 									+ Grammar.quantityplnoun(amount, getProductName(), "a") + " for you.");
 							return true;
 						}
@@ -201,8 +201,8 @@ public class GardenerNPC implements ZoneConfigurator {
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
 				addReply(Arrays.asList("kalavan city scroll", "scroll"), "It's a magic scroll that would take you back to Kalavan. Just don't ask me how it works!");
-				
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
+
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("tea", 1);
 				requiredResources.put("sandwich", 1);
 

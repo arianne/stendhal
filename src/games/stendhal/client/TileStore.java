@@ -12,15 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.sprite.SpriteTileset;
-import games.stendhal.client.sprite.Tileset;
-import games.stendhal.client.sprite.TilesetAnimationMap;
-import games.stendhal.client.sprite.TilesetGroupAnimationMap;
-import games.stendhal.common.tiled.TileSetDefinition;
-
 import java.awt.Color;
 import java.awt.Composite;
 import java.io.IOException;
@@ -29,9 +20,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import marauroa.common.net.InputSerializer;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.sprite.SpriteTileset;
+import games.stendhal.client.sprite.Tileset;
+import games.stendhal.client.sprite.TilesetAnimationMap;
+import games.stendhal.client.sprite.TilesetGroupAnimationMap;
+import games.stendhal.common.tiled.TileSetDefinition;
+import marauroa.common.net.InputSerializer;
 
 /** It is class to get tiles from the tileset. */
 class TileStore implements Tileset {
@@ -69,10 +68,10 @@ class TileStore implements Tileset {
 	 *	otherwise <code>false</code>.
 	 */
 	private boolean validated;
-	
+
 	/**
 	 * Get the animation map.
-	 * 
+	 *
 	 * @return animation map
 	 */
 	public static TilesetGroupAnimationMap getAnimationMap() {

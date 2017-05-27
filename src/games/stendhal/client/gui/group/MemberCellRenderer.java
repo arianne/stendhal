@@ -11,11 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
-import games.stendhal.client.gui.LinearScalingModel;
-import games.stendhal.client.gui.StatusDisplayBar;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -27,21 +22,26 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
+import games.stendhal.client.gui.LinearScalingModel;
+import games.stendhal.client.gui.StatusDisplayBar;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+
 /**
  * A cell renderer for the member list. Shows names of the members, the leader
  * in bold. Members that are present have a colored HP bar, like on the game
- * screen. Absent members have a grayed out HP bar. 
+ * screen. Absent members have a grayed out HP bar.
  */
 class MemberCellRenderer implements ListCellRenderer<Member> {
 	private final JComponent renderer = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 	private final JLabel label;
 	private final HPBar hpBar;
-	
+
 	private final Font boldFont;
 	private final Font normalFont;
-	
+
 	/**
-	 * Create a new MemberCellRenderer. 
+	 * Create a new MemberCellRenderer.
 	 */
 	MemberCellRenderer() {
 		label = new JLabel();
@@ -55,7 +55,7 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 			normalFont = f;
 			boldFont = f.deriveFont(f.getStyle() | Font.BOLD);
 		}
-		
+
 		hpBar = new HPBar();
 		renderer.add(hpBar, SLayout.EXPAND_X);
 	}
@@ -69,7 +69,7 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 		} else {
 			label.setFont(normalFont);
 		}
-		
+
 		/*
 		 * This is very, very ugly. JList does not resize the component
 		 * normally, so the StatusDisplayBar never gets the chance to update
@@ -78,16 +78,16 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 		Insets insets = hpBar.getInsets();
 		int barWidth = list.getWidth() - insets.left - insets.right - 2;
 		insets = list.getInsets();
-		barWidth -= insets.left + insets.right; 
+		barWidth -= insets.left + insets.right;
 		hpBar.getModel().setMaxRepresentation(barWidth);
-		
+
 		if (member.isPresent()) {
 			hpBar.setPresent(true);
 			hpBar.setRatio(member.getHpRatio());
 		} else {
 			hpBar.setPresent(false);
 		}
-		
+
 		return renderer;
 	}
 
@@ -97,7 +97,7 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 	private static class HPBar extends StatusDisplayBar {
 		/** Default preferred height of the component. */
 		private static final int DEFAULT_HEIGHT = 6;
-		
+
 		/**
 		 * Create new HP bar.
 		 */
@@ -108,10 +108,10 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 			setPreferredSize(new Dimension(0, DEFAULT_HEIGHT));
 			setMinimumSize(getPreferredSize());
 		}
-		
+
 		/**
 		 * Set present or absent.
-		 * 
+		 *
 		 * @param present present status of the member
 		 */
 		void setPresent(boolean present) {
@@ -121,14 +121,14 @@ class MemberCellRenderer implements ListCellRenderer<Member> {
 				getModel().setValue(1.0);
 			}
 		}
-		
+
 		/**
 		 * Set the ratio of HP/Maximum HP.
-		 * 
+		 *
 		 * @param ratio hp ratio
 		 */
 		void setRatio(float ratio) {
-			// Pick a color from red to green depending on the hp ratio. 
+			// Pick a color from red to green depending on the hp ratio.
 			float r = Math.min((1.0f - ratio) * 2.0f, 1.0f);
 			float g = Math.min(ratio * 2.0f, 1.0f);
 			setBarColor(new Color(r, g, 0.0f));

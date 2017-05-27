@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -28,18 +34,11 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
-
-import org.apache.log4j.Logger;
 
 /**
  * House tax, and confiscation of houses.

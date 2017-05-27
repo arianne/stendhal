@@ -11,6 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.spellcasting;
 
+import java.awt.Point;
+import java.awt.geom.Point2D;
+
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
@@ -21,14 +29,6 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.EntityViewCommandList;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-
-import java.awt.Point;
-import java.awt.geom.Point2D;
-
-import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
 public class DefaultGroundContainerMouseState extends GroundContainerMouseState {
 
@@ -45,11 +45,11 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 		}
 		// on MS Windows releasing the mouse after a drag&drop action is
 		// counted as mouse click: https://sourceforge.net/support/tracker.php?aid=2976895
-		if ((Math.abs(point.getX() - xOnMousePressed) > 10) 
+		if ((Math.abs(point.getX() - xOnMousePressed) > 10)
 			|| (Math.abs(point.getY() - yOnMousePressed) > 10)) {
 			return false;
 		}
-		
+
 		// for the text pop up....
 		final RemovableSprite text = ground.getScreen().getTextAt(point.x, point.y);
 		if (text != null) {
@@ -135,7 +135,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 						SwingUtilities.invokeLater(new Runnable() {
 							@Override
 							public void run() {
-								contextMenuFlag = false;	
+								contextMenuFlag = false;
 							}
 						});
 					}
@@ -191,7 +191,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 			if ((layers.getCollisionDetection() != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
 				cursor = StendhalCursor.STOP;
 			} else if (ground.calculateZoneChangeDirection(point2) != null) {
-				cursor = StendhalCursor.WALK_BORDER;					
+				cursor = StendhalCursor.WALK_BORDER;
 			}
 		}
 		return cursor;

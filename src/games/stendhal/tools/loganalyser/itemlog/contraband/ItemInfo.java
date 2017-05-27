@@ -71,5 +71,5 @@ public class ItemInfo implements Cloneable {
 				+ owner + ", quantity=" + quantity + "]";
 	}
 
-	
+
 }

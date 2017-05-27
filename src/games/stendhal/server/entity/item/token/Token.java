@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.token;
 
+import java.util.Map;
+
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 /**
  * Tokens are items which trigger an event on movement. They may not be
  * equipped.
- * 
+ *
  * @author hendrik
  */
 public class Token extends Item {
@@ -30,14 +30,14 @@ public class Token extends Item {
 
 	/**
 	 * A listener that will be notified on token move.
-	 * 
+	 *
 	 * @param <T> token type
 	 */
 	public interface TokenMoveListener<T extends Token> {
 
 		/**
 		 * a token was moved.
-		 * 
+		 *
 		 * @param player the player moving it
 		 * @param token the token moved
 		 */
@@ -46,7 +46,7 @@ public class Token extends Item {
 
 	/**
 	 * Creates a new token.
-	 * 
+	 *
 	 * @param name
 	 *            name of item
 	 * @param clazz
@@ -63,7 +63,7 @@ public class Token extends Item {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -83,7 +83,7 @@ public class Token extends Item {
 
 	/**
 	 * Sets a TokenMoveListener.
-	 * 
+	 *
 	 * @param tokenMoveListener
 	 *            TokenMoveListener
 	 */

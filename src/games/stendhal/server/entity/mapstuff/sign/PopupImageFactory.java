@@ -22,10 +22,10 @@ public class PopupImageFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the image name from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context. Must provide 'image'.
-	 * 
+	 *
 	 * @return The image name.
 	 */
 	protected String getImage(final ConfigurableFactoryContext ctx) {
@@ -34,10 +34,10 @@ public class PopupImageFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the sign title from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context. Must provide 'title'.
-	 * 
+	 *
 	 * @return The sign title.
 	 */
 	protected String getTitle(final ConfigurableFactoryContext ctx) {
@@ -46,10 +46,10 @@ public class PopupImageFactory implements ConfigurableFactory {
 
 	/**
 	 * Gets the caption for the image
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context. May provide 'caption'.
-	 * 
+	 *
 	 * @return The sign title.
 	 */
 	private String getCaption(ConfigurableFactoryContext ctx) {
@@ -59,12 +59,12 @@ public class PopupImageFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a shop sign.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A PopupImage.
-	 * 
+	 *
 	 * @see PopupImage
 	 */
 	@Override

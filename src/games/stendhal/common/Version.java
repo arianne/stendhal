@@ -15,11 +15,11 @@ package games.stendhal.common;
 
 /**
  * Handles version numbers
- * 
+ *
  * Actual number stored in games.stendhal.common.Debug.VERSION
- * This file duplicates methods from games.stendhal.client.update.Version 
+ * This file duplicates methods from games.stendhal.client.update.Version
  * as the updater should not depend on anything outside games.stendhal.client.update
- * 
+ *
  * @author hendrik
  */
 public class Version {
@@ -28,7 +28,7 @@ public class Version {
 
 	/**
 	 * Extract the specified number of parts from a version-string.
-	 * 
+	 *
 	 * @param version
 	 *            version-string
 	 * @param parts
@@ -50,7 +50,7 @@ public class Version {
 
 	/**
 	 * Compares two versions.
-	 * 
+	 *
 	 * @param v1
 	 *            1st version string
 	 * @param v2
@@ -112,7 +112,7 @@ public class Version {
 
 	/**
 	 * Checks whether these versions of stendhal are compatible.
-	 * 
+	 *
 	 * @param v1
 	 *            one version string
 	 * @param v2
@@ -132,7 +132,7 @@ public class Version {
 
 	/**
 	 * gets the version
-	 * 
+	 *
 	 * @return version
 	 */
 	public static String getVersion() {

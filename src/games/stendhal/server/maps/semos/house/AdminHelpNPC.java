@@ -13,6 +13,8 @@
 package games.stendhal.server.maps.semos.house;
 
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -25,8 +27,6 @@ import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
 import games.stendhal.server.entity.npc.condition.TriggerIsNPCNameForUnstartedQuestCondition;
 import games.stendhal.server.maps.Region;
-
-import java.util.Map;
 
 /**
  * A young lady (original name: Skye) who is lovely to admins.

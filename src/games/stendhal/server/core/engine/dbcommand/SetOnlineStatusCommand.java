@@ -11,11 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
+import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;

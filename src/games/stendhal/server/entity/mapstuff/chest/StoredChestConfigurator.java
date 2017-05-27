@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-
-import java.util.List;
-import java.util.Map;
 
 public class StoredChestConfigurator implements ZoneConfigurator {
 

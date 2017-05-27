@@ -62,11 +62,11 @@ public class ConversationPhrases {
 
 	/**
 	 * Combine a string collection (list) with additional strings.
-	 *  
+	 *
 	 * @param list first collection of strings
 	 * @param args additional strings
 	 * @return new list with the contents of the list and all the additional
-	 * 	strings 
+	 * 	strings
 	 */
 	public static final List<String> combine(Collection<String> list, String ...args) {
 		List<String> ret = new ArrayList<String>(list);
@@ -80,7 +80,7 @@ public class ConversationPhrases {
 
 	/**
 	 * Combine a string collection with other collections.
-	 * 
+	 *
 	 * @param list1 first collection
 	 * @param lists additional collections
 	 * @return a new list with contents of all the collections

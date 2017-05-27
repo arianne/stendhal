@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,10 +26,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class FeaturesTestArea implements ZoneConfigurator {
 
@@ -55,8 +55,8 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
-		manager.addItem(item);		
-		
+		manager.addItem(item);
+
 		final Creature creature = new ItemGuardCreature(manager.getCreature("rat"), "golden key");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
 		zone.add(point);

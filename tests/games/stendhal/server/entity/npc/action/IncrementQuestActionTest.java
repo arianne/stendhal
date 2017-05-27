@@ -13,23 +13,23 @@
 package games.stendhal.server.entity.npc.action;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
-import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
+import marauroa.server.game.db.DatabaseFactory;
 import utilities.PlayerTestHelper;
 
 /**
  * Tests for IncrementQuestAction
  */
 public class IncrementQuestActionTest {
-	
+
 	private static String questSlot = "test_slot";
-	
+
 	@BeforeClass
 	public static void beforeClass() {
 		Log4J.init();
@@ -50,7 +50,7 @@ public class IncrementQuestActionTest {
 		action.fire(player, null, null);
 		assertEquals("2", player.getQuest(questSlot));
 	}
-	
+
 	/**
 	 * Test incrementing a quest state part. The quest has a previous value.
 	 */
@@ -75,7 +75,7 @@ public class IncrementQuestActionTest {
 		action.fire(player, null, null);
 		assertEquals("1", player.getQuest(questSlot));
 	}
-	
+
 	/**
 	 * Test incrementing a quest state part, when there's no previous value
 	 */

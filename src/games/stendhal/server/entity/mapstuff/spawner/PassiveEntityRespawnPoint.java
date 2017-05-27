@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,24 +22,22 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
-
-import org.apache.log4j.Logger;
 
 /**
  * A PassiveEntityRespawnPoint basically is a 1x1 area where a plant, a fruit or
  * another non-moving thing grows. This growing thing is a pickable Item (e.g. a
  * mushroom, an apple); by extending this class, it can also grow something
  * special (e.g. SheepFood).
- * 
+ *
  * PassiveEntityRespawnPoint are currently invisible (fully transparent) on the
  * client side. Extend GrowingPassiveEntityRespawnPoint and implement
  * UseListener if grown item should not be dragable without special interaction.
- * 
+ *
  * @author Daniel Herding
- * 
+ *
  */
 public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	private static Logger LOGGER = Logger.getLogger(PassiveEntityRespawnPoint.class);
@@ -92,7 +92,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 
 	/**
 	 * Is called when a fruit has been picked from this plant grower.
-	 * 
+	 *
 	 * @param picked
 	 *            The fruit that has been picked. Use null for subclasses of
 	 *            PlantGrower that don't use items as fruits.
@@ -147,7 +147,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 
 	public void setStartState() {
 		onFruitPicked(null);
-		
+
 	}
 
 }

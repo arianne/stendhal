@@ -19,71 +19,71 @@ import java.util.Map;
 /**
  * A class for creating attributed strings from strings using the stendhal
  * style markup. The rules are:<ol>
- * 
+ *
  * 	<li>Text starts in a defined font and color mode.</li>
- * 
+ *
  * 	<li>A special character changes to a mode specific to that character.</li>
- * 
+ *
  *  <li>If a new special mode is started while the previous is in effect, their
  * 	effects are combined, the definitions of the newer mode overriding the other
  * 	where they would be in conflict.</li>
- * 
+ *
  * 	<li>If the markup character is followed by a single quote " ' ", the mode
  * 	ends at the next single quote. Otherwise the mode ends at the next white
  * 	space or punctuation character. Only the last active mode is terminated.</li>
- * 
+ *
  * 	<li>If a markup character would start a new mode that is the same as the
  * 	current effective, the markup character is treated as if it was a normal
  * 	character.</li>
- * 
+ *
  * 	<li>The backslash character '\' can be used to prevent the normal effect
  * 	of the special characters to allow printing them. Backslash can be printed
  * 	by escaping it with itself '\\'.</li>
  * </ol>
- * 
+ *
  * @param <K> type of the TextFormatSet internal data
- * @param <T> type holding the text attributes 
+ * @param <T> type holding the text attributes
  */
 public class StringFormatter<K, T extends FormatSet<K, T>> {
 	/** Punctuation characters. */
 	private static final Collection<Character> endMarkers = Arrays.asList(' ', '\n', ',', '.', '!', '?');
-	
+
 	private final Map<Character, T> coloringModes;
-	
+
 	public StringFormatter() {
 		coloringModes = new HashMap<Character, T>();
 	}
-	
+
 	/**
 	 * Add a formatting style.
-	 *  
+	 *
 	 * @param c character for turning on the style
 	 * @param attributes attributes to be used for the text in the style
 	 */
 	public void addStyle(Character c, T attributes) {
 		coloringModes.put(c, attributes);
 	}
-	
+
 	/**
 	 * Format a string.
-	 * 
+	 *
 	 * @param s string which may contain formatting markup
 	 * @param normalAttributes attributes for the normal text
 	 * @param dest destination to write parsed and attributed output
 	 */
-	public void format(String s, T normalAttributes, AttributedTextSink<T> dest) {	
+	public void format(String s, T normalAttributes, AttributedTextSink<T> dest) {
 		BaseState state = new BaseState(dest, normalAttributes, s, 0);
-		
+
 		state.parse();
 	}
-	
+
 	/**
 	 * Base class for the parser states.
 	 */
 	private abstract class AbstractParserState {
 		/** Attributes to be used for the printable characters. */
 		final T attrs;
-		/** Beginning of the current parses scan. */ 
+		/** Beginning of the current parses scan. */
 		int beginIndex;
 		/** Index of the character currently examined. */
 		int index;
@@ -91,10 +91,10 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		final AttributedTextSink<T> dest;
 		/** Formatted input string. */
 		final String string;
-		
+
 		/**
 		 * Create a new AbstractParserState.
-		 *  
+		 *
 		 * @param builder AttributedTextSink for the use of adding
 		 * 	processed output
 		 * @param attributes text attributes for the state
@@ -108,7 +108,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 			this.dest = builder;
 			this.string = s;
 		}
-		
+
 		/**
 		 * Insert scanned elements to the output string.
 		 */
@@ -119,16 +119,16 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				beginIndex = index;
 			}
 		}
-		
+
 		/**
 		 * Parse starting from the beginning index until the parser instance
 		 * has finished its part.
-		 * 
+		 *
 		 * @return index where the parser stopped
 		 */
 		abstract int parse();
 	}
-	
+
 	/**
 	 * The normal, starting state of the parser.
 	 */
@@ -143,10 +143,10 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		 * next encountered single quote.
 		 */
 		boolean endAtQuote = false;
-		
+
 		/**
 		 * Create a new BaseState.
-		 *  
+		 *
 		 * @param dest AttributedTextSink for the use of adding
 		 * 	processed output
 		 * @param attributes attributes for the state
@@ -160,7 +160,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		/**
 		 * Read the next character. Shifts to another parser state if special
 		 * characters are met.
-		 * 
+		 *
 		 * @return <code>true</code> if the parser should stay in current mode,
 		 * 	<code>false</code> if a character that marks the end of this state
 		 * 	was encountered
@@ -168,7 +168,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		boolean readNext() {
 			char current = string.charAt(index);
 			T newAttrs = coloringModes.get(current);
-			
+
 			AbstractParserState newState = null;
 			// Avoid switching to copy of current state. Required for ## to work
 			// as expected
@@ -185,7 +185,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				AbstractParserState s = new QuoteState(dest, attrs, string, index + 1);
 				newState = s;
 			}
-			
+
 			if (newState != null) {
 				push();
 				index = newState.parse();
@@ -193,22 +193,22 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 			} else {
 				index++;
 			}
-			
+
 			// Nothing counts as the end character
 			return true;
 		}
-		
+
 		/**
 		 * Tell the parser to ignore a certain character. Used by child classes
 		 * to prevent transitions to identical state.
-		 * 
+		 *
 		 * @param ignoreChar character to be ignored. This is the markup
 		 * 	character used to transition to this state
 		 */
 		void ignore(char ignoreChar) {
 			this.ignoreChar = ignoreChar;
 		}
-		
+
 		@Override
 		int parse() {
 			while (index < string.length()) {
@@ -217,11 +217,11 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				}
 			}
 			push();
-			
+
 			return index;
 		}
 	}
-	
+
 	/**
 	 * A special parser state for the effects. This will terminate at either
 	 * at the next punctuation character followed by white space, or at
@@ -236,7 +236,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		 * thus quote should end both the states.
 		 */
 		private boolean forceEndAtQuote;
-		
+
 		/**
 		 * Create a new ColoringState.
 		 *
@@ -266,7 +266,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				}
 			}
 		}
-		
+
 		@Override
 		boolean readNext() {
 			char current = string.charAt(index);
@@ -287,7 +287,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 					return false;
 				}
 			}
-			
+
 			// The normal mode transitions are after the rest to keep handling
 			// the quoting last; that is needed to make \' working like it
 			// should.
@@ -295,10 +295,10 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				return false;
 			}
 			super.readNext();
-				
+
 			return true;
 		}
-		
+
 		/**
 		 * Flag the state to end at the first encountered single quote. Used by
 		 * outer states that need to end at the quoting.
@@ -306,10 +306,10 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		void setForceEndAtQuote() {
 			forceEndAtQuote = true;
 		}
-	
+
 		/**
 		 * Get the value of the next character, if there is one.
-		 * 
+		 *
 		 * @return the next character, or space ' ' if there is no next
 		 * 	character
 		 */
@@ -321,7 +321,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 			return ' ';
 		}
 	}
-	
+
 	/**
 	 * A state for preventing the other states seeing special characters.
 	 * {@link #parse()} simply inserts the next character to the output string
@@ -330,7 +330,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 	private class QuoteState extends AbstractParserState {
 		/**
 		 * Create a new QuoteState.
-		 * 
+		 *
 		 * @param sink AttributedTextSink for the use of adding
 		 * 	processed output
 		 * @param attributes text attributes for the state

@@ -23,9 +23,9 @@ public class AttackStrategyFactory {
 
     private static final AttackStrategy CAMOUFLAGED = new DecamouflageAttackStrategy(HAND_TO_HAND);
 
-	
+
 	public static AttackStrategy get(final Map<String, String> aiProfiles) {
-		
+
 		if (aiProfiles.containsKey("archer")) {
 			return new RangeAttack(aiProfiles.get("archer"));
 		} else if (aiProfiles.containsKey("coward")) {

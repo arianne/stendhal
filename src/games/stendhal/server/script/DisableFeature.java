@@ -1,14 +1,14 @@
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 /**
  * Script to disable a feature like keyring for a player
- *  
+ *
  * @author madmetzger
  */
 public class DisableFeature extends ScriptImpl {

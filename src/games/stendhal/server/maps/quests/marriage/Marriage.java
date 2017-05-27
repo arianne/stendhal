@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.marriage;
 
+import java.awt.Rectangle;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -26,8 +28,6 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
-
-import java.awt.Rectangle;
 
 class Marriage {
 	private final NPCList npcs = SingletonRepository.getNPCList();
@@ -46,13 +46,13 @@ class Marriage {
 
 		/**
 		 * Creates a priest NPC who can celebrate marriages between two players.
-		 * 
+		 *
 		 * Note: in this class, the Player variables are called groom and bride.
 		 * However, the game doesn't know the concept of genders. The player who
 		 * initiates the wedding is just called groom, the other bride.
-		 * 
+		 *
 		 * @author daniel
-		 * 
+		 *
 		 */
 
 		priest = npcs.get("Priest");
@@ -70,7 +70,7 @@ class Marriage {
 					},
 					// TODO: make sure the pair getting married are engaged to each
 					// other, if this is desired.
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					null,
 					new ChatAction() {
 
@@ -79,7 +79,7 @@ class Marriage {
 								final EventRaiser npc) {
 							// find out whom the player wants to marry.
 							final String brideName = sentence.getSubjectName();
-	
+
 							if (brideName == null) {
 								npc.say("You have to tell me who you want to marry.");
 							} else {
@@ -89,9 +89,9 @@ class Marriage {
 					});
 
 		priest.add(ConversationStates.QUESTION_1,
-					ConversationPhrases.YES_MESSAGES, 
+					ConversationPhrases.YES_MESSAGES,
 					null,
-					ConversationStates.QUESTION_2, 
+					ConversationStates.QUESTION_2,
 					null,
 					new ChatAction() {
 
@@ -103,16 +103,16 @@ class Marriage {
 					});
 
 		priest.add(ConversationStates.QUESTION_1,
-					ConversationPhrases.NO_MESSAGES, 
-					null, 
+					ConversationPhrases.NO_MESSAGES,
+					null,
 					ConversationStates.IDLE,
-					"What a pity! Goodbye!", 
+					"What a pity! Goodbye!",
 					null);
 
 		priest.add(ConversationStates.QUESTION_2,
-					ConversationPhrases.YES_MESSAGES, 
+					ConversationPhrases.YES_MESSAGES,
 					null,
-					ConversationStates.ATTENDING, 
+					ConversationStates.ATTENDING,
 					null,
 					new ChatAction() {
 
@@ -124,10 +124,10 @@ class Marriage {
 					});
 
 		priest.add(ConversationStates.QUESTION_2,
-					ConversationPhrases.NO_MESSAGES, 
-					null, 
+					ConversationPhrases.NO_MESSAGES,
+					null,
 					ConversationStates.IDLE,
-					"What a pity! Goodbye!", 
+					"What a pity! Goodbye!",
 					null);
 
 		// What he responds to marry if you haven't fulfilled all objectives
@@ -138,7 +138,7 @@ class Marriage {
 						@Override
 						public boolean fire(final Player player, final Sentence sentence,
 								final Entity npc) {
-							return (!player.hasQuest(marriage.getQuestSlot()) 
+							return (!player.hasQuest(marriage.getQuestSlot())
 									|| (player.hasQuest(marriage.getQuestSlot())	&& player.getQuest(marriage.getQuestSlot()).startsWith("engaged") && !player.isEquipped("wedding ring")));
 						}
 					},
@@ -147,7 +147,7 @@ class Marriage {
 					null);
 
 		// What he responds to marry if you are already married
-		priest.add(ConversationStates.ATTENDING, 
+		priest.add(ConversationStates.ATTENDING,
 				"marry",
 				new ChatCondition() {
 					@Override
@@ -155,12 +155,12 @@ class Marriage {
 							final Entity npc) {
 						return (player.isQuestCompleted(marriage.getQuestSlot()));
 					}
-				}, 
+				},
 				ConversationStates.ATTENDING,
-				"You're married already, so you cannot marry again.", 
+				"You're married already, so you cannot marry again.",
 				null);
 	}
-	
+
 	private void startMarriage(final SpeakerNPC priest, final Player player,
 			final String partnerName) {
 		final StendhalRPZone churchZone = priest.getZone();

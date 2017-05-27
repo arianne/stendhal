@@ -19,6 +19,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -27,14 +33,8 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.kalavan.castle.SadScientistNPC;
 import games.stendhal.server.maps.semos.townhall.MayorNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import utilities.QuestHelper;
 import utilities.PlayerTestHelper;
-import static utilities.SpeakerNPCTestHelper.getReply;
+import utilities.QuestHelper;
 
 public class SadScientistTest {
 	private static final String QUEST_SLOT = "sad_scientist";
@@ -53,10 +53,10 @@ public class SadScientistTest {
 	public void setUp() {
 
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		
-		new SadScientistNPC().configureZone(zone, null);		
+
+		new SadScientistNPC().configureZone(zone, null);
 		new MayorNPC().configureZone(zone, null);
-		
+
 		AbstractQuest quest = new SadScientist();
 		quest.addToWorld();
 
@@ -65,7 +65,7 @@ public class SadScientistTest {
 
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Vasi Elos");
 		en = npc.getEngine();
 
@@ -129,9 +129,9 @@ public class SadScientistTest {
 		PlayerTestHelper.equipWithStackableItem(player, "carbuncle", 2);
 
 		assertFalse(player.isEquipped("gold bar", 20));
-		
+
 		final String[] triggers = { "obsidian", "gold bar", "carbuncle", "sapphire", "emerald", "mithril bar" };
-		
+
 		for (final String playerSays : triggers) {
 
 			assertThat(player.isQuestCompleted(QUEST_SLOT), is(false));
@@ -150,19 +150,19 @@ public class SadScientistTest {
 		en.step(player, "gold bar");
 		assertEquals("I am a stupid fool too much in love with my wife Vera to remember, of course these legs also need a base to add " +
 		"the jewels to. Please return with a pair of shadow legs. Bye.", getReply(npc));
-		
+
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
-		
+
 		// return with no legs
 		en.step(player, "hi");
 		assertEquals("Hello again. Please return when you have the shadow legs, a base for me to add jewels to make jewelled legs for Vera.", getReply(npc));
-		
+
 		PlayerTestHelper.equipWithItem(player, "shadow legs");
-		
+
 		en.step(player, "hi");
-		assertEquals("The shadow legs! Wonderful! I will start my work. I can do this in very little time with the help of technology! " +	
+		assertEquals("The shadow legs! Wonderful! I will start my work. I can do this in very little time with the help of technology! " +
 		"Please come back in 20 minutes.", getReply(npc));
-		
+
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		en.step(player, "hi");
 		assertTrue(getReply(npc).startsWith("Do you think I can work that fast? Go away. Come back in"));
@@ -177,7 +177,7 @@ public class SadScientistTest {
 		// -----------------------------------------------
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("making;"));
 		player.setQuest(QUEST_SLOT, "making;1");
-		
+
 		en.step(player, "hi");
 		assertEquals("I finished the legs. But I cannot trust you. Before I give the jewelled legs to you, I need a message from my darling. Ask Mayor Sakhs for Vera. Can you do that for me?", getReply(npc));
 		en.step(player, "yes");
@@ -192,7 +192,7 @@ public class SadScientistTest {
 
 		npc = SingletonRepository.getNPCList().get("Mayor Sakhs");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Welcome citizen! Do you need #help?", getReply(npc));
 		en.step(player, "vera");
@@ -205,7 +205,7 @@ public class SadScientistTest {
 
 		npc = SingletonRepository.getNPCList().get("Vasi Elos");
 		en = npc.getEngine();
-		
+
 		// [23:03] You put a valuable item on the ground. Please note that it will expire in 10 minutes, as all items do. But in this case there is no way to restore it.
 		// I did test removing the note also but I am too lazy to add it in right now
 		// en.step(player, "hi");
@@ -237,14 +237,14 @@ public class SadScientistTest {
 
 		PlayerTestHelper.equipWithItem(player, "goblet");
 		player.setSharedKill("Sergej Elos");
-		
+
 		en.step(player, "hi");
 		assertEquals("Ha, ha, ha! I will cover those jewelled legs with this blood and they will transform into a #symbol of pain.", getReply(npc));
 		en.step(player, "symbol");
 		assertEquals("I am going to create a pair of black legs. Come back in 5 minutes.", getReply(npc));
-		
+
 		assertFalse(player.isEquipped("goblet"));
-		
+
 		assertTrue(player.getQuest("sad_scientist").startsWith("decorating;"));
 		// -----------------------------------------------
 
@@ -257,13 +257,13 @@ public class SadScientistTest {
 
 		// [23:05] Admin kymara changed your state of the quest 'sad_scientist' from 'decorating;1269299078702' to 'decorating;1'
 		// [23:05] Changed the state of quest 'sad_scientist' from 'decorating;1269299078702' to 'decorating;1'
-		
+
 		// -----------------------------------------------
 		player.setQuest(QUEST_SLOT, "decorating;1");
-		
+
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
-		
+
 		en.step(player, "hi");
 		assertEquals("Here are the black legs. Now I beg you to wear them. The symbol of my pain is done. Fare thee well.", getReply(npc));
 		// [23:05] kymara earns 10000 experience points.
@@ -273,7 +273,7 @@ public class SadScientistTest {
 		assertTrue(player.isEquipped("black legs"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
-		
+
 		en.step(player, "hi");
 		assertEquals("Go away!", getReply(npc));
 	}

@@ -31,34 +31,34 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 /**
  * A guy (original name: Nomyr Ahba) who looks into the windows of the bakery
  * and the house next to it.
- * 
+ *
  * Basically all he does is sending players to the retired adventurer at
- * the dungeon entrance. 
+ * the dungeon entrance.
  */
 public class GossipNPC implements ZoneConfigurator {
-    
+
     @Override
 	public void configureZone(StendhalRPZone zone,
             Map<String, String> attributes) {
         buildNPC(zone);
     }
-    
+
     private void buildNPC(StendhalRPZone zone) {
         final SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
-            
+
             @Override
             public void createDialog() {
                 addGreeting(null,new SayTextAction("Hi again, [name]. How can I #help you this time?"));
-                
+
                 // A little trick to make NPC remember if it has met
                 // player before and react accordingly
                 // NPC_name quest doesn't exist anywhere else neither is
                 // used for any other purpose
-                add(ConversationStates.IDLE, 
+                add(ConversationStates.IDLE,
                     ConversationPhrases.GREETING_MESSAGES,
                     new AndCondition(new GreetingMatchesNameCondition(getName()),
-                    		new QuestNotCompletedCondition("Nomyr")), 
-                    ConversationStates.INFORMATION_1, 
+                    		new QuestNotCompletedCondition("Nomyr")),
+                    ConversationStates.INFORMATION_1,
                     "Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?",
                     new SetQuestAction("Nomyr", "done"));
 
@@ -122,7 +122,7 @@ public class GossipNPC implements ZoneConfigurator {
                 nodes.add(new Node(46, 21));
                 setPath(new FixedPath(nodes, true));
             }
-        
+
         };
         npc.setPosition(46, 20);
         npc.setEntityClass("thiefnpc");

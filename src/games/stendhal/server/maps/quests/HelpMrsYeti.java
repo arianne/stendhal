@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -40,13 +47,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
  * QUEST: Mrs Yeti Needs Help
  *
@@ -61,13 +61,13 @@ import org.apache.log4j.Logger;
  * Mrs. Yeti lifes in a cave somewhere in semos mountain. She is mournful, because Mr. Yeti turn away from her. Thats why she ask the player for help. She like to have a special potion and some other stuff as a present for her husband.
  *
  * There is only one witch who, who can make the special potion. Mrs. Yeti tell the player where she lives. The player go for the witch. Once he found her, she tell the player, that she will help, but need some ingriedents.
- * 
+ *
  * When the player is bringing in the collected stuff, she has to tell him, that her magic knife is damaged and she need a new one and send the player to a blacksmith. He has to craft a new magic knife for the witch.
- * 
+ *
  * The blacksmith is willing to help. But need some stuff too, to craft the magic knife. He sends the player to collect it. The player brings in the needed items and the blacksmith could start make the knife, but he is too hungry to start it right now. Player has to bring him some food and he starts crafting the knife. But the player has to wait a bit until he is ready with it.
- * 
+ *
  * After bring the knife to the witch, he tell the player that she forgot an important item. The player has to get it and bring it to here. After a while the special potion is ready. And the player can bring it to Mrs. Yeti.
- * 
+ *
  * Mrs. Yeti is very happy about the special potion. But she needs some other things to make her husband happy. The player has to collect a baby dragon for her. After player bring the baby dragon to her, she is happy as never befor.
  *
  * REWARD:
@@ -82,36 +82,36 @@ import org.apache.log4j.Logger;
  * <li>Not repeatable.</li>
  * </ul>
  */
- 
+
  public class HelpMrsYeti extends AbstractQuest {
- 
+
  	private static final String QUEST_SLOT = "mrsyeti";
 	private static final int DELAY_IN_MINUTES = 60*24;
- 
+
 	private static Logger logger = Logger.getLogger(HelpMrsYeti.class);
-	
+
  	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
- 	
+
 	private void startQuest() {
-		final SpeakerNPC npc = npcs.get("Mrs. Yeti");	
-		
+		final SpeakerNPC npc = npcs.get("Mrs. Yeti");
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I am mournful, because Mr Yeti turns away from me. I need a special potion to make him happy and some present to please him. Will you help?",
 				null);
-							
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Thank you for your help! Now Mr Yeti and I are very happy again.",
 				null);
-		
+
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
@@ -134,7 +134,7 @@ import org.apache.log4j.Logger;
 	// wine
 	// black pearl
 	final SpeakerNPC npc = npcs.get("Salva Mattori");
-	
+
     	npc.add(ConversationStates.ATTENDING, "potion",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
 			    ConversationStates.ATTENDING, "I will help you make this potion, Mrs Yeti is an old friend of mine. But the blade on "
@@ -188,12 +188,12 @@ import org.apache.log4j.Logger;
 																   new PlayerHasItemWithHimCondition("wine"),
 																   new PlayerHasItemWithHimCondition("black pearl")))),
 				ConversationStates.ATTENDING, "I need 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl to make the love potion. Please bring them all together at once. Thanks!", null);
-				
+
 
 	}
 
 	private void makeMagicKnife() {
-		// although the player does end up just taking an ordinary knife to salva, this step must be completed 
+		// although the player does end up just taking an ordinary knife to salva, this step must be completed
 		// (must be in quest state 'knife' when they take the knife)
 	final SpeakerNPC npc = npcs.get("Hackim Easso");
 		npc.add(ConversationStates.ATTENDING, "salva",
@@ -219,7 +219,7 @@ import org.apache.log4j.Logger;
 	}
 
 	private void bringPotion() {
-	final SpeakerNPC npc = npcs.get("Mrs. Yeti");	
+	final SpeakerNPC npc = npcs.get("Mrs. Yeti");
 		final String extraTrigger = "potion";
 	    List<String> questTrigger;
 	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
@@ -234,7 +234,7 @@ import org.apache.log4j.Logger;
 		npc.add(ConversationStates.ATTENDING, questTrigger,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "gotpotion"),
 				new PlayerHasItemWithHimCondition("love potion")),
-				ConversationStates.ATTENDING, "Thank you! That looks so powerful I almost love you from smelling it! But don't worry I will save it for my husband. But he won't take it without some other temptation. I think he'd like a baby #dragon, if you'd be so kind as to bring one.", 
+				ConversationStates.ATTENDING, "Thank you! That looks so powerful I almost love you from smelling it! But don't worry I will save it for my husband. But he won't take it without some other temptation. I think he'd like a baby #dragon, if you'd be so kind as to bring one.",
 				new MultipleActions(tookpotionactions));
 
 		npc.add(
@@ -243,11 +243,11 @@ import org.apache.log4j.Logger;
 			ConversationStates.ATTENDING,
 			"What did you do with the love potion?",
 			null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
-				questTrigger, 
-				new OrCondition(new QuestInStateCondition(QUEST_SLOT, "start"), 
-								new QuestInStateCondition(QUEST_SLOT, "pies"), 
+				questTrigger,
+				new OrCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
+								new QuestInStateCondition(QUEST_SLOT, "pies"),
 								new QuestInStateCondition(QUEST_SLOT, "knife")),
 				ConversationStates.ATTENDING,
 				"I am waiting for you to return with a love potion. Please ask Salva Mattori in the magic city about: #potion.",
@@ -265,7 +265,7 @@ import org.apache.log4j.Logger;
 		// easy to check if they have a pet or sheep at all
 	    npc.add(
 			ConversationStates.ATTENDING, questTrigger,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"), 
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"),
 							 new NotCondition(new PlayerHasPetOrSheepCondition())),
 			ConversationStates.ATTENDING,
 			"You can get a baby dragon only if you have a mythical egg. Those, you must get from Morgrin at the wizard school. "
@@ -275,7 +275,7 @@ import org.apache.log4j.Logger;
 		// if they have any pet or sheep, then check if it's a baby dragon
 		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"), 
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "dragon"),
 							 new PlayerHasPetOrSheepCondition()),
 			ConversationStates.ATTENDING,
 			null,
@@ -298,7 +298,7 @@ import org.apache.log4j.Logger;
 						player.setQuest(QUEST_SLOT,"reward;"+System.currentTimeMillis());
 						player.notifyWorldAboutChanges();
 					} else {
-						npc.say("That's a cute pet you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");  
+						npc.say("That's a cute pet you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");
 					}
 				}
 			});
@@ -313,10 +313,10 @@ import org.apache.log4j.Logger;
 	    List<String> questTrigger;
 	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		questTrigger.add(extraTrigger);
-	
+
 	    npc.add(
 			ConversationStates.ATTENDING, questTrigger,
-			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"), 
+			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"),
 							 // delay is in minutes, last parameter is argument of timestamp
 							 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES))),
 			ConversationStates.ATTENDING,
@@ -326,7 +326,7 @@ import org.apache.log4j.Logger;
 
 		npc.add(
 			ConversationStates.ATTENDING, questTrigger,
-			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"), 
+			new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "reward"),
 							 // delay is in minutes, last parameter is argument of timestamp
 							 new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES)),
 			ConversationStates.ATTENDING,
@@ -335,7 +335,7 @@ import org.apache.log4j.Logger;
 
 	}
 
-	
+
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -362,34 +362,34 @@ import org.apache.log4j.Logger;
 			if ("rejected".equals(questState)) {
 				res.add("I don't want to help with soppy love stories..");
 				return res;
-			} 
+			}
 			if ("start".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("Salva Mattori needs a magic knife from Hackim Easso to make her potion.");
 			if ("hackim".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("Hackim is hungry and wants 5 meat pies before he helps me.");
 			if ("pies".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("Hackim said I should go buy a standard knife like from Xin Blanca!! Apparently he tricked Salva all these years into believing they are magic, I better not let on...");
 			if ("knife".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("The love potion requires 3 lilia flowers, 1 sprig of kokuda, 1 glass of wine and 1 black pearl.");
 			if ("potion".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("I must take the love potion in its heart shaped bottle, to Mrs. Yeti.");
 			if ("gotpotion".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("Mrs. Yeti needs something else to tempt her husband with and has asked me to bring a baby dragon.");
 			if ("dragon".equals(questState)) {
 				return res;
-			} 
+			}
 			res.add("Oh my! She killed my dragon to make stew! That wasn't the kind of treat I thought she had in mind!");
 			if (questState.startsWith("reward")) {
 				if (new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES).fire(player, null, null)) {
@@ -398,19 +398,19 @@ import org.apache.log4j.Logger;
 					res.add("Mrs. Yeti told me to come back in a day to collect my reward so I need to wait.");
 				}
 				return res;
-			} 
+			}
 			res.add("Mrs. Yeti is really pleased with the outcome of my help and now she'll sell me roach very cheaply.");
 			if (isCompleted(player)) {
 				return res;
 			}
-			
+
 			// if things have gone wrong and the quest state didn't match any of the above, debug a bit:
 			final List<String> debug = new ArrayList<String>();
 			debug.add("Quest state is: " + questState);
 			logger.error("History doesn't have a matching quest state for " + questState);
 			return debug;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "HelpMrsYeti";
@@ -425,10 +425,10 @@ import org.apache.log4j.Logger;
 	public String getNPCName() {
 		return "Mrs. Yeti";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_YETI_CAVE;
 	}
 }
- 
+

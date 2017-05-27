@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.plains;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.ReadPostmanMessages;
-
-import java.util.Map;
 
 /**
  * Adds the listener for postman messages

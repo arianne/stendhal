@@ -13,20 +13,19 @@ package games.stendhal.server.entity.item.behavior;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.game.RPEvent;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 /**
@@ -38,7 +37,7 @@ public class MessagingUseBehaviorTest {
 	private static final String WRONG_PRIVATE = "Wrong private message";
 	private static final String MSG_1 = "diibadaa";
 	private static final String MSG_2 = "dumdidum";
-	
+
 	/**
 	 * Setup.
 	 */
@@ -46,10 +45,10 @@ public class MessagingUseBehaviorTest {
 	public static void setUpBeforeClass() {
 		MockStendlRPWorld.get();
 	}
-	
+
 	/**
 	 * Get text sent as private message.
-	 * 
+	 *
 	 * @param entity message recipient
 	 * @return message, or <code>null</code> if the entity does not have
 	 */
@@ -63,7 +62,7 @@ public class MessagingUseBehaviorTest {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Test sending private messages.
 	 */
@@ -77,21 +76,21 @@ public class MessagingUseBehaviorTest {
 		UseBehavior b = new MessagingUseBehavior(params);
 		b.use(entity, item);
 		assertEquals(WRONG_PRIVATE, MSG_1, getPrivate(entity));
-		
+
 		entity.clearEvents();
 		assertEquals(WRONG_PRIVATE, null, getPrivate(entity));
-		
+
 		// The same through item's use()
 		item.setUseBehavior(b);
 		item.onUsed(entity);
 		assertEquals(WRONG_PRIVATE, MSG_1, getPrivate(entity));
-		
+
 		// Other RPEntities should not be send private messages
 		entity = new MockNPC();
 		b.use(entity, item);
 		assertEquals(WRONG_PRIVATE, null, getPrivate(entity));
 	}
-	
+
 	/**
 	 * Test sending public messages.
 	 */
@@ -105,18 +104,18 @@ public class MessagingUseBehaviorTest {
 		UseBehavior b = new MessagingUseBehavior(params);
 		b.use(entity, item);
 		assertEquals(WRONG_PUBLIC, MSG_1, entity.get(TEXT_ATTR));
-		
+
 		// The same through item's use()
 		item.setUseBehavior(b);
 		item.onUsed(entity);
 		assertEquals(WRONG_PUBLIC, MSG_1, entity.get(TEXT_ATTR));
-		
+
 		// NPCs can trigger the public part
 		MockNPC npc = new MockNPC();
 		item.onUsed(npc);
 		assertEquals(WRONG_PUBLIC, MSG_1, npc.message);
 	}
-	
+
 	/**
 	 * Test behavior with both public and private messages.
 	 */
@@ -132,25 +131,25 @@ public class MessagingUseBehaviorTest {
 		b.use(entity, item);
 		assertEquals(WRONG_PRIVATE, MSG_1, getPrivate(entity));
 		assertEquals(WRONG_PUBLIC, MSG_2, entity.get(TEXT_ATTR));
-		
+
 		entity.clearEvents();
 		entity.remove(TEXT_ATTR);
 		assertEquals(WRONG_PRIVATE, null, getPrivate(entity));
 		assertFalse(WRONG_PUBLIC, entity.has(TEXT_ATTR));
-		
+
 		// The same through item's use()
 		item.setUseBehavior(b);
 		item.onUsed(entity);
 		assertEquals(WRONG_PRIVATE, MSG_1, getPrivate(entity));
 		assertEquals(WRONG_PUBLIC, MSG_2, entity.get(TEXT_ATTR));
-		
+
 		// NPCs get only the public part
 		MockNPC npc = new MockNPC();
 		item.onUsed(npc);
 		assertEquals(WRONG_PRIVATE, null, getPrivate(npc));
 		assertEquals(WRONG_PUBLIC, MSG_2, npc.message);
 	}
-	
+
 	/**
 	 * Test using an item that's not reachable by the player.
 	 */
@@ -168,13 +167,13 @@ public class MessagingUseBehaviorTest {
 		assertEquals(WRONG_PRIVATE, "That name1 is too far away.", getPrivate(entity));
 		assertEquals(WRONG_PUBLIC, null, entity.get(TEXT_ATTR));
 	}
-	
+
 	/**
 	 * NPC that stores the message it says.
 	 */
 	private static class MockNPC extends NPC {
 		private String message;
-		
+
 		@Override
 		public void say(String msg) {
 			message = msg;

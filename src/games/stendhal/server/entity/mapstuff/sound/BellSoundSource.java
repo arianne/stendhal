@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sound;
 
+import java.util.Calendar;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -19,8 +21,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.events.SoundEvent;
-
-import java.util.Calendar;
 
 /**
  * A sound event generating object for the churches. Plays bell sound every half

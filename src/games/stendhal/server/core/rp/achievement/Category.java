@@ -35,11 +35,11 @@ public enum Category {
 	/** looting items */
 	ITEM,
 	/** getting items */
-	OBTAIN, 
+	OBTAIN,
 	/** helping others and being friendly */
-	FRIEND, 
+	FRIEND,
 	/** producing items */
-	PRODUCTION, 
+	PRODUCTION,
 	/** ados item quests */
 	QUEST_ADOS_ITEMS,
 	/** semos monster quest */
@@ -48,5 +48,5 @@ public enum Category {
 	QUEST_KIRDNEH_ITEM,
 	/** mithrilbourgh kill enemy army quest */
 	QUEST_MITHRILBOURGH_ENEMY_ARMY;
-	
+
 }

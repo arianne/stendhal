@@ -15,13 +15,12 @@ package games.stendhal.common.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.SentenceBuilder;
 
 import org.junit.Test;
 
 /**
  * Tests the SentenceBuilder class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class SentenceBuilderTest {

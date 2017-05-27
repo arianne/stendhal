@@ -21,7 +21,7 @@ class PortalMapObject extends StaticMapObject {
 	PortalMapObject(final IEntity entity) {
 		super(entity);
 	}
-	
+
 	@Override
 	void draw(final Graphics g, final int scale) {
 		draw(g, scale, Color.WHITE, Color.BLACK);

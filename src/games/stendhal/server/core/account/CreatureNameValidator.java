@@ -16,12 +16,11 @@ import java.util.Collection;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
-
 import marauroa.common.game.Result;
 
 /**
  * validates name is not a Creature name
- * 
+ *
  * @author kymara
  */
 public class CreatureNameValidator implements AccountParameterValidator {
@@ -29,7 +28,7 @@ public class CreatureNameValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a CreatureNameValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */
@@ -43,7 +42,7 @@ public class CreatureNameValidator implements AccountParameterValidator {
 		for (final Creature creature : creatures) {
 			if (creature.getName().equals(parameterValue)) {
 				return Result.FAILED_RESERVED_NAME;
-			}	
+			}
 		}
 		return null;
 	}

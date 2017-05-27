@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.OUTFIT;
 import static games.stendhal.common.constants.Actions.VALUE;
+
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
@@ -24,11 +25,11 @@ import marauroa.common.game.RPAction;
  */
 public class OutfitAction implements ActionListener {
 	private static String COLOR_MAP = "outfit_colors";
-	
+
 	public static void register() {
 		CommandCenter.register(OUTFIT, new OutfitAction());
 	}
-	
+
 	/**
 	 * Changes Player's outfit to the value provided in action.
 	 * @param player whose outfit is to be changed. Must not be <code>null</code>.
@@ -42,7 +43,7 @@ public class OutfitAction implements ActionListener {
 				new GameEvent(player.getName(), OUTFIT,
 						action.get(VALUE)).raise();
 				player.setOutfit(outfit, false);
-				
+
 				// Players may change hair color
 				String color = action.get("hair");
 				if (color != null) {
@@ -50,7 +51,7 @@ public class OutfitAction implements ActionListener {
 				} else {
 					player.remove(COLOR_MAP, "hair");
 				}
-				
+
 				// Players may change dress color
 				color = action.get("dress");
 				if (color != null) {

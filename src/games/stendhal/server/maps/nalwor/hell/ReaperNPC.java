@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.hell;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Builds the reaper in hell.

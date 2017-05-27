@@ -17,12 +17,12 @@ public class PlaySoundEntityFactory extends SoundSourceFactory {
 
 	/**
 	 * Create an PlaySoundEntity.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return An PlaySoundEntity.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource

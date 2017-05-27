@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * Puts the Deathmatch slot of a player into victory format.
- * 
+ *
  * @author kymara
  */
 public class FixDM extends ScriptImpl {
@@ -66,12 +66,12 @@ public class FixDM extends ScriptImpl {
 				target.setQuest(questName, newQuestState);
 
 				// notify admin and altered player
-				target.sendPrivateText("Try claiming victory again now that " + admin.getTitle() 
+				target.sendPrivateText("Try claiming victory again now that " + admin.getTitle()
 									   + " has waved a magic wand.");
 				admin.sendPrivateText("Changed the state of quest '" + questName
 									  + "' from '" + oldQuestState + "' to '" + newQuestState
 									  + "'. Told " + target.getTitle() + " to claim victory again.");
-			} 
+			}
 		} else {
 				admin.sendPrivateText(args.get(0) + " is not logged in");
 		}

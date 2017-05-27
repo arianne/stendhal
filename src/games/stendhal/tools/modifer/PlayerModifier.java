@@ -12,11 +12,10 @@
  ***************************************************************************/
 package games.stendhal.tools.modifer;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.game.db.CharacterDAO;

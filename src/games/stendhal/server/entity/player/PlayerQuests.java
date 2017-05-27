@@ -33,17 +33,17 @@ import marauroa.common.game.RPSlot;
  */
 class PlayerQuests {
 	private final Player player;
-	
+
 	private static Logger logger = Logger.getLogger(PlayerQuests.class);
 
-	
+
 	public PlayerQuests(final Player player) {
 		this.player = player;
 	}
 
 	/**
 	 * Checks whether the player has completed the given quest or not.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @return true if the quest has been completed by the player
@@ -62,7 +62,7 @@ class PlayerQuests {
 	 * Checks whether the player has made any progress in the given quest or
 	 * not. For many quests, this is true right after the quest has been
 	 * started.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @return true iff the player has made any progress in the quest
@@ -73,7 +73,7 @@ class PlayerQuests {
 
 	/**
 	 * Gets the player's current status in the given quest.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @return the player's status in the quest
@@ -88,7 +88,7 @@ class PlayerQuests {
 	 * list of items that need to be brought/NPCs that need to be met, or the
 	 * number of items that still need to be brought. Note that the string
 	 * "done" has a special meaning: see isQuestComplete().
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param status
@@ -105,10 +105,10 @@ class PlayerQuests {
 		SingletonRepository.getAchievementNotifier().onFinishQuest(player);
 	}
 
-	
+
 	/**
 	 * Gets the player's current status in the given quest.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index
@@ -120,11 +120,11 @@ class PlayerQuests {
 		if (state == null) {
 			return null;
 		}
-		
+
 		if(index == -1) {
 			return state;
 		}
-		
+
 		String[] elements = state.split(";");
 		if (index < elements.length) {
 			return elements[index];
@@ -138,7 +138,7 @@ class PlayerQuests {
 	 * list of items that need to be brought/NPCs that need to be met, or the
 	 * number of items that still need to be brought. Note that the string
 	 * "done" has a special meaning: see isQuestComplete().
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index
@@ -158,7 +158,7 @@ class PlayerQuests {
 			System.arraycopy(elements, 0, temp, 0, elements.length);
 			elements = temp;
 		}
-		
+
 		elements[index] = subStatus;
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < elements.length; i++) {
@@ -171,7 +171,7 @@ class PlayerQuests {
 		}
 		setQuest(name, res.toString());
 	}
-	
+
 	public List<String> getQuests() {
 		final RPSlot slot = player.getSlot("!quests");
 		final RPObject quests = slot.iterator().next();
@@ -191,7 +191,7 @@ class PlayerQuests {
 
 	/**
 	 * Is the named quest in one of the listed states?
-	 * 
+	 *
 	 * @param name
 	 *            quest
 	 * @param states
@@ -211,13 +211,13 @@ class PlayerQuests {
 
 		return false;
 	}
-	
+
 	/**
 	 * Is the named quest in one of the listed states?
-	 * 
+	 *
 	 * @param name
 	 *            quest
-	 * @param index         
+	 * @param index
 	 *            quest index
 	 * @param states
 	 *            valid states
@@ -236,10 +236,10 @@ class PlayerQuests {
 
 		return false;
 	}
-	
+
 	/**
-	 * Gets the recorded item stored in a substate of quest slot 
-	 * 
+	 * Gets the recorded item stored in a substate of quest slot
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index
@@ -254,12 +254,12 @@ class PlayerQuests {
 		String questSubString = getQuest(name, index);
 		final String[] elements = questSubString.split("=");
 		String questItem = elements[0];
-		return questItem;		
+		return questItem;
 	}
-	
+
 	/**
-	 * Gets the recorded item quantity stored in a substate of quest slot 
-	 * 
+	 * Gets the recorded item quantity stored in a substate of quest slot
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index
@@ -278,12 +278,12 @@ class PlayerQuests {
 			amount=MathHelper.parseIntDefault(elements[1], 1);
 		}
 		return amount;
-		
+
 	}
-	
+
 	/**
-	 * Gets the number of repetitions in a substate of quest slot 
-	 * 
+	 * Gets the number of repetitions in a substate of quest slot
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index

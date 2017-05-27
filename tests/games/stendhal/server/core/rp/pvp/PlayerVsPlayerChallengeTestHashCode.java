@@ -14,7 +14,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class PlayerVsPlayerChallengeTestHashCode {
-	
+
 	@Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -26,16 +26,16 @@ public class PlayerVsPlayerChallengeTestHashCode {
         		Boolean.TRUE}
         });
     }
-	
+
 	@Parameter(0)
 	public PlayerVsPlayerChallenge one;
-	
+
 	@Parameter(1)
 	public PlayerVsPlayerChallenge two;
-	
+
 	@Parameter(2)
 	public Boolean expected;
-	
+
 	@Test
 	public void testHashCode() {
 		Integer actualHashCodeOne = one.hashCode();

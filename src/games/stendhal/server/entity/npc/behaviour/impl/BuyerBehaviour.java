@@ -13,14 +13,14 @@
 
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.Map;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 /**
  * Represents the behaviour of a NPC who is able to buy items from a player.
@@ -48,7 +48,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 
 	/**
 	 * Transacts the deal that is described in BehaviourResult.
-	 * 
+	 *
 	 * @param seller
 	 *            The NPC who buys
 	 * @param player

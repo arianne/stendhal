@@ -11,16 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.facade.SoundGroup;
-import games.stendhal.client.sound.facade.Time;
-import games.stendhal.common.NotificationType;
-import games.stendhal.common.math.Numeric;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -37,6 +27,16 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.Time;
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.math.Numeric;
+
 /**
  * Page for the sound settings.
  */
@@ -49,10 +49,10 @@ class SoundSettings {
 	private static final String DEVICE_PROPERTY = "sound.device";
 	/** Default value of the sound device property. */
 	private static final String DEFAULT_DEVICE = "auto - recommended";
-	
+
 	/** Container for the setting components. */
 	private final JComponent page;
-	
+
 	/**
 	 * Container for the volume sliders. Exist to help turning them all,
 	 * and their labels easily on or off.
@@ -72,7 +72,7 @@ class SoundSettings {
 		muteToggle.setSelected(soundOn);
 		muteToggle.addItemListener(new MuteListener());
 		page.add(muteToggle);
-		
+
 		// Device selector
 		JComponent hbox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		JComponent selectorLabel = new JLabel("Sound device:");
@@ -151,40 +151,40 @@ class SoundSettings {
 		row.add(musicVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(musicVolume);
-		
+
 		// Disable the sliders if the sound is off
 		for (JComponent comp : sliderComponents) {
 			comp.setEnabled(soundOn);
 		}
 	}
-	
+
 	/**
 	 * Get the component containing the sound settings.
-	 * 
+	 *
 	 * @return sound settings page
 	 */
 	JComponent getComponent() {
 		return page;
 	}
-	
+
 	/**
 	 * Create a selector for sound devices.
-	 * 
+	 *
 	 * @return combo box with device options
 	 */
 	private JComponent createDeviceSelector() {
 		final JComboBox<String> selector = new JComboBox<>();
-		
+
 		// Fill with available device names
 		selector.addItem(DEFAULT_DEVICE);
 		for (String name : ClientSingletonRepository.getSound().getDeviceNames()) {
 			selector.addItem(name);
 		}
-		
+
 		final WtWindowManager wm = WtWindowManager.getInstance();
 		String current = wm.getProperty(DEVICE_PROPERTY, DEFAULT_DEVICE);
 		selector.setSelectedItem(current);
-		 
+
 		selector.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -196,13 +196,13 @@ class SoundSettings {
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});
-		
+
 		return selector;
 	}
-	
+
 	/**
 	 * Create a volume slider for the master channel.
-	 * 
+	 *
 	 * @return master volume slider slider
 	 */
 	private JSlider createMasterVolumeSlider() {
@@ -210,14 +210,14 @@ class SoundSettings {
 		float volume = ClientSingletonRepository.getSound().getVolume();
 		slider.setValue(Numeric.floatToInt(volume, 100f));
 		slider.addChangeListener(new MasterVolumeListener());
-		
+
 		return slider;
 	}
-	
+
 	/**
 	 * Create a volume slider, and initialize its value from the volume of a
 	 * channel.
-	 * 
+	 *
 	 * @param channel channel corresponding to the slider
 	 * @return volume slider for the channel
 	 */
@@ -226,10 +226,10 @@ class SoundSettings {
 		SoundGroup group = ClientSingletonRepository.getSound().getGroup(channel);
 		slider.setValue(Numeric.floatToInt(group.getVolume(), 100f));
 		slider.addChangeListener(new ChannelChangeListener(channel, group));
-		
+
 		return slider;
 	}
-	
+
 	/**
 	 * Listener for toggling the sound on or off. Disables and enables the
 	 * volume sliders as needed.
@@ -245,7 +245,7 @@ class SoundSettings {
 			}
 		}
 	}
-	
+
 	/**
 	 * Listener for adjusting the master volume slider.
 	 */
@@ -258,18 +258,18 @@ class SoundSettings {
 			WtWindowManager.getInstance().setProperty(VOLUME_PROPERTY + "master", Integer.toString(value));
 		}
 	}
-	
+
 	/**
 	 * Listener for adjusting the sound channel sliders. Adjusts the volume of
 	 * the sound group corresponding to the slider appropriately.
 	 */
 	private static class ChannelChangeListener implements ChangeListener {
 		private final SoundGroup group;
-		private final String groupName; 
-		
+		private final String groupName;
+
 		/**
 		 * Create a ChannelChangeListener for a sound group.
-		 * 
+		 *
 		 * @param groupName name of the sound group
 		 * @param group group
 		 */
@@ -277,7 +277,7 @@ class SoundSettings {
 			this.group = group;
 			this.groupName = groupName;
 		}
-		
+
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			JSlider source = (JSlider) e.getSource();

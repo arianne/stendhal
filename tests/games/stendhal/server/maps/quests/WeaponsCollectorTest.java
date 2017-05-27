@@ -16,18 +16,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -59,7 +59,7 @@ public class WeaponsCollectorTest {
 	public final void rejectQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		final WeaponsCollector wc = new WeaponsCollector();
-	
+
 		wc.addToWorld();
 		final SpeakerNPC npc = wc.getNPC();
 		final Engine en = npc.getEngine();
@@ -152,7 +152,7 @@ public class WeaponsCollectorTest {
 		final Player player = PlayerTestHelper.createPlayer("player");
 		final int oldXP = player.getXP();
 		wc.rewardPlayer(player);
-		
+
 		assertTrue(player.isEquipped("ice sword"));
 		assertEquals(oldXP + 5000, player.getXP());
 	}

@@ -12,6 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.fishermans_hut;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
@@ -32,15 +41,6 @@ import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import org.apache.log4j.Logger;
 
 /**
  * Ados Fisherman (Inside / Level 0).
@@ -104,7 +104,7 @@ public class FishermanNPC implements ZoneConfigurator {
 				// make sure peqoud tells player to remind him to get oil back by overriding transactAgreedDeal
 				// override giveProduct so that he doesn't say 'welcome back', which is a greeting,
 				// in the middle of an active conversation.
-				class SpecialProducerBehaviour extends ProducerBehaviour { 
+				class SpecialProducerBehaviour extends ProducerBehaviour {
 					SpecialProducerBehaviour(final String productionActivity,
 							final String productName, final Map<String, Integer> requiredResourcesPerItem,
 							final int productionTimePerItem) {
@@ -115,7 +115,7 @@ public class FishermanNPC implements ZoneConfigurator {
 					/**
 					 * Tries to take all the resources required to produce the agreed amount of
 					 * the product from the player. If this is possible, initiates an order.
-					 * 
+					 *
 					 * @param res
 					 *
 					 * @param npc
@@ -158,7 +158,7 @@ public class FishermanNPC implements ZoneConfigurator {
 					 * product. It checks if the NPC is already done with the order. If that is
 					 * the case, the player is given the product. Otherwise, the NPC asks the
 					 * player to come back later.
-					 * 
+					 *
 					 * @param npc
 					 *            The producing NPC
 					 * @param player

@@ -13,6 +13,7 @@ package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.WHERE;
+
 import games.stendhal.common.ItemTools;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;

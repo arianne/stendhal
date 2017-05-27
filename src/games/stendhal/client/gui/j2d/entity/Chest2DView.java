@@ -78,7 +78,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param entity entity to build sprites for
 	 * @param map
 	 *            The map to populate.
@@ -99,7 +99,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 
 	/**
 	 * Get the current entity state.
-	 * 
+	 *
 	 * @param entity
 	 * @return The current state.
 	 */
@@ -119,7 +119,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -140,9 +140,9 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -152,7 +152,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 
 	/**
 	 * Set the content inspector for this entity.
-	 * 
+	 *
 	 * @param inspector
 	 *            The inspector.
 	 */
@@ -201,7 +201,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 
 	/**
 	 * An entity was changed.
-	 * 
+	 *
 	 * @param property
 	 *            The property identifier.
 	 */
@@ -221,7 +221,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */
@@ -245,7 +245,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 			break;
 
 		case CLOSE:
-			
+
 			at.send(at.fillTargetInfo(entity));
 			break;
 
@@ -290,7 +290,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 		//because they are always empty when closed
 		return StendhalCursor.BAG;
 	}
-	
+
 	/**
 	 * Show the content window.
 	 */

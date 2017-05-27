@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.timed;
 
+import java.lang.ref.WeakReference;
+import java.util.Map;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -19,10 +22,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
-import java.lang.ref.WeakReference;
-import java.util.Map;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
@@ -30,7 +29,7 @@ import marauroa.common.game.RPObject;
 /**
  * Abstract base class for a stackable timed item. Extend this class and
  * implement methods useItem(Player) and itemFinished(Player).
- * 
+ *
  * @author johnnnny
  */
 public abstract class TimedStackableItem extends StackableItem {
@@ -41,7 +40,7 @@ public abstract class TimedStackableItem extends StackableItem {
 
 	/**
 	 * Creates a TimedItem.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -54,7 +53,7 @@ public abstract class TimedStackableItem extends StackableItem {
 
 	/**
 	 * copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -116,7 +115,7 @@ public abstract class TimedStackableItem extends StackableItem {
 
 	/**
 	 * Get the length of the timed event in turns.
-	 * 
+	 *
 	 * @return length in turns
 	 */
 	public int getAmount() {
@@ -125,7 +124,7 @@ public abstract class TimedStackableItem extends StackableItem {
 
 	/**
 	 * Called when the player uses the item. Implement this in a subclass.
-	 * 
+	 *
 	 * @param player
 	 * @return true if the usage is successful
 	 */
@@ -133,7 +132,7 @@ public abstract class TimedStackableItem extends StackableItem {
 
 	/**
 	 * Called when the used item is finished. Implement this in a subclass.
-	 * 
+	 *
 	 * @param player
 	 */
 	public abstract void itemFinished(Player player);

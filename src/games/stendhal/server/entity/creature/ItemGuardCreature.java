@@ -11,15 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.Killer;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Killer;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * An ItemGuardCreature is a creature that is responsible for guarding a special
@@ -40,19 +40,19 @@ public class ItemGuardCreature extends Creature {
 
 	/** which quest slot to check */
 	private final String questSlot;
-	
+
 	/** which quest state to compare to check */
 	private final String questState;
-	
+
 	/** which index of the quest state to check */
 	private final int questIndex;
 
-	/**                             
+	/**
 	 * Creates an ItemGuardCreature.
 	 * @param copy
 	 *            base creature
-	 * @param itemType  
-	 *            the quest item to drop on death   
+	 * @param itemType
+	 *            the quest item to drop on death
 	 */
 	public ItemGuardCreature(final Creature copy, final String itemType) {
 		this(copy, itemType, null, null, 0);
@@ -60,7 +60,7 @@ public class ItemGuardCreature extends Creature {
 
 	/**
 	 * Creates an ItemGuardCreature.
-	 * 
+	 *
 	 * @param copy
 	 *            base creature
 	 * @param itemType
@@ -73,11 +73,11 @@ public class ItemGuardCreature extends Creature {
 	public ItemGuardCreature(final Creature copy, final String itemType, final String questSlot, final String questState) {
 		this(copy, itemType, questSlot, questState, 0);
 	}
-	
-	
+
+
 	/**
 	 * Creates an ItemGuardCreature.
-	 * 
+	 *
 	 * @param copy
 	 *            base creature
 	 * @param itemType
@@ -104,7 +104,7 @@ public class ItemGuardCreature extends Creature {
 	    noises.put("idle", ll);
 	    noises.put("fight", ll);
 	    noises.put("follow", ll);
-	    
+
 		if (!SingletonRepository.getEntityManager().isItem(
 				itemType)) {
 			logger.error(copy.getName() + " drops unexisting item " + itemType);
@@ -118,7 +118,7 @@ public class ItemGuardCreature extends Creature {
 
 	@Override
 	public void onDead(final Killer killer, final boolean remove) {
-		
+
 		if (killer instanceof Player) {
 			final Player killerPlayer = (Player) killer;
 			if (!killerPlayer.isEquipped(itemType)) {

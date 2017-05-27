@@ -11,12 +11,12 @@
  ***************************************************************************/
 package games.stendhal.client.scripting;
 
+import java.io.IOException;
+import java.io.PrintStream;
+
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
-
-import java.io.IOException;
-import java.io.PrintStream;
 
 /**
  * Record chat/commands.

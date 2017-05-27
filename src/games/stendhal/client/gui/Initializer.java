@@ -34,15 +34,15 @@ class Initializer {
 	private static final String DECORATIVE_FONT_NAME = "BlackChancery";
 	/** Name of the font used for the tally marks. Should match the file name without .ttf */
 	private static final String TALLY_FONT_NAME = "Tally";
-	
+
 	private static final Logger logger = Logger.getLogger(Initializer.class);
-	
+
 	static {
 		initFont(DECORATIVE_FONT_NAME);
 		initFont(TALLY_FONT_NAME);
 		initApplicationName();
 	}
-	
+
 	/**
 	 * Call this from the window classes that can be the first game windows the
 	 * user sees.
@@ -51,10 +51,10 @@ class Initializer {
 		// Do nothing. All the work is done in the static initializer to ensure
 		// it gets run once, and only once.
 	}
-	
+
 	/**
 	 * Load a custom font.
-	 * 
+	 *
 	 * @param fontName Name of the font
 	 */
 	private static void initFont(String fontName) {
@@ -76,7 +76,7 @@ class Initializer {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the application name for the windowing system.
 	 */

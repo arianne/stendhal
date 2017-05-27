@@ -34,7 +34,7 @@ public final class MemoryCache<K, V> {
 
 	/**
 	 * Get an object from the cache.
-	 * 
+	 *
 	 * @param key the key corresponding to the object
 	 * @return cached object, or <code>null</code> if there's no object
 	 * 	for the key in the cache
@@ -52,7 +52,7 @@ public final class MemoryCache<K, V> {
 
 	/**
 	 * Store an object to the cache.
-	 * 
+	 *
 	 * @param key key for accessing the object
 	 * @param value the object to be stored
 	 */
@@ -74,7 +74,7 @@ public final class MemoryCache<K, V> {
 		Reference<? extends V> ref = queue.poll();
 
 		while (ref != null) {
-			/* 
+			/*
 			 * The cast is guaranteed to be correct as we allow only Entries to
 			 * the queue. This would not be needed if ReferenceQueue was typed
 			 * according to the reference instead of according to the type of
@@ -88,7 +88,7 @@ public final class MemoryCache<K, V> {
 	/**
 	 * A container for values that remembers the used key to help cleaning
 	 * unused keys from the map.
-	 * 
+	 *
 	 * @param <K> key type
 	 * @param <V> value type
 	 */
@@ -97,7 +97,7 @@ public final class MemoryCache<K, V> {
 
 		/**
 		 * Create a new Entry.
-		 * 
+		 *
 		 * @param key key used for storing the value
 		 * @param value stored value
 		 * @param queue queue for the garbage collector to place the entry when

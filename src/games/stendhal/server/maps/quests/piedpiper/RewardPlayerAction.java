@@ -9,7 +9,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  *  NPC's actions when player asks for his reward.
- *  
+ *
  */
 public class RewardPlayerAction implements ChatAction, ITPPQuestConstants {
 

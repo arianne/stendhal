@@ -17,6 +17,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -27,11 +32,6 @@ import marauroa.server.game.db.AccountDAO;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 @Ignore // TODO: undo bans, doing a rollback is not helpful because the bans are done by the BanAction using another transaction
@@ -45,7 +45,7 @@ public class BanActionTest {
 
 	/**
 	 * Tests for perform.
-	 * @throws Throwable 
+	 * @throws Throwable
 	 */
 	@Test
 	public void testPerform() throws Throwable {
@@ -59,12 +59,12 @@ public class BanActionTest {
 			action.put("target", player.getName());
 			action.put("hours", -1);
 			action.put("reason", "Because we were testing banning");
-			
+
 			// I don't know if this is still needed.
 			if (!accountDAO.hasPlayer(transaction, player.getName())) {
 				accountDAO.addPlayer(transaction, player.getName(), new byte[0], "schnubbel");
 			}
-			
+
 			// we do a character check now. Made the the character name and the account name the same
 			if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
 				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
@@ -81,7 +81,7 @@ public class BanActionTest {
 			transaction = TransactionPool.get().beginWork();
 
 			assertEquals("banned", accountDAO.getAccountStatus(transaction, player.getName()));
-	
+
 			// just undo the changes so the next test starts clean
 			TransactionPool.get().rollback(transaction);
 		} catch (Throwable e) {
@@ -89,10 +89,10 @@ public class BanActionTest {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * Tests for commandCenterPerform.
-	 * @throws Throwable 
+	 * @throws Throwable
 	 */
 	@Test
 	public void testCommandCenterPerform() throws Throwable {
@@ -100,7 +100,7 @@ public class BanActionTest {
 		try {
 			AccountDAO accountDAO = DAORegister.get().get(AccountDAO.class);
 			CharacterDAO characterDAO = DAORegister.get().get(CharacterDAO.class);
-			
+
 			Player player = PlayerTestHelper.createPlayer("bobby");
 			Player admin = PlayerTestHelper.createPlayer("admin");
 			RPAction action = new RPAction();
@@ -120,9 +120,9 @@ public class BanActionTest {
 	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
 				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
 	    	}
-	    	
+
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
-	
+
 			assertEquals("active", accountDAO.getAccountStatus(transaction, player.getName()));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 
@@ -132,16 +132,16 @@ public class BanActionTest {
 			admin.clearEvents();
 			admin.setAdminLevel(5000);
 			assertTrue(CommandCenter.execute(admin , action));
-			
+
 			transaction = TransactionPool.get().beginWork();
 			System.out.println(admin.events().get(0).toString());
 			assertEquals("banned", accountDAO.getAccountStatus(transaction, player.getName()));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 			assertFalse(admin.events().isEmpty());
-			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): ")); 
+			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): "));
 			assertThat(admin.events().get(0).toString(), containsString("[text=You have banned account bobby (character: bobby) until end of time for: whynot]"));
 			assertThat(admin.events().get(0).toString(), containsString("[texttype=PRIVMSG]"));
-	
+
 			// just undo the changes so the next test starts clean
 			TransactionPool.get().rollback(transaction);
 		} catch (Throwable e) {
@@ -149,17 +149,17 @@ public class BanActionTest {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * Tests without the valid character
-	 * @throws Throwable 
+	 * @throws Throwable
 	 */
 	@Test
 	public void testWithoutCharacter() throws Throwable {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
 			AccountDAO accountDAO = DAORegister.get().get(AccountDAO.class);
-			
+
 			Player player = PlayerTestHelper.createPlayer("bobbby");
 			Player admin = PlayerTestHelper.createPlayer("admin");
 			RPAction action = new RPAction();
@@ -175,9 +175,9 @@ public class BanActionTest {
 			if (!accountDAO.hasPlayer(transaction, admin.getName())) {
 				accountDAO.addPlayer(transaction, admin.getName(), new byte[0], "schnubbel");
 			}
-	    	
+
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
-	
+
 			assertEquals("active", accountDAO.getAccountStatus(transaction, player.getName()));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 
@@ -187,16 +187,16 @@ public class BanActionTest {
 			admin.clearEvents();
 			admin.setAdminLevel(5000);
 			assertTrue(CommandCenter.execute(admin , action));
-			
+
 			transaction = TransactionPool.get().beginWork();
 			System.out.println(admin.events().get(0).toString());
 			assertFalse("banned".equals(accountDAO.getAccountStatus(transaction, player.getName())));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 			assertFalse(admin.events().isEmpty());
-			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): ")); 
+			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): "));
 			assertThat(admin.events().get(0).toString(), containsString("[text=No such character]"));
 			assertThat(admin.events().get(0).toString(), containsString("[texttype=ERROR]"));
-	
+
 			// just undo the changes so the next test starts clean
 			TransactionPool.get().rollback(transaction);
 		} catch (Throwable e) {
@@ -204,10 +204,10 @@ public class BanActionTest {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * Tests for a temporary ban
-	 * @throws Throwable 
+	 * @throws Throwable
 	 */
 	@Test
 	public void testTemporaryBan() throws Throwable {
@@ -215,7 +215,7 @@ public class BanActionTest {
 		try {
 			AccountDAO accountDAO = DAORegister.get().get(AccountDAO.class);
 			CharacterDAO characterDAO = DAORegister.get().get(CharacterDAO.class);
-			
+
 			Player player = PlayerTestHelper.createPlayer("bobby");
 			Player admin = PlayerTestHelper.createPlayer("admin");
 			RPAction action = new RPAction();
@@ -235,9 +235,9 @@ public class BanActionTest {
 	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
 				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
 	    	}
-	    	
+
 			accountDAO.setAccountStatus(transaction, admin.getName(), "active");
-	
+
 			assertEquals("active", accountDAO.getAccountStatus(transaction, player.getName()));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 
@@ -247,18 +247,18 @@ public class BanActionTest {
 			admin.clearEvents();
 			admin.setAdminLevel(5000);
 			assertTrue(CommandCenter.execute(admin , action));
-			
+
 			transaction = TransactionPool.get().beginWork();
 			System.out.println(admin.events().get(0).toString());
 			assertEquals("active", accountDAO.getAccountStatus(transaction, player.getName()));
 			assertEquals("active", accountDAO.getAccountStatus(transaction, admin.getName()));
 			assertFalse(admin.events().isEmpty());
-			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): ")); 
+			assertThat(admin.events().get(0).toString(), containsString("RPEvent private_text with Attributes of Class(private_text): "));
 			// not sure of a good way to reliably test the timestamping
 			assertThat(admin.events().get(0).toString(), containsString("[text=You have banned account bobby (character: bobby) until "));
 			assertThat(admin.events().get(0).toString(), containsString("for: We want to test the temporary bans"));
 			assertThat(admin.events().get(0).toString(), containsString("[texttype=PRIVMSG]"));
-	
+
 			// just undo the changes so the next test starts clean
 			TransactionPool.get().rollback(transaction);
 		} catch (Throwable e) {
@@ -266,5 +266,5 @@ public class BanActionTest {
 			throw e;
 		}
 	}
-		
+
 }

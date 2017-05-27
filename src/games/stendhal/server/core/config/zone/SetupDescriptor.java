@@ -6,13 +6,13 @@
 
 package games.stendhal.server.core.config.zone;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //
 //
 
 import games.stendhal.server.core.engine.StendhalRPZone;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A base zone setup descriptor.
@@ -36,7 +36,7 @@ public abstract class SetupDescriptor {
 
 	/**
 	 * Get the configuration parameters.
-	 * 
+	 *
 	 * @return A map of parameters.
 	 */
 	public Map<String, String> getParameters() {
@@ -45,7 +45,7 @@ public abstract class SetupDescriptor {
 
 	/**
 	 * Set a configuration parameter.
-	 * 
+	 *
 	 * @param name
 	 *            A parameter name.
 	 * @param value
@@ -57,7 +57,7 @@ public abstract class SetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone to setup.
 	 */

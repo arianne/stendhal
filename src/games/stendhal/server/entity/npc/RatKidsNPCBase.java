@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
 
 // import org.apache.log4j.Logger;
 
 /**
  * Base class for rat kid NPCs.
- * 
+ *
  * @author Norien
  */
 
@@ -49,7 +49,7 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 
 	/**
 	 * ChatAction common to all rat kid NPCs.
-	 * 
+	 *
 	 * @author Norien
 	 */
 	private static class RatKidGreetingAction implements ChatAction {
@@ -65,10 +65,10 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 				final String saidStr;
 				if (npcDoneText.length > 1) {
 					lookStr = npcDoneText[0].toLowerCase();
-					saidStr = npcDoneText[1].toLowerCase();			 
+					saidStr = npcDoneText[1].toLowerCase();
 
 					final List<String> list = Arrays.asList(lookStr.split(";"));
-					String npcName = npc.getName().toLowerCase();			
+					String npcName = npc.getName().toLowerCase();
 					if (list.contains(npcName) || player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("Oh hello again.");
 					} else if ( npcDoneText.length > 1) {

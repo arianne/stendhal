@@ -11,13 +11,12 @@
  ***************************************************************************/
 package games.stendhal.bot.support;
 
-import games.stendhal.bot.core.StandardClientFramework;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.SocketException;
 
+import games.stendhal.bot.core.StandardClientFramework;
 import marauroa.common.game.RPAction;
 
 /**

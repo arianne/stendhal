@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.entity.RPEntity;
-
 import java.awt.Shape;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.entity.RPEntity;
+
 /**
  * An creature that will only target enemies which are within a specified area.
- * 
+ *
  * @author hendrik
  */
 public class ArenaCreature extends Creature {
@@ -29,7 +29,7 @@ public class ArenaCreature extends Creature {
 
 	/**
 	 * ArenaCreature.
-	 * 
+	 *
 	 * @param copy
 	 *            creature to wrap
 	 * @param arena

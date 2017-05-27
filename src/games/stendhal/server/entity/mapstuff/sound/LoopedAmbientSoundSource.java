@@ -22,10 +22,10 @@ import games.stendhal.common.constants.SoundLayer;
 public class LoopedAmbientSoundSource extends LoopedSoundSource {
 	/**
 	 * Create an ambient sound area.
-	 * 
-	 * @param sound 
-	 * @param radius 
-	 * @param volume 
+	 *
+	 * @param sound
+	 * @param radius
+	 * @param volume
 	 */
 	public LoopedAmbientSoundSource(String sound, int radius, int volume) {
 		super(sound, radius, volume, SoundLayer.AMBIENT_SOUND);

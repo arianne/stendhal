@@ -24,25 +24,25 @@ import javax.swing.plaf.basic.BasicTableUI;
 public class StyledTableUI extends BasicTableUI {
 	/** Used style. */
 	private final Style style;
-	
+
 	/**
 	 * Required by UIManager.
-	 * 
+	 *
 	 * @param table component to create UI for
 	 * @return UI delegate
 	 */
 	public static ComponentUI createUI(JComponent table) {
 		return new StyledTableUI(StyleUtil.getStyle());
 	}
-	
+
 	/**
-	 * Create a new StyledTableUI based on a pixmap style. 
+	 * Create a new StyledTableUI based on a pixmap style.
 	 * @param style pixmap style
 	 */
 	public StyledTableUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	public void installUI(JComponent table) {
 		super.installUI(table);
@@ -51,7 +51,7 @@ public class StyledTableUI extends BasicTableUI {
 		table.setFont(style.getFont().deriveFont(Font.BOLD));
 		this.table.setGridColor(style.getShadowColor());
 	}
-	
+
 	@Override
 	public void paint(Graphics g, JComponent table) {
 		StyleUtil.fillBackground(style, g, 0, 0, table.getWidth(), table.getHeight());

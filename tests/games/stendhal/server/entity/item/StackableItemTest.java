@@ -81,19 +81,19 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(1));
 		stack.sub(0);
 		assertThat(stack.getQuantity(), is(1));
-		
-		
+
+
 		stack.setQuantity(1);
 		assertThat(stack.getQuantity(), is(1));
 		stack.sub(1);
 		assertThat(stack.getQuantity(), is(0));
-		
-		stack.setQuantity(100); 
+
+		stack.setQuantity(100);
 		assertThat(stack.getQuantity(), is(100));
 		stack.sub(1);
 		assertThat(stack.getQuantity(), is(99));
 	}
-	
+
 	/**
 	 * Tests for subNegativeNumber.
 	 */
@@ -105,8 +105,8 @@ public class StackableItemTest {
 		stack.sub(-1);
 		assertThat("similar to splitOff()", stack.getQuantity(), is(1));
 	}
-	
-	
+
+
 	/**
 	 * Tests for subNegativeNumberSimilarToSplitOff.
 	 */
@@ -122,7 +122,7 @@ public class StackableItemTest {
 		splitStack.splitOff(-1);
 		assertThat(subStack.getQuantity(), is(splitStack.getQuantity()));
 	}
-	
+
 	/**
 	 * Tests for addStackable.
 	 */
@@ -146,13 +146,13 @@ public class StackableItemTest {
 		assertThat(stack.getQuantity(), is(1));
 		stack.splitOff(0);
 		assertThat(stack.getQuantity(), is(1));
-		
+
 		stack.setQuantity(1);
 		assertThat(stack.getQuantity(), is(1));
 		stack.splitOff(1);
 		assertThat(stack.getQuantity(), is(0));
-		
-		stack.setQuantity(100); 
+
+		stack.setQuantity(100);
 		assertThat(stack.getQuantity(), is(100));
 		stack.splitOff(1);
 		assertThat(stack.getQuantity(), is(99));
@@ -169,7 +169,7 @@ public class StackableItemTest {
 		stack.splitOff(-1);
 		assertThat("similar to sub()", stack.getQuantity(), is(1));
 	}
-	
+
 	/**
 	 * Tests for isStackableMoney.
 	 */
@@ -181,7 +181,7 @@ public class StackableItemTest {
 		assertTrue(stackOnTop.isStackable(stack));
 		assertFalse(stack.isStackable(stack));
 	}
-	
+
 	/**
 	 * Tests for isStackableBaloon.
 	 */
@@ -193,7 +193,7 @@ public class StackableItemTest {
 		assertTrue(stackOnTop.isStackable(stack));
 		assertFalse(stack.isStackable(stack));
 	}
-	
+
 	/**
 	 * Tests for isStackableBaloonOnMoney.
 	 */
@@ -205,7 +205,7 @@ public class StackableItemTest {
 		assertFalse(stackOnTop.isStackable(stack));
 		assertFalse(stack.isStackable(stack));
 	}
-	
+
 	/**
 	 * Tests for isStackableSummonScrolls.
 	 */
@@ -217,7 +217,7 @@ public class StackableItemTest {
 		assertTrue(stackOnTop.isStackable(stack));
 		assertFalse(stack.isStackable(stack));
 	}
-	
+
 	/**
 	 * Tests for isStackableInvitationScrolls.
 	 */
@@ -229,7 +229,7 @@ public class StackableItemTest {
 		assertTrue(stackOnTop.isStackable(stack));
 		assertFalse(stack.isStackable(stack));
 	}
-	
+
 	/**
 	 * Tests for isStackableDifferentScrolls.
 	 */

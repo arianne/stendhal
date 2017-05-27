@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.Iterator;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,9 +24,6 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Check NPC paths for problems.
@@ -49,10 +49,10 @@ public class NPCPathCheck extends ScriptImpl {
 
 		admin.sendPrivateText(res.toString());
 	}
-	
+
 	/**
 	 * Check the path of an NPC.
-	 * 
+	 *
 	 * @param npc
 	 * @param msg place to append problem descriptions
 	 * @return <code>true</code> if no problems were found, <code>false</code>
@@ -64,7 +64,7 @@ public class NPCPathCheck extends ScriptImpl {
 			// Nothing to check
 			return true;
 		}
-		boolean ok = true; 
+		boolean ok = true;
 		if (!path.isLoop()) {
 			ok = false;
 			msg.append(npc.getName());
@@ -75,10 +75,10 @@ public class NPCPathCheck extends ScriptImpl {
 		}
 		return ok;
 	}
-	
+
 	/**
 	 * Check a path for problems.
-	 *  
+	 *
 	 * @param npc npc owning the path
 	 * @param path
 	 * @param msg place for appending error descriptions
@@ -101,13 +101,13 @@ public class NPCPathCheck extends ScriptImpl {
 		if (path.isLoop() && !checkTwoNodes(npc, current, path.getNodeList().get(0), msg)) {
 			ok = false;
 		}
-		
+
 		return ok;
 	}
-	
+
 	/**
 	 * Check the path between two nodes for collisions.
-	 * 
+	 *
 	 * @param npc npc owning the path
 	 * @param first first node
 	 * @param second second node

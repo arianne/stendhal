@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -44,10 +48,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 /**
@@ -191,7 +191,7 @@ public class FindJefsMom extends AbstractQuest {
 			"Oh I see :) My son Jef asked you to take a look after me. He is such a nice and gentle boy! Please give him this zantedeschia here. I love these flowers! Please give it to him and tell him that I'm #fine.",
 			new MultipleActions(new EquipItemAction("zantedeschia", 1, true),
                                 new SetQuestAction(QUEST_SLOT, 0, "found_mom")));
-		
+
 
 		// don't put the flower on the ground - if player has no space, tell them
 		amber.add(ConversationStates.ATTENDING, "Jef",
@@ -207,7 +207,7 @@ public class FindJefsMom extends AbstractQuest {
 		    	ConversationStates.IDLE,
 		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.",
 		    	null);
-	    
+
 	    amber.add(ConversationStates.ATTENDING, "Jef",
 	    		new AndCondition(
 	    				new QuestInStateCondition(QUEST_SLOT, "found_mom"),
@@ -215,7 +215,7 @@ public class FindJefsMom extends AbstractQuest {
 	    		ConversationStates.IDLE,
 	    		"Please give that flower to my son and let him know that I am #fine.",
 	    		null);
-	    
+
 	    // replace flower if lost
 	    amber.add(ConversationStates.ATTENDING, Arrays.asList("Jef", "flower", "zantedeschia"),
 	    		new AndCondition(
@@ -223,7 +223,7 @@ public class FindJefsMom extends AbstractQuest {
 	    				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia"))),
 	    		ConversationStates.IDLE,
 	    		"Oh you lost the flower? I'm afraid I don't have anymore. Speak with Jenny, by the windmill. She may be able to help you.",
-	    		null); 
+	    		null);
 
 	}
 
@@ -251,12 +251,12 @@ public class FindJefsMom extends AbstractQuest {
 				new MultipleActions(new DropItemAction("zantedeschia"),
                                     new IncreaseXPAction(800),
                                     new IncreaseKarmaAction(15),
-									addRandomNumberOfItemsAction,                       
+									addRandomNumberOfItemsAction,
 									new IncrementQuestAction(QUEST_SLOT, 2, 1),
 									new SetQuestToTimeStampAction(QUEST_SLOT,1),
 									new SetQuestAction(QUEST_SLOT, 0, "done")));
 
-		
+
 	}
 
 	@Override
@@ -313,7 +313,7 @@ public class FindJefsMom extends AbstractQuest {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"done"),
 				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.KIRDNEH;

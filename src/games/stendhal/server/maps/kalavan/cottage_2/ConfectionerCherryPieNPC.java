@@ -1,5 +1,10 @@
 package games.stendhal.server.maps.kalavan.cottage_2;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -8,11 +13,6 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Provides Gertha, the cherry pies confectioner NPC.
@@ -50,7 +50,7 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				
+
 				addJob("I live here with my twin sister #Martha and our passion is to #bake delicious fruit pies!");
 
 				addReply("martha",

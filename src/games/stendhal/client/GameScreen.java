@@ -67,7 +67,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	private static final long serialVersionUID = -4070406295913030925L;
 
 	private static final Logger logger = Logger.getLogger(GameScreen.class);
-	
+
 	/** Map KeyEvents to a number, i.e. to determine position in spells slot based on pressed key **/
 	private static final Map<Integer, Integer> keyEventMapping = new HashMap<Integer, Integer>();
 	static {
@@ -108,7 +108,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private final StaticGameLayers gameLayers;
 	private static final Collection<EffectLayer> globalEffects = new LinkedList<>();
-	
+
 	/** Entity views container. */
 	private final EntityViewManager viewManager = new EntityViewManager();
 
@@ -126,7 +126,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * The text bubbles.
 	 */
 	private final List<RemovableSprite> texts;
-	
+
 	/**
 	 * Text boxes that are anchored to the screen coordinates.
 	 */
@@ -135,7 +135,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	private boolean offline;
 
 	/**
-	 * Off line indicator counter. 
+	 * Off line indicator counter.
 	 */
 	private int blinkOffline;
 
@@ -177,7 +177,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Current panning speed.
 	 */
 	private int speed;
-	
+
 	/**
 	 * Scaling factor of the screen.
 	 */
@@ -217,7 +217,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				onResized();
 			}
 		});
-		
+
 		gameLayers = client.getStaticGameLayers();
 
 		sw = getWidth();
@@ -251,11 +251,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		setIgnoreRepaint(true);
 		client.getGameObjects().addGameObjectListener(this);
 	}
-	
+
 	/**
 	 * The canvas can be resized using a split pane, or with window size changes
 	 * if screen scaling is used. This is for adjusting the internal parameters
-	 * for the change. 
+	 * for the change.
 	 */
 	private void onResized() {
 		Dimension screenSize = stendhal.getDisplaySize();
@@ -282,10 +282,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		calculateView(x, y);
 		center();
 	}
-	
+
 	/**
 	 * Set whether the screen should be drawn scaled, or in native resolution.
-	 *  
+	 *
 	 * @param useScaling if <code>true</code> the screen will scale the view
 	 * 	will be scaled to fit the screen size, otherwise it will be drawn using
 	 * 	the native resolution.
@@ -300,12 +300,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			onResized();
 		}
 	}
-	
+
 	/**
 	 * Check if the screen uses scaling. Note that if the native resolution
 	 * is in use, the screen size <b>must not</b> be allowed to grow larger than
 	 * <code>standhal.getScreenSize()</code>.
-	 * 
+	 *
 	 * @return <code>true</code> if the graphics are scaled to the screen size,
 	 * 	<code>false</code> if the native resolution is used
 	 */
@@ -337,7 +337,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	private int getViewHeight() {
 		return (int) Math.ceil(sh / (SIZE_UNIT_PIXELS * scale));
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -347,10 +347,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void nextFrame() {
 		adjustView();
 	}
-	
+
 	/**
 	 * Get the achievement box factory.
-	 * 
+	 *
 	 * @return factory
 	 */
 	private AchievementBoxFactory getAchievementFactory() {
@@ -371,7 +371,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		if (view != null) {
 			if (view instanceof Entity2DView) {
 				final Entity2DView<?> inspectable = (Entity2DView<?>) view;
-				
+
 				inspectable.setInspector(ground);
 			}
 			if (entity.isUser()) {
@@ -384,17 +384,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			}
 		}
 	}
-	
+
 	/**
 	 * Add a map wide visual effect.
-	 * 
+	 *
 	 * @param effect effect renderer
 	 */
 	public void addEffect(final EffectLayer effect) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				globalEffects.add(effect);	
+				globalEffects.add(effect);
 			}
 		});
 	}
@@ -469,7 +469,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			}
 		}
 	}
-	
+
 	/**
 	 * Calculate the target speed for moving the view position. The farther
 	 * away, the faster.
@@ -497,7 +497,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * Updates the target position of the view center.
 	 * Prefer top left if the map is smaller than the screen.
-	 * 
+	 *
 	 * @param x preferred x of center, if the map is large enough
 	 * @param y preferred y of center, if the map is large enough
 	 */
@@ -511,10 +511,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 */
 		final int maxX = (int) (ww * SIZE_UNIT_PIXELS - sw / scale);
 		cvx = MathHelper.clamp(cvx, 0, maxX);
-		
+
 		final int maxY = (int) (wh * SIZE_UNIT_PIXELS - sh / scale);
 		cvy = MathHelper.clamp(cvy, 0, maxY);
-		
+
 		// Differences from center
 		dvx = cvx - svx;
 		dvy = cvy - svy;
@@ -535,12 +535,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		speed = 0;
 	}
-	
+
 	@Override
 	public void paintImmediately(int x, int y, int w, int h) {
 		/*
 		 * Try to keep the old screen while the user is switching maps.
-		 * 
+		 *
 		 * NOTE: Relies on the repaint() requests to eventually come to this,
 		 * so if swing internals change some time in the future, a new solution
 		 * may be needed.
@@ -553,7 +553,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			}
 		}
 	}
-	
+
 	@Override
 	public void paintComponent(final Graphics g) {
 		if (StendhalClient.get().isInTransfer()) {
@@ -567,9 +567,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			g.fillRect(0, 0, getWidth(), getHeight());
 			return;
 		}
-		
+
 		Graphics2D g2d = (Graphics2D) g;
-		
+
 		Graphics2D graphics = (Graphics2D) g2d.create();
 		if (graphics.getClipBounds() == null) {
 			graphics.setClip(0, 0, getWidth(), getHeight());
@@ -600,17 +600,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		} else {
 			renderScene(graphics, xAdjust, yAdjust);
 		}
-		
+
 		// Don't scale text to keep it readable
 		drawText(g2d);
 
 		paintOffLineIfNeeded(g2d);
 		graphics.dispose();
 	}
-	
+
 	/**
 	 * Render the scalable parts of the screen.
-	 * 
+	 *
 	 * @param g graphics
 	 * @param xAdjust x coordinate offset
 	 * @param yAdjust y coordinate offset
@@ -619,12 +619,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// Adjust the graphics object so that the drawn objects do not need to
 		// know about converting the position to screen
 		g.translate(xAdjust, yAdjust);
-		
+
 		// Restrict the drawn area by the clip bounds. Smaller than gamescreen
 		// draw requests can come for example from dragging items
 		int startTileX = Math.max(0, (int) getViewX());
 		int startTileY = Math.max(0, (int) getViewY());
-		
+
 		Rectangle clip = g.getClipBounds();
 		startTileX = Math.max(startTileX, clip.x / IGameScreen.SIZE_UNIT_PIXELS);
 		startTileY = Math.max(startTileY, clip.y / IGameScreen.SIZE_UNIT_PIXELS);
@@ -636,19 +636,19 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		drawEndOfTheWorld(g, xAdjust, yAdjust);
 		viewManager.prepareViews(clip);
-		
+
 		final String set = gameLayers.getAreaName();
 		gameLayers.drawLayers(g, set, "floor_bundle", startTileX,
 				startTileY, layerWidth, layerHeight, "blend_ground", "0_floor",
 				"1_terrain", "2_object");
-		
+
 		viewManager.draw(g);
 
 		gameLayers.drawLayers(g, set, "roof_bundle", startTileX,
 				startTileY, layerWidth, layerHeight, "blend_roof", "3_roof",
 				"4_roof_add");
 		gameLayers.drawWeather(g, startTileX, startTileY, layerWidth, layerHeight);
-		
+
 		// Draw the top portion screen entities (such as HP/title bars).
 		viewManager.drawTop(g);
 		// Effects get drawn even above title bars, so that darkening and such work
@@ -663,10 +663,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			}
 		}
 	}
-	
+
 	/**
 	 * Fill with black the areas outside the map.
-	 * 
+	 *
 	 * @param g graphics
 	 * @param xAdjust x position of the screen
 	 * @param yAdjust y position of the screen
@@ -695,10 +695,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			g.fillRect(tmpX, svy, sw, sh);
 		}
 	}
-	
+
 	/**
 	 * Draw the offline indicator, blinking, if the client is offline.
-	 * 
+	 *
 	 * @param g graphics
 	 */
 	private void paintOffLineIfNeeded(Graphics g) {
@@ -720,16 +720,16 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/**
 	 * Draw the screen text bubbles.
-	 * 
+	 *
 	 * @param g2d destination graphics
 	 */
 	private void drawText(final Graphics2D g2d) {
 		/*
 		 * Text objects know their original placement relative to the screen,
-		 * not to the map. Pass them a shifted coordinate system. 
+		 * not to the map. Pass them a shifted coordinate system.
 		 */
 		g2d.translate(-getScreenViewX(), -getScreenViewY());
-		
+
 		synchronized (texts) {
 			Iterator<RemovableSprite> it = texts.iterator();
 			while (it.hasNext()) {
@@ -741,7 +741,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				}
 			}
 		}
-		
+
 		// Restore the coordinates
 		g2d.translate(getScreenViewX(), getScreenViewY());
 		// These are anchored to the screen, so they can use the usual proper
@@ -799,11 +799,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void setOffline(final boolean offline) {
 		this.offline = offline;
 	}
-	
+
 	/**
 	 * Adds a text bubble at a give position.
-	 * 
-	 * @param sprite 
+	 *
+	 * @param sprite
 	 * @param x x coordinate
 	 * @param y y coordinate
 	 * @param textLength length of the text in characters
@@ -816,7 +816,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		sx = keepSpriteOnMapX(sprite, sx);
 		sy = keepSpriteOnMapY(sprite, sy);
-		
+
 		/*
 		 * Adjust the position of boxes placed at the same point to make it
 		 * clear for the player there are more than one.
@@ -837,7 +837,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 					}
 				}
 			}
-			
+
 			tries++;
 			// give up, if no location found in a reasonable amount of tries
 			if (tries > 20) {
@@ -852,7 +852,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/**
 	 * Try to keep a sprite on the map. Adjust the Y coordinate.
-	 * 
+	 *
 	 * @param sprite sprite to keep on the map
 	 * @param sy suggested Y coordinate on screen
 	 * @return new Y coordinate
@@ -873,7 +873,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/**
 	 * Try to keep a sprite on the map. Adjust the X coordinate.
-	 * 
+	 *
 	 * @param sprite sprite to keep on the map
 	 * @param sx suggested X coordinate on screen
 	 * @return new X coordinate
@@ -983,22 +983,22 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		return null;
 	}
-	
+
 	/**
 	 * Convert a world x coordinate to <em>raw</em> (native resolution)
 	 * screen x coordinate.
-	 * 
+	 *
 	 * @param x world x coordinate
 	 * @return pixel x coordinate on the screen
 	 */
 	private int convertWorldXToScaledScreen(double x) {
 		return (int) (convertWorldToPixelUnits(x - svx / (double) SIZE_UNIT_PIXELS) * scale) + svx;
 	}
-	
+
 	/**
 	 * Convert a world y coordinate to <em>raw</em> (native resolution)
 	 * screen y coordinate.
-	 * 
+	 *
 	 * @param y world y coordinate
 	 * @return pixel y coordinate on the screen
 	 */
@@ -1080,7 +1080,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			calculateView(ix, iy);
 		}
 	}
-	
+
 	@Override
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Just pass it to the ground container
@@ -1090,7 +1090,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * Draw a box for a reached achievement with given title, description and
 	 * category.
-	 * 
+	 *
 	 * @param title title of the achievement
 	 * @param description achievement description
 	 * @param category achievement category
@@ -1098,7 +1098,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void addAchievementBox(String title, String description,
 			String category) {
 		final Sprite sprite = getAchievementFactory().createAchievementBox(title, description, category);
-		
+
 		/*
 		 * Keep the achievements a bit longer on the screen. They do not leave
 		 * a line to the chat log, so we give the player a bit more time to
@@ -1106,11 +1106,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 */
 		addStaticSprite(sprite, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME, 0);
 	}
-	
+
 	/**
 	 * Add a text box bound to the bottom of the screen, with a timeout
 	 * dependent on the text length.
-	 * 
+	 *
 	 * @param sprite text box sprite
 	 * @param textLength text length in characters
 	 * @param priority importance of the message to keep it above others
@@ -1121,10 +1121,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50),
 				priority);
 	}
-	
+
 	/**
 	 * Add a sprite anchored to the screen bottom.
-	 * 
+	 *
 	 * @param sprite sprite
 	 * @param persistTime time to stay on the screen before being automatically
 	 * 	removed
@@ -1138,7 +1138,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		staticSprites.add(msg);
 		Collections.sort(staticSprites);
 	}
-	
+
 	@Override
 	public void onZoneUpdate(Zone zone) {
 		viewManager.resetViews();
@@ -1150,11 +1150,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				globalEffects.clear();	
+				globalEffects.clear();
 			}
 		});
 	}
-	
+
 	@Override
 	public void onZoneChangeCompleted(final Zone zone) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -1168,7 +1168,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/**
 	 * Switch to spell casting triggered by a key event.
-	 * 
+	 *
 	 * @param e triggering key event
 	 */
 	public void switchToSpellCasting(KeyEvent e) {
@@ -1182,7 +1182,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/**
 	 * Switch to spell casting with an already chosen spell.
-	 * 
+	 *
 	 * @param spell the chosen spell
 	 */
 	public void switchToSpellCastingState(RPObject spell) {
@@ -1190,10 +1190,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		this.ground.setNewMouseHandlerState(newState);
 		newState.setSpell(spell);
 	}
-	
+
 	/**
 	 * Find spell corresponding to a key.
-	 * 
+	 *
 	 * @param e key
 	 * @return spell, or <code>null</code> if the key does not match any spell
 	 */

@@ -21,12 +21,12 @@ import org.junit.Test;
  */
 public class TextBoxFactoryTest {
 	private static TextBoxFactory factory;
-	
+
 	@BeforeClass
 	public static void setup() {
 		factory = new TextBoxFactory();
 	}
-	
+
 	/**
 	 * Short messages.
 	 */
@@ -35,29 +35,29 @@ public class TextBoxFactoryTest {
 		factory.createTextBox("short", 240, Color.black, Color.black, false);
 		factory.createTextBox("dumdidum blah", 240, Color.black, Color.black, false);
 	}
-	
+
 	/**
 	 * Basic long word tests.
 	 */
 	@Test
 	public void testLongWords() {
-		factory.createTextBox("someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway", 
+		factory.createTextBox("someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway",
 				240, Color.black, Color.black, false);
-		factory.createTextBox("prefix someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway", 
+		factory.createTextBox("prefix someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway",
 				240, Color.black, Color.black, false);
-		factory.createTextBox("someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway postfix", 
+		factory.createTextBox("someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway postfix",
 				240, Color.black, Color.black, false);
-		factory.createTextBox("prefix someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway postfix", 
+		factory.createTextBox("prefix someridiculouslylongsentencethatisnotproperlysplittowordsbutthetokenizershouldnotchrashanyway postfix",
 				240, Color.black, Color.black, false);
 	}
-	
+
 	/**
 	 * Pathological outputs that have at least at some point of time crashed the tokenizer.
 	 * Add new finds here, unless they can be reasonably categorized otherwise.
 	 */
 	@Test
 	public void testCrashes() {
-		// Old /listquests output 
+		// Old /listquests output
 		String msg = "[01:30] Open Quests: DailyMonsterQuestMeetHackimSevenCherubsStuffForVulcanusSuntanCreamForZaraToysCollector\nCompleted Quests: ArmorForDagobertCampfireHerbsForCarmenIntroducePlayersLearnAboutKarmaLearnAboutOrbsMeetHayunnMeetIoPlinksToyReverseArrowZooFood";
 		factory.createTextBox(msg, 240, Color.black, Color.black, false);
 		// Long strings in /alterquest

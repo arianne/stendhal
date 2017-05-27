@@ -15,23 +15,23 @@ package games.stendhal.server.actions.admin;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class AlterQuestActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+
 		Log4J.init();
 		MockStendlRPWorld.get();
 		AlterQuestAction.register();
@@ -93,10 +93,10 @@ public class AlterQuestActionTest {
 		action.put("type", "alterquest");
 		action.put("target", "bob");
 		action.put("name", "questname");
-		
+
 		CommandCenter.execute(pl, action);
 		assertFalse(bob.hasQuest("questname"));
-	
+
 	}
 	@Test
 	public void alterQuestActionCastersLeveltoLow() throws Exception {

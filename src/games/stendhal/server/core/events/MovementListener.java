@@ -13,10 +13,10 @@
 package games.stendhal.server.core.events;
 
 
+import java.awt.geom.Rectangle2D;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
-
-import java.awt.geom.Rectangle2D;
 
 /**
  * Objects that monitor being moved over an area in a zone.
@@ -60,8 +60,8 @@ public interface MovementListener {
 	 *
 	 */
 	void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY);
-	
-	
+
+
 	/**
 	 * Invoked before an entity moves while over the object area.
 	 *

@@ -11,20 +11,19 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
-import games.stendhal.common.CRC;
-import games.stendhal.server.core.rp.DaylightUpdater;
-import games.stendhal.server.core.rp.WeatherUpdater;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.CRC;
+import games.stendhal.server.core.rp.DaylightUpdater;
+import games.stendhal.server.core.rp.WeatherUpdater;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
-
-import org.apache.log4j.Logger;
 
 /**
  * A container for arbitrary map attributes.
@@ -112,10 +111,10 @@ public class ZoneAttributes {
 		}
 		invalidate();
 	}
-	
+
 	/**
 	 * Get the current value of an attribute.
-	 * 
+	 *
 	 * @param key attribute key
 	 * @return attribute value, or <code>null</code> if the attribute is not set
 	 */

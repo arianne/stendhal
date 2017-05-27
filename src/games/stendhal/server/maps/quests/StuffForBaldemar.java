@@ -37,12 +37,12 @@ import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: The mithril shield forging.
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Baldemar, mithrilbourgh elite wizard, will forge a mithril shield.
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Baldemar tells you about shield.
@@ -52,15 +52,15 @@ import games.stendhal.server.util.TimeUtil;
  * <li> Baldemar checks if you have ever killed a black giant alone, or not
  * <li> Baldemar forges the shield for you
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> mithril shield
  * <li> 95000 XP
  * <li> some karma (25)
  * </ul>
- * 
- * 
+ *
+ *
  * REPETITIONS:
  * <ul>
  * <li> None.
@@ -202,8 +202,8 @@ public class StuffForBaldemar extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					
-					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+
+					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 					final long timeRemaining = Long.parseLong(tokens[1]) + delay
 							- System.currentTimeMillis();
 
@@ -226,7 +226,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			});
 
 		npc.add(ConversationStates.ATTENDING,
-			Arrays.asList("forge", "missing"), 
+			Arrays.asList("forge", "missing"),
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start;"),
 			ConversationStates.ATTENDING,
 			null,

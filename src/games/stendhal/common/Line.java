@@ -24,7 +24,7 @@ public class Line {
 	 */
 	public abstract static class Action {
 
-		/** 
+		/**
 		 * callback for point (x, y)
 		 *
 		 * @param x x-coordinate
@@ -32,7 +32,7 @@ public class Line {
 		 */
 		public abstract void fire(int x, int y);
 	}
-	
+
 	/**
 	 * Class for holding data common to the line calculations.
 	 */
@@ -40,7 +40,7 @@ public class Line {
 		final int deltay;
 		final int deltax;
 		final int steps;
-		
+
 		State(int x1, int y1, int x2, int y2) {
 			deltay = y2 - y1;
 			deltax = x2 - x1;
@@ -85,7 +85,7 @@ public class Line {
 
 		renderLine(x1, y1, state, action);
 	}
-	
+
 	private static void renderLine(int x1, int y1, State state, Action action) {
 		int x = x1;
 		int y = y1;

@@ -70,7 +70,7 @@ public class SickleingHalfelfNPC implements ZoneConfigurator {
 				addReply("sickle","A usefull farming tool indeed, like a scythe also is. To some blacksmith you should ask to if he offers any such sharp utensil.");
 				addGoodbye("In bocca al lupo...");
 			}
-	
+
 		};
 
 		npc.setEntityClass("sickleinghalfelfnpc");

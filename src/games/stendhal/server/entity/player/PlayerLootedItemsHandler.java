@@ -5,33 +5,33 @@ import java.util.Map;
 
 /**
  * Handling for counting looted items of a player
- * 
+ *
  * @author madmetzger
  */
 public class PlayerLootedItemsHandler {
-	
+
 	/** name of the map where the items and the corresponding numbers are stored */
 	private static final String LOOTED_ITEMS = "looted_items";
-	
+
 	private final Player player;
-	
+
 	private final Map<String, Integer> looted;
-	
+
 	private final Map<String, Integer> produced;
-	
+
 	private final Map<String, Integer> obtained;
-	
+
 	private final Map<String, Integer> mined;
-	
+
 	private final Map<String, Integer> harvested;
-	
+
 	private final Map<String, Integer> bought;
-	
+
 	private final Map<String, Integer> sold;
-	
+
 	/**
 	 * Create a new PlayerLootedItemsHandler for a player
-	 * 
+	 *
 	 * @param player
 	 */
 	public PlayerLootedItemsHandler(Player player) {
@@ -63,14 +63,14 @@ public class PlayerLootedItemsHandler {
 				if(item.contains("sold.")) {
 					bought.put(item.replace("sold.", ""), player.getInt(LOOTED_ITEMS, item));
 				}
-				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.") 
+				if(!item.contains("produced.") && !item.contains("obtained.") && !item.contains("mined.")
 						&& !item.contains("harvested.") && !item.contains("bought.") && !item.contains("sold.")) {
 					looted.put(item, player.getInt(LOOTED_ITEMS, item));
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets the how often this PlayerLootedItemsHandler's player has looted the given item
 	 * @param item the item name
@@ -83,10 +83,10 @@ public class PlayerLootedItemsHandler {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Retrieve the amount of much an item was produced by a player
-	 * 
+	 *
 	 * @param item
 	 * @return the produced quantity
 	 */
@@ -96,10 +96,10 @@ public class PlayerLootedItemsHandler {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Retrieve the amount of much an item was harvested by a player
-	 * 
+	 *
 	 * @param item
 	 * @return the harvested quantity
 	 */
@@ -109,10 +109,10 @@ public class PlayerLootedItemsHandler {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Retrieve the amount of much an item was bought by a player
-	 * 
+	 *
 	 * @param item
 	 * @return the harvested quantity
 	 */
@@ -122,10 +122,10 @@ public class PlayerLootedItemsHandler {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Retrieve the amount of much an item was mined by a player
-	 * 
+	 *
 	 * @param item
 	 * @return the mined quantity
 	 */
@@ -135,7 +135,7 @@ public class PlayerLootedItemsHandler {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Increases the count of loots for the given item for this PlayerLootedItemsHandler's player
 	 * @param item the item name
@@ -147,7 +147,7 @@ public class PlayerLootedItemsHandler {
 
 	/**
 	 * Increases the count of producing for the given item for this PlayerLootedItemsHandler's player
-	 * 
+	 *
 	 * @param item the item name
 	 * @param count the amount to increase
 	 */
@@ -157,47 +157,47 @@ public class PlayerLootedItemsHandler {
 
 	/**
 	 * Increases the count of obtains for the given item for this PlayerLootedItemsHandler's player
-	 * 
+	 *
 	 * @param item the item name
 	 * @param count the amount to increase
 	 */
 	public void incObtainedForItem(String item, int count) {
 		handlePrefixedCounting(item, count, "obtained.", obtained);
 	}
-	
+
 	/**
 	 * Increases the quantity an item was mined from a source like gold, coal
-	 * 
+	 *
 	 * @param item
 	 * @param count
 	 */
 	public void incMinedForItem(String item, int count) {
 		handlePrefixedCounting(item, count, "mined.", mined);
 	}
-	
+
 	/**
 	 * Increases the quantity an item was harvested
-	 * 
+	 *
 	 * @param item
 	 * @param count
 	 */
 	public void incHarvestedForItem(String item, int count) {
 		handlePrefixedCounting(item, count, "harvested.", harvested);
 	}
-	
+
 	/**
 	 * Increases the quantity an item was bought
-	 * 
+	 *
 	 * @param item
 	 * @param count
 	 */
 	public void incBoughtForItem(String item, int count) {
 		handlePrefixedCounting(item, count, "bought.", bought);
 	}
-	
+
 	/**
 	 * Increases the quantity an item was sold
-	 * 
+	 *
 	 * @param item
 	 * @param count
 	 */
@@ -207,7 +207,7 @@ public class PlayerLootedItemsHandler {
 
 	/**
 	 * handles redundant storage of counted items in player object and a separate map
-	 * 
+	 *
 	 * @param item the item to count
 	 * @param count how much to increment
 	 * @param prefix the prefix to use for the map withing the player object

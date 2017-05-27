@@ -18,7 +18,7 @@ import marauroa.common.game.RPObject;
 
 /**
  * View of a lookable entity
- * 
+ *
  * @author madmetzger
  * @param <T> entity type
  */

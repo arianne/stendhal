@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Level;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -34,10 +38,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.semos.city.SheepBuyerNPC.SheepBuyerSpeakerNPC;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Sheep Growing for Nishiya
@@ -296,13 +296,13 @@ public class SheepGrowing extends AbstractQuest {
                 ConversationStates.IDLE,
                 "He wanted to send me one a while ago...",
                 null);
-        
+
 
 		npc.add(
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 						new QuestInStateCondition(QUEST_SLOT, "handed_over"),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you for bringing me Nishiyas sheep! My friend was really happy about it.", null);
     }
 

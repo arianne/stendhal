@@ -25,7 +25,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The NPC.
@@ -48,17 +48,17 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 
 	/**
 	 * Create an NPC owned chest.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return An NPCOwnedChest.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see NPCOwnedChest
 	 */
 	@Override

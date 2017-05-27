@@ -18,8 +18,8 @@ import games.stendhal.common.Direction;
 
 /**
  * The 2D view of an animated entity.
- * 
- * @param <T> entity type 
+ *
+ * @param <T> entity type
  */
 abstract class ActiveEntity2DView<T extends ActiveEntity> extends StateEntity2DView<T> {
 
@@ -30,10 +30,10 @@ abstract class ActiveEntity2DView<T extends ActiveEntity> extends StateEntity2DV
 
 	/**
 	 * Get the appropriate named state for a direction.
-	 * 
+	 *
 	 * @param direction
 	 *            The direction.
-	 * 
+	 *
 	 * @return A named state.
 	 */
 	private Direction getDirectionState(final Direction direction) {
@@ -49,7 +49,7 @@ abstract class ActiveEntity2DView<T extends ActiveEntity> extends StateEntity2DV
 
 	/**
 	 * Get the current model state.
-	 * 
+	 *
 	 * @param entity
 	 * @return The model state.
 	 */
@@ -64,7 +64,7 @@ abstract class ActiveEntity2DView<T extends ActiveEntity> extends StateEntity2DV
 
 	/**
 	 * Determine if this view is currently animatable.
-	 * 
+	 *
 	 * @return <code>true</code> if animating enabled.
 	 */
 	@Override

@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -20,11 +25,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /** Factory for cargo worker on Athor Ferry. */
 
@@ -42,9 +42,9 @@ public class CookNPC implements ZoneConfigurator  {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-		        // to the oven 
+		        // to the oven
 				nodes.add(new Node(27,28));
-				// to the table 
+				// to the table
 				nodes.add(new Node(27,31));
 				// to the dining room
 				nodes.add(new Node(18,31));
@@ -88,7 +88,7 @@ public class CookNPC implements ZoneConfigurator  {
 			npc.setPosition(27, 28);
 			npc.setEntityClass("tavernbarmaidnpc");
 			npc.setDescription ("Laura runs the galley on the ferry. Talk with her if you are hungry or thirsty.");
-			zone.add(npc);	
+			zone.add(npc);
 
 	}
 }

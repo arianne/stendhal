@@ -20,12 +20,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Log4J;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.apache.log4j.Logger;
 
 /**
  * Analyses login/logout events for suspicious activity.
@@ -87,7 +87,7 @@ public class LoginLogoutConsistencyCheck {
 	 */
 	public static void main(final String[] args) {
 		Log4J.init();
-		new DatabaseFactory().initializeDatabase();	
+		new DatabaseFactory().initializeDatabase();
 		String timedate = "1900-01-01";
 		if (args.length > 0) {
 			timedate = args[0];

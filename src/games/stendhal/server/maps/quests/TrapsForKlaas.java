@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -34,24 +39,19 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Traps for Klaas
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Klaas (the Seaman that takes care of Athor's ferry's cargo)</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Klaas asks you to bring him rodent traps.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>1000 XP</li>
@@ -60,7 +60,7 @@ import java.util.List;
  * <li>Can sell rodent traps to Klaas</li>
  * <li>Karma: 10</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>Every 24 hours</li>
@@ -69,12 +69,12 @@ import java.util.List;
 public class TrapsForKlaas extends AbstractQuest {
 
 	public final int REQUIRED_TRAPS = 20;
-	
+
     // Time player must wait to repeat quest (1 day)
     private static final int WAIT_TIME = 60 * 24;
-    
+
 	private static final String QUEST_SLOT = "traps_for_klaas";
-	
+
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -101,18 +101,18 @@ public class TrapsForKlaas extends AbstractQuest {
 
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Klaas");
-		
+
 		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
-		        ConversationPhrases.QUEST_MESSAGES, 
+		        ConversationPhrases.QUEST_MESSAGES,
 		        new AndCondition(
 		                new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
 		                new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)
 		                ),
-		        ConversationStates.QUEST_OFFERED, 
+		        ConversationStates.QUEST_OFFERED,
 		        "The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
 		        null);
-		
+
         // Player requests quest before wait period ended
         npc.add(ConversationStates.ATTENDING,
                 ConversationPhrases.QUEST_MESSAGES,
@@ -120,7 +120,7 @@ public class TrapsForKlaas extends AbstractQuest {
                 ConversationStates.ATTENDING,
                 null,
                 new SayTimeRemainingAction(QUEST_SLOT, 1, WAIT_TIME, "Thanks for the traps. Now the food will be safe. But I may need your help again in"));
-        
+
 		// Player asks for quest after already started
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -128,7 +128,7 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"I believe I already asked you to get me " + REQUIRED_TRAPS + " rodent traps.",
 				null);
-		
+
 		// Player accepts quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -137,7 +137,7 @@ public class TrapsForKlaas extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Thanks, I need you to bring me bring me " + REQUIRED_TRAPS + " #rodent #traps. Please hurry! We can't afford to lose anymore food.",
 			new SetQuestAction(QUEST_SLOT, "start"));
-		
+
 		// Player rejects quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -147,7 +147,7 @@ public class TrapsForKlaas extends AbstractQuest {
 			ConversationStates.IDLE,
 			"Don't waste my time. I've got to protect the cargo.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
-		
+
 		// Player asks about rodent traps
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -156,12 +156,12 @@ public class TrapsForKlaas extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
 			null);
-		
+
 	}
 
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Klaas");
-		
+
 		// Reward
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("rodent trap", 20));
@@ -172,27 +172,27 @@ public class TrapsForKlaas extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(10));
         reward.add(new SetQuestAction(QUEST_SLOT, "done"));
         reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-		
+
 		// Player has all 20 traps
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("rodent trap")),
-				ConversationStates.QUEST_ITEM_BROUGHT, 
+				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Did you bring any traps?",
 				null);
-		
+
 		// Player is not carrying any traps
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap"))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"I could really use those #traps. How can I help you?",
 			null);
-		
+
 		// Player is not carrying 20 traps
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
@@ -209,7 +209,7 @@ public class TrapsForKlaas extends AbstractQuest {
 				// Not mentioning apothecary until Antivenom Ring quest is ready
 				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.",// I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
 				new MultipleActions(reward));
-		
+
         // Player says did not bring items
         npc.add(
             ConversationStates.QUEST_ITEM_BROUGHT,
@@ -218,7 +218,7 @@ public class TrapsForKlaas extends AbstractQuest {
             ConversationStates.ATTENDING,
             "Please hurry! I just found another box of food that's been chewed through.",
             null);
-        
+
 		// Player asks about the apothecary
 		/* Disabling until Antivenom Ring quest is ready
 		npc.add(
@@ -228,7 +228,7 @@ public class TrapsForKlaas extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know.",
 			null);
-		
+
 		// Player has lost note
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -262,10 +262,10 @@ public class TrapsForKlaas extends AbstractQuest {
 	}
 
 	public String getTitle() {
-		
+
 		return "TrapsForKlaas";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
@@ -275,7 +275,7 @@ public class TrapsForKlaas extends AbstractQuest {
 	public String getRegion() {
 		return Region.ATHOR_ISLAND;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Klaas";

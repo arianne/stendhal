@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.bot.textclient;
 
-import games.stendhal.bot.core.StandardClientFramework;
-import games.stendhal.server.util.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.server.util.StringUtils;
 
 public class TextClient {
 

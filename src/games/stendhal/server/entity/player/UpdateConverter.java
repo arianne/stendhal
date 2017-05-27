@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.constants.Testing;
@@ -23,17 +30,9 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * converts player objects to the most recent version by adding attributes,
@@ -553,7 +552,7 @@ public abstract class UpdateConverter {
 			}
 		}
 	}
-	
+
 	// FIXME: Remove?
 	 // update the name of a quest to the new spelling
 //	private static void renameQuestSlot(Player player, String oldName, String newName) {

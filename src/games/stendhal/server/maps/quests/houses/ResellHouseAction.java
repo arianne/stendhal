@@ -1,7 +1,9 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.maps.quests.houses;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -10,8 +12,6 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.log4j.Logger;
 
 final class ResellHouseAction implements ChatAction {
 
@@ -37,18 +37,18 @@ final class ResellHouseAction implements ChatAction {
 
 		// we need to find out where this house is so we know how much to refund them
 		final String claimedHouse = player.getQuest(questSlot);
-	
+
 		try {
-			
+
 			final int id = Integer.parseInt(claimedHouse);
 			final HousePortal portal = HouseUtilities.getHousePortal(id);
-			
+
 			final int refund = (cost * depreciationPercentage) / 100 - houseTax.getTaxDebt(portal);
 
 			final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 			money.setQuantity(refund);
 			player.equipOrPutOnGround(money);
-	
+
 			portal.changeLock();
 			portal.setOwner("");
 			// the player has sold the house. clear the slot

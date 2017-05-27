@@ -23,7 +23,7 @@ import games.stendhal.common.NotificationType;
  * @author madmetzger
  */
 class BareBonesBrowserLaunchCommand implements SlashAction{
-	
+
 	private final String urlToOpen;
 
 	/**
@@ -37,7 +37,7 @@ class BareBonesBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Opens an URL with the browser
-	 * 
+	 *
 	 * @param params ignored
 	 * @param remainder ignored
 	 * @return <code>true</code>
@@ -47,15 +47,15 @@ class BareBonesBrowserLaunchCommand implements SlashAction{
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 				"Trying to open #" + urlToOpen + " in your browser.",
 		NotificationType.CLIENT));
-	
+
 		BareBonesBrowserLaunch.openURL(urlToOpen);
-	
+
 		return true;
 	}
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -65,7 +65,7 @@ class BareBonesBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

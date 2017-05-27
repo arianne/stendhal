@@ -43,8 +43,8 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 
 	/**
 	 * Register NPC names for cleanup in tearDown().
-	 * @param zoneName 
-	 * 
+	 * @param zoneName
+	 *
 	 * @param npcNames
 	 */
 	protected ZonePlayerAndNPCTestImpl(final String zoneName, final String... npcNames) {
@@ -83,7 +83,7 @@ public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 
 	/**
 	 * Return the SpeakerNPC of the given name.
-	 * 
+	 *
 	 * @param npcName
 	 * @return SpeakerNPC
 	 */

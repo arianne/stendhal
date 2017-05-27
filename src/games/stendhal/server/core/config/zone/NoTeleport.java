@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
-import java.util.Map;
-
 /**
  * Semos Jail - Level -3.
- * 
+ *
  * @author hendrik
  */
 public class NoTeleport implements ZoneConfigurator {
@@ -36,7 +36,7 @@ public class NoTeleport implements ZoneConfigurator {
 			int y = Integer.parseInt(attributes.get("y"));
 			int width = Integer.parseInt(attributes.get("width"));
 			int height = Integer.parseInt(attributes.get("height"));
-			
+
 			zone.disAllowTeleport(x, y, width, height);
 		} else {
 			zone.disAllowTeleport();

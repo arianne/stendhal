@@ -1,6 +1,12 @@
 // $Id$
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -12,19 +18,12 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
-
-import org.apache.log4j.Logger;
 
 /**
  * teleports the SpeakerNPC to a random location on the outside world and causes
  * it to walk a random path
- * 
+ *
  * @author hendrik
  */
 public class TeleporterBehaviour implements TurnListener {
@@ -38,16 +37,16 @@ public class TeleporterBehaviour implements TurnListener {
 	private final SpeakerNPC speakerNPC;
 	private final String zoneStartsWithLimiter;
 	private final String repeatedText;
-	
+
 	/**
 	 * Creates a new TeleporterBehaviour.
-	 * 
+	 *
 	 * @param speakerNPC
 	 *            SpeakerNPC
 	 * @param repeatedText
 	 *            text to repeat
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones, 
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones,
 			final String zoneStartsWithLimiter, final String repeatedText) {
 		this.speakerNPC = speakerNPC;
 		this.zoneStartsWithLimiter = zoneStartsWithLimiter;
@@ -82,13 +81,13 @@ public class TeleporterBehaviour implements TurnListener {
 
 	/**
 	 * Creates a new TeleporterBehaviour.
-	 * 
+	 *
 	 * @param speakerNPC
 	 *            SpeakerNPC
 	 * @param repeatedText
 	 *            text to repeat
 	 * @param useHighProbabilityZones
-	 *            true to make teleportation to a hand 
+	 *            true to make teleportation to a hand
 	 *            selected list of zones more likely
 	 */
 	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final List<String> setZones, final String zoneStartsWithLimiter, final String repeatedText, final boolean useHighProbabilityZones) {
@@ -101,7 +100,7 @@ public class TeleporterBehaviour implements TurnListener {
 	protected void doRegularBehaviour() {
 		speakerNPC.say(repeatedText);
 	}
-	
+
 	private void addHighProbability() {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (int i = 0; i < 10; i++) {
@@ -131,7 +130,7 @@ public class TeleporterBehaviour implements TurnListener {
 		badZones.add("0_fado_forest_s_e2");
 		badZones.add("0_semos_mountain_n_w4");
 		// the following have historically been very hard to find a path in
-		badZones.add("0_ados_city_n");	
+		badZones.add("0_ados_city_n");
 		badZones.add("0_ados_ocean_e");
 		badZones.add("0_athor_island_w");
 		badZones.add("0_nalwor_forest_n");

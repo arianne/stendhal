@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 
 /**
  * A base class for status effects
- * 
+ *
  * @author AntumDeluge
  */
 public abstract class Status implements Cloneable {

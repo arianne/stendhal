@@ -16,20 +16,20 @@ import java.util.Map;
 
 public class PositioningStrategyFactory {
 	private static final PositioningStrategy dual = new DualAttackPositioningStrategy();
-	
+
 	/**
 	 * Get positioning strategy.
-	 * 
+	 *
 	 * @param name name of the strategy
 	 * @param param parameters to the strategy, or empty string if none provided
-	 * 
+	 *
 	 * @return positioning strategy
 	 */
 	static final PositioningStrategy get(final String name, final String param) {
 		if ("dual attack".equals(name)) {
 			return dual;
 		}
-		
+
 		// Fall back to complete strategy implementations
 		Map<String, String> aiProfiles = new HashMap<String, String>();
 		aiProfiles.put(name, param);

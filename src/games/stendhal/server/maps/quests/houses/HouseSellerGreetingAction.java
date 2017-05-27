@@ -27,7 +27,7 @@ final class HouseSellerGreetingAction extends HouseChatAction implements ChatAct
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String reply = "";
-		
+
 		if (HouseUtilities.playerOwnsHouse(player)) {
 			reply = " At the cost of "
 				+ HouseChatAction.COST_OF_SPARE_KEY
@@ -37,8 +37,8 @@ final class HouseSellerGreetingAction extends HouseChatAction implements ChatAct
 			// the player has lost the house. clear the slot so that he can buy a new one if he wants
 			player.removeQuest(questslot);
 		}
-		
+
 		raiser.say("Hello, " + player.getTitle() + "." + reply);
 	}
-	
+
 }

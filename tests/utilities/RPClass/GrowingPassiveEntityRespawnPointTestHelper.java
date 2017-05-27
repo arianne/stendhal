@@ -28,7 +28,7 @@ public class GrowingPassiveEntityRespawnPointTestHelper {
 			GrowingPassiveEntityRespawnPoint.generateRPClass();
 		}
 	}
-	
+
 	@Test
 	public void testname() throws Exception {
 		generateRPClasses();

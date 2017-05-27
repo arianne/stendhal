@@ -15,38 +15,38 @@ package games.stendhal.server.core.config;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import games.stendhal.common.constants.Nature;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.transformer.SpellTransformer;
-import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
-import games.stendhal.server.entity.spell.Spell;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.transformer.SpellTransformer;
+import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
+import games.stendhal.server.entity.spell.Spell;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
+
 public class SpellGroupsXMLLoaderTest {
-	
+
 	@Before
 	public void setUp() {
 		MockStendlRPWorld.get();
 	}
-	
+
 	@After
 	public void tearDown() {
 		MockStendlRPWorld.reset();
 	}
-	
+
 	@Test
 	public void testLoad() throws URISyntaxException, SAXException, IOException {
 		SpellGroupsXMLLoader loader = new SpellGroupsXMLLoader(new URI("testspells.xml"));
@@ -83,7 +83,7 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(entity.getRate(),is(Integer.valueOf(1)));
 		assertThat(entity.getRegen(),is(Integer.valueOf(100)));
 		assertThat(entity.getClass().getName(), is("games.stendhal.server.entity.spell.HealingSpell"));
-		entity.setID(new ID(1, "some_zone"));	
+		entity.setID(new ID(1, "some_zone"));
 		RPObject object = new SpellTransformer().transform(entity);
 		assertThat(object, is((RPObject)entity));
 	}

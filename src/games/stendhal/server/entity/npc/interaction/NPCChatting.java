@@ -1,13 +1,13 @@
 package games.stendhal.server.entity.npc.interaction;
 
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 
 /**
@@ -18,24 +18,24 @@ public final class NPCChatting implements Observer, TurnListener {
 	private final SpeakerNPC first;
 	private final SpeakerNPC second;
 	private int count=0;
-	private final List<String> conversations; 
+	private final List<String> conversations;
 	final private Observer next;
 	final String explainations;
 
-	
+
 	/**
 	 * constructor
 	 * @param first - first npc (who strarting conversation)
 	 * @param second - second npc
-	 * @param conversations 
-	 * @param explainations 
+	 * @param conversations
+	 * @param explainations
 	 * @param n - observer n
 	 */
 	public NPCChatting(
-			SpeakerNPC first, 
-			SpeakerNPC second, 
-			List<String> conversations, 
-			String explainations, 
+			SpeakerNPC first,
+			SpeakerNPC second,
+			List<String> conversations,
+			String explainations,
 			Observer n) {
 		this.first=first;
 		this.second=second;
@@ -44,7 +44,7 @@ public final class NPCChatting implements Observer, TurnListener {
 		this.next=n;
 
 	}
-	
+
 	private void setupDialog() {
 		if(second.isTalking()) {
 			second.say("Sorry, "+second.getAttending().getName()+
@@ -56,7 +56,7 @@ public final class NPCChatting implements Observer, TurnListener {
 		second.stop();
 		onTurnReached(0);
 	}
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		first.clearPath();
@@ -86,6 +86,6 @@ public final class NPCChatting implements Observer, TurnListener {
 		TurnNotifier.get().dontNotify(this);
 		TurnNotifier.get().notifyInSeconds(8, this);
 	}
-}	
+}
 
 

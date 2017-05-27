@@ -5,9 +5,9 @@
  */
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
-
 import java.util.Map;
+
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 /**
  * Zone post-configuration.
@@ -15,7 +15,7 @@ import java.util.Map;
 public interface ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes

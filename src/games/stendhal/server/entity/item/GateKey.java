@@ -20,20 +20,20 @@ public class GateKey extends Item {
 	/**
 	 * Different color keys
 	 */
-	private static String[] imageNames = { 
-		"purple", 
-		"turquoise", 
+	private static String[] imageNames = {
+		"purple",
+		"turquoise",
 		"yellow",
-		"lime", 
-		"pink", 
-		"red", 
-		"orange", 
-		"navy", 
-		"brown", 
-		"green", 
+		"lime",
+		"pink",
+		"red",
+		"orange",
+		"navy",
+		"brown",
+		"green",
 		"grey",
 		"lilac" };
-	
+
 	/**
 	 * Used to indicate that the key never expires
 	 */
@@ -49,7 +49,7 @@ public class GateKey extends Item {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param key
 	 *            the key to be copied.
 	 */
@@ -60,7 +60,7 @@ public class GateKey extends Item {
 	/**
 	 * Sets the key to open the set lock identifier and to expire at the given
 	 * time.
-	 * 
+	 *
 	 * @param gateId The identifier to link with.
 	 * @param expirationTime time stamp
 	 */
@@ -71,7 +71,7 @@ public class GateKey extends Item {
 
 	/**
 	 * Checks if the key matches the given gate identifier.
-	 * 
+	 *
 	 * @param gateId
 	 *            Identifier of the gate
 	 * @return true if the identifiers match, false otherwise

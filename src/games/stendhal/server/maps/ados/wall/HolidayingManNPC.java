@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.wall;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates a man NPC to help populate Ados
@@ -59,7 +59,7 @@ public class HolidayingManNPC implements ZoneConfigurator {
 				addGreeting("Hi hi.");
 				addHelp("The mayor of this town is really nice. I visited him with my wife to get some help.");
 				addOffer("What? I'm on holidays!");
-				addQuest("Ehm... I don't need help at the moment, but thanks."); 
+				addQuest("Ehm... I don't need help at the moment, but thanks.");
 				addJob("No no, I'm on holiday here with my wife Alice.");
 				addGoodbye("See you, and take care because of the lions beyond the wall.");
 

@@ -16,7 +16,7 @@ import games.stendhal.server.entity.mapstuff.chest.Chest;
 
 /**
  * A slot of a chest which is only accessible, if the chest is open.
- * 
+ *
  * @author hendrik
  */
 public class PublicChestSlot extends ChestSlot {

@@ -44,7 +44,7 @@ public class ListRaids extends ScriptImpl {
 					return o1.getSimpleName().compareTo(o2.getSimpleName());
 				}
 			});
-			
+
 			for (final Class<?> clazz : dir) {
 				// CreateRaid is abstract and useless for users by itself.
 				if (CreateRaid.class.isAssignableFrom(clazz) && (CreateRaid.class != clazz)) {
@@ -62,7 +62,7 @@ public class ListRaids extends ScriptImpl {
 
 	/**
 	 * Fetch classes of available scripts.
-	 * 
+	 *
 	 * @param pckgname the package name of scripts
 	 * @return list of script classes
 	 * @throws ClassNotFoundException if getting the class loader or reading the

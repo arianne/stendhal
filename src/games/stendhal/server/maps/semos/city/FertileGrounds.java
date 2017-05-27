@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
-import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.mapstuff.area.Allotment;
-
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.area.Allotment;
 
 /**
  * Configures ground to be fertile in zone. usage in zones.xml.
@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
  * &lt;parameter name="name"&gt;allotmentName&lt;/parameter&gt;
  * <p>
  *&lt;/configurator&gt;
- * 
+ *
  */
 public class FertileGrounds implements ZoneConfigurator {
 
@@ -52,11 +52,11 @@ public class FertileGrounds implements ZoneConfigurator {
 					final Allotment all = new Allotment();
 					all.setPosition(Integer.parseInt(attributes.get("x")), Integer.parseInt(attributes.get("y")));
 					all.setSize(Integer.parseInt(attributes.get("width")), Integer.parseInt(attributes.get("height")));
-					
+
 					if (attributes.containsKey("name")) {
 						all.setName(attributes.get("name"));
 					}
-					
+
 					all.hide();
 					zone.add(all);
 				} catch (final NumberFormatException e) {

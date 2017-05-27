@@ -11,14 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.actions.SlashActionRepository;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import games.stendhal.client.actions.SlashActionRepository;
+
 class InviteBuddyAction implements ActionListener {
 	private final String buddyName;
-	
+
 	InviteBuddyAction(String buddyName) {
 		if (buddyName.indexOf(' ') > -1) {
 			this.buddyName = "'" + buddyName + "'";

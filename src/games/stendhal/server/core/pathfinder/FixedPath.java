@@ -6,14 +6,14 @@
 
 package games.stendhal.server.core.pathfinder;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 //
 //
 
 import games.stendhal.server.entity.ActiveEntity;
-
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * A path using a fixed route.
@@ -48,7 +48,7 @@ public class FixedPath {
 	/**
 	 * Create a fixed path from a list. NOTE: The list is not copied, and should
 	 * not be modified afterward.
-	 * 
+	 *
 	 * @param nodes
 	 *            A list of nodes to follow.
 	 * @param loop
@@ -74,7 +74,7 @@ public class FixedPath {
 
 	/**
 	 * Add a node to the path.
-	 * 
+	 *
 	 * @param node
 	 *            The node to add.
 	 */
@@ -88,7 +88,7 @@ public class FixedPath {
 
 	/**
 	 * Get the current goal.
-	 * 
+	 *
 	 * @return The current goal to reach, or <code>null</code>.
 	 */
 	public Node getCurrentGoal() {
@@ -98,7 +98,7 @@ public class FixedPath {
 	/**
 	 * Get the list of nodes that make up the path. NOTE: The list is not
 	 * copied, and should not be modified.
-	 * 
+	 *
 	 * @return The node list.
 	 */
 	public List<Node> getNodeList() {
@@ -107,7 +107,7 @@ public class FixedPath {
 
 	/**
 	 * Get the array of nodes that make up the path.
-	 * 
+	 *
 	 * @return The nodes.
 	 */
 	public Node[] getNodes() {
@@ -116,7 +116,7 @@ public class FixedPath {
 
 	/**
 	 * Determine if the path is an infinite loop.
-	 * 
+	 *
 	 * @return <code>true</code> if the path loops when the last point is
 	 *         reached.
 	 */
@@ -127,10 +127,10 @@ public class FixedPath {
 	/**
 	 * Follow this path. This will face the entity into the proper direction to
 	 * reach it's next path goal.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to direct along the path.
-	 * 
+	 *
 	 * @return <code>true</code> if something to follow, <code>false</code>
 	 *         if complete.
 	 */
@@ -178,7 +178,7 @@ public class FixedPath {
 
 	/**
 	 * Get the final destination point.
-	 * 
+	 *
 	 * @return The destination node, or <code>null</code> if there is none
 	 *         (i.e. no path, or unbound/infinite movement).
 	 */
@@ -193,7 +193,7 @@ public class FixedPath {
 
 	/**
 	 * Determine if the path has finished.
-	 * 
+	 *
 	 * @return <code>true</code> if there is no more path to follow.
 	 */
 
@@ -207,7 +207,7 @@ public class FixedPath {
 
 	/**
 	 * Get the string representation.
-	 * 
+	 *
 	 * @return The string representation.
 	 */
 	@Override

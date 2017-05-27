@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.marriage;
 
+import java.awt.Rectangle;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.parser.ExpressionType;
@@ -28,8 +30,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
-
-import java.awt.Rectangle;
 
 class Honeymoon {
 	private final NPCList npcs = SingletonRepository.getNPCList();
@@ -59,12 +59,12 @@ class Honeymoon {
                         husband = player;
                         partnerName = husband.getQuest(marriage.getSpouseQuestSlot());
                         wife = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
-                        
+
 						if (!(player.hasQuest(marriage.getQuestSlot())) || !("just_married".equals(player.getQuest(marriage.getQuestSlot())))) {
 							// person is not just married
 							npc.say("Sorry, our honeymoon suites are only available for just married customers.");
-							npc.setCurrentState(ConversationStates.ATTENDING);						
-						} else if (wife == null) { 
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else if (wife == null) {
 							//wife is not online
                             npc.say("Come back when " + partnerName + " is with you - you're meant to have your honeymoon together!");
                             npc.setCurrentState(ConversationStates.IDLE);
@@ -76,7 +76,7 @@ class Honeymoon {
                         } else if (!hotelReception.contains(wife)) {
                         	//  wife has not bothered to come to reception desk
                             npc.say("Could you get " + partnerName + " to come to the reception desk, please. Then please read our catalogue here and tell me the room number that you would like.");
-                        }  else { 
+                        }  else {
                         	//wife and husband fulfill all conditions
 							npc.say("How lovely! Please read our catalogue here and tell me the room number that you would like.");
 						}
@@ -113,11 +113,11 @@ class Honeymoon {
                             final StackableItem invite2 = (StackableItem) SingletonRepository.getEntityManager().getItem(
                                                                                                                   "invitation scroll");
                             invite2.setQuantity(1);
-                            // 
+                            //
 							invite1.setInfoString("honeymoon," + partnerName);
 							invite2.setInfoString("honeymoon," + husband.getTitle());
 							if (wife.equipToInventoryOnly(invite1) &&  husband.equipToInventoryOnly(invite2)) {
-								npc.say("Great choice! I will arrange that now."); 
+								npc.say("Great choice! I will arrange that now.");
 								husband.setQuest(marriage.getQuestSlot(), "done");
 								wife.setQuest(marriage.getQuestSlot(), "done");
 								wife.teleport(zone, 5, 5, Direction.DOWN, player);

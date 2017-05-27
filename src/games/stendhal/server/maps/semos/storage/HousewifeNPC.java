@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.storage;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class HousewifeNPC implements ZoneConfigurator {
 	/**
@@ -43,7 +43,7 @@ public class HousewifeNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(4, 12)); 
+				nodes.add(new Node(4, 12));
 				nodes.add(new Node(6, 12));
 				nodes.add(new Node(6, 13));
 				nodes.add(new Node(15, 13));

@@ -13,12 +13,13 @@
 package games.stendhal.server.core.rp.achievement.condition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 
 /**
  * Was a quest with this prefix completed?
@@ -29,7 +30,7 @@ public class QuestWithPrefixCompletedCondition implements ChatCondition {
 
 	/**
 	 * Creates a new QuestWithPrefixCompletedCondition.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot
 	 */

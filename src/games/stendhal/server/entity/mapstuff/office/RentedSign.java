@@ -16,9 +16,9 @@ import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
 
 
 /**
@@ -53,9 +53,9 @@ public class RentedSign extends Sign implements StorableEntity {
 	}
 
 	/**
-	 * Creates a RentedSign based on an existing RPObject. This is just for loading 
+	 * Creates a RentedSign based on an existing RPObject. This is just for loading
 	 * a sign from the database, use the other constructors.
-	 * @param rpobject 
+	 * @param rpobject
 	 */
 	public RentedSign(final RPObject rpobject) {
 	    super(rpobject);
@@ -91,5 +91,5 @@ public class RentedSign extends Sign implements StorableEntity {
 		text = text + "\nThis sign was rented by " + get(RENTER) + " " + TimeUtil.approxTimeUntil(seconds) + " ago.";
 		return text;
 	}
-	
+
 }

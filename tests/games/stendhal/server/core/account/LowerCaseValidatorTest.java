@@ -39,12 +39,12 @@ public class LowerCaseValidatorTest {
 		assertNull(lcv.validate());
 
 		// Note: To successfully pass the following tests, Eclipse's file encoding
-		// must be set to "UTF-8". 
+		// must be set to "UTF-8".
 		// german Umlaut "Ue"
-		lcv = new LowerCaseValidator("Ü");	
+		lcv = new LowerCaseValidator("Ü");
 		assertEquals(Result.FAILED_INVALID_CHARACTER_USED, lcv.validate());
 		// german Umlaut "ue"
-		lcv = new LowerCaseValidator("ü");	
+		lcv = new LowerCaseValidator("ü");
 		assertNull(lcv.validate());
 	}
 

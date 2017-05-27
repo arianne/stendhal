@@ -1,12 +1,12 @@
 package games.stendhal.server.core.rp.achievement.factory;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.PlayerVisitedZonesCondition;
 import games.stendhal.server.entity.npc.condition.PlayerVisitedZonesInRegionCondition;
-
-import java.util.Collection;
-import java.util.LinkedList;
 /**
  * Factory for zone achievements
  *

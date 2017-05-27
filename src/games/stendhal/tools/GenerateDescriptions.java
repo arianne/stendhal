@@ -11,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.tools;
 
+import java.net.URI;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
-
-import java.net.URI;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Print creature and item data in a format usable for translations.
@@ -59,7 +59,7 @@ public class GenerateDescriptions {
 			System.out.println(describe(item.getDescription(), item.getItemName()));
 		}
 	}
-	
+
 	private static String describe(String desc, String name) {
 		if (desc == null || desc.trim().isEmpty()) {
 			// The default description

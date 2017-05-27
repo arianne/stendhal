@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.MineTownRevivalWeeks;
 
-import java.util.List;
-
 /**
  * Starts or stops the Mine Town Revival Weeks.
- * 
+ *
  * information about semos.xml changes at the bottom of the script
  * @author hendrik
  */
@@ -44,7 +44,7 @@ public class MineTown extends ScriptImpl {
 
 	/**
 	 * Starts the Mine Town Revival Weeks.
-	 * 
+	 *
 	 * @param admin adminstrator running the script
 	 */
 	private void startSemosMineTowns(Player admin) {
@@ -57,7 +57,7 @@ public class MineTown extends ScriptImpl {
 
 	/**
 	 * Ends the Mine Town Revival Weeks.
-	 * 
+	 *
 	 * @param admin adminstrator running the script
 	 */
 	private void stopSemosMineTowns(Player admin) {
@@ -86,9 +86,9 @@ public class MineTown extends ScriptImpl {
 
 // Wooden arch at:
 // x="94" y="118", x="95" y="119", x="96" y="119"
-// <attribute name="text">Welcome to the Mine Town Revival Weeks xxxx!</attribute> 
+// <attribute name="text">Welcome to the Mine Town Revival Weeks xxxx!</attribute>
 
-// The Semos city_halloween.tmx map 
+// The Semos city_halloween.tmx map
 // Banners at:
 // x="53" y="3", x="14" y="4", x="16" y="48", x="58" y="49"
 // <attribute name="text">#Mine #Town #Revival #Weeks #xxxx! Enjoy the #x #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town!</attribute>

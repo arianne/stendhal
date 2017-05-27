@@ -11,12 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-
-import org.apache.log4j.Logger;
 
 /**
  * An ItemChangeGuardCreature is a creature that is responsible for guarding a
@@ -35,7 +35,7 @@ public class ItemChangeGuardCreature extends Creature {
 
 	/**
 	 * Creates a ItemGuardCreature.
-	 * 
+	 *
 	 * @param copy
 	 *            base creature
 	 * @param oldItemType

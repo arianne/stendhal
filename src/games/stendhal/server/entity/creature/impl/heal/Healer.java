@@ -37,7 +37,7 @@ class Healer implements HealerBehavior {
 				&& (creature.getHP() > 0)) {
 			creature.heal(amount);
 		}
-		
+
 	}
 
 }

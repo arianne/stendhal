@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Outfits;
 import games.stendhal.common.Rand;
-
-import org.apache.log4j.Logger;
 /**
  * A data structure that represents the outfit of an RPEntity. This RPEntity can
  * either be an NPC which uses the outfit sprite system, or of a player.
@@ -54,7 +54,7 @@ public class Outfit {
 
 	/** The body index, as a value between 0 and 99, or null. */
 	private final Integer body;
-	
+
 	/** The eyes index, as a value between 0 and 99, or null. */
 	private Integer eyes;
 
@@ -83,7 +83,7 @@ public class Outfit {
 	 *            The index of the dress style, or null
 	 * @param body
 	 *            The index of the body style, or null
-	 * 
+	 *
 	 * TODO: Remove when new outfit system implemented.
 	 */
 	public Outfit(final Integer detail, final Integer hair, final Integer head,
@@ -120,7 +120,7 @@ public class Outfit {
 			final Integer dress, final Integer body, final Integer mouth,
 			final Integer eyes) {
 		this(detail, hair, head, dress, body);
-		
+
 		this.mouth = mouth;
 		this.eyes = eyes;
 	}
@@ -134,7 +134,7 @@ public class Outfit {
 	 *            then detail.
 	 */
 	public Outfit(final int code) {
-		
+
 		this.body = (code % 100);
 
 		this.dress = (code / 100 % 100);
@@ -144,21 +144,21 @@ public class Outfit {
 		this.hair = (int) (code / Math.pow(100, 3) % 100);
 
 		this.detail = (int) (code / Math.pow(100, 4) % 100);
-		
+
 		// Set unused features to 0
 		this.mouth = 0;
-		
+
 		this.eyes = 0;
 	}
-	
+
 	/**
 	 * Constructor with code to add extended features: Currently mouth and eyes.
-	 * 
+	 *
 	 * @param code
 	 * 		The outfit code including extended features
 	 */
 	public Outfit(final long code) {
-		
+
 		this.body = (int) (code % 100);
 
 		this.dress = (int) (code / 100 % 100);
@@ -168,21 +168,21 @@ public class Outfit {
 		this.hair = (int) (code / 1000000 % 100);
 
 		this.detail = (int) (code / 100000000 % 100);
-		
+
 		this.mouth = (int) (code / (100000000 * 100) % 100);
-		
+
 		this.eyes = (int) (code / (100000000 * 10000) % 100);
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's body style.
-	 * 
+	 *
 	 * @return The index, or null if this outfit doesn't contain a body.
 	 */
 	public Integer getBody() {
 		return body;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's dress style.
 	 *
@@ -191,7 +191,7 @@ public class Outfit {
 	public Integer getDress() {
 		return dress;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's hair style.
 	 *
@@ -200,7 +200,7 @@ public class Outfit {
 	public Integer getHair() {
 		return hair;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's head style.
 	 *
@@ -209,7 +209,7 @@ public class Outfit {
 	public Integer getHead() {
 		return head;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's mouth style.
 	 *
@@ -218,7 +218,7 @@ public class Outfit {
 	public Integer getMouth() {
 		return mouth;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's eyes style.
 	 *
@@ -227,7 +227,7 @@ public class Outfit {
 	public Integer getEyes() {
 		return eyes;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's detail style.
 	 *
@@ -236,7 +236,7 @@ public class Outfit {
 	public Integer getDetail() {
 		return detail;
 	}
-	
+
 	/**
 	 * Represents this outfit in a numeric code.
 	 *
@@ -265,11 +265,11 @@ public class Outfit {
 		if (body != null) {
 			bo = body.intValue();
 		}
-		
+
 		return (de * 100000000) + (ha * 1000000) + (he * 10000) + (dr * 100)
 				+ bo;
 	}
-	
+
 	/**
 	 * Gets the result that you get when you wear this outfit over another
 	 * outfit. Note that this new outfit can contain parts that are marked as
@@ -312,10 +312,10 @@ public class Outfit {
 		} else {
 			newBody = this.body;
 		}
-		
+
 		return new Outfit(newDetail, newHair, newHead, newDress, newBody);
 	}
-	
+
 	/**
 	 * Gets the result that you get when you remove (parts of) an outfit.
 	 * Removes the parts in the parameter, from the current outfit.
@@ -358,7 +358,7 @@ public class Outfit {
 		} else {
 			newBody = body;
 		}
-		
+
 		return new Outfit(newDetail, newHair, newHead, newDress, newBody);
 	}
 
@@ -383,7 +383,7 @@ public class Outfit {
 				&& ((head == null) || head.equals(other.head))
 				&& ((dress == null) || dress.equals(other.dress))
 				&& ((body == null) || body.equals(other.body));
-		
+
 		return partOf;
 	}
 
@@ -400,7 +400,7 @@ public class Outfit {
 		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
 			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
 			&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
-		
+
 		return choosable;
 	}
 
@@ -414,8 +414,8 @@ public class Outfit {
 			return (dress == null) || dress.equals(0);
 		} else {
 			return false;
-		} 
-		
+		}
+
 	}
 
 	/**
@@ -436,7 +436,7 @@ public class Outfit {
 		final int newHead;// = Rand.randUniform(1, 15);
 		final int newDress = Rand.randUniform(1, 16);
 		final int newBody;// = Rand.randUniform(1, 5);
-		
+
 		newHead = Rand.randUniform(1, 15);
 		newBody = Rand.randUniform(1, 5);
 		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead
@@ -444,7 +444,7 @@ public class Outfit {
 		return new Outfit(0, newHair, newHead, newDress, newBody,
 				null, null);
 	}
-	
+
 	/**
 	 * Can this outfit be worn with normal clothes
 	 *

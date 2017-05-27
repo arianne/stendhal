@@ -15,6 +15,6 @@ package games.stendhal.server.entity.creature.impl.idle;
 import games.stendhal.server.entity.creature.Creature;
 
 public interface IdleBehaviour {
-	
+
 	void perform(Creature creature);
 }

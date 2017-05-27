@@ -19,7 +19,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * manages the tutorial based on events created all over the game.
- * 
+ *
  * @author hendrik
  */
 public class TutorialNotifier {
@@ -27,7 +27,7 @@ public class TutorialNotifier {
 	/**
 	 * If the specified event is unknown, add it to the list and send the text
 	 * to the player.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param type
@@ -43,13 +43,13 @@ public class TutorialNotifier {
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
 			new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL, 2);
-			
+
 		}
 	}
 
 	/**
 	 * Login.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -59,7 +59,7 @@ public class TutorialNotifier {
 
 	/**
 	 * moving.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -74,7 +74,7 @@ public class TutorialNotifier {
 
 	/**
 	 * Zone changes.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param sourceZone
@@ -103,7 +103,7 @@ public class TutorialNotifier {
 
 	/**
 	 * player got attacked.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -113,7 +113,7 @@ public class TutorialNotifier {
 
 	/**
 	 * player killed something.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -123,7 +123,7 @@ public class TutorialNotifier {
 
 	/**
 	 * player killed another player.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -134,7 +134,7 @@ public class TutorialNotifier {
 
 	/**
 	 * player got poisoned.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -144,7 +144,7 @@ public class TutorialNotifier {
 
 	/**
 	 * a player who stayed another minute in game.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param age
@@ -156,7 +156,7 @@ public class TutorialNotifier {
 		} else if (age >= 45) {
 			process(player, TutorialEventType.TIMED_PASSWORD);
 		} else if (age >= 30) {
-			// this is a new tutorial event, so we check isNew, 
+			// this is a new tutorial event, so we check isNew,
 			// as our older players don't need to know how to change outfit
 			if (player.isNew()) {
 				process(player, TutorialEventType.TIMED_OUTFIT);
@@ -166,34 +166,34 @@ public class TutorialNotifier {
 			// but keep it anyway as it's a cute feature to notice that players are naked
 			if (player.getOutfit().isNaked()) {
 				process(player, TutorialEventType.TIMED_NAKED);
-			} 
+			}
 		} else if (age >= 5) {
 			process(player, TutorialEventType.TIMED_HELP);
 		}
 	}
 	/**
 	 * player > level 2 logged in for new release.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
 	public static void newrelease(final Player player) {
 		// process(player, TutorialEventType.NEW_RELEASE77);
 	}
-	
+
 	/**
 	 * player got private messaged
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
 	public static void messaged(final Player player) {
 		process(player, TutorialEventType.FIRST_PRIVATE_MESSAGE);
 	}
-	
+
 	/**
 	 * player got something given from an equip item action of an npc
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */

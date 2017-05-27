@@ -17,7 +17,7 @@ import games.stendhal.server.entity.mapstuff.chest.Chest;
 
 /**
  * A slot of a chest which is only accessible, if the chest is open.
- * 
+ *
  * @author hendrik
  */
 public class ChestSlot extends LootableSlot {
@@ -25,7 +25,7 @@ public class ChestSlot extends LootableSlot {
 
 	/**
 	 * Creates a ChestSlot
-	 * 
+	 *
 	 * @param owner
 	 *            Chest owning this slot
 	 */

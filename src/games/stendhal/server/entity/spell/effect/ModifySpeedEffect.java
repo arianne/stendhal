@@ -21,7 +21,7 @@ public class ModifySpeedEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, GuidedEntity target) {
-		
+
 	}
 
 }

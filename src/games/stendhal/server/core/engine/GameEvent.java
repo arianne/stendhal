@@ -39,7 +39,7 @@ public class GameEvent {
 		this.event = event;
 		this.params = params;
 	}
-	
+
 	/**
 	 * creates a new GameEvent object
 	 *

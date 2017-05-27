@@ -13,7 +13,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class PlayerVsPlayerChallengeTestEquals {
-	
+
 	@Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -37,16 +37,16 @@ public class PlayerVsPlayerChallengeTestEquals {
                 		Boolean.FALSE}
         });
     }
-	
+
 	@Parameter(0)
 	public PlayerVsPlayerChallenge one;
-	
+
 	@Parameter(1)
 	public PlayerVsPlayerChallenge two;
-	
+
 	@Parameter(2)
 	public Boolean expected;
-	
+
 	@Test
 	public void testEqualsObject() {
 		assertThat(one.equals(two), is(expected));

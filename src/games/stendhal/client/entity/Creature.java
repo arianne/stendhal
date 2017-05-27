@@ -12,12 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.constants.SoundLayer;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 public class Creature extends RPEntity {
@@ -33,7 +32,7 @@ public class Creature extends RPEntity {
 
 	@Override
 	protected void nonCreatureClientAddEventLine(final String text) {
-		
+
 		// no logging for Creature "sounds" in the client window
 	}
 
@@ -57,7 +56,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * Get the metamorphosis in effect.
-	 * 
+	 *
 	 * @return The metamorphosis, or <code>null</code>.
 	 */
 	public String getMetamorphosis() {
@@ -70,7 +69,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * Get the area the entity occupies.
-	 * 
+	 *
 	 * @return A rectange (in world coordinate units).
 	 */
 	@Override
@@ -86,10 +85,10 @@ public class Creature extends RPEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -116,7 +115,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -142,7 +141,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -157,7 +156,7 @@ public class Creature extends RPEntity {
 			fireChange(PROP_METAMORPHOSIS);
 		}
 	}
-	
+
 	// Called when entity says text
 	@Override
 	public void onTalk(final String text) {

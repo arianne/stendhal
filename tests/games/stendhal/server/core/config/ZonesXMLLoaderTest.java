@@ -1,29 +1,27 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
 
-import marauroa.common.game.IRPZone;
-import marauroa.server.game.db.DatabaseFactory;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import static org.hamcrest.CoreMatchers.is;
-
-import static org.junit.Assert.assertThat;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.IRPZone;
+import marauroa.server.game.db.DatabaseFactory;
 
 /**
  * @author madmetzger
@@ -49,9 +47,9 @@ public class ZonesXMLLoaderTest {
 
 	/**
 	 * Test method for {@link games.stendhal.server.core.config.ZonesXMLLoader#readZone(org.w3c.dom.Element)}.
-	 * @throws URISyntaxException 
-	 * @throws IOException 
-	 * @throws SAXException 
+	 * @throws URISyntaxException
+	 * @throws IOException
+	 * @throws SAXException
 	 */
 	@Test
 	public void testReadZone() throws URISyntaxException, SAXException, IOException {

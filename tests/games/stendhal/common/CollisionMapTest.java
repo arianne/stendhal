@@ -180,7 +180,7 @@ public class CollisionMapTest {
 		map.clear();
 		assertFalse(map.collides(0, 0, 4, 4));
 	}
-	
+
 	/**
 	 * Tests for setCollideRectangle2D2x1.
 	 */
@@ -193,17 +193,17 @@ public class CollisionMapTest {
 		assertFalse(map.get(0, 1));
 		assertFalse(map.get(0, 2));
 		assertFalse(map.get(0, 3));
-		
+
 		assertFalse(map.get(1, 0));
 		assertFalse(map.get(1, 1));
 		assertTrue(map.get(1, 2));
 		assertFalse(map.get(1, 3));
-		
+
 		assertFalse(map.get(2, 0));
 		assertFalse(map.get(2, 1));
 		assertTrue(map.get(2, 2));
 		assertFalse(map.get(2, 3));
-		
+
 		assertFalse(map.get(3, 0));
 		assertFalse(map.get(3, 1));
 		assertFalse(map.get(3, 2));
@@ -222,17 +222,17 @@ public class CollisionMapTest {
 		assertFalse(map.get(0, 1));
 		assertFalse(map.get(0, 2));
 		assertFalse(map.get(0, 3));
-		
+
 		assertTrue(map.get(1, 0));
 		assertTrue(map.get(1, 1));
 		assertTrue(map.get(1, 2));
 		assertFalse(map.get(1, 3));
-		
+
 		assertTrue(map.get(2, 0));
 		assertTrue(map.get(2, 1));
 		assertTrue(map.get(2, 2));
 		assertFalse(map.get(2, 3));
-		
+
 		assertFalse(map.get(3, 0));
 		assertFalse(map.get(3, 1));
 		assertFalse(map.get(3, 2));

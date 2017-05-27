@@ -42,12 +42,12 @@ public abstract class WtPopupMenu extends JPopupMenu {
 
 	/**
 	 * Create a menu item that will redirect its key events.
-	 * 
+	 *
 	 * @param label
 	 * @param icon
 	 * @return new Menuitem
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	protected JMenuItem createItem(final String label, final Icon icon) {
 		return new RedirectingMenuItem(label, icon);
@@ -55,9 +55,9 @@ public abstract class WtPopupMenu extends JPopupMenu {
 
 	/**
 	 * Redirect key event to the menu's invoker.
-	 * 
+	 *
 	 * @param ev
-	 * 
+	 *
 	 */
 	private void redirectEvent(final MenuKeyEvent ev) {
 		Component invoker;

@@ -14,20 +14,19 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 import java.util.Arrays;
-
-import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 
 public class ToysCollectorTest {
@@ -44,7 +43,7 @@ public class ToysCollectorTest {
 	public void setUp() throws Exception {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Anna"));
 		quest = new ToysCollector();
-	
+
 		quest.addToWorld();
 	}
 

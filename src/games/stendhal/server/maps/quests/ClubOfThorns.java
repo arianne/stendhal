@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -33,32 +37,28 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Club of Thorns
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Orc Saman</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Orc Saman asks you to kill mountain orc chief in prison for revenge</li>
  * <li> Go kill mountain orc chief in prison using key given by Saman to get in</li>
  * <li> Return and you get Club of Thorns as reward<li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 1000 XP<li>
  * <li> Club of Thorns</li>
  * <li> Karma: 16<li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li> None.</li>
@@ -66,12 +66,12 @@ import java.util.List;
  */
 public class ClubOfThorns extends AbstractQuest {
 	private static final String QUEST_SLOT = "club_thorns";
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Orc Saman");
 
@@ -85,7 +85,7 @@ public class ClubOfThorns extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Make revenge! #Kill Mountain Orc Chief!",
 			null);
 
@@ -158,7 +158,7 @@ public class ClubOfThorns extends AbstractQuest {
 				"The Orc Saman will give a dangerous weapon to a mercenary who will help him.",
 				false);
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -186,7 +186,7 @@ public class ClubOfThorns extends AbstractQuest {
 	public String getName() {
 		return "ClubOfThorns";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 50;
@@ -196,7 +196,7 @@ public class ClubOfThorns extends AbstractQuest {
 	public String getNPCName() {
 		return "Orc Saman";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.KOTOCH;

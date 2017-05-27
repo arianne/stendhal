@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Level;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.ServerModeUtil;
@@ -27,18 +33,12 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import org.apache.log4j.Logger;
-
 /**
  * Creates a portable NPC who gives ALL players powerful items, increases their
  * level and makes them admins. This is used on test-systems only. Therefore it
  * is disabled in default install and you have to use this parameter:
  * -Dstendhal.testserver=junk as a vm argument.
- * 
+ *
  * As admin uses /script AdminMaker.class to summon her right next to him/her.
  * Please unload it with /script -unload AdminMaker.class
  */
@@ -56,8 +56,8 @@ public class AdminMaker extends ScriptImpl {
 	private final List<String> itemsStack = Arrays.asList("money",
 			"greater potion", "greater antidote", "power arrow",
 			"deadly poison");
-	
-	
+
+
 	protected class UpgradeAction implements ChatAction {
 
 		private void xpGain(final Player player) {
@@ -82,7 +82,7 @@ public class AdminMaker extends ScriptImpl {
 			// set the atk and def to half the level (is a good rule of thumb)
 			final int skills = ((Level.getXP(level) + xlevel) / 2);
 			player.setAtkXP(skills);
-			player.setDefXP(skills);	
+			player.setDefXP(skills);
 			player.incAtkXP();
 			player.incDefXP();
 		}
@@ -171,7 +171,7 @@ public class AdminMaker extends ScriptImpl {
 			new Destination("int_mithrilbourgh_stores", 6, 5)
 		);
 
-	
+
 		private boolean randomTeleport(final Player player) {
 			// Destination selection: random for first, then go in order
 			// todo: maybe mix in a second kind of random like bunny/santa?
@@ -200,7 +200,7 @@ public class AdminMaker extends ScriptImpl {
 			return true;
 		}
 
-	
+
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
@@ -230,7 +230,7 @@ public class AdminMaker extends ScriptImpl {
 	@Override
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		super.load(admin, args, sandbox);
-		
+
 		// Require parameter -Dstendhal.testserver=junk
 		if (!ServerModeUtil.isTestServer()) {
 			final String msg = "Server must be started with this vm parameter: -Dstendhal.testserver=junk";
@@ -242,13 +242,13 @@ public class AdminMaker extends ScriptImpl {
 			return;
 		}
 
-		
-		
+
+
 		// create npc
 		ScriptingNPC npc;
 		npc = new ScriptingNPC("Admin Maker");
 		npc.setEntityClass("tavernbarmaidnpc");
-		
+
 		// Place NPC in int_admin_playground on server start
 		final String myZone = "0_semos_city";
 		sandbox.setZone(myZone);

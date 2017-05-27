@@ -2,27 +2,27 @@ package games.stendhal.server.entity.npc.condition;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 /**
  * Tests for the PlayerManaGreaterThanCondition
- * 
+ *
  * @author madmetzger
  */
 public class PlayerManaGreaterThanConditionTest {
-	
+
 	@Before
 	public void setUp() {
 		MockStendlRPWorld.get();
 	}
-	
+
 	@After
 	public void tearDown() {
 		MockStendlRPWorld.reset();
@@ -37,7 +37,7 @@ public class PlayerManaGreaterThanConditionTest {
 		player.setMana(1000);
 		assertThat(new PlayerManaGreaterThanCondition(5).fire(player, null, null), is(Boolean.TRUE));
 	}
-	
+
 	@Test
 	public void testFireFailure() {
 		Player player = PlayerTestHelper.createPlayer("mana-too-less");

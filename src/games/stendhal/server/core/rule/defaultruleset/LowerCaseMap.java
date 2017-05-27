@@ -28,9 +28,9 @@ public class LowerCaseMap<V> implements Map<String, V> {
 	@Override
 	public void clear() {
 		data.clear();
-		
+
 	}
-	
+
 	@Override
 	public boolean containsValue(final Object value) {
 		return data.containsValue(value);

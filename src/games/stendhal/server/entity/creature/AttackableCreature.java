@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * A creature that will be attacked by normal Creatures.
- * 
+ *
  * @author hendrik
  */
 public class AttackableCreature extends Creature {
@@ -30,7 +30,7 @@ public class AttackableCreature extends Creature {
 
 	/**
 	 * Class Constructor.
-	 * 
+	 *
 	 * @param copy
 	 */
 	public AttackableCreature(final Creature copy) {
@@ -40,9 +40,9 @@ public class AttackableCreature extends Creature {
 	@Override
 	public List<RPEntity> getEnemyList() {
 		List<RPEntity> res = this.getAttackingRPEntities();
-		
+
 		Player masterPlayer = SingletonRepository.getRuleProcessor().getPlayer(master);
-		
+
 		if (masterPlayer != null) {
 			res.addAll(masterPlayer.getAttackingRPEntities());
 		}
@@ -51,7 +51,7 @@ public class AttackableCreature extends Creature {
 
 	/**
 	 * Sets the master of this creature.
-	 * 
+	 *
 	 * @param master
 	 *            master
 	 */

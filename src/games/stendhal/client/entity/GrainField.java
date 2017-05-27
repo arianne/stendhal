@@ -30,13 +30,13 @@ public class GrainField extends Entity {
 	 * The maximum ripeness.
 	 */
 	private int maxRipeness;
-	
+
 	/**
 	 * Current ripeness.
 	 */
 	private int ripeness;
 
-	
+
 
 	/**
 	 * Create a grain field.
@@ -50,7 +50,7 @@ public class GrainField extends Entity {
 
 	/**
 	 * Get the maximum ripeness.
-	 * 
+	 *
 	 * @return The maximum ripeness.
 	 */
 	public int getMaximumRipeness() {
@@ -59,7 +59,7 @@ public class GrainField extends Entity {
 
 	/**
 	 * Get the ripeness.
-	 * 
+	 *
 	 * @return The ripeness.
 	 */
 	public int getRipeness() {
@@ -72,7 +72,7 @@ public class GrainField extends Entity {
 
 	/**
 	 * Get the area the entity occupies.
-	 * 
+	 *
 	 * @return A rectange (in world coordinate units).
 	 */
 	@Override
@@ -83,10 +83,10 @@ public class GrainField extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -113,7 +113,7 @@ public class GrainField extends Entity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

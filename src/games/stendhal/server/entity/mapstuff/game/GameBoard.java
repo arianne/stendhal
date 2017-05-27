@@ -12,17 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.game;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.MoveValidator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 public abstract class GameBoard extends AreaEntity {
 	protected BoardToken[][] board;
@@ -127,7 +126,7 @@ public abstract class GameBoard extends AreaEntity {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * moves to the next turn (next player)
 	 */
@@ -152,7 +151,7 @@ public abstract class GameBoard extends AreaEntity {
 			token.undoMove();
 			return;
 		}
-	
+
 		completeMove(xIndex, yIndex, token);
 	}
 
@@ -163,7 +162,7 @@ public abstract class GameBoard extends AreaEntity {
 		timer.start();
 		active = true;
 	}
-	
+
 	protected void endGame() {
 		timer.stop();
 		active = false;

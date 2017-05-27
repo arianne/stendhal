@@ -11,9 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.entity.StackableItem;
-import games.stendhal.client.gui.layout.SBoxLayout;
-
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -36,6 +33,9 @@ import javax.swing.text.PlainDocument;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.gui.layout.SBoxLayout;
+
 /**
  * A class for showing a selector for dropped item amounts and taking control
  * of the drop handling of those drops.
@@ -43,7 +43,7 @@ import org.apache.log4j.Logger;
 class DropAmountChooser {
 	/** Space between the popup border and actual content components. */
 	private static final int BORDER = 2;
-	
+
 	/** Item to be dropped. */
 	private final StackableItem item;
 	/** Target where the user is dropping the item. */
@@ -54,10 +54,10 @@ class DropAmountChooser {
 	private final JPopupMenu popup;
 	/** Number selector within the popup menu. */
 	private JSpinner spinner;
-	
+
 	/**
 	 * Create a new DropAmountChooser.
-	 * 
+	 *
 	 * @param item the item whose drop should be handled by the DropAmountChooser
 	 * @param target target where the item should be dropped if the user chooses
 	 * 	an amount greater than 0
@@ -68,7 +68,7 @@ class DropAmountChooser {
 		this.target = target;
 		location = point;
 		popup = createPopup();
-		
+
 		/*
 		 * Select the text when the the popup is displayed. Unfortunately the
 		 * selection is normally cleared when the text field gets focus, so we
@@ -89,10 +89,10 @@ class DropAmountChooser {
 			}
 		});
 	}
-	
+
 	/**
 	 * Show the chooser popup.
-	 * 
+	 *
 	 * @param parent parent component
 	 * @param location location of the popup in parent coordinates
 	 */
@@ -101,7 +101,7 @@ class DropAmountChooser {
 		/*
 		 * Needs to be after show(). Also, heavy weight popups need time to
 		 * appear, so the focus request needs to be pushed to the end of the
-		 * event queue. 
+		 * event queue.
 		 */
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -110,15 +110,15 @@ class DropAmountChooser {
 			}
 		});
 	}
-	
+
 	/**
 	 * Construct the popup.
-	 * 
+	 *
 	 * @return popup
 	 */
 	private JPopupMenu createPopup() {
 		JPopupMenu menu = new JPopupMenu();
-		
+
 		SpinnerModel model = new SpinnerNumberModel(1, 0, item.getQuantity(), 1);
 		spinner = new JSpinner(model);
 		// Special document for editing numbers
@@ -142,22 +142,22 @@ class DropAmountChooser {
 				doDrop();
 			}
 		};
-		/* 
+		/*
 		 * Drop items at either clicking the drop button, or when enter is
 		 * pressed.
 		 */
 		getTextField().addActionListener(dropAction);
 		button.addActionListener(dropAction);
-		
+
 		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		content.setBorder(BorderFactory.createEmptyBorder(BORDER, BORDER, BORDER, BORDER));
 		content.add(spinner);
 		content.add(button);
 		menu.add(content);
-		
+
 		return menu;
 	}
-	
+
 	/**
 	 * Perform the drop.
 	 */
@@ -173,10 +173,10 @@ class DropAmountChooser {
 			popup.setVisible(false);
 		}
 	}
-	
+
 	/**
 	 * Get the editable text field component of the spinner.
-	 * 
+	 *
 	 * @return text field
 	 */
 	private JTextField getTextField() {

@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.forest;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,18 +29,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.MultiProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
  * Provides a Meat and Fish professional smoker in Fado forest.
  *
- * @author omero 
+ * @author omero
  */
 public class MeatAndFishSmokerNPC implements ZoneConfigurator {
     /**
@@ -82,8 +82,8 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 addReply(Arrays.asList("trout", "cod"),
                     "I wouldn't reveal you where my favorite fishing spots are but I would suggest you go find some books on the subject in one of those scholarly places.");
                 addReply(Arrays.asList("meat","ham"),
-                    "I don't care if it comes from lion or elephant... I can #smoke that for you!"); 
-                    
+                    "I don't care if it comes from lion or elephant... I can #smoke that for you!");
+
                 addGoodbye("S' veg!");
 
                 final HashSet<String> productsNames = new HashSet<String>();

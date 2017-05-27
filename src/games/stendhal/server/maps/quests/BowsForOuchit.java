@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -30,27 +35,22 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Bows for Ouchit
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Ouchit, ranged items seller</li>
  * <li> Karl, farmer</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Ouchit asks for wood for his bows and arrows. </li>
  * <li> Puchit asks you to fetch horse hair from Karl also.</li>
  * <li> Return and you get some equipment as reward.<li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 1 XP<li>
@@ -58,7 +58,7 @@ import java.util.List;
  * <li> Chain legs</li>
  * <li> Karma: 14<li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li> None.</li>
@@ -145,7 +145,7 @@ public class BowsForOuchit extends AbstractQuest {
 		 * get a reference to the Ouchit NPC
 		 */
 		SpeakerNPC npc = npcs.get("Ouchit");
-		
+
 		/*
 		 * Player asks about quest, remind what they're doing
 		 */
@@ -155,7 +155,7 @@ public class BowsForOuchit extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"I'm waiting for you to bring me 10 pieces of #wood.",
 				null);
-		
+
 		/*
 		 * Player asks about wood, but hasn't collected any - remind them.
 		 */
@@ -223,7 +223,7 @@ ask for horse hair.
 				ConversationStates.ATTENDING,
 				"I'm waiting for you to bring me some #'horse hairs'.",
 				null);
-		
+
 		/*
 		 * Player asks about horse hair, but hasn't collected any - remind them.
 		 */
@@ -244,7 +244,7 @@ ask for horse hair.
 		reward.add(new EquipItemAction("chain legs", 1, true));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 10.0));
-		
+
 		/*
 		 * Player asks about horse hair, and has collected some - take it
 and ask for horse hair.
@@ -257,7 +257,7 @@ and ask for horse hair.
 				"Yay, you got the horse hairs. Thanks a lot. Karl is really nice. Here, " +
 				"take this for your work. Someone left it here and I don't need those things.",
 				new MultipleActions(reward));
-		
+
 		/*
 		 * Player asks about quest, and it is finished
 		 */
@@ -267,7 +267,7 @@ and ask for horse hair.
 				ConversationStates.ATTENDING,
 				"Thanks for your help. If I can #offer you anything just ask.",
 				null);
-		
+
 	}
 
 	@Override
@@ -307,7 +307,7 @@ and ask for horse hair.
 		}
 		return res;
 	}
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -317,12 +317,12 @@ and ask for horse hair.
 	public String getName() {
 		return "BowsForOuchit";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

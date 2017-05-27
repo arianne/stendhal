@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,9 +23,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.DrunkStatus;
 import games.stendhal.server.entity.status.EatStatus;
 import games.stendhal.server.entity.status.StatusType;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * eats food or drinks
@@ -47,7 +47,7 @@ class Eater implements Feeder {
 			player.notifyWorldAboutChanges();
 			return false;
 		}
-		
+
 		if (count > COUNT_CHOKING) {
 			// remove some HP so they know we are serious about this
 			int playerHP = player.getHP();
@@ -70,10 +70,10 @@ class Eater implements Feeder {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Get damage done by overeating.
-	 * 
+	 *
 	 * @param maxDamage upper limit of damage
 	 * @return random damage between 0 and maxDamage - 1
 	 */

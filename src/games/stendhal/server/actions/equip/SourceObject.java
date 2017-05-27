@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.ItemAccessPermissions;
 import games.stendhal.server.core.engine.ItemLogger;
@@ -24,16 +29,10 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.util.EntityHelper;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SlotOwner;
-
-import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop source.
@@ -157,7 +156,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Create a SourceObject for an item path.
-	 * 
+	 *
 	 * @param action
 	 * @param player
 	 * @return source object

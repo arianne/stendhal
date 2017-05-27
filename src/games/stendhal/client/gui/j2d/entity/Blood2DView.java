@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.Map;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.Blood;
@@ -18,8 +20,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.util.Map;
 
 /**
  * The 2D view of blood.
@@ -32,7 +32,7 @@ class Blood2DView extends StateEntity2DView<IEntity> {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param entity
 	 * @param map
 	 *            The map to populate.
@@ -56,7 +56,7 @@ class Blood2DView extends StateEntity2DView<IEntity> {
 
 	/**
 	 * Get the current entity state.
-	 * 
+	 *
 	 * @param entity
 	 * @return The current state.
 	 */
@@ -73,9 +73,9 @@ class Blood2DView extends StateEntity2DView<IEntity> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override

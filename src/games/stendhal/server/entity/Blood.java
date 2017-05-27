@@ -17,8 +17,8 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * Represents a blood puddle that is left on the ground after an entity was
@@ -28,7 +28,7 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
-	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE; 
+	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
 	public static void generateRPClass() {
 		final RPClass blood = new RPClass("blood");
@@ -43,7 +43,7 @@ public class Blood extends PassiveEntity {
 		public void onTurnReached(final int currentTurn) {
 			Blood.this.onTurnReached(currentTurn);
 		}
-		
+
 	};
 
 	@Override
@@ -51,14 +51,14 @@ public class Blood extends PassiveEntity {
 		SingletonRepository.getTurnNotifier().dontNotify(turnlistener);
 		super.onRemoved(zone);
 	}
-	
+
 	/**
 	 * Create a blood entity.
 	 */
 	public Blood() {
 		this(null, Rand.rand(4));
 	}
-	
+
 	/**
 	 * Create a blood entity.
 	 *
@@ -71,7 +71,7 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * Create a blood entity.
-	 * 
+	 *
 	 * @param clazz
 	 *            The class of blood.
 	 * @param amount
@@ -96,7 +96,7 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * Get the entity description.
-	 * 
+	 *
 	 * @return The description text.
 	 */
 	@Override
@@ -110,7 +110,7 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * This method is called when the turn number is reached.
-	 * 
+	 *
 	 * @param currentTurn
 	 *            The current turn number.
 	 */

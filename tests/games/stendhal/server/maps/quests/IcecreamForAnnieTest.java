@@ -21,6 +21,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -31,11 +35,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.kalavan.citygardens.IceCreamSellerNPC;
 import games.stendhal.server.maps.kalavan.citygardens.LittleGirlNPC;
 import games.stendhal.server.maps.kalavan.citygardens.MummyNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -44,7 +43,7 @@ public class IcecreamForAnnieTest {
 
 
 	private static String questSlot = "icecream_for_annie";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -54,13 +53,13 @@ public class IcecreamForAnnieTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		
+
 		new IceCreamSellerNPC().configureZone(zone, null);
 		new LittleGirlNPC().configureZone(zone, null);
 		new MummyNPC().configureZone(zone, null);
-			
+
 		final AbstractQuest quest = new IcecreamForAnnie();
 		quest.addToWorld();
 
@@ -103,7 +102,7 @@ public class IcecreamForAnnieTest {
 
 		npc = SingletonRepository.getNPCList().get("Sam");
 		en = npc.getEngine();
-		
+
 		Item item = ItemTestHelper.createItem("money", 30);
 		player.getSlot("bag").add(item);
 
@@ -150,7 +149,7 @@ public class IcecreamForAnnieTest {
 		en.step(player, "hi");
 		assertEquals("Yummy! Is that ice cream for me?", getReply(npc));
 		en.step(player, "yes");
-		// [15:06] kymara earns 500 experience points. 
+		// [15:06] kymara earns 500 experience points.
 		assertFalse(player.isEquipped("icecream"));
 		assertTrue(player.isEquipped("present"));
 		assertThat(player.getXP(), greaterThan(xp));
@@ -172,7 +171,7 @@ public class IcecreamForAnnieTest {
 
 		// -----------------------------------------------
 		final double newKarma = player.getKarma();
-		// [15:07] Changed the state of quest 'icecream_for_annie' from 'eating;1219676807283' to 'eating;0' 
+		// [15:07] Changed the state of quest 'icecream_for_annie' from 'eating;1219676807283' to 'eating;0'
 		player.setQuest(questSlot, "eating;0");
 		en.step(player, "hi");
 		assertEquals("Hello.", getReply(npc));
@@ -184,7 +183,7 @@ public class IcecreamForAnnieTest {
 		assertEquals("Ok, I'll ask my mummy instead.", getReply(npc));
 
 		// -----------------------------------------------
-		
+
 		en.step(player, "hi");
 		assertEquals("Hello.", getReply(npc));
 		en.step(player, "bye");

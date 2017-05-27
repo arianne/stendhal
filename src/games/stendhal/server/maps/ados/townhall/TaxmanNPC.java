@@ -12,19 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.townhall;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Builds an NPC to keep track of all the traders in Faiumoni
- * This means players can come find prices of all items. 
+ * This means players can come find prices of all items.
  * The shop signs now have to be coded in XML not java because the implementation got moved over :(
  * So if you want to read them see data/conf/zones/ados.xml
  * @author kymara

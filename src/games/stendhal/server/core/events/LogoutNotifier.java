@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.core.events;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.entity.player.Player;
+
 /**
  * Other classes can register here to be notified when a player logs out.
- * 
+ *
  * It is the responsibility of the LogoutListener to determine which players are
  * of interest for it, and to store this information persistently.
- * 
+ *
  * @author markus
  */
 public final class LogoutNotifier {
@@ -42,7 +42,7 @@ public final class LogoutNotifier {
 
 	/**
 	 * Returns the LogoutNotifier instance.
-	 * 
+	 *
 	 * @return LogoutNotifier the Singleton instance
 	 */
 	public static LogoutNotifier get() {
@@ -51,7 +51,7 @@ public final class LogoutNotifier {
 
 	/**
 	 * Adds a LogoutListener.
-	 * 
+	 *
 	 * @param listener
 	 *            LogoutListener to add
 	 */
@@ -61,7 +61,7 @@ public final class LogoutNotifier {
 
 	/**
 	 * Removes a LogoutListener.
-	 * 
+	 *
 	 * @param listener
 	 *            LogoutListener to remove
 	 */
@@ -71,7 +71,7 @@ public final class LogoutNotifier {
 
 	/**
 	 * This method is invoked by TODO
-	 * 
+	 *
 	 * @param player
 	 *            the player who logged out
 	 */

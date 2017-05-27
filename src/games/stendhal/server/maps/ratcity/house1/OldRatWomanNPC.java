@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ratcity.house1;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds a Rat Mother NPC.
@@ -48,7 +48,7 @@ public class OldRatWomanNPC implements ZoneConfigurator {
 				nodes.add(new Node(3, 13));
 				nodes.add(new Node(12, 13));
 				nodes.add(new Node(12, 4));
-				
+
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -62,10 +62,10 @@ public class OldRatWomanNPC implements ZoneConfigurator {
 			}
 		};
 		woman.setDescription("You see an old ratwoman. She appears somehow worried.");
-		
+
 
 		woman.setEntityClass("oldratwomannpc");
-		
+
 		woman.setPosition(3, 4);
 		// She has low HP
 		woman.initHP(30);

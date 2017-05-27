@@ -14,21 +14,22 @@ package games.stendhal.client.actions;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
 /**
  * Causes the entity to begin walking in the direction facing.
- * 
+ *
  * @author
  * 		AntumDeluge
  */
 public class AutoWalkAction implements SlashAction {
-	
+
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 * 		The formal parameters.
 	 * @param remainder
@@ -39,18 +40,18 @@ public class AutoWalkAction implements SlashAction {
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction walk = new RPAction();
-		
+
 		walk.put(TYPE, WALK);
 		walk.put(TARGET, StringHelper.unquote(remainder));
 
 		ClientSingletonRepository.getClientFramework().send(walk);
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return
 	 * 		Parameter count.
 	 */
@@ -58,10 +59,10 @@ public class AutoWalkAction implements SlashAction {
 	public int getMaximumParameters() {
 		return 0;
 	}
-	
+
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return
 	 * 		Parameter count.
 	 */

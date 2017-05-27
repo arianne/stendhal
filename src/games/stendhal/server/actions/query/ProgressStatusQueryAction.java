@@ -12,16 +12,16 @@
 package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.PROGRESS_STATUS;
+
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ProgressStatusEvent;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**

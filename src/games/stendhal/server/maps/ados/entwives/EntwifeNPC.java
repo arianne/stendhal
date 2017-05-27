@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.entwives;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * entwife located in 0_ados_mountain_n2_w2.
@@ -56,7 +56,7 @@ public class EntwifeNPC implements ZoneConfigurator {
 		entwife.setEntityClass("transparentnpc");
 		entwife.setAlternativeImage("tendertwig");
 		entwife.setPosition(25, 35);
-		entwife.initHP(100); 
+		entwife.initHP(100);
 		entwife.setDescription("You see an old and wise entwife. She is called Tendertwig and guards the area around.");
 		zone.add(entwife);
 	}

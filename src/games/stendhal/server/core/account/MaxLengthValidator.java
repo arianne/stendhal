@@ -17,7 +17,7 @@ import marauroa.common.game.Result;
 /**
  * validates that the given parameter is provided is short than a specified
  * maximum length.
- * 
+ *
  * @author hendrik
  */
 public class MaxLengthValidator implements AccountParameterValidator {
@@ -26,7 +26,7 @@ public class MaxLengthValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a new MaxLengthValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 * @param maxLength

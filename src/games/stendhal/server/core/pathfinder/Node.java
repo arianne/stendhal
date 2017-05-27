@@ -30,7 +30,7 @@ public class Node {
 			return false;
 		}
 		final Node other = (Node) obj;
-		
+
 		return (x == other.x) && (y == other.y);
 	}
 
@@ -41,7 +41,7 @@ public class Node {
 
 	/**
 	 * Get the X coordinate.
-	 * 
+	 *
 	 * @return The X coordinate.
 	 */
 	public int getX() {
@@ -50,7 +50,7 @@ public class Node {
 
 	/**
 	 * Get the Y coordinate.
-	 * 
+	 *
 	 * @return The Y coordinate.
 	 */
 	public int getY() {
@@ -61,6 +61,6 @@ public class Node {
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
-	
-	
+
+
 }

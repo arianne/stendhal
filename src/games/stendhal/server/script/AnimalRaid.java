@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Not safe for players below level 5
  */
 public class AnimalRaid extends CreateRaid {
@@ -40,7 +40,7 @@ public class AnimalRaid extends CreateRaid {
 
 		return attackArmy;
 	}
-	
+
 	@Override
 	protected String getInfo() {
 		return " * Not safe for players below level 5";

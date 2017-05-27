@@ -12,12 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.Map;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.RPEntity;
-
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
 
 public class FoodMill extends Item {
@@ -28,7 +27,7 @@ public class FoodMill extends Item {
 	private String container;
 	/** The resulting processed item */
 	private String output;
-	
+
     public FoodMill(final String name, final String clazz,
             final String subclass, final Map<String, String> attributes) {
         super(name, clazz, subclass, attributes);
@@ -39,7 +38,7 @@ public class FoodMill extends Item {
         super(item);
         init();
     }
-    
+
     /** Sets up the input, output and container based on item name */
     private void init() {
     	if ("sugar mill".equals(getName())) {
@@ -99,7 +98,7 @@ public class FoodMill extends Item {
 
         /* all is okay, lets process this item */
     	final Item item = SingletonRepository.getEntityManager().getItem(output);
-    	
+
     	if (first instanceof StackableItem) {
 			StackableItem dropOneOfMe = (StackableItem) first;
 			dropOneOfMe.removeOne();
@@ -110,12 +109,12 @@ public class FoodMill extends Item {
     	user.equipOrPutOnGround(item);
 
     	return true;
-    } 
+    }
 
-    
+
     /**
      * @param handSlot should be rhand or lhand
-     * @return the opposite hand to handSlot 
+     * @return the opposite hand to handSlot
      */
     private String getOtherHand(final String handSlot) {
         if ("rhand".equals(handSlot)) {
@@ -124,5 +123,5 @@ public class FoodMill extends Item {
             return "rhand";
         }
     }
-    
+
 }

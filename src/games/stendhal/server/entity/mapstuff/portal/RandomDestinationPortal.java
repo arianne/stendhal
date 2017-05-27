@@ -11,18 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.Spot;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.Spot;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -46,7 +45,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 
 		/**
 		 * Create a new <code>Location</code>.
-		 * 
+		 *
 		 * @param zoneName name of the zone of the teleportation destination
 		 * @param level minimum level of a player to consider the location possible
 		 * @param x x coordinate of the destination
@@ -61,7 +60,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 
 		/**
 		 * Get the minimum level needed for the location
-		 * 
+		 *
 		 * @return minimum level
 		 */
 		public int getLevel() {
@@ -70,7 +69,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 
 		/**
 		 * Get the spot represented by this location
-		 *  
+		 *
 		 * @return a teleport destination
 		 */
 		public Spot getSpot() {
@@ -90,7 +89,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 					logger.error("Can not find zone: " + zoneName);
 				}
 			}
-			
+
 			return spot;
 		}
 	}
@@ -107,7 +106,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 		super(questslot);
 		initLocations();
 	}
-	
+
 	@Override
 	public void onAdded(StendhalRPZone zone) {
 		super.onAdded(zone);
@@ -124,7 +123,7 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 	 */
 	private void initLocations() {
 		locations.add(new Location("0_semos_mountain_n_w2", 10, 65, 116));	// gnome village
-		locations.add(new Location("0_ados_outside_nw", 10, 52, 39)); 		// ados zoo 
+		locations.add(new Location("0_ados_outside_nw", 10, 52, 39)); 		// ados zoo
 		locations.add(new Location("0_kirdneh_city", 15, 63, 26));			// kirdneh city
 		locations.add(new Location("0_fado_forest", 20, 66, 35));			// fairy ring
 		locations.add(new Location("0_orril_castle", 20, 62, 75));          // orril castle
@@ -132,14 +131,14 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 		locations.add(new Location("-2_orril_dungeon", 25, 106, 21));		// rat dungeon
 		locations.add(new Location("-1_semos_mine_nw", 30, 22, 75));		// kobold city
 		locations.add(new Location("0_athor_island", 30, 77, 73));          // athor island
-        locations.add(new Location("-1_ados_wall", 30, 91, 62));			// ados sewers    	
+        locations.add(new Location("-1_ados_wall", 30, 91, 62));			// ados sewers
         locations.add(new Location("-2_kotoch_entrance", 30, 20, 111));     // orc dungeons
         locations.add(new Location("0_nalwor_city", 60, 88, 85));           // nalwor city
-        locations.add(new Location("-1_semos_yeti_cave", 60, 13, 39));		// yeti cave		
+        locations.add(new Location("-1_semos_yeti_cave", 60, 13, 39));		// yeti cave
         locations.add(new Location("-2_ados_outside_nw", 70, 28, 5));       // dwarfs/bario
         locations.add(new Location("0_ados_mountain_n2", 70,  52, 28));		// barbarian camp
         locations.add(new Location("1_kikareukin_cave", 70, 18, 97));		// 1 kika
-        locations.add(new Location("-6_kanmararn_city", 70, 33, 52));       // kanmararn 
+        locations.add(new Location("-6_kanmararn_city", 70, 33, 52));       // kanmararn
 		locations.add(new Location("-2_orril_lich_palace", 70, 67, 118));   // lich palace
 		locations.add(new Location("-2_orril_dwarf_mine", 70, 50, 40));     // dwarf mine
 		locations.add(new Location("0_amazon_island_nw", 90, 30, 30));      // amazon island
@@ -163,10 +162,10 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 
 	/**
 	 * Get a random location to teleport a player.
-	 * 
+	 *
 	 * @param player the player using the portal
 	 * @return a location the player is allowed to go to,
-	 * or <code>null</code> if there are no appropriate places 
+	 * or <code>null</code> if there are no appropriate places
 	 */
 	private Location getRandomLocation(Player player) {
 		List<Location> allowed = getAllowedLocations(player);
@@ -176,10 +175,10 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Get a list of locations appropriate for a player
-	 * 
+	 *
 	 * @param player the player using the portal
 	 * @return list of locations
 	 */
@@ -191,13 +190,13 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 				allowed.add(l);
 			}
 		}
-		
+
 		return allowed;
 	}
 
 	/**
 	 * Use the portal.
-	 * 
+	 *
 	 * @param player
 	 *            the Player who wants to use this portal
 	 * @return <code>true</code> if the portal worked, <code>false</code>
@@ -212,15 +211,15 @@ public class RandomDestinationPortal extends QuestCompletedPortal {
 		}
 
 		Location location = getRandomLocation(player);
-		
+
 		// Would happen if the player was below the minimum level for any location
 		if (location == null) {
 			player.sendPrivateText("You can not concentrate well enough to use this orb.");
 			return false;
 		}
-		
+
 		Spot spot = getRandomLocation(player).getSpot();
-		
+
 		if (spot == null) {
 			logger.error("Failed to determine destination spot.");
 			return false;

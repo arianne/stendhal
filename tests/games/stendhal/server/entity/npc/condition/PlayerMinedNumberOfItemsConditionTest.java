@@ -2,18 +2,18 @@ package games.stendhal.server.entity.npc.condition;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.*;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
+import static org.junit.Assert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 /**
  * Tests for PlayerMinedNumberOfItemsCondition
- * 
+ *
  * @author madmetzger
  *
  */

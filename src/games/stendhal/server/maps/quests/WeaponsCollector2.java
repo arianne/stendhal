@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -28,11 +33,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: The Weapons Collector Part 2
@@ -66,14 +66,14 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weapons_collector2";
 
-	
+
 	private static final List<String> neededWeapons = Arrays.asList(
 			// fairly rare from glow_monster in haunted house
 			"morning star",
 			// rare from monk on mountain
-			"staff", 
+			"staff",
 			// rare from devil_queen on mountain
-			"great sword" 
+			"great sword"
 	);
 
 	@Override
@@ -92,7 +92,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 	/**
 	 * Returns a list of the names of all weapons that the given player still
 	 * has to bring to fulfill the quest.
-	 * 
+	 *
 	 * @param player
 	 *            The player doing the quest
 	 * @param hash
@@ -132,10 +132,10 @@ public class WeaponsCollector2 extends AbstractQuest {
 			    null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestCompletedCondition("weapons_collector"), new QuestNotStartedCondition(QUEST_SLOT)),
-				ConversationStates.QUEST_2_OFFERED, 
-				null, 
+				ConversationStates.QUEST_2_OFFERED,
+				null,
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -151,10 +151,10 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
-				null, 
+				ConversationStates.ATTENDING,
+				null,
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -166,17 +166,17 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,
-				ConversationPhrases.NO_MESSAGES, 
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Well, maybe someone else will happen by and help me.", 
+				"Well, maybe someone else will happen by and help me.",
 				null);
 
 		// player asks what exactly is missing
-		npc.add(ConversationStates.ATTENDING, 
-				"list", 
-				new QuestActiveCondition(QUEST_SLOT), 
-				ConversationStates.QUESTION_2, 
+		npc.add(ConversationStates.ATTENDING,
+				"list",
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_2,
 				null,
 				new ChatAction() {
 					@Override
@@ -193,11 +193,11 @@ public class WeaponsCollector2 extends AbstractQuest {
 				});
 
 		// player says he doesn't have required weapons with him
-		npc.add(ConversationStates.QUESTION_2, 
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
-				null, 
-				ConversationStates.IDLE, 
-				null, 
+				null,
+				ConversationStates.IDLE,
+				null,
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -210,18 +210,18 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 		// player says he has a required weapon with him
 		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.QUESTION_2, 
-				"What did you find?", 
+				ConversationStates.QUESTION_2,
+				"What did you find?",
 				null);
 
 		for(final String itemName : neededWeapons) {
-			npc.add(ConversationStates.QUESTION_2, 
-				itemName, 
+			npc.add(ConversationStates.QUESTION_2,
+				itemName,
 				null,
-				ConversationStates.QUESTION_2, 
-				null, 
+				ConversationStates.QUESTION_2,
+				null,
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -292,7 +292,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 	}
 
 /*	private void playerReturnsAfterFinishingQuest(final SpeakerNPC npc) {
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new SubjectOptMatchCondition(getName()),
 						new QuestCompletedCondition(QUEST_SLOT)),
@@ -311,8 +311,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 		step_2();
 		step_3();
 	}
-	
-	
+
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -326,12 +326,12 @@ public class WeaponsCollector2 extends AbstractQuest {
 			}
 			return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "WeaponsCollector2";
 	}
-	
+
 	// it can be a long quest so they can always start it before they can necessarily finish all
 	@Override
 	public int getMinLevel() {
@@ -342,7 +342,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 	public String getNPCName() {
 		return "Balduin";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_SURROUNDS;

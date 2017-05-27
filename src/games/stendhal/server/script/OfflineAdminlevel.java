@@ -12,11 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
 
+import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
 /**

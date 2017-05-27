@@ -58,11 +58,11 @@ public class TextUI implements UserInterface {
 	 * @param isTalking chat?
 	 */
 	@Override
-	public void addGameScreenText(double x, double y, 
+	public void addGameScreenText(double x, double y,
 			String text, NotificationType type,
 			boolean isTalking) {
 		// ignored
-		
+
 	}
 
 	/**

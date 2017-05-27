@@ -20,6 +20,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -28,11 +32,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.nalwor.hell.CaptiveNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -41,7 +40,7 @@ public class HelpTomiTest {
 
 
 	private static String questSlot = "help_tomi";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -51,12 +50,12 @@ public class HelpTomiTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new CaptiveNPC().configureZone(zone, null);
-		
-			
+
+
 		final AbstractQuest quest = new HelpTomi();
 		quest.addToWorld();
 
@@ -71,10 +70,10 @@ public class HelpTomiTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("tomi");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("help!", getReply(npc));
 		en.step(player, "help");
@@ -85,7 +84,7 @@ public class HelpTomiTest {
 		assertEquals("my ice? ice plz", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("bye", getReply(npc));
-		
+
 		Item item = ItemTestHelper.createItem("ice sword");
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
@@ -101,14 +100,14 @@ public class HelpTomiTest {
 		// [22:07] kymara earns 1000 experience points.
 		en.step(player, "bye");
 		assertEquals("bye", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("help!", getReply(npc));
 		en.step(player, "ice");
 		assertEquals("where is my ice?", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("bye", getReply(npc));
-		
+
 		item = ItemTestHelper.createItem("ice sword");
 		player.getSlot("bag").add(item);
 		final int xp2 = player.getXP();
@@ -122,7 +121,7 @@ public class HelpTomiTest {
 		// [22:07] kymara earns 4000 experience points.
 		en.step(player, "bye");
 		assertEquals("bye", getReply(npc));
-		
+
 		item = ItemTestHelper.createItem("ice sword");
 		player.getSlot("bag").add(item);
 		final int xp3 = player.getXP();
@@ -136,7 +135,7 @@ public class HelpTomiTest {
 		// [22:07] kymara earns 9000 experience points.
 		en.step(player, "bye");
 		assertEquals("bye", getReply(npc));
-		
+
 		// check the XP rate change point
 		player.setQuest(questSlot, 1, "11");
 		item = ItemTestHelper.createItem("ice sword");

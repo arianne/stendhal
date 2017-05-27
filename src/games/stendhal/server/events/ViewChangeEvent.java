@@ -12,9 +12,9 @@
 package games.stendhal.server.events;
 
 import games.stendhal.common.constants.Events;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.Type;
 
 /**
  * Event for requesting change in the map area the client displays. Normally
@@ -30,10 +30,10 @@ public class ViewChangeEvent extends RPEvent {
 		rpclass.addAttribute("x", Type.INT);
 		rpclass.addAttribute("y", Type.INT);
 	}
-	
+
 	/**
 	 * Create a new view change event.
-	 * 
+	 *
 	 * @param x x coordinate of the requested view center
 	 * @param y y coordinate of the requested view center
 	 */

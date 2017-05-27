@@ -1,19 +1,19 @@
 package games.stendhal.server.entity.npc.condition;
 
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import utilities.PlayerTestHelper;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import utilities.PlayerTestHelper;
+
 /**
  * Tests for {@link PlayerLootedNumberOfItemsCondition}
- * 
+ *
  * @author madmetzger
  */
 public class PlayerLootedNumberOfItemsConditionTest {
@@ -22,7 +22,7 @@ public class PlayerLootedNumberOfItemsConditionTest {
 	public void setUp() throws Exception {
 		MockStendlRPWorld.get();
 	}
-	
+
 	@Test
 	public void testEqualsHashCode() {
 		PlayerLootedNumberOfItemsCondition actual = new PlayerLootedNumberOfItemsCondition(1, "axe");
@@ -33,7 +33,7 @@ public class PlayerLootedNumberOfItemsConditionTest {
 		assertThat(actual.hashCode(), is(new PlayerLootedNumberOfItemsCondition(1, "axe").hashCode()));
 		assertThat(actual, not(is(new PlayerLootedNumberOfItemsCondition(1, "dagger"))));
 	}
-	
+
 	@Test
 	public void testFire() {
 		PlayerLootedNumberOfItemsCondition condition = new PlayerLootedNumberOfItemsCondition(5, "axe");
@@ -46,5 +46,5 @@ public class PlayerLootedNumberOfItemsConditionTest {
 		player.incLootForItem("axe", 2);
 		assertThat(condition.fire(player, null, null), is(true));
 	}
-	
+
 }

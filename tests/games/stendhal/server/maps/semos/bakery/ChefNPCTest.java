@@ -59,10 +59,10 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testHiAndBye() {
-		
+
 		final SpeakerNPC npc = getNPC("Leander");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -80,7 +80,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testHiAndMakeNoStuff() {
 		final SpeakerNPC npc = getNPC("Leander");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -103,7 +103,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testHiAndMakeWithStuffSingle() {
 		final SpeakerNPC npc = getNPC("Leander");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -132,8 +132,8 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");
 		final String[] expected = { "1", "sandwich", "" };
-		assertEquals("amount", expected[0], questStatus[0]); 
-		assertEquals("item", expected[1], questStatus[1]); 
+		assertEquals("amount", expected[0], questStatus[0]);
+		assertEquals("item", expected[1], questStatus[1]);
 
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -160,7 +160,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testHiAndMakeWithStuffMultiple() {
 		final SpeakerNPC npc = getNPC("Leander");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -191,7 +191,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		final String[] questStatus = player.getQuest(QUEST).split(";");
 		final String[] expected = { "2", "sandwich", "" };
 		assertEquals("amount", expected[0], questStatus[0]);
-		assertEquals("item", expected[1], questStatus[1]); 
+		assertEquals("item", expected[1], questStatus[1]);
 
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -218,7 +218,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testMultipleWithoutName() {
 		final SpeakerNPC npc = getNPC("Leander");
 		final Engine en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -249,7 +249,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		final String[] questStatus = player.getQuest(QUEST).split(";");
 		final String[] expected = { "3", "sandwich", "" };
 		assertEquals("amount", expected[0], questStatus[0]);
-		assertEquals("item", expected[1], questStatus[1]); 
+		assertEquals("item", expected[1], questStatus[1]);
 
 		assertTrue(npc.isTalking());
 		assertEquals(

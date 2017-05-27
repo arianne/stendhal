@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.house1;
 
+import java.awt.geom.Rectangle2D;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.CreatureSpawner;
-
-import java.awt.geom.Rectangle2D;
-
-import org.apache.log4j.Logger;
 
 
 public class AdventureIsland extends StendhalRPZone {
@@ -94,10 +94,10 @@ public class AdventureIsland extends StendhalRPZone {
 	private static final class ChallengeMovementListener implements MovementListener {
 		private static final Rectangle2D area = new Rectangle2D.Double(0, 0, 100, 100);
 		final int returnX, returnY;
-		
+
 		/**
 		 * Create a new ChallengeMovementListener.
-		 * 
+		 *
 		 * @param x x coordinate of the player return position from the zone
 		 * @param y y coordinate of the player return position from the zone
 		 */

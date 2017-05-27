@@ -15,6 +15,11 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -25,11 +30,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.nalwor.tower.PrincessNPC;
 import games.stendhal.server.maps.semos.house.FlowerSellerNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -104,7 +104,7 @@ public class ElfPrincessTest {
 		enRose.step(player, "hi");
 		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", getReply(npcRose));
 		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
-		
+
 
 		// -----------------------------------------------
 		// return to Tywysoga
@@ -133,7 +133,7 @@ public class ElfPrincessTest {
 		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "task");
 		assertEquals("The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?", getReply(npc));
-		
+
 		en.step(player, "yes");
 		assertEquals("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.", getReply(npc));
 		en.step(player, "flower");
@@ -146,16 +146,16 @@ public class ElfPrincessTest {
 		enRose.step(player, "hi");
 		assertEquals("I gave you a flower not five minutes past! Her Royal Highness can enjoy that one for a while.", getReply(npcRose));
 		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
-	
+
 		// -----------------------------------------------
 
-		// Allow get flower a bit later; 
+		// Allow get flower a bit later;
 		player.setQuest("elf_princess", 1, Long.toString(System.currentTimeMillis() - 5 * 60 * 1000 - 10));
-		
+
 		enRose.step(player, "hi");
 		assertEquals("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.", getReply(npcRose));
 		assertEquals(ConversationStates.IDLE, enRose.getCurrentState());
-		
+
 		en.step(player, "hi");
 		assertEquals("Hail to thee, human.", getReply(npc));
 		en.step(player, "flower");

@@ -12,15 +12,14 @@
  ***************************************************************************/
 package games.stendhal.bot.curses;
 
-import games.stendhal.bot.core.StandardClientFramework;
-import games.stendhal.bot.textclient.TextClientFramework;
-import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.server.util.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.SocketException;
 
+import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.bot.textclient.TextClientFramework;
+import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.server.util.StringUtils;
 import jcurses.system.Toolkit;
 import jcurses.util.Protocol;
 
@@ -34,7 +33,7 @@ public class CursesClient {
     String port = "32160";
     boolean showWorld = false;
     boolean createAccount = false;
-    
+
     public void connect(final String[] args) {
         try {
             if (args.length > 0) {
@@ -68,7 +67,7 @@ public class CursesClient {
                     System.out.println(username);
                 }
 
-                if ((username != null) 
+                if ((username != null)
                         && (character != null) && (host != null)
                         && (port != null)) {
                     if (password == null) {
@@ -76,11 +75,11 @@ public class CursesClient {
                         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                         password = br.readLine();
                         System.out.print("\u001B[m");
-                        
+
                     }
                     System.out.println("Connecting");
 
-                
+
                     return;
                 }
             }
@@ -103,12 +102,12 @@ public class CursesClient {
         System.setProperty("jcurses.protocol.filename", "jcurses.log");
         Protocol.activateChannel(Protocol.DEBUG);
         Protocol.debug("startClient()");
-        clientWindow = new CursesWindow(0, 0, 
-               Toolkit.getScreenWidth(), Toolkit.getScreenHeight(), 
+        clientWindow = new CursesWindow(0, 0,
+               Toolkit.getScreenWidth(), Toolkit.getScreenHeight(),
                character + " - Stendhal");
         clientWindow.show();
     }
-    
+
     public void gameLoop() throws SocketException {
         Protocol.debug("gameLoop()");
         new CursesUI(clientWindow);

@@ -1,29 +1,28 @@
 // $Id$
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import marauroa.common.game.IRPZone;
-
 import java.util.List;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import marauroa.common.game.IRPZone;
 
 /**
  * teleports the SpeakerNPC to a random location on the outside world and causes
  * it to walk a random path while also randomly dropping items
- * 
+ *
  * @author kymara
  */
 public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 	final SpeakerNPC speakerNPC;
     final String itemName;
-    
-	
+
+
 	/**
 	 * Creates a new ItemDroppingTeleporterBehaviour.
-	 * 
+	 *
 	 * @param speakerNPC
 	 *            SpeakerNPC
 	 * @param repeatedText
@@ -40,13 +39,13 @@ public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 
 	/**
 	 * Creates a new ItemDroppingTeleporterBehaviour.
-	 * 
+	 *
 	 * @param speakerNPC
 	 *            SpeakerNPC
 	 * @param repeatedText
 	 *            text to repeat
 	 * @param useHighProbabilityZones
-	 *            true to make teleportation to a hand 
+	 *            true to make teleportation to a hand
 	 *            selected list of zones more likely
 	 * @param itemName
 	 *            name of item to drop

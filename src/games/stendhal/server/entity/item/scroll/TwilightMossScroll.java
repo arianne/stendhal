@@ -22,7 +22,7 @@ public class TwilightMossScroll extends TimedTeleportScroll {
 
 	/**
 	 * Creates a new timed marked TwilightMossScroll scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -35,7 +35,7 @@ public class TwilightMossScroll extends TimedTeleportScroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */

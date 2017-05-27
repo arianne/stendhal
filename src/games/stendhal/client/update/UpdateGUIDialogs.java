@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Dialogboxes used during updating..
- * 
+ *
  * @author hendrik
  */
 class UpdateGUIDialogs {
@@ -26,7 +26,7 @@ class UpdateGUIDialogs {
 
 	/**
 	 * Asks the user to accept an update.
-	 * 
+	 *
 	 * @param updateSize
 	 *            size of the files to download
 	 * @param update
@@ -61,7 +61,7 @@ class UpdateGUIDialogs {
 
 	/**
 	 * Displays a message box.
-	 * 
+	 *
 	 * @param message
 	 *            message to display
 	 */

@@ -1,11 +1,11 @@
 package games.stendhal.client.gui.j2d.entity.helpers;
 
-import games.stendhal.client.sprite.Sprite;
-
 import java.awt.Graphics2D;
+
+import games.stendhal.client.sprite.Sprite;
 /**
  * Helper class for drawing sprites with a certain alignment in a certain area
- * 
+ *
  * @author madmetzger
  */
 public class DrawingHelper {
@@ -13,13 +13,13 @@ public class DrawingHelper {
 	/**
 	 * Align a sprite in a defined area, which is defined by upper left corner (x,y)
 	 * and width to the right and height downwards
-	 * 
+	 *
 	 * @param g2d
 	 * @param sprite the sprite to draw
 	 * @param horizontalAlign (left, center, right)
 	 * @param verticalAlign (top, middle, bottom)
-	 * @param x 
-	 * @param y 
+	 * @param x
+	 * @param y
 	 * @param width
 	 * @param height
 	 */

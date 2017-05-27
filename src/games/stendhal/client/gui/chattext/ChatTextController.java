@@ -11,13 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.chattext;
 
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
-import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.client.scripting.ChatLineParser;
-import games.stendhal.common.constants.SoundLayer;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -34,10 +27,17 @@ import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.JTextComponent;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.scripting.ChatLineParser;
+import games.stendhal.common.constants.SoundLayer;
+
 public class ChatTextController {
 	/** Maximum text length. Public chat is limited to 1000 server side. */
 	private static final int MAX_TEXT_LENGTH = 1000;
-	
+
 	private final JTextField playerChatText = new JTextField("");
 
 	private ChatCache cache;
@@ -67,7 +67,7 @@ public class ChatTextController {
 	public void setChatLine(final String text) {
 		playerChatText.setText(text);
 	}
-	
+
 	/**
 	 * Add the special key bindings.
 	 */
@@ -76,7 +76,7 @@ public class ChatTextController {
 		input.put(KeyStroke.getKeyStroke("shift UP"), "history_previous");
 		input.put(KeyStroke.getKeyStroke("shift DOWN"), "history_next");
 		input.put(KeyStroke.getKeyStroke("F1"), "manual");
-		
+
 		ActionMap actions = playerChatText.getActionMap();
 		actions.put("history_previous", new AbstractAction() {
 			@Override
@@ -134,7 +134,7 @@ public class ChatTextController {
 	public void saveCache() {
 		cache.save();
 	}
-	
+
 	/**
 	 * A document filter that limits the maximum allowed length of a document.
 	 */
@@ -146,13 +146,13 @@ public class ChatTextController {
 
 		/**
 		 * Create a new SizeFilter.
-		 * 
+		 *
 		 * @param maxSize maximum length of the document
 		 */
 		SizeFilter(int maxSize) {
 			this.maxSize = maxSize;
 		}
-		
+
 		@Override
 		public void insertString(FilterBypass fb, int offs, String str,
 				AttributeSet a) throws BadLocationException {

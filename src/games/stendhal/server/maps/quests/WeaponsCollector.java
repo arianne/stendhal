@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -21,9 +24,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: The Weapons Collector
@@ -59,9 +59,9 @@ public class WeaponsCollector extends AbstractQuest implements
 			"golden mace", "scimitar", "scythe", "war hammer");
 
 	private static final String QUEST_SLOT = "weapons_collector";
-	
+
 	private BringListOfItemsQuestLogic bringItems;
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return bringItems.getHistory(player);
@@ -132,7 +132,7 @@ public class WeaponsCollector extends AbstractQuest implements
 	@Override
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
 		// because of WeaponsCollector2
-		return false; 
+		return false;
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public class WeaponsCollector extends AbstractQuest implements
 	public String getName() {
 		return "WeaponsCollector";
 	}
-	
+
 	// it can be a long quest so they can always start it before they can necessarily finish all
 	@Override
 	public int getMinLevel() {
@@ -239,7 +239,7 @@ public class WeaponsCollector extends AbstractQuest implements
 	public String getNPCName() {
 		return "Balduin";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_SURROUNDS;

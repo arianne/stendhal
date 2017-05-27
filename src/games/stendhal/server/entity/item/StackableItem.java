@@ -12,16 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import marauroa.common.game.RPObject;
 
 public class StackableItem extends Item implements Stackable<StackableItem> {
 

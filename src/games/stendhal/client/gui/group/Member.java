@@ -28,10 +28,10 @@ class Member implements Comparable<Member> {
 	private final LinearScalingModel hpModel = new LinearScalingModel();
 	/** Listener that needs to be notified about significant HP changes. */
 	private ChangeListener listener;
-	
+
 	/**
 	 * Create a new member.
-	 * 
+	 *
 	 * @param name name of the buddy
 	 */
 	Member(String name) {
@@ -46,29 +46,29 @@ class Member implements Comparable<Member> {
 			}
 		});
 	}
-	
+
 	/**
 	 * Get the name of the member.
-	 * 
+	 *
 	 * @return name
 	 */
 	String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Check if the member is the group leader.
-	 * 
+	 *
 	 * @return <code>true</code> if the member is the group leader,
 	 *	<code>false</code> otherwise
 	 */
 	boolean isLeader() {
 		return leader;
 	}
-	
+
 	/**
 	 * Set the leader status of the group member.
-	 * 
+	 *
 	 * @param status the new leader status
 	 * @return <code>true</code> if the leader changed, <code>false</code>
 	 * 	otherwise
@@ -78,54 +78,54 @@ class Member implements Comparable<Member> {
 		leader = status;
 		return changed;
 	}
-	
+
 	/**
 	 * Check if the member is present.
-	 * 
+	 *
 	 * @return <code>true</code> if the member is present, <code>false</code>
 	 * 	otherwise
 	 */
 	boolean isPresent() {
 		return present;
 	}
-	
+
 	/**
 	 * Set the member present or absent.
-	 * 
+	 *
 	 * @param present
 	 */
 	void setPresent(boolean present) {
 		this.present = present;
 	}
-	
+
 	/**
 	 * Get the ratio of the member's current HP vs her maximum HP. The value
 	 * is reliable only if the member is present.
-	 * 
+	 *
 	 * @return HP ratio
 	 */
 	float getHpRatio() {
 		return (float) hpModel.getValue();
 	}
-	
+
 	/**
 	 * Set the ratio of the member's current HP vs her maximum HP.
-	 * 
-	 * @param ratio new HP ratio 
+	 *
+	 * @param ratio new HP ratio
 	 */
 	void setHpRatio(float ratio) {
 		hpModel.setValue(ratio);
 	}
-	
+
 	/**
 	 * Set the listener that should be notified about changes in the member.
-	 * 
+	 *
 	 * @param listener
 	 */
 	void setChangeListener(ChangeListener listener) {
 		this.listener = listener;
 	}
-	
+
 	/**
 	 * Set the maximum HP representation. Used to detect which HP ratio changes
 	 * are significant.
@@ -135,7 +135,7 @@ class Member implements Comparable<Member> {
 	void setMaxHPRepresentation(int maxRepresentation) {
 		hpModel.setMaxRepresentation(maxRepresentation);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Member) {
@@ -143,7 +143,7 @@ class Member implements Comparable<Member> {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return name.hashCode();
@@ -156,7 +156,7 @@ class Member implements Comparable<Member> {
 		if (leader != member.leader) {
 			return (leader) ? -1 : 1;
 		}
-		
+
 		return name.compareToIgnoreCase(member.name);
 	}
 }

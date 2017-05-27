@@ -18,7 +18,7 @@ import marauroa.common.game.RPObject;
 
 /** A Player entity. */
 public class Player extends RPEntity {
-	
+
 	/**
 	 * Away property.
 	 */
@@ -31,9 +31,9 @@ public class Player extends RPEntity {
 	 * Player killer property.
 	 */
 	public static final Property PROP_PLAYER_KILLER = new Property();
-	
+
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
-	
+
 	/**
 	 * The away message of this player.
 	 */
@@ -58,29 +58,29 @@ public class Player extends RPEntity {
 
 	/**
 	 * Determine if the player is away.
-	 * 
+	 *
 	 * @return <code>true</code> if the player is away.
 	 */
 	public boolean isAway() {
 		return (getAway() != null);
 	}
-	
+
 	public boolean isBadBoy() {
 		return badboy;
 	}
 
 	/**
 	 * Get the away message.
-	 * 
+	 *
 	 * @return The away text, or <code>null</code> if not away.
 	 */
 	public String getAway() {
 		return away;
 	}
-	
+
 	/**
 	 * An away message was set/cleared.
-	 * 
+	 *
 	 * @param message
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
@@ -96,10 +96,10 @@ public class Player extends RPEntity {
 			}
 		}
 	}
-	
+
 	/**
 	 * Determine if the player is grumpy.
-	 * 
+	 *
 	 * @return <code>true</code> if the player is grumpy.
 	 */
 	public boolean isGrumpy() {
@@ -108,7 +108,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * An away message was set/cleared.
-	 * 
+	 *
 	 * @param message
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
@@ -127,7 +127,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Check if a message string has changed.
-	 * 
+	 *
 	 * @param oldMessage
 	 * @param newMessage
 	 * @return <code>true</code> if the message has changed
@@ -156,7 +156,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -169,11 +169,11 @@ public class Player extends RPEntity {
 		if (changes.has("away")) {
 			onAway(changes.get("away"));
 		}
-		
+
 		if (changes.has("grumpy")) {
 			onGrumpy(changes.get("grumpy"));
 		}
-		
+
 		if (changes.has(LAST_PLAYER_KILL_TIME)) {
 			badboy = true;
 			fireChange(PROP_PLAYER_KILLER);
@@ -182,7 +182,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

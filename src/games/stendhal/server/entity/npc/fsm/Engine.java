@@ -1,6 +1,15 @@
 // $Id$
 package games.stendhal.server.entity.npc.fsm;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
@@ -12,15 +21,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * a finite state machine.
@@ -41,7 +41,7 @@ public class Engine {
 
 	/**
 	 * Creates a new FSM.
-	 * 
+	 *
 	 * @param speakerNPC
 	 *            the speaker NPC for which this FSM is created must not be null
 	 */
@@ -74,7 +74,7 @@ public class Engine {
 
 	/**
 	 * Adds a new transition to FSM.
-	 * 
+	 *
 	 * @param state
 	 *            old state
 	 * @param triggerString
@@ -101,7 +101,7 @@ public class Engine {
 
 	/**
 	 * Adds a new transition to FSM.
-	 * 
+	 *
 	 * @param state
 	 *            old state
 	 * @param triggerString
@@ -127,10 +127,10 @@ public class Engine {
 
 		add(triggerExpressions, state, condition, secondary, nextState, reply, action, label);
 	}
-	
+
 	/**
 	 * Adds a new set of transitions to the FSM.
-	 * 
+	 *
 	 * @param state
 	 *            the starting state of the FSM
 	 * @param triggerStrings
@@ -159,10 +159,10 @@ public class Engine {
 		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
 	}
 
-	
+
 	/**
 	 * Adds a new set of transitions to the FSM.
-	 * 
+	 *
 	 * @param state
 	 *            the starting state of the FSM
 	 * @param triggerStrings
@@ -192,7 +192,7 @@ public class Engine {
 
 		add(triggerExpressions, state, condition, secondary, nextState, reply, action, label);
 	}
-	
+
 	/**
 	 * Adds a new transition with explicit ExpressionMatcher to FSM.
 	 *
@@ -304,10 +304,10 @@ public class Engine {
 			stateTransitionTable.add(new Transition(state, triggerExpressions, condition, secondary, nextState, reply, action));
 		}
 	}
-	
+
 	/**
 	 * remove matches transition
-	 * 
+	 *
 	 * @param label the label of transitions to remove
 	 * @return true, if at least one transition was removed
 	 */
@@ -332,7 +332,7 @@ public class Engine {
 	/**
 	 * Create a collection of trigger expressions from trigger strings
 	 * while checking for duplicate transitions.
-	 * 
+	 *
 	 * @param state
 	 * @param triggerStrings
 	 * @param matcher
@@ -384,7 +384,7 @@ public class Engine {
 
 	/**
 	 * Gets the current state.
-	 * 
+	 *
 	 * @return current state
 	 */
 	public ConversationStates getCurrentState() {
@@ -393,7 +393,7 @@ public class Engine {
 
 	/**
 	 * Sets the current State without doing a normal transition.
-	 * 
+	 *
 	 * @param currentState
 	 *            new state
 	 */
@@ -403,7 +403,7 @@ public class Engine {
 
 	/**
 	 * Do one transition of the finite state machine.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param text
@@ -423,7 +423,7 @@ public class Engine {
 
 	/**
 	 * Do one transition of the finite state machine.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param sentence
@@ -459,7 +459,7 @@ public class Engine {
 	/**
 	 * Do one transition of the finite state machine with debugging output and
 	 * reset of the previous response.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param text
@@ -573,7 +573,7 @@ public class Engine {
 	/**
 	 * Look for a match between given sentence and transition in the current state.
 	 * TODO mf - refactor match type handling
-	 * 
+	 *
 	 * @param type
 	 * @param sentence
 	 * @param transition
@@ -599,13 +599,13 @@ public class Engine {
 		if (trans.getAction() != null) {
 			trans.getAction().fire(player, sentence, new EventRaiser(speakerNPC));
 		}
-		
+
 		speakerNPC.notifyWorldAboutChanges();
 	}
 
 	/**
 	 * Returns a copy of the transition table.
-	 * 
+	 *
 	 * @return list of transitions
 	 */
 	public List<Transition> getTransitions() {

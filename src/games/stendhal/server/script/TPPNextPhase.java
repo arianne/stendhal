@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 
-import java.util.List;
-
 /**
  * Showing what is current ThePiedPiper quest state, and when it will switch to next.
- * 
+ *
  * @author yoriy
  */
 public class TPPNextPhase extends ScriptImpl {

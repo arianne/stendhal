@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.LANGUAGE;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
@@ -31,7 +32,7 @@ public class LanguageAction implements ActionListener {
 
 	/**
 	 * processes the requested action.
-	 * 
+	 *
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */

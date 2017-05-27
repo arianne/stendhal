@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -33,33 +37,29 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Look for a book for Ceryl
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Ceryl </li>
  * <li> Jynath </li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Talk with Ceryl to activate the quest. </li>
  * <li> Talk with Jynath for the book. </li>
  * <li> Return the book to Ceryl. </li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 100 XP </li>
  * <li> some karma (10 + (5 | -5) </li>
  * <li> 50 gold coins </li>
  * </ul>
- * 
+ *
  * REPETITIONS: None
  */
 public class LookBookforCeryl extends AbstractQuest {
@@ -71,7 +71,7 @@ public class LookBookforCeryl extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private void step1LearnAboutQuest() {
 
 		final SpeakerNPC npc = npcs.get("Ceryl");
@@ -79,13 +79,13 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotStartedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"I am looking for a very special #book.", null);
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"I have nothing for you now.", null);
 
 		/** Other conditions not met e.g. quest completed */
@@ -210,12 +210,12 @@ public class LookBookforCeryl extends AbstractQuest {
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestInStateCondition(QUEST_SLOT, "jynath"),
 					new NotCondition(new PlayerHasItemWithHimCondition("black book"))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
 			new SetQuestAction(QUEST_SLOT, "start"));
 	}
 
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -242,7 +242,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		}
 		return res;
 	}
-	
+
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -258,7 +258,7 @@ public class LookBookforCeryl extends AbstractQuest {
 	public String getName() {
 		return "LookBookforCeryl";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

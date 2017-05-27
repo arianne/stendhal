@@ -38,7 +38,7 @@ import games.stendhal.server.entity.player.Player;
 
 public class ProducerAdder {
 	private static final Logger logger = Logger.getLogger(ProducerAdder.class);
-	
+
     private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
 	/**
@@ -49,9 +49,9 @@ public class ProducerAdder {
 
     /**
      * Adds all the dialogue associated with a Producing NPC
-     *  
+     *
      * @param npc producer
-     * @param behaviour 
+     * @param behaviour
      * @param welcomeMessage
      */
 	public void addProducer(final SpeakerNPC npc, final ProducerBehaviour behaviour,
@@ -65,12 +65,12 @@ public class ProducerAdder {
 
         /** How should we greet the player? */
 		final String thisWelcomeMessage = welcomeMessage;
-		
+
 		/** What is the NPC name? */
 		final String npcName = npc.getName();
-		
+
 		/* add to producer register */
-		producerRegister.add(npcName, behaviour);		
+		producerRegister.add(npcName, behaviour);
 
         /* The Player greets the NPC.
         * The NPC is not currently producing for player (not started, is rejected, or is complete) */
@@ -86,9 +86,9 @@ public class ProducerAdder {
 				false, ConversationStates.ATTENDING,
 				null, new ComplainAboutSentenceErrorAction());
 
-        /* In the behaviour a production activity is defined, e.g. 'cast' or 'mill' 
+        /* In the behaviour a production activity is defined, e.g. 'cast' or 'mill'
         * and this is used as the trigger to start the production,
-        * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */		
+        * provided that the NPC is not currently producing for player (not started, is rejected, or is complete) */
         engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
@@ -96,7 +96,7 @@ public class ProducerAdder {
 					new NotCondition(new SentenceHasErrorCondition()),
 					new QuestNotActiveCondition(QUEST_SLOT)
 				),
-                false, 
+                false,
                 ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour) {
 					@Override
@@ -141,7 +141,7 @@ public class ProducerAdder {
 		engine.add(
 				ConversationStates.ATTENDING,
 				behaviour.getProductionActivity(),
-				new QuestActiveCondition(QUEST_SLOT), 
+				new QuestActiveCondition(QUEST_SLOT),
                 false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
 					@Override

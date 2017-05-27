@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package utilities.RPClass;
 
@@ -11,11 +11,11 @@ import marauroa.common.game.RPClass;
 
 /**
  * Test helper for the {@link BlockTest} to generate the necessary RPClasses
- * 
+ *
  * @author madmetzger
  */
 public class BlockTestHelper {
-	
+
 	public static void generateRPClasses() {
 		EntityTestHelper.generateRPClasses();
 		if(!RPClass.hasRPClass("area")) {

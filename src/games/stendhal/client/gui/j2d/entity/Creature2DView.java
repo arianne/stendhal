@@ -13,6 +13,9 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
@@ -20,9 +23,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * The 2D view of a creature.

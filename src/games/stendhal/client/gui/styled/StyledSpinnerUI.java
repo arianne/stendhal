@@ -24,22 +24,22 @@ import javax.swing.plaf.basic.BasicSpinnerUI;
  */
 public class StyledSpinnerUI extends BasicSpinnerUI {
 	private final Style style;
-	
+
 	// Required by UIManager
 	public static ComponentUI createUI(JComponent pane) {
 		// BasicSpinnerUI instances can not be shared
 		return new StyledSpinnerUI(StyleUtil.getStyle());
 	}
-	
+
 	/**
 	 * Create a new pixmap style.
-	 * 
+	 *
 	 * @param style {@link Style} to be used for drawing the spinner
 	 */
 	public StyledSpinnerUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	protected JComponent createEditor() {
 		JComponent editor = super.createEditor();
@@ -54,24 +54,24 @@ public class StyledSpinnerUI extends BasicSpinnerUI {
 				((JComponent) child).setBorder(null);
 			}
 		}
-		
+
 		return editor;
 	}
-	
+
 	@Override
 	protected Component createNextButton() {
 		Component button = new StyledArrowButton(SwingConstants.NORTH, style);
 		installNextButtonListeners(button);
 		return button;
 	}
-	
+
 	@Override
 	protected Component createPreviousButton() {
 		Component button = new StyledArrowButton(SwingConstants.SOUTH, style);
 		installPreviousButtonListeners(button);
 		return button;
 	}
-	
+
 	@Override
 	public void installUI(JComponent spinner) {
 		super.installUI(spinner);

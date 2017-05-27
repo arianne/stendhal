@@ -16,16 +16,16 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 /**
@@ -37,7 +37,7 @@ public class OnePlayerAreaTest {
 		// Ensure the RPClasses are generated
 		MockStendlRPWorld.get();
 	}
-	
+
 	/**
 	 * Test setting and getting the occupant.
 	 */
@@ -45,12 +45,12 @@ public class OnePlayerAreaTest {
 	public void testSetAndGet() {
 		OnePlayerArea area = new OnePlayerArea(1, 1);
 		Player player = PlayerTestHelper.createPlayer("Romulus");
-		
+
 		assertNull(area.getOccupant());
 		area.setOccupant(player);
 		assertSame(player, area.getOccupant());
 	}
-	
+
 	/**
 	 * Test clearing the area.
 	 */
@@ -58,13 +58,13 @@ public class OnePlayerAreaTest {
 	public void testClearOccupant() {
 		OnePlayerArea area = new OnePlayerArea(1, 1);
 		Player player = PlayerTestHelper.createPlayer("Romulus");
-		
+
 		area.setOccupant(player);
 		assertSame(player, area.getOccupant());
 		area.clearOccupant();
 		assertNull(area.getOccupant());
 	}
-	
+
 	/**
 	 * Test checking if the area contains an entity.
 	 */
@@ -72,8 +72,8 @@ public class OnePlayerAreaTest {
 	public void testContains() {
 		OnePlayerArea area = new OnePlayerArea(3, 3);
 		Player player = PlayerTestHelper.createPlayer("Romulus");
-		
-		// Extents of the insides 
+
+		// Extents of the insides
 		assertTrue(area.contains(player));
 		player.setPosition(2, 2);
 		assertTrue(area.contains(player));
@@ -91,14 +91,14 @@ public class OnePlayerAreaTest {
 		assertFalse(area.contains(player));
 		player.setPosition(3, 3);
 		assertFalse(area.contains(player));
-		
+
 		// checks with a fat player
 		player.setSize(2, 2);
 		assertFalse(area.contains(player));
 		player.setPosition(-1, -1);
 		assertTrue(area.contains(player));
 	}
-	
+
 	/**
 	 * Test collision behavior.
 	 */
@@ -107,13 +107,13 @@ public class OnePlayerAreaTest {
 		OnePlayerArea area = new OnePlayerArea(3, 3);
 		Player player = PlayerTestHelper.createPlayer("Romulus");
 		Entity entity = new Entity() {};
-		
+
 		assertFalse("Empty area collides with a player", area.isObstacle(player));
 		assertFalse("Empty area collides with an entity", area.isObstacle(entity));
 		area.setOccupant(player);
 		assertFalse("Area occupied by a player collides with the player himself", area.isObstacle(player));
 		assertFalse("Area occupied by a player collides with any entity", area.isObstacle(entity));
-		
+
 		Player player2 = PlayerTestHelper.createPlayer("Remus");
 		player2.setPosition(1, 1);
 		// Entering is possible in ghostmode, so there's a valid way to get two
@@ -125,7 +125,7 @@ public class OnePlayerAreaTest {
 		player2.setGhost(true);
 		assertFalse("A ghost can not enter the area", area.isObstacle(player2));
 	}
-	
+
 	/**
 	 * Test entering the area in various ways.
 	 */
@@ -133,7 +133,7 @@ public class OnePlayerAreaTest {
 	public void testOnEntered() {
 		OnePlayerArea area = new OnePlayerArea(3, 3);
 		Player player = PlayerTestHelper.createPlayer("Romulus");
-		
+
 		area.onEntered(player, null, 0, 0);
 		assertSame(player, area.getOccupant());
 		area.clearOccupant();
@@ -142,18 +142,18 @@ public class OnePlayerAreaTest {
 		area.onEntered(player, null, 0, 0);
 		assertNull(area.getOccupant());
 		player.setGhost(false);
-		
+
 		// These test largely functionality *outside* the OnePlayerArea code,
 		// but there is not a very good place for these elsewhere.
 		area = new AreaWrapper() {
 			@Override
 			public void onEntered(ActiveEntity player, StendhalRPZone zone, int x, int y) {
-				throw new MethodCalledException(); 
+				throw new MethodCalledException();
 			}
 		};
 		StendhalRPZone zone = new StendhalRPZone("test zone", 5, 5);
 		zone.add(area);
-	
+
 		try {
 			zone.add(player);
 			fail("onEntered() not called when a player is added to the zone");
@@ -177,7 +177,7 @@ public class OnePlayerAreaTest {
 		}
 		zone.remove(player);
 	}
-	
+
 	/**
 	 * Test exiting the area in various ways.
 	 */
@@ -188,13 +188,13 @@ public class OnePlayerAreaTest {
 		area.setOccupant(player);
 		area.onExited(player, null, 0, 0);
 		assertNull(area.getOccupant());
-		
+
 		// These test largely functionality *outside* the OnePlayerArea code,
 		// but there is not a very good place for these elsewhere.
 		area = new AreaWrapper() {
 			@Override
 			public void onExited(ActiveEntity player, StendhalRPZone zone, int x, int y) {
-				throw new MethodCalledException(); 
+				throw new MethodCalledException();
 			}
 		};
 		StendhalRPZone zone = new StendhalRPZone("test zone", 5, 5);
@@ -210,7 +210,7 @@ public class OnePlayerAreaTest {
 			fail("onExited() not called when a player moves outside the area");
 		} catch (MethodCalledException e) {
 			// Player moved outside the area
-		}	
+		}
 		player.setPosition(2, 2);
 		try {
 			zone.remove(player);
@@ -222,31 +222,31 @@ public class OnePlayerAreaTest {
 		// The previous remove was interrupted
 		zone.remove(player);
 		zone.add(player);
-		
+
 		try {
 			zone.remove(player);
 		} catch (MethodCalledException e) {
 			fail("onExited() called after the area should have been removed");
 		}
 	}
-	
+
 	/**
 	 * Check that the appropriate methods get called at zone change
 	 */
 	@Test
 	public void testZoneChange() {
 		Player player = PlayerTestHelper.createPlayer("Romulus");
-		
+
 		StendhalRPZone zone1 = new StendhalRPZone("test zone 1", 5, 5);
 		StendhalRPZone zone2 = new StendhalRPZone("test zone 2", 5, 5);
 		// These test largely functionality *outside* the OnePlayerArea code,
 		// but there is not a very good place for these elsewhere.
-		
+
 		// *** exit checks ***
 		OnePlayerArea area = new AreaWrapper() {
 			@Override
 			public void onExited(ActiveEntity player, StendhalRPZone zone, int x, int y) {
-				throw new MethodCalledException(); 
+				throw new MethodCalledException();
 			}
 		};
 		zone1.add(area);
@@ -257,25 +257,25 @@ public class OnePlayerAreaTest {
 			fail("onExited() at source area not called when a player changes zone");
 		} catch (MethodCalledException e) {
 		}
-		
+
 		// Interrupted move; ensure that the player is at zone2 for the next test
 		zone1.remove(area);
 		area.clearOccupant();
 		StendhalRPAction.placeat(zone2, player, 1, 1);
 		zone1.add(area);
-		
+
 		try {
 			StendhalRPAction.placeat(zone1, player, 3, 3);
 		} catch (MethodCalledException e) {
 			fail("onExited() at destination area called when a player changes zone");
 		}
 		zone1.remove(area);
-		
+
 		// *** enter checks ***
 		area = new AreaWrapper() {
 			@Override
 			public void onEntered(ActiveEntity player, StendhalRPZone zone, int x, int y) {
-				throw new MethodCalledException(); 
+				throw new MethodCalledException();
 			}
 		};
 		zone2.add(area);
@@ -285,7 +285,7 @@ public class OnePlayerAreaTest {
 			fail("onEntered() at destination area not called when a player changes zone");
 		} catch (MethodCalledException e) {
 		}
-		
+
 		// Interrupted move; ensure that the player is at zone2, and in the area
 		// for the next test.
 		zone2.remove(area);
@@ -293,7 +293,7 @@ public class OnePlayerAreaTest {
 		StendhalRPAction.placeat(zone2, player, 3, 3);
 		zone2.add(area);
 		area.setOccupant(player);
-	
+
 		try {
 			StendhalRPAction.placeat(zone1, player, 0, 0);
 		} catch (MethodCalledException e) {
@@ -303,7 +303,7 @@ public class OnePlayerAreaTest {
 			fail("onEntered() at source area called when a player changes zone");
 		}
 	}
-	
+
 	/**
 	 * A helper class to allow attaching hooks to onEntered() and friends.
 	 */
@@ -312,7 +312,7 @@ public class OnePlayerAreaTest {
 			super(3, 3);
 		}
 	}
-	
+
 	/**
 	 * An exception to be thrown when a method is called.
 	 */

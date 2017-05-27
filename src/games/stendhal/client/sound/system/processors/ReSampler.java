@@ -42,10 +42,10 @@ public class ReSampler extends SignalProcessor
 //    {
 //        mStarted = true;
 //    }
-    
+
     /**
      * Modify the PCM audio stream. The audio data is uniform and interleaved.
-	 * 
+	 *
      * @param data     the audio data
      * @param frames   the number of sample frames contained in "data"
      * @param channels number of channels

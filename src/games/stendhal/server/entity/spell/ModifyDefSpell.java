@@ -8,14 +8,14 @@ import games.stendhal.server.entity.spell.effect.ModifyDefEffect;
 import marauroa.common.game.RPObject;
 /**
  * Spell to modify a target's def value
- * 
+ *
  * @author madmetzger
  */
 public class ModifyDefSpell extends Spell {
 
 	/**
 	 * Create a new ModifyDefSpell
-	 * 
+	 *
 	 * @param name
 	 * @param nature
 	 * @param amount
@@ -36,10 +36,10 @@ public class ModifyDefSpell extends Spell {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel,
 				range, rate, regen, modifier);
 	}
-	
+
 	/**
 	 * Create a ModifyDefSpell from a RPObject
-	 * 
+	 *
 	 * @param object
 	 */
 	public ModifyDefSpell(RPObject object) {

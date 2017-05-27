@@ -33,7 +33,7 @@ import marauroa.common.game.SyntaxException;
 /**
  * A pet is a domestic animal that can be owned by a player. It eats chicken
  * from the ground. They move faster than sheep.
-  
+
  * Pets starve if they are not fed. They can die.
  *
  * @author kymara
@@ -49,13 +49,13 @@ public abstract class Pet extends DomesticAnimal {
 	 * The amount of hunger that indicates starvation.
 	 */
 	protected static final int HUNGER_STARVATION = 750;
-	
+
 
 	private static final int START_HUNGER_VALUE = 0;
 
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(Pet.class);
-	
+
 
 	/**
 	 * The weight at which the pet will stop eating.
@@ -68,7 +68,7 @@ public abstract class Pet extends DomesticAnimal {
 	public final int FAT_FACTOR = 5;
 
 	protected List<String> foodName = getFoodNames();
-	
+
 	protected List<String> medicineName = getMedicineNames();
 
 	protected int HP = 100;
@@ -80,9 +80,9 @@ public abstract class Pet extends DomesticAnimal {
 	protected int XP;
 
 	protected int hunger;
-	
+
 	RPEntity myTarget = null;
-	
+
 
 	/**
 	 * Creates a new wild Pet.
@@ -104,7 +104,7 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * Creates a Pet based on an existing pet RPObject, and assigns it to a
 	 * player.
-	 * 
+	 *
 	 * @param object object containing the data for the Pet
 	 * @param owner
 	 *            The player who should own the pet
@@ -113,13 +113,13 @@ public abstract class Pet extends DomesticAnimal {
 		super(object, owner);
 		hunger = START_HUNGER_VALUE;
 	}
-	
+
 	protected abstract List<String> getFoodNames();
-	
+
 	protected List<String> getMedicineNames() {
 		return Arrays.asList("minor potion", "potion", "greater potion", "mega potion");
 	}
-	
+
 	public static void generateRPClass() {
 		try {
 			final RPClass pet = new RPClass("pet");
@@ -134,7 +134,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	/**
 	 * Is called when the pet dies. Removes the dead pet from the owner.
-	 * 
+	 *
 	 */
 	@Override
 	public void onDead(final Killer killer, final boolean remove) {
@@ -155,7 +155,7 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * Returns the PetFood that is nearest to the pet's current position. If
 	 * there is no PetFood within the given range, returns none.
-	 * 
+	 *
 	 * @param range
 	 *            The maximum distance to a PetFood
 	 * @return The nearest PetFood, or null if there is none within the given
@@ -163,10 +163,10 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	private Item getNearestFood(final double range) {
 		// This way we save several sqrt operations
-		double squaredDistance = range * range; 
+		double squaredDistance = range * range;
 
 		Item chosen = null;
-		
+
 		for (final Item item : getZone().getItemsOnGround()) {
 			if (canEat(item) && (this.squaredDistance(item) < squaredDistance)) {
 				chosen = item;
@@ -176,7 +176,7 @@ public abstract class Pet extends DomesticAnimal {
 
 		return chosen;
 	}
-	
+
 	private Item getNearestHealItem(final double range) {
 		// This way we save several sqrt operations
 		double squaredDistance = range * range;
@@ -194,7 +194,7 @@ public abstract class Pet extends DomesticAnimal {
 	boolean canEat(final Item i) {
 		return foodName.contains(i.getName());
 	}
-	
+
 	boolean canHeal(final Item i) {
 		return medicineName.contains(i.getName());
 	}
@@ -207,14 +207,14 @@ public abstract class Pet extends DomesticAnimal {
 		hunger = START_HUNGER_VALUE;
 		if (getHP() < getBaseHP()) {
 			// directly increase the pet's health points
-			heal(incHP); 
+			heal(incHP);
 		}
 	}
-	
+
 	private void drink(final ConsumableItem medicine) {
 		if (getHP() < getBaseHP()) {
 			// directly increase the pet's health points
-			heal(((ConsumableItem) medicine.splitOff(1)).getAmount(), true); 
+			heal(((ConsumableItem) medicine.splitOff(1)).getAmount(), true);
 			medicine.removeOne();
 		}
 	}
@@ -253,30 +253,30 @@ public abstract class Pet extends DomesticAnimal {
 			myTarget = owner.getAttackTarget();
 			this.setTarget(myTarget);
 			this.setIdea("agressive");
-			
+
 			if (!nextTo(myTarget)) {
 				clearPath();
 				this.setMovement(myTarget, 0, 0, this.getMovementRange());
 			}
 		}
-		
-		
+
+
 		if ((this.getLevel() >= this.getLVCap()) && canGrow()) {
 
-			// Postpone growing to the next turn because it may involve 
-			// removing this NPC-entity from the zone and adding a 
+			// Postpone growing to the next turn because it may involve
+			// removing this NPC-entity from the zone and adding a
 			// different one.
 			// But we are called from within a for-loop over all NPC-entity
-			// in StendhalRPZone.logic, so we may not modify that list 
+			// in StendhalRPZone.logic, so we may not modify that list
 			TurnNotifier.get().notifyInTurns(1, new TurnListener() {
-				
+
 				@Override
 				public void onTurnReached(int currentTurn) {
 					grow();
 				}
 			});
 		}
-		
+
 		//drinking logic
 		boolean busyWithHealing = false;
 		if (getHP() < getBaseHP()) {
@@ -324,7 +324,7 @@ public abstract class Pet extends DomesticAnimal {
 	private void logicEating() {
 		// Show 'food' idea whenever hungry
 		setIdea("food");
-		
+
 		final Item food = getNearestFood(6);
 
 		if ((food != null)) {
@@ -343,7 +343,7 @@ public abstract class Pet extends DomesticAnimal {
 		} else if (hunger > HUNGER_STARVATION) {
 			// move crazy if starving
 			moveRandomly();
-			
+
 			hunger /= 2;
 			 if (owner != null) {
 				 owner.sendPrivateText("Your pet is starving!");
@@ -352,12 +352,12 @@ public abstract class Pet extends DomesticAnimal {
 			if (weight > 0) {
 				setWeight(weight - 1);
 			} else {
-				// apply starvation damage at a safe moment 
+				// apply starvation damage at a safe moment
 				delayedDamage(2, "starvation");
 			}
 		} else {
 			// here, (hunger_hungry < hunger < starvation) && not near food
-			// so, here, we follow owner, if we have one and if we don't, 
+			// so, here, we follow owner, if we have one and if we don't,
 			// we do the other stuff
 			logicStandard("food");
 		}
@@ -390,7 +390,7 @@ public abstract class Pet extends DomesticAnimal {
 			hunger++;
 		}
 	}
-	// provide a nice string, describing the pet's hunger, to add to the 
+	// provide a nice string, describing the pet's hunger, to add to the
 	// Look description.
 	private String getHungerType(final int hunger) {
 		if (hunger < HUNGER_HUNGRY) {

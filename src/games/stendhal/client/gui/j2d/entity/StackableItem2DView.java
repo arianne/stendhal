@@ -13,6 +13,9 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.j2d.entity.helpers.DrawingHelper;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
@@ -20,12 +23,9 @@ import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.TextSprite;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 /**
  * The 2D view of a stackable item.
- * 
+ *
  * @param <T> stackable item type
  */
 public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> {
@@ -52,15 +52,15 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 		quantityChanged = false;
 		showQuantity = true;
 	}
-	
+
 	//
 	// StackableItem2DView
 	//
 
 	/**
 	 * Get the appropriate quantity sprite.
-	 * 
-	 * @param entity 
+	 *
+	 * @param entity
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.
 	 */
@@ -85,7 +85,7 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 
 	/**
 	 * Set whether to show the quantity value.
-	 * 
+	 *
 	 * @param showQuantity
 	 *            Whether to show the quantity.
 	 */
@@ -109,7 +109,7 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 
 	/**
 	 * Draw quantity sprite. Exact position depends on containment status.
-	 * 
+	 *
 	 * @param g2d graphics
 	 * @param x x coordinate
 	 * @param y y coordinate
@@ -130,7 +130,7 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 	/**
 	 * Set whether this view is contained, and should render in a compressed
 	 * (it's defined) area without clipping anything important.
-	 * 
+	 *
 	 * @param contained
 	 *            <code>true</code> if contained.
 	 */

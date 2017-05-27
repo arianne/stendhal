@@ -16,6 +16,7 @@ import static games.stendhal.common.constants.Actions.ITEM;
 import static games.stendhal.common.constants.Actions.SLOT;
 import static games.stendhal.common.constants.Actions.SUMMONAT;
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;

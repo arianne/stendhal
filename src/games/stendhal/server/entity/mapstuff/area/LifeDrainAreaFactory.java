@@ -14,7 +14,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 public class LifeDrainAreaFactory extends OccupantAreaFactory {
 	/**
 	 * Extract the damage ratio from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The damage ratio (or 10% is unset).
@@ -25,7 +25,7 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 
 	/**
 	 * Extract the minimum damage amount from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The minimum damage amount (or 10 is unset).
@@ -40,7 +40,7 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 
 	/**
 	 * Creates the OccupantArea.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return An OccupantArea.

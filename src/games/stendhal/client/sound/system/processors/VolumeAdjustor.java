@@ -12,12 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.common.math.Algebra;
-import games.stendhal.common.math.Numeric;
-import games.stendhal.client.sound.facade.Time;
-import games.stendhal.client.sound.system.SignalProcessor;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
+import games.stendhal.client.sound.facade.Time;
+import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.common.math.Algebra;
+import games.stendhal.common.math.Numeric;
 
 /**
  * Adjust the volume of a PCM audio signal.
@@ -37,7 +38,7 @@ public class VolumeAdjustor extends SignalProcessor
 		mVolumeBeforeFading.set(floatToInt(1.0f));
         mFadingDuration.set(0);
     }
-    
+
     public VolumeAdjustor(float volume)
     {
         mCurrentVolume.set(floatToInt(volume));
@@ -61,7 +62,7 @@ public class VolumeAdjustor extends SignalProcessor
     public void startFading(float volume, Time duration)
     {
 		mVolumeBeforeFading.set(mCurrentVolume.get());
-		
+
         if(duration.getInNanoSeconds() <= 0)
         {
             mCurrentVolume.set(floatToInt(volume));
@@ -87,7 +88,7 @@ public class VolumeAdjustor extends SignalProcessor
             mFadingDuration.set(duration.getInNanoSeconds());
         }
     }
-    
+
     @Override
     protected void modify(float[] data, int frames, int channels, int rate)
     {
@@ -98,13 +99,15 @@ public class VolumeAdjustor extends SignalProcessor
             float volume = intToFloat(mCurrentVolume.get());
 
             // if volume is zero we return without processing the audio data
-            if(Algebra.isEqual_Scalf(volume, 0.0f))
-                return;
+            if(Algebra.isEqual_Scalf(volume, 0.0f)) {
+				return;
+			}
 
             if(!Algebra.isEqual_Scalf(volume, 1.0f))
             {
-                for(int i=0; i<(frames*channels); ++i)
-                    data[i] *= volume;
+                for(int i=0; i<(frames*channels); ++i) {
+					data[i] *= volume;
+				}
             }
 
 			// else if volume is 1 we propagate the unmodified audio data
@@ -118,22 +121,25 @@ public class VolumeAdjustor extends SignalProcessor
             float volume        = intToFloat(mCurrentVolume.get());
             float volumeSegment = intToFloat(mTargetVolume.get()) - intToFloat(mCurrentVolume.get());
 
-            if(segmentDuration.getInNanoSeconds() > fadingDuration.getInNanoSeconds())
-                numSamples = (int)fadingDuration.getInSamples(rate);
-            else
-                volumeSegment *= (float)((double)segmentDuration.getInNanoSeconds() / (double)fadingDuration.getInNanoSeconds());
+            if(segmentDuration.getInNanoSeconds() > fadingDuration.getInNanoSeconds()) {
+				numSamples = (int)fadingDuration.getInSamples(rate);
+			} else {
+				volumeSegment *= (float)((double)segmentDuration.getInNanoSeconds() / (double)fadingDuration.getInNanoSeconds());
+			}
 
             for(int i=0; i<numSamples; ++i)
             {
                 int    index = i * channels;
                 double vol   = volume + (volumeSegment * i / numSamples);
 
-                for(int c=0; c<channels; ++c)
-                    data[index + c] *= vol;
+                for(int c=0; c<channels; ++c) {
+					data[index + c] *= vol;
+				}
             }
 
-            for(int i=(numSamples * channels); i<(frames * channels); ++i)
-                data[i] *= volume + volumeSegment;
+            for(int i=(numSamples * channels); i<(frames * channels); ++i) {
+				data[i] *= volume + volumeSegment;
+			}
 
             mCurrentVolume.addAndGet(floatToInt(volumeSegment));
             mFadingDuration.addAndGet(-segmentDuration.getInNanoSeconds());

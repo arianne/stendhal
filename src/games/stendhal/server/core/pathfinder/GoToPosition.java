@@ -11,11 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.pathfinder;
 
-import games.stendhal.server.entity.GuidedEntity;
-import games.stendhal.server.entity.Registrator;
-
 import java.util.Observable;
 import java.util.Observer;
+
+import games.stendhal.server.entity.GuidedEntity;
+import games.stendhal.server.entity.Registrator;
 
 
 /**
@@ -29,20 +29,20 @@ public class GoToPosition implements Observer {
 		private final Node position;
 		// flag for checking started state
 		private boolean s = false;
-	
+
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param entity - path notifier owner
 	 * @param position target position
 	 * @param o observer
 	 */
 	public GoToPosition(GuidedEntity entity, Node position, Observer o) {
 		ent=entity;
-		finishnotifier.setObserver(o);		
+		finishnotifier.setObserver(o);
 		this.position = position;
 	}
-	
+
 	/**
 	 * final part of travel
 	 */
@@ -61,7 +61,7 @@ public class GoToPosition implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-	    // are we at our destination? 
+	    // are we at our destination?
 		Node current = new Node(ent.getX(), ent.getY());
 		if(current.equals(position)) {
 			finish();

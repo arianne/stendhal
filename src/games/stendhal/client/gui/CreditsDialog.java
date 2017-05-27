@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.sprite.DataLoader;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -37,6 +35,8 @@ import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.sprite.DataLoader;
+
 /**
  * Displays a credits dialog box.
  */
@@ -50,7 +50,7 @@ class CreditsDialog extends JDialog {
 
 	/**
 	 * Creates a new credits dialog.
-	 * 
+	 *
 	 * @param owner
 	 *            owner window
 	 */
@@ -76,7 +76,7 @@ class CreditsDialog extends JDialog {
 
 	/**
 	 * Create the GUI.
-	 * 
+	 *
 	 * @param owner parent window
 	 */
 	private void initGUI(final Frame owner) {
@@ -95,7 +95,7 @@ class CreditsDialog extends JDialog {
 		// Colors
 		Color backgroundColor = Color.white;
 		Color textColor = new Color(85, 85, 85);
-		
+
 		content.setLayout(new BorderLayout());
 		content.setBackground(backgroundColor);
 
@@ -115,7 +115,7 @@ class CreditsDialog extends JDialog {
 
 	/**
 	 * Reads the credits from credits.text.
-	 * 
+	 *
 	 * @return list of lines
 	 */
 	private List<String> readCredits() {

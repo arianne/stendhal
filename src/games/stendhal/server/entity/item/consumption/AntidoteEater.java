@@ -11,11 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
+import java.lang.ref.WeakReference;
+
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.status.StatusType;
-
-import java.lang.ref.WeakReference;
 
 /**
  * timesout antidotes
@@ -38,7 +38,7 @@ class AntidoteEater implements TurnListener {
 	@Override
 	public void onTurnReached(final int currentTurn) {
 		RPEntity entity = entityReference.get();
-		
+
 		if (entity == null) {
 			return;
 		}

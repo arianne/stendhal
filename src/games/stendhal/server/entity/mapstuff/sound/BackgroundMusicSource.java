@@ -23,8 +23,8 @@ public class BackgroundMusicSource extends LoopedSoundSource  {
 
 	/**
 	 * Create an ambient sound area.
-	 * 
-	 * @param sound sound name 
+	 *
+	 * @param sound sound name
 	 * @param radius
 	 * @param volume
 	 */

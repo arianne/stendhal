@@ -6,6 +6,21 @@
 
 package games.stendhal.server.core.config;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
 //
 //
 
@@ -22,21 +37,6 @@ import games.stendhal.server.core.config.zone.TMXLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 /**
  * Load and configure zones via an XML configuration file.
@@ -425,7 +425,7 @@ public final class ZonesXMLLoader {
 	 * interiors:
 	 * int_region_zonename_number (number for houses)
 	 * @param name the name of the zone to parse
-	 * 
+	 *
 	 * @return region name
 	 */
 	private String parseRegionFromZone(String name) {

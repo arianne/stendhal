@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.revivalweeks;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
@@ -37,11 +41,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
@@ -52,7 +51,7 @@ import marauroa.server.db.command.DBCommandQueue;
 public class SokobanGame implements LoadableContent, SokobanListener {
 	private static final String QUEST_SLOT = "sokoban_20[year]";
 	private static final String FAME_TYPE = "S";
-	
+
 	/** start, done */
 	private static final int QUEST_IDX_STATUS = 0;
 	/** level */

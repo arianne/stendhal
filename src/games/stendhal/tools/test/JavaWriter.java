@@ -19,7 +19,7 @@ import com.google.common.escape.Escapers;
 
 /**
  * Writes parts of the java file for a chat test case.
- * 
+ *
  * @author hendrik
  */
 class JavaWriter {

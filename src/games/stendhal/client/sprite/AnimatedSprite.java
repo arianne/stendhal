@@ -86,16 +86,16 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 * 
+	 *
 	 * <strong>NOTE: The array of frames passed is not copied, and must not be
 	 * modified while this instance exists (unless you are sure you know what
 	 * you are doing).</strong>
-	 * 
+	 *
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delay
 	 *            The minimum delay between frames (in ms).
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -105,18 +105,18 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 * 
+	 *
 	 * <strong>NOTE: The array of frames passed is not copied, and must not be
 	 * modified while this instance exists (unless you are sure you know what
 	 * you are doing).</strong>
-	 * 
+	 *
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delay
 	 *            The minimum delay between frames (in ms).
 	 * @param animating
 	 *            If animation is enabled.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -127,11 +127,11 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 * 
+	 *
 	 * <strong>NOTE: The array of frames passed is not copied, and must not be
 	 * modified while this instance exists (unless you are sure you know what
 	 * you are doing).</strong>
-	 * 
+	 *
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delay
@@ -140,7 +140,7 @@ public class AnimatedSprite implements Sprite {
 	 *            If animation is enabled.
 	 * @param reference
 	 *            The sprite identifier reference.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -151,11 +151,11 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 * 
+	 *
 	 * <strong>NOTE: The array of frames/delays passed is not copied, and must
 	 * not be modified while this instance exists (unless you are sure you know
 	 * what you are doing).</strong>
-	 * 
+	 *
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delays
@@ -164,7 +164,7 @@ public class AnimatedSprite implements Sprite {
 	 *            If animation is enabled.
 	 * @param reference
 	 *            The sprite identifier reference.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -235,12 +235,12 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Utility method to convert a single delay to an array of delays having
 	 * that value.
-	 * 
+	 *
 	 * @param delay
 	 *            The delay value.
 	 * @param count
 	 *            The size of the array to create.
-	 * 
+	 *
 	 * @return An array of delays.
 	 */
 	private static int[] createDelays(final int delay, final int count) {
@@ -253,19 +253,19 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Reset the animation back to specified frame, and reset the next frame
 	 * time.
-	 * 
-	 * @param index the default index 
+	 *
+	 * @param index the default index
 	 */
 	public void reset(int index) {
 		setIndex(index);
 	}
-	
+
 	/**
 	 * Set the frame index to a specific value.
-	 * 
+	 *
 	 * @param index
 	 *            The index to use.
-	 * 
+	 *
 	 * @throws ArrayIndexOutOfBoundsException
 	 *             If the index is less than 0 or greater than or equal to the
 	 *             number of frames.
@@ -292,7 +292,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Start the sprite animating.
-	 * 
+	 *
 	 * @see #stop()
 	 */
 	public void start() {
@@ -301,7 +301,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Stop the sprite animating. This does not change the current frame.
-	 * 
+	 *
 	 * @see #start()
 	 */
 	public void stop() {
@@ -323,7 +323,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 * 
+	 *
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -334,7 +334,7 @@ public class AnimatedSprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 * 
+	 *
 	 * @return A new sprite.
 	 */
 	@Override
@@ -345,7 +345,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -364,7 +364,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Draws the image.
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -392,7 +392,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite.
-	 * 
+	 *
 	 * @return The height in pixels of this sprite.
 	 */
 	@Override
@@ -404,7 +404,7 @@ public class AnimatedSprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 * 
+	 *
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -415,7 +415,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite.
-	 * 
+	 *
 	 * @return The width in pixels of this sprite.
 	 */
 	@Override
@@ -427,7 +427,7 @@ public class AnimatedSprite implements Sprite {
 	 * Update the current frame sprite.
 	 * <em>Idealy this would be called from a central time manager,
 	 * instead of draw() like now.</em>
-	 * 
+	 *
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */
@@ -439,7 +439,7 @@ public class AnimatedSprite implements Sprite {
 				// properly stopped
 				cycleTime %= duration;
 			}
-			
+
 			while (cycleTime >= delays[index]) {
 				cycleTime -= delays[index];
 

@@ -1,8 +1,5 @@
 package utilities;
 
-import games.stendhal.server.core.config.XMLUtil;
-import games.stendhal.server.core.config.zone.ConfiguratorDescriptor;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +9,9 @@ import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import games.stendhal.server.core.config.XMLUtil;
+import games.stendhal.server.core.config.zone.ConfiguratorDescriptor;
 
 public class NpcLoader {
 

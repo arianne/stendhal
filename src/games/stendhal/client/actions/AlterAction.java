@@ -22,12 +22,12 @@ class AlterAction implements SlashAction {
 
 	/**
 	 * Executes a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	@Override
@@ -49,7 +49,7 @@ class AlterAction implements SlashAction {
 
 	/**
 	 * Checks whether the arguments passed are valid for execution.
-	 * 
+	 *
 	 * @param params to be evaluated
 	 * @param remainder to be evaluated
 	 * @return true if <code>params</code>.length too short or remainder is <code>null</code>
@@ -60,7 +60,7 @@ class AlterAction implements SlashAction {
 
 	/**
 	 * Gets the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -70,7 +70,7 @@ class AlterAction implements SlashAction {
 
 	/**
 	 * Gets the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

@@ -48,14 +48,14 @@ import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.IRPZone;
 
 /**
- * Controls player access to the Wizard's Bank via an NPC. 
+ * Controls player access to the Wizard's Bank via an NPC.
  * <p>He takes a fee to enter. Players are allowed only 5 minutes access at once.
- * 
+ *
  * @author kymara
  */
 
 public class WizardBank extends AbstractQuest implements LoginListener {
-	
+
 	// constants
 	private static final String QUEST_SLOT = "wizard_bank";
 
@@ -88,7 +88,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		private final String playername;
 		/**
 		 * Starts a teleport-out-timer.
-		 * 
+		 *
 		 * @param player
 		 *            the player who started the timer
 		 */
@@ -105,7 +105,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			
+
 			if (playername == null) {
 				return prime * result;
 			} else {
@@ -126,7 +126,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				return false;
 			}
 			Timer other = (Timer) obj;
-			
+
 			if (playername == null) {
 				if (other.playername != null) {
 					return false;
@@ -139,7 +139,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 		// override hash
 
-		
+
 
 		@Override
 		public void onTurnReached(final int currentTurn) {
@@ -177,7 +177,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	}
 
 	private void createNPC() {
-		
+
 		npc = new SpeakerNPC("Javier X") {
 			@Override
 			protected void createPath() {
@@ -192,7 +192,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
-								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT),
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestCompletedCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
@@ -203,35 +203,35 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
-								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT),
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestNotStartedCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
 					    new SayTextAction("Welcome to the Wizard's Bank, [name]."));
-				
+
 				// currently in bank
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
-								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+								new QuestCompletedCondition(GRAFINDLE_QUEST_SLOT),
 								new QuestCompletedCondition(ZARA_QUEST_SLOT),
 								new QuestActiveCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING,
 					    null,
 					    new SayTextAction("Welcome to the Wizard's Bank, [name]. You may #leave sooner, if required."));
-				
+
 				// hasn't got access to all banks yet
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new OrCondition(
-									new QuestNotCompletedCondition(GRAFINDLE_QUEST_SLOT), 
+									new QuestNotCompletedCondition(GRAFINDLE_QUEST_SLOT),
 									new QuestNotCompletedCondition(ZARA_QUEST_SLOT))),
 						ConversationStates.IDLE,
 						"You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!",
 						null);
-				
+
 				add(ConversationStates.ATTENDING,
 						Arrays.asList("fee", "enter"),
 						new QuestNotActiveCondition(QUEST_SLOT),
@@ -239,7 +239,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						"The fee is " + COST
 						+ " money. Do you want to pay?",
 						null);
-				
+
 				add(ConversationStates.ATTENDING,
 						Arrays.asList("fee", "enter"),
 						new QuestActiveCondition(QUEST_SLOT),
@@ -247,11 +247,11 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						"As you already know, the fee is "
 						+ COST + " money.",
 						null);
-				
+
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.YES_MESSAGES,
 						new AndCondition(
-								new PlayerHasItemWithHimCondition("money", COST), 
+								new PlayerHasItemWithHimCondition("money", COST),
 								new QuestNotActiveCondition(QUEST_SLOT)),
 								ConversationStates.ATTENDING,
 								"Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.",
@@ -264,16 +264,16 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 											public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 												SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
 											}}));
-				
+
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.YES_MESSAGES,
 						new AndCondition(
-								new NotCondition(new PlayerHasItemWithHimCondition("money", COST)), 
+								new NotCondition(new PlayerHasItemWithHimCondition("money", COST)),
 								new QuestNotActiveCondition(QUEST_SLOT)),
 						ConversationStates.ATTENDING,
 						"You do not have enough money!",
 						null);
-				
+
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.YES_MESSAGES,
 						new QuestActiveCondition(QUEST_SLOT),
@@ -308,7 +308,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						new QuestActiveCondition(QUEST_SLOT),
 						ConversationStates.ATTENDING,
 						"Thank you for using the Wizard's Bank",
-						// we used to use teleportAway() here 
+						// we used to use teleportAway() here
 						new MultipleActions(
 								new TeleportAction(ZONE_NAME, 15, 16, Direction.DOWN),
 								new SetQuestAction(QUEST_SLOT, "done"),
@@ -348,7 +348,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	public void onLoggedIn(final Player player) {
 		/*
 		 *  Stop any possible running notifiers that might be left after the player
-		 *  logged out while in the bank. Otherwise the player could be thrown out 
+		 *  logged out while in the bank. Otherwise the player could be thrown out
 		 *  too early if he goes back.
 		 */
 		SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
@@ -357,7 +357,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 	/**
 	 * Finishes the time and teleports the player out.
-	 * 
+	 *
 	 * @param player
 	 *            the player to teleport out
 	 */
@@ -392,12 +392,12 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	public String getName() {
 		return "WizardBank";
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
@@ -407,7 +407,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	public String getNPCName() {
 		return "Javier X";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.FADO_CAVES;

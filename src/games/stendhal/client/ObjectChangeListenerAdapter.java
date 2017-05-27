@@ -21,7 +21,7 @@ final class ObjectChangeListenerAdapter implements ObjectChangeListener {
 
 	/**
 	 * is called when object is deleted.
-	 * 
+	 *
 	 * In addition to real deletion this happens on every zone change.
 	 */
 	@Override
@@ -31,7 +31,7 @@ final class ObjectChangeListenerAdapter implements ObjectChangeListener {
 
 	/**
 	 * is called when object got additional attributes (or values got changed ?).
-	 * 
+	 *
 	 */
 	@Override
 	public void modifiedAdded(final RPObject changes) {

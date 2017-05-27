@@ -45,10 +45,10 @@ class Ring2DView extends Item2DView<Ring> {
 	 */
 	public Ring2DView() {
 		super();
-	
+
 		stateChanged = false;
 	}
-	
+
 	@Override
 	public void initialize(final Ring entity) {
 		super.initialize(entity);
@@ -61,7 +61,7 @@ class Ring2DView extends Item2DView<Ring> {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 */
 	@Override
 	protected void buildRepresentation(Ring entity) {
@@ -86,7 +86,7 @@ class Ring2DView extends Item2DView<Ring> {
 
 	/**
 	 * Get the appropriate sprite for the current state.
-	 * 
+	 *
 	 * @return A sprite.
 	 */
 	private Sprite getStateSprite() {
@@ -105,9 +105,9 @@ class Ring2DView extends Item2DView<Ring> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override

@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.MousePopupAdapter;
-
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -21,6 +19,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JList;
 import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
+
+import games.stendhal.client.gui.MousePopupAdapter;
 
 /**
  * JList that can show popup menues for buddies. Use <code>BuddyListModel</code>
@@ -35,7 +35,7 @@ class BuddyPanel extends JList<Buddy> {
 
 	/**
 	 * Create a new BuddyList.
-	 * 
+	 *
 	 * @param model associated list model
 	 */
 	protected BuddyPanel(final BuddyListModel model) {
@@ -45,7 +45,7 @@ class BuddyPanel extends JList<Buddy> {
 		this.setFocusable(false);
 		this.addMouseListener(new BuddyPanelMouseListener());
 	}
-	
+
 	@Override
 	public Font getFont() {
 		// The only real for is that of the cell renderer
@@ -53,7 +53,7 @@ class BuddyPanel extends JList<Buddy> {
 		if (renderer instanceof Component) {
 			return ((Component) renderer).getFont();
 		}
-		
+
 		return super.getFont();
 	}
 
@@ -66,7 +66,7 @@ class BuddyPanel extends JList<Buddy> {
 			comp.setFont(font);
 		}
 	}
-	
+
 	/**
 	 * MouseListener for triggering the buddy list popup menus.
 	 */
@@ -75,7 +75,7 @@ class BuddyPanel extends JList<Buddy> {
 		protected void showPopup(final MouseEvent e) {
 			int index = BuddyPanel.this.locationToIndex(e.getPoint());
 			Buddy buddy = BuddyPanel.this.getModel().getElementAt(index);
-			
+
 			final JPopupMenu popup = new BuddyLabelPopMenu(buddy.getName(), buddy.isOnline());
 			popup.show(e.getComponent(), e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 		}

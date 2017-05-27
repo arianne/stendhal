@@ -12,11 +12,19 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.client.sound.system.SignalProcessor;
-import java.io.InputStream;
 import java.io.IOException;
-import com.jcraft.jogg.*;
-import com.jcraft.jorbis.*;
+import java.io.InputStream;
+
+import com.jcraft.jogg.Packet;
+import com.jcraft.jogg.Page;
+import com.jcraft.jogg.StreamState;
+import com.jcraft.jogg.SyncState;
+import com.jcraft.jorbis.Block;
+import com.jcraft.jorbis.Comment;
+import com.jcraft.jorbis.DspState;
+import com.jcraft.jorbis.Info;
+
+import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.common.memory.Field;
 /**
  *
@@ -41,7 +49,7 @@ public class OggVorbisDecoder extends SignalProcessor
 	private boolean     mLastPageWasRead = false;
     private boolean     mDecoderIsOpened = false;
 	private InputStream mIStream         = null;
-    
+
     protected final void init(InputStream stream, int inputBufferSize, int outputNumSamplesPerChannel) throws IOException
     {
         mOggStreamState  = new StreamState();
@@ -53,15 +61,16 @@ public class OggVorbisDecoder extends SignalProcessor
         mReadPos         = 0;
         mEndOfStream     = false;
 		mLastPageWasRead = false;
-        
+
         mOggSyncState.init();
         mOggSyncState.buffer(inputBufferSize);  // add "inputBufferSize" bytes to the buffer
         mInputBuffer      = mOggSyncState.data; // get a reference to the buffer
         mInputBufferSize  = inputBufferSize;
         mIStream          = stream;
 
-        if(!readHeader())
-            throw new IOException("could not read ogg headers");
+        if(!readHeader()) {
+			throw new IOException("could not read ogg headers");
+		}
 
         // IMPORTANT: read the header first before setting up the buffers
 		//            or else getNumChannels() will not return the right number
@@ -81,8 +90,10 @@ public class OggVorbisDecoder extends SignalProcessor
             {
             case -1: // the page couldn't be read, because the data has a hole
                 if(!ignoreHoles)
-                    return null;
+				 {
+					return null;
                 // if we ignore holes we continue to "case 0:"
+				}
 
             case 0: // we read to few to get a page
                 {
@@ -100,12 +111,15 @@ public class OggVorbisDecoder extends SignalProcessor
 
             case 1: // we've got a page
                 {
-                    if(updateStreamState)
-                        if(mOggStreamState.pagein(oggPage) == -1)
-                            return null;
+                    if(updateStreamState) {
+						if(mOggStreamState.pagein(oggPage) == -1) {
+							return null;
+						}
+					}
 
-                    if(oggPage.eos() != 0)
-                        mLastPageWasRead = true;
+                    if(oggPage.eos() != 0) {
+						mLastPageWasRead = true;
+					}
 
                     return oggPage;
                 }
@@ -117,7 +131,7 @@ public class OggVorbisDecoder extends SignalProcessor
 
         return null;
     }
-    
+
     protected Packet readPacket(boolean ignoreHoles) throws IOException
     {
         Packet oggPacket = new Packet();
@@ -128,12 +142,15 @@ public class OggVorbisDecoder extends SignalProcessor
             {
             case -1: // the packet couldn't be read, because the data has a hole
                 if(!ignoreHoles)
-                    return null;
+				 {
+					return null;
                 // if we ignore holes we continue to "case 0:"
+				}
 
             case 0: // we read to few to get a packet
-                if(readPage(ignoreHoles, true) == null)
-                    return null;
+                if(readPage(ignoreHoles, true) == null) {
+					return null;
+				}
                 break;
 
             case 1:
@@ -146,27 +163,32 @@ public class OggVorbisDecoder extends SignalProcessor
     {
         Page firstOggPage = readPage(false, false);
 
-        if(firstOggPage == null)
-            return false;
+        if(firstOggPage == null) {
+			return false;
+		}
 
         mOggStreamState.init(firstOggPage.serialno());
         mOggStreamState.reset();
         mVorbisInfo.init();
         mVorbisComment.init();
 
-        if(mOggStreamState.pagein(firstOggPage) == -1)
-            return false;
+        if(mOggStreamState.pagein(firstOggPage) == -1) {
+			return false;
+		}
 
         // read three packets to get the header
         for(int i=0; i<3; ++i)
         {
             Packet oggPacket = readPacket(false);
 
-            if(oggPacket == null)
-                return false;
+            if(oggPacket == null) {
+				return false;
+			}
 
             if(mVorbisInfo.synthesis_headerin(mVorbisComment, oggPacket) < 0)
-                return false; // error while interpreting packet data
+			 {
+				return false; // error while interpreting packet data
+			}
         }
 
         mVorbisDspState.synthesis_init(mVorbisInfo);
@@ -176,8 +198,9 @@ public class OggVorbisDecoder extends SignalProcessor
 
     protected int read() throws IOException
     {
-		if(reachedEndOfStream()) // no more pcm data to read
+		if(reachedEndOfStream()) {
 			return 0;
+		}
 
         int outputBufferSize           = mOutputBuffer.length;
         int outputNumSamplesPerChannel = outputBufferSize / mVorbisInfo.channels;
@@ -208,7 +231,9 @@ public class OggVorbisDecoder extends SignalProcessor
 					}
 
                     if(oggPacket == null || mVorbisBlock.synthesis(oggPacket) != 0)
-                        continue; // if the packet we read from the stream is corrupted or has no audio data, we ignore it
+					 {
+						continue; // if the packet we read from the stream is corrupted or has no audio data, we ignore it
+					}
 
                     mVorbisDspState.synthesis_blockin(mVorbisBlock);
                 }
@@ -227,7 +252,7 @@ public class OggVorbisDecoder extends SignalProcessor
                 ++sampleIdx;
             }
         }
-		
+
         mVorbisDspState.synthesis_read(sampleIdx);
         return numSamplesReadPerChannel;
     }
@@ -273,8 +298,9 @@ public class OggVorbisDecoder extends SignalProcessor
 
     public synchronized void open(InputStream stream, int inputBufferSize, int outputNumSamplesPerChannel) throws IOException
     {
-        if(!mDecoderIsOpened)
-            init(stream, inputBufferSize, outputNumSamplesPerChannel);
+        if(!mDecoderIsOpened) {
+			init(stream, inputBufferSize, outputNumSamplesPerChannel);
+		}
     }
 
     public synchronized void close()
@@ -293,7 +319,7 @@ public class OggVorbisDecoder extends SignalProcessor
         {
             assert false: exception.toString();
         }
-        
+
         mIStream         = null;
         mDecoderIsOpened = false;
         mEndOfStream     = true;

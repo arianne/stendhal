@@ -31,7 +31,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * The prison guard (original name: Marcus) who's patrolling along the cells.
- * 
+ *
  * @author hendrik
  */
 public class GuardNPC implements ZoneConfigurator  {
@@ -92,7 +92,7 @@ public class GuardNPC implements ZoneConfigurator  {
 			npc.setPosition(9, 7);
 			npc.setDescription("You see one of the Semos jail keepers, Marcus.");
 			npc.setEntityClass("youngsoldiernpc");
-			zone.add(npc);		
+			zone.add(npc);
 	}
 
 	/**

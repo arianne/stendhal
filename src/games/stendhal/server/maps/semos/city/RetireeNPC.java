@@ -34,9 +34,9 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * A crazy old man (original name: Diogenes) who walks around the city.
- */ 
+ */
 public class RetireeNPC implements ZoneConfigurator {
-	
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
@@ -45,7 +45,7 @@ public class RetireeNPC implements ZoneConfigurator {
 
 	private void buildNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Diogenes") {
-			
+
 			@Override
 			public void createDialog() {
 				addGreeting();
@@ -101,7 +101,7 @@ public class RetireeNPC implements ZoneConfigurator {
 				nodes.add(new Node(22, 29));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 		};
 		npc.setPosition(24, 43);
 		npc.setEntityClass("beggarnpc");

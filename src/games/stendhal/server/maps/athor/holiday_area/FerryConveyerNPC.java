@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -25,8 +27,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
-
-import java.util.Map;
 
 
 /**
@@ -141,7 +141,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 			npc.setEntityClass("woman_008_npc");
 			npc.setDescription ("You see Jessica. She takes passengers to the ship with her rowing boat.");
 			npc.setDirection(Direction.LEFT);
-			zone.add(npc);	
+			zone.add(npc);
 	}
 
 }

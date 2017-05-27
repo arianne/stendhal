@@ -12,6 +12,11 @@
 
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,17 +25,12 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Represents the behaviour of a NPC who is able to sell outfits to a player.
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour {
 	public static final int NEVER_WEARS_OFF = -1;
-	
+
 	/** outfit expiry in minutes */
 	private int endurance;
 
@@ -72,7 +72,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that never wear off
 	 * automatically.
-	 * 
+	 *
 	 * @param priceList
 	 *            list of outfit types and their prices
 	 */
@@ -83,7 +83,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that wear off
 	 * automatically after some time.
-	 * 
+	 *
 	 * @param priceList
 	 *            list of outfit types and their prices
 	 * @param endurance
@@ -103,7 +103,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	/**
 	 * Transacts the sale that has been agreed on earlier via setChosenItem()
 	 * and setAmount().
-	 * 
+	 *
 	 * @param seller
 	 *            The NPC who sells
 	 * @param player
@@ -116,7 +116,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		final String outfitType = res.getChosenItemName();
 
 		if (!player.getOutfit().isCompatibleWithClothes()) {
-			// if the player is wearing a non standard player base  
+			// if the player is wearing a non standard player base
 			// then swimsuits, masks and many other outfits wouldn't look good mixed with it
 			seller.say("You already have a magic outfit on which just wouldn't look good with another - could you please put yourself in something more conventional and ask again? Thanks!");
 			return false;
@@ -180,7 +180,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * Tries to get back the bought/lent outfit and give the player his original
 	 * outfit back. This will only be successful if the player is wearing an
 	 * outfit he got here, and if the original outfit has been stored.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @param outfitType the outfit to wear
@@ -195,7 +195,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	/**
 	 * Checks whether or not the given player is currently wearing an outfit
 	 * that may have been bought/lent from an NPC with this behaviour.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @return true iff the player wears an outfit from here.
@@ -218,7 +218,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * Tries to get back the bought/lent outfit and give the player his original
 	 * outfit back. This will only be successful if the player is wearing an
 	 * outfit he got here, and if the original outfit has been stored.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @return true iff returning was successful.

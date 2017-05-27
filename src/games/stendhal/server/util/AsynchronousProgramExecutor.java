@@ -14,13 +14,13 @@ package games.stendhal.server.util;
 
 import java.io.IOException;
 
-import marauroa.common.Configuration;
-
 import org.apache.log4j.Logger;
+
+import marauroa.common.Configuration;
 
 /**
  * Executes an external program
- * 
+ *
  * @author hendrik
  */
 public class AsynchronousProgramExecutor extends Thread {
@@ -30,7 +30,7 @@ public class AsynchronousProgramExecutor extends Thread {
 
 	/**
 	 * Creates a new AsynchronousProgramExecutor
-	 * 
+	 *
 	 * @param account
 	 *            account to use
 	 * @param message

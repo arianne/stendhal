@@ -27,7 +27,7 @@ abstract class ConsumableStatus extends Status implements Comparable<ConsumableS
 
 	/**
 	 * ConsumableStatus
-	 * 
+	 *
 	 * @param name       name of status
 	 * @param amount     total amount
 	 * @param frequency  frequency of events
@@ -70,13 +70,13 @@ abstract class ConsumableStatus extends Status implements Comparable<ConsumableS
 
 	/**
 	 * Consumes a part of this status.
-	 * 
+	 *
 	 * @return The amount that has been consumed
 	 */
 	public int consume() {
 		// note that amount and regen are negative for poison
 		int consumedAmount;
-	
+
 		if (Math.abs(left) < Math.abs(getRegen())) {
 			consumedAmount = left;
 			left = 0;
@@ -84,13 +84,13 @@ abstract class ConsumableStatus extends Status implements Comparable<ConsumableS
 			consumedAmount = getRegen();
 			left -= getRegen();
 		}
-	
+
 		return consumedAmount;
 	}
 
 	/**
 	 * Checks whether this item has already been fully consumed.
-	 * 
+	 *
 	 * @return true iff this item has been consumed
 	 */
 	public boolean consumed() {

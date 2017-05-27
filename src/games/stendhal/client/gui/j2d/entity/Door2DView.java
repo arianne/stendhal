@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
@@ -20,9 +23,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * The 2D view of a door.
@@ -62,7 +62,7 @@ class Door2DView extends StateEntity2DView<Door> {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -98,7 +98,7 @@ class Door2DView extends StateEntity2DView<Door> {
 
 	/**
 	 * Get the current entity state.
-	 * 
+	 *
 	 * @param entity
 	 * @return The current state.
 	 */
@@ -118,7 +118,7 @@ class Door2DView extends StateEntity2DView<Door> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -131,7 +131,7 @@ class Door2DView extends StateEntity2DView<Door> {
 
 	/**
 	 * Get the height.
-	 * 
+	 *
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -141,7 +141,7 @@ class Door2DView extends StateEntity2DView<Door> {
 
 	/**
 	 * Get the width.
-	 * 
+	 *
 	 * @return The width (in pixels).
 	 */
 	@Override
@@ -153,9 +153,9 @@ class Door2DView extends StateEntity2DView<Door> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -165,10 +165,10 @@ class Door2DView extends StateEntity2DView<Door> {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 * 
+	 *
 	 * @param name
 	 *            The resource name.
-	 * 
+	 *
 	 * @return The full resource name.
 	 */
 	@Override
@@ -193,7 +193,7 @@ class Door2DView extends StateEntity2DView<Door> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

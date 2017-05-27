@@ -13,8 +13,8 @@ package games.stendhal.server.entity.mapstuff.area;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * An entity that just acts as a visible obstacle like a wall.
@@ -23,7 +23,7 @@ public class Wall extends AreaEntity {
 
 	/**
 	 * Create a wall.
-	 * 
+	 *
 	 * @param width width
 	 * @param height height
 	 */
@@ -44,10 +44,10 @@ public class Wall extends AreaEntity {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to check against.
-	 * 
+	 *
 	 * @return <code>true</code> if the other entity is an RPEntity, otherwise
 	 *         the default.
 	 */

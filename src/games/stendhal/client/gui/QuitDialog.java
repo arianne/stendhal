@@ -13,8 +13,6 @@
 package games.stendhal.client.gui;
 
 
-import games.stendhal.client.entity.User;
-
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.ContainerOrderFocusTraversalPolicy;
@@ -29,33 +27,35 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+import games.stendhal.client.entity.User;
+
 @SuppressWarnings("serial") class QuitDialog {
 	private static final int PADDING = 10;
 	/** Quit dialog window. */
 	private InternalManagedWindow quitDialog;
 	private JButton yesButton;
-	
+
 	/**
 	 * Get the dialog component.
-	 * 
+	 *
 	 * @return quit dialog component
 	 */
 	Component getQuitDialog() {
 		return quitDialog;
 	}
-	
+
 	/**
-	 * Create a new QuitDialog. 
+	 * Create a new QuitDialog.
 	 */
 	QuitDialog() {
 		quitDialog = buildQuitDialog();
 		quitDialog.setVisible(false);
 		quitDialog.addHierarchyBoundsListener(new ParentResizeListener());
 	}
-	
+
 	/**
 	 * Build the in-window quit dialog.
-	 * 
+	 *
 	 * @return the quit dialog
 	 */
 	private InternalManagedWindow buildQuitDialog() {
@@ -91,7 +91,7 @@ import javax.swing.JComponent;
 
 		return window;
 	}
-	
+
 	/**
 	 * Call back at "No" answer to quit.
 	 */
@@ -111,7 +111,7 @@ import javax.swing.JComponent;
 			j2DClient.get().shutdown();
 		}
 	}
-	
+
 	/**
 	 * Request quit confirmation from the user. This stops all player actions
 	 * and shows a dialog in which the player can confirm that they really wants
@@ -132,7 +132,7 @@ import javax.swing.JComponent;
 		quitDialog.setVisible(true);
 		yesButton.requestFocusInWindow();
 	}
-	
+
 	/**
 	 * For keeping the dialog centered on game screen resizes.
 	 */
@@ -151,7 +151,7 @@ import javax.swing.JComponent;
 			}
 		}
 	}
-	
+
 	/**
 	 * A FocusTraversalPolicy that keeps the keyboard focus within the
 	 * container, instead of passing it to parent once the last component has
@@ -167,7 +167,7 @@ import javax.swing.JComponent;
 			}
 			return null;
 		}
-		
+
 		@Override
 		public Component getComponentBefore(Container container,
                 Component component) {

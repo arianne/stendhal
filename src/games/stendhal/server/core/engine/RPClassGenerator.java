@@ -231,7 +231,7 @@ public class RPClassGenerator {
 		}
 
 		// zone storage
-		if (!RPClass.hasRPClass("arrest_warrant")) {		
+		if (!RPClass.hasRPClass("arrest_warrant")) {
 			ArrestWarrant.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("rented_sign")) {
@@ -293,23 +293,23 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass(Events.TRADE_STATE_CHANGE)) {
 			TradeStateChangeEvent.generateRPClass();
 		}
-		
+
 		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_ON)) {
 			PlayerLoggedOnEvent.generateRPClass();
 		}
-		
+
 		if (!RPClass.hasRPClass(Events.PLAYER_LOGGED_OUT)) {
 			PlayerLoggedOutEvent.generateRPClass();
 		}
-		
+
 		if (!RPClass.hasRPClass(Events.REACHED_ACHIEVEMENT)) {
 			ReachedAchievementEvent.generateRPClass();
 		}
-		
+
 		if (!RPClass.hasRPClass(Events.VIEW_CHANGE)) {
 			ViewChangeEvent.generateRPClass();
 		}
-		
+
 		if (!RPClass.hasRPClass(Events.GLOBAL_VISUAL)) {
 			GlobalVisualEffectEvent.generateRPClass();
 		}
@@ -322,7 +322,7 @@ public class RPClassGenerator {
 			createTellActionRPClass();
 		}
 	}
-	
+
 	/**
 	 * creates the RPClass definitions, unless this was already done.
 	 */

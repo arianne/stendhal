@@ -19,6 +19,10 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.Arrays;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -27,11 +31,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.plains.LittleBoyNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -48,7 +47,7 @@ public class PlinksToyTest {
 
 		PassiveEntityRespawnPointTestHelper.generateRPClasses();
 	}
-	
+
 	@Before
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone("0_semos_plains_n");
@@ -65,10 +64,10 @@ public class PlinksToyTest {
 	 * Tests for quest.
 	 */
 	@Test
-	public void testQuest() {	
+	public void testQuest() {
 		npc = SingletonRepository.getNPCList().get("Plink");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", getReply(npc));
 		en.step(player, "park!");
@@ -91,7 +90,7 @@ public class PlinksToyTest {
 		assertEquals("*sniff* Thanks a lot! *smile*", getReply(npc));
 
 		// -----------------------------------------------
-		
+
 		final Item teddy = ItemTestHelper.createItem("teddy");
 		teddy.setEquipableSlots(Arrays.asList("bag"));
 		player.equipToInventoryOnly(teddy);

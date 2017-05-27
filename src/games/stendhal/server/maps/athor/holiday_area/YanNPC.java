@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.holiday_area;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 public class YanNPC implements ZoneConfigurator  {
 
@@ -35,7 +35,7 @@ public class YanNPC implements ZoneConfigurator  {
 				// doesn't move
 				setPath(null);
 			}
-			
+
 			@Override
 			public void createDialog() {
 				addGreeting("Hello stranger!");
@@ -50,7 +50,7 @@ public class YanNPC implements ZoneConfigurator  {
 		npc.setEntityClass("swimmer4npc");
 		npc.setDescription ("You see Yan. He lays at the beach and enjoys some cocktails.");
 		npc.setDirection(Direction.DOWN);
-		zone.add(npc);		
+		zone.add(npc);
 	}
 }
 

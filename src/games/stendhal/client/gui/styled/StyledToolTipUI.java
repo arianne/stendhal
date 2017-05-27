@@ -23,13 +23,13 @@ import javax.swing.plaf.basic.BasicToolTipUI;
 
 public class StyledToolTipUI extends BasicToolTipUI {
 	private static StyledToolTipUI instance;
-	
+
 	private final Style style;
 	private final Border border;
-	
+
 	/**
 	 * Create a StyledToolTipUI. This method is used by the UIManager.
-	 * 
+	 *
 	 * @param tooltip
 	 * @return A shared StyledToolTipUI instance
 	 */
@@ -37,20 +37,20 @@ public class StyledToolTipUI extends BasicToolTipUI {
 		if (instance == null) {
 			instance = new StyledToolTipUI(StyleUtil.getStyle());
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new StyledToolTipUI.
-	 * 
+	 *
 	 * @param style pixmap style
 	 */
 	public StyledToolTipUI(Style style) {
 		this.style = style;
 		border = BorderFactory.createLineBorder(style.getShadowColor());
 	}
-	
+
 	@Override
 	public void paint(Graphics g, JComponent tooltip) {
 		// Get rid of popup borders, if it has any (Heavy weight popups tend to
@@ -64,7 +64,7 @@ public class StyledToolTipUI extends BasicToolTipUI {
 		}
 		super.paint(g, tooltip);
 	}
-	
+
 	@Override
 	public void installUI(JComponent tooltip) {
 		super.installUI(tooltip);

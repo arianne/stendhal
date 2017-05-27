@@ -12,19 +12,18 @@
  */
 package games.stendhal.server.entity.mapstuff.sign;
 
-import games.stendhal.server.core.engine.dbcommand.ReadCharactersFromHallOfFameCommand;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
-
 import java.util.Iterator;
 import java.util.List;
 
+import games.stendhal.server.core.engine.dbcommand.ReadCharactersFromHallOfFameCommand;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.db.command.ResultHandle;
 
 /**
- * loads the content of a sign from the hall of fame. 
+ * loads the content of a sign from the hall of fame.
  *
  * @author hendrik
  */
@@ -33,7 +32,7 @@ public class SignFromHallOfFameLoader implements TurnListener {
 	private String introduction;
 	private ResultHandle handle;
 	private boolean lineBreaks;
-	
+
 
 	/**
 	 * creates a new SignFromHallOfFameLoader

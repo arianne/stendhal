@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.player;
 
 import static games.stendhal.common.constants.Actions.AUTOWALK;
+
 import games.stendhal.common.constants.Events;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;

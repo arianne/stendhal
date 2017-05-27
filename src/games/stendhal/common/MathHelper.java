@@ -16,27 +16,27 @@ package games.stendhal.common;
  * Helper functions for various mathematical tasks.
  */
 public class MathHelper {
-	public static final long MILLISECONDS_IN_ONE_MINUTE = 60 * 1000; 
-	public static final long MILLISECONDS_IN_ONE_HOUR = 60 * MILLISECONDS_IN_ONE_MINUTE; 
+	public static final long MILLISECONDS_IN_ONE_MINUTE = 60 * 1000;
+	public static final long MILLISECONDS_IN_ONE_HOUR = 60 * MILLISECONDS_IN_ONE_MINUTE;
 	public static final long MILLISECONDS_IN_ONE_DAY = 24 * MILLISECONDS_IN_ONE_HOUR;
 	public static final long MILLISECONDS_IN_ONE_WEEK = 7 * MILLISECONDS_IN_ONE_DAY;
-	public static final int SECONDS_IN_ONE_MINUTE = 60; 
-	public static final int SECONDS_IN_ONE_HOUR = 60 * SECONDS_IN_ONE_MINUTE; 
+	public static final int SECONDS_IN_ONE_MINUTE = 60;
+	public static final int SECONDS_IN_ONE_HOUR = 60 * SECONDS_IN_ONE_MINUTE;
 	public static final int SECONDS_IN_ONE_DAY = 24 * SECONDS_IN_ONE_HOUR;
 	public static final int SECONDS_IN_ONE_WEEK = 7 * SECONDS_IN_ONE_DAY;
 	public static final int MINUTES_IN_ONE_HOUR = 60;
 	public static final int MINUTES_IN_ONE_DAY = MINUTES_IN_ONE_HOUR * 24;
 	public static final int MINUTES_IN_ONE_WEEK = MINUTES_IN_ONE_DAY * 7;
-	
+
 	/**
 	 * Parses a double safely, returning a default if nothing can be sanely
 	 * parsed from it.
 	 *
 	 * @param s the string to parse
 	 * @param def the default value
-	 * 
+	 *
 	 * @return double corresponding to s, or def if s can not be parsed to a
-	 * 	double 
+	 * 	double
 	 */
 	public static double parseDoubleDefault(String s, double def) {
 		if (s == null) {
@@ -48,15 +48,15 @@ public class MathHelper {
 			return def;
 		}
 	}
-	
+
 	/**
 	 * Parses a double safely, returning 0 if nothing can be sanely parsed from
 	 * it.
 	 *
 	 * @param s the string to parse
-	 * 
+	 *
 	 * @return double corresponding to s, or 0 if s can not be parsed to a
-	 * 	double 
+	 * 	double
 	 */
 	public static double parseDouble(String s) {
 		return parseDoubleDefault(s, 0.0);
@@ -68,7 +68,7 @@ public class MathHelper {
 	 *
 	 * @param s the string to parse
 	 * @param def the default to set
-	 * 
+	 *
 	 * @return An integer
 	 */
 	public static int parseIntDefault(final String s, final int def) {
@@ -89,7 +89,7 @@ public class MathHelper {
 	 * parses an integer safely, returning 0 if nothing can be sanely parsed.
 	 * from it
 	 * @param s to parse
-	 * 
+	 *
 	 * @return An integer
 	 */
 	public static int parseInt(final String s) {
@@ -103,7 +103,7 @@ public class MathHelper {
 	 *
 	 * @param s the string to parse
 	 * @param def the default to set
-	 * 
+	 *
 	 * @return An integer
 	 */
 	public static long parseLongDefault(final String s, final long def) {
@@ -124,7 +124,7 @@ public class MathHelper {
 	 * parses a long safely, returning 0 if nothing can be sanely parsed.
 	 * from it
 	 * @param s to parse
-	 * 
+	 *
 	 * @return An integer
 	 */
 	public static long parseLong(final String s) {
@@ -133,7 +133,7 @@ public class MathHelper {
 
 	/**
 	 * Limit an integer value to a specific range.
-	 * 
+	 *
 	 * @param value value to be limited
 	 * @param minValue minimum value. Should be <= maxValue.
 	 * @param maxValue maximum value. Should be >= minValue.
@@ -144,10 +144,10 @@ public class MathHelper {
 	public static int clamp(int value, int minValue, int maxValue) {
 		return Math.max(minValue, Math.min(value, maxValue));
 	}
-	
+
 	/**
 	 * Limit a float value to a specific range.
-	 * 
+	 *
 	 * @param value value to be limited
 	 * @param minValue minimum value. Should be <= maxValue.
 	 * @param maxValue maximum value. Should be >= minValue.

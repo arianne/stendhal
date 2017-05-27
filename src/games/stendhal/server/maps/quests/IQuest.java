@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
+
+import games.stendhal.server.entity.player.Player;
 
 /**
  * All quests MUST implement this interface or extend the abstract class

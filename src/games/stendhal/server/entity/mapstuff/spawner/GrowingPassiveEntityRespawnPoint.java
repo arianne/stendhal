@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * This respwan point has to be "used" to get the item. After that, it will

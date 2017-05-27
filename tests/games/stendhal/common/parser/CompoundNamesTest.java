@@ -17,17 +17,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import games.stendhal.common.parser.CompoundName;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.common.parser.ExpressionType;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.common.parser.WordList;
 
 import org.junit.Test;
 
 /**
  * Test the NPC conversation CompoundName class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class CompoundNamesTest {

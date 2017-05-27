@@ -7,14 +7,14 @@ import games.stendhal.server.entity.spell.effect.ModifyBaseHpEffect;
 import marauroa.common.game.RPObject;
 /**
  * A spell to modify an RPEntity's base hp
- * 
+ *
  * @author madmetzger
  */
 public class ModifyHpSpell extends Spell {
 
 	/**
 	 * Create a new ModifyHpSpell
-	 * 
+	 *
 	 * @param name
 	 * @param nature
 	 * @param amount
@@ -27,7 +27,7 @@ public class ModifyHpSpell extends Spell {
 	 * @param range
 	 * @param rate
 	 * @param regen
-	 * @param modifier 
+	 * @param modifier
 	 */
 	public ModifyHpSpell(String name, Nature nature, int amount, int atk,
 			int cooldown, int def, double lifesteal, int mana,
@@ -35,10 +35,10 @@ public class ModifyHpSpell extends Spell {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel,
 				range, rate, regen, modifier);
 	}
-	
+
 	/**
 	 * Create a new Spell from a RPObject
-	 * 
+	 *
 	 * @param object
 	 */
 	public ModifyHpSpell(RPObject object) {

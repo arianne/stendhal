@@ -22,37 +22,37 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
 
 /**
- * PopupMenuUI implementation for drawing styled menus. 
+ * PopupMenuUI implementation for drawing styled menus.
  */
 public class StyledPopupMenuUI extends BasicPopupMenuUI {
 	private static StyledPopupMenuUI instance;
-	
+
 	private final Style style;
-	
+
 	// Required by UIManager, not necessarily called from EDT
 	public static synchronized ComponentUI createUI(JComponent popup) {
 		// Menu UI can be shared
 		if (instance == null) {
 			instance = new StyledPopupMenuUI(StyleUtil.getStyle());
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new StyledPopupMenuUI.
-	 * 
+	 *
 	 * @param style The pixmap style for drawing the menu
 	 */
 	public StyledPopupMenuUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	public void paint(Graphics g, JComponent menu) {
 		StyleUtil.fillBackground(style, g, 0, 0, menu.getWidth(), menu.getHeight());
 	}
-	
+
 	@Override
 	public Popup getPopup(JPopupMenu menu, int x, int y) {
 		Popup popup = super.getPopup(menu, x, y);
@@ -64,10 +64,10 @@ public class StyledPopupMenuUI extends BasicPopupMenuUI {
 		if (parent instanceof JComponent) {
 			((JComponent) parent).setBorder(null);
 		}
-		
+
 		return popup;
 	}
-	
+
 	@Override
 	public void installUI(JComponent component) {
 		super.installUI(component);

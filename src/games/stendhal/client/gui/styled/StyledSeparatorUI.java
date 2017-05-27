@@ -24,10 +24,10 @@ public class StyledSeparatorUI extends BasicSeparatorUI {
 	private static StyledSeparatorUI instance;
 	/** Used style */
 	private final Style style;
-	
+
 	/**
 	 * Create StyledSeparatorUI for a separator.
-	 * 
+	 *
 	 * @param separator <code>JSeparator</code> to create an UI for
 	 * @return a ComponentUI instance
 	 */
@@ -37,19 +37,19 @@ public class StyledSeparatorUI extends BasicSeparatorUI {
 		if (instance == null) {
 			instance = new StyledSeparatorUI(StyleUtil.getStyle());
 		}
-		
+
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new StyledSeparatorUI.
-	 * 
+	 *
 	 * @param style pixmap style
 	 */
 	public StyledSeparatorUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	public void installUI(JComponent separator) {
 		super.installUI(separator);

@@ -23,9 +23,9 @@ public class StatusAttackerFactory {
             final String[] statusParams = profile.split(",");
             final String statusName = statusParams[0];
             final double probability = Double.parseDouble(statusParams[1]);
-            
+
             String className = "games.stendhal.server.entity.status." + statusName;
-            
+
             Status status;
             try {
                 status = (Status) Class.forName(className).newInstance();

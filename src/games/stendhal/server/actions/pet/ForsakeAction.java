@@ -15,6 +15,9 @@ import static games.stendhal.common.constants.Actions.FORSAKE;
 import static games.stendhal.common.constants.Actions.PET;
 import static games.stendhal.common.constants.Actions.SHEEP;
 import static games.stendhal.common.constants.Actions.SPECIES;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
@@ -22,8 +25,6 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * release a pet into the wilderness

@@ -15,11 +15,11 @@ import games.stendhal.server.entity.creature.Creature;
 
 interface PositioningStrategy {
 	/**
-	 * Find a better position to do the attack, for example melees 
+	 * Find a better position to do the attack, for example melees
 	 * should walk closelyto their target but archers should stay away.
-	 * 
+	 *
 	 * @param creature creature doing the attack
 	 */
 	// TODO: rename void-method not to start with get
-	void getBetterAttackPosition(Creature creature); 
+	void getBetterAttackPosition(Creature creature);
 }

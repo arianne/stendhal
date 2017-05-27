@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.HashSet;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,18 +25,12 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashSet;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
-
 /**
  * Deep inspects a player and all his/her items.
- * 
+ *
  * @author hendrik
  */
 public class BugInspect extends ScriptImpl implements TurnListener {
@@ -50,7 +49,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 	@Override
 	public void onTurnReached(final int currentTurn) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
-				
+
 			new Task<Player>() {
 
 			@Override
@@ -66,9 +65,9 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 
 					// inspect slots
 					for (final RPSlot slot : player.slots()) {
-						if ("!buddy".equals(slot.getName()) 
+						if ("!buddy".equals(slot.getName())
 							|| "!ignore".equals(slot.getName())
-							|| "!kills".equals(slot.getName()) 
+							|| "!kills".equals(slot.getName())
 							|| "!quests".equals(slot.getName())) {
 							continue;
 						}

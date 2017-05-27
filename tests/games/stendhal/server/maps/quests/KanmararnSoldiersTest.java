@@ -16,16 +16,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.semos.kanmararn.CowardSoldierNPC;
-import games.stendhal.server.maps.semos.kanmararn.SergeantNPC;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.semos.kanmararn.CowardSoldierNPC;
+import games.stendhal.server.maps.semos.kanmararn.SergeantNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -64,7 +64,7 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
-	public void testQuest() {	
+	public void testQuest() {
 		SpeakerNPC henry = SingletonRepository.getNPCList().get("Henry");
 		Engine en1 = henry.getEngine();
 
@@ -133,7 +133,7 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		// You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows. Stats are (DEF: 7).
 		// take scale armor with me
 		PlayerTestHelper.equipWithItem(player, "scale armor", "peter");
-		
+
 		// You see the rotten corpse of Tom. You can inspect it to see its contents.
 		// take leather legs with me
 		// You see torn leather legs that are heavily covered with blood. Stats are (DEF: 1).

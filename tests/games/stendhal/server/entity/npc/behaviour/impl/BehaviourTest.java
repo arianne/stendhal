@@ -12,16 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.Test;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
-
-import org.junit.Test;
 
 public class BehaviourTest {
 

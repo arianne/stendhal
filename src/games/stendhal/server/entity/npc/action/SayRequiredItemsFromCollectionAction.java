@@ -13,6 +13,12 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -22,11 +28,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 import games.stendhal.server.util.StringUtils;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 /**
  * States the name of the items missing from a quest slot with items like item=amount;item2=amount2;item3=amount3
@@ -54,7 +55,7 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 		this.index = 0;
 		this.message = checkNotNull(message);
 	}
-	
+
 	/**
 	 * Creates a new SayRequiredItemssFromCollectionAction.
 	 *

@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds a little girl called Annie Jones.
@@ -46,7 +46,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 
 	private void createNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Annie Jones") {
-			
+
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -58,7 +58,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			protected void createDialog() {	
+			protected void createDialog() {
 				// greeting and quest in maps/quests/IcecreamForAnnie.java
 			addOffer("I'm a little girl, I haven't anything to offer.");
 			addJob("I help my mummy.");

@@ -35,8 +35,9 @@ public final class Algebra
 		int   l = args.length - 1;
 		float w = args[l];
 
-		for(int i=0; i<l; ++i)
+		for(int i=0; i<l; ++i) {
 			args[i] *= w;
+		}
 
         return args;
     }
@@ -52,8 +53,9 @@ public final class Algebra
 
         for(int i=0; i<a.length; ++i)
         {
-            if(Math.abs(a[i] - b[i]) > EPSILON)
-                return false;
+            if(Math.abs(a[i] - b[i]) > EPSILON) {
+				return false;
+			}
         }
 
         return true;
@@ -65,8 +67,9 @@ public final class Algebra
 		assert vec    != null: "method argument 2 is null";
 		assert result.length == vec.length;
 
-        for(int i=0; i<vec.length; ++i)
-            result[i] = vec[i];
+        for(int i=0; i<vec.length; ++i) {
+			result[i] = vec[i];
+		}
     }
 
     public static void mov_Vecf(float[] result, float a)
@@ -82,8 +85,9 @@ public final class Algebra
 		assert b      != null: "method argument 3 is null";
 		assert result.length == a.length && a.length == b.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] + b[i];
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] + b[i];
+		}
     }
 
     public static void add_Vecf(float[] result, float[] a, float b)
@@ -92,8 +96,9 @@ public final class Algebra
 		assert a      != null: "method argument 2 is null";
 		assert result.length == a.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] + b;
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] + b;
+		}
     }
 
     public static void sub_Vecf(float[] result, float[] a, float[] b)
@@ -103,8 +108,9 @@ public final class Algebra
 		assert b      != null: "method argument 3 is null";
         assert result.length == a.length && a.length == b.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] - b[i];
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] - b[i];
+		}
     }
 
     public static void sub_Vecf(float[] result, float[] a, float b)
@@ -113,8 +119,9 @@ public final class Algebra
 		assert a      != null: "method argument 2 is null";
         assert result.length == a.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] - b;
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] - b;
+		}
     }
 
     public static void mul_Vecf(float[] result, float[] a, float[] b)
@@ -124,8 +131,9 @@ public final class Algebra
 		assert b      != null: "method argument 3 is null";
         assert result.length == a.length && a.length == b.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] * b[i];
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] * b[i];
+		}
     }
 
     public static void mul_Vecf(float[] result, float[] a, float b)
@@ -134,8 +142,9 @@ public final class Algebra
 		assert a      != null: "method argument 2 is null";
         assert result.length == a.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] * b;
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] * b;
+		}
     }
 
     public static void div_Vecf(float[] result, float[] a, float[] b)
@@ -145,8 +154,9 @@ public final class Algebra
 		assert b      != null: "method argument 3 is null";
         assert result.length == a.length && a.length == b.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] / b[i];
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] / b[i];
+		}
     }
 
     public static void div_Vecf(float[] result, float[] a, float b)
@@ -155,8 +165,9 @@ public final class Algebra
 		assert a      != null: "method argument 2 is null";
         assert result.length == a.length;
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] / b;
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] / b;
+		}
     }
 
     public static float dot_Vecf(float[] a, float[] b)
@@ -167,8 +178,9 @@ public final class Algebra
 
         float result = 0.0f;
 
-        for(int i=0; i<a.length; ++i)
-            result += a[i] * b[i];
+        for(int i=0; i<a.length; ++i) {
+			result += a[i] * b[i];
+		}
 
         return result;
     }
@@ -221,8 +233,9 @@ public final class Algebra
 
         float length = 1.0f / length_Vecf(a);
 
-        for(int i=0; i<a.length; ++i)
-            result[i] = a[i] * length;
+        for(int i=0; i<a.length; ++i) {
+			result[i] = a[i] * length;
+		}
     }
 
     public static float distanceSqrt_Vecf(float[] a, float[] b)

@@ -18,19 +18,19 @@ package games.stendhal.client.entity;
  */
 public class ImageEventProperty extends Property {
 	private final String image;
-	
+
 	/**
 	 * Create a new ImageEventProperty.
-	 * 
+	 *
 	 * @param image image name
 	 */
 	public ImageEventProperty(String image) {
 		this.image = image;
 	}
-	
+
 	/**
 	 * Get the image name the event handler should use.
-	 * 
+	 *
 	 * @return image name
 	 */
 	public String getImageName() {

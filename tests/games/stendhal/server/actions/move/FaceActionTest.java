@@ -16,14 +16,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.Direction;
-import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 
 public class FaceActionTest {

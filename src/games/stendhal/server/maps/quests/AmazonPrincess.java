@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -38,10 +42,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: The Amazon Princess
@@ -82,9 +82,9 @@ public class AmazonPrincess extends AbstractQuest {
 	private void offerQuestStep() {
 		final SpeakerNPC npc = npcs.get("Princess Esclara");
 npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I'm looking for a drink, should be an exotic one. Can you bring me one?",
 				null);
 npc.add(ConversationStates.ATTENDING,
@@ -107,7 +107,7 @@ npc.add(ConversationStates.ATTENDING,
 		ConversationStates.ATTENDING,
 		null,
 		new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I'm sure I'll be too drunk to have another for at least "));
-		
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING,
@@ -138,10 +138,10 @@ npc.add(ConversationStates.ATTENDING,
 		npc.add(
 			ConversationStates.ATTENDING, triggers,
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("pina colada")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			null,
 			new MultipleActions(
-						new DropItemAction("pina colada"), 
+						new DropItemAction("pina colada"),
 						new ChatAction() {
 							@Override
 							public void fire(final Player player,
@@ -151,9 +151,9 @@ npc.add(ConversationStates.ATTENDING,
 								new EquipItemAction("fish pie", pieAmount, true).fire(player, sentence, npc);
 								npc.say("Thank you!! Take " +
 										Grammar.thisthese(pieAmount) + " " +
-										Grammar.quantityplnoun(pieAmount, "fish pie", "") + 
+										Grammar.quantityplnoun(pieAmount, "fish pie", "") +
 										" from my cook, and this kiss, from me.");
-								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;" 
+								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;"
 																 + System.currentTimeMillis(), 15.0).fire(player, sentence, npc);
 							}
 						},
@@ -208,7 +208,7 @@ npc.add(ConversationStates.ATTENDING,
                 res.add("I took a pina colada to the Princess, but I'd bet she's ready for another. Maybe I'll get more fish pies.");
             } else {
                 res.add("Princess Esclara loved the pina colada I took her, she's not thirsty now. She gave me fish pies and a kiss!!");
-            }			
+            }
 		}
 		return res;
 	}
@@ -222,29 +222,29 @@ npc.add(ConversationStates.ATTENDING,
 	public String getName() {
 		return "AmazonPrincess";
 	}
-	
+
 	// Amazon is dangerous below this level - don't hint to go there
 	@Override
 	public int getMinLevel() {
 		return 70;
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"drinking;"),
 				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"drinking;").fire(player, null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.AMAZON_ISLAND;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Princess Esclara";

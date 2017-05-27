@@ -13,6 +13,11 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.Graphics2D;
+import java.util.List;
+
+import javax.swing.SwingUtilities;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
@@ -28,18 +33,12 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-
-import java.awt.Graphics2D;
-import java.util.List;
-
-import javax.swing.SwingUtilities;
-
 import marauroa.common.game.RPSlot;
 
 /**
  * The 2D view of a corpse.
- * 
- * @param <T> corpse type 
+ *
+ * @param <T> corpse type
  */
 class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 
@@ -63,11 +62,11 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 	 */
 	private volatile SlotWindow slotWindow;
 
-	/** 
+	/**
 	 * Has the corpse been opened once on an auto raise?
 	 */
 	private boolean autoOpenedAlready = false;
-	
+
 	/**
 	 * Create a 2D view of an entity.
 	 */
@@ -251,11 +250,11 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Attach a listener to the inspector window, so that the window will be
 	 * closed when all of the contents of the inspected slot are removed.
-	 * 
+	 *
 	 * @param window inspector window
 	 * @param entity inspected entity
 	 * @param slot inspected slot
@@ -334,7 +333,7 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 		autoRaiseWindowIfDesired();
 	}
 
-	/** 
+	/**
 	 * Immediately opens the corpse window if the player deserves the kill
 	 * (is corpse owner) and has that setting specified.
 	 */

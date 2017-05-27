@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.Map;
+
 //
 //
 
@@ -23,12 +25,10 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
 
-import java.util.Map;
-
 
 /**
  * The 2D view of a domestic animal.
- * 
+ *
  * @param <T> type of domestic animal
  */
 abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends NPC2DView<T> {
@@ -85,7 +85,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends NPC2DView<
 
 	/**
 	 * Get the weight at which the animal becomes big.
-	 * 
+	 *
 	 * @return A weight.
 	 */
 	protected abstract int getBigWeight();
@@ -96,7 +96,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends NPC2DView<
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param map
 	 *            The map to populate.
 	 * @param tiles
@@ -136,19 +136,19 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends NPC2DView<
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 * 
+	 *
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
 		ZoneInfo info = ZoneInfo.get();
-		return SpriteStore.get().getModifiedSprite(translate(entity.getType()), 
+		return SpriteStore.get().getModifiedSprite(translate(entity.getType()),
 				info.getZoneColor(), info.getColorMethod());
 	}
 
 	/**
 	 * Get the number of tiles in the Y axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	@Override
@@ -171,7 +171,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends NPC2DView<
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

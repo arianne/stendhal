@@ -20,22 +20,22 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.LinkedList;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.quests.houses.HouseUtilities;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -45,8 +45,8 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
 	private static final String ZONE_NAME3 = "int_kirdneh_townhall";
-	
-	private static final String[] CITY_ZONES = { 
+
+	private static final String[] CITY_ZONES = {
 		"0_kalavan_city",
 		"0_kirdneh_city",
 		"0_ados_city_n",
@@ -54,7 +54,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		"0_ados_city_s",
 		"0_ados_wall",
 		"0_athor_island"	};
-	
+
 	private LinkedList<HousePortal> portals = new LinkedList<HousePortal>();
 	private StoredChest chest;
 
@@ -62,16 +62,16 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 		HousePortal.generateRPClass();
-		StoredChest.generateRPClass();
+		Chest.generateRPClass();
 
 		setupZone(ZONE_NAME);
 		setupZone(ZONE_NAME2);
 		setupZone(ZONE_NAME3);
-		
+
 		for (String zone : CITY_ZONES) {
 			setupZone(zone);
 		}
-		
+
 		SpeakerNPC taxman = new SpeakerNPC("Mr Taxman");
 		SingletonRepository.getNPCList().add(taxman);
 
@@ -82,7 +82,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 	public static void tearDownAfterClass() throws Exception {
 		HouseUtilities.clearCache();
 	}
-	
+
 	/**
 	 * Remove added stored entities.
 	 * <p>
@@ -98,7 +98,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 			}
 		}
 		portals.clear();
-		
+
 		if (chest != null) {
 			StendhalRPZone zone = chest.getZone();
 			if (zone != null) {
@@ -112,7 +112,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 	public HouseBuyingAthorTest() {
 		super(ZONE_NAME, "Barrett Holmes", "Reg Denson", "Mr Taxman", "Cyk");
 	}
-	
+
 	/**
 	 * Tests for athorNPC.
 	 */
@@ -121,7 +121,7 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		final SpeakerNPC npc = getNPC("Cyk");
 		final Engine en = npc.getEngine();
 		player.setAge(3700000);
-		
+
 		en.step(player, "hi");
 		assertEquals("Hello, player.", getReply(npc));
 		en.step(player, "cost");
@@ -143,10 +143,10 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Hello, player.", getReply(npc));
 		en.step(player, "buy");
 		assertEquals("The cost of a new apartment is 100000 money.  Also, you must pay a monthly tax of 1000 money. If you have an apartment in mind, please tell me the number now. I will check availability. Athor Apartments are numbered 101 to 108.", getReply(npc));
-		
+
 //		 add a portal to the maps so that there's something to check and sell
 		Portal destination = new Portal();
-		destination.setIdentifier("dest"); 
+		destination.setIdentifier("dest");
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(destination);
 		chest = new StoredChest();
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
@@ -165,12 +165,12 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 
 		assertTrue(player.isEquipped("player's house key"));
-		
+
 		Item item = player.getFirstEquipped("player's house key");
 		assertNotNull(item);
 		assertEquals("athor apartment 101;0;player", item.get("infostring"));
 		assertFalse(item.isBound());
-		
+
 		PlayerTestHelper.equipWithMoney(player, 1000);
 		assertTrue(player.isEquipped("money", 1000));
 		assertEquals("Before we go on, I must warn you that anyone with a key to your house can enter it, and access the items in the chest in your house. Do you still wish to buy a spare key?", getReply(npc));

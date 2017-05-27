@@ -15,9 +15,9 @@ package games.stendhal.server.entity.status;
 /**
  * A status effect that causes the entity to stop moving after a set amount of
  * steps
- * 
+ *
  * @author Jordan
- * 
+ *
  */
 public class ShockStatus extends Status {
 
@@ -33,7 +33,7 @@ public class ShockStatus extends Status {
 
 	/**
 	 * returns the status type
-	 * 
+	 *
 	 * @return StatusType
 	 */
 	@Override

@@ -16,6 +16,9 @@ import static games.stendhal.common.constants.Actions.MOVETO;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
+
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.server.actions.ActionListener;
@@ -27,9 +30,6 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
-
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**
@@ -64,7 +64,7 @@ public class MoveToAction implements ActionListener {
 			player.sendPrivateText("Poison has disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 			return;
 		}
-		
+
 		if (player.getStatusList().hasStatus(StatusType.CONFUSED)) {
 			player.sendPrivateText("You are disoriented and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 			return;

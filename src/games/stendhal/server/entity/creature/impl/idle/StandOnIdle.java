@@ -22,10 +22,10 @@ public class StandOnIdle implements IdleBehaviour {
 	public void perform(final Creature creature) {
 		retreatUnderFire(creature);
 	}
-	
+
 	/**
 	 * Run away if under ranged fire, and unable to attack back.
-	 * 
+	 *
 	 * @param creature The creature that should try to retreat.
 	 * @return <code>true</code> if trying to escape, <code>false</code> if retreatin is not needed
 	 */
@@ -37,15 +37,15 @@ public class StandOnIdle implements IdleBehaviour {
 				return true;
 			}
 		}
-		
+
 		creature.setSpeed(0);
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Run away from an enemy.
-	 * 
+	 *
 	 * @param creature The creature that tries to retreat.
 	 * @param enemy The enemy to run away from.
 	 */
@@ -53,7 +53,7 @@ public class StandOnIdle implements IdleBehaviour {
 		creature.clearPath();
 		creature.faceToward(enemy);
 		creature.setDirection(creature.getDirection().oppositeDirection());
-		
+
 		if (creature.getZone().collides(creature, creature.getX() + creature.getDirection().getdx(),
 				creature.getY() + creature.getDirection().getdy(), true)) {
 			// running against a wall; try turning
@@ -63,7 +63,7 @@ public class StandOnIdle implements IdleBehaviour {
 				creature.setDirection(creature.getDirection().nextDirection().oppositeDirection());
 			}
 		}
-		
+
 		creature.setSpeed(creature.getBaseSpeed());
 		creature.applyMovement();
 	}

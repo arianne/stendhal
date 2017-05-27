@@ -14,10 +14,10 @@ package games.stendhal.server.events;
 
 import games.stendhal.common.constants.Events;
 import games.stendhal.common.constants.SoundLayer;
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 
 /**
  * A sound.
@@ -41,7 +41,7 @@ public class SoundEvent extends RPEvent {
 	 * Creates a new sound event with an infinite range.
 	 *
 	 * @param sound name of sound to play
-	 * @param layer 
+	 * @param layer
 	 */
 	public SoundEvent(final String sound, SoundLayer layer) {
 		super(Events.SOUND);
@@ -53,8 +53,8 @@ public class SoundEvent extends RPEvent {
 	 * Creates a new sound event with a volume and infinite range.
 	 *
 	 * @param sound name of sound to play
-	 * @param volume 
-	 * @param layer 
+	 * @param volume
+	 * @param layer
 	 */
 	public SoundEvent(final String sound, int volume, SoundLayer layer) {
 		this(sound, layer);

@@ -33,10 +33,10 @@ public class HTMLBuilder implements AttributedTextSink<TextAttributeSet> {
 			stringBuilder.append('>');
 		}
 	}
-	
+
 	/**
 	 * Get the generated HTML.
-	 * 
+	 *
 	 * @return HTML string
 	 */
 	public String toHTML() {

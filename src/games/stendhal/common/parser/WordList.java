@@ -35,7 +35,7 @@ import marauroa.common.io.UnicodeSupportingInputStreamReader;
  * WordList stores a list of words recognized by the ConversationParser. Words
  * are categorised by type (noun, verb, adjective, preposition) and optionally
  * sub-types (animals, food, fluids, ...).
- * 
+ *
  * @author Martin Fuchs
  */
 
@@ -110,13 +110,13 @@ final public class WordList {
     			}
     		}
         } else {
-            logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");            
+            logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");
         }
 	}
 
 	/**
 	 * Returns a reference to the global word list instance.
-	 * 
+	 *
 	 * @return WordList
 	 */
 	public static WordList getInstance() {
@@ -125,7 +125,7 @@ final public class WordList {
 
 	/**
 	 * Reads word list from reader object.
-	 * 
+	 *
 	 * @param reader
 	 * @param comments
 	 * @throws IOException
@@ -165,9 +165,9 @@ final public class WordList {
 
 	/**
 	 * Reads one line of the word list and adds the new entry.
-	 * 
+	 *
 	 * @param key
-	 * 
+	 *
 	 * @param tk
 	 * @param entry
 	 */
@@ -244,7 +244,7 @@ final public class WordList {
 
 	/**
 	 * Add an entry to the word list.
-	 * 
+	 *
 	 * @param key
 	 * @param entry
 	 */
@@ -277,7 +277,7 @@ final public class WordList {
 
 	/**
 	 * Print all words of a given (main-)type.
-	 * 
+	 *
 	 * @param writer
 	 * @param type
 	 */
@@ -306,7 +306,7 @@ final public class WordList {
 	/**
 	 * Transform the given word to lower case and trim special characters at
 	 * beginning and end to use this normalized form as key in the word list.
-	 * 
+	 *
 	 * @param word
 	 * @return the trimmed word
 	 */
@@ -339,7 +339,7 @@ final public class WordList {
 
 	/**
 	 * Find an entry for a given word.
-	 * 
+	 *
 	 * @param str
 	 * @return WordEntry
 	 */
@@ -351,7 +351,7 @@ final public class WordList {
 
 	/**
 	 * Lookup the plural form of the given word from the word list.
-	 * 
+	 *
 	 * @param word
 	 * @return plural string
 	 */
@@ -374,7 +374,7 @@ final public class WordList {
 
 	/**
 	 * Lookup the singular form of the given word from the word list.
-	 * 
+	 *
 	 * @param word
 	 * @return singular string
 	 */
@@ -411,9 +411,9 @@ final public class WordList {
 
 	/**
 	 * Try to normalise the given word as verb.
-	 * 
+	 *
 	 * @param word
-	 * 
+	 *
 	 * @return Verb object with additional information
 	 */
 	Verb normalizeVerb(final String word) {
@@ -441,7 +441,7 @@ final public class WordList {
 
 	/**
 	 * Try to find a matching word for a derived adjective.
-	 * 
+	 *
 	 * @param word
 	 * @return WordEntry
 	 */
@@ -461,7 +461,7 @@ final public class WordList {
 
 	/**
 	 * Register a subject name to be recognized by the conversation parser.
-	 * 
+	 *
 	 * @param name
 	 */
 	public void registerSubjectName(final String name) {
@@ -470,7 +470,7 @@ final public class WordList {
 
 	/**
 	 * Register a subject name to be recognized by the conversation parser.
-	 * 
+	 *
 	 * @param name
 	 * @param typeString
 	 */
@@ -494,7 +494,7 @@ final public class WordList {
 
 	/**
 	 * De-register a subject name.
-	 * 
+	 *
 	 * @param name
 	 */
 	public void unregisterSubjectName(final String name) {
@@ -519,7 +519,7 @@ final public class WordList {
 	/**
 	 * Register an item or creature name to be recognized by the conversation
 	 * parser.
-	 * 
+	 *
 	 * @param name
 	 * @param typeString
 	 */
@@ -649,7 +649,7 @@ final public class WordList {
 
 	/**
 	 * Check for compatible types.
-	 * 
+	 *
 	 * @param lastExpr last word in an expression
 	 * @param typeString expected type string
 	 * @return <code>true</code> if the expression is of compatible type,
@@ -699,7 +699,7 @@ final public class WordList {
 
 	/**
 	 * Register a verb to be recognized by the conversation parser.
-	 * 
+	 *
 	 * @param verb
 	 */
 	public void registerVerb(final String verb) {
@@ -722,7 +722,7 @@ final public class WordList {
 
 	/**
 	 * Add a new word to the list in order to remember it later.
-	 * 
+	 *
 	 * @param str
 	 * @return the added entry
 	 */

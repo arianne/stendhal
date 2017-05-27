@@ -13,17 +13,6 @@
 package games.stendhal.client;
 
 import static java.io.File.separator;
-import games.stendhal.client.gui.StendhalFirstScreen;
-import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.login.LoginDialog;
-import games.stendhal.client.gui.login.Profile;
-import games.stendhal.client.gui.styled.StyledLookAndFeel;
-import games.stendhal.client.gui.styled.styles.StyleFactory;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.update.ClientGameConfiguration;
-import games.stendhal.common.Debug;
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.Version;
 
 import java.awt.Dimension;
 import java.io.File;
@@ -37,10 +26,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.gui.StendhalFirstScreen;
+import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.login.LoginDialog;
+import games.stendhal.client.gui.login.Profile;
+import games.stendhal.client.gui.styled.StyledLookAndFeel;
+import games.stendhal.client.gui.styled.styles.StyleFactory;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.common.Debug;
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.Version;
 import marauroa.common.Log4J;
 import marauroa.common.MarauroaUncaughtExceptionHandler;
-
-import org.apache.log4j.Logger;
 
 /**
  * Main game class.
@@ -77,14 +77,14 @@ public final class stendhal {
 	}
 
 	public static final String VERSION = Version.getVersion();
-	
+
 	/** Display sizes optimized for different screen resolutions */
 	private static final List<Dimension> displaySizes = new ArrayList<Dimension>(3);
 	public static final Integer SIZE_INDEX = 0;
 	public static final Integer SIZE_INDEX_LARGE = 1;
 	public static final Integer SIZE_INDEX_WIDE = 2;
 	public static final Integer DISPLAY_SIZE_INDEX = SIZE_INDEX;
-	
+
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
@@ -94,7 +94,7 @@ public final class stendhal {
 	static final int FPS_LIMIT = 25;
 	/** For keeping the login status. Blocks until logged in. */
 	private static final CountDownLatch latch = new CountDownLatch(1);
-	
+
 	/**
 	 * Make the class non-instantiable.
 	 */
@@ -144,22 +144,22 @@ public final class stendhal {
 
 	/**
 	 * Get the maximum size of the visible game area.
-	 * 
+	 *
 	 * @return screen dimensions
 	 */
 	public static Dimension getDisplaySize() {
 		String spec = System.getProperty("display.index");
 		int sizeIndex = MathHelper.parseIntDefault(spec, DISPLAY_SIZE_INDEX);
-		
+
 		try {
 			return displaySizes.get(sizeIndex);
 		} catch (IndexOutOfBoundsException e) {
 			logger.error("Invalid client size index: " + spec + " (" + sizeIndex + ")", e);
 		}
-		
+
 		return displaySizes.get(DISPLAY_SIZE_INDEX);
 	}
-	
+
 	/**
 	 * Initialize list of dimensions that can be used for the clients
 	 * display area.
@@ -243,7 +243,7 @@ public final class stendhal {
 	public static String getGameFolder() {
 		return gameFolder;
 	}
-	
+
 	/**
 	 * Main Entry point.
 	 *
@@ -256,7 +256,7 @@ public final class stendhal {
 		initUsableDisplaySizes();
 		new Startup(args);
 	}
-	
+
 	private static class Startup {
 		StendhalFirstScreen splash;
 
@@ -272,7 +272,7 @@ public final class stendhal {
 				UIManager.setLookAndFeel(look);
 				/*
 				 * Prevents the click event at closing a popup menu by clicking
-				 * outside it being passed to the component underneath. 
+				 * outside it being passed to the component underneath.
 				 */
 				UIManager.put("PopupMenu.consumeEventOnClose", Boolean.TRUE);
 				int fontSize = wm.getPropertyInt("ui.font_size", 12);
@@ -288,7 +288,7 @@ public final class stendhal {
 			UIManager.getLookAndFeelDefaults().put("ClassLoader", stendhal.class.getClassLoader());
 
 			final Profile profile = Profile.createFromCommandline(args);
-			
+
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {

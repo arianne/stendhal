@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-
-import java.util.List;
 
 class UseableRing2DView extends Ring2DView {
 
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -33,7 +33,7 @@ class UseableRing2DView extends Ring2DView {
 
 		super.buildActions(list);
 	}
-	
+
 	@Override
 	public void onAction() {
 		onAction(ActionType.USE);
@@ -45,7 +45,7 @@ class UseableRing2DView extends Ring2DView {
 		if (doubleClick) {
 			return StendhalCursor.ACTIVITY;
 		} else {
-			return StendhalCursor.ITEM_USE; 
+			return StendhalCursor.ITEM_USE;
 		}
 	}
 }

@@ -18,14 +18,14 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * a condition to check before an transition is executed.
- * 
+ *
  * @author hendrik
  */
 public interface PreTransitionCondition {
 
 	/**
 	 * can the transition be done?
-	 * 
+	 *
 	 * @param player
 	 *            player who caused the transition
 	 * @param sentence

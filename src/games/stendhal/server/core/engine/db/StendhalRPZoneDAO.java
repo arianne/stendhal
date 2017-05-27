@@ -1,15 +1,14 @@
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import marauroa.common.game.IRPZone;
 import marauroa.server.db.DBTransaction;
-
-import org.apache.log4j.Logger;
 
 public class StendhalRPZoneDAO {
 	private static Logger logger = Logger.getLogger(StendhalRPZoneDAO.class);

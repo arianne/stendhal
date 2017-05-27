@@ -1,15 +1,15 @@
 package games.stendhal.server.maps.ados.city;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.PassiveNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds some fish NPCs.
@@ -32,9 +32,9 @@ public class FishesNPC implements ZoneConfigurator {
 			final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(final StendhalRPZone zone) {
-		
+
 		// Fish that swims around in the fountain
 		final PassiveNPC f1 = new PassiveNPC() {
 			@Override
@@ -47,14 +47,14 @@ public class FishesNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 		};
-		
+
 		f1.setPosition(53, 109);
 		f1.setDescription("You see a fish.");
 		f1.setDirection(Direction.DOWN);
 		f1.setEntityClass("animal/fish_roach");
 		f1.setVisibility(50); //underwater
 		zone.add(f1);
-		
+
 		// Fish that swims up and down in the coast
 		final PassiveNPC f2 = new PassiveNPC() {
 			@Override
@@ -76,7 +76,7 @@ public class FishesNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 		};
-		
+
 		f2.setPosition(84, 81);
 		f2.setDescription("You see a fish.");
 		f2.setDirection(Direction.UP);

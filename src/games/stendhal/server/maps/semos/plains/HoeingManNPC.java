@@ -24,7 +24,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
  * A man hoeing the farm ground
- * 
+ *
  */
 public class HoeingManNPC implements ZoneConfigurator {
 
@@ -61,7 +61,7 @@ public class HoeingManNPC implements ZoneConfigurator {
                     "Oh well, there's nothing special about my hoe... If you need some good farming tools like a scythe, it might help visiting the nearby Semos city blacksmith shop!");
 				addGoodbye("Goodbye and may your path be clear of weeds!");
 			}
-	
+
 		};
 		npc.setEntityClass("hoeingmannpc");
 		npc.setDescription("You see a man with a hoe, he's busy weeding the soil.");

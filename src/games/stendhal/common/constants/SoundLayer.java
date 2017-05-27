@@ -22,7 +22,7 @@ public enum SoundLayer {
 	BACKGROUND_MUSIC("music"),
 
 	/**
-	 * sounds that are related to the zone and are in-game, 
+	 * sounds that are related to the zone and are in-game,
 	 * like a waterfall, wind, the hammering at the blacksmith
 	 */
 	AMBIENT_SOUND("ambient"),

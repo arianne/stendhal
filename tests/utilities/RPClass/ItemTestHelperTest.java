@@ -14,10 +14,11 @@ package utilities.RPClass;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.item.Item;
-import marauroa.common.game.RPClass;
 
 import org.junit.Test;
+
+import games.stendhal.server.entity.item.Item;
+import marauroa.common.game.RPClass;
 
 public class ItemTestHelperTest {
 
@@ -33,6 +34,6 @@ public class ItemTestHelperTest {
 	public void testGenerateRPClasses() {
 		ItemTestHelper.generateRPClasses();
 		assertTrue(RPClass.hasRPClass("item"));
-		
+
 	}
 }

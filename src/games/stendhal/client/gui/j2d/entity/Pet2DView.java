@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Pet;
 import games.stendhal.client.entity.User;
-
-import java.util.List;
 
 /**
  * The 2D view of a pet.
@@ -33,7 +33,7 @@ class Pet2DView extends DomesticAnimal2DView<Pet> {
 
 	/**
 	 * Get the weight at which the animal becomes big.
-	 * 
+	 *
 	 * @return A weight.
 	 */
 	@Override
@@ -48,7 +48,7 @@ class Pet2DView extends DomesticAnimal2DView<Pet> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -72,7 +72,7 @@ class Pet2DView extends DomesticAnimal2DView<Pet> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

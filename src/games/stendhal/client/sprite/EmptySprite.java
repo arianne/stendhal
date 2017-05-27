@@ -36,12 +36,12 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Create an empty sprite.
-	 * 
+	 *
 	 * @param width
 	 *            The sprite width.
 	 * @param height
 	 *            The sprite height.
-	 * @param reference 
+	 * @param reference
 	 */
 	public EmptySprite(final int width, final int height, final Object reference) {
 		this.width = width;
@@ -55,11 +55,11 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Create an empty sprite reference.
-	 * @param width 
-	 * @param height 
+	 * @param width
+	 * @param height
 	 * @return an Object of the type ESRef
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	static Object createReference(final int width, final int height) {
 		return new ESRef(width, height);
@@ -72,7 +72,7 @@ public class EmptySprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 * 
+	 *
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -83,7 +83,7 @@ public class EmptySprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 * 
+	 *
 	 * @return A new sprite.
 	 */
 	@Override
@@ -94,7 +94,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -108,7 +108,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Draws the image.
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -131,7 +131,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite.
-	 * 
+	 *
 	 * @return The height in pixels of this sprite
 	 */
 	@Override
@@ -143,7 +143,7 @@ public class EmptySprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 * 
+	 *
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -154,7 +154,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite.
-	 * 
+	 *
 	 * @return The width in pixels of this sprite
 	 */
 	@Override

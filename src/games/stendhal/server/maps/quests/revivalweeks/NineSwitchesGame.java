@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.revivalweeks;
 
+import java.util.Arrays;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -25,8 +27,6 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-
 /**
  * A Game about Nine switches game for one player
  *
@@ -38,7 +38,7 @@ public class NineSwitchesGame implements LoadableContent {
 	private SpeakerNPC npc;
 
 	private static final int CHAT_TIMEOUT = 60;
-	
+
 	private void addBoard() {
 		board = new NineSwitchesGameBoard(zone, 94, 106);
 	}
@@ -55,7 +55,7 @@ public class NineSwitchesGame implements LoadableContent {
 			protected void createDialog() {
 				addGreeting("Hi, welcome to our small game of nine switches. Your task is to make all arrows point to the right."
 						+ " Easy? Well, there is a #catch.");
-				addReply("catch", 
+				addReply("catch",
 						" Each switch is linked to its neighbour and will change them as well. You have one minute to solve the puzzle."
 						+ " Do you want to #play?.");
 				addJob("I am the supervisor of this game.");
@@ -66,13 +66,13 @@ public class NineSwitchesGame implements LoadableContent {
 						"Good luck.",
 						new PlayAction(board));
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 		};
-		npc.setEntityClass("gamesupervisornpc"); 
+		npc.setEntityClass("gamesupervisornpc");
 		npc.setPlayerChatTimeout(CHAT_TIMEOUT);
 		npc.setPosition(98, 104);
 		npc.setDescription("You see Maltos. Aren't you jealous of his awesome hair?");

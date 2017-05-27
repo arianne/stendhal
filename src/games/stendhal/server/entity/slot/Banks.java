@@ -14,7 +14,7 @@ package games.stendhal.server.entity.slot;
 
 /**
  * List of banks.
- * 
+ *
  * @author hendrik
  */
 public enum Banks {
@@ -33,7 +33,7 @@ public enum Banks {
 
 	/**
 	 * Creates a new Bank.
-	 * 
+	 *
 	 * @param slotName
 	 *            the banks name
 	 */
@@ -43,7 +43,7 @@ public enum Banks {
 
 	/**
 	 * Gets the slot name.
-	 * 
+	 *
 	 * @return slotName
 	 */
 	public String getSlotName() {

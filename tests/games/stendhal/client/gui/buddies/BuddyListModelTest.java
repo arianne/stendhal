@@ -31,7 +31,7 @@ public class BuddyListModelTest implements ListDataListener {
 	private boolean intervalRemovedFlag;
 	private boolean contentsChangedFlag;
 	private int index0, index1;
-	
+
 	/**
 	 * Reset the state of the test class.
 	 */
@@ -44,7 +44,7 @@ public class BuddyListModelTest implements ListDataListener {
 		index0 = -1;
 		index1 = -1;
 	}
-	
+
 	/**
 	 * Test adding new buddies to the list.
 	 */
@@ -53,11 +53,11 @@ public class BuddyListModelTest implements ListDataListener {
 		BuddyListModel model = new BuddyListModel();
 		assertEquals("Starts empty", 0, model.getSize());
 		model.addListDataListener(this);
-		
+
 		// Adding null should not work
 		model.setOnline(null, true);
 		assertEquals("Adding null buddy should fail", 0, model.getSize());
-		
+
 		// Add a buddy
 		model.setOnline("dumdiduu", true);
 		assertEquals("Number of buddies", 1, model.getSize());
@@ -72,7 +72,7 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(0, index0);
 		assertEquals(0, index1);
 		resetState();
-		
+
 		// Add third; should sort last
 		model.setOnline("hubbaduu", true);
 		assertEquals("Number of buddies", 3, model.getSize());
@@ -80,7 +80,7 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(2, index0);
 		assertEquals(2, index1);
 		resetState();
-		
+
 		// Add third; should sort last due to being offline
 		model.setOnline("alibaba", false);
 		assertEquals("Number of buddies", 4, model.getSize());
@@ -88,25 +88,25 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(3, index0);
 		assertEquals(3, index1);
 		resetState();
-		
+
 		// Check that there were no spurious calls
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
-		
+
 		// Check the final order
 		assertEquals("daibaduu", getBuddy(model, 0).getName());
 		assertEquals("dumdiduu", getBuddy(model, 1).getName());
 		assertEquals("hubbaduu", getBuddy(model, 2).getName());
 		assertEquals("alibaba", getBuddy(model, 3).getName());
 	}
-	
+
 	/**
 	 * Test changing status of already added buddies.
 	 */
 	@Test
 	public void testChangeState() {
 		BuddyListModel model = new BuddyListModel();
-		
+
 		model.addListDataListener(this);
 		// add some buddies
 		model.setOnline("dumdiduu", true);
@@ -115,13 +115,13 @@ public class BuddyListModelTest implements ListDataListener {
 		model.setOnline("alibaba", false);
 		assertEquals("Number of buddies", 4, model.getSize());
 		resetState();
-		
+
 		// A dummy change doing nothing should not invoke anything
 		model.setOnline("hubbaduu", true);
 		assertFalse("intervalAdded() should not be called", intervalAddedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
-		
+
 		// dumdiduu should become last if set offline
 		model.setOnline("dumdiduu", false);
 		assertEquals("Number of buddies should not change", 4, model.getSize());
@@ -132,7 +132,7 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(1, Math.min(index0, index1));
 		assertEquals(3, Math.max(index0, index1));
 		resetState();
-		
+
 		// alibaba should become first if set online
 		model.setOnline("alibaba", true);
 		assertEquals("Number of buddies should not change", 4, model.getSize());
@@ -142,34 +142,34 @@ public class BuddyListModelTest implements ListDataListener {
 		// interval; alibaba moved from second last to first
 		assertEquals(0, Math.min(index0, index1));
 		assertEquals(2, Math.max(index0, index1));
-		
+
 		// Check the final order
 		assertEquals("alibaba", getBuddy(model, 0).getName());
 		assertEquals("daibaduu", getBuddy(model, 1).getName());
 		assertEquals("hubbaduu", getBuddy(model, 2).getName());
 		assertEquals("dumdiduu", getBuddy(model, 3).getName());
 	}
-	
+
 	/**
 	 * Test removing buddies that do not exist on the list.
 	 */
 	@Test
 	public void testRemoveNonExistingBuddy() {
 		BuddyListModel model = new BuddyListModel();
-		
+
 		model.addListDataListener(this);
 		// Try removing nothing from an empty list
 		model.removeBuddy(null);
 		assertFalse("intervalAdded() should not be called", intervalAddedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
-		
+
 		// Try removing dummy from an empty list
 		model.removeBuddy("kenny");
 		assertFalse("intervalAdded() should not be called", intervalAddedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
-		
+
 		// add some buddies
 		model.setOnline("dumdiduu", true);
 		model.setOnline("daibaduu", true);
@@ -177,20 +177,20 @@ public class BuddyListModelTest implements ListDataListener {
 		model.setOnline("alibaba", false);
 		assertEquals("Number of buddies", 4, model.getSize());
 		resetState();
-		
+
 		// killing kenny should still fail
 		model.removeBuddy("kenny");
 		assertFalse("intervalAdded() should not be called", intervalAddedFlag);
 		assertFalse("intervalRemoved() should not be called", intervalRemovedFlag);
 		assertFalse("contentsChanged() should not be called", contentsChangedFlag);
-		
+
 		// Check the final order
 		assertEquals("daibaduu", getBuddy(model, 0).getName());
 		assertEquals("dumdiduu", getBuddy(model, 1).getName());
 		assertEquals("hubbaduu", getBuddy(model, 2).getName());
 		assertEquals("alibaba", getBuddy(model, 3).getName());
 	}
-	
+
 	/**
 	 * Test removing buddies that actually are on the list.
 	 */
@@ -198,14 +198,14 @@ public class BuddyListModelTest implements ListDataListener {
 	public void testRemoveBuddy() {
 		BuddyListModel model = new BuddyListModel();
 		model.addListDataListener(this);
-		
+
 		// add some buddies
 		model.setOnline("dumdiduu", true);
 		model.setOnline("daibaduu", true);
 		model.setOnline("hubbaduu", true);
 		model.setOnline("alibaba", false);
 		resetState();
-		
+
 		// test removing an online buddy
 		model.removeBuddy("dumdiduu");
 		assertFalse("intervalAdded() should not be called", intervalAddedFlag);
@@ -215,7 +215,7 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(1, index1);
 		assertEquals("Number of buddies", 3, model.getSize());
 		resetState();
-		
+
 		// test removing an offline buddy
 		model.removeBuddy("alibaba");
 		assertEquals("intervalAdded() should not be called", false, intervalAddedFlag);
@@ -224,19 +224,19 @@ public class BuddyListModelTest implements ListDataListener {
 		assertEquals(2, index0);
 		assertEquals(2, index1);
 		assertEquals("Number of buddies", 2, model.getSize());
-		
+
 		// Check the final order
 		assertEquals("daibaduu", getBuddy(model, 0).getName());
 		assertEquals("hubbaduu", getBuddy(model, 1).getName());
 	}
-	
+
 	/**
 	 * Get a buddy. The model returns an object. not a Buddy, so this is
 	 * just a convenience method doing the casting and type checking.
-	 * 
+	 *
 	 * @param model BuddyModel
 	 * @param index index of the element to be fetched
-	 * @return Buddy at index 
+	 * @return Buddy at index
 	 */
 	private Buddy getBuddy(BuddyListModel model, int index) {
 		Buddy buddy = null;
@@ -246,7 +246,7 @@ public class BuddyListModelTest implements ListDataListener {
 		} else {
 			fail();
 		}
-		
+
 		return buddy;
 	}
 

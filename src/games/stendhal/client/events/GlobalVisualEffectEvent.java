@@ -25,7 +25,7 @@ import games.stendhal.client.gui.LightningEffect;
  */
 class GlobalVisualEffectEvent extends Event<Entity> {
 	private static final Logger LOGGER = Logger.getLogger(GlobalVisualEffectEvent.class);
-	
+
 	@Override
 	public void execute() {
 		EffectLayer effect = null;

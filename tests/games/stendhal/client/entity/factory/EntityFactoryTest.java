@@ -14,6 +14,10 @@ package games.stendhal.client.entity.factory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.bot.textclient.TextUI;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Blood;
@@ -41,9 +45,6 @@ import games.stendhal.client.entity.UseableItem;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class EntityFactoryTest {
 
@@ -118,7 +119,7 @@ public class EntityFactoryTest {
 				.getClass());
 
 	}
-	
+
 	@Test
 	public final void seed() {
 		final RPObject rp = new MockRPObject("item", "misc", "seed");

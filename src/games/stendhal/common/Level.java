@@ -93,7 +93,7 @@ public class Level {
 
 	/**
 	 * calculates the level according to the experience.
-	 * 
+	 *
 	 * @param exp
 	 *            experience needed
 	 * @return level
@@ -121,7 +121,7 @@ public class Level {
 
 	/**
 	 * Calculates the experienced needed for a level.
-	 * 
+	 *
 	 * @param level level
 	 * @return experience needed
 	 */
@@ -135,7 +135,7 @@ public class Level {
 	/**
 	 * Calculates how many levels to add when a certain amount of experience is
 	 * added.
-	 * 
+	 *
 	 * @param exp
 	 *            the current Experience
 	 * @param added
@@ -162,10 +162,10 @@ public class Level {
 	/**
 	 * Get an entity's wisdom factor based on their level. As no one really has
 	 * 100% (i.e. 1.0) wisdom, it should be scaled as needed.
-	 * 
+	 *
 	 * @param level
 	 *            A player level.
-	 * 
+	 *
 	 * @return A value between <code>0.0</code> (inclusive) and
 	 *         <code>1.0</code> (exclusive).
 	 */

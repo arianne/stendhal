@@ -33,13 +33,13 @@ import games.stendhal.server.entity.creature.Creature;
  * one of the creatures has died. It will then continue to spawn creatures. A
  * certain time must pass between respawning creatures; this respawn time is
  * usually dependent of the type of the creatures that are spawned.
- * 
+ *
  * Each respawn point can only spawn one type of creature. The Prototype design
  * pattern is used; the <i>prototypeCreature</i> will be copied to create new
  * creatures.
  */
 public class CreatureRespawnPoint implements TurnListener {
-	/** longest possible respawn time in turns. half a year - should be longer than the 
+	/** longest possible respawn time in turns. half a year - should be longer than the
 	 * server is up in one phase */
 	private static final int MAX_RESPAWN_TIME = 200 * 60 * 24 * 30 * 6;
 	/** minimum respawn time in turns. about 10s */
@@ -49,9 +49,9 @@ public class CreatureRespawnPoint implements TurnListener {
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
 
 	protected final StendhalRPZone zone;
-	
+
 	private LinkedList<Observer> observers = new LinkedList<Observer>();
-	
+
 	protected final int x;
 
 	protected final int y;
@@ -84,7 +84,7 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/**
 	 * Creates a new RespawnPoint.
-	 * 
+	 *
 	 * @param zone
 	 * @param x
 	 * @param y
@@ -106,14 +106,14 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		
+
 		// don't respawn in next turn!
-		SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this); 
+		SingletonRepository.getTurnNotifier().notifyInTurns(calculateNextRespawnTurn(), this);
 	}
-	
+
 	/**
 	 * Creates a new RespawnPoint.
-	 * 
+	 *
 	 * @param zone
 	 * @param x
 	 * @param y
@@ -122,7 +122,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @param maximum
 	 *            The number of creatures spawned here that can exist at the
 	 *            same time
-	 * @param observer 
+	 * @param observer
 	 */
 	public CreatureRespawnPoint(StendhalRPZone zone, int x,
 			int y, Creature creature, int maximum, final Observer observer) {
@@ -146,7 +146,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	/**
 	 * Notifies this respawn point about the death of a creature that was
 	 * spawned here.
-	 * 
+	 *
 	 * @param dead
 	 *            The creature that has died
 	 */
@@ -164,7 +164,7 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/**
 	 * Is called when a new creature is ready to pop up.
-	 * 
+	 *
 	 * @see games.stendhal.server.core.events.TurnListener#onTurnReached(int)
 	 */
 	@Override
@@ -179,7 +179,7 @@ public class CreatureRespawnPoint implements TurnListener {
 					calculateNextRespawnTurn(), this);
 		}
 	}
-	
+
 	/**
 	 * Calculates a randomized respawn time.
 	 * @return the amount of turns calculated
@@ -190,13 +190,13 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/**
 	 * Checks how many creatures which were spawned here are currently alive.
-	 * 
+	 *
 	 * @return amount of living creatures
 	 */
 	public int size() {
 		return creatures.size();
 	}
-	
+
 	/**
 	 * function returns X coord of this respawn point
 	 * @return - x coord
@@ -204,7 +204,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	public int getX() {
 		return this.x;
 	}
-	
+
 	/**
 	 * function returns Y coord of this respawn point
 	 * @return - y coord
@@ -212,16 +212,16 @@ public class CreatureRespawnPoint implements TurnListener {
 	public int getY() {
 		return this.y;
 	}
-	
+
 	/**
 	 * Set the prototype creature for the spawner.
-	 * 
-	 * @param creature prototype creature 
+	 *
+	 * @param creature prototype creature
 	 */
     public void setPrototypeCreature(final Creature creature) {
     	this.prototypeCreature = creature;
     }
-    
+
 	/**
 	 * add observer to observers list
 	 * @param observer - observer to add
@@ -229,7 +229,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	public void addObserver(final Observer observer) {
 		observers.add(observer);
 	}
-	
+
 	/**
 	 * remove observer from list
 	 * @param observer - observer to remove
@@ -237,7 +237,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	public void removeObserver(final Observer observer) {
 		observers.remove(observer);
 	}
-	
+
 	/**
 	 * return zone where respawn point placed
 	 * @return - zone where respawn point placed
@@ -245,7 +245,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	public StendhalRPZone getZone() {
 		return this.zone;
 	}
-    
+
 	/**
 	 * Pops up a new creature.
 	 */
@@ -261,26 +261,26 @@ public class CreatureRespawnPoint implements TurnListener {
 					newentity.getAtk() / 10));
 			newentity.setDef(Rand.randGaussian(newentity.getDef(),
 					newentity.getDef() / 10));
-			
+
 			newentity.registerObjectsForNotification(observers);
-			
+
 			if (StendhalRPAction.placeat(zone, newentity, x, y)) {
 				newentity.init();
 				newentity.setRespawnPoint(this);
 
 				creatures.add(newentity);
 			} else {
-				// Could not place the creature anywhere. 
+				// Could not place the creature anywhere.
 				// Treat it like it just had died.
 				notifyDead(newentity);
-				logger.warn("Could not respawn " + newentity.getName() + " near " 
+				logger.warn("Could not respawn " + newentity.getName() + " near "
 						+ zone.getName() + " " + x + " " + y);
 			}
 		} catch (final Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		}
 	}
-	
+
 	/**
 	 * Pops up a new creature.
 	 */

@@ -12,15 +12,14 @@
  ***************************************************************************/
 package games.stendhal.tools.rpclassdumper;
 
-import games.stendhal.server.core.engine.RPClassGenerator;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
+import games.stendhal.server.core.engine.RPClassGenerator;
 import marauroa.common.game.Definition;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
+import marauroa.common.game.RPClass;
 
 /**
  * dumps the rpclass definitions to .java files,
@@ -68,7 +67,7 @@ public class RPClassDumper {
 		if (rpclass.getParent() != null) {
 			parent = rpclass.getParent().getName();
 		}
-		
+
 		writer = new JavaClassWriter(outputFolder, rpclass.getName());
 		writer.writeClassDefinition(parent);
 		for (Definition def : rpclass.getDefinitions()) {

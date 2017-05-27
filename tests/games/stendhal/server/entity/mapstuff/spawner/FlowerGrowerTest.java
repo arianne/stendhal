@@ -16,17 +16,16 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.Allotment;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.RPClass;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.RPClass.GrowingPassiveEntityRespawnPointTestHelper;
 
 public class FlowerGrowerTest {
@@ -164,7 +163,7 @@ public class FlowerGrowerTest {
 		zone.add(fl);
 		zone.add(entity);
 		assertFalse(fl.isOnFreeFertileGround());
-		
+
 		// check it withers when grown
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(0));
@@ -184,7 +183,7 @@ public class FlowerGrowerTest {
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(0));
 	}
-	
+
 	/**
 	 * Check that growing on top of another FlowerGrower fails
 	 */
@@ -202,7 +201,7 @@ public class FlowerGrowerTest {
 		assertFalse(fl.isOnFreeFertileGround());
 		fl.growNewFruit();
 		assertThat(fl.getRipeness(), is(0));
-		
+
 		// check that the right one got removed
 		assertTrue(zone.getPlantGrowers().contains(fl2));
 		assertFalse(zone.getPlantGrowers().contains(fl));

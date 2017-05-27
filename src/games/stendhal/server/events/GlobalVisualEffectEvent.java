@@ -12,9 +12,9 @@
 package games.stendhal.server.events;
 
 import games.stendhal.common.constants.Events;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.Type;
 
 /**
  * An event that tells the client to display a visual effect that affects the
@@ -30,7 +30,7 @@ public class GlobalVisualEffectEvent extends RPEvent {
 	 * may be ignored if it is not relevent.
 	 */
 	private static final String STRENGTH_ATTR = "strength";
-	
+
 	/**
 	 * Creates the rpclass.
 	 */
@@ -43,7 +43,7 @@ public class GlobalVisualEffectEvent extends RPEvent {
 
 	/**
 	 * Create a new GlobalVisualEffectEvent.
-	 * 
+	 *
 	 * @param effectName name of the effect
 	 * @param duration Duration in milliseconds. The exact interpretation is
 	 *  effect dependent
@@ -53,10 +53,10 @@ public class GlobalVisualEffectEvent extends RPEvent {
 		put(NAME_ATTR, effectName);
 		put(DURATION_ATTR, duration);
 	}
-	
+
 	/**
 	 * Create a new GlobalVisualEffectEvent with a specified strength.
-	 * 
+	 *
 	 * @param effectName name of the effect
 	 * @param duration Duration in milliseconds. The exact interpretation is
 	 *  effect dependent

@@ -12,15 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
-import static org.junit.Assert.*;
-
-import games.stendhal.server.entity.creature.impl.attack.AttackStrategyFactory;
-import games.stendhal.server.entity.creature.impl.attack.AttackWeakest;
-import games.stendhal.server.entity.creature.impl.attack.Coward;
-import games.stendhal.server.entity.creature.impl.attack.Gandhi;
-import games.stendhal.server.entity.creature.impl.attack.HandToHand;
-import games.stendhal.server.entity.creature.impl.attack.RangeAttack;
-import games.stendhal.server.entity.creature.impl.attack.StupidCoward;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;

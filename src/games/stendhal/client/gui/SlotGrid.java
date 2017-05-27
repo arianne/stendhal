@@ -12,12 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.GameLoop;
-import games.stendhal.client.GameObjects;
-import games.stendhal.client.entity.ContentChangeListener;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Inspector;
-
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,11 +20,16 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.client.GameLoop;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.ContentChangeListener;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Inspector;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * A view of an RPSlot in a grid of ItemPanels.
@@ -38,7 +37,7 @@ import org.apache.log4j.Logger;
 public class SlotGrid extends JComponent implements ContentChangeListener, Inspectable {
 	private static final int PADDING = 1;
 	private static final Logger logger = Logger.getLogger(SlotGrid.class);
-	
+
 	/** All shown item panels. */
 	private final List<ItemPanel> panels;
 	/** The parent entity of the shown slot. */
@@ -46,11 +45,11 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 	/** Name of the shown slot. */
 	private String slotName;
 
-	
+
 	public SlotGrid(int width, int height) {
 		setLayout(new GridLayout(height, width, PADDING, PADDING));
 		panels = new ArrayList<ItemPanel>();
-		
+
 		for (int i = 0; i < width * height; i++) {
 			ItemPanel panel = new ItemPanel(null, null);
 			panel.setItemNumber(i);
@@ -58,10 +57,10 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			add(panel);
 		}
 	}
-	
+
 	/**
 	 * Set the types the panels can accept.
-	 * 
+	 *
 	 * @param types accepted types
 	 */
 	@SafeVarargs
@@ -72,10 +71,10 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			panel.setAcceptedTypes(list);
 		}
 	}
-	
+
 	/**
 	 * Sets the parent entity of the window.
-	 * 
+	 *
 	 * @param parent entity owning the slot represented by the grid
 	 * @param slot the slot represented by the grid
 	 */
@@ -91,11 +90,11 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			});
 			return;
 		}
-		
+
 		if (this.parent != null) {
 			this.parent.removeContentChangeListener(this);
 		}
-		
+
 		this.parent = parent;
 		this.slotName = slot;
 
@@ -110,19 +109,19 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 		parent.addContentChangeListener(this);
 		scanSlotContent();
 	}
-	
+
 	/**
 	 * Get the name of the slot this grid represents.
-	 * 
+	 *
 	 * @return name of the slot
 	 */
 	public String getSlotName() {
 		return slotName;
 	}
-	
+
 	/**
 	 * Set the inspector the contained entities should use.
-	 * 
+	 *
 	 * @param inspector used inspector
 	 */
 	@Override
@@ -131,7 +130,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			panel.setInspector(inspector);
 		}
 	}
-	
+
 	/**
 	 * Clear the grid and detach it from the slot it shows.
 	 */
@@ -140,7 +139,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			parent.removeContentChangeListener(SlotGrid.this);
 		}
 		// Ensure that parent & slotName do not change in the middle of
-		// scanSlotContent() 
+		// scanSlotContent()
 		GameLoop.get().runOnce(new Runnable() {
 			@Override
 			public void run() {
@@ -152,7 +151,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			}
 		});
 	}
-	
+
 	/**
 	 * Scans the content of the slot.
 	 */
@@ -179,10 +178,10 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			}
 		}
 	}
-	
+
 	/**
 	 * Handle an added or modified item.
-	 * 
+	 *
 	 * @param obj changed or added object
 	 */
 	private void handleAdded(RPObject obj) {
@@ -196,7 +195,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 		}
 		// Actually added. Get the corresponding entity
 		IEntity entity = GameObjects.getInstance().get(obj);
-		
+
 		// Tuck it in the first free slot
 		for (ItemPanel panel : panels) {
 			if (panel.getEntity() == null) {
@@ -204,7 +203,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 				return;
 			}
 		}
-		
+
 		logger.error("More objects than slots: " + slotName);
 	}
 
@@ -228,7 +227,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 			compressSlots();
 		}
 	}
-	
+
 	/**
 	 * Shift item panel contents so that the empty ones are last.
 	 */

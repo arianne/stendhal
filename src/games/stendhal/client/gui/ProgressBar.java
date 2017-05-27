@@ -42,12 +42,12 @@ public class ProgressBar extends JDialog {
 	 * than 0
 	 */
 	private int stepCounter;
-	
+
 	private final Timer timer = new Timer(SLEEP_TIME, new Updater());
 
 	/**
 	 * Create a new ProgressBar.
-	 * 
+	 *
 	 * @param w parent dialog
 	 */
 	public ProgressBar(final JDialog w) {
@@ -70,13 +70,13 @@ public class ProgressBar extends JDialog {
 		progressBar.setStringPainted(false);
 		contentPane.add(progressBar);
 	}
-	
+
 	/**
 	 * Timer task that updates the progress bar.
 	 */
 	private class Updater implements ActionListener {
 		private int counter = 0;
-		
+
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			counter += STEP_SIZE * stepSizeMultiplier;
@@ -98,15 +98,15 @@ public class ProgressBar extends JDialog {
 		timer.start();
 		setVisible(true);
 	}
-	
-	/** 
+
+	/**
 	 * Temporarily speeds up the bar.
 	 */
-	public void step() { 
+	public void step() {
 		stepCounter = 3;
 		stepSizeMultiplier = 3;
 	}
-	
+
 	/**
 	 *  Speeds up to quickly finish.
 	 */
@@ -115,11 +115,11 @@ public class ProgressBar extends JDialog {
 		stepSizeMultiplier = 3;
 		timer.setDelay(15);
 	}
-	
+
 	/**
 	 * Exits quickly.
 	 */
-	public void cancel() { 
+	public void cancel() {
 		timer.stop();
 		// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
 		try {

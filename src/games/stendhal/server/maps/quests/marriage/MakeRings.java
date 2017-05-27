@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.marriage;
 
+import java.util.Arrays;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -31,8 +33,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.Arrays;
 
 class MakeRings {
 	private static final int REQUIRED_GOLD = 10;
@@ -54,7 +54,7 @@ class MakeRings {
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("wedding ring", "wedding"),
 				new QuestStateStartsWithCondition(marriage.getQuestSlot(), "engaged"),
-				ConversationStates.QUEST_ITEM_QUESTION, 
+				ConversationStates.QUEST_ITEM_QUESTION,
 				null,
 				new ChatAction() {
 					@Override
@@ -112,16 +112,16 @@ class MakeRings {
 
 		// Here the behaviour is defined for if you make a wedding ring enquiry to Ognir and your
 		// ring is being made
-	 	npc.add(ConversationStates.ATTENDING, 
+	 	npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("wedding ring", "wedding"),
 		 		new QuestStateStartsWithCondition(marriage.getQuestSlot(), "forging"),
-				ConversationStates.IDLE, 
-		 		null, 
+				ConversationStates.IDLE,
+		 		null,
 				new ChatAction() {
 	 				@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 	 					final String[] tokens = player.getQuest(marriage.getQuestSlot()).split(";");
-						final long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+						final long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
 								- System.currentTimeMillis();
 						// ring is not ready yet
@@ -131,7 +131,7 @@ class MakeRings {
 									+ ". Bye for now.");
 							return;
 						}
-						/*The ring is ready now. It was either forging ready for a wedding or 
+						/*The ring is ready now. It was either forging ready for a wedding or
 						 * forging again because a married player lost theirs.
 						 * In each case we bind to the player. If player is engaged the rings get swapped at marriage ceremony
 						 * If this is a forgingagain we must set the infostring to spouse name so the ring works
@@ -145,7 +145,7 @@ class MakeRings {
 							npc.say("I've finished making your replacement wedding ring. Do try to be more careful next time!");
 							weddingRing.setInfoString(player.getQuest(marriage.getSpouseQuestSlot()));
 							player.setQuest(marriage.getQuestSlot(), "done");
-						} else {							
+						} else {
 							npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
 							player.setQuest(marriage.getQuestSlot(), "engaged_with_ring");
 							player.addXP(500);
@@ -159,9 +159,9 @@ class MakeRings {
 
 		// player says yes, they want a wedding ring made
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override

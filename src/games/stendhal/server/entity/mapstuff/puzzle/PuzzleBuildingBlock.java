@@ -58,7 +58,7 @@ public class PuzzleBuildingBlock {
 	 */
 	public void defineProperty(String variable, String expression) {
 		if (expression != null) {
-			definitions.put(variable, 
+			definitions.put(variable,
 					PuzzleEventDispatcher.get().parseExpression(this, expression));
 
 			Scanner sc = new Scanner(expression);
@@ -93,10 +93,10 @@ public class PuzzleBuildingBlock {
 	}
 
 	/**
-	 * sets the name of a property internally without triggering the notification 
+	 * sets the name of a property internally without triggering the notification
 	 * mechanism. This method is useful for batch processing with a combined
 	 * notifications at the end.
-	 * 
+	 *
 	 * @param variable name of property
 	 * @param value value of property
 	 * @return true, if notification is required; false otherwise

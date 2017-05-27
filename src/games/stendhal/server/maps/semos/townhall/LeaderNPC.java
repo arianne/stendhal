@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.townhall;
 
+import java.util.Map;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,8 +24,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 public class LeaderNPC implements ZoneConfigurator {
 	/**
@@ -101,7 +101,7 @@ public class LeaderNPC implements ZoneConfigurator {
 					        		// player didn't have a weapon, as getWeapon returned null.
 					        		raiser.say("Oh, I can't comment on your weapon, as you have none equipped. That's not very wise in these dangerous times!");
 					        	}
-							} 
+							}
 					    }
 				);
 			}
@@ -112,7 +112,7 @@ public class LeaderNPC implements ZoneConfigurator {
 		npc.setPosition(23, 15);
 		npc.initHP(100);
 		zone.add(npc);
-		
+
 		return npc;
 	}
 }

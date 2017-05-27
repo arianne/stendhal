@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.chattext;
 
-import games.stendhal.common.filter.CollectionFilter;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
@@ -23,33 +21,35 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.filter.CollectionFilter;
+
 /**
  * Matches the entered text of chat with the online player list to enable tab completion of nicknames
- * 
+ *
  * @author madmetzger
  */
 public final class ChatCompletionHelper extends KeyAdapter {
-	
+
 	private static final Logger logger = Logger.getLogger(ChatCompletionHelper.class);
-	
+
 	private final ChatTextController chatController;
-	
+
 	private final Set<String> playersonline;
 	private final Set<String> slashCommands;
-	
+
 	private int  lastkeypressed;
-	
+
 	private Collection< ? extends String> resultset = Collections.emptyList();
-	
+
 	private int currentIndex;
-	
+
 	private String output;
 
 	/**
 	 * Create a new ChatCompletionHelper
 	 * @param chatTextController
 	 * @param nameList
-	 * @param commands slash commands 
+	 * @param commands slash commands
 	 */
 	public ChatCompletionHelper(final ChatTextController chatTextController,
 			final Set<String> nameList, final Set<String> commands) {
@@ -108,5 +108,5 @@ public final class ChatCompletionHelper extends KeyAdapter {
 
 		resultset = filter.filterCopy(completionSet);
 	}
-	
+
 }

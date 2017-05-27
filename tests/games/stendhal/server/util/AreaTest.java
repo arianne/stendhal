@@ -12,16 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.util;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.creature.Creature;
+import static org.junit.Assert.assertFalse;
 
 import java.awt.Rectangle;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.creature.Creature;
 
 
 /**
@@ -38,7 +39,7 @@ public class AreaTest {
 		final Area area = new Area(zone, rect);
 		return area;
 	}
-	
+
 	/**
 	 * Tests for createArea.
 	 */
@@ -81,13 +82,13 @@ public class AreaTest {
 		entity.setPosition(1, 1);
 		Assert.assertFalse(area.contains(entity));
 }
-	
+
 	/**
 	 * Tests for containsNull.
 	 */
 	@Test
 	public void testContainsNull() {
-		
+
 		final Area area = new Area(null, null);
 		final Entity entity = null;
 		assertFalse(area.contains(entity));

@@ -8,14 +8,14 @@ import games.stendhal.server.entity.spell.effect.ModifyAtkEffect;
 import marauroa.common.game.RPObject;
 /**
  * Spell to modify a target's atk value
- * 
+ *
  * @author madmetzger
  */
 public class ModifyAtkSpell extends Spell {
 
 	/**
 	 * Create a new ModifyAtkSpell
-	 * 
+	 *
 	 * @param name
 	 * @param nature
 	 * @param amount
@@ -36,10 +36,10 @@ public class ModifyAtkSpell extends Spell {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel,
 				range, rate, regen, modifier);
 	}
-	
+
 	/**
 	 * Create a ModifyAtkSpell from a RPObject
-	 * 
+	 *
 	 * @param object
 	 */
 	public ModifyAtkSpell(RPObject object) {

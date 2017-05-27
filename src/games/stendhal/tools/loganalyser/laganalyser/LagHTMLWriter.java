@@ -27,7 +27,7 @@ public class LagHTMLWriter {
 	 * creates a new LagHTMLWriter
 	 *
 	 * @param outputFileName name of file to write
-	 * @throws FileNotFoundException in case 
+	 * @throws FileNotFoundException in case
 	 */
 	public LagHTMLWriter(String outputFileName) throws FileNotFoundException {
 		this.ps = new PrintStream(outputFileName);

@@ -17,19 +17,19 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  */
 abstract class AccessCheckingPortalFactory implements
 		ConfigurableFactory {
-    
+
 	//
 	// AccessCheckingPortalFactory
 	//
 
 	/**
 	 * Create the access portal implementation.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
-	 * 
+	 *
 	 * @return The portal.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If the class attribute is missing.
 	 */
@@ -42,30 +42,30 @@ abstract class AccessCheckingPortalFactory implements
 
 	/**
 	 * Create a keyed portal.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A KeyedPortal.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see KeyedPortal
 	 */
 	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final AccessCheckingPortal portal = createPortal(ctx);
-		
+
 		final boolean instantAction = ctx.getBoolean("instantAction", false);
 		final String passwordAcceptedMessage = getStringValue(ctx, "passwordAcceptedMessage");
 		final String passwordRejectedMessage = getStringValue(ctx, "passwordRejectedMessage");
 		final String rejectedMessage = getStringValue(ctx, "rejected");
 		final String requiredPassword = getStringValue(ctx, "password");
 		final int listeningRadius = getIntValue(ctx, "radius");
-		
+
 		if (instantAction) {
 		    portal.setInstantAction(instantAction);
 		}
@@ -87,10 +87,10 @@ abstract class AccessCheckingPortalFactory implements
 
 		return portal;
 	}
-	
+
     /**
      * Extract string value from a context.
-     * 
+     *
      * @param ctx
      *            The configuration context.
      * @param key
@@ -103,10 +103,10 @@ abstract class AccessCheckingPortalFactory implements
     protected String getStringValue(final ConfigurableFactoryContext ctx, final String key) {
         return ctx.getString(key, null);
     }
-    
+
     /**
      * Extract integer value from a context.
-     * 
+     *
      * @param ctx
      *            The configuration context.
      * @param key

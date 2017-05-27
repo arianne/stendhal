@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.felinashouse;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,18 +25,13 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * A cat
- * 
+ *
  * @author AntumDeluge
  */
 public class KittensNPC implements ZoneConfigurator {
-	
+
 	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
@@ -39,10 +39,10 @@ public class KittensNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-	    
+
 	    // Kitten walking around room
 		final PassiveNPC k1 = new Kitten();
-		
+
 		List<Node> nodes = new LinkedList<Node>();
 		nodes.add(new Node(3, 15));
 		nodes.add(new Node(12, 15));
@@ -51,27 +51,27 @@ public class KittensNPC implements ZoneConfigurator {
         nodes.add(new Node(20, 22));
         nodes.add(new Node(3, 22));
 		k1.setPath(new FixedPath(nodes, true));
-        
+
         k1.setPosition(3, 15);
         k1.setDescription("You see a kitten exploring.");
         k1.setEntityClass("animal/kitten");
         k1.setBaseSpeed(0.2);
         k1.setSounds(Arrays.asList("kitten-meow-1", "kitten-meow-2", "kitten-meow-3"));
 		zone.add(k1);
-		
+
 		// Kitten sitting in chair
         final PassiveNPC k2 = new Kitten();
-        
+
         k2.setPosition(20, 15);
         k2.setDescription("You see a kitten relaxing.");
         k2.setEntityClass("animal/kitten");
         k2.setDirection(Direction.DOWN);
         k2.setSounds(Arrays.asList("kitten-purr-1", "kitten-mew-1"));
         zone.add(k2);
-        
+
         // Active kitten
         final PassiveNPC k3 = new Kitten();
-        
+
         nodes = new LinkedList<Node>();
         nodes.add(new Node(6, 19));
         nodes.add(new Node(10, 19));
@@ -80,7 +80,7 @@ public class KittensNPC implements ZoneConfigurator {
         nodes.add(new Node(7, 21));
         nodes.add(new Node(6, 21));
         k3.setPath(new FixedPath(nodes, true));
-        
+
         k3.setPosition(6, 19);
         k3.setDescription("You see an energetic kitten.");
         k3.setEntityClass("animal/kitten");

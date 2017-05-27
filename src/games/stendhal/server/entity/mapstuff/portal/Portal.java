@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -23,15 +27,10 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
-
-import java.util.List;
-
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 /**
  * A portal which teleports the player to another portal if used.
@@ -78,7 +77,7 @@ public class Portal extends Entity implements UseListener {
 
 		isDestinationSet = false;
 	}
-	
+
 	public Portal(final RPObject object) {
 		super(object);
 		setRPClass(RPCLASS_NAME);
@@ -90,7 +89,7 @@ public class Portal extends Entity implements UseListener {
 	 * Set the portal reference to identify this specific portal with-in a zone.
 	 * This value is opaque and requires a working equals(), but typically uses
 	 * a String or Integer.
-	 * 
+	 *
 	 * @param reference
 	 *            A reference tag.
 	 */
@@ -100,7 +99,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * gets the identifier of this portal.
-	 * 
+	 *
 	 * @return identifier
 	 */
 	public Object getIdentifier() {
@@ -111,7 +110,7 @@ public class Portal extends Entity implements UseListener {
 	 * Set the destination portal zone and reference. The reference should match
 	 * the same type/value as that passed to setReference() in the corresponding
 	 * portal.
-	 * 
+	 *
 	 * @param zone
 	 *            The target zone.
 	 * @param reference
@@ -133,7 +132,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * Determine if this portal is hidden from players.
-	 * 
+	 *
 	 * @return <code>true</code> if hidden.
 	 */
 	@Override
@@ -144,7 +143,7 @@ public class Portal extends Entity implements UseListener {
 	public boolean loaded() {
 		return isDestinationSet;
 	}
-	
+
 	public void logic() {
 	    // Sub-classes can implement this
 	}
@@ -176,7 +175,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * Use the portal.
-	 * 
+	 *
 	 * @param player
 	 *            the Player who wants to use this portal
 	 * @return <code>true</code> if the portal worked, <code>false</code>
@@ -192,7 +191,7 @@ public class Portal extends Entity implements UseListener {
 			player.sendPrivateText("You must come closer before you can use this orb.");
 			return false;
 		}
-		
+
 		if (!nextTo(player)) {
 			// Too far to use the portal from here, but walk to it
 			// The pathfinder will do the rest of the work and make the player pass through the portal
@@ -256,7 +255,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * if this portal is the destination of another portal used.
-	 * 
+	 *
 	 * @param user
 	 *            the player who used the other portal teleporting to us
 	 */
