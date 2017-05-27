@@ -14,7 +14,7 @@ package games.stendhal.common;
 
 /**
  * Gathers all Debug constants in one place.
- * 
+ *
  * @author mtotz
  */
 public class Debug {
@@ -36,7 +36,7 @@ public class Debug {
 	 * Log list sizes to find the memory leak. It must be somewhere...
 	 */
 	public static final boolean SHOW_LIST_SIZES = false;
-	
+
 	/**
 	 * it shows entity's view area
 	 */

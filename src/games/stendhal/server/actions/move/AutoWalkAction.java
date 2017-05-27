@@ -28,17 +28,6 @@ import marauroa.common.game.RPAction;
  * the action is executed with the MODE attribute set to "stop" it will
  * exclusively stop the entity's movement and set auto-walking off. Otherwise
  * it will toggle auto-walk.
- * 
- * To enable:
- * - Execute slash command "/walk".
- * - Right-click player and select "walk".
- * - Hold "Alt" key and press any direction key.
- * To disable:
- * - Execute slash command "/walk" or "/stopwalk".
- * - Right-click player and select "stop".
- * - Press the arrow key in the direction that the player is currently walking.
- * - Click any area of the map that is walkable.
- * - Walk into a collision tile (colliding with other entities will not disable auto-walk).
  *
  * @author AntumDeluge
  */
@@ -92,16 +81,9 @@ public class AutoWalkAction implements ActionListener {
 				/* Set default direction to DOWN. */
 				player.setDirection(Direction.DOWN);
 			}
-
-			/* Check if player is has a debilitating status effect */
-			// FIXME: How to stop player when poised while using auto walk?
 			if (player.hasStatus(StatusType.POISONED)
 					|| player.hasStatus(StatusType.CONFUSED)) {
-				player.sendPrivateText("You are disoriented and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
-				if (player.has(AUTOWALK)) {
-					player.remove(AUTOWALK);
-				}
-				return;
+				player.setDirection(player.getDirection().oppositeDirection());
 			}
 
 			/* Begin walking using the entity's base speed. */

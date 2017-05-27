@@ -64,7 +64,7 @@ public class OldRatWomanNPC implements ZoneConfigurator {
 		woman.setDescription("You see an old ratwoman. She appears somehow worried.");
 
 
-		woman.setEntityClass("noimagenpc"); /* oldratwomannpc */
+		woman.setEntityClass("oldratwomannpc");
 
 		woman.setPosition(3, 4);
 		// She has low HP

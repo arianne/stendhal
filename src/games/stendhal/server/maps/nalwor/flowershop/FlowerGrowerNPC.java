@@ -32,10 +32,10 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
      */
     @Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-        buildNPC(zone);
+        buildNPC(zone, attributes);
     }
 
-    private void buildNPC(final StendhalRPZone zone) {
+    private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
     	final SpeakerNPC npc = new SpeakerNPC("Seremela") {
 
     		@Override

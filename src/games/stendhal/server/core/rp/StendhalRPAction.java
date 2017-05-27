@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp;
 
-import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
-
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -583,13 +581,12 @@ public class StendhalRPAction {
 		if (entity instanceof RPEntity) {
 			final RPEntity rpentity = (RPEntity) entity;
 
-			/* Allow player to continue movement after teleport via portal or
-			 * map change without the need to release and press direction again.
+			/* XXX: Allow players to continue moving after zone change without
+			 *      having to press direction again.
 			 */
-			if (!rpentity.has(MOVE_CONTINUOUS)) {
+			if (!Testing.MOVEMENT) {
 				rpentity.stop();
 			}
-
 			rpentity.stopAttack();
 			rpentity.clearPath();
 		}

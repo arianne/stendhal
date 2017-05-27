@@ -132,14 +132,6 @@ class OutfitDialog extends JDialog {
 		dress.addListener(dressLabel);
 		dress.addListener(outfitLabel);
 
-		/* TODO: Remove when new outfit system implemented */
-		if (Testing.OUTFITS) {
-			eyes.addListener(eyesLabel);
-			eyes.addListener(outfitLabel);
-			mouth.addListener(mouthLabel);
-			mouth.addListener(outfitLabel);
-		}
-
 		// analyse current outfit
 		int bodiesIndex = outfit % 100;
 		outfit = outfit / 100;
@@ -152,24 +144,14 @@ class OutfitDialog extends JDialog {
 		// reset special outfits
 		hairsIndex = checkIndex(hairsIndex, hair);
 		headsIndex = checkIndex(headsIndex, head);
-		clothesIndex = checkIndex(clothesIndex, dress);
 		bodiesIndex = checkIndex(bodiesIndex, body);
+		clothesIndex = checkIndex(clothesIndex, dress);
 
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
-
-		/* TODO: Remove when new outfit system implemented */
-		if (Testing.OUTFITS) {
-			/* FIXME: How to get eyes & mouths index? */
-			int eyesIndex = 0;
-			int mouthsIndex = 0;
-
-			eyes.setIndex(eyesIndex);
-			mouth.setIndex(mouthsIndex);
-		}
 
 		pack();
 		WindowUtils.closeOnEscape(this);
@@ -330,14 +312,13 @@ class OutfitDialog extends JDialog {
 			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
+
+			/* skin color */
+			selector = createColorSelector("Skin", OutfitColor.SKIN, true,
+					bodyLabel, headLabel);
+			selector.setAlignmentX(CENTER_ALIGNMENT);
+			column.add(selector);
 		}
-
-		/* skin color */
-		selector = createColorSelector("Skin", OutfitColor.SKIN, true, bodyLabel,
-				headLabel);
-		selector.setAlignmentX(CENTER_ALIGNMENT);
-		column.add(selector);
-
 		/* dress color */
 		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
@@ -444,8 +425,8 @@ class OutfitDialog extends JDialog {
 			eyesLabel.changed();
 		}
 		headLabel.changed();
-		dressLabel.changed();
 		bodyLabel.changed();
+		dressLabel.changed();
 	}
 
 	/**
@@ -638,12 +619,12 @@ class OutfitDialog extends JDialog {
 		final RPAction rpOutfitAction = new RPAction();
 		/* TODO: Remove condition when outfit testing is finished */
 		if (Testing.OUTFITS) {
-			rpOutfitAction.put(Actions.TYPE, "outfit");
+			rpOutfitAction.put(Actions.TYPE, "outfit_extended");
 			long value = (body.getIndex() + (dress.getIndex() * 100)
 					+ (head.getIndex() * (int)Math.pow(100, 2))
-					+ (mouth.getIndex() * (int)Math.pow(100, 3))
-					+ (eyes.getIndex() * (int)Math.pow(100, 4))
-					+ (hair.getIndex() * (int)Math.pow(100, 5)));
+					+ (hair.getIndex() * (int)Math.pow(100, 3))
+					+ (mouth.getIndex() * (int)Math.pow(100, 5))
+					+ (eyes.getIndex() * (int)Math.pow(100, 6)));
 			rpOutfitAction.put(Actions.VALUE, value);
 		} else {
 			rpOutfitAction.put(Actions.TYPE, "outfit");
@@ -659,13 +640,10 @@ class OutfitDialog extends JDialog {
 			rpOutfitAction.put(OutfitColor.HAIR, color.getRGB());
 		}
 
-		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.OUTFITS) {
-			/* eyes color */
-			color = outfitColor.getColor(OutfitColor.EYES);
-			if (color != null) {
-				rpOutfitAction.put(OutfitColor.EYES, color.getRGB());
-			}
+		/* body and head color */
+		color = outfitColor.getColor(OutfitColor.SKIN);
+		if (color != null) {
+			rpOutfitAction.put(OutfitColor.SKIN, color.getRGB());
 		}
 
 		/* dress color */
@@ -674,10 +652,13 @@ class OutfitDialog extends JDialog {
 			rpOutfitAction.put(OutfitColor.DRESS, color.getRGB());
 		}
 
-		/* body and head color */
-		color = outfitColor.getColor(OutfitColor.SKIN);
-		if (color != null) {
-			rpOutfitAction.put(OutfitColor.SKIN, color.getRGB());
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.OUTFITS) {
+			/* eyes color */
+			color = outfitColor.getColor(OutfitColor.EYES);
+			if (color != null) {
+				rpOutfitAction.put(OutfitColor.EYES, color.getRGB());
+			}
 		}
 
 		client.send(rpOutfitAction);
@@ -692,14 +673,14 @@ class OutfitDialog extends JDialog {
 			// Labels (Images). Making all JLabels bordered would be undesired
 			bodyLabel.setBorder(style.getBorderDown());
 			dressLabel.setBorder(style.getBorderDown());
-			headLabel.setBorder(style.getBorderDown());
+			outfitLabel.setBorder(style.getBorderDown());
+			hairLabel.setBorder(style.getBorderDown());
 			/* TODO: Remove condition after outfit testing is finished */
 			if (Testing.OUTFITS) {
-				mouthLabel.setBorder(style.getBorderDown());
 				eyesLabel.setBorder(style.getBorderDown());
+				mouthLabel.setBorder(style.getBorderDown());
 			}
-			hairLabel.setBorder(style.getBorderDown());
-			outfitLabel.setBorder(style.getBorderDown());
+			headLabel.setBorder(style.getBorderDown());
 		}
 	}
 
@@ -712,9 +693,12 @@ class OutfitDialog extends JDialog {
 	 */
 	void setState(int outfit, OutfitColor colors) {
 		// Copy the original colors
-		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
+		/* TODO: Remove condition after outfit testing is finished. */
+		if (Testing.OUTFITS) {
+			outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
+		}
 
 		// analyze the outfit code
 		int bodiesIndex = outfit % 100;
