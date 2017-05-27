@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.bakery;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -43,12 +49,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * A woman who bakes bread for players.
@@ -224,13 +224,8 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 					        new QuestCompletedCondition("pizza_delivery"),
 					        new QuestNotActiveCondition(QUEST_SLOT)),
 					    ConversationStates.ATTENDING, 
-					    null,
-					    new ChatAction() {
-							@Override
-							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-								npc.say("Sorry, I can't lend out sugar, only a #sugar #mill.");
-							}
-				});
+					    "Sorry, I can't lend out sugar, only a #sugar #mill.",
+					    null);
 
 				// too low level
 				add(ConversationStates.ATTENDING,

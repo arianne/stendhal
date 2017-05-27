@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 public class StichardRallmanNPC implements ZoneConfigurator {
 	/**
@@ -54,8 +54,8 @@ public class StichardRallmanNPC implements ZoneConfigurator {
 					"''Free software'' is a matter of liberty, not price. To understand the concept, you should think of ''free'' as in ''free speech,'' not as in ''free beer''.");
 				addReply("stendhal",
 					"Stendhal is completely #free software (client, server, graphics, everything) under #GNU #GPL. You can run, copy, distribute, study, change and improve this software.");
-				addReply("gnu", "http://www.gnu.org/");
-				addReply("gpl", "http://www.gnu.org/licenses/gpl.html");
+				addReply("gnu", "https://www.gnu.org/");
+				addReply("gpl", "https://www.gnu.org/licenses/gpl.html");
 
 				addGoodbye();
 			}

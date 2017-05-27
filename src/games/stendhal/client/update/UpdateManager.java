@@ -125,7 +125,7 @@ class UpdateManager {
 			break;
 
 		case OUTDATED:
-			UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work.\r\nPlease download the current version from http://arianne.sf.net .");
+			UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work.\r\nPlease download the current version from https://arianne-project.org .");
 			break;
 
 		case INITIAL_DOWNLOAD:

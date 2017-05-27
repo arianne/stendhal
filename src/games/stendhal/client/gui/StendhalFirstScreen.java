@@ -13,12 +13,6 @@
 package games.stendhal.client.gui;
 
 import static games.stendhal.client.gui.layout.SBoxLayout.COMMON_PADDING;
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.login.CreateAccountDialog;
-import games.stendhal.client.gui.login.LoginDialog;
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -44,6 +38,13 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.login.CreateAccountDialog;
+import games.stendhal.client.gui.login.LoginDialog;
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.update.ClientGameConfiguration;
 /**
  * Summary description for LoginGUI.
  *
@@ -153,7 +154,7 @@ public class StendhalFirstScreen extends JFrame {
 		Action helpAction = new AbstractAction("Help") {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/Stendhal_Manual");
+				BareBonesBrowserLaunch.openURL("https://stendhalgame.org/wiki/Stendhal_Manual");
 			}
 		};
 		helpAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_H);

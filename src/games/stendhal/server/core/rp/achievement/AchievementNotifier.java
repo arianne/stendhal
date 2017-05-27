@@ -12,6 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
@@ -24,23 +38,8 @@ import games.stendhal.server.entity.player.ReadAchievementsOnLogin;
 import games.stendhal.server.entity.player.UpdatePendingAchievementsOnLogin;
 import games.stendhal.server.events.ReachedAchievementEvent;
 import games.stendhal.server.events.SoundEvent;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.db.DAORegister;
-
-import org.apache.log4j.Logger;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
 
 /**
  * Checks for reached achievements and marks them as reached for a player if he has fulfilled them
@@ -272,7 +271,7 @@ public final class AchievementNotifier {
 			StringBuilder sb = new StringBuilder();
 			sb.append("You have reached ");
 			sb.append(Integer.valueOf(reached.size()));
-			sb.append(" new "+Grammar.plnoun(reached.size(), "achievement")+". Please check #http://stendhalgame.org for details.");
+			sb.append(" new "+Grammar.plnoun(reached.size(), "achievement")+". Please check #https://stendhalgame.org for details.");
 			player.sendPrivateText(sb.toString());
 		}
 	}

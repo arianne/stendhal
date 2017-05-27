@@ -48,7 +48,7 @@ public class Starter {
 						null,
 						"You need at least Java 7 (also known as 1.7.0) but you only have "
 						+ version
-						+ ". You can download it at http://java.com");
+						+ ". You can download it at https://java.com");
 			}
 		} catch (final RuntimeException e) {
 			// ignore

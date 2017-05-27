@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * default browser.<br>
  * Supports: Mac OS X, GNU/Linux, Unix, Windows XP/Vista/7<br>
  * Example Usage:<code><br> &nbsp; &nbsp;
- *    String url = "http://www.google.com/";<br> &nbsp; &nbsp;
+ *    String url = "https://www.google.com/";<br> &nbsp; &nbsp;
  *    BareBonesBrowserLaunch.openURL(url);<br></code> Latest Version: <a
  * href="http://www.centerkey.com/java/browser/"
  * >www.centerkey.com/java/browser</a><br>
@@ -42,7 +42,7 @@ public class BareBonesBrowserLaunch {
 	 * 
 	 * @param url
 	 *            A web address (URL) of a web page (ex:
-	 *            "http://www.google.com/")
+	 *            "https://www.google.com/")
 	 */
 	public static void openURL(String url) {
 		try { // attempt to use Desktop library from JDK 1.6+ (even if on 1.5)

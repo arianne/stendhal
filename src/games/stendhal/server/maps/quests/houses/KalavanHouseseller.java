@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 final class KalavanHouseseller extends HouseSellerNPCBase {
 	/** Cost to buy house in kalavan. */
@@ -91,7 +91,7 @@ addMatching(ConversationStates.QUEST_OFFERED,
 		null,
 		new BuyHouseChatAction(getCost(), QUEST_SLOT));
 
-addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
+addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #https://stendhalgame.org/wiki/StendhalHouses.");
 addReply("citizenship",
 			 "The royalty in Kalavan Castle decide that.");
 

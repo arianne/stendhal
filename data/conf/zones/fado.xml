@@ -107,7 +107,7 @@
       <name>Fado Bank</name>
       <type>bank</type>
       <description>A place to store your possessions.</description>
-      <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+      <url>https://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
     </point-of-interest>
 
     <portal x="56" y="38" ref="bakery_entrance">

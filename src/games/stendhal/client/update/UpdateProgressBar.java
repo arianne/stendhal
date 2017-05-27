@@ -162,7 +162,7 @@ class UpdateProgressBar extends JFrame implements
 	 * @param args ignored
 	 */
 	public static void main(String[] args) {
-		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "http://arianne.sourceforge.net/stendhal/greeting/", null, "0.88");
+		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "https://arianne-project.org/stendhal/greeting/", null, "0.88");
 		updateProgressBar.onDownloading(50);
 		updateProgressBar.setVisible(true);
 	}

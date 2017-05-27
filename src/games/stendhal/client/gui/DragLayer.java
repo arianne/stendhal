@@ -12,14 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.StackableItem;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
-import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-
 import java.awt.AWTEvent;
 import java.awt.Component;
 import java.awt.Container;
@@ -33,11 +25,19 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
+import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 /**
  * A glass pane component for drawing dragged items. Using ideas (though no
  * code) from Alexander Potochkin of the swing team. His blog entry describing
  * the tricks used:
- * http://weblogs.java.net/blog/2006/09/20/well-behaved-glasspane
+ * https://weblogs.java.net/blog/2006/09/20/well-behaved-glasspane
  */
 public class DragLayer extends JComponent implements AWTEventListener {
 	/**

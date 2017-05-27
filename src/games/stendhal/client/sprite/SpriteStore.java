@@ -13,11 +13,6 @@
 package games.stendhal.client.sprite;
 
 
-import games.stendhal.client.IGameScreen;
-import games.stendhal.client.gui.TransparencyMode;
-import games.stendhal.client.gui.j2d.Blend;
-import games.stendhal.client.sprite.TileSprite.TSRef;
-
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
@@ -32,6 +27,11 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.IGameScreen;
+import games.stendhal.client.gui.TransparencyMode;
+import games.stendhal.client.gui.j2d.Blend;
+import games.stendhal.client.sprite.TileSprite.TSRef;
 
 /**
  * A resource manager for sprites in the game. Its often quite important how and
@@ -341,7 +341,7 @@ public class SpriteStore {
 
 		try {
 			URL url;
-			if (ref.startsWith("http://")) {
+			if (ref.startsWith("http://") || ref.startsWith("https://")) {
 				logger.info("Loading sprite from a URL...");
 				url = new URL(ref);
 			} else {

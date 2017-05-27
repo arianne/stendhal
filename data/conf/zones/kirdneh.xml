@@ -1772,7 +1772,7 @@
       <title>Kirdneh Little Dungeon</title>
       <type>dungeon</type>
       <description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
-      <url>http://stendhalgame.org/dungeon.html</url>
+      <url>https://stendhalgame.org/dungeon.html</url>
     </point-of-interest>
 
     <entity x="52" y="114">
@@ -1805,7 +1805,7 @@
       <title>Kirdneh Little Dungeon</title>
       <type>dungeon</type>
       <description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
-      <url>http://stendhalgame.org/dungeon.html</url>
+      <url>https://stendhalgame.org/dungeon.html</url>
     </point-of-interest>
 
     <portal x="15" y="30" ref="entrance">

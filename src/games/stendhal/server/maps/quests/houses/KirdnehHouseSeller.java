@@ -1,6 +1,8 @@
 
 package games.stendhal.server.maps.quests.houses;
 
+import java.util.Arrays;
+
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -11,8 +13,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
-
-import java.util.Arrays;
 
 final class KirdnehHouseSeller extends HouseSellerNPCBase {
 	/** Cost to buy house in kirdneh. */
@@ -76,7 +76,7 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 				null,
 				new BuyHouseChatAction(getCost(), QUEST_SLOT));
 
-		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.");
+		addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #https://stendhalgame.org/wiki/StendhalHouses.");
 		addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");
 		addReply("Amber", "Oh Amber... I really miss her, we had an argument just recently. She #left after that. I hope she's okay.");
 		addReply("left", "Personally I have no idea where she is at the moment. Her son Jef waits for her in town but I heard that some people saw her somewhere around Fado forest, in the south.");
