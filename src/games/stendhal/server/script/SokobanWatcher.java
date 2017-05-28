@@ -35,6 +35,7 @@ public class SokobanWatcher extends ScriptImpl implements TurnListener {
 		zone.add(wall);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void cleanup() {
 
 			// all events that are equal to this one should be forgotten.
