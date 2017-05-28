@@ -21,4 +21,4 @@ stendhal.ui.html = {
 	esc: function(msg){
 		return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace("\n", "<br>");
 	}
-}
+};

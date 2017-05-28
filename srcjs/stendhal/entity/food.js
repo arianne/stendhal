@@ -11,6 +11,9 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	set: function(key, value) {
 		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);

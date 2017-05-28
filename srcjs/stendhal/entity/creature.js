@@ -11,6 +11,8 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+
 /**
  * Creature
  */

@@ -57,7 +57,8 @@ stendhal.data.sprites = {
 	getAreaOf: function(image, width, height, offsetX, offsetY) {
 		offsetX = offsetX || 0;
 		offsetY = offsetY || 0;
-		if (image.width == width && image.height == height && offsetX == 0 && offsetY == 0) {
+		if ((image.width === width) && (image.height === height)
+				&& (offsetX === 0) && (offsetY === 0)) {
 			return image;
 		}
 		var canvas = document.createElement("canvas");

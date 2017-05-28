@@ -11,14 +11,15 @@
 
 "use strict";
 
+var stendhal = window.stendhal = window.stendhal || {};
 
 function test(input, output) {
 	var res = stendhal.ui.chatLog.formatLogEntry(input);
-	if (res == output) {
+	if (res === output) {
 		console.log(input, "|", output);
 	} else {
 		console.warn(input, "|", output, "|", res);
-		window.failedtests.push("chatlog: " + input + " | " + output + " | " + res)
+		window.failedtests.push("chatlog: " + input + " | " + output + " | " + res);
 	}
 }
 

@@ -18,7 +18,7 @@ Polymer({
 		}
 		if (date.getMinutes() < 10) {
 			time = time + "0";
-		};
+		}
 		time = time + date.getMinutes();
 		this.push('chat', {
 			time: time,

@@ -30,14 +30,14 @@ stendhal.ui.chatLog = {
 		}
 		if (date.getMinutes() < 10) {
 			time = time + "0";
-		};
+		}
 		time = time + date.getMinutes();
 
 		var div = document.createElement("div");
 		div.className = "log" + type;
 		div.innerHTML = "[" + time + "] " + stendhal.ui.chatLog.formatLogEntry(message);
 		
-		var isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) == chatElement.scrollTop;
+		var isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
 		chatElement.appendChild(div);
 
 		if (isAtBottom) {
@@ -54,24 +54,24 @@ stendhal.ui.chatLog = {
 		for (var i = 0; i < length; i++) {
 			var c = message[i];
 
-			if (c == "\\") {
+			if (c === "\\") {
 				var n = message[i + 1];
 				res += n;
 				i++;
 
 			// Highlight Start?
-			} else if (c == "#") {
+			} else if (c === "#") {
 				if (inHighlight) {
 					res += c;
 					continue;
 				}
 				var n = message[i + 1];
-				if (n == "#") {
+				if (n === "#") {
 					res += c;
 					i++;
 					continue;
 				}
-				if (n == "'") {
+				if (n === "'") {
 					inHighlightQuote = true;
 					i++;
 				}
@@ -79,18 +79,18 @@ stendhal.ui.chatLog = {
 				res += "<span class=\"logh\">";
 
 			// Underline start?
-			} else if (c == "§") {
+			} else if (c === "§") {
 				if (inUnderline) {
 					res += c;
 					continue;
 				}
 				var n = message[i + 1];
-				if (n == "§") {
+				if (n === "§") {
 					res += c;
 					i++;
 					continue;
 				}
-				if (n == "'") {
+				if (n === "'") {
 					inUnderlineQuote = true;
 					i++;
 				}
@@ -98,7 +98,7 @@ stendhal.ui.chatLog = {
 				res += "<span class=\"logi\">";
 
 			// End Highlight and Underline?
-			} else if (c == "'") {
+			} else if (c === "'") {
 				if (inUnderlineQuote) {
 					inUnderline = false;
 					inUnderlineQuote = false;
@@ -112,13 +112,13 @@ stendhal.ui.chatLog = {
 				}
 
 			// HTML escape
-			} else if (c == "<") {
+			} else if (c === "<") {
 				res += "&lt;";
 
 			// End of word
 			} else if (delims.indexOf(c) > -1) {
 				var n = message[i + 1];
-				if (c == " " || n == " " || n == undefined) {
+				if (c === " " || n === " " || n == undefined) {
 					if (inUnderline && !inUnderlineQuote && !inHighlightQuote) {
 						inUnderline = false;
 						res += "</span>" + c;
