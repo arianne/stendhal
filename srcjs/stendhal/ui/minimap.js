@@ -11,6 +11,7 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
@@ -38,8 +39,8 @@ stendhal.ui.minimap = {
 		var imageWidth = stendhal.ui.minimap.mapWidth * stendhal.ui.minimap.scale;
 		var imageHeight = stendhal.ui.minimap.mapHeight * stendhal.ui.minimap.scale;
 
-		var xpos = Math.round((marauroa.me.x * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
-		var ypos = Math.round((marauroa.me.y * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
+		var xpos = Math.round((marauroa.me["x"] * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
+		var ypos = Math.round((marauroa.me["y"] * stendhal.ui.minimap.scale) + 0.5) - stendhal.ui.minimap.width / 2;
 
 		if (imageWidth > stendhal.ui.minimap.width) {
 			// need to pan width
@@ -172,4 +173,4 @@ stendhal.ui.minimap = {
 		}
 		document.getElementById("chatinput").focus();
 	}
-}
+};

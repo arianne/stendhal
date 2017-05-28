@@ -25,7 +25,7 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 		}
 		if (this.hasOwnProperty("hit")) {
 			var damage = parseInt(this["damage"], 10);
-			if (damage != 0) {
+			if (damage !== 0) {
 				target.onDamaged(entity, damage);
 			} else {
 				target.onBlocked(entity);

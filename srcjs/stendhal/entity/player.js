@@ -11,6 +11,9 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 /**
  * Player
  */
@@ -22,14 +25,14 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	
 	set: function(key, value) {
 		marauroa.rpobjectFactory["rpentity"].proto.set.apply(this, arguments);
-		if (key == "text") {
+		if (key === "text") {
 			this.say(value);
-		} else if (key == "ghostmode") {
+		} else if (key === "ghostmode") {
 			this.minimapShow = false;
 		}
 		
 		// stats
-		if (marauroa.me != this) {
+		if (marauroa.me !== this) {
 			return;
 		}
 		if (stendhal.ui.stats.keys.indexOf(key) > -1) {
@@ -41,7 +44,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	 * Is this player an admin?
 	 */
 	isAdmin: function() {
-		return (typeof(this["adminlevel"]) != "undefined" && this["adminlevel"] > 600);
+		return (typeof(this["adminlevel"]) !== "undefined" && this["adminlevel"] > 600);
 	},
 
 	buildActions: function(list) {

@@ -11,6 +11,9 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 marauroa.rpobjectFactory["domesticanimal"] = marauroa.util.fromProto(marauroa.rpobjectFactory["rpentity"], {
 	drawSprite: function(ctx, filename) {
 		var localX = this["_x"] * 32;

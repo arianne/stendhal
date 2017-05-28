@@ -11,6 +11,7 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
@@ -26,7 +27,7 @@ stendhal.ui.Popup = function(title, content, x, y) {
 		if (popupcontainer.contains(that.popupdiv)) {
 			popupcontainer.removeChild(that.popupdiv);
 		}
-	}
+	};
 
 	function createTitleHtml() {
 		return "<div class='popuptitle'><div class='popuptitleclose'>X</div>" + stendhal.ui.html.esc(title) + "</div>";
@@ -53,8 +54,8 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	 * updates position of popup window during drag
 	 */
 	function onMouseMovedDuringDrag(e) {
-	    that.popupdiv.style.left = e.clientX - that.offsetX + 'px';
-	    that.popupdiv.style.top = e.clientY - that.offsetY + 'px';
+		that.popupdiv.style.left = e.clientX - that.offsetX + 'px';
+		that.popupdiv.style.top = e.clientY - that.offsetY + 'px';
 	}
 
 	/**
@@ -90,7 +91,7 @@ stendhal.ui.Menu = function(entity, x, y) {
 	var actions = [];
 	var that = this;
 	entity.buildActions(actions);
-	if (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600) {
+	if (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600) {
 		actions.push({
 			title: "(*) Inspect",
 			action: function(entity) {

@@ -11,13 +11,16 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 5000,
 	
 	set: function(key, value) {
 		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
 		if (key === "resistance") {
-			this["locked"] = parseInt(value, 10) != 0;
+			this["locked"] = parseInt(value, 10) !== 0;
 		} else if (key === "image" || key === "orientation") {
 			// Force re-evaluation of the sprite
 			delete this["_image"];
@@ -26,8 +29,8 @@ marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	
 	draw: function(ctx) {
 		if (this._image == undefined) {
-			 var filename = "/data/sprites/doors/" + this["image"] + "_" + this["orientation"] + ".png";
-			 this._image = stendhal.data.sprites.get(filename);
+			var filename = "/data/sprites/doors/" + this["image"] + "_" + this["orientation"] + ".png";
+			this._image = stendhal.data.sprites.get(filename);
 		}
 		if (this._image.height) {
 			var xOffset = -32 * Math.floor(this._image.width / 32 / 2);
