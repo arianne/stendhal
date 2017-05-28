@@ -65,6 +65,7 @@ public class HandleTransitions extends ScriptImpl {
     	SpeakerNPC npc=SingletonRepository.getNPCList().get(npc_name);
     	if(npc==null) {
     		admin.sendPrivateText("no such NPC in game ("+npc_name+").");
+    		return;
     	}
 
         // check command

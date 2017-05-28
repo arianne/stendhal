@@ -108,7 +108,7 @@ public class Debuggera extends ScriptImpl {
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(0,
-					new TeleportScriptAction(player, (SpeakerNPC) raiser.getEntity(), sentence, sandbox));
+					new TeleportScriptAction(player, (SpeakerNPC) raiser.getEntity(), sandbox));
 		}
 	}
 
@@ -134,8 +134,7 @@ public class Debuggera extends ScriptImpl {
 		// syntax-error: private final String[] MAGIC_PHRASE = {"Across the
 		// land,", "Across the sea.", "Friends forever,", "We will always be."};
 
-		public TeleportScriptAction(final Player player, final SpeakerNPC engine,
-				final Sentence sentence, final ScriptingSandbox sandbox) {
+		public TeleportScriptAction(final Player player, final SpeakerNPC engine, final ScriptingSandbox sandbox) {
 			this.player = player;
 			this.engine = engine;
 			// this.sentence = sentence;
@@ -224,7 +223,7 @@ public class Debuggera extends ScriptImpl {
 
 		private int counter;
 
-		public SightseeingAction(final ScriptingSandbox sandbox, final StendhalRPWorld world) {
+		public SightseeingAction(final StendhalRPWorld world) {
 			// this.sandbox = sandbox;
 
 			zones = new ArrayList<String>();
@@ -390,8 +389,7 @@ public class Debuggera extends ScriptImpl {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("sightseeing",
 				"memory", "memoryhole"), new AdminCondition(),
-				ConversationStates.IDLE, null, new SightseeingAction(sandbox,
-						world));
+				ConversationStates.IDLE, null, new SightseeingAction(world));
 	}
 	/*
 	 * Make new friends, but keep the old. One is silver, And the other gold,

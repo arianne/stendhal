@@ -42,7 +42,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		rentHelper = AllotmentUtilities.get();
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 	 * @param zone The zone to be configured.
 	 * @param attributes Configuration attributes.
 	 */
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildNPC(final StendhalRPZone zone) {
 		// condition to check if there are any allotments available
 		final ChatCondition hasAllotments = new ChatCondition() {
 			@Override

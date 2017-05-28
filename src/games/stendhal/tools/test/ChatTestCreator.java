@@ -54,9 +54,9 @@ public class ChatTestCreator {
 			writer.comment(analyser.getText());
 		} else if (analyser.isPlayerSpeaking()) {
 			lastPlayerText = analyser.getText();
-			writer.player(analyser.getProtagonist(), lastPlayerText);
+			writer.player(lastPlayerText);
 		} else if (analyser.isNPCSpeaking()) {
-			writer.npc(analyser.getProtagonist(), analyser.getText());
+			writer.npc(analyser.getText());
 
 			if (lastPlayerText.equals("bye")) {
 				writer.emptyLine();

@@ -133,7 +133,7 @@ class JavaWriter {
 	 * @param protagonist the player name
 	 * @param text the text said by the player
 	 */
-	public void player(final String protagonist, final String text) {
+	public void player(final String text) {
 		out.println("\t\ten.step(player, \""
 				+ javaStringEscaper.escape(text) + "\");");
 	}
@@ -144,7 +144,7 @@ class JavaWriter {
 	 * @param protagonist name of npc
 	 * @param text text said by the npc
 	 */
-	public void npc(final String protagonist, final String text) {
+	public void npc(final String text) {
 		out.println("\t\tassertEquals(\"" + javaStringEscaper.escape(text)
 				+ "\", getReply(npc));");
 	}

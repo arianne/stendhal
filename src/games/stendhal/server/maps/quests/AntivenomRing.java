@@ -127,11 +127,12 @@ public class AntivenomRing extends AbstractQuest {
 			return res;
 		}
 		res.add("I have found the hermit apothecary's lab in Semos Mountain.");
+		String quest = player.getQuest(QUEST_SLOT, 0);
 		final String[] questState = player.getQuest(QUEST_SLOT).split(",");
-		if ("done".equals(questState)) {
+		if ("done".equals(quest)) {
 			res.add("I gathered all that Jameson asked for. He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
 		}
-		else if ("rejected".equals(questState)) {
+		else if ("rejected".equals(quest)) {
 			res.add("Poison is too dangerous. I do not want to get hurt.");
 		}
 		else {
