@@ -18,7 +18,7 @@ package games.stendhal.client.listener;
 public interface FeatureChangeListener {
 	/**
 	 * A feature was disabled.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the feature.
 	 */
@@ -26,7 +26,7 @@ public interface FeatureChangeListener {
 
 	/**
 	 * A feature was enabled.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the feature.
 	 * @param value

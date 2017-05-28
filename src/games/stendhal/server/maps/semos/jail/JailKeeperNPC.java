@@ -12,19 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.jail;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Semos Jail - Level -2.
- * 
+ *
  * @author hendrik
  */
 public class JailKeeperNPC implements ZoneConfigurator {

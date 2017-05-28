@@ -12,23 +12,22 @@
  ***************************************************************************/
 package games.stendhal.tools.statistics;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.db.CharacterIterator;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.db.CharacterIterator;
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
 
-import org.apache.log4j.Logger;
-
 /**
  * Dumps the Age and Release of players.
- * 
+ *
  * @author hendrik
  */
 public final class AgeDumper {
@@ -37,8 +36,8 @@ public final class AgeDumper {
 
 	/**
 	 * Dumps the items.
-	 * 
-	 * @param transaction 
+	 *
+	 * @param transaction
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
@@ -58,8 +57,8 @@ public final class AgeDumper {
 
 	/**
 	 * Logs a player.
-	 * 
-	 * @param ps 
+	 *
+	 * @param ps
 	 * @param name
 	 *            character name
 	 * @param object
@@ -83,7 +82,7 @@ public final class AgeDumper {
 		ps.setString(4, release);
 		ps.executeUpdate();
 	}
-	
+
 	public void dump() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -97,14 +96,14 @@ public final class AgeDumper {
 
 	/**
 	 * Starts the ItemDumper.
-	 * 
+	 *
 	 * @param args
 	 *            ignored
 	 * @throws Exception
 	 *             in case of an unexpected item
 	 */
 	public static void main(final String[] args) throws Exception {
-		new DatabaseFactory().initializeDatabase();	
+		new DatabaseFactory().initializeDatabase();
 		SingletonRepository.getRPWorld();
 		Configuration.setConfigurationFile("marauroa-prod.ini");
 		final AgeDumper itemDumper = new AgeDumper();

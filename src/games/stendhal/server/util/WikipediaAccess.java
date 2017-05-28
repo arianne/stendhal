@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.util;
 
-import games.stendhal.client.update.HttpClient;
-
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -21,16 +19,18 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import games.stendhal.client.update.HttpClient;
+
 /**
  * Gets the first text paragraph from the specified Wikipedia article using the
  * MediaWiki bot API.
- * 
+ *
  * You can invoke the parser either inline using the method parse() or start it
  * in a new thread.
- * 
+ *
  * TODO: handle redirects (but take care, there might be two redirects that
  * point to each other).
- * 
+ *
  * @author hendrik
  */
 public class WikipediaAccess extends DefaultHandler implements Runnable {
@@ -49,7 +49,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Creates a new WikipeidaAccess.
-	 * 
+	 *
 	 * @param title
 	 *            title of the page to access
 	 */
@@ -72,7 +72,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Returns the unparsed text.
-	 * 
+	 *
 	 * @return content
 	 */
 	public String getText() {
@@ -81,7 +81,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Gets the last error message.
-	 * 
+	 *
 	 * @return error message or <code>null</code> in case no error occurred
 	 */
 	public String getError() {
@@ -90,7 +90,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Returns the first paragraph of the specified article without wiki code.
-	 * 
+	 *
 	 * @return content
 	 */
 	public String getProcessedText() {
@@ -110,7 +110,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Extract plain text from Wikipedia article content.
-	 * 
+	 *
 	 * @param content
 	 * @return plain text
 	 */
@@ -157,7 +157,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Starts the parsing of the specified article.
-	 * 
+	 *
 	 * @return <code>true</code> on successful parsing, <code>false</code> on
 	 * 	failure
 	 */
@@ -231,7 +231,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Returns true when the XML response was completely parsed.
-	 * 
+	 *
 	 * @return true if the parsing was completed, false otherwise
 	 */
 	public boolean isFinished() {

@@ -25,11 +25,11 @@ public final class FeederFactory {
 		if (item.getName().contains("potion")) {
 			return stuffer;
 		}
-		
+
 		if(item.getName().contains("mana")) {
 			return enchanter;
 		}
-		
+
 		if (item.getRegen() == 0) {
 			return imunizer;
 		} else if (item.getRegen() < 0) {

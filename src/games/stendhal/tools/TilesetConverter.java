@@ -32,8 +32,8 @@ import tiled.io.TMXMapWriter;
 import tiled.util.BasicTileCutter;
 
 /**
- * A tool for converting tileset mappings. 
- * 
+ * A tool for converting tileset mappings.
+ *
  * The new mapping is lines in format:
  * <p>
  * [oldtilesetpath]:[tilenumber]:[newtilesetpath]:[tilenumber]
@@ -48,7 +48,7 @@ import tiled.util.BasicTileCutter;
  * <li>Converts the old tileset mappings to new
  * <li>Removes any unused tilesets from the map
  * <li>Saves the map
- * </ol> 
+ * </ol>
  */
 public class TilesetConverter {
 	private Mapping mapping = new Mapping();
@@ -56,25 +56,25 @@ public class TilesetConverter {
 	 * For quick lookup by tileset name
 	 */
 	private HashMap<String, TileSet> setByName = new HashMap<String, TileSet>();
-	
+
 	/**
 	 * Helper to make <code>namePattern</code> construction a bit more readable.
 	 */
 	private String sep =  Pattern.quote(File.separator);
 	/**
 	 * A pattern for picking the name of the tileset from the image name.
-	 * The trailing "dir/image" without ".png" 
+	 * The trailing "dir/image" without ".png"
 	 */
 	Pattern namePattern = Pattern.compile(".*" + sep + "([^" + sep + "]+"
 			+ sep + "[^" + sep + "]+)\\.png$");
-	
+
 	/**
 	 * For returning the translated tile information.
 	 */
 	private static class TileInfo {
 		public String file;
 		public int index;
-		
+
 		public TileInfo(String file, int index) {
 			this.file = file;
 			this.index = index;
@@ -87,10 +87,10 @@ public class TilesetConverter {
 	private static class Mapping {
 		private HashMap<String, HashMap<Integer, TileInfo>> mappings = new HashMap<String, HashMap<Integer, TileInfo>>();
 		private HashSet<String> newTilesets = new HashSet<String>();
-		
+
 		/**
 		 * Add a new translation mapping.
-		 * 
+		 *
 		 * @param oldImg path to the old image file
 		 * @param oldIndex index of the tile to be translated
 		 * @param newImg path to the new image file
@@ -105,13 +105,13 @@ public class TilesetConverter {
 			}
 			mapping.put(oldIndex, new TileInfo(newImg, newIndex));
 		}
-		
+
 		/**
 		 * Get a translated tile corresponding to an old tile.
-		 * 
+		 *
 		 * @param oldImg path to the old image file
 		 * @param index index of the tile in the image
-		 * @return new tile information, or <code>null</code> 
+		 * @return new tile information, or <code>null</code>
 		 * if the old tile should be kept
 		 */
 		public TileInfo getTile(String oldImg, int index) {
@@ -122,20 +122,20 @@ public class TilesetConverter {
 			}
 			return result;
 		}
-		
+
 		/**
 		 * Get the new tilesets the translation adds to the map.
-		 * 
+		 *
 		 * @return an iterable set of image paths
 		 */
 		public Iterable<String> getNewSets() {
 			return newTilesets;
 		}
 	}
-	
+
 	/**
 	 * Check whether a tileset is in use by a map.
-	 * 
+	 *
 	 * @param map the map to be checked
 	 * @param tileset the tileset to be checked
 	 * @return true iff the tileset is in use
@@ -156,7 +156,7 @@ public class TilesetConverter {
 
 	/**
 	 * Remove any tilesets in a map that are not actually in use.
-	 * 
+	 *
 	 * @param map the map to be broomed
 	 */
 	private void removeUnusedTilesets(final Map map) {
@@ -168,58 +168,58 @@ public class TilesetConverter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Construct a nice name for a tileset based on the image name.
 	 * The substring used for the name is specified in <code>namePattern</code>
-	 * 
+	 *
 	 * @param name image path
 	 * @return a human readable tileset name
 	 */
 	private String constructTilesetName(String name) {
 		Matcher matcher = namePattern.matcher(name);
-		
+
 		if (matcher.find()) {
 			name = matcher.group(1);
 		}
 		return name;
 	}
-	
+
 	/**
 	 * Add all the tilesets that the translation mapping uses to a map.
-	 * 
-	 * @param map the map to add the tilesets to 
+	 *
+	 * @param map the map to add the tilesets to
 	 * @throws IOException
 	 */
 	private void addNewTilesets(Map map) throws IOException {
 		// First build up the mapping of old sets
 		for (TileSet set : map.getTileSets()) {
 			setByName.put(set.getTilebmpFile(), set);
-		}		
-		
+		}
+
 		// then add all missing new sets
 		for (String name : mapping.getNewSets()) {
 			if (name.equals("")) {
 				continue;
 			}
-			
+
 			if (!setByName.containsKey(name)) {
 				// The tileset's not yet included. Add it to the map
 				TileSet set = new TileSet();
 				set.setName(constructTilesetName(name));
 				BasicTileCutter cutter = new BasicTileCutter(32, 32, 0, 0);
 				set.importTileBitmap(name, cutter);
-				
+
 				setByName.put(name, set);
 				map.addTileset(set);
 			}
 		}
 	}
-	
+
 	/**
-	 * Find the translated tile that corresponds to a tile 
+	 * Find the translated tile that corresponds to a tile
 	 * in the original tile mapping.
-	 *  
+	 *
 	 * @param tile The tile to be translated
 	 * @return Translated tile
 	 */
@@ -231,13 +231,13 @@ public class TilesetConverter {
 			TileSet newSet = setByName.get(info.file);
 			tile = newSet.getTile(info.index);
 		}
-		
+
 		return tile;
 	}
-	
+
 	/**
 	 * Translate all the tiles of a layer.
-	 * 
+	 *
 	 * @param layer the layer to be translated
 	 */
 	private void translateLayer(MapLayer layer) {
@@ -255,10 +255,10 @@ public class TilesetConverter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Translate all the layers of a map.
-	 * 
+	 *
 	 * @param map the map to be converted
 	 */
 	private void translateMap(Map map) {
@@ -267,9 +267,9 @@ public class TilesetConverter {
 		}
 	}
 
-	/** 
+	/**
 	 * Converts a map file according to the tile mapping.
-	 *  
+	 *
 	 * @param tmxFile the map to be converted
 	 * @throws Exception
 	 */
@@ -283,20 +283,20 @@ public class TilesetConverter {
 		removeUnusedTilesets(map);
 		new TMXMapWriter().writeMap(map, filename);
 	}
-	
+
 	/**
 	 * Load tile mapping information from the standard input.
-	 * 
-	 * @param path The path of the <b>map</b>. Needed for proper 
-	 * conversion of the tileset paths. 
+	 *
+	 * @param path The path of the <b>map</b>. Needed for proper
+	 * conversion of the tileset paths.
 	 * @throws IOException
 	 */
 	private void loadMapping(String path) throws IOException {
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		
+
 		// needed for constructing the full path of the tilesets
 		File f = new File(path);
-		String dir = f.getParent();		
+		String dir = f.getParent();
 
 		String line;
 		while ((line = input.readLine()) != null) {
@@ -308,18 +308,18 @@ public class TilesetConverter {
 				if (!"".equals(elements[3])) {
 					newIndex = Integer.parseInt(elements[3]);
 				}
-				
+
 				/*
 				 * Oh, yay. Tiled likes to translate the filenames internally
 				 * to full paths.
 				 * Great fun with java to compare the paths when the system
 				 * allows no playing with directories whatsoever. We can't rely
 				 * on the current directory being the same as that of the map.
-				 * Building the full path from scratch, and hope for the best.  
+				 * Building the full path from scratch, and hope for the best.
 				 */
 				String path1 = (new File(dir + File.separator + elements[0])).getCanonicalPath();
 				String path2 = (new File(dir + File.separator + elements[2])).getCanonicalPath();
-				
+
 				mapping.addMapping(path1, Integer.parseInt(elements[1]), path2, newIndex);
 			}
 		}
@@ -330,7 +330,7 @@ public class TilesetConverter {
 			System.out.println("usage: java games.stendhal.tools.TilesetConverter <tmx file>");
 			return;
 		}
-		
+
 		final TilesetConverter converter = new TilesetConverter();
 		converter.loadMapping(args[0]);
 

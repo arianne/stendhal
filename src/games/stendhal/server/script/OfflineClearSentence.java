@@ -1,17 +1,16 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.script;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
 
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
 /**
  * Clear the sentence attribute of an offline player
- * 
+ *
  * @author madmetzger
  */
 public class OfflineClearSentence extends AbstractOfflineAction {

@@ -14,9 +14,9 @@ package games.stendhal.server.entity.mapstuff.sound;
 
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.entity.PassiveEntity;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * Plays a sound and music in a loop.
@@ -38,11 +38,11 @@ public class LoopedSoundSource extends PassiveEntity {
 
 	/**
 	 * Create an ambient sound area.
-	 * 
+	 *
 	 * @param sound sound name
-	 * @param radius 
-	 * @param volume 
-	 * @param layer 
+	 * @param radius
+	 * @param volume
+	 * @param layer
 	 */
 	public LoopedSoundSource(String sound, int radius, int volume, SoundLayer layer) {
 		setRPClass(RPCLASS_NAME);

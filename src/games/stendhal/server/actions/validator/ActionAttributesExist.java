@@ -12,15 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 
 /**
  * checks the the required attribute are part of the action.

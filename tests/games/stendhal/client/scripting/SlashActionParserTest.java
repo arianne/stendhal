@@ -16,17 +16,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.common.StringHelper;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.common.StringHelper;
 import utilities.QuestHelper;
 
 /**
  * Test SlashActionParser class.
- * 
+ *
  * @author Martin Fuchs
  */
 public class SlashActionParserTest {
@@ -130,7 +130,7 @@ public class SlashActionParserTest {
 		cmd = SlashActionParser.parse("where 'abc");
 		assertFalse(cmd.hasError());
 	}
-	
+
 	/**
 	 * Tests for ban.
 	 */
@@ -143,8 +143,8 @@ public class SlashActionParserTest {
 		assertEquals("bob", cmd.getParams()[0]);
 		assertEquals("reason", cmd.getParams()[1]);
 		assertEquals("", cmd.getRemainder());
-		
-		
+
+
 		 cmd = SlashActionParser.parse("ban bob");
 		assertTrue(cmd.hasError());
 		assertNotNull(cmd.getParams());
@@ -154,6 +154,6 @@ public class SlashActionParserTest {
 		assertEquals("", cmd.getRemainder());
 
 	}
-	
+
 
 }

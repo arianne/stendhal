@@ -33,7 +33,7 @@ public class Corpse extends Entity {
 
 	/**
 	 * Get the corpse contents.
-	 * 
+	 *
 	 * @return The contents slot.
 	 */
 	public RPSlot getContent() {
@@ -58,10 +58,10 @@ public class Corpse extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -74,10 +74,10 @@ public class Corpse extends Entity {
 			content = null;
 		}
 	}
-	
+
 	/**
 	 * Checks if the corpse is empty or not
-	 * 
+	 *
 	 *  @return true if the corpse is empty
 	 */
 	public boolean isEmpty() {

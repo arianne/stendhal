@@ -27,16 +27,16 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Behaviour for NPCs repairing items
- * 
+ *
  * @author madmetzger
  */
 public class RepairerBehaviour extends TransactionBehaviour {
-	
+
 	private final PriceCalculationStrategy priceCalculator;
-	
+
 	/**
 	 * Create a new RepairerBehaviour with a given price calculation strategy
-	 * 
+	 *
 	 * @param calculator the price calculator
 	 * @param items the items that can be repaired
 	 */
@@ -89,7 +89,7 @@ public class RepairerBehaviour extends TransactionBehaviour {
 		seller.say("You do not carry a "+res.getChosenItemName()+" with you.");
 		return false;
 	}
-	
+
 	@Override
 	public ChatCondition getTransactionCondition() {
 		return new ChatCondition() {
@@ -118,7 +118,7 @@ public class RepairerBehaviour extends TransactionBehaviour {
 
 	/**
 	 * Check if this NPC can repair this item
-	 * 
+	 *
 	 * @param chosen the item to repair
 	 * @return true iff this NPC is able to repair the item
 	 */

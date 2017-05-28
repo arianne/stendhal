@@ -35,7 +35,7 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 	private static final String GATE_ID = "identifier";
 	private static final String DEFAULT_IMAGE = "fence_gate";
 
-	private PuzzleBuildingBlock puzzleBuildingBlock; 
+	private PuzzleBuildingBlock puzzleBuildingBlock;
 
 	public static void generateGateRPClass() {
 		if (!RPClass.hasRPClass("gate")) {
@@ -46,25 +46,25 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 			gate.addAttribute(GATE_ID, Type.STRING);
 		}
 	}
-	
+
 	/** Current state of the gate. */
 	private boolean isOpen;
-	
+
 	/** Condition for allowing use of the gate. */
 	private final ChatCondition condition;
-	
-	/** 
+
+	/**
 	 * Time the door should keep open before closing. 0 if it should
 	 * not close automatically.
 	 */
 	private int autoCloseDelay;
-	
+
 	/** Message send to a player trying to open a locked gate. */
 	private String refuseMessage;
 
 	/**
 	 * Create a new gate.
-	 * 
+	 *
 	 * @param orientation gate orientation. Either "v" or "h".
 	 * @param image image used for the gate
 	 * @param condition conditions required for opening the gate, or <code>null</code>
@@ -74,22 +74,22 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 		setRPClass("gate");
 		put("type", "gate");
 		put(GATE_ID, "");
-		
+
 		setOrientation(orientation);
 		setOpen(false);
-		
+
 		if (condition == null) {
 			condition = new AlwaysTrueCondition();
 		}
 		this.condition = condition;
-		
+
 		if (image != null) {
 			put(IMAGE, image);
 		} else {
 			put(IMAGE, DEFAULT_IMAGE);
 		}
 	}
-	
+
 	/**
 	 * Create a new vertical gate.
 	 */
@@ -99,7 +99,7 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 
 	/**
 	 * Set the orientation of the gate.
-	 * 
+	 *
 	 * @param orientation "h" for horizontal, "v" for vertical
 	 */
 	private void setOrientation(final String orientation) {
@@ -119,7 +119,7 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 
 	/**
 	 * Check if the gate is open.
-	 * 
+	 *
 	 * @return true iff the gate is open
 	 */
 	public boolean isOpen() {
@@ -145,20 +145,20 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Make the gate close automatically after specified delay
 	 * once it's been opened.
-	 * 
+	 *
 	 * @param seconds time to keep the gate open
 	 */
 	public void setAutoCloseDelay(int seconds) {
 		autoCloseDelay = seconds;
 	}
-	
+
 	/**
 	 * Check if a player can use the gate.
-	 * 
+	 *
 	 * @param user player trying to close or open the gate
 	 * @return <code>true</code> iff the player is allowed to use the gate
 	 */
@@ -169,12 +169,12 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 
 	/**
 	 * Set the door open or closed.
-	 * 
+	 *
 	 * @param open true if the door is opened, false otherwise
 	 */
 	private void setOpen(final boolean open) {
 		final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
-		
+
 		if (open) {
 			setResistance(0);
 			if (autoCloseDelay != 0) {
@@ -197,10 +197,10 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 		isOpen = open;
 		notifyWorldAboutChanges();
 	}
-	
+
 	/**
 	 * Get the identifier of the gate
-	 * 
+	 *
 	 * @return the gate's identifier
 	 */
 	public String getIdentifier() {
@@ -210,10 +210,10 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Sets this gate's identifier
-	 * 
+	 *
 	 * @param id the new identifier of the gate
 	 */
 	public void setIdentifier(String id) {
@@ -221,11 +221,11 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 			put(GATE_ID, id);
 		}
 	}
-	
+
 	/**
 	 * Set the message to be send to the player if she's not allowed to open
 	 * the gate
-	 * 
+	 *
 	 * @param message
 	 */
 	public void setRefuseMessage(String message) {
@@ -233,15 +233,15 @@ public class Gate extends Entity implements UseListener, TurnListener, PuzzleEnt
 	}
 
 	/**
-	 * Callback for the turn notifier to automatically close the gate if the 
-	 * interval is set 
+	 * Callback for the turn notifier to automatically close the gate if the
+	 * interval is set
 	 */
 	@Override
 	public void onTurnReached(int currentTurn) {
 		setOpen(false);
 		/*
 		 * If something was in the way, the closing failed.
-		 * Try again after the usual delay. 
+		 * Try again after the usual delay.
 		 */
 		if (isOpen) {
 			final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();

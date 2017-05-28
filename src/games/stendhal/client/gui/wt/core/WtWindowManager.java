@@ -12,10 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
-import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.common.MathHelper;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -26,14 +22,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import marauroa.common.io.Persistence;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.common.MathHelper;
+import marauroa.common.io.Persistence;
 
 /**
  * This manager keeps track of all the windows and their positions/ minimized
  * state.
- * 
+ *
  * @author mtotz
  */
 public final class WtWindowManager {
@@ -53,9 +52,9 @@ public final class WtWindowManager {
 
 	/** maps the window names to their configs. */
 	private final Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
-	
+
 	/** Change listeners. */
-	private final Map<String, List<SettingChangeListener>> listeners = new HashMap<String, List<SettingChangeListener>>(); 
+	private final Map<String, List<SettingChangeListener>> listeners = new HashMap<String, List<SettingChangeListener>>();
 
 	/** no public constructor. */
 	private WtWindowManager() {
@@ -74,7 +73,7 @@ public final class WtWindowManager {
 	/**
 	 * Sets default window properties. These are used only when there are no
 	 * properties known for this panel.
-	 * 
+	 *
 	 * @param name window identifier
 	 * @param minimized <code>true</code> if the window is minimized
 	 * @param x window x coordinate
@@ -136,7 +135,7 @@ public final class WtWindowManager {
 
 	/**
 	 * Get the configuration of a window.
-	 * 
+	 *
 	 * @param window the window whose configuration is wanted
 	 * @return the configuration. If it does not exist yet, a new one is created.
 	 */
@@ -153,7 +152,7 @@ public final class WtWindowManager {
 
 	/**
 	 * Returns a property.
-	 * 
+	 *
 	 * @param key
 	 *            Key to look up
 	 * @param defaultValue
@@ -167,7 +166,7 @@ public final class WtWindowManager {
 
 	/**
 	 * Returns a property.
-	 * 
+	 *
 	 * @param key
 	 *            Key to look up
 	 * @param defaultValue
@@ -180,13 +179,13 @@ public final class WtWindowManager {
 		if (value == null) {
 			return defaultValue;
 		}
-		
+
 		return MathHelper.parseIntDefault(value, defaultValue);
 	}
 
 	/**
 	 * Register a change listener for a specific configuration change.
-	 * 
+	 *
 	 * @param key configuration key to be watched
 	 * @param listener listener for the changes
 	 */
@@ -199,10 +198,10 @@ public final class WtWindowManager {
 		}
 		list.add(listener);
 	}
-	
+
 	/**
 	 * Deregister a change listener.
-	 * 
+	 *
 	 * @param key the key the listener was registered for
 	 * @param listener listener to be removed
 	 */
@@ -215,7 +214,7 @@ public final class WtWindowManager {
 
 	/**
 	 * Sets a property.
-	 * 
+	 *
 	 * @param key key
 	 * @param value value
 	 */
@@ -233,12 +232,12 @@ public final class WtWindowManager {
 	/**
 	 * Apply a saved configuration to a window. Nothing happens when this
 	 * windows configuration is not known.
-	 * 
+	 *
 	 * @param window the window
 	 */
 	public void formatWindow(final ManagedWindow window) {
 		final WindowConfiguration config = getConfig(window);
-		
+
 		window.moveTo(config.x, config.y);
 		window.setMinimized(config.minimized);
 		window.setVisible(config.visible);
@@ -246,7 +245,7 @@ public final class WtWindowManager {
 
 	/**
 	 * Notify that a window has moved.
-	 * 
+	 *
 	 * @param window the window that moved
 	 * @param x new x coordinate
 	 * @param y new y coordinate
@@ -259,7 +258,7 @@ public final class WtWindowManager {
 
 	/**
 	 * Notify a window's minimized state has changed.
-	 * 
+	 *
 	 * @param window changed window
 	 * @param state new minimization state. <code>true</code> if minimized,
 	 * 	<code>false</code> otherwise
@@ -285,7 +284,7 @@ public final class WtWindowManager {
 
 		/**
 		 * Create configuration for a window.
-		 * 
+		 *
 		 * @param name window identifier
 		 */
 		private WindowConfiguration(final String name) {
@@ -309,7 +308,7 @@ public final class WtWindowManager {
 
 		/**
 		 * Read window configuration from properties.
-		 * 
+		 *
 		 * @param props properties
 		 * @param defaultMinimized default minimization state <code>true</code>
 		 * 	for minimized windows, <code>false</code> for others
@@ -333,7 +332,7 @@ public final class WtWindowManager {
 
 		/**
 		 * Read window configuration from properties.
-		 * 
+		 *
 		 * @param props properties
 		 * @param defaults default properties
 		 */

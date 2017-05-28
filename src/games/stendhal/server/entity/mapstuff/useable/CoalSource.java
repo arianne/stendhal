@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.mapstuff.useable;
 
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
@@ -23,12 +25,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
-import org.apache.log4j.Logger;
-
 /**
  * A coal source is a spot where a player can pick for coal. He
  * needs a pick, time, and luck.
- * 
+ *
  * Picking coals takes 7-11 seconds; during this time, the player keep standing
  * next to the coal source. In fact, the player only has to be there when the
  * prospecting action has finished. Therefore, make sure that two sources
@@ -66,7 +66,7 @@ public class CoalSource extends PlayerActivityEntity {
 
 	/**
 	 * Create a coal source.
-	 * 
+	 *
 	 * @param itemName
 	 *            The name of the item to be prospected.
 	 */
@@ -98,7 +98,7 @@ public class CoalSource extends PlayerActivityEntity {
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 * 
+	 *
 	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class CoalSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity can be done.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -123,7 +123,7 @@ public class CoalSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity was successful.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -133,7 +133,7 @@ public class CoalSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has finished.
-	 * 
+	 *
 	 * @param player
 	 *            The player that did the activity.
 	 * @param successful
@@ -144,7 +144,7 @@ public class CoalSource extends PlayerActivityEntity {
 		if (successful) {
 	        addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
 	        notifyWorldAboutChanges();
-	        
+
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
@@ -176,7 +176,7 @@ public class CoalSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has started.
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
 	 */
@@ -198,6 +198,6 @@ public class CoalSource extends PlayerActivityEntity {
 		public void onTurnReached(int currentTurn) {
 			setState(Rand.randUniform(1, 3));
 		}
-		
+
 	}
 }

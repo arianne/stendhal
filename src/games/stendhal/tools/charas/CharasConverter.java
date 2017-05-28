@@ -25,14 +25,14 @@ import javax.swing.filechooser.FileFilter;
  * <p>Utility to convert images saved from Charas to be suitable for Stendhal.
  * Basically this means making the background color transparent and scaling the
  * image using the scale2x algorithm.</p>
- * 
+ *
  * <p>Usage:
  * <ol>
  * 	<li>command line mode: "java tools.CharasConverter source.png destination.png"</li>
  *  <li>graphical mode: start without any parameters to use the file selectors</li>
  * </ol>
- * </p> 
- * 
+ * </p>
+ *
  * @author johnnnny
  */
 public class CharasConverter {
@@ -102,7 +102,7 @@ public class CharasConverter {
 
 	/**
 	 * Convert a single image file to destination file.
-	 * 
+	 *
 	 * @param srcFilename
 	 *            full path to source image file
 	 * @param dstFilename
@@ -120,7 +120,7 @@ public class CharasConverter {
 	/**
 	 * Get a copy of the image with a single color transparent. The color made
 	 * to be transparent is specified by pixel.
-	 * 
+	 *
 	 * @param image
 	 *            source image
 	 * @param px
@@ -145,7 +145,7 @@ public class CharasConverter {
 
 	/**
 	 * Saves an image as PNG.
-	 * 
+	 *
 	 * @param filename
 	 *            destination filename
 	 * @param image
@@ -160,7 +160,7 @@ public class CharasConverter {
 
 	/**
 	 * Loads an image.
-	 * 
+	 *
 	 * @param filename the name of the file from which the image file
 	 * @return loaded image
 	 * @throws IOException if reading the file fails
@@ -174,7 +174,7 @@ public class CharasConverter {
 
 	/**
 	 * Scale an image to double size using the scale2x algorithm.
-	 * 
+	 *
 	 * @param srcImage
 	 *            source image data
 	 * @return scaled image

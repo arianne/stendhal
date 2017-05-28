@@ -20,6 +20,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -27,13 +31,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.kalavan.castle.PrincessNPC;
 import games.stendhal.server.maps.kalavan.castle.KingNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import games.stendhal.server.maps.kalavan.castle.PrincessNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -42,7 +41,7 @@ public class ImperialPrincessTest {
 
 
 	private static String questSlot = "imperial_princess";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -52,12 +51,12 @@ public class ImperialPrincessTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 
 		new PrincessNPC().configureZone(zone, null);
-		new KingNPC().configureZone(zone, null);	
-			
+		new KingNPC().configureZone(zone, null);
+
 		final AbstractQuest quest = new ImperialPrincess();
 		quest.addToWorld();
 
@@ -75,15 +74,15 @@ public class ImperialPrincessTest {
 		// try going to king cozart before favour is done for princess
 		npc = SingletonRepository.getNPCList().get("King Cozart");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Leave me! Can't you see I am trying to eat?", getReply(npc));
-		
+
 		npc = SingletonRepository.getNPCList().get("Princess Ylflia");
 		en = npc.getEngine();
 		// she uses the player level for this, so lets set the player level  to what it was in this test
 		player.setLevel(270);
-		
+
 		en.step(player, "hi");
 		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "help");
@@ -99,7 +98,7 @@ public class ImperialPrincessTest {
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and good luck.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
@@ -125,8 +124,8 @@ public class ImperialPrincessTest {
 		assertEquals("Goodbye, and good luck.", getReply(npc));
 		// she should have stored the player level in the quest slot.
 		assertTrue(player.getQuest(questSlot).equals(Integer.toString(player.getLevel())));
-		
-		
+
+
 		Item item = ItemTestHelper.createItem("arandula", 7);
 		player.getSlot("bag").add(item);
 		item = ItemTestHelper.createItem("kokuda", 1);
@@ -139,7 +138,7 @@ public class ImperialPrincessTest {
 		player.getSlot("bag").add(item);
 		item = ItemTestHelper.createItem("potion", 28);
 		player.getSlot("bag").add(item);
-		
+
 		final int xp = player.getXP();
 		en.step(player, "hi");
 		assertEquals("How do you do?", getReply(npc));
@@ -151,47 +150,47 @@ public class ImperialPrincessTest {
 		// [22:21] kymara earns 110400 experience points.
 		assertFalse(player.isEquipped("potion"));
 		assertFalse(player.isEquipped("antidote"));
-		assertFalse(player.isEquipped("arandula"));	
+		assertFalse(player.isEquipped("arandula"));
 		assertFalse(player.isEquipped("sclaria"));
-		assertFalse(player.isEquipped("kekik"));	
+		assertFalse(player.isEquipped("kekik"));
 		assertFalse(player.isEquipped("kokoda"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getQuest(questSlot), is("recommended"));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and good luck.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
 		assertEquals("Speak to my father, the King. I have asked him to grant you citizenship of Kalavan, to express my gratitude to you.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and good luck.", getReply(npc));
-		
+
 		npc = SingletonRepository.getNPCList().get("King Cozart");
 		en = npc.getEngine();
-		
+
 		final int xp2 = player.getXP();
 		en.step(player, "hi");
 		// [22:22] kymara earns 500 experience points.
 		assertEquals("Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.", getReply(npc));
 		assertThat(player.getXP(), greaterThan(xp2));
 		assertTrue(player.isQuestCompleted(questSlot));
-		
+
 		// try going after quest is done
 		en.step(player, "hi");
 		assertEquals("Leave me! Can't you see I am trying to eat?", getReply(npc));
-		
+
 		npc = SingletonRepository.getNPCList().get("Princess Ylflia");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("How do you do?", getReply(npc));
 		en.step(player, "task");
 		assertEquals("The trapped creatures looked much better last time I dared venture down to the basement, thank you!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and good luck.", getReply(npc));
-		
 
-		
+
+
 	}
 }

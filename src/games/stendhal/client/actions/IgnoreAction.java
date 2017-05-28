@@ -22,12 +22,12 @@ class IgnoreAction implements SlashAction {
 
 	/**
 	 * Execute an ignore command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if command was handled.
 	 */
 	@Override
@@ -70,7 +70,7 @@ class IgnoreAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -80,7 +80,7 @@ class IgnoreAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

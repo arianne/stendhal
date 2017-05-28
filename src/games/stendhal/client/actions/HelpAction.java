@@ -34,7 +34,7 @@ class HelpAction implements SlashAction {
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final String[] lines = {
-				"For a detailed reference, visit #http://stendhalgame.org/wiki/Stendhal_Manual",
+				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
 				"Here are the most-used commands:",
 				"* Chatting: ",
 				"- /me <action> \t\tShow a message about what you are doing",

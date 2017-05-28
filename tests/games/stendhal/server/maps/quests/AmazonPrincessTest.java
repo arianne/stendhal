@@ -15,6 +15,12 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -25,12 +31,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.amazon.hut.PrincessNPC;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -71,7 +71,7 @@ public class AmazonPrincessTest {
 	public void testGetSlotname() {
 		assertEquals("amazon_princess", new AmazonPrincess().getSlotName());
 	}
-	
+
 	/**
 	 * Tests for hasRecovered.
 	 */
@@ -84,10 +84,10 @@ public class AmazonPrincessTest {
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		en.step(player, "yes");
 		assertEquals("start", player.getQuest(new AmazonPrincess().getSlotName()));
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Tests for quest.
 	 */

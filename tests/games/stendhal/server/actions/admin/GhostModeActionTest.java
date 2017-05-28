@@ -12,18 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import marauroa.common.game.RPAction;
-import marauroa.server.game.db.DatabaseFactory;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.db.DatabaseFactory;
 import utilities.PlayerTestHelper;
 
 public class GhostModeActionTest {
@@ -41,16 +42,16 @@ public class GhostModeActionTest {
 	public final void testGhostmode() {
 		final Player hugo = PlayerTestHelper.createPlayer("hugo");
 		hugo.put("adminlevel", 5000);
-		
+
 		final Player bob = PlayerTestHelper.createPlayer("bob21233");
 		bob.put("buddies", hugo.getName(), true);
 
 		final Player jack = PlayerTestHelper.createPlayer("jack");
-		
+
 		MockStendhalRPRuleProcessor.get().addPlayer(hugo);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		MockStendhalRPRuleProcessor.get().addPlayer(jack);
-		
+
 		final RPAction action = new RPAction();
 
 		action.put("type", "ghostmode");
@@ -64,7 +65,7 @@ public class GhostModeActionTest {
 
 		assertEquals(null, bob.get("online"));
 		assertEquals("hugo", bob.get("offline"));
-		
+
 		assertEquals(null, jack.get("online"));
 		assertEquals(null, jack.get("offline"));
 
@@ -74,10 +75,10 @@ public class GhostModeActionTest {
 
 		assertTrue(hugo.isInvisibleToCreatures());
 		assertFalse(hugo.isGhost());
-		
+
 		assertEquals("hugo", bob.get("online"));
 		assertEquals(null, bob.get("offline"));
-				
+
 		assertEquals(null, jack.get("online"));
 		assertEquals(null, jack.get("offline"));
 	}

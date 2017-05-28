@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.mithrilcloak;
 
+import java.util.Arrays;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.JokerExprMatcher;
@@ -29,14 +31,12 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
 
 
 /**
@@ -46,7 +46,7 @@ import java.util.Arrays;
 class TwilightZone {
 
 	private MithrilCloakQuestInfo mithrilcloak;
-	
+
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
 	public TwilightZone(final MithrilCloakQuestInfo mithrilcloak) {
@@ -87,7 +87,7 @@ class TwilightZone {
 							new EquipItemAction("twilight moss", required, true).fire(player, sentence, npc);
 						} else {
 							npc.say("Ok, ask me again when you have enough money.");
-						}						
+						}
 					}
 				});
 
@@ -104,54 +104,54 @@ class TwilightZone {
 
 		final SpeakerNPC npc = npcs.get("Ida");
 		// player hasn't given elixir to lda in the twilight zone yet
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("magical", "mithril", "cloak", "mithril cloak", "task", "quest", "twilight"),
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
-				ConversationStates.ATTENDING,		
-				"What's happening to me? I'm feverish .. I see twilight .. you can't understand unless you visit me here ... you must ask #Pdiddi how to get to the #twilight.",				
+				ConversationStates.ATTENDING,
+				"What's happening to me? I'm feverish .. I see twilight .. you can't understand unless you visit me here ... you must ask #Pdiddi how to get to the #twilight.",
 				null);
 
 		npc.addReply("Pdiddi", "Oh, I'm too confused... I can't tell you anything about him...");
 
 
 		// player gave elixir and returned
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("magical", "mithril", "cloak", "mithril cloak", "task", "quest", "twilight", "elixir"),
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
-				ConversationStates.ATTENDING,		
-				"When I was sick I got behind on my other jobs. I promised #Josephine I'd make her a stripey cloak but I have no time. So please, I'm relying on you to buy one and take it to her. They sell blue striped cloaks in Ados abandoned keep. Thank you!",				
+				ConversationStates.ATTENDING,
+				"When I was sick I got behind on my other jobs. I promised #Josephine I'd make her a stripey cloak but I have no time. So please, I'm relying on you to buy one and take it to her. They sell blue striped cloaks in Ados abandoned keep. Thank you!",
 				null);
 
 
-		// Ida and lda look the same but one lives in her true home sewing room and one lives in the twilight zone 
+		// Ida and lda look the same but one lives in her true home sewing room and one lives in the twilight zone
 		// hence they need different names according to engine, but name will look the same on client
 		final SpeakerNPC npc2 = npcs.get("lda");
 
-		npc2.add(ConversationStates.IDLE, 
+		npc2.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc2.getName()),
 						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
 						new NotCondition(new PlayerHasItemWithHimCondition("twilight elixir"))),
-				ConversationStates.IDLE,		
-				"I'm sick .. so sick .. only some powerful medicine will fix me.",				
+				ConversationStates.IDLE,
+				"I'm sick .. so sick .. only some powerful medicine will fix me.",
 				null);
 
-		npc2.add(ConversationStates.IDLE, 
+		npc2.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc2.getName()),
 						new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
 						new PlayerHasItemWithHimCondition("twilight elixir")),
-				ConversationStates.QUEST_ITEM_QUESTION,		
-				"Is that elixir for me? If #yes I will take it immediately. You must return to see me again in my normal state.",				
+				ConversationStates.QUEST_ITEM_QUESTION,
+				"Is that elixir for me? If #yes I will take it immediately. You must return to see me again in my normal state.",
 				 null);
 
-		npc2.add(ConversationStates.QUEST_ITEM_QUESTION, 
+		npc2.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
 								 new PlayerHasItemWithHimCondition("twilight elixir")
 								 ),
-				ConversationStates.IDLE,		
-				"Thank you!",				
+				ConversationStates.IDLE,
+				"Thank you!",
 				new MultipleActions(
 								new DropItemAction("twilight elixir"),
 								new SetQuestAction(mithrilcloak.getQuestSlot(), "taking_striped_cloak"),
@@ -159,13 +159,13 @@ class TwilightZone {
 								)
 				);
 
-		npc2.add(ConversationStates.QUEST_ITEM_QUESTION, 
+		npc2.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.NO_MESSAGES,
 				new AndCondition(new QuestInStateCondition(mithrilcloak.getQuestSlot(), "twilight_zone"),
 								 new PlayerHasItemWithHimCondition("twilight elixir")
 								 ),
-				ConversationStates.IDLE,		
-				"I'm getting sicker ...",				
+				ConversationStates.IDLE,
+				"I'm getting sicker ...",
 				 null);
 	}
 

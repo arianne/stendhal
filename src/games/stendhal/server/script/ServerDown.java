@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,10 +25,6 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 
 /**
@@ -119,8 +118,8 @@ public class ServerDown extends ScriptImpl {
 				addReply("place", "This is... Think of it as after the theater, outside space and time, beyond #reality.");
 				addReply("reality", "To get you to this place beyond reality, I had to suspend disbelief.");
 				addReply("stendhal", "The powers, that be, are currently restoring the Stendhal reality. Just wait and relax.");
-				addReply("pacman", "Oh, that is just one reality among the ones we are watching here. See #http://stendhalgame.org/-49 for details.");
-				
+				addReply("pacman", "Oh, that is just one reality among the ones we are watching here. See #https://stendhalgame.org/-49 for details.");
+
 				addGoodbye();
 			}
 		};

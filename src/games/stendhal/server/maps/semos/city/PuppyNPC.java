@@ -12,22 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
-import java.util.Arrays;
-import java.util.Map;
-
 /**
  * A playful puppy
- * 
+ *
  * @author AntumDeluge
  */
 public class PuppyNPC implements ZoneConfigurator {
-	
+
 	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
@@ -36,7 +36,7 @@ public class PuppyNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 		final PassiveNPC dog = new Puppy();
-		
+
 		dog.put("menu", "Pet|Use");
 		// Not visible, but used for the emote action
 		dog.setName("Puppy");

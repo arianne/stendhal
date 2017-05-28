@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.factory;
 
-import games.stendhal.server.core.rp.achievement.Achievement;
-import games.stendhal.server.core.rp.achievement.Category;
-import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
-
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import games.stendhal.server.core.rp.achievement.Achievement;
+import games.stendhal.server.core.rp.achievement.Category;
+import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 /**
  * Factory for quest achievements
  *

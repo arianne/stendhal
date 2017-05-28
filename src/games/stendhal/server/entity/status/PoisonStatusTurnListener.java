@@ -11,12 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * poison turn listener
@@ -27,7 +27,7 @@ public class PoisonStatusTurnListener implements TurnListener {
 
 	/**
 	 * PoisonStatusTurnListener
-	 * 
+	 *
 	 * @param statusList StatusList
 	 */
 	public PoisonStatusTurnListener(StatusList statusList) {

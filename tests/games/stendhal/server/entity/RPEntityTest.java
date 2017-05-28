@@ -24,6 +24,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -35,17 +42,9 @@ import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.Arrays;
-import java.util.List;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPSlot;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 

@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.spell.exception;
 /**
  * Exception signalling that a player has not enough mana
- * 
+ *
  * @author madmetzger
  */
 public class InsufficientManaException extends SpellException {

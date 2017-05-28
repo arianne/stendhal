@@ -17,16 +17,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.grammar.Grammar;
-import games.stendhal.common.parser.ConversationParser;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import marauroa.common.Log4J;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.ConversationParser;
+import marauroa.common.Log4J;
 
 public class GrammarTest {
 	@BeforeClass
@@ -89,27 +89,27 @@ public class GrammarTest {
 		assertEquals("eighth", Grammar.ordered(8));
 		assertEquals("ninth", Grammar.ordered(9));
 		assertEquals("tenth", Grammar.ordered(10));
-		
+
 		assertEquals("11th", Grammar.ordered(11));
 		assertEquals("12th", Grammar.ordered(12));
 		assertEquals("13th", Grammar.ordered(13));
 		assertEquals("14th", Grammar.ordered(14));
-		
+
 		assertEquals("21st", Grammar.ordered(21));
 		assertEquals("22nd", Grammar.ordered(22));
 		assertEquals("23rd", Grammar.ordered(23));
 		assertEquals("24th", Grammar.ordered(24));
-		
+
 		assertEquals("101st", Grammar.ordered(101));
 		assertEquals("102nd", Grammar.ordered(102));
 		assertEquals("103rd", Grammar.ordered(103));
 		assertEquals("104th", Grammar.ordered(104));
-		
+
 		assertEquals("111th", Grammar.ordered(111));
 		assertEquals("112th", Grammar.ordered(112));
 		assertEquals("113th", Grammar.ordered(113));
 		assertEquals("114th", Grammar.ordered(114));
-		
+
 		assertEquals("131st", Grammar.ordered(131));
 		assertEquals("132nd", Grammar.ordered(132));
 		assertEquals("133rd", Grammar.ordered(133));
@@ -144,7 +144,7 @@ public class GrammarTest {
 		assertEquals("Are", Grammar.IsAre(2));
 		assertEquals("Are", Grammar.IsAre(0));
 	}
-	
+
 	@Test
 	public void testHasHave() {
 		assertEquals("Has", Grammar.HasHave(1));
@@ -479,7 +479,7 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("efreet", "efreeti");
 		testPluralisationAndSingularisation("ys", "y");
 		// baby: ... + consonant + "y"
-		testPluralisationAndSingularisation("abies", "aby"); 
+		testPluralisationAndSingularisation("abies", "aby");
 		testPluralisationAndSingularisation("fs", "f");
 
         testPluralisationAndSingularisation("matches", "match");
@@ -623,41 +623,41 @@ public class GrammarTest {
 	@Test
 	public void testFullForm() {
 		assertEquals("a sandwich", Grammar.quantityplnoun(1, "sandwich", "a"));
-		assertEquals("2 sandwiches", 
+		assertEquals("2 sandwiches",
 			Grammar.quantityplnoun(2, "sandwich"));
 		assertEquals("a piece of ham", Grammar.quantityplnoun(1, "ham", "a"));
 		assertEquals("2 pieces of ham", Grammar.quantityplnoun(2, "ham", "a"));
-		assertEquals("a piece of cheese", 
+		assertEquals("a piece of cheese",
 			Grammar.quantityplnoun(1, "cheese", "a"));
-		assertEquals("2 pieces of cheese", 
+		assertEquals("2 pieces of cheese",
 			Grammar.quantityplnoun(2, "cheese"));
-		assertEquals("a loaf of bread", 
+		assertEquals("a loaf of bread",
 			Grammar.quantityplnoun(1, "bread", "a"));
-		assertEquals("2 loaves of bread", 
+		assertEquals("2 loaves of bread",
 			Grammar.quantityplnoun(2, "bread"));
-		assertEquals("1 #sandwich", 
+		assertEquals("1 #sandwich",
 			Grammar.quantityplnoun(1, "#sandwich"));
-		assertEquals("a #sandwich", 
+		assertEquals("a #sandwich",
 			Grammar.quantityplnoun(1, "#sandwich", "a"));
-		assertEquals("A #sandwich", 
+		assertEquals("A #sandwich",
 			Grammar.quantityplnoun(1, "#sandwich", "A"));
-		assertEquals("one #sandwich", 
+		assertEquals("one #sandwich",
 			Grammar.quantityplnoun(1, "#sandwich", "one"));
-		assertEquals("#sandwich", 
+		assertEquals("#sandwich",
 			Grammar.quantityplnoun(1, "#sandwich", ""));
-		assertEquals("2 #sandwiches", 
+		assertEquals("2 #sandwiches",
 			Grammar.quantityplnoun(2, "#sandwich"));
 		assertEquals("a piece of #ham",
 			Grammar.quantityplnoun(1, "#ham", "a"));
-		assertEquals("2 pieces of #ham", 
+		assertEquals("2 pieces of #ham",
 			Grammar.quantityplnoun(2, "#ham", "a"));
-		assertEquals("a piece of #cheese", 
+		assertEquals("a piece of #cheese",
 			Grammar.quantityplnoun(1, "#cheese", "a"));
-		assertEquals("2 pieces of #cheese", 
+		assertEquals("2 pieces of #cheese",
 			Grammar.quantityplnoun(2, "#cheese", "a"));
-		assertEquals("a loaf of #bread", 
+		assertEquals("a loaf of #bread",
 			Grammar.quantityplnoun(1, "#bread", "a"));
-		assertEquals("2 loaves of #bread", 
+		assertEquals("2 loaves of #bread",
 			Grammar.quantityplnoun(2, "#bread", "a"));
 	}
 
@@ -721,8 +721,8 @@ public class GrammarTest {
 		assertEquals("first, second, third, and more complicated example",
 				Grammar.enumerateCollection(source));
 	}
-	
-	
+
+
 	/**
 	 * Tests for enumerateCollectionWithHash
 	 */
@@ -741,7 +741,7 @@ public class GrammarTest {
 		source.add("more complicated example");
 		assertEquals("#first, #second, #third, and #'more complicated example'",
 				Grammar.enumerateCollectionWithHash(source));
-	}		
+	}
 
 
 	private static void checkNumberString(final int n, final String string) {
@@ -856,7 +856,7 @@ public class GrammarTest {
 		assertEquals("magic", Grammar.normalizeDerivedAdjective("magical"));
 		assertEquals("nomad", Grammar.normalizeDerivedAdjective("nomadic"));
 	}
-	
+
 	/**
 	 * Tests for leatherLegs.
 	 */

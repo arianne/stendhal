@@ -28,13 +28,13 @@ public interface AttackStrategy extends PositioningStrategy, TargetSelectionStra
 	 * @return true, if it can attack, false otherwise
 	 */
 	public boolean canAttackNow(Creature creature);
-	
+
 	/**
 	 * Can the specified creature do an attack against a specified target?
 	 *
 	 * @param attacker creature doing the attack
 	 * @param target potential target
-	 * 
+	 *
 	 * @return true, if it can attack, false otherwise
 	 */
 	boolean canAttackNow(Creature attacker, RPEntity target);
@@ -48,8 +48,8 @@ public interface AttackStrategy extends PositioningStrategy, TargetSelectionStra
 
 	/**
 	 * Get the maximum range of the attacking creature.
-	 * 
-	 * @return maximum range 
+	 *
+	 * @return maximum range
 	 */
 	public int getRange();
 }

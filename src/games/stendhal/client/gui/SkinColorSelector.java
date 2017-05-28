@@ -11,11 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.sprite.ImageSprite;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.constants.SkinColor;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -25,6 +20,11 @@ import java.awt.image.BufferedImage;
 import javax.swing.JComponent;
 import javax.swing.colorchooser.DefaultColorSelectionModel;
 
+import games.stendhal.client.sprite.ImageSprite;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SkinColor;
+
 /**
  * A HSL space color selector that should be small enough to fit in the outfit
  * selection dialog.
@@ -32,7 +32,7 @@ import javax.swing.colorchooser.DefaultColorSelectionModel;
 class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColorSelectionModel> {
 	/** Palette selector component. */
 	private final JComponent paletteSelector;
-	
+
 	/**
 	 * Create a new ColorSelector.
 	 */
@@ -47,7 +47,7 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		super.setEnabled(enabled);
 		paletteSelector.setEnabled(enabled);
 	}
-	
+
 	/**
 	 * Skin color part of the selector component.
 	 */
@@ -56,10 +56,10 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		private static final int COLOR_ITEM_WIDTH, COLOR_ITEM_HEIGHT;
 		/** Color mapping. */
 		private static final SkinColor[][] COLOR_MAP;
-		
+
 		/** Currently selected row and column. */
 		private int row, column;
-		
+
 		static {
 			/* Construct the color map. */
 			SkinColor[] allValues = SkinColor.values();
@@ -83,11 +83,11 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 					index++;
 				}
 			}
-			
+
 			COLOR_ITEM_WIDTH = SPRITE_WIDTH / width;
 			COLOR_ITEM_HEIGHT = SPRITE_HEIGHT / height;
 		}
-		
+
 		/**
 		 * Create a new SkinPaletteSelector.
 		 * @param model selection model
@@ -95,10 +95,10 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		SkinPaletteSelector(SkinColorSelectionModel model) {
 			super(model);
 		}
-		
+
 		/**
 		 * Create the color patch sprite.
-		 * 
+		 *
 		 * @return created sprite
 		 */
 		@Override
@@ -115,7 +115,7 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			g.dispose();
 			return new ImageSprite(img, "skin_color_selection_id");
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -132,14 +132,14 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			Insets ins = getInsets();
 			row = (point.y - ins.top) / COLOR_ITEM_HEIGHT;
 			column = (point.x - ins.left) / COLOR_ITEM_WIDTH;
-			
+
 			/* Cursor position is tracked outside of selector area if mouse
 			 * button is held down. Must reset row and column to minimun or
 			 * maximum values in this case
 			 */
 			column = MathHelper.clamp(column, 0, COLOR_MAP.length - 1);
 			row = MathHelper.clamp(row, 0, COLOR_MAP[0].length - 1);
-			
+
 			SkinColor selectedColor = COLOR_MAP[row][column];
 			model.setSelectedColor(selectedColor);
 		}
@@ -152,10 +152,10 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 	static class SkinColorSelectionModel extends DefaultColorSelectionModel {
 		/** The enum corresponding to current color. */
 		private SkinColor enumColor;
-		
+
 		/**
 		 * Set the selected skin color.
-		 * 
+		 *
 		 * @param color new color
 		 */
 		void setSelectedColor(SkinColor color) {
@@ -165,10 +165,10 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			enumColor = color;
 			super.setSelectedColor(new Color(enumColor.getColor()));
 		}
-	
+
 		/**
 		 * Used for setting outfit colors other than skin.
-		 * 
+		 *
 		 * @param color
 		 * 		Target outfit color
 		 */

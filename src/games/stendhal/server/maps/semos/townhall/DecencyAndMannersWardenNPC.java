@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.townhall;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Arrays;
-import java.util.Map;
 
 public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 	/**
@@ -63,7 +63,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 
 		npc.setDirection(Direction.RIGHT);
 		npc.setPosition(13, 38);
-		
+
 		npc.initHP(100);
 		zone.add(npc);
 	}

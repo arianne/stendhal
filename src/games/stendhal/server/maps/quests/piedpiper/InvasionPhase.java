@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -28,14 +36,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 
 public class InvasionPhase extends TPPQuest {
 
@@ -88,8 +88,8 @@ public class InvasionPhase extends TPPQuest {
 
 	/**
 	 * Create InvasionPhase.
-	 * 
-	 * @param timings 
+	 *
+	 * @param timings
 	 */
 	public InvasionPhase(Map<String, Integer> timings) {
 		super(timings);
@@ -244,7 +244,7 @@ public class InvasionPhase extends TPPQuest {
 
 	/**
 	 * Red alert! Rats in the Ados city!
-	 * 
+	 *
 	 * @return Ados mayor's call for help message
 	 */
 	protected String ratsProblem() {

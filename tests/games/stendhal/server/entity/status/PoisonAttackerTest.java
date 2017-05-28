@@ -14,14 +14,14 @@ package games.stendhal.server.entity.status;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.ConsumableItem;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 public class PoisonAttackerTest {

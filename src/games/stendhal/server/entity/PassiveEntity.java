@@ -27,7 +27,7 @@ public abstract class PassiveEntity extends Entity {
 
 	/**
 	 * Create a passive entity.
-	 * 
+	 *
 	 * @param object
 	 *            The template object.
 	 */

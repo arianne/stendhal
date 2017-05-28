@@ -36,7 +36,7 @@ public class PlayerPetManager {
 
 		/*
 		 * RPSlot.add() destroys zoneid, so preserve/restore it.
-		 * 
+		 *
 		 * TODO: Remove if getID()/setID() are made purely virtual.
 		 */
 		String zoneid;
@@ -58,7 +58,7 @@ public class PlayerPetManager {
 
 	/**
 	 * Recreate a saved pet.
-	 * 
+	 *
 	 * @return A pet, or <code>null</code> if none.
 	 */
 	public Pet retrievePet() {

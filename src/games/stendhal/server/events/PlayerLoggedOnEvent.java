@@ -15,16 +15,16 @@ package games.stendhal.server.events;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.constants.Events;
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 
 public class PlayerLoggedOnEvent extends RPEvent {
-	
+
 	private static final String NAME_ATTRIBUTE = "name";
 	private static final Logger logger = Logger.getLogger(PlayerLoggedOnEvent.class);
-	
+
 	public static void generateRPClass() {
 		try {
 			RPClass clazz = new RPClass(Events.PLAYER_LOGGED_ON);
@@ -33,7 +33,7 @@ public class PlayerLoggedOnEvent extends RPEvent {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
-	
+
 	public PlayerLoggedOnEvent(String name) {
 		super(Events.PLAYER_LOGGED_ON);
 		put(NAME_ATTRIBUTE, name);

@@ -12,13 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.journal;
 
-import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.RepairerBehaviour;
-
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.RepairerBehaviour;
 import marauroa.common.Pair;
 
 public class ServicersRegister {
@@ -47,10 +46,10 @@ public class ServicersRegister {
 	 * Adds an NPC to the NPCList. Does nothing if an NPC with the same name
 	 * already exists. This makes sure that each NPC can be uniquely identified
 	 * by his/her name.
-	 * 
+	 *
 	 * @param npcName
 	 *            The NPC that should be added
-	 * @param behaviour   
+	 * @param behaviour
 	 *            The ServicersBehaviour of that NPC
 	 */
 	public void add(final String npcName, final HealerBehaviour behaviour) {

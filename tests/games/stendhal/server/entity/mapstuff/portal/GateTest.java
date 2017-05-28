@@ -12,7 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
@@ -22,13 +28,8 @@ import games.stendhal.server.entity.npc.condition.AlwaysFalseCondition;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 /**
@@ -41,9 +42,9 @@ public class GateTest {
 		if (!RPClass.hasRPClass("gate")) {
 			Gate.generateGateRPClass();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Tests for openCloseGate.
 	 */
@@ -55,7 +56,7 @@ public class GateTest {
 		gate.close();
 		assertFalse(gate.isOpen());
 	}
-	
+
 	/**
 	 * Tests that closing fails if there's something on the way.
 	 */
@@ -149,7 +150,7 @@ public class GateTest {
 		gate.onUsed(user);
 		assertFalse(gate.isOpen());
 	}
-	
+
 	/**
 	 * Tests for isObstacle.
 	 */
@@ -176,7 +177,7 @@ public class GateTest {
 		assertTrue(gate.isOpen());
 		assertFalse(gate.isObstacle(user));
 	}
-	
+
 	/**
 	 * Test player opening and closing a gate he's allowed to use.
 	 */
@@ -190,7 +191,7 @@ public class GateTest {
 		assertTrue(gate.onUsed(user));
 		assertFalse(gate.isOpen());
 	}
-	
+
 	/**
 	 * Test player opening and closing a gate he's not allowed to use.
 	 */
@@ -207,7 +208,7 @@ public class GateTest {
 		assertFalse(gate.onUsed(user));
 		assertTrue(gate.isOpen());
 		assertEquals(null, PlayerTestHelper.getPrivateReply(user));
-		
+
 		// Repeat the same sequence, but with a deny message.
 		gate.close();
 		gate.setRefuseMessage("lorem ipsum");

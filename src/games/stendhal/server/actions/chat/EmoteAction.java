@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TEXT;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.validator.StandardActionValidations;
 import games.stendhal.server.core.engine.GameEvent;

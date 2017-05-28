@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.spell;
 import static games.stendhal.common.constants.Actions.CASTSPELL;
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;

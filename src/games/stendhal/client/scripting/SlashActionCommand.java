@@ -17,7 +17,7 @@ import games.stendhal.common.ErrorBuffer;
 
 /**
  * Command line parser for the Stendhal client.
- * 
+ *
  * @author Martin Fuchs
  */
 class SlashActionCommand extends ErrorBuffer {
@@ -37,7 +37,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * sets the action to be parsed.
-	 * 
+	 *
 	 * @param action
 	 *            the action to be parsed
 	 */
@@ -47,7 +47,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * return command name.
-	 * 
+	 *
 	 * @return command name
 	 */
 	public String getName() {
@@ -56,7 +56,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * return command parameters.
-	 * 
+	 *
 	 * @return parameter array
 	 */
 	String[] getParams() {
@@ -65,7 +65,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * set command parameters.
-	 * 
+	 *
 	 * @param params
 	 *            parameter array
 	 */
@@ -75,7 +75,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * return trailing parameter text.
-	 * 
+	 *
 	 * @return remainder
 	 */
 	public String getRemainder() {
@@ -84,7 +84,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * sets the trailing text.
-	 * 
+	 *
 	 * @param remainder
 	 *            the trailing text
 	 */
@@ -94,7 +94,7 @@ class SlashActionCommand extends ErrorBuffer {
 
 	/**
 	 * set command name.
-	 * 
+	 *
 	 * @param name
 	 *            the command name
 	 */

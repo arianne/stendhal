@@ -1,17 +1,17 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
- ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
@@ -25,8 +25,8 @@ stendhal.ui.buddyList = {
 	// TODO: don't rebuilt the buddylist completely on every turn,
 	//       but implement an observer
 	update: function() {
-		var data = marauroa.me.buddies;
-		var buddies = []
+		var data = marauroa.me["buddies"];
+		var buddies = [];
 		for (var buddy in data) {
 			if (data.hasOwnProperty(buddy)) {
 				var entry = {"name": buddy};
@@ -46,8 +46,8 @@ stendhal.ui.buddyList = {
 		for (var i = 0; i < buddies.length; i++) {
 			html += "<li class=" + buddies[i].status + ">" + stendhal.ui.html.esc(buddies[i].name) + "</li>";
 		}
-		
-		if (stendhal.ui.buddyList.lastHtml != html) {
+
+		if (stendhal.ui.buddyList.lastHtml !== html) {
 			var buddyListUL = document.getElementById("buddyListUL");
 			buddyListUL.innerHTML = html;
 			stendhal.ui.buddyList.lastHtml = html;
@@ -89,23 +89,23 @@ stendhal.ui.buddyList = {
 		stendhal.ui.buddyList.sort();
 	},
 
-    hasBuddy: function(buddy) {
+	hasBuddy: function(buddy) {
     	var arrayLength = stendhal.ui.buddyList.buddies.length;
     	for (var i = 0; i < arrayLength; i++) {
-    	    if(stendhal.ui.buddyList.buddies[i].name === buddy) {
-    	    	return true;
-    	    }
+			if(stendhal.ui.buddyList.buddies[i].name === buddy) {
+				return true;
+			}
     	}
     	return false;
-    },
+	},
 
-    removeBuddy: function(buddy) {
-    	var arrayLength = stendhal.ui.buddyList.buddies.length;
-    	for (var i = 0; i < arrayLength; i++) {
-    		if (stendhal.ui.buddyList.buddies[i].name === buddy) {
-    			stendhal.ui.buddyList.buddies.splice(i, 1);
-    			return;
-    		}
-    	}
-    }
-}
+	removeBuddy: function(buddy) {
+		var arrayLength = stendhal.ui.buddyList.buddies.length;
+		for (var i = 0; i < arrayLength; i++) {
+			if (stendhal.ui.buddyList.buddies[i].name === buddy) {
+				stendhal.ui.buddyList.buddies.splice(i, 1);
+				return;
+			}
+		}
+	}
+};

@@ -27,7 +27,7 @@ public class ShockStatusTurnListener implements TurnListener {
 
 	/**
 	 * ShockStatusTurnListener
-	 * 
+	 *
 	 * @param statusList StatusList
 	 */
 	public ShockStatusTurnListener(StatusList statusList) {

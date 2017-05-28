@@ -13,6 +13,11 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -20,10 +25,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * Drops the specified item with the specified infostring

@@ -13,6 +13,10 @@
 package games.stendhal.server.util;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
+import java.util.Iterator;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.actions.equip.EquipUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -22,10 +26,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.GroundSlot;
-
-import java.util.Iterator;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;

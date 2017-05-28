@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
@@ -21,8 +23,6 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.GroupChangeEvent;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * handles the management of player groups.

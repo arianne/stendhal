@@ -39,12 +39,12 @@ public class WeatherEntity extends Entity {
 		"weather/thunder-04", "weather/thunder-05", "weather/thunder-06",
 		"weather/thunder-07", "weather/thunder-08",
 	};
-	
+
 	/** <code>true</code> if the thundering effect is active. */
 	private boolean active;
 	/** Turn listener for triggering lightnings. */
 	private final TurnListener thunderer;
-	
+
 	/**
 	 * Create a weather entity.
 	 */
@@ -53,17 +53,17 @@ public class WeatherEntity extends Entity {
 		thunderer = new Thunderer();
 		setResistance(0);
 	}
-	
+
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("weather_entity");
 		clazz.isA("entity");
 		clazz.addRPEvent(Events.GLOBAL_VISUAL, Definition.VOLATILE);
 	}
-	
+
 	/**
 	 * Set the thunder state for the zone. An active thunder state creates
 	 * lightnings at random intervals.
-	 * 
+	 *
 	 * @param thunder <code>true</code> if the thundering is active, otherwise
 	 * 	<code>false</code>
 	 */
@@ -77,7 +77,7 @@ public class WeatherEntity extends Entity {
 		}
 		active = thunder;
 	}
-	
+
 	/**
 	 * Schedule the next lightning.
 	 */
@@ -85,7 +85,7 @@ public class WeatherEntity extends Entity {
 		int delay = Rand.randExponential(THUNDER_DELAY) + 1;
 		SingletonRepository.getTurnNotifier().notifyInSeconds(delay, thunderer);
 	}
-	
+
 	/** Turn listener for creating lightnings. */
 	private class Thunderer implements TurnListener {
 		// This is called when the lightning strikes, triggering the potential
@@ -110,14 +110,14 @@ public class WeatherEntity extends Entity {
 				startThundering();
 			}
 		}
-		
+
 		private class SoundTurnListener implements TurnListener {
 			private final int volume;
-			
+
 			public SoundTurnListener(int volume) {
 				this.volume = volume;
 			}
-			
+
 			@Override
 			public void onTurnReached(int currentTurn) {
 				// Do *not* check activity status - the last sound may arrive

@@ -12,17 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.journal;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Pair;
 
 public class ProducerRegister {
@@ -49,10 +48,10 @@ public class ProducerRegister {
 	 * Adds an NPC to the NPCList. Does nothing if an NPC with the same name
 	 * already exists. This makes sure that each NPC can be uniquely identified
 	 * by his/her name.
-	 * 
+	 *
 	 * @param npcName
 	 *            The NPC that should be added
-	 * @param behaviour   
+	 * @param behaviour
 	 *            The ProducerBehaviour of that NPC
 	 */
 	public void add(final String npcName, final ProducerBehaviour behaviour) {
@@ -91,12 +90,12 @@ public class ProducerRegister {
 				int amount = behaviour.getNumberOfProductItems(player);
 				if (behaviour.isOrderReady(player)) {
 					// put all completed orders first - player wants to collect these!
-					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity) 
+					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity)
 							+ " your " + Grammar.plnoun(amount,product) + ".");
 				} else {
 					String timeleft = behaviour.getApproximateRemainingTime(player);
 					// put all ongoing orders last
-					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity)
 							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
 				}
 			}
@@ -115,12 +114,12 @@ public class ProducerRegister {
                 final String product = order[1];
 				if (behaviour.isOrderReady(player)) {
 					// put all completed orders first - player wants to collect these!
-					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity) 
+					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity)
 							+ " your " + Grammar.plnoun(amount,product) + ".");
 				} else {
 					String timeleft = behaviour.getApproximateRemainingTime(player);
 					// put all ongoing orders last
-					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity)
 							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
 				}
 			}
@@ -163,8 +162,8 @@ public class ProducerRegister {
 	/**
 	 * gets description of the produced item
 	 *
-	 * Note: if more than one NPC makes the item, just the details of the first NPC in the list who makes it are returned 
-	 * 
+	 * Note: if more than one NPC makes the item, just the details of the first NPC in the list who makes it are returned
+	 *
 	 * @param itemName produced item
 	 * @return details about the produced item
 	 */
@@ -278,12 +277,12 @@ public class ProducerRegister {
 					int amount = behaviour.getNumberOfProductItems(player);
 					if (behaviour.isOrderReady(player)) {
 						// put all completed orders first - player wants to collect these!
-						res.add(npcName + " has finished " + Grammar.gerundForm(activity) 
+						res.add(npcName + " has finished " + Grammar.gerundForm(activity)
 							+ " your " + Grammar.plnoun(amount,product) + ".");
 					} else {
 						String timeleft = behaviour.getApproximateRemainingTime(player);
 						// put all ongoing orders last
-						res.add("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+						res.add("\n" + npcName + " is " + Grammar.gerundForm(activity)
 							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
 					}
 				}
@@ -303,12 +302,12 @@ public class ProducerRegister {
                     final String product = order[1];
                     if (behaviour.isOrderReady(player)) {
                         // put all completed orders first - player wants to collect these!
-                        res.add(npcName + " has finished " + Grammar.gerundForm(activity) 
+                        res.add(npcName + " has finished " + Grammar.gerundForm(activity)
                             + " your " + Grammar.plnoun(amount,product) + ".");
                     } else {
                         String timeleft = behaviour.getApproximateRemainingTime(player);
                         // put all ongoing orders last
-						res.add("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+						res.add("\n" + npcName + " is " + Grammar.gerundForm(activity)
 							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
                     }
                 }

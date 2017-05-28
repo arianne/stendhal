@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.timed;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Map;
+
+import games.stendhal.server.entity.player.Player;
 
 public class TimedInvisibility extends TimedStackableItem {
 

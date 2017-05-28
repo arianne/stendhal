@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -33,36 +37,32 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 
 /**
  * QUEST: The Ring Maker
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Ognir, who works in the weapon shop in Fado
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>If you go to Ognir with a broken emerald ring he offers to fix it </li>
  * <li>Bring him the money he wants (a lot) and gold to fix the ring.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>Fixed Ring</li>
  * <li>500 XP</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>Anytime you need it</li>
  * </ul>
- * 
+ *
  * NOTE: This quest uses the same NPC as Marriage.java, we need to be careful
  * not to interfere with that mission.
  */
@@ -88,15 +88,15 @@ public class RingMaker extends AbstractQuest {
 	void fixRingStep(final SpeakerNPC npc) {
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
-			new AndCondition(new PlayerHasItemWithHimCondition("emerald ring"), 
+			new AndCondition(new PlayerHasItemWithHimCondition("emerald ring"),
 					         new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			null,
 			new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
-					
+
 						if (emeraldRing.isBroken()) {
 							npc.say("What a pity, your emerald ring is broken. I can fix it, for a #price.");
 						} else {
@@ -105,53 +105,53 @@ public class RingMaker extends AbstractQuest {
 							npc.say("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
-					
+
 				}
 			});
-		
-		npc.add(ConversationStates.ATTENDING, 
+
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("emerald ring", "life", "emerald"),
-				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("emerald ring")), 
+				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("emerald ring")),
 				         new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING))),
 
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward."
 				, null);
-	
-		npc.add(ConversationStates.ATTENDING, 
+
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING + "unbound")),
 						new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I'm pleased to say, your ring of life is fixed! It's good as new now.",
 				new MultipleActions(
 						new IncreaseXPAction(500),
 						new SetQuestAction(QUEST_SLOT, "done"),
 						new EquipItemAction("emerald ring", 1, true)));
-		
-		npc.add(ConversationStates.ATTENDING, 
+
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new QuestStateStartsWithCondition(QUEST_SLOT, FORGING + "unbound"),
 						new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I'm pleased to say, your ring of life is fixed! It's good as new now.",
 				new MultipleActions(
 						new IncreaseXPAction(500),
 						new SetQuestAction(QUEST_SLOT, "done"),
 						new EquipItemAction("emerald ring", 1, false)));
 
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("emerald ring", "life", "emerald"),
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, FORGING),
 						new NotCondition(new TimePassedCondition(QUEST_SLOT,1,REQUIRED_MINUTES))),
 				ConversationStates.IDLE, null,
 				new SayTimeRemainingAction(QUEST_SLOT,1, REQUIRED_MINUTES,"I haven't finished fixing your ring of life. Please check back in"));
-		
-		
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
-				"price", 
+
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				"price",
 				null,
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"The charge for my service is " + REQUIRED_MONEY
@@ -161,11 +161,11 @@ public class RingMaker extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						new PlayerHasItemWithHimCondition("gold bar", REQUIRED_GOLD),
 						new PlayerHasItemWithHimCondition("money", REQUIRED_MONEY),
-						new PlayerHasItemWithHimCondition("emerald", REQUIRED_GEM)), 
+						new PlayerHasItemWithHimCondition("emerald", REQUIRED_GEM)),
 				ConversationStates.IDLE,
 				"Okay, that's all I need to fix the ring. Come back in "
 						+ REQUIRED_MINUTES
@@ -173,7 +173,7 @@ public class RingMaker extends AbstractQuest {
 				new MultipleActions(
 						new DropItemAction("gold bar", REQUIRED_GOLD),
 						new DropItemAction("emerald", REQUIRED_GEM),
-						new DropItemAction("money", REQUIRED_MONEY), 
+						new DropItemAction("money", REQUIRED_MONEY),
 						new ChatAction() {
 							@Override
 							public void fire(final Player player,
@@ -191,21 +191,21 @@ public class RingMaker extends AbstractQuest {
 							}
 						},
 						new DropItemAction("emerald ring")));
-		
+
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(new  AndCondition(
 						new PlayerHasItemWithHimCondition("gold bar", REQUIRED_GOLD),
 						new PlayerHasItemWithHimCondition("money", REQUIRED_MONEY),
 						new PlayerHasItemWithHimCondition("emerald", REQUIRED_GEM))),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				"Come back when you have the money, the gem and the gold. Goodbye.",
 				null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES, 
+			ConversationPhrases.NO_MESSAGES,
 			null,
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"No problem, just come back when you have the money, the emerald, and the gold.",
 			null);
 	}
@@ -222,7 +222,7 @@ public class RingMaker extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
-		if (player.isEquipped("emerald ring")) { 
+		if (player.isEquipped("emerald ring")) {
 			final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
 			if (emeraldRing.isBroken()) {
 				res.add("Oh no! My ring of life is broken. I must look for an expert craftsman to help me fix it.");
@@ -249,7 +249,7 @@ public class RingMaker extends AbstractQuest {
 	public String getName() {
 		return "RingMaker";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.FADO_CITY;

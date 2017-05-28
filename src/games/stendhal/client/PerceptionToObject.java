@@ -22,14 +22,14 @@ import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
 /**
  * Translates received perception to objectlisteners.
- * 
+ *
  * @author astrid
  *
  */
 class PerceptionToObject implements IPerceptionListener {
 	final Map<RPObject.ID, Set<ObjectChangeListener>> map = new HashMap<RPObject.ID,  Set<ObjectChangeListener>>();
 	private final ObjectFactory of = new ObjectFactory();
-	
+
 	/**
 	 * issues callback to Objectfactory.onAdded().
 	 */
@@ -60,7 +60,7 @@ class PerceptionToObject implements IPerceptionListener {
 			Set<ObjectChangeListener> set = map.get(object.getID());
 			if (set != null) {
 				for (ObjectChangeListener objectChangeListener : set) {
-					
+
 					objectChangeListener.deleted();
 					map.remove(object.getID());
 				}
@@ -81,7 +81,7 @@ class PerceptionToObject implements IPerceptionListener {
 			Set<ObjectChangeListener> set = map.get(object.getID());
 			if (set != null) {
 				for (ObjectChangeListener objectChangeListener : set) {
-					
+
 					objectChangeListener.modifiedAdded(changes);
 				}
 			}
@@ -113,7 +113,7 @@ class PerceptionToObject implements IPerceptionListener {
 				}
 			}
 		}
-		
+
 		if (added != null) {
 			Set<ObjectChangeListener> set = map.get(added.getID());
 			if (set != null) {
@@ -122,7 +122,7 @@ class PerceptionToObject implements IPerceptionListener {
 				}
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -145,12 +145,12 @@ class PerceptionToObject implements IPerceptionListener {
 	void register(final RPObject object, final ObjectChangeListener listener) {
 		if (object != null) {
 		if (!map.containsKey(object.getID())) {
-			map.put(object.getID(), new HashSet<ObjectChangeListener>());		
-		} 
+			map.put(object.getID(), new HashSet<ObjectChangeListener>());
+		}
 		map.get(object.getID()).add(listener);
 		}
 	}
-	
+
 	void unregister(final ObjectChangeListener listener) {
 		for (final Set<ObjectChangeListener> set : map.values()) {
 			set.remove(listener);

@@ -12,6 +12,17 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparser;
 
+import java.awt.Cursor;
+import java.io.IOException;
+import java.net.URI;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTMLDocument;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.CaseInsensitiveExprMatcher;
 import games.stendhal.common.parser.ConvCtxForMatchingSource;
 import games.stendhal.common.parser.ConversationParser;
@@ -25,19 +36,7 @@ import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
-
-import java.awt.Cursor;
-import java.io.IOException;
-import java.net.URI;
-
-import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.html.HTMLDocument;
-
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.apache.log4j.Logger;
 
 /**
  * Dialog of the NPC Conversation Parser Test Environment.
@@ -496,7 +495,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btLoadEntitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadEntitiesActionPerformed
+    private void btLoadEntitiesActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadEntitiesActionPerformed
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
 		// initialise DefaultEntityManager to load item names
@@ -510,7 +509,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btLoadEntitiesActionPerformed
 
-    private void btLoadWorldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadWorldActionPerformed
+    private void btLoadWorldActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadWorldActionPerformed
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
 		try {
@@ -540,7 +539,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		}
     }//GEN-LAST:event_btLoadWorldActionPerformed
 
-    private void btWriteWordlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btWriteWordlistActionPerformed
+    private void btWriteWordlistActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btWriteWordlistActionPerformed
 		String msg;
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -556,11 +555,11 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		JOptionPane.showMessageDialog(this, msg);
     }//GEN-LAST:event_btWriteWordlistActionPerformed
 
-	private void btParseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btParseActionPerformed
+	private void btParseActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btParseActionPerformed
 		updateParsed();
 	}// GEN-LAST:event_btParseActionPerformed
 
-	private void cbSentenceActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbSentenceActionPerformed
+	private void cbSentenceActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbSentenceActionPerformed
 //		updateParsed();
 		updateMatching();
 	}// GEN-LAST:event_cbSentenceActionPerformed
@@ -582,15 +581,15 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		return text;
 	}
 
-	private void cbMatchExprActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMatchExprActionPerformed
+	private void cbMatchExprActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMatchExprActionPerformed
 		updateMatching();
 	}// GEN-LAST:event_cbMatchExprActionPerformed
 
-	private void btMatchActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btMatchActionPerformed
+	private void btMatchActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btMatchActionPerformed
 		updateMatching();
 	}// GEN-LAST:event_btMatchActionPerformed
 
-	private void cbMatchTypeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMatchTypeActionPerformed
+	private void cbMatchTypeActionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbMatchTypeActionPerformed
 		updateMatching();
 	}// GEN-LAST:event_cbMatchTypeActionPerformed
 

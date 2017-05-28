@@ -15,7 +15,7 @@ package games.stendhal.server.core.reflectiondebugger;
 import java.util.TreeMap;
 
 /**
- * A tree map which does not override a value in <code>put</code>. 
+ * A tree map which does not override a value in <code>put</code>.
  *
  * @author hendrik
  * @param <K> the type of keys maintained by this map
@@ -34,5 +34,5 @@ public class KeepFirstTreeMap<K, V> extends TreeMap<K, V> {
 		return super.put(key, value);
 	}
 
-	
+
 }

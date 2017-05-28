@@ -28,7 +28,7 @@ public class NoLoginAreaBehaviour implements LoginListener, AreaBehaviour {
 
 	/**
 	 * Create a nologin area.
-	 * 
+	 *
 	 * @param newX
 	 *            x position to place the player at
 	 * @param newY

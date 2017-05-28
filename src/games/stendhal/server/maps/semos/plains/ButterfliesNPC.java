@@ -12,26 +12,26 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.plains;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * A bunch of butterflies
- * 
+ *
  * @author AntumDeluge
  */
 public class ButterfliesNPC implements ZoneConfigurator {
-	
+
     // Butterflies
     List<PassiveNPC> butterflies = new LinkedList<PassiveNPC>();
-    
+
 	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
@@ -52,8 +52,8 @@ public class ButterfliesNPC implements ZoneConfigurator {
 		};
         b1.setPosition(65, 63);
 		butterflies.add(b1);
-		
-		
+
+
         // Butterfly 2
         final PassiveNPC b2 = new PassiveNPC() {
             @Override
@@ -68,7 +68,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         };
         b2.setPosition(17, 74);
         butterflies.add(b2);
-        
+
         // Butterfly 3
         final PassiveNPC b3 = new PassiveNPC() {
             @Override
@@ -83,7 +83,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         };
         b3.setPosition(20, 116);
         butterflies.add(b3);
-        
+
         // Butterfly 4
         final PassiveNPC b4 = new PassiveNPC() {
             @Override
@@ -98,7 +98,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         };
         b4.setPosition(115, 118);
         butterflies.add(b4);
-        
+
         // Butterfly 5
         final PassiveNPC b5 = new PassiveNPC() {
             @Override
@@ -113,7 +113,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         };
         b5.setPosition(116, 120);
         butterflies.add(b5);
-        
+
         // Butterfly 6
         final PassiveNPC b6 = new PassiveNPC() {
             @Override
@@ -128,35 +128,35 @@ public class ButterfliesNPC implements ZoneConfigurator {
         };
         b6.setPosition(24, 31);
         butterflies.add(b6);
-        
+
         // Butterflies with random paths
         final List<PassiveNPC> randomButterflies = new LinkedList<PassiveNPC>();
-        
+
         final PassiveNPC br1 = new PassiveNPC();
         br1.setPosition(69, 55);
         randomButterflies.add(br1);
-        
+
         final PassiveNPC br2 = new PassiveNPC();
         br2.setPosition(70, 55);
         randomButterflies.add(br2);
-        
+
         final PassiveNPC br3 = new PassiveNPC();
         br3.setPosition(71, 55);
         randomButterflies.add(br3);
-        
+
         final PassiveNPC br4 = new PassiveNPC();
         br4.setPosition(14, 36);
         randomButterflies.add(br4);
-        
+
         final PassiveNPC br5 = new PassiveNPC();
         br5.setPosition(25, 17);
         randomButterflies.add(br5);
-        
+
         for (PassiveNPC insect : randomButterflies) {
             insect.moveRandomly();
             butterflies.add(insect);
         }
-        
+
         // Add butterflies to zone
 		for (PassiveNPC insect : butterflies) {
     		insect.setDescription("You see a butterfly.");

@@ -1,6 +1,14 @@
 package games.stendhal.server.maps.ados.tavern;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -9,17 +17,10 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.Log4J;
 import marauroa.server.game.db.DatabaseFactory;
-
-import static org.hamcrest.CoreMatchers.*;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
-import static utilities.SpeakerNPCTestHelper.*;
 
 
 public class BarmanNPCTest {
@@ -39,7 +40,7 @@ public class BarmanNPCTest {
 		SingletonRepository.getNPCList().clear();
 	}
 
-	
+
 	@Test
 	public void testChoclateBar() throws Exception {
 		BarmanNPC zoneconfig = new BarmanNPC();
@@ -48,26 +49,26 @@ public class BarmanNPCTest {
 		SpeakerNPC dale = SingletonRepository.getNPCList().get("dale");
 		Engine engine = dale.getEngine();
 		Player player = PlayerTestHelper.createPlayer("monsterdhal");
-		
+
 		engine.step(player,"hi");
 		assertThat(getReply(dale),is("Hey, good looking ..."));
-		
+
 		engine.step(player,"buy 500 chocolate bar");
 		assertThat(getReply(dale),is("500 chocolate bars will cost 50000. Do you want to buy them?"));
 		final Item item = ItemTestHelper.createItem("money", 50000);
 		player.getSlot("bag").add(item);
-		
+
 		engine.step(player,"yes");
 		assertThat(getReply(dale),is("Congratulations! Here are your chocolate bars!"));
-		
+
 		engine.step(player,"bye");
 		assertThat(getReply(dale),is("See you around, sweetcheeks."));
-		
 
-		
+
+
 		engine.step(player,"hi");
 		assertThat(getReply(dale),is("Hey, good looking ..."));
-		
+
 		engine.step(player,"offer");
 		assertThat(getReply(dale), anyOf(equalTo("I sell wine, pina colada, and chocolate bar."),
 				equalTo("I sell wine, chocolate bar, and pina colada."),

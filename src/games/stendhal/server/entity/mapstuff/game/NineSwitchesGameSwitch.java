@@ -25,7 +25,7 @@ public class NineSwitchesGameSwitch extends UseableEntity{
 
 	/**
 	 * creates a new Switch for the 9 switches game.
-	 * 
+	 *
 	 * @param board
 	 */
 	public NineSwitchesGameSwitch(NineSwitchesGameBoard board) {

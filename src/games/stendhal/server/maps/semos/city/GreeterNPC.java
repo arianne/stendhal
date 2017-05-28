@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * An old man (original name: Monogenes) who stands around and gives directions
@@ -34,7 +34,7 @@ public class GreeterNPC implements ZoneConfigurator {
 			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Monogenes") {
 			@Override
@@ -48,9 +48,9 @@ public class GreeterNPC implements ZoneConfigurator {
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.LEFT);
 			}
-			
-			
-			
+
+
+
 		};
 		npc.setPosition(27, 43);
 		npc.setEntityClass("oldmannpc");

@@ -16,8 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.server.db.command.DBCommandQueue;
-
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.grammar.Grammar;
@@ -31,22 +29,23 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
+import marauroa.server.db.command.DBCommandQueue;
 
 public class AcceptOfferHandler extends OfferHandler {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(AcceptOfferChatAction.class);
-	private static final List<String> TRIGGERS = Arrays.asList("buy", "accept"); 
-	
+	private static final List<String> TRIGGERS = Arrays.asList("buy", "accept");
+
 	@Override
 	public void add(SpeakerNPC npc) {
-		npc.add(ConversationStates.ATTENDING, TRIGGERS, null, ConversationStates.ATTENDING, null, 
+		npc.add(ConversationStates.ATTENDING, TRIGGERS, null, ConversationStates.ATTENDING, null,
 				new AcceptOfferChatAction());
-		npc.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, 
+		npc.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES,
 				ConversationStates.ATTENDING, null, new ConfirmAcceptOfferChatAction());
-		npc.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.NO_MESSAGES, null, 
+		npc.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
 	}
-	
+
 	class AcceptOfferChatAction extends KnownOffersChatAction {
 		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {

@@ -15,6 +15,13 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Seed;
@@ -23,13 +30,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class SeedSellerBehaviourTest {

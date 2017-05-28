@@ -20,9 +20,9 @@ import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants.TPP_Phase;
 
 public class TPPQuestInPhaseCondition implements ChatCondition {
-	
+
 	private TPP_Phase phase;
-	
+
 	public TPPQuestInPhaseCondition(TPP_Phase ph) {
 		phase = ph;
 	}

@@ -27,7 +27,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Opens the atlas URL at the current position
-	 * 
+	 *
 	 * @param params ignored
 	 * @param remainder ignored
 	 * @return <code>true</code>
@@ -36,7 +36,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 	public boolean execute(final String[] params, final String remainder) {
 		StringBuilder url = new StringBuilder();
 		User user = User.get();
-		url.append("http://stendhalgame.org/world/atlas.html");
+		url.append("https://stendhalgame.org/world/atlas.html");
 		if (user != null) {
 			url.append("?me=");
 			url.append(user.getZoneName());
@@ -45,7 +45,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 			url.append(".");
 			url.append(Math.round(user.getY()));
 		}
-		
+
 		String urlString = url.toString();
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 				"Trying to open #" + urlString + " in your browser.",
@@ -56,7 +56,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -66,7 +66,7 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

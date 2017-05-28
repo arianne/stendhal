@@ -36,28 +36,28 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 	 * to the metal version. That would be problematic for testing the code,
 	 * unfortunately. OptionPane does everything, and it's hard to check if all
 	 * the use cases are covered.
-	 * 
+	 *
 	 * The component abuses panels everywhere, and that just does not work at
 	 * all with patterned backgrounds. The tiling errors are visible, but
 	 * hopefully users do not encounter the dialogs too often for it to bother.
 	 */
 	private final Style style;
 	private boolean cleaned;
-	
+
 	/**
 	 * Create a new StyledOptionPaneUI. This method is used by the UIManager.
-	 * 
+	 *
 	 * @param pane a JOptionpane
 	 * @return StyledOptionPaneUI for pane
 	 */
 	public static ComponentUI createUI(JComponent pane) {
 		return new StyledOptionPaneUI(StyleUtil.getStyle());
 	}
-	
+
 	public StyledOptionPaneUI(Style style) {
 		this.style = style;
 	}
-	
+
 	@Override
 	public void paint(Graphics g, JComponent optionPane) {
 		/*
@@ -82,16 +82,16 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 				 */
 				((JComponent) parent).setBackground(style.getPlainColor());
 			}
-			
+
 			cleaned = true;
 		}
 	}
-	
+
 	/**
-	 * Try to clean a component and its children of the settings where it 
+	 * Try to clean a component and its children of the settings where it
 	 * assumes metal theme. BasicOptionPaneUI does not provide any access to
 	 * most of its sub components, so this seems to be the only workable way.
-	 * 
+	 *
 	 * @param component the component where to start cleaning
 	 */
 	private void cleanComponents(Component component) {
@@ -103,13 +103,13 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 				// Not a very good choice for dark backgrounds.
 				component.setForeground(style.getForeground());
 			}
-			
+
 			for (Component child : ((Container) component).getComponents()) {
 				cleanComponents(child);
 			}
 		}
 	}
-	
+
 	@Override
 	protected void addMessageComponents(Container container,
 		GridBagConstraints cons, Object msg, int maxll,
@@ -126,7 +126,7 @@ public class StyledOptionPaneUI extends BasicOptionPaneUI {
 			 text.setOpaque(false);
 			 text.setForeground(style.getForeground());
 			 text.setFont(UIManager.getFont("Label.font"));
-			 
+
 			 msg = text;
 		 }
 		 super.addMessageComponents(container, cons, msg, maxll, internallyCreated);

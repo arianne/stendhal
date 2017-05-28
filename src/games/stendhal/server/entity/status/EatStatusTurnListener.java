@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import java.util.Collections;
+import java.util.List;
+
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * eating turn listener
@@ -29,7 +29,7 @@ public class EatStatusTurnListener implements TurnListener {
 
 	/**
 	 * EatStatusTurnListener
-	 * 
+	 *
 	 * @param statusList StatusList
 	 */
 	public EatStatusTurnListener(StatusList statusList) {

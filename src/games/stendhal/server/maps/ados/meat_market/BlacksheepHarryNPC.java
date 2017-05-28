@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.meat_market;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,16 +26,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
  * Inside Ados meat market.
  */
 public class BlacksheepHarryNPC implements ZoneConfigurator {
-    
+
 	/**
 	 * Configure a zone.
 	 *
@@ -83,6 +83,6 @@ public class BlacksheepHarryNPC implements ZoneConfigurator {
 	blacksheepharry.initHP(100);
 	blacksheepharry.setDescription("You see Blacksheep Harry. He is an insider when it's about one kind of fish.");
 	zone.add(blacksheepharry);
-		
+
 	}
 }

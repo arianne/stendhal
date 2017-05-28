@@ -11,14 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.gui.LinearScalingModel;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import games.stendhal.client.gui.LinearScalingModel;
 
 /**
  * Health bar for RPEntities.
@@ -29,10 +29,10 @@ class HealthBar implements ChangeListener {
 	private final LinearScalingModel model;
 	/** A flag for signaling that the image needs updating. */
 	private volatile boolean needsRedraw = true;
-	
+
 	/**
 	 * Create a health bar.
-	 * 
+	 *
 	 * @param width width of the bar
 	 * @param height height of the bar
 	 */
@@ -42,10 +42,10 @@ class HealthBar implements ChangeListener {
 		model = new LinearScalingModel(1.0, width - 2);
 		model.addChangeListener(this);
 	}
-	
+
 	/**
 	 * Get the bar height.
-	 * 
+	 *
 	 * @return height
 	 */
 	int getHeight() {
@@ -54,25 +54,25 @@ class HealthBar implements ChangeListener {
 
 	/**
 	 * Get the bar width.
-	 * 
+	 *
 	 * @return width
 	 */
 	int getWidth() {
 		return width;
 	}
-	
+
 	/**
 	 * Set the HP ratio.
-	 * 
+	 *
 	 * @param hpRatio new HP ratio
 	 */
 	void setHPRatio(double hpRatio) {
 		model.setValue(hpRatio);
 	}
-	
+
 	/**
 	 * Draw the health bar.
-	 * 
+	 *
 	 * @param g graphics
 	 * @param x x coordinate of the top left corner
 	 * @param y y coordinate of the top left corner
@@ -98,10 +98,10 @@ class HealthBar implements ChangeListener {
 		}
 		g.drawImage(image, x, y, null);
 	}
-	
+
 	/**
 	 * Draw the health bar image.
-	 * 
+	 *
 	 * @param g graphics
 	 */
 	private void drawImage(Graphics g) {
@@ -114,10 +114,10 @@ class HealthBar implements ChangeListener {
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, width - 1, height - 1);
 	}
-	
+
 	/**
 	 * Determine the health bar color.
-	 * 
+	 *
 	 * @return bar color
 	 */
 	private Color determineColor() {

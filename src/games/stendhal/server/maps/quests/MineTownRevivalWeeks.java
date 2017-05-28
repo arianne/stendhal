@@ -84,20 +84,20 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 	public String getName() {
 		return QUEST_NAME;
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;
 	}
-	
+
 }

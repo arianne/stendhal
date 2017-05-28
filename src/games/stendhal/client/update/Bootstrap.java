@@ -420,7 +420,7 @@ public class Bootstrap {
 		} else {
 			String errorMessage = stacktraceToString(e);
 			LoneOptionDialog.showMessageDialog(message
-					+ " An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+					+ " An unexpected error occurred.\r\nPlease open a bug report at https://sf.net/projects/arianne with this error message:\r\n"
 					+ errorMessage);
 		}
 		System.exit(1);

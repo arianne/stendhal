@@ -5,6 +5,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -13,15 +19,8 @@ import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
-import java.io.IOException;
-
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.ZoneAndPlayerTestImpl;
 
 /**
@@ -118,7 +117,7 @@ public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 
 		final DisplaceAction action = new DisplaceAction();
 		assertTrue(displace.has(EquipActionConsts.BASE_ITEM));
-	
+
 		action.onAction(player, displace);
 		assertEquals(0, player.events().size());
 		items = localzone.getItemsOnGround().toArray(new StackableItem[0]);
@@ -189,7 +188,7 @@ public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 
 	/**
 	 * Test for displacing to an occupied place.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@Test
 	public void testDisplaceOccupied() throws IOException {
@@ -255,7 +254,7 @@ public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 		assertEquals(1, player.events().size());
 		assertEquals("You cannot take items which are below other players.", player.events().get(0).get("text"));
 	}
-	
+
 	/**
 	 * Test for displacing bound items below some other player.
 	 */

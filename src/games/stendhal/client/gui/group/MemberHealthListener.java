@@ -19,17 +19,17 @@ import games.stendhal.client.entity.RPEntity;
  */
 class MemberHealthListener implements EntityChangeListener<RPEntity> {
 	private final Member member;
-	
+
 	/**
 	 * Create a new MemberHealthListener.
-	 *  
+	 *
 	 * @param member member whose hp ratio should be changed when the entity's
-	 * 	hp ratio changes 
+	 * 	hp ratio changes
 	 */
 	MemberHealthListener(final Member member) {
 		this.member = member;
 	}
-	
+
 	@Override
 	public void entityChanged(RPEntity entity, Object property) {
 		if (property == RPEntity.PROP_HP_RATIO) {

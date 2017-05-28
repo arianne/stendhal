@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
-
 import java.io.IOException;
 import java.net.URI;
 import java.util.LinkedList;
@@ -23,12 +21,14 @@ import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
+
 /**
  * Load and configure items via an XML configuration file.
  */
 public class ItemGroupsXMLLoader extends DefaultHandler {
 
-	
+
 	private static final Logger LOGGER = Logger.getLogger(ItemGroupsXMLLoader.class);
 
 	/** The main item configuration file. */
@@ -36,7 +36,7 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Create an xml based loader of item groups.
-	 * 
+	 *
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
@@ -46,7 +46,7 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Load items.
-	 * 
+	 *
 	 * @return list of items
 	 * @throws SAXException
 	 *             If a SAX error occurred.

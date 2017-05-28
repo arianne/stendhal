@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.orril.dwarfmine;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -19,14 +24,9 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Configure Orril Dwarf Blacksmith (Underground/Level -3).
- * 
+ *
  * @author kymara
  */
 public class BlacksmithNPC implements ZoneConfigurator {
@@ -76,7 +76,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				        null);
 				addGoodbye("So long. I bet you won't sleep so well tonight.");
 				addReply("bobbin", "Bobbins? BOBBINS?! Do you think I am a female?! Pfff go find some other blacksmith I'm no bobbin maker.");
-				
+
 			} //remaining behaviour defined in maps.quests.VampireSword and  maps.quests.MithrilCloak
 		};
 

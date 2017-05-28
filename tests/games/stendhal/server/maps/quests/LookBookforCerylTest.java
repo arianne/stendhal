@@ -18,6 +18,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.Arrays;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -29,16 +36,7 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.orril.magician_house.WitchNPC;
 import games.stendhal.server.maps.semos.library.LibrarianNPC;
-
-import java.util.Arrays;
-
 import marauroa.common.Log4J;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class LookBookforCerylTest {
@@ -73,7 +71,7 @@ public class LookBookforCerylTest {
 	@Test
 	public final void askJynathWithoutQuest() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-	
+
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("joe");
 		assertFalse(quest.isStarted(pl));
@@ -97,7 +95,7 @@ public class LookBookforCerylTest {
 	@Test
 	public final void comeBackFromJynathWithoutBook() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-	
+
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("joe");
 		pl.setQuest(CERYL_BOOK, "jynath");
@@ -115,7 +113,7 @@ public class LookBookforCerylTest {
 	@Test
 	public void doQuest() throws Exception {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-	
+
 		quest.addToWorld();
 		final Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
@@ -197,28 +195,28 @@ public class LookBookforCerylTest {
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();
 		quest.addToWorld();
-	
+
 		assertTrue(quest.getHistory(pl).isEmpty());
 
 		pl.setQuest(CERYL_BOOK, "rejected");
 		assertEquals(2, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
-						"I have met Ceryl at the library, he's the librarian there.", 
+						"I have met Ceryl at the library, he's the librarian there.",
 						"I do not want to find the book."),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "start");
 		assertEquals(2, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
-					"I have met Ceryl at the library, he's the librarian there.", 
+					"I have met Ceryl at the library, he's the librarian there.",
 					"I promised to fetch the black book from Jynath."),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "jynath");
 		assertEquals(3, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
-					"I have met Ceryl at the library, he's the librarian there.", 
-					"I promised to fetch the black book from Jynath.", 
+					"I have met Ceryl at the library, he's the librarian there.",
+					"I promised to fetch the black book from Jynath.",
 					"I do not have the black book Jynath has."),
 				quest.getHistory(pl));
 
@@ -229,18 +227,18 @@ public class LookBookforCerylTest {
 		pl.equipOrPutOnGround(item);
 		assertEquals(3, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
-					"I have met Ceryl at the library, he's the librarian there.", 
-					"I promised to fetch the black book from Jynath.", 
+					"I have met Ceryl at the library, he's the librarian there.",
+					"I promised to fetch the black book from Jynath.",
 					"I have talked to Jynath, and have the book."),
 				quest.getHistory(pl));
 
 		pl.setQuest(CERYL_BOOK, "done");
 		assertEquals(4, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList(
-					"I have met Ceryl at the library, he's the librarian there.", 
+					"I have met Ceryl at the library, he's the librarian there.",
 					"I promised to fetch the black book from Jynath.",
-					"I have talked to Jynath, and have the book.", 
-					"I have returned the book to Ceryl and got a little reward."), 
+					"I have talked to Jynath, and have the book.",
+					"I have returned the book to Ceryl and got a little reward."),
 				quest.getHistory(pl));
 	}
 
@@ -276,7 +274,7 @@ public class LookBookforCerylTest {
 	@Test
 	public final void testIsStarted() {
 		final LookBookforCeryl quest = new LookBookforCeryl();
-	
+
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		assertFalse(bob.hasQuest(LookBookforCerylTest.CERYL_BOOK));
 		assertFalse(quest.isStarted(bob));

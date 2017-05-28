@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.townhall;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Creates the cadet npcs in townhall.

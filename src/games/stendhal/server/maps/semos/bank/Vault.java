@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.bank;
 
+import java.awt.geom.Rectangle2D;
+import java.util.Set;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
@@ -29,9 +32,6 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.Teleporter;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
-
-import java.awt.geom.Rectangle2D;
-import java.util.Set;
 
 public class Vault extends StendhalRPZone {
 

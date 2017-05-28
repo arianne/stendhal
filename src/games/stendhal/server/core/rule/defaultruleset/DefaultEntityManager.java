@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
+import java.net.URI;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
@@ -23,17 +31,9 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.spell.Spell;
 
-import java.net.URI;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 /**
  * entity manager for the default ruleset.
- * 
+ *
  * @author Matthias Totz
  */
 public class DefaultEntityManager implements EntityManager {
@@ -52,10 +52,10 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** lists all items that are being used at least once . */
 	private final Map<String, Item> createdItem;
-	
+
 	/** lists all spell that are being used at least once . */
 	private final Map<String, Spell> createdSpell;
-	
+
 	/**
 	 * lists all loaded default spells that are usable
 	 */
@@ -75,7 +75,7 @@ public class DefaultEntityManager implements EntityManager {
 		buildCreatureTables();
 		buildSpellTables();
 	}
-	
+
 	/**
 	 * builds the spell tables
 	 */
@@ -165,7 +165,7 @@ public class DefaultEntityManager implements EntityManager {
 
 		return true;
 	}
-	
+
 	@Override
 	public boolean addCreature(final DefaultCreature creature) {
 		final String id = creature.getTileId();
@@ -192,7 +192,7 @@ public class DefaultEntityManager implements EntityManager {
 		nameToSpell.put(spell.getName(), spell);
 		return true;
 	}
-	
+
 	/**
 	 * @return a list of all Creatures that are instantiated.
 	 */
@@ -211,11 +211,11 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown.
-	 * 
+	 *
 	 * @param clazz
 	 *            RPClass
 	 * @return the new created entity or null if class not found
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -242,8 +242,8 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * @param tileset 
-	 * @param id 
+	 * @param tileset
+	 * @param id
 	 * @return the creature or <code>null</code> if the id is unknown.
 	 */
 	@Override
@@ -257,9 +257,9 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * @param clazz 
+	 * @param clazz
 	 * @return the creature or <code>null</code> if the clazz is unknown.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -282,10 +282,10 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * @param clazz 
+	 * @param clazz
 	 * @return the DefaultCreature or <code>null</code> if the clazz is
 	 *         unknown.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -299,8 +299,8 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.get(clazz);
 	}
 
-	/** @param tileset 
-	 * @param id 
+	/** @param tileset
+	 * @param id
 	 * @return true if the Entity is a creature. */
 	@Override
 	public boolean isCreature(final String tileset, final int id) {
@@ -312,7 +312,7 @@ public class DefaultEntityManager implements EntityManager {
 		return isCreature(clazz);
 	}
 
-	/** @param clazz 
+	/** @param clazz
 	 * @return true if the Entity is a creature . */
 	@Override
 	public boolean isCreature(final String clazz) {
@@ -323,7 +323,7 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.containsKey(clazz);
 	}
 
-	/** @param clazz 
+	/** @param clazz
 	 * @return true if the Entity is a creature. */
 	@Override
 	public boolean isItem(final String clazz) {
@@ -335,9 +335,9 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * @param clazz 
+	 * @param clazz
 	 * @return the item or <code>null</code> if the clazz is unknown.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */

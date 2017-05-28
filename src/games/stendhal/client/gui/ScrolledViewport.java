@@ -27,10 +27,10 @@ public class ScrolledViewport {
 	private final JScrollPane scrollPane;
 	private final JComponent view;
 	private final Border originalBorder;
-	
+
 	/**
 	 * Create a new ScrolledViewport.
-	 * 
+	 *
 	 * @param view child component. The border that view has at the moment when
 	 * 	the ScrolledViewport is created is used when ant least one of the scroll
 	 * 	bars is visible.
@@ -43,26 +43,26 @@ public class ScrolledViewport {
 		scrollPane.getHorizontalScrollBar().addComponentListener(listener);
 		scrollPane.getVerticalScrollBar().addComponentListener(listener);
 	}
-	
+
 	/**
 	 * Get the enclosing component.
-	 * 
+	 *
 	 * @return JScrollPane containing the view
 	 */
 	public JComponent getComponent() {
 		return scrollPane;
 	}
-	
+
 	/**
 	 * Set the scrolling speed when using the mouse wheel.
-	 * 
+	 *
 	 * @param speed
 	 */
 	public void setScrollingSpeed(int speed) {
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(speed);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(speed);
 	}
-	
+
 	/**
 	 * Listener for following scroll bar visibility changes.
 	 */
@@ -71,12 +71,12 @@ public class ScrolledViewport {
 		public void componentHidden(ComponentEvent e) {
 			updateBorder();
 		}
-		
+
 		@Override
 		public void componentShown(ComponentEvent e) {
 			updateBorder();
 		}
-		
+
 		/**
 		 * Show the border if at least one of the scroll bars is visible, hide
 		 * it otherwise.

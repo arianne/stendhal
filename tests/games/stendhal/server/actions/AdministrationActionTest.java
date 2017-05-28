@@ -20,6 +20,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.AlterAction;
@@ -33,21 +41,12 @@ import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.io.IOException;
-import java.sql.SQLException;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 import utilities.RPClass.ArrestWarrentTestHelper;
@@ -64,7 +63,7 @@ public class AdministrationActionTest {
 		CreatureTestHelper.generateRPClasses();
 		CorpseTestHelper.generateRPClasses();
 		// load item classes including "dagger" from XML
-		//DefaultEntityManager.getInstance();	
+		//DefaultEntityManager.getInstance();
 		AdministrationAction.registerActions();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
@@ -169,7 +168,7 @@ public class AdministrationActionTest {
 		action.put("text", "huhu");
 		CommandCenter.execute(pl, action);
 		assertEquals("Administrator SHOUTS: huhu", pl.events().get(0).get("text"));
-	
+
 	}
 
 	/**
@@ -536,11 +535,11 @@ public class AdministrationActionTest {
 		assertEquals("def", 6, rat.getDef());
 		assertEquals("hp", 7, rat.getHP());
 		assertEquals("xp", 8, rat.getXP());
-		
+
 		action.put("text", "-;-;-;100;100");
-		
+
 		CommandCenter.execute(pl, action);
-		
+
 		assertEquals("name", "newname", rat.getName());
 		assertEquals("atk", 5, rat.getAtk());
 		assertEquals("def", 6, rat.getDef());
@@ -583,12 +582,12 @@ public class AdministrationActionTest {
 
 	/**
 	 * Tests for jail.
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	@Test
 	public final void testJail() throws SQLException, IOException {
-		
+
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail", 100, 100));
 
 		final Player player = PlayerTestHelper.createPlayer("hugo");
@@ -645,7 +644,7 @@ public class AdministrationActionTest {
 		assertEquals("Usage: /jail <name> <minutes> <reason>", player.events().get(0).get("text"));
 		player.clearEvents();
 
-		
+
 		action = new RPAction();
 		action.put("type", "jail");
 		action.put("target", "hugo");

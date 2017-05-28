@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * a portal which requires a password to pass through
@@ -25,14 +25,14 @@ import org.apache.log4j.Logger;
 
 // PasswordPortal does not extend AccessCheckingPortal because they are not "used".
 public class PasswordPortal extends Portal {
-    
+
     // Logger instance
     private static final Logger logger = Logger.getLogger(PasswordPortal.class);
-    
+
     private String requiredPassword;
     private String acceptedMessage;
     private String rejectedMessage;
-    
+
     private int listeningRadius = 1;
 
     /**
@@ -49,7 +49,7 @@ public class PasswordPortal extends Portal {
     public PasswordPortal(final String password) {
         this.requiredPassword = password;
     }
-    
+
     /**
      * gets the password
      *
@@ -62,7 +62,7 @@ public class PasswordPortal extends Portal {
 
     /**
      * Finds players nearby that have spoken.
-     * 
+     *
      * @return
      *      List of players
      */
@@ -89,7 +89,7 @@ public class PasswordPortal extends Portal {
 
         return players;
     }
-    
+
     /**
      * gets the reject message
      *
@@ -99,13 +99,13 @@ public class PasswordPortal extends Portal {
     public String getRejectedMessage() {
         return this.rejectedMessage;
     }
-    
+
     @Override
 	public void logic() {
         List<Player> players = getNearbyPlayersThatHaveSpoken();
-        
+
         String text;
-        
+
         for (Player player : players) {
             text = player.get("text");
             if (text.equals(requiredPassword)) {
@@ -118,7 +118,7 @@ public class PasswordPortal extends Portal {
             }
         }
     }
-    
+
     /**
      * Override so portal does not get "used"
      */
@@ -132,7 +132,7 @@ public class PasswordPortal extends Portal {
 
     /**
      * Optional message to be sent to player when portal is successfully used
-     * 
+     *
      * @param message
      *      Message to be sent
      */
@@ -141,7 +141,7 @@ public class PasswordPortal extends Portal {
     }
 
     /**
-     * 
+     *
      * @param radius
      *      Radius at which portal will listen for player's speech
      */
@@ -161,7 +161,7 @@ public class PasswordPortal extends Portal {
     public void setPassword(final String password) {
         this.requiredPassword = password;
     }
-    
+
     /**
      * sets the reject message
      *

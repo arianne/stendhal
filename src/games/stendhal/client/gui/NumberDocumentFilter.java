@@ -27,7 +27,7 @@ public class NumberDocumentFilter extends DocumentFilter {
 
 	/**
 	 * Create a filter for a text component.
-	 * 
+	 *
 	 * @param comp text component. This is only used to highlight the "0"
 	 * 	when the user deletes all other text
 	 * @param defaultZero if <code>true</code>, then on clearing the document,

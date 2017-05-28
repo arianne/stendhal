@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -23,29 +26,26 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * QUEST: ElvishArmor
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Lupos, an albino elf who live in Fado Forest</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Lupos wants to see every piece of elvish equipment you can bring him</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 20000 XP</li>
  * <li> Karma:25</li>
  * <li> ability to sell elvish stuff and also drow sword</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li> None.</li>
@@ -55,9 +55,9 @@ public class ElvishArmor extends AbstractQuest implements
 		BringListOfItemsQuest {
 
 	private static final String QUEST_SLOT = "elvish_armor";
-	
+
 	private BringListOfItemsQuestLogic bringItems;
-	
+
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
 			"elvish cloak", "elvish shield");
@@ -66,7 +66,7 @@ public class ElvishArmor extends AbstractQuest implements
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return bringItems.getHistory(player);
@@ -180,7 +180,7 @@ public class ElvishArmor extends AbstractQuest implements
 	public String respondToLastItemBrought() {
 		return "I will study these! The albino elves owe you a debt of thanks.";
 	}
-								
+
 	@Override
 	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "Liar! You don't really have "
@@ -204,7 +204,7 @@ public class ElvishArmor extends AbstractQuest implements
 
 	@Override
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
-		return "I'm now busy studying the properties of the elvish armor you brought me. It really is intriguing. Until I can reproduce it, I would buy similar items from you."; 
+		return "I'm now busy studying the properties of the elvish armor you brought me. It really is intriguing. Until I can reproduce it, I would buy similar items from you.";
 	}
 
 	@Override
@@ -260,7 +260,7 @@ public class ElvishArmor extends AbstractQuest implements
 	public String getNPCName() {
 		return "Lupos";
 	}
-	
+
 	// it's technically in Fado forest but much nearer Kirdneh city
 	@Override
 	public String getRegion() {

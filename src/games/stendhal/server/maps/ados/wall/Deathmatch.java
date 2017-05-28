@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.wall;
 
+import java.awt.geom.Rectangle2D;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.quests.AdosDeathmatch;
 import games.stendhal.server.util.Area;
-
-import java.awt.geom.Rectangle2D;
-import java.util.Map;
 
 /**
  * Ados Wall North population - Deathmatch.

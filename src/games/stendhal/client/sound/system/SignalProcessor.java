@@ -49,8 +49,9 @@ public abstract class SignalProcessor
                 mNext = processor;
                 mPrev = processor.mPrev;
 
-                if(processor.mPrev != null)
-                    processor.mPrev.mNext = this;
+                if(processor.mPrev != null) {
+					processor.mPrev.mNext = this;
+				}
 
                 processor.mPrev = this;
             }
@@ -59,8 +60,9 @@ public abstract class SignalProcessor
                 mNext = processor.mNext;
                 mPrev = processor;
 
-                if(processor.mNext != null)
-                    processor.mNext.mPrev = this;
+                if(processor.mNext != null) {
+					processor.mNext.mPrev = this;
+				}
 
                 processor.mNext = this;
             }
@@ -76,8 +78,9 @@ public abstract class SignalProcessor
     {
         if(before)
         {
-            if(mNext == processor)
-                return;
+            if(mNext == processor) {
+				return;
+			}
 
             if(mNext           != null) { mNext.mPrev           = null; }
             if(processor.mPrev != null) { processor.mPrev.mNext = null; }
@@ -87,8 +90,9 @@ public abstract class SignalProcessor
         }
         else
         {
-            if(mPrev == processor)
-                return;
+            if(mPrev == processor) {
+				return;
+			}
 
             if(mPrev           != null) { mPrev.mNext           = null; }
             if(processor.mNext != null) { processor.mNext.mPrev = null; }
@@ -120,13 +124,14 @@ public abstract class SignalProcessor
 
     /**
      * Replaces this SignalProcessor with "processor" in the processing chain
-     * 
+     *
      * @param processor
      */
     public final synchronized void replace(SignalProcessor processor)
     {
-        if(processor == this)
-            return;
+        if(processor == this) {
+			return;
+		}
 
         if(processor != null)
         {
@@ -134,7 +139,7 @@ public abstract class SignalProcessor
 
 			if(mNext != null) { mNext.mPrev = processor; }
 			if(mPrev != null) { mPrev.mNext = processor; }
-			
+
             processor.mNext = mNext;
             processor.mPrev = mPrev;
         }
@@ -162,7 +167,7 @@ public abstract class SignalProcessor
 			mPrev       = null;
 		}
     }
-    
+
     /**
      * This function should be called from a derived class
      * to propagate the modified audio data to the next SignalProcessor in the chain
@@ -174,30 +179,33 @@ public abstract class SignalProcessor
      */
     protected final synchronized void propagate(float[] data, int samples, int channels, int rate)
     {
-        if(mNext != null)
-            mNext.modify(data, samples, channels, rate);
+        if(mNext != null) {
+			mNext.modify(data, samples, channels, rate);
+		}
     }
 
     public final synchronized void quit()
     {
-        if(mNext != null)
-            mNext.finished();
+        if(mNext != null) {
+			mNext.finished();
+		}
     }
 
     /**
      * This will call the generate() method of the first
      * SignalProcessor in the processing chain
-     * 
+     *
      * @return <code>true</code>, until the stream is finished
      */
     public synchronized boolean request()
     {
-        if(mPrev != null)
-            return mPrev.request();
+        if(mPrev != null) {
+			return mPrev.request();
+		}
 
         return generate();
     }
-    
+
     /**
      * This function should be overwritten by all classes that want to
      * modify an PCM audio stream. The audio data is uniform and interleaved.
@@ -210,7 +218,7 @@ public abstract class SignalProcessor
      *              and so on ...
      *
 	 * The number of samples can be calculated by: frames * channels
-	 * 
+	 *
      * @param data     the audio data
      * @param frames   the number of sample frames contained in "data"
      * @param channels number of channels
@@ -224,8 +232,8 @@ public abstract class SignalProcessor
     /**
      * This function should be overwritten by all classes that want to
      * generate an PCM audio stream e.g. a mp3 decoder, a frequency generator, ...
-     * 
-     * @return <code>true</code>, until the stream is finished 
+     *
+     * @return <code>true</code>, until the stream is finished
      */
     protected boolean generate() { return false; }
 
@@ -234,7 +242,7 @@ public abstract class SignalProcessor
     /**
      * This function will create a processing chain by connecting any number
      * of SignalProcessors together
-     * 
+     *
      * @param processors any number of SignalProcessors to insert together
      */
     public static void createChain(SignalProcessor ...processors)
@@ -243,8 +251,9 @@ public abstract class SignalProcessor
 
         if(l >= 2)
         {
-            for(int i=1; i<(l - 1); ++i)
-                processors[i].insert(processors[i-1], false);
+            for(int i=1; i<(l - 1); ++i) {
+				processors[i].insert(processors[i-1], false);
+			}
 
             processors[0  ].connectTo(processors[1  ], true);
             processors[l-1].connectTo(processors[l-2], false);

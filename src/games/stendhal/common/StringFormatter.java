@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * Each parameter name in the control string is replaced by its value.
- * 
+ *
  * @author matthias
  */
 public class StringFormatter {
@@ -54,7 +54,7 @@ public class StringFormatter {
 
 	/**
 	 * Creates a new instance of StringFormatter.
-	 * 
+	 *
 	 * @param formatString format string
 	 */
 	public StringFormatter(final String formatString) {
@@ -96,7 +96,7 @@ public class StringFormatter {
 	/**
 	 * Sets the value of a parameter
 	 *
-	 * @param param key 
+	 * @param param key
 	 * @param value value
 	 */
 	public void set(final String param, final String value) {

@@ -12,16 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps;
 
-import static org.junit.Assert.*;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.player.Player;
-
-import static org.hamcrest.core.Is.*;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 
 public class MockStendhalRPRuleProcessorTest {
@@ -34,7 +35,7 @@ public class MockStendhalRPRuleProcessorTest {
 
 	@AfterClass
 	public static void teardownAfterClass() throws Exception {
-		
+
 		MockStendlRPWorld.reset();
 	}
 	/**

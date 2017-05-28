@@ -23,15 +23,15 @@ public class AttributedStringBuilder implements AttributedTextSink<TextAttribute
 	private final StringBuilder stringBuilder = new StringBuilder();
 	/** Attributes and their positions to be added to the finished string. */
 	private final List<AttributeDefinition> attributeList = new ArrayList<AttributeDefinition>();
-	
+
 	@Override
 	public String toString() {
 		return stringBuilder.toString();
 	}
-	
+
 	/**
 	 * Append a string with attributes.
-	 * 
+	 *
 	 * @param s string
 	 * @param attrs attributes to be used for the appended part
 	 */
@@ -40,26 +40,26 @@ public class AttributedStringBuilder implements AttributedTextSink<TextAttribute
 		int beginIndex = stringBuilder.length();
 		int endIndex = beginIndex + s.length();
 		stringBuilder.append(s);
-		
+
 		attributeList.add(new AttributeDefinition(attrs, beginIndex, endIndex));
 	}
-	
+
 	/**
 	 * Get the built AttributedString.
-	 *  
+	 *
 	 * @return AttributedString with the appended parts and attributes that have
-	 *	been defined for those at the time of appending 
+	 *	been defined for those at the time of appending
 	 */
 	public AttributedString toAttributedString() {
 		AttributedString rval = new AttributedString(toString());
-		
+
 		for (AttributeDefinition def : attributeList) {
 			def.apply(rval);
 		}
-		
+
 		return rval;
 	}
-	
+
 	/**
 	 * Holder for attributes and their locations.
 	 */
@@ -68,7 +68,7 @@ public class AttributedStringBuilder implements AttributedTextSink<TextAttribute
 		private final TextAttributeSet attrs;
 		/** Range indices for the attributes. */
 		private final int beginIndex, endIndex;
-		
+
 		/**
 		 * Create new AttributeDefinition.
 		 * @param attrs attribute values
@@ -80,10 +80,10 @@ public class AttributedStringBuilder implements AttributedTextSink<TextAttribute
 			this.beginIndex = beginIndex;
 			this.endIndex = endIndex;
 		}
-		
+
 		/**
 		 * Apply the attributes to the appropriate range of an AttributedString.
-		 * 
+		 *
 		 * @param str string to be annotated with the attributes
 		 */
 		void apply(AttributedString str) {

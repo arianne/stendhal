@@ -238,7 +238,7 @@ public class ColorSelector extends JButton {
     int margin = margin();
 
     // draw border
-    getBorder().paintBorder(this, g, 0, 0, width - 1, height - 1); 
+    getBorder().paintBorder(this, g, 0, 0, width - 1, height - 1);
 
     // draw the color
     g.setColor(color);

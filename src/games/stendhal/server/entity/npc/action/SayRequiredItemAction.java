@@ -13,6 +13,12 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -21,11 +27,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 /**
  * States the name of the item, with formatting/grammar rules, stored in the quest slot

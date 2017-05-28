@@ -24,12 +24,12 @@ class MessageAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if command was handled.
 	 */
 	@Override
@@ -52,7 +52,7 @@ class MessageAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -62,7 +62,7 @@ class MessageAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -72,7 +72,7 @@ class MessageAction implements SlashAction {
 
 	/**
 	 * Gets the last player we have sent something using /tell.
-	 * 
+	 *
 	 * @return player name
 	 */
 	String getLastPlayerTell() {

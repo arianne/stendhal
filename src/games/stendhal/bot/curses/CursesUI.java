@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.bot.curses;
 
-import jcurses.util.Protocol;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.common.NotificationType;
+import jcurses.util.Protocol;
 
 /**
  * the curses user interface
@@ -63,7 +63,7 @@ public class CursesUI implements UserInterface {
 	 * @param isTalking chat?
 	 */
 	@Override
-	public void addGameScreenText(double x, double y, 
+	public void addGameScreenText(double x, double y,
 			String text, NotificationType type,
 			boolean isTalking) {
 		// ignored
@@ -83,7 +83,7 @@ public class CursesUI implements UserInterface {
 	public void addAchievementBox(String title, String description,
 			String category) {
 		// ignored
-		
+
 	}
 
 }

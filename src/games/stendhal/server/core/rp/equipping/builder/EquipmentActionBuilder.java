@@ -13,6 +13,7 @@ package games.stendhal.server.core.rp.equipping.builder;
 
 import static games.stendhal.common.constants.Actions.BASEITEM;
 import static games.stendhal.common.constants.Actions.X;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.rp.equipping.EquipmentActionData;

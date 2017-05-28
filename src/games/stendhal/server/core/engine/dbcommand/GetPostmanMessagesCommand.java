@@ -11,13 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.ChatMessage;
-import games.stendhal.server.core.engine.db.PostmanDAO;
-import games.stendhal.server.entity.player.Player;
-
 import java.sql.SQLException;
 import java.util.List;
 
+import games.stendhal.server.core.engine.ChatMessage;
+import games.stendhal.server.core.engine.db.PostmanDAO;
+import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
@@ -56,9 +55,9 @@ public class GetPostmanMessagesCommand extends AbstractDBCommand {
 	 * @return messages
 	 */
 	public List<ChatMessage> getMessages() {
-		return messages; 
+		return messages;
 	}
-	
+
 	/**
 	 * To access the player sending the query
 	 *

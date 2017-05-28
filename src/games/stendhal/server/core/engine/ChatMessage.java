@@ -17,7 +17,7 @@ public class ChatMessage {
 	public final String message;
 	public final String timestamp;
 	public final String messagetype;
-	
+
 	/**
 	 * a chat message from a source at a time.
 	 *
@@ -32,14 +32,14 @@ public class ChatMessage {
 		this.timestamp = timestamp;
 		this.messagetype = messagetype;
 	}
-	
+
 	/**
 	 * @return source
 	 */
 	public String getSource() {
 		return source;
 	}
-	
+
 	/**
 	 * @return message
 	 */
@@ -53,14 +53,14 @@ public class ChatMessage {
 	public String getTimestamp() {
 		return timestamp;
 	}
-	
+
 	/**
 	 * @return messagetype
 	 */
 	public String getMessagetype() {
 		return messagetype;
 	}
-	
+
 	/**
 	 * @return string of full ChatMessage details
 	 */

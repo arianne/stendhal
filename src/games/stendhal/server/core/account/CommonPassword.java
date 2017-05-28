@@ -25,12 +25,12 @@ import marauroa.common.game.Result;
  */
 public class CommonPassword implements AccountParameterValidator {
 	private List<String> commonPasswords = Arrays.asList(
-			"stendhal", "stendhal1", 
-			"password", "password1", 
-			"passwort", "passwort1", 
+			"stendhal", "stendhal1",
+			"password", "password1",
+			"passwort", "passwort1",
 			"arianne", "marauroa",
 			"112233", "123123", "123456", "12345678", "123456789", "1234567890",
-			"jesus", "love", "game", "letmein", 
+			"jesus", "love", "game", "letmein",
 			"qwerty", "qwertz",	"monkey", "test", "master", "killer",
 			"abc123", "fuckyou"
 		);

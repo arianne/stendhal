@@ -65,23 +65,23 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 	public void setUp() {
 		StendhalRPZone hostelZone = new StendhalRPZone(HOSTEL_ZONE_NAME);
 		new BoyNPC().configureZone(hostelZone, null);
-		
+
 		StendhalRPZone templeZone = new StendhalRPZone(TEMPLE_ZONE_NAME);
 		new HealerNPC().configureZone(templeZone, null);
-		
+
 		StendhalRPZone townhallZone = new StendhalRPZone(TOWNHALL_ZONE_NAME);
 		new DecencyAndMannersWardenNPC().configureZone(townhallZone, null);
 
 		quest = new MedicineForTad();
 		quest.addToWorld();
 		new MeetKetteh().addToWorld();
-		
+
 		questSlot = quest.getSlotName();
 
 		player = PlayerTestHelper.createPlayer("player");
 		player.setQuest("TadFirstChat", "done");
 	}
-	
+
 	@Override
 	@After
 	public void tearDown() {
@@ -95,7 +95,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		return getReply(npc);
 	}
-	
+
 	@Test
 	public void testKettehIntroducesTad() {
 		player.setQuest(questSlot, null);
@@ -105,13 +105,13 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals(MedicineForTad.KETTEH_TALK_BYE_INTRODUCES_TAD, getReply(npc));
 	}
-	
+
 	@Test
 	public void testKettehRemindsOfTad() {
 		player.setQuest(questSlot, MedicineForTad.STATE_START);
 
 		startTalkingToNpc("Ketteh Wehoh");
-		
+
 		en.step(player, "bye");
 		assertEquals(MedicineForTad.KETTEH_TALK_BYE_REMINDS_OF_TAD, getReply(npc));
 	}
@@ -132,7 +132,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(MedicineForTad.STATE_START, player.getQuest(questSlot));
 		assertHistory(MedicineForTad.HISTORY_MET_TAD, MedicineForTad.HISTORY_QUEST_OFFERED);
 	}
-	
+
 	@Test
 	public void testRefuseQuest() {
 		player.setQuest(questSlot, null);
@@ -157,7 +157,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 
 		String firstReply = startTalkingToNpc("Tad");
 
-		String expectedReply = MedicineForTad.TAD_TALK_GOT_FLASK + " " 
+		String expectedReply = MedicineForTad.TAD_TALK_GOT_FLASK + " "
 				+ MedicineForTad.TAD_TALK_REWARD_MONEY + " "
 				+ MedicineForTad.TAD_TALK_FLASK_ILISA;
 		assertEquals(expectedReply, firstReply);
@@ -213,7 +213,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		String firstReply = startTalkingToNpc("Ilisa");
 
 		assertEquals(MedicineForTad.ILISA_TALK_PREPARE_MEDICINE, firstReply);
-		
+
 		assertEquals("potion", player.getQuest(questSlot));
 	}
 
@@ -226,7 +226,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(MedicineForTad.TAD_TALK_COMPLETE_QUEST, firstReply);
 		assertEquals("done", player.getQuest(questSlot));
 	}
-	
+
 	@Test
 	public void testKettehDoesNotMentionTad() {
 		player.setQuest(questSlot, MedicineForTad.STATE_DONE);
@@ -236,7 +236,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
-	
+
 	@Test
 	public void testTalkAboutHerbsBeforeStarting() {
 		// Test for bug #5839. Saying "herbs" to Ilisa broke the quest state

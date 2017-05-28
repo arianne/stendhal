@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
-import games.stendhal.common.NotificationType;
-import games.stendhal.common.filter.FilterCriteria;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Manages the list of online players.

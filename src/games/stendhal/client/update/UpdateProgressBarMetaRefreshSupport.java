@@ -21,7 +21,7 @@ import javax.swing.JEditorPane;
 import javax.swing.SwingUtilities;
 
 /**
- * adds support &lt;meta http-equiv="refresh" content="30; url=http://arianne.sf.net/"&gt;
+ * adds support &lt;meta http-equiv="refresh" content="30; url=https://arianne-project.org/"&gt;
  *
  * @author hendrik
  */
@@ -49,7 +49,7 @@ class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListener, Run
 	 */
 	private boolean parseHtml(String html) {
 
-		// <meta http-equiv="refresh" content="30; url=http://arianne.sf.net/">
+		// <meta http-equiv="refresh" content="30; url=https://arianne-project.org/">
 		Pattern p = Pattern.compile("<meta http-equiv=\"refresh\" content=\"([^;]*); url=([\"]*)\">");
 		Matcher m = p.matcher(html);
 		if (!m.find()) {

@@ -12,6 +12,7 @@
 package games.stendhal.server.core.rp.equipping.builder;
 
 import static games.stendhal.common.constants.Actions.BASEITEM;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.equipping.EquipmentActionData;
 import games.stendhal.server.entity.Entity;

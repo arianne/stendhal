@@ -17,6 +17,10 @@ import static games.stendhal.common.constants.Actions.FACE;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
@@ -24,10 +28,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Testing;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import marauroa.common.game.RPAction;
 
 /**
@@ -45,7 +45,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Create a new GameKeyHandler.
-	 * 
+	 *
 	 * @param client client to send direction commands
 	 * @param screen screen where to direct game screen related commands
 	 */
@@ -96,7 +96,7 @@ class GameKeyHandler implements KeyListener {
 
 				/* TODO: Remove MOTION condition when auto-walk testing is
 				 * finished.
-				 * 
+				 *
 				 * Check if the player is currently using auto-walk or the Alt
 				 * key is pressed.
 				 */
@@ -188,9 +188,9 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Convert a keycode to the corresponding direction.
-	 * 
+	 *
 	 * @param keyCode The keycode.
-	 * 
+	 *
 	 * @return The direction, or <code>null</code>.
 	 */
 	private Direction keyCodeToDirection(final int keyCode) {
@@ -215,7 +215,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Handle direction press actions.
-	 * 
+	 *
 	 * @param direction The direction.
 	 * @param facing If facing only.
 	 */
@@ -247,7 +247,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Handle direction press to invoke or disable auto-walk.
-	 * 
+	 *
 	 * @param direction
 	 *        The direction to move/face
 	 * @param user
@@ -287,7 +287,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Handle direction release actions.
-	 * 
+	 *
 	 * @param direction The direction.
 	 * @param facing If facing only.
 	 */
@@ -313,13 +313,13 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Switch the screen to spell casting state.
-	 * 
+	 *
 	 * @param e
 	 */
 	private void switchToSpellCastingState(KeyEvent e) {
 		screen.switchToSpellCasting(e);
 	}
-	
+
 	private static class DelayedDirectionRelease {
 		/**
 		 * The maximum delay between auto-repeat release-press.
@@ -342,10 +342,10 @@ class GameKeyHandler implements KeyListener {
 		/**
 		 * Check if a new direction matches the existing one, and if so, reset
 		 * the expiration point.
-		 * 
+		 *
 		 * @param dir The direction.
 		 * @param facing The facing flag.
-		 * 
+		 *
 		 * @return <code>true</code> if this is a repeat.
 		 */
 		public boolean check(final Direction dir, final boolean facing) {
@@ -370,7 +370,7 @@ class GameKeyHandler implements KeyListener {
 
 		/**
 		 * Get the direction.
-		 * 
+		 *
 		 * @return The direction.
 		 */
 		public Direction getDirection() {
@@ -379,7 +379,7 @@ class GameKeyHandler implements KeyListener {
 
 		/**
 		 * Determine if the delay point has been reached.
-		 * 
+		 *
 		 * @return <code>true</code> if the delay time has been reached.
 		 */
 		public boolean hasExpired() {
@@ -388,7 +388,7 @@ class GameKeyHandler implements KeyListener {
 
 		/**
 		 * Determine if the facing only option was used.
-		 * 
+		 *
 		 * @return <code>true</code> if facing only.
 		 */
 		public boolean isFacing() {

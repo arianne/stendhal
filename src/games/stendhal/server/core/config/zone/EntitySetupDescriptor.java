@@ -59,7 +59,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Create an entity setup descriptor.
-	 * 
+	 *
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
@@ -79,7 +79,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the generic entity attributes.
-	 * 
+	 *
 	 * @return A map of entity attributes.
 	 */
 	public Map<String, String> getAttributes() {
@@ -88,7 +88,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the implementation class name.
-	 * 
+	 *
 	 * @return The [logical] class name for the implementation.
 	 */
 	public String getImplementation() {
@@ -97,7 +97,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the X coordinate.
-	 * 
+	 *
 	 * @return The entity's X coordinate.
 	 */
 	public int getX() {
@@ -106,7 +106,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the Y coordinate.
-	 * 
+	 *
 	 * @return The entity's Y coordinate.
 	 */
 	public int getY() {
@@ -115,7 +115,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Set a generic entity attribute.
-	 * 
+	 *
 	 * @param name
 	 *            An attribute name.
 	 * @param value
@@ -127,7 +127,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Set the implementation class name.
-	 * 
+	 *
 	 * @param className
 	 *            The [logical] class name for the implementation.
 	 */
@@ -161,7 +161,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone.
 	 */

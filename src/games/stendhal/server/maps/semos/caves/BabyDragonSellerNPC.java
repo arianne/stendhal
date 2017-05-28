@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.caves;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class BabyDragonSellerNPC implements ZoneConfigurator {
 

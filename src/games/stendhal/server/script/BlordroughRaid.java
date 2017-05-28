@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author gummipferd
- * 
+ *
  * Not safe for players below level 150
  */
 public class BlordroughRaid extends CreateRaid {

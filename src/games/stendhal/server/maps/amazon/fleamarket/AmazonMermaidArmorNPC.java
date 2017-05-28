@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.amazon.fleamarket;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,10 +25,6 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * In Amazon Island ne .
@@ -50,7 +50,7 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(8, 92));
-				nodes.add(new Node(9, 92));				
+				nodes.add(new Node(9, 92));
 				nodes.add(new Node(9, 93));
 				nodes.add(new Node(11, 93));
 				nodes.add(new Node(11, 94));
@@ -58,7 +58,7 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 				nodes.add(new Node(13, 96));
 				nodes.add(new Node(14, 96));
 				nodes.add(new Node(14, 98));
-				nodes.add(new Node(16, 98));				
+				nodes.add(new Node(16, 98));
 				nodes.add(new Node(16, 97));
 				nodes.add(new Node(15, 97));
 				nodes.add(new Node(15, 95));

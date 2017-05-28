@@ -59,7 +59,7 @@ class UpdateProgressBar extends JFrame implements
 
 	/**
 	 * Creates update progress bar.
-	 * 
+	 *
 	 * @param max max file size
 	 * @param urlBase base url for the browser
 	 * @param fromVersion the version the update is based on, may be <code>null</code>
@@ -117,7 +117,7 @@ class UpdateProgressBar extends JFrame implements
 			browser.setPreferredSize(dim);
 			browser.addPropertyChangeListener("page", new UpdateProgressBarMetaRefreshSupport());
 			browser.addHyperlinkListener(new UpdateProgressBarHyperLinkListener());
-			
+
 			Dimension windowSize = new Dimension(640, 480);
 			setPreferredSize(windowSize);
 			// TODO: load page async?
@@ -162,7 +162,7 @@ class UpdateProgressBar extends JFrame implements
 	 * @param args ignored
 	 */
 	public static void main(String[] args) {
-		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "http://arianne.sourceforge.net/stendhal/greeting/", null, "0.88");
+		UpdateProgressBar updateProgressBar = new UpdateProgressBar(100, "https://arianne-project.org/stendhal/greeting/", null, "0.88");
 		updateProgressBar.onDownloading(50);
 		updateProgressBar.setVisible(true);
 	}

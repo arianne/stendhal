@@ -1,13 +1,14 @@
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.Actions.CASTSPELL;
+
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
-import static games.stendhal.common.constants.Actions.CASTSPELL;
 /**
  * Simple action to cast a spell at a target (for testing purposes)
  * Usage:
  * 	[spell id] [target name or id]
- * 
+ *
  * @author madmetzger
  */
 public class CastSpellAction implements SlashAction {
@@ -21,7 +22,7 @@ public class CastSpellAction implements SlashAction {
 			// normal case, objects should be addressed via id
 			int targetId = Integer.parseInt(params[1]);
 			action.put("target", "#"+targetId);
-			
+
 		} catch (NumberFormatException e) {
 			// for testing purposes as addressing players via name is easier
 			action.put("target", params[1]);

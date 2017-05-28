@@ -14,15 +14,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TeleportNotifier;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TeleportNotifier;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Represents a marked teleport scroll.
@@ -33,7 +33,7 @@ public class MarkedScroll extends TeleportScroll {
 
 	/**
 	 * Creates a new marked teleport scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -46,7 +46,7 @@ public class MarkedScroll extends TeleportScroll {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -57,7 +57,7 @@ public class MarkedScroll extends TeleportScroll {
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the player on
 	 * the scroll's destination, or near it.
-	 * 
+	 *
 	 * @param player
 	 *            The player who used the scroll and who will be teleported
 	 * @return true iff teleport was successful
@@ -111,7 +111,7 @@ public class MarkedScroll extends TeleportScroll {
 		TeleportNotifier.get().notify(player, true);
 		return player.teleport(zone, x, y, null, player);
 	}
-	
+
 	@Override
 	public String describe() {
 		String text = super.describe();

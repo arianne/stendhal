@@ -13,6 +13,9 @@ package games.stendhal.server.actions.pet;
 
 import static games.stendhal.common.constants.Actions.OWN;
 import static games.stendhal.common.constants.Actions.TARGET;
+
+import java.util.List;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
@@ -24,9 +27,6 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
-
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**
@@ -43,7 +43,7 @@ public class OwnAction implements ActionListener {
 
 	/**
 	 * processes the requested action.
-	 * 
+	 *
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */

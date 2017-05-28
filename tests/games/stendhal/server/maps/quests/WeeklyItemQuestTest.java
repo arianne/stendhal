@@ -21,6 +21,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -29,11 +33,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.kirdneh.museum.CuratorNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -42,7 +41,7 @@ public class WeeklyItemQuestTest {
 
 
 	private static String questSlot = "weekly_item";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -52,11 +51,11 @@ public class WeeklyItemQuestTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		
+
 		new CuratorNPC().configureZone(zone, null);
-			
+
 		final AbstractQuest quest = new WeeklyItemQuest();
 		quest.addToWorld();
 
@@ -71,7 +70,7 @@ public class WeeklyItemQuestTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Hazel");
 		en = npc.getEngine();
 
@@ -83,12 +82,12 @@ public class WeeklyItemQuestTest {
 		assertTrue(getReply(npc).startsWith("You don't seem to have "));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
-		
+
 		player.setQuest(questSlot, "obsidian;100");
 		Item item = ItemTestHelper.createItem("obsidian");
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
-		
+
 		en.step(player, "hi");
 		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "complete");
@@ -99,7 +98,7 @@ public class WeeklyItemQuestTest {
 		assertTrue(getReply(npc).startsWith("Wonderful! Here is "));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("Welcome to Kirdneh Museum.", getReply(npc));
 		en.step(player, "task");
@@ -129,6 +128,6 @@ public class WeeklyItemQuestTest {
 		assertTrue(getReply(npc).startsWith("I want Kirdneh's museum to be the greatest in the land! Please fetch "));
 		en.step(player, "bye");
 		assertEquals("Good bye, it was pleasant talking with you.", getReply(npc));
-		
+
 	}
 }

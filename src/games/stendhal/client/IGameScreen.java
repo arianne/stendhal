@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.j2d.RemovableSprite;
-import games.stendhal.client.gui.j2d.entity.EntityView;
-
 import java.awt.Point;
 import java.awt.geom.Point2D;
+
+import games.stendhal.client.gui.j2d.RemovableSprite;
+import games.stendhal.client.gui.j2d.entity.EntityView;
 
 public interface IGameScreen {
 

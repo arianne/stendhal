@@ -14,13 +14,13 @@ package games.stendhal.common.filter;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 
 public class CollectionFilterTest {

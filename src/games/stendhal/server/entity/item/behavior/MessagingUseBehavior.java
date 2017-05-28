@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.behavior;
 
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
@@ -18,27 +22,22 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * A UseBehavior that can a public and private messages.
  */
 public class MessagingUseBehavior implements UseBehavior {
 	private static final Logger LOGGER = Logger.getLogger(MessagingUseBehavior.class);
-	
+
 	private final String publicMessage;
 	private final String privateMessage;
-	
+
 	/**
 	 * Create a new MessagingUseBehavior with specified public and private
 	 * messages. Either of those can be <code>null</code>, but a warning is
 	 * logged if neither is specified.
-	 * 
+	 *
 	 * @param publicMessage message send as public text
 	 * @param privateMessage message sent only to the using player
 	 */
@@ -49,11 +48,11 @@ public class MessagingUseBehavior implements UseBehavior {
 			LOGGER.warn("MessagingUseBehavior with no messages");
 		}
 	}
-	
+
 	/**
 	 * Create a new MessagingUseBehavior. This constructor is meant for the
 	 * item XML loader.
-	 * 
+	 *
 	 * @param params map of parameters. The values of "public" and "private"
 	 * 	should contain the wanted public and private messages respectively
 	 */
@@ -76,10 +75,10 @@ public class MessagingUseBehavior implements UseBehavior {
 
 		return false;
 	}
-	
+
 	/**
 	 * Send the messages.
-	 * 
+	 *
 	 * @param user entity using the item
 	 */
 	private void sendMessages(RPEntity user) {
@@ -97,10 +96,10 @@ public class MessagingUseBehavior implements UseBehavior {
 		}
 		user.notifyWorldAboutChanges();
 	}
-	
+
 	/**
 	 * Send the private message. This is only sent if the recipient is a player.
-	 * 
+	 *
 	 * @param user using entity
 	 * @param message message text
 	 */

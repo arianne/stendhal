@@ -14,6 +14,11 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -21,18 +26,13 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.market.FishSoupMakerNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class FishSoupTest {
-	
-	private static final String QUEST_SLOT = "fishsoup_maker"; 
+
+	private static final String QUEST_SLOT = "fishsoup_maker";
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
@@ -48,8 +48,8 @@ public class FishSoupTest {
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone("0_ados_city_n2");
 		MockStendlRPWorld.get().addRPZone(zone);
-		new FishSoupMakerNPC().configureZone(zone, null);	
-		
+		new FishSoupMakerNPC().configureZone(zone, null);
+
 
 		AbstractQuest quest = new FishSoup();
 		quest.addToWorld();
@@ -59,7 +59,7 @@ public class FishSoupTest {
 
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Florence Boullabaisse");
 		en = npc.getEngine();
 		player.setXP(100);
@@ -121,7 +121,7 @@ public class FishSoupTest {
 		assertEquals("Oh I am sorry, I have to wash my cooking pots first before making more soup for you. Please come back in 20 minutes.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
-		
+
 		//Test when player has everything
 		player.setQuest(QUEST_SLOT, "done;0");
 		en.step(player, "hi");
@@ -162,6 +162,6 @@ public class FishSoupTest {
 		assertEquals("If you are really hungry or need some food for your travels, I can cook a really tasty fish soup for you after a selfmade receipe.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Have a nice stay and day on Ados market!", getReply(npc));
-		
+
 	}
 }

@@ -28,7 +28,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Displays text from the hall of fame on a sign.
- * 
+ *
  * @author hendrik
  */
 @Dev(category = Category.IGNORE)
@@ -42,7 +42,7 @@ public class LoadSignFromHallOfFameAction implements ChatAction {
 
 	/**
 	 * creates a new LoadSignFromHallOfFame
-	 * 
+	 *
 	 * @param sign
 	 *            the sign to modify
 	 * @param introduction
@@ -73,7 +73,7 @@ public class LoadSignFromHallOfFameAction implements ChatAction {
 
 	/**
 	 * sets the sign to be updated
-	 * 
+	 *
 	 * @param sign
 	 *            a Sign or <code>null</code>
 	 */

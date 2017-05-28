@@ -19,15 +19,15 @@ import games.stendhal.server.entity.RPEntity;
 
 /**
  * Handles HeavyStatus
- * 
+ *
  */
 public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
-	
+
 	private int duration;
-	
+
 	/** The original speed of the entity */
 	private double originalSpeed;
-	
+
 	/**
 	 * @param status
 	 * 		Status to inflict
@@ -38,22 +38,22 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 	 */
 	@Override
 	public void inflict(HeavyStatus status, StatusList statusList, Entity attacker) {
-		
-		if (!statusList.hasStatus(status.getStatusType())) {	
+
+		if (!statusList.hasStatus(status.getStatusType())) {
 			RPEntity entity = statusList.getEntity();
 			if (entity != null) {
 				/* save the entity's original speed to be replaced later */
 				originalSpeed = entity.getBaseSpeed();
 				entity.setBaseSpeed(0.5);
-				
+
 				/* slow the entity down to half walking speed */
 				entity.setBaseSpeed(entity.getBaseSpeed() / 2);
-				
+
 				/* create random duration between 30 seconds and 5 minutes */
 				Double d_min = 3.3 * 30;
 				Double d_max = 3.3 * 300;
 				duration = Rand.randUniform(d_min.intValue(), d_max.intValue());
-				
+
 				/* status was not inflicted by another entity */
 				if (attacker == null) {
 					entity.sendPrivateText(NotificationType.SCENE_SETTING,
@@ -62,18 +62,18 @@ public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 					entity.sendPrivateText(NotificationType.SCENE_SETTING,
 							"Your feet begin to feel heavy. You have been weighed down by "
 					+ attacker.getName() + ".");
-				}		
-				
+				}
+
 				statusList.addInternal(status);
 				statusList.activateStatusAttribute("status_" + status.getName());
 				TurnNotifier.get().notifyInSeconds(duration, new StatusRemover(statusList, status));
 			}
 		}
 	}
-	
+
 	/**
 	 * removes a status
-	 * 
+	 *
 	 * @param status
 	 * 		inflicted status
 	 * @param statusList

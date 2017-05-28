@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.city;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,10 +26,6 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds the city greeter NPC.
@@ -80,7 +80,7 @@ public class GreeterNPC implements ZoneConfigurator {
 				addGoodbye("Bye.");
 			}
 		};
-		
+
 		greeterNPC.setOutfit(new Outfit(0, 5, 1, 6, 1));
 		greeterNPC.setPosition(39, 29);
 		greeterNPC.initHP(1000);

@@ -11,18 +11,17 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * Most /commands for admins are handled here.
@@ -137,7 +136,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 	/**
 	 * get the Entity-object of the specified target.
-	 * 
+	 *
 	 * @param player
 	 * @param action
 	 * @return the Entity or null if it does not exist

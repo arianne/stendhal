@@ -145,16 +145,16 @@ public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, how many ice creams do you want to buy?!", getReply(npc));
 
 		// buying one ice cream by answering "yes" to npc's greeting
-		assertTrue(equipWithMoney(player, 30));		
+		assertTrue(equipWithMoney(player, 30));
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Bye, enjoy your day!", getReply(npc));
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hi. Can I #offer you an ice cream?", getReply(npc));		
+		assertEquals("Hi. Can I #offer you an ice cream?", getReply(npc));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("An ice cream will cost 30. Do you want to buy it?", getReply(npc));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here is your ice cream!", getReply(npc));
-		assertTrue(player.isEquipped("icecream", 3));		
+		assertTrue(player.isEquipped("icecream", 3));
 	}
 
 	/**

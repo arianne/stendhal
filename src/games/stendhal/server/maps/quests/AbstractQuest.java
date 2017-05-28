@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Abstract class for quests. This is a default implementation of IQuest.

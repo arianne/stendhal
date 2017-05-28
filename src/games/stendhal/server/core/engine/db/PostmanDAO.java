@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.engine.ChatMessage;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -21,14 +19,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.server.core.engine.ChatMessage;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 
-import org.apache.log4j.Logger;
-
 /**
  * Database access for postman messages.
- * 
+ *
  * @author kymara
  */
 public class PostmanDAO {
@@ -40,7 +39,7 @@ public class PostmanDAO {
 	 * We do not specify it must be a player because NPCs use postman to send messages
 	 *
 	 * @param transaction DBTransaction
-	 * @param source  name of source 
+	 * @param source  name of source
 	 * @param target  name of player that the message is for
 	 * @param message 	message to be sent
 	 * @param messagetype	N for NPCs, S for support, P for player
@@ -59,8 +58,8 @@ public class PostmanDAO {
 
 	/**
 	 * store a message from any named source
-	 * 
-	 * @param source  name of source 
+	 *
+	 * @param source  name of source
 	 * @param target  name of player that the message is for
 	 * @param message 	message to be sent
 	 * @param messagetype type of the message
@@ -111,7 +110,7 @@ public class PostmanDAO {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * gets a list of ChatMessages for this character
 	 *
@@ -128,7 +127,7 @@ public class PostmanDAO {
 			TransactionPool.get().commit(transaction);
 		}
 	}
-	
+
 	/**
 	 * marks messages delivered for this character
 	 *
@@ -149,7 +148,7 @@ public class PostmanDAO {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * marks messages delivered for this character
 	 *

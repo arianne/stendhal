@@ -14,7 +14,7 @@ package games.stendhal.server.core.events;
 
 /**
  * Event types used in the tutorial.
- * 
+ *
  * @author hendrik
  */
 public enum TutorialEventType {
@@ -34,7 +34,7 @@ public enum TutorialEventType {
 	VISIT_SEMOS_TAVERN(
 			"You can trade with an NPC by saying \"hi\" then asking for their \"offer\". If you want to buy a flask, say \"buy flask\"."),
 	VISIT_SEMOS_PLAINS(
-			"Eating regularly is essential to restore your health. If you are short of food, visit the farm east and then north of here."),		
+			"Eating regularly is essential to restore your health. If you are short of food, visit the farm east and then north of here."),
 	FIRST_ATTACKED(
 			"That creature with the yellow circle is attacking you! Click on it to fight back."),
 	FIRST_KILL(
@@ -48,9 +48,9 @@ public enum TutorialEventType {
 	FIRST_DEATH(
 			"Oh, you have just died. But fortunately death is not permanent in this world."),
 	FIRST_PRIVATE_MESSAGE(
-			"You received a private message. To reply, Use #/msg #name #message."),		
+			"You received a private message. To reply, Use #/msg #name #message."),
 	FIRST_EQUIPPED(
-			"You just got given something! Check your bag and hands."),			
+			"You just got given something! Check your bag and hands."),
 	TIMED_HELP(
 			"Press F1 to read the manual with many pictures."),
 	TIMED_NAKED(
@@ -65,7 +65,7 @@ public enum TutorialEventType {
 
 	/**
 	 * Creates a new TutorialEventType.
-	 * 
+	 *
 	 * @param message
 	 *            human readable message
 	 */
@@ -75,7 +75,7 @@ public enum TutorialEventType {
 
 	/**
 	 * Gets the descriptive message.
-	 * 
+	 *
 	 * @return message
 	 */
 	String getMessage() {

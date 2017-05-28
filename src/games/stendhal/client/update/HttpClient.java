@@ -126,10 +126,10 @@ public class HttpClient {
 							boolean redirect = true;
 							Set<String> passedRedirects = new HashSet<String>();
 							passedRedirects.add(urlString);
-							
+
 							while(redirect) {
 								String newUrl = connection.getHeaderField("Location");
-								
+
 								// check if we already were redirected to this url
 								if(!passedRedirects.contains(newUrl)) {
 									// open the new connnection again
@@ -174,7 +174,7 @@ public class HttpClient {
 
 	/**
 	 * Determine if a repsonse code is a redirect
-	 * 
+	 *
 	 * @param responseCode
 	 * @return
 	 */

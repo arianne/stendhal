@@ -12,11 +12,10 @@
  ***************************************************************************/
 package games.stendhal.tools.rpobjectdumper;
 
-import games.stendhal.server.core.engine.RPClassGenerator;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
+import games.stendhal.server.core.engine.RPClassGenerator;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
@@ -39,10 +38,10 @@ public class RPObjectDumper {
 		RPObject object2 = new RPObject(object);
 		System.out.println("transformed object: " + object);
 		System.out.println("untransformed object: " + object2);
-		
+
 		System.out.println("Class: !" + object.getRPClass() + "!");
 		System.out.println("Class-Name: !" + object.getRPClass().getName() + "!");
-		
+
 		System.exit(0);
 	}
 }

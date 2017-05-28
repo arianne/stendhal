@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.map;
 
-import games.stendhal.client.entity.IEntity;
-
 import java.awt.Color;
 import java.awt.Graphics;
+
+import games.stendhal.client.entity.IEntity;
 
 abstract class StaticMapObject extends MapObject {
 	StaticMapObject(final IEntity entity) {
@@ -24,7 +24,7 @@ abstract class StaticMapObject extends MapObject {
 
 	/**
 	 * Draw the entity
-	 * 
+	 *
 	 * @param g Graphics context
 	 * @param scale Scaling factor
 	 * @param color Drawing Color

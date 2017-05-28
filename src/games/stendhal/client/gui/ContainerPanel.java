@@ -44,7 +44,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * have open but have stored order.
 	 */
 	private final List<String> windowOrder;
-	
+
 	/** The actual content panel. */
 	private final PhantomLayoutPanel panel;
 	/**
@@ -73,10 +73,10 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		windowOrder = new ArrayList<String>(Arrays.asList(orderProp.split(";")));
 		getVerticalScrollBar().setUnitIncrement(16);
 	}
-	
+
 	/**
 	 * Set whether the panel should animate layout changes.
-	 * 
+	 *
 	 * @param animate <code>true</code> if layout changes should be animated,
 	 * otherwise <code>false</code>
 	 */
@@ -86,13 +86,13 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			((AnimatedLayout) layout).setAnimated(animate);
 		}
 	}
-	
+
 	/**
 	 * Add a component that should be repainted in the drawing loop. This is
 	 * not a particularly pretty way to do it, but individual timers for item
 	 * slots end up being more expensive, and the RepaintManager merges the
 	 * draw request anyway.
-	 * 
+	 *
 	 * @param child component to add
 	 */
 	void addRepaintable(JComponent child) {
@@ -102,20 +102,20 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			window.addWindowDragListener(this);
 			position = findWindowPosition(window.getName());
 		}
-		
+
 		if (child instanceof Inspectable) {
 			((Inspectable) child).setInspector(this);
 		}
-		
+
 		child.setIgnoreRepaint(true);
 		child.setAlignmentX(LEFT_ALIGNMENT);
 		panel.add(child, position);
 		panel.revalidate();
 	}
-	
+
 	/**
 	 * Find the correct position to add a named component.
-	 * 
+	 *
 	 * @param window component name
 	 * @return component position
 	 */
@@ -138,10 +138,10 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			windowOrder.add(window);
 			fireWindowOrderChanged();
 		}
-		
+
 		return panel.getComponentCount();
 	}
-	
+
 	/**
 	 * Saves the window order as a window manager property. Called when the
 	 * stored window order has changed.
@@ -155,14 +155,14 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 				builder.append(';');
 			}
 		}
-		
+
 		WtWindowManager.getInstance().setProperty(WINDOW_ORDER_PROPERTY, builder.toString());
 	}
-	
+
 	/**
 	 * Check if the stored window order has changed, and call
 	 * {@link #fireWindowOrderChanged} if needed.
-	 * 
+	 *
 	 * @param movedWindow name of the moved window
 	 */
 	private void checkWindowOrder(String movedWindow) {
@@ -187,12 +187,12 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 						// Move after the preceding component
 						newIndex = windowOrder.indexOf(previous) + 1;
 					}
-					
+
 					// Move to new location. Be careful about removing the old
 					// to avoid breaking the order
 					int oldIndex = windowOrder.indexOf(name);
 					if (newIndex > oldIndex) {
-						windowOrder.add(newIndex, name);	
+						windowOrder.add(newIndex, name);
 						windowOrder.remove(name);
 						fireWindowOrderChanged();
 					} else if (newIndex < oldIndex) {
@@ -207,7 +207,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			}
 		}
 	}
-	
+
 	/**
 	 * Request repainting of all the child panels.
 	 */
@@ -216,7 +216,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			child.repaint();
 		}
 	}
-	
+
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension size = panel.getPreferredSize();
@@ -233,21 +233,21 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 
 	/**
 	 * Inspect an entity slot. Show the result within the ContainerPanel.
-	 * 
+	 *
 	 * @param entity the inspected entity
 	 * @param content slot to be inspected
 	 * @param container previously created slot window for the inspected slot,
 	 * 	or <code>null</code> if there's no such window
 	 * @param width number of slot columns
 	 * @param height number of slot rows
-	 * 
+	 *
 	 * @return inspect window
 	 */
 	@Override
 	public SlotWindow inspectMe(IEntity entity, RPSlot content,
 			SlotWindow container, int width, int height) {
 		if ((container != null) && container.isVisible()) {
-			// Nothing to do. 
+			// Nothing to do.
 			return container;
 		} else {
 			SlotWindow window = new SlotWindow(entity.getName(), width, height);
@@ -258,17 +258,17 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			return window;
 		}
 	}
-	
+
 	/**
 	 * Get the vertical center point of a component.
-	 * 
+	 *
 	 * @param component component to be checked
 	 * @return the Y coordinate of the component center point
 	 */
 	private int componentYCenter(Component component) {
 		return component.getY() + component.getHeight() / 2;
 	}
-	
+
 	@Override
 	public void windowDragged(Component component, Point point) {
 		int centerY = point.y + component.getHeight() / 2;
@@ -306,7 +306,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			checkWindowOrder(((ManagedWindow) component).getName());
 		}
 	}
-	
+
 	/**
 	 * A container that can hide a contained component from the layout manager,
 	 * or anything else that uses {@link #getComponents} to access the
@@ -322,11 +322,11 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		 * The phantom component, or <code>null</code> if nothing is hidden.
 		 */
 		PhantomComponent phantom;
-		
+
 		/**
 		 * Hide a specific component in {@link #getComponents} and present a
 		 * PhantomComponent in its place.
-		 * 
+		 *
 		 * @param component component to hide
 		 */
 		void hideComponent(Component component) {
@@ -334,7 +334,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			phantom = new PhantomComponent(hidden);
 			add(phantom, getComponentZOrder(hidden));
 		}
-		
+
 		/**
 		 * Restore the visibility of the previously hidden component.
 		 */
@@ -343,31 +343,31 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			hidden = null;
 			phantom = null;
 		}
-		
+
 		/**
 		 * Get the current phantom component.
-		 * 
+		 *
 		 * @return current phantom or <code>null</code> if nothing is hidden
 		 */
 		Component getPhantom() {
 			return phantom;
 		}
-		
+
 		@Override
 		public Component[] getComponents() {
 			Component[] components = super.getComponents();
 			if (phantom == null) {
 				return components;
 			}
-			
+
 			// Very inefficient, but this is not performance critical code
 			List<Component> list = new ArrayList<Component>(Arrays.asList(components));
 			list.remove(hidden);
-			
+
 			return list.toArray(new Component[list.size()]);
 		}
 	}
-	
+
 	/**
 	 * A component that does nothing except takes space, with the same minimum,
 	 * maximum and preferred sizes as another component.
@@ -375,27 +375,27 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	private static class PhantomComponent extends JComponent {
 		/** The mimicked component. */
 		private final Component component;
-		
+
 		/**
 		 * Create a PhantomComponent.
-		 * 
+		 *
 		 * @param component parent component, whose size constraints this
 		 * 	component should mimic
 		 */
 		PhantomComponent(Component component) {
 			this.component = component;
 		}
-		
+
 		@Override
 		public Dimension getPreferredSize() {
 			return component.getPreferredSize();
 		}
-		
+
 		@Override
 		public Dimension getMinimumSize() {
 			return component.getMinimumSize();
 		}
-		
+
 		@Override
 		public Dimension getMaximumSize() {
 			return component.getMinimumSize();

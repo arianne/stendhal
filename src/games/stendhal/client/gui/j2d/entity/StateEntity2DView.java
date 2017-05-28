@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 //
 //
 
@@ -19,15 +24,10 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 /**
  * The 2D view of an animated entity.
- * 
- * @param <T> entity type 
+ *
+ * @param <T> entity type
  */
 abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 	/**
@@ -47,8 +47,8 @@ abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 
 	/**
 	 * Build animations.
-	 *  
-	 * @param entity the entity to build animations for 
+	 *
+	 * @param entity the entity to build animations for
 	 */
 	private void buildAnimations(T entity) {
 		buildSprites(entity, sprites);
@@ -56,19 +56,19 @@ abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param entity The entity to build sprites for
 	 * @param map
-	 *            The map to populate. 
+	 *            The map to populate.
 	 */
 	protected abstract void buildSprites(T entity, final Map<Object, Sprite> map);
-	
+
 	/**
 	 * Get a keyed state sprite.
-	 * 
+	 *
 	 * @param state
 	 *            The state.
-	 * 
+	 *
 	 * @return The appropriate sprite for the given state.
 	 */
 	protected Sprite getSprite(final Object state) {
@@ -77,16 +77,16 @@ abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 
 	/**
 	 * Get the current model state.
-	 * 
-	 * @param entity 
+	 *
+	 * @param entity
 	 * @return The model state.
 	 */
 	protected abstract Object getState(T entity);
 
 	/**
 	 * Get the current animated sprite.
-	 * 
-	 * @param entity 
+	 *
+	 * @param entity
 	 * @return The appropriate sprite for the current state.
 	 */
 	private Sprite getStateSprite(T entity) {
@@ -118,7 +118,7 @@ abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 
 	/**
 	 * Update sprite state of the entity.
-	 * 
+	 *
 	 * @param entity
 	 */
 	protected void proceedChangedState(T entity) {

@@ -17,12 +17,12 @@ import static org.junit.Assert.assertNotNull;
 
 import java.awt.geom.Rectangle2D;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class EntityTest {
 	@BeforeClass

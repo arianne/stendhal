@@ -12,8 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.client.sound.system.SignalProcessor;
 import java.util.ArrayList;
+
+import games.stendhal.client.sound.system.SignalProcessor;
 
 /**
  * Generates a PCM audio signal consisting of sine waveforms
@@ -70,8 +71,9 @@ public class ToneGenerator extends SignalProcessor
     @Override
     protected synchronized void modify(float[] data, int samples, int channels, int rate)
     {
-        for(Tone tone: mTones)
-            makeTone(tone, data, samples, channels, true);
+        for(Tone tone: mTones) {
+			makeTone(tone, data, samples, channels, true);
+		}
 
         super.propagate(data, samples, channels, rate);
     }
@@ -91,8 +93,10 @@ public class ToneGenerator extends SignalProcessor
                 value *= tone.mVolume;
 
                 for(int c=0; c<channels; ++c)
-                    data[index + c] = data[index + c] + value - data[index + c] * value;	//MF: mix using amplitude modulation between the generated tones?
-                
+				 {
+					data[index + c] = data[index + c] + value - data[index + c] * value;	//MF: mix using amplitude modulation between the generated tones?
+				}
+
                 ++tone.mPosition;
             }
         }
@@ -105,8 +109,9 @@ public class ToneGenerator extends SignalProcessor
 
                 value *= tone.mVolume;
 
-                for(int c=0; c<channels; ++c)
-                    data[index + c] = value;
+                for(int c=0; c<channels; ++c) {
+					data[index + c] = value;
+				}
 
                 ++tone.mPosition;
             }

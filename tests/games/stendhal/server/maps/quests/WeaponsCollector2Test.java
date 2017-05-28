@@ -15,18 +15,18 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -85,7 +85,7 @@ public class WeaponsCollector2Test {
 	public final void doQuest() {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		final WeaponsCollector2 wc = new WeaponsCollector2();
-	
+
 		wc.addToWorld();
 		final SpeakerNPC npc = wc.getNPC();
 		final Engine en = npc.getEngine();

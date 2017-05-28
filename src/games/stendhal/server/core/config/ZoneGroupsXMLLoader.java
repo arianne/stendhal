@@ -27,7 +27,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Create an xml based loader of zone groups.
-	 * 
+	 *
 	 * @param uri
 	 *            The location of the configuration file.
 	 */
@@ -37,7 +37,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Load zones into a world.
-	 * 
+	 *
 	 * @throws SAXException
 	 *             If a SAX error occurred.
 	 * @throws IOException

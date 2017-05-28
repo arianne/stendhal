@@ -5,11 +5,11 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.Test;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 
 /**

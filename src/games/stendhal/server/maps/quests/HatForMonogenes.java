@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -32,31 +36,27 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
- * QUEST: Hat For Monogenes 
- * 
- * PARTICIPANTS: 
+ * QUEST: Hat For Monogenes
+ *
+ * PARTICIPANTS:
  * <ul>
  * <li>Monogenes, an old man in Semos city.</li>
  * </ul>
- * 
+ *
  * STEPS:
- * <ul> 
+ * <ul>
  * <li> Monogenes asks you to buy a hat for him.</li>
  * <li> Xin Blanca sells you a leather helmet.</li>
  * <li> Monogenes sees your leather helmet and asks for it and then thanks you.</li>
  * </ul>
- * 
- * REWARD: 
+ *
+ * REWARD:
  * <ul>
  * <li>50 XP</li>
  * <li>Karma: 10</li>
  * </ul>
- * 
+ *
  * REPETITIONS: - None.
  */
 public class HatForMonogenes extends AbstractQuest {
@@ -77,7 +77,7 @@ public class HatForMonogenes extends AbstractQuest {
 			return res;
 		}
 		res.add("I have to find a hat, something leather to keep his head warm.");
-		if (player.isQuestInState(QUEST_SLOT, "start") 
+		if (player.isQuestInState(QUEST_SLOT, "start")
 				&& player.isEquipped("leather helmet")
 				|| player.isQuestCompleted(QUEST_SLOT)) {
 			res.add("I have found a hat.");
@@ -94,7 +94,7 @@ public class HatForMonogenes extends AbstractQuest {
 		monogenes.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...",
 			null);
 
@@ -184,12 +184,12 @@ public class HatForMonogenes extends AbstractQuest {
 		createRequestingStep();
 		createBringingStep();
 	}
-	
+
 	@Override
 	public String getName() {
 		return "HatForMonogenes";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

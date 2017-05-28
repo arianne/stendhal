@@ -11,6 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.google.common.collect.ImmutableList;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.TriggerList;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -19,12 +25,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
 
 /**
  * Was the trigger phrase a name of an NPC for an unstarted quest in the region? (Use with a ""-trigger in npc.add)

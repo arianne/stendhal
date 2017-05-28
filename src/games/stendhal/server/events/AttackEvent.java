@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
-import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.Events;
+import games.stendhal.common.constants.Nature;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.Type;
 
 /**
  * An RPEntity attacks another
@@ -46,7 +46,7 @@ public class AttackEvent extends RPEvent {
 
 	/**
 	 * Construct a new <code>AttackEvent</code>
-	 * 
+	 *
 	 * @param canHit <code>false</code> for missed hits, <code>true</code> for wounding or blocked hits
 	 * @param damage damage done
 	 * @param type damage type of the attack

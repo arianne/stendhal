@@ -14,9 +14,10 @@ package conf;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import marauroa.common.game.RPClass;
 
 import org.junit.Test;
+
+import marauroa.common.game.RPClass;
 
 public class TestRPClass {
 

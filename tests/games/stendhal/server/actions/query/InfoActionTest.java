@@ -14,11 +14,10 @@ package games.stendhal.server.actions.query;
 
 
 import static org.junit.Assert.assertFalse;
-import games.stendhal.server.actions.query.InfoAction;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 
 public class InfoActionTest {
@@ -33,6 +32,6 @@ public class InfoActionTest {
 		info.onAction(bob, null);
 		assertFalse(bob.events().isEmpty());
 		//assertEquals(null,bob.events().get(0));
-		
+
 	}
 }

@@ -41,7 +41,7 @@ public class StackableItem extends Item {
 
 	/**
 	 * Get the item quantity.
-	 * 
+	 *
 	 * @return The number of items.
 	 */
 	public int getQuantity() {
@@ -54,7 +54,7 @@ public class StackableItem extends Item {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

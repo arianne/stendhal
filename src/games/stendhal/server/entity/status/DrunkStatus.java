@@ -14,7 +14,7 @@ package games.stendhal.server.entity.status;
 
 /**
  * A status effect that causes the entity to show signs of being drunk
- * 
+ *
  * @author hendrik
  */
 public class DrunkStatus extends Status {

@@ -12,25 +12,26 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
-import games.stendhal.server.maps.quests.thepiedpiper.TPPTestHelper;
-
 import static org.junit.Assert.assertEquals;
+
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
+import games.stendhal.server.maps.quests.thepiedpiper.TPPTestHelper;
+
 public class ThePiedPiperTest implements ITPPQuestConstants {
-	
+
 	protected final static ThePiedPiper quest = new ThePiedPiper();
 	private static Logger logger = Logger.getLogger(ThePiedPiperTest.class);
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		TPPTestHelper.setUpBeforeClass();		
+		TPPTestHelper.setUpBeforeClass();
 	}
 
-	
+
 	/**
 	 * Tests for quest phases changing engine.
 	 */
@@ -46,5 +47,5 @@ public class ThePiedPiperTest implements ITPPQuestConstants {
 		}
 		assertEquals(TPP_Phase.TPP_INACTIVE, ThePiedPiper.getPhase());
 	}
-	
+
 }

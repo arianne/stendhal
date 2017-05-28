@@ -7,11 +7,11 @@
 package games.stendhal.server.core.config.zone;
 
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.engine.StendhalRPZone;
-
-import org.apache.log4j.Logger;
 
 /**
  * A zone configurator [setup] descriptor.
@@ -29,7 +29,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 
 	/**
 	 * Create a zone configurator descriptor.
-	 * 
+	 *
 	 * @param className
 	 *            The class name of the configurator.
 	 */
@@ -43,7 +43,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the class name of the configurator.
-	 * 
+	 *
 	 * @return The class name.
 	 */
 	public String getClassName() {
@@ -56,7 +56,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone.
 	 */

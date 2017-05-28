@@ -23,7 +23,7 @@ So what are you waiting for?! A whole new world awaits...
 [![Play now](https://arianne-project.org/images/playbutton.png)](https://stendhalgame.org/account/mycharacters.html) &nbsp; &nbsp; &nbsp; &nbsp;
 [![Download](https://stendhalgame.org/images/downloadbutton.png)](https://arianne-project.org/download/stendhal.zip)
 
-You need Java which you can download from [http://www.java.com](http://www.java.com/en/download) on Microsoft Windows. Java is included in most Linux distributions. Both Oracle Java and OpenJDK are supported.
+You need Java which you can download from [https://www.java.com](https://www.java.com/en/download) on Microsoft Windows. Java is included in most Linux distributions. Both Oracle Java and OpenJDK are supported.
 
 Please download Stendhal from [https://stendhalgame.org](https://stendhalgame.org)<br>
 You can double click on stendhal-starter.jar and the client will run.<br>
@@ -37,13 +37,15 @@ There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there i
 
 ## Development environment
 
-* [Hosting a Stendhal Server](http://stendhalgame.org/wiki/Host_a_Stendhal_Server)
+* [Hosting a Stendhal Server](https://stendhalgame.org/wiki/Host_a_Stendhal_Server)
 * [Stendhal in Eclipse](https://stendhalgame.org/wiki/Stendhal_on_Eclipse)
-* [Building Stendhal](http://stendhalgame.org/wiki/HowToBuildStendhal)
+* [Building Stendhal](https://stendhalgame.org/wiki/HowToBuildStendhal)
 
 
 ##Legal
-This program is free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** as published by the Free Software Foundation.
+The server and java client is free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** 2 or later as published by the Free Software Foundation.
+
+The web client is free software; you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License** 3 or later as published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [LICENSE.txt](LICENSE.txt) file for more details.
 

@@ -18,19 +18,18 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.mapstuff.area.AreaEntity;
-import games.stendhal.server.entity.mapstuff.area.FertileGround;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
-import marauroa.common.game.RPClass;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.mapstuff.area.FertileGround;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPClass;
 import utilities.RPClass.EntityTestHelper;
 
 public class FertileGroundsTest {
@@ -73,13 +72,13 @@ public class FertileGroundsTest {
 	public void testConfigureZoneNullvalues() {
 		final FertileGrounds fg = new FertileGrounds();
 		final StendhalRPZone zone = new StendhalRPZone("zone");
-		
+
 		final Map<String, String> attribs = new HashMap<String, String>();
 		attribs.put("x", null);
 		attribs.put("y", null);
 		attribs.put("width", null);
 		attribs.put("height", null);
-		
+
 		fg.configureZone(zone, attribs);
 	}
 	/**
@@ -89,13 +88,13 @@ public class FertileGroundsTest {
 	public void testConfigureZone() {
 		final FertileGrounds fg = new FertileGrounds();
 		final StendhalRPZone zone = new StendhalRPZone("zone");
-		
+
 		final Map<String, String> attribs = new HashMap<String, String>();
 		attribs.put("x", "1");
 		attribs.put("y", "1");
 		attribs.put("width", "3");
 		attribs.put("height", "3");
-		
+
 		fg.configureZone(zone, attribs);
 		assertFalse(0 + ":" + 0,
 				zone.getEntityAt(0, 0) instanceof FertileGround);
@@ -104,8 +103,8 @@ public class FertileGroundsTest {
 				assertTrue(x + ":" + y,
 						zone.getEntityAt(x, y) instanceof FertileGround);
 			}
-		} 
-		
-		
+		}
+
+
 	}
 }

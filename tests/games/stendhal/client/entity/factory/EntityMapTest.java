@@ -13,12 +13,13 @@
 package games.stendhal.client.entity.factory;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import games.stendhal.client.entity.Gate;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.StatefulEntity;
-
-import org.junit.Test;
 
 public class EntityMapTest {
 

@@ -28,7 +28,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
- * ButtonUI implementation for drawing PixmapStyle buttons. 
+ * ButtonUI implementation for drawing PixmapStyle buttons.
  */
 public class StyledButtonUI extends BasicButtonUI {
 	/** Shared UI instance for all buttons. */
@@ -43,16 +43,16 @@ public class StyledButtonUI extends BasicButtonUI {
 
 	/**
 	 * Create a new StyledButtonUI.
-	 * 
+	 *
 	 * @param style used pixmap style
 	 */
 	public StyledButtonUI(Style style) {
 		this.style = style;
 	}
-	
+
 	/**
 	 * Required by UIManager.
-	 * 
+	 *
 	 * @param button component to create UI for
 	 * @return UI delegate
 	 */
@@ -63,12 +63,12 @@ public class StyledButtonUI extends BasicButtonUI {
 	@Override
 	public void paint(Graphics graphics, JComponent button) {
 		paintBackground(graphics, button);
-		
+
 		// Restore normal look after pressing ends, if needed
 		if (button instanceof AbstractButton) {
 			ButtonModel model = ((AbstractButton) button).getModel();
 			if (!model.isPressed()) {
-				// Try to avoid switching borders if the button has none or custom 
+				// Try to avoid switching borders if the button has none or custom
 				// borders
 				if (button.getBorder().equals(style.getBorderDown())) {
 					button.setBorder(style.getBorder());
@@ -77,7 +77,7 @@ public class StyledButtonUI extends BasicButtonUI {
 			if (model.isRollover()) {
 				hilite(graphics, button);
 			}
-			
+
 			if (button instanceof JButton) {
 				if (((JButton) button).isDefaultButton()) {
 					Insets insets = button.getInsets();
@@ -88,7 +88,7 @@ public class StyledButtonUI extends BasicButtonUI {
 				}
 			}
 		}
-		
+
 		super.paint(graphics, button);
 	}
 
@@ -100,32 +100,32 @@ public class StyledButtonUI extends BasicButtonUI {
 			button.setBorder(style.getBorderDown());
 		}
 	}
-	
+
 	@Override
-	protected void paintText(Graphics graphics, AbstractButton button, 
+	protected void paintText(Graphics graphics, AbstractButton button,
 			Rectangle textRect, String text) {
 		if (button.isEnabled()) {
 			super.paintText(graphics, button, textRect, text);
 		} else {
 			int shift = graphics.getFontMetrics().getAscent();
-			
+
 			StyleUtil.paintDisabledText(style, graphics, text, textRect.x, textRect.y + shift);
 		}
 	}
-	
+
 	@Override
-	protected void paintFocus(Graphics graphics, AbstractButton button, 
+	protected void paintFocus(Graphics graphics, AbstractButton button,
 			Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
 		graphics.setColor(style.getShadowColor());
 		graphics.drawRect(textRect.x, textRect.y, textRect.width, textRect.height);
 	}
-	
+
 	@Override
 	public Dimension getPreferredSize(JComponent button) {
 		/*
 		 * The default styles do some weird trick with their borders that
 		 * affects only the preferred size, but not the minimum size. Making
-		 * a special border type that takes the size of the margin does not 
+		 * a special border type that takes the size of the margin does not
 		 * work, because that increases the minimum size as well. Anyway, the
 		 * effect can be simulated like this.
 		 */
@@ -139,20 +139,20 @@ public class StyledButtonUI extends BasicButtonUI {
 
 		return dim;
 	}
-	
+
 	/**
 	 * Draw the background image.
-	 * 
+	 *
 	 * @param graphics graphics
 	 * @param button component whose background gets drawn
 	 */
 	private void paintBackground(Graphics graphics, JComponent button) {
 		StyleUtil.fillBackground(style, graphics, 0, 0, button.getWidth(), button.getHeight());
 	}
-	
+
 	/**
 	 * Draws the mouse focus highlighting.
-	 * 
+	 *
 	 * @param graphics graphics
 	 * @param button button to be highlighted
 	 */
@@ -164,7 +164,7 @@ public class StyledButtonUI extends BasicButtonUI {
 		int height = button.getHeight() - insets.top - insets.bottom - 1;
 		graphics.drawRect(insets.left, insets.top, width, height);
 	}
-	
+
 	@Override
 	public void installUI(JComponent button) {
 		super.installUI(button);
@@ -172,7 +172,7 @@ public class StyledButtonUI extends BasicButtonUI {
 		button.setForeground(style.getForeground());
 		button.setBorder(style.getBorder());
 	}
-	
+
 	/**
 	 * Listener that follows when a button gets the focus, and makes it the
 	 * default when it does. This makes enter push the selected button, instead
@@ -183,16 +183,16 @@ public class StyledButtonUI extends BasicButtonUI {
 		public void focusGained(FocusEvent e) {
 			changeDefault(e.getComponent(), true);
 		}
-		
+
 		@Override
 		public void focusLost(FocusEvent e) {
 			changeDefault(e.getComponent(), false);
 		}
-		
+
 		/**
 		 * Change the default button of the root pane of the specified
 		 * component.
-		 * 
+		 *
 		 * @param component the component whose root pane's default button
 		 *	should be changed. It must be a JButton.
 		 * @param setDefault if <code>true</code>, set the JButton specified by

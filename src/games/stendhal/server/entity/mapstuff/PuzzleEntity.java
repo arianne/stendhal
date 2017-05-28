@@ -15,7 +15,7 @@ import games.stendhal.server.entity.mapstuff.puzzle.PuzzleBuildingBlock;
 
 /**
  * interface for entities which act as PuzzleBuildingBlocks.
- * 
+ *
  * @author hendrik
  */
 public interface PuzzleEntity {

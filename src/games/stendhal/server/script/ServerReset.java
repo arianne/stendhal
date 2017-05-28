@@ -12,21 +12,21 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * Kills the server the hard way without doing a normal shutdown. Do not use it
  * unless the server has already crashed. You should warn connected players to
  * logout if that is still possible.
- * 
+ *
  * If the server is started in a loop, it will come up again: while sleep 60; do
  * java -jar marauroa -c marauroa.ini -l; done
- * 
+ *
  * @author hendrik
  */
 public class ServerReset extends ScriptImpl {

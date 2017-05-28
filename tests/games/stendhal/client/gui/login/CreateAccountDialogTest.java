@@ -8,13 +8,11 @@ package games.stendhal.client.gui.login;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.client.gui.login.CreateAccountDialog;
-
-
-import marauroa.common.Log4J;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import marauroa.common.Log4J;
 
 /**
  * Tests the CreateAccountDialog.

@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.goldsmith;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Ados MithrilForger (Inside / Level 0).
@@ -56,7 +56,7 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 				addGoodbye("Bye.");
 
 				// Pedinghaus makes mithril if you bring him mithril nugget and wood
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("wood", 20);
 				requiredResources.put("mithril nugget", 1);
 

@@ -36,17 +36,17 @@ import marauroa.server.db.TransactionPool;
 /**
  * Takes an instance of every 'singleton' created and provides setters and getters.
  * <p>
- * 
- * 
+ *
+ *
  * It is not meant to be a high sophisticated class.
- * 
+ *
  * Just one step into getting rid of the singleton hell;
- * 
+ *
  * @author astridEmma
  *
  */
 public class SingletonRepository {
-	
+
 	private static EntityManager entityManager;
 	private static Jail jailInstance;
 	private static GroupManager groupManager;
@@ -86,7 +86,7 @@ public class SingletonRepository {
 	public static LoginNotifier getLoginNotifier() {
 		return LoginNotifier.get();
 	}
-	
+
 	/**
 	 * @return the actual LogoutNotifier instance
 	 */
@@ -100,14 +100,14 @@ public class SingletonRepository {
 	public static Jail getJail() {
 		return jailInstance;
 	}
-	
+
 	/**
 	 * Sets the Jail instance
 	 * @param jail
 	 */
 	public static void setJail(final Jail jail) {
 		jailInstance = jail;
-		
+
 	}
 
 	/**
@@ -123,18 +123,18 @@ public class SingletonRepository {
 	public static StendhalQuestSystem getStendhalQuestSystem() {
 		return StendhalQuestSystem.get();
 	}
-	
+
 	/**
 	 * @return the actual ProducerRegister instance
 	 */
 	public static ProducerRegister getProducerRegister() {
 		return ProducerRegister.get();
 	}
-	
+
 	public static MerchantsRegister getMerchantsRegister() {
 		return MerchantsRegister.get();
 	}
-	
+
 	public static ServicersRegister getServicersRegister() {
 		return ServicersRegister.get();
 	}
@@ -195,10 +195,10 @@ public class SingletonRepository {
 		}
 		return groupManager;
 	}
-	
+
 	/**
 	 * gets the PlayerVsPlayerChallengeManager
-	 * 
+	 *
 	 * @return PlayerVsPlayerChallengeManager
 	 */
 	public static PlayerVsPlayerChallengeManager getChallengeManager() {
@@ -207,15 +207,15 @@ public class SingletonRepository {
 		}
 		return challengeManager;
 	}
-	
+
 	/**
-	 * Sets a new EntityManager 
+	 * Sets a new EntityManager
 	 * @param entityManager
 	 */
 	static void setEntityManager(final EntityManager entityManager) {
 		SingletonRepository.entityManager = entityManager;
 	}
 
-	
+
 
 }

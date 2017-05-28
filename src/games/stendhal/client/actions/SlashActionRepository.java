@@ -114,10 +114,10 @@ public class SlashActionRepository {
 		actions.put("who", who);
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 //		actions.put("wrap", new WrapAction());
-		
+
 		actions.put("walk", new AutoWalkAction());
 		actions.put("stopwalk", new AutoWalkStopAction());
-		
+
 		// PvP challenge actions
 		actions.put("challenge", new CreateChallengeAction());
 		actions.put("accept", new AcceptChallengeAction());
@@ -134,10 +134,10 @@ public class SlashActionRepository {
 		String temp = name.toLowerCase(Locale.ENGLISH);
 		return actions.get(temp);
 	}
-	
+
 	/**
 	 * Get all known command names.
-	 * 
+	 *
 	 * @return set of commands
 	 */
 	public static Set<String> getCommandNames() {

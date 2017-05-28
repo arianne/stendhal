@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled.styles;
 
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.border.Border;
+
 import games.stendhal.client.gui.styled.PixmapBorder;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
@@ -19,22 +24,17 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.MathHelper;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.border.Border;
-
 /**
  * Base class for the pixmap styles.
  */
 class PixmapStyle implements Style {
 	private static final int DEFAULT_FONT_SIZE = 12;
-	
+
 	private final Color highLightColor;
 	private final Color shadowColor;
 	private final Color plainColor;
 	private final Color foreground;
-	
+
 	/**
 	 * The background texture.
 	 */
@@ -56,7 +56,7 @@ class PixmapStyle implements Style {
 
 	/**
 	 * Create a new AbstractPixmapStyle.
-	 * 
+	 *
 	 * @param baseSprite background image location
 	 * @param createDefaultBorder if <code>true</code> create PixmapBorders
 	 * 	from the background sprite, otherwise the caller <em>must</em> set the
@@ -81,13 +81,13 @@ class PixmapStyle implements Style {
 			border = new PixmapBorder(background, true);
 			borderDown = new PixmapBorder(background, false);
 		}
-		
+
 		this.highLightColor = highLightColor;
 		this.shadowColor = shadowColor;
 		this.plainColor = plainColor;
 		this.foreground = foreground;
 
-		WtWindowManager.getInstance().registerSettingChangeListener("ui.font_size", 
+		WtWindowManager.getInstance().registerSettingChangeListener("ui.font_size",
 				new SettingChangeAdapter("ui.font_size", Integer.toString(DEFAULT_FONT_SIZE)) {
 			@Override
 			public void changed(String newValue) {
@@ -99,44 +99,44 @@ class PixmapStyle implements Style {
 
 	/**
 	 * Get the normal font.
-	 * 
+	 *
 	 * @return A font.
 	 */
 	@Override
 	public Font getFont() {
 		return font;
 	}
-	
+
 	/**
 	 * Get the background texture.
-	 * 
+	 *
 	 * @return A texture sprite.
 	 */
 	@Override
 	public Sprite getBackground() {
 		return background;
 	}
-	
+
 	/**
 	 * Get component border.
-	 * 
+	 *
 	 * @return A border, or <code>null</code> to use default.
 	 */
 	@Override
 	public Border getBorder() {
 		return border;
 	}
-	
+
 	/**
 	 * Get lowered component border.
-	 * 
+	 *
 	 * @return A border, or <code>null</code> to use default.
 	 */
 	@Override
 	public Border getBorderDown() {
 		return borderDown;
 	}
-	
+
 	@Override
 	public Color getHighLightColor() {
 		return highLightColor;
@@ -146,7 +146,7 @@ class PixmapStyle implements Style {
 	public Color getShadowColor() {
 		return shadowColor;
 	}
-	
+
 	@Override
 	public Color getPlainColor() {
 		return plainColor;
@@ -156,10 +156,10 @@ class PixmapStyle implements Style {
 	public Color getForeground() {
 		return foreground;
 	}
-	
+
 	/**
 	 * Set the border to be used, instead the default PixmapBorder.
-	 * 
+	 *
 	 * @param border new border
 	 */
 	void setBorder(Border border) {
@@ -168,7 +168,7 @@ class PixmapStyle implements Style {
 
 	/**
 	 * Set the downward border to be used, instead the default PixmapBorder.
-	 * 
+	 *
 	 * @param border new border
 	 */
 	void setBorderDown(Border border) {

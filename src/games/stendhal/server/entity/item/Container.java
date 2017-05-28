@@ -11,11 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.common.MathHelper;
-import games.stendhal.server.entity.slot.ContainerItemSlot;
-
 import java.util.Map;
 
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.slot.ContainerItemSlot;
 import marauroa.common.game.RPSlot;
 
 /**
@@ -26,7 +25,7 @@ public class Container extends Item {
 	private static final String DEFAULT_SLOT_NAME = "content";
 	/** Default size of the container slot. */
 	private static final int DEFAULT_SLOT_SIZE = 8;
-	
+
 	/**
 	 * Creates a new Container.
 	 *
@@ -46,7 +45,7 @@ public class Container extends Item {
 		if (slotName == null) {
 			slotName = DEFAULT_SLOT_NAME;
 		}
-		
+
 		RPSlot slot = new ContainerItemSlot(DEFAULT_SLOT_NAME, slotName);
 		addSlot(slot);
 		/*
@@ -56,10 +55,10 @@ public class Container extends Item {
 		 */
 		determineSlotCapacity(slot);
 	}
-	
+
 	/**
 	 * Copy constructor. Needed by the bank chests.
-	 * 
+	 *
 	 * @param item copied container
 	 */
 	public Container(Container item) {
@@ -67,12 +66,12 @@ public class Container extends Item {
 		RPSlot slot = getSlot(DEFAULT_SLOT_NAME);
 		determineSlotCapacity(slot);
 	}
-	
+
 	/**
 	 * Determine the correct size of the container slot, instead of the infinite
 	 * that is defined in RPClass. Defaults to DEFAULT_SLOT_SIZE unless the
 	 * object has attribute slot_size.
-	 * 
+	 *
 	 * @param slot
 	 */
 	private void determineSlotCapacity(RPSlot slot) {

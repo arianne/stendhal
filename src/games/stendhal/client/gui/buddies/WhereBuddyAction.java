@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.actions.SlashActionRepository;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import games.stendhal.client.actions.SlashActionRepository;
 
 class WhereBuddyAction implements ActionListener {
 	private final String buddyName;

@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;

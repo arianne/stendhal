@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
@@ -27,9 +30,6 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * QUEST: Cloak Collector
  * <p>
@@ -38,11 +38,11 @@ import java.util.List;
  * STEPS:
  * <ul>
  * <li> Josephine asks you to bring her a cloak in every colour available on
- * the mainland 
- * <li> You bring cloaks to Josephine 
+ * the mainland
+ * <li> You bring cloaks to Josephine
  * <li> Repeat until Josephine
  * received all cloaks. (Of course you can bring several cloaks at the same
- * time.) 
+ * time.)
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
@@ -63,9 +63,9 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 			"vampire cloak", "blue dragon cloak");
 
 	private static final String QUEST_SLOT = "cloaks_collector";
-	
+
 	private BringListOfItemsQuestLogic bringItems;
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return bringItems.getHistory(player);
@@ -168,7 +168,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	public String welcomeDuringActiveQuest() {
 		return "Hello! Did you bring any #cloaks with you?";
 	}
-	
+
 	@Override
 	public String welcomeAfterQuestIsCompleted() {
 		return "Hi again, lovely. The cloaks still look great. Thanks!";
@@ -258,7 +258,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	public String getName() {
 		return "CloakCollector";
 	}
-	
+
 	// You can start collecting just with a simple cloak which you can buy, but maybe not a good idea to send to Fado too early.
 	@Override
 	public int getMinLevel() {

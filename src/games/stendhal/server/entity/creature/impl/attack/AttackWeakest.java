@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
+import java.util.List;
+
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
-
-import java.util.List;
 
 /**
  * A profile for creature that always tries to kill the weakest enemy first.
@@ -25,7 +25,7 @@ public class AttackWeakest extends HandToHand {
 	/**
 	 * Check if the target is something worth attacking.
 	 * (basically a Player or Pet, to be maximally annoying)
-	 * 
+	 *
 	 * @param target the target to be checked
 	 * @return <code>true</code> iff the target is a good candidate to be killed
 	 */
@@ -38,7 +38,7 @@ public class AttackWeakest extends HandToHand {
 	}
 	/**
 	 * Attack the weakest enemy next to the creature.
-	 * 
+	 *
 	 * @param creature
 	 *            the creature checking for the optimal target
 	 * @return <code>true</code> iff a good target was found. That includes
@@ -52,7 +52,7 @@ public class AttackWeakest extends HandToHand {
 		}
 
 		RPEntity target = null;
-		
+
 		if (creature.isAttacking() && isPreferredTarget(creature.getAttackTarget())) {
 			target = creature.getAttackTarget();
 		}

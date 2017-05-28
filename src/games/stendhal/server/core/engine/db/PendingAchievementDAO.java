@@ -11,13 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.util.MapOfMaps;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import games.stendhal.server.util.MapOfMaps;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 

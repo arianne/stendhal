@@ -37,12 +37,12 @@ import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: The immortal sword forging.
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Vulcanus, son of Zeus itself, will forge for you the god's sword.
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Vulcanus tells you about the sword.
@@ -52,15 +52,15 @@ import games.stendhal.server.util.TimeUtil;
  * <li> He tells you you must have killed a giant to get the shield
  * <li> Vulcanus forges the immortal sword for you
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> immortal sword
  * <li> 15000 XP
  * <li> some karma (25)
  * </ul>
- * 
- * 
+ *
+ *
  * REPETITIONS:
  * <ul>
  * <li> None.
@@ -179,8 +179,8 @@ public class StuffForVulcanus extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					
-					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
+
+					final long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 					final long timeRemaining = Long.parseLong(tokens[1]) + delay
 							- System.currentTimeMillis();
 
@@ -203,7 +203,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			});
 
 		npc.add(ConversationStates.ATTENDING,
-			Arrays.asList("forge", "missing"), 
+			Arrays.asList("forge", "missing"),
 			new QuestStateStartsWithCondition(QUEST_SLOT, "start;"),
 			ConversationStates.ATTENDING,
 			null,
@@ -307,7 +307,7 @@ public class StuffForVulcanus extends AbstractQuest {
 	public String getNPCName() {
 		return "Vulcanus";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.KOTOCH;

@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.house2;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.Map;
-
 /**
  * Builds a wizard npc, an expert in textiles.
  *
- * @author kymara 
+ * @author kymara
  */
 public class WizardNPC implements ZoneConfigurator {
 
@@ -53,7 +53,7 @@ public class WizardNPC implements ZoneConfigurator {
 				addGoodbye("Till next time.");
 				// remaining behaviour defined in maps.quests.MithrilCloak
 	 	     }
-		    
+
 		};
 
 		npc.setDescription("You see Whiggins, looking tranquil and happy.");

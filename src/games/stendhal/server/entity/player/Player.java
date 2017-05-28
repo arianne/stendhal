@@ -20,6 +20,19 @@ import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Random;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
@@ -56,22 +69,9 @@ import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map.Entry;
-import java.util.Random;
-import java.util.Set;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-
-import org.apache.log4j.Logger;
 
 public class Player extends RPEntity implements UseListener {
 
@@ -229,7 +229,7 @@ public class Player extends RPEntity implements UseListener {
 		 * Normally a zoneid attribute shouldn't logically exist after an entity
 		 * is removed from a zone, but we need to keep it for players so that it
 		 * can be serialised.
-		 * 
+		 *
 		 * TODO: Find a better way to decouple "active" zone info from "resume"
 		 * zone info, or save just before removing from zone instead.
 		 */
@@ -349,7 +349,7 @@ public class Player extends RPEntity implements UseListener {
 
 		/*
 		 * For now just take last direction.
-		 * 
+		 *
 		 * Eventually try each (last-to-first) until a non-blocked one is found
 		 * (if any).
 		 */
@@ -821,7 +821,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Get the current value for the skill of a magic nature
-	 * 
+	 *
 	 * @param nature
 	 *            the nature to get the skill for
 	 * @return current skill value
@@ -842,7 +842,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increase the skill points for a magic nature by a given amount
-	 * 
+	 *
 	 * @param nature
 	 * @param amount
 	 */
@@ -1037,7 +1037,7 @@ public class Player extends RPEntity implements UseListener {
 	 * Sets the name of the last player who privately talked to this player
 	 * using the /tell command. It needs to be stored non-persistently so that
 	 * /answer can be used.
-	 * 
+	 *
 	 * @param lastPrivateChatterName
 	 */
 	public void setLastPrivateChatter(final String lastPrivateChatterName) {
@@ -1049,7 +1049,7 @@ public class Player extends RPEntity implements UseListener {
 	 * Gets the name of the last player who privately talked to this player
 	 * using the /tell command, or null if nobody has talked to this player
 	 * since he logged in.
-	 * 
+	 *
 	 * @return name of last player
 	 */
 	public String getLastPrivateChatter() {
@@ -1158,7 +1158,7 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * Gets the number of minutes that this player has been logged in on the
 	 * server.
-	 * 
+	 *
 	 * @return age of player in minutes
 	 */
 	public int getAge() {
@@ -1252,7 +1252,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Sets the online status for a buddy in the players' buddy list
-	 * 
+	 *
 	 * @param buddyName
 	 * @param isOnline
 	 *            buddy is online?
@@ -1456,7 +1456,7 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
 	 * 'name'
-	 * 
+	 *
 	 * @param name
 	 *            of the victim
 	 */
@@ -1467,7 +1467,7 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * Stores that the player has killed 'name' with help of others. Does not
 	 * overwrite solo kills of 'name'
-	 * 
+	 *
 	 * @param name
 	 *            of victim
 	 *
@@ -1478,7 +1478,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Returns how much the player has killed 'name' solo.
-	 * 
+	 *
 	 * @param name
 	 *            of the victim
 	 * @return number of solo kills
@@ -1489,7 +1489,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Returns how much the player has killed 'name' with help of others.
-	 * 
+	 *
 	 * @param name
 	 *            of victim
 	 * @return number of shared kills
@@ -1663,7 +1663,7 @@ public class Player extends RPEntity implements UseListener {
 		if (has("outfit_org")) {
 			return new Outfit(getInt("outfit_org"));
 		}
-		
+
 		return null;
 	}
 
@@ -2309,7 +2309,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Checks if the player has visited the given zone
-	 * 
+	 *
 	 * @param zone
 	 *            the zone to check for
 	 * @return true if player visited the zone
@@ -2468,7 +2468,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the count of loots for the given item
-	 * 
+	 *
 	 * @param item
 	 *            the item name
 	 * @param count
@@ -2479,7 +2479,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the count of producings for the given item
-	 * 
+	 *
 	 * @param item
 	 *            the item name
 	 * @param count
@@ -2490,7 +2490,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the count of obtains from the well for the given item
-	 * 
+	 *
 	 * @param name
 	 *            the item name
 	 * @param quantity
@@ -2501,7 +2501,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the count of sales for the given item
-	 * 
+	 *
 	 * @param name
 	 *            the item name
 	 * @param quantity
@@ -2512,7 +2512,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the amount of successful minings for the given item
-	 * 
+	 *
 	 * @param name
 	 *            the item name
 	 * @param quantity
@@ -2523,7 +2523,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the amount of successful harvestings for the given item
-	 * 
+	 *
 	 * @param name
 	 *            the item name
 	 * @param quantity
@@ -2534,7 +2534,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Increases the amount of successful buyings for the given item
-	 * 
+	 *
 	 * @param name
 	 *            the item name
 	 * @param quantity
@@ -2625,7 +2625,7 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * adds a use listener causing the client to add an use action with the
 	 * specified name
-	 * 
+	 *
 	 * @param actionDisplayName
 	 *            name of useaction visible in the client
 	 * @param listener
@@ -2752,7 +2752,7 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public int getCappedAtk() {
-		// Blue line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		// Blue line in https://sourceforge.net/p/arianne/feature-requests/1330/
 		// reduced using median instead of average as reference
 		return Math.min(this.atk, getMaxAtkForLevel(level));
 	}
@@ -2765,14 +2765,14 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public int getCappedDef() {
-		// Red line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		// Red line in https://sourceforge.net/p/arianne/feature-requests/1330/
 		return Math.min(this.def, getMaxDefForLevel(level));
 	}
 
 	/**
 	 * Gets the capped ratk level, which prevent players from training their
 	 * ratk way beyond what is reasonable for their level.
-	 * 
+	 *
 	 * XXX: Should use getMaxRatkForLevel() method instead?
 	 *
 	 * @return capped ratk
@@ -2784,7 +2784,7 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Collision handling instructions for players.
-	 * 
+	 *
 	 * @param nx
 	 *        New horizontal position
 	 * @param ny

@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -27,11 +32,6 @@ import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /*
  * Food and drink seller,  Inside Semos Tavern - Level 0 (ground floor)
@@ -76,9 +76,9 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		
+
 		//coupon for free beer
-		
+
         margaret.add(ConversationStates.ATTENDING,
                 (Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
                 new PlayerHasItemWithHimCondition("coupon"),
@@ -87,7 +87,7 @@ public class BarMaidNPC implements ZoneConfigurator {
                 new MultipleActions(new DropItemAction("coupon"),
                 					new EquipItemAction("beer"))
                 );
-        
+
         margaret.add(ConversationStates.ATTENDING,
         		(Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
                 new NotCondition(new PlayerHasItemWithHimCondition("coupon")),
@@ -95,7 +95,7 @@ public class BarMaidNPC implements ZoneConfigurator {
                 "Don't lie, you don't own one of the rare coupons. It's hard to run a tavern nowadays, don't lie to me!",
                 null
                 );
-        
+
 		margaret.setEntityClass("tavernbarmaidnpc");
 		margaret.setDescription("Margaret looks so warm and welcoming that you can't help but want to buy something from her.");
 		margaret.setPosition(11, 4);

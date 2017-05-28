@@ -17,17 +17,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.tavern.BarMaidNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -73,16 +73,6 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-
-		// -----------------------------------------------
-
-		// [19:04] Welcome to Stendhal. Need help? http://stendhalgame.org/wiki/AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.
-
-		// -----------------------------------------------
-
-		// [19:04] Synchronized
-
-		// -----------------------------------------------
 
 		en.step(player, "hi");
 
@@ -240,7 +230,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		// -----------------------------------------------
 
 		en.step(player, "cherries");
-		
+
 		// -----------------------------------------------
 
 		PlayerTestHelper.equipWithStackableItem(player, "banana", 5);
@@ -248,10 +238,10 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		PlayerTestHelper.equipWithStackableItem(player, "pear", 4);
 		PlayerTestHelper.equipWithStackableItem(player, "pomegranate", 2);
 		PlayerTestHelper.equipWithStackableItem(player, "watermelon", 1);
-		
+
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
-		
+
 		en.step(player, "bananas");
 		en.step(player, "grapes");
 		en.step(player, "pear");
@@ -259,11 +249,11 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "watermelon");
 
 		// -----------------------------------------------
-		
+
 		assertEquals("My hat has never looked so delightful! Thank you ever so much! Here, take this as a reward.", getReply(npc));
 
 		// -----------------------------------------------
-		
+
 		// [19:05] pinch earns 50 experience points.
 		assertTrue(player.isEquipped("crepes suzette"));
 		assertTrue(player.isEquipped("minor potion"));
@@ -328,8 +318,8 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		player.setQuest(questSlot, "done;0");
 		//player.setQuest(questSlot, 1, "0");	This doesn't seem to work either.
-		
-		
+
+
 		//TODO: correct test (or fix bug in quest ^^)
 		/*
 		assertEquals("I'm sorry to say that the fruits you brought for my hat aren't very fresh anymore.. Would you be kind enough to find me some more?", getReply(npc));

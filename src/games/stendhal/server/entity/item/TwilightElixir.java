@@ -11,19 +11,19 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 /**
  * Represents a marked teleport scroll which also poisoned the player.
- * 
+ *
  * @author kymara
  */
 public class TwilightElixir extends Drink {
@@ -32,7 +32,7 @@ public class TwilightElixir extends Drink {
 
 	/**
 	 * Creates a new marked teleport scroll.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -45,7 +45,7 @@ public class TwilightElixir extends Drink {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
@@ -53,7 +53,7 @@ public class TwilightElixir extends Drink {
 		super(item);
 	}
 
-	/* 
+	/*
 	 * This is very nasty of us. We take away the message that HP = -1000 so player doesn't know.
 	 */
 
@@ -79,7 +79,7 @@ public class TwilightElixir extends Drink {
 	 * calls consumeItem of the player - so they get poisoned, since that's what twilight elixir does
 	 * @param user the eating player
 	 * @return true if consumption can be started
-	 * 
+	 *
 	 * this one first teleports the player  (if they are in quest slot twilight zone, to prevent abuse) before it poisons them.
 	 */
 	@Override
@@ -102,13 +102,13 @@ public class TwilightElixir extends Drink {
 				((Player) user).teleport(zone, x, y, null, (Player) user);
 				extra = " Now you will go to hell, for thinking of yourself before you think of others.";
 			}
- 			user.sendPrivateText("Didn't you know, one man's drink is another man's poison? That elixir was meant for Ida in the twilight zone." + extra); 
+ 			user.sendPrivateText("Didn't you know, one man's drink is another man's poison? That elixir was meant for Ida in the twilight zone." + extra);
 			return super.onUsed(user);
 		} else {
 			// should never happen.
 			logger.warn("some non player RPEntity just used a twilight elixir, which shouldn't be possible.");
 			return false;
 		}
-		
+
 	}
 }

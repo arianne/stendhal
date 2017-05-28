@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.game;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.item.token.BoardToken;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.GameIsActiveValidator;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.MoveValidator;
@@ -22,9 +25,6 @@ import games.stendhal.server.entity.mapstuff.game.movevalidator.PlayerIsParticip
 import games.stendhal.server.entity.mapstuff.game.movevalidator.PlayerIsPlayingRightTokenTypeValidator;
 import games.stendhal.server.entity.mapstuff.game.movevalidator.PlayersTurnValidator;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * a validator chain for the Tick Tack Toe game.

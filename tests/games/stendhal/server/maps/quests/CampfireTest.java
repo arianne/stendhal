@@ -19,27 +19,26 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.Date;
 
-import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.orril.river.CampingGirlNPC;
-import marauroa.common.Log4J;
-import marauroa.common.game.RPObject.ID;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.orril.river.CampingGirlNPC;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPObject.ID;
 import utilities.PlayerTestHelper;
 
 public class CampfireTest {
@@ -65,7 +64,7 @@ public class CampfireTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	
+
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");
@@ -75,7 +74,7 @@ public class CampfireTest {
 		final Campfire cf = new Campfire();
 		cf.addToWorld();
 	}
-	
+
 	@After
 	public void tearDown()  {
 		player = null;
@@ -87,7 +86,7 @@ public class CampfireTest {
 	 */
 	@Test
 	public void testCanStartQuestNow() {
-		
+
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -120,7 +119,7 @@ public class CampfireTest {
 	 */
 	@Test
 	public void testHiAndbye() {
-		
+
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -136,7 +135,7 @@ public class CampfireTest {
 	 */
 	@Test
 	public void testDoQuest() {
-		
+
 		final Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -220,7 +219,7 @@ public class CampfireTest {
 		assertTrue(en.step(player, "job"));
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				getReply(npc));
-		assertFalse("no matching state transition", en.step(player, "offers")); 
+		assertFalse("no matching state transition", en.step(player, "offers"));
 		assertEquals(null, getReply(npc));
 		assertTrue(en.step(player, "help"));
 		assertEquals(
@@ -231,14 +230,14 @@ public class CampfireTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", getReply(npc));
 	}
-	
+
 	/**
 	 * Tests for canNotRepeatYet.
 	 */
 	@Test
 	public void testCanNotRepeatYet() {
 		final String questState = Long.toString(new Date().getTime());
-		
+
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
 			final Engine en = npc.getEngine();
 			player.setQuest(CAMPFIRE, questState);
@@ -251,7 +250,7 @@ public class CampfireTest {
 			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
 		}
 	}
-	
+
 	/**
 	 * Tests for repeatQuest.
 	 */
@@ -269,7 +268,7 @@ public class CampfireTest {
 			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
 		}
 	}
-	
+
 	/**
 	 * Tests for allowRestartAfterRejecting.
 	 */
@@ -286,18 +285,18 @@ public class CampfireTest {
 			assertEquals("quest state unchanged", "rejected", player.getQuest(CAMPFIRE));
 		}
 	}
-	
+
 	/**
 	 * Tests for refuseQuest.
 	 */
 	@Test
 	public void testRefuseQuest() {
 		final Engine en = npc.getEngine();
-		final double karma = player.getKarma(); 
+		final double karma = player.getKarma();
 
 		en.setCurrentState(ConversationStates.QUEST_OFFERED);
 		en.step(player, "no");
-		
+
 		assertEquals("Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals..."
 , getReply(npc));
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());

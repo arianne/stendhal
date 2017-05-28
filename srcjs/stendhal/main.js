@@ -1,17 +1,17 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
- ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.main = {
@@ -24,19 +24,19 @@ stendhal.main = {
 
 		marauroa.clientFramework.onDisconnect = function(reason, error){
 			stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
-		}
+		};
 	
 		marauroa.clientFramework.onLoginRequired = function() {
 			window.location = "/index.php?id=content/account/login&url="
 				+ escape(window.location.pathname + window.location.hash);
-		}
+		};
 
 		marauroa.clientFramework.onLoginFailed = function(reason, text) {
 			alert("Login failed. Please login on the Stendhal website first and make sure you open the client on an https://-URL");
 			marauroa.clientFramework.close();
 			document.getElementById("chatinput").disabled = true;
 			document.getElementById("chat").style.backgroundColor = "#AAA";
-		}
+		};
 
 		marauroa.clientFramework.onAvailableCharacterDetails = function(characters) {
 			var name = null;
@@ -58,7 +58,7 @@ stendhal.main = {
 			var body = document.getElementById("body")
 			body.style.cursor = "auto";
 			stendhal.ui.chatLog.addLine("client", "Loading world...");
-		}
+		};
 
 
 		marauroa.clientFramework.onTransferREQ = function(items) {
@@ -67,7 +67,7 @@ stendhal.main = {
 					items[i].ack = true;
 				}
 			}
-		}
+		};
 
 		// update user interface on perceptions
 		if (document.getElementById("gamewindow")) {
@@ -110,7 +110,6 @@ stendhal.main = {
 	startup: function() {
 		stendhal.ui.chatLog.addLine("error", "This is an early stage of an experimental web-based client. Please use the official client at https://stendhalgame.org to play Stendhal.");
 		stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
-		var body = document.getElementById("body");
 
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
@@ -142,7 +141,7 @@ stendhal.main = {
 			text += ":" + error.colno;
 		}
 		if (error.error) {
-			text += "\r\n" + error.error.stack
+			text += "\r\n" + error.error.stack;
 		}
 		text += "\r\n" + window.navigator.userAgent;
 		try {

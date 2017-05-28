@@ -19,7 +19,7 @@ package games.stendhal.client.listener;
 public interface PositionChangeListener {
 	/**
 	 * The user position changed.
-	 * 
+	 *
 	 * @param x
 	 *            The X coordinate (in world units).
 	 * @param y

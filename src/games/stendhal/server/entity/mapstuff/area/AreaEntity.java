@@ -6,15 +6,14 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
+import java.util.LinkedList;
+import java.util.List;
+
 //
 //
 
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
@@ -38,7 +37,7 @@ public class AreaEntity extends Entity {
 
 	/**
 	 * Create an area entity.
-	 * 
+	 *
 	 * @param width
 	 *            Width of this area
 	 * @param height
@@ -58,7 +57,7 @@ public class AreaEntity extends Entity {
 
 	/**
 	 * Define the RPClass.
-	 * 
+	 *
 	 * @return The configured RPClass.
 	 */
 	private static RPClass createRPClass() {
@@ -73,7 +72,7 @@ public class AreaEntity extends Entity {
 
 	/**
 	 * Generate the RPClass (compatible with manual init/order).
-	 * 
+	 *
 	 * NOTE: This MUST be called during environment initialization.
 	 */
 	public static void generateRPClass() {
@@ -82,7 +81,7 @@ public class AreaEntity extends Entity {
 
 	/**
 	 * Get the entity name.
-	 * 
+	 *
 	 * @return The entity's name, or <code>null</code> if undefined.
 	 */
 	@Override
@@ -96,7 +95,7 @@ public class AreaEntity extends Entity {
 
 	/**
 	 * Set the name.
-	 * 
+	 *
 	 * @param name
 	 *            The area name.
 	 */
@@ -111,11 +110,11 @@ public class AreaEntity extends Entity {
 	/**
 	 * Returns the name or something that can be used to identify the entity for
 	 * the player.
-	 * 
+	 *
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for
 	 *            "a/an" in case the entity has no name.
-	 * 
+	 *
 	 * @return The description name.
 	 */
 	@Override
@@ -131,7 +130,7 @@ public class AreaEntity extends Entity {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 * 
+	 *
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override

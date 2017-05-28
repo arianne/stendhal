@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -19,14 +22,11 @@ import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
- * 
+ *
  * STEPS: - Talk to Zynn to activate the quest and keep speaking with Zynn.
- * 
+ *
  * REWARD: - 10 XP (check that user's level is lower than 5) - 5 gold
  * REPETITIONS: - As much as wanted.
  */
@@ -117,7 +117,7 @@ public class MeetZynn extends AbstractQuest {
 		npc
 				.addReply(
 						"get",
-						"You can get a scaled-down composite aerial map of Stendhal at #http://arianne.sourceforge.net/wiki_images/atlas_world.png if you want one. Careful you don't spoil any surprises for yourself, though!");
+						"You can get a map of Stendhal at #https://stendhalgame.org/world/atlas.html if you want one. Careful you don't spoil any surprises for yourself, though!");
 
 		npc
 				.addReply(
@@ -156,24 +156,24 @@ public class MeetZynn extends AbstractQuest {
 				false);
 		step_1();
 	}
-	
+
 	@Override
 	public String getName() {
 		return "MeetZynn";
 	}
-	
+
 	// no quest slots ever get set so making it visible seems silly
-	// however, there is an entry for another quest slot in the games.stendhal.server.maps.semos.library.HistorianGeographerNPC file 
+	// however, there is an entry for another quest slot in the games.stendhal.server.maps.semos.library.HistorianGeographerNPC file
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

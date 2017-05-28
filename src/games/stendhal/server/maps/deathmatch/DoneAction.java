@@ -98,7 +98,7 @@ public class DoneAction implements ChatAction {
 		}
 		player.updateItemAtkDef();
 		TurnNotifier.get().notifyInTurns(0, new NotifyPlayerAboutHallOfFamePoints((SpeakerNPC) raiser.getEntity(), player.getName(), "D", "deathmatch_score"));
-		
+
 		new SetQuestAction("deathmatch", 0, "done").fire(player, sentence, raiser);
 		// Track the number of wins.
 		new IncrementQuestAction("deathmatch", 6, 1).fire(player, sentence, raiser);

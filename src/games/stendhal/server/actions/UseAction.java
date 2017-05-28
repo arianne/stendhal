@@ -17,6 +17,7 @@ import static games.stendhal.common.constants.Actions.BASESLOT;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TARGET_PATH;
 import static games.stendhal.common.constants.Actions.USE;
+
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;

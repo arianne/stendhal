@@ -25,7 +25,7 @@ public class UserTest {
 	public final void testUser() {
 		final User user = new User();
 
-		assertFalse(User.isAdmin()); 
+		assertFalse(User.isAdmin());
 		assertFalse(user.hasSheep());
 		assertFalse(user.hasPet());
 	}

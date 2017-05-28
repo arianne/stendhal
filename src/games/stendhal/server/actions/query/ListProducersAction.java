@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.LISTPRODUCERS;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;

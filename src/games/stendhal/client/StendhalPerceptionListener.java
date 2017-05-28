@@ -14,31 +14,31 @@ package games.stendhal.client;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
-
-import org.apache.log4j.Logger;
 
 class StendhalPerceptionListener implements IPerceptionListener {
 	private static final Logger logger = Logger.getLogger(StendhalPerceptionListener.class);
 
 	/**
-	 * 
+	 *
 	 */
 	private PerceptionDispatcher dispatch = new PerceptionDispatcher();
 
 	private final RPObjectChangeDispatcher rpobjDispatcher;
 
 	private final UserContext userContext;
-	
+
 	public StendhalPerceptionListener(final PerceptionDispatcher dispatch, final RPObjectChangeDispatcher rpobjDispatcher, final UserContext userContext, final Map<ID, RPObject> world_objects) {
 		this.userContext = userContext;
 		this.dispatch = dispatch;
 		this.rpobjDispatcher = rpobjDispatcher;
 		this.world_objects = world_objects;
 	}
-	
+
 	@Override
 	public boolean onAdded(final RPObject object) {
 		if (userContext.isUser(object)) {
@@ -89,7 +89,7 @@ class StendhalPerceptionListener implements IPerceptionListener {
 				return true;
 			}
 
-			
+
 			final RPObject object = world_objects.get(id);
 
 			userContext.setPlayer(object);
@@ -112,9 +112,9 @@ class StendhalPerceptionListener implements IPerceptionListener {
 	@Override
 	public void onSynced() {
 		dispatch.onSynced();
-		
 
-	
+
+
 	}
 
 
@@ -123,7 +123,7 @@ class StendhalPerceptionListener implements IPerceptionListener {
 	@Override
 	public void onUnsynced() {
 		dispatch.onUnsynced();
-		
+
 	}
 
 	@Override

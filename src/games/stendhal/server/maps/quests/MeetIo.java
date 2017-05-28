@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -25,17 +29,13 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Speak with Io PARTICIPANTS: - Io
- * 
+ *
  * STEPS: - Talk to Io to activate the quest and keep speaking with Io.
- * 
+ *
  * REWARD: - 10 XP - 5 gold coins
- * 
+ *
  * REPETITIONS: - As much as wanted, but you only get the reward once.
  */
 public class MeetIo extends AbstractQuest {
@@ -48,7 +48,7 @@ public class MeetIo extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -125,7 +125,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_5,
-			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.freenode.net'. There is a web frontend at #http://stendhalgame.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
+			"Type #/support #<message> to report a problem. You can also try the IRC channel ##arianne on #'irc.freenode.net'. There is a web frontend at #https://stendhalgame.org/development/chat.html \nOkay, time for your last lesson in mental manipulation!",
 			null);
 
 		npc.add(
@@ -139,21 +139,21 @@ public class MeetIo extends AbstractQuest {
 		/** Give the reward to the patient newcomer user */
 		final String answer = "*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n";
 		npc.add(ConversationStates.INFORMATION_6,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.IDLE, 
+			ConversationStates.IDLE,
 			answer + "Hey! I know what you're thinking, and I don't like it!",
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("money", 10));
 		reward.add(new IncreaseXPAction(10));
-		reward.add(new SetQuestAction(QUEST_SLOT, "done"));		
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		npc.add(ConversationStates.INFORMATION_6,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.IDLE, 
+			ConversationStates.IDLE,
 			answer + "Remember, don't let anything disturb your concentration.",
 			new MultipleActions(reward));
 
@@ -179,7 +179,7 @@ public class MeetIo extends AbstractQuest {
 	public String getName() {
 		return "MeetIo";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

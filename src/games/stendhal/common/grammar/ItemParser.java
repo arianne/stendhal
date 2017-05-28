@@ -1,12 +1,12 @@
 package games.stendhal.common.grammar;
 
-import games.stendhal.common.parser.Expression;
-import games.stendhal.common.parser.NameSearch;
-import games.stendhal.common.parser.Sentence;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import games.stendhal.common.parser.Expression;
+import games.stendhal.common.parser.NameSearch;
+import games.stendhal.common.parser.Sentence;
 
 public class ItemParser {
 

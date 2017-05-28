@@ -1,17 +1,17 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
- ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
@@ -64,7 +64,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName
 			}));
-		} else {s
+		} else {
 			e.preventDefault();
 		}
 	}
@@ -99,7 +99,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		e.addEventListener("dragover", onDragOver);
 		e.addEventListener("drop", onDrop);
 	}
-}
+};
 
 
 stendhal.ui.equip = {
@@ -136,7 +136,7 @@ stendhal.ui.equip = {
 		stendhal.ui.equip.inventory.push(itemContainer);
 		itemContainer.update();
 		popup.onClose = function() {
-			stendhal.ui.equip.inventory.splice(stendhal.ui.equip.inventory.indexOf(itemContainer), 1)
+			stendhal.ui.equip.inventory.splice(stendhal.ui.equip.inventory.indexOf(itemContainer), 1);
 		}
 		return popup;
 	}

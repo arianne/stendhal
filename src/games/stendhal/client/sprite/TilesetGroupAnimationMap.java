@@ -52,10 +52,10 @@ public class TilesetGroupAnimationMap {
 
 	/**
 	 * Acquire a named tileset map. If it does not exists, it will be created.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the tileset.
-	 * 
+	 *
 	 * @return An tileset animation map.
 	 */
 	private TilesetAnimationMap acquire(final String name) {
@@ -71,10 +71,10 @@ public class TilesetGroupAnimationMap {
 
 	/**
 	 * Add a mapping of a tile index to animation frame indexes.
-	 * 
+	 *
 	 * <strong>NOTE: The array of frame indexes/delays passed is not copied, and
 	 * should not be altered after this is called.</strong>
-	 * 
+	 *
 	 * @param name
 	 *            The name of the tileset.
 	 * @param index
@@ -93,10 +93,10 @@ public class TilesetGroupAnimationMap {
 	 * Add mappings of tile indexes to animation frame indexes. For each frame,
 	 * a mapping will be created with the remaining indexes as it's frames (in
 	 * order, starting with it's index).
-	 * 
+	 *
 	 * <strong>NOTE: The array of frame indexes/delays passed is not copied, and
 	 * should not be altered after this is called.</strong>
-	 * 
+	 *
 	 * @param name
 	 *            The name of the tileset.
 	 * @param frameIndexes
@@ -111,10 +111,10 @@ public class TilesetGroupAnimationMap {
 
 	/**
 	 * Parse and add a configuration line.
-	 * 
+	 *
 	 * @param line
 	 *            The configuration line.
-	 * 
+	 *
 	 * @see #load(InputStream)
 	 */
 	private void addConfig(final String line) {
@@ -226,10 +226,10 @@ public class TilesetGroupAnimationMap {
 
 	/**
 	 * Get a named tileset map.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the tileset.
-	 * 
+	 *
 	 * @return An tileset animation map, or <code>null</code> if one does not
 	 *         exists.
 	 */
@@ -242,13 +242,13 @@ public class TilesetGroupAnimationMap {
 	 * Load tileset mappings from a file. This doesn't not first clear any
 	 * existing entries.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * The file format consists of one line per entry. Blank lines and those
 	 * starting with '#' (a comment) are ignored. The line format is as follows:<br>
 	 * <em>tileset</em> <em>index</em> <em>frame:frame[:frame]...</em>
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * Spaces may be any whitespace. The <em>index</em> may also be
 	 * <code>*</code>, which indicates that an entry should be added using
@@ -256,10 +256,10 @@ public class TilesetGroupAnimationMap {
 	 * appended by <code>@</code><em>delay</em>, where <em>delay</em> is
 	 * a value in milliseconds of for the duration of the frame (or the default
 	 * for all frames, if specified for mapped index).
-	 * 
+	 *
 	 * @param in
 	 *            The input stream.
-	 * 
+	 *
 	 * @throws IOException
 	 *             If an I/O error occurred.
 	 */

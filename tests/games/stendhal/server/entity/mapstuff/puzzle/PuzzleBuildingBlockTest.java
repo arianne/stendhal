@@ -13,7 +13,9 @@ package games.stendhal.server.entity.mapstuff.puzzle;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -34,15 +36,15 @@ public class PuzzleBuildingBlockTest {
 		block.put("variable", Boolean.FALSE);
 		block.defineProperty("variable", "local.active == testzone.remote.active");
 
-		assertThat(block.getDependencies(), 
+		assertThat(block.getDependencies(),
 			allOf(hasItem("local"), hasItem("testzone.remote")));
 	}
 
 
 	@Test
 	public void testEvalutateProperty() {
-		
-		// setup zones with puzzle 
+
+		// setup zones with puzzle
 
 		StendhalRPWorld.get().addRPZone("testing", new StendhalRPZone("testzone"));
 
@@ -79,5 +81,5 @@ public class PuzzleBuildingBlockTest {
 
 	}
 
-	
+
 }

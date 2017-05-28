@@ -12,11 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.config;
 
-import games.stendhal.common.constants.Nature;
-import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.entity.creature.impl.DropItem;
-import games.stendhal.server.entity.creature.impl.EquipItem;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +31,11 @@ import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.entity.creature.impl.DropItem;
+import games.stendhal.server.entity.creature.impl.EquipItem;
 
 public final class CreaturesXMLLoader extends DefaultHandler {
 	/** the logger instance. */
@@ -77,10 +77,10 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 
 	/** List of possible sound events. */
 	private List<String> sounds;
-	
+
 	/** Sound played on creature death */
 	private String deathSound;
-	
+
 	/** Looped sound effect for moving creature */
 	private String movementSound;
 
@@ -89,11 +89,11 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private Map<String, String> aiProfiles;
 
 	private List<DefaultCreature> list;
-	
+
 	private String bloodName;
 
 	private String corpseName;
-	
+
 	private String harmlessCorpseName;
 
 	private int corpseWidth;
@@ -111,9 +111,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private boolean attributes;
 
 	private boolean abilities;
-	
+
 	private String statusAttack;
-	
+
 	private double statusAttackProbability;
 
 	/** Susceptibilities of a creature */
@@ -381,11 +381,11 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setCreatureSounds(sounds);
 			creature.setCreatureDeathSound(deathSound);
 			creature.setCreatureMovementSound(movementSound);
-			
+
 			if (statusAttack != null) {
 			    creature.setStatusAttack(statusAttack, statusAttackProbability);
 			}
-			
+
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
 			attributes = false;

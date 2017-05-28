@@ -1,14 +1,14 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2014 - Stendhal                    *
- ***************************************************************************
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
+
 "use strict";
 
 var stendhal = window.stendhal = window.stendhal || {};
@@ -57,7 +57,8 @@ stendhal.data.sprites = {
 	getAreaOf: function(image, width, height, offsetX, offsetY) {
 		offsetX = offsetX || 0;
 		offsetY = offsetY || 0;
-		if (image.width == width && image.height == height && offsetX == 0 && offsetY == 0) {
+		if ((image.width === width) && (image.height === height)
+				&& (offsetX === 0) && (offsetY === 0)) {
 			return image;
 		}
 		var canvas = document.createElement("canvas");

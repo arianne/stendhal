@@ -35,7 +35,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Returns the Singleton instance.
-	 * 
+	 *
 	 * @return The instance
 	 */
 	public static NPCList get() {
@@ -53,7 +53,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Returns the NPC with the given name.
-	 * 
+	 *
 	 * @param name
 	 *            The NPC's name
 	 * @return The NPC, or null if there is no NPC with this name
@@ -64,7 +64,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Checks whether an NPC with the given name exists.
-	 * 
+	 *
 	 * @param name
 	 *            The NPC's name
 	 * @return true iff an NPC with the given name exists
@@ -77,7 +77,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 * Adds an NPC to the NPCList. Does nothing if an NPC with the same name
 	 * already exists. This makes sure that each NPC can be uniquely identified
 	 * by his/her name.
-	 * 
+	 *
 	 * @param npc
 	 *            The NPC that should be added
 	 */
@@ -98,7 +98,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	/**
 	 * Removes an NPC from the NPCList. Does nothing if no NPC with the given
 	 * name exists.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the NPC that should be removed
 	 * @return SpeakerNPC or null in case it was not in the list
@@ -109,7 +109,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Returns a list of all NPCs.
-	 * 
+	 *
 	 * @return list of npcs
 	 */
 	public Set<String> getNPCs() {

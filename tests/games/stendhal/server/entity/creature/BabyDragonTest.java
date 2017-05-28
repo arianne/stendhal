@@ -14,18 +14,17 @@ package games.stendhal.server.entity.creature;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
 import java.util.List;
 
-import marauroa.common.game.RPObject;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPObject;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.BabyDragonTestHelper;
 

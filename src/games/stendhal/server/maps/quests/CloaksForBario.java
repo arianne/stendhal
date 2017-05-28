@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -38,18 +42,14 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Cloaks for Bario
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Bario, a guy living in an underground house deep under the Ados Wildlife Refuge</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Bario asks you for a number of blue elf cloaks.</li>
@@ -59,14 +59,14 @@ import java.util.List;
  * all required cloaks at the same time.)</li>
  * <li> Bario gives you a golden shield in exchange.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> golden shield</li>
  * <li> 15000 XP</li>
  * <li> Karma: 25</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li> None.</li>
@@ -100,7 +100,7 @@ public class CloaksForBario extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?",
 				null);
 
@@ -118,7 +118,7 @@ public class CloaksForBario extends AbstractQuest {
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I don't have anything for you to do, really.", null);
-		
+
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
@@ -127,7 +127,7 @@ public class CloaksForBario extends AbstractQuest {
 				new SetQuestAction(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS)));
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Oh dear... I'm going to be in trouble...",
@@ -172,7 +172,7 @@ public class CloaksForBario extends AbstractQuest {
 		// player says he has a blue elf cloak with him but he needs to bring more than one still
 		// could also have used GreaterThanCondition for Quest State but this is okay, note we can only get to question 1 if we were active
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "1"), new PlayerHasItemWithHimCondition("blue elf cloak")),
 				ConversationStates.QUESTION_1, null,
 				new MultipleActions(
@@ -192,7 +192,7 @@ public class CloaksForBario extends AbstractQuest {
 
 							}
 						}));
-		
+
 		// player says he has a blue elf cloak with him and it's the last one
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("blue elf cloak"));
@@ -201,17 +201,17 @@ public class CloaksForBario extends AbstractQuest {
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(25));
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "1"), new PlayerHasItemWithHimCondition("blue elf cloak")),
 				ConversationStates.ATTENDING,
 				"Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.",
 				new MultipleActions(reward));
-		
+
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("blue elf cloak")),
-				ConversationStates.ATTENDING, 
-				"Really? I don't see any...", 
+				ConversationStates.ATTENDING,
+				"Really? I don't see any...",
 				null);
 	}
 
@@ -225,7 +225,7 @@ public class CloaksForBario extends AbstractQuest {
 				"Bario, the freezing dwarf, needs cloaks to keep him warm.",
 				false);
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -244,12 +244,12 @@ public class CloaksForBario extends AbstractQuest {
 		}
 		return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "CloaksForBario";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 20;

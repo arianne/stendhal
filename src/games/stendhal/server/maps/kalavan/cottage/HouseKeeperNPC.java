@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.cottage;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,11 +25,6 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * NPC who makes tea.
@@ -64,7 +64,7 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 				addQuest("I have such a headache and little Annie shrieking every time she goes down the slide doesn't help. Maybe you could give her something to keep her occupied? ... like a gag ...");
 				addGoodbye("Bye now.");
 
-				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
+				final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("milk", 1);
 				requiredResources.put("honey", 1);
 

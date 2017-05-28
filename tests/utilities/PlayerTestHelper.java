@@ -48,7 +48,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Create a named player.
-	 * 
+	 *
 	 * @param name
 	 * @return player
 	 */
@@ -73,7 +73,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Register a player in rule processor, world and zone.
-	 * 
+	 *
 	 * @param player
 	 * @param zoneName
 	 */
@@ -83,7 +83,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Register a player in rule processor, world and zone.
-	 * 
+	 *
 	 * @param player
 	 * @param zone
 	 */
@@ -95,7 +95,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Register a player in rule processor and world.
-	 * 
+	 *
 	 * @param player
 	 */
 	public static void registerPlayer(final Player player) {
@@ -114,7 +114,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Remove a player from rule processor, world and zone.
-	 * 
+	 *
 	 * @param player
 	 * @param zone
 	 */
@@ -125,7 +125,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Remove a player from rule processor, world and zone.
-	 * 
+	 *
 	 * @param playerName
 	 * @param zone
 	 */
@@ -139,7 +139,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Remove a player from rule processor, world and zone.
-	 * 
+	 *
 	 * @param playerName
 	 * @param zoneName
 	 */
@@ -149,7 +149,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Remove a player from world and rule processor.
-	 * 
+	 *
 	 * @param playerName
 	 */
 	public static void removePlayer(final String playerName) {
@@ -162,7 +162,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Remove a player from world and rule processor.
-	 * 
+	 *
 	 * @param player
 	 */
 	public static void removePlayer(final Player player) {
@@ -187,7 +187,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Equip the player with the given amount of money.
-	 * 
+	 *
 	 * @param player
 	 * @param amount
 	 * @return success flag
@@ -198,7 +198,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Equip the player with the given items.
-	 * 
+	 *
 	 * @param player
 	 * @param clazz
 	 * @return success flag
@@ -213,7 +213,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Equip the player with the given item and set the given item string.
-	 * 
+	 *
 	 * @param player
 	 * @param clazz
 	 * @param info
@@ -229,7 +229,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Equip the player with the given amount of items.
-	 * 
+	 *
 	 * @param player
 	 * @param clazz
 	 * @param amount
@@ -243,7 +243,7 @@ public abstract class PlayerTestHelper {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param player
 	 * @param clazz
 	 * @param slot
@@ -257,7 +257,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Reset the conversation state of the named NPC.
-	 * 
+	 *
 	 * @param npcName
 	 */
 	public static void resetNPC(final String npcName) {
@@ -270,7 +270,7 @@ public abstract class PlayerTestHelper {
 
 	/**
 	 * Remove the named NPC.
-	 * 
+	 *
 	 * @param npcName
 	 */
 	public static void removeNPC(final String npcName) {

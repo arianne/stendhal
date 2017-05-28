@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.entity.Entity;
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
-
-import org.apache.log4j.Logger;
 
 /**
  * A sign which is placed on the ground and can be right clicked by players to
@@ -58,9 +58,9 @@ public class Sign extends Entity {
 	}
 
 	/**
-	 * Creates a sign based on an existing RPObject. This is just for loading 
+	 * Creates a sign based on an existing RPObject. This is just for loading
 	 * a sign from the database, use the other constructors.
-	 * @param rpobject 
+	 * @param rpobject
 	 */
 	public Sign(final RPObject rpobject) {
 		super(rpobject);
@@ -70,7 +70,7 @@ public class Sign extends Entity {
 
 	/**
 	 * Get the sign's text.
-	 * 
+	 *
 	 * @return The sign text.
 	 */
 	public String getText() {
@@ -83,7 +83,7 @@ public class Sign extends Entity {
 
 	/**
 	 * Set the sign text.
-	 * 
+	 *
 	 * @param text
 	 *            The sign text.
 	 */
@@ -107,5 +107,5 @@ public class Sign extends Entity {
 		}
 	}
 
-	
+
 }

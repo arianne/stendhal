@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -31,14 +37,8 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
- * QUEST: Speak with Hayunn 
+ * QUEST: Speak with Hayunn
  * <p>
  * PARTICIPANTS: <ul><li> Hayunn Naratha</ul>
  *
@@ -60,7 +60,7 @@ public class MeetHayunn extends AbstractQuest {
 	private static final int TIME_OUT = 60;
 
 	private static Logger logger = Logger.getLogger(MeetHayunn.class);
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -79,15 +79,15 @@ public class MeetHayunn extends AbstractQuest {
 		}
 		if (player.getQuest(QUEST_SLOT, 0).equals("start")) {
 			return res;
-		} 
+		}
 		res.add("I killed the rat. Hayunn will teach me more about the world now.");
 		if ("killed".equals(questState)) {
 			return res;
-		} 
+		}
 		res.add("Hayunn gave me a bit of money and told me to go find Monogenes in Semos City, who will give me a map.");
 		if ("taught".equals(questState)) {
 			return res;
-		} 
+		}
 		res.add("Hayunn told me lots of useful information about how to survive, and gave me a studded shield and some money.");
 		if (isCompleted(player)) {
 			return res;
@@ -172,7 +172,7 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationStates.INFORMATION_1,
 		        "You ran off pretty fast after coming to tell me you killed that rat! I was about to give you a little tip. Do you want it?",
 				null);
-		
+
 		// Player has returned to say hi again.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -198,12 +198,12 @@ public class MeetHayunn extends AbstractQuest {
 			"Simple, really; just click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
-		final String epilog = "You can find answers to frequently asked questions by typing #/faq \nYou can read about some of the currently most powerful and successful warriors at #http://stendhalgame.org\n ";
-		
+		final String epilog = "You can find answers to frequently asked questions by typing #/faq \nYou can read about some of the currently most powerful and successful warriors at #https://stendhalgame.org\n ";
+
 			//This is used if the player returns, asks for #help and then say #yes
 			npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.YES_MESSAGES, new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			epilog + "You know, you remind me of my younger self...",
 			null);
 
@@ -214,7 +214,7 @@ public class MeetHayunn extends AbstractQuest {
 
 		npc.add(ConversationStates.INFORMATION_4,
 				ConversationPhrases.YES_MESSAGES, new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				epilog + "Well, good luck in the dungeons! This shield should help you. Here's hoping you find fame and glory, and keep watch for monsters!",
 				new MultipleActions(reward2));
 
@@ -227,7 +227,7 @@ public class MeetHayunn extends AbstractQuest {
 				"Oh well, I'm sure someone else will stop by for a chat soon. Bye...",
 				null);
 
-		npc.setPlayerChatTimeout(TIME_OUT); 
+		npc.setPlayerChatTimeout(TIME_OUT);
 	}
 
 	@Override
@@ -243,7 +243,7 @@ public class MeetHayunn extends AbstractQuest {
 	public String getName() {
 		return "MeetHayunn";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

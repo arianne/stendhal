@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
@@ -19,10 +23,6 @@ import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates a portable NPC who gives ALL players powerful items, increases their

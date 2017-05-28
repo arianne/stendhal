@@ -12,6 +12,10 @@
 package games.stendhal.server.actions.query;
 
 import static games.stendhal.common.constants.Actions.WHO;
+
+import java.util.Set;
+import java.util.TreeSet;
+
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
@@ -21,10 +25,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Set;
-import java.util.TreeSet;
-
 import marauroa.common.game.RPAction;
 
 /**

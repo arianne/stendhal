@@ -194,7 +194,7 @@ public class PhotographerChatAction implements ChatAction {
 	 *
 	 * @param outfit outfit of player
 	 * @param i background index
-	 * @return 
+	 * @return
 	 */
 	private String generateUrl(String outfit, int i) {
 		try {

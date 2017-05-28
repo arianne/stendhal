@@ -11,18 +11,18 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Enables admins to create (list and remove) chests.
- * 
+ *
  * @author yoriy
  */
 public class SummonChest extends ScriptImpl {
@@ -33,7 +33,7 @@ public class SummonChest extends ScriptImpl {
 
 	/**
 	 * Adds a chest.
-	 * 
+	 *
 	 * @param player
 	 *            admin who put the chest
 	 * @param args
@@ -85,7 +85,7 @@ public class SummonChest extends ScriptImpl {
 
 	/**
 	 * Removes the specified chest.
-	 * 
+	 *
 	 * @param player
 	 *            admin
 	 * @param args
@@ -125,7 +125,7 @@ public class SummonChest extends ScriptImpl {
 
 	/**
 	 * Lists all chests.
-	 * 
+	 *
 	 * @param player
 	 *            admin invoking this script
 	 */

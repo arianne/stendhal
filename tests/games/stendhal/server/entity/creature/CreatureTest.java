@@ -18,10 +18,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +25,10 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CreatureTestHelper;
 
@@ -45,11 +45,11 @@ public class CreatureTest {
 	 */
 	@Test
 	public void testGetNearestEnemy() {
-		
+
 		final Player onebyone = PlayerTestHelper.createPlayer("bob");
 		onebyone.setPosition(6, 0);
 		final MockCreature sevenbyseven = new MockCreature();
-	
+
 		final StendhalRPZone zone = new StendhalRPZone("test", 20 , 20);
 		zone.add(sevenbyseven);
 		zone.add(onebyone);
@@ -57,7 +57,7 @@ public class CreatureTest {
 		assertSame(onebyone, sevenbyseven.getNearestEnemy(6));
 		assertSame(onebyone, sevenbyseven.getNearestEnemy(5));
 		assertNull(sevenbyseven.getNearestEnemy(4));
-		
+
 		sevenbyseven.setSize(7, 7);
 		onebyone.setPosition(10, 10);
 		assertSame(onebyone, sevenbyseven.getNearestEnemy(7));
@@ -66,14 +66,14 @@ public class CreatureTest {
 		assertNull(sevenbyseven.getNearestEnemy(4));
 	}
 
-	
+
 	private static List<RPEntity> enemies  = new LinkedList<RPEntity>();
 	private static class MockCreature extends Creature {
 
 		@Override
 		public List<RPEntity> getEnemyList() {
-			
-			return enemies; 
+
+			return enemies;
 		}
 	}
 
@@ -110,5 +110,5 @@ public class CreatureTest {
 		}
 		assertThat(counter, is(2));
 	}
-	
+
 }

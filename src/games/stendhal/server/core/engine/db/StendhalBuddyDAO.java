@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -21,10 +19,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import marauroa.server.db.DBTransaction;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+
+import games.stendhal.server.entity.player.Player;
+import marauroa.server.db.DBTransaction;
 
 /**
  * database access for the redundant buddy table used on the website
@@ -73,7 +72,7 @@ public class StendhalBuddyDAO {
 
 	/**
 	 * saves the buddy list for the specified charname
-	 * 
+	 *
 	 * @param transaction transaction
 	 * @param charname name of char
 	 * @param player player
@@ -97,7 +96,7 @@ public class StendhalBuddyDAO {
 	 * @param relationtype type of the relationship
 	 * @param oldList  old buddy list from db
 	 * @param newList  current buddy list
-	 * @throws SQLException 
+	 * @throws SQLException
 	 * @throws SQLException in case of an database error
 	 */
 	private void syncBuddyListToDB(DBTransaction transaction, String charname, String relationtype, Collection<String> oldList, Collection<String> newList) throws SQLException {

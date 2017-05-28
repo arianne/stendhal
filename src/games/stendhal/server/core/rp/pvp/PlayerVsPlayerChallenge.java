@@ -6,7 +6,7 @@ import com.google.common.base.Objects.ToStringHelper;
 import games.stendhal.server.entity.player.Player;
 
 public class PlayerVsPlayerChallenge {
-	
+
 	private final long opened;
 	private long accepted = -1l;
 	//private long lastAction = -1l;
@@ -29,11 +29,11 @@ public class PlayerVsPlayerChallenge {
 			return false;
 		}
 		PlayerVsPlayerChallenge other = (PlayerVsPlayerChallenge) obj;
-		
+
 		if(!(this.opened == other.opened)) {
 			return false;
 		}
-		
+
 		return this.challenger.equals(other.challenger) && this.challenged.equals(other.challenged);
 	}
 
@@ -67,8 +67,8 @@ public class PlayerVsPlayerChallenge {
 
 	/**
 	 * Checks if a player is involved into this challenge
-	 * 
-	 * @param the player to check 
+	 *
+	 * @param the player to check
 	 * @return true if player equals challenged or challenger
 	 */
 	public boolean isInvolved(Player player) {
@@ -81,7 +81,7 @@ public class PlayerVsPlayerChallenge {
 	public long getOpened() {
 		return opened;
 	}
-	
+
 	/**
 	 * @return the player who started this challenge
 	 */
@@ -95,5 +95,5 @@ public class PlayerVsPlayerChallenge {
 	public Player getChallenged() {
 		return challenged;
 	}
-	
+
 }

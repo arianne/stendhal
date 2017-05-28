@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.transformer.ArrestWarrantTransformer;
 import games.stendhal.server.core.engine.transformer.EarningTransformer;
 import games.stendhal.server.core.engine.transformer.ExpirationTrackerTransformer;
@@ -31,15 +36,9 @@ import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.entity.trade.Earning;
 import games.stendhal.server.entity.trade.Market;
 import games.stendhal.server.entity.trade.Offer;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.rp.RPObjectFactory;
-
-import org.apache.log4j.Logger;
 
 /**
  * Creates concrete objects of Stendhal classes.
@@ -50,8 +49,8 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 	private static Logger logger = Logger.getLogger(StendhalRPObjectFactory.class);
 	private static RPObjectFactory singleton;
 	private Map<String, Transformer> transformerMap;
-	
-	
+
+
 	public StendhalRPObjectFactory() {
 		super();
 		transformerMap = new HashMap<String, Transformer>();
@@ -67,7 +66,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put(Spell.RPCLASS_SPELL, new SpellTransformer());
 		transformerMap.put(ExpirationTracker.RPCLASS_EXPIRATION_TRACKER, new ExpirationTrackerTransformer());
 	}
-	
+
 	private void fixRPClass(final RPObject object) {
 		final RPClass clazz = object.getRPClass();
 		if ((clazz == null) || (clazz.getName() == null) || (clazz.getName().trim().equals(""))) {
@@ -77,7 +76,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 			}
 		}
 	}
-	
+
 	@Override
 	public RPObject transform(final RPObject object) {
 
@@ -95,7 +94,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		if (trafo == null) {
 
 			return super.transform(object);
-		} 
+		}
 		return trafo.transform(object);
 	}
 
@@ -104,7 +103,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 	/**
 	 * returns the factory instance (this method is called
 	 * by Marauroa using reflection).
-	 * 
+	 *
 	 * @return RPObjectFactory
 	 */
 	public static RPObjectFactory getFactory() {

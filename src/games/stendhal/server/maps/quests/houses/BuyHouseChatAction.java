@@ -1,8 +1,6 @@
 
 package games.stendhal.server.maps.quests.houses;
 
-import marauroa.common.game.SlotIsFullException;
-
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
@@ -16,6 +14,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.SlotIsFullException;
 
 final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
@@ -24,7 +23,7 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
 	/**
 	 * Creates a new BuyHouseChatAction.
-	 * 
+	 *
 	 * @param cost how much does the house cost
 	 * @param questSlot name of quest slot
 	 */
@@ -51,7 +50,7 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
 		final String owner = houseportal.getOwner();
 		if (owner.length() == 0) {
-			
+
 			// it's available, so take money
 			if (player.isEquipped("money", cost)) {
 				final Item key = SingletonRepository.getEntityManager().getItem(
@@ -61,12 +60,12 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 
 				final int locknumber = houseportal.getLockNumber();
 				((HouseKey) key).setup(doorId, locknumber, player.getName());
-			
+
 				if (player.equipToInventoryOnly(key)) {
 					raiser.say("Congratulations, here is your key to " + doorId
 							   + "! Make sure you change the locks if you ever lose it. Do you want to buy a spare key, at a price of "
 							   + HouseChatAction.COST_OF_SPARE_KEY + " money?");
-					
+
 					player.drop("money", cost);
 					// remember what house they own
 					player.setQuest(questslot, itemName);
@@ -83,11 +82,11 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 				} else {
 					raiser.say("Sorry, you can't carry more keys!");
 				}
-			
+
 			} else {
 				raiser.say("You do not have enough money to buy a house!");
 			}
-		
+
 		} else {
 			raiser.say("Sorry, house " + itemName
 					   + " is sold, please ask for a list of #unsold houses, or give me the number of another house.");

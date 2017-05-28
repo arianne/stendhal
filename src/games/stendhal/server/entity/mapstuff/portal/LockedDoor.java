@@ -18,10 +18,10 @@ import games.stendhal.server.entity.RPEntity;
  * A locked door is a special kind of portal which requires a key to pass it. If
  * the player carries the key with him, he can use the door just like a normal
  * portal; it will automatically open and close.
- * 
+ *
  * By using the requiredAmount parameter, it can need more than one item for a
  * key
- * 
+ *
  * Note that you can link a door with a portal; that way, people only require
  * the key when walking in one direction and can walk in the other direction
  * without any key.
@@ -33,7 +33,7 @@ public class LockedDoor extends Door {
 
 	/**
 	 * Creates a new Locked door which need 1 key item.
-	 * 
+	 *
 	 * @param key
 	 *            The name of the item that is required to use the door
 	 * @param clazz
@@ -45,7 +45,7 @@ public class LockedDoor extends Door {
 
 	/**
 	 * Creates a new Locked door.
-	 * 
+	 *
 	 * @param key
 	 *            The name of the item that is required to use the door
 	 * @param clazz

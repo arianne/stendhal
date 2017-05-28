@@ -1,9 +1,9 @@
 package games.stendhal.server.core.config.zone;
 
+import org.w3c.dom.Element;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
-
-import org.w3c.dom.Element;
 
 /**
  * Reader for zone attributes.

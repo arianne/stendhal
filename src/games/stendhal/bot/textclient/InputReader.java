@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.bot.textclient;
 
-import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.client.scripting.ChatLineParser;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.scripting.ChatLineParser;
 
 /**
  * Reads and handles the input
@@ -40,7 +40,7 @@ public class InputReader implements Runnable {
 					break;
 				}
 				ChatLineParser.parseAndHandle(line);
-				
+
 			} catch (IOException e) {
 				logger.error(e, e);
 				System.exit(0);

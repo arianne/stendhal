@@ -26,9 +26,9 @@ class SheepFood2DView extends Food2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override

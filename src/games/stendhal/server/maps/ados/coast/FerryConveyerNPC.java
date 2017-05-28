@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.coast;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -26,9 +29,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
-import java.util.Arrays;
-import java.util.Map;
-
 /**
  * Factory for an NPC who brings players from the docks to Athor Ferry
  * in a rowing boat.
@@ -40,7 +40,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	protected Status ferrystate;
 	private static StendhalRPZone shipZone;
 
@@ -50,7 +50,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 		}
 		return shipZone;
 	}
-	
+
 	private void buildNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Eliza") {
 
@@ -124,7 +124,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 
 
 			}};
-			
+
 			new AthorFerry.FerryListener() {
 				@Override
 				public void onNewFerryState(final Status status) {
@@ -141,11 +141,11 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 					}
 				}
 			};
-			
+
 			npc.setPosition(101, 103);
 			npc.setDescription("You see Eliza. She takes customers on board of the Athor island ferry.");
 			npc.setEntityClass("woman_008_npc");
 			npc.setDirection(Direction.LEFT);
-			zone.add(npc);		
+			zone.add(npc);
 	}
 }

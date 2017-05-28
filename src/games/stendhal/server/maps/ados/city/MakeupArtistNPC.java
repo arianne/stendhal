@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.city;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,9 +22,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Creates the NPCs and portals in Ados City.
@@ -50,7 +50,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 	 */
 	public void buildFidorea(final StendhalRPZone zone, int x, int y) {
 		final SpeakerNPC npc = new SpeakerNPC("Fidorea") {
-			
+
 			private static final int MINUTES_BEFORE_WEAR_OFF = 5 * 60;
 
 			@Override
@@ -65,7 +65,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				addHelp(getHelpDescription());
 
 				// this is a hint that one of the items Anna wants is a dress (goblin dress)
-				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); 
+				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!");
 				addJob("I am a makeup artist.");
 				addReply(
 				        "dress",

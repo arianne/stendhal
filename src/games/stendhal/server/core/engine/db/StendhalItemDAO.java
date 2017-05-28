@@ -11,12 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.entity.RPEntity;
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.StringChecker;
@@ -42,7 +41,7 @@ public class StendhalItemDAO {
 			return;
 		}
 
-		// insert row into 
+		// insert row into
 		String sql = "INSERT INTO item (name) VALUES ('[name]')";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", item.get("name"));
@@ -66,7 +65,7 @@ public class StendhalItemDAO {
 	}
 	/**
 	 * writes a log entry
-	 * 
+	 *
 	 * @param transaction DBTransaction
 	 * @param item item
 	 * @param player player object
@@ -100,16 +99,16 @@ public class StendhalItemDAO {
 		if (player != null) {
 			playerName = player.getName();
 		}
-		final String query = "INSERT INTO itemlog (itemid, source, event, " 
-			+ "param1, param2, param3, param4) VALUES (" 
-			+ itemid + ", '" 
-			+ StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" 
-			+ StringChecker.trimAndEscapeSQLString(event, 64) + "', '" 
-			+ StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" 
-			+ StringChecker.trimAndEscapeSQLString(param2, 64) + "', '" 
-			+ StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" 
+		final String query = "INSERT INTO itemlog (itemid, source, event, "
+			+ "param1, param2, param3, param4) VALUES ("
+			+ itemid + ", '"
+			+ StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '"
+			+ StringChecker.trimAndEscapeSQLString(event, 64) + "', '"
+			+ StringChecker.trimAndEscapeSQLString(param1, 64) + "', '"
+			+ StringChecker.trimAndEscapeSQLString(param2, 64) + "', '"
+			+ StringChecker.trimAndEscapeSQLString(param3, 64) + "', '"
 			+ StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
-	
+
 		transaction.execute(query, null);
 	}
 
@@ -117,7 +116,7 @@ public class StendhalItemDAO {
 	 * gets an optional attribute .
 	 *
 	 * @param object object to read the optional attribute from
-	 * @param attribute 
+	 * @param attribute
 	 * @return attribute name of attribute
 	 */
 	private String getAttribute(final RPObject object, final String attribute) {

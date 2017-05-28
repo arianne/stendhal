@@ -12,20 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.townhall;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Builds ados townhall clerk NPC.
  * He can divorce people, see maps/quests/Marriage.java
- * 
+ *
  * @author kymara
  */
 public class ClerkNPC implements ZoneConfigurator {
@@ -48,8 +48,8 @@ public class ClerkNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(23, 10));
-				nodes.add(new Node(27, 10));	
-				nodes.add(new Node(27, 8));	
+				nodes.add(new Node(27, 10));
+				nodes.add(new Node(27, 8));
 				nodes.add(new Node(28, 8));
 				nodes.add(new Node(28, 4));
 				nodes.add(new Node(25, 4));

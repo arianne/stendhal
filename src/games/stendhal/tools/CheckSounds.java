@@ -15,9 +15,9 @@ package games.stendhal.tools;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -32,7 +32,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Checks if all sound files can be played on the current system. For example
  * some sounds can only be played on MS Windows but not on Linux based systems.
- * 
+ *
  * @author mtotz
  */
 public class CheckSounds {
@@ -219,7 +219,7 @@ public class CheckSounds {
 	 * <li>key does not end with ",x"</li>
 	 * <li>or value contains a "."</li>
 	 * </ul>.
-	 * 
+	 *
 	 * @param key
 	 * @param value
 	 * @return true, if it is valid, false otherwise

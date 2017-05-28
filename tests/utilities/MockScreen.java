@@ -11,12 +11,12 @@
  ***************************************************************************/
 package utilities;
 
+import java.awt.Point;
+import java.awt.geom.Point2D;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-
-import java.awt.Point;
-import java.awt.geom.Point2D;
 
 public class MockScreen implements IGameScreen {
 	@Override

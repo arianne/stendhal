@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -35,11 +40,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * QUEST: Suntan Cream for Zara
  * <p>
@@ -62,7 +62,7 @@ import java.util.List;
  * REPETITIONS: - None.
  */
 public class SuntanCreamForZara extends AbstractQuest {
-	
+
 	private static final String QUEST_SLOT = "suntan_cream_zara";
 
 	@Override
@@ -98,34 +98,34 @@ public class SuntanCreamForZara extends AbstractQuest {
 		final SpeakerNPC zara = npcs.get("Zara");
 
 		zara.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!",
 			null);
-		
+
 		zara.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "rejected"),
-				ConversationStates.QUEST_OFFERED, 
-				"You refused to help me last time and my skin is getting worse. " 
+				ConversationStates.QUEST_OFFERED,
+				"You refused to help me last time and my skin is getting worse. "
 				+ "Please can you bring me the magic #'suntan cream' that the #lifeguards produce?",
 				null);
-		
+
 		zara.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Did you forget that you promised me to ask the #lifeguards for #'suntan cream'?",
 				null);
-		
+
 		zara.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				"I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #'suntan cream' that the #lifeguards produce?",
 				null);
-		
+
 		zara.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
@@ -172,16 +172,16 @@ public class SuntanCreamForZara extends AbstractQuest {
 			new AndCondition(new GreetingMatchesNameCondition(zara.getName()),
 					new QuestInStateCondition(QUEST_SLOT, "start"),
 					new PlayerHasItemWithHimCondition("suntan cream")),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Great! You got the suntan cream! Is it for me?",
 			null);
-		
+
 		zara.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(zara.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new NotCondition(new PlayerHasItemWithHimCondition("suntan cream"))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I know that the #'suntan cream' is hard to get, but I hope that you didn't forget my painful problem...",
 				null);
 
@@ -191,7 +191,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(15));
-		
+
 		zara.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
@@ -223,7 +223,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 	public String getName() {
 		return "SuntanCreamForZara";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 50;
@@ -233,7 +233,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 	public String getNPCName() {
 		return "Zara";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ATHOR_ISLAND;

@@ -17,12 +17,12 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.Definition;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * A door is a special kind of portal which can be open or closed.
- * 
+ *
  * Note that you can link a door with a portal; that way, people only require
  * the key when walking in one direction and can walk in the other direction
  * without any key.
@@ -50,7 +50,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 	/**
 	 * Creates a new door.
-	 * 
+	 *
 	 * @param clazz
 	 *            The class. Responsible for how this door looks like.
 	 */
@@ -60,10 +60,10 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 	/**
 	 * Creates a new door.
-	 * 
+	 *
 	 * @param clazz
 	 *            The class. Responsible for how this door looks like.
-	 * 
+	 *
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
@@ -90,7 +90,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 		put("open", "");
 		notifyWorldAboutChanges();
 	}
-	
+
 	/**
 	 * Open door, or stop door from closing
 	 */
@@ -121,7 +121,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 	/**
 	 * Is the door open?
-	 * 
+	 *
 	 * @return true, if opened; false otherwise
 	 */
 	protected boolean isOpen() {
@@ -138,7 +138,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 		if (couldUse) {
 			keepOpen();
-		} else { 
+		} else {
 			// player may not use it
 			if (isOpen()) {
 				// close now to make visible that the entity is not allowed

@@ -12,22 +12,21 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.plains.MillerNPC;
-
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -48,7 +47,7 @@ public class KillGnomesTest {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new MillerNPC().configureZone(zone, null);	
+		new MillerNPC().configureZone(zone, null);
 		AbstractQuest quest = new KillGnomes();
 		questSlot = quest.getSlotName();
 		quest.addToWorld();

@@ -14,15 +14,15 @@ package games.stendhal.server.entity.trade;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
 public class OfferTest {
@@ -42,7 +42,7 @@ public class OfferTest {
 
 	/**
 	 * Tests for offer.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -59,10 +59,10 @@ public class OfferTest {
 		assertThat(offerFromRPObject.getOfferer(), is(OFFERER_NAME));
 		assertThat(offerFromRPObject.getItem(), is(item));
 	}
-	
+
 	/**
 	 * Tests for equals of Offers
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -82,5 +82,5 @@ public class OfferTest {
 		assertThat(offerFromRPObject, is(o));
 		assertThat(o, is(offerFromRPObject));
 	}
-	
+
 }

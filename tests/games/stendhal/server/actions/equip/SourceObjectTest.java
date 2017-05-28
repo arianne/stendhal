@@ -12,19 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -72,7 +75,7 @@ public class SourceObjectTest {
 		final SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertTrue(so.isValid());
 	}
-	
+
 	/**
 	 * Test a source under another player.
 	 */
@@ -100,7 +103,7 @@ public class SourceObjectTest {
 		dropitem.setBoundTo("alice");
 		so = SourceObject.createSourceObject(action, alice);
 		assertTrue("Picking an item belonging to player herself", so.isValid());
-		
+
 		// Sanity check. Should be still valid to bob
 		so = SourceObject.createSourceObject(action, bob);
 		assertTrue("Accessing bound object below oneself", so.isValid());

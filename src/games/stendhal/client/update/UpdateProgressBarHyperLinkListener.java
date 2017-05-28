@@ -25,13 +25,13 @@ import javax.swing.event.HyperlinkListener;
  * default browser.<br>
  * Supports: Mac OS X, GNU/Linux, Unix, Windows XP/Vista/7<br>
  * Example Usage:<code><br> &nbsp; &nbsp;
- *    String url = "http://www.google.com/";<br> &nbsp; &nbsp;
+ *    String url = "https://www.google.com/";<br> &nbsp; &nbsp;
  *    BareBonesBrowserLaunch.openURL(url);<br></code> Latest Version: <a
  * href="http://www.centerkey.com/java/browser/"
  * >www.centerkey.com/java/browser</a><br>
  * Author: Dem Pilafian<br>
  * Public Domain Software -- Free to Use as You Like
- * 
+ *
  * @version 3.0, February 7, 2010
  */
 class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
@@ -50,10 +50,10 @@ class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 
 	/**
 	 * Opens the specified web page in the user's default browser
-	 * 
+	 *
 	 * @param url
 	 *            A web address (URL) of a web page (ex:
-	 *            "http://www.google.com/")
+	 *            "https://www.google.com/")
 	 */
 	private static void openURL(String url) {
 		try { // attempt to use Desktop library from JDK 1.6+ (even if on 1.5)
@@ -71,20 +71,22 @@ class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 							.getDeclaredMethod("openURL",
 									new Class[] { String.class }).invoke(null,
 									new Object[] { url });
-				} else if (osName.startsWith("Windows"))
+				} else if (osName.startsWith("Windows")) {
 					Runtime.getRuntime().exec(
 							"rundll32 url.dll,FileProtocolHandler " + url);
-				else { // assume Unix or Linux
+				} else { // assume Unix or Linux
 					boolean found = false;
-					for (String browser : BROWSER)
+					for (String browser : BROWSER) {
 						if (!found) {
 							found = Runtime.getRuntime().exec(
 									new String[] { "which", browser })
 									.waitFor() == 0;
-							if (found)
+							if (found) {
 								Runtime.getRuntime().exec(
 										new String[] { browser, url });
+							}
 						}
+					}
 				}
 			} catch (Exception e) {
 				System.err.println(ERROR_MESSAGE + url);

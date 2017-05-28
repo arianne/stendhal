@@ -12,12 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.client.sound.facade.SoundFileType;
-import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
-import games.stendhal.client.sound.system.processors.PCMStreamConverter;
-import games.stendhal.client.sound.system.processors.Recorder;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +19,12 @@ import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
+import games.stendhal.client.sound.system.processors.PCMStreamConverter;
+import games.stendhal.client.sound.system.processors.Recorder;
 
 /**
  *

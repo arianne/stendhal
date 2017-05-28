@@ -14,15 +14,15 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -54,7 +54,7 @@ public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		new RareWeaponsSellerNPC().configureZone(zone, null);	
+		new RareWeaponsSellerNPC().configureZone(zone, null);
 
 		quest = new McPeglegIOU();
 		quest.addToWorld();
@@ -63,7 +63,7 @@ public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	@Test
-	public void testQuest() {	
+	public void testQuest() {
 		npc = SingletonRepository.getNPCList().get("McPegleg");
 		en = npc.getEngine();
 

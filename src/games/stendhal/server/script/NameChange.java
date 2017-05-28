@@ -12,18 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
 
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.Configuration;
 
 /**
  * Makes client display a fake player name by changing the title attribute. If
  * args[0] equals remove, the original name is reset. Can only be used to *chage
  * the name of the player running the script.
- * 
+ *
  * @author timothyb89
  */
 public class NameChange extends ScriptImpl {

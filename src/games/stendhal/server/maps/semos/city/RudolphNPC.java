@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,16 +24,12 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 /**
  * ZoneConfigurator configuring Rudolph the Red-Nosed Reindeer who clops around Semos city during Christmas season
  */
 public class RudolphNPC implements ZoneConfigurator {
 
-	
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
@@ -59,24 +59,24 @@ public class RudolphNPC implements ZoneConfigurator {
 				path.add(new Node(21, 14));
 				path.add(new Node(21, 3));
 				setPath(new FixedPath(path, true));
-			}			
-			
+			}
+
 			@Override
 			public void createDialog() {
 				addGreeting("Hi, my jolly friend. What a wonderful time of year this is!");
 				addHelp("Oh, my, I can't help you, sorry. It's not like I can influence Santa at all.");
 				addJob("I pull Santa's sleigh on Christmas night. It gives me such pleasure to flash my nose so that Santa can see where he is going.");
 				addGoodbye("It was such a pleasure to meet you.");
-			
+
 				// remaining behaviour defined in games.stendhal.server.maps.quests.GoodiesForRudolph
-			
+
 			}
 
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
-			
+
 		};
 		npc.setPosition(2, 3);
 		npc.setDirection(Direction.DOWN);

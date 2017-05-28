@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.scripting;
 
+import java.text.CharacterIterator;
+
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.common.CommandlineParser;
-
-import java.text.CharacterIterator;
 
 /**
  * Command line parser for the Stendhal client The parser recognizes the
  * registered slash action commands and handles string quoting.
- * 
+ *
  * @author Martin Fuchs
  */
 class SlashActionParser extends CommandlineParser {
@@ -32,7 +32,7 @@ class SlashActionParser extends CommandlineParser {
 	/**
 	 * Extract slash command from the command line start.
 	 *
-	 * @return the parsed SlashActionCommand 
+	 * @return the parsed SlashActionCommand
 	 */
 	private SlashActionCommand extractCommand() {
 		final SlashActionCommand command = new SlashActionCommand();
@@ -84,7 +84,7 @@ class SlashActionParser extends CommandlineParser {
 	 * Parse the given slash command. The text is supposed not to include the
 	 * slash character but to start directly after the slash on the client
 	 * command line.
-	 * 
+	 *
 	 * @param text
 	 *            the client command line
 	 * @return SlashActionCommand object

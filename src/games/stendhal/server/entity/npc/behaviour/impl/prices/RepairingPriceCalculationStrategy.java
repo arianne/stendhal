@@ -1,32 +1,32 @@
 package games.stendhal.server.entity.npc.behaviour.impl.prices;
 
+import java.util.Set;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Set;
 /**
  * Special calculation strategy for calculating repair prices
- * 
+ *
  * Repairing price is based on value determined by the player
- * level (min level has an effect similar to affecting def or rate) 
+ * level (min level has an effect similar to affecting def or rate)
  * and player's PK status
- * 
+ *
  * @author madmetzger
  */
 public class RepairingPriceCalculationStrategy implements PriceCalculationStrategy {
-	
+
 	private static final double REPAIR_PRICE_FACTOR = 0.05d;
-	
+
 	private static final double PLAYER_KILLER_MALUS = 2d;
-	
+
 	private final Set<String> items;
-	
+
 	private Item itemToRepair;
-	
+
 	/**
 	 * Create a new strategy object for the given items
-	 * 
+	 *
 	 * @param repairableItems
 	 */
 	public RepairingPriceCalculationStrategy(Set<String> repairableItems) {

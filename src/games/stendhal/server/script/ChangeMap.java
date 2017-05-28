@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.io.IOException;
+import java.util.List;
+
 import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.config.zone.TMXLoader;
@@ -19,10 +22,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-
-import java.io.IOException;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 
 /**
@@ -56,10 +55,10 @@ public class ChangeMap extends ScriptImpl {
 			sandbox.privateText(admin, "Failed to update map: " + e);
 		}
 	}
-	
+
 	/**
 	 * Update zone from StendhalMapStructure.
-	 * 
+	 *
 	 * @param zone zone to be updated
 	 * @param map new map data
 	 * @throws IOException When encoding the layer data fails
@@ -85,7 +84,7 @@ public class ChangeMap extends ScriptImpl {
 		// FIXME: Should old spawn points be kept, or change those too?
 		// Currently they are kept.
 	}
-	
+
 	/**
 	 * Load an optional layer, if present, to a zone.
 	 *

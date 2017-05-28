@@ -12,14 +12,6 @@
  ***************************************************************************/
 package games.stendhal.tools;
 
-import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
-import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,9 +19,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 import org.xml.sax.SAXException;
+
+import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
+import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import marauroa.common.game.IRPZone;
 
 public class GenerateMonsterUsage {
 	public static void main(final String[] args) throws URISyntaxException,
@@ -62,7 +61,7 @@ public class GenerateMonsterUsage {
 		Integer total = Integer.valueOf(0);
 		for (final Map.Entry<String, Integer> e : count.entrySet()) {
 				System.out.println(e.getKey() + ";" + e.getValue());
-				total += e.getValue(); 
+				total += e.getValue();
 		}
 		System.out.println("total amount of respawners: " + total);
 	}

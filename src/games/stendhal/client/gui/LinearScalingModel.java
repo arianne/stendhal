@@ -21,7 +21,7 @@ public class LinearScalingModel extends AbstractScalingModel {
 	private int maxRepresentation;
 	private double scale;
 	private double value;
-	
+
 	/**
 	 * Create a LinearScalingModel with maximum value of 1.0, and maximum
 	 * representation 1.
@@ -29,12 +29,12 @@ public class LinearScalingModel extends AbstractScalingModel {
 	public LinearScalingModel() {
 		this(1.0, 1);
 	}
-	
+
 	/**
 	 * Create a LinearScalingModel.
-	 * 
+	 *
 	 * @param maxValue maximum value of the variable
-	 * @param maxRepresentation the maximum of the presentation of the value 
+	 * @param maxRepresentation the maximum of the presentation of the value
 	 */
 	public LinearScalingModel(double maxValue, int maxRepresentation) {
 		this.maxValue = maxValue;
@@ -47,10 +47,10 @@ public class LinearScalingModel extends AbstractScalingModel {
 		this.value = value;
 		setRepresentation(Math.min((int) Math.round(this.value * scale), maxRepresentation));
 	}
-	
+
 	/**
 	 * Get the internal value.
-	 * 
+	 *
 	 * @return value
 	 */
 	public double getValue() {
@@ -65,11 +65,11 @@ public class LinearScalingModel extends AbstractScalingModel {
 			setValue(value);
 		}
 	}
-	
+
 	/**
 	 * Set the maximum value for the model, ie. the value that corresponds to
 	 * the maximum representation.
-	 * 
+	 *
 	 * @param maxValue new maximum value
 	 */
 	public void setMaxValue(double maxValue) {
@@ -78,7 +78,7 @@ public class LinearScalingModel extends AbstractScalingModel {
 		// Fires changed event, if needs be
 		setValue(value);
 	}
-	
+
 	/**
 	 * Calculate the scaling factor.
 	 */

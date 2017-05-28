@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.Map;
+
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 
-import java.util.Map;
-
 /**
- * A seed can be planted. 
+ * A seed can be planted.
  * The plant action defines the behaviour (e.g. only plantable on fertile ground).
  * The infostring stores what it will grow.
  */
@@ -31,7 +31,7 @@ public class Seed extends StackableItem {
 
 	/**
 	 * Creates a new seed
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -49,7 +49,7 @@ public class Seed extends StackableItem {
 				user.sendPrivateText("The " + this.getName() + " is too far away");
 				return false;
 			}
-			
+
 			// the infostring of the seed stores what it should grow
 			final String infostring = this.getInfoString();
 			FlowerGrower flowerGrower;
@@ -62,7 +62,7 @@ public class Seed extends StackableItem {
 			user.getZone().add(flowerGrower);
 			// add the FlowerGrower where the seed was on the ground
 			flowerGrower.setPosition(this.getX(), this.getY());
-			// The first stage of growth happens almost immediately        
+			// The first stage of growth happens almost immediately
 			TurnNotifier.get().notifyInTurns(3, flowerGrower);
 			// remove the seed now that it is planted
 			this.removeOne();

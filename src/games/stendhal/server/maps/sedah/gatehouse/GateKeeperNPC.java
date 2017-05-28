@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.sedah.gatehouse;
 
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
@@ -25,8 +27,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Map;
 
 /**
  * Builds a gatekeeper NPC Bribe him with at least 300 money to get the key for

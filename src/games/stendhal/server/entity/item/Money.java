@@ -36,7 +36,7 @@ public class Money extends StackableItem {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */

@@ -95,7 +95,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Create a new LoginDialog.
-	 * 
+	 *
 	 * @param owner parent window
 	 * @param client client
 	 */
@@ -290,7 +290,7 @@ public class LoginDialog extends JDialog {
 		c.anchor = GridBagConstraints.LAST_LINE_END;
 		c.insets = new Insets(0, 0, SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING);
 		contentPane.add(buttonBox, c);
-		
+
 		// Before loading profiles so that we can catch the data filled from
 		// there
 		bindEditListener();
@@ -317,7 +317,7 @@ public class LoginDialog extends JDialog {
 			this.setLocationRelativeTo(getOwner());
 		}
 	}
-	
+
 	/**
 	 * Prepare the field validator and bind it to the relevant text fields.
 	 */
@@ -449,10 +449,10 @@ public class LoginDialog extends JDialog {
 		fieldValidator.revalidate();
 		removeButton.setEnabled(b);
 	}
-	
+
 	/**
 	 * Connect to a server using a given profile.
-	 * 
+	 *
 	 * @param profile profile used for login
 	 */
 	public void connect(final Profile profile) {
@@ -528,7 +528,7 @@ public class LoginDialog extends JDialog {
 				System.exit(1);
 			}
 		} catch (final BannedAddressException e) {
-			handleError("Your IP is banned. If you think this is not right, please send a Support Request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+			handleError("Your IP is banned.",
 					"IP Banned");
 		}
 	}
@@ -589,7 +589,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Populate the profiles combobox and select the default.
-	 * 
+	 *
 	 * @param profiles profile data
 	 */
 	private void populateProfiles(final ProfileList profiles) {
@@ -634,20 +634,20 @@ public class LoginDialog extends JDialog {
 			passwordField.setText("");
 		}
 	}
-	
+
 	/**
 	 * Checks that a group of Documents (text fields) is not empty, and enables
-	 * or disables a JComponent on that condition. 
+	 * or disables a JComponent on that condition.
 	 */
 	private static class DataValidator implements DocumentListener {
 		private final Document[] documents;
 		private final JComponent component;
-		
+
 		/**
 		 * Create a new DataValidator.
-		 * 
+		 *
 		 * @param component component to be enabled depending on the state of
-		 *  documents 
+		 *  documents
 		 * @param docs documents
 		 */
 		DataValidator(JComponent component, Document... docs) {
@@ -658,7 +658,7 @@ public class LoginDialog extends JDialog {
 			}
 			revalidate();
 		}
-		
+
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			revalidate();
@@ -675,10 +675,10 @@ public class LoginDialog extends JDialog {
 		public void changedUpdate(DocumentEvent e) {
 			// Attribute change - ignore
 		}
-		
+
 		/**
 		 * Do a full document state check and set the component status according
-		 * to the result. 
+		 * to the result.
 		 */
 		final void revalidate() {
 			for (Document doc : documents) {
@@ -730,7 +730,7 @@ public class LoginDialog extends JDialog {
 
 		/**
 		 * Create a new ConnectRunnable.
-		 * 
+		 *
 		 * @param profile profile used for connection
 		 */
 		private ConnectRunnable(final Profile profile) {

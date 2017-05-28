@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
-import games.stendhal.common.ErrorBuffer;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.ErrorBuffer;
 
 /**
  * Parser for conversations with a SpeakerNPC This class parses strings in English language and returns them as Sentence
@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 public final class ConversationParser extends ErrorBuffer {
-	 
+
 	private static final Logger LOGGER = Logger.getLogger(ConversationParser.class);
 
 	/** A cache to hold pre-parsed trigger Expressions. */
@@ -43,7 +43,7 @@ public final class ConversationParser extends ErrorBuffer {
     /**
      * Create a new conversation parser and initialise with the given sentence.
      *
-     * @param sentence 
+     * @param sentence
      */
     protected ConversationParser(final SentenceImplementation sentence) {
     	String text = sentence.getOriginalText();
@@ -71,7 +71,7 @@ public final class ConversationParser extends ErrorBuffer {
         return parse(text).getNormalized();
     }
 
- 
+
     /**
      * Create trigger expression to match the parsed user input in the FSM engine.
      *
@@ -231,7 +231,7 @@ public final class ConversationParser extends ErrorBuffer {
             } else {
             	txt = text;
             }
-        }       
+        }
 
         // Trim white space from beginning and end.
         txt = txt.trim();
@@ -291,7 +291,7 @@ public final class ConversationParser extends ErrorBuffer {
 
     /**
      * Evaluates and sets sentence type by looking at the trailing punctuation characters.
-     * 
+     *
      * @param text	the text to evaluate
      * @param sentence where the type is to be set
      * @return text without trailing or leading punctuation

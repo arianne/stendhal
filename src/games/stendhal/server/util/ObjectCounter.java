@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * Counts objects.
- * 
+ *
  * @author hendrik
  * @param <K>
  *            Type of objects to count
@@ -34,7 +34,7 @@ public class ObjectCounter<K> {
 
 	/**
 	 * Gets the counter map.
-	 * 
+	 *
 	 * @return Map
 	 */
 	public Map<K, Integer> getMap() {
@@ -43,7 +43,7 @@ public class ObjectCounter<K> {
 
 	/**
 	 * Adds one to the appropriate entry.
-	 * 
+	 *
 	 * @param o
 	 *            object
 	 */

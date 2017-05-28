@@ -13,6 +13,9 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -21,8 +24,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import org.apache.log4j.Logger;
 
 /**
  * Tells the time remaining between the timestamp on quest slot + delay time, and now.

@@ -13,15 +13,15 @@
 package games.stendhal.server.actions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 import utilities.PlayerTestHelper;
 
 public class OutfitActionTest {

@@ -20,14 +20,14 @@ public interface ContentChangeListener {
 	/**
 	 * Called when entities are added in slots, or the attributes of the
 	 * entities are changed.
-	 * 
+	 *
 	 * @param added object changes
 	 */
 	void contentAdded(RPSlot added);
 	/**
 	 * Called when entities are removed from slots, of attributes of the
 	 * entities are removed.
-	 * 
+	 *
 	 * @param removed object changes
 	 */
 	void contentRemoved(RPSlot removed);

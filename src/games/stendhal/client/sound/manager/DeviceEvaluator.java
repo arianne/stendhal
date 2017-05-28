@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.regex.Pattern;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -67,21 +68,22 @@ public class DeviceEvaluator
             catch(LineUnavailableException e) { }
 			catch(IllegalArgumentException e) { }
 			catch(SecurityException        e) { }
-			
+
 			return null;
 		}
 	}
 
 	private final ArrayList<Device> mDevices;
-	
+
 	public DeviceEvaluator()
 	{
 		Mixer.Info[] mixerInfos = AudioSystem.getMixerInfo();
 
 		mDevices = new ArrayList<Device>(mixerInfos.length);
 
-		for(Mixer.Info info: mixerInfos)
+		for(Mixer.Info info: mixerInfos) {
 			mDevices.add(new Device(info.getName(), info.getDescription(), AudioSystem.getMixer(info)));
+		}
 	}
 
 	public void setRating(Pattern namePattern, Pattern descriptionPattern, int rating)
@@ -114,8 +116,9 @@ public class DeviceEvaluator
 		{
 			Device device = iterator.next();
 
-			if(device.mMixer.getMaxLines(dataLineInfo) == 0)
+			if(device.mMixer.getMaxLines(dataLineInfo) == 0) {
 				iterator.remove();
+			}
 		}
 
 		return list;
@@ -133,18 +136,21 @@ public class DeviceEvaluator
 				int numLines1 = device1.mMixer.getMaxLines(dataLineInfo);
 				int numLines2 = device2.mMixer.getMaxLines(dataLineInfo);
 
-				if(numLines2 == 0)
+				if(numLines2 == 0) {
 					return -1;
+				}
 
 				if(device1.mRating == device2.mRating)
 				{
-					if(numLines1 == AudioSystem.NOT_SPECIFIED || numLines1 > numLines2)
+					if(numLines1 == AudioSystem.NOT_SPECIFIED || numLines1 > numLines2) {
 						return -1;
+					}
 				}
 				else
 				{
-					if(device1.mRating > device2.mRating)
+					if(device1.mRating > device2.mRating) {
 						return -1;
+					}
 				}
 
 				return 1;
@@ -158,10 +164,11 @@ public class DeviceEvaluator
 		DeviceEvaluator evaluator = new DeviceEvaluator();
 		evaluator.setRating(Pattern.compile(".*PulseAudio.*")             , null, 1);
 		evaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null,-1);
-		
+
 		List<DeviceEvaluator.Device> list = evaluator.createDeviceList(format);
 
-		for(Device device: list)
+		for(Device device: list) {
 			System.out.println(device.mName + " num lines " + device.getMaxLines(SourceDataLine.class, format));
+		}
 	}
 }

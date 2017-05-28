@@ -24,7 +24,7 @@ class ViewChangeEvent extends Event<Entity> {
 	public void execute() {
 		final int x = event.getInt("x");
 		final int y = event.getInt("y");
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {

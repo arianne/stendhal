@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.buddy;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;

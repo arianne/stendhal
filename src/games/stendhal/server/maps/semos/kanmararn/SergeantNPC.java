@@ -24,7 +24,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
  * An army sergeant who lost his company.
- * 
+ *
  * @see games.stendhal.server.maps.quests.KanmararnSoldiers
  */
 

@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.Map;
+
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Map;
-
 /**
  * a basket which can be unwrapped.
- * 
+ *
  * @author kymara
  */
 public class Basket extends Box {
@@ -31,7 +31,7 @@ public class Basket extends Box {
 
 	/**
 	 * Creates a new Basket.
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -44,7 +44,7 @@ public class Basket extends Box {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */

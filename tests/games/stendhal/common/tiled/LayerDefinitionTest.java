@@ -16,19 +16,16 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import games.stendhal.common.tiled.LayerDefinition;
-import games.stendhal.common.tiled.StendhalMapStructure;
-import games.stendhal.common.tiled.TileSetDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import marauroa.common.net.InputSerializer;
-import marauroa.common.net.OutputSerializer;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import marauroa.common.net.InputSerializer;
+import marauroa.common.net.OutputSerializer;
 
 public class LayerDefinitionTest {
 	private StendhalMapStructure map;
@@ -86,8 +83,8 @@ public class LayerDefinitionTest {
 
 	/**
 	 * Tests for serialization.
-	 * 
-	 * @throws IOException 
+	 *
+	 * @throws IOException
 	 */
 	@Test
 	public void testSerialization() throws IOException { //, ClassNotFoundException

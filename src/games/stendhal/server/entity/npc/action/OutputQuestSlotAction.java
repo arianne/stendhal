@@ -8,13 +8,13 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Debugging ChatAction that sends a quest slot's content to the firing player
- *  
+ *
  * @author madmetzger
  */
 public class OutputQuestSlotAction implements ChatAction {
-	
+
 	private final String questSlot;
-	
+
 	/**
 	 * Create a new OutputQuestSlotAction
 	 * @param quest the quest to plot
@@ -22,7 +22,7 @@ public class OutputQuestSlotAction implements ChatAction {
 	public OutputQuestSlotAction(String quest) {
 		this.questSlot = quest;
 	}
-	
+
 	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if(player.hasQuest(this.questSlot)) {

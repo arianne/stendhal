@@ -16,14 +16,14 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
@@ -63,7 +63,7 @@ public class QuestNotActiveConditionTest {
 				ConversationParser.parse("QuestNotActiveConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()),
 				is(true));
-		
+
 		bob.setQuest("questname", "rejected");
 		assertThat(new QuestNotActiveCondition("questname").fire(bob,
 				ConversationParser.parse("QuestNotActiveConditionTest"),
@@ -97,7 +97,7 @@ public class QuestNotActiveConditionTest {
 
 		final QuestNotActiveCondition obj = new QuestNotActiveCondition("questname");
 		assertThat(obj, equalTo(obj));
-		assertThat(new QuestNotActiveCondition("questname"), 
+		assertThat(new QuestNotActiveCondition("questname"),
 				equalTo(new QuestNotActiveCondition("questname")));
 
 		assertThat(new QuestNotActiveCondition("questname"),
@@ -108,7 +108,7 @@ public class QuestNotActiveConditionTest {
 				"questname2"))));
 
 		assertThat(new QuestNotActiveCondition("questname"),
-				equalTo((QuestNotActiveCondition) new QuestNotActiveCondition("questname") { 
+				equalTo((QuestNotActiveCondition) new QuestNotActiveCondition("questname") {
 					//sub classing
 			}));
 	}

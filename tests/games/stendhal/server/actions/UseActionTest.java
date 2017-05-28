@@ -21,6 +21,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -32,10 +35,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ChestTestHelper;
 
@@ -66,7 +65,7 @@ public class UseActionTest {
 		assertTrue(player.isEquipped("cheese"));
 		ua.onAction(player, action);
 		assertFalse(player.isEquipped("cheese"));
-		
+
 		// Same using item path
 		cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		player.equip("bag", cheese);
@@ -99,7 +98,7 @@ public class UseActionTest {
 		ua.onAction(player, action);
 		assertTrue(player.isEquipped("cheese"));
 		assertEquals(1, cheese.getQuantity());
-		
+
 		// The same using item path
 		cheese.setQuantity(2);
 		action = new RPAction();
@@ -137,7 +136,7 @@ public class UseActionTest {
 		assertFalse(player.has("eating"));
 		ua.onAction(player, action);
 		assertTrue(player.has("eating"));
-		
+
 		// Same using item paths
 		cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		chest.add(cheese);
@@ -169,7 +168,7 @@ public class UseActionTest {
 		assertFalse(ua.isItemBoundToOtherPlayer(player, null));
 		assertFalse(ua.isItemBoundToOtherPlayer(player, cheese));
 	}
-	
+
 	/**
 	 * Test trying to use an item in possession of another player.
 	 */
@@ -191,7 +190,7 @@ public class UseActionTest {
 		assertTrue(player2.isEquipped("cheese"));
 		ua.onAction(player, action);
 		assertTrue(player2.isEquipped("cheese"));
-		
+
 		// Same using item path
 		action = new RPAction();
 		action.put(Actions.TARGET_PATH, Arrays.asList(Integer.toString(player2.getID().getObjectID()),
@@ -199,7 +198,7 @@ public class UseActionTest {
 		ua.onAction(player, action);
 		assertTrue(player2.isEquipped("cheese"));
 	}
-	
+
 	/**
 	 * Test using an item that is on ground.
 	 */
@@ -216,7 +215,7 @@ public class UseActionTest {
 		action.put(Actions.TARGET, "#" + cheese.getID().getObjectID());
 		ua.onAction(player, action);
 		assertEquals(0, cheese.getQuantity());
-		
+
 		// Same using item path
 		cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		zone.add(cheese);
@@ -226,7 +225,7 @@ public class UseActionTest {
 		ua.onAction(player, action);
 		assertEquals(0, cheese.getQuantity());
 	}
-	
+
 	/**
 	 * Test using an item that is in a corpse
 	 */
@@ -247,7 +246,7 @@ public class UseActionTest {
 		action.put(BASESLOT, "content");
 		ua.onAction(player, action);
 		assertEquals(0, cheese.getQuantity());
-		
+
 		// Same using item path
 		cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		corpse.add(cheese);

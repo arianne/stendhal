@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
+
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Default implementation of the Script interface.
- * 
+ *
  * @author hendrik
  */
 public class ScriptImpl implements Script {

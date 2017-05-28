@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.client.gui.spells;
 
+import javax.swing.SwingUtilities;
+
 import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.listener.FeatureChangeListener;
-
-import javax.swing.SwingUtilities;
 /**
  * Container displaying the spells of the player.
- * 
+ *
  * @author madmetzger
  *
  */

@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
+import org.apache.log4j.Logger;
+
 //
 //
 
@@ -22,12 +24,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 
-import org.apache.log4j.Logger;
-
 /**
  * A gold source is a spot where a player can prospect for gold nuggets. He
  * needs a gold pan, time, and luck.
- * 
+ *
  * Prospecting takes 7-11 seconds; during this time, the player keep standing
  * next to the gold source. In fact, the player only has to be there when the
  * prospecting action has finished. Therefore, make sure that two gold sources
@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
  * can't prospect for gold at several sites simultaneously.
  *
  * Some karma is used to decide if the player was successful at the well or not.
- * 
+ *
  * @author daniel
  */
 public class GoldSource extends PlayerActivityEntity {
@@ -62,7 +62,7 @@ public class GoldSource extends PlayerActivityEntity {
 	public GoldSource() {
 		this("gold nugget");
 	}
-	
+
 	/**
 	 * source name.
 	 */
@@ -70,10 +70,10 @@ public class GoldSource extends PlayerActivityEntity {
 	public String getName() {
 		return("gold rich water");
 	}
-	
+
 	/**
 	 * Create a gold source.
-	 * 
+	 *
 	 * @param itemName
 	 *            The name of the item to be prospected.
 	 */
@@ -100,7 +100,7 @@ public class GoldSource extends PlayerActivityEntity {
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 * 
+	 *
 	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
@@ -110,7 +110,7 @@ public class GoldSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity can be done.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -125,7 +125,7 @@ public class GoldSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity was successful.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -139,7 +139,7 @@ public class GoldSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has finished.
-	 * 
+	 *
 	 * @param player
 	 *            The player that did the activity.
 	 * @param successful
@@ -166,7 +166,7 @@ public class GoldSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has started.
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
 	 */

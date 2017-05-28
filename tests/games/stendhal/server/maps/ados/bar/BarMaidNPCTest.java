@@ -17,6 +17,10 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.Sentence;
@@ -29,10 +33,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class BarMaidNPCTest {
@@ -48,7 +48,7 @@ public class BarMaidNPCTest {
 	 */
 	@Test
 	public void testConfigureZone() {
-		
+
 		SingletonRepository.getRPWorld();
 		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
 

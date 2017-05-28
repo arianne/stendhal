@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.tunnel;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -20,13 +22,11 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
-import java.util.Map;
-
 public class DiscipleAssassinCreature implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
+	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */

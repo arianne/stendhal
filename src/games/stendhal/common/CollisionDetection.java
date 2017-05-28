@@ -13,9 +13,9 @@
 package games.stendhal.common;
 
 
-import games.stendhal.common.tiled.LayerDefinition;
-
 import java.awt.geom.Rectangle2D;
+
+import games.stendhal.common.tiled.LayerDefinition;
 
 /**
  * This class loads the map and allow you to determine if a player collides or
@@ -39,7 +39,7 @@ public class CollisionDetection {
 
 	/**
 	 * Initialize the collision map to desired size.
-	 * 
+	 *
 	 * @param width width of the map
 	 * @param height height of the map
 	 */
@@ -49,16 +49,16 @@ public class CollisionDetection {
 		} else if (map != null) {
 			map.clear();
 		}
-		
+
 		this.width = width;
 		this.height = height;
-		
+
 		clear();
 	}
 
 	/**
 	 * Set a position in the collision map to static collision.
-	 * 
+	 *
 	 * @param x x coordinate
 	 * @param y y coordinate
 	 */
@@ -68,17 +68,17 @@ public class CollisionDetection {
 		}
 		map.set(x, y);
 	}
-	
+
 	/**
 	 * Fill the collision map from layer data.
-	 * 
+	 *
 	 * @param collisionLayer static collision information
 	 */
 	public void setCollisionData(final LayerDefinition collisionLayer) {
 		// First we build the int array.
 		collisionLayer.build();
 		init(collisionLayer.getWidth(), collisionLayer.getHeight());
-		
+
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				/*
@@ -88,14 +88,14 @@ public class CollisionDetection {
 				boolean b = collisionLayer.getTileAt(x, y) != 0;
 				if (b) {
 					map.set(x, y);
-				}		
+				}
 			}
 		}
 	}
 
 	/**
 	 * Print the area around the (x,y) useful for debugging.
-	 *  
+	 *
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 * @param size size of surroundings
@@ -119,7 +119,7 @@ public class CollisionDetection {
 
 	/**
 	 * Check if a rectangle is at least partially outside the map.
-	 * 
+	 *
 	 * @param shape area to be checked
 	 * @return <code>true</code> if shape is at least partially outside the map,
 	 * 	<code>false</code> otherwise
@@ -135,7 +135,7 @@ public class CollisionDetection {
 
 	/**
 	 * Check if a rectangle overlaps colliding areas.
-	 * 
+	 *
 	 * @param shape checked area
 	 * @return <code>true</code> if the shape enters in any of the non
 	 *	trespassable areas of the map, <code>false</code> otherwise
@@ -151,7 +151,7 @@ public class CollisionDetection {
 
 	/**
 	 * Check if a rectangle overlaps colliding areas.
-	 * 
+	 *
 	 * @param x x-position
 	 * @param y y-position
 	 * @param w width
@@ -178,11 +178,11 @@ public class CollisionDetection {
 
 	/**
 	 * Check if a location is marked with collision.
-	 * 
+	 *
 	 * @param x x coordinate
 	 * @param y y coordinate
 	 * @return <code>true</code> if the map position is a collision tile,
-	 * 	otherwise <code>false</code> 
+	 * 	otherwise <code>false</code>
 	 */
 	public boolean collides(final int x, final int y) {
 		if ((x < 0) || (x >= width)) {
@@ -197,7 +197,7 @@ public class CollisionDetection {
 
 	/**
 	 * Get the width of the collision map.
-	 * 
+	 *
 	 * @return width
 	 */
 	public int getWidth() {
@@ -206,7 +206,7 @@ public class CollisionDetection {
 
 	/**
 	 * Get the height of the collision map.
-	 * 
+	 *
 	 * @return height
 	 */
 	public int getHeight() {

@@ -17,6 +17,15 @@ import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
 import static games.stendhal.common.constants.Common.PATHSET;
+
+import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
@@ -25,18 +34,9 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
-
-import java.awt.event.KeyEvent;
-import java.awt.geom.Rectangle2D;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * This class identifies the user of this client.
@@ -517,7 +517,7 @@ public class User extends Player {
 
 	/**
 	 * Convert a Direction to the corresponding key code.
-	 * 
+	 *
 	 * @param direction
 	 *        Direction to process
 	 * @return

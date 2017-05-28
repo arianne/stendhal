@@ -37,7 +37,7 @@ public class CounterMap<T> {
 	/**
 	 * creates a new counter map.
 	 *
-	 * @param weak <code>true</code> to create a weak key map, 
+	 * @param weak <code>true</code> to create a weak key map,
 	 *             <code>false</code> to create a normal map
 	 */
 	public CounterMap(boolean weak) {
@@ -118,19 +118,19 @@ public class CounterMap<T> {
 			return highestEntry.getKey();
 		}
 	}
-	
+
 	/**
 	 * Get the set of counted objects and their counts.
-	 * 
+	 *
 	 * @return count entries
 	 */
 	public Set<Entry<T, Integer>> entrySet() {
 		return map.entrySet();
 	}
-	
+
 	/**
 	 * Get the set of counted objects.
-	 * 
+	 *
 	 * @return counted objects
 	 */
 	public Set<T> keySet() {

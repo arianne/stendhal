@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import static org.junit.Assert.*;
-import games.stendhal.client.listener.RPObjectChangeListener;
-
-import marauroa.common.game.RPObject;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import games.stendhal.client.listener.RPObjectChangeListener;
+import marauroa.common.game.RPObject;
 
 public class RPObjectChangeDispatcherTest {
 

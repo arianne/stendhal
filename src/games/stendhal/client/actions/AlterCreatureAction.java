@@ -22,12 +22,12 @@ class AlterCreatureAction implements SlashAction {
 
 	/**
 	 * Alters an entity's attributes.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	@Override
@@ -47,7 +47,7 @@ class AlterCreatureAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -57,7 +57,7 @@ class AlterCreatureAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

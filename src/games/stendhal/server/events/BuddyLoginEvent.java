@@ -13,10 +13,10 @@
 package games.stendhal.server.events;
 
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 
 /**
  * An online event.
@@ -41,7 +41,7 @@ public class BuddyLoginEvent extends RPEvent {
 	 * @param player Player who just logged in
 	 */
 	public BuddyLoginEvent(final Player player) {
-		super(RPCLASS_NAME);		
+		super(RPCLASS_NAME);
 		put(NAME, player.getName());
 	}
 }

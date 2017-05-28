@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.orril.river;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Configure Orril River South Campfire (Outside/Level 0).
@@ -49,7 +49,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 				addJob("Work? I'm just a little girl! I'm a scout, you know.");
 				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
 				addGoodbye();
-				// remaining behaviour is defined in maps.quests.Campfire.				
+				// remaining behaviour is defined in maps.quests.Campfire.
 			}
 		};
 

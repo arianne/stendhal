@@ -16,6 +16,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.entity.User;
@@ -23,8 +26,6 @@ import games.stendhal.common.Constants;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
-
-import org.junit.Test;
 
 /**
  * Test the DropAction class.

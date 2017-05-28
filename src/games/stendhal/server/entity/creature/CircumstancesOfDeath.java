@@ -22,11 +22,11 @@ public class CircumstancesOfDeath {
 // 	public List<RPEntity> killers;
 	private RPEntity victim;
 	private StendhalRPZone zone;
-	
+
 	public RPEntity getKiller() {
 		return(killer);
 	}
-	
+
 	public RPEntity getVictim() {
 		return(victim);
 	}
@@ -34,7 +34,7 @@ public class CircumstancesOfDeath {
 	public StendhalRPZone getZone() {
 		return(zone);
 	}
-	
+
 	public CircumstancesOfDeath(RPEntity killer, RPEntity victim, StendhalRPZone zone) {
 		this.zone=zone;
 		this.killer=killer;

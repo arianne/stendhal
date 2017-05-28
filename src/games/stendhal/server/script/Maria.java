@@ -1,6 +1,10 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * Creates a portable NPC which sell foods&drinks, or optionally items from any other shop,

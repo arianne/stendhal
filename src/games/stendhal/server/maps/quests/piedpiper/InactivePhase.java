@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 
 
 public class InactivePhase extends TPPQuest {

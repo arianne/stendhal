@@ -12,20 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kirdneh.museum;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Builds a wizard npc, an expert in textiles.
  *
- * @author kymara 
+ * @author kymara
  */
 public class WizardNPC implements ZoneConfigurator {
 
@@ -62,7 +62,7 @@ public class WizardNPC implements ZoneConfigurator {
 				addGoodbye("Farewell.");
 				// remaining behaviour defined in maps.quests.MithrilCloak
 	 	     }
-		    
+
 		};
 
 		npc.setDescription("You see one of the mithrilbourgh wizards, taking in the artwork at the museum");

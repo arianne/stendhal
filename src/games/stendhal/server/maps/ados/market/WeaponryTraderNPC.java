@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.market;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -21,10 +25,6 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates the NPCs and portals in Ados City.
@@ -60,7 +60,7 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
                 nodes.add(new Node(27, 14));
                 nodes.add(new Node(44, 14));
                 nodes.add(new Node(44, 32));
-                nodes.add(new Node(52, 32));            
+                nodes.add(new Node(52, 32));
 				setPath(new FixedPath(nodes, true));
 
 			}
@@ -69,16 +69,16 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hello, may i #help you?");
 				addHelp("I would glad to help you by buying your items, it would help to us both.");
-				
+
 				// this is a hint that one of the items Anna wants is a dress (goblin dress)
-				addQuest("I have no tasks for you."); 
+				addQuest("I have no tasks for you.");
 				addJob("I am a weaponry trader. I prefer to do my work alone.");
 				//addReply("offer", "Look at the blackboard to see my offers.");
 				addGoodbye("Bye, come back soon.");
-				
-				final Map<String, Integer> pricelist = 
+
+				final Map<String, Integer> pricelist =
 					SingletonRepository.getShopList().get("buyadosarmors");
-				
+
 				final BuyerBehaviour behaviour = new BuyerBehaviour(pricelist);
 				new BuyerAdder().addBuyer(this, behaviour, true);
 			}

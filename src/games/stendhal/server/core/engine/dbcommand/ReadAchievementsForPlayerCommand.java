@@ -12,14 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.AchievementDAO;
-import games.stendhal.server.entity.player.Player;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+import games.stendhal.server.core.engine.db.AchievementDAO;
+import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;

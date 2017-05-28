@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -7,9 +10,6 @@ import games.stendhal.server.core.rp.DaylightPhase;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Checks the current day light phase.

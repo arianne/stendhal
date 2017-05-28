@@ -12,6 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deathmatch;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -21,14 +29,6 @@ import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 
 /**

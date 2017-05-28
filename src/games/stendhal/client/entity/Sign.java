@@ -29,7 +29,7 @@ public class Sign extends Entity {
 
 	/**
 	 * Get the sign text.
-	 * 
+	 *
 	 * @return The sign text.
 	 */
 	public String getText() {
@@ -54,7 +54,7 @@ public class Sign extends Entity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -75,7 +75,7 @@ public class Sign extends Entity {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

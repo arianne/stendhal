@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -18,9 +21,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Gives description for unstarted quest based on npc name

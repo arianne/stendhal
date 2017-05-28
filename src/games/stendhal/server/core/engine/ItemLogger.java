@@ -80,7 +80,7 @@ public class ItemLogger {
 	/**
 	 * Call when the item or its container times out, or the containing zone is
 	 * destroyed
-	 * 
+	 *
 	 * @param item Item to log timeout for
 	 */
 	public void timeout(final Item item) {

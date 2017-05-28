@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.hell;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Map;
 
 /**
  * Inside Nalwor Hell - level -1 .
@@ -55,7 +55,7 @@ public class CaptiveNPC implements ZoneConfigurator {
 		tomi.setEntityClass("transparentnpc");
 		tomi.setAlternativeImage("tomi");
 		tomi.setPosition(119, 13);
-		tomi.setBaseHP(100); 
+		tomi.setBaseHP(100);
 		tomi.setHP(50);
 		tomi.setDescription("You see Tomi. He is sweating all over his body and definitely needs something to cool down.");
 		zone.add(tomi);

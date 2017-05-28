@@ -23,18 +23,18 @@ class MovingMapObject extends MapObject implements EntityChangeListener<IEntity>
 	 * The color of a general entity (pale green).
 	 */
 	private static final Color COLOR = new Color(200, 255, 200);
-	
+
 	MovingMapObject(final IEntity entity) {
 		super(entity);
-		
+
 		entity.addChangeListener(this);
 	}
-	
+
 	@Override
 	void draw(final Graphics g, final int scale) {
 		draw(g, scale, COLOR);
 	}
-	
+
 	/**
 	 * Draw the <code>RPEntity</code> in specified color.
 	 * @param g Graphics context
@@ -50,7 +50,7 @@ class MovingMapObject extends MapObject implements EntityChangeListener<IEntity>
 		g.setColor(color);
 		g.fillRect(rx, ry, rwidth, rheight);
 	}
-	
+
 	@Override
 	public void entityChanged(final IEntity entity, final Object property) {
 		if (property == IEntity.PROP_POSITION) {

@@ -11,14 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * checks that the entity is in a visible slots, or not contained at all

@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import games.stendhal.server.entity.npc.ConversationPhrases;
-
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import games.stendhal.server.entity.npc.ConversationPhrases;
 
 /**
  * Tests for the area class.
@@ -28,7 +28,7 @@ import org.junit.Test;
  * @author M. Fuchs
  */
 public class ItemCollectionTest {
-	
+
 	@Test
 	public void testCreateArea() {
 	    final ItemCollection coll = new ItemCollection();
@@ -54,7 +54,7 @@ public class ItemCollectionTest {
 
         assertTrue(coll.removeItem("ham", 3));
         assertEquals("", coll.toStringForQuestState());
-        
+
         coll.addItem("shadow legs", 1);
         assertEquals("shadow legs=1",coll.toStringForQuestState());
         assertTrue(coll.removeItem("shadow legs",1));

@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author gummipferd
- * 
+ *
  * Less safe for players below level 40
  */
 public class OrcRaid extends CreateRaid {
@@ -33,7 +33,7 @@ public class OrcRaid extends CreateRaid {
 		attackArmy.put("troll", 4);
 		attackArmy.put("red troll", 7);
 		attackArmy.put("cave troll", 2);
-   		attackArmy.put("green dragon", 3);  
+   		attackArmy.put("green dragon", 3);
 
 		return attackArmy;
 	}

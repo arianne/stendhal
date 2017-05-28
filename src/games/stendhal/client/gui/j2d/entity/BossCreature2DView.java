@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.Map;
+
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
-
-import java.util.Map;
 
 /**
  * A 2D view of a boss creature. Boss creatures have 1x2 image layouts.
@@ -29,9 +29,9 @@ class BossCreature2DView extends Creature2DView {
 
 	/*
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * This only has a single frame for left and right direction.
-	 * 
+	 *
 	 * @param map The map to populate. @param tiles The master sprite. @param
 	 * width The image width (in pixels). @param height The image height (in
 	 * pixels).
@@ -52,7 +52,7 @@ class BossCreature2DView extends Creature2DView {
 
 	/**
 	 * Get the number of tiles in the X axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	@Override
@@ -62,7 +62,7 @@ class BossCreature2DView extends Creature2DView {
 
 	/**
 	 * Get the number of tiles in the Y axis of the base sprite.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	@Override

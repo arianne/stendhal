@@ -1,14 +1,5 @@
 package games.stendhal.server.script;
 
-import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.mapstuff.area.Wall;
-import games.stendhal.server.entity.player.Player;
-
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -17,6 +8,15 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.mapstuff.area.Wall;
+import games.stendhal.server.entity.player.Player;
 
 public class SokobanWatcher extends ScriptImpl implements TurnListener {
 	private static Logger logger = Logger.getLogger(SokobanWatcher.class);
@@ -34,9 +34,10 @@ public class SokobanWatcher extends ScriptImpl implements TurnListener {
 		wall.setDescription("You see a wall.");
 		zone.add(wall);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	private void cleanup() {
-		
+
 			// all events that are equal to this one should be forgotten.
 			// TurnEvent turnEvent = new TurnEvent(turnListener);
 	try {
@@ -49,8 +50,9 @@ public class SokobanWatcher extends ScriptImpl implements TurnListener {
 				// set. This is to avoid ConcurrentModificationExceptions.
 				final Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
 				for (TurnListener t : set) {
-					if (t.getClass().getName().indexOf("SokobanWatcher") > -1)
+					if (t.getClass().getName().indexOf("SokobanWatcher") > -1) {
 						toBeRemoved.add(t);
+					}
 				}
 				for (final TurnListener event : toBeRemoved) {
 					set.remove(event);

@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
-
 /**
  * Alters the state of a quest of a player.
- * 
+ *
  * @author hendrik
  */
 public class AlterQuest extends ScriptImpl {

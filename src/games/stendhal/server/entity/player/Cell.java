@@ -32,7 +32,7 @@ class Cell {
 
 	public boolean isEmpty() {
 		return "".equals(inmateName);
-		
+
 	}
 
 	public Point getEntry() {

@@ -8,7 +8,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * provide special CTF arrows (fumble and slowdown) to a player
- * 
+ *
  * NOTE: i thought this should be separate, because we could check that
  *       player is able to have a flag (playing, ...).  but it's too
  *       late for that check by the time this is fired ...

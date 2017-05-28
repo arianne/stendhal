@@ -14,6 +14,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.NEWLEVEL;
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.CommandCenter;
@@ -89,7 +90,7 @@ class AdminLevelAction extends AdministrationAction {
 	/**
 	 * Drop persistent administrator attributes if the player is no longer
 	 * allowed to have them.
-	 * 
+	 *
 	 * @param player the player whose privileges should be re-examined
 	 */
 	private void dropPrivileges(Player player) {

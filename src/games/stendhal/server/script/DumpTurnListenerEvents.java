@@ -1,6 +1,10 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -8,13 +12,9 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ObjectCounter;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * Dumps debug information about turn listener events.
- * 
+ *
  * @author hendrik
  */
 public class DumpTurnListenerEvents extends ScriptImpl {

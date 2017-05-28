@@ -11,19 +11,19 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.searchindex;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rp.achievement.Achievement;
-import games.stendhal.server.core.rp.achievement.AchievementNotifier;
-import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
 import java.util.Locale;
 import java.util.Set;
 import java.util.StringTokenizer;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.Achievement;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
  * manages the search index

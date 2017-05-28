@@ -20,7 +20,7 @@ import games.stendhal.server.entity.spell.effect.DamageEffect;
 import marauroa.common.game.RPObject;
 /**
  * A spell to attack an entity
- * 
+ *
  * @author madmetzger
  */
 public class AttackingSpell extends Spell {
@@ -31,7 +31,7 @@ public class AttackingSpell extends Spell {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel,
 				range, rate, regen, modifier);
 	}
-	
+
 	public AttackingSpell(RPObject object) {
 		super(object);
 	}

@@ -41,10 +41,10 @@ public class StatusDisplayBar extends JComponent {
 	 * is used.
 	 */
 	private BufferedImage barImage;
-	
+
 	/**
 	 * Create a StatusDisplayBar.
-	 * 
+	 *
 	 * @param model Scaling model. representation corresponds to the length
 	 *	of the color bar. The StatusDisplayBar will take care of the maximum
 	 *	representation value
@@ -81,41 +81,41 @@ public class StatusDisplayBar extends JComponent {
 		setPreferredSize(new Dimension(2, PREFERRED_HEIGHT));
 		setMinimumSize(getPreferredSize());
 	}
-	
+
 	/**
 	 * Return the value scaling model in use.
-	 * 
+	 *
 	 * @return model
 	 */
 	public ScalingModel getModel() {
 		return model;
 	}
-	
+
 	/**
 	 * Set the color of the bar.
-	 * 
+	 *
 	 * @param color new color
 	 */
 	public void setBarColor(Color color) {
 		this.color = color;
 	}
-	
+
 	/**
 	 * Set painter for fancy colored bars.
-	 * 
+	 *
 	 * @param painter painter for coloring the template image
 	 */
 	protected void setPainter(BarPainter painter) {
 		this.painter = painter;
 	}
-	
+
 	/**
 	 * Called when the model value changes.
 	 */
 	protected void valueChanged() {
 		repaint();
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		Insets insets = getInsets();
@@ -128,7 +128,7 @@ public class StatusDisplayBar extends JComponent {
 		g.setColor(getBackground());
 		g.fillRect(insets.left + 1, insets.top + 1, getWidth() - insets.left - insets.right - 2,
 				barHeight);
-		
+
 		if (barImage != null) {
 			Graphics clipped = g.create(insets.left + 1, insets.top + 1, model.getRepresentation(), barHeight);
 			clipped.drawImage(barImage, 0, 0, null);
@@ -138,15 +138,15 @@ public class StatusDisplayBar extends JComponent {
 			g.fillRect(insets.left + 1, insets.top + 1, model.getRepresentation(), barHeight);
 		}
 	}
-	
+
 	/**
 	 * Interface for bars that need more complicated drawing than a simple color
-	 * bar. 
+	 * bar.
 	 */
 	public interface BarPainter {
 		/**
 		 * Fill an area corresponding to a <em>full</em> bar.
-		 * 
+		 *
 		 * @param g graphics
 		 * @param width width of the area
 		 * @param height height of the area

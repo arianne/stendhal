@@ -112,12 +112,12 @@ public class SimilarExprMatcher extends ExpressionMatcher {
 
     /**
      * Called the limited Levenstein distance for two differing strings.
-     * @param str1 
-     * @param str2 
-     * @param idx1 
-     * @param idx2 
-     * @param limit 
-     * @return the distance 
+     * @param str1
+     * @param str2
+     * @param idx1
+     * @param idx2
+     * @param limit
+     * @return the distance
      */
     private static int bestLimLev(final String str1, final String str2, final int idx1, final int idx2, final int limit) {
         // check for a replaced character

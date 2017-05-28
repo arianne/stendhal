@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
-import games.stendhal.common.ErrorBuffer;
-
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import games.stendhal.common.ErrorBuffer;
 
 /**
  * ConversationParser returns the parsed sentence in this class. The Sentence class stores the sentence content in a
@@ -34,7 +34,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     protected String originalText;
-    
+
     protected final ConversationContext context;
 
     protected SentenceType sentenceType = SentenceType.UNDEFINED;
@@ -177,7 +177,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return trigger Expression for the FSM engine. 
+     * Return trigger Expression for the FSM engine.
      * TODO mf - replace by sentence matching.
      *
      * @return trigger string
@@ -192,14 +192,15 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 	        // Test for a list of items
 			StringBuilder objects = new StringBuilder();
 			int simpleObjects = 0;
-	
+
 			for(Expression e : expressions) {
 				if (e.isObject() && e.getAmount()==1) {
-					if (simpleObjects > 0)
+					if (simpleObjects > 0) {
 						objects.append(" and ");
-	
+					}
+
 					objects.append(e.getNormalized());
-	
+
 					++simpleObjects;
 				} else {
 					break;
@@ -208,8 +209,9 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
 			// If the sentence consists only of a list of single objects (amount=1),
 			// return it as "A and B and C and ..."
-			if (simpleObjects == expressions.size())
+			if (simpleObjects == expressions.size()) {
 				return new Expression(objects.toString(), ExpressionType.OBJECT);
+			}
         }
 
         // otherwise just return the first expression
@@ -461,7 +463,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return the complete text of the sentence with unchanged case, but with trimmed white space. 
+     * Return the complete text of the sentence with unchanged case, but with trimmed white space.
      * There should be only as few code places as possible to rely on this method.
      *
      * @return string
@@ -481,7 +483,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     /**
      * Return the original parsed text of the sentence.
      * Leading and trailing white space is already trimmed.
-     * 
+     *
      * deprecate: There should be only as few code places as possible
      * to rely on this method.
      *
@@ -790,7 +792,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
             return true;
         } else {
             // If we look for a match at Sentence start, there must be no more expressions at the right side.
-        	 
+
             return (matchStart && (e2 == null));
         }
     }
@@ -853,7 +855,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
                 }
             }
         }
-        
+
         return ret;
     }
 

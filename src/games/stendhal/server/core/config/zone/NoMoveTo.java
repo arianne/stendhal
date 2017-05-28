@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
-import java.util.Map;
-
 /**
  * Semos Jail - Level -3.
- * 
+ *
  * @author hendrik
  */
 public class NoMoveTo implements ZoneConfigurator {

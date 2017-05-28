@@ -6,15 +6,15 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
+import java.lang.ref.WeakReference;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-
-import java.lang.ref.WeakReference;
-
-import org.apache.log4j.Logger;
 
 /**
  * An area that only allows one play at a time to enter.

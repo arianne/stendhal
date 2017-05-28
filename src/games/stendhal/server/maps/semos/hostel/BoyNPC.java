@@ -68,7 +68,7 @@ public class BoyNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        null,
 				        new SayTextAction("Ssshh! Come here, [name]! I have a #task for you."));
-				
+
 				// this is the condition for any other case while the quest is active, not covered by the quest.
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
@@ -76,7 +76,7 @@ public class BoyNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        "*sniff* *sniff* I still feel ill, please hurry with that #favour for me.",
 				        null);
-				
+
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),

@@ -447,10 +447,10 @@ public final class ShopList {
 
 		// Should have its own shop (buytraps)
 		shops.add("buypoisons", "rodent trap", 50);
-		
+
 		//Scuba Instructor Edward
 		shops.add("sellScubaStuff", "scuba gear", 22000);
-		
+
 		// Mine Town Revival Weeks Caroline
 		shops.add("sellrevivalweeks", "cherry pie", 195);
 		shops.add("sellrevivalweeks", "apple pie", 195);
@@ -467,7 +467,7 @@ public final class ShopList {
 		shops.add("sellrevivalweeks", "beer", 20);
 		shops.add("sellrevivalweeks", "water", 15);
 
-		// for ados botanical gardens or if you like, other cafes. 
+		// for ados botanical gardens or if you like, other cafes.
 		// expensive prices to make sure that the npc production of these items isn't compromised
 		shops.add("cafe", "tea", 80);
 		shops.add("cafe", "water", 50);
@@ -475,7 +475,7 @@ public final class ShopList {
 		shops.add("cafe", "sandwich", 170);
 		shops.add("cafe", "tuna sandwich", 180);
 		shops.add("cafe", "apple pie", 250);
-		
+
 	}
 
 	private static ShopList instance;

@@ -57,7 +57,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Get the direction.
-	 * 
+	 *
 	 * @return The direction.
 	 */
 	public Direction getDirection() {
@@ -66,7 +66,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Set the direction.
-	 * 
+	 *
 	 * @param direction
 	 *            The direction.
 	 */
@@ -86,7 +86,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Determine if this entity is not moving.
-	 * 
+	 *
 	 * @return <code>true</code> if not moving.
 	 */
 	public boolean stopped() {
@@ -95,7 +95,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Compares to floating point values.
-	 * 
+	 *
 	 * @param d1
 	 *            first value
 	 * @param d2
@@ -113,7 +113,7 @@ public abstract class ActiveEntity extends Entity {
 	 * calculates the movement if the server an client are out of sync. for some
 	 * milliseconds. (server turns are not exactly 300 ms) Most times this will
 	 * slow down the client movement
-	 * 
+	 *
 	 * @param clientPos
 	 *            the position the client has calculated
 	 * @param serverPos
@@ -131,7 +131,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * When entity moves, it will be called with the data.
-	 * 
+	 *
 	 * @param x new x coordinate
 	 * @param y new y coordinate
 	 * @param direction new direction
@@ -193,10 +193,10 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param base
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -221,7 +221,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Update cycle.
-	 * 
+	 *
 	 * @param delta
 	 *            The time (in ms) since last call.
 	 */
@@ -252,7 +252,7 @@ public abstract class ActiveEntity extends Entity {
 	 * Process attribute changes that may affect positioning. This is needed
 	 * because different entities may want to process coordinate changes more
 	 * gracefully.
-	 * 
+	 *
 	 * @param base
 	 *            The previous values.
 	 * @param diff
@@ -293,7 +293,7 @@ public abstract class ActiveEntity extends Entity {
 		 * (done in onMove())
 		 */
 		boolean speedChanged = false;
-		
+
 		if (diff.has("speed")) {
 			speed = diff.getDouble("speed");
 			speedChanged = true;
@@ -302,9 +302,9 @@ public abstract class ActiveEntity extends Entity {
 		} else {
 			speed = 0;
 		}
-		
+
 		onMove(newX, newY, tempDirection, speed);
-		
+
 		if (speedChanged) {
 			fireChange(PROP_SPEED);
 		}
@@ -312,7 +312,7 @@ public abstract class ActiveEntity extends Entity {
 		boolean positionChanged = false;
 		if ((Direction.STOP == tempDirection) || (speed == 0)) {
 			setSpeed(0.0, 0.0);
-			
+
 			/*
 			 * Try to ensure relocation in the case the client and server were
 			 * in disagreement about the position at the moment of stopping.
@@ -333,12 +333,12 @@ public abstract class ActiveEntity extends Entity {
 			onPosition(newX, newY);
 		}
 	}
-	
+
 	/**
 	 * Set the current client side speed. This is used by the movement
 	 * prediction at key press. <b>Do not call unless you know what you're
 	 * doing. </b>
-	 * 
+	 *
 	 * @param dx horizontal speed
 	 * @param dy vertical speed
 	 */

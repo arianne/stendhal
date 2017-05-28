@@ -23,7 +23,7 @@ import groovy.lang.GroovyShell;
  * creates a gate
  */
 public class GateFactory implements ConfigurableFactory {
-	
+
 	@Override
 	public Object create(ConfigurableFactoryContext ctx) {
 		final String orientation = ctx.getRequiredString("orientation");
@@ -31,7 +31,7 @@ public class GateFactory implements ConfigurableFactory {
 		final int autoclose = ctx.getInt("autoclose", 0);
 		final String id = ctx.getString("identifier", null);
 		final String message = ctx.getString("message", null);
-		
+
 		ChatCondition condition = null;
 		final String condString = ctx.getString("condition", null);
 		if (condString != null) {
@@ -46,11 +46,11 @@ public class GateFactory implements ConfigurableFactory {
 		}
 
 		final Gate gate = new Gate(orientation, image, condition);
-		
+
 		gate.setAutoCloseDelay(autoclose);
 		gate.setRefuseMessage(message);
 		gate.setIdentifier(id);
 		return gate;
 	}
-	
+
 }

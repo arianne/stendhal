@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -24,9 +25,9 @@ import games.stendhal.server.util.StringUtils;
 
 /**
  * says the specified text, it works just like the normal parameter of add.
- * 
- * But in addition it add support for [variables]. Most notable [name] will 
- * be replaced by the players name. And [quest.slotname:1] will be replaced 
+ *
+ * But in addition it add support for [variables]. Most notable [name] will
+ * be replaced by the players name. And [quest.slotname:1] will be replaced
  * by the value stored in the questslot "slotname" at index 1.
  */
 @Dev(category=Category.CHAT, label="\"...\"")

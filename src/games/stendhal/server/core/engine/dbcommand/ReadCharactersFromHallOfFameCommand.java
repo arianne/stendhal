@@ -11,12 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
-
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;

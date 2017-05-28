@@ -25,27 +25,27 @@ public class MessagingAreaFactory implements ConfigurableFactory {
 
 		return area;
 	}
-	
+
 	private int getWidth(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
-	
+
 	private int getHeight(final ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
-	
+
 	private String getEnterMessage(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("enterMessage", null);
 	}
-	
+
 	private String getLeaveMessage(final ConfigurableFactoryContext ctx) {
 		return ctx.getString("leaveMessage", null);
 	}
-	
+
 	private boolean coversZone(final ConfigurableFactoryContext ctx) {
 		return ctx.getBoolean("coversZone", false);
 	}
-	
+
 	private boolean warnPlayer(final ConfigurableFactoryContext ctx) {
 		return ctx.getBoolean("warnPlayer", false);
 	}

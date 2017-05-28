@@ -15,11 +15,11 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.Test;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.server.entity.player.Player;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
@@ -45,7 +45,7 @@ public class QuestNotStartedConditionTest {
 		assertTrue(new QuestNotStartedCondition("questname").fire(bob,
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		
+
 		bob.setQuest("questname", "rejected");
 		assertTrue(new QuestNotStartedCondition("questname").fire(bob,
 				ConversationParser.parse("testAdminConditionText"),
@@ -88,7 +88,7 @@ public class QuestNotStartedConditionTest {
 				"questname") {
 			// this is an anonymous sub class
 		}));
-		
+
 	}
 
 	/**

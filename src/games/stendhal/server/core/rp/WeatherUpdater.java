@@ -11,13 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp;
 
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.ZoneAttributes;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.mapstuff.WeatherEntity;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -25,9 +18,15 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import marauroa.common.Pair;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.ZoneAttributes;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.entity.mapstuff.WeatherEntity;
+import marauroa.common.Pair;
 
 /**
  * Manager for zones with changing weather.
@@ -35,7 +34,7 @@ import org.apache.log4j.Logger;
 public class WeatherUpdater implements TurnListener {
 	/** The keyword used by the weather adjustments parser. */
 	public static final String WEATHER_KEYWORD = "varying";
-	
+
 	/** Logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(WeatherUpdater.class);
 	/** Weather attribute string. */
@@ -59,13 +58,13 @@ public class WeatherUpdater implements TurnListener {
 	 * <em>only</em> is in effect when the temperature is high enough.
 	 */
 	private static final double THUNDER_PREVALENCE = 5;
-	
+
 	/** Singleton instance. */
 	private static final WeatherUpdater INSTANCE = new WeatherUpdater();
 
 	/** Data about managed zones. */
 	private final Collection<ZoneData> zones = new ArrayList<ZoneData>();
-	
+
 	/**
 	 * Rain attribute. The descriptions are <em>modifiers</em> to be appended
 	 * after "rain" or "snow"
@@ -133,7 +132,7 @@ public class WeatherUpdater implements TurnListener {
 		ZoneData data = new ZoneData(attr, mods, entity);
 		zones.add(data);
 		attr.getZone().add(entity);
-		
+
 		Pair<String, Boolean> weather = describeWeather(Calendar.getInstance(), mods);
 		updateAndNotify(data, weather);
 	}
@@ -156,14 +155,14 @@ public class WeatherUpdater implements TurnListener {
 			updateZones();
 		}
 	}
-	
+
 	/**
 	 * Describe the weather based on the current attribute states, time and
 	 * zone's weather modifiers.
-	 * 
+	 *
 	 * @param calendar determines the time used for  the description
 	 * @param mods weather modifiers
-	 * 
+	 *
 	 * @return A pair of weather description and a boolean for thunder. The
 	 * 	description will be <code>null</code> for clear skies
 	 */
@@ -185,11 +184,11 @@ public class WeatherUpdater implements TurnListener {
 		}
 		return new Pair<String, Boolean>(null, Boolean.FALSE);
 	}
-	
+
 	/**
-	 * Describe either rain or snow, depending on the time, temperature and 
+	 * Describe either rain or snow, depending on the time, temperature and
 	 * temperature modifiers.
-	 * 
+	 *
 	 * @param calendar calendar for checking current time
 	 * @param temperatureMod zone's temperature modifier
 	 * @return A pair of "rain" or "snow", and a boolean marking if the rain is
@@ -213,10 +212,10 @@ public class WeatherUpdater implements TurnListener {
 		// Require warmth for thunder
 		return new Pair<String, Boolean>("rain", temp >= -5 && thunder.getDescription(0) != null);
 	}
-	
+
 	/**
 	 * Update a zone's weather attribute, and notify players of the changes.
-	 * 
+	 *
 	 * @param zone zone's data set
 	 * @param weather Pair of new weather description string, and a Boolean
 	 *	determining if thunder should be activated
@@ -224,7 +223,7 @@ public class WeatherUpdater implements TurnListener {
 	private void updateAndNotify(ZoneData zone, Pair<String, Boolean> weather) {
 		ZoneAttributes attr = zone.getAttributes();
 		zone.getEntity().setThunder(weather.second());
-		
+
 		String desc = weather.first();
 		String oldWeather = attr.get(WEATHER);
 		// Objects.equals()...
@@ -240,7 +239,7 @@ public class WeatherUpdater implements TurnListener {
 			attr.getZone().notifyOnlinePlayers();
 		}
 	}
-	
+
 	/**
 	 * Check and update all managed zones.
 	 */
@@ -252,7 +251,7 @@ public class WeatherUpdater implements TurnListener {
 		 */
 		Calendar calendar = Calendar.getInstance();
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("Weather change: rain=" + rain.getValue() + "/" 
+			LOGGER.debug("Weather change: rain=" + rain.getValue() + "/"
 					+ rain.getMax() + ", temp="	+ temperature.getValue() + "/"
 					+ temperature.getMax() + ", fog=" + fog.getValue() + "/"
 					+ fog.getMax() + ", thunder=" + thunder.getValue() + "/"
@@ -264,7 +263,7 @@ public class WeatherUpdater implements TurnListener {
 			updateAndNotify(zone, describeWeather(calendar, zone.getModifiers()));
 		}
 	}
-	
+
 	/**
 	 * Describes a zone's weather modifier parameters.
 	 */
@@ -274,23 +273,23 @@ public class WeatherUpdater implements TurnListener {
 		/**
 		 * Regexp to match weather expressions with the content between
 		 * parentheses as the first capturing group.<br/>
-		 * 
+		 *
 		 * <em>Some people, when confronted with a problem, think "I know,
 		 * I'll use regular expressions." Now they have two problems.
-		 * ­­&mdash; J. Zawinski</em> 
+		 * ­­&mdash; J. Zawinski</em>
 		 */
 		private static final Pattern PATTERN = Pattern.compile(WEATHER_KEYWORD + "(?:\\((.*)\\))?");
-		
+
 		/** Raininess modifier. Added to global rain state. */
 		final int rain;
 		/** Temperature modifier. Added to global temperature state. */
 		final int temperature;
 		/** Fogginess modifier. Added to global fog state. */
 		final int fog;
-		
+
 		/**
 		 * Construct a modifier set.
-		 * 
+		 *
 		 * @param rainMod rain state modifier
 		 * @param tempMod temperature state modifier
 		 * @param fogMod fog state modifier
@@ -300,10 +299,10 @@ public class WeatherUpdater implements TurnListener {
 			temperature = tempMod;
 			fog = fogMod;
 		}
-		
+
 		/**
 		 * Get a suitable set of modifiers based on a weather description.
-		 * 
+		 *
 		 * @param weatherDesc zone's weather description string
 		 * @return modifiers
 		 */
@@ -325,10 +324,10 @@ public class WeatherUpdater implements TurnListener {
 			// No params, use the default
 			return NO_MODS;
 		}
-		
+
 		/**
 		 * Get modifiers from a list of parameters.
-		 * 
+		 *
 		 * @param paramContents contents of the parameter list
 		 * @return modifiers
 		 */
@@ -365,7 +364,7 @@ public class WeatherUpdater implements TurnListener {
 			return NO_MODS;
 		}
 	}
-	
+
 	/**
 	 * Weather attribute with a range, and optionally a set of descriptions.
 	 */
@@ -378,11 +377,11 @@ public class WeatherUpdater implements TurnListener {
 		private int value;
 		/** The change direction of the attribute. [-1, 1] */
 		private int change;
-		
+
 		/**
 		 * Create a WeatherAttribute with a maximum value and a set of
 		 * descriptions.
-		 * 
+		 *
 		 * @param max maximum value of the attribute
 		 * @param desc descriptions. If there are fewer descriptions than
 		 * 	possible values, then the descriptions correspond to the
@@ -394,46 +393,46 @@ public class WeatherUpdater implements TurnListener {
 			value = Rand.rand(max + 1);
 			this.desc = desc;
 		}
-		
+
 		/**
 		 * Update the attribute's internal state randomly.
-		 * 
+		 *
 		 * @return <code>true</code> if value of the attribute changed. Note
 		 * 	that the corresponding <em>description</em> did not necessarily
 		 * 	change, and its changing may depend on the maps' weather modifiers.
 		 */
 		boolean update() {
 			change += Rand.rand(2 * WEATHER_STABILITY + 1) - WEATHER_STABILITY;
-			// Favor stability. This also keeps the change rate at range [-1, 1] 
+			// Favor stability. This also keeps the change rate at range [-1, 1]
 			change /= WEATHER_STABILITY;
 			int oldValue = value;
 			value = MathHelper.clamp(value + change, 0, maxValue);
 			return value != oldValue;
 		}
-		
+
 		/**
 		 * Get the value of the attribute. The value is in range [0, max], where
 		 * <code>max</code> is the value given to the constructor.
-		 * 
+		 *
 		 * @return attribute value
 		 */
 		int getValue() {
 			return value;
 		}
-		
+
 		/**
 		 * Get the maximum value of the attribute.
-		 * 
+		 *
 		 * @return maximum value
 		 */
 		int getMax() {
 			return maxValue;
 		}
-		
+
 		/**
 		 * Get the description corresponding to the current value of the
 		 * attribute, taking in account a weather modifier.
-		 *  
+		 *
 		 * @param modifier weather modifier
 		 * @return description, and <code>null</code> if the corresponding
 		 * 	weather state has no description.
@@ -447,7 +446,7 @@ public class WeatherUpdater implements TurnListener {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Container for weather related zone data.
 	 */
@@ -458,10 +457,10 @@ public class WeatherUpdater implements TurnListener {
 		private final Modifiers modifiers;
 		/** Weather entity of the zone. */
 		private final WeatherEntity entity;
-		
+
 		/**
 		 * Create a ZoneData.
-		 * 
+		 *
 		 * @param attributes zone's attributes
 		 * @param modifiers zone's weather modifiers
 		 * @param entity weather entity of the zone
@@ -471,28 +470,28 @@ public class WeatherUpdater implements TurnListener {
 			this.modifiers = modifiers;
 			this.entity = entity;
 		}
-		
+
 		/**
 		 * Get the zone's attribute map.
-		 * 
+		 *
 		 * @return zone attributes
 		 */
 		ZoneAttributes getAttributes() {
 			return attributes;
 		}
-		
+
 		/**
 		 * Get the zone's weather modifiers.
-		 * 
+		 *
 		 * @return modifiers
 		 */
 		Modifiers getModifiers() {
 			return modifiers;
 		}
-		
+
 		/**
 		 * Get the zone's weather entity.
-		 * 
+		 *
 		 * @return weather entity
 		 */
 		WeatherEntity getEntity() {

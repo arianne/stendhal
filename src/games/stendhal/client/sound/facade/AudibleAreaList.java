@@ -30,9 +30,10 @@ public class AudibleAreaList extends LinkedList<AudibleArea> implements AudibleA
 	@Override
 	public float getHearingIntensity(float[] hearerPos)
     {
-        if(isEmpty())
-            return 0.0f;
-        
+        if(isEmpty()) {
+			return 0.0f;
+		}
+
         Iterator<AudibleArea> iterator  = super.iterator();
         AudibleArea           area      = iterator.next();
         float                 intensity = area.getHearingIntensity(hearerPos);
@@ -42,15 +43,16 @@ public class AudibleAreaList extends LinkedList<AudibleArea> implements AudibleA
             area = iterator.next();
             intensity = Math.max(intensity, area.getHearingIntensity(hearerPos));
         }
-        
+
         return intensity;
     }
 
     @Override
 	public void getClosestPoint(float[] result, float[] hearerPos)
     {
-        if(isEmpty())
-            return;
+        if(isEmpty()) {
+			return;
+		}
 
         Iterator<AudibleArea> iterator    = super.iterator();
         AudibleArea           closestArea = iterator.next();

@@ -11,10 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
-
 import java.sql.SQLException;
 
+import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
@@ -36,8 +35,8 @@ public class WriteHallOfFamePointsCommand extends AbstractDBCommand {
 	 * @param playername name of player
 	 * @param fametype type of fame
 	 * @param points number of points
-	 * @param add <code>true</code> to add points to the existing ones, 
-	 *          <code>false</code> to set the specified number of points. 
+	 * @param add <code>true</code> to add points to the existing ones,
+	 *          <code>false</code> to set the specified number of points.
 	 */
 	public WriteHallOfFamePointsCommand(String playername, String fametype, int points, boolean add) {
 		this.playername = playername;

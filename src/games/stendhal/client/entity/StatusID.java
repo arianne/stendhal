@@ -17,7 +17,7 @@ public enum StatusID {
 	// Jobs
 	HEALER("job_healer"),
 	MERCHANT("job_merchant"),
-	
+
 	// Statuses
 	CONFUSE("status_confuse"),
 	POISON("poisoned"),
@@ -30,7 +30,7 @@ public enum StatusID {
 
 	/**
 	 * Create a StatusID.
-	 * 
+	 *
 	 * @param attribute attribute corresponding to the status.
 	 */
 	private StatusID(String attribute) {
@@ -39,7 +39,7 @@ public enum StatusID {
 
 	/**
 	 * Get the attribute corresponding to the status.
-	 * 
+	 *
 	 * @return attribute name
 	 */
 	public String getAttribute() {
@@ -48,7 +48,7 @@ public enum StatusID {
 
 	/**
 	 * Find the status ID using the status name.
-	 * 
+	 *
 	 * @param status
 	 *      Name of status
 	 * @return Status ID, or <code>null</code> if no status ID matches the name

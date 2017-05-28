@@ -13,19 +13,19 @@
 package games.stendhal.client.sprite;
 
 
-import games.stendhal.client.gui.TransparencyMode;
-
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+
+import games.stendhal.client.gui.TransparencyMode;
 
 /**
  * A sprite to be displayed on the screen. Note that a sprite contains no state
  * information, i.e. its just the image and not the location. This allows us to
  * use a single sprite in lots of different places without having to store
  * multiple copies of the image.
- * 
+ *
  * @author Kevin Glass
  */
 public class ImageSprite implements Sprite {
@@ -39,7 +39,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a new sprite based on an image.
-	 * 
+	 *
 	 * @param image
 	 *            The image that is this sprite
 	 */
@@ -49,7 +49,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a new sprite based on an image.
-	 * 
+	 *
 	 * @param image
 	 *            The image that is this sprite.
 	 * @param reference
@@ -62,7 +62,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create an image sprite from another sprite.
-	 * 
+	 *
 	 * @param sprite
 	 *            The source sprite.
 	 */
@@ -72,7 +72,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a copy of another sprite.
-	 * 
+	 *
 	 * @param sprite
 	 *            The source sprite.
 	 * @param reference
@@ -97,7 +97,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Get the graphics context of the underlying image.
-	 * 
+	 *
 	 * @return The graphics context.
 	 */
 	public Graphics getGraphics() {
@@ -110,7 +110,7 @@ public class ImageSprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 * 
+	 *
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -121,7 +121,7 @@ public class ImageSprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 * 
+	 *
 	 * @return A new sprite.
 	 */
 	@Override
@@ -155,7 +155,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -170,7 +170,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Draws the image.
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -195,7 +195,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite.
-	 * 
+	 *
 	 * @return The height in pixels of this sprite
 	 */
 	@Override
@@ -207,7 +207,7 @@ public class ImageSprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 * 
+	 *
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -218,7 +218,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite.
-	 * 
+	 *
 	 * @return The width in pixels of this sprite
 	 */
 	@Override

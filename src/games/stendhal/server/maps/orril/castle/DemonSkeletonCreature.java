@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.orril.castle;
 
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,8 +21,6 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-
-import java.util.Map;
 
 /**
  * Configure Orril Lich Palace (Underground/Level -2).

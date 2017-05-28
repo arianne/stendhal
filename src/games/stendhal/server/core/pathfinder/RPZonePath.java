@@ -12,13 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.pathfinder;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import marauroa.common.Pair;
 
 /**
@@ -26,9 +25,9 @@ import marauroa.common.Pair;
  * @author yoriy
  */
 public class RPZonePath {
-	
+
 	private final Pair<StendhalRPZone, List<Node>> route;
-	
+
 	/**
 	 * constructor
 	 * @param zone_name - zone name
@@ -41,33 +40,33 @@ public class RPZonePath {
 		}
 		route = new Pair<StendhalRPZone, List<Node>>(zone, localpath);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return zone route
 	 */
 	public Pair<StendhalRPZone, List<Node>> get() {
 		return route;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return zone
 	 */
 	public StendhalRPZone getZone() {
 		return route.first();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return local path
 	 */
 	public List<Node> getPath() {
 		return route.second();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return zone name
 	 */
 	public String getZoneName() {

@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;

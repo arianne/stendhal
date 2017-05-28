@@ -36,10 +36,10 @@ public enum StatusType {
 
 	/** drunk and not able to speak clearly */
 	DRUNK(new DrunkStatusHandler()),
-	
+
 	/** reduced movement speed */
 	ZOMBIE(new ZombieStatusHandler()),
-	
+
 	/** reduced movement speed */
 	HEAVY(new HeavyStatusHandler());
 
@@ -73,10 +73,10 @@ public enum StatusType {
 	public <T extends Status> StatusHandler<T> getStatusHandler() {
 		return (StatusHandler<T>) statusHandler;
 	}
-	
+
 	/**
 	 * Retrieve StatusType for creating status resistant items
-	 * 
+	 *
 	 * @param status Name of the status. e.g. PoisonStatus
 	 * @return StatusType
 	 */

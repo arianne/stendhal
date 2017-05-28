@@ -44,7 +44,7 @@ public class ListRaids extends ScriptImpl {
 					return o1.getSimpleName().compareTo(o2.getSimpleName());
 				}
 			});
-			
+
 			for (final Class<?> clazz : dir) {
 				// CreateRaid is abstract and useless for users by itself.
 				if (CreateRaid.class.isAssignableFrom(clazz) && (CreateRaid.class != clazz)) {
@@ -62,17 +62,16 @@ public class ListRaids extends ScriptImpl {
 
 	/**
 	 * Fetch classes of available scripts.
-	 * 
+	 *
 	 * @param pckgname the package name of scripts
 	 * @return list of script classes
 	 * @throws ClassNotFoundException if getting the class loader or reading the
 	 * 	script resources fail
 	 */
-	private static ArrayList<Class<?>> getClasses(final String pckgname) throws ClassNotFoundException {
+	private static ArrayList<Class<?>> getClasses(final String packageName) throws ClassNotFoundException {
 		final ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
 		try {
 			ClassLoader classLoader = ListRaids.class.getClassLoader();
-			String packageName = "games.stendhal.server.script";
 			ImmutableSet<ClassInfo> infos = ClassPath.from(classLoader).getTopLevelClasses(packageName);
 			for (ClassInfo info : infos) {
 				classes.add(info.load());

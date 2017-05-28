@@ -29,7 +29,7 @@ import games.stendhal.common.constants.SoundLayer;
 public class WeatherSoundManager implements ZoneChangeListener {
 	/** Sound location relative to the default of all other sounds. */
 	private static final String SOUND_LOCATION = "weather/";
-	
+
 	/** Currently playing sound name, or <code>null</code>. */
 	private String soundName;
 	/** Handle to the current sound, or <code>null</code>. */
@@ -53,10 +53,10 @@ public class WeatherSoundManager implements ZoneChangeListener {
 	public void onZoneChangeCompleted(Zone zone) {
 		updateWeatherSound(zone.getWeatherName());
 	}
-	
+
 	/**
 	 * Update the played weather sound.
-	 * 
+	 *
 	 * @param sound weather type name
 	 */
 	private void updateWeatherSound(String sound) {

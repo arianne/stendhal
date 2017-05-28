@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.events.TeleportListener;
@@ -40,12 +46,6 @@ import games.stendhal.server.entity.npc.condition.SystemPropertyCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * A kind of paper chase.
  *
@@ -54,12 +54,12 @@ import java.util.Map;
 public class PaperChase extends AbstractQuest implements TeleportListener {
 	private static final String QUEST_SLOT = "paper_chase_20[year]";
 	private static final String FAME_TYPE = QUEST_SLOT.substring(QUEST_SLOT.length() - 1);
-	
+
 	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
 
-	private List<String> points = Arrays.asList("Nishiya", "Marcus", "Eheneumniranin", "Balduin", "Rachel", "Fritz", 
+	private List<String> points = Arrays.asList("Nishiya", "Marcus", "Eheneumniranin", "Balduin", "Rachel", "Fritz",
 												"Alice Farmer", "Elisabeth", "Sue", "Old Mother Helena", "Hazel",
 												"Captain Brownbeard", "Jane", "Seremela", "Phalk", "Fidorea");
 
@@ -88,7 +88,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		greetings.put("Phalk", "Beautiful flowers in this city here! Unfortunately those elves don't appreciate them much. ");
 		greetings.put("Fidorea", "Young warrior, you did great things on your journey! Now return to finish it. You must be thirsty! ");
 	}
-	
+
 
 	private void setupTexts() {
 		texts.put("Marcus", "The next person you should find takes care of thieves and other criminals. "
@@ -98,7 +98,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		texts.put("Rachel", "The next lady to find works in a bank and can tell you all about her job.");
 		texts.put("Fritz", "Please go and find the old fisherman in Ados who can tell you great stories about fish. He also has a daughter named Caroline.");
 		texts.put("Alice Farmer", "The next person you'll have to seek out is on vacation in Ados, together with her whole family. She also knows everything about food and drinks.");
-		texts.put("Elisabeth", "Now you have to find a young girl who plays on a playground in Kirdneh and loves chocolate."); 
+		texts.put("Elisabeth", "Now you have to find a young girl who plays on a playground in Kirdneh and loves chocolate.");
 		texts.put("Sue", "Please go and find the nice gardener who owns some greenhouses with tomatoes inside near Kalavan.");
 		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy. She might ask you about them first, just try to put her off for now :)");
 		texts.put("Hazel", "I know a really nice lady who can help you next. She works in a museum and loves her job.");
@@ -108,7 +108,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		texts.put("Phalk", "The next person you have to find is an old warrior who guards the mines, north to Semos.");
 		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
 	}
-	
+
 	/**
 	 * Handles all normal points in this paper chase (without the first and last.
 	 * one)
@@ -191,7 +191,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		SpeakerNPC npc = npcs.get("Fidorea");
 
 		ChatAction startAction = new MultipleActions(
-			new SetQuestAction(QUEST_SLOT, 0, points.get(0)), 
+			new SetQuestAction(QUEST_SLOT, 0, points.get(0)),
 			new SetQuestToPlayerAgeAction(QUEST_SLOT, 1),
 			new SetQuestToYearAction(QUEST_SLOT, 2));
 
@@ -226,28 +226,28 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		}
 
 		// Fidorea does the post processing of this quest
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"),
 				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, "Oh, that is a nice #quest.", null);
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"),
 			new AndCondition(
-					new QuestStartedCondition(QUEST_SLOT), 
+					new QuestStartedCondition(QUEST_SLOT),
 					new QuestNotInStateCondition(QUEST_SLOT, 0, "Fidorea"),
 					new QuestNotInStateCondition(QUEST_SLOT, 0, "done"),
 					new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, "I guess you still have to talk to some people.", null);
 
 		ChatAction reward = new MultipleActions(
-			new IncreaseKarmaAction(15), 
-			new IncreaseXPAction(400), 
+			new IncreaseKarmaAction(15),
+			new IncreaseXPAction(400),
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
 			new EquipItemAction("empty scroll", 5),
 			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, FAME_TYPE),
 			loadSignFromHallOfFame);
-	
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
+
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "Fidorea"), new SystemPropertyCondition("stendhal.minetown")),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Very good. You did the complete quest, talking to all those people around the world. I will add your name to the sign for everyone to see. And here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
 	}
@@ -270,12 +270,12 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	public String getName() {
 		return "PaperChase";
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
@@ -299,7 +299,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	public String getNPCName() {
 		return "Fidorea";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;

@@ -19,7 +19,7 @@ import games.stendhal.client.entity.Inspector;
 public interface Inspectable {
 	/**
 	 * Set the Inspector used for inspection.
-	 * 
+	 *
 	 * @param inspector inspector for the object
 	 */
 	void setInspector(Inspector inspector);

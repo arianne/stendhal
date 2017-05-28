@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
-import games.stendhal.client.gui.j2DClient;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import games.stendhal.client.gui.j2DClient;
 
 class LeaveBuddyMessageAction implements ActionListener {
 	private final String buddyName;

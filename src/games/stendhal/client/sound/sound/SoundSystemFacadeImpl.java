@@ -12,6 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.sound.sound;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundHandle;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
@@ -20,21 +26,15 @@ import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
 import games.stendhal.common.math.Algebra;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 /**
  * This class is the interface between the game logic and the
  * sound system.
- * 
+ *
  * @author hendrik, silvio
  */
 public class SoundSystemFacadeImpl implements SoundSystemFacade {
 	private static Logger logger = Logger.getLogger(SoundSystemFacadeImpl.class);
-	
+
 	private ExtendedSoundManager manager = new ExtendedSoundManager();
 	@Override
 	public void positionChanged(double x, double y) {

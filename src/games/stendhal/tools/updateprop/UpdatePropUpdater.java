@@ -48,7 +48,7 @@ public class UpdatePropUpdater {
 	 * @param newVersion new version
 	 * @param folder     folder the .jar files are in
 	 * @param files      list of files
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public UpdatePropUpdater(final String oldFile, final String newFile, final String oldVersion, final String newVersion, String folder, List<String> files) throws Exception {
 		this.newFile = newFile;
@@ -130,8 +130,8 @@ public class UpdatePropUpdater {
 
 	/**
 	 * Update the file size and signature sections
-	 * 
-	 * @throws Exception 
+	 *
+	 * @throws Exception
 	 */
 	private void updateFileSizeAndSignature() throws Exception {
 		for (String filename : files) {

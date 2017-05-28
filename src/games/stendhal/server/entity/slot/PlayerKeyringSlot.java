@@ -17,14 +17,14 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Keyring slots of players which contain items.
- * 
+ *
  * @author hendrik
  */
 public class PlayerKeyringSlot extends PlayerSlot {
 
 	/**
 	 * Creates a new PlayerSlot.
-	 * 
+	 *
 	 * @param player player
 	 */
 	public PlayerKeyringSlot(final String player) {

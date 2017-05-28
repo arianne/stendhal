@@ -18,7 +18,7 @@ package games.stendhal.common;
  */
 public interface EquipActionConsts {
 	String SOURCE_PATH = "source_path";
-	
+
 	// Compatibility object addressing
 	String BASE_ITEM = "baseitem";
 	String BASE_SLOT = "baseslot";

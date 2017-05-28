@@ -13,12 +13,6 @@
 package games.stendhal.server.entity.npc.condition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.core.config.annotations.Dev;
-import games.stendhal.server.core.config.annotations.Dev.Category;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -26,6 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Checking if player's quest slot need update with newer creatures and update it if required
@@ -48,7 +49,7 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 	private final int questGroupIndex;
 	private final List<String> creatures;
 	private final boolean do_update;
-    private final Map<String, List<String>> allcreatures;	
+    private final Map<String, List<String>> allcreatures;
 
 	/**
 	 * Creates a new KillsQuestSlotNeedUpdateCondition.
@@ -68,7 +69,7 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 		this.allcreatures = null;
 	}
 
-	
+
 	/**
 	 * Creates a new KillsQuestSlotNeedUpdateCondition.
 	 *
@@ -86,8 +87,8 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 		// not applicable in this case
 		this.creatures = null;
 	}
-	
-	
+
+
 	/**
 	 * return true if player need update, or if required update was unsuccessful.
 	 */
@@ -122,11 +123,11 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 			return true;
 		}
 		// gathering creatures names
-		LinkedList<String> mycreatures=new LinkedList<String>(); 
+		LinkedList<String> mycreatures=new LinkedList<String>();
 		for(int i=0; i<tokens.size()/5; i++) {
 			mycreatures.add(tokens.get(i*5));
 		}
-		
+
 		// check for creatures from list
 		for(String monster:neededcreatures) {
 			if(!mycreatures.contains(monster)) {
@@ -144,7 +145,7 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 			   }
 			}
 		}
-		
+
 		if(do_update && !toadd.isEmpty()) {
 		    // now adding whole string to player's quest slot
 			String finalcreatures=temp+toadd;
@@ -154,7 +155,7 @@ public class KillsQuestSlotNeedUpdateCondition implements ChatCondition {
 					     "> value: ("+finalcreatures+")");
 			player.setQuest(questSlot, questIndex, finalcreatures);
 		}
-		
+
 		return false;
 	}
 

@@ -11,15 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.common.NotificationType;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.Collections;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
+
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 
 /**
  * Default action if the client sends something the server does not understand.

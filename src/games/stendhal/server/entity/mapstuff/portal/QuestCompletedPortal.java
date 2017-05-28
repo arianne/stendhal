@@ -33,10 +33,10 @@ public class QuestCompletedPortal extends AccessCheckingPortal {
 
 	/**
 	 * Determine if this portal can be used.
-	 * 
+	 *
 	 * @param user
 	 *            The user to be checked.
-	 * 
+	 *
 	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override

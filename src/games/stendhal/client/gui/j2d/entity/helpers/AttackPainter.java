@@ -11,16 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity.helpers;
 
-import games.stendhal.client.IGameScreen;
-import games.stendhal.client.MemoryCache;
-import games.stendhal.client.entity.RPEntity;
-import games.stendhal.client.gui.TransparencyMode;
-import games.stendhal.client.sprite.ImageSprite;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Direction;
-import games.stendhal.common.constants.Nature;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -32,6 +22,16 @@ import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
+
+import games.stendhal.client.IGameScreen;
+import games.stendhal.client.MemoryCache;
+import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.gui.TransparencyMode;
+import games.stendhal.client.sprite.ImageSprite;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Direction;
+import games.stendhal.common.constants.Nature;
 
 /**
  * An utility for drawing the attack sprites.
@@ -67,7 +67,7 @@ public final class AttackPainter {
 		ARROW_COLOR.put(Nature.FIRE, new Color(255, 100, 0)); // reddish orange
 		ARROW_COLOR.put(Nature.ICE, new Color(140, 140, 255)); // light blue
 	}
-	
+
 	/** Sprite sets for the painter. */
 	private final Map<Direction, Sprite[]> map;
 
@@ -101,10 +101,10 @@ public final class AttackPainter {
 
 	/** Weapon used in the attack, or <code>null</code>. */
 	private final String weapon;
-	
+
 	/**
 	 * Create a painter using a specified sprite map.
-	 * 
+	 *
 	 * @param nature attack nature
 	 * @param weapon weapon or <code>null</code> if no weapon should be drawn
 	 * @param sprites sprite map
@@ -122,14 +122,14 @@ public final class AttackPainter {
 		this.rangedWeaponMap = rangedSprites;
 		this.weapon = weapon;
 	}
-	
+
 	/**
 	 * Get a painter for attack of a given nature, and size of a creature.
-	 * 
+	 *
 	 * @param nature attack nature
 	 * @param weapon weapon, or <code>null</code> if not specified
 	 * @param size creature size
-	 * 
+	 *
 	 * @return painter
 	 */
 	public static AttackPainter get(Nature nature, final String weapon, int size) {
@@ -166,7 +166,7 @@ public final class AttackPainter {
 
 	/**
 	 * Create a weapon sprite mapping of size 1.
-	 * 
+	 *
 	 * @param weapon weapon name
 	 * @return weapon sprite, or <code>null</code> if there's no image for
 	 *         the weapon
@@ -185,14 +185,14 @@ public final class AttackPainter {
 		BufferedImage image = gc.createCompatibleImage(288, 512,
 				TransparencyMode.TRANSPARENCY);
 		Graphics2D g = image.createGraphics();
-		
+
 		int partWidth = 96;
 		int partHeight = 128;
 
 		// The clippings are to prevent hard to notice translucent weapon trails
 		// being drawn outside the intended area. These may be unnoticeable on
 		// a test image, but sometimes visible in the game.
-		
+
 		// Top middle
 		g.clipRect(partWidth, 0, partWidth, partHeight);
 		template.draw(g, 84, 40);
@@ -261,7 +261,7 @@ public final class AttackPainter {
 
 	/**
 	 * Get a mapping for nature sweep images.
-	 * 
+	 *
 	 * @param nature attack nature
 	 * @param size sweep size
 	 * @return image mapping
@@ -277,10 +277,10 @@ public final class AttackPainter {
 			}
 		});
 	}
-	
+
 	/**
 	 * Find or create an attack sprite map.
-	 * 
+	 *
 	 * @param <T> Type of the sprite map reference
 	 * @param ref reference for the sprite map
 	 * @param size size of the attack image
@@ -315,7 +315,7 @@ public final class AttackPainter {
 	/**
 	 * Scale all sprites in a attack sprite map, and create a new mapping with
 	 * the scaled sprites.
-	 * 
+	 *
 	 * @param origMap original sprite mapping. This should be size 1.
 	 * @param size the size of the new map
 	 * @return map of scaled sprites
@@ -359,10 +359,10 @@ public final class AttackPainter {
 
 	/**
 	 * Split a sprite to a set of attack images.
-	 * 
+	 *
 	 * @param st sprite store
 	 * @param orig sprite to be split
-	 * 
+	 *
 	 * @return a map of attack sprites
 	 */
 	private static Map<Direction, Sprite[]> splitTiles(SpriteStore st,
@@ -388,7 +388,7 @@ public final class AttackPainter {
 
 	/**
 	 * Draw a melee attack.
-	 * 
+	 *
 	 * @param g2d graphics
 	 * @param direction attack direction
 	 * @param x x coordinate
@@ -405,10 +405,10 @@ public final class AttackPainter {
 
 		frame++;
 	}
-	
+
 	/**
 	 * Draw an attack sprite centered on the entity.
-	 * 
+	 *
 	 * @param g graphics
 	 * @param spriteSet attack sprite set
 	 * @param direction attack direction
@@ -431,7 +431,7 @@ public final class AttackPainter {
 		/*
 		 * Align swipe image to be 16 px past the facing edge, centering in
 		 * other axis.
-		 * 
+		 *
 		 * Swipe image is 3x4 tiles, but really only uses partial areas. Adjust
 		 * positions to match (or fix images to be uniform/centered).
 		 */
@@ -466,7 +466,7 @@ public final class AttackPainter {
 
 	/**
 	 * Draw a distance attack line.
-	 * 
+	 *
 	 * @param g2d graphics
 	 * @param entity attacking entity
 	 * @param target attack target
@@ -502,7 +502,7 @@ public final class AttackPainter {
 		g2d.setStroke(ARROW_STROKE);
 		g2d.drawLine(startX, startY, endX, endY);
 		g2d.setStroke(oldStroke);
-		
+
 		drawAttackSprite(g2d, rangedSprites, entity.getDirection(), x, y, width, height);
 
 		frame++;
@@ -510,7 +510,7 @@ public final class AttackPainter {
 
 	/**
 	 * Check if this painter has the given nature an weapon.
-	 * 
+	 *
 	 * @param nature nature to compare to
 	 * @param weapon weapon to compare to
 	 * @return <code>true</code> if the painter has the given nature, otherwise
@@ -524,7 +524,7 @@ public final class AttackPainter {
 
 	/**
 	 * Check if the current attack has been completely drawn.
-	 * 
+	 *
 	 * @return <code>true</code> if drawing the attack has been completed,
 	 *         otherwise <code>false</code>
 	 */
@@ -538,7 +538,7 @@ public final class AttackPainter {
 
 	/**
 	 * Prepare for an attack to a given direction.
-	 * 
+	 *
 	 * @param direction attack direction
 	 */
 	public void prepare(Direction direction) {
@@ -556,20 +556,20 @@ public final class AttackPainter {
 
 		frame = 0;
 	}
-	
+
 	/**
 	 * Interface for attack image retrievers.
 	 */
 	private interface SpriteMaker {
 		/**
 		 * Get an attack sprite of size 1.
-		 *  
+		 *
 		 * @return attack sprite, or <code>null</code> if the sprite could not
 		 * be found
 		 */
 		Sprite getSprite();
 	}
-	
+
 	/**
 	 * A reference object for caching sweep sprite mappings.
 	 */
@@ -581,7 +581,7 @@ public final class AttackPainter {
 
 		/**
 		 * Create a new painter reference.
-		 * 
+		 *
 		 * @param nature attack nature
 		 * @param size creature size
 		 */
@@ -616,7 +616,7 @@ public final class AttackPainter {
 
 		/**
 		 * Create a new WeaponRef.
-		 * 
+		 *
 		 * @param weapon weapon name
 		 * @param size size of the sprite mapping
 		 */

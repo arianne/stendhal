@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -47,10 +51,6 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 /**
@@ -111,7 +111,7 @@ public class ElfPrincess extends AbstractQuest {
 			new QuestCompletedCondition("QUEST_SLOT"),
 			ConversationStates.ATTENDING,
 			"I have plenty of blooms now thank you.", null);
-		
+
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, 0, "flower_brought"),
@@ -152,10 +152,10 @@ public class ElfPrincess extends AbstractQuest {
 							 new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 							 new PlayerCanEquipItemCondition("rhosyd"),
                              new TimePassedCondition(QUEST_SLOT, 1, DELAY)),
-			ConversationStates.IDLE, 
+			ConversationStates.IDLE,
 			"Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr, bye now.",
-			new MultipleActions(new EquipItemAction("rhosyd", 1, true), 
-                                new SetQuestAction(QUEST_SLOT, 0, "got_flower"), 
+			new MultipleActions(new EquipItemAction("rhosyd", 1, true),
+                                new SetQuestAction(QUEST_SLOT, 0, "got_flower"),
                                 new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
 
 		// don't put the flower on the ground - if player has no space, tell them
@@ -165,27 +165,27 @@ public class ElfPrincess extends AbstractQuest {
 								 new QuestInStateCondition(QUEST_SLOT, 0, "start"),
                                  new TimePassedCondition(QUEST_SLOT, 1, DELAY),
 								 new NotCondition(new PlayerCanEquipItemCondition("rhosyd"))),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				"Shame you don't have space to take a pretty flower from me. Come back when you can carry my precious blooms without damaging a petal.",
 				null);
-		
+
         // don't give the flower if one was given within the last 5 minutes
         rose.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
 								 new QuestInStateCondition(QUEST_SLOT, 0, "start"),
                                  new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, DELAY))),
-				ConversationStates.IDLE, 
+				ConversationStates.IDLE,
 				"I gave you a flower not five minutes past! Her Royal Highness can enjoy that one for a while.",
 				null);
-	    
+
 	    final ChatCondition lostFlowerCondition = new AndCondition(new GreetingMatchesNameCondition(rose.getName()),
 				 // had got the flower before and was supposed to take it to the princess next
 	    		 new QuestInStateCondition(QUEST_SLOT, 0, "got_flower"),
 				 // check chest and so on first - maybe the player does still have it (though we can't check house chests or the floor)
 				 new ChatCondition() {
 				     @Override
-					public boolean fire(final Player player, final Sentence sentence, final Entity entity) { 
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 				    	 return player.getTotalNumberOf("rhosyd") == 0;
 				     }
 				 },
@@ -193,34 +193,34 @@ public class ElfPrincess extends AbstractQuest {
 				new PlayerCanEquipItemCondition("rhosyd"),
 				// note: older quest slots will pass this automatically, but they are old now.
                 new TimePassedCondition(QUEST_SLOT, 1, 12*MathHelper.MINUTES_IN_ONE_WEEK));
-	   	    
+
 	    // if the player never had a timestamp stored (older quest) we have now added timestamp 1.
 	    // but that was a while ago that we changed it (November 2010?)
 		rose.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			lostFlowerCondition,
-			ConversationStates.QUESTION_1, 
+			ConversationStates.QUESTION_1,
 			"Hello dearie. Did you lose the flower I gave you last? If you need another say #yes but it's bad luck for me to have to give you it again, so you better be sure!",
 			null);
-		
+
 		rose.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				lostFlowerCondition,
 				ConversationStates.IDLE,
 				"Heres a new flower to take the pretty lady, but mind you don't lose that one.",
-				new MultipleActions(new EquipItemAction("rhosyd", 1, true), 
-                        new SetQuestAction(QUEST_SLOT, 0, "got_flower"), 
+				new MultipleActions(new EquipItemAction("rhosyd", 1, true),
+                        new SetQuestAction(QUEST_SLOT, 0, "got_flower"),
                         // dock some karma for losing the flower
-                        new IncreaseKarmaAction(-20.0), 
+                        new IncreaseKarmaAction(-20.0),
                         new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
-		
+
 		rose.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				lostFlowerCondition,
 				ConversationStates.IDLE,
 				"No worries dearie, you probably got it somewhere!",
 				null);
-		
+
         // don't give the flower if the quest state isn't start
         // unless it's been over 12 weeks and are in state got_flower?
 	    rose.add(ConversationStates.IDLE,
@@ -229,7 +229,7 @@ public class ElfPrincess extends AbstractQuest {
 		    					 new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
 		    					 new NotCondition(lostFlowerCondition)),
 		    	ConversationStates.IDLE,
-		    	"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", 
+		    	"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.",
 		    	null);
 	}
 
@@ -254,10 +254,10 @@ public class ElfPrincess extends AbstractQuest {
 				Arrays.asList("flower", "Rhosyd"),
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "got_flower"), new PlayerHasItemWithHimCondition("rhosyd")),
 				ConversationStates.ATTENDING, null,
-				new MultipleActions(new DropItemAction("rhosyd"), 
-                                    new IncreaseXPAction(5000), 
+				new MultipleActions(new DropItemAction("rhosyd"),
+                                    new IncreaseXPAction(5000),
                                     new IncreaseKarmaAction(15),
-									addRandomNumberOfItemsAction, 
+									addRandomNumberOfItemsAction,
 									new SetQuestAction(QUEST_SLOT, 0, "flower_brought"),
 									new IncrementQuestAction(QUEST_SLOT, 2, 1)));
 
@@ -288,7 +288,7 @@ public class ElfPrincess extends AbstractQuest {
 			return res;
 		}
 		res.add("I bravely fought my way to the top of Nalwor Tower to meet Princess Tywysoga.");
-        // todo split on ; to put the 0th part in questState		
+        // todo split on ; to put the 0th part in questState
         final String questStateFull = player.getQuest(QUEST_SLOT);
         final String[] parts = questStateFull.split(";");
         final String questState = parts[0];
@@ -303,29 +303,29 @@ public class ElfPrincess extends AbstractQuest {
 		}
         if (isRepeatable(player)) {
             res.add("I took the flower to the Princess and she gave me gold bars. If I want to make her happy again, I can ask her for another task.");
-        } 
+        }
 		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
 		if (repetitions > 0) {
 			res.add("I've already taken Princess Tywysoga " + Grammar.quantityplnoun(repetitions, "precious flower", "one") + ".");
 		}
 		return res;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "ElfPrincess";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 60;
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought").fire(player,null, null);
 	}
-	
+
 	// The quest may have been completed a few times already and then re-opened as it's repeatable
 	// since this method is used to separate open quests from completed quests, we'll say that being completed
 	// means it's done and not re-opened
@@ -333,7 +333,7 @@ public class ElfPrincess extends AbstractQuest {
 	public boolean isCompleted(final Player player) {
 		return new QuestInStateCondition(QUEST_SLOT,0,"flower_brought").fire(player,null, null);
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.NALWOR_CITY;

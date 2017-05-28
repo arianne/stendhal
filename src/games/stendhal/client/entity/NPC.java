@@ -22,40 +22,40 @@ public class NPC extends RPEntity {
 	 * Idea property for NPCs and domestic animals.
 	 */
 	public static final Property PROP_IDEA = new Property();
-	
+
 	/**
 	 * The NPC's idea.
 	 */
 	private String idea;
-	
+
 	/**
 	 * Get the idea setting.
-	 * 
+	 *
 	 * @return The NPC's idea.
 	 */
 	public String getIdea() {
 		return idea;
 	}
-	
+
 	/**
 	 * Ask NPC if they are attending.
-	 * 
+	 *
 	 * @return true if attending.
 	 */
 	public boolean isAttending() {
 		return (idea != null);
 	}
-	
+
 	//
 	// Entity
 	//
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *			  The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -67,23 +67,23 @@ public class NPC extends RPEntity {
 		 */
 		onIdea(object.get("idea"));
 	}
-	
+
 	/**
 	 * Called when the idea changes.
-	 * 
+	 *
 	 * @param idea new idea
 	 */
 	private void onIdea(String idea) {
 		this.idea = idea;
 	}
-	
+
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -101,10 +101,10 @@ public class NPC extends RPEntity {
 			fireChange(PROP_IDEA);
 		}
 	}
-	
+
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

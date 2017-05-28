@@ -19,20 +19,20 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
 
 /**
  * This is the command list of any entities.
- * 
+ *
  * @author mtotz
  */
 public class EntityViewCommandList extends CommandList {
 	private static final Logger LOGGER = Logger.getLogger(EntityViewCommandList.class);
 	private static final long serialVersionUID = -1607102841664745919L;
-	
+
 
 	/** the entity associated with the command list. */
 	private final EntityView<?> view;
 
 	/**
 	 * Create an entity view command list.
-	 * 
+	 *
 	 * @param name
 	 *            The menu name (needed?).
 	 * @param items
@@ -45,10 +45,10 @@ public class EntityViewCommandList extends CommandList {
 		this.view = view;
 	}
 
-	/** 
-	 * an action has been chosen. 
-	 * @param command 
-	 * 
+	/**
+	 * an action has been chosen.
+	 * @param command
+	 *
 	 */
 	@Override
 	protected void doAction(final String command) {

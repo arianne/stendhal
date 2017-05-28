@@ -12,16 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.common.constants.Nature;
-import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.impl.DropItem;
-import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.entity.status.Status;
-import games.stendhal.server.entity.status.StatusAttacker;
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -33,6 +23,16 @@ import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.codehaus.groovy.control.CompilationFailedException;
+
+import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.impl.DropItem;
+import games.stendhal.server.entity.creature.impl.EquipItem;
+import games.stendhal.server.entity.status.Status;
+import games.stendhal.server.entity.status.StatusAttacker;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 
 public class DefaultCreature {
 
@@ -86,27 +86,27 @@ public class DefaultCreature {
 	private List<DropItem> dropsItems;
 
 	private List<EquipItem> equipsItems;
-	
+
 	/** List of possible sound events. */
 	private List<String> sounds;
-	
+
 	/** Sound played on creature death */
 	private String deathSound;
-	
+
 	/** Looped sound effect for moving creature */
 	private String movementSound;
 
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
-	
+
 	private Map<String, String> aiProfiles;
-	
+
 	/** Susceptibilities of the creature */
 	private Map<Nature, Double> susceptibilities;
-	
+
 	/** Status attack types */
 	private String statusAttack;
 	private double statusAttackProbability;
-	
+
 	/** Type of damage caused by the creature */
 	private Nature damageType;
 	/** Type of damage caused by the creature when using ranged attacks. if
@@ -126,7 +126,7 @@ public class DefaultCreature {
 		dropsItems = new LinkedList<DropItem>();
 		equipsItems = new LinkedList<EquipItem>();
 		creatureSays = new LinkedHashMap<String, LinkedList<String>>();
-		
+
 		aiProfiles = new LinkedHashMap<String, String>();
 	}
 
@@ -198,7 +198,7 @@ public class DefaultCreature {
 	public void setNoiseLines(final LinkedHashMap<String, LinkedList<String>> creatureSays) {
 		this.creatureSays = creatureSays;
 	}
-	
+
 	public HashMap<String, LinkedList<String>> getNoiseLines() {
 		return creatureSays;
 	}
@@ -214,7 +214,7 @@ public class DefaultCreature {
 	public void setBlood(final String name) {
 		this.bloodClass = name;
 	}
-	
+
 	public void setCorpse(final String name, final String harmless, final int width, final int height) {
 		corpseName = name;
 		harmlessCorpseName = harmless;
@@ -233,19 +233,19 @@ public class DefaultCreature {
 	public void setAIProfiles(final Map<String, String> aiProfiles) {
 		this.aiProfiles = aiProfiles;
 	}
-	
+
 	/**
 	 * Set the susceptibility mapping.
-	 * 
+	 *
 	 * @param susceptibilities creature susceptibilities
 	 */
 	public void setSusceptibilities(final Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
 	}
-	
+
 	/**
 	 * Set the damage types.
-	 * 
+	 *
 	 * @param type
 	 * @param rangedType if <code>null</code>, then melee type is used for both
 	 * 	attack modes
@@ -255,7 +255,7 @@ public class DefaultCreature {
 		rangedDamageType = rangedType;
 	}
 
-	/** @return a creature-instance. 
+	/** @return a creature-instance.
 	 */
 	public Creature getCreature() {
 		Collections.sort(dropsItems, new Comparator<DropItem>() {
@@ -275,7 +275,7 @@ public class DefaultCreature {
 				level, xp, width, height, speed, dropsItems, aiProfiles,
 				creatureSays, respawn, description);
 		creature.equip(equipsItems);
-		
+
 		creature.setCorpse(corpseName, harmlessCorpseName, corpseWidth, corpseHeight);
 		creature.setBlood(bloodClass);
 		creature.setSusceptibilities(susceptibilities);
@@ -283,7 +283,7 @@ public class DefaultCreature {
 		creature.setSounds(Collections.unmodifiableList(sounds));
 		creature.setDeathSound(deathSound);
 		creature.setMovementSound(movementSound);
-		
+
 		// Status attack types
 		if (statusAttack != null) {
 			Binding groovyBinding = new Binding();
@@ -296,7 +296,7 @@ public class DefaultCreature {
 				throw new IllegalArgumentException(e);
 			}
 		}
-		
+
 		return creature;
 	}
 
@@ -333,37 +333,37 @@ public class DefaultCreature {
 	public void setCreatureName(final String val) {
 		name = val;
 	}
-	
+
 	/**
 	 * Set the possible sound names.
-	 * 
+	 *
 	 * @param sounds list of sounds
 	 */
 	public void setCreatureSounds(List<String> sounds) {
 		this.sounds = sounds;
 	}
-	
+
 	/**
 	 * Set the sound played when a creature dies
-	 * 
+	 *
 	 * @param sound Name of sound
 	 */
 	public void setCreatureDeathSound(String sound) {
 	    this.deathSound = sound;
 	}
-	
+
 	/**
 	 * Set a looped sound effect for creature when moving
-	 * 
+	 *
 	 * @param sound
 	 * 				desired sound effect
 	 */
 	public void setCreatureMovementSound(String sound) {
 		this.movementSound = sound;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param name
 	 * @param probability
 	 */
@@ -371,7 +371,7 @@ public class DefaultCreature {
 	    statusAttack = name;
 	    statusAttackProbability = probability;
 	}
-	
+
 	public boolean verifyItems(final EntityManager defaultEntityManager) {
 		for (final DropItem item : dropsItems) {
 			if (!defaultEntityManager.isItem(item.name)) {
@@ -426,13 +426,13 @@ public class DefaultCreature {
 		os.append("    <ai>\n");
 		if (!creatureSays.isEmpty()) {
 			os.append("      <says>\n");
-			
+
 			while(creatureSays.entrySet().iterator().hasNext()) {
 				final Entry<String, LinkedList<String>> entry =
 					creatureSays.entrySet().iterator().next();
 				for (int i=0; i<entry.getValue().size(); i++) {
 					os.append("        <noise state=\""+entry.getKey()+
-							"\" value=\"" + entry.getValue().get(i) + "\"/>\n");					
+							"\" value=\"" + entry.getValue().get(i) + "\"/>\n");
 				}
 			}
 

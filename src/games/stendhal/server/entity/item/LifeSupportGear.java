@@ -115,6 +115,6 @@ public class LifeSupportGear extends Item {
 		if (!requireLifeSupport.equals(this.get("life_support"))) {
 			return 0;
 		}
-		return super.getDefense();		
+		return super.getDefense();
 	}
 }

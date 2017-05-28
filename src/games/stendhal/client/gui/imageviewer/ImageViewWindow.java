@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.gui.imageviewer;
 
-import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.InternalManagedWindow;
-import games.stendhal.client.gui.j2DClient;
-
 import java.awt.Dimension;
 
 import javax.swing.SwingUtilities;
 
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.InternalManagedWindow;
+import games.stendhal.client.gui.j2DClient;
+
 /**
  * Opens an image resource at a given URL, and displays it in the client.
- * 
+ *
  * @author timothyb89
  */
 class ImageViewWindow extends InternalManagedWindow {
@@ -44,10 +44,10 @@ class ImageViewWindow extends InternalManagedWindow {
 	 */
 	ImageViewWindow(String title, ViewPanel viewPanel) {
 		super("examine", title);
-		
+
 		viewPanel.prepareView(genMaxSize());
 		setContent(viewPanel);
-		
+
 		/*
 		 * Generating the window was likely triggered an event from the network
 		 * thread; do the rest of the work in EDT.
@@ -64,7 +64,7 @@ class ImageViewWindow extends InternalManagedWindow {
 
 	/**
 	 * Calculate maximum size for a window that fits on the game screen.
-	 * 
+	 *
 	 * @return size
 	 */
 	private Dimension genMaxSize() {

@@ -14,6 +14,11 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,11 +27,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.outside.CloaksCollectorNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -76,7 +76,7 @@ public class CloaksForBarioTest {
 
 		// -----------------------------------------------
 		equipCloaks(4);
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi again! I still need 10 blue elven cloaks. Do you have any for me?", getReply(npc));
 		en.step(player, "yes");
@@ -117,7 +117,7 @@ public class CloaksForBarioTest {
 		assertEquals("Thank you very much! Do you have another one? I still need one cloak.", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.", getReply(npc));
-		// [23:48] superkym earns 1500 experience points. 
+		// [23:48] superkym earns 1500 experience points.
 		en.step(player, "task");
 		assertEquals("I don't have anything for you to do, really.", getReply(npc));
 		en.step(player, "bye");

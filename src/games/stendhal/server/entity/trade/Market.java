@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.trade;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -20,18 +27,10 @@ import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * A Market handles sales offers of players. Players can place offers or accept
@@ -40,7 +39,7 @@ import org.apache.log4j.Logger;
  * permanently from the market after another period of time. When an offer has
  * been accepted, the offering Player can come and fetch his earnings for that
  * sale.
- * 
+ *
  * @author madmetzger, kiheru
  */
 public class Market extends PassiveEntity {
@@ -76,7 +75,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * Creates a new Market from an RPObject
-	 * 
+	 *
 	 * @param object
 	 */
 	public Market(final RPObject object) {
@@ -143,7 +142,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * Factory method for the market
-	 * 
+	 *
 	 * @return a new Market
 	 */
 	public static Market createShop() {
@@ -169,7 +168,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * creates a new offer at the market
-	 * 
+	 *
 	 * @param offerer
 	 *            offering player
 	 * @param item
@@ -214,7 +213,7 @@ public class Market extends PassiveEntity {
 	/**
 	 * Completes a trade of an offer by transferring item to accepting player
 	 * and taking the money from him
-	 * 
+	 *
 	 * @param offer
 	 * @param acceptingPlayer
 	 * @return <code>true</code> if the trade was done, <code>false</code> on
@@ -263,7 +262,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * rewards player for a successfull trade
-	 * 
+	 *
 	 * @param player
 	 *            the player to reward
 	 */
@@ -273,7 +272,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * The earnings for complete trades are paid to the player.
-	 * 
+	 *
 	 * @param earner
 	 *            the player fetching his earnings
 	 * @return the fetched earnings
@@ -286,7 +285,7 @@ public class Market extends PassiveEntity {
 				earningsToRemove.add(earning);
 			}
 		}
-		
+
 		if(!earningsToRemove.isEmpty()) {
 			int summedUpEarnings = 0;
 			//sum up
@@ -315,7 +314,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * Remove a set of earnings.
-	 * 
+	 *
 	 * @param earningsToRemove
 	 *            The earnings to be removed
 	 */
@@ -328,7 +327,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * counts the number of offers, a player has placed
-	 * 
+	 *
 	 * @param offerer
 	 * @return the number of offers
 	 */
@@ -345,7 +344,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * removes an offer from the market and returns the item to the user
-	 * 
+	 *
 	 * @param o
 	 *            the offer to remove
 	 * @param p
@@ -354,7 +353,7 @@ public class Market extends PassiveEntity {
 	public void removeOffer(Offer o, Player p) {
 		Item item = o.getItem();
 		String itemName = item.getName();
-		
+
 		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 		p.equipOrPutOnGround(item);
 
@@ -380,7 +379,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * expires an offer and removes it from the available offers
-	 * 
+	 *
 	 * @param o
 	 *            the offer to expire
 	 */
@@ -408,7 +407,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * removes an expired offer permanently from the market
-	 * 
+	 *
 	 * @param offerToRemove
 	 */
 	public void removeExpiredOffer(Offer offerToRemove) {
@@ -425,7 +424,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * prolongs an offer in the market to make it available again
-	 * 
+	 *
 	 * @param offer
 	 *            the offer to prolong
 	 * @return the prolonged offer
@@ -448,7 +447,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * Get a list of offers whose timestamp is older than specified.
-	 * 
+	 *
 	 * @param seconds
 	 *            age of offers in seconds
 	 * @return list of offers that are older than the specified time
@@ -463,7 +462,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * Get a list of expired offers whose timestamp is older than specified.
-	 * 
+	 *
 	 * @param seconds
 	 *            age of offers in seconds
 	 * @return list of expired offers that are older than the specified time
@@ -474,7 +473,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * Get a list of earnings whose timestamp is older than specified.
-	 * 
+	 *
 	 * @param seconds
 	 *            age of offers in seconds
 	 * @return list of earnings that are older than the specified time
@@ -490,7 +489,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * retrieves Dateable objects older than seconds from a given Iterable
-	 * 
+	 *
 	 * @param <T>
 	 * @param set
 	 *            the set to search in
@@ -513,7 +512,7 @@ public class Market extends PassiveEntity {
 
 	/**
 	 * gets the quantity of an item
-	 * 
+	 *
 	 * @param item
 	 * @return the quantity
 	 */

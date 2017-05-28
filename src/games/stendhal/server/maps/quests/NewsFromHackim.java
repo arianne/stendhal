@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -29,32 +33,28 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * QUEST: News from Hackim
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li> Hackim </li>
  * <li> Xin Blanca </li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Hackim asks you to give a message to Xin Blanca. </li>
  * <li> Xin Blanca thanks you with a pair of leather legs. </li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 10 XP </li>
  * <li> some karma (2) </li>
  * <li> a pair of leather legs </li>
  * </ul>
- * 
+ *
  * REPETITIONS: - None
  */
 public class NewsFromHackim extends AbstractQuest {
@@ -66,7 +66,7 @@ public class NewsFromHackim extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -90,16 +90,16 @@ public class NewsFromHackim extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hackim Easso");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
 			"Pssst! C'mere... do me a favour and tell #Xin #Blanca that the new supply of weapons is ready, will you?",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Thanks, but I don't have any messages to pass on to #Xin. I can't smuggle so often now... I think Xoderos is beginning to suspect something. Anyway, let me know if there's anything else I can do.",
 			null);
 
@@ -126,7 +126,7 @@ public class NewsFromHackim extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED,
 			"You don't know who Xin is? Everybody at the tavern knows Xin. He's the guy who owes beer money to most of the people in Semos! So, will you do it?",
 			null);
-		
+
 		npc.addReply(Arrays.asList("Xin", "Xin Blanca", "Blanca"), "Xin's so cool. I want to work in the tavern too like him but my dad says I have to learn a trade.");
 	}
 
@@ -177,7 +177,7 @@ public class NewsFromHackim extends AbstractQuest {
 	public String getName() {
 		return "NewsFromHackim";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;

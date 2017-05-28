@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * handles trade related actions.
@@ -36,7 +36,7 @@ public class TradeAction implements ActionListener {
 
 	/**
 	 * processes the requested action.
-	 * 
+	 *
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */

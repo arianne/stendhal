@@ -11,18 +11,18 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Graphics;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.sprite.EmptySprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.SpriteTileset;
 import games.stendhal.client.sprite.Tileset;
 import games.stendhal.client.sprite.TilesetGroupAnimationMap;
-
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Graphics;
-
-import org.apache.log4j.Logger;
 
 /**
  * Weather renderer. The weather sprites are looked up from
@@ -32,17 +32,17 @@ import org.apache.log4j.Logger;
  */
 public class WeatherLayerRenderer extends LayerRenderer {
 	private final Sprite weather;
-	
+
 	/**
 	 * Create a new weather layer.
-	 * 
+	 *
 	 * @param weather weather description
 	 * @param color zone coloring data
 	 * @param blend zone blending mode
 	 */
 	public WeatherLayerRenderer(String weather, Color color, Composite blend) {
 		SpriteStore sr = SpriteStore.get();
-		
+
 		String name = "data/sprites/weather/" + weather + ".png";
 		Sprite template;
 		/*
@@ -71,11 +71,11 @@ public class WeatherLayerRenderer extends LayerRenderer {
 		int myY = (y * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight();
 		int myW = (w * IGameScreen.SIZE_UNIT_PIXELS) / weather.getWidth() + 1;
 		int myH = (h * IGameScreen.SIZE_UNIT_PIXELS) / weather.getHeight() + 1;
-		
+
 		int sy = myY * weather.getHeight();
 		for (int j = myY; j < myY + myH; j++) {
 			int sx = myX * weather.getWidth();
-			
+
 			for (int i = myX; i < myX + myW; i++) {
 				weather.draw(g, sx, sy);
 				sx += weather.getWidth();

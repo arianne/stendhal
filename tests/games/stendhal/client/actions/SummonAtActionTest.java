@@ -12,6 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
@@ -20,15 +29,6 @@ import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.scripting.ChatLineParser;
 import games.stendhal.client.util.UserInterfaceTestHelper;
 import marauroa.common.game.RPAction;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * Test the SummonAtAction class.
@@ -45,11 +45,11 @@ public class SummonAtActionTest {
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
 	}
-	
+
 	private static MockUserInterface getInterface() {
 		// Check the message
 		UserInterface ui = ClientSingletonRepository.getUserInterface();
-		// sanity check 
+		// sanity check
 		if (ui instanceof MockUserInterface) {
 			return (MockUserInterface) ui;
 		}
@@ -76,7 +76,7 @@ public class SummonAtActionTest {
 
 		// issue "/summonat bag 5x money"
 		assertTrue(action.execute(new String[]{"player", "bag", "5x"}, "money"));
-		
+
 		assertEquals("Invalid amount: 5x", getInterface().getLastEventLine());
 	}
 

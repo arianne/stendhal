@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.hostel;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -19,8 +21,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
-
-import java.util.Map;
 
 /**
  * Creates kids who are sleeping in semos hostel.

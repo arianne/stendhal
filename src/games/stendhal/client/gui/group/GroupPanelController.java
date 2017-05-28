@@ -11,22 +11,21 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-
-import java.util.List;
-import java.util.Set;
-
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 
 /**
  * Controller for the group information data.
@@ -35,7 +34,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 	private static class Holder {
 		static GroupPanelController instance = new GroupPanelController();
 	}
-	
+
 	private final GroupPanel panel;
 	private final Set<String> members = new HashSet<String>();
 	/**
@@ -43,26 +42,26 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 	 * group <code>false</code> otherwise.
 	 */
 	private boolean grouped = false;
-	
+
 	/**
 	 * Create a new GroupPaneController.
 	 */
 	private GroupPanelController() {
 		panel = new GroupPanel();
 	}
-	
+
 	/**
 	 * Get the component showing the group information.
-	 *  
+	 *
 	 * @return group information component
 	 */
 	public JComponent getComponent() {
 		return panel.getComponent();
 	}
-	
+
 	/**
 	 * Update group information data.
-	 * 
+	 *
 	 * @param members members of the group the player belongs to, or
 	 * 	<code>null</code> if the player does not belong to any group
 	 * @param leader name of the leader of the group
@@ -93,16 +92,16 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 				}
 			}
 		});
-		
+
 		if (members != null) {
 			// Clear non members
 			this.members.retainAll(members);
 			// Find out the new members. This needs to be done in a copy,
 			// because the event dispatch thread may not have done its work
 			// with the original list.
-			List<String> newMembers = new LinkedList<String>(members); 
+			List<String> newMembers = new LinkedList<String>(members);
 			newMembers.removeAll(this.members);
-			
+
 			syncPlayerStatus(newMembers);
 
 			this.members.addAll(newMembers);
@@ -110,10 +109,10 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 			this.members.clear();
 		}
 	}
-	
+
 	/**
 	 * Update the status of players just added to the group.
-	 * 
+	 *
 	 * @param names new members
 	 */
 	private void syncPlayerStatus(List<String> names) {
@@ -134,10 +133,10 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 			});
 		}
 	}
-	
+
 	/**
 	 * Called when the user receives a group invite.
-	 * 
+	 *
 	 * @param group name of the group
 	 */
 	public void receiveInvite(final String group) {
@@ -148,10 +147,10 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 			}
 		});
 	}
-	
+
 	/**
 	 * Called when a group invite expires.
-	 * 
+	 *
 	 * @param group name of the group
 	 */
 	public void expireInvite(final String group) {
@@ -162,7 +161,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 			}
 		});
 	}
-	
+
 	@Override
 	public void addEntity(final IEntity entity) {
 		if (entity instanceof Player) {
@@ -174,7 +173,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 			});
 		}
 	}
-	
+
 	@Override
 	public void removeEntity(final IEntity entity) {
 		if (entity instanceof Player) {
@@ -186,10 +185,10 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 			});
 		}
 	}
-	
+
 	/**
 	 * Get the GroupPaneController instance.
-	 * 
+	 *
 	 * @return instance
 	 */
 	public static GroupPanelController get() {

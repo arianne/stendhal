@@ -15,16 +15,16 @@ package games.stendhal.server.entity.player;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ArrestWarrentTestHelper;
 
@@ -59,9 +59,9 @@ public class JailTest {
 		PlayerTestHelper.createPlayer("bob");
 		SingletonRepository.getJail().imprison("bob", policeman, 1, "test");
 		assertEquals("You have jailed bob for 1 minute. Reason: test.", policeman.events().get(0).get("text"));
-		
+
 		assertEquals("Player bob is not online, but the arrest warrant has been recorded anyway.", policeman.events().get(1).get("text"));
-		
+
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class JailTest {
 		assertFalse(Jail.isInJail(bob));
 	}
 
-	
+
 	/**
 	 * Tests for repeatedJailing.
 	 */
@@ -94,14 +94,14 @@ public class JailTest {
 				Jail.jailzone = zone;
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		SingletonRepository.getJail().release("bob");
-		
+
 		SingletonRepository.getJail().imprison("bob", bob, 1, "test");
 			assertTrue(Jail.isInJail(bob));
-		
+
 		assertEquals("bob: 1 Minutes because: test\n", SingletonRepository.getJail().listJailed());
 		SingletonRepository.getJail().imprison("bob", bob, 1, "test2");
 		assertEquals("bob: 1 Minutes because: test2\n", SingletonRepository.getJail().listJailed());
-		
+
 	}
 	/**
 	 * Tests for isInJail.
@@ -112,11 +112,11 @@ public class JailTest {
 		jail.collisionMap.init(64, 64);
 		Jail jailcnf = new Jail();
 		jailcnf.configureZone(jail, null);
-		
-		
+
+
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		jail.add(bob);
-		
+
 		assertFalse(Jail.isInJail(bob));
 		bob.setPosition(1, 1);
 

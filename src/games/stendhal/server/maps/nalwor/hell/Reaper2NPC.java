@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.hell;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.parser.Sentence;
@@ -26,11 +31,6 @@ import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds the 2nd reaper in hell.

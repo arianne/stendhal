@@ -13,23 +13,25 @@
 package games.stendhal.server.core.engine.transformer;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public class PlayerTransformerTest {
 
@@ -71,12 +73,12 @@ public class PlayerTransformerTest {
 		obje.put("name", "bob");
 		obje.setID(new RPObject.ID(1,"testzone"));
 		RPSlot slot = new RPSlot("bag");
-		
+
 		obje.addSlot(slot);
 		slot.add(new Item("leather_armor","clazz","subclass",null));
 		RPObject transObj = new PlayerTransformer().transform(obje);
 		assertTrue(transObj.hasSlot("bag"));
-		
+
 		assertThat(transObj.getSlot("bag").getFirst().get("name"), is("leather armor"));
 	}
 	/**
@@ -88,16 +90,16 @@ public class PlayerTransformerTest {
 		obje.put("name", "bob");
 		obje.setID(new RPObject.ID(1,"testzone"));
 		RPSlot slot = new RPSlot("bag");
-		
+
 		obje.addSlot(slot);
 		Item item = new Item("lich gold key","clazz","subclass",null);
 		 slot.add(item);
-		
+
 		assertFalse(item.isBound());
-		
+
 		RPObject transObj = new PlayerTransformer().transform(obje);
 		assertTrue(transObj.hasSlot("bag"));
-		RPSlot bag = transObj.getSlot("bag"); 
+		RPSlot bag = transObj.getSlot("bag");
 		RPObject transItem = bag.getFirst();
 		assertTrue(((Item) transItem).isBound());
 	}
@@ -110,20 +112,20 @@ public class PlayerTransformerTest {
 		obje.put("name", "bob");
 		obje.setID(new RPObject.ID(1,"testzone"));
 		RPSlot slot = new RPSlot("bag");
-		
+
 		obje.addSlot(slot);
-		
+
 		Item item = new Item("marked scroll","clazz","subclass",null);
-		item.setBoundTo("bob");		
+		item.setBoundTo("bob");
 		 slot.add(item);
 		assertTrue(item.isBound());
-		
+
 		RPObject transObj = new PlayerTransformer().transform(obje);
 		assertTrue(transObj.hasSlot("bag"));
-		RPSlot bag = transObj.getSlot("bag"); 
+		RPSlot bag = transObj.getSlot("bag");
 		RPObject transItem = bag.getFirst();
 		assertFalse(((Item) transItem).isBound());
 	}
-	
-	
+
+
 }

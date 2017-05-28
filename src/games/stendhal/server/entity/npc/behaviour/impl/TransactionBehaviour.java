@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.Set;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Set;
 
 public abstract class TransactionBehaviour extends Behaviour {
 
@@ -30,7 +30,7 @@ public abstract class TransactionBehaviour extends Behaviour {
 
 	/**
 	 * Transacts the deal that is described in BehaviourResult.
-	 * 
+	 *
 	 * @param res
 	 * 			  result of the Behaviour parsing
 	 * @param seller

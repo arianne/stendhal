@@ -59,7 +59,7 @@ public class StuffForBaldemarTest extends ZonePlayerAndNPCTestImpl {
 		QuestHelper.setUpBeforeClass();
 		setupZone(ZONE_NAME);
 	}
-	
+
 	public StuffForBaldemarTest() {
 		super(ZONE_NAME, NPC_NAME);
 	}

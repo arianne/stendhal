@@ -20,6 +20,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -29,11 +33,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.library.LibrarianNPC;
 import games.stendhal.server.maps.wofol.blacksmith.BlacksmithNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -42,7 +41,7 @@ public class ObsidianKnifeTest {
 
 
 	private static String questSlot = "obsidian_knife";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -52,12 +51,12 @@ public class ObsidianKnifeTest {
 		QuestHelper.setUpBeforeClass();
 
 		MockStendlRPWorld.get();
-		
+
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
-		
+
 		new BlacksmithNPC().configureZone(zone, null);
 		new LibrarianNPC().configureZone(zone, null);
-			
+
 		final AbstractQuest quest = new ObsidianKnife();
 		quest.addToWorld();
 
@@ -72,10 +71,10 @@ public class ObsidianKnifeTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Alrak");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("How did you get down here? I usually only see #kobolds.", getReply(npc));
 		en.step(player, "task");
@@ -86,15 +85,15 @@ public class ObsidianKnifeTest {
 		assertTrue(getReply(npc).startsWith("Thank you! I hope it doesn't take too long to collect. Don't forget to say "));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// alrak might have asked for meat, ham or cheese. we choose a definite one for testing.
 		player.setQuest(questSlot, "meat");
-		
+
 		Item item = ItemTestHelper.createItem("meat", 100);
 		player.getSlot("bag").add(item);
 		final int xp = player.getXP();
 		final double oldKarma = player.getKarma();
-		
+
 		en.step(player, "hi");
 		assertEquals("How did you get down here? I usually only see #kobolds.", getReply(npc));
 		en.step(player, "meat");
@@ -110,7 +109,7 @@ public class ObsidianKnifeTest {
 		assertEquals("It's about gems and minerals. I doubt you'd be interested ... but do you think you could get it somehow?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Shame, I would really like to learn more about precious stones. Ah well, good bye.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("How did you get down here? I usually only see #kobolds.", getReply(npc));
 		en.step(player, "task");
@@ -122,16 +121,16 @@ public class ObsidianKnifeTest {
 		assertThat(player.getQuest(questSlot), is("seeking_book"));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 
 		en.step(player, "hi");
 		assertEquals("Hello again. I hope you haven't forgotten about the gem book I wanted.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		npc = SingletonRepository.getNPCList().get("Ceryl");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Greetings! How may I help you?", getReply(npc));
 		en.step(player, "gem book");
@@ -144,19 +143,19 @@ public class ObsidianKnifeTest {
 		assertThat(player.getQuest(questSlot), is("got_book"));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		npc = SingletonRepository.getNPCList().get("Alrak");
-		
+
 		en = npc.getEngine();
 		final int xp2 = player.getXP();
-		
+
 		en.step(player, "hi");
 		// [09:28] kymara earns 500 experience points.
 		assertEquals("Great! I think I'll read this for a while. Bye!", getReply(npc));
 		assertFalse(player.isEquipped("blue book"));
 		assertThat(player.getXP(), greaterThan(xp2));
 		assertTrue(player.getQuest(questSlot).startsWith("reading"));
-		
+
 		en.step(player, "hi");
 		assertEquals("I haven't finished reading that book. Maybe I'll be done in 3 days.", getReply(npc));
 
@@ -170,11 +169,11 @@ public class ObsidianKnifeTest {
 		assertEquals("Well, I don't think you're quite ready for such a dangerous weapon yet. How about you come back when you're above level 50?", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// player was too low level last time. make them above level 50
 		player.addXP(1263600);
 		assertThat(player.getLevel(), greaterThan(50));
-		
+
 		en.step(player, "hi");
 		assertEquals("Hi! Perhaps you have come to ask about that #knife again ... ", getReply(npc));
 		en.step(player, "knife");
@@ -182,7 +181,7 @@ public class ObsidianKnifeTest {
 		assertThat(player.getQuest(questSlot), is("knife_offered"));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		en.step(player, "hi");
 		assertEquals("Hello again. Don't forget I offered to make that obsidian knife, if you bring me a cod and a piece of obsidian from a black dragon you killed. In the meantime if I can #help you, just say the word.", getReply(npc));
 		en.step(player, "bye");
@@ -199,13 +198,13 @@ public class ObsidianKnifeTest {
 		// add the next item
 		item = ItemTestHelper.createItem("cod");
 		player.getSlot("bag").add(item);
-		
+
 		// they haven't killed a dragon
 		en.step(player, "hi");
 		assertEquals("Didn't you hear me properly? I told you to go slay a black dragon for the obsidian, not buy it! How do I know this isn't a fake gem? *grumble* I'm not making a special knife for someone who is scared to face a dragon.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		player.setSharedKill("black dragon");
 		en.step(player, "hi");
 		assertEquals("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in 10 minutes.", getReply(npc));
@@ -214,11 +213,11 @@ public class ObsidianKnifeTest {
 		// -----------------------------------------------
 		en.step(player, "hi");
 		assertEquals("I haven't finished making the knife. Please check back in 10 minutes.", getReply(npc));
-		
+
 		// [09:33] Changed the state of quest 'obsidian_knife' from 'forging;1219829551665' to 'forging;0'
 		player.setQuest(questSlot, "forging;0");
 		final int xp3 = player.getXP();
-		
+
 		en.step(player, "hi");
 		// [09:35] kymara earns 10000 experience points.
 		assertEquals("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!", getReply(npc));

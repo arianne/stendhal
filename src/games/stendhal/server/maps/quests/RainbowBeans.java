@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -37,10 +41,6 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: Rainbow Beans
@@ -77,7 +77,7 @@ import java.util.List;
  * </ul>
  */
 public class RainbowBeans extends AbstractQuest {
-	
+
 	private static final int REQUIRED_LEVEL = 30;
 
 	private static final int REQUIRED_MONEY = 2000;
@@ -107,7 +107,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestStartedCondition(QUEST_SLOT),
-					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)), 
+					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 			ConversationStates.QUEST_OFFERED,
 			"Oi, you. Back for more rainbow beans?", null);
 
@@ -118,30 +118,30 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestStartedCondition(QUEST_SLOT),
-					new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))), 
-			ConversationStates.ATTENDING, 
+					new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
+			ConversationStates.ATTENDING,
 			null,
 			new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "Alright? I hope you don't want more beans. You can't take more of that stuff for at least another"));
 
 		// player responds to word 'deal' - enough level
-		npc.add(ConversationStates.INFORMATION_1, 
+		npc.add(ConversationStates.INFORMATION_1,
 			"deal",
 			new AndCondition(
-					new QuestNotStartedCondition(QUEST_SLOT), 
+					new QuestNotStartedCondition(QUEST_SLOT),
 					new LevelGreaterThanCondition(REQUIRED_LEVEL-1)),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
 			+ REQUIRED_MONEY
 			+ " money. And remember pal, it can end up faster than ya wanted! Risky business ya know! So, want to buy some?",
 			null);
-		
+
 		// player responds to word 'deal' - low level
-		npc.add(ConversationStates.INFORMATION_1, 
+		npc.add(ConversationStates.INFORMATION_1,
 			"deal",
 			new AndCondition(
-					new QuestNotStartedCondition(QUEST_SLOT), 
+					new QuestNotStartedCondition(QUEST_SLOT),
 					new LevelLessThanCondition(REQUIRED_LEVEL)),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"It's not stuff you're ready for, pal. Now get out of 'ere! An don't you come back till you've got more hairs on that chest!",
 			null);
 
@@ -149,15 +149,15 @@ public class RainbowBeans extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
 			new NotCondition(new PlayerHasItemWithHimCondition("money", REQUIRED_MONEY)),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Scammer! You don't have the cash.",
 			null);
 
 		// player wants to take the beans
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, 
+				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("money", REQUIRED_MONEY),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.",
 				new MultipleActions(
 						new DropItemAction("money", REQUIRED_MONEY),
@@ -173,7 +173,7 @@ public class RainbowBeans extends AbstractQuest {
 										player.setQuest(QUEST_SLOT, "bought;"
 												+ System.currentTimeMillis() + ";taken;" + tokens[3]);
 									} else {
-										// it must have started with "done" (old quest slot status was done;timestamp), but now we store when the beans were taken. 
+										// it must have started with "done" (old quest slot status was done;timestamp), but now we store when the beans were taken.
 										// And they haven't taken beans since
 										player.setQuest(QUEST_SLOT, "bought;"
 												+ System.currentTimeMillis() + ";taken;-1");
@@ -187,7 +187,7 @@ public class RainbowBeans extends AbstractQuest {
 								}
 							}
 						}));
-		
+
 		// player is not willing to experiment
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -206,14 +206,14 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"We already talked about this, conversation's moved on now mate, keep up! Try another time.",
 			null);
-			
+
 		// player says 'deal' or asks about beans when NPC is ATTENDING, not
 		// just in information state (like if they said no then changed mind and
 		// are trying to get him to deal again)
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("deal", "beans", "rainbow beans", "yes"),
 			new LevelLessThanCondition(REQUIRED_LEVEL),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"That stuff's too strong for you. No chance mate!",
 			null);
 	}
@@ -242,12 +242,12 @@ public class RainbowBeans extends AbstractQuest {
 	public String getName() {
 		return "RainbowBeans";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return REQUIRED_LEVEL;
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		if(!player.hasQuest(QUEST_SLOT)) {
@@ -259,12 +259,12 @@ public class RainbowBeans extends AbstractQuest {
 		}
 		return MathHelper.parseLongDefault(tokens[3],-1)>0;
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
@@ -273,7 +273,7 @@ public class RainbowBeans extends AbstractQuest {
 	public String getNPCName() {
 		return "Pdiddi";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;

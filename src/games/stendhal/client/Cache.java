@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.common.CRC;
-import games.stendhal.common.IO;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,10 +20,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.CRC;
+import games.stendhal.common.IO;
 import marauroa.common.crypto.Hash;
 import marauroa.common.net.message.TransferContent;
-
-import org.apache.log4j.Logger;
 
 /**
  * Manages a cache for content files such as zone data transmitted by the server
@@ -61,7 +60,7 @@ class Cache {
 
 	/**
 	 * Gets an item from cache.
-	 * 
+	 *
 	 * @param item
 	 *            key
 	 * @return InputStream or null if not in cache
@@ -102,7 +101,7 @@ class Cache {
 
 	/**
 	 * Stores an item in cache.
-	 * 
+	 *
 	 * @param item
 	 *            key
 	 * @param data

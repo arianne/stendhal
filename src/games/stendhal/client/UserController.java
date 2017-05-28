@@ -12,16 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.buddies.BuddyPanelController;
-import games.stendhal.client.gui.stats.KarmaIndicator;
-import games.stendhal.client.gui.stats.ManaIndicator;
-import games.stendhal.client.gui.stats.StatsPanelController;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import games.stendhal.client.gui.buddies.BuddyPanelController;
+import games.stendhal.client.gui.stats.KarmaIndicator;
+import games.stendhal.client.gui.stats.ManaIndicator;
+import games.stendhal.client.gui.stats.StatsPanelController;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -31,7 +30,7 @@ class UserController implements ObjectChangeListener {
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	//TODO: add 2 more for events and slots so you can add listeners distinguished
 	// maybe extend this
-	
+
 	public UserController() {
 		pcs.addPropertyChangeListener("buddies", BuddyPanelController.get());
 		pcs.addPropertyChangeListener("features", KarmaIndicator.get());

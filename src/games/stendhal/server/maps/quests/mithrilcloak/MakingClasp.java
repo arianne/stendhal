@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.mithrilcloak;
 
+import java.util.Arrays;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -36,8 +38,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.Arrays;
-
 
 /**
  * @author kymara
@@ -49,17 +49,17 @@ class MakingClasp {
 	private static final int REQUIRED_MINUTES_CLASP = 60;
 
 	private MithrilCloakQuestInfo mithrilcloak;
-	
+
 	private final NPCList npcs = SingletonRepository.getNPCList();
 
 	public MakingClasp(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
 	}
-	
+
 	private void getClaspStep() {
 
 		// don't overlap with any states from producer adder since he is a mithril bar producer
-		
+
 		final SpeakerNPC npc = npcs.get("Pedinghaus");
 
 		// offer the clasp when prompted
@@ -73,7 +73,7 @@ class MakingClasp {
 		// player says yes they want a clasp made and claim they have the mithril
 		npc.add(
 			ConversationStates.SERVICE_OFFERED,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_clasp"),
 			ConversationStates.ATTENDING,
 			null,
@@ -82,7 +82,7 @@ class MakingClasp {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("mithril bar")) {
 						player.drop("mithril bar");
-							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in " 
+							npc.say("What a lovely piece of mithril that is, even if I do say so myself ... Good, please come back in "
 									   + REQUIRED_MINUTES_CLASP + " minutes and hopefully your clasp will be ready!");
 							player.setQuest(mithrilcloak.getQuestSlot(), "forgingclasp;" + System.currentTimeMillis());
 							player.notifyWorldAboutChanges();
@@ -95,13 +95,13 @@ class MakingClasp {
 		// player says they don't have any mithril yet
 		npc.add(
 			ConversationStates.SERVICE_OFFERED,
-			ConversationPhrases.NO_MESSAGES, 
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Well, if you should like me to cast any mithril bars just say.",
 			null);
 
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("clasp", "mithril clasp", "ida", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "forgingclasp;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
@@ -135,7 +135,7 @@ class MakingClasp {
 	private void giveClaspStep() {
 
 		final SpeakerNPC npc = npcs.get("Ida");
-		
+
 		// Player brought the clasp, don't make them wait any longer for the cloak
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("clasp", "mithril clasp", "cloak", "mithril cloak", "task", "quest"),
@@ -143,9 +143,9 @@ class MakingClasp {
 				ConversationStates.ATTENDING,
 				"Wow, Pedinghaus really outdid himself this time. It looks wonderful on your new cloak! Wear it with pride.",
 				new MultipleActions(
-									 new DropItemAction("mithril clasp"), 
+									 new DropItemAction("mithril clasp"),
 									 new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "done", 10.0),
-									 new EquipItemAction("mithril cloak", 1, true), 
+									 new EquipItemAction("mithril cloak", 1, true),
 									 new IncreaseXPAction(1000)
 									 )
 				);
@@ -160,14 +160,14 @@ class MakingClasp {
 												 new NotCondition(new PlayerHasItemWithHimCondition("mithril clasp")))
 								),
 				ConversationStates.ATTENDING,
-				"You haven't got the clasp from #Pedinghaus yet. As soon as I have that your cloak will be finished!",				
+				"You haven't got the clasp from #Pedinghaus yet. As soon as I have that your cloak will be finished!",
 				null);
 	}
 
 	public void addToWorld() {
 		getClaspStep();
 		giveClaspStep();
-		
+
 	}
 
 }

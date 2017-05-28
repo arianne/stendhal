@@ -15,7 +15,7 @@ public class CreateChallengeAction implements SlashAction {
 		action.put("action", "open");
 		action.put("target", params[0]);
 		ClientSingletonRepository.getClientFramework().send(action);
-		
+
 		return true;
 	}
 

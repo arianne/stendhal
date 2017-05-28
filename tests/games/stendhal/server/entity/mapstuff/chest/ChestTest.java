@@ -15,16 +15,17 @@ package games.stendhal.server.entity.mapstuff.chest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.SlotIsFullException;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 public class ChestTest {
 

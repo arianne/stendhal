@@ -6,14 +6,14 @@
 
 package games.stendhal.server.entity.npc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A base factory for <code>SpeakerNPC</code> objects.
@@ -23,7 +23,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	/**
 	 * Creates a new SpeakerNPC. Override this if you want to use a subclass of
 	 * SpeakerNPC.
-	 * 
+	 *
 	 * @param name
 	 *            The NPC name.
 	 * @return An object of class SpeakerNPC or a subclass.
@@ -34,7 +34,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC name from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The name
@@ -47,7 +47,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC class (i.e. its visual appearance) from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The class.
@@ -60,10 +60,10 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC hitpoints from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
-	 * 
+	 *
 	 * @return The hitpoints.
 	 */
 	protected int getHP(final ConfigurableFactoryContext ctx) {
@@ -72,10 +72,10 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC level from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
-	 * 
+	 *
 	 * @return The level of experience.
 	 */
 	protected int getLevel(final ConfigurableFactoryContext ctx) {
@@ -84,10 +84,10 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC description from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
-	 * 
+	 *
 	 * @return The text that will be shown when a player looks at the NPC, or
 	 *         null if the default description should be used.
 	 */
@@ -97,10 +97,10 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the direction in which the NPC faces from a context.
-	 * 
+	 *
 	 * @param ctx
 	 *            The configuration context.
-	 * 
+	 *
 	 * @return The hitpoints.
 	 */
 	protected Direction getDirection(final ConfigurableFactoryContext ctx) {
@@ -140,17 +140,17 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a damaging area.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A SpeakerNPC.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see SpeakerNPC
 	 */
 	@Override

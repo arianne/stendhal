@@ -19,7 +19,7 @@ package games.stendhal.client.gui.textformat;
 public interface AttributedTextSink<T extends FormatSet<?, ?>> {
 	/**
 	 * Append a string with specified formatting.
-	 * 
+	 *
 	 * @param s appended string
 	 * @param attrs format attributes
 	 */

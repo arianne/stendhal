@@ -11,15 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.chatlog.ChatTextSink;
-import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.textformat.StringFormatter;
-import games.stendhal.client.gui.textformat.StyleSet;
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.NotificationType;
-
 import java.awt.Adjustable;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -68,6 +59,15 @@ import javax.swing.text.ViewFactory;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.chatlog.ChatTextSink;
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.textformat.StringFormatter;
+import games.stendhal.client.gui.textformat.StyleSet;
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.NotificationType;
+
 /**
  * Appendable text component to be used as the chat log.
  */
@@ -113,7 +113,7 @@ class KTextEdit extends JComponent {
 
 			popup.show(e.getComponent(), e.getX(), e.getY());
 		}
-		
+
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			StyledDocument doc = (StyledDocument) textPane.getDocument();
@@ -244,15 +244,15 @@ class KTextEdit extends JComponent {
 			StyleConstants.setForeground(s, HEADER_COLOR);
 		}
 		StyleConstants.setFontSize(s, mainTextSize - 1);
-		
+
 		//****** Styles used by the string formatter ******
 		StyleSet defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
-		
+
 		StyleSet attributes = defaultAttributes.copy();
 		attributes.setAttribute(StyleConstants.Italic, Boolean.TRUE);
 		attributes.setAttribute(StyleConstants.Foreground, Color.blue);
 		attributes.setAttribute("linkact", new LinkListener());
-		
+
 		formatter.addStyle('#', attributes);
 
 		attributes = defaultAttributes.copy();
@@ -500,7 +500,7 @@ class KTextEdit extends JComponent {
 			super.setRangeProperties(value, extent, min, max, adjusting);
 		}
 	}
-	
+
 
 	/**
 	 * Listener for clicking text marked with "#".
@@ -511,7 +511,7 @@ class KTextEdit extends JComponent {
 
 		/**
 		 * Called when a text marked with "#" is clicked.
-		 * 
+		 *
 		 * @param text content of the marked text
 		 */
 		void linkClicked(String text) {
@@ -522,16 +522,16 @@ class KTextEdit extends JComponent {
 			}
 		}
 	}
-	
+
 	/**
 	 * This is a workaround to line break behavior change between java versions
 	 * 6 and 7. Long words do not get line breaks and no officially supported
 	 * mechanism to get the old behavior is provided. Java bug <a href=
-	 * "http://bugs.java.com/view_bug.do?bug_id=7125737">7125737</a> was closed
+	 * "https://bugs.java.com/view_bug.do?bug_id=7125737">7125737</a> was closed
 	 * as "Not an Issue".<p>
 	 *
 	 * The solution here is by StanislavL, published at multiple places,
-	 * including <a href="http://stackoverflow.com/questions/8666727/wrap-long-words-in-jtextpane-java-7">
+	 * including <a href="https://stackoverflow.com/questions/8666727/wrap-long-words-in-jtextpane-java-7">
 	 * here.</a>
 	 */
 	private static class WrapEditorKit extends StyledEditorKit {

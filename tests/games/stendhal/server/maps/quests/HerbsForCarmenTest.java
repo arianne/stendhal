@@ -12,6 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -20,26 +31,15 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.city.HealerNPC;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 
 public class HerbsForCarmenTest {
 
 
 	private static String questSlot = "herbs_for_carmen";
-	
+
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
@@ -51,7 +51,7 @@ public class HerbsForCarmenTest {
 		MockStendlRPWorld.get();
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new HealerNPC().configureZone(zone, null);
-		
+
 		final AbstractQuest quest = new HerbsForCarmen();
 		quest.addToWorld();
 
@@ -67,7 +67,7 @@ public class HerbsForCarmenTest {
 	 */
 	@Test
 	public void testQuest() {
-		
+
 		npc = SingletonRepository.getNPCList().get("Carmen");
 		en = npc.getEngine();
 
@@ -82,7 +82,7 @@ public class HerbsForCarmenTest {
 		assertEquals("So many people are asking me to heal them. That uses many ingredients and now my inventories are near empty. Can you help me to fill them up?", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// ------------------------------------------------------------------
 		// return, say you know her, and reject quest
 		en.step(player, "hi");
@@ -98,7 +98,7 @@ public class HerbsForCarmenTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("rejected"));
-		
+
 		// ------------------------------------------------------------------------
 		// return and reject it again (could check karma levels each time it's rejected)
 		en.step(player, "hi");
@@ -141,7 +141,7 @@ public class HerbsForCarmenTest {
 		assertEquals("Ok, well just let me know if I can #help you with anything else.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// -----------------------------------------------
 		// lie about having apple
 		en.step(player, "hi");
@@ -154,9 +154,9 @@ public class HerbsForCarmenTest {
 		assertEquals("You don't have an apple with you!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-		
+
 		// ---------------------------------------------------
-		// don't take ingredients 
+		// don't take ingredients
 		en.step(player, "hi");
 		assertEquals("Hi again. I can #heal you, or if you brought me #ingredients I'll happily take those!", getReply(npc));
 		en.step(player, "no");

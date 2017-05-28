@@ -12,6 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -42,16 +52,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
-import org.apache.log4j.Logger;
-
 /**
  * QUEST: Daily Monster Kill Quest.
  * <p>
@@ -80,10 +80,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 	private final static int delay = MathHelper.MINUTES_IN_ONE_DAY;
 	private final static int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK;
 
-	
+
 	/** All creatures, sorted by level. */
-	private static List<Creature> sortedcreatures;	
-	
+	private static List<Creature> sortedcreatures;
+
 	private static void refreshCreaturesList(final String excludedCreature) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		sortedcreatures = new LinkedList<Creature>();
@@ -93,27 +93,27 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 		}
 		Collections.sort(sortedcreatures, new LevelBasedComparator());
-	}	
-	
+	}
+
 	/**
 	 * constructor for quest
 	 */
 	public DailyMonsterQuest() {
 		refreshCreaturesList(null);
 	}
-	
+
 	static class DailyQuestAction implements ChatAction {
 		//private String debugString;
-		
+
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 			final String questInfo = player.getQuest(QUEST_SLOT);
 			String questCount = null;
 			String questLast = null;
-			
+
             String previousCreature = null;
-            
+
 			if (questInfo != null) {
 				final String[] tokens = (questInfo + ";0;0;0").split(";");
 				if(!"done".equals(tokens[0])) {
@@ -125,9 +125,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 				//questLast = tokens[1];
 				questCount = tokens[2];
 			}
-			
+
 			refreshCreaturesList(previousCreature);
-			
+
 			// Creature selection magic happens here
 			final Creature pickedCreature = pickIdealCreature(player.getLevel(),
 					false, sortedcreatures);
@@ -139,18 +139,18 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 
 			String creatureName = pickedCreature.getName();
-			
-			
+
+
 			raiser.say("Semos is in need of help. Go kill " + Grammar.a_nounCreature(creatureName)
 					+ " and say #complete, once you're done.");
 
 			questLast = "" + new Date().getTime();
 			player.setQuest(
-					QUEST_SLOT, 
+					QUEST_SLOT,
 					creatureName + ",0,1,"+
 					player.getSoloKill(creatureName)+","+
-					player.getSharedKill(creatureName)+";" + 
-					questLast + ";"+ 
+					player.getSharedKill(creatureName)+";" +
+					questLast + ";"+
 					questCount);
 		}
 
@@ -210,7 +210,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			if (current < start || start < 0
 					|| current >= creatureList.size()) {
 				if (testMode) {
-					logger.debug("ERROR: <"+level + "> start=" + start + 
+					logger.debug("ERROR: <"+level + "> start=" + start +
 							", current=" + current);
 				}
 				return null;
@@ -247,13 +247,13 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 		}
 		*/
-	}	
+	}
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -300,7 +300,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 		return res;
 	}
-	
+
 	private String getCreatureToKillFromPlayer(Player player) {
 		String actualQuestSlot = player.getQuest(QUEST_SLOT, 0);
 		String[] split = actualQuestSlot.split(",");
@@ -315,7 +315,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	 * player said "quest"
 	 */
 	private void step_1() {
-		// player asking for quest when he have active non-expired quest 
+		// player asking for quest when he have active non-expired quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
@@ -324,18 +324,18 @@ public class DailyMonsterQuest extends AbstractQuest {
 										new QuestNotStartedCondition(QUEST_SLOT),
 										new QuestCompletedCondition(QUEST_SLOT))),
 						new NotCondition(
-								new TimePassedCondition(QUEST_SLOT, 1, expireDelay))), 
-				ConversationStates.ATTENDING, 
+								new TimePassedCondition(QUEST_SLOT, 1, expireDelay))),
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
-						npc.say("You're already on a quest to slay " + 
-								Grammar.a_nounCreature(player.getQuest(QUEST_SLOT,0).split(",")[0]) + 
+						npc.say("You're already on a quest to slay " +
+								Grammar.a_nounCreature(player.getQuest(QUEST_SLOT,0).split(",")[0]) +
 								". Say #complete if you're done with it!");
-					}			
+					}
 				});
-		
+
 		// player have expired quest time
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -344,29 +344,29 @@ public class DailyMonsterQuest extends AbstractQuest {
 								new OrCondition(
 										new QuestNotStartedCondition(QUEST_SLOT),
 										new QuestCompletedCondition(QUEST_SLOT))),
-						new TimePassedCondition(QUEST_SLOT, 1, expireDelay)), 
-				ConversationStates.ATTENDING, 
+						new TimePassedCondition(QUEST_SLOT, 1, expireDelay)),
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						if(player.getQuest(QUEST_SLOT, 0)!=null) {
-								npc.say("You're already on a quest to slay " + 
-										Grammar.a_nounCreature(player.getQuest(QUEST_SLOT, 0).split(",")[0]) + 
+								npc.say("You're already on a quest to slay " +
+										Grammar.a_nounCreature(player.getQuest(QUEST_SLOT, 0).split(",")[0]) +
 										". Say #complete if you're done with it!" +
 										" If you can't find one, perhaps it won't bother Semos either. You could kill #another creature if you like.");
 						}
 					}
 				});
-		
-		// player asking for quest before allowed time interval 
+
+		// player asking for quest before allowed time interval
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new QuestCompletedCondition(QUEST_SLOT),
-						new NotCondition( 
-								new TimePassedCondition(QUEST_SLOT, 1, delay))), 
-				ConversationStates.ATTENDING, 
+						new NotCondition(
+								new TimePassedCondition(QUEST_SLOT, 1, delay))),
+				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT,1, delay, "I can only give you a new quest once a day. Please check back in"));
 
@@ -377,10 +377,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
 								new QuestCompletedCondition(QUEST_SLOT),
-								new TimePassedCondition(QUEST_SLOT, 1, delay))), 
-				ConversationStates.ATTENDING, 
+								new TimePassedCondition(QUEST_SLOT, 1, delay))),
+				ConversationStates.ATTENDING,
 				null,
-				new DailyQuestAction());		
+				new DailyQuestAction());
 	}
 
 	/**
@@ -398,7 +398,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"I'm afraid I didn't send you on a #quest yet.",
 				null);
 
@@ -406,11 +406,11 @@ public class DailyMonsterQuest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"You already completed the last quest I had given to you.",
 				null);
 
-		// player didn't killed creature 
+		// player didn't killed creature
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.FINISH_MESSAGES,
 				new AndCondition(
@@ -418,14 +418,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 						new QuestNotCompletedCondition(QUEST_SLOT),
 						new NotCondition(
 						        new KilledForQuestCondition(QUEST_SLOT, 0))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							final String questKill = player.getQuest(QUEST_SLOT, 0).split(",")[0];
 							npc.say("You didn't kill " + Grammar.a_nounCreature(questKill)
-									+ " yet. Go and do it and say #complete only after you're done.");							
+									+ " yet. Go and do it and say #complete only after you're done.");
 					}
 				});
 
@@ -436,7 +436,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 						new QuestStartedCondition(QUEST_SLOT),
 						new QuestNotCompletedCondition(QUEST_SLOT),
 				        new KilledForQuestCondition(QUEST_SLOT, 0)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Good work! Let me thank you in the name of the people of Semos!",
 				new MultipleActions(
 						new IncreaseXPDependentOnLevelAction(5, 95.0),
@@ -453,29 +453,29 @@ public class DailyMonsterQuest extends AbstractQuest {
 	private void step_4() {
 		// player have no active quest and trying to get another
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.ABORT_MESSAGES, 
+				ConversationPhrases.ABORT_MESSAGES,
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new QuestCompletedCondition(QUEST_SLOT)),
-				ConversationStates.ATTENDING, 
-				"I'm afraid I didn't send you on a #quest yet.", 
+				ConversationStates.ATTENDING,
+				"I'm afraid I didn't send you on a #quest yet.",
 				null);
-		
-		// player have no expired quest 
+
+		// player have no expired quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.ABORT_MESSAGES, 
-				new NotCondition( 
+				ConversationPhrases.ABORT_MESSAGES,
+				new NotCondition(
 						new TimePassedCondition(QUEST_SLOT, 1, expireDelay)),
-				ConversationStates.ATTENDING, 
-				"It hasn't been long since you've started your quest, I won't let you give up so soon.", 
+				ConversationStates.ATTENDING,
+				"It hasn't been long since you've started your quest, I won't let you give up so soon.",
 				null);
-		
+
 		// player have expired quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.ABORT_MESSAGES, 
+				ConversationPhrases.ABORT_MESSAGES,
 				new TimePassedCondition(QUEST_SLOT, 1, expireDelay),
-				ConversationStates.ATTENDING, 
-				null, 
+				ConversationStates.ATTENDING,
+				null,
 				new DailyQuestAction());
 	}
 
@@ -495,7 +495,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	public String getName() {
 		return "DailyMonsterQuest";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;

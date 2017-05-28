@@ -17,15 +17,15 @@ import java.util.Map;
 /**
  * Helper class to substitute region names
  * i.e. it should name "magic" to "magic city"
- *  
+ *
  * @author madmetzger
  */
 public class RegionNameSubstitutionHelper {
-	
+
 	private static RegionNameSubstitutionHelper instance;
-	
+
 	private final Map<String, String> replacements = new HashMap<String, String>();
-	
+
 	private RegionNameSubstitutionHelper() {
 		replacements.put("magic", "magic city");
 		replacements.put("wofol", "wofol city");
@@ -39,10 +39,10 @@ public class RegionNameSubstitutionHelper {
 		replacements.put("pillar", "semos");
 		replacements.put("plain", "semos");
 	}
-	
+
 	/**
 	 * Replaces the given zone name if configured. If no replacement is defined the original name is returned
-	 * 
+	 *
 	 * @param name
 	 * @return the replaced name
 	 */
@@ -52,7 +52,7 @@ public class RegionNameSubstitutionHelper {
 		}
 		return name;
 	}
-	
+
 	/**
 	 * @return the name of the default region
 	 */
@@ -62,12 +62,12 @@ public class RegionNameSubstitutionHelper {
 
 	/**
 	 * Singleton access method
-	 * 
+	 *
 	 * @return the singleton instance
 	 */
 	public static RegionNameSubstitutionHelper get() {
 		if(instance == null) {
-			instance = new RegionNameSubstitutionHelper(); 
+			instance = new RegionNameSubstitutionHelper();
 		}
 		return instance;
 	}

@@ -13,6 +13,7 @@
 package games.stendhal.server.entity;
 
 import static games.stendhal.common.constants.Common.PATHSET;
+
 import games.stendhal.common.constants.Testing;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
@@ -25,8 +26,8 @@ public class RPEntityRPClass {
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
-	 * 
-	 * @param ATTR_TITLE title attribute name 
+	 *
+	 * @param ATTR_TITLE title attribute name
 	 */
     public static void generateRPClass(String ATTR_TITLE) {
         final RPClass entity = new RPClass("rpentity");
@@ -88,7 +89,7 @@ public class RPEntityRPClass {
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_zombie", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_heavy", Type.SHORT, Definition.VOLATILE);
-        
+
         //Status effects resistances
         entity.addAttribute("resist_confused", Type.FLOAT, Definition.VOLATILE);
         entity.addAttribute("resist_drunk", Type.FLOAT, Definition.VOLATILE);

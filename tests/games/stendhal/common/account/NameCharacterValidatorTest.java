@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.common.account;
 
-import games.stendhal.server.core.account.NameCharacterValidator;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import games.stendhal.server.core.account.NameCharacterValidator;
 
 
 public class NameCharacterValidatorTest {

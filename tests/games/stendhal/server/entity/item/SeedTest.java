@@ -17,16 +17,16 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.GrowingPassiveEntityRespawnPointTestHelper;
 
@@ -61,7 +61,7 @@ public class SeedTest {
 		assertTrue(player.getZone().getEntityAt(1, 0) instanceof FlowerGrower);
 
 	}
-	
+
 
 	/**
 	 * Tests for executeSeedInBag.
@@ -74,10 +74,10 @@ public class SeedTest {
 		final StendhalRPZone zone = new StendhalRPZone("zone");
 		SingletonRepository.getRPWorld().addRPZone(zone);
 		zone.add(player);
-		
+
 		assertNotNull(seed);
 		player.equip("bag", seed);
-		
+
 		assertFalse(seed.onUsed(player));
 	}
 
@@ -110,10 +110,10 @@ public class SeedTest {
 		} else {
 			fail("seed produced non flowergrower");
 		}
-		
+
 
 	}
-	
+
 	/**
 	 * Tests for executeDaisiesSeed.
 	 */
@@ -144,6 +144,6 @@ public class SeedTest {
 		} else {
 			fail("seed produced non flowergrower");
 		}
-		
+
 	}
 }

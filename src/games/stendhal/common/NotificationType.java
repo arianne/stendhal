@@ -180,7 +180,7 @@ public enum NotificationType {
 
 	/** dark green */
 	public static final Color COLOR_RESPONSE = new Color(0x006400);
-	
+
 	/** dark brown */
 	public static final Color COLOR_SCENE_SETTING = new Color(0x572002);
 
@@ -192,24 +192,24 @@ public enum NotificationType {
 
 	/** purple */
 	public static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
-	
+
 	/** strong bright orange */
 	public static final Color COLOR_SUPPORT = new Color(0xff7200);
-	
+
 	/** dark red */
 	public static final Color COLOR_WARNING = new Color(0xa00000);
-	
+
 	// TODO: review thinking here of using constants.
 	// these are tied to the ones in client.KTextEdit.gui.initStylesForTextPane
 	// so should we tie them together somehow?
 	// also the definitions are crazy.
-	
+
 	/** normal is bold */
 	public static final String NORMALSTYLE = "normal";
 	/** regular is not bold */
 	public static final String REGULAR = "regular";
 	// fwiw, "bold" is blue, italic, bigger than normal, bold and blue.
-	
+
 	/**
 	 * The mapping mnemonic.
 	 */
@@ -255,11 +255,11 @@ public enum NotificationType {
 	public String getStyleDescription() {
 		return NORMALSTYLE;
 	}
-	
+
 	/**
 	 * Get notification type for server messages that the client can show
 	 * without problems. Call this instead of using SERVER directly.
-	 * 
+	 *
 	 * @param clientVersion version of the client
 	 * @return appropriate type
 	 */

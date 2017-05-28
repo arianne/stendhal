@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.common.NotificationType;
-import games.stendhal.common.messages.SupportMessageTemplatesFactory;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
@@ -30,12 +30,12 @@ class GMHelpAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	@Override
@@ -43,9 +43,9 @@ class GMHelpAction implements SlashAction {
 	    List<String> lines;
 		if (params[0] == null) {
 			lines = Arrays.asList(
-				"For a detailed reference, visit #http://stendhalgame.org/wiki/Stendhal:Administration",
+				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal:Administration",
 				"Here are the most-used GM commands:",
-				"- /gmhelp [alter|script|support]  \t for more info about alter, script or the supportanswer shortcuts", 
+				"- /gmhelp [alter|script|support]  \t for more info about alter, script or the supportanswer shortcuts",
 				"- /supportanswer <player> <message> \t Replies to a support question. Replace <message> with $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam shortcuts if desired.",
 				"- /adminnote <player> <note> \t\tLogs a note about this player",
 				"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
@@ -82,7 +82,7 @@ class GMHelpAction implements SlashAction {
 					"-load : load script with first parameter's filename.",
 					"-unload : unload script with first parameter's filename from server",
 					"-execute : run choosed script.",
-					"",	
+					"",
 					"All scripts are ran using: /script scriptname [params]. After running a script you can remove any traces of it with /script -unload scriptname, this would remove any summoned creatures, for example. It's good practise to do this after summoning creatures for a raid using scripts.",
 					"#/script #AdminMaker.class : For test servers only, summons an adminmaker to aid testing.",
 					"#/script #AdminSign.class #zone #x #y #text : Makes an AdminSign in zone at (x,y) with text. To put it next to you do /script AdminSign.class - - - text.",
@@ -128,7 +128,7 @@ class GMHelpAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override
@@ -138,7 +138,7 @@ class GMHelpAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	@Override

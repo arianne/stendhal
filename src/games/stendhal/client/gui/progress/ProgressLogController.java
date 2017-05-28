@@ -11,18 +11,17 @@
  ***************************************************************************/
 package games.stendhal.client.gui.progress;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.WindowUtils;
-import games.stendhal.common.constants.Actions;
-import games.stendhal.common.grammar.Grammar;
-
 import java.awt.Window;
 import java.util.Collection;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.WindowUtils;
+import games.stendhal.common.constants.Actions;
+import games.stendhal.common.grammar.Grammar;
 import marauroa.common.game.RPAction;
 
 public class ProgressLogController {
@@ -55,7 +54,7 @@ public class ProgressLogController {
 
 	/**
 	 * Set the repeatable quest names.
-	 * 
+	 *
 	 * @param repeatable repeatable quests
 	 */
 	public void setRepeatable(final Collection<String> repeatable) {

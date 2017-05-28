@@ -13,6 +13,7 @@
 package games.stendhal.server.core.events;
 
 import static games.stendhal.common.NotificationType.getServerNotificationType;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
@@ -25,15 +26,15 @@ public class DelayedPlayerTextSender implements TurnListener {
 	protected final Player player;
 	protected final String message;
 	protected final NotificationType type;
-	
+
 	/**
-	 * Creates a new private message type DelayedPlayerTextSender. 
-	 * 
+	 * Creates a new private message type DelayedPlayerTextSender.
+	 *
 	 * @param player
 	 *            Player to send this message to
 	 * @param message
 	 *            message
-	 * @param seconds 
+	 * @param seconds
 	 */
 	public DelayedPlayerTextSender(final Player player, final String message, final int seconds) {
 		this(player, message, getServerNotificationType(player.getClientVersion()), seconds);
@@ -41,14 +42,14 @@ public class DelayedPlayerTextSender implements TurnListener {
 
 	/**
 	 * Creates a new DelayedPlayerTextSender.
-	 * 
+	 *
 	 * @param player
 	 *            Player to send this message to
 	 * @param message
 	 *            message
 	 * @param type
 	 *            logical notificationType
-	 * @param seconds delay in seconds 
+	 * @param seconds delay in seconds
 	 */
 	public DelayedPlayerTextSender(final Player player, final String message, final NotificationType type, final int seconds) {
 		this.player = player;
@@ -56,7 +57,7 @@ public class DelayedPlayerTextSender implements TurnListener {
 		this.type = type;
 		SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, this);
 	}
-	
+
 	@Override
 	public void onTurnReached(final int currentTurn) {
 		player.sendPrivateText(type, message);

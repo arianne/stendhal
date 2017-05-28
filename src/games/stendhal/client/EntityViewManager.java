@@ -11,12 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Item;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
-
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -30,6 +24,12 @@ import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Item;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
+
 /**
  * Manager for EntityViews. Several methods specify from which threads they may
  * be called. The manager takes care of synchronizing the relevant data between
@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
  */
 class EntityViewManager {
 	private static final Logger logger = Logger.getLogger(EntityViewManager.class);
-	
+
 	/**
 	 * Comparator used to sort entities to display.
 	 */
@@ -61,7 +61,7 @@ class EntityViewManager {
 
 	/**
 	 * Add an entity. Must be called only from the game loop thread.
-	 * 
+	 *
 	 * @param entity new entity
 	 * @return view belonging to the entity, or <code>null</code>
 	 */
@@ -77,7 +77,7 @@ class EntityViewManager {
 
 	/**
 	 * Add an entity view.
-	 * 
+	 *
 	 * @param view new view
 	 */
 	private void addEntityView(EntityView<IEntity> view) {
@@ -88,12 +88,12 @@ class EntityViewManager {
 
 	/**
 	 * Get an entity view at a specific location.
-	 * 
+	 *
 	 * @param x world x coordinate
 	 * @param y world y coordinate
 	 * @param sx pixel x coordinate
 	 * @param sy pixel y coordinate
-	 * 
+	 *
 	 * @return entity view, or <code>null</code> if no entity was found at the
 	 *         location
 	 */
@@ -111,12 +111,12 @@ class EntityViewManager {
 	/**
 	 * Get a movable entity view at a specific location. Looks for physical
 	 * entities occupying the area first.
-	 * 
+	 *
 	 * @param x world x coordinate
 	 * @param y world y coordinate
 	 * @param sx pixel x coordinate
 	 * @param sy pixel y coordinate
-	 * 
+	 *
 	 * @return moveable entity view, or <code>null</code> if none was found
 	 */
 	EntityView<IEntity> getMovableEntityViewAt(final double x, final double y,
@@ -132,11 +132,11 @@ class EntityViewManager {
 
 	/**
 	 * Look for a physical entity at a specific location.
-	 * 
+	 *
 	 * @param x x coordinate
 	 * @param y y coordinate
 	 * @param movable if <code>true</code>, look for a movable entity
-	 * 
+	 *
 	 * @return EntityView of an entity occupying (x, y), or <code>null</code> if
 	 *         no suitable entity was found
 	 */
@@ -190,11 +190,11 @@ class EntityViewManager {
 	/**
 	 * Get topmost EntityView whose visual area contains pixel coordinates (sx,
 	 * sy).
-	 * 
+	 *
 	 * @param sx x coordinate
 	 * @param sy y coordinate
 	 * @param movable if <code>true</code>, look only for movable entities
-	 * 
+	 *
 	 * @return EntityView, or <code>null</code> if suitable view was not found
 	 */
 	private EntityView<IEntity> getVisibleEntityViewAt(final int sx,
@@ -216,7 +216,7 @@ class EntityViewManager {
 
 	/**
 	 * Remove an entity. Must be called only from the game loop thread.
-	 * 
+	 *
 	 * @param entity removed entity
 	 */
 	void removeEntity(final IEntity entity) {
@@ -229,7 +229,7 @@ class EntityViewManager {
 
 	/**
 	 * Remove an entity view.
-	 * 
+	 *
 	 * @param view removed view
 	 */
 	private void removeEntityView(EntityView<IEntity> view) {
@@ -254,7 +254,7 @@ class EntityViewManager {
 	/**
 	 * Prepare the entity views for drawing. Must be called only from the event
 	 * dispatch thread.
-	 * 
+	 *
 	 * @param area visible area
 	 */
 	void prepareViews(Rectangle area) {
@@ -267,13 +267,13 @@ class EntityViewManager {
 				}
 			}
 		}
-	
+
 		Collections.sort(visibleViews, entityViewComparator);
 	}
-	
+
 	/**
 	 * Draw entities.
-	 * 
+	 *
 	 * @param g graphics
 	 */
 	void draw(Graphics2D g) {
@@ -285,10 +285,10 @@ class EntityViewManager {
 			}
 		}
 	}
-	
+
 	/**
 	 * Draw the top parts of the entities.
-	 * 
+	 *
 	 * @param g graphics
 	 */
 	void drawTop(Graphics2D g) {
@@ -323,7 +323,7 @@ class EntityViewManager {
 					/*
 					 * Quick workaround to stack items in the same order they
 					 * were added.
-					 * 
+					 *
 					 * TODO: stack items in the same order they were added on
 					 * server side.
 					 */

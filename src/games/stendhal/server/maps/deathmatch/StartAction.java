@@ -29,7 +29,7 @@ public class StartAction implements ChatAction {
 
 	/**
 	 * Creates a new StartAction for the specified deathmatch.
-	 
+
 	 * @param deathmatchInfo deathmatch to start
 	 */
 	public StartAction(final DeathmatchInfo deathmatchInfo) {

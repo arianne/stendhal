@@ -1,23 +1,23 @@
 /***************************************************************************
- *                   (C) Copyright 2017 - Faiumoni e. V.                   *
- ***************************************************************************
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 stendhal.data.cstatus = {
 
 	send: function() {
-		if (!marauroa.me || stendhal.data.cache.get("cid") == "noIndexedDB") {
+		if (!marauroa.me || stendhal.data.cache.get("cid") === "noIndexedDB") {
 			window.setTimeout(stendhal.data.cstatus.send, 1000);
 			return;
 		}
@@ -42,7 +42,7 @@ stendhal.data.cstatus = {
 			// a client id to help with the investigation of hacked accounts
 			// especially in the common "angry sibling" case.
 			"cid": stendhal.data.cache.get("cid")
-		}
+		};
 		marauroa.clientFramework.sendAction(action);
 	}
 }

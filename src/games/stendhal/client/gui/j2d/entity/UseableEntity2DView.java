@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import java.util.List;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StatefulEntity;
 
-import java.util.List;
-
 /**
  * The 2D view of a useable entity
- * 
- * @param <T> type of useable entity 
+ *
+ * @param <T> type of useable entity
  */
 class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity2DView<T> {
 
@@ -47,9 +47,9 @@ class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -65,7 +65,7 @@ class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -92,7 +92,7 @@ class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

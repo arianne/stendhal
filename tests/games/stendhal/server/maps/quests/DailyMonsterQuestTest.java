@@ -19,6 +19,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Collections;
+import java.util.LinkedList;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -31,18 +41,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.quests.DailyMonsterQuest.DailyQuestAction;
-
-import java.util.Collections;
-import java.util.LinkedList;
-
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 import utilities.RPClass.CreatureTestHelper;
@@ -59,11 +58,11 @@ public class DailyMonsterQuestTest {
 		mayor = SpeakerNPCTestHelper.createSpeakerNPC("Mayor Sakhs");
 		NPCList.get().add(mayor);
 		dmq = new DailyMonsterQuest();
-	
+
 		dmq.addToWorld();
 		en = mayor.getEngine();
-		final StendhalRPWorld world = MockStendlRPWorld.get();	
-		final StendhalRPZone zone = new StendhalRPZone("int_semos_guard_house");		
+		final StendhalRPWorld world = MockStendlRPWorld.get();
+		final StendhalRPZone zone = new StendhalRPZone("int_semos_guard_house");
 		world.addRPZone(zone);
 	}
 
@@ -115,7 +114,7 @@ public class DailyMonsterQuestTest {
 		assertTrue(en.step(bob, "complete"));
 		assertTrue(bob.events().isEmpty());
 	}
-	
+
 	/**
 	 * Tests for pickIdealCreature.
 	 */
@@ -161,7 +160,7 @@ public class DailyMonsterQuestTest {
 			creatureList.add(creat);
 		}
 
-		
+
 		for (int i = 80; i < 100; i++) {
 			creat = new Creature();
 			creat.setLevel(i);

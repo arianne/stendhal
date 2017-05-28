@@ -16,7 +16,7 @@ import groovy.lang.Script;
 
 /**
  * provides property information to groovy scripts.
- * 
+ *
  * @author hendrik
  */
 public abstract class GroovyPuzzlePropertyAdapter extends Script {
@@ -41,7 +41,7 @@ public abstract class GroovyPuzzlePropertyAdapter extends Script {
 			mapAdapter.setLastZone(((PuzzleBuildingBlock) super.getProperty("buildingBlock")).getZoneName());
 			mapAdapter.setLastName(name);
 		}
-		
+
 		return mapAdapter;
 	}
 }

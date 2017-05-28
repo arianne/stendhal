@@ -13,6 +13,9 @@
 package games.stendhal.server.entity.npc.condition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -20,8 +23,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
 
 /**
  * Does the player carry the specified item with the specified infostring?

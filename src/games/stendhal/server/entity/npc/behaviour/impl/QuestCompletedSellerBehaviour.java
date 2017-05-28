@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.Map;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-
-import java.util.Map;
 
 public class QuestCompletedSellerBehaviour extends SellerBehaviour {
 	private final String questSlot;
@@ -29,12 +29,12 @@ public class QuestCompletedSellerBehaviour extends SellerBehaviour {
 		this.message=message;
 	}
 
-	@Override 
+	@Override
 	public ChatCondition getTransactionCondition() {
 		return new QuestCompletedCondition(questSlot);
 	}
 
-	@Override 
+	@Override
 	public ChatAction getRejectedTransactionAction() {
 		return new SayTextAction(message);
 	}

@@ -19,13 +19,13 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity2DView<T> {
-	
+
 	@Override
 	protected void buildRepresentation(T entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
 		ZoneInfo info = ZoneInfo.get();
-		
+
 		if (entity.getName() == null) {
 			setSprite(new EmptySprite(1, 1, null));
 			return;
@@ -42,7 +42,7 @@ class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity2DView<
 		final int width = Math.max((int) entity.getWidth(), 1);
 		final int height = Math.max((int) entity.getHeight(), 1);
 		int frames = imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width;
-		
+
 		// Just use the normal sprite if there are no animation frames
 		int state = entity.getState();
 		if (frames > 1) {
@@ -53,8 +53,8 @@ class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity2DView<
 					IGameScreen.SIZE_UNIT_PIXELS * height,
 					100);
 		} else {
-			sprite = store.getTile(sprite, 
-					0, state * IGameScreen.SIZE_UNIT_PIXELS * height, 
+			sprite = store.getTile(sprite,
+					0, state * IGameScreen.SIZE_UNIT_PIXELS * height,
 					IGameScreen.SIZE_UNIT_PIXELS * width,
 					IGameScreen.SIZE_UNIT_PIXELS * height);
 		}

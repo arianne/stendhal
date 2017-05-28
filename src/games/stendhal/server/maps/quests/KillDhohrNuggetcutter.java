@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -35,12 +40,6 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.Pair;
 
 /**
@@ -50,7 +49,7 @@ import marauroa.common.Pair;
  * <ul>
  * <li> Zogfang
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li> Zogfang asks you to kill remaining dwarves from area
@@ -63,7 +62,7 @@ import marauroa.common.Pair;
  * <li> 4000 XP
  * <li>35 karma in total
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li> after 14 days.
@@ -78,14 +77,14 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private void step_1() {
 		final SpeakerNPC npc = npcs.get("Zogfang");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
-				ConversationStates.QUEST_OFFERED, 
+				ConversationStates.QUEST_OFFERED,
 				null,
 				new ChatAction() {
 					@Override
@@ -115,15 +114,15 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		final HashMap<String, Pair<Integer, Integer>> toKill = new HashMap<String, Pair<Integer, Integer>>();
 		toKill.put("Dhohr Nuggetcutter", new Pair<Integer, Integer>(0,1));
 		toKill.put("mountain dwarf", new Pair<Integer, Integer>(0,2));
-		toKill.put("mountain elder dwarf", new Pair<Integer, Integer>(0,2)); 
+		toKill.put("mountain elder dwarf", new Pair<Integer, Integer>(0,2));
 		toKill.put("mountain hero dwarf", 	new Pair<Integer, Integer>(0,2));
 		toKill.put("mountain leader dwarf", new Pair<Integer, Integer>(0,2));
-		
+
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
 		actions.add(new IncreaseKarmaAction(10));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
-		
+
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
@@ -131,7 +130,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				"Great! Please find them somewhere in this level of the keep and make them pay for their tresspassing!",
 				new MultipleActions(actions));
 
-		npc.add(ConversationStates.QUEST_OFFERED, 
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
@@ -150,20 +149,20 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						raiser.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");								
+						raiser.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");
 				}
 		});
-		
+
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
@@ -189,7 +188,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		step_2();
 		step_3();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 			final List<String> res = new ArrayList<String>();
@@ -210,19 +209,19 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	public String getName() {
 		return "KillDhohrNuggetcutter";
 	}
-	
+
 	// The kill requirements and surviving in the zone requires at least this level
 	@Override
 	public int getMinLevel() {
 		return 70;
 	}
-	
+
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 				 new TimePassedCondition(QUEST_SLOT, 1, 2*MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
 	}
-	
+
 	@Override
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed").fire(player, null, null);

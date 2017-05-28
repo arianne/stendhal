@@ -12,19 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.List;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 
 /**
  * For testing purposes.
- * 
+ *
  * /script EasyRPAction.class type moveto x 1 y 1
- * 
+ *
  */
 
 public class EasyRPAction extends ScriptImpl {

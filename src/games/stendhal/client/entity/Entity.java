@@ -12,14 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.listener.RPObjectChangeListener;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import games.stendhal.client.listener.RPObjectChangeListener;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -43,8 +42,8 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/**
 	 * Change listeners.
 	 */
-	private final List<EntityChangeListener<? extends IEntity>> changeListeners = new CopyOnWriteArrayList<EntityChangeListener<? extends IEntity>>(); 
-	private final List<ContentChangeListener> contentChangeListeners = new CopyOnWriteArrayList<ContentChangeListener>(); 
+	private final List<EntityChangeListener<? extends IEntity>> changeListeners = new CopyOnWriteArrayList<EntityChangeListener<? extends IEntity>>();
+	private final List<ContentChangeListener> contentChangeListeners = new CopyOnWriteArrayList<ContentChangeListener>();
 
 	/** The arianne object associated with this game entity. */
 	protected RPObject rpObject;
@@ -76,11 +75,11 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling in
-	 * onChangedAdded() from other initialize() hack. 
+	 * onChangedAdded() from other initialize() hack.
 	 * TODO: get rid off inAdd variable.
 	 */
 	protected boolean inAdd;
-	
+
 	/**
 	 * The entity width.
 	 */
@@ -90,7 +89,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * The entity height.
 	 */
 	private double height;
-	
+
 	/**
 	 * Entity area rectangle. Kept in memory because it is the most allocated
 	 * resource after the Graphics2D objects we can do nothing about.
@@ -131,7 +130,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * Fire change to all registered listeners.
-	 * 
+	 *
 	 * @param property
 	 *            The changed property.
 	 */
@@ -141,7 +140,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			l.entityChanged(this, property);
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#isUser()
@@ -150,7 +149,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	public boolean isUser() {
 		return false;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#getArea()
 	 */
@@ -206,7 +205,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		}
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#getEntityClass()
 	 */
@@ -287,7 +286,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		return width;
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#isOnGround()
 	 */
@@ -300,7 +299,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * Process attribute changes that may affect positioning. This is needed
 	 * because different entities may want to process coordinate changes more
 	 * gracefully.
-	 * 
+	 *
 	 * @param base
 	 *            The previous values.
 	 * @param diff
@@ -334,7 +333,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * When the entity's position changed.
-	 * 
+	 *
 	 * @param x
 	 *            The new X coordinate.
 	 * @param y
@@ -514,7 +513,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * An object was added.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
 	 */
@@ -525,7 +524,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -612,7 +611,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			visibility = changes.getInt("visibility");
 			fireChange(PROP_VISIBILITY);
 		}
-		
+
 		/*
 		 * Content changes
 		 */
@@ -630,7 +629,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -704,7 +703,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 			visibility = 100;
 			fireChange(PROP_VISIBILITY);
 		}
-		
+
 		/*
 		 * Content changes
 		 */
@@ -717,7 +716,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * An object was removed.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
 	 * @deprecated Moving to different listener. Use release().
@@ -729,7 +728,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * A slot object was added.
-	 * 
+	 *
 	 * @param object
 	 *            The container object.
 	 * @param slotName
@@ -744,7 +743,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base container object.
 	 * @param slotName
@@ -762,7 +761,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * A slot object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base container object.
 	 * @param slotName
@@ -780,7 +779,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * A slot object was removed.
-	 * 
+	 *
 	 * @param object
 	 *            The container object.
 	 * @param slotName
@@ -835,7 +834,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 
 	/**
 	 * Get identifier path for the entity.
-	 * 
+	 *
 	 * @return List of object identifiers and slot names that make up the
 	 * 	complete path to the entity
 	 */

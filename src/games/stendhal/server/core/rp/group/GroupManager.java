@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.group;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * manages player groups

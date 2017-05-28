@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.events;
 
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
 
 /**
  * A public text message.
@@ -40,7 +40,7 @@ public class TextEvent extends RPEvent {
 	 * @param text Text
 	 */
 	public TextEvent(final String text) {
-		super(RPCLASS_NAME);		
+		super(RPCLASS_NAME);
 		put(TEXT, text);
 	}
 }

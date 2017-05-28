@@ -101,7 +101,7 @@ public class ResultSetIteratorTest {
 		@Override
 		public ResultSet executeQuery(final String sql) throws SQLException {
 			// Stub
-			return null;
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
@@ -281,12 +281,12 @@ public class ResultSetIteratorTest {
 			// Stub
 			return null;
 		}
-		
+
 		@Override
 		public void closeOnCompletion() throws SQLException {
 			// Stub
 		}
-		
+
 		@Override
 		public boolean isCloseOnCompletion() throws SQLException {
 			// Stub

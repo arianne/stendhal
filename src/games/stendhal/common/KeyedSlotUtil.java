@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SlotOwner;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  */
 public class KeyedSlotUtil {
 	private static Logger logger = Logger.getLogger(KeyedSlotUtil.class);
-	
+
 	/**
 	 * Returns the single object of a "keyed slot".
 	 *
@@ -49,16 +49,16 @@ public class KeyedSlotUtil {
 
 		return slot.iterator().next();
 	}
-	
+
 	/**
 	 * Get a keyed string value on a named slot.
-	 * 
+	 *
 	 * @param slotOwner the object owning the slot
 	 * @param name
 	 *            The slot name.
 	 * @param key
 	 *            The value key.
-	 * 
+	 *
 	 * @return The keyed value of the slot, or <code>null</code> if not set.
 	 */
 	public static String getKeyedSlot(final SlotOwner slotOwner, final String name, final String key) {
@@ -72,7 +72,7 @@ public class KeyedSlotUtil {
 
 	/**
 	 * Set a keyed string value on a named slot.
-	 * 
+	 *
 	 * @param slotOwner the object owning the slot
 	 * @param name
 	 *            The slot name.
@@ -80,7 +80,7 @@ public class KeyedSlotUtil {
 	 *            The value key.
 	 * @param value
 	 *            The value to assign (or remove if <code>null</code>).
-	 * 
+	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */

@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.common.CollisionDetection;
-
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.CollisionDetection;
+
 /** This class stores the layers that make the floor and the buildings. */
 
 public class StaticGameLayers {
 	private static final Logger logger = Logger.getLogger(StaticGameLayers.class);
-	
+
 	/** Name of the layers set that we are rendering right now. */
 	private String area;
 
@@ -35,10 +35,10 @@ public class StaticGameLayers {
 	public StaticGameLayers() {
 		area = null;
 	}
-	
+
 	/**
 	 * Get the danger level of the current zone.
-	 * 
+	 *
 	 * @return danger level
 	 */
 	public double getDangerLevel() {
@@ -60,10 +60,10 @@ public class StaticGameLayers {
 		}
 		return 0.0;
 	}
-	
+
 	/**
 	 * Set the current zone.
-	 * 
+	 *
 	 * @param zone
 	 */
 	public void setZone(Zone zone) {
@@ -75,7 +75,7 @@ public class StaticGameLayers {
 
 	/**
 	 * Check if a shape collides within the current zone.
-	 * 
+	 *
 	 * @param shape
 	 * @return <code>true</code>, if the shape overlaps the static zone
 	 *	collision, <code>false</code> otherwise
@@ -102,25 +102,25 @@ public class StaticGameLayers {
 
 	/**
 	 * Get the area name.
-	 * 
+	 *
 	 * @return area name
 	 */
 	public String getAreaName() {
 		return area;
 	}
-	
+
 	/**
 	 * Get the user representable name of the current zone.
-	 * 
+	 *
 	 * @return user readable zone name
 	 */
 	public String getReadableName() {
 		return currentZone.getReadableName();
 	}
-	
+
 	/**
 	 * Draw a set of layers.
-	 * 
+	 *
 	 * @param g Graphics
 	 * @param area Zone name
 	 * @param compositeName A bundle name for the set of layers. It is used to
@@ -140,11 +140,11 @@ public class StaticGameLayers {
 			lr.draw(g, x, y, width, height);
 		}
 	}
-	
+
 	/**
 	 * Draw the weather layer.
-	 * 
-	 * @param g Graphics 
+	 *
+	 * @param g Graphics
 	 * @param x
 	 * @param y
 	 * @param width
@@ -157,10 +157,10 @@ public class StaticGameLayers {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get a composite representation of multiple tile layers.
-	 * 
+	 *
 	 * @param area area name
 	 * @param compositeName name to be used for the composite for caching
 	 * @param adjustLayer name of the adjustment layer
@@ -169,7 +169,7 @@ public class StaticGameLayers {
 	 * @return layer corresponding to all sub layers or <code>null</code> if
 	 * 	they can not be merged
 	 */
-	private LayerRenderer getMerged(String area, String compositeName, 
+	private LayerRenderer getMerged(String area, String compositeName,
 			String adjustLayer, String ... layers) {
 		if (currentZone != null) {
 			if (currentZone.getName().equals(area)) {
@@ -182,9 +182,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the CollisionDetection Layer for the current map
-	 * 
+	 *
 	 */
 	public CollisionDetection getCollisionDetection() {
 		if (currentZone != null) {
@@ -192,11 +192,11 @@ public class StaticGameLayers {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return the ProtectionDetection Layer for the current map
-	 * 
+	 *
 	 */
 	public CollisionDetection getProtectionDetection() {
 		if (currentZone != null) {

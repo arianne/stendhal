@@ -7,20 +7,20 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  * A factory for <code>PasswordPortal</code> objects.
  */
 public class PasswordPortalFactory implements ConfigurableFactory {
-    
+
     /**
      * Create a password portal.
-     * 
+     *
      * @param ctx
      *            Configuration context.
-     * 
+     *
      * @return A PasswordPortal.
-     * 
+     *
      * @throws IllegalArgumentException
      *             If there is a problem with the attributes. The exception
      *             message should be a value suitable for meaningful user
      *             interpretation.
-     * 
+     *
      * @see PasswordPortal
      */
     @Override
@@ -47,11 +47,11 @@ public class PasswordPortalFactory implements ConfigurableFactory {
 
         return portal;
     }
-    
+
     protected String getStringValue(final ConfigurableFactoryContext ctx, final String key) {
         return ctx.getString(key, null);
     }
-    
+
     protected int getIntValue(final ConfigurableFactoryContext ctx, final String key) {
         return ctx.getInt(key, -1);
     }

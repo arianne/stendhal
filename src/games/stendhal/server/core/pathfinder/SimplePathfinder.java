@@ -23,10 +23,10 @@ import games.stendhal.server.core.engine.StendhalRPZone;
  */
 public class SimplePathfinder extends Pathfinder {
 	final CollisionDetection collision;
-	
+
 	/**
 	 * Create a new <code>SimplePathfinder</code>.
-	 * 
+	 *
 	 * @param zone The zone used for path finding
 	 * @param startX Starting point x coordinate
 	 * @param startY Starting point y coordinate

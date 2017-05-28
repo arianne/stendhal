@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
-import games.stendhal.common.math.Algebra;
 import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.common.math.Algebra;
 import games.stendhal.common.memory.Field;
 
 /**
@@ -29,7 +29,7 @@ public class DirectedSound extends SignalProcessor
 	private float[]       mOutputBuffer = null;
 
     public DirectedSound() { }
-    
+
     public DirectedSound(float[] upVector)
     {
         assert upVector.length == 3;

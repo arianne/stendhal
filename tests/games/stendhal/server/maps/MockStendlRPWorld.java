@@ -25,7 +25,7 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 	protected void createRPClasses() {
 		new RPClassGenerator().createRPClasses();
 	}
-	
+
 	public static StendhalRPWorld get() {
 		if (!(instance instanceof MockStendlRPWorld)) {
 			instance = new MockStendlRPWorld();

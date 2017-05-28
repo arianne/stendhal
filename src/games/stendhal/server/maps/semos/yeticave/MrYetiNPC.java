@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.yeticave;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class MrYetiNPC implements ZoneConfigurator {
 	/**
@@ -62,7 +62,7 @@ public class MrYetiNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Greetings, strange foreigner!");
 				addJob("My job is to clean up all this around you!");
-				addHelp("I am not able to help you!");				
+				addHelp("I am not able to help you!");
 				addGoodbye();
 			}
 		};

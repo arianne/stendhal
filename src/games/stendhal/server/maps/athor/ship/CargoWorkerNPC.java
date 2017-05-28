@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -21,9 +24,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
-
-import java.util.Arrays;
-import java.util.Map;
 
 /** Factory for cargo worker on Athor Ferry. */
 
@@ -37,7 +37,7 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 
 	private void buildNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Klaas") {
-			
+
 			/*@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -49,7 +49,7 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 				nodes.add(new Node(17,35));
 				// to the stairs
 				nodes.add(new Node(17,39));
-				// walk between the barrels 
+				// walk between the barrels
 				nodes.add(new Node(22,39));
 				// towards the bow
 				nodes.add(new Node(22,42));
@@ -64,12 +64,12 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 				addReply(Arrays.asList("rat", "rats"),
 				"These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
 
-				new BuyerAdder().addBuyer(this, 
+				new BuyerAdder().addBuyer(this,
 						new BuyerBehaviour(SingletonRepository.getShopList().get("buypoisons")), true);
 
 				addGoodbye("Please kill some rats on your way up!");
 			}
-			
+
 			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
@@ -98,6 +98,6 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 			npc.setEntityClass("seller2npc");
 			npc.setDescription ("You see Klaas who takes care of the cargo. He hates rats!");
 			npc.setDirection(Direction.DOWN);
-			zone.add(npc);	
+			zone.add(npc);
 	}
 }

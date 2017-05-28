@@ -13,13 +13,13 @@
 package games.stendhal.server.entity.mapstuff.useable;
 
 
+import java.lang.ref.WeakReference;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
-import java.lang.ref.WeakReference;
 
 /**
  * An entity that performs some activity for a player. The activity takes some
@@ -41,7 +41,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 	/**
 	 * Process the results of the activity.
-	 * 
+	 *
 	 * @param player
 	 *            The player that performed the activity.
 	 */
@@ -62,7 +62,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 * 
+	 *
 	 * @return The time to perform the activity (in seconds).
 	 */
 	protected abstract int getDuration();
@@ -70,7 +70,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 	/**
 	 * Decides if the activity can be done.
 	 * @param player for whom to perform the activity
-	 * 
+	 *
 	 * @return <code>true</code> if can be done
 	 */
 	protected abstract boolean isPrepared(final Player player);
@@ -78,14 +78,14 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 	/**
 	 * Decides if the activity was successful.
 	 * @param player for whom to perform the activity
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	protected abstract boolean isSuccessful(final Player player);
 
 	/**
 	 * Called when the activity has finished.
-	 * 
+	 *
 	 * @param player
 	 *            The player that did the activity.
 	 * @param successful
@@ -96,7 +96,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 	/**
 	 * Called when the activity has started.
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
 	 */
@@ -104,10 +104,10 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 	/**
 	 * Check for excessive usage
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
-	 *            
+	 *
 	 * @return <code>true</code> if the usage was excessive
 	 */
 	protected boolean isPenalized(final Player player) {
@@ -129,10 +129,10 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 	/**
 	 * Is called when a player initiates the activity.
-	 * 
+	 *
 	 * @param entity
 	 *            The initiating entity.
-	 * 
+	 *
 	 * @return <code>true</code> if the entity was used.
 	 */
 	@Override
@@ -141,9 +141,9 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 		if (!(entity instanceof Player)) {
 			return false;
 		}
-		
+
 		final Player player = (Player) entity;
-		
+
 		// The player must be next to the source to start to use it.
 		if (!player.nextTo(this)) {
 			player.sendPrivateText("You are too far away from " + this.getName()+
@@ -181,7 +181,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 		/**
 		 * Create an activity.
-		 * 
+		 *
 		 * @param player
 		 *            The player.
 		 */
@@ -195,7 +195,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 		/**
 		 * Get the holder entity.
-		 * 
+		 *
 		 * @return The holder entity.
 		 */
 		public PlayerActivityEntity getEntity() {
@@ -204,7 +204,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 		/**
 		 * Get the player.
-		 * 
+		 *
 		 * @return The player (or <code>null</code> if GC'd).
 		 */
 		public Player getPlayer() {
@@ -217,7 +217,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 
 		/**
 		 * This method is called when the turn number is reached.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            The current turn number.
 		 */

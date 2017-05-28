@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.basement;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -21,10 +25,6 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Inside Nalwor Inn basement .
@@ -61,11 +61,11 @@ public class ArcheryDealerNPC implements ZoneConfigurator  {
 				addOffer("Check the blackboard for prices.");
 				addQuest("I have no quest for you.");
 				addGoodbye("Have a happy. Bye.");
-				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyarcherstuff")), false);			    
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyarcherstuff")), false);
 			}};
 			npc.setPosition(10, 5);
 			npc.setDescription("You see the beautiful mage elf Merenwen. She buys some nice archery stuff.");
 			npc.setEntityClass("mageelfnpc");
-			zone.add(npc);		
+			zone.add(npc);
 	}
 }

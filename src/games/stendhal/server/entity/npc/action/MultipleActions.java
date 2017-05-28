@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * executes a list of actions in the order they have been added.

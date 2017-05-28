@@ -21,6 +21,16 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -30,19 +40,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class KillDarkElvesTest {
@@ -55,7 +53,7 @@ public class KillDarkElvesTest {
 	private static final KillDarkElves quest = new KillDarkElves();
 	private static final String QUEST_SLOT = quest.getSlotName();
 	private final List<String> creatures=quest.creatures;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		PlayerTestHelper.generateNPCRPClasses();
@@ -152,7 +150,7 @@ public class KillDarkElvesTest {
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
-	
+
 	/**
 	 * Tests for attendingToAttending.
 	 */
@@ -171,13 +169,13 @@ public class KillDarkElvesTest {
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
-	
+
 	/**
 	 * Tests for questOfferedToAttendingNo.
 	 */
 	@Test
 	public void testQuestOfferedToAttendingNo() {
-		LinkedList<String> questHistory = new LinkedList<String>();		
+		LinkedList<String> questHistory = new LinkedList<String>();
 		final String[] triggers = { "no", "nothing" };
 		for (final String playerSays : triggers) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -198,11 +196,11 @@ public class KillDarkElvesTest {
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
-	
-	
-	
+
+
+
 	// support for old-style quest testing
-	
+
 	/**
 	 * Tests for idleToQuestStarted.
 	 */
@@ -280,8 +278,8 @@ public class KillDarkElvesTest {
 			questHistory.add("I have killed the dark elf captain in the secret room.");
 			questHistory.add("I have killed the dark elf archer in the secret room.");
 			questHistory.add("I have killed the thing.");
-			questHistory.add("I have killed all required creatures.");			
-			questHistory.add("I have no amulet with me.");			
+			questHistory.add("I have killed all required creatures.");
+			questHistory.add("I have no amulet with me.");
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
@@ -310,17 +308,17 @@ public class KillDarkElvesTest {
 
 			final double karma = bob.getKarma();
 			final int xp = bob.getXP();
-			
+
 			questHistory.clear();
 			questHistory.add("I agreed to help Maerion.");
 			questHistory.add("I have killed the dark elf captain in the secret room.");
 			questHistory.add("I have killed the dark elf archer in the secret room.");
 			questHistory.add("I have killed the thing.");
 			questHistory.add("I have killed all required creatures.");
-			questHistory.add("I have the amulet with me.");			
+			questHistory.add("I have the amulet with me.");
 			questHistory.add("It's time to go back to Maerion for a reward.");
 			assertEquals(questHistory, quest.getHistory(bob));
-			
+
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
@@ -334,12 +332,12 @@ public class KillDarkElvesTest {
 			assertThat(bob.getXP(), greaterThan(xp));
 			assertTrue(bob.isQuestCompleted(QUEST_SLOT));
 			questHistory.clear();
-			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");			
+			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
-	
-	
+
+
 	// support for new-style quest
 
 	/**
@@ -359,20 +357,20 @@ public class KillDarkElvesTest {
 			assertThat(bob.getQuest(QUEST_SLOT), is("started"));
 			questHistory.clear();
 			questHistory.add("I agreed to help Maerion.");
-			questHistory.add("I have not yet killed the "+creatures.get(0)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(1)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(2)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(3)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(4)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(5)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(6)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(7)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(8)+" in the secret room.");			
-			questHistory.add("I have no amulet with me.");						
+			questHistory.add("I have not yet killed the "+creatures.get(0)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(1)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(2)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(3)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(4)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(5)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(6)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(7)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(8)+" in the secret room.");
+			questHistory.add("I have no amulet with me.");
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
-	
+
 	/**
 	 * Tests for testAttendingToQuestOffered.
 	 */
@@ -391,20 +389,20 @@ public class KillDarkElvesTest {
 					getReply(npc));
 			questHistory.clear();
 			questHistory.add("I agreed to help Maerion.");
-			questHistory.add("I have not yet killed the "+creatures.get(0)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(1)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(2)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(3)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(4)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(5)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(6)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(7)+" in the secret room.");			
-			questHistory.add("I have not yet killed the "+creatures.get(8)+" in the secret room.");			
-			questHistory.add("I have no amulet with me.");						
+			questHistory.add("I have not yet killed the "+creatures.get(0)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(1)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(2)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(3)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(4)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(5)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(6)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(7)+" in the secret room.");
+			questHistory.add("I have not yet killed the "+creatures.get(8)+" in the secret room.");
+			questHistory.add("I have no amulet with me.");
 			assertEquals(questHistory, quest.getHistory(bob));
-		}		
+		}
 	}
-	
+
 	/**
 	 * Tests for attendingToAttendingAllKilledNoAmulet.
 	 */
@@ -422,26 +420,26 @@ public class KillDarkElvesTest {
 
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
-			
+
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUEST_STARTED));
 			assertEquals(playerSays, "What happened to the amulet? Remember I need it back!", getReply(npc));
 			questHistory.clear();
 			questHistory.add("I agreed to help Maerion.");
-			questHistory.add("I have killed the "+creatures.get(0)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(1)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(2)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(3)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(4)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(5)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(6)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(7)+" in the secret room.");			
+			questHistory.add("I have killed the "+creatures.get(0)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(1)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(2)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(3)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(4)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(5)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(6)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(7)+" in the secret room.");
 			questHistory.add("I have killed the "+creatures.get(8)+" in the secret room.");
 			questHistory.add("I have killed all required creatures.");
-			questHistory.add("I have no amulet with me.");			
+			questHistory.add("I have no amulet with me.");
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
-	}	
-	
+	}
+
 	/**
 	 * Tests for attendingToAttendingAllKilledHaveAmulet.
 	 */
@@ -463,23 +461,23 @@ public class KillDarkElvesTest {
 
 			final double karma = bob.getKarma();
 			final int xp = bob.getXP();
-			
+
 			questHistory.clear();
 			questHistory.add("I agreed to help Maerion.");
-			questHistory.add("I have killed the "+creatures.get(0)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(1)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(2)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(3)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(4)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(5)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(6)+" in the secret room.");			
-			questHistory.add("I have killed the "+creatures.get(7)+" in the secret room.");			
+			questHistory.add("I have killed the "+creatures.get(0)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(1)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(2)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(3)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(4)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(5)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(6)+" in the secret room.");
+			questHistory.add("I have killed the "+creatures.get(7)+" in the secret room.");
 			questHistory.add("I have killed the "+creatures.get(8)+" in the secret room.");
-			questHistory.add("I have killed all required creatures.");			
+			questHistory.add("I have killed all required creatures.");
 			questHistory.add("I have the amulet with me.");
-			questHistory.add("It's time to go back to Maerion for a reward.");			
+			questHistory.add("It's time to go back to Maerion for a reward.");
 			assertEquals(questHistory, quest.getHistory(bob));
-			
+
 			npcEngine.setCurrentState(ConversationStates.IDLE);
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
@@ -493,9 +491,9 @@ public class KillDarkElvesTest {
 			assertThat(bob.getXP(), greaterThan(xp));
 			assertTrue(bob.isQuestCompleted(QUEST_SLOT));
 			questHistory.clear();
-			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");			
+			questHistory.add("I completed Maerion's quest and got an emerald ring of life!");
 			assertEquals(questHistory, quest.getHistory(bob));
 		}
 	}
-	
+
 }

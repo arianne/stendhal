@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.entity.creature.impl.idle;
 
@@ -7,7 +7,7 @@ import games.stendhal.server.entity.creature.Creature;
 
 /**
  * An idle behaviour, where the idling creature stays invisible
- * 
+ *
  * @author madmetzger
  */
 class CamouflagedIdleBehaviour implements IdleBehaviour {

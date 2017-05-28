@@ -206,15 +206,15 @@ public class ExpressionMatcher {
         txt = ConversationParser.detectSentenceType(txt, sentence);
 
         if (typeMatching) {
-            readTypeMatchExpressions(txt, ctx, sentence);
+            readTypeMatchExpressions(txt, sentence);
         } else if (exactMatching) {
-            readSimpleExpressions(txt, ctx, sentence);
+            readSimpleExpressions(txt, sentence);
         } else if (similarMatching) {
-            readSimpleExpressions(txt, ctx, sentence);
+            readSimpleExpressions(txt, sentence);
         } else if (jokerMatching) {
-            readJokerExpressions(txt, ctx, sentence);
+            readJokerExpressions(txt, sentence);
         } else if (caseInsensitive) {
-            readSimpleExpressions(txt, ctx, sentence);
+            readSimpleExpressions(txt, sentence);
         }
 
         return sentence;
@@ -225,10 +225,9 @@ public class ExpressionMatcher {
      * "&lt;expression&gt;/&lt;TYPESTRING&gt; &lt;expression&gt;/&lt;TYPESTRING&gt; ..."
      *
      * @param text to be parsed
-     * @param ctx 
-     * @param sentence 
+     * @param sentence
      */
-    private void readTypeMatchExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
+    private void readTypeMatchExpressions(final String text, final Sentence sentence) {
         final StringTokenizer tok = new StringTokenizer(text, "/");
 
         while (tok.hasMoreTokens()) {
@@ -252,10 +251,9 @@ public class ExpressionMatcher {
      * Read in the words from the given string and create the Sentence object using this unchanged expressions.
      *
      * @param text to be parsed
-     * @param ctx 
-     * @param sentence 
+     * @param sentence
      */
-    private void readSimpleExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
+    private void readSimpleExpressions(final String text, final Sentence sentence) {
         final StringTokenizer tok = new StringTokenizer(text);
 
         while (tok.hasMoreTokens()) {
@@ -273,10 +271,9 @@ public class ExpressionMatcher {
      * with activated 'forMatching' flag.
      *
      * @param text to be parsed
-     * @param ctx 
-     * @param sentence 
+     * @param sentence
      */
-    private void readJokerExpressions(final String text, final ConversationContext ctx, final Sentence sentence) {
+    private void readJokerExpressions(final String text, final Sentence sentence) {
         final StringTokenizer tok = new StringTokenizer(text);
 
         while (tok.hasMoreTokens()) {
@@ -301,7 +298,7 @@ public class ExpressionMatcher {
      *
      * @param expr1
      * @param expr2
-     * @return true if two expression match 
+     * @return true if two expression match
      */
     public boolean match(final Expression expr1, final Expression expr2) {
         // In type matching mode, the word type has to match exactly.

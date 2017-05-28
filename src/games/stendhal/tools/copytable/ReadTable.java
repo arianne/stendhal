@@ -17,11 +17,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.apache.log4j.Logger;
 
 public class ReadTable {
 	private static Logger logger = Logger.getLogger(ReadTable.class);
@@ -43,7 +43,7 @@ public class ReadTable {
 					continue;
 				}
 				cmd.append(" " + line);
-				
+
 				if (cmd.indexOf(";") > -1) {
 					DBTransaction transaction = transactionPool.beginWork();
 					try {
@@ -57,7 +57,7 @@ public class ReadTable {
 					cmd = new StringBuilder();
 					Thread.sleep(3000);
 				}
-				
+
 				System.out.println("< " + i);
 				line = br.readLine();
 				i++;

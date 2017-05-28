@@ -20,6 +20,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -28,13 +35,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 
 public class CrownForTheWannaBeKingTest {
@@ -395,12 +395,12 @@ public class CrownForTheWannaBeKingTest {
 
 		final double oldkarma = bob.getKarma();
 		final int oldatk = bob.getAtkXP();
-		
+
 		final SpeakerNPC rewardnpc = SingletonRepository.getNPCList().get("Kendra Mattori");
 		final Engine rewardEngine = rewardnpc.getEngine();
 		rewardEngine.setCurrentState(ConversationStates.ATTENDING);
 		rewardEngine.step(bob, "reward");
-		
+
 		assertThat(bob.isQuestCompleted(QUEST_SLOT), is(true));
 		assertThat(bob.getKarma(), greaterThan(oldkarma));
 		assertThat(bob.getAtkXP(), greaterThan(oldatk));

@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.cave;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.GhostNPCBase;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Builds a Ghost NPC.
@@ -32,7 +32,7 @@ public class GhostNPC implements ZoneConfigurator {
 	//
 	// ZoneConfigurator
 	//
-	
+
 	/**
 	 * Configure a zone.
 	 *
@@ -43,7 +43,7 @@ public class GhostNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-	
+
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC ghost = new GhostNPCBase("Mary") {
 			@Override
@@ -78,7 +78,7 @@ public class GhostNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 		};
-	
+
 		ghost.setDescription("You see a ghostly figure of a woman.");
 		ghost.setResistance(0);
 		ghost.setEntityClass("woman_005_npc");

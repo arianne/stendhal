@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kirdneh.inn;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
@@ -29,10 +31,8 @@ import games.stendhal.server.entity.npc.condition.TriggerIsProducedItemOfClassCo
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Map;
-
 /**
- * Builds a Healer NPC for kirdneh. 
+ * Builds a Healer NPC for kirdneh.
  * She likes a drink
  *
  * @author kymara
@@ -75,7 +75,7 @@ public class HealerNPC implements ZoneConfigurator {
 					new TriggerIsProducedItemOfClassCondition("drink"),
 					ConversationStates.ATTENDING,
 					null,
-					new ListProducedItemDetailAction()				
+					new ListProducedItemDetailAction()
 				);
 				addReply("kiss", "ew sloppy");
 				addReply(":*", "*:");
@@ -100,17 +100,17 @@ public class HealerNPC implements ZoneConfigurator {
 	    final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		final Engine engine = npc.getEngine();
 
-		engine.add(ConversationStates.ATTENDING, 
-				ConversationPhrases.OFFER_MESSAGES, 
-				null, 
-				false, 
-				ConversationStates.ATTENDING, 
+		engine.add(ConversationStates.ATTENDING,
+				ConversationPhrases.OFFER_MESSAGES,
+				null,
+				false,
+				ConversationStates.ATTENDING,
 				"Gimme money for beer. I heal, gis' cash.", null);
 
-		engine.add(ConversationStates.ATTENDING, 
-				"heal", 
-				null, 
-				false, 
+		engine.add(ConversationStates.ATTENDING,
+				"heal",
+				null,
+				false,
 				ConversationStates.HEAL_OFFERED,
 		        null, new ChatAction() {
 			        @Override
@@ -123,17 +123,17 @@ public class HealerNPC implements ZoneConfigurator {
 			        		badboymsg = " Its more for nasty ones.";
 			        		currentBehavRes.setAmount(2);
 			        	}
-			        	
+
 						if (cost != 0) {
 	                    	raiser.say("For " + cost + " cash, ok?" + badboymsg);
 	                    }
 			        }
 		        });
 
-		engine.add(ConversationStates.HEAL_OFFERED, 
-				ConversationPhrases.YES_MESSAGES, 
+		engine.add(ConversationStates.HEAL_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
 				null,
-		        false, 
+		        false,
 		        ConversationStates.IDLE,
 		        null, new ChatAction() {
 			        @Override
@@ -149,11 +149,11 @@ public class HealerNPC implements ZoneConfigurator {
 			        }
 		        });
 
-		engine.add(ConversationStates.HEAL_OFFERED, 
-				ConversationPhrases.NO_MESSAGES, 
+		engine.add(ConversationStates.HEAL_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
 				null,
-		        false, 
-		        ConversationStates.IDLE, 
+		        false,
+		        ConversationStates.IDLE,
 		        "Bye then,", null);
 	}
 

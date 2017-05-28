@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -26,13 +33,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -104,7 +104,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * function decides, if quest can be given to player
 	 * @param player - player for which we will check quest slot
-	 * @param currenttime 
+	 * @param currenttime
 	 * @return - true if player can get quest.
 	 */
 	private boolean questCanBeGiven(final Player player, final Long currenttime) {
@@ -125,7 +125,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * function will return NPC answer how much time remains.
 	 * @param player - chatting player.
-	 * @param currenttime 
+	 * @param currenttime
 	 * @return - NPC's reply string
 	 */
 	private String getNPCTextReply(final Player player, final Long currenttime) {

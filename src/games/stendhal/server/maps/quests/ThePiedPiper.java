@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -23,13 +30,6 @@ import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
 import games.stendhal.server.maps.quests.piedpiper.InactivePhase;
 import games.stendhal.server.maps.quests.piedpiper.InvasionPhase;
 import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
-
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 /**
  * QUEST: The Pied Piper
@@ -67,18 +67,18 @@ import org.apache.log4j.Logger;
 
 	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);
 
-	
+
 	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
     private static TPP_Phase phase = INACTIVE;
-    
+
 	protected LinkedHashMap<String, Integer> timings = new LinkedHashMap<String, Integer>();
 
-	
+
 	/**
 	 * function will set timings to either test server or game server.
 	 */
 	private void setTimings() {
-		if (System.getProperty("stendhal.testserver.piedpiper") == null) {		
+		if (System.getProperty("stendhal.testserver.piedpiper") == null) {
 			// game timings */
 			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 21);
 			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 2);
@@ -93,8 +93,8 @@ import org.apache.log4j.Logger;
 			timings.put(FINAL_TIME_MAX, 60 * 60 * 6);
 			timings.put(FINAL_TIME_MIN, 60 * 60 * 4);
 			timings.put(SHOUT_TIME, 60 * 10);
-			} 
-		else {	
+			}
+		else {
 			// test timings
 			timings.put(INACTIVE_TIME_MAX, 60 * 2);
 			timings.put(INACTIVE_TIME_MIN, 60 * 1);
@@ -109,11 +109,11 @@ import org.apache.log4j.Logger;
 			timings.put(FINAL_TIME_MAX, 60 * 60 * 6);
 			timings.put(FINAL_TIME_MIN, 60 * 60 * 4);
 			timings.put(SHOUT_TIME, 60 * 2);
-			} 
+			}
 	}
-	   
+
     /**
-     * 
+     *
      * @param ph
      * @return phase index
      */
@@ -123,14 +123,14 @@ import org.apache.log4j.Logger;
     			return i;
     		}
     	}
-    	// didnt found it! 
+    	// didnt found it!
     	logger.warn("Using improper phase for quest ("+ph.name()+"). size: "+getPhases().size());
 		return -1;
     }
-    
+
     /**
      * return next available quest phase
-     * @param ph - 
+     * @param ph -
      * @return next phase
      */
     public static TPP_Phase getNextPhase(TPP_Phase ph) {
@@ -140,16 +140,16 @@ import org.apache.log4j.Logger;
     	}
     	return getDefaultPhaseClass().getPhase();
     }
-    
+
     /**
      * return next instance of quest phases classes from list
      * @param ph
      * @return next phase class
      */
     public static ITPPQuest getNextPhaseClass(TPP_Phase ph) {
-		return getPhases().get(getPhaseIndex(getNextPhase(ph)));    	
+		return getPhases().get(getPhaseIndex(getNextPhase(ph)));
     }
-    
+
     /**
      * return instance of quest phases classes
      * @param ph
@@ -163,7 +163,7 @@ import org.apache.log4j.Logger;
     	*/
     	return getPhases().get(getPhaseIndex(ph));
     }
-    
+
     /**
      * function return default phase class
      * @return default phase class
@@ -190,7 +190,7 @@ import org.apache.log4j.Logger;
 		@Override
 		public void onTurnReached(final int currentTurn) {
 			final ITPPQuest i = getPhaseClass(getPhase());
-			i.phaseToNextPhase(getNextPhaseClass(getPhase()), 
+			i.phaseToNextPhase(getNextPhaseClass(getPhase()),
 					new LinkedList<String>(Arrays.asList("pied piper")));
 		}
 	}
@@ -205,15 +205,15 @@ import org.apache.log4j.Logger;
 		TurnNotifier.get().dontNotify(questTimer);
 		if(max >= 0 && min >= 0) {
 			TurnNotifier.get().notifyInSeconds(
-					Rand.randUniform(max, min),	questTimer);			
+					Rand.randUniform(max, min),	questTimer);
 		}
 	}
 
-	
+
 	/**
 	 * first start
 	 */
-	private void startQuest() {	
+	private void startQuest() {
 		setTimings();
 		getPhases().add(new InactivePhase(timings));
 		getPhases().add(new InvasionPhase(timings));
@@ -228,13 +228,13 @@ import org.apache.log4j.Logger;
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
- 	
+
  	@Override
  	public List<String> getHistory(final Player player) {
  		LinkedList<String> history = new LinkedList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return history;
-		}	
+		}
 		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rats".equals(questState)) {
 			history.add("I have killed some rats in Ados city already, and am trying to kill more.");
@@ -242,7 +242,7 @@ import org.apache.log4j.Logger;
 		if ("done".equals(questState)) {
 			history.add("I have killed some rats in Ados city and got a reward from Mayor Chalmers!");
 		}
-		return history; 		
+		return history;
  	}
 
  	@Override
@@ -282,13 +282,13 @@ import org.apache.log4j.Logger;
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
-	
+
 	public int getRemainingTurns() {
-		return TurnNotifier.get().getRemainingTurns(questTimer);		
+		return TurnNotifier.get().getRemainingTurns(questTimer);
 	}
-	
+
 	public int getRemainingSeconds() {
-		return TurnNotifier.get().getRemainingSeconds(questTimer);		
+		return TurnNotifier.get().getRemainingSeconds(questTimer);
 	}
 
 	@Override

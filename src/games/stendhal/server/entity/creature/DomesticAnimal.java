@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * A domestic animal can be owned by a player;
@@ -55,7 +55,7 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a wild DomesticAnimal based on an existing RPObject.
-	 * 
+	 *
 	 * @param object object containing the data for the animal
 	 */
 	public DomesticAnimal(final RPObject object) {
@@ -73,7 +73,7 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Creates a wild DomesticAnimal based on an existing RPObject, and assigns
 	 * it to a player.
-	 * 
+	 *
 	 * @param object owning player, or <code>null</code>
 	 * @param owner
 	 *            The player who should own the sheep
@@ -100,10 +100,10 @@ public abstract class DomesticAnimal extends Creature {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the default stats of the animal. This should include HP, incHP (the
-	 * amount of healing when eating), ATK, DEF, XP and base speed. 
+	 * amount of healing when eating), ATK, DEF, XP and base speed.
 	 */
 	abstract void setUp();
 
@@ -121,11 +121,11 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	/**
-	 * Checks if this domestic animal was owned by a player, 
+	 * Checks if this domestic animal was owned by a player,
 	 * regardless of whether it is owned at the moment.
-	 * 
+	 *
 	 * @return <code>true</code>, if the creature had been owned, otherwise
-	 * 	<code>false</code> 
+	 * 	<code>false</code>
 	 */
 	public boolean wasOwned() {
 		return wasOwned;
@@ -158,7 +158,7 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Can be called when the sheep dies. Puts meat onto its corpse; the amount
 	 * of meat depends on the domestic animal's weight.
-	 * 
+	 *
 	 * @param corpse
 	 *            The corpse on which to put the meat
 	 */
@@ -206,7 +206,7 @@ public abstract class DomesticAnimal extends Creature {
     			}
     		}
     	}
-    
+
     	return false;
     }
 

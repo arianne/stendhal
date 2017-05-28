@@ -16,15 +16,15 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.item.Present;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.game.RPAction;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.item.Present;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPAction;
 import utilities.PlayerTestHelper;
 
 public class WrapActionTest {
@@ -91,7 +91,7 @@ public class WrapActionTest {
 	 */
 	@Test
 	public void testOnActionGreaterPotion() {
-		
+
 		final WrapAction wrap = new WrapAction();
 		final Player player = PlayerTestHelper.createPlayer("bob");
 
@@ -107,7 +107,7 @@ public class WrapActionTest {
 		assertNotNull(present);
 		assertThat(present.getInfoString(), is("greater potion"));
 		present.onUsed(player);
-		assertTrue(player.isEquipped("greater potion"));		
+		assertTrue(player.isEquipped("greater potion"));
 	}
 
 	/**

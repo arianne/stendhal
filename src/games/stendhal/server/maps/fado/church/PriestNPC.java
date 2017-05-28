@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.maps.fado.church;
 
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
-
-import java.util.Map;
 
 
 /**

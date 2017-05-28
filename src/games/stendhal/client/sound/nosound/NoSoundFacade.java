@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.sound.nosound;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundHandle;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.facade.Time;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
 public class NoSoundFacade implements SoundSystemFacade {
 
@@ -65,7 +65,7 @@ public class NoSoundFacade implements SoundSystemFacade {
 	public void update() {
 		// do nothing
 	}
-	
+
 	@Override
 	public void positionChanged(double x, double y) {
 		// do nothing

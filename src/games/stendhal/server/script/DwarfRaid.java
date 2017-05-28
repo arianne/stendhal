@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Less safe for players below level 30
  */
 public class DwarfRaid extends CreateRaid {

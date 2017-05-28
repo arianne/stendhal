@@ -18,9 +18,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.io.UnicodeSupportingInputStreamReader;
-
 import org.apache.log4j.Logger;
+
+import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
 /**
  * translation

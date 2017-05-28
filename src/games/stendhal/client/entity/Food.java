@@ -37,7 +37,7 @@ public abstract class Food extends AudibleEntity {
 
 	/**
 	 * Get the amount.
-	 * 
+	 *
 	 * @return The amount.
 	 */
 	public int getAmount() {
@@ -50,10 +50,10 @@ public abstract class Food extends AudibleEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -75,7 +75,7 @@ public abstract class Food extends AudibleEntity {
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base slot object.
 	 * @param changes

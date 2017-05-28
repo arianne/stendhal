@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.library;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -25,10 +29,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.WikipediaAccess;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Ados Library (Inside / Level 0).
@@ -91,7 +91,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addReply("wikipedia",
 						"Wikipedia is an Internet based project to create a #free encyclopedia.");
 				addReply("free",
-				        "The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License .");
+				        "The Wikipedia content may be used according to the rules specified in the Creative Commons Attribution-ShareAlike License which can be found at #https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License .");
 				addGoodbye();
 			}
 		};

@@ -12,16 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.util;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-import games.stendhal.server.entity.player.Player;
-
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.IRPZone;
 
 /**

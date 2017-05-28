@@ -33,6 +33,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.HyperlinkEvent;
@@ -91,12 +92,12 @@ class ProgressLog {
 		tabs.addChangeListener(new TabChangeListener());
 
 		WindowUtils.closeOnEscape(window);
-		window.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		window.add(tabs);
 		window.pack();
 		WindowUtils.watchFontSize(window);
 		WindowUtils.trackLocation(window, "travel_log", true);
-		
+
 		WtWindowManager.getInstance().registerSettingChangeListener("ui.logfont",
 				new SettingChangeAdapter("ui.logfont", FONT_NAME) {
 			@Override
@@ -166,11 +167,11 @@ class ProgressLog {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the repeatable quests. These will be marked for the player in the
 	 * progress log.
-	 * 
+	 *
 	 * @param repeatable a collection of quest names
 	 */
 	void setRepeatable(Collection<String> repeatable) {
@@ -305,24 +306,24 @@ class ProgressLog {
 			this.indexQuery = query;
 			this.indexQueryData = queryData;
 		}
-		
+
 		/**
 		 * Set the font.
-		 * 
+		 *
 		 * @param font font name
 		 */
 		void setFontName(String font) {
 			fontName = font;
 			updateOnFontChange();
 		}
-		
+
 		@Override
 		public void setFont(Font font) {
 			super.setFont(font);
 			// The font itself is not used, but the size is
 			updateOnFontChange();
 		}
-		
+
 		/**
 		 * Update only if visible to avoid opening the window just because
 		 * the font setting changed.
@@ -414,7 +415,7 @@ class ProgressLog {
 				text.append(header);
 				text.append("</h2>");
 			}
-			
+
 			if (repeatable) {
 				text.append("<p style=\"font-family:arial; color: #000080\"><b>");
 				text.append(IMAGE);

@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.player.Player;
-
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.player.Player;
+
 /**
  * Logs a player out.
- * 
+ *
  * @author hendrik
  */
 public class LogoutPlayer extends ScriptImpl {

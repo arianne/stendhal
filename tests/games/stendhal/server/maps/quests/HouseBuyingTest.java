@@ -28,6 +28,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.chest.StoredChest;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -46,7 +47,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 	private HousePortal housePortal;
 	private StoredChest chest;
 
-	private static final String[] CITY_ZONES = { 
+	private static final String[] CITY_ZONES = {
 		"0_kalavan_city",
 		"0_kirdneh_city",
 		"0_ados_city_n",
@@ -59,12 +60,12 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 		HousePortal.generateRPClass();
-		StoredChest.generateRPClass();
+		Chest.generateRPClass();
 
 		setupZone(ZONE_NAME);
 		setupZone(ZONE_NAME2);
 		setupZone(ZONE_NAME3);
-		
+
 		for (String zone : CITY_ZONES) {
 			setupZone(zone);
 		}
@@ -100,7 +101,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 				housePortal = null;
 			}
 		}
-		
+
 		if (chest != null) {
 			StendhalRPZone zone = chest.getZone();
 			if (zone != null) {
@@ -133,7 +134,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Goodbye.", getReply(npc));
 	}
-	
+
 	/**
 	 * Tests for generalStuff.
 	 */
@@ -146,13 +147,13 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Hello, player.", getReply(npc));
 
 		assertTrue(en.step(player, "job"));
-		assertEquals("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://stendhalgame.org/wiki/StendhalHouses.", getReply(npc));
+		assertEquals("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #https://stendhalgame.org/wiki/StendhalHouses.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I sell houses, please look at #http://stendhalgame.org/wiki/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.", getReply(npc));
+		assertEquals("I sell houses, please look at #https://stendhalgame.org/wiki/StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.", getReply(npc));
 
 		assertTrue(en.step(player, "quest"));
-		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://stendhalgame.org/wiki/StendhalHouses.", getReply(npc));
+		assertEquals("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #https://stendhalgame.org/wiki/StendhalHouses.", getReply(npc));
 	}
 
 	/**
@@ -172,7 +173,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		player.setAge(3700000);
 		assertTrue(en.step(player, "cost"));
 		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.", getReply(npc));
-		
+
 		// satisfy the rest of the Ados conditions
 		player.setQuest("daily_item", "done");
 		player.setQuest("toys_collector", "done");
@@ -184,14 +185,14 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("The cost of a new house in Ados is 120000 money. Also, you must pay a house tax of 1000 money,"
 				+ " every month. If you have a house in mind, please tell me the number now. I will check availability. "
 				+ "The Ados houses are numbered from 50 to 77.", getReply(npc));
-		
+
 		// add a portal to the maps so that there's something to check and sell
 		Portal destination = new Portal();
-		destination.setIdentifier("dest"); 
+		destination.setIdentifier("dest");
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(destination);
 		chest = new StoredChest();
 		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(chest);
-		
+
 		housePortal = new HousePortal("ados house 50");
 		housePortal.setIdentifier("keep rpzone happy");
 		housePortal.setDestination(ZONE_NAME, "dest");
@@ -200,26 +201,26 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "50"));
 		assertEquals("You do not have enough money to buy a house!", getReply(npc));
-		
+
 		final StackableItem money = (StackableItem)SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(120000);
 		player.equipToInventoryOnly(money);
-		
+
 		// don't answer anything
 		assertFalse(en.step(player, "42"));
-		
+
 		assertTrue(en.step(player, "buy"));
 		assertTrue(en.step(player, "50"));
 		assertEquals("Congratulations, here is your key to ados house 50! Make sure you change the locks if you ever lose it."
 				+ " Do you want to buy a spare key, at a price of 1000 money?", getReply(npc));
 
 		assertTrue(player.isEquipped("player's house key"));
-		
+
 		Item item = player.getFirstEquipped("player's house key");
 		assertNotNull(item);
 		assertEquals("ados house 50;0;player", item.get("infostring"));
 		assertFalse(item.isBound());
-		
+
 		assertTrue(en.step(player, "no"));
 		assertEquals("No problem! Just so you know, if you need to #change your locks, I can do that, "
 				+ "and you can also #resell your house to me if you want to.", getReply(npc));

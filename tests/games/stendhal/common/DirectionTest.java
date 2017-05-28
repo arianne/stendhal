@@ -126,7 +126,7 @@ public class DirectionTest {
 
 		assertFalse(gotcha.get(0));
 	}
-	
-	
+
+
 
 }

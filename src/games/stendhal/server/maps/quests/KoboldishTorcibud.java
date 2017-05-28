@@ -12,7 +12,14 @@
  ***************************************************************************/
 
 package games.stendhal.server.maps.quests;
- 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -49,22 +56,14 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import marauroa.common.game.IRPZone;
-
-import org.apache.log4j.Logger;
 
 /**
  * QUEST: V.S.O.P. Koboldish Torcibud
  * <p>
  * PARTICIPANTS: <ul><li> Wrviliza, the Kobold Barmaid in Wo'fol bar </ul>
  * <p>
- * STEPS: <ul><li> Wrviliza will ask some items and ingredients 
+ * STEPS: <ul><li> Wrviliza will ask some items and ingredients
  * to refurbish her stock of supplies for making her famous koboldish torcibud
  * <li> gather the items and ingredients and bring them to the bar
  * <li> some bottles of V.S.O.P. Koboldish Torcibud will be put on the bar counter
@@ -86,7 +85,7 @@ import org.apache.log4j.Logger;
  * @author omero
  */
 public class KoboldishTorcibud extends AbstractQuest {
- 
+
     private static Logger logger = Logger.getLogger(KoboldishTorcibud.class);
 
     /**
@@ -149,7 +148,7 @@ public class KoboldishTorcibud extends AbstractQuest {
          */
         final String questState = player.getQuest(QUEST_SLOT, 0);
         logger.debug("Quest state: <" + questState + ">");
-        
+
         if ("rejected".equals(questState)) {
             res.add("She asked me to help her replenish her stock of supplies for preparing her Koboldish Torcibud, "
                 + " but I had more pressing matters to attend.");
@@ -184,12 +183,12 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         return res;
     }
- 
+
     @Override
     public String getSlotName() {
         return QUEST_SLOT;
     }
- 
+
     @Override
         public String getName() {
         return "KoboldishTorcibud";
@@ -200,7 +199,7 @@ public class KoboldishTorcibud extends AbstractQuest {
         public int getMinLevel() {
         return 18;
     }
-    
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_MINES;
@@ -254,7 +253,7 @@ public class KoboldishTorcibud extends AbstractQuest {
      * The player meets the Kobold Barmaid Wrviliza and possibly gets a quest from her
      */
     public void phase_1() {
-     
+
         final SpeakerNPC npc = npcs.get("Wrviliza");
 
         // Player sends his greetings and never asked for a quest is handled in NPC class
@@ -331,7 +330,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             				player.setQuest(QUEST_SLOT, getRequiredItemsCollection(pLevel));
             			}
             		},
-            		// here we have been careful to say the items from the collection only after the quest slot was set, 
+            		// here we have been careful to say the items from the collection only after the quest slot was set,
             		// because in this quest, the amounts depend on level, above.
             		new SayRequiredItemsFromCollectionAction(
                         QUEST_SLOT,
@@ -430,7 +429,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             ConversationStates.QUESTION_1,
             "Fine, what did you bring?",
             null);
-    
+
         // Player answers no when asked if he has brought any items
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.NO_MESSAGES,

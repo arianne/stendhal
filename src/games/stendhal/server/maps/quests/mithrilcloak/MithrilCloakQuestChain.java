@@ -44,7 +44,7 @@ package games.stendhal.server.maps.quests.mithrilcloak;
  * <li>Needles come from Ritati Dragontracker</li>
  * <li>Ida breaks a random number of needles, meaning you need to get more each time</li>
  * <li>Ida pricks her finger on the last needle and goes to twilight zone</li>
- * <li>Pdiddi sells the moss to get to twilight zone</li> 
+ * <li>Pdiddi sells the moss to get to twilight zone</li>
  * <li>A creature in the twilight zone drops the elixir to heal lda</li>
  * <li>After being ill Ida asks you to take a blue striped cloak to Josephine</li>
  * <li>After taking cloak to Josephine and telling Ida she asks for mithril clasp</li>

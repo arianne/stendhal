@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.sound.facade;
 
-import games.stendhal.client.listener.PositionChangeListener;
-
 import java.util.Collection;
 import java.util.List;
+
+import games.stendhal.client.listener.PositionChangeListener;
 
 /**
  * this class is the interface between the game logic and the
  * sound system.
- * 
+ *
  * @author hendrik, silvio
  */
 public interface SoundSystemFacade extends PositionChangeListener {

@@ -17,6 +17,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
@@ -24,10 +28,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CorpseTestHelper;
 import utilities.RPClass.SheepFoodTestHelper;
@@ -185,7 +185,7 @@ public class SheepTest {
 		assertEquals("mehmeh", meh.describe());
 	}
 
-	
+
 
 	/**
 	 * Tests for sheep.
@@ -284,13 +284,13 @@ public class SheepTest {
 		final RPObject foodobject = new RPObject();
 		foodobject.put("amount", 10);
 		final SheepFood food = new SheepFood(foodobject);
-		
+
 		final Sheep meh = new Sheep();
-		
+
 		meh.setWeight(1);
 		meh.setHP(5);
 		meh.eat(food);
-		
+
 		assertEquals(2, meh.getWeight());
 		assertEquals(10, meh.getHP());
 		meh.eat(food);
@@ -299,9 +299,9 @@ public class SheepTest {
 		meh.eat(food);
 		assertEquals(4, meh.getWeight());
 		assertEquals(20, meh.getHP());
-		
+
 		meh.setWeight(99);
-		
+
 		meh.eat(food);
 		assertEquals(100, meh.getWeight());
 

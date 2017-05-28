@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.common.constants.Testing;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 /**
  * Display panel for status icons and player stats. The methods may be safely
@@ -38,32 +38,32 @@ class StatsPanel extends JPanel {
 	private final StatusIconPanel statusIcons;
 	private final KarmaIndicator karmaIndicator;
 	private final ManaIndicator manaIndicator;
-	
+
 	StatsPanel() {
 		super();
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
-		
-		statusIcons = new StatusIconPanel(); 
+
+		statusIcons = new StatusIconPanel();
 		add(statusIcons);
-		
+
 		karmaIndicator = KarmaIndicator.create();
 		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		add(karmaIndicator, SLayout.EXPAND_X);
-		
+
 		manaIndicator = ManaIndicator.create();
 		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		manaIndicator.setToolTipText("Mana");
 		add(manaIndicator, SLayout.EXPAND_X);
-		
+
 		hpLabel = new StatLabel();
 		add(hpLabel, SLayout.EXPAND_X);
-		
+
 		atkLabel = new StatLabel();
 		add(atkLabel, SLayout.EXPAND_X);
-		
+
 		defLabel = new StatLabel();
 		add(defLabel, SLayout.EXPAND_X);
-		
+
 		/* FIXME: ranged stat is disabled until fully implemented */
 		if (Testing.COMBAT) {
 			ratkLabel = new StatLabel();
@@ -71,20 +71,20 @@ class StatsPanel extends JPanel {
 		} else {
 			ratkLabel = null;
 		}
-		
+
 		xpLabel = new StatLabel();
 		add(xpLabel, SLayout.EXPAND_X);
-		
+
 		levelLabel = new StatLabel();
 		add(levelLabel, SLayout.EXPAND_X);
-		
+
 		moneyLabel = new StatLabel();
 		add(moneyLabel, SLayout.EXPAND_X);
 	}
-	
+
 	/**
 	 * Set the HP description string.
-	 * 
+	 *
 	 * @param hp
 	 */
 	void setHP(String hp) {
@@ -93,7 +93,7 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set the atk description string.
-	 * 
+	 *
 	 * @param atk
 	 */
 	void setAtk(String atk) {
@@ -102,7 +102,7 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set the def description string
-	 * 
+	 *
 	 * @param def
 	 */
 	void setDef(String def) {
@@ -111,7 +111,7 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set the ratk description string.
-	 * 
+	 *
 	 * @param ratk
 	 */
 	void setRatk(String ratk) {
@@ -120,7 +120,7 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set the XP description string.
-	 * 
+	 *
 	 * @param xp
 	 */
 	void setXP(String xp) {
@@ -129,7 +129,7 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set player karma.
-	 * 
+	 *
 	 * @param karma
 	 */
 	void setKarma(double karma) {
@@ -138,7 +138,7 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set player mana.
-	 * 
+	 *
 	 * @param mana
 	 */
 	void setMana(double mana) {
@@ -147,52 +147,52 @@ class StatsPanel extends JPanel {
 
 	/**
 	 * Set player base mana.
-	 * 
+	 *
 	 * @param baseMana
 	 */
 	void setBaseMana(double baseMana) {
 		manaIndicator.setBaseMana(baseMana);
 	}
-	
+
 	/**
 	 * Set the level description.
-	 * 
+	 *
 	 * @param level level description
 	 */
 	void setLevel(String level) {
 		levelLabel.setText(level);
 	}
-	
+
 	/**
 	 * Set the money description string.
-	 * 
+	 *
 	 * @param money
 	 */
 	void setMoney(String money) {
 		moneyLabel.setText(money);
 	}
-	
+
 	/**
 	 * Show or hide the eating status indicator.
-	 * 
+	 *
 	 * @param eating
 	 */
 	void setEating(final boolean eating) {
 		statusIcons.setEating(eating);
 	}
-	
+
 	/**
 	 * Show or hide the choking status indicator.
-	 * 
+	 *
 	 * @param choking
 	 */
 	void setChoking(final boolean choking) {
 		statusIcons.setChoking(choking);
 	}
-	
+
 	/**
 	 * Show or hide status indicator.
-	 * 
+	 *
 	 * @param ID
 	 *         Status ID
 	 * @param visible
@@ -201,19 +201,19 @@ class StatsPanel extends JPanel {
 	void setStatus(final StatusID ID, final boolean visible) {
 	    statusIcons.setStatus(ID, visible);
 	}
-	
+
 	/**
 	 * Set the away message. null hides the indicator
-	 * 
+	 *
 	 * @param message
 	 */
 	void setAway(final String message) {
 		statusIcons.setAway(message);
 	}
-	
+
 	/**
 	 * Show or hide grumpy indicator. null hides the indicator
-	 * 
+	 *
 	 * @param message
 	 */
 	void setGrumpy(final String message) {

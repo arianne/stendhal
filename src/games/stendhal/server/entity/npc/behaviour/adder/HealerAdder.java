@@ -29,7 +29,7 @@ import games.stendhal.server.entity.player.Player;
 public class HealerAdder {
 
     private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
-    
+
 	/**
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
@@ -46,7 +46,7 @@ public class HealerAdder {
 	 *
 	 *<p>Players who have done PVP in the last 2 hours cannot be healed free,
 	 * unless they are very new to the game.
-	 * 
+	 *
 	 * @param npc
 	 *            SpeakerNPC
 	 * @param cost
@@ -56,10 +56,10 @@ public class HealerAdder {
 	public void addHealer(final SpeakerNPC npc, final int cost) {
 		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		servicersRegister.add(npc.getName(), healerBehaviour);
-		
+
 		// Give attribute to healers
 		npc.put("job_healer", 0);
-		
+
 		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING,
@@ -75,7 +75,7 @@ public class HealerAdder {
 
 						int cost = healerBehaviour.getCharge(res, player);
 						currentBehavRes = res;
-						
+
 						String badboymsg = "";
 						if (player.isBadBoy()) {
 							cost = cost * 2;

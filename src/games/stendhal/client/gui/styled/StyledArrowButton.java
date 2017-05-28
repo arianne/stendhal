@@ -30,13 +30,13 @@ class StyledArrowButton extends BasicArrowButton {
 
 	/**
 	 * Create a new StyledArrowButton.
-	 * 
+	 *
 	 * @param orientation direction of the arrow
 	 * @param style pixmap style
 	 */
 	public StyledArrowButton(int orientation, Style style) {
 		/*
-		 *  Only the darkShadow color is actually used, but calling the 
+		 *  Only the darkShadow color is actually used, but calling the
 		 *  more complicated constructor is the only way to set the color
 		 *  of the arrow.
 		 */
@@ -48,18 +48,18 @@ class StyledArrowButton extends BasicArrowButton {
 	public void paint(Graphics g) {
 		paintComponent(g);
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		getUI().paint(g, this);
 		getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
-		
+
 		/*
-		 * The coordinates are found by trial and error. The method is not 
+		 * The coordinates are found by trial and error. The method is not
 		 * properly documented anywhere.
 		 */
-		paintTriangle(g, (getWidth() - ARROW_SIZE) / 2 + 1, 
-				(getHeight() - ARROW_SIZE) / 2 + 1, ARROW_SIZE, 
+		paintTriangle(g, (getWidth() - ARROW_SIZE) / 2 + 1,
+				(getHeight() - ARROW_SIZE) / 2 + 1, ARROW_SIZE,
 				getDirection(), true);
 	}
 }

@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.core.events;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.entity.player.Player;
+
 /**
  * Other classes can register here to be notified when a player logs in.
- * 
+ *
  * It is the responsibility of the LoginListener to determine which players are
  * of interest for it, and to store this information persistently.
- * 
+ *
  * @author daniel
  */
 public final class LoginNotifier {
@@ -42,7 +42,7 @@ public final class LoginNotifier {
 
 	/**
 	 * Returns the LoginNotifier instance.
-	 * 
+	 *
 	 * @return LoginNotifier the Singleton instance
 	 */
 	public static LoginNotifier get() {
@@ -51,7 +51,7 @@ public final class LoginNotifier {
 
 	/**
 	 * Adds a LoginListener.
-	 * 
+	 *
 	 * @param listener
 	 *            LoginListener to add
 	 */
@@ -61,7 +61,7 @@ public final class LoginNotifier {
 
 	/**
 	 * Removes a LoginListener.
-	 * 
+	 *
 	 * @param listener
 	 *            LoginListener to remove
 	 */
@@ -71,7 +71,7 @@ public final class LoginNotifier {
 
 	/**
 	 * This method is invoked by Player.create().
-	 * 
+	 *
 	 * @param player
 	 *            the player who logged in
 	 */

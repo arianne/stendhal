@@ -1,16 +1,18 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
- ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
+
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -21,7 +23,7 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 		}
 		if (this.hasOwnProperty("hit")) {
 			var damage = parseInt(this["damage"], 10);
-			if (damage != 0) {
+			if (damage !== 0) {
 				target.onDamaged(entity, damage);
 			} else {
 				target.onBlocked(entity);
@@ -92,7 +94,6 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 			for (var obj in this["content"]) {
 				if (this["content"].hasOwnProperty(obj)) {
 					var slotObj = this["content"][obj];
-					console.log("logging thingy: " + obj + " : " + typeof(slotObj));
 					var data = this["content"][obj]["a"];
 					stendhal.ui.chatLog.addLine("normal", data["subclass"] + "\t"
 							+ data["price"] + "\t" + data["description_info"]);

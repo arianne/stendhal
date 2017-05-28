@@ -33,7 +33,7 @@ class NotifyPlayerAboutHallOfFamePoints implements TurnListener {
 	private String playerName;
 	private ResultHandle handle;
 	private String questSlot;
-	
+
 
 	/**
 	 * creates a new NotifyPlayerAboutHallOfFamePoints turn listener

@@ -11,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.entity.npc.behaviour.impl.prices.FixedPricePriceCalculationStrategy;
 import games.stendhal.server.entity.npc.behaviour.impl.prices.PriceCalculationStrategy;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Represents the behaviour of a NPC who is able to either sell items to a
@@ -29,7 +29,7 @@ import java.util.Set;
 public abstract class MerchantBehaviour extends TransactionBehaviour {
 
 //	protected Map<String, Integer> priceList;
-	
+
 	protected PriceCalculationStrategy priceCalculator;
 
 	public MerchantBehaviour() {
@@ -46,7 +46,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 
 	/**
 	 * Returns a set of the names of all items that the NPC deals with.
-	 * 
+	 *
 	 * @return the dealt items
 	 */
 	public Set<String> dealtItems() {
@@ -55,7 +55,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 
 	/**
 	 * Checks whether the NPC deals with the specified item.
-	 * 
+	 *
 	 * @param item
 	 *            the name of the item
 	 * @return true iff the NPC deals with the item
@@ -66,7 +66,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 
 	/**
 	 * Returns the price of one unit of a given item.
-	 * 
+	 *
 	 * @param item
 	 *            the name of the item
 	 * @return the unit price
@@ -78,10 +78,10 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	/**
 	 * Returns the price of the desired amount of the chosen item.
 	 * @param res
-	 * 
+	 *
 	 * @param player
 	 *            The player who considers buying/selling
-	 * 
+	 *
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
 	public int getCharge(ItemParserResult res, final Player player) {

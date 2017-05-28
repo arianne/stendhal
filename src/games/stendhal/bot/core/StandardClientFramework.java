@@ -12,14 +12,15 @@
  ***************************************************************************/
 package games.stendhal.bot.core;
 
-import games.stendhal.common.Version;
-
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import games.stendhal.common.Version;
 import marauroa.client.ClientFramework;
 import marauroa.client.TimeoutException;
 import marauroa.client.net.PerceptionHandler;
@@ -30,8 +31,6 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.Result;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
-
-import org.apache.log4j.Logger;
 
 /**
  * a standard implementation of the client framework

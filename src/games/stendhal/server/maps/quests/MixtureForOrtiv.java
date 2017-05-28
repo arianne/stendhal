@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -38,19 +43,14 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 /**
  * QUEST: Mixture for Ortiv
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Ortiv Milquetoast, the retired teacher who lives in the Kirdneh River house</li>
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>Ortiv asks you for some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar</li>
@@ -58,14 +58,14 @@ import java.util.Map;
  * <li>Take the ingredients back to Ortiv</li>
  * <li>Ortiv gives you a reward</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>karma +35</li>
  * <li>5000 XP</li>
  * <li>a bounded assassin dagger</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>None</li>
@@ -110,13 +110,13 @@ public class MixtureForOrtiv extends AbstractQuest {
 					new LevelGreaterThanCondition(2),
 					new QuestNotStartedCondition(QUEST_SLOT),
 					new NotCondition(new QuestInStateCondition(QUEST_SLOT,"rejected"))),
-			ConversationStates.QUESTION_1, 
+			ConversationStates.QUESTION_1,
 			"Ohh a stranger found my hidden house, welcome! Maybe you can help me with something?", null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT,"rejected")),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"Hey, did you think about helping me again? Will you do it?", null);
 
 		npc.add(
@@ -169,31 +169,31 @@ public class MixtureForOrtiv extends AbstractQuest {
 					" and felt sick for days.");
 
 			npc.addReply("arandula", "North of Semos, near the tree grove, grows a herb called arandula as some of my old friends told me.");
-			
+
 			npc.addReply("red lionfish","Red lionfish are hard to find...They are clad in white stripes alternated with red, maroon, " +
 					"or brown. I've heard about a place in Faiumoni where you can fish for some but be careful, every spine of the lionfish is venomous!");
-			
+
 			npc.addReply("kokuda","Kokuda is really hard to find. I'm glad if you can try to get one from Athor island...");
 
 			npc.addReply("licorice", "There is a nice little bar in magic city in which a young girl sells this lovely tasting sweet.");
-			
+
 			npc.addReply("wine", "Mhhhmm there isn't anything better than mixing stuff together while enjoying a glass of red wine *cough* but I need it of course for my mixture as well... I bet, you can buy wine somewhere, maybe in a tavern or a bar...");
-			
+
 			npc.addReply("garlic", "I know, assassins and bandits aren't vampires, but I'll try to use it against them as well. There is a nice gardener in the Kalavan City Gardens who may sell some of her own grown garlic.");
-			
+
 			npc.addReply(Arrays.asList("pestle","mortar","pestle and mortar"), "Perhaps some baker or cook would use one of those.");
 	}
 
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Ortiv Milquetoast");
-	
+
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.QUESTION_2,
 				"Hello again! I'm glad to see you. Did you bring me any #ingredients for my mixture?",
 				null);
-		
+
 		/* player asks what exactly is missing (says ingredients) */
 		npc.add(ConversationStates.QUESTION_2, "ingredients", null,
 				ConversationStates.QUESTION_2, null,
@@ -228,7 +228,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"Ok, well I have to be a bit more patient then. Just let me know if I can #help you somehow instead.", 
+				"Ok, well I have to be a bit more patient then. Just let me know if I can #help you somehow instead.",
 				null);
 
 		/* player says he didn't bring any items to different question */
@@ -238,14 +238,14 @@ public class MixtureForOrtiv extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Ok, well I have to be a bit more patient then. Just let me know if I can #help you somehow instead.", null);
 
-		npc.add(ConversationStates.IDLE, 
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestCompletedCondition(QUEST_SLOT)),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Thank you so much! I can sleep safely and calm again now! You rescued me!", null);
 	}
-	
+
 
 	@Override
 	public void addToWorld() {
@@ -268,7 +268,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 	}
 
 	public String getTitle() {
-		
+
 		return "Mixture for Ortiv";
 	}
 
@@ -276,7 +276,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 	public String getNPCName() {
 		return "Ortiv Milquetoast";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.KIRDNEH;

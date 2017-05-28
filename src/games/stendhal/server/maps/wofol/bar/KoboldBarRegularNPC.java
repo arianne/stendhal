@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.wofol.bar;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Arrays;
-import java.util.Map;
 
 /**
   * Provides Kormic, a regular customer of Kobold's Den bar in Wo'fol.
@@ -43,7 +43,7 @@ public class KoboldBarRegularNPC implements ZoneConfigurator {
 
             @Override
             public void say(final String text) {
-               
+
                     // doesn't turn
                     say(text, false);
             }

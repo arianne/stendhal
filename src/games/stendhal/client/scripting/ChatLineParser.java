@@ -24,10 +24,10 @@ public abstract class ChatLineParser {
 
 	/**
 	 * parses a chat/command line and processes the result.
-	 * 
+	 *
 	 * @param input
 	 *            string to handle
-	 * 
+	 *
 	 * @return <code>true</code> if command was valid enough to process,
 	 *         <code>false</code> otherwise.
 	 */

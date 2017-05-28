@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
-import games.stendhal.common.ErrorDrain;
-
 import java.util.regex.Pattern;
+
+import games.stendhal.common.ErrorDrain;
 
 /**
  * An Expression is part of a Sentence. It encapsulates the original, white space trimmed text, the
@@ -49,7 +49,7 @@ public final class Expression {
 
     /** Expression matcher for comparing expressions in various modes. */
     private ExpressionMatcher matcher = null;
-  
+
 
     /**
      * Create an Expression from the given original string. Normalized form, main word and type are
@@ -80,7 +80,7 @@ public final class Expression {
      * if we extend the column type in table 'words'
      *
      * @param str
-     * @param errors 
+     * @param errors
      */
     public void parseAmount(final String str, final ErrorDrain errors) {
         try {
@@ -156,10 +156,10 @@ public final class Expression {
             if (right != null) {
                 if (left <= right) {
                 	// e.g. five hundred
-                    return left * right; 
+                    return left * right;
                 } else {
                 	// e.g. hundred fifty
-                    return left + right; 
+                    return left + right;
                 }
             } else {
                 return left;
@@ -173,7 +173,7 @@ public final class Expression {
      * Merge the given following name component into this Expression.
      *
      * @param next
-     * @param newType 
+     * @param newType
      */
     public void mergeName(final Expression next, ExpressionType newType) {
         original = original + ' ' + next.getOriginal();
@@ -315,7 +315,7 @@ public final class Expression {
 
     /**
      *
-     * @return string representation of Expression type 
+     * @return string representation of Expression type
      */
     public String getTypeString() {
 		if (type == null) {
@@ -327,7 +327,7 @@ public final class Expression {
 
     /**
 	 * Determine if the Expression consists of verbs.
-	 * 
+	 *
 	 * @return false if not a verb or null, true otherwise
 	 */
     public boolean isVerb() {
@@ -426,7 +426,7 @@ public final class Expression {
     }
 
     /**
-     * Return the normalized Expression with type. 
+     * Return the normalized Expression with type.
      *
      * @return string in the format NORMALIZED/TYPE.
      */
@@ -522,14 +522,14 @@ public final class Expression {
 
     /**
 	 * Check if the Expression matches the given matching Expression.
-	 * 
+	 *
 	 * <p>
 	 * The matching object can contain explicit expressions, which are compared
 	 * after normalizing, or ExpressionType specifiers like "VER" or "SUB*" in
 	 * upper case. This defines the joker matching algorithm for sentence
 	 * matching, which chooses automatically between word and type matching,
 	 * depending on which of word and word type string is given.
-	 * 
+	 *
 	 * @param other
 	 * @return true if this expression matches the other, false otherwise
 	 */

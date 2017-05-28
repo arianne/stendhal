@@ -9,6 +9,7 @@ package games.stendhal.server.actions.chat;
 import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.MESSAGE;
 import static games.stendhal.common.constants.Actions.TYPE;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
@@ -29,10 +30,10 @@ public class AwayAction implements ActionListener {
 
 	/**
 	 * changes away status depending on existence of MESSAGE in action.
-	 * 
+	 *
 	 * If action contains MESSAGE, the away status is set else the away status
 	 * is unset.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @param action

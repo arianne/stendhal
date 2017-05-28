@@ -21,17 +21,17 @@ import java.util.Map;
 public class TextAttributeSet implements FormatSet<Map<TextAttribute, Object>, TextAttributeSet> {
 	/** Map for storing the attributes. */
 	private final Map<TextAttribute, Object> attributes;
-	
+
 	/**
 	 * Create a new TextAttributeSet with no defined attributes.
 	 */
 	public TextAttributeSet() {
 		attributes = new HashMap<TextAttribute, Object>();
 	}
-	
+
 	/**
 	 * Create a new TextAttributeSet with specified contents.
-	 * 
+	 *
 	 * @param initialContents initial attributes
 	 */
 	private TextAttributeSet(Map<TextAttribute, Object> initialContents) {
@@ -50,15 +50,15 @@ public class TextAttributeSet implements FormatSet<Map<TextAttribute, Object>, T
 	public TextAttributeSet copy() {
 		return new TextAttributeSet(attributes);
 	}
-	
+
 	@Override
 	public Map<TextAttribute, Object> contents() {
 		return attributes;
 	}
-	
+
 	/**
 	 * Set a specific attribute.
-	 * 
+	 *
 	 * @param attr attribute
 	 * @param value new value of the attribute
 	 */

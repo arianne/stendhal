@@ -13,6 +13,12 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.Rectangle;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
@@ -24,15 +30,9 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Rectangle;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 /**
  * The 2D view of a grain field.
- * 
+ *
  * @param <T> grower type
  */
 class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
@@ -55,7 +55,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param entity the entity to build sprites for
 	 * @param map
 	 *            The map to populate.
@@ -81,7 +81,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 		final int imageHeight = tileSetHeight / states;
 		if (tileSetHeight % states != 0) {
 			LOGGER.warn("Inconsistent image height in "
-					+ translate(clazz.replace(" ", "_")) + ": image height " 
+					+ translate(clazz.replace(" ", "_")) + ": image height "
 					+ tileSetHeight + " with " + states + " states.");
 		}
 
@@ -90,13 +90,13 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y, width,
 					imageHeight));
 		}
-		
+
 		calculateOffset(entity, width, imageHeight);
 	}
 
 	/**
 	 * Get the current entity state.
-	 * 
+	 *
 	 * @param entity checked entity
 	 * @return The current state.
 	 */
@@ -112,7 +112,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 * 
+	 *
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -125,7 +125,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 
 	/**
 	 * Get the height.
-	 * 
+	 *
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -135,28 +135,28 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 
 	/**
 	 * Get the width.
-	 * 
+	 *
 	 * @return The width (in pixels).
 	 */
 	@Override
 	public int getWidth() {
 		return (int) (entity.getWidth() * IGameScreen.SIZE_UNIT_PIXELS);
 	}
-	
+
 	@Override
 	public Rectangle getArea() {
 		return new Rectangle(getX() + getXOffset(), getY(),
 				getWidth(), getHeight());
 	}
-	
+
 	@Override
 	protected Rectangle getDrawingArea() {
 		/*
-		 * The area of the entire sprite can be larger than the entity area 
+		 * The area of the entire sprite can be larger than the entity area
 		 * returned by getArea, so we need to provide the info for Entity2DView
 		 * here.
 		 */
-		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(), 
+		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(),
 				getWidth(), getHeight() - getYOffset());
 	}
 
@@ -164,9 +164,9 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -199,7 +199,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

@@ -16,7 +16,7 @@ import games.stendhal.common.memory.Field;
 
 /**
  * Signal processing algorithms.
- * 
+ *
  * @author silvio
  */
 public class Dsp {
@@ -34,8 +34,9 @@ public class Dsp {
 			value = (value > maxValue) ? (maxValue) : (value);
 			value = (value < -maxValue) ? (-maxValue) : (value);
 
-			for (int n = 0; n < numBytesPerSample; ++n)
+			for (int n = 0; n < numBytesPerSample; ++n) {
 				pcmBuffer[index + n] = (byte) (value >>> (n * 8));
+			}
 		}
 
 		return pcmBuffer;
@@ -91,8 +92,9 @@ public class Dsp {
          * channel 7: Surround back right - ## NEEDS CONFIRMATION ##
          */
 
-		if (numChannels == numRequiredChannels)
+		if (numChannels == numRequiredChannels) {
 			return samples;
+		}
 
 		// we have to reduce the number of channels
 		if (numChannels > numRequiredChannels) {
@@ -104,8 +106,9 @@ public class Dsp {
 					int index = i * numChannels;
 					float value = 0.0f;
 
-					for (int c = 0; c < numChannels; ++c)
+					for (int c = 0; c < numChannels; ++c) {
 						value += samples[index + c];
+					}
 
 					samples[i] = value / numChannels;
 				}
@@ -123,8 +126,9 @@ public class Dsp {
 				for (int i = 0; i < numFrames; ++i) {
 					int index = i * numRequiredChannels;
 
-					for (int c = 0; c < numRequiredChannels; ++c)
+					for (int c = 0; c < numRequiredChannels; ++c) {
 						newUniformPCM[index + c] = samples[i];
+					}
 				}
 
 				samples = newUniformPCM;
@@ -147,7 +151,7 @@ public class Dsp {
 
 	/**
 	 * Convert the sample rate of a multi channel PCM signal.
-	 * 
+	 *
 	 * @param samples
 	 * @param numFrames
 	 * @param numChannels

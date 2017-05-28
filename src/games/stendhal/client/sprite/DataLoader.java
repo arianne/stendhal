@@ -28,9 +28,9 @@ import org.apache.log4j.Logger;
 
 /**
  * loads data
- * 
+ *
  * @author hendrik
- * 
+ *
  */
 public class DataLoader {
 	private static Logger logger = Logger.getLogger(DataLoader.class);
@@ -42,14 +42,14 @@ public class DataLoader {
 	 * Finds the resource with the given name. A resource is some data (images,
 	 * audio, text, etc) that can be accessed by class code in a way that is
 	 * independent of the location of the code.
-	 * 
+	 *
 	 * <p>
 	 * The name of a resource is a '<tt>/</tt>'-separated path name that
 	 * identifies the resource.
-	 * 
+	 *
 	 * @param name
 	 *            The resource name
-	 * 
+	 *
 	 * @return A <tt>URL</tt> object for reading the resource, or <tt>null</tt>
 	 *         if the resource could not be found or the invoker doesn't have
 	 *         adequate privileges to get the resource.
@@ -69,18 +69,18 @@ public class DataLoader {
 
 	/**
 	 * Returns an input stream for reading the specified resource.
-	 * 
+	 *
 	 * <p>
 	 * The search order is described in the documentation for
 	 * {@link #getResource(String)}.
 	 * </p>
-	 * 
+	 *
 	 * @param name
 	 *            The resource name
-	 * 
+	 *
 	 * @return An input stream for reading the resource, or <tt>null</tt> if the
 	 *         resource could not be found
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static InputStream getResourceAsStream(String name) {

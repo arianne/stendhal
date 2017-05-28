@@ -14,18 +14,18 @@ package games.stendhal.server.entity.player;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -90,7 +90,7 @@ public class UpdateConverterTest {
 
 	/**
 	 * Tests the new killings slot functionality in conjunction with updatePlayerRPObject().
-	 */ 
+	 */
 	@Test
 	public void testKillingRecords() {
 		final Player player = PlayerTestHelper.createPlayer("player");
@@ -135,7 +135,7 @@ public class UpdateConverterTest {
 		assertNull(player.getQuest("Valo_concoct_potion"));
 		assertEquals("11;mega potion;1200000000000", player.getQuest("valo_concoct_potion"));
 	}
-	
+
 	/**
 	 * Tests for renameQuest.
 	 */
@@ -148,9 +148,9 @@ public class UpdateConverterTest {
 		UpdateConverter.updateQuests(player);
 		assertEquals(player.getQuest("clean_storage"), "start;rat,0,1,0,0,caverat,0,1,0,0,snake,0,1,0,0");
 		assertEquals(player.getQuest("kill_gnomes"), "start;gnome,0,1,0,0,infantry gnome,0,1,0,0,cavalryman gnome,0,1,0,0");
-		assertEquals(player.getQuest("kill_dhohr_nuggetcutter"), "start;Dhohr Nuggetcutter,0,1,0,0,mountain dwarf,0,1,0,0,mountain elder dwarf,0,1,0,0,mountain hero dwarf,0,1,0,0,mountain leader dwarf,0,1,0,0");		
+		assertEquals(player.getQuest("kill_dhohr_nuggetcutter"), "start;Dhohr Nuggetcutter,0,1,0,0,mountain dwarf,0,1,0,0,mountain elder dwarf,0,1,0,0,mountain hero dwarf,0,1,0,0,mountain leader dwarf,0,1,0,0");
 	}
-	
+
 	/**
 	 * Test updating the keyring feature.
 	 */
@@ -162,7 +162,7 @@ public class UpdateConverterTest {
 		UpdateConverter.updateKeyring(player);
 		assertNull("Updating without keyring feature should not create a keyring", player.getFirstEquipped("keyring"));
 		assertNull("Sanity check", player.getFeature("keyring"));
-		
+
 		// The actual update checks
 		player.setFeature("keyring", true);
 		assertNotNull("Sanity check", player.getFeature("keyring"));

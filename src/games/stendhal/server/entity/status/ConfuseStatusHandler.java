@@ -23,7 +23,7 @@ public class ConfuseStatusHandler implements StatusHandler<ConfuseStatus> {
 
 	/**
 	 * inflicts a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 * @param attacker the attacker
@@ -51,7 +51,7 @@ public class ConfuseStatusHandler implements StatusHandler<ConfuseStatus> {
 
 	/**
 	 * removes a status
-	 * 
+	 *
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */

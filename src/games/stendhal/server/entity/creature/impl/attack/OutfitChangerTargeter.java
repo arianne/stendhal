@@ -15,14 +15,14 @@ import games.stendhal.server.entity.creature.Creature;
 
 /**
  * A target selection strategy that changes the outfit of the creature depending
- * on its attacking status. 
+ * on its attacking status.
  */
 public class OutfitChangerTargeter implements TargetSelectionStrategy {
 	final TargetSelectionStrategy base;
 	final String peaceful;
 	final String attacking;
 	String currentOutfit;
-	
+
 	OutfitChangerTargeter(String param) {
 		String[] args = param.split(";");
 		if (args.length != 3) {
@@ -50,12 +50,12 @@ public class OutfitChangerTargeter implements TargetSelectionStrategy {
 			outfit = peaceful;
 		}
 		// Change the creature representation if the attacking status has
-		// changed 
+		// changed
 		if (currentOutfit != outfit) {
 			creature.put("subclass", outfit);
 			currentOutfit = outfit;
 		}
-		
+
 		return rval;
 	}
 }

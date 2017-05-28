@@ -37,7 +37,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 /**
- * A solid, movable block on a map. It can have different apearances, 
+ * A solid, movable block on a map. It can have different apearances,
  * for example a farm cart.
  *
  * @author madmetzger
@@ -167,7 +167,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		for (BlockTarget blockTarget : blockTargetsAt) {
 			blockTarget.untrigger();
 		}
-		
+
 		// after push
 		int x = getXAfterPush(d);
 		int y = getYAfterPush(d);

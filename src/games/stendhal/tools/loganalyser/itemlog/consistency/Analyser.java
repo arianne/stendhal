@@ -18,12 +18,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Log4J;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.apache.log4j.Logger;
 
 /**
  * Analyses the itemlog for suspicious activity.
@@ -36,14 +36,14 @@ public class Analyser {
 		+ "event, param1, param2, param3, param4 FROM itemlog "
 		+ " WHERE timedate > '[timedate]'"
 		+ " ORDER BY itemid, timedate";
-	
+
 	private LogEntryIterator queryDatabase(final DBTransaction transaction, final String timedate) throws SQLException {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("timedate", timedate);
 		final ResultSet resultSet = transaction.query(SQL, params);
 		return new LogEntryIterator(resultSet);
 	}
-	
+
 	public void analyse(final String timedate) {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -52,13 +52,13 @@ public class Analyser {
 			ItemLocation itemLocation = null;
 			while (itr.hasNext()) {
 				final LogEntry entry = itr.next();
-	
+
 				// detect group change (next item)
 				if (!entry.getItemid().equals(itemid)) {
 					itemLocation = new ItemLocation();
 					itemid = entry.getItemid();
 				}
-	
+
 				if (itemLocation != null) {
 					// check consistency
 					final boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
@@ -84,7 +84,7 @@ public class Analyser {
 	 */
 	public static void main(final String[] args) {
 		Log4J.init();
-		new DatabaseFactory().initializeDatabase();	
+		new DatabaseFactory().initializeDatabase();
 		String timedate = "1900-01-01";
 		if (args.length > 0) {
 			timedate = args[0];

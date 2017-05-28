@@ -11,18 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
-import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.MousePopupAdapter;
-import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.common.NotificationType;
-
 import java.awt.Component;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -46,6 +34,18 @@ import javax.swing.JTabbedPane;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.MousePopupAdapter;
+import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.common.NotificationType;
+
 /**
  * A component for showing the information about the adventurer group the user
  * belongs to.
@@ -58,7 +58,7 @@ class GroupPanel {
 	 */
 	private static final int POPUP_OFFSET = 5;
 	/**
-	 * Width of the indenting of the member list compared to the other text 
+	 * Width of the indenting of the member list compared to the other text
 	 * in the panel.
 	 */
 	private static final int LIST_INDENT = 5;
@@ -72,7 +72,7 @@ class GroupPanel {
 	private static final ImageIcon INVITE_ICON = new ImageIcon(DataLoader.getResource("data/gui/buddy_online.png"));
 	/** Image used for the leave group button */
 	private static final ImageIcon LEAVE_ICON = new ImageIcon(DataLoader.getResource("data/gui/buddy_offline.png"));
-	
+
 	/** The main containing component. */
 	private final JComponent pane;
 	/**
@@ -92,15 +92,15 @@ class GroupPanel {
 	private final JButton messageButton;
 	/** Button for inviting new members or starting a group */
 	private final JButton inviteButton;
-	
+
 	// Invite handling
 	/** Currently active invites */
 	private final Map<String, JComponent> invites = new HashMap<String, JComponent>();
 	private final JComponent inviteContainer;
-	
+
 	/** A flag for detecting if the component has been shown before */
 	private boolean initialized = false;
-	
+
 	/**
 	 * Create a new GroupPanel.
 	 */
@@ -123,12 +123,12 @@ class GroupPanel {
 				pane.removeComponentListener(this);
 			}
 		});
-		
+
 		// The optionally shown member label
 		memberLabel = new JLabel("Members:");
 		pane.add(memberLabel);
 		memberLabel.setVisible(false);
-		
+
 		memberList = new MemberListModel();
 		memberListComponent = new JList<Member>(memberList);
 		memberListComponent.setFocusable(false);
@@ -151,12 +151,12 @@ class GroupPanel {
 		 */
 		memberListComponent.setBorder(BorderFactory.createEmptyBorder(0, LIST_INDENT, 0, LIST_INDENT));
 		pane.add(memberListComponent, SLayout.EXPAND_X);
-		
-		// Add a place for the invitation buttons. It will usually be invisible 
+
+		// Add a place for the invitation buttons. It will usually be invisible
 		inviteContainer = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
 		inviteContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		pane.add(inviteContainer);
-		
+
 		// Bottom row action buttons
 		SBoxLayout.addSpring(pane);
 		JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -174,49 +174,49 @@ class GroupPanel {
 		messageButton.setFocusable(false);
 		messageButton.setToolTipText("Send a message to all group members");
 		buttonBox.add(messageButton);
-		
+
 		inviteButton = new JButton(INVITE_ICON);
 		inviteButton.setFocusable(false);
 		inviteButton.setToolTipText(START_GROUP_TOOLTIP);
 		inviteButton.addActionListener(new InviteActionListener());
 		buttonBox.add(inviteButton);
-		
+
 		leaveGroupButton = new JButton(LEAVE_ICON);
 		leaveGroupButton.setEnabled(false);
 		leaveGroupButton.addActionListener(new LeaveActionListener());
 		leaveGroupButton.setFocusable(false);
 		leaveGroupButton.setToolTipText("Resign from the group");
 		buttonBox.add(leaveGroupButton);
-		
+
 		// We have no space to waste in the panel
 		Insets oldMargin = messageButton.getMargin();
-		Insets margin = new Insets(oldMargin.top, 1, oldMargin.bottom, 1); 
+		Insets margin = new Insets(oldMargin.top, 1, oldMargin.bottom, 1);
 		messageButton.setMargin(margin);
 		inviteButton.setMargin(margin);
 		leaveGroupButton.setMargin(margin);
 	}
-	
+
 	/**
 	 * Get the group panel component.
-	 * 
+	 *
 	 * @return group information display component
 	 */
 	JComponent getComponent() {
 		return pane;
 	}
-	
+
 	/**
 	 * Set the header text.
-	 * 
+	 *
 	 * @param text header contents
 	 */
 	void showHeader(String text) {
 		header.setText(text);
 	}
-	
+
 	/**
 	 * Set the member list.
-	 * 
+	 *
 	 * @param members list of members
 	 */
 	void setMembers(List<String> members) {
@@ -238,15 +238,15 @@ class GroupPanel {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the current leader of the group.
-	 * 
+	 *
 	 * @param name leader name
 	 */
 	void setLeader(String name) {
 		memberList.setLeader(name);
-		
+
 		if (name.equals(User.getCharacterName())) {
 			inviteButton.setEnabled(true);
 			inviteButton.setToolTipText(INVITE_TOOLTIP);
@@ -265,10 +265,10 @@ class GroupPanel {
 		 */
 		initialized = true;
 	}
-	
+
 	/**
 	 * Add a join button for an invite, and switch to the group tab.
-	 * 
+	 *
 	 * @param name group name
 	 */
 	void receiveInvite(final String name) {
@@ -293,10 +293,10 @@ class GroupPanel {
 		inviteContainer.add(joinButton, SLayout.EXPAND_X);
 		inviteContainer.revalidate();
 	}
-	
+
 	/**
 	 * Remove the join button of an invite.
-	 * 
+	 *
 	 * @param name group name
 	 */
 	void expireInvite(final String name) {
@@ -307,37 +307,37 @@ class GroupPanel {
 		}
 		invites.remove(name);
 	}
-	
+
 	/**
 	 * Called, when a player is added to the zone. The player is not necessarily
 	 * a member of the group.
-	 * 
+	 *
 	 * @param player added player
 	 * @return <code>true</code> if the added player was is member,
-	 * 	<code>false</code> otherwise. 
+	 * 	<code>false</code> otherwise.
 	 */
 	boolean addPlayer(Player player) {
 		Member member = memberList.getMember(player.getName());
-		
+
 		if (member != null) {
 			member.setHpRatio(player.getHpRatio());
 			member.setPresent(true);
 			/*
 			 * Add last to avoid a spurious change event when setting the HP
 			 * ratio. We must always trigger one manually at the end anyway to
-			 * account for the presence change. 
+			 * account for the presence change.
 			 */
 			player.addChangeListener(new MemberHealthListener(member));
 			memberList.memberChanged(member);
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Called for new members that are present at the zone.
-	 * 
+	 *
 	 * @param players list of players on the zone
 	 */
 	void addPlayers(List<Player> players) {
@@ -347,11 +347,11 @@ class GroupPanel {
 			}
 		}
 	}
-	
+
 	/**
 	 * Called, when a player is removed from the zone. The player is not
 	 * necessarily a member of the group.
-	 * 
+	 *
 	 * @param player removed player
 	 */
 	void removePlayer(IEntity player) {
@@ -361,7 +361,7 @@ class GroupPanel {
 			memberList.memberChanged(member);
 		}
 	}
-	
+
 	/**
 	 * Listener for clicking the leave group button.
 	 */
@@ -372,7 +372,7 @@ class GroupPanel {
 			SlashActionRepository.get("group").execute(args, "");
 		}
 	}
-	
+
 	/**
 	 * Listener for clicking the invite button
 	 */
@@ -383,29 +383,29 @@ class GroupPanel {
 			j2DClient.get().addEventLine(new HeaderLessEventLine("Fill in the name of the player you want to invite", NotificationType.CLIENT));
 		}
 	}
-	
+
 	/**
 	 * Listener for changing the loot mode.
 	 */
 	private static class LootmodeActionListener implements ActionListener {
 		private final String mode;
-		
+
 		/**
 		 * Create a LootmodeActionListener for changing to a specified mode.
-		 * 
+		 *
 		 * @param mode new loot mode
 		 */
 		LootmodeActionListener(String mode) {
 			this.mode = mode;
 		}
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String[] args = { "lootmode" };
 			SlashActionRepository.get("group").execute(args, mode);
 		}
 	}
-	
+
 	private class HeaderMouseListener extends MousePopupAdapter {
 		@Override
 		protected void showPopup(MouseEvent e) {
@@ -418,15 +418,15 @@ class GroupPanel {
 			JMenuItem item = new JMenuItem("Shared");
 			item.addActionListener(new LootmodeActionListener("shared"));
 			popup.add(item);
-			
+
 			item = new JMenuItem("Single");
 			item.addActionListener(new LootmodeActionListener("single"));
 			popup.add(item);
-			
+
 			popup.show(header, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 		}
 	}
-	
+
 	private class MemberListMouseListener extends MousePopupAdapter {
 		@Override
 		protected void showPopup(final MouseEvent e) {

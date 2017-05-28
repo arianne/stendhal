@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author kymara
- * 
+ *
  * Less safe for players below level 50
  */
 public class ElementalRaid extends CreateRaid {
@@ -33,7 +33,7 @@ public class ElementalRaid extends CreateRaid {
 		attackArmy.put("air elemental", 7);
 		return attackArmy;
 	}
-	
+
 	@Override
 	protected String getInfo() {
 		return "Less safe for players below level 50";

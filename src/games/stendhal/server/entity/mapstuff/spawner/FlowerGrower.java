@@ -19,7 +19,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.FertileGround;
-
 import marauroa.common.game.RPObject;
 
 /**
@@ -27,10 +26,10 @@ import marauroa.common.game.RPObject;
  * <p>
  * The standard vegetable grower would restart production cycle after removal of
  * fruit.
- * 
+ *
  * Fruit is only grown when FlowerGrower is in the same place as an entity in
  * zone that implements FertileGround
- * 
+ *
  */
 public class FlowerGrower extends VegetableGrower {
 	/** 5 hours for one growing step */
@@ -51,9 +50,9 @@ public class FlowerGrower extends VegetableGrower {
 	/**
 	 * Constructor for loading FlowerGrower from the stored zone used by
 	 * StendhalRPObjectFactory.
-	 * 
+	 *
 	 * @see StendhalRPObjectFactory
-	 * 
+	 *
 	 * @param object
 	 *            the restored object from db
 	 * @param itemname
@@ -66,7 +65,7 @@ public class FlowerGrower extends VegetableGrower {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * Default FlowerGrower produces lilia.
 	 */
 	public FlowerGrower() {
@@ -77,10 +76,10 @@ public class FlowerGrower extends VegetableGrower {
 	/**
 	 * Constructor of a FlowerGrower growing an item with the name specified in
 	 * infostring.
-	 * 
+	 *
 	 * @param infoString
 	 *            the name of the item to produce
-	 * 
+	 *
 	 */
 	public FlowerGrower(final String infoString) {
 		super(infoString);
@@ -116,7 +115,7 @@ public class FlowerGrower extends VegetableGrower {
 
 	/**
 	 * Checks if this entity is on a free fertile spot.
-	 * 
+	 *
      * If yes, the flower can grow. Otherwise it withers and dies.
      *
 	 * @return true if there is an item implementing FertileGround in the zone,
@@ -127,7 +126,7 @@ public class FlowerGrower extends VegetableGrower {
 			return false;
 		} else {
 			final StendhalRPZone zone = this.getZone();
-			boolean passes = false; 
+			boolean passes = false;
 			for (Entity entity : zone.getEntitiesAt(getX(), getY())) {
 				if (entity instanceof FlowerGrower) {
 					if (!equals(entity)) {

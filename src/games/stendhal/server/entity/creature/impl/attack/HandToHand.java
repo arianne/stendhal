@@ -31,7 +31,7 @@ class HandToHand implements AttackStrategy {
 	public boolean canAttackNow(final Creature creature) {
 		return canAttackNow(creature, creature.getAttackTarget());
 	}
-	
+
 	@Override
 	public boolean canAttackNow(Creature attacker, RPEntity target) {
 		if (target != null) {

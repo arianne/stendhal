@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Testing;
@@ -19,8 +21,6 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.log4j.Logger;
 
 /**
  * a status attacker for poison
@@ -47,21 +47,21 @@ public class PoisonAttacker extends StatusAttacker {
 		// Create a temporary instance to adjust without affecting entity's
 		// built-in probability.
 		Double actualProbability = myProbability;
-		
+
 		String resistAttribute = "resist_poisoned";
 		if (target.has(resistAttribute)) {
 			Double probabilityAdjust = 1.0 - target.getDouble(resistAttribute);
-			
+
 			if (logger.isDebugEnabled()) {
 				logger.info("Adjusting POISONED status infliction resistance: "
 						+ Double.toString(myProbability) + " * "
 						+ Double.toString(probabilityAdjust) + " = "
 						+ Double.toString(myProbability * probabilityAdjust));
 			}
-			
+
 			actualProbability = myProbability * probabilityAdjust;
 		}
-		
+
 		// DEBUG
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			if (target.has(resistAttribute)) {
@@ -86,7 +86,7 @@ public class PoisonAttacker extends StatusAttacker {
 				}
 			}
 		}
-		
+
 		final int roll = Rand.roll1D100();
 		if (roll <= actualProbability) {
 			if (target.getStatusList().inflictStatus((Status) getStatus().clone(), attacker)) {

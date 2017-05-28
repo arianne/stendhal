@@ -19,24 +19,24 @@ import org.apache.log4j.Logger;
 
 /**
  * Manages a list of player names
- * 
+ *
  * @author madmetzger
  */
 public class PlayerList {
 	private static final Logger logger = Logger.getLogger(PlayerList.class);
-	
+
 	private Set<String> namesList = new HashSet<String>();
 
 	public Set<String> getNamesList() {
 		return namesList;
 	}
-	
+
 	void removePlayer(String player) {
 		logger.debug("Player "+player+" removed.");
 		namesList.remove(player);
 		logger.debug("Currently in list after remove: "+namesList);
 	}
-	
+
 	void addPlayer(String player) {
 		logger.debug("Player "+player+" added.");
 		namesList.add(player);

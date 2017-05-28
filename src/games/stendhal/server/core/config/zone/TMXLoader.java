@@ -12,11 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
-import games.stendhal.common.Base64;
-import games.stendhal.common.tiled.LayerDefinition;
-import games.stendhal.common.tiled.StendhalMapStructure;
-import games.stendhal.common.tiled.TileSetDefinition;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -37,16 +32,21 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import games.stendhal.common.Base64;
+import games.stendhal.common.tiled.LayerDefinition;
+import games.stendhal.common.tiled.StendhalMapStructure;
+import games.stendhal.common.tiled.TileSetDefinition;
+
 /**
  * Loads a TMX file to server so it can understand: a) The objects layer b) The
  * collision layer c) The protection layer. d) All the layers that are sent to
  * client e) The tileset data that is also transfered to client f) A preview of
  * the zone for the minimap.
- * 
+ *
  * Client would get the layers plus the tileset info.
- * 
+ *
  * @author miguel
- * 
+ *
  */
 public class TMXLoader {
 	private static Logger logger = Logger.getLogger(TMXLoader.class);
@@ -115,7 +115,7 @@ public class TMXLoader {
 	 * element is encountered, it recursively calls itself with the children of
 	 * this node. This function ensures backward compatibility with tmx version
 	 * 0.99a.
-	 * 
+	 *
 	 * @param children
 	 *            the children amongst which to find properties
 	 * @param props
@@ -136,9 +136,9 @@ public class TMXLoader {
 
 	/**
 	 * Loads a map layer from a layer node.
-	 * @param t 
+	 * @param t
 	 * @return the layer definition for the node
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private LayerDefinition readLayer(final Node t) throws Exception {
 		final int layerWidth = getAttribute(t, "width", stendhalMap.getWidth());
@@ -184,7 +184,7 @@ public class TMXLoader {
 						while (offset != raw.length) {
 							offset += is.read(raw, offset, raw.length - offset);
 						}
-						
+
 						bais.close();
 					}
 				}
@@ -230,14 +230,14 @@ public class TMXLoader {
 			factory.setIgnoringComments(true);
 			factory.setIgnoringElementContentWhitespace(true);
 			factory.setExpandEntityReferences(false);
-			// Xerces normally tries to retrieve the dtd, even when it's not used - and 
-			// dies if it fails. 
+			// Xerces normally tries to retrieve the dtd, even when it's not used - and
+			// dies if it fails.
 			try {
 				factory.setAttribute("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 			} catch (final IllegalArgumentException e) {
 				logger.warn(e, e);
 			}
-			
+
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(in, xmlPath);
 		} catch (final SAXException e) {
@@ -284,7 +284,7 @@ public class TMXLoader {
 		 * map=new TMXLoader().readMap("tiled/Level 0/nalwor/city.tmx");
 		 * map=new TMXLoader().readMap("tiled/Level 0/orril/castle.tmx");
 		 * }
-		 * 
+		 *
 		 * System.out.println("Time ellapsed (ms): " + (System.currentTimeMillis()-start)); /
 		 */
 		map = new TMXLoader().readMap("tiled/Level 0/semos/village_w.tmx");
@@ -310,7 +310,7 @@ public class TMXLoader {
 					} else {
 						System.out.print(gid + ",");
 					}
-					
+
 				}
 				System.out.println();
 			}

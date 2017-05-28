@@ -13,10 +13,11 @@
 package utilities.RPClass;
 
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
-import marauroa.common.game.RPClass;
 
 import org.junit.Test;
+
+import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
+import marauroa.common.game.RPClass;
 
 public class ArrestWarrentTestHelperTest {
 

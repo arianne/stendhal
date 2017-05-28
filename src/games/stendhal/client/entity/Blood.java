@@ -43,7 +43,7 @@ public class Blood extends Entity {
 
 	/**
 	 * Get the current amount.
-	 * 
+	 *
 	 * @return The current amount.
 	 */
 	public int getAmount() {
@@ -56,10 +56,10 @@ public class Blood extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	@Override
@@ -82,7 +82,7 @@ public class Blood extends Entity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -103,7 +103,7 @@ public class Blood extends Entity {
 
 	/**
 	 * The object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes

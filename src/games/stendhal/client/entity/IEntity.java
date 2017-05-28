@@ -55,7 +55,7 @@ public interface IEntity {
 
 	/**
 	 * Add a change listener.
-	 * 
+	 *
 	 * @param listener
 	 *            The listener.
 	 */
@@ -63,21 +63,21 @@ public interface IEntity {
 
 	/**
 	 * Get the area the entity occupies.
-	 * 
+	 *
 	 * @return A rectange (in world coordinate units).
 	 */
 	Rectangle2D getArea();
 
 	/**
 	 * Get the entity visibility.
-	 * 
+	 *
 	 * @return The entity visibility (0 - 100).
 	 */
 	int getVisibility();
 
 	/**
 	 * Get the entity height.
-	 * 
+	 *
 	 * @return The height.
 	 */
 	double getHeight();
@@ -87,97 +87,97 @@ public interface IEntity {
 
 	/**
 	 * Get the entity class.
-	 * 
+	 *
 	 * @return The entity class.
 	 */
 	String getEntityClass();
 
 	/**
 	 * Get the name.
-	 * 
+	 *
 	 * @return The name.
 	 */
 	String getName();
 
 	/**
 	 * Get the entity sub-class.
-	 * 
+	 *
 	 * @return The entity sub-class.
 	 */
 	String getEntitySubclass();
 
 	/**
 	 * Get the nicely formatted entity title.
-	 * 
+	 *
 	 * This searches the follow attribute order: title, name (w/o underscore),
 	 * type (w/o underscore).
-	 * 
+	 *
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	String getTitle();
 
 	/**
 	 * Get the entity type.
-	 * 
+	 *
 	 * @return The type.
 	 */
 	String getType();
 
 	/**
 	 * Get the X coordinate.
-	 * 
+	 *
 	 * @return The X coordinate.
 	 */
 	double getX();
 
 	/**
 	 * Get the Y coordinate.
-	 * 
+	 *
 	 * @return The Y coordinate.
 	 */
 	double getY();
 
 	/**
 	 * Get the RPObject this represents.
-	 * 
+	 *
 	 * @return The RPObject.
 	 */
 	RPObject getRPObject();
 
 	/**
 	 * Get the entity width.
-	 * 
+	 *
 	 * @return The width.
 	 */
 	double getWidth();
 
 	/**
 	 * Determine if this entity is on the ground.
-	 * 
+	 *
 	 * @return <code>true</code> if the entity is on the ground.
 	 */
 	boolean isOnGround();
-	
+
 	/**
 	 * Check if the entity is the user.
-	 * 
+	 *
 	 * @return <code>true</code> if the entity is the user
 	 */
 	boolean isUser();
 
 	/**
 	 * Get the resistance this has on other entities (0-100).
-	 * 
+	 *
 	 * @return The resistance.
 	 */
 	int getResistance();
 
 	/**
 	 * Get the amount of resistance between this and another entity (0-100).
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to check against.
-	 * 
+	 *
 	 * @return The effective resistance.
 	 */
 	int getResistance(final IEntity entity);
@@ -185,7 +185,7 @@ public interface IEntity {
 	/**
 	 * Gets the slot specified by name.
 	 * @param name of the slot
-	 * 
+	 *
 	 * @return    the specified slot or <code>null</code> if the entity does not
 	 * have this slot
 	 */
@@ -193,20 +193,20 @@ public interface IEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
-	 * 
+	 *
 	 * @see #release()
 	 */
 	void initialize(final RPObject object);
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to check against.
-	 * 
+	 *
 	 * @return <code>true</code> the entity can not enter this entity's area.
 	 */
 	boolean isObstacle(final IEntity entity);
@@ -214,14 +214,14 @@ public interface IEntity {
 	/**
 	 * Release this entity. This should clean anything that isn't automatically
 	 * released (such as unregister callbacks, cancel external operations, etc).
-	 * 
+	 *
 	 * @see #initialize(RPObject)
 	 */
 	void release();
 
 	/**
 	 * Remove a change listener.
-	 * 
+	 *
 	 * @param listener
 	 *            The listener.
 	 */
@@ -229,7 +229,7 @@ public interface IEntity {
 
 	/**
 	 * Update cycle.
-	 * 
+	 *
 	 * @param delta
 	 *            The time (in ms) since last call.
 	 */
@@ -244,21 +244,21 @@ public interface IEntity {
 
 	/**
 	 * Get identifier path for the entity.
-	 * 
+	 *
 	 * @return List of object identifiers and slot names that make up the
 	 * 	complete path to the entity
 	 */
 	public List<String> getPath();
-	
+
 	/**
 	 * Add a listener for content changes
-	 * 
+	 *
 	 * @param listener
 	 */
 	void addContentChangeListener(ContentChangeListener listener);
 	/**
 	 * Remove a content change listener.
-	 * 
+	 *
 	 * @param listener
 	 */
 	void removeContentChangeListener(ContentChangeListener listener);

@@ -21,10 +21,10 @@ import games.stendhal.server.entity.RPEntity;
  *
  */
 public class ZombieStatusHandler implements StatusHandler<ZombieStatus> {
-	
+
 	/** The original base speed of the entity before being zombified */
 	private double originalSpeed;
-	
+
 	/**
 	 * @param status
 	 * 		Status to inflict

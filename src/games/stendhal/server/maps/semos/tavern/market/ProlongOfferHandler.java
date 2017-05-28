@@ -33,20 +33,20 @@ import games.stendhal.server.util.TimeUtil;
 public class ProlongOfferHandler extends OfferHandler {
 	@Override
 	public void add(SpeakerNPC npc) {
-		npc.add(ConversationStates.ATTENDING, "prolong", null, ConversationStates.ATTENDING, null, 
+		npc.add(ConversationStates.ATTENDING, "prolong", null, ConversationStates.ATTENDING, null,
 				new ProlongOfferChatAction());
-		npc.add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.YES_MESSAGES, 
+		npc.add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.YES_MESSAGES,
 				ConversationStates.ATTENDING, null, new ConfirmProlongOfferChatAction());
 		// PRODUCTION is a misnomer for "prolong all" service, but it's a simple
 		// way to distinguish it from a single prolong
-		npc.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.YES_MESSAGES, 
+		npc.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.YES_MESSAGES,
 				ConversationStates.ATTENDING, null, new ConfirmProlongAllChatAction());
-		npc.add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.NO_MESSAGES, null, 
+		npc.add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
-		npc.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.NO_MESSAGES, null, 
+		npc.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
 	}
-	
+
 	protected class ProlongOfferChatAction extends KnownOffersChatAction {
 
 		@Override
@@ -63,7 +63,7 @@ public class ProlongOfferHandler extends OfferHandler {
 			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();
-				
+
 				Map<String,Offer> offerMap = manager.getOfferMap();
 				if (offerMap == null) {
 					npc.say("Please check your offers first.");
@@ -78,7 +78,7 @@ public class ProlongOfferHandler extends OfferHandler {
 							quantity = getQuantity(o.getItem());
 						}
 						StringBuilder message = new StringBuilder();
-						
+
 						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).contains(o)) {
 							message.append("Your offer of ");
 							message.append(Grammar.quantityplnoun(quantity, o.getItemName(), "one"));
@@ -113,11 +113,11 @@ public class ProlongOfferHandler extends OfferHandler {
 				}
 			}
 		}
-		
+
 		private boolean handleProlongAll(Player player, Sentence sentence, EventRaiser npc) {
 			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 			int last = sentence.getExpressions().size();
-			
+
 			for (Expression expr : sentence.getExpressions().subList(1, last)) {
 				if ("all".equals(expr.toString())) {
 					Collection<Offer> offers = manager.getOfferMap().values();
@@ -142,7 +142,7 @@ public class ProlongOfferHandler extends OfferHandler {
 								+ " at price of " + o.getPrice());
 					}
 					String total = numOffers > 1 ? "total" : "";
-					npc.say("Do you want to prolong your " 
+					npc.say("Do you want to prolong your "
 							+ Grammar.plnoun(numOffers, "offer") + " of "
 							+ Grammar.enumerateCollection(offerDesc)
 							+ " for a " + total + " fee of " + price + " money?");
@@ -154,14 +154,14 @@ public class ProlongOfferHandler extends OfferHandler {
 			return false;
 		}
 	}
-	
+
 	protected class ConfirmProlongOfferChatAction implements ChatAction {
 		@Override
 		public void fire (Player player, Sentence sentence, EventRaiser npc) {
 			Offer offer = getOffer();
 			if (!wouldOverflowMaxOffers(player, offer)) {
 				Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, offer.getPrice()).intValue());
-				if (player.isEquipped("money", fee)) { 
+				if (player.isEquipped("money", fee)) {
 					if (prolongOffer(player, offer)) {
 						TradingUtility.substractTradingFee(player, offer.getPrice());
 						npc.say("I prolonged your offer and took the fee of "+fee.toString()+" again.");
@@ -178,40 +178,40 @@ public class ProlongOfferHandler extends OfferHandler {
 						+ " active offers at a time.");
 			}
 		}
-		
+
 		/**
 		 * Check if prolonging an offer would result the player having too many active offers on market.
-		 * 
+		 *
 		 * @param player the player to be checked
 		 * @param offer the offer the player wants to prolong
 		 * @return true if prolonging the offer should be denied
 		 */
 		boolean wouldOverflowMaxOffers(Player player, Offer offer) {
 			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
-			
+
 			if ((market.countOffersOfPlayer(player) == TradingUtility.MAX_NUMBER_OFF_OFFERS)
 					&& market.getExpiredOffers().contains(offer)) {
 				return true;
 			}
-			
+
 			return false;
 		}
-		
+
 		boolean prolongOffer(Player player, Offer o) {
 			Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 			if (market != null) {
 				if (market.prolongOffer(o) != null) {
 					String messageNumberOfOffers = "You now have put "+Integer.valueOf(market.countOffersOfPlayer(player)).toString()+" offers.";
 					player.sendPrivateText(messageNumberOfOffers);
-					
+
 					return true;
 				}
 			}
-			
+
 			return false;
 		}
 	}
-	
+
 	private class ConfirmProlongAllChatAction extends ConfirmProlongOfferChatAction {
 		@Override
 		public void fire (Player player, Sentence sentence, EventRaiser npc) {
@@ -224,7 +224,7 @@ public class ProlongOfferHandler extends OfferHandler {
 					quantity = getQuantity(offer.getItem());
 				}
 				String offerDesc = Grammar.quantityplnoun(quantity, offer.getItemName(), "one");
-				
+
 				if (!offer.getOfferer().equals(player.getName())) {
 					// This should not be possible, but it does not hurt to check
 					// it anyway.
@@ -234,14 +234,14 @@ public class ProlongOfferHandler extends OfferHandler {
 					clear = true;
 					break;
 				}
-				
+
 				if (!wouldOverflowMaxOffers(player, offer)) {
 					Integer fee = Integer.valueOf(TradingUtility.calculateFee(player, offer.getPrice()).intValue());
 					if (player.isEquipped("money", fee)) {
-					
+
 						if (prolongOffer(player, offer)) {
 							TradingUtility.substractTradingFee(player, offer.getPrice());
-							npc.say("I prolonged your offer of " + offerDesc 
+							npc.say("I prolonged your offer of " + offerDesc
 									+ " and took the fee of " + fee.toString() + ".");
 						} else {
 							npc.say("Sorry, that offer of " + offerDesc + " has already been removed from the market.");
@@ -257,7 +257,7 @@ public class ProlongOfferHandler extends OfferHandler {
 					break;
 				}
 			}
-			
+
 			if (clear) {
 				// Changed the status, or it has been changed by expiration. Obsolete the offers
 				((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();

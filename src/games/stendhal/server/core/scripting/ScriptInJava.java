@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,6 +20,8 @@ import java.net.URLClassLoader;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import games.stendhal.server.entity.player.Player;
 
 /**
  * Manager for scripts written in Java.

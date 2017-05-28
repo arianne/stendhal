@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.PlayerList;
@@ -24,22 +28,17 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 /**
- * Script to make all players stronger and immune to poison before randomly distributing them 
+ * Script to make all players stronger and immune to poison before randomly distributing them
  * over all zones of the running server
- *  
+ *
  * @author madmetzger
  */
 public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
-	
+
 	private List<StendhalRPZone> zones = new ArrayList<StendhalRPZone>();
-	
+
 	/**
 	 * Create the script and initialize the list of zones
 	 */
@@ -69,15 +68,15 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 				}
 			}
 		}
-		
+
 	}
-	
+
 	private class MoveAndStrengthenPlayersTurnListener implements TurnListener {
-		
+
 		private final PlayerList playersToDealWith;
-		
+
 		private final Player admin;
-		
+
 		MoveAndStrengthenPlayersTurnListener(PlayerList pl, Player executor) {
 			playersToDealWith = pl;
 			admin = executor;
@@ -154,7 +153,7 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 				}
 			});
 		}
-		
+
 	}
 
 }

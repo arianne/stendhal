@@ -1,21 +1,22 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
- ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 (function() {
 
 	var HEALTH_BAR_HEIGHT = 6;
-
 
 
 /**
@@ -44,7 +45,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			if (key === "hp" && oldValue != undefined) {
 				this.onHPChanged(this[key] - oldValue);
 			}
-		} else if (key == "target") {
+		} else if (key === "target") {
 			if (this._target) {
 				this._target.onAttackStopped(this);
 			}
@@ -62,7 +63,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 	
 	unset: function(key) {
-		if (key == "target" && this._target) {
+		if (key === "target" && this._target) {
 			this._target.onAttackStopped(this);
 			this._target = null;
 		} else if (key === "away") {
@@ -88,7 +89,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		 * will need to be adjusted.
 		 */
 		if (!this["menu"]) {
-			if (marauroa.me._target == this) {
+			if (marauroa.me._target === this) {
 				list.push({
 					title: "Stop attack",
 					action: function(entity) {

@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
-import marauroa.common.game.RPClass;
-import marauroa.common.game.Definition.Type;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
+import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * an entity that can be placed on the map and will allow the client to "use"
@@ -38,7 +38,7 @@ public abstract class UseableEntity extends Entity implements UseListener {
 	public static void generateRPClass() {
 		final RPClass rpclass = new RPClass("useable_entity");
 		rpclass.isA("entity");
-		
+
 		// class: source/switch
 		rpclass.addAttribute("class", Type.STRING);
 

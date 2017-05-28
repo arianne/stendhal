@@ -12,6 +12,7 @@
 package games.stendhal.server.actions.attack;
 
 import static games.stendhal.common.constants.Actions.ATTACK;
+
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;

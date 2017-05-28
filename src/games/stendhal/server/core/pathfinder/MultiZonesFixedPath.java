@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.pathfinder;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.GuidedEntity;
-import games.stendhal.server.entity.Registrator;
-
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.GuidedEntity;
+import games.stendhal.server.entity.Registrator;
 
 /**
  * class for NPC's multi-zones traveling

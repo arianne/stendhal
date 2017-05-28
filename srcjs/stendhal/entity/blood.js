@@ -1,19 +1,20 @@
 /***************************************************************************
  *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
- ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    * 
+ *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+
 /**
- * Item
+ * Bllod
  */
 marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 
@@ -25,12 +26,12 @@ marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFac
 			height: 32,
 			width: 32,
 			filename: "/data/sprites/combat/blood_red.png"
-		}
+		};
 	},
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory["blood"].proto.set.apply(this, arguments);
-		if (key == "amount") {
+		if (key === "amount") {
 			this.sprite.offsetY = parseInt(value, 10) * 32;
 		}
 	}

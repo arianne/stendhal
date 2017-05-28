@@ -16,7 +16,7 @@ import marauroa.common.game.Result;
 
 /**
  * validates the character used for the character name.
- * 
+ *
  * @author hendrik
  */
 public class NameCharacterValidator implements AccountParameterValidator {
@@ -24,7 +24,7 @@ public class NameCharacterValidator implements AccountParameterValidator {
 
 	/**
 	 * creates a NameCharacterValidator.
-	 * 
+	 *
 	 * @param parameterValue
 	 *            value to validate
 	 */

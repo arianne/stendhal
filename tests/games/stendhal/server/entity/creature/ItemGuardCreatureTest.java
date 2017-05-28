@@ -13,23 +13,23 @@
 package games.stendhal.server.entity.creature;
 
 import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.server.game.db.DatabaseFactory;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CreatureTestHelper;
 
 
 public class ItemGuardCreatureTest {
-	
+
 	@Before
 	public void setUp() {
 		MockStendlRPWorld.get();
@@ -39,12 +39,12 @@ public class ItemGuardCreatureTest {
 		Log4J.init();
 		new DatabaseFactory().initializeDatabase();
 	}
-	
+
 	@After
 	public void tearDown() {
 		MockStendlRPWorld.reset();
 	}
-	
+
 	@Test
 	public void testOnDead() {
 		StendhalRPZone zone = new StendhalRPZone("test zone");

@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Checks if an optional subject in the user input matches the NPC name. Use with greeting messages in IDLE state at busy places.
@@ -69,7 +69,7 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 
 	/**
 	 * Check if all of the given words are present in nameWords.
-	 * 
+	 *
 	 * @param words list of words to search for
 	 * @return <code>true</code> if all the words were found, otherwise
 	 * 	<code>false</code>

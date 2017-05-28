@@ -12,15 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.twilightzone;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /*
  * Twilight zone is a copy of sewing room in dirty colours with a delirious sick lda (like Ida) in it
