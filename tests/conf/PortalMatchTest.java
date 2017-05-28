@@ -14,6 +14,7 @@ package conf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -53,6 +54,7 @@ public class PortalMatchTest {
 				}
 			});
 
+			assertThat(files, notNullValue());
 			assertThat("files should not be empty", files.length, not((is(0))));
 			for (final File f : files) {
 				final Document doc = docBuilder.parse(f);

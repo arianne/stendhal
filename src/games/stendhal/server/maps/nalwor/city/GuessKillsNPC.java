@@ -58,7 +58,7 @@ public class GuessKillsNPC implements ZoneConfigurator {
      */
     @Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-        buildNPC(zone, attributes);
+        buildNPC(zone);
     }
 
     /**
@@ -67,7 +67,7 @@ public class GuessKillsNPC implements ZoneConfigurator {
      * @param zone The zone to add the NPC to.
      * @param attributes
      */
-    private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+    private void buildNPC(final StendhalRPZone zone) {
         final SpeakerNPC npc = new SpeakerNPC("Crearid") {
 
             @Override

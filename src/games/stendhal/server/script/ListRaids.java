@@ -68,11 +68,10 @@ public class ListRaids extends ScriptImpl {
 	 * @throws ClassNotFoundException if getting the class loader or reading the
 	 * 	script resources fail
 	 */
-	private static ArrayList<Class<?>> getClasses(final String pckgname) throws ClassNotFoundException {
+	private static ArrayList<Class<?>> getClasses(final String packageName) throws ClassNotFoundException {
 		final ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
 		try {
 			ClassLoader classLoader = ListRaids.class.getClassLoader();
-			String packageName = "games.stendhal.server.script";
 			ImmutableSet<ClassInfo> infos = ClassPath.from(classLoader).getTopLevelClasses(packageName);
 			for (ClassInfo info : infos) {
 				classes.add(info.load());

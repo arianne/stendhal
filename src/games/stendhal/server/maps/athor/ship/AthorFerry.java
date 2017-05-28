@@ -68,11 +68,11 @@ public final class AthorFerry implements TurnListener {
 	 */
 	public static AthorFerry get() {
 		if (instance == null) {
-			instance = new AthorFerry();
+			AthorFerry instance = new AthorFerry();
 
 			// initiate the turn notification cycle
 			SingletonRepository.getTurnNotifier().notifyInSeconds(1, instance);
-
+			AthorFerry.instance = instance;
 		}
 		return instance;
 	}

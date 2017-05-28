@@ -37,7 +37,7 @@ public class EasterBunny extends ScriptImpl {
 		if (enable) {
 			startEaster(admin);
 		} else {
-			stopEaster(admin);
+			stopEaster();
 		}
 	}
 
@@ -60,7 +60,7 @@ public class EasterBunny extends ScriptImpl {
 	 *
 	 * @param admin adminstrator running the script
 	 */
-	private void stopEaster(Player admin) {
+	private void stopEaster() {
 		System.getProperties().remove("stendhal.easterbunny");
 		StendhalQuestSystem.get().unloadQuest(MeetBunny.QUEST_NAME);
 	}

@@ -37,7 +37,7 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 	 */
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 	 * @param zone
 	 * @param attributes
 	 */
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Ivan Abe") {
 			@Override
 			protected void createPath() {
