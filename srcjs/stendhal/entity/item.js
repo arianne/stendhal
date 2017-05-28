@@ -11,6 +11,8 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+
 /**
  * Item
  */
@@ -33,7 +35,7 @@ marauroa.rpobjectFactory["item"] = marauroa.util.fromProto(marauroa.rpobjectFact
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory["item"].proto.set.apply(this, arguments);
-		if (key == "class" || key == "subclass") {
+		if (key === "class" || key === "subclass") {
 			this.sprite.filename = "/data/sprites/items/" 
 				+ this["class"] + "/" + this["subclass"] + ".png";
 		}

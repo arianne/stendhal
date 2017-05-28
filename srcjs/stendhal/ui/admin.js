@@ -11,29 +11,9 @@
 
 "use strict";
 
-var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
 
-/**
- * Bllod
- */
-marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
-
-	minimapShow: false,
-	zIndex: 2000,
-
-	init: function() {
-		this.sprite = {
-			height: 32,
-			width: 32,
-			filename: "/data/sprites/combat/blood_red.png"
-		};
-	},
-
-	set: function(key, value) {
-		marauroa.rpobjectFactory["blood"].proto.set.apply(this, arguments);
-		if (key === "amount") {
-			this.sprite.offsetY = parseInt(value, 10) * 32;
-		}
-	}
-});
+stendhal.ui.chatLog.addLine = function(type, msg) {
+	document.getElementById("app").addChatLine(type, msg);
+};
 

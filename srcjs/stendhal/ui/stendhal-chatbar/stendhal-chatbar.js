@@ -13,32 +13,46 @@
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui || {};
 
-stendhal.ui.chatinput = {
+
+Polymer({
+	is: "stendhal-chatbar", 
+
 	history: [],
 	historyIndex: 0,
 	pressedKeys: {},
+	
+	extends: 'input',
+	
+	listeners: {
+		'keydown': 'keydown',
+		'keyup': 'keyup',
+		'keypress': 'keypress'
+	},
+	
+	attached: function() {
+		this.focus();
+	},
 
 	clear: function() {
-		document.getElementById("chatinput").value = "";
+		this.value = '';
 	},
 
 	fromHistory: function(i) {
-		stendhal.ui.chatinput.historyIndex = stendhal.ui.chatinput.historyIndex + i;
-		if (stendhal.ui.chatinput.historyIndex < 0) {
-			stendhal.ui.chatinput.historyIndex = 0;
+		this.historyIndex = this.historyIndex + i;
+		if (this.historyIndex < 0) {
+			this.historyIndex = 0;
 		}
-		if (stendhal.ui.chatinput.historyIndex >= stendhal.ui.chatinput.history.length) {
-			stendhal.ui.chatinput.historyIndex = stendhal.ui.chatinput.history.length;
-			stendhal.ui.chatinput.clear();
+		if (this.historyIndex >= this.history.length) {
+			this.historyIndex = this.history.length;
+			this.clear();
 		} else {
-			document.getElementById("chatinput").value = stendhal.ui.chatinput.history[stendhal.ui.chatinput.historyIndex];
+			this.value = this.history[this.historyIndex];
 		}
 	},
 
-	onKeyDown: function(e) {
-		var event = e;
+	keydown: function(e) {
+		var event = e
 		if (!event) {
 			event = window.event;
 		}
@@ -51,18 +65,18 @@ stendhal.ui.chatinput = {
 		
 		// chat history
 		if (event.shiftKey) {
-			if (code === 38) {
-				stendhal.ui.chatinput.fromHistory(-1);
-			} else if (code === 40){
-				stendhal.ui.chatinput.fromHistory(1);
+			if (code == 38) {
+				this.fromHistory(-1);
+			} else if (code == 40){
+				this.fromHistory(1);
 			}
 		}
 
 		// if this is a repeated event, stop further processing
-		if (stendhal.ui.chatinput.pressedKeys[code]) {
+		if (this.pressedKeys[code]) {
 			return;
 		}
-		stendhal.ui.chatinput.pressedKeys[code] = true;
+		this.pressedKeys[code] = true;
 
 		// Face and Movement
 		var type = "move";
@@ -71,7 +85,7 @@ stendhal.ui.chatinput = {
 		}
 		if (code >= 37 && code <= 40) {
 			var dir = code - 37;
-			if (dir === 0) {
+			if (dir == 0) {
 				dir = 4;
 			}
 			var action = {"type": type, "dir": ""+dir};
@@ -79,7 +93,7 @@ stendhal.ui.chatinput = {
 		}
 	},
 
-	onKeyUp: function(e) {
+	keyup: function(e) {
 		var event = e
 		if (!event) {
 			event = window.event;
@@ -90,12 +104,12 @@ stendhal.ui.chatinput = {
 		} else {
 			code = e.keyCode;
 		}
-		delete stendhal.ui.chatinput.pressedKeys[code];
+		delete this.pressedKeys[code];
 
 		// Movement
 		if (code >= 37 && code <= 40) {
 			var dir = code - 37;
-			if (dir === 0) {
+			if (dir == 0) {
 				dir = 4;
 			}
 			var action = {"type": "stop"};
@@ -103,34 +117,35 @@ stendhal.ui.chatinput = {
 		}
 	},
 	
-	onKeyPress: function(e) {
-		if (e.keyCode === 13) {
-			stendhal.ui.chatinput.send();
+	keypress: function(e) {
+		if (e.keyCode == 13) {
+			this.send();
 			return false;
 		}
 		return true;
 	},
 
 	remember: function(text) {
-		if (stendhal.ui.chatinput.history.length > 100) {
-			stendhal.ui.chatinput.history.shift();
+		if (this.history.length > 100) {
+			this.history.shift();
 		}
-		stendhal.ui.chatinput.history[stendhal.ui.chatinput.history.length] = text;
-		stendhal.ui.chatinput.historyIndex = stendhal.ui.chatinput.history.length;
+		this.history[this.history.length] = text;
+		this.historyIndex = this.history.length;
 	},
 
 	send: function() {
-		var val = document.getElementById("chatinput").value;
+		var val = this.value;
 		var array = val.split(" ");
-		if (array[0] === "/choosecharacter") {
+		if (array[0] == "/choosecharacter") {
 			marauroa.clientFramework.chooseCharacter(array[1]);
-		} else if (val === '/close') {
+		} else if (val == '/close') {
 			marauroa.clientFramework.close();
 		} else {
 			if (stendhal.slashActionRepository.execute(val)) {
-				stendhal.ui.chatinput.remember(val);
+				this.remember(val);
 			}
 		}
-		stendhal.ui.chatinput.clear();
+		this.clear();
 	}
-};
+
+});

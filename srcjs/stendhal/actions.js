@@ -302,5 +302,6 @@ stendhal.slashActionRepository = {
 			return false;
 		}
 	}
-}
+};
+
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];

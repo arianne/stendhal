@@ -11,6 +11,7 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.zone = stendhal.zone || {};
 
@@ -56,4 +57,4 @@ stendhal.zone = {
 			return rv;
 		});
 	}
-}
+};
