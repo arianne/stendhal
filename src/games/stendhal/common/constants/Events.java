@@ -46,6 +46,9 @@ public final class Events {
 
 	/** an invitation to join a group */
 	public static final String GROUP_INVITE = "group_invite_event";
+	
+	/** a player send a pvp challenge */
+	public static final String PVP_NEW_CHALLENGE = "pvp_new_challenge_event";
 
 	/** progress log */
 	public static final String PROGRESS_STATUS_CHANGE = "progress_status_event";

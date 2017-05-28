@@ -13,6 +13,7 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.common.constants.Events;
+import games.stendhal.server.core.rp.pvp.PlayerVsPlayerNewChallengeEvent;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
@@ -286,6 +287,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass(Events.GROUP_INVITE)) {
 			GroupInviteEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.PVP_NEW_CHALLENGE)) {
+			PlayerVsPlayerNewChallengeEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("transition_graph")) {
 			TransitionGraphEvent.generateRPClass();
