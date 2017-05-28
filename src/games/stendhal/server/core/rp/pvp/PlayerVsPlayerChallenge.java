@@ -10,13 +10,13 @@ public class PlayerVsPlayerChallenge {
 	private final long opened;
 	private long accepted = -1l;
 	//private long lastAction = -1l;
-	private final Player challenger;
-	private final Player challenged;
+	private final String challenger;
+	private final String challenged;
 
 	public PlayerVsPlayerChallenge(long opened, Player challenger, Player challenged) {
 		this.opened = opened;
-		this.challenger = challenger;
-		this.challenged = challenged;
+		this.challenger = challenger.getName();
+		this.challenged = challenged.getName();
 	}
 
 	/**
@@ -45,8 +45,8 @@ public class PlayerVsPlayerChallenge {
 	@Override
 	public String toString() {
 		ToStringHelper helper = Objects.toStringHelper(this)
-				.add("challenger", this.challenger.getName())
-				.add("challenged", this.challenged.getName())
+				.add("challenger", this.challenger)
+				.add("challenged", this.challenged)
 				.add("accepted", this.isAccepted());
 		return helper.toString();
 	}
@@ -59,7 +59,7 @@ public class PlayerVsPlayerChallenge {
 	}
 
 	public void accept(long acceptanceTurn, Player challenged) {
-		if(this.challenged != challenged) {
+		if(this.challenged != challenged.getName()) {
 			throw new IllegalStateException("Illegal Challenged Player tries to accept challenge " + this.toString());
 		}
 		this.accepted = acceptanceTurn;
@@ -72,7 +72,7 @@ public class PlayerVsPlayerChallenge {
 	 * @return true if player equals challenged or challenger
 	 */
 	public boolean isInvolved(Player player) {
-		return this.challenger.equals(player) || this.challenged.equals(player);
+		return this.challenger.equals(player.getName()) || this.challenged.equals(player.getName());
 	}
 
 	/**
@@ -85,14 +85,14 @@ public class PlayerVsPlayerChallenge {
 	/**
 	 * @return the player who started this challenge
 	 */
-	public Player getChallenger() {
+	public String getChallenger() {
 		return challenger;
 	}
 
 	/**
 	 * @return the player who was challenged
 	 */
-	public Player getChallenged() {
+	public String getChallenged() {
 		return challenged;
 	}
 

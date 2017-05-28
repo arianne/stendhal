@@ -85,8 +85,8 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	 */
 	protected PlayerVsPlayerChallenge getOpenChallengeForPlayers(Player challenger, Player challenged) {
 		for (PlayerVsPlayerChallenge c : currentChallenges) {
-			boolean challengerEquals = c.getChallenger().equals(challenger) || c.getChallenged().equals(challenger);
-			boolean challengedEquals = c.getChallenged().equals(challenged) || c.getChallenger().equals(challenged);
+			boolean challengerEquals = c.isInvolved(challenger);
+			boolean challengedEquals = c.isInvolved(challenged);
 			if(challengerEquals && challengedEquals) {
 				if(!c.isAccepted()) {
 					return c;
@@ -141,8 +141,8 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	}
 
 	private void raiseGameEvent(PlayerVsPlayerChallenge removal, String gameEvent) {
-		String challengerName = removal.getChallenger().getName();
-		String challengedName = removal.getChallenged().getName();
+		String challengerName = removal.getChallenger();
+		String challengedName = removal.getChallenged();
 		new GameEvent(challengerName, gameEvent, challengedName).raise();
 	}
 
