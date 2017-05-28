@@ -11,12 +11,13 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.data = stendhal.data || {};
 stendhal.data.cstatus = {
 
 	send: function() {
-		if (!marauroa.me || stendhal.data.cache.get("cid") == "noIndexedDB") {
+		if (!marauroa.me || stendhal.data.cache.get("cid") === "noIndexedDB") {
 			window.setTimeout(stendhal.data.cstatus.send, 1000);
 			return;
 		}
@@ -41,7 +42,7 @@ stendhal.data.cstatus = {
 			// a client id to help with the investigation of hacked accounts
 			// especially in the common "angry sibling" case.
 			"cid": stendhal.data.cache.get("cid")
-		}
+		};
 		marauroa.clientFramework.sendAction(action);
 	}
 }

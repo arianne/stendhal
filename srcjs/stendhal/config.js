@@ -21,5 +21,5 @@ stendhal.config = {
 	gamescreen: {
 		blood: true
 	}
-}
+};
 

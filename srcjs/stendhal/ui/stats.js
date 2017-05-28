@@ -11,6 +11,7 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
@@ -31,7 +32,7 @@ stendhal.ui.stats = {
 			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
 			+ "ATK: " + object["atk"] + " x " + object["atk_item"] + "\r\n"
 			+ "DEF: " + object["def"] + " x " + object["def_item"] + "\r\n"
-		    + "XP: " + object["xp"] + "\r\n"
-		    + "Level: " + object["level"];
+			+ "XP: " + object["xp"] + "\r\n"
+			+ "Level: " + object["level"];
 	}
-}
+};

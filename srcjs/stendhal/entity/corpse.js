@@ -11,6 +11,9 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 
 	minimapShow: false,
@@ -20,9 +23,9 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		marauroa.rpobjectFactory["corpse"].proto.set.apply(this, arguments);
 
 		this.sprite = this.sprite || {};
-		if (stendhal.config.gamescreen.blood && (key == "image")) {
+		if (stendhal.config.gamescreen.blood && (key === "image")) {
 			this.sprite.filename = "/data/sprites/corpse/" + value + ".png";
-		} else if (!stendhal.config.gamescreen.blood && (key == "harmless_image")) {
+		} else if (!stendhal.config.gamescreen.blood && (key === "harmless_image")) {
 			this.sprite.fFilename = "/data/sprites/corpse/" + value + ".png";
 		}
 	},

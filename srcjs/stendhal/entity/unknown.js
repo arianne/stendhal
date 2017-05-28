@@ -11,8 +11,10 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+
 /**
- * Item
+ * Unknown entity
  */
 marauroa.rpobjectFactory["unknown"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 1,
@@ -26,7 +28,7 @@ marauroa.rpobjectFactory["unknown"] = marauroa.util.fromProto(marauroa.rpobjectF
 	},
 	
 	isVisibleToAction: function(filter) {
-		return (marauroa.me.adminlevel && marauroa.me.adminlevel >= 600);
+		return (marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600);
 	}
 });
 
