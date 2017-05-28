@@ -11,6 +11,9 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 /**
  * General entity
  */
@@ -21,8 +24,8 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory["entity"].proto.set.apply(this, arguments);
-		if (key == 'name') {
-			if (typeof(this['title']) == "undefined") {
+		if (key === 'name') {
+			if (typeof(this['title']) === "undefined") {
 				this['title'] = value;
 			}
 		} else if (['x', 'y', 'height', 'width'].indexOf(key) > -1) {
@@ -43,13 +46,13 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		}
 
 		var nextX = ((this["x"] + this["width"] >= other["x"]) && this["x"] <= other["x"])
-				|| ((other["x"] + other["width"] >= this["x"]) && other["x"] <= this["x"])
+				|| ((other["x"] + other["width"] >= this["x"]) && other["x"] <= this["x"]);
 		if (!nextX) {
 			return false;
 		}
 
 		var nextY = ((this["y"] + this["height"] >= other["y"]) && this["y"] <= other["y"])
-			|| ((other["y"] + other["height"] >= this["y"]) && other["y"] <= this["y"])
+			|| ((other["y"] + other["height"] >= this["y"]) && other["y"] <= this["y"]);
 		return nextY;
 	},
 

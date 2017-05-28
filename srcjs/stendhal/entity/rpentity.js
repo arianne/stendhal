@@ -11,10 +11,12 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 (function() {
 
 	var HEALTH_BAR_HEIGHT = 6;
-
 
 
 /**
@@ -43,7 +45,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			if (key === "hp" && oldValue != undefined) {
 				this.onHPChanged(this[key] - oldValue);
 			}
-		} else if (key == "target") {
+		} else if (key === "target") {
 			if (this._target) {
 				this._target.onAttackStopped(this);
 			}
@@ -61,7 +63,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 	
 	unset: function(key) {
-		if (key == "target" && this._target) {
+		if (key === "target" && this._target) {
 			this._target.onAttackStopped(this);
 			this._target = null;
 		} else if (key === "away") {
@@ -87,7 +89,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		 * will need to be adjusted.
 		 */
 		if (!this["menu"]) {
-			if (marauroa.me._target == this) {
+			if (marauroa.me._target === this) {
 				list.push({
 					title: "Stop attack",
 					action: function(entity) {

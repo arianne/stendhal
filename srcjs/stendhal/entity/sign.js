@@ -11,6 +11,9 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
+var stendhal = window.stendhal = window.stendhal || {};
+
 marauroa.rpobjectFactory["sign"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 5000,
 	"class": "default",

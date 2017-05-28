@@ -11,6 +11,7 @@
 
 "use strict";
 
+var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
@@ -27,7 +28,7 @@ stendhal.ui.gamewindow = {
 	draw: function() {
 		var startTime = new Date().getTime();
 
-		if (marauroa.me && document.visibilityState == "visible") {
+		if (marauroa.me && document.visibilityState === "visible") {
 			var canvas = document.getElementById("gamewindow");
 			this.targetTileWidth = 32;
 			this.targetTileHeight = 32;
@@ -42,11 +43,11 @@ stendhal.ui.gamewindow = {
 
 			for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 				var name = stendhal.data.map.layerNames[drawingLayer];
-				if (name != "protection" && name != "collision" && name != "objects"
-					&& name != "blend_ground" && name != "blend_roof") {
+				if (name !== "protection" && name !== "collision" && name !== "objects"
+					&& name !== "blend_ground" && name !== "blend_roof") {
 					this.paintLayer(canvas, drawingLayer, tileOffsetX, tileOffsetY);
 				}
-				if (name == "2_object") {
+				if (name === "2_object") {
 					this.drawEntities();
 					this.drawTextSprites();
 				}
@@ -175,9 +176,9 @@ stendhal.ui.gamewindow = {
 				return true;
 			}
 			if (e.which) {
-				return (e.which == 3);
+				return (e.which === 3);
 			} else {
-				return (e.button == 2);
+				return (e.button === 2);
 			}
 		}
 		
@@ -260,7 +261,7 @@ stendhal.ui.gamewindow = {
 			} else {
 				action["type"] = "displace";
 				action["baseitem"] = id;
-			};
+			}
 			marauroa.clientFramework.sendAction(action);
 		}
 		e.stopPropagation();
