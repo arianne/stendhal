@@ -230,6 +230,7 @@ stendhal.ui.gamewindow = {
 		if (e.dataTransfer.setDragImage) {
 			e.dataTransfer.setDragImage(img, 0, 0);
 		} else {
+			stendhal.ui.chatLog.addLine("error", "Please use Chrome, Safari or Firefox. Your current browser has limmited support for drag&drop.");
 			type = "Text";
 		}
 		e.dataTransfer.setData(type, JSON.stringify({

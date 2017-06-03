@@ -59,6 +59,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 				e.dataTransfer.setDragImage(img, 0, 0);
 			} else {
 				type = "Text";
+				stendhal.ui.chatLog.addLine("error", "Please use Chrome, Safari or Firefox. Your current browser has limmited support for drag&drop.");
 			}
 			e.dataTransfer.setData(type, JSON.stringify({
 				path: item.getIdPath(),
