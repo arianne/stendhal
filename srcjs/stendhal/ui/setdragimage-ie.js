@@ -84,19 +84,8 @@ if ('function' !== typeof DataTransfer.prototype.setDragImage) {
         headEl = document.getElementsByTagName('head')[0];
         headEl.appendChild(dragStylesEl);
 
-        /*
-        since we can't get the target element over which the drag start event occurred
-        (because the `this` represents the DataTransfer object and not the element),
-        we will walk through the parents of the current functions until we find one
-        whose first argument is a drag event
-         */
-        parentFn = DataTransfer.prototype.setDragImage.caller;
-        while (!(parentFn.arguments[0] instanceof DragEvent)) {
-            parentFn = parentFn.caller;
-        }
+       	eventTarget = window.event.target;
 
-        // then, we get the target element from the event (event.target)
-        eventTarget = parentFn.arguments[0].target;
         // and add the class we prepared to it
         eventTarget.classList.add(randomDraggingClassName);
 

@@ -54,14 +54,9 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		var item = myobject[slot].getByIndex(slotNumber);
 		if (item) {
 			var img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
-			var type = "text/x-stendhal";
-			if (e.dataTransfer.setDragImage) {
-				e.dataTransfer.setDragImage(img, 0, 0);
-			} else {
-				type = "Text";
-				stendhal.ui.chatLog.addLine("error", "Please use Chrome, Safari or Firefox. Your current browser has limmited support for drag&drop.");
-			}
-			e.dataTransfer.setData(type, JSON.stringify({
+			window.event = e; // required by setDragImage polyfil
+			e.dataTransfer.setDragImage(img, 0, 0);
+			e.dataTransfer.setData("Text", JSON.stringify({
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName
 			}));

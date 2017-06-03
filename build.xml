@@ -1130,8 +1130,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-entity4"  value="srcjs/stendhal/entity/domesticanimal.js srcjs/stendhal/entity/npc.js srcjs/stendhal/entity/sign.js srcjs/stendhal/entity/growingspawner.js" />
 		<property name="js-files-entity5"  value="srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" /> 
 		<property name="js-files-entity6"  value="" /> 
-		<property name="js-files-ui1"      value="srcjs/stendhal/ui/buddylist.js srcjs/stendhal/ui/chatlog.js srcjs/stendhal/ui/gamewindow.js srcjs/stendhal/ui/html.js srcjs/stendhal/ui/minimap.js" />
-		<property name="js-files-ui2"      value="srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/stats.js srcjs/stendhal/ui/chatinput.js" />
+		<property name="js-files-ui1"      value="srcjs/stendhal/ui/setdragimage-ie.js srcjs/stendhal/ui/buddylist.js srcjs/stendhal/ui/chatlog.js srcjs/stendhal/ui/gamewindow.js" />
+		<property name="js-files-ui2"      value="srcjs/stendhal/ui/html.js srcjs/stendhal/ui/minimap.js srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/stats.js srcjs/stendhal/ui/chatinput.js" />
 		<property name="js-files-ui3"      value="" />
 		<property name="js-files-main1"    value="srcjs/stendhal/actions.js srcjs/stendhal/events.js" />
 		<property name="js-files-ui4"      value="srcjs/stendhal/ui/popup.js srcjs/stendhal/ui/itemcontainer.js" />

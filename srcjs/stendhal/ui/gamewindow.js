@@ -226,14 +226,9 @@ stendhal.ui.gamewindow = {
 			e.preventDefault();
 			return;
 		}
-		var type = "text/x-stendhal";
-		if (e.dataTransfer.setDragImage) {
-			e.dataTransfer.setDragImage(img, 0, 0);
-		} else {
-			stendhal.ui.chatLog.addLine("error", "Please use Chrome, Safari or Firefox. Your current browser has limmited support for drag&drop.");
-			type = "Text";
-		}
-		e.dataTransfer.setData(type, JSON.stringify({
+		window.event = e; // required by setDragImage polyfil
+		e.dataTransfer.setDragImage(img, 0, 0);
+		e.dataTransfer.setData("Text", JSON.stringify({
 			path: draggedEntity.getIdPath(),
 			zone: marauroa.currentZoneName
 		}));
