@@ -47,10 +47,10 @@ stendhal.slashActionRepository = {
 	"ban": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "ban",
-				target: params[0],
-				hours: params[1],
-				reason: remainder
+				"type": "ban",
+				"target": params[0],
+				"hours": params[1],
+				"reason": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -62,8 +62,8 @@ stendhal.slashActionRepository = {
 	"chat": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: type,
-				text: remainder
+				"type": type,
+				"text": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -84,10 +84,10 @@ stendhal.slashActionRepository = {
 	"gag": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "gag",
-				target: params[0],
-				minutes: params[1],
-				reason: remainder
+				"type": "gag",
+				"target": params[0],
+				"minutes": params[1],
+				"reason": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -99,10 +99,10 @@ stendhal.slashActionRepository = {
 	"jail": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "jail",
-				target: params[0],
-				minutes: params[1],
-				reason: remainder
+				"type": "jail",
+				"target": params[0],
+				"minutes": params[1],
+				"reason": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -115,9 +115,9 @@ stendhal.slashActionRepository = {
 		execute: function(type, params, remainder) {
 			if (typeof(stendhal.slashActionRepository.lastPlayerTell) != "undefined") {
 				var action = {
-					type: "tell",
-					target: stendhal.slashActionRepository.lastPlayerTell,
-					text: remainder
+					"type": "tell",
+					"target": stendhal.slashActionRepository.lastPlayerTell,
+					"text": remainder
 				};
 				marauroa.clientFramework.sendAction(action);
 				return true;
@@ -130,8 +130,8 @@ stendhal.slashActionRepository = {
 	"me": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "emote",
-				text: remainder
+				"type": "emote",
+				"text": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -144,9 +144,9 @@ stendhal.slashActionRepository = {
 		execute: function(type, params, remainder) {
 			stendhal.slashActionRepository.lastPlayerTell = params[0];
 			var action = {
-				type: "tell",
-				target: params[0],
-				text: remainder
+				"type": "tell",
+				"target": params[0],
+				"text": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -159,9 +159,9 @@ stendhal.slashActionRepository = {
 		execute: function(type, params, remainder) {
 			var action = {
 				"type": type,
-				creature: params[0],
-				x: params[1],
-				y: params[2]
+				"creature": params[0],
+				"x": params[1],
+				"y": params[2]
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -174,10 +174,10 @@ stendhal.slashActionRepository = {
 		execute: function(type, params, remainder) {
 			var action = {
 				"type": type,
-				target: params[0],
-				slot: params[1],
-				amount: params[2],
-				item: remainder
+				"target": params[0],
+				"slot": params[1],
+				"amount": params[2],
+				"item": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -189,8 +189,8 @@ stendhal.slashActionRepository = {
 	"support": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "support",
-				text: remainder
+				"type": "support",
+				"text": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -202,9 +202,9 @@ stendhal.slashActionRepository = {
 	"supportanswer" : {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "supportanswer",
-				target: params[0],
-				text: remainder
+				"type": "supportanswer",
+				"target": params[0],
+				"text": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -216,11 +216,11 @@ stendhal.slashActionRepository = {
 	"teleport": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "teleport",
-				target: params[0],
-				zone: params[1],
-				x: params[2],
-				y: params[3]
+				"type": "teleport",
+				"target": params[0],
+				"zone": params[1],
+				"x": params[2],
+				"y": params[3]
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -232,8 +232,8 @@ stendhal.slashActionRepository = {
 	"teleportto": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "teleportto",
-				target: remainder,
+				"type": "teleportto",
+				"target": remainder,
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
@@ -245,8 +245,8 @@ stendhal.slashActionRepository = {
 	"tellall": {
 		execute: function(type, params, remainder) {
 			var action = {
-				type: "tellall",
-				text: remainder
+				"type": "tellall",
+				"text": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
 			return true;
