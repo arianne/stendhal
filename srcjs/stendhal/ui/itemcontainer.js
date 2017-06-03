@@ -86,6 +86,7 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 			marauroa.clientFramework.sendAction(action);
 		}
 		e.stopPropagation();
+		e.preventDefault();
 	}
 
 	for (var i = 0; i < size; i++) {

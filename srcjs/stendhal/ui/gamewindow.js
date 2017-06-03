@@ -261,6 +261,7 @@ stendhal.ui.gamewindow = {
 			marauroa.clientFramework.sendAction(action);
 		}
 		e.stopPropagation();
+		e.preventDefault();
 	},
 	
 	onContentMenu: function(e) {
