@@ -45,12 +45,9 @@ public class HolidayingManNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(70, 52));
-				nodes.add(new Node(76, 52));
-				nodes.add(new Node(76, 17));
-				nodes.add(new Node(70, 17));
-				nodes.add(new Node(70, 14));
-				nodes.add(new Node(79, 14));
-				nodes.add(new Node(79, 52));
+				nodes.add(new Node(75, 52));
+				nodes.add(new Node(75, 55));
+				nodes.add(new Node(70, 55));
 				setPath(new FixedPath(nodes, true));
 			}
 
