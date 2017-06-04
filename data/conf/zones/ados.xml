@@ -828,7 +828,7 @@ West: Semos
     <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch" />
     
     <!-- NPCs -->
-    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.GreeterSoldierNPC"/>
     
     <entity x="100" y="26">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">

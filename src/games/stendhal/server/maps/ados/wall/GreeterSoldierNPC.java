@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2017 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +28,7 @@ import games.stendhal.server.entity.npc.action.ExamineChatAction;
  * @author hendrik
  * @author kymara
  */
-public class SoldierNPC implements ZoneConfigurator {
+public class GreeterSoldierNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
