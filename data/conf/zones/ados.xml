@@ -828,7 +828,12 @@ West: Semos
     <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch" />
     
     <!-- NPCs -->
-    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.GreeterSoldierNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.WallSoldier1NPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.WallSoldier2NPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.WallSoldier3NPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.WallSoldier4NPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.WallSoldier5NPC"/>
     
     <entity x="100" y="26">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -4775,6 +4780,9 @@ Southeast: Docks
     
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.city.ManWithHatNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier1NPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier2NPC"/>
+
     
     <!-- Music/Ambiance -->
     <entity x="85" y="10">

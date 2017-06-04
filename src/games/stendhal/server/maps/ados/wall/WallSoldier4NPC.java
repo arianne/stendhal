@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                     (C) Copyright 2017 - Stendhal                       *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,10 +22,12 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
- * Creates a man NPC to help populate Ados
+ * Soldiers on the wall
  *
+ * @author snowflake
+ * @author hendrik
  */
-public class HolidayingManNPC implements ZoneConfigurator {
+public class WallSoldier4NPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
@@ -35,38 +36,41 @@ public class HolidayingManNPC implements ZoneConfigurator {
 	 */
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone);
+		buildAdosWallSoldier(zone);
 	}
 
-	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Martin Farmer") {
+	/**
+	 * Creatures a soldier on the city wall
+	 *
+	 * @param zone StendhalRPZone
+	 */
+	private void buildAdosWallSoldier(final StendhalRPZone zone) {
+
+		final SpeakerNPC npc = new SpeakerNPC("Xinderus") {
 
 			@Override
 			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(70, 52));
-				nodes.add(new Node(75, 52));
-				nodes.add(new Node(75, 55));
-				nodes.add(new Node(70, 55));
-				setPath(new FixedPath(nodes, true));
+				final List<Node> path = new LinkedList<Node>();
+				path.add(new Node(76, 63));
+				path.add(new Node(76, 80));
+				path.add(new Node(79, 80));
+				path.add(new Node(79, 63));
+				setPath(new FixedPath(path, true));
 			}
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi hi.");
-				addHelp("The mayor of this town is really nice. I visited him with my wife to get some help.");
-				addOffer("What? I'm on holidays!");
-				addQuest("Ehm... I don't need help at the moment, but thanks.");
-				addJob("No no, I'm on holiday here with my wife Alice.");
-				addGoodbye("See you, and take care because of the lions beyond the wall.");
-
-				}
+				addGreeting("Hi, welcome to Ados City!");
+				addJob("A job? Are you blind? I'm a guard! Isn't this obvious? Mow move along, citizen. I don't have time for chatting.");
+				addHelp("If you need a map to guide you around Ados, just soldier Julius near the city gate.");
+				addGoodbye("I hope you will enjoy your visit to Ados.");
+			}
 		};
 
-		npc.setEntityClass("man_008_npc");
-		npc.setPosition(70, 52);
+		npc.setEntityClass("youngsoldiernpc");
+		npc.setPosition(76, 63);
 		npc.initHP(100);
-		npc.setDescription("You see Martin Farmer. He is on holidays with his wife Alice.");
+		npc.setDescription("You see Xinderus, a soldier who guards the city wall of Ados.");
 		zone.add(npc);
 	}
 }
