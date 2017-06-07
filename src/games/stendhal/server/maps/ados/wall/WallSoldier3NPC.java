@@ -60,10 +60,16 @@ public class WallSoldier3NPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi, welcome to Ados City!");
-				addJob("A job? Are you blind? I'm a guard! Isn't this obvious? Mow move along, citizen. I don't have time for chatting.");
-				addHelp("If you need a map to guide you around Ados, just soldier Julius near the city gate.");
-				addGoodbye("I hope you will enjoy your visit to Ados.");
+				addGreeting("Welcome traveler to our beautiful city of Ados!");
+				addJob("I'm doing a very important job here. I'm guarding the city wall and making sure that no invader will pass alive ");
+				addHelp("Julious, the gate guard, he is always helping travelers by giving them directions.");
+				addGoodbye("Take care, traveler.");
+/*
+If the player types yes then the soldier he will respond like this: example: Kill 10 tigers, 10 lions, 10 gnomes, 10 elephants  the reward will be 100exp and 40 or 50gold
+
+The quest will be repeatable every 24 hours and the kind of monster and the amount that the player needs to kill will be random (it will have a cap on how many needs to kill for example no more than 40 lions the reward will be varied depends on how many of each kind the player neds to kill.
+
+ */
 			}
 		};
 
