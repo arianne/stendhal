@@ -4782,6 +4782,7 @@ Southeast: Docks
     <configurator class-name="games.stendhal.server.maps.ados.city.ManWithHatNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier1NPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier2NPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier3NPC"/>
 
     
     <!-- Music/Ambiance -->
