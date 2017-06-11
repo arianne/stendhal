@@ -4931,7 +4931,11 @@ Southeast: Docks
       </implementation>
     </portal>
     -->
-    
+
+    <portal x="107" y="98" ref="fishermans_hut_south_entrance">
+      <destination zone="int_ados_fishermans_hut_south" ref="entrance_fishermans_hut_south" />
+    </portal>
+
     <!-- Signs -->
     <entity x="38" y="23">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -5111,6 +5115,17 @@ Southeast: Docks
     
   </zone>
   -->
+  
+  <zone name="int_ados_fishermans_hut_south" file="interiors/ados/fishermans_hut_south.tmx">
+    
+    <!-- Portals -->
+    <portal x="8" y="14" ref="entrance_fishermans_hut_south">
+      <destination zone="0_ados_city_s" ref="fishermans_hut_south_entrance" />
+    </portal>
+    
+  </zone>
+  
+  
   
   <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
     <attributes>
