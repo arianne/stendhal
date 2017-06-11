@@ -1,6 +1,28 @@
 ﻿Changelog
 ---------
 
+1.25
+
+*world*
+- made new images for rams, lions 
+- made new images for pine, locust trees, new old ents
+- made new ship tiles
+- added soldiers to Ados wall
+- added city wall gate to Ados south
+- added a fisher hut south of ados city
+- widened pathways in hell
+
+*experimental webclient*
+- use "ant compilejs" to invoke closure compiler
+- zone change by clicking near the zone boarder
+- performance optimisations
+- added growing spawner (grain, carrots, etc...)
+- right click popup menu
+- highlight npc triggers and item names in chatlog
+- removed dependency on polymer
+
+
+
 1.24
 
 *world*
