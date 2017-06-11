@@ -74,7 +74,7 @@ public class LittleBoyNPC implements ZoneConfigurator {
 			}
 
 		};
-		npc.setEntityClass("plinknpc");
+		npc.setEntityClass("noimagenpc"); // plinknpc
 		npc.setDescription("You see a young boy called Plink. He is crying and needs some help...");
 		npc.setPosition(38, 100);
 		npc.initHP(100);

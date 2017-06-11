@@ -55,7 +55,7 @@ public class MithrilShieldForgerNPC implements ZoneConfigurator {
 		};
 
 		baldemar.setDescription("You see Baldemar, a Mithrilbourgh Wizard well studied in the craft of forging mithril.");
-		baldemar.setEntityClass("mithrilforgernpc");
+		baldemar.setEntityClass("noimagenpc"); // mithrilforgernpc
 		baldemar.setPosition(4, 6);
 		baldemar.initHP(100);
 		zone.add(baldemar);
