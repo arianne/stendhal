@@ -20,6 +20,6 @@ marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFacto
 	minimapStyle: "rgb(0,0,255)",
 	spritePath: "npc",
 	titleStyle: "#c8c8ff",
-	hp: 100,
-	base_hp: 100
+	"hp": 100,
+	"base_hp": 100
 });
