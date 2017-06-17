@@ -255,6 +255,62 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"beginnersguide": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"faq": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/wiki/Stendhal_FAQ";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"manual": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"rules": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/wiki/Stendhal_Rules";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"changepassword": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/account/change-password.html";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+
+	"loginhistory": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/account/history.html";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
+	"halloffame": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/world/hall-of-fame/active_overview.html";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
 
 	"_default": {
 		execute: function(type, params, remainder) {
