@@ -65,7 +65,8 @@ marauroa.rpobjectFactory["chest"] = marauroa.util.fromProto(marauroa.rpobjectFac
 			// If we are next to the chest, open or close it.
 			var action = {
 				"type": "use",
-				"target": "#" + this["id"]
+				"target": "#" + this["id"],
+				"zone": marauroa.currentZoneName
 			};
 			marauroa.clientFramework.sendAction(action);
 		} else {

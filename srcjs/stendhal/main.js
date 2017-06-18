@@ -122,7 +122,8 @@ stendhal.main = {
 				if (e.target.dataItem) {
 					marauroa.clientFramework.sendAction({
 						type: "use", 
-						"target_path": e.target.dataItem.getIdPath()
+						"target_path": e.target.dataItem.getIdPath(),
+						"zone": marauroa.currentZoneName
 					});
 				}
 			});

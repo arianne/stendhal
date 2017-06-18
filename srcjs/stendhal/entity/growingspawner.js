@@ -34,7 +34,7 @@ marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(mar
 		if (!this["menu"]) {
 			list.push({
 				title: "Harvest",
-				type: "use"
+				type: "use",
 			});
 		}
 		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
@@ -43,7 +43,8 @@ marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(mar
 	onclick: function(x, y) {
 		var action = {
 			"type": "use", 
-			"target": "#" + this["id"]
+			"target": "#" + this["id"],
+			"zone": marauroa.currentZoneName
 		};
 		marauroa.clientFramework.sendAction(action);
 	},

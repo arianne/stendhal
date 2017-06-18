@@ -169,7 +169,8 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		// Map descriptive command names to the real commands
 		var actionAliases = {
 			"look_closely" : "use",
-			"read" : "look"
+			"read" : "look",
+			"zone": marauroa.currentZoneName
 		};
 		
 		var actionCommand = "look";
@@ -183,7 +184,8 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		}
 		return {
 			"type": actionCommand,
-			"target": "#" + this["id"]
+			"target": "#" + this["id"],
+			"zone": marauroa.currentZoneName
 		};
 	},
 

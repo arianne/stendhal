@@ -50,7 +50,8 @@ marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	onclick: function(x, y) {
 		var action = {
 			"type": "use",
-			"target": "#" + this["id"]
+			"target": "#" + this["id"],
+			"zone": marauroa.currentZoneName
 		};
 		marauroa.clientFramework.sendAction(action);
 	}
