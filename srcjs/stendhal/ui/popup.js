@@ -88,6 +88,10 @@ stendhal.ui.Popup = function(title, content, x, y) {
  * @constructor
  */
 stendhal.ui.Menu = function(entity, x, y) {
+	if (stendhal.ui.popupmenu) {
+		stendhal.ui.popupmenu.popup.close();
+	}
+	
 	var actions = [];
 	var that = this;
 	entity.buildActions(actions);
@@ -105,7 +109,7 @@ stendhal.ui.Menu = function(entity, x, y) {
 	}
 	content += "</div>";
 	this.popup = new stendhal.ui.Popup("Action", content, x, y);
-	
+
 	this.popup.popupdiv.addEventListener("click", function(e) {
 		var i = e.target.id.substring(13);
 		if (i === undefined || i === "" || i < 0) {
@@ -119,12 +123,17 @@ stendhal.ui.Menu = function(entity, x, y) {
 			} else {
 				var action = {
 					"type": actions[i].type, 
-					"target": "#" + entity.id
+					"target": "#" + entity.id,
+					"zone": marauroa.currentZoneName
 				};
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
 	});
-
 	
+	this.close = function() {
+		this.popup.close();
+		stendhal.ui.popupmenu = null;
+	}
+	stendhal.ui.popupmenu = this;
 }

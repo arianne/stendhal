@@ -155,9 +155,8 @@ stendhal.ui.gamewindow = {
 		var timestampMouseDown;
 		
 		function _onMouseDown(e) {
-			if (this.menu) {
-				this.menu.popup.close();
-				this.menu = null;
+			if (stendhal.ui.popupmenu) {
+				stendhal.ui.popupmenu.close();
 			}
 
 			e.target.addEventListener("mousemove", onDrag);
@@ -185,7 +184,7 @@ stendhal.ui.gamewindow = {
 		function onMouseUp(e) {
 			if (isRightClick(e)) {
 				if (entity != stendhal.zone.ground) {
-					this.menu = new stendhal.ui.Menu(entity, e.pageX - 50, e.pageY - 5);
+					new stendhal.ui.Menu(entity, e.pageX - 50, e.pageY - 5);
 				}
 			} else {
 				entity.onclick(e.offsetX, e.offsetY);
