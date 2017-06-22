@@ -312,6 +312,20 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"storemessage": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": "storemessage",
+				"target": params[0],
+				"text": remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+
 	"_default": {
 		execute: function(type, params, remainder) {
 			var action = {

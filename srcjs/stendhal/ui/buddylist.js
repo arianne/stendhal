@@ -107,5 +107,58 @@ stendhal.ui.buddyList = {
 				return;
 			}
 		}
+	},
+
+	buildActions: function(actions) {
+		if (stendhal.ui.buddyList.current.className === "online") {
+			actions.push({
+				title: "Talk",
+				action: function(entity) {
+					stendhal.ui.chatinput.setText("/msg "
+							+ stendhal.ui.buddyList.current.textContent
+							+ " ");
+				}
+			});
+			actions.push({
+				title: "Where",
+				action: function(entity) {
+					var action = {
+						"type": "where",
+						"target": stendhal.ui.buddyList.current.textContent,
+						"zone": marauroa.currentZoneName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
+			// Invite
+		} else {
+			actions.push({
+				title: "Leave Message",
+				action: function(entity) {
+					stendhal.ui.chatinput.setText("/storemessage "
+							+ stendhal.ui.buddyList.current.textContent
+							+ " ");
+				}
+			});
+		}
+		actions.push({
+			title: "Remove",
+			action: function(entity) {
+				var action = {
+					"type": "removebuddy",
+					"target": stendhal.ui.buddyList.current.textContent,
+					"zone": marauroa.currentZoneName
+				};
+				marauroa.clientFramework.sendAction(action);
+				stendhal.ui.buddyList.removeBuddy(stendhal.ui.buddyList.current.textContent);
+			}
+		});
+
+	},
+
+	onMouseUp: function(event) {
+		console.log(event);
+		stendhal.ui.buddyList.current = event.target;
+		new stendhal.ui.Menu(stendhal.ui.buddyList, event.pageX - 50, event.pageY - 5);
 	}
 };

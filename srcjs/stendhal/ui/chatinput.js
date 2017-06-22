@@ -24,6 +24,12 @@ stendhal.ui.chatinput = {
 		document.getElementById("chatinput").value = "";
 	},
 
+	setText: function(text) {
+		var chatinput = document.getElementById("chatinput");
+		chatinput.value = text;
+		chatinput.focus();
+	},
+
 	fromHistory: function(i) {
 		stendhal.ui.chatinput.historyIndex = stendhal.ui.chatinput.historyIndex + i;
 		if (stendhal.ui.chatinput.historyIndex < 0) {
