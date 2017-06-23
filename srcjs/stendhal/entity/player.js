@@ -49,17 +49,51 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 
 	buildActions: function(list) {
 		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
-	/*
-		boolean hasBuddy = User.hasBuddy(entity.getName());
+		var playerName = this["_name"];
+		var hasBuddy = playerName in marauroa.me["buddies"];
 		if (!hasBuddy) {
-			list.add(ActionType.ADD_BUDDY.getRepresentation());
+			list.push({
+				title: "Add to buddies",
+				action: function(entity) {
+					var action = {
+						"type": "addbuddy",
+						"zone": marauroa.currentZoneName,
+						"target": playerName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
 		}
-	
-		if (User.isIgnoring(entity.getName())) {
-			list.add(ActionType.UNIGNORE.getRepresentation());
-		} else if (!hasBuddy)  {
-			list.add(ActionType.IGNORE.getRepresentation());
+
+		var temp = marauroa.me["!ignore"]._objects;
+		var isIgnored = temp.length > 0 && ("_" + playerName) in temp[0];
+		if (isIgnored) {
+			list.push({
+				title: "Remove ignore",
+				action: function(entity) {
+					var action = {
+						"type": "unignore",
+						"zone": marauroa.currentZoneName,
+						"target": playerName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
+		} else if (!hasBuddy) {
+			list.push({
+				title: "Ignore",
+				action: function(entity) {
+					var action = {
+						"type": "ignore",
+						"zone": marauroa.currentZoneName,
+						"target": playerName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
+		
 		}
+	/*
 
 		list.push({
 			title: "Trade",

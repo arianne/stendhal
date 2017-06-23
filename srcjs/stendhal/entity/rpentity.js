@@ -95,6 +95,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 					action: function(entity) {
 						var action = {
 							"type": "stop",
+							"zone": marauroa.currentZoneName,
 							"attack": "" 
 						};
 						marauroa.clientFramework.sendAction(action);

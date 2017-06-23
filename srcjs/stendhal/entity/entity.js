@@ -28,6 +28,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			if (typeof(this['title']) === "undefined") {
 				this['title'] = value;
 			}
+			this["_name"] = value;
 		} else if (['x', 'y', 'height', 'width'].indexOf(key) > -1) {
 			this[key] = parseInt(value, 10);
 		} else {
