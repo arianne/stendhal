@@ -96,6 +96,20 @@ stendhal.slashActionRepository = {
 		getMaxParams: 2
 	},
 
+	"group": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": "group_management",
+				"action": params[0],
+				"params": remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+
 	"jail": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -153,6 +167,19 @@ stendhal.slashActionRepository = {
 		},
 		getMinParams: 1,
 		getMaxParams: 1
+	},
+
+	"p": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": "group_message",
+				"text": remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
 	},
 
 	"summon": {
