@@ -24,10 +24,8 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	dir: 3,
 	
 	set: function(key, value) {
-		marauroa.rpobjectFactory["rpentity"].proto.set.apply(this, arguments);
-		if (key === "text") {
-			this.say(value);
-		} else if (key === "ghostmode") {
+		marauroa.rpobjectFactory["rpentity"].set.apply(this, arguments);
+		if (key === "ghostmode") {
 			this.minimapShow = false;
 		}
 		
@@ -48,7 +46,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	},
 
 	buildActions: function(list) {
-		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
+		marauroa.rpobjectFactory["rpentity"].buildActions.apply(this, arguments);
 		var playerName = this["_name"];
 		var hasBuddy = playerName in marauroa.me["buddies"];
 		if (!hasBuddy) {
@@ -65,9 +63,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			});
 		}
 
-		var temp = marauroa.me["!ignore"]._objects;
-		var isIgnored = temp.length > 0 && ("_" + playerName) in temp[0];
-		if (isIgnored) {
+		if (this.isIgnored()) {
 			list.push({
 				title: "Remove ignore",
 				action: function(entity) {
@@ -102,7 +98,28 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		list.add(ActionType.INVITE.getRepresentation());
 		*/
 	},
+	
+	isIgnored: function() {
+		var temp = marauroa.me["!ignore"]._objects;
+		return temp.length > 0 && ("_" + this["_name"]) in temp[0];
+	},
 
+	draw: function(ctx) {
+		if (this.isIgnored()) {
+			return;
+		}
+		marauroa.rpobjectFactory["rpentity"].draw.apply(this, arguments);
+	},
+
+	/** 
+	 * says a text
+	 */
+	say: function (text) {
+		if (this.isIgnored()) {
+			return;
+		}
+		marauroa.rpobjectFactory["rpentity"].say.apply(this, arguments);		
+	},
 
 	/** 
 	 * Can the player hear this chat message?

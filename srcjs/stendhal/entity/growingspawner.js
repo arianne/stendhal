@@ -37,7 +37,7 @@ marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(mar
 				type: "use",
 			});
 		}
-		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
+		marauroa.rpobjectFactory["growing_entity_spawner"].proto.buildActions.apply(this, arguments);
 	},
 
 	onclick: function(x, y) {
