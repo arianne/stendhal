@@ -257,7 +257,13 @@ stendhal.ui.gamewindow = {
 				action["type"] = "displace";
 				action["baseitem"] = id;
 			}
-			marauroa.clientFramework.sendAction(action);
+
+			// if ctrl is pressed, we ask for the quantity
+			if (e.ctrlKey) {
+				new stendhal.ui.DropNumberDialog(action, e.pageX - 50, e.pageY - 25);
+			} else {
+				marauroa.clientFramework.sendAction(action);
+			}
 		}
 		e.stopPropagation();
 		e.preventDefault();

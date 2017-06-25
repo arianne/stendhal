@@ -126,3 +126,7 @@ span.logi {text-decoration: underline}
 .popuptitleclose {
 	float:right
 }
+
+#dropnumberdialogvalue {
+	width: 4em;
+}
