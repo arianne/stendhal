@@ -111,6 +111,13 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		marauroa.rpobjectFactory["rpentity"].draw.apply(this, arguments);
 	},
 
+	getResistance: function() {
+		if (typeof(this["ghostmode"]) !== "undefined") {
+			return 0;
+		}
+		return this["resistance"];
+	},
+
 	/** 
 	 * says a text
 	 */

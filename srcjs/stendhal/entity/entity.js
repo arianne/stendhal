@@ -190,6 +190,15 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		};
 	},
 
+	getResistance: function() {
+		return this["resistance"];
+	},
+
+	isObstacle: function(entity) {
+		return ((entity != this) 
+			&& (this.getResistance() * (entity.getResistance() / 100) > 95));
+	},
+
 	onclick: function(x, y) {
 		marauroa.clientFramework.sendAction(this.getDefaultAction());
 	}
