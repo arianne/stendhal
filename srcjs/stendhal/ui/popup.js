@@ -88,8 +88,8 @@ stendhal.ui.Popup = function(title, content, x, y) {
  * @constructor
  */
 stendhal.ui.Menu = function(entity, x, y) {
-	if (stendhal.ui.popupmenu) {
-		stendhal.ui.popupmenu.popup.close();
+	if (stendhal.ui.globalpopup) {
+		stendhal.ui.globalpopup.popup.close();
 	}
 	
 	var actions = [];
@@ -133,7 +133,7 @@ stendhal.ui.Menu = function(entity, x, y) {
 	
 	this.close = function() {
 		this.popup.close();
-		stendhal.ui.popupmenu = null;
+		stendhal.ui.globalpopup = null;
 	}
-	stendhal.ui.popupmenu = this;
+	stendhal.ui.globalpopup = this;
 }

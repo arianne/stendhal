@@ -155,8 +155,8 @@ stendhal.ui.gamewindow = {
 		var timestampMouseDown;
 		
 		function _onMouseDown(e) {
-			if (stendhal.ui.popupmenu) {
-				stendhal.ui.popupmenu.close();
+			if (stendhal.ui.globalpopup) {
+				stendhal.ui.globalpopup.close();
 			}
 
 			e.target.addEventListener("mousemove", onDrag);
