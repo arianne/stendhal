@@ -14,7 +14,7 @@
 var marauroa = window.marauroa = window.marauroa || {};
 
 /**
- * Bllod
+ * Blood
  */
 marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 
@@ -33,6 +33,8 @@ marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFac
 		marauroa.rpobjectFactory["blood"].proto.set.apply(this, arguments);
 		if (key === "amount") {
 			this.sprite.offsetY = parseInt(value, 10) * 32;
+		} else if (key === "class") {
+			this.sprite.filename = "/data/sprites/combat/blood_" + value + ".png";
 		}
 	}
 });
