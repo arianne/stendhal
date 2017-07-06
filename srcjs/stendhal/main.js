@@ -17,6 +17,15 @@ var stendhal = window.stendhal = window.stendhal || {};
 stendhal.main = {
 	errorCounter: 0,
 
+	onDataMap: function(data) {
+		var zoneinfo = {};
+		var deserializer = marauroa.Deserializer.fromBase64(data);
+		deserializer.readAttributes(zoneinfo);
+		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
+		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
+	},
+
+
 	/**
 	 * register marauroa event handlers.
 	 */
@@ -63,8 +72,20 @@ stendhal.main = {
 
 		marauroa.clientFramework.onTransferREQ = function(items) {
 			for (var i in items) {
-				if (typeof(items[i]["name"]) != "undefined" && items[i]["name"].match(".collision$")) {
-					items[i].ack = true;
+				if (typeof(items[i]["name"]) == "undefined") {
+					continue;
+				}
+				if (items[i]["name"].match(".collision$")
+					|| items[i]["name"].match(".data_map$")) {
+					items[i]["ack"] = true;
+				}
+			}
+		};
+		
+		marauroa.clientFramework.onTransfer = function(items) {
+			for (var i in items) {
+				if (items[i]["name"].match(".data_map$")) {
+					stendhal.main.onDataMap(items[i]["data"]);
 				}
 			}
 		};
