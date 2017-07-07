@@ -23,8 +23,6 @@ var marauroa = window.marauroa = window.marauroa || {};
 		register("blackboard", null, null, Sign.class);
 		register("block", null, null, Block.class);
 		register("block", null, null, LookableEntity2DView.class);
-		register("blood", null, null, Blood2DView.class);  // TODO: class (color)
-		register("blood", null, null, Blood.class);
 
 		register("cat", null, null, Pet2DView.class);
 		register("cat", null, null, Pet.class);
@@ -45,8 +43,6 @@ var marauroa = window.marauroa = window.marauroa || {};
 		register("fire", null, null, Fire.class);
 		register("fire", null, null, UseableEntity2DView.class);
 		register("fish_source", null, null, UseableEntity2DView.class);
-		register("food", null, null, SheepFood2DView.class);
-		register("food", null, null, SheepFood.class);
 
 		register("game_board", null, null, GameBoard2DView.class);
 		register("game_board", null, null, GameBoard.class);

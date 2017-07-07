@@ -15,11 +15,14 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
 marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
+	zIndex: 5000,
+
 	set: function(key, value) {
 		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
 		if (key === "amount") {
 			this._amount = parseInt(value, 10);
 		}
+		// TODO: play sound effect
 	},
 	
 	draw: function(ctx) {
@@ -33,7 +36,6 @@ marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	},
 	
 	onclick: function(x, y) {
-		console.log(this, x, y);
 		var action = {
 				"type": "look",
 				"target": "#" + this["id"]
