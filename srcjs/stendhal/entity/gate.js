@@ -16,7 +16,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 5000,
-	
+
 	set: function(key, value) {
 		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
 		if (key === "resistance") {
@@ -25,6 +25,21 @@ marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFact
 			// Force re-evaluation of the sprite
 			delete this["_image"];
 		}
+	},
+
+	buildActions: function(list) {
+		var id = this["id"];
+		list.push({
+			title: (this["locked"]) ? "Open" : "Close",
+			action: function(entity) {
+				var action = {
+					"type": "use",
+					"target": "#" + id,
+					"zone": marauroa.currentZoneName,
+				};
+				marauroa.clientFramework.sendAction(action);
+			}
+		});
 	},
 	
 	draw: function(ctx) {
@@ -42,11 +57,11 @@ marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFact
 			ctx.drawImage(this._image, 0, yStart, this._image.width, height, localX, localY, this._image.width, height);
 		}
 	},
-	
+
 	isVisibleToAction: function(filter) {
 		return true;
 	},
-	
+
 	onclick: function(x, y) {
 		var action = {
 			"type": "use",

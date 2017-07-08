@@ -45,8 +45,6 @@ var marauroa = window.marauroa = window.marauroa || {};
 
 		register("game_board", null, null, GameBoard2DView.class);
 		register("game_board", null, null, GameBoard.class);
-		register("gate", null, null, Gate2DView.class);
-		register("gate", null, null, Gate.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower2DView.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower.class);
 		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower2DView.class);
