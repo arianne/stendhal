@@ -225,6 +225,7 @@ public class PassiveEntityRespawnPointFactory {
 			break;
 		case 1:
 			passiveEntityrespawnPoint = new VegetableGrower("carrot");
+			passiveEntityrespawnPoint.put("menu", "Pick|Use");
 			break;
 		case 2:
 			passiveEntityrespawnPoint = new VegetableGrower("salad");
@@ -271,6 +272,7 @@ public class PassiveEntityRespawnPointFactory {
 		switch (type) {
 		case 0:
 			passiveEntityrespawnPoint = new VegetableGrower("wood", "There isn't anything to pick yet but wood might fall down soon.");
+			passiveEntityrespawnPoint.put("menu", "Pick|Use");
 			passiveEntityrespawnPoint.setDescription("You see a log shaped indent in the ground.");
 			break;
 		case 1:

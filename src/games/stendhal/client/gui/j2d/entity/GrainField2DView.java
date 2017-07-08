@@ -118,7 +118,9 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(ActionType.HARVEST.getRepresentation());
+		if (!entity.getRPObject().has("menu")) {
+			list.add(ActionType.HARVEST.getRepresentation());
+		}
 
 		super.buildActions(list);
 	}

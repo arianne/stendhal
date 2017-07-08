@@ -35,7 +35,9 @@ class CarrotGrower2DView extends GrainField2DView<GrainField> {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(ActionType.PICK.getRepresentation());
+		if (!entity.getRPObject().has("menu")) {
+			list.add(ActionType.PICK.getRepresentation());
+		}
 
 		super.buildActions(list);
 		list.remove(ActionType.HARVEST.getRepresentation());

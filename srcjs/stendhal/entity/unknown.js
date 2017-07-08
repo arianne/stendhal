@@ -45,12 +45,6 @@ var marauroa = window.marauroa = window.marauroa || {};
 
 		register("game_board", null, null, GameBoard2DView.class);
 		register("game_board", null, null, GameBoard.class);
-		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower2DView.class);
-		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower.class);
-		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower2DView.class);
-		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower.class);
-		register("growing_entity_spawner", null, null, GrainField2DView.class);
-		register("growing_entity_spawner", null, null, GrainField.class);
 
 		register("house_portal", null, null, HousePortal2DView.class);
 		register("house_portal", null, null, HousePortal.class);
@@ -70,7 +64,6 @@ var marauroa = window.marauroa = window.marauroa || {};
 			rings.xml:    <type class="ring" subclass="wedding" tileid="-1"/>
 			rings.xml:    <type class="ring" subclass="engagement_ring" tileid="-1"/>
 			rings.xml:    <type class="ring" subclass="emerald-ring" tileid="-1"/>
-
 
 		register("looped_sound_source", null, null, LoopedSoundSource.class);
 
