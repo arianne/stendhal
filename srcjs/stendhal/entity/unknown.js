@@ -42,13 +42,11 @@ var marauroa = window.marauroa = window.marauroa || {};
 
 		register("fire", null, null, Fire.class);
 		register("fire", null, null, UseableEntity2DView.class);
-		register("fish_source", null, null, UseableEntity2DView.class);
 
 		register("game_board", null, null, GameBoard2DView.class);
 		register("game_board", null, null, GameBoard.class);
 		register("gate", null, null, Gate2DView.class);
 		register("gate", null, null, Gate.class);
-		register("gold_source", null, null, UseableEntity2DView.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower2DView.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower.class);
 		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower2DView.class);
@@ -143,12 +141,9 @@ var marauroa = window.marauroa = window.marauroa || {};
 		register("useable_entity", null, null, StatefulEntity.class);
 		register("useable_entity", null, null, UseableEntity2DView.class);
 
-		register("walkblocker", null, null, WalkBlocker2DView.class);
-		register("walkblocker", null, null, WalkBlocker.class);
 		register("wall", null, null, Wall2DView.class);
 		register("wall", null, null, Wall.class);
 		register("weather_entity", null, null, InvisibleEntity.class);
-		register("well_source", null, null, UseableEntity2DView.class);
 
  */
 
