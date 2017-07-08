@@ -238,6 +238,7 @@
     <attributes>
       <atk value="8"/>
       <rate value="5"/>
+      <menu value="Use|Use"/>
     </attributes>
     <weight value="0.2"/>
     <value value="8533"/>

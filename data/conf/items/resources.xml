@@ -311,6 +311,7 @@
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
       <regen value="10"/>
+      <menu value="Eat|Use"/>
     </attributes>
     <weight value="1.0"/>
     <value value="7500"/>

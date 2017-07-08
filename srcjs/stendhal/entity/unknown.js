@@ -55,55 +55,22 @@ var marauroa = window.marauroa = window.marauroa || {};
 		register("house_portal", null, null, HousePortal2DView.class);
 		register("house_portal", null, null, HousePortal.class);
 
-		register("item", "ammunition", null, StackableItem2DView.class);
-		register("item", "ammunition", null, StackableItem.class);
 		register("item", "box", null, Box2DView.class);
 		register("item", "box", null, Box.class);
-		register("item", "club", "wizard_staff", UseableItem2DView.class);
-		register("item", "club", "wizard_staff", UseableItem.class);
-		register("item", "container", null, StackableItem2DView.class);
-		register("item", "container", null, StackableItem.class);
-		register("item", "drink", null, UseableItem2DView.class);
-		register("item", "drink", null, UseableItem.class);
-		register("item", "flower", null, StackableItem2DView.class);
-		register("item", "flower", null, StackableItem.class);
-		register("item", "food", null, UseableItem2DView.class);
-		register("item", "food", null, UseableItem.class);
-		register("item", "herb", null, StackableItem2DView.class);
-		register("item", "herb", null, StackableItem.class);
-		register("item", "jewellery", null, StackableItem2DView.class);
-		register("item", "jewellery", null, StackableItem.class);
-		register("item", "misc", "bulb", UseableItem2DView.class);
-		register("item", "misc", "bulb", UseableItem.class);
-		register("item", "misc", null, StackableItem2DView.class);
-		register("item", "misc", null, StackableItem.class);
-		register("item", "misc", "seed", UseableItem2DView.class);
-		register("item", "misc", "seed", UseableItem.class);
-		register("item", "missile", null, StackableItem2DView.class);
-		register("item", "missile", null, StackableItem.class);
-		register("item", "money", null, StackableItem2DView.class);
-		register("item", "money", null, StackableItem.class);
-		register("item", null, null, Item2DView.class);
-		register("item", null, null, Item.class);
-		register("item", "resource", null, StackableItem2DView.class);
-		register("item", "resource", null, StackableItem.class);
-		register("item", "ring", "emerald-ring", Ring.class);
-		register("item", "ring", null, Ring2DView.class);
+			boxes.xml:    <type class="box" subclass="present" tileid="-1"/>
+			boxes.xml:    <type class="box" subclass="basket" tileid="-1"/>
+			boxes.xml:    <type class="box" subclass="stocking" tileid="-1"/>
 		register("item", "ring", null, UseableRing.class);
+		register("item", "ring", null, Ring2DView.class);
+		register("item", "ring", "emerald-ring", Ring.class);
 		register("item", "ring", "wedding", UseableRing2DView.class);
-		register("item", "scroll", null, UseableItem2DView.class);
-		register("item", "scroll", null, UseableItem.class);
-		register("item", "special", "mithril clasp", Item2DView.class);
-		register("item", "special", "mithril clasp", Item.class);
-		register("item", "special", null, StackableItem2DView.class);
-		register("item", "special", null, StackableItem.class);
-		register("item", "token", null, Item.class);
-		register("item", "tool", "foodmill", UseableItem2DView.class);
-		register("item", "tool", "foodmill", UseableItem.class);
-		register("item", "tool", "scrolleraser", UseableItem2DView.class);
-		register("item", "tool", "scrolleraser", UseableItem.class);
-		register("item", "tool", "sugarmill", UseableItem2DView.class);
-		register("item", "tool", "sugarmill", UseableItem.class);
+			rings.xml:    <type class="ring" subclass="medicinal_ring" tileid="-1"/>
+			rings.xml:    <type class="ring" subclass="antivenom_ring" tileid="-1"/>
+			rings.xml:    <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
+			rings.xml:    <type class="ring" subclass="wedding" tileid="-1"/>
+			rings.xml:    <type class="ring" subclass="engagement_ring" tileid="-1"/>
+			rings.xml:    <type class="ring" subclass="emerald-ring" tileid="-1"/>
+
 
 		register("looped_sound_source", null, null, LoopedSoundSource.class);
 

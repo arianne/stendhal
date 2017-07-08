@@ -7,6 +7,7 @@
     <description>You see a food mill. It is the traditional tool to mill food.</description>
     <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
     <attributes>
+      <menu value="Use|Use"/>
     </attributes>
     <weight value="10.0"/>
     <value value="1"/>
@@ -25,6 +26,7 @@
     <description>You see a sugar mill. You can obtain sugar if you grind canes with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
     <attributes>
+      <menu value="Use|Use"/>
     </attributes>
     <weight value="10.0"/>
     <value value="1"/>
@@ -43,6 +45,7 @@
     <description>You see a scroll eraser. Put a marked scroll in the opposite hand to clean the scroll.</description>
     <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
     <attributes>
+      <menu value="Use|Use"/>
     </attributes>
     <weight value="3.0"/>
     <value value="1"/>

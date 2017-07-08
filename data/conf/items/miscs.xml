@@ -8,6 +8,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Seed"/> 
 	 <attributes>
       <quantity value="1"/>
+      <menu value="Use|Use"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -27,6 +28,7 @@
     <implementation class-name="games.stendhal.server.entity.item.Seed"/> 
 	 <attributes>
       <quantity value="1"/>
+      <menu value="Use|Use"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

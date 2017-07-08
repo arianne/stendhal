@@ -129,6 +129,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="2" />
