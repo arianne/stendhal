@@ -14,50 +14,29 @@
 var marauroa = window.marauroa = window.marauroa || {};
 
 /*
-		register("area", null, null, InvisibleEntity2DView.class);
-		register("area", null, null, InvisibleEntity.class);
+register("area",         InvisibleEntity2DView, InvisibleEntity);
+register("baby_dragon",  Pet2DView,             Pet);
+register("blackboard",   Sign2DView,            Sign);
+register("block",        LookableEntity2DView,  Block);
+register("cat",          Pet2DView,             Pet);
+register("chest",        Chest2DView,           Chest);
+register("corpse",       Corpse2DView,          Corpse);
+register("creature", "ent", null, BossCreature2DView, BossCreature);
+register("creature",     Creature2DView,        Creature);
+register("door",         Door2DView,            Door);
+register("entity",                              Entity);
+register("fire",         UseableEntity2DView,   Fire);
+register("game_board",   GameBoard2DView,       GameBoard);
+register("house_portal", HousePortal2DView,     HousePortal);
 
-		register("baby_dragon", null, null, Pet2DView.class);
-		register("baby_dragon", null, null, Pet.class);
-		register("blackboard", null, null, Sign2DView.class);
-		register("blackboard", null, null, Sign.class);
-		register("block", null, null, Block.class);
-		register("block", null, null, LookableEntity2DView.class);
-
-		register("cat", null, null, Pet2DView.class);
-		register("cat", null, null, Pet.class);
-		register("chest", null, null, Chest2DView.class);
-		register("chest", null, null, Chest.class);
-		register("corpse", null, null, Corpse2DView.class);
-		register("corpse", null, null, Corpse.class);
-		register("creature", "ent", null, BossCreature2DView.class);
-		register("creature", "ent", null, BossCreature.class);
-		register("creature", null, null, Creature2DView.class);
-		register("creature", null, null, Creature.class);
-
-		register("door", null, null, Door2DView.class);
-		register("door", null, null, Door.class);
-
-		register("entity", null, null, Entity.class);
-
-		register("fire", null, null, Fire.class);
-		register("fire", null, null, UseableEntity2DView.class);
-
-		register("game_board", null, null, GameBoard2DView.class);
-		register("game_board", null, null, GameBoard.class);
-
-		register("house_portal", null, null, HousePortal2DView.class);
-		register("house_portal", null, null, HousePortal.class);
-
-		register("item", "box", null, Box2DView.class);
-		register("item", "box", null, Box.class);
+register("item", "box", null, Box2DView,        Box);
 			boxes.xml:    <type class="box" subclass="present" tileid="-1"/>
 			boxes.xml:    <type class="box" subclass="basket" tileid="-1"/>
 			boxes.xml:    <type class="box" subclass="stocking" tileid="-1"/>
-		register("item", "ring", null, UseableRing.class);
-		register("item", "ring", null, Ring2DView.class);
-		register("item", "ring", "emerald-ring", Ring.class);
-		register("item", "ring", "wedding", UseableRing2DView.class);
+
+register("item", "ring", null, UseableRing,     Ring2DView);
+register("item", "ring", "emerald-ring",              Ring
+register("item", "ring", "wedding", *,  UseableRing2DView);
 			rings.xml:    <type class="ring" subclass="medicinal_ring" tileid="-1"/>
 			rings.xml:    <type class="ring" subclass="antivenom_ring" tileid="-1"/>
 			rings.xml:    <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
@@ -65,43 +44,23 @@ var marauroa = window.marauroa = window.marauroa || {};
 			rings.xml:    <type class="ring" subclass="engagement_ring" tileid="-1"/>
 			rings.xml:    <type class="ring" subclass="emerald-ring" tileid="-1"/>
 
-		register("looped_sound_source", null, null, LoopedSoundSource.class);
+register("looped_sound_source",              LoopedSoundSource);
 
-		register("npc", null, null, NPC2DView.class);
-		register("npc", null, null, NPC.class);
-
-		register("pet", null, null, Pet2DView.class);
-		register("pet", null, null, Pet.class);
-		register("plant_grower", null, null, PlantGrower2DView.class);
-		register("plant_grower", null, null, PlantGrower.class);
-		register("player", null, null, Player2DView.class);
-		register("player", null, null, Player.class);
-		register("portal", null, null, Portal2DView.class);
-		register("portal", null, null, Portal.class);
-		register("purple_dragon", null, null, Pet2DView.class);
-		register("purple_dragon", null, null, Pet.class);
-
-		register("rented_sign", null, null, Sign2DView.class);
-		register("rented_sign", null, null, Sign.class);
-
-		register("sheep", null, null, Sheep2DView.class);
-		register("sheep", null, null, Sheep.class);
-		register("shop_sign", null, null, ShopSign2DView.class);
-		register("shop_sign", null, null, Sign.class);
-		register("sign", null, null, Sign2DView.class);
-		register("sign", null, null, Sign.class);
-		register("spell", null, null, Spell2DView.class);
-		register("spell", null, null, Spell.class);
-
-		register("tradecentersign", null, null, Sign.class);
-		register("tradecentersign", null, null, TradeCenterSign2DView.class);
-
-		register("useable_entity", null, null, StatefulEntity.class);
-		register("useable_entity", null, null, UseableEntity2DView.class);
-
-		register("wall", null, null, Wall2DView.class);
-		register("wall", null, null, Wall.class);
-		register("weather_entity", null, null, InvisibleEntity.class);
+register("npc",              NPC2DView,      NPC);
+register("pet",              Pet2DView,      Pet);
+register("plant_grower",     PlantGrower2DView,     PlantGrower);
+register("player",           Player2DView,   Player);
+register("portal",           Portal2DView,   Portal);
+register("purple_dragon",    Pet2DView,      Pet);
+register("rented_sign",      Sign2DView,     Sign);
+register("sheep",            Sheep2DView,    Sheep);
+register("shop_sign",        ShopSign2DView, Sign);
+register("sign",             Sign2DView,     Sign);
+register("spell",            Spell2DView,    Spell);
+register("tradecentersign",  TradeCenterSign2DView,  Sign);
+register("useable_entity",   UseableEntity2DView,    StatefulEntity);
+register("wall",             Wall2DView,             Wall);
+register("weather_entity",     *,                    InvisibleEntity);
 
  */
 
