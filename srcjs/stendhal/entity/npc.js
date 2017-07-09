@@ -21,5 +21,16 @@ marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFacto
 	spritePath: "npc",
 	titleStyle: "#c8c8ff",
 	"hp": 100,
-	"base_hp": 100
+	"base_hp": 100,
+	
+	drawTop: function(ctx) {
+		var localX = this["_x"] * 32;
+		var localY = this["_y"] * 32;
+		if (typeof(this["no_hpbar"]) == "undefined") {
+			this.drawHealthBar(ctx, localX, localY);
+		}
+		if (typeof(this["unnamed"]) == "undefined") {
+			this.drawTitle(ctx, localX, localY);
+		}
+	}
 });

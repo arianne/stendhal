@@ -21,7 +21,6 @@ register("block",        LookableEntity2DView,  Block);
 register("cat",          Pet2DView,             Pet);
 register("chest",        Chest2DView,           Chest);
 register("corpse",       Corpse2DView,          Corpse);
-register("creature", "ent", null, BossCreature2DView, BossCreature);
 register("creature",     Creature2DView,        Creature);
 register("door",         Door2DView,            Door);
 register("entity",                              Entity);
@@ -46,7 +45,6 @@ register("item", "ring", "wedding", *,  UseableRing2DView);
 
 register("looped_sound_source",              LoopedSoundSource);
 
-register("npc",              NPC2DView,      NPC);
 register("pet",              Pet2DView,      Pet);
 register("plant_grower",     PlantGrower2DView,     PlantGrower);
 register("player",           Player2DView,   Player);

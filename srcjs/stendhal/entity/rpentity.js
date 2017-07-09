@@ -120,7 +120,6 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * says a text
 	 */
 	say: function (text) {
-		this.addSpeechBubble(text);
 		if (!marauroa.me) {
 			return;
 		}
@@ -128,6 +127,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			if (text.match("^!me") == "!me") {
 				stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this["title"]));
 			} else {
+				this.addSpeechBubble(text);
 				stendhal.ui.chatLog.addLine("normal", this["title"] + ": " + text);
 			}
 		}
