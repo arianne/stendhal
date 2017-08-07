@@ -43,7 +43,13 @@ public class ReaperNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Grim Reaper") {
+		SpeakerNPC npc = createNPC("Grim Reaper");
+		npc.setPosition(63, 76);
+		zone.add(npc);
+	}
+	
+	static SpeakerNPC createNPC(String name) {
+		final SpeakerNPC npc = new SpeakerNPC(name) {
 
 			@Override
 			protected void createPath() {
@@ -63,9 +69,8 @@ public class ReaperNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setEntityClass("grim_reaper_npc");
-		npc.setPosition(63, 76);
 		npc.initHP(100);
 		npc.setDescription("You see the Grim Reaper. His riddles will give you liberty.");
-		zone.add(npc);
+		return npc;
 	}
 }

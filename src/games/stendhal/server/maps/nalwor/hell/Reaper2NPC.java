@@ -56,7 +56,13 @@ public class Reaper2NPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("repaeR mirG") {
+		SpeakerNPC npc = createNPC("repaeR mirG");
+		npc.setPosition(68, 76);
+		zone.add(npc);
+	}
+	
+	static SpeakerNPC createNPC(String name) {
+		final SpeakerNPC npc = new SpeakerNPC(name) {
 
 			@Override
 			protected void createPath() {
@@ -95,6 +101,6 @@ public class Reaper2NPC implements ZoneConfigurator {
 		npc.setPosition(68, 76);
 		npc.initHP(100);
 		npc.setDescription("You see the repaeR mirG. His mirror will give you liberty.");
-		zone.add(npc);
+		return npc;
 	}
 }

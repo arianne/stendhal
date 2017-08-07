@@ -1269,6 +1269,7 @@ below average.
     <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC" />
     <configurator class-name="games.stendhal.server.maps.nalwor.hell.Reaper2NPC" />
     <configurator class-name="games.stendhal.server.maps.nalwor.hell.CaptiveNPC" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.HellTimer" />
     <portal x="9" y="9" ref="start">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
@@ -1286,6 +1287,28 @@ below average.
         <parameter name="sound">ambiance-demon-1</parameter>
         <parameter name="volume">120</parameter>
       </implementation>
+    </entity>
+  </zone>
+  
+  <zone name="int_hell_pit" file="interiors/nalwor/hell_pit.tmx">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperClones" />
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#882200</parameter>
+      <parameter name="blend_method">truecolor</parameter>
+    </attributes>
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="coversZone">true</parameter>
+        <parameter name="enterMessage">You have been caught by a hellish official, and are now in the Pit where you need to answer the reapers' questions.</parameter>
+      </implementation>
+    </entity>
+    <entity x="6" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Starkad was here!</attribute>
+      <attribute name="class">transparent</attribute>
     </entity>
   </zone>
 
