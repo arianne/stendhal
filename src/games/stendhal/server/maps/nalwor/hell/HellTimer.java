@@ -8,6 +8,7 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -131,6 +132,11 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	public void onEntered(RPObject object, StendhalRPZone zone) {
 		if (object instanceof Player) {
 			Player player = (Player) object;
+			// Disable moving admins out, except on the test server
+			if (player.getAdminLevel() >= 1000 && !ServerModeUtil.isTestServer()) {
+				return;
+			}
+
 			TurnListener timer;
 			int seconds;
 			if (new QuestInStateCondition(QUEST_SLOT, 1, "caught").fire(player, null, null)
