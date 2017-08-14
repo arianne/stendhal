@@ -149,6 +149,9 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 				seconds = Rand.randExponential(MEAN_WAIT_TIME);
 			} else {
 				timer = new TimerStage1(player, true);
+				player.sendPrivateText("Since you were recently caught without "
+						+ "permission in hell, the guardians may be prepared "
+						+ "for your return");
 				seconds = Rand.randExponential(SHORT_WAIT_TIME);
 			}
 			runningTimers.put(player, timer);
