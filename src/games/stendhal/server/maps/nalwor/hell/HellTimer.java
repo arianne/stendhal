@@ -37,17 +37,17 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	 * The mean time player may normally stay in hell (excluding grace time).
 	 * The actual time is random. 
 	 */
-	private static final int MEAN_WAIT_TIME = 1 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static final int MEAN_WAIT_TIME = MathHelper.SECONDS_IN_ONE_HOUR;
 	/**
 	 * The mean time player may stay in hell (excluding grace time) when they
 	 * have been caught recently. The actual time is random. 
 	 */
-	private static final int SHORT_WAIT_TIME = 1 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static final int SHORT_WAIT_TIME = 3 * MathHelper.SECONDS_IN_ONE_MINUTE;
 	/**
 	 * The time in minutes that the player should stay away from hell until the
 	 * guardian has forgotten about them.
 	 */
-	private static final int GUARDIAN_WARNED_TIME = 5;
+	private static final int GUARDIAN_WARNED_TIME = 6 * MathHelper.SECONDS_IN_ONE_HOUR;
 	/**
 	 * The time how long a caught state is considered valid. The player can log
 	 * out before being moved to the pit. Normally they'd be moved immediately
