@@ -67,7 +67,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	private static final int LAWYER_FEE = 10000;
 	private static final String STD_MSG = "An irresistible force drags you to the Pit";
 	private static final String LAWYER_MSG = "The lawyer sends you to the reapers.";
-	private static final String[][] messages = {
+	private static final String[][] MESSAGES = {
 		{ "Hell's guardian tells you: Hey, what's a live soul doing in hell?"
 			+ " You'll need to answer to the reapers.", STD_MSG },
 		{ "Fire brander tells you: Don't try to fool me, I won't brand live"
@@ -206,13 +206,13 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 
 		@Override
 		public void onTurnReached(int currentTurn) {
-			String msg[];
+			String[] msg;
 			if (recaught) {
 				msg = new String[]{"Hell's guardian tells you: Ha, caught you."
 						+ " The reapers warned me you might try to sneak back here.",
 						STD_MSG };
 			} else {
-				msg = Rand.rand(messages);
+				msg = Rand.rand(MESSAGES);
 			}
 			String message = msg[0].replaceAll("\\$NAME", player.getName());
 			if (LAWYER_MSG.equals(msg[1])) {
