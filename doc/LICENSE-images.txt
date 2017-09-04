@@ -161,3 +161,11 @@ The following files are released into the public domain and can be distributed u
         brick_wall          brick_wall_red
         • Sources:
             http://opengameart.org/content/stone-brick-wall-golgotha-stone1512jpg
+
+
+Other images:
+
+    • data/sprites/monsters/golem/stone_golem
+        • CC BY 3.0
+        • Stephen Challener (Redshrike), hosted by OpenGameArt.org
+        • https://opengameart.org/content/a-load-of-overworld-34-rpg-sprites
