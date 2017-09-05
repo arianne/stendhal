@@ -116,6 +116,10 @@ The following files are released into the public domain and can be distributed u
         shovel
         • Sources:
             http://openclipart.org/detail/116893/palas-by-laabadon
+    • data/sprites/monsters/farm_animal/
+        chick
+        • Sources:
+            https://opengameart.org/content/chick
     • data/sprites/monsters/undead/
         myling
         • Sources:
