@@ -120,6 +120,10 @@ The following files are released into the public domain and can be distributed u
         myling
         • Sources:
             http://opengameart.org/content/zombie-and-skeleton-32x48
+    • data/sprites/npc/
+        mithrilforgernpc
+        • Sources:
+            https://opengameart.org/content/mage-0
     • data/sprites/status/
         healer              merchant			heavy
         • Sources:
