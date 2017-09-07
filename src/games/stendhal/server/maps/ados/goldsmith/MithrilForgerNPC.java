@@ -74,7 +74,7 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 			}
 		};
 
-		forger.setEntityClass("noimagenpc"); // mithrilforgernpc
+		forger.setEntityClass("mithrilforgernpc");
 		forger.setDirection(Direction.RIGHT);
 		forger.setPosition(10, 12);
 		forger.initHP(100);

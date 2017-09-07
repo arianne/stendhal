@@ -57,7 +57,7 @@ public class WizardNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Whiggins, looking tranquil and happy.");
-		npc.setEntityClass("noimagenpc"); // mithrilforgernpc
+		npc.setEntityClass("mithrilforgernpc");
 		npc.setPosition(14, 14);
 		npc.initHP(100);
 		zone.add(npc);
