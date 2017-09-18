@@ -121,7 +121,7 @@ import games.stendhal.client.entity.User;
 		/*
 		 * Stop the player
 		 */
-		if (!user.stopped()) {
+		if (user != null && !user.stopped()) {
 			/* User.stopMovement() executes an AutoWalkAction which will stop
 			 * the character's movement and remove auto-walk setting.
 			 */
