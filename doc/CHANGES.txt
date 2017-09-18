@@ -6,11 +6,21 @@
 - made new image for Gashadokuro
 - made new image for Stone Golem
 - made new image for Chicken
-- Hell
+- made new image for mithrilforgernpc
+- added second Hell
 - improved dialogues of some NPCs near Ados
 
 *experimental webclient*
- - 
+ - removed outdated text and admin clients
+ - added support for popup windows
+ - added buddy list popup menu
+ - added player entity popup menu
+ - added group management commands
+ - implemented stacked item management actions
+ - display zone name
+ - implemented gate entity
+ - implemented walk blocker entity
+ - implemented PassiveNPC
 
 1.25
 
