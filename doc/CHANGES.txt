@@ -1,6 +1,17 @@
 ﻿Changelog
 ---------
 
+1.26
+*world*
+- made new image for Gashadokuro
+- made new image for Stone Golem
+- made new image for Chicken
+- Hell
+- improved dialogues of some NPCs near Ados
+
+*experimental webclient*
+ - 
+
 1.25
 
 *world*
