@@ -7,20 +7,20 @@
 - made new image for Stone Golem
 - made new image for Chicken
 - made new image for mithrilforgernpc
-- added second Hell
+- limited time in Hell due to the heat
 - improved dialogues of some NPCs near Ados
 
 *experimental webclient*
- - removed outdated text and admin clients
- - added support for popup windows
- - added buddy list popup menu
- - added player entity popup menu
- - added group management commands
- - implemented stacked item management actions
- - display zone name
- - implemented gate entity
- - implemented walk blocker entity
- - implemented PassiveNPC
+- removed outdated text and admin clients
+- added popup windows
+- added group management commands
+- implemented stacked item management
+- display zone name
+- implemented gate, walk blocker and PassiveNPC
+ 
+*bugfixes*
+- fixed a double login bug resulting in item duplication
+- fixed a NullPointerException on quit dialog
 
 1.25
 
