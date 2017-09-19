@@ -19,7 +19,7 @@
 - implemented gate, walk blocker and PassiveNPC
  
 *bugfixes*
-- fixed a double login bug resulting in item duplication
+- fixed a double login bug resulting in item duplication (thanks to pepsz for the report)
 - fixed a NullPointerException on quit dialog
 
 1.25
