@@ -177,3 +177,10 @@ Other images:
         • CC BY 3.0
         • Stephen Challener (Redshrike), hosted by OpenGameArt.org
         • https://opengameart.org/content/a-load-of-overworld-34-rpg-sprites
+
+Based on "LPC Horses" by bluecarrot16 (CC BY-SA 3.0):
+	• https://opengameart.org/content/lpc-horses
+	• Reworked for Stendhal by Jordan Irwin (AntumDeluge)
+	• data/sprites/monster/farm_animal/
+		• horse.png
+		• white_horse.png
