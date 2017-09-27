@@ -76,7 +76,7 @@
   <image source="../../tileset/ground/green_paving.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="415" name="halloween_bounting.png" tilewidth="32" tileheight="32" tilecount="6" columns="6">
-  <image source="../../tileset/item/textile/Halloween_bunting.png" width="192" height="32"/>
+  <image source="../../tileset/item/textile/halloween_bunting.png" width="192" height="32"/>
  </tileset>
  <tileset firstgid="421" name="mannequins.png" tilewidth="32" tileheight="32" tilecount="28" columns="7">
   <image source="../../tileset/furniture/other/mannequins.png" width="224" height="128"/>
