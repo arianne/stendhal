@@ -3,6 +3,13 @@ Files declared in this document that do not specify a filename extension fall un
 
 ### Character/NPC Sprites:
 
+By [bagzie](https://opengameart.org/users/bagzie):
+- [OGA BY 3.0](../doc/Licenses/OGA-BY-3.0.txt):
+  - bats (source: [Bat Sprite](https://opengameart.org/node/26447))
+    - Reworked for Stendhal by Jordan Irwin (AntumDeluge)
+      - [bat](../data/sprites/monsters/animal/bat.png)
+      - [killer_bat](../data/sprites/monsters/animal/killer_bat.png)
+
 By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
 - Creative Commons-ShareAlike (CC BY-SA) version 3.0:
   - horses (source: [[LPC] Horses](https://opengameart.org/node/69398))
