@@ -31,7 +31,9 @@ By [qubodup](https://opengameart.org/users/qubodup):
 
 By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 - Creative Commons Attribution (CC BY) version 3.0:
-  - [stone_golem](../data/sprites/monsters/golem/stone_golem.png) (source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215))
+  - Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215)
+    - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
+    - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
