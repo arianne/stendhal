@@ -167,7 +167,7 @@
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <tileset firstgid="747" name="halloween_bunting.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/textile/Halloween_bunting.png"/>
+  <image source="../../tileset/item/textile/halloween_bunting.png"/>
  </tileset>
  <tileset firstgid="753" name="webs.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/webs.png"/>
