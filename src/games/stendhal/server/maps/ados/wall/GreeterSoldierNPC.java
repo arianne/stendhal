@@ -72,7 +72,7 @@ public class GreeterSoldierNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("youngsoldiernpc");
+		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc.setPosition(84, 109);
 		npc.initHP(100);
 		npc.setDescription("You see Julius, the soldier who guards the entrance to the town of Ados.");

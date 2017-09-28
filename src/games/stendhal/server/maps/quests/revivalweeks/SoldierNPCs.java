@@ -40,7 +40,7 @@ public class SoldierNPCs implements LoadableContent {
 		};
 
 		npc1.setPosition(88, 98);
-		npc1.setEntityClass("youngsoldiernpc");
+		npc1.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc1.setDirection(Direction.RIGHT);
 		npc1.setDescription("You see Hibitus. He guards the entrance to Semos Mine.");
 		npc1.initHP(100);
@@ -62,7 +62,7 @@ public class SoldierNPCs implements LoadableContent {
 		};
 
 		npc2.setPosition(92, 98);
-		npc2.setEntityClass("youngsoldiernpc");
+		npc2.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc2.setDirection(Direction.LEFT);
 		npc2.setDescription("You see Lucanus. He guards the entrance to Semos Mine.");
 		npc2.initHP(100);

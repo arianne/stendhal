@@ -357,7 +357,7 @@ public class ReverseArrow extends AbstractQuest implements
 	private void step1CreateNPC() {
 		npc = new GamblosSpeakerNPC("Gamblos");
 
-		npc.setEntityClass("oldwizardnpc");
+		npc.setEntityClass("noimagenpc"); /* oldwizardnpc */
 		npc.setPosition(13, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

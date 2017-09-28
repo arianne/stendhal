@@ -127,7 +127,7 @@ public class OldWomanNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("oldwomannpc");
+		npc.setEntityClass("noimagenpc"); /* oldwomannpc */
 		npc.setPosition(38, 8);
 		npc.initHP(100);
 		npc.setDescription("You see an elder woman. She looks a bit disorientated.");

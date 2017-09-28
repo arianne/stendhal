@@ -99,7 +99,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 
 			});
 
-		npc.setEntityClass("highpriestnpc");
+		npc.setEntityClass("noimagenpc"); /* highpriestnpc */
 		npc.setDescription("You see Aenihata. He is a high priest and tries to protect Faiumoni with his magical skills.");
 		npc.setPosition(23, 44);
 		npc.setDirection(Direction.LEFT);

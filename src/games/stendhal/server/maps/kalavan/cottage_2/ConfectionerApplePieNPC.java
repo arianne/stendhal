@@ -95,7 +95,7 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("confectionerapplepienpc");
+		npc.setEntityClass("noimagenpc"); /* confectionerapplepienpc */
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(4, 3);
 		npc.initHP(100);

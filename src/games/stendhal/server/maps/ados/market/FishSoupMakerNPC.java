@@ -68,7 +68,7 @@ public class FishSoupMakerNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Florence Boullabaisse. She is an excellent soup chef.");
-		npc.setEntityClass("fishsoupmakernpc");
+		npc.setEntityClass("noimagenpc"); /* fishsoupmakernpc */
 		npc.setPosition(63, 14);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);

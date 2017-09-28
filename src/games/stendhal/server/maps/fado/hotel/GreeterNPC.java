@@ -73,7 +73,7 @@ public class GreeterNPC implements ZoneConfigurator {
 			}
 		};
 
-		greeterNPC.setEntityClass("hotelreceptionistnpc");
+		greeterNPC.setEntityClass("noimagenpc"); /* hotelreceptionistnpc */
 		greeterNPC.setPosition(16, 50);
 		greeterNPC.initHP(1000);
 		greeterNPC.setDescription("You see Linda. She belongs to the friendly hotel staff and is responsible for the room reservations.");

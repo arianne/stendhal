@@ -104,7 +104,7 @@ public class RetireeNPC implements ZoneConfigurator {
 
 		};
 		npc.setPosition(24, 43);
-		npc.setEntityClass("beggarnpc");
+		npc.setEntityClass("noimagenpc"); /* beggarnpc */
 		npc.setDescription("Diogenes is an elderly man, but sprightly for his age. He looks friendly and helpful.");
 		npc.setSounds(Arrays.asList("laugh-1", "laugh-2"));
 		zone.add(npc);

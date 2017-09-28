@@ -144,7 +144,7 @@ public class CaptureFlagQuest extends AbstractQuest {
 			}
 		};
 
-		npc.setEntityClass("oldheronpc"); // TODO: different sprite
+		npc.setEntityClass("noimagenpc"); /* oldheronpc */
 		npc.setPosition(100, 119);
 		npc.initHP(100);
 		npc.setDescription("You see Thumb"); // TODO: Describe NPC

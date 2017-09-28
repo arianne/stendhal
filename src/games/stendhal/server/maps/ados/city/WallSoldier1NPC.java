@@ -67,7 +67,7 @@ public class WallSoldier1NPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("youngsoldiernpc");
+		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc.setPosition(26, 73);
 		npc.initHP(100);
 		npc.setDescription("You see Helius, a soldier who guards the city wall of Ados.");

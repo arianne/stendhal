@@ -105,7 +105,7 @@ public class BlacksmithNPC implements ZoneConfigurator  {
 
 			}};
 			npc.setPosition(23, 12);
-			npc.setEntityClass("blacksmithnpc");
+			npc.setEntityClass("noimagenpc"); /* blacksmithnpc */
 			npc.setDescription("You see Xoderos, the strong Semos blacksmith.");
 			zone.add(npc);
 	}

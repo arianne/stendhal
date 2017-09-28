@@ -189,7 +189,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("koboldbarmaidnpc");
+		npc.setEntityClass("noimagenpc"); /* koboldbarmaidnpc */
 		npc.setPosition(9, 3);
 		npc.initHP(100);
 		npc.setDescription("You see Wrviliza, the kobold barmaid.");

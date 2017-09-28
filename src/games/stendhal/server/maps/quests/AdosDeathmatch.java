@@ -219,7 +219,7 @@ public class AdosDeathmatch extends AbstractQuest {
 			}
 		};
 
-		npc.setEntityClass("darkwizardnpc");
+		npc.setEntityClass("noimagenpc"); /* darkwizardnpc */
 		npc.setPosition(x, y);
 		npc.setDescription("You see Thanatos. He watches strong warriors in their Deathmatch.");
 		npc.setDirection(Direction.DOWN);

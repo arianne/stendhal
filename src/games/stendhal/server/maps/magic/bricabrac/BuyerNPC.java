@@ -108,7 +108,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Vonda, a witch who seems to like clutter...");
-		npc.setEntityClass("witch2npc");
+		npc.setEntityClass("noimagenpc"); /* witch2npc */
 		npc.setPosition(4, 12);
 		npc.initHP(100);
 		zone.add(npc);

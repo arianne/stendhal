@@ -68,7 +68,7 @@ public class CowardSoldierNPC implements ZoneConfigurator {
 			// remaining behaviour is defined in maps.quests.KanmararnSoldiers.
 		};
 
-		npc.setEntityClass("youngsoldiernpc");
+		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc.setDescription("You see Henry. He is one of the lost soldiers of Semos and hides himself in the dark cave...");
 		npc.setPosition(57, 113);
 		npc.setBaseHP(100);

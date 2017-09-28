@@ -73,7 +73,7 @@ public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
 			}
 		};
 
-		zogfangNPC.setEntityClass("orcbuyernpc");
+		zogfangNPC.setEntityClass("noimagenpc"); /* orcbuyernpc */
 		zogfangNPC.setPosition(10, 107);
 		zogfangNPC.initHP(1000);
 		zogfangNPC.setDescription("You see the old smelling orc Zogfang. He waits for warriors to help him while fighting against dwarves.");
