@@ -67,7 +67,7 @@ public class GarbiddleNPC implements ZoneConfigurator {
 			}
 		};
 
-		garbiddle.setEntityClass("gnomenpc");
+		garbiddle.setEntityClass("noimagenpc"); /* gnomenpc */
 		garbiddle.setPosition(37, 112);
 		garbiddle.initHP(100);
 		garbiddle.setDescription("You see Garbiddle, the tiny gnome lady. She waits for customers.");

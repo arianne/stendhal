@@ -86,7 +86,7 @@ public class TollboothNPC implements ZoneConfigurator  {
 
         npc.setPosition(37, 30);
         npc.setDirection(Direction.LEFT);
-        npc.setEntityClass("youngsoldiernpc");
+        npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
         npc.setDescription("You see the tollbooth operator.");
         zone.add(npc);
 	}

@@ -71,7 +71,7 @@ public class BankNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Rachel, a smart looking woman. She works in Ados bank.");
-		npc.setEntityClass("adosbankassistantnpc");
+		npc.setEntityClass("noimagenpc"); /* adosbankassistantnpc */
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(9, 4);
 		npc.initHP(100);

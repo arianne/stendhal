@@ -85,7 +85,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			}
 		});
 
-		npc.setEntityClass("dwarf_guardiannpc");
+		npc.setEntityClass("noimagenpc"); /* dwarf_guardiannpc */
 		npc.setDescription("You see Phalk. He is a soldier who doesn't want to abandon adventurers to their fate.");
 		npc.setPosition(118, 26);
 		npc.setDirection(Direction.LEFT);

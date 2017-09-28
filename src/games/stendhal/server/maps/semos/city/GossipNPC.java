@@ -125,7 +125,7 @@ public class GossipNPC implements ZoneConfigurator {
 
         };
         npc.setPosition(46, 20);
-        npc.setEntityClass("thiefnpc");
+        npc.setEntityClass("noimagenpc"); /* thiefnpc */
         zone.add(npc);
         npc.setDescription("This guy here, Nomyr Ahba, seems to be curious. His huge bag camouflages him.");
     }

@@ -57,7 +57,7 @@ public class SellerNPC implements ZoneConfigurator {
 		};
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("superhealing")));
 		npc.setPosition(3, 5);
-		npc.setEntityClass("wizardwomannpc");
+		npc.setEntityClass("noimagenpc"); /* wizardwomannpc */
 		npc.setDirection(Direction.DOWN);
 		npc.setDescription("You see Sarzina. She is a healer and knows a lot about your karma.");
 		zone.add(npc);

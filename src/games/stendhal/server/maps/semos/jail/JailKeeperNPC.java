@@ -62,7 +62,7 @@ public class JailKeeperNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("youngsoldiernpc");
+		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc.setDescription("You see one of the Semos jail keepers, Sten Tanquilos.");
 		npc.setPosition(4, 17);
 		npc.initHP(100);

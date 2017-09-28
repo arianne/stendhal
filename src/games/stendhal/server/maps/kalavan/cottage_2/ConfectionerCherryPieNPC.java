@@ -89,7 +89,7 @@ public class ConfectionerCherryPieNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("confectionercherrypienpc");
+		npc.setEntityClass("noimagenpc"); /* confectionercherrypienpc */
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(10, 6);
 		npc.initHP(100);

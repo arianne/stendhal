@@ -197,7 +197,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("slim_woman_npc");
+		npc.setEntityClass("noimagenpc"); /* slim_woman_npc */
 		npc.setPosition(16, 5);
 		// npc.setPosition(101, 102);
 		npc.initHP(100);

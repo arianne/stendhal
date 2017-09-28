@@ -66,7 +66,7 @@ public class KoboldBarRegularNPC implements ZoneConfigurator {
             }
         };
 
-        npc.setEntityClass("koboldbarregularnpc");
+        npc.setEntityClass("noimagenpc"); /* koboldbarregularnpc */
         npc.setPosition(6, 5);
         npc.initHP(100);
         npc.setDirection(Direction.UP);

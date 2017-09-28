@@ -82,7 +82,7 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see old Granny Graham, shuffling around her kitchen and muttering to herself.");
-		npc.setEntityClass("granmanpc");
+		npc.setEntityClass("noimagenpc"); /* granmanpc */
 		npc.setDirection(Direction.RIGHT);
 		npc.setPosition(4, 4);
 		npc.initHP(100);

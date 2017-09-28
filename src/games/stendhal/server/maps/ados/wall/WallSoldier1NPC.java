@@ -68,7 +68,7 @@ public class WallSoldier1NPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("youngsoldiernpc");
+		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
 		npc.setPosition(79,  1);
 		npc.initHP(100);
 		npc.setDescription("You see Galercus, a soldier who guards the city wall of Ados.");

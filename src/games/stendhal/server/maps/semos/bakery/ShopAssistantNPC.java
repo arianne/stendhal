@@ -274,7 +274,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 
 			}};
 			npc.setPosition(26, 9);
-			npc.setEntityClass("housewifenpc");
+			npc.setEntityClass("noimagenpc"); /* housewifenpc */
 			npc.setDescription("You see Erna. She's worked a long time for Leander and is his loyal assistant.");
 			zone.add(npc);
 	}
