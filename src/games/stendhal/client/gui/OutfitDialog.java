@@ -131,6 +131,13 @@ class OutfitDialog extends JDialog {
 		body.addListener(outfitLabel);
 		dress.addListener(dressLabel);
 		dress.addListener(outfitLabel);
+		
+		if (Testing.OUTFITS) {
+			eyes.addListener(eyesLabel);
+			eyes.addListener(outfitLabel);
+			mouth.addListener(mouthLabel);
+			mouth.addListener(outfitLabel);
+		}
 
 		// analyse current outfit
 		int bodiesIndex = outfit % 100;
