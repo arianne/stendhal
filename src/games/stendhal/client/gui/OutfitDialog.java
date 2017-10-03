@@ -131,7 +131,8 @@ class OutfitDialog extends JDialog {
 		body.addListener(outfitLabel);
 		dress.addListener(dressLabel);
 		dress.addListener(outfitLabel);
-		
+
+		/* TODO: Remove when new outfit system implemented */
 		if (Testing.OUTFITS) {
 			eyes.addListener(eyesLabel);
 			eyes.addListener(outfitLabel);
@@ -154,11 +155,25 @@ class OutfitDialog extends JDialog {
 		bodiesIndex = checkIndex(bodiesIndex, body);
 		clothesIndex = checkIndex(clothesIndex, dress);
 
+		/* TODO: Remove when new outfit system implemented */
+		if (Testing.OUTFITS) {
+		}
+
 		// Set the current outfit indices; this will update the labels as well
 		hair.setIndex(hairsIndex);
 		head.setIndex(headsIndex);
 		body.setIndex(bodiesIndex);
 		dress.setIndex(clothesIndex);
+
+		/* TODO: Remove when new outfit system implemented */
+		if (Testing.OUTFITS) {
+			/* FIXME: How to get eyes & mouths index? */
+			int eyesIndex = 0;
+			int mouthsIndex = 0;
+
+			eyes.setIndex(eyesIndex);
+			mouth.setIndex(mouthsIndex);
+		}
 
 		pack();
 		WindowUtils.closeOnEscape(this);
