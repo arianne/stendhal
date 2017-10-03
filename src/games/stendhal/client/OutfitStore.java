@@ -35,13 +35,13 @@ public class OutfitStore {
 	final String outfits = "data/sprites/outfit";
 
 	/** body directory */
-	final String bodies;// = outfits + "/body";
+	final String bodies = outfits + "/body";
 
 	/** dress directory */
 	final String dresses = outfits + "/dress";
 
 	/** head directory */
-	final String heads;// = outfits + "/head";
+	final String heads = outfits + "/head";
 
 	/** mouth directory */
 	final String mouths = outfits + "/mouth";
@@ -74,9 +74,6 @@ public class OutfitStore {
 	 */
 	private OutfitStore(final SpriteStore store) {
 		this.store = store;
-
-		bodies = outfits + "/body";
-		heads = outfits + "/head";
 	}
 
 	//
