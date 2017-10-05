@@ -44,6 +44,10 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 - Creative Commons Attribution-ShareAlike (CC BY-SA) 3.0:
   - [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851))
 
+By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit) & [diamonddmgirl](https://opengameart.org/users/diamonddmgirl):
+- Creative Commons Attribution (CC BY) version 3.0:
+  - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png) ([source](https://opengameart.org/node/66147))
+
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
 - [mithrilforgernpc](../data/sprites/npc/mithrilforgernpc.png) by Sollision & Jordan Irwin ([source](https://opengameart.org/node/76967))
