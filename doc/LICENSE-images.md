@@ -11,7 +11,7 @@ By [bagzie](https://opengameart.org/users/bagzie):
       - [killer_bat](../data/sprites/monsters/animal/killer_bat.png)
 
 By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
-- Creative Commons-ShareAlike (CC BY-SA) version 3.0:
+- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
   - horses (source: [[LPC] Horses](https://opengameart.org/node/69398))
     - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
@@ -41,6 +41,8 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
   - Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215)
     - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
     - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
+- Creative Commons Attribution-ShareAlike (CC BY-SA) 3.0:
+  - [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851))
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
