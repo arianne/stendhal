@@ -46,7 +46,9 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit) & [diamonddmgirl](https://opengameart.org/users/diamonddmgirl):
 - Creative Commons Attribution (CC BY) version 3.0:
-  - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png) ([source](https://opengameart.org/node/66147))
+  - Source: [Edited and Extended 24x32 Character Pack](https://opengameart.org/node/66147)
+    - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
+    - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
