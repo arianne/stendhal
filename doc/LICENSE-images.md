@@ -12,6 +12,9 @@ By [bagzie](https://opengameart.org/users/bagzie):
 
 By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
 - Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
+  - cats (source: [[LPC] Cats and Dogs](https://opengameart.org/node/69399))
+    - [cat](../data/sprites/cat.png) (pet)
+    - [cat](../data/sprites/npc/animal/cat.png) (NPC)
   - horses (source: [[LPC] Horses](https://opengameart.org/node/69398))
     - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
