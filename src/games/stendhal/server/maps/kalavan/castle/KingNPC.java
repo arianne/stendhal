@@ -64,7 +64,7 @@ public class KingNPC implements ZoneConfigurator {
 			}
 		};
 
-		kingNPC.setEntityClass("noimagenpc"); // "kingcozartnpc"
+		kingNPC.setEntityClass("kingcozartnpc");
 		kingNPC.setPosition(40, 22);
 		kingNPC.initHP(100);
 		kingNPC.setDescription("You see King Cozart, the king of Kalavan and its citizens.");
