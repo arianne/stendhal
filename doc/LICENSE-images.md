@@ -59,6 +59,8 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
   - Source: [Orc](https://opengameart.org/node/77703)
     - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
     - [orc](../data/sprites/monsters/orc/orc.png)
+    - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
+    - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
