@@ -47,11 +47,12 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 - Creative Commons Attribution-ShareAlike (CC BY-SA) 3.0:
   - [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851))
 
-By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit) & [diamonddmgirl](https://opengameart.org/users/diamonddmgirl):
+By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (CC BY) version 3.0:
-  - Source: [Edited and Extended 24x32 Character Pack](https://opengameart.org/node/66147)
-    - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
+  - Source: [24x32 characters with faces (big pack)](https://opengameart.org/node/24823)
+    - [granmanpc](../data/sprites/npc/granmanpc.png)
     - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
+    - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
 
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin (AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0:
