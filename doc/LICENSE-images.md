@@ -53,6 +53,12 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit) & [diam
     - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
     - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
 
+By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin (AntumDeluge):
+- Creative Commons Attribution (CC BY) version 3.0:
+  - Source: [Orc](https://opengameart.org/node/77703)
+    - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
+    - [orc](../data/sprites/monsters/orc/orc.png)
+
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
 - [mithrilforgernpc](../data/sprites/npc/mithrilforgernpc.png) by Sollision & Jordan Irwin ([source](https://opengameart.org/node/76967))
