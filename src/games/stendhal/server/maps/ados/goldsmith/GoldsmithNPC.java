@@ -96,7 +96,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 			}
 		};
 
-		goldsmith.setEntityClass("noimagenpc"); /* goldsmithnpc */
+		goldsmith.setEntityClass("goldsmithnpc");
 		goldsmith.setDirection(Direction.DOWN);
 		goldsmith.setPosition(18, 3);
 		goldsmith.initHP(100);
