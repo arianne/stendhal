@@ -68,7 +68,7 @@ public class WallSoldier4NPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(76, 63);
 		npc.initHP(100);
 		npc.setDescription("You see Xinderus, a soldier who guards the city wall of Ados.");

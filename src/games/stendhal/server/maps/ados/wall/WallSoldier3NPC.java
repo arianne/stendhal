@@ -73,7 +73,7 @@ The quest will be repeatable every 24 hours and the kind of monster and the amou
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(79, 43);
 		npc.initHP(100);
 		npc.setDescription("You see Vincendus, a soldier who guards the city wall of Ados.");

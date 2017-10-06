@@ -33,7 +33,7 @@ public class AdosWildlifeRaid implements TurnListener {
 	 */
 	public void createSoldier(StendhalRPZone zone, String name, int x, int y) {
 		ScriptingNPC npc = new ScriptingNPC(name);
-		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setHP((int) (Math.random() * 80) + 10);
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);

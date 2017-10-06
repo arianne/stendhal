@@ -67,7 +67,7 @@ public class WallSoldier2NPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(80, 73);
 		npc.initHP(100);
 		npc.setDescription("You see Hermius, a soldier who guards the city wall of Ados.");

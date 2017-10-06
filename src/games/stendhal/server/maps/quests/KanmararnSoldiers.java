@@ -331,7 +331,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-6_kanmararn_city");
 
 		// Now we create the corpse of the second NPC
-		final Corpse tom = new Corpse("noimagenpc", 5, 47); /* youngsoldiernpc */
+		final Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
 		// he died first
 		tom.setStage(4);
 		tom.setName("Tom");
@@ -345,7 +345,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		tomRefiller.start();
 
 		// Now we create the corpse of the third NPC
-		final Corpse charles = new Corpse("noimagenpc", 94, 5); /* youngsoldiernpc */
+		final Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
 		// he died second
 		charles.setStage(3);
 		charles.setName("Charles");
@@ -358,7 +358,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		charlesRefiller.start();
 
 		// Now we create the corpse of the fourth NPC
-		final Corpse peter = new Corpse("noimagenpc", 11, 63); /* youngsoldiernpc */
+		final Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
 		// he died recently
 		peter.setStage(2);
 		peter.setName("Peter");
