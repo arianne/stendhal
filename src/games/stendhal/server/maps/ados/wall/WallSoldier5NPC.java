@@ -68,7 +68,7 @@ public class WallSoldier5NPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* youngsoldiernpc */
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(79,  83);
 		npc.initHP(100);
 		npc.setDescription("You see Hephestus, a soldier who guards the city wall of Ados.");
