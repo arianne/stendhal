@@ -27,8 +27,11 @@ By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
 
 By [Jordan Irwin (AntumDeluge)]():
 - Creative Commons Attribution (CC BY) version 3.0 or later:
-  - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
   - [butterfly](../data/sprites/npc/animal/butterfly.png)
+  - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
+  - Based on [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack by Svetlana Kushnariova (Cabbit):
+    - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
+    - [goldsmithnpc](../data/sprites/npc/goldsmithnpc.png)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
