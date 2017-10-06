@@ -69,7 +69,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		buyitems.put("sheep", 1500);
 		new BuyerAdder().addBuyer(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.setPosition(67, 13);
-		npc.setEntityClass("noimagenpc"); /* orcbuyernpc */
+		npc.setEntityClass("orcbuyernpc");
 		zone.add(npc);
 		npc.setDescription("You see the stinky orc Tor'Koom. His stomach is making loud noises!");
 	}
