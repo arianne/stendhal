@@ -51,6 +51,7 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
     - [youngsoldiernpc](../data/sprites/npc/youngsoldiernpc.png)
+    - [witch2npc](../data/sprites/npc/witch2npc.png)
   - Source: [24x32 characters with faces (big pack)](https://opengameart.org/node/24823)
     - [granmanpc](../data/sprites/npc/granmanpc.png)
     - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
