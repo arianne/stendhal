@@ -99,7 +99,7 @@ public class GuessKillsNPC implements ZoneConfigurator {
             }
         };
 
-        npc.setEntityClass("noimagenpc"); /* granmanpc */
+        npc.setEntityClass("granmanpc");
         npc.setDescription("You see Crearid, a very attentive old lady.");
         npc.setPosition(30, 83);
         npc.initHP(100);
