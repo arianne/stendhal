@@ -30,6 +30,7 @@ By [Jordan Irwin (AntumDeluge)]():
   - [butterfly](../data/sprites/npc/animal/butterfly.png)
   - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
   - Based on [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack by Svetlana Kushnariova (Cabbit):
+    - [adosbankassistantnpc](../data/sprites/npc/adosbankassistantnpc.png)
     - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
     - [goldsmithnpc](../data/sprites/npc/goldsmithnpc.png)
 
