@@ -59,7 +59,7 @@ public class OldWitchNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("oldwitchnpc");
+		npc.setEntityClass("noimagenpc"); /* oldwitchnpc */
 		npc.setPosition(12, 4);
 		npc.initHP(100);
 		npc.setDescription("You see Mircea. She is an old thin witch, who seems to become weaker each second.");
