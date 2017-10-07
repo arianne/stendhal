@@ -33,6 +33,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [adosbankassistantnpc](../data/sprites/npc/adosbankassistantnpc.png)
     - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
     - [goldsmithnpc](../data/sprites/npc/goldsmithnpc.png)
+    - [hotelreceptionistnpc](../data/sprites/npc/hotelreceptionistnpc.png)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
