@@ -107,7 +107,8 @@ public class BlueIceSorceressNPC implements ZoneConfigurator {
 		};
 
 		cassandra.setDescription("You see Cassandra, a beautiful woman and powerful sorceress.");
-		cassandra.setEntityClass("bluesorceressnpc");
+		cassandra.setEntityClass("noimagenpc"); /* bluesorceressnpc 
+*/
 		cassandra.setPosition(37, 2);
 		cassandra.initHP(100);
 		zone.add(cassandra);
