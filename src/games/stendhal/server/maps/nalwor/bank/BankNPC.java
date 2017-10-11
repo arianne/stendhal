@@ -105,7 +105,7 @@ public class BankNPC implements ZoneConfigurator {
 		};
 
 		ladynpc.setDescription("You see a pretty female elf in a beautiful dress.");
-		ladynpc.setEntityClass("noimagenpc"); /* elfbankladynpc */
+		ladynpc.setEntityClass("elfbankladynpc");
 		ladynpc.setDirection(Direction.DOWN);
 		ladynpc.setPosition(17, 31);
 		ladynpc.initHP(100);
