@@ -92,7 +92,7 @@ public class MaidNPC implements ZoneConfigurator {
 		};
 
 		tavernMaid.setPlayerChatTimeout(TIME_OUT);
-		tavernMaid.setEntityClass("noimagenpc"); /* oldmaidnpc */
+		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);
 		tavernMaid.initHP(100);
 		tavernMaid.setDescription("You see Old Mother Helena. She is a fantastic cook and her soup is world-famous.");
