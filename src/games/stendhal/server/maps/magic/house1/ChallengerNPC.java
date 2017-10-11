@@ -244,8 +244,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 						null);
 			}};
 			npc.setPosition(14, 4);
-			npc.setEntityClass("noimagenpc"); /* 
-chaos_sorcerornpc */
+			npc.setEntityClass("chaos_sorcerornpc");
 			npc.setDirection(Direction.DOWN);
 			npc.setDescription("You see Haastaja, the Challenger. He is a mighty Chaos Sorcerer.");
 			npc.setLevel(600);
