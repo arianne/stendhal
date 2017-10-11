@@ -70,7 +70,7 @@ public class FarmersWifeNPC implements ZoneConfigurator {
 				addGoodbye("Tot ziens.");
 			}
 		};
-		npc.setEntityClass("noimagenpc"); /* wifenpc */
+		npc.setEntityClass("wifenpc");
 		npc.setPosition(27, 4);
 		npc.initHP(100);
 		npc.setDescription("You see Philomena. She smells a bit of cows, but her milk is unique.");
