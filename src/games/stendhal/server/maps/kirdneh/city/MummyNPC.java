@@ -71,7 +71,7 @@ public class MummyNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); // "mothernpc"
+		npc.setEntityClass("mothernpc");
 		npc.setPosition(84, 9);
 		npc.initHP(100);
 		npc.setDescription("You see Carey. She takes care of her daughter Elisabeth.");
