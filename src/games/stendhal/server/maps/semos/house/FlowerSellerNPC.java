@@ -49,7 +49,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 			}
 		};
 
-		rose.setEntityClass("noimagenpc"); /* gypsywomannpc */
+		rose.setEntityClass("gypsywomannpc");
 		rose.initHP(100);
 		rose.setCollisionAction(CollisionAction.REVERSE);
 		rose.setDescription("You see Rose Leigh. She jumps from place to place with a basket filled with lovely rhosyds.");
