@@ -80,7 +80,7 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 				}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* woman_016_npc */
+		npc.setEntityClass("woman_016_npc");
 		npc.setPosition(47, 90);
 		npc.initHP(100);
 		npc.setDescription("You see Alice Farmer. She is on holidays in Ados.");
