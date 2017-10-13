@@ -106,7 +106,7 @@ public class AdminHelpNPC implements ZoneConfigurator {
 		npc.setPosition(16, 7);
 		npc.setDescription("You see Skye. She knows everything, Admins should know and always has a smile on her face for them :)");
 		npc.setDirection(Direction.DOWN);
-		npc.setEntityClass("noimagenpc"); /* beautifulgirlnpc */
+		npc.setEntityClass("beautifulgirlnpc");
 		zone.add(npc);
 	}
 
