@@ -50,8 +50,10 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
     - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
     - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
 - Creative Commons Attribution-ShareAlike (CC BY-SA) 3.0:
-  - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png) (source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858))
   - [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851))
+  - Source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858)
+    - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png)
+    - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
 
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (CC BY) version 3.0:
