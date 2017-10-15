@@ -29,6 +29,7 @@ By [Jordan Irwin (AntumDeluge)]():
 - Creative Commons Attribution (CC BY) version 3.0 or later:
   - [butterfly](../data/sprites/npc/animal/butterfly.png)
   - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
+  - [minotaur](../data/sprites/monsters/minotaur/minotaur.png)
   - Based on [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack by Svetlana Kushnariova (Cabbit):
     - [adosbankassistantnpc](../data/sprites/npc/adosbankassistantnpc.png)
     - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
