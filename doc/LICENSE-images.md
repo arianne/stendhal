@@ -57,6 +57,7 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
   - Source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858)
     - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png)
     - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
+    - [chaos_warrior](../data/sprites/monsters/chaos/chaos_warrior.png)
 
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (CC BY) version 3.0:
