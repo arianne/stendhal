@@ -34,6 +34,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [minotaur](../data/sprites/monsters/minotaur/minotaur.png)
   - Based on [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack by Svetlana Kushnariova (Cabbit):
     - [adosbankassistantnpc](../data/sprites/npc/adosbankassistantnpc.png)
+    - [archangel](../data/sprites/monsters/giant_human/archangel.png)
     - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
     - [goldsmithnpc](../data/sprites/npc/goldsmithnpc.png)
     - [hotelreceptionistnpc](../data/sprites/npc/hotelreceptionistnpc.png)
