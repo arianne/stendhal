@@ -81,6 +81,10 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
     - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
     - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 
+By [Warlock's Gauntlet team](https://musztardasarepska.pl/wgdown/):
+- Creative Commons Attribution (CC BY) version 3.0:
+  - [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](https://opengameart.org/node/17442))
+
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
 - [mithrilforgernpc](../data/sprites/npc/mithrilforgernpc.png) by Sollision & Jordan Irwin ([source](https://opengameart.org/node/76967))
