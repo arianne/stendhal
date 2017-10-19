@@ -78,6 +78,7 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
   - Source: [Orc](https://opengameart.org/node/77703)
     - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
     - [orc](../data/sprites/monsters/orc/orc.png)
+    - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
     - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
     - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 
