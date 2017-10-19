@@ -89,6 +89,7 @@ Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
 - gnome by isaiah658 & Jordan Irwin ([source](https://opengameart.org/node/78045))
   - [gnome](../data/sprites/monsters/gnome/gnome.png)
+  - [gnomenpc](../data/sprites/npc/gnomenpc.png)
   - [infantryman](../data/sprites/monsters/gnome/infantryman.png)
   - [woman_gnome](../data/sprites/monsters/gnome/woman_gnome.png)
 - [mithrilforgernpc](../data/sprites/npc/mithrilforgernpc.png) by Sollision & Jordan Irwin ([source](https://opengameart.org/node/76967))
