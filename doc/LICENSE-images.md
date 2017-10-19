@@ -80,6 +80,7 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
     - [mountain_orc_hunter](../data/sprites/monsters/orc/mountain_orc_hunter.png)
     - [mountain_orc_warrior](../data/sprites/monsters/orc/mountain_orc_warrior.png)
     - [orc](../data/sprites/monsters/orc/orc.png)
+    - [orc_chief](../data/sprites/monsters/orc/orc_chief.png)
     - [orc_hunter](../data/sprites/monsters/orc/orc_hunter.png)
     - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
     - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
