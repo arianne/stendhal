@@ -77,6 +77,7 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [Orc](https://opengameart.org/node/77703)
     - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
+    - [mountain_orc_warrior](../data/sprites/monsters/orc/mountain_orc_warrior.png)
     - [orc](../data/sprites/monsters/orc/orc.png)
     - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
     - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
