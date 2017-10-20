@@ -330,13 +330,14 @@ class OutfitDialog extends JDialog {
 			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
-
-			/* skin color */
-			selector = createColorSelector("Skin", OutfitColor.SKIN, true,
-					bodyLabel, headLabel);
-			selector.setAlignmentX(CENTER_ALIGNMENT);
-			column.add(selector);
 		}
+
+		/* skin color */
+		selector = createColorSelector("Skin", OutfitColor.SKIN, true, bodyLabel,
+				headLabel);
+		selector.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(selector);
+
 		/* dress color */
 		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
@@ -667,16 +668,16 @@ class OutfitDialog extends JDialog {
 			}
 		}
 
-		/* body and head color */
-		color = outfitColor.getColor(OutfitColor.SKIN);
-		if (color != null) {
-			rpOutfitAction.put(OutfitColor.SKIN, color.getRGB());
-		}
-
 		/* dress color */
 		color = outfitColor.getColor(OutfitColor.DRESS);
 		if (color != null) {
 			rpOutfitAction.put(OutfitColor.DRESS, color.getRGB());
+		}
+
+		/* body and head color */
+		color = outfitColor.getColor(OutfitColor.SKIN);
+		if (color != null) {
+			rpOutfitAction.put(OutfitColor.SKIN, color.getRGB());
 		}
 
 		client.send(rpOutfitAction);
@@ -711,11 +712,8 @@ class OutfitDialog extends JDialog {
 	 */
 	void setState(int outfit, OutfitColor colors) {
 		// Copy the original colors
+		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
 		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
-		/* TODO: Remove condition after outfit testing is finished. */
-		if (Testing.OUTFITS) {
-			outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
-		}
 		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
 
 		// analyze the outfit code

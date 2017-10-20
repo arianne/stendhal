@@ -59,6 +59,14 @@ public class OutfitAction implements ActionListener {
 				} else {
 					player.remove(COLOR_MAP, "dress");
 				}
+
+				// Players may change skin color
+				color = action.get("skin");
+				if (color != null) {
+					player.put(COLOR_MAP, "skin", color);
+				} else {
+					player.remove(COLOR_MAP, "skin");
+				}
 			}
 		}
 	}
