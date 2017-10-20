@@ -638,7 +638,7 @@ class OutfitDialog extends JDialog {
 		final RPAction rpOutfitAction = new RPAction();
 		/* TODO: Remove condition when outfit testing is finished */
 		if (Testing.OUTFITS) {
-			rpOutfitAction.put(Actions.TYPE, "outfit_extended");
+			rpOutfitAction.put(Actions.TYPE, "outfit");
 			long value = (body.getIndex() + (dress.getIndex() * 100)
 					+ (head.getIndex() * (int)Math.pow(100, 2))
 					+ (mouth.getIndex() * (int)Math.pow(100, 3))
