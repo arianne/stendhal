@@ -1,6 +1,14 @@
 ﻿Changelog
 ---------
 
+1.27
+*world*
+- many new NPC and enemy sprite images
+
+*client*
+- players can change skin color
+
+
 1.26
 *world*
 - made new image for Gashadokuro
@@ -21,6 +29,7 @@
 *bugfixes*
 - fixed a double login bug resulting in item duplication (thanks to pepsz for the report)
 - fixed a NullPointerException on quit dialog
+
 
 1.25
 
