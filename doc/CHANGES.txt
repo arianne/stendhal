@@ -1,6 +1,58 @@
 ﻿Changelog
 ---------
 
+1.27
+*world*
+- many new NPC and enemy sprite images
+
+*client*
+- players can change skin color
+
+
+1.26
+*world*
+- made new image for Gashadokuro
+- made new image for Stone Golem
+- made new image for Chicken
+- made new image for mithrilforgernpc
+- limited time in Hell due to the heat
+- improved dialogues of some NPCs near Ados
+
+*experimental webclient*
+- removed outdated text and admin clients
+- added popup windows
+- added group management commands
+- implemented stacked item management
+- display zone name
+- implemented gate, walk blocker and PassiveNPC
+ 
+*bugfixes*
+- fixed a double login bug resulting in item duplication (thanks to pepsz for the report)
+- fixed a NullPointerException on quit dialog
+
+
+1.25
+
+*world*
+- made new images for rams and lions 
+- made new images for pine, locust trees and new old ents
+- made new ship tiles
+- added soldiers to Ados wall
+- added city wall gate to Ados south
+- added a fisher hut south of ados city
+- widened pathways in hell
+
+*experimental webclient*
+- use "ant compilejs" to invoke closure compiler
+- zone change by clicking near the zone border
+- performance optimisations
+- added growing spawner (grain, carrots, etc...)
+- right click popup menu
+- highlight npc triggers and item names in chatlog
+- removed dependency on polymer
+
+
+
 1.24
 
 *world*
