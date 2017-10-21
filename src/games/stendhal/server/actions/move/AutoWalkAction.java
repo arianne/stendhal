@@ -28,6 +28,16 @@ import marauroa.common.game.RPAction;
  * the action is executed with the MODE attribute set to "stop" it will
  * exclusively stop the entity's movement and set auto-walking off. Otherwise
  * it will toggle auto-walk.
+ * 
+ * To enable:
+ * - Execute slash command "/walk".
+ * - Right-click player and select "walk".
+ * To disable:
+ * - Execute slash command "/walk" or "/stopwalk".
+ * - Right-click player and select "stop".
+ * - Press the arrow key in the direction that the player is currently walking.
+ * - Click any area of the map that is walkable.
+ * - Walk into a collision tile (colliding with other entities will not disable auto-walk).
  *
  * @author AntumDeluge
  */

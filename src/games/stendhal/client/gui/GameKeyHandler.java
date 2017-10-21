@@ -27,7 +27,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.common.Direction;
-import games.stendhal.common.constants.Testing;
 import marauroa.common.game.RPAction;
 
 /**
@@ -101,8 +100,7 @@ class GameKeyHandler implements KeyListener {
 				 * key is pressed.
 				 */
 				User user = User.get();
-				if ((user.getRPObject().has(AUTOWALK) || e.isAltDown())
-						&& Testing.MOVEMENT) {
+				if ((user.getRPObject().has(AUTOWALK) || e.isAltDown())) {
 					/* Face direction pressed and toggle auto-walk. */
 					this.processAutoWalk(direction, user);
 				} else {
