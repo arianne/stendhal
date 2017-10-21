@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import static games.stendhal.common.constants.Actions.AUTOWALK;
+
 import java.lang.ref.WeakReference;
 import java.util.EnumSet;
 import java.util.LinkedList;
@@ -235,6 +237,15 @@ public class StatusList {
 	 */
 	void addInternal(Status status) {
 		statuses.add(status);
+		final StatusType stype = status.getStatusType();
+		if ((stype == StatusType.POISONED)
+				|| (stype == StatusType.CONFUSED)
+				|| (stype == StatusType.SHOCKED)) {
+			final RPEntity entity = this.getEntity();
+			if (entity.has(AUTOWALK)) {
+				entity.remove(AUTOWALK);
+			}
+		}
 	}
 
 	/**
