@@ -2800,7 +2800,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 		if (isGhost()) {
 			this.move(getX(), getY(), nx, ny);
-		} else if (Testing.MOVEMENT) { // TODO: Remove condition after auto-walk testing is finished.
+		} else {
 			if (this.has(AUTOWALK)) {
 				this.remove(AUTOWALK);
 			}
