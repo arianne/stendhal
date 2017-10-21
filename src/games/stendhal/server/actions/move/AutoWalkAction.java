@@ -81,9 +81,16 @@ public class AutoWalkAction implements ActionListener {
 				/* Set default direction to DOWN. */
 				player.setDirection(Direction.DOWN);
 			}
+
+			/* Check if player is has a debilitating status effect */
+			// FIXME: How to stop player when poised while using auto walk?
 			if (player.hasStatus(StatusType.POISONED)
 					|| player.hasStatus(StatusType.CONFUSED)) {
-				player.setDirection(player.getDirection().oppositeDirection());
+				player.sendPrivateText("You are disoriented and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
+				if (player.has(AUTOWALK)) {
+					player.remove(AUTOWALK);
+				}
+				return;
 			}
 
 			/* Begin walking using the entity's base speed. */
