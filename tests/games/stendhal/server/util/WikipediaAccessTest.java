@@ -71,11 +71,7 @@ public class WikipediaAccessTest {
 	@Test
 	public void testGPL() {
 		final String response = getWikiText("GPL");
-
-		if (response != null) {
-			final Matcher<String> match = allOf(containsString("software license"), containsString("GNU"));
-			assertThat("There should be explained the GNU GPL.", response, match);
-		}
+		assertThat("There should be explained the GNU GPL.", response, containsString("software license"));
 	}
 
 }
