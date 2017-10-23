@@ -44,7 +44,7 @@ public abstract class Path {
 		 * so don't allow arbitrary length searches.
 		 */
 		int manhattan = Math.abs(x - entity.getX()) + Math.abs(y - entity.getY());
-		return Math.max(2 * manhattan, 40);
+		return Math.max(4 * manhattan, 80);
 	}
 
 	//
