@@ -54,7 +54,7 @@ public class GameEvent {
 	}
 
 	/**
-	 * writes the envent to the database
+	 * writes the event to the database
 	 */
 	public void raise() {
 		DBCommand command = new LogGameEventCommand(source, event, params);
