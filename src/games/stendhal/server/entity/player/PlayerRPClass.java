@@ -54,7 +54,7 @@ public class PlayerRPClass {
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 		player.addAttribute("grumpy", Type.LONG_STRING, Definition.VOLATILE);
 
-		player.addAttribute(AUTOWALK, Type.STRING, Definition.VOLATILE);
+		player.addAttribute(AUTOWALK, Type.FLAG, Definition.VOLATILE);
 
 		// Use this for admin menus and usage.
 		player.addAttribute("admin", Type.FLAG);
