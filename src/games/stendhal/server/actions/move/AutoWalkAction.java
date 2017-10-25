@@ -32,6 +32,7 @@ import marauroa.common.game.RPAction;
  * To enable:
  * - Execute slash command "/walk".
  * - Right-click player and select "walk".
+ * - Hold "Alt" key and press any direction key.
  * To disable:
  * - Execute slash command "/walk" or "/stopwalk".
  * - Right-click player and select "stop".
