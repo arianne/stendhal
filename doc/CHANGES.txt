@@ -9,6 +9,9 @@
 *client*
 - players can change skin color
 
+*controls*
+- auto-walk
+
 
 1.26
 *world*
