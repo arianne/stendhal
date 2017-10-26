@@ -38,6 +38,9 @@ By [Jordan Irwin (AntumDeluge)]():
     - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
     - [goldsmithnpc](../data/sprites/npc/goldsmithnpc.png)
     - [hotelreceptionistnpc](../data/sprites/npc/hotelreceptionistnpc.png)
+  - Based on [Muscleman/Ogre/Minotaur](https://opengameart.org/node/24876) by Tuomo Untinen (Reemax):
+    - [red_troll](../data/sprites/monsters/troll/red_troll.png)
+    - [troll](../data/sprites/monsters/troll/troll.png)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
