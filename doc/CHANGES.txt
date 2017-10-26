@@ -4,6 +4,7 @@
 1.27
 *world*
 - many new NPC and enemy sprite images
+- separate sprites for mountain orcs: chief, hunter, warrior
 
 *client*
 - players can change skin color
