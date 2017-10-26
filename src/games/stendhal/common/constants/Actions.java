@@ -186,9 +186,12 @@ public final class Actions {
 	public static final String LOOK_CLOSELY = "look_closely";
 	public static final String LANGUAGE = "language";
 
+	// Movement/Control
 	public static final String WALK = "walk";
-	/* Auto-walk property. */
+	/* Property indicating player is using auto-walk. */
 	public final static String AUTOWALK = "autowalk";
+	/* Property indicating player is using continuous movement. */
+	public final static String MOVE_CONTINUOUS = "move.continuous";
 
 	private Actions() {
 		// hide constructor

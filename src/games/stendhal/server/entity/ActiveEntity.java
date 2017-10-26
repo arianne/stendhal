@@ -6,15 +6,13 @@
 
 package games.stendhal.server.entity;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.awt.geom.Rectangle2D;
 
 import org.apache.log4j.Logger;
 
-//
-//
-
 import games.stendhal.common.Direction;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -93,12 +91,10 @@ public abstract class ActiveEntity extends Entity {
 				+ nx + "," + ny + ")");
 		StendhalRPAction.decideChangeZone(this, nx, ny);
 
-		/* TODO: Remove after zone-change testing is finished.
-		 *
-		 * It is uncommon in games to have to release the direction key and
-		 * press it again after a zone change.
+		/* Allow player to continue movement after teleport after map change
+		 * without the need to release and press direction again.
 		 */
-		if (!Testing.MOVEMENT) {
+		if (!has(MOVE_CONTINUOUS)) {
 			stop();
 		}
 
