@@ -12,11 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
@@ -232,12 +233,13 @@ public class Portal extends Entity implements UseListener {
 		}
 
 		if (player.teleport(destZone, dest.getX(), dest.getY(), null, null)) {
-			/* XXX: Allow player to continue movement after teleport without
-			 *      the need to release and press direction again.
+			/* Allow player to continue movement after teleport via portal
+			 * without the need to release and press direction again.
 			 */
-			if (!Testing.MOVEMENT) {
+			if (!player.has(MOVE_CONTINUOUS)) {
 				player.stop();
 			}
+
 			dest.onUsedBackwards(player);
 		}
 		return true;
