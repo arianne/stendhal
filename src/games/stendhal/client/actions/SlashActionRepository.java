@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Set;
 
+import games.stendhal.common.constants.Testing;
+
 /**
  * Manages Slash Action Objects.
  */
@@ -115,8 +117,12 @@ public class SlashActionRepository {
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 //		actions.put("wrap", new WrapAction());
 
+		/* Movement */
 		actions.put("walk", new AutoWalkAction());
 		actions.put("stopwalk", new AutoWalkStopAction());
+		if (Testing.MOVEMENT) {
+			actions.put("movecont", new MoveContinuousAction());
+		}
 
 		// PvP challenge actions
 		actions.put("challenge", new CreateChallengeAction());
