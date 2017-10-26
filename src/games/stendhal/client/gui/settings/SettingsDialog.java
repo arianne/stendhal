@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 
@@ -59,5 +60,15 @@ public class SettingsDialog extends JDialog {
 		WindowUtils.watchFontSize(this);
 		WindowUtils.trackLocation(this, "settings", false);
 		pack();
+	}
+
+	/**
+	 * Retrieves the check box component for setting continuous movement.
+	 *
+	 * @return
+	 * 		JCheckBox component for continuous movement
+	 */
+	public static JCheckBox getMoveContinuousToggle() {
+		return GeneralSettings.getMoveContinuousToggle();
 	}
 }

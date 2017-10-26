@@ -11,10 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.awt.Component;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,11 +26,13 @@ import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.border.TitledBorder;
 
+import games.stendhal.client.actions.MoveContinuousAction;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.common.constants.Testing;
 
 /**
  * Page for general settings.
@@ -43,8 +49,13 @@ class GeneralSettings {
 
 	private static final String DIMENSIONS_PROPERTY = "ui.dimensions";
 
+	/** Property used for continuous movement through map changes & portals. */
+	private static final String  MOVE_CONTINUOUS_PROPERTY = MOVE_CONTINUOUS;
+
 	/** Container for the setting components. */
 	private final JComponent page;
+
+	private static JCheckBox moveContinuousToggle;
 
 	/**
 	 * Create new GeneralSettings.
@@ -75,10 +86,24 @@ class GeneralSettings {
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
 
+		// Continuous movement
+		if (Testing.MOVEMENT) {
+			moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",
+											"Continuous movement", "Change maps & pass through portals without stopping");
+			moveContinuousToggle.addItemListener(new ItemListener() {
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					new MoveContinuousAction().sendAction(e.getStateChange() == ItemEvent.SELECTED);
+				}
+			});
+			page.add(moveContinuousToggle);
+		}
+
 		// Client dimensions
 		JComponent clientSizeBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		TitledBorder titleB = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
 				"Client Dimensions");
+
 		// There seems to be no good way to change the default background color
 		// of all components. The color is needed for making the etched border.
 		Style style = StyleUtil.getStyle();
@@ -137,5 +162,15 @@ class GeneralSettings {
 		if (frameState != Frame.MAXIMIZED_BOTH) {
 			mainFrame.setSize(clientFrame.getFrameDefaultSize());
 		}
+	}
+
+	/**
+	 * Retrieves the check box component for setting continuous movement.
+	 *
+	 * @return
+	 * 		JCheckBox component for continuous movement
+	 */
+	public static JCheckBox getMoveContinuousToggle() {
+		return moveContinuousToggle;
 	}
 }
