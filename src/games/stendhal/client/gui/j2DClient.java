@@ -317,6 +317,10 @@ public class j2DClient implements UserInterface {
 			public void focusLost(final FocusEvent e) {
 				/* TODO: Remove condition when movement testing is finished. */
 				if (Testing.MOVEMENT) {
+					/* FIXME: Player continues walking if arrow key is pressed when
+					 * 		text input area loses focus. This feature/bug should be
+					 * 		fixed because auto-walk is now implemented.
+					 */
 					client.clearPressedKeys();
 				}
 			}
