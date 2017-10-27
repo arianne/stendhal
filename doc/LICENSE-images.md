@@ -25,6 +25,10 @@ By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
   - [mimic](../data/sprites/monsters/hybrid/mimic.png)
   - [mimic_idle](../data/sprites/monsters/hybrid/mimic_idle.png)
 
+By [DoubleU Creativity](https://opengameart.org/user/30566):
+- Creative Commons Attribution (CC BY) 3.0:
+  - [robot_aruthon](../data/sprites/monsters/hybrid/robot_aruthon.png)
+
 By [Jordan Irwin (AntumDeluge)]():
 - Creative Commons Attribution (CC BY) version 3.0 or later:
   - [butterfly](../data/sprites/npc/animal/butterfly.png)
