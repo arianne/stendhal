@@ -1,7 +1,7 @@
 Files declared in this document that do not specify a filename extension fall under their respective license regardless of filename extension.
 
 
-### Character/NPC Sprites:
+### Character/NPC/Creature Sprites:
 
 By [bagzie](https://opengameart.org/users/bagzie):
 - [OGA BY 3.0](../doc/Licenses/OGA-BY-3.0.txt):
@@ -19,6 +19,10 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
     - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
       - [white_horse](../data/sprites/monsters/farm_animal/white_horse.png)
+
+By Charles Gabriel (Antifarea0):
+- Creative Commons Attribution (CC BY) version 3.0:
+  - [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125))
 
 By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
 - GNU Gneral Public License (GPL) version 2.0 or later:
