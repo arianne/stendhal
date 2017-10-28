@@ -48,7 +48,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-                nodes.add(new Node(5,2));
+                nodes.add(new Node(5,3));
                 nodes.add(new Node(5,5));
                 nodes.add(new Node(10,5));
                 nodes.add(new Node(10,9));
