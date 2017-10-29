@@ -48,7 +48,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-                nodes.add(new Node(5,3));
+                nodes.add(new Node(5,2));
                 nodes.add(new Node(5,5));
                 nodes.add(new Node(10,5));
                 nodes.add(new Node(10,9));
@@ -91,6 +91,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 
 		};
 		npc.setPosition(5, 2);
+		npc.setCollisionAction(CollisionAction.REVERSE); // prevent trapping players
 		npc.setEntityClass("naughtyteennpc");
 		npc.setDescription("You see Hackim Easso, the blacksmiths assistant.");
 		zone.add(npc);
