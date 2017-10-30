@@ -78,6 +78,10 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
     - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
     - [chaos_warrior](../data/sprites/monsters/chaos/chaos_warrior.png)
 
+By Stephen Challener (Redshrike) & William.Thompsonj:
+- OpenGameArt Attribution (OGA BY) version 3.0:
+  - [ghosthound](../data/sprites/monsters/undead/ghosthound.png) ([source](https://opengameart.org/node/20830))
+
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
