@@ -20,7 +20,7 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
       - [white_horse](../data/sprites/monsters/farm_animal/white_horse.png)
 
-By Charles Gabriel (Antifarea0):
+By CharlesGabriel (Antifarea):
 - Creative Commons Attribution (CC BY) version 3.0:
   - [earth_elemental](../data/sprites/monsters/elemental/earth_elemental.png) ([source](https://opengameart.org/node/3393))
   - [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125))
