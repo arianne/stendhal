@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.CollisionAction;
 
 /**
  * The blacksmith's young assistant (original name: Hackim Easso).
@@ -91,6 +92,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 
 		};
 		npc.setPosition(5, 2);
+		npc.setCollisionAction(CollisionAction.REVERSE); // prevent trapping players
 		npc.setEntityClass("naughtyteennpc");
 		npc.setDescription("You see Hackim Easso, the blacksmiths assistant.");
 		zone.add(npc);
