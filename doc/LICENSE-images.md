@@ -22,6 +22,7 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
 
 By Charles Gabriel (Antifarea0):
 - Creative Commons Attribution (CC BY) version 3.0:
+  - [earth_elemental](../data/sprites/monsters/elemental/earth_elemental.png) ([source](https://opengameart.org/node/3393))
   - [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125))
 
 By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
