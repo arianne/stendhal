@@ -297,6 +297,34 @@ stendhal.slashActionRepository = {
 		getMinParams: 0,
 		getMaxParams: 0
 	},
+	
+	"challenge": {
+		execute: function(type, params, remainder) {
+			var action = {
+					"type": "challenge",
+					"action": "open",
+					"target": params[0]
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+	
+	"accept": {
+		execute: function(type, params, remainder) {
+			var action = {
+					"type": "challenge",
+					"action": "accept",
+					"target": params[0]
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
 
 	"beginnersguide": {
 		execute: function(type, params, remainder) {
@@ -415,6 +443,7 @@ stendhal.slashActionRepository = {
 			return false;
 		}
 	}
+	
 };
 
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
