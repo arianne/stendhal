@@ -102,3 +102,15 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 		}
 	}
 });
+
+marauroa.rpeventFactory["pvp_new_challenge_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+		execute: function(rpobject) {
+			var title = "Incoming PvP Challenge";
+			var dimensions = stendhal.ui.html.gamewindowSize();
+			var x = dimensions.width / 2;
+			var y = dimensions.height / 2;
+			var content = {};
+			stendhal.ui.Popup(title, content, x, y);
+		}
+	}
+)

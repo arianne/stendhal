@@ -160,3 +160,5 @@ stendhal.main = {
 
 document.addEventListener('DOMContentLoaded', stendhal.main.startup);
 window.addEventListener('error', stendhal.main.onerror);
+
+stendhal.ui.html.gamewindowSize();

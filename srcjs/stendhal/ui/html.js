@@ -15,10 +15,21 @@ var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
 /**
- * HTML code manipulation.
+ * HTML code manipulation and information.
  */
 stendhal.ui.html = {
+		
 	esc: function(msg){
 		return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace("\n", "<br>");
-	}
+	},
+	
+    gamewindowSize: function() {
+    	var gamewindow = document.getElementById('gamewindow');
+    	var dimensions = {
+        		width: gamewindow.width, 
+        		height: gamewindow.height
+        	};
+    	return dimensions
+    }
+	
 };
