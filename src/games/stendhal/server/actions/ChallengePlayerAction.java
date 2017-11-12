@@ -33,28 +33,29 @@ public class ChallengePlayerAction implements ActionListener {
 		String challengeAction = action.get("action");
 
 		if (targetEntity == null) {
-			logger.debug(String.format("Unable to locate target %s for challenge action from player %s", target, player.getName()));
+			logger.warn(String.format("Unable to locate target %s for challenge action from player %s", target, player.getName()));
 			return;
 		}
 
 		if (!(targetEntity instanceof Player)){
-			logger.debug(String.format("Found target for name %s is not a player object.", target));
+			logger.warn(String.format("Found target for name %s is not a player object.", target));
 			return;
 		}
 
 		Player targetPlayer = (Player) targetEntity;
 
 		if(target != null && target.equals(player.getName())) {
-			logger.debug(String.format("Player %s tried to open or accept a challenge with himself.", player.getName()));
+			logger.warn(String.format("Player %s tried to open or accept a challenge with himself.", player.getName()));
 			return;
 		}
 
 		if("open".equals(challengeAction)) {
 			String ignore = targetPlayer.getIgnore(player.getName());
-			if(ignore != null) {
+			if(ignore == null) {
 				TurnNotifier.get().notifyInTurns(0, new PlayerVsPlayerChallengeCreatorTurnListener(player, targetPlayer));
 			} else {
-				// TODO handle ignore message
+				logger.warn(String.format("Sending ignore message: %s", ignore));
+				player.sendPrivateText(ignore);
 			}
 			return;
 		}

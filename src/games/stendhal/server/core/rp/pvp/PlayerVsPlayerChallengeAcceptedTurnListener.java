@@ -16,7 +16,7 @@ public class PlayerVsPlayerChallengeAcceptedTurnListener implements TurnListener
 
 	@Override
 	public void onTurnReached(int currentTurn) {
-		SingletonRepository.getChallengeManager().accpetChallenge(this.challenger, this.challenged, currentTurn);
+		SingletonRepository.getChallengeManager().acceptChallenge(this.challenger, this.challenged, currentTurn);
 	}
 
 }

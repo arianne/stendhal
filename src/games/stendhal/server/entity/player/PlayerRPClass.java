@@ -143,6 +143,7 @@ public class PlayerRPClass {
 		player.addRPEvent(Events.GROUP_INVITE, Definition.PRIVATE);
 		player.addRPEvent(Events.PROGRESS_STATUS_CHANGE, Definition.PRIVATE);
 		player.addRPEvent(Events.GLOBAL_VISUAL, Definition.PRIVATE);
+		player.addRPEvent(Events.PVP_NEW_CHALLENGE, Definition.PRIVATE);
 
 		// Maps
 		player.addAttribute("source_usage", Type.MAP, Definition.HIDDEN);

@@ -49,7 +49,7 @@ public class PlayerVsPlayerChallengeManagerTest {
 		assertThat(challenge.isAccepted(), is(Boolean.FALSE));
 		assertThat(challenge.getOpened(), is(Long.valueOf(0)));
 		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.FALSE));
-		manager.accpetChallenge(challenger, challenged, 1);
+		manager.acceptChallenge(challenger, challenged, 1);
 		challenge = manager.getOpenChallengeForPlayers(challenger, challenged);
 		assertThat(challenge, nullValue());
 		assertThat(Boolean.valueOf(manager.playersHaveActiveChallenge(challenger, challenged)), is(Boolean.TRUE));
