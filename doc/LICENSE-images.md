@@ -243,6 +243,10 @@ By [qubodup](https://opengameart.org/users/qubodup):
     - crystals (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
       - [rotating_crystal](../tiled/tileset/object/rotating_crystal.png)
 
+By [RedVoxel](https://red-voxel.itch.io/):
+- Creative Commons Attribution (CC BY) version 3.0:
+  - [skeleton-hanging](../tiled/tileset/item/corpse/skeleton-hanging.png) (source: [Skeleton (Spookiest Skeleton Reworked)](https://opengameart.org/node/79009))
+
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - GNU Gneral Public License (GPL) version 3.0:
   - [ship-1](../tiled/structure/boat/ship-1.png) (source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)) (removed)
