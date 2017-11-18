@@ -251,6 +251,10 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - GNU Gneral Public License (GPL) version 3.0:
   - [ship-1](../tiled/structure/boat/ship-1.png) (source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)) (removed)
 
+By multiple:
+- OpenGameArt.org Attribution (OGA BY) version 3.0:
+  - [tan_tent](../tiled/tileset/object/tan_tent.png) (source: [Tent Reworked](https://opengameart.org/node/77510))
+
 Creative Commons 0 (CC0) (no attribution required):
 - brick_wall ([base image](http://opengameart.org/node/2048))
   - [brick_wall](../tiled/tileset/terrain/wall/brick_wall.png)
