@@ -13,6 +13,8 @@
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
+stendhal.ui = stendhal.ui = stendhal.ui || {};
+stendhal.ui.html = stendhal.ui.html = stendhal.ui.html || {}; 
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -105,12 +107,14 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 
 marauroa.rpeventFactory["pvp_new_challenge_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 		execute: function(rpobject) {
-			var title = "Incoming PvP Challenge";
 			var dimensions = stendhal.ui.html.gamewindowSize();
-			var x = dimensions.width / 2;
-			var y = dimensions.height / 2;
-			var content = {};
-			stendhal.ui.Popup(title, content, x, y);
+			var reject = "<button onclick=\"recject()\">Reject</button>";
+			var accept = "<button onclick=\"accept()\">Accept</button>";
+			var content = accept + " " + reject;
+			var popup = stendhal.ui.Popup("Incoming PvP Challenge", content, dimensions.width / 2, dimensions.height / 2);
+			popup.onClose = function() {
+				console.log("on close");
+			}
 		}
 	}
-)
+);
