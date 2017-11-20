@@ -68,6 +68,7 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215)
     - [chaos_sorceror](../data/sprites/monsters/chaos/chaos_sorceror.png)
+    - [chaos_sorcerornpc](../data/sprites/npc/chaos_sorcerornpc.png)
   - Source: [rpg enemies--updated](https://opengameart.org/node/6262)
     - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
     - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
