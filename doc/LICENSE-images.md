@@ -234,7 +234,6 @@ By [Jordan Irwin (AntumDeluge)]():
     - [red_crystal](../tiled/tileset/ground/rock/red_crystal.png)
     - [red_crystal_small](../tiled/tileset/ground/rock/red_crystal_small.png)
     - [cannon](../tiled/tileset/item/weapon/cannon.png)
-    - [stone (ground)](../tiled/tileset/terrain/ground/stone.png)
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
     - [stone (wall)](../tiled/tileset/terrain/wall/stone.png)
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
@@ -272,6 +271,7 @@ Creative Commons 0 (CC0) (no attribution required):
     - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
     - [Minerals](http://openclipart.org/detail/173471) by qubodup
 - [flame](../tiled/tileset/ground/flame.png) by XenosNS (source: [Simple Animate Fire](http://opengameart.org/node/17220)) (removed?)
+- [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
 - [rotating_orbs](../tiled/tileset/object/rotating_orbs.png) by Robert C. (reworked by Jordan Irwin) (source: [Shiny Orbs 64x64](https://opengameart.org/node/12771))
