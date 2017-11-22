@@ -257,6 +257,7 @@ By multiple:
   - [tan_tent](../tiled/tileset/object/tan_tent.png) (source: [Tent Reworked](https://opengameart.org/node/77510))
 
 Creative Commons 0 (CC0) (no attribution required):
+- [chimney_smoke](../tiled/tileset/building/chimney_smoke.png) by Jordan Irwin ([source](https://opengameart.org/node/79111))
 - brick_wall ([base image](http://opengameart.org/node/2048))
   - [brick_wall](../tiled/tileset/terrain/wall/brick_wall.png)
   - [brick_wall_red](../tiled/tileset/terrain/wall/brick_wall_red.png)
