@@ -276,6 +276,7 @@ Creative Commons 0 (CC0) (no attribution required):
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
 - [rotating_orbs](../tiled/tileset/object/rotating_orbs.png) by Robert C. (reworked by Jordan Irwin) (source: [Shiny Orbs 64x64](https://opengameart.org/node/12771))
 - [snake_skeleton](../tiled/tileset/item/corpse/snake_skeleton.png) by Jordan Irwin ([base image](http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg))
+- [swordfish](../tiled/tileset/building/decoration/swordfish.png) by Jordan Irwin ([source](https://opengameart.org/node/79120))
 - [toys](../tiled/tileset/item/toys/) (removed?)
   - base images:
     - [Teddy Bear](http://openclipart.org/detail/166981) by PrinterKiller
