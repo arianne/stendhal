@@ -20,10 +20,12 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
       - [white_horse](../data/sprites/monsters/farm_animal/white_horse.png)
 
-By CharlesGabriel (Antifarea):
+By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/charlesgabriel):
 - Creative Commons Attribution (CC BY) version 3.0:
   - [earth_elemental](../data/sprites/monsters/elemental/earth_elemental.png) ([source](https://opengameart.org/node/3393))
   - [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125))
+- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
+  - [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures))
 
 By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
 - GNU Gneral Public License (GPL) version 2.0 or later:
@@ -111,10 +113,6 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
     - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
     - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
     - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
-
-By [Warlock's Gauntlet team](https://musztardasarepska.pl/wgdown/):
-- Creative Commons Attribution (CC BY) version 3.0:
-  - [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](https://opengameart.org/node/17442))
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
