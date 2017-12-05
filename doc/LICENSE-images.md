@@ -57,6 +57,9 @@ By [Jordan Irwin (AntumDeluge)]():
   - Based on [Muscleman/Ogre/Minotaur](https://opengameart.org/node/24876) by Tuomo Untinen (Reemax):
     - [red_troll](../data/sprites/monsters/troll/red_troll.png)
     - [troll](../data/sprites/monsters/troll/troll.png)
+- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
+  - Based on [[LPC] Horses](https://opengameart.org/node/69398) by bluecarrot16 & [24x32 bases](https://opengameart.org/node/24944) by Svetlana Kushnariova (Cabbit):
+    - [centaur](../data/sprites/monsters/mythical_being/centaur.png)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
