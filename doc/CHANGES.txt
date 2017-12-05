@@ -8,6 +8,7 @@
 
 *client*
 - players can change skin color
+- sprite "dead_ent" renamed to "old_ent" to match enemy name
 
 *controls*
 - auto-walk

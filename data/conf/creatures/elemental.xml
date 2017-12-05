@@ -468,7 +468,7 @@
   </creature>
   
   <creature name="old ent">      
-   <type class="ent" subclass="dead_ent" tileid="ent.png:1"/>    
+   <type class="ent" subclass="old_ent" tileid="ent.png:1"/>
    <description>You see an old ent. It has seen many years passing by and survived a lot of storms. You can see that it is very old because it has already lost all of its leaves and most of its bark is broken...</description>    
    <attributes>      
     <atk value="573"/>   
