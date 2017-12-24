@@ -62,7 +62,7 @@ public class WallSoldier3NPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome traveler to our beautiful city of Ados!");
 				addJob("I'm doing a very important job here. I'm guarding the city wall and making sure that no invader will pass alive ");
-				addHelp("Julious, the gate guard, he is always helping travelers by giving them directions.");
+				addHelp("Julius, the gate guard, he is always helping travelers by giving them directions.");
 				addGoodbye("Take care, traveler.");
 /*
 If the player types yes then the soldier he will respond like this: example: Kill 10 tigers, 10 lions, 10 gnomes, 10 elephants  the reward will be 100exp and 40 or 50gold
