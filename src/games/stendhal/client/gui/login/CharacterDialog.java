@@ -71,9 +71,9 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	/** Maximum number of character buttons per row */
 	private static final int MAX_COLUMNS = 4;
 	/** Width of a player image in pixels */
-	private static final int IMAGE_WIDTH = 32;
+	private static final int IMAGE_WIDTH = 48;
 	/** Height of a player image in pixels */
-	private static final int IMAGE_HEIGHT = 48;
+	private static final int IMAGE_HEIGHT = 64;
 	/**
 	 * Maximum number of characters / account. A soft limit since this
 	 * is client side.
@@ -257,7 +257,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 
 		// Adjust the coordinates so that the actual player image gets
 		// drawn to the image area
-		g2d.translate(0, IMAGE_HEIGHT % 32);
+		g2d.translate(0, IMAGE_HEIGHT % 36);
 		view.draw(g2d);
 		g2d.dispose();
 
