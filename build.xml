@@ -602,6 +602,11 @@
 
 		<copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
 
+		<mkdir dir="${buildroot}/stendhal-server-${version}/js" />
+		<copy todir="${buildroot}/stendhal-server-${version}/js">
+			<fileset dir="srcjs" />
+		</copy>
+
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
 		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
 		<touch file="${buildroot}/stendhal-server-${version}/log/empty" />
