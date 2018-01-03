@@ -47,7 +47,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	 * The time in minutes that the player should stay away from hell until the
 	 * guardian has forgotten about them.
 	 */
-	private static final int GUARDIAN_WARNED_TIME = 6 * MathHelper.SECONDS_IN_ONE_HOUR;
+	private static final int GUARDIAN_WARNED_TIME = 6 * MathHelper.MINUTES_IN_ONE_HOUR;
 	/**
 	 * The time how long a caught state is considered valid. The player can log
 	 * out before being moved to the pit. Normally they'd be moved immediately
