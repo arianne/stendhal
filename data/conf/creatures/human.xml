@@ -517,7 +517,7 @@
   
   <creature name="samurai">
     <type class="human" subclass="samurai" tileid="human_evil.png:5"/>
-    <description></description>
+    <description>if he failed to uphold his honor he could only regain it by performing seppuku</description>
     <attributes>
       <atk value="585"/>
       <def value="73"/>
