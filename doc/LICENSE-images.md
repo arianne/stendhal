@@ -61,6 +61,7 @@ By [Jordan Irwin (AntumDeluge)]():
   - Based on [[LPC] Horses](https://opengameart.org/node/69398) by bluecarrot16 & [24x32 bases](https://opengameart.org/node/24944) by Svetlana Kushnariova (Cabbit):
     - [centaur](../data/sprites/monsters/mythical_being/centaur.png)
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
+  - [armor outfit](../data/sprites/outfit/dress/dress_037.png)
   - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
   - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
 
