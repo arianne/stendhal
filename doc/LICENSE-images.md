@@ -94,9 +94,10 @@ By Stephen Challener (Redshrike) & William.Thompsonj:
   - [ghosthound](../data/sprites/monsters/undead/ghosthound.png) ([source](https://opengameart.org/node/20830))
 
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
-- Creative Commons Attribution (CC BY) version 3.0:
+- Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
     - [air_elemental](../data/sprites/npc/air_elemental.png)
+    - [dress_005](../data/sprites/outfit/dress/dress_005.png)
     - [fire_elemental](../data/sprites/npc/fire_elemental.png)
     - [youngsoldiernpc](../data/sprites/npc/youngsoldiernpc.png)
     - [water_elemental](../data/sprites/npc/water_elemental.png)
