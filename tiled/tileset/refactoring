@@ -1,4 +1,3 @@
-
 # A list of all questioned files in the tileset so we can say what needs redrawing
 # Check first if the tile is actually in use in any/many maps (use search for this)
 # It would be fine to remove it from CVS if it is not used in any maps 
