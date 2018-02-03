@@ -124,6 +124,13 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
     - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
     - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 
+Multiple sources:
+- [alchemists_table](../tiled/tileset/furniture/table/alchemists_table.png)
+  - [Modified LPC table](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors) (CC BY-SA 3.0)
+  - [Potions by Bonsaiheldin (http://bonsaiheld.org/)](https://opengameart.org/node/64649) (CC BY-SA 3.0)
+  - [Pitcher by johnny_automatic](https://openclipart.org/detail/7051) (CC0)
+  - [Parchment by Last-Dino](https://openclipart.org/detail/271903) (CC0)
+
 Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
 - gnome by isaiah658 & Jordan Irwin ([source](https://opengameart.org/node/78045))
