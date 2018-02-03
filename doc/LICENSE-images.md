@@ -260,6 +260,11 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - GNU Gneral Public License (GPL) version 3.0:
   - [ship-1](../tiled/structure/boat/ship-1.png) (source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)) (removed)
 
+By Zabin, Daneeklu, & Jetrel:
+- Creative Commons Attribution Share-Alike (CC BY-SA) version 3.0:
+  - Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
+    - [bazaar_table_1](../tiled/tileset/furniture/table/bazaar_table_1.png)
+
 By multiple:
 - OpenGameArt.org Attribution (OGA BY) version 3.0:
   - [tan_tent](../tiled/tileset/object/tan_tent.png) (source: [Tent Reworked](https://opengameart.org/node/77510))
