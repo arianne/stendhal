@@ -105,6 +105,7 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
     - [dress_005](../data/sprites/outfit/dress/dress_005.png)
     - [dress_006](../data/sprites/outfit/dress/dress_006.png)
     - [dress_010](../data/sprites/outfit/dress/dress_010.png)
+    - [dress_027](../data/sprites/outfit/dress/dress_027.png)
     - [fire_elemental](../data/sprites/npc/fire_elemental.png)
     - [youngsoldiernpc](../data/sprites/npc/youngsoldiernpc.png)
     - [water_elemental](../data/sprites/npc/water_elemental.png)
