@@ -19,6 +19,7 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
     - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
       - [white_horse](../data/sprites/monsters/farm_animal/white_horse.png)
+      - [unicorn](../data/sprites/monsters/mythical_being/unicorn.png)
 
 By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/charlesgabriel):
 - Creative Commons Attribution (CC BY) version 3.0:
