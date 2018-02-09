@@ -28,6 +28,10 @@ By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/c
 - Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
   - [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures))
 
+By [diamonddmgirl](https://opengameart.org/user/39061):
+- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
+  [dress_025](../data/sprites/outfit/dress/dress_025.png) ([source](https://opengameart.org/node/72198))
+
 By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
 - GNU Gneral Public License (GPL) version 2.0 or later:
   - [mimic](../data/sprites/monsters/hybrid/mimic.png)
