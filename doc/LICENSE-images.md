@@ -274,6 +274,10 @@ By Zabin, Daneeklu, & Jetrel:
 By multiple:
 - OpenGameArt.org Attribution (OGA BY) version 3.0:
   - [tan_tent](../tiled/tileset/object/tan_tent.png) (source: [Tent Reworked](https://opengameart.org/node/77510))
+- [thatched_roof_cottage](../tiled/tileset/building/thatched_roof_cottage1.png)
+  - Roof & walls: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41379) (CC BY-SA / GPL)
+  - Door: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41378) (CC BY-SA / GPL)
+  - Chimney: [Tuomo Untinen](https://opengameart.org/node/35455) (CC BY-SA / GPL)
 
 Multiple sources:
 - [alchemists_table](../tiled/tileset/furniture/table/alchemists_table.png)
