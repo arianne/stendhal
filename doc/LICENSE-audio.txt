@@ -221,8 +221,8 @@ data/sounds/kitten-meow-2.ogg,        videog, CC0,  http://freesound.org/people/
 data/sounds/kitten-meow-2.wav.xz,     videog, CC0,  http://freesound.org/people/videog/sounds/149191/
 data/sounds/kitten-meow-3.ogg,        videog, CC0,  http://freesound.org/people/videog/sounds/149191/
 data/sounds/kitten-meow-3.wav.xz,     videog, CC0,  http://freesound.org/people/videog/sounds/149191/
-data/sounds/kitten-mew-1.ogg,         AntumDeluge, GPL
-data/sounds/kitten-mew-1.wav.xz,      AntumDeluge, GPL
+data/sounds/kitten-mew-1.ogg,         Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81250
+data/sounds/kitten-mew-1.wav.xz,      Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81250
 data/sounds/kitten-purr-1.ogg,        Belhene, CC0, http://freesound.org/people/Belhene/sounds/157837/
 data/sounds/kitten-purr-1.wav.xz,     Belhene, CC0, http://freesound.org/people/Belhene/sounds/157837/
 data/sounds/lama-1.ogg,               free sound pack
