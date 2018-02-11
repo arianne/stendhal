@@ -263,6 +263,8 @@ By [RedVoxel](https://red-voxel.itch.io/):
   - [skeleton-hanging](../tiled/tileset/item/corpse/skeleton-hanging.png) (source: [Skeleton (Spookiest Skeleton Reworked)](https://opengameart.org/node/79009))
 
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
+- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
+  - [piano-baby_grand](../tiled/tileset/furniture/other/piano-baby_grand.png) (source: [[LPC] City inside](https://opengameart.org/node/36189))
 - GNU Gneral Public License (GPL) version 3.0:
   - [ship-1](../tiled/structure/boat/ship-1.png) (source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)) (removed)
 
