@@ -280,8 +280,8 @@ data/sounds/penguin-1.ogg,            Bidone, CC0, http://www.freesound.org/peop
 data/sounds/penguin-1.wav.xz,         Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
 data/sounds/penguin-2.ogg,            Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
 data/sounds/penguin-2.wav.xz,         Bidone, CC0, http://www.freesound.org/people/Bidone/sounds/66150/
-data/sounds/piano-1.ogg,              AntumDeluge, public domain
-data/sounds/piano-1.wav.xz,           AntumDeluge, public domain
+data/sounds/piano-1.ogg,              public domain
+data/sounds/piano-1.wav.xz,           public domain
 data/sounds/pick-metallic-1.ogg,      qubodup, CC0, http://freesound.org/people/qubodup/sounds/182821/
 data/sounds/pick-metallic-1.wav.xz,   qubodup, CC0, http://freesound.org/people/qubodup/sounds/182821/
 data/sounds/pig-1.ogg,                free sound pack
