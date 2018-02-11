@@ -70,8 +70,8 @@ data/sounds/blackbird-8b.ogg,         free sound pack
 data/sounds/bobcat-1.ogg,             free sound pack
 data/sounds/bobcat-1.wav.xz,          free sound pack
 data/sounds/bones-1.ogg,              free sound pack
-data/sounds/bones-2.ogg,              AntumDeluge, GPL
-data/sounds/bones-2.wav.xz,           AntumDeluge, GPL
+data/sounds/bones-2.ogg,              Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16324
+data/sounds/bones-2.wav.xz,           Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16324
 data/sounds/book-1.ogg,               Storyteller, GPL
 data/sounds/book-2.ogg,               Storyteller, GPL
 data/sounds/bottle-2.ogg,             free sound pack
@@ -96,8 +96,8 @@ data/sounds/click-6.ogg,              free sound pack
 data/sounds/click-8.ogg,              free sound pack
 data/sounds/click-clack-1.ogg,        satrebor, CC0, http://www.freesound.org/people/satrebor/sounds/113218/
 data/sounds/click-clack-1.wav.xz,     satrebor, CC0, http://www.freesound.org/people/satrebor/sounds/113218/
-data/sounds/clock-1.ogg               Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0, http://www.freewebs.com/jordansroom/sounds.html
-data/sounds/clock-1.wav.xz            Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/clock-1.ogg               Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16323
+data/sounds/clock-1.wav.xz            Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16323
 data/sounds/coins-1.ogg,              free sound pack
 data/sounds/cork-pop-1.ogg,           fryzu82, CC0, http://www.freesound.org/people/fryzu82/sounds/142325/
 data/sounds/cork-pop-1.wav.xz,        fryzu82, CC0, http://www.freesound.org/people/fryzu82/sounds/142325/
@@ -140,8 +140,8 @@ data/sounds/elephant-rumble-1.ogg,    unknown, public domain, https://sf.net/pro
 data/sounds/elephant-rumble-1.wav.xz, unknown, public domain, https://sf.net/projects/myabcs
 data/sounds/fart-1.ogg,               free sound pack
 data/sounds/fart-1.wav.xz,            free sound pack
-data/sounds/fire-1.ogg,               AntumDeluge, GPL, http://www.freewebs.com/jordansroom/sounds.html
-data/sounds/fire-1.wav.xz,            AntumDeluge, GPL, http://www.freewebs.com/jordansroom/sounds.html
+data/sounds/fire-1.ogg,               Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16327
+data/sounds/fire-1.wav.xz,            Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16327
 data/sounds/fire-2.ogg,               free sound pack
 data/sounds/fire-3.ogg,               free sound pack
 data/sounds/fire-5.ogg,               free sound pack
@@ -185,8 +185,8 @@ data/sounds/grunt-large-1.ogg,        SmallQuadruped, CC0, http://www.freesound.
 data/sounds/grunt-large-1.wav.xz,     SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
 data/sounds/grunt-large-2.ogg,        SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
 data/sounds/grunt-large-2.wav.xz,     SmallQuadruped, CC0, http://www.freesound.org/people/SmallQuadruped/sounds/42201/
-data/sounds/guitar-1.ogg,             AntumDeluge, public domain, http://www.freewebs.com/jordansroom/sounds.html
-data/sounds/guitar-1.wav.xz,          free sound pack
+data/sounds/guitar-1.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16326
+data/sounds/guitar-1.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16326
 data/sounds/hammer-1.ogg,             free sound pack
 data/sounds/hammer-1.wav.xz,          free sound pack
 data/sounds/harp-1.ogg,               free sound pack
@@ -233,7 +233,7 @@ data/sounds/laugh-1.ogg,              free sound pack
 data/sounds/laugh-2.ogg,              free sound pack
 data/sounds/laugh-33.ogg,             free sound pack
 data/sounds/laugh-33.wav.xz,          free sound pack
-data/sounds/laugh-evil-1.ogg,         Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/laugh-evil-1.ogg,         Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81237
 data/sounds/laugh-evil-3.ogg,         free sound pack
 data/sounds/laugh-evil-4.ogg,         free sound pack
 data/sounds/laugh-evil-5.ogg,         free sound pack
@@ -250,12 +250,12 @@ data/sounds/loop-grind-stone-1.ogg,   j1987, CC0, http://www.freesound.org/peopl
 data/sounds/loop-grind-stone-1.wav.xz, j1987, CC0, http://www.freesound.org/people/j1987/sounds/95007/
 data/sounds/metal-can-1.ogg,          free sound pack
 data/sounds/moan-1.ogg,               free sound pack
-data/sounds/monkey-1.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/monkey-1.wav.xz,          Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/monkey-2.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/monkey-2.wav.xz,          Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/monkey-3.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/monkey-3.wav.xz,          Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/monkey-1.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
+data/sounds/monkey-1.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
+data/sounds/monkey-2.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
+data/sounds/monkey-2.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
+data/sounds/monkey-3.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
+data/sounds/monkey-3.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
 data/sounds/monster-11.ogg,           Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
 data/sounds/monster-11.wav.xz,        Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
 data/sounds/monster-12.ogg,           Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
@@ -268,11 +268,11 @@ data/sounds/monster-1.ogg,            Ogrebane, CC0, http://opengameart.org/cont
 data/sounds/monster-1.wav.xz,         Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
 data/sounds/monster-2.ogg,            Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
 data/sounds/monster-2.wav.xz,         Ogrebane, CC0, http://opengameart.org/content/monster-sound-effects-2
-data/sounds/mouse-2.ogg,              AntumDeluge, public domain, http://www.freewebs.com/jordansroom/sounds.html
-data/sounds/mouse-2.wav.xz,           AntumDeluge, public domain, http://www.freewebs.com/jordansroom/sounds.html
-data/sounds/mutant-frog-1.ogg,        Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/mutant-frog-2.ogg,        Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/mutant-frog-2.wav.xz,     Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/mouse-2.ogg,              Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16331
+data/sounds/mouse-2.wav.xz,           Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/16331
+data/sounds/mutant-frog-1.ogg,        Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81249
+data/sounds/mutant-frog-2.ogg,        Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81249
+data/sounds/mutant-frog-2.wav.xz,     Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81249
 data/sounds/panda-1.ogg,              free sound pack
 data/sounds/panda-1.wav.xz,           free sound pack
 data/sounds/panda-2.ogg,              free sound pack
@@ -314,10 +314,10 @@ data/sounds/rocks-1.ogg,              ALLANZ10D, CC0, http://freesound.org/peopl
 data/sounds/rocks-1.wav.xz,           ALLANZ10D, CC0, http://freesound.org/people/ALLANZ10D/sounds/155934/
 data/sounds/saur-3.ogg,               free sound pack
 data/sounds/saur-4.ogg,               free sound pack
-data/sounds/scrape-1.ogg,             AntumDeluge, GPL
-data/sounds/scrape-1.wav.xz,          AntumDeluge, GPL
-data/sounds/scrape-2.ogg,             AntumDeluge, GPL
-data/sounds/scrape-2.wav.xz,          AntumDeluge, GPL
+data/sounds/scrape-1.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81247
+data/sounds/scrape-1.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81247
+data/sounds/scrape-2.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81247
+data/sounds/scrape-2.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81247
 data/sounds/scream-fem-2.ogg,         NeoPhyTe, public domain: http://soundbible.com/1627-Female-Scream-Horror.html
 data/sounds/shake-leaves-1.ogg,       vibe_crc, CC0, http://www.freesound.org/people/vibe_crc/sounds/59315/
 data/sounds/shake-leaves-1.wav.xz,    vibe_crc, CC0, http://www.freesound.org/people/vibe_crc/sounds/59315/
@@ -348,10 +348,10 @@ data/sounds/trash-21.ogg,             free sound pack
 data/sounds/trash-3.ogg,              free sound pack
 data/sounds/trash-3.wav.xz,           free sound pack
 data/sounds/treecreak-1.ogg,          free sound pack
-data/sounds/undead-1.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/undead-2.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/undead-3.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
-data/sounds/undead-4.ogg,             Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/undead-1.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81246
+data/sounds/undead-2.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81246
+data/sounds/undead-3.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81246
+data/sounds/undead-4.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81246
 data/sounds/undead-5.ogg,             ArriGD, CC0, http://www.freesound.org/people/ArriGD/sounds/144005/
 data/sounds/undead-5.wav.xz,          ArriGD, CC0, http://www.freesound.org/people/ArriGD/sounds/144005/
 data/sounds/water-2.ogg,              free sound pack
@@ -393,7 +393,7 @@ data/sounds/wind-2.ogg,               free sound pack
 data/sounds/window-close-1.ogg,       free sound pack
 data/sounds/wings-flap-large-1.ogg,   dave.des/, CC0, http://freesound.org/people/dave.des/sounds/127197/
 data/sounds/wings-flap-large-1.wav.xz, dave.des/, CC0, http://freesound.org/people/dave.des/sounds/127197/
-data/sounds/witch-cackle-1.ogg,       Jordan Irwin (AntumDeluge), BSD-style, MIT-style, or CC-BY-3.0
+data/sounds/witch-cackle-1.ogg,       Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81248
 data/sounds/woodpecker-1.ogg,         free sound pack
 data/sounds/woodpecker-1.wav.xz,      free sound pack
 data/sounds/xylophone-1.ogg,          Storyteller, GPL
