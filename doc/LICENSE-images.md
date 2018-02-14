@@ -217,6 +217,12 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
+By Alex Smith (cynicmusic) & bluecarrot16:
+- [palm_trees](../tiled/tileset/plant/tree/palm_trees.png) (CC BY-SA 3.0):
+  - Sources:
+    - [[LPC] Beach / Desert](https://opengameart.org/node/80156) (CC BY-SA 3.0)
+    - [Pixelsphere 32x32 Tileset + Grass + Trees](https://opengameart.org/node/55328) (CC0)
+
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
