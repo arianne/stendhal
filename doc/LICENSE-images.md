@@ -256,6 +256,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
     - [stone (wall)](../tiled/tileset/terrain/wall/stone.png)
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
+    - [table_linen](../tiled/tileset/furniture/table/table_linen.png)
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
 - [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) & [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY-SA 3.0 / GPL 3.0)
