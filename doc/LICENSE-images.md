@@ -254,7 +254,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
-- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY-SA 3.0 / GPL 2.0)
+- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) & [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY-SA 3.0 / GPL 2.0)
   - Sources:
     - [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors)
     - [LPC Submissions Merged](https://opengameart.org/node/79256)
