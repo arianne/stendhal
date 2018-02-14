@@ -217,6 +217,10 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
+By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
+- [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
+  - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
+
 By [Johann C](https://opengameart.org/users/johann-c):
 - GNU Gneral Public License (GPL) version 3.0:
   - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
