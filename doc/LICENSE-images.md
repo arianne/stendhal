@@ -258,10 +258,14 @@ By [Jordan Irwin (AntumDeluge)]():
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
-- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) & [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY-SA 3.0 / GPL 2.0)
+- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) & [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY-SA 3.0 / GPL 3.0)
   - Sources:
     - [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors)
     - [LPC Submissions Merged](https://opengameart.org/node/79256)
+- [wooden_with_candles (table)](../tiled/tileset/furniture/table/wooden_with_candles.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Sources:
+    - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
+    - candlesticks: [based on CC0 vector image](https://openclipart.org/detail/2658) (CC0)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
