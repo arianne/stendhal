@@ -253,6 +253,12 @@ By [Jordan Irwin (AntumDeluge)]():
     - [stone (wall)](../tiled/tileset/terrain/wall/stone.png)
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
 
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
+- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY-SA 3.0 / GPL 2.0)
+  - Sources:
+    - [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors)
+    - [LPC Submissions Merged](https://opengameart.org/node/79256)
+
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
     - crystals (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
