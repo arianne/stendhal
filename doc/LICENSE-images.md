@@ -98,6 +98,10 @@ By Stephen Challener (Redshrike) & William.Thompsonj:
 - OpenGameArt Attribution (OGA BY) version 3.0:
   - [ghosthound](../data/sprites/monsters/undead/ghosthound.png) ([source](https://opengameart.org/node/20830))
 
+By Stephen Challener (Redshrike) & Zachariah Husiar (Zabin):
+- Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
+  - [vendors_table](../tiled/tileset/furniture/table/vendors_table.png) (CC BY-SA 3.0 / GPL 2.0) (Reworked by Jordan Irwin)
+
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
