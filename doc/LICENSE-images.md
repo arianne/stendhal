@@ -278,6 +278,9 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
     - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
     - candlesticks: [based on CC0 vector image](https://openclipart.org/detail/2658) (CC0)
 
+By [NoLogoGames](https://opengameart.org/user/27266):
+  - [flower/pointed_yellow](../tiled/tileset/plant/flower/pointed_yellow.png) (source: [Flowers Tileset](https://opengameart.org/node/78584))
+
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
     - crystals (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
