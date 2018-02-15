@@ -286,6 +286,10 @@ By [qubodup](https://opengameart.org/users/qubodup):
     - crystals (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
       - [rotating_crystal](../tiled/tileset/object/rotating_crystal.png)
 
+By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
+- [desert](../tiled/tileset/terrain/desert.png) (CC BY-SA 3.0)
+  - Source: [RPG Terrains](https://opengameart.org/node/70104)
+
 By [RedVoxel](https://red-voxel.itch.io/):
 - Creative Commons Attribution (CC BY) version 3.0:
   - [skeleton-hanging](../tiled/tileset/item/corpse/skeleton-hanging.png) (source: [Skeleton (Spookiest Skeleton Reworked)](https://opengameart.org/node/79009))
