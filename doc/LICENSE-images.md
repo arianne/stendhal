@@ -227,6 +227,10 @@ By Barbara Rivera:
 - [headstone_1](../tiled/tileset/item/gothic/headstone_1.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
 
+By Casper Nilsson:
+- [headstone_7](../tiled/tileset/item/gothic/headstone_7.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson)
+
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
