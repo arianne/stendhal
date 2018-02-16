@@ -295,10 +295,12 @@ By [RedVoxel](https://red-voxel.itch.io/):
   - [skeleton-hanging](../tiled/tileset/item/corpse/skeleton-hanging.png) (source: [Skeleton (Spookiest Skeleton Reworked)](https://opengameart.org/node/79009))
 
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
-- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
-  - [piano-baby_grand](../tiled/tileset/furniture/other/piano-baby_grand.png) (source: [[LPC] City inside](https://opengameart.org/node/36189))
-- GNU Gneral Public License (GPL) version 3.0:
-  - [ship-1](../tiled/structure/boat/ship-1.png) (source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)) (removed)
+- [piano-baby_grand](../tiled/tileset/furniture/other/piano-baby_grand.png) (CC BY-SA 3.0)
+  - Source: [[LPC] City inside](https://opengameart.org/node/36189)
+- [ship-1](../tiled/structure/boat/ship-1.png) (GPL 3.0) (removed)
+  - Source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)
+- [grave_marker](../tiled/tileset/item/gothic/grave_marker.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: [[LPC] Signposts, graves, line cloths and scare crow](https://opengameart.org/node/31884)
 
 By Zabin, Daneeklu, & Jetrel:
 - Creative Commons Attribution Share-Alike (CC BY-SA) version 3.0:
