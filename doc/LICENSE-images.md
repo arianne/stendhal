@@ -223,6 +223,10 @@ By Alex Smith (cynicmusic) & bluecarrot16:
     - [[LPC] Beach / Desert](https://opengameart.org/node/80156) (CC BY-SA 3.0)
     - [Pixelsphere 32x32 Tileset + Grass + Trees](https://opengameart.org/node/55328) (CC0)
 
+By Barbara Rivera:
+- [headstone_1](../tiled/tileset/item/gothic/headstone_1.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
+
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
