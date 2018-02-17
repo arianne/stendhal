@@ -228,10 +228,10 @@ By Barbara Rivera:
   - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
 
 By Casper Nilsson:
-- [headstone_7](../tiled/tileset/item/gothic/headstone_7.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson)
-- [tan_tent](../tiled/tileset/object/tan_tent.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson)
+- Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
+  - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
+  - [tan_tent](../tiled/tileset/object/tan_tent.png)
+  - [lily_pads](../tiled/tileset/plant/lily_pads.png)
 
 By Curt:
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
