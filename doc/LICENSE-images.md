@@ -316,6 +316,10 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - [grave_marker](../tiled/tileset/item/gothic/grave_marker.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [[LPC] Signposts, graves, line cloths and scare crow](https://opengameart.org/node/31884)
 
+By Xenodora:
+- [well_hoist](../tiled/tileset/object/well_hoist.png) (CC BY 3.0 / GPL 3.0)
+  - Source: [LPC Style Well](https://opengameart.org/node/17451)
+
 By Zabin, Daneeklu, & Jetrel:
 - Creative Commons Attribution Share-Alike (CC BY-SA) version 3.0:
   - Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
