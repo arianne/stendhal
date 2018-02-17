@@ -230,6 +230,8 @@ By Barbara Rivera:
 By Casper Nilsson:
 - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson)
+- [tan_tent](../tiled/tileset/object/tan_tent.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson)
 
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
@@ -316,8 +318,6 @@ By Zabin, Daneeklu, & Jetrel:
     - [bazaar_table_1](../tiled/tileset/furniture/table/bazaar_table_1.png)
 
 By multiple:
-- OpenGameArt.org Attribution (OGA BY) version 3.0:
-  - [tan_tent](../tiled/tileset/object/tan_tent.png) (source: [Tent Reworked](https://opengameart.org/node/77510))
 - [thatched_roof_cottage](../tiled/tileset/building/thatched_roof_cottage1.png)
   - Roof & walls: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41379) (CC BY-SA / GPL)
   - Door: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41378) (CC BY-SA / GPL)
