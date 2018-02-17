@@ -233,6 +233,10 @@ By Casper Nilsson:
 - [tan_tent](../tiled/tileset/object/tan_tent.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson)
 
+By Curt:
+- [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
+  - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
+
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
