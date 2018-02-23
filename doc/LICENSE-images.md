@@ -292,6 +292,10 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
     - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
     - candlesticks: [based on CC0 vector image](https://openclipart.org/detail/2658) (CC0)
 
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https://opengameart.org/user/402), [Hyptosis](https://opengameart.org/user/2937), & Jordan Irwin (AntumDeluge):
+- [flowers_on_bench2](../tiled/tileset/furniture/table/flowers_on_bench2.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: https://opengameart.org/node/81665
+
 By [NoLogoGames](https://opengameart.org/user/27266):
   - [flower/pointed_yellow](../tiled/tileset/plant/flower/pointed_yellow.png) (source: [Flowers Tileset](https://opengameart.org/node/78584))
 
