@@ -111,6 +111,7 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
     - [dress_010](../data/sprites/outfit/dress/dress_010.png)
     - [dress_027](../data/sprites/outfit/dress/dress_027.png)
     - [fire_elemental](../data/sprites/npc/fire_elemental.png)
+    - [mermaid](../data/sprites/monsters/hybrid/mermaid.png)
     - [youngsoldiernpc](../data/sprites/npc/youngsoldiernpc.png)
     - [water_elemental](../data/sprites/npc/water_elemental.png)
     - [witch2npc](../data/sprites/npc/witch2npc.png)
