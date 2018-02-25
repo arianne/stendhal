@@ -337,6 +337,10 @@ By multiple:
   - Roof & walls: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41379) (CC BY-SA / GPL)
   - Door: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41378) (CC BY-SA / GPL)
   - Chimney: [Tuomo Untinen](https://opengameart.org/node/35455) (CC BY-SA / GPL)
+- [wooden_crosses](../tiled/tileset/item/gothic/wooden_crosses.png) (CC BY-SA 3.0)
+  - Crosses by Carlo Enrico Victoria (Nemisys) & Tuomo Untinen (Reemax): https://opengameart.org/node/31884 (CC BY-SA 3.0 / GPL 3.0)
+  - Flowers by bluecarrot16: https://opengameart.org/node/80124 (OGA BY 2.0+ / CC BY 2.0+ / GPL 2.0+)
+  - Lei based on work by GDJ: https://openclipart.org/detail/230975 (CC0)
 
 Multiple sources:
 - [alchemists_table](../tiled/tileset/furniture/table/alchemists_table.png)
