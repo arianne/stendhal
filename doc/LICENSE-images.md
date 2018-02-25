@@ -288,6 +288,8 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
   - Sources:
     - [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors)
     - [LPC Submissions Merged](https://opengameart.org/node/79256)
+- [tan_building](../tiled/tileset/building/tan_building.png) (OGA BY 3.0 / CC BY 3.0 / GPL 2.0+)
+  - Source: [[LPC] Adobe Building Set](https://opengameart.org/node/17502)
 - [wooden_with_candles (table)](../tiled/tileset/furniture/table/wooden_with_candles.png) (CC BY-SA 3.0 / GPL 3.0)
   - Sources:
     - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
