@@ -356,6 +356,8 @@ Multiple sources:
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chimney_smoke](../tiled/tileset/building/chimney_smoke.png) by Jordan Irwin ([source](https://opengameart.org/node/79111))
+- [barrels_2](../tiled/tileset/item/pot/barrels_2.png) by Hyptosis, isaiah658, & Jordan Irwin (AntumDeluge)
+  - Source: [Barrels (Mage City Arcanos Rework)](https://opengameart.org/node/79172) (CC0)
 - bench_wooden ([source](https://opengameart.org/node/79117))
   - [bench_white](../tiled/tileset/furniture/chair/bench_white.png)
   - [bench_wooden](../tiled/tileset/furniture/chair/bench_wooden.png)
