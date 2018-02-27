@@ -304,6 +304,9 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https:
 - [flowers_on_bench2](../tiled/tileset/furniture/table/flowers_on_bench2.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: https://opengameart.org/node/81665
 
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
+- [box_of_weapons](../tiled/tileset/item/weapon/box_of_weapons.png) (CC BY-SA 3.0 / GPL 3.0)
+
 By [NoLogoGames](https://opengameart.org/user/27266):
   - [flower/pointed_yellow](../tiled/tileset/plant/flower/pointed_yellow.png) (source: [Flowers Tileset](https://opengameart.org/node/78584))
 
