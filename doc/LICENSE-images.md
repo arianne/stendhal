@@ -228,11 +228,15 @@ By Barbara Rivera:
 - [headstone_1](../tiled/tileset/item/gothic/headstone_1.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
 
-By Casper Nilsson:
+By [Casper Nilsson](https://opengameart.org/user/2664):
 - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
   - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
   - [tan_tent](../tiled/tileset/object/tan_tent.png)
   - [lily_pads](../tiled/tileset/plant/lily_pads.png)
+
+By [Casper Nilsson](https://opengameart.org/user/2664) & Jordan Irwin (AntumDeluge):
+- [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
+  - Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
 
 By Curt:
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
