@@ -19,6 +19,7 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
     - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
       - [white_horse](../data/sprites/monsters/farm_animal/white_horse.png)
+      - [unicorn](../data/sprites/monsters/mythical_being/unicorn.png)
 
 By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/charlesgabriel):
 - Creative Commons Attribution (CC BY) version 3.0:
@@ -26,6 +27,10 @@ By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/c
   - [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125))
 - Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
   - [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures))
+
+By [diamonddmgirl](https://opengameart.org/user/39061):
+- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
+  [dress_025](../data/sprites/outfit/dress/dress_025.png) ([source](https://opengameart.org/node/72198))
 
 By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
 - GNU Gneral Public License (GPL) version 2.0 or later:
@@ -60,6 +65,10 @@ By [Jordan Irwin (AntumDeluge)]():
 - Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
   - Based on [[LPC] Horses](https://opengameart.org/node/69398) by bluecarrot16 & [24x32 bases](https://opengameart.org/node/24944) by Svetlana Kushnariova (Cabbit):
     - [centaur](../data/sprites/monsters/mythical_being/centaur.png)
+- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
+  - [armor outfit](../data/sprites/outfit/dress/dress_037.png)
+  - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
+  - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
@@ -89,13 +98,22 @@ By Stephen Challener (Redshrike) & William.Thompsonj:
 - OpenGameArt Attribution (OGA BY) version 3.0:
   - [ghosthound](../data/sprites/monsters/undead/ghosthound.png) ([source](https://opengameart.org/node/20830))
 
+By Stephen Challener (Redshrike) & Zachariah Husiar (Zabin):
+- Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
+  - [vendors_table](../tiled/tileset/furniture/table/vendors_table.png) (CC BY-SA 3.0 / GPL 2.0) (Reworked by Jordan Irwin)
+
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
-- Creative Commons Attribution (CC BY) version 3.0:
+- Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
     - [air_elemental](../data/sprites/npc/air_elemental.png)
-    - [fire_elemental](../data/sprites/npc/fire_elemental.png)
+    - [dress_005](../data/sprites/outfit/dress/dress_005.png)
+    - [dress_006](../data/sprites/outfit/dress/dress_006.png)
+    - [dress_010](../data/sprites/outfit/dress/dress_010.png)
+    - [dress_027](../data/sprites/outfit/dress/dress_027.png)
+    - [fire_elemental](../data/sprites/monsters/elemental/fire_elemental.png)
+    - [mermaid](../data/sprites/monsters/hybrid/mermaid.png)
     - [youngsoldiernpc](../data/sprites/npc/youngsoldiernpc.png)
-    - [water_elemental](../data/sprites/npc/water_elemental.png)
+    - [water_elemental](../data/sprites/monsters/elemental/water_elemental.png)
     - [witch2npc](../data/sprites/npc/witch2npc.png)
   - Source: [24x32 characters with faces (big pack)](https://opengameart.org/node/24823)
     - [granmanpc](../data/sprites/npc/granmanpc.png)
@@ -200,6 +218,34 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
+By Alex Smith (cynicmusic) & bluecarrot16:
+- [palm_trees](../tiled/tileset/plant/tree/palm_trees.png) (CC BY-SA 3.0):
+  - Sources:
+    - [[LPC] Beach / Desert](https://opengameart.org/node/80156) (CC BY-SA 3.0)
+    - [Pixelsphere 32x32 Tileset + Grass + Trees](https://opengameart.org/node/55328) (CC0)
+
+By Barbara Rivera:
+- [headstone_1](../tiled/tileset/item/gothic/headstone_1.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
+
+By [Casper Nilsson](https://opengameart.org/user/2664):
+- Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
+  - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
+  - [tan_tent](../tiled/tileset/object/tan_tent.png)
+  - [lily_pads](../tiled/tileset/plant/lily_pads.png)
+
+By [Casper Nilsson](https://opengameart.org/user/2664) & Jordan Irwin (AntumDeluge):
+- [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
+  - Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
+
+By Curt:
+- [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
+  - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
+
+By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
+- [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
+  - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
+
 By [Johann C](https://opengameart.org/users/johann-c):
 - GNU Gneral Public License (GPL) version 3.0:
   - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
@@ -239,26 +285,88 @@ By [Jordan Irwin (AntumDeluge)]():
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
     - [stone (wall)](../tiled/tileset/terrain/wall/stone.png)
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
+    - [table_linen](../tiled/tileset/furniture/table/table_linen.png)
+
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
+- [chimney_brown_stacks](../tiled/tileset/building/decoration/chimney_brown_stacks.png)
+  - Source: [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors)
+- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) & [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Sources:
+    - [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors)
+    - [LPC Submissions Merged](https://opengameart.org/node/79256)
+- [tan_building](../tiled/tileset/building/tan_building.png) (OGA BY 3.0 / CC BY 3.0 / GPL 2.0+)
+  - Source: [[LPC] Adobe Building Set](https://opengameart.org/node/17502)
+- [wooden_with_candles (table)](../tiled/tileset/furniture/table/wooden_with_candles.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Sources:
+    - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
+    - candlesticks: [based on CC0 vector image](https://openclipart.org/detail/2658) (CC0)
+
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Hyptosis](https://opengameart.org/user/2937):
+- [urn_with_flowers](../tiled/tileset/item/statue/urn_with_flowers.png) (CC BY-SA 3.0)
+
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https://opengameart.org/user/402), [Hyptosis](https://opengameart.org/user/2937), & Jordan Irwin (AntumDeluge):
+- [flowers_on_bench2](../tiled/tileset/furniture/table/flowers_on_bench2.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: https://opengameart.org/node/81665
+
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
+- [box_of_weapons](../tiled/tileset/item/weapon/box_of_weapons.png) (CC BY-SA 3.0 / GPL 3.0)
+
+By [NoLogoGames](https://opengameart.org/user/27266):
+  - [flower/pointed_yellow](../tiled/tileset/plant/flower/pointed_yellow.png) (source: [Flowers Tileset](https://opengameart.org/node/78584))
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
     - crystals (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
       - [rotating_crystal](../tiled/tileset/object/rotating_crystal.png)
 
+By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
+- [desert](../tiled/tileset/terrain/desert.png) (CC BY-SA 3.0)
+  - Source: [RPG Terrains](https://opengameart.org/node/70104)
+
 By [RedVoxel](https://red-voxel.itch.io/):
 - Creative Commons Attribution (CC BY) version 3.0:
   - [skeleton-hanging](../tiled/tileset/item/corpse/skeleton-hanging.png) (source: [Skeleton (Spookiest Skeleton Reworked)](https://opengameart.org/node/79009))
 
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
-- GNU Gneral Public License (GPL) version 3.0:
-  - [ship-1](../tiled/structure/boat/ship-1.png) (source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)) (removed)
+- [piano-baby_grand](../tiled/tileset/furniture/other/piano-baby_grand.png) (CC BY-SA 3.0)
+  - Source: [[LPC] City inside](https://opengameart.org/node/36189)
+- [ship-1](../tiled/structure/boat/ship-1.png) (GPL 3.0) (removed)
+  - Source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)
+- [grave_marker](../tiled/tileset/item/gothic/grave_marker.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Source: [[LPC] Signposts, graves, line cloths and scare crow](https://opengameart.org/node/31884)
+
+By [Xenodora](https://opengameart.org/user/5683):
+- [suspension_bridge](../tiled/tileset/object/suspension_bridge.png) (CC BY-SA 3.0 / GPL 2.0+)
+  - Source: [LPC style wood bridges and steel flooring](https://opengameart.org/node/15135)
+- [well_hoist](../tiled/tileset/object/well_hoist.png) (CC BY 3.0 / GPL 3.0)
+  - Source: [LPC Style Well](https://opengameart.org/node/17451)
+
+By Zabin, Daneeklu, & Jetrel:
+- Creative Commons Attribution Share-Alike (CC BY-SA) version 3.0:
+  - Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
+    - [bazaar_table_1](../tiled/tileset/furniture/table/bazaar_table_1.png)
 
 By multiple:
-- OpenGameArt.org Attribution (OGA BY) version 3.0:
-  - [tan_tent](../tiled/tileset/object/tan_tent.png) (source: [Tent Reworked](https://opengameart.org/node/77510))
+- [thatched_roof_cottage](../tiled/tileset/building/thatched_roof_cottage1.png)
+  - Roof & walls: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41379) (CC BY-SA / GPL)
+  - Door: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41378) (CC BY-SA / GPL)
+  - Chimney: [Tuomo Untinen](https://opengameart.org/node/35455) (CC BY-SA / GPL)
+- [wooden_crosses](../tiled/tileset/item/gothic/wooden_crosses.png) (CC BY-SA 3.0)
+  - Crosses by Carlo Enrico Victoria (Nemisys) & Tuomo Untinen (Reemax): https://opengameart.org/node/31884 (CC BY-SA 3.0 / GPL 3.0)
+  - Flowers by bluecarrot16: https://opengameart.org/node/80124 (OGA BY 2.0+ / CC BY 2.0+ / GPL 2.0+)
+  - Lei based on work by GDJ: https://openclipart.org/detail/230975 (CC0)
+
+Multiple sources:
+- [alchemists_table](../tiled/tileset/furniture/table/alchemists_table.png)
+  - [Modified LPC table](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors) (CC BY-SA 3.0)
+  - [Potions by Bonsaiheldin (http://bonsaiheld.org/)](https://opengameart.org/node/64649) (CC BY-SA 3.0)
+  - [Pitcher by johnny_automatic](https://openclipart.org/detail/7051) (CC0)
+  - [Parchment by Last-Dino](https://openclipart.org/detail/271903) (CC0)
 
 Creative Commons 0 (CC0) (no attribution required):
 - [chimney_smoke](../tiled/tileset/building/chimney_smoke.png) by Jordan Irwin ([source](https://opengameart.org/node/79111))
+- [barrels_2](../tiled/tileset/item/pot/barrels_2.png) by Hyptosis, isaiah658, & Jordan Irwin (AntumDeluge)
+  - Source: [Barrels (Mage City Arcanos Rework)](https://opengameart.org/node/79172) (CC0)
 - bench_wooden ([source](https://opengameart.org/node/79117))
   - [bench_white](../tiled/tileset/furniture/chair/bench_white.png)
   - [bench_wooden](../tiled/tileset/furniture/chair/bench_wooden.png)
@@ -277,7 +385,9 @@ Creative Commons 0 (CC0) (no attribution required):
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
 - [rotating_orbs](../tiled/tileset/object/rotating_orbs.png) by Robert C. (reworked by Jordan Irwin) (source: [Shiny Orbs 64x64](https://opengameart.org/node/12771))
+- [skull_post](../tiled/tileset/item/gothic/skull_post.png) by Jordan Irwin & Angry Amish (source: [Skull Post](https://opengameart.org/node/81427))
 - [snake_skeleton](../tiled/tileset/item/corpse/snake_skeleton.png) by Jordan Irwin ([base image](http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg))
+- [spears](../tiled/tileset/item/weapon/spears.png) by Jordan Irwin
 - [swordfish](../tiled/tileset/building/decoration/swordfish.png) by Jordan Irwin ([source](https://opengameart.org/node/79120))
 - [toys](../tiled/tileset/item/toys/) (removed?)
   - base images:

@@ -90,7 +90,7 @@ public class FarmerNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Karl, a friendly elderly farmer.");
-		npc.setEntityClass("noimagenpc"); /* beardmannpc */
+		npc.setEntityClass("beardmannpc");
 		npc.setPosition(64, 76);
 		npc.initHP(100);
 		zone.add(npc);

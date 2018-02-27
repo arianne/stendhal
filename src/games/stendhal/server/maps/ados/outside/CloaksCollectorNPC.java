@@ -77,7 +77,7 @@ public class CloaksCollectorNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* beardmannpc */
+		npc.setEntityClass("beardmannpc");
 		npc.setPosition(4, 47);
 		npc.initHP(100);
 		npc.setDescription("You see Bario. His face is a bit blue and his knees are shaking.");

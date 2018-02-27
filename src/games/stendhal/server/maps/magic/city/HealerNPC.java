@@ -75,7 +75,7 @@ public class HealerNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see a quiet woman with a benign face.");
-		npc.setEntityClass("noimagenpc"); /* cloakedwomannpc */
+		npc.setEntityClass("cloakedwomannpc");
 		npc.setPosition(5, 25);
 		npc.initHP(100);
 		zone.add(npc);
