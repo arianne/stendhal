@@ -328,7 +328,9 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - [grave_marker](../tiled/tileset/item/gothic/grave_marker.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [[LPC] Signposts, graves, line cloths and scare crow](https://opengameart.org/node/31884)
 
-By Xenodora:
+By [Xenodora](https://opengameart.org/user/5683):
+- [suspension_bridge](../tiled/tileset/object/suspension_bridge.png) (CC BY-SA 3.0 / GPL 2.0+)
+  - Source: [LPC style wood bridges and steel flooring](https://opengameart.org/node/15135)
 - [well_hoist](../tiled/tileset/object/well_hoist.png) (CC BY 3.0 / GPL 3.0)
   - Source: [LPC Style Well](https://opengameart.org/node/17451)
 
