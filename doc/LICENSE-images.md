@@ -290,10 +290,8 @@ By [Jordan Irwin (AntumDeluge)]():
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
 - [chimney_brown_stacks](../tiled/tileset/building/decoration/chimney_brown_stacks.png)
   - Source: [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors)
-- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) & [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Sources:
-    - [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors)
-    - [LPC Submissions Merged](https://opengameart.org/node/79256)
+- [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
+  - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
 - [tan_building](../tiled/tileset/building/tan_building.png) (OGA BY 3.0 / CC BY 3.0 / GPL 2.0+)
   - Source: [[LPC] Adobe Building Set](https://opengameart.org/node/17502)
 - [wooden_with_candles (table)](../tiled/tileset/furniture/table/wooden_with_candles.png) (CC BY-SA 3.0 / GPL 3.0)
@@ -309,6 +307,8 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https:
   - Source: https://opengameart.org/node/81665
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
+- [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
+  - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
 - [box_of_weapons](../tiled/tileset/item/weapon/box_of_weapons.png) (CC BY-SA 3.0 / GPL 3.0)
 
 By [NoLogoGames](https://opengameart.org/user/27266):
