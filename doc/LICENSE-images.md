@@ -70,6 +70,10 @@ By [Jordan Irwin (AntumDeluge)]():
   - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
   - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
 
+By [onu](https://sourceforge.net/u/onu) & Jordan Irwin (AntumDeluge):
+- [sheepman](../data/sprites/monsters/sheepman/sheepman.png) (OGA BY 3.0)
+  - Based on minotaur sprite.
+
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
   - crystal NPCs (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
