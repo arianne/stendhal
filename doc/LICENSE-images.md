@@ -303,6 +303,10 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
     - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
     - candlesticks: [based on CC0 vector image](https://openclipart.org/detail/2658) (CC0)
 
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [bluecarrot16](https://opengameart.org/user/18016), & [Casper Nilsson](https://opengameart.org/user/2664):
+- [windows_with_flowerboxes](../tiled/tileset/building/window/windows_with_flowerboxes.png)
+  - Source: [LPC Windows Rework](https://opengameart.org/node/81885)
+
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Hyptosis](https://opengameart.org/user/2937):
 - [urn_with_flowers](../tiled/tileset/item/statue/urn_with_flowers.png) (CC BY-SA 3.0)
 
