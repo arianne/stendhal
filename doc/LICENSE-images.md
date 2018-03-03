@@ -295,6 +295,8 @@ By [Jordan Irwin (AntumDeluge)]():
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
 - [chimney_brown_stacks](../tiled/tileset/building/decoration/chimney_brown_stacks.png)
   - Source: [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors)
+- [crack_willow](../tiled/tileset/plant/tree/crack_willow.png)
+  - Source: [Liberated Pixel Cup Base Assets](https://opengameart.org/node/13470)
 - [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
 - [tan_building](../tiled/tileset/building/tan_building.png) (OGA BY 3.0 / CC BY 3.0 / GPL 2.0+)
