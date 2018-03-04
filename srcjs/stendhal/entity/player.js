@@ -24,10 +24,8 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	dir: 3,
 	
 	set: function(key, value) {
-		marauroa.rpobjectFactory["rpentity"].proto.set.apply(this, arguments);
-		if (key === "text") {
-			this.say(value);
-		} else if (key === "ghostmode") {
+		marauroa.rpobjectFactory["rpentity"].set.apply(this, arguments);
+		if (key === "ghostmode") {
 			this.minimapShow = false;
 		}
 		
@@ -48,18 +46,50 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	},
 
 	buildActions: function(list) {
-		marauroa.rpobjectFactory["rpentity"].proto.buildActions.apply(this, arguments);
-	/*
-		boolean hasBuddy = User.hasBuddy(entity.getName());
+		marauroa.rpobjectFactory["rpentity"].buildActions.apply(this, arguments);
+		var playerName = this["_name"];
+		var hasBuddy = playerName in marauroa.me["buddies"];
 		if (!hasBuddy) {
-			list.add(ActionType.ADD_BUDDY.getRepresentation());
+			list.push({
+				title: "Add to buddies",
+				action: function(entity) {
+					var action = {
+						"type": "addbuddy",
+						"zone": marauroa.currentZoneName,
+						"target": playerName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
 		}
-	
-		if (User.isIgnoring(entity.getName())) {
-			list.add(ActionType.UNIGNORE.getRepresentation());
-		} else if (!hasBuddy)  {
-			list.add(ActionType.IGNORE.getRepresentation());
+
+		if (this.isIgnored()) {
+			list.push({
+				title: "Remove ignore",
+				action: function(entity) {
+					var action = {
+						"type": "unignore",
+						"zone": marauroa.currentZoneName,
+						"target": playerName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
+		} else if (!hasBuddy) {
+			list.push({
+				title: "Ignore",
+				action: function(entity) {
+					var action = {
+						"type": "ignore",
+						"zone": marauroa.currentZoneName,
+						"target": playerName
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			});
+		
 		}
+	/*
 
 		list.push({
 			title: "Trade",
@@ -68,7 +98,38 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		list.add(ActionType.INVITE.getRepresentation());
 		*/
 	},
+	
+	isIgnored: function() {
+		if (!marauroa.me["!ignore"]) {
+			return false;
+		}
+		var temp = marauroa.me["!ignore"]._objects;
+		return temp.length > 0 && ("_" + this["_name"]) in temp[0];
+	},
 
+	draw: function(ctx) {
+		if (this.isIgnored()) {
+			return;
+		}
+		marauroa.rpobjectFactory["rpentity"].draw.apply(this, arguments);
+	},
+
+	getResistance: function() {
+		if (typeof(this["ghostmode"]) !== "undefined") {
+			return 0;
+		}
+		return this["resistance"];
+	},
+
+	/** 
+	 * says a text
+	 */
+	say: function (text) {
+		if (this.isIgnored()) {
+			return;
+		}
+		marauroa.rpobjectFactory["rpentity"].say.apply(this, arguments);		
+	},
 
 	/** 
 	 * Can the player hear this chat message?
