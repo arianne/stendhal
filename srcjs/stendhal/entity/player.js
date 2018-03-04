@@ -100,6 +100,9 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	},
 	
 	isIgnored: function() {
+		if (!marauroa.me["!ignore"]) {
+			return false;
+		}
 		var temp = marauroa.me["!ignore"]._objects;
 		return temp.length > 0 && ("_" + this["_name"]) in temp[0];
 	},
