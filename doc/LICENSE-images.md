@@ -251,6 +251,10 @@ By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
 
+By [Hyptosis](https://opengameart.org/user/2937), [Zachariah Husiar (Zabin)](https://opengameart.org/user/3356), & [Jetrel](https://opengameart.org/user/402):
+- [stone_doorway](../tiled/tileset/building/door/stone_doorway.png)
+  - Source: [Lots of free 2d tiles and sprites by Hyptosis](https://opengameart.org/node/13500) (CC BY 3.0)
+
 By [Johann C](https://opengameart.org/users/johann-c):
 - GNU Gneral Public License (GPL) version 3.0:
   - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
