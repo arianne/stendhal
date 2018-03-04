@@ -601,11 +601,12 @@
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
-
+<!--
 		<mkdir dir="${buildroot}/stendhal-server-${version}/js" />
 		<copy todir="${buildroot}/stendhal-server-${version}/js">
 			<fileset dir="srcjs" />
 		</copy>
+-->
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.md"/>
 		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
@@ -1131,7 +1132,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-data1"    value="srcjs/stendhal/data/cache.js srcjs/stendhal/data/cstatus.js srcjs/stendhal/data/map.js srcjs/stendhal/data/sha3.js srcjs/stendhal/data/sprites.js" />
 		<property name="js-files-data2"    value="" />
 		<property name="js-files-entity1"  value="srcjs/stendhal/entity/entity.js srcjs/stendhal/entity/unknown.js srcjs/stendhal/entity/blood.js srcjs/stendhal/entity/corpse.js" />
-		<property name="js-files-entity2"  value="srcjs/stendhal/entity/chest.js srcjs/stendhal/entity/food.js srcjs/stendhal/entity/gate.js srcjs/stendhal/entity/item.js srcjs/stendhal/entity/portal.js" />
+		<property name="js-files-entity2"  value="srcjs/stendhal/entity/chest.js srcjs/stendhal/entity/food.js srcjs/stendhal/entity/gate.js srcjs/stendhal/entity/invisibleentity.js srcjs/stendhal/entity/item.js srcjs/stendhal/entity/portal.js" />
 		<property name="js-files-entity3"  value="srcjs/stendhal/entity/activeentity.js srcjs/stendhal/entity/rpentity.js srcjs/stendhal/entity/player.js srcjs/stendhal/entity/creature.js" />
 		<property name="js-files-entity4"  value="srcjs/stendhal/entity/domesticanimal.js srcjs/stendhal/entity/npc.js srcjs/stendhal/entity/sign.js srcjs/stendhal/entity/growingspawner.js srcjs/stendhal/entity/walkblocker.js" />
 		<property name="js-files-entity5"  value="srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" /> 
