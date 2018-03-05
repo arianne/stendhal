@@ -50,6 +50,15 @@ marauroa.rpobjectFactory["activeEntity"] = marauroa.util.fromProto(marauroa.rpob
 				this["_x"] = this["_x"] - movement;
 				this["_y"] = serverY;
 			}
+
+			// fix desynchronized position (can happen if game tab is in background)
+			if (Math.abs(this["_x"] - serverX) > 1.75) {
+				this["_x"] = serverX;
+			}
+			if (Math.abs(this["_y"] - serverY) > 1.75) {
+				this["_y"] = serverY;
+			}
+
 			if (this.collidesMap() || this.collidesEntities()) {
 				this["_x"] = oldX;
 				this["_y"] = oldY;
