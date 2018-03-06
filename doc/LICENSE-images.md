@@ -247,6 +247,12 @@ By Curt:
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
   - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
 
+By Daniel Cook:
+- [suit_of_armor2](../tiled/tileset/item/armor/suit_of_armor2.png)
+  - Sources:
+    - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
+    - [OpenGameArt.org](https://opengameart.org/node/11758)
+
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
