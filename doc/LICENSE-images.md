@@ -346,6 +346,8 @@ By [qubodup](https://opengameart.org/users/qubodup):
 By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
 - [desert](../tiled/tileset/terrain/desert.png) (CC BY-SA 3.0)
   - Source: [RPG Terrains](https://opengameart.org/node/70104)
+- [swordsman statue](../tiled/tileset/item/statue/swordsman.png)
+  - Source: [Statues](https://opengameart.org/node/70109) (CC BY-SA 3.0)
 
 By [RedVoxel](https://red-voxel.itch.io/):
 - Creative Commons Attribution (CC BY) version 3.0:
