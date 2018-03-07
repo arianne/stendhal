@@ -290,14 +290,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [white (table)](../tiled/tileset/furniture/table/white.png)
     - [lava](../tiled/tileset/ground/fire/lava.png)
     - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
-    - [blue_crystal](../tiled/tileset/ground/rock/blue_crystal.png)
-    - [gold_crystal](../tiled/tileset/ground/rock/gold_crystal.png)
-    - [green_crystal2](../tiled/tileset/ground/rock/green_crystal2.png)
-    - [green_crystal3](../tiled/tileset/ground/rock/green_crystal3.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
-    - [icy_crystal](../tiled/tileset/ground/rock/icy_crystal.png)
-    - [purple_crystal](../tiled/tileset/ground/rock/purple_crystal.png)
-    - [red_crystal](../tiled/tileset/ground/rock/red_crystal.png)
     - [red_crystal_small](../tiled/tileset/ground/rock/red_crystal_small.png)
     - [cannon](../tiled/tileset/item/weapon/cannon.png)
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
@@ -402,10 +395,10 @@ Creative Commons 0 (CC0) (no attribution required):
 - creep by StumpyStrust & Charlie (source: [Animated Creepy Thing](http://opengameart.org/node/20435))
   - [creep_large](../tiled/tileset/object/creep_large.png)
   - [creep_med](../tiled/tileset/object/creep_med.png)
-- crystals ([Git](../tiled/tileset/rock/)) (work-in-progress) (removed?)
-  - base images:
-    - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
+- [crystal rocks/minerals](../tiled/tileset/ground/rock/blue_crystal.png) (re-colors: gold, green, icy, purple, & red)
+  - Sources:
     - [Minerals](http://openclipart.org/detail/173471) by qubodup
+    - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
 - [flame](../tiled/tileset/ground/flame.png) by XenosNS (source: [Simple Animate Fire](http://opengameart.org/node/17220)) (removed?)
 - [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
