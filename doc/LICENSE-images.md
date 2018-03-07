@@ -395,7 +395,7 @@ Creative Commons 0 (CC0) (no attribution required):
 - creep by StumpyStrust & Charlie (source: [Animated Creepy Thing](http://opengameart.org/node/20435))
   - [creep_large](../tiled/tileset/object/creep_large.png)
   - [creep_med](../tiled/tileset/object/creep_med.png)
-- [crystal rocks/minerals](../tiled/tileset/ground/rock/blue_crystal.png) (re-colors: gold, green, icy, purple, & red)
+- [crystal rocks/minerals](../tiled/tileset/ground/rock/blue_crystal.png) by Jordan Irwin (re-colors: gold, green, icy, purple, & red)
   - Sources:
     - [Minerals](http://openclipart.org/detail/173471) by qubodup
     - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
