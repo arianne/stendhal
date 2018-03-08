@@ -130,3 +130,10 @@ span.logi {text-decoration: underline}
 #dropnumberdialogvalue {
 	width: 4em;
 }
+
+.unselectable {
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
