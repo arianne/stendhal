@@ -34,6 +34,11 @@ padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; fon
 	overflow-y: scroll; word-wrap:break-word; display: block
 }
 
+#zoneinfo {
+	 color: #FFF; 
+	 background-color: #000;
+}
+
 #stats {
 	border: 1px solid black;
 	cursor: default;
