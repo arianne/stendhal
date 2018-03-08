@@ -285,6 +285,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [peach_drapes](../tiled/tileset/furniture/curtain/peach_drapes.png)
     - [purple_drapes](../tiled/tileset/furniture/curtain/purple_drapes.png)
     - [red_drapes](../tiled/tileset/furniture/curtain/red_drapes.png)
+    - [red_gold_gathered (curtains)](../tiled/tileset/furniture/curtain/red_gold_gathered.png)
     - [royal_blue_drapes](../tiled/tileset/furniture/curtain/royal_blue_drapes.png)
     - [torch_2](../tiled/tileset/furniture/light/torch_2.png)
     - [white (table)](../tiled/tileset/furniture/table/white.png)
