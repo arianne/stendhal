@@ -406,7 +406,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	drawTitle: function(ctx, x, y) {
 		var title = this["title"];
 		if (title == undefined) {
-			title = this["name"];
+			title = this["_name"];
 			if (title == undefined || title == "") {
 				title = this["class"];
 				if (title == undefined) {
