@@ -247,9 +247,18 @@ By Curt:
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
   - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
 
+By Daniel Cook:
+- [suit_of_armor2](../tiled/tileset/item/armor/suit_of_armor2.png)
+  - Sources:
+    - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
+    - [OpenGameArt.org](https://opengameart.org/node/11758)
+
 By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
 - [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
   - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
+
+By [Hyptosis](https://opengameart.org/user/2937) & [mold](https://opengameart.org/user/12427):
+- [wolf_statue](../tiled/tileset/item/statue/wolf_statue.png) (CC0)
 
 By [Hyptosis](https://opengameart.org/user/2937), [Zachariah Husiar (Zabin)](https://opengameart.org/user/3356), & [Jetrel](https://opengameart.org/user/402):
 - [stone_doorway](../tiled/tileset/building/door/stone_doorway.png)
@@ -265,30 +274,24 @@ By [Johann C](https://opengameart.org/users/johann-c):
     - [rock_face](../tiled/tileset/object/rock/rock_face.png) (removed)
     - [pillars_stone](../tiled/tileset/object/rock/pillars_stone.png)
 
-By [Jordan Irwin (AntumDeluge)]():
+By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - Creative Commons Zero (CC0):
   - tileset:
     - [gnome_homes](../tiled/tileset/building/gnome_homes.png) (source: [mushroom_houses](https://opengameart.org/node/20713))
-- Creative Commons Attribution (CC BY) version 3.0 or later:
+- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
     - [wooden_ns (stairs)](../tiled/tileset/building/stairs/wooden_ns.png)
     - [lt_blue_drapes](../tiled/tileset/furniture/curtain/lt_blue_drapes.png)
     - [peach_drapes](../tiled/tileset/furniture/curtain/peach_drapes.png)
     - [purple_drapes](../tiled/tileset/furniture/curtain/purple_drapes.png)
     - [red_drapes](../tiled/tileset/furniture/curtain/red_drapes.png)
+    - [red_gold_gathered (curtains)](../tiled/tileset/furniture/curtain/red_gold_gathered.png)
     - [royal_blue_drapes](../tiled/tileset/furniture/curtain/royal_blue_drapes.png)
     - [torch_2](../tiled/tileset/furniture/light/torch_2.png)
     - [white (table)](../tiled/tileset/furniture/table/white.png)
     - [lava](../tiled/tileset/ground/fire/lava.png)
     - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
-    - [blue_crystal](../tiled/tileset/ground/rock/blue_crystal.png)
-    - [gold_crystal](../tiled/tileset/ground/rock/gold_crystal.png)
-    - [green_crystal2](../tiled/tileset/ground/rock/green_crystal2.png)
-    - [green_crystal3](../tiled/tileset/ground/rock/green_crystal3.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
-    - [icy_crystal](../tiled/tileset/ground/rock/icy_crystal.png)
-    - [purple_crystal](../tiled/tileset/ground/rock/purple_crystal.png)
-    - [red_crystal](../tiled/tileset/ground/rock/red_crystal.png)
     - [red_crystal_small](../tiled/tileset/ground/rock/red_crystal_small.png)
     - [cannon](../tiled/tileset/item/weapon/cannon.png)
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
@@ -337,6 +340,8 @@ By [qubodup](https://opengameart.org/users/qubodup):
 By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
 - [desert](../tiled/tileset/terrain/desert.png) (CC BY-SA 3.0)
   - Source: [RPG Terrains](https://opengameart.org/node/70104)
+- [swordsman statue](../tiled/tileset/item/statue/swordsman.png)
+  - Source: [Statues](https://opengameart.org/node/70109) (CC BY-SA 3.0)
 
 By [RedVoxel](https://red-voxel.itch.io/):
 - Creative Commons Attribution (CC BY) version 3.0:
@@ -391,10 +396,10 @@ Creative Commons 0 (CC0) (no attribution required):
 - creep by StumpyStrust & Charlie (source: [Animated Creepy Thing](http://opengameart.org/node/20435))
   - [creep_large](../tiled/tileset/object/creep_large.png)
   - [creep_med](../tiled/tileset/object/creep_med.png)
-- crystals ([Git](../tiled/tileset/rock/)) (work-in-progress) (removed?)
-  - base images:
-    - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
+- [crystal rocks/minerals](../tiled/tileset/ground/rock/blue_crystal.png) by Jordan Irwin (re-colors: gold, green, icy, purple, & red)
+  - Sources:
     - [Minerals](http://openclipart.org/detail/173471) by qubodup
+    - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
 - [flame](../tiled/tileset/ground/flame.png) by XenosNS (source: [Simple Animate Fire](http://opengameart.org/node/17220)) (removed?)
 - [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
