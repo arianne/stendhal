@@ -102,6 +102,14 @@ stendhal.ui.Menu = function(entity, x, y) {
 				console.log(entity);
 			}
 		});
+		actions.push({
+			title: "(*) Alter",
+			action: function(entity) {
+				stendhal.ui.chatinput.setText("/alter #"
+						+ entity["id"]
+						+ " ");
+			}
+		});
 	}
 	var content = "<div class=\"actionmenu\">";
 	for (var i = 0; i < actions.length; i++) {

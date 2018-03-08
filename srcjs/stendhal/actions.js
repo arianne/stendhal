@@ -44,6 +44,22 @@ stendhal.slashActionRepository = {
 		getMaxParams: 2
 	},
 
+	"alter": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": type,
+				"target": params[0],
+				"stat": params[1],
+				"mode": params[2],
+				"value": remainder
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 3,
+		getMaxParams: 3
+	},
+
 	"ban": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -359,9 +375,9 @@ stendhal.slashActionRepository = {
 				"type": type
 			};
 			if (typeof(params[0] != "undefined")) {
-				action.target = params[0];
+				action["target"] = params[0];
 				if (remainder != "") {
-					action.args = remainder;
+					action["args"] = remainder;
 				}
 			}
 			marauroa.clientFramework.sendAction(action);
