@@ -274,11 +274,11 @@ By [Johann C](https://opengameart.org/users/johann-c):
     - [rock_face](../tiled/tileset/object/rock/rock_face.png) (removed)
     - [pillars_stone](../tiled/tileset/object/rock/pillars_stone.png)
 
-By [Jordan Irwin (AntumDeluge)]():
+By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - Creative Commons Zero (CC0):
   - tileset:
     - [gnome_homes](../tiled/tileset/building/gnome_homes.png) (source: [mushroom_houses](https://opengameart.org/node/20713))
-- Creative Commons Attribution (CC BY) version 3.0 or later:
+- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
     - [wooden_ns (stairs)](../tiled/tileset/building/stairs/wooden_ns.png)
     - [lt_blue_drapes](../tiled/tileset/furniture/curtain/lt_blue_drapes.png)
