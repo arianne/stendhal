@@ -141,7 +141,7 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
     - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 
 By [yokati](https://opengameart.org/user/1404), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/user/15048), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
-- [kobold](../data/sprites/monsters/kobold/kobold.png) (CC BY-SA 3.0)
+- [kobolds](../data/sprites/monsters/kobold/kobold.png) (CC BY-SA 3.0)
   - Source: [Kobolds (Dog Soldier Rework)](https://opengameart.org/node/81952)
 
 Creative Commons 0 (CC0) (no attribution required):
