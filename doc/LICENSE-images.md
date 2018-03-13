@@ -140,7 +140,7 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin
     - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
     - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 
-By [yokati](https://opengameart.org/user/1404), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/user/15048), [Michael Williams (BizmasterStudios)](https://opengameart.org/user/34190), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
+By [yokati](https://opengameart.org/user/1404), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/user/15048), [Michael Williams (BizmasterStudios)](https://opengameart.org/user/34190), [GrumpyDiamond](https://opengameart.org/user/32684), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - [kobolds](../data/sprites/monsters/kobold/kobold.png) (CC BY-SA 3.0)
   - Source: [Kobolds (Dog Soldier Rework)](https://opengameart.org/node/81952)
 
