@@ -70,6 +70,11 @@ By [Jordan Irwin (AntumDeluge)]():
   - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
   - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
 
+By [Lori Angela Nagel (Jastiv)](https://opengameart.org/user/1074):
+- Source: [Stendal confectioners](https://opengameart.org/node/82267) (CC BY 3.0/4.0)
+  - [confectionerapplepienpc](../data/sprites/npc/confectionerapplepienpc.png)
+  - [confectionercherrypienpc](../data/sprites/npc/confectionercherrypienpc.png)
+
 By [onu](https://sourceforge.net/u/onu) & Jordan Irwin (AntumDeluge):
 - [sheepman](../data/sprites/monsters/sheepman/sheepman.png) (OGA BY 3.0)
   - Based on minotaur sprite.
