@@ -79,6 +79,9 @@ By [onu](https://sourceforge.net/u/onu) & Jordan Irwin (AntumDeluge):
 - [sheepman](../data/sprites/monsters/sheepman/sheepman.png) (OGA BY 3.0)
   - Based on minotaur sprite.
 
+By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [diamonddmgirl](https://opengameart.org/user/39061), & [Michele Bucelli (Buch)](https://opengameart.org/user/645):
+- [oni](../data/sprites/monsters/oni/oni_king.png) (OGA BY 3.0)
+
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
   - crystal NPCs (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
