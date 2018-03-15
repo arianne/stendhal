@@ -110,7 +110,7 @@ public class BakerNPC implements ZoneConfigurator {
 			}
 		};
 
-		baker.setEntityClass("noimagenpc"); /* koboldchefnpc */
+		baker.setEntityClass("koboldchefnpc");
 		baker.setPosition(15, 3);
 		baker.initHP(1000);
 		baker.setDescription("You see Kroip. He was a trainee of Leander once and is now a famous pizza baker in Wofol.");
