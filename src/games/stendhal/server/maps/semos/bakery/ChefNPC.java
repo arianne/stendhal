@@ -116,7 +116,7 @@ public class ChefNPC implements ZoneConfigurator  {
 
 			}};
 			npc.setPosition(15, 3);
-			npc.setEntityClass("noimagenpc"); /* chefnpc */
+			npc.setEntityClass("chefnpc");
 			npc.setDescription("You see Leander. His job gives him a beautiful smell.");
 			zone.add(npc);
 	}
