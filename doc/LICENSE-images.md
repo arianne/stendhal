@@ -134,6 +134,9 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
     - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
     - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
 
+By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [One Man Army](https://opengameart.org/user/40926), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
+- [chefnpc (Leander)](../data/sprites/npc/chefnpc.png) (OGA BY 3.0)
+
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin (AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [Orc](https://opengameart.org/node/77703)
