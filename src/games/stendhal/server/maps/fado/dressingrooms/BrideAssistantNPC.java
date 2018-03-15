@@ -65,7 +65,7 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); // "woman_003_npc"
+		npc.setEntityClass("woman_003_npc");
 		npc.setDirection(Direction.RIGHT);
 		npc.setPosition(3, 10);
 		npc.initHP(100);
