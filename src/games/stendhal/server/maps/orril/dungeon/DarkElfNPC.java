@@ -78,7 +78,7 @@ public class DarkElfNPC implements ZoneConfigurator {
 			}
 		});
 		npc.setDescription("You see the powerful drow Waerryna. Do not cross her.");
-		npc.setEntityClass("noimagenpc"); /* blackwizardpriestnpc */
+		npc.setEntityClass("blackwizardpriestnpc");
 		npc.setPosition(49, 105);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(25);
