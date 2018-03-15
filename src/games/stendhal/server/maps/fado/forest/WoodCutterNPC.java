@@ -78,7 +78,7 @@ public class WoodCutterNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Woody, an outdoorsy-looking fellow.");
-		npc.setEntityClass("noimagenpc"); /* woodcutternpc */
+		npc.setEntityClass("woodcutternpc");
 		npc.setPosition(55, 84);
 		npc.initHP(100);
 		zone.add(npc);
