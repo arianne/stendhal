@@ -63,7 +63,7 @@ public class HolidayingBoyNPC implements ZoneConfigurator {
 				}
 		};
 
-		npc.setEntityClass("noimagenpc"); // "boynpc"
+		npc.setEntityClass("boynpc");
 		npc.setPosition(114, 77);
 		npc.initHP(100);
 		npc.setDescription("You see Finn Farmer. He is a cute looking boy who has fun while playing in the backyard.");
