@@ -120,6 +120,7 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
     - [air_elemental](../data/sprites/npc/air_elemental.png)
+    - [boynpc (Finn Farmer)](../data/sprites/npc/boynpc.png)
     - [dress_005](../data/sprites/outfit/dress/dress_005.png)
     - [dress_006](../data/sprites/outfit/dress/dress_006.png)
     - [dress_010](../data/sprites/outfit/dress/dress_010.png)
