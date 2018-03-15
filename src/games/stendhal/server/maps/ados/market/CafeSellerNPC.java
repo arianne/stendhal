@@ -69,7 +69,7 @@ public class CafeSellerNPC implements ZoneConfigurator {
 		};
 		npc.setPosition(69, 114);
 		npc.setDescription("You see sweet Mia, ready to serve customers with a pretty smile.");
-		npc.setEntityClass("noimagenpc"); /* cafesellernpc */
+		npc.setEntityClass("cafesellernpc");
         npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
