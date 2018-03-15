@@ -71,7 +71,7 @@ public class MillerNPC implements ZoneConfigurator {
 		npc.setPosition(19, 39);
 		npc.setDescription("You see Jenny. She is the local miller.");
 		npc.setDirection(Direction.DOWN);
-		npc.setEntityClass("noimagenpc"); /* woman_003_npc */
+		npc.setEntityClass("woman_003_npc");
 		zone.add(npc);
 	}
 
