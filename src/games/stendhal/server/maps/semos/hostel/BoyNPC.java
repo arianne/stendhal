@@ -109,7 +109,7 @@ public class BoyNPC implements ZoneConfigurator {
 			}
 		});
 
-		npc.setEntityClass("kid1npc"); // "childnpc"
+		npc.setEntityClass("childnpc");
 		npc.setDescription("The young boy you see is Tad. He looks ill and his face is pale.");
 
 		npc.setPosition(18, 21);
