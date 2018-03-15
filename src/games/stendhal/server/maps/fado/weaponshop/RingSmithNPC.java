@@ -87,7 +87,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Ognir, a friendly bearded chap.");
-		npc.setEntityClass("noimagenpc"); /* ringsmithnpc */
+		npc.setEntityClass("ringsmithnpc");
 		npc.setPosition(18, 8);
 		npc.initHP(100);
 		zone.add(npc);

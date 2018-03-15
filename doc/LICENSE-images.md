@@ -59,6 +59,7 @@ By [Jordan Irwin (AntumDeluge)]():
     - [blacksmithnpc](../data/sprites/npc/blacksmithnpc.png)
     - [goldsmithnpc](../data/sprites/npc/goldsmithnpc.png)
     - [hotelreceptionistnpc](../data/sprites/npc/hotelreceptionistnpc.png)
+    - [ringsmithnpc](../data/sprites/npc/ringsmithnpc.png)
   - Based on [Muscleman/Ogre/Minotaur](https://opengameart.org/node/24876) by Tuomo Untinen (Reemax):
     - [red_troll](../data/sprites/monsters/troll/red_troll.png)
     - [troll](../data/sprites/monsters/troll/troll.png)
