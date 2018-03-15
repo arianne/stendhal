@@ -72,7 +72,7 @@ public class TraderNPC implements ZoneConfigurator {
 			}
 		};
 
-		trader.setEntityClass("noimagenpc"); /* koboldnpc */
+		trader.setEntityClass("koboldnpc");
 		trader.setPosition(4, 4);
 		trader.initHP(100);
 		trader.setDescription("You see Wrvil. He can equip and maybe make you rich at the same time.");
