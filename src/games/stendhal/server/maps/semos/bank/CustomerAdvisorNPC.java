@@ -83,7 +83,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.DOWN);
 		npc.setDescription("You see Dagobert. He looks like a safe, dependable type.");
 		npc.setHP(95);
-		npc.setEntityClass("noimagenpc"); /* youngnpc */
+		npc.setEntityClass("youngnpc");
 		zone.add(npc);
 	}
 
