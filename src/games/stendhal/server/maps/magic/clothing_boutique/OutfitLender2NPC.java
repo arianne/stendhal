@@ -184,7 +184,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* wizardwomannpc */
+		npc.setEntityClass("wizardwomannpc");
 		npc.setPosition(5, 7);
 		npc.initHP(100);
 		npc.setDescription("You see Saskia. She works in the Magic City boutique.");
