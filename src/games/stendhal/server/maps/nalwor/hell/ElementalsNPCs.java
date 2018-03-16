@@ -92,7 +92,7 @@ public class ElementalsNPCs implements ZoneConfigurator {
 
 				}
 			};
-			npc.setEntityClass("noimagenpc"); /* fireelementalnpc */
+			npc.setEntityClass("fireelementalnpc");
 			npc.setPosition(start[i].getX(), start[i].getY());
 			npc.setDescription(descriptions[i]);
 			npc.setDirection(Direction.DOWN);
