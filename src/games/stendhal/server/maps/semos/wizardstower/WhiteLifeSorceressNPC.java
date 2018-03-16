@@ -84,7 +84,7 @@ public class WhiteLifeSorceressNPC implements ZoneConfigurator {
 		};
 
 		elana.setDescription("You see Elana, the divine enchantress of Life.");
-		elana.setEntityClass("noimagenpc"); /* whitesorceressnpc */
+		elana.setEntityClass("whitesorceressnpc");
 		elana.setPosition(40, 18);
 		elana.initHP(100);
 		zone.add(elana);
