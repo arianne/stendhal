@@ -82,7 +82,7 @@ public class GreenNatureWizardNPC implements ZoneConfigurator {
 		};
 
 		silvanus.setDescription("You see Silvanus, the eldest sage druid.");
-		silvanus.setEntityClass("noimagenpc"); /* greenelfwizardnpc */
+		silvanus.setEntityClass("greenelfwizardnpc");
 		silvanus.setPosition(11, 4);
 		silvanus.initHP(100);
 		zone.add(silvanus);
