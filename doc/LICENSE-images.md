@@ -140,6 +140,9 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [One Man Army](https://opengameart.org/user/40926), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - [chefnpc (Leander)](../data/sprites/npc/chefnpc.png) (OGA BY 3.0)
 
+By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [Stephen Challener (Redshrike)](https://opengameart.org/users/Redshrike), [One Man Army](https://opengameart.org/users/One-Man-Army), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
+- [ratchefnpc (Gaston)](../data/sprites/npc/ratchefnpc.png) ([OGA BY 3.0](https://opengameart.org/node/82451))
+
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin (AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [Orc](https://opengameart.org/node/77703)

@@ -111,7 +111,7 @@ public class RatChefNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* ratchefnpc */
+		npc.setEntityClass("ratchefnpc");
 		npc.setDirection(Direction.DOWN);
 		npc.setPosition(16, 3);
 		npc.initHP(100);
