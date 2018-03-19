@@ -108,12 +108,27 @@ marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpe
 marauroa.rpeventFactory["pvp_new_challenge_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 		execute: function(rpobject) {
 			var dimensions = stendhal.ui.html.gamewindowSize();
-			var reject = "<button onclick=\"recject()\">Reject</button>";
-			var accept = "<button onclick=\"accept()\">Accept</button>";
+			var reject = "<button id=\"reject\">Reject</button>";
+			var accept = "<button id=\"accept\">Accept</button>";
 			var content = accept + " " + reject;
-			var popup = stendhal.ui.Popup("Incoming PvP Challenge", content, dimensions.width / 2, dimensions.height / 2);
+			var popup = new stendhal.ui.Popup("Incoming PvP Challenge", content, dimensions.width / 2, dimensions.height / 2);
+			var challenger = this["challenger"];
+			
+			popup.popupdiv.querySelector("#reject").addEventListener("click", function (e) {
+				popup.close();
+			});
+			
+			popup.popupdiv.querySelector("#accept").addEventListener("click", function (e) {
+				var action = {
+						"type": "challenge",
+						"action": "accept",
+						"target": challenger
+				};
+				marauroa.clientFramework.sendAction(action);
+				popup.close();
+			});
+			
 			popup.onClose = function() {
-				console.log("on close");
 			}
 		}
 	}
