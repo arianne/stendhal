@@ -73,7 +73,7 @@ public class WomanNPC implements ZoneConfigurator {
 		};
 
 		woman.setDescription("You see a fashionably dressed young woman. She looks like a bit of a flirt.");
-		woman.setEntityClass("noimagenpc"); /* youngwomannpc */
+		woman.setEntityClass("youngwomannpc");
 		woman.setPosition(3, 4);
 		woman.initHP(100);
 		zone.add(woman);
