@@ -45,7 +45,7 @@ By [DoubleU Creativity](https://opengameart.org/user/30566):
 - Creative Commons Attribution (CC BY) version 3.0:
   - [robot_aruthon](../data/sprites/monsters/hybrid/robot_aruthon.png)
 
-By [Jordan Irwin (AntumDeluge)]():
+By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0 or later:
   - [butterfly](../data/sprites/npc/animal/butterfly.png)
   - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
@@ -136,6 +136,9 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
     - [granmanpc](../data/sprites/npc/granmanpc.png)
     - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
     - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
+
+By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit) & [diamonddmgirl](https://opengameart.org/users/diamonddmgirl):
+- [youngwomannpc (Josephine)](../data/sprites/npc/youngwomannpc.png) (OGA BY 3.0)
 
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [One Man Army](https://opengameart.org/user/40926), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - [chefnpc (Leander)](../data/sprites/npc/chefnpc.png) (OGA BY 3.0)
