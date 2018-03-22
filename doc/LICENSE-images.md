@@ -265,8 +265,9 @@ By [Casper Nilsson](https://opengameart.org/user/2664):
   - [lily_pads](../tiled/tileset/plant/lily_pads.png)
 
 By [Casper Nilsson](https://opengameart.org/user/2664) & Jordan Irwin (AntumDeluge):
-- [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
-  - Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
+- Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
+  - [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
+  - [tombstone_2](../tiled/tileset/item/gothic/tombstone_2.png)
 
 By [Casper Nilsson](https://opengameart.org/user/2664) & [Wolthera van Hövell tot Westerflier (TheraHedwig)](https://opengameart.org/users/therahedwig):
 - [grave_statue_girl](../tiled/tileset/item/gothic/grave_statue_girl.png) (CC BY-SA 3.0 / GPL 3.0)
