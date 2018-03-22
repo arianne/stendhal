@@ -260,13 +260,14 @@ By Barbara Rivera:
 
 By [Casper Nilsson](https://opengameart.org/user/2664):
 - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
-  - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
   - [tan_tent](../tiled/tileset/object/tan_tent.png)
   - [lily_pads](../tiled/tileset/plant/lily_pads.png)
 
 By [Casper Nilsson](https://opengameart.org/user/2664) & Jordan Irwin (AntumDeluge):
 - Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
   - [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
+  - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
+  - [large_gravestone](../tiled/tileset/item/gothic/large_gravestone.png)
   - [tombstone_2](../tiled/tileset/item/gothic/tombstone_2.png)
 
 By [Casper Nilsson](https://opengameart.org/user/2664) & [Wolthera van Hövell tot Westerflier (TheraHedwig)](https://opengameart.org/users/therahedwig):
