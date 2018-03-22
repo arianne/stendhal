@@ -268,6 +268,12 @@ By [Casper Nilsson](https://opengameart.org/user/2664) & Jordan Irwin (AntumDelu
 - [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
   - Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
 
+By [Casper Nilsson](https://opengameart.org/user/2664) & [Wolthera van Hövell tot Westerflier (TheraHedwig)](https://opengameart.org/users/therahedwig):
+- [grave_statue_girl](../tiled/tileset/item/gothic/grave_statue_girl.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Sources:
+    - [LPC C.Nilsson contest entry](https://opengameart.org/content/lpc-cnilsson)
+    - [LPC Compatible Ancient Roman Architecture](https://opengameart.org/node/64532)
+
 By Curt:
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
   - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
