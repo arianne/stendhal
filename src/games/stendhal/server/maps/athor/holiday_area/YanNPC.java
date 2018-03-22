@@ -47,7 +47,7 @@ public class YanNPC implements ZoneConfigurator  {
 
 		};
 		npc.setPosition(62, 72);
-		npc.setEntityClass("noimagenpc"); /* swimmer4npc */
+		npc.setEntityClass("swimmer4npc");
 		npc.setDescription ("You see Yan. He lays at the beach and enjoys some cocktails.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
