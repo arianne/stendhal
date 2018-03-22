@@ -275,7 +275,7 @@ By [Casper Nilsson](https://opengameart.org/user/2664) & [Wolthera van Hövell t
     - [LPC C.Nilsson contest entry](https://opengameart.org/content/lpc-cnilsson)
     - [LPC Compatible Ancient Roman Architecture](https://opengameart.org/node/64532)
 
-By Curt:
+By [Curt](https://opengameart.org/users/curt):
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
   - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
 
@@ -348,6 +348,13 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [bluecarrot16](https://opengameart.org/user/18016), & [Casper Nilsson](https://opengameart.org/user/2664):
 - [windows_with_flowerboxes](../tiled/tileset/building/window/windows_with_flowerboxes.png)
   - Source: [LPC Windows Rework](https://opengameart.org/node/81885)
+
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/users/sharm), [bluecarrot16](https://opengameart.org/users/bluecarrot16), [Curt](https://opengameart.org/users/curt), & [Casper Nilsson](https://opengameart.org/user/2664):
+- [banner](../tiled/tileset/item/banners/banner.png) (CC BY-SA 3.0 / GPL 3.0)
+  - Sources:
+    - [bluecarrot16's WIP LPC tilesets/collections](https://opengameart.org/forumtopic/bluecarrot16s-wip-lpc-tilesetscollections)
+    - [[LPC] Street Lamp](https://opengameart.org/content/lpc-street-lamp)
+    - [LPC C.Nilsson contest entry](https://opengameart.org/content/lpc-cnilsson)
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Hyptosis](https://opengameart.org/user/2937):
 - [urn_with_flowers](../tiled/tileset/item/statue/urn_with_flowers.png) (CC BY-SA 3.0)
