@@ -63,7 +63,7 @@ public class GhostNPC implements ZoneConfigurator {
 
 		ghost.setDescription("You see a ghostly figure of a man. You have no idea how he died.");
 		ghost.setResistance(0);
-		ghost.setEntityClass("noimagenpc"); // "man_000_npc"
+		ghost.setEntityClass("man_000_npc");
 		// he is a ghost so he is see through
 		ghost.setVisibility(50);
 		ghost.setPosition(3, 4);
