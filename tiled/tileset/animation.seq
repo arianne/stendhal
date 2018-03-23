@@ -525,8 +525,14 @@ tileset/furniture/sink/jacuzzi_dark_side_on.png 32  32:20:26
 tileset/ground/fire/flame.png * 0:1:2
 tileset/ground/fire/flame.png * 1:2:0
 tileset/ground/fire/flame.png * 2:0:1
-tileset/ground/fire/flames.png * 0:1
-tileset/ground/fire/flames.png * 1:0
+tileset/ground/fire/flames.png *@150 0:1:2:3
+tileset/ground/fire/flames.png *@150 1:2:3:0
+tileset/ground/fire/flames.png *@150 2:3:0:1
+tileset/ground/fire/flames.png *@150 3:0:1:2
+tileset/ground/fire/flames.png *@150 4:5:6:7
+tileset/ground/fire/flames.png *@150 5:6:7:4
+tileset/ground/fire/flames.png *@150 6:7:4:5
+tileset/ground/fire/flames.png *@150 7:4:5:6
 
 # whirlpool
 tileset/ground/water/whirlpool.png	*	0:1:2:3
