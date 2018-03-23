@@ -383,13 +383,13 @@ By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
 - [swordsman statue](../tiled/tileset/item/statue/swordsman.png)
   - Source: [Statues](https://opengameart.org/node/70109) (CC BY-SA 3.0)
 
-By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888), [Hyptosis](https://opengameart.org/user/2937), [bluecarrot16](https://opengameart.org/user/18016), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
+By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888), [Hyptosis](https://opengameart.org/user/2937), [bluecarrot16](https://opengameart.org/user/18016), [Leonard Pabin](https://opengameart.org/user/232), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [ground/sand_2](../tiled/tileset/ground/sand_2.png) (CC BY-SA 3.0)
   - Sources:
     - [RPG Terrains](https://opengameart.org/node/70104)
     - [[LPC] Beach / Desert](https://opengameart.org/node/80156)
     - [Bone Planet](https://opengameart.org/node/47566)
-
+    - [Whispers of Avalon: Desert Tileset](https://opengameart.org/node/5712)
 
 By [RedVoxel](https://red-voxel.itch.io/):
 - Creative Commons Attribution (CC BY) version 3.0:
