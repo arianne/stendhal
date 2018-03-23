@@ -82,8 +82,17 @@ By [onu](https://sourceforge.net/u/onu) & [Jordan Irwin (AntumDeluge)](https://o
   - [OpenGameArt.org submission](https://opengameart.org/node/81800).
   - Based on [minotaur sprite](https://opengameart.org/node/76913).
 
-By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [diamonddmgirl](https://opengameart.org/user/39061), [Michele Bucelli (Buch)](https://opengameart.org/user/645), & [SoCay](https://opengameart.org/users/socay):
+By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [diamonddmgirl](https://opengameart.org/user/39061), [Michele Bucelli (Buch)](https://opengameart.org/user/645), [SoCay](https://opengameart.org/users/socay), [Guyome41](https://opengameart.org/users/guyome41), & [rones](https://openclipart.org/user-detail/rones):
 - [oni](../data/sprites/monsters/oni/oni_king.png) (OGA BY 3.0)
+  - Sources: 
+    - [24x32 bases](https://opengameart.org/node/24944)
+    - [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969)
+    - [Edited and Extended 24x32 Character Pack](https://opengameart.org/node/66147)
+    - [RPG portraits](https://opengameart.org/node/29662)
+    - [Shmup Enemies](https://opengameart.org/node/20636)
+    - [Minecraft Items](https://opengameart.org/node/77076)
+    - [Mushroom (Champignon)](https://opengameart.org/node/23139)
+    - [Fidget spinner](https://openclipart.org/detail/283528)
 
 By [qubodup](https://opengameart.org/users/qubodup):
 - GNU Gneral Public License (GPL) version 2.0 or later:
