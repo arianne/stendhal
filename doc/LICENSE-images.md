@@ -77,7 +77,7 @@ By [Lori Angela Nagel (Jastiv)](https://opengameart.org/user/1074):
   - [confectionerapplepienpc](../data/sprites/npc/confectionerapplepienpc.png)
   - [confectionercherrypienpc](../data/sprites/npc/confectionercherrypienpc.png)
 
-By [onu](https://sourceforge.net/u/onu) & Jordan Irwin (AntumDeluge):
+By [onu](https://sourceforge.net/u/onu) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [sheepmen](../data/sprites/monsters/sheepman/sheepman.png) (OGA BY 3.0)
   - [OpenGameArt.org submission](https://opengameart.org/node/81800).
   - Based on [minotaur sprite](https://opengameart.org/node/76913).
@@ -146,7 +146,7 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [One M
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [Stephen Challener (Redshrike)](https://opengameart.org/users/Redshrike), [One Man Army](https://opengameart.org/users/One-Man-Army), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [ratchefnpc (Gaston)](../data/sprites/npc/ratchefnpc.png) ([OGA BY 3.0](https://opengameart.org/node/82451))
 
-By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & Jordan Irwin (AntumDeluge):
+By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0:
   - Source: [Orc](https://opengameart.org/node/77703)
     - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
@@ -178,7 +178,7 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Corpse Sprites:
 
-By [Jordan Irwin (AntumDeluge)]():
+By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0 or later:
   - [cloaked](../data/sprites/corpse/cloaked.xcf.bz2) (source)
   - [cloaked_black](../data/sprites/corpse/cloaked_black.png)
@@ -216,7 +216,7 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Item Sprites:
 
-By [Jordan Irwin (AntumDeluge)]():
+By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0 or later:
   - antipoison rings ([source](https://opengameart.org/node/20712))
     - [antitoxin_ring](../data/sprites/items/ring/antitoxin_ring.png)
@@ -263,7 +263,7 @@ By [Casper Nilsson](https://opengameart.org/user/2664):
   - [tan_tent](../tiled/tileset/object/tan_tent.png)
   - [lily_pads](../tiled/tileset/plant/lily_pads.png)
 
-By [Casper Nilsson](https://opengameart.org/user/2664) & Jordan Irwin (AntumDeluge):
+By [Casper Nilsson](https://opengameart.org/user/2664) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
   - [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
   - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
@@ -360,7 +360,7 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/users/sharm), [bluecarrot16
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Hyptosis](https://opengameart.org/user/2937):
 - [urn_with_flowers](../tiled/tileset/item/statue/urn_with_flowers.png) (CC BY-SA 3.0)
 
-By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https://opengameart.org/user/402), [Hyptosis](https://opengameart.org/user/2937), & Jordan Irwin (AntumDeluge):
+By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https://opengameart.org/user/402), [Hyptosis](https://opengameart.org/user/2937), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [flowers_on_bench2](../tiled/tileset/furniture/table/flowers_on_bench2.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: https://opengameart.org/node/81665
 
@@ -383,7 +383,7 @@ By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
 - [swordsman statue](../tiled/tileset/item/statue/swordsman.png)
   - Source: [Statues](https://opengameart.org/node/70109) (CC BY-SA 3.0)
 
-By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888), [Hyptosis](https://opengameart.org/user/2937), & [bluecarrot16](https://opengameart.org/user/18016):
+By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888), [Hyptosis](https://opengameart.org/user/2937), [bluecarrot16](https://opengameart.org/user/18016), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [ground/sand_2](../tiled/tileset/ground/sand_2.png) (CC BY-SA 3.0)
   - Sources:
     - [RPG Terrains](https://opengameart.org/node/70104)
@@ -466,7 +466,7 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### GUI Decoration:
 
-By [Jordan Irwin (AntumDeluge)]():
+By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0 or later:
   - [panel_tile_aqua_001](../data/gui/panel_tile_aqua_001.png)
 
