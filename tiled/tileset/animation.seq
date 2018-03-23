@@ -381,42 +381,6 @@ tileset/building/roof/roof_borders_xmas.png     *       6:15
 tileset/building/roof/roof_borders_xmas.png     *       7:16
 tileset/building/roof/roof_borders_xmas.png     *       8:17
 
-# animating the flames in hell.png
-
-tileset/ground/rock/hell.png                    *        10:26  
-tileset/ground/rock/hell.png                    *        26:42    
-tileset/ground/rock/hell.png                    *        42:58   
-tileset/ground/rock/hell.png                    *        58:10   
-# added by tigertoes
-tileset/ground/rock/hell.png                    *        250:254
-tileset/ground/rock/hell.png                    *        254:250
-tileset/ground/rock/hell.png                    *        251:255
-tileset/ground/rock/hell.png                    *        255:251
-tileset/ground/rock/hell.png                    *        266:270
-tileset/ground/rock/hell.png                    *        270:266
-tileset/ground/rock/hell.png                    *        267:271
-tileset/ground/rock/hell.png                    *        271:267
-tileset/ground/rock/hell.png                    *        272:274:273:274:272:273
-tileset/ground/rock/hell.png                    *        273:272:273:274:272:274
-tileset/ground/rock/hell.png                    *        274:272:273:272:273:272
-tileset/ground/rock/hell.png                    *        288:290:289:290:288:289
-tileset/ground/rock/hell.png                    *        289:288:289:290:288:290
-tileset/ground/rock/hell.png                    *        290:288:289:288:289:288
-tileset/ground/rock/hell.png                    *        275:278:276:275:276:279
-tileset/ground/rock/hell.png                    *        276:275:277:279:278:275
-tileset/ground/rock/hell.png                    *        277:275:276:278:277:279
-tileset/ground/rock/hell.png                    *        278:275:279:277:276:275
-tileset/ground/rock/hell.png                    *        279:277:275:278:276:277
-tileset/ground/rock/hell.png                    *        291:294:292:291:292:295
-tileset/ground/rock/hell.png                    *        292:291:293:295:294:291
-tileset/ground/rock/hell.png                    *        293:291:292:294:293:295
-tileset/ground/rock/hell.png                    *        294:291:295:293:292:291
-tileset/ground/rock/hell.png                    *        295:293:291:294:292:293
-# animation of the skull flames
-tileset/ground/rock/hell.png			*	 315:331
-tileset/ground/rock/hell.png			*	 316:332
-tileset/ground/rock/hell.png			*	 347:348
-
 # water from ground.png
 # the waves travel north, if the map uses the first tile,
 # south, if the second.
