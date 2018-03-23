@@ -242,6 +242,10 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Animation Effects:
 
+By [DkuCook](https://opengameart.org/users/dkucook):
+- [flames](../tiled/tileset/ground/fire/flames.png) (CC0)
+  - Source: [Fire Ball Pixel](https://opengameart.org/node/76781)
+
 Creative Commons 0 (CC0) (no attribution required):
 - [fire_explosion_2x2](../data/sprites/effects/fire_explosion_2x2.png) by StumpyStrust (source: [Explosion Sheet](http://opengameart.org/node/15394))
 
