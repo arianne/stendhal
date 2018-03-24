@@ -114,7 +114,7 @@ marauroa.rpeventFactory["pvp_new_challenge_event"] = marauroa.util.fromProto(mar
 			var reject = "<button id=\"" + idReject + ""\">Reject</button>";
 			var accept = "<button id=\"" + idAccept + "\">Accept</button>";
 			var content = accept + " " + reject;
-			var popup = new stendhal.ui.Popup("Incoming PvP Challenge", content, dimensions.width / 2, dimensions.height / 2);
+			var popup = new stendhal.ui.Popup(challenger + " challenged you!", content, dimensions.width / 2, dimensions.height / 2);
 			
 			popup.popupdiv.querySelector("#" + idReject).addEventListener("click", function (e) {
 				popup.close();
