@@ -11,20 +11,11 @@
 
 "use strict";
 
-<<<<<<< Upstream, based on branch 'feature/challenges' of git@github.com:markuskeunecke/stendhal.git
-<<<<<<< Upstream, based on branch 'feature/challenges' of git@github.com:markuskeunecke/stendhal.git
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
-stendhal.ui = stendhal.ui = stendhal.ui || {};
-stendhal.ui.html = stendhal.ui.html = stendhal.ui.html || {}; 
+var stendhal.ui = stendhal.ui = stendhal.ui || {};
+var stendhal.ui.html = stendhal.ui.html = stendhal.ui.html || {}; 
 
-=======
->>>>>>> 48efa3d Support closure compiler advanced mode
-=======
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
-
->>>>>>> 6fbc261 fixed JavaScript warnings
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
 		
