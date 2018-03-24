@@ -82,6 +82,14 @@ By [onu](https://sourceforge.net/u/onu) & [Jordan Irwin (AntumDeluge)](https://o
   - [OpenGameArt.org submission](https://opengameart.org/node/81800).
   - Based on [minotaur sprite](https://opengameart.org/node/76913).
 
+
+By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [diamonddmgirl](https://opengameart.org/users/diamonddmgirl), & [ZigWin](https://opengameart.org/users/ZigWin):
+- [dark elves](../data/sprites/monsters/dark_elf) (OGA BY 3.0)
+  - Sources:
+    - [Cabbit Bases Collection](https://opengameart.org/node/79237)
+    - [Edited and Extended 24x32 Character Pack](https://opengameart.org/node/66147)
+    - [MagicWands](https://opengameart.org/node/52970)
+
 By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [diamonddmgirl](https://opengameart.org/user/39061), [Michele Bucelli (Buch)](https://opengameart.org/user/645), [SoCay](https://opengameart.org/users/socay), [Guyome41](https://opengameart.org/users/guyome41), & [rones](https://openclipart.org/user-detail/rones):
 - [oni](../data/sprites/monsters/oni/oni_king.png) (OGA BY 3.0)
   - Sources: 
