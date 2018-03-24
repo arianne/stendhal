@@ -24,9 +24,6 @@ import javax.swing.JTabbedPane;
 import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
-import games.stendhal.client.gui.WindowUtils;
-import games.stendhal.client.gui.layout.SBoxLayout;
-
 /**
  * Dialog for game settings.
  */
