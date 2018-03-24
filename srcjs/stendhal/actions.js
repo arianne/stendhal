@@ -282,6 +282,15 @@ stendhal.slashActionRepository = {
 		getMinParams: 1,
 		getMaxParams: 1
 	},
+	
+	"reject": {
+		execute: function(type, params, remainder) {
+			// just for having a counterpart to accept.
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
 
 
 	"_default": {
