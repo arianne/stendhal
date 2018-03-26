@@ -112,20 +112,19 @@ By [qubodup](https://opengameart.org/users/qubodup):
     - [crystalyellownpc](../data/sprites/npc/alternative/crystalyellownpc.png)
 
 By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
-- Creative Commons Attribution (CC BY) version 3.0:
-  - Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215)
-    - [devil_monk](../data/sprites/monsters/undead/devil_monk.png)
-    - [chaos_sorceror](../data/sprites/monsters/chaos/chaos_sorceror.png)
-    - [chaos_sorcerornpc](../data/sprites/npc/chaos_sorcerornpc.png)
-  - Source: [rpg enemies--updated](https://opengameart.org/node/6262)
-    - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
-    - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
-- Creative Commons Attribution-ShareAlike (CC BY-SA) 3.0:
-  - [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851))
-  - Source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858)
-    - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png)
-    - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
-    - [chaos_warrior](../data/sprites/monsters/chaos/chaos_warrior.png)
+- Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215) (CC BY 3.0)
+  - [devil_monk](../data/sprites/monsters/undead/devil_monk.png)
+  - [chaos_sorceror](../data/sprites/monsters/chaos/chaos_sorceror.png)
+  - [chaos_sorcerornpc](../data/sprites/npc/chaos_sorcerornpc.png)
+- Source: [rpg enemies--updated](https://opengameart.org/node/6262) (CC BY 3.0)
+  - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
+  - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
+  - [tiny_skelly](../data/sprites/monsters/hybrid/tiny_skelly.png)
+- [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851)) (CC BY-SA 3.0)
+- Source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858) (CC BY-SA 3.0)
+  - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png)
+  - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
+  - [chaos_warrior](../data/sprites/monsters/chaos/chaos_warrior.png)
 
 By Stephen Challener (Redshrike) & William.Thompsonj:
 - OpenGameArt Attribution (OGA BY) version 3.0:
