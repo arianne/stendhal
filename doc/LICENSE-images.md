@@ -22,11 +22,10 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
       - [unicorn](../data/sprites/monsters/mythical_being/unicorn.png)
 
 By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/charlesgabriel):
-- Creative Commons Attribution (CC BY) version 3.0:
-  - [earth_elemental](../data/sprites/monsters/elemental/earth_elemental.png) ([source](https://opengameart.org/node/3393))
-  - [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125))
-- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
-  - [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures))
+- [earth_elemental](../data/sprites/monsters/elemental/earth_elemental.png) ([source](https://opengameart.org/node/3393)) (CC BY 3.0)
+- [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125)) (CC BY 3.0)
+- [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures)) (CC BY-SA 3.0)
+- [vampire_lord](../data/sprites/monsters/vampire/vampire_lord.png) ([source](https://opengameart.org/node/4125)) (CC BY 3.0)
 
 By [diamonddmgirl](https://opengameart.org/user/39061):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
