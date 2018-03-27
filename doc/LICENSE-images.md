@@ -166,19 +166,20 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [Steph
 - [ratchefnpc (Gaston)](../data/sprites/npc/ratchefnpc.png) ([OGA BY 3.0](https://opengameart.org/node/82451))
 
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- Creative Commons Attribution (CC BY) version 3.0:
-  - Source: [Orc](https://opengameart.org/node/77703)
-    - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
-    - [mountain_orc_chief](../data/sprites/monsters/orc/mountain_orc_chief.png)
-    - [mountain_orc_hunter](../data/sprites/monsters/orc/mountain_orc_hunter.png)
-    - [mountain_orc_warrior](../data/sprites/monsters/orc/mountain_orc_warrior.png)
-    - [orc](../data/sprites/monsters/orc/orc.png)
-    - [orc_chief](../data/sprites/monsters/orc/orc_chief.png)
-    - [orc_hunter](../data/sprites/monsters/orc/orc_hunter.png)
-    - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
-    - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
-    - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
-    - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
+- Source: [Orc](https://opengameart.org/node/77703) (CC BY 3.0)
+  - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
+  - [mountain_orc_chief](../data/sprites/monsters/orc/mountain_orc_chief.png)
+  - [mountain_orc_hunter](../data/sprites/monsters/orc/mountain_orc_hunter.png)
+  - [mountain_orc_warrior](../data/sprites/monsters/orc/mountain_orc_warrior.png)
+  - [orc](../data/sprites/monsters/orc/orc.png)
+  - [orc_chief](../data/sprites/monsters/orc/orc_chief.png)
+  - [orc_hunter](../data/sprites/monsters/orc/orc_hunter.png)
+  - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
+  - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
+  - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
+  - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
+- [brain_ahouga](../data/sprites/monsters/hybrid/brain_ahouga.png) (CC BY 3.0)
+  - Source: [Brain monster](https://opengameart.org/node/15590)
 
 By [yokati](https://opengameart.org/user/1404), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/user/15048), [diamonddmgirl](https://opengameart.org/user/39061), [Michael Williams (BizmasterStudios)](https://opengameart.org/user/34190), [GrumpyDiamond](https://opengameart.org/user/32684), [One Man Army](https://opengameart.org/user/40926), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - [kobolds](../data/sprites/monsters/kobold/kobold.png) (CC BY-SA 3.0)
