@@ -71,6 +71,10 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
   - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
   - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
 
+By [Kevin Smith (TKZ Productions)](https://opengameart.art/users/TKZ-Productions):
+- [dark_aruthon](../data/sprites/monsters/hybrid/dark_aruthon.png) (CC BY 3.0)
+  - Source: [A Lonely Nightmare - Minimare (Monster)](https://opengameart.org/node/50703)
+
 By [Lori Angela Nagel (Jastiv)](https://opengameart.org/user/1074):
 - Source: [Stendal confectioners](https://opengameart.org/node/82267) (CC BY 3.0/4.0)
   - [confectionerapplepienpc](../data/sprites/npc/confectionerapplepienpc.png)
