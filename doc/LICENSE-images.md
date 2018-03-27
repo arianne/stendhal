@@ -125,6 +125,10 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
   - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
   - [chaos_warrior](../data/sprites/monsters/chaos/chaos_warrior.png)
 
+By [Stephen Challener (Redshrike)](https://opengameart.org/users/Redshrike), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [One Man Army](https://opengameart.org/users/One-Man-Army), [DkuCook](https://opengameart.org/users/DkuCook), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
+- [ratfolk](../data/sprites/monsters/ratfolk) (OGA BY 3.0)
+  - Source: [Ratfolk](https://opengameart.org/node/82451)
+
 By Stephen Challener (Redshrike) & William.Thompsonj:
 - OpenGameArt Attribution (OGA BY) version 3.0:
   - [ghosthound](../data/sprites/monsters/undead/ghosthound.png) ([source](https://opengameart.org/node/20830))
