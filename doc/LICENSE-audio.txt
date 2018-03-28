@@ -362,34 +362,6 @@ data/sounds/water-5.ogg,              Storyteller, GPL
 data/sounds/water-faucet-1.ogg,       unknown, public domain, http://www.pdsounds.org/sounds/faucet_water_into_sink
 data/sounds/water-faucet-1.wav.x      free sound pack
 data/sounds/wave-11.ogg,              free sound pack
-data/sounds/weather/rain_heavy.ogg,           Marcus Dellicompagni - www.PoundSound.co.uk, CC0, http://freesound.org/people/dingo1/sounds/134721
-data/sounds/weather/rain_heavy.wav.xz,        Marcus Dellicompagni - www.PoundSound.co.uk, CC0, http://freesound.org/people/dingo1/sounds/134721
-data/sounds/weather/rain_light.ogg,           Zepp2010, CC0, http://freesound.org/people/Zepp2010/sounds/163264
-data/sounds/weather/rain_light.wav.xz,        Zepp2010, CC0, http://freesound.org/people/Zepp2010/sounds/163264
-data/sounds/weather/rain.ogg,                 klangfabrik, CC0, http://freesound.org/people/klangfabrik/sounds/157149/
-data/sounds/weather/rain.wav.xz,              klangfabrik, CC0, http://freesound.org/people/klangfabrik/sounds/157149/
-data/sounds/weather/thunder-01.ogg,           vonz, CC0, http://freesound.org/people/vonz/sounds/188767/
-data/sounds/weather/thunder-01.wav.xz,        vonz, CC0, http://freesound.org/people/vonz/sounds/188767/
-data/sounds/weather/thunder-02.ogg,           Andy_Gardner, CC0, http://freesound.org/people/Andy_Gardner/sounds/238145/
-data/sounds/weather/thunder-02.wav.xz,        Andy_Gardner, CC0, http://freesound.org/people/Andy_Gardner/sounds/238145/
-data/sounds/weather/thunder-03.ogg,           sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-data/sounds/weather/thunder-03.wav.xz,        sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-data/sounds/weather/thunder-04.ogg,           sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-data/sounds/weather/thunder-04.wav.xz,        sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-data/sounds/weather/thunder-05.ogg,           Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-data/sounds/weather/thunder-05.wav.xz,        Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-data/sounds/weather/thunder-06.ogg,           Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-data/sounds/weather/thunder-06.wav.xz,        Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-data/sounds/weather/thunder-07.ogg,           Xythe, CC0, http://freesound.org/people/Xythe/sounds/37299/
-data/sounds/weather/thunder-07.wav.xz,        Xythe, CC0, http://freesound.org/people/Xythe/sounds/37299/
-data/sounds/weather/thunder-08.ogg,           Yoyodaman234, CC0, http://freesound.org/people/Yoyodaman234/sounds/253953/      
-data/sounds/weather/thunder-08.wav.xz,        Yoyodaman234, CC0, http://freesound.org/people/Yoyodaman234/sounds/253953/
-data/sounds/weather/wind_heavy.ogg,           stewdio2003, CC0, http://freesound.org/people/stewdio2003/sounds/238374/
-data/sounds/weather/wind_heavy.wav.xz,        stewdio2003, CC0, http://freesound.org/people/stewdio2003/sounds/238374/
-data/sounds/weather/wind_light.ogg,           MrAuralization, CC0, http://freesound.org/people/MrAuralization/sounds/243617/
-data/sounds/weather/wind_light.wav.xz,        MrAuralization, CC0, http://freesound.org/people/MrAuralization/sounds/243617/
-data/sounds/weather/wind.ogg,                 felix.blume, CC0, http://freesound.org/people/felix.blume/sounds/146436/
-data/sounds/weather/wind.wav.xz,              felix.blume, CC0, http://freesound.org/people/felix.blume/sounds/146436/
 data/sounds/wind-2.ogg,               free sound pack
 data/sounds/window-close-1.ogg,       free sound pack
 data/sounds/wings-flap-large-1.ogg,   dave.des/, CC0, http://freesound.org/people/dave.des/sounds/127197/
