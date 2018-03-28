@@ -73,6 +73,7 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 
 By [Kevin Smith (TKZ Productions)](https://opengameart.org/users/TKZ-Productions):
 - [dark_aruthon](../data/sprites/monsters/hybrid/dark_aruthon.png) (CC BY 3.0)
+  - Source: [A Lonely Nightmare - Minimare (Monster)](https://opengameart.org/node/50703)
 
 By [Kevin Smith (TKZ productions)](https://opengameart.org/users/TKZ-Productions) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [robot_aruthon](../data/sprites/monsters/hybrid/robot_aruthon.png) (CC BY 3.0);
