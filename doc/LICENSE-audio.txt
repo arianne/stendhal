@@ -31,11 +31,7 @@ data/music/the_forsaken_mine.ogg,     Storyteller, GPL
 data/music/the_magical_tower.ogg,     Storyteller, GPL
 data/music/the_old_tavern.ogg,        Storyteller, GPL
 data/music/warriors_fight.ogg,        Storyteller, GPL
-data/sounds/alligator-1.ogg,          U.S. Fish and Wildlife Service, public domain, http://www.fws.gov/video/sound.htm 
-data/sounds/ambiance/river-1.ogg,             Adam_N, CC0, http://freesound.org/people/Adam_N/sounds/166310/
-data/sounds/ambiance/river-1.wav.xz,          Adam_N, CC0, http://freesound.org/people/Adam_N/sounds/166310/
-data/sounds/ambiance/water-sloshing-1.ogg,    pawsound, CC0, http://freesound.org/people/pawsound/sounds/154879/
-data/sounds/ambiance/water-sloshing-1.wav.xz, pawsound, CC0, http://freesound.org/people/pawsound/sounds/154879/
+data/sounds/alligator-1.ogg,          U.S. Fish and Wildlife Service, public domain, http://www.fws.gov/video/sound.htm
 data/sounds/arrow-hit-1.ogg,          Storyteller, GPL
 data/sounds/attack-fire-1.ogg,        Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
 data/sounds/attack-fire-1.wav.xz,     Nic3_one, CC0, http://freesound.org/people/Nic3_one/sounds/166555/
