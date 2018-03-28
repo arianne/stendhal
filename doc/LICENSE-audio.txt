@@ -249,6 +249,7 @@ data/sounds/loop-drag-slimy-1.wav.xz, altfuture, CC0, http://www.freesound.org/p
 data/sounds/loop-grind-stone-1.ogg,   j1987, CC0, http://www.freesound.org/people/j1987/sounds/95007/
 data/sounds/loop-grind-stone-1.wav.xz, j1987, CC0, http://www.freesound.org/people/j1987/sounds/95007/
 data/sounds/metal-can-1.ogg,          free sound pack
+data/sounds/minimare-*.ogg            Kevin Smith (TKZ Productions), CC BY 3.0, https://opengameart.org/node/50710
 data/sounds/moan-1.ogg,               free sound pack
 data/sounds/monkey-1.ogg,             Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240
 data/sounds/monkey-1.wav.xz,          Jordan Irwin (AntumDeluge), CC0, https://opengameart.org/node/81240

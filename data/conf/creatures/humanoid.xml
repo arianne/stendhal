@@ -64,6 +64,11 @@
       <susceptibility type="light" value="1.2"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="minimare-die" />
+        <sound value="minimare-hiss" />
+        <sound value="minimare-hurt" />
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
