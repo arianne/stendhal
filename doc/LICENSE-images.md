@@ -14,7 +14,6 @@ By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
 - Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
   - cats (source: [[LPC] Cats and Dogs](https://opengameart.org/node/69399))
     - [cat](../data/sprites/cat.png) (pet)
-    - [cat](../data/sprites/npc/animal/cat.png) (NPC)
   - horses (source: [[LPC] Horses](https://opengameart.org/node/69398))
     - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
       - [horse](../data/sprites/monsters/farm_animal/horse.png)
@@ -46,7 +45,6 @@ By [DoubleU Creativity](https://opengameart.org/user/30566):
 
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Creative Commons Attribution (CC BY) version 3.0 or later:
-  - [butterfly](../data/sprites/npc/animal/butterfly.png)
   - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
   - minotaur ([source](https://opengameart.org/node/76913))
     - [mino_king](../data/sprites/monsters/minotaur/mino_king.png)
@@ -127,7 +125,6 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
   - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
   - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
   - [tiny_skelly](../data/sprites/monsters/hybrid/tiny_skelly.png)
-- [rabbit](../data/sprites/npc/animal/rabbit.png) (source: [Bunny Rabbit LPC style for PixelFarm](https://opengameart.org/node/14851)) (CC BY-SA 3.0)
 - Source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858) (CC BY-SA 3.0)
   - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png)
   - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
