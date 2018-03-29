@@ -93,10 +93,6 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Animation Effects:
 
-By [DkuCook](https://opengameart.org/users/dkucook):
-- [flames](../tiled/tileset/ground/fire/flames.png) (CC0)
-  - Source: [Fire Ball Pixel](https://opengameart.org/node/76781)
-
 Creative Commons 0 (CC0) (no attribution required):
 - [fire_explosion_2x2](../data/sprites/effects/fire_explosion_2x2.png) by StumpyStrust (source: [Explosion Sheet](http://opengameart.org/node/15394))
 
@@ -106,7 +102,6 @@ Creative Commons 0 (CC0) (no attribution required):
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
-    - [lava](../tiled/tileset/ground/fire/lava.png)
     - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
     - [red_crystal_small](../tiled/tileset/ground/rock/red_crystal_small.png)
@@ -175,7 +170,6 @@ Creative Commons 0 (CC0) (no attribution required):
   - Sources:
     - [Minerals](http://openclipart.org/detail/173471) by qubodup
     - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
-- [flame](../tiled/tileset/ground/flame.png) by XenosNS (source: [Simple Animate Fire](http://opengameart.org/node/17220)) (removed?)
 - [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))

@@ -165,6 +165,13 @@ tiled/tileset/ground/
 
 tiled/tileset/ground/fire/
 
+fire.png        ???; ???; ???
+fire_small.png  ???; ???; ???
+flame.png       XenosNS; CC0; http://opengameart.org/node/17220
+flame_large.*   ???; ???; ???
+flames.png      DkuCook; CC0; https://opengameart.org/node/76781
+lava.*          Jordan Irwin (AntumDeluge), ???; ???; ???
+
 tiled/tileset/ground/ice/
 
 tiled/tileset/ground/indoor/
