@@ -106,7 +106,6 @@ Creative Commons 0 (CC0) (no attribution required):
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
-    - [wooden_ns (stairs)](../tiled/tileset/building/stairs/wooden_ns.png)
     - [lt_blue_drapes](../tiled/tileset/furniture/curtain/lt_blue_drapes.png)
     - [peach_drapes](../tiled/tileset/furniture/curtain/peach_drapes.png)
     - [purple_drapes](../tiled/tileset/furniture/curtain/purple_drapes.png)
