@@ -18,10 +18,6 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
   - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
   - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
 
-By Stephen Challener (Redshrike) & Zachariah Husiar (Zabin):
-- Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
-  - [vendors_table](../tiled/tileset/furniture/table/vendors_table.png) (CC BY-SA 3.0 / GPL 2.0) (Reworked by Jordan Irwin)
-
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
@@ -145,10 +141,6 @@ By Daniel Cook:
     - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
     - [OpenGameArt.org](https://opengameart.org/node/11758)
 
-By Daniel Eddeland (daneeklu) & Zachariah Husiar (Zabin):
-- [bazaar tables](../tiled/tileset/furniture/table/bazaar_table_1.png):
-  - Source: [LPC Bazaar Rework](https://opengameart.org/node/81369) (CC BY-SA 3.0 / GPL 3.0)
-
 By [Hyptosis](https://opengameart.org/user/2937) & [mold](https://opengameart.org/user/12427):
 - [wolf_statue](../tiled/tileset/item/statue/wolf_statue.png) (CC0)
 
@@ -177,7 +169,6 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
     - [red_gold_gathered (curtains)](../tiled/tileset/furniture/curtain/red_gold_gathered.png)
     - [royal_blue_drapes](../tiled/tileset/furniture/curtain/royal_blue_drapes.png)
     - [torch_2](../tiled/tileset/furniture/light/torch_2.png)
-    - [white (table)](../tiled/tileset/furniture/table/white.png)
     - [lava](../tiled/tileset/ground/fire/lava.png)
     - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
@@ -186,7 +177,6 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
     - [stone (wall)](../tiled/tileset/terrain/wall/stone.png)
     - [stone_red (wall)](../tiled/tileset/terrain/wall/stone_red.png)
-    - [table_linen](../tiled/tileset/furniture/table/table_linen.png)
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
 - [chimney_brown_stacks](../tiled/tileset/building/decoration/chimney_brown_stacks.png)
@@ -195,10 +185,6 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
   - Source: [Liberated Pixel Cup Base Assets](https://opengameart.org/node/13470)
 - [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
-- [wooden_with_candles (table)](../tiled/tileset/furniture/table/wooden_with_candles.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Sources:
-    - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
-    - candlesticks: [based on CC0 vector image](https://openclipart.org/detail/2658) (CC0)
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [bluecarrot16](https://opengameart.org/user/18016), & [Casper Nilsson](https://opengameart.org/user/2664):
 - [windows_with_flowerboxes](../tiled/tileset/building/window/windows_with_flowerboxes.png)
@@ -213,10 +199,6 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/users/sharm), [bluecarrot16
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Hyptosis](https://opengameart.org/user/2937):
 - [urn_with_flowers](../tiled/tileset/item/statue/urn_with_flowers.png) (CC BY-SA 3.0)
-
-By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727), [Jetrel](https://opengameart.org/user/402), [Hyptosis](https://opengameart.org/user/2937), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- [flowers_on_bench2](../tiled/tileset/furniture/table/flowers_on_bench2.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Source: https://opengameart.org/node/81665
 
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
@@ -263,23 +245,11 @@ By [Xenodora](https://opengameart.org/user/5683):
 - [well_hoist](../tiled/tileset/object/well_hoist.png) (CC BY 3.0 / GPL 3.0)
   - Source: [LPC Style Well](https://opengameart.org/node/17451)
 
-By Zabin, Daneeklu, & Jetrel:
-- Creative Commons Attribution Share-Alike (CC BY-SA) version 3.0:
-  - Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
-    - [bazaar_table_1](../tiled/tileset/furniture/table/bazaar_table_1.png)
-
 By multiple:
 - [wooden_crosses](../tiled/tileset/item/gothic/wooden_crosses.png) (CC BY-SA 3.0)
   - Crosses by Carlo Enrico Victoria (Nemisys) & Tuomo Untinen (Reemax): https://opengameart.org/node/31884 (CC BY-SA 3.0 / GPL 3.0)
   - Flowers by bluecarrot16: https://opengameart.org/node/80124 (OGA BY 2.0+ / CC BY 2.0+ / GPL 2.0+)
   - Lei based on work by GDJ: https://openclipart.org/detail/230975 (CC0)
-
-Multiple sources:
-- [alchemists_table](../tiled/tileset/furniture/table/alchemists_table.png)
-  - [Modified LPC table](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#building-indoors) (CC BY-SA 3.0)
-  - [Potions by Bonsaiheldin (http://bonsaiheld.org/)](https://opengameart.org/node/64649) (CC BY-SA 3.0)
-  - [Pitcher by johnny_automatic](https://openclipart.org/detail/7051) (CC0)
-  - [Parchment by Last-Dino](https://openclipart.org/detail/271903) (CC0)
 
 Creative Commons 0 (CC0) (no attribution required):
 - [barrels_2](../tiled/tileset/item/pot/barrels_2.png) by Hyptosis, isaiah658, & Jordan Irwin (AntumDeluge)
