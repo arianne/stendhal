@@ -138,6 +138,26 @@ tiled/tileset/item/food/
 
 tiled/tileset/item/gothic/
 
+coffin.png           ???; ???; ???
+grave_marker.png     Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/node/31884
+grave_marker_2.png   ???; ???; ???
+grave_statue_girl.*  Casper Nilsson (C.Nilsson), Wolthera van Hövell tot Westerflier (TheraHedwig), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson, https://opengameart.org/node/64532
+headstone.xcf.bz2    ???; ???; ???
+headstone_1.png      Barbara Rivera; CC BY-SA 3.0; https://opengameart.org/content/concept-art-for-lpc-entry
+headstone_2.*        ???; ???; ???
+headstone_3.png      Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
+headstone_4.png      ???; ???; ???
+headstone_5.png      ???; ???; ???
+headstone_7.png      Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
+large_gravestone.*   Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
+sarcophagus.png      ???; ???; ???
+skull_post.*         Jordan Irwin (AntumDeluge), Angry Amish; CC0; https://opengameart.org/node/81427, https://opengameart.org/node/79522
+slab.png             ???; ???; ???
+tiny_headstone.png   ???; ???; ???
+tombstone_2.*        Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
+urn_house.png        ???; ???; ???
+wooden_crosses.*     Carlo Enrico Victoria (Nemisys), Tuomo Untinen (Reemax), bluecarrot16, GDJ; CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/node/31884, https://opengameart.org/node/80124, https://openclipart.org/detail/230975
+
 tiled/tileset/item/household/
 
 tiled/tileset/item/instrument/

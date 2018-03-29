@@ -103,27 +103,10 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
-By Barbara Rivera:
-- [headstone_1](../tiled/tileset/item/gothic/headstone_1.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
-
 By [Casper Nilsson](https://opengameart.org/user/2664):
 - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
   - [tan_tent](../tiled/tileset/object/tan_tent.png)
   - [lily_pads](../tiled/tileset/plant/lily_pads.png)
-
-By [Casper Nilsson](https://opengameart.org/user/2664) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- Source: [LPC Grave Markers Rework](https://opengameart.org/node/81422) (CC BY-SA 3.0 / GPL 3.0)
-  - [headstone_3](../tiled/tileset/item/gothic/headstone_3.png)
-  - [headstone_7](../tiled/tileset/item/gothic/headstone_7.png)
-  - [large_gravestone](../tiled/tileset/item/gothic/large_gravestone.png)
-  - [tombstone_2](../tiled/tileset/item/gothic/tombstone_2.png)
-
-By [Casper Nilsson](https://opengameart.org/user/2664) & [Wolthera van Hövell tot Westerflier (TheraHedwig)](https://opengameart.org/users/therahedwig):
-- [grave_statue_girl](../tiled/tileset/item/gothic/grave_statue_girl.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Sources:
-    - [LPC C.Nilsson contest entry](https://opengameart.org/content/lpc-cnilsson)
-    - [LPC Compatible Ancient Roman Architecture](https://opengameart.org/node/64532)
 
 By [Curt](https://opengameart.org/users/curt):
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
@@ -227,20 +210,12 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
   - Source: [[LPC] City inside](https://opengameart.org/node/36189)
 - [ship-1](../tiled/structure/boat/ship-1.png) (GPL 3.0) (removed)
   - Source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)
-- [grave_marker](../tiled/tileset/item/gothic/grave_marker.png) (CC BY-SA 3.0 / GPL 3.0)
-  - Source: [[LPC] Signposts, graves, line cloths and scare crow](https://opengameart.org/node/31884)
 
 By [Xenodora](https://opengameart.org/user/5683):
 - [suspension_bridge](../tiled/tileset/object/suspension_bridge.png) (CC BY-SA 3.0 / GPL 2.0+)
   - Source: [LPC style wood bridges and steel flooring](https://opengameart.org/node/15135)
 - [well_hoist](../tiled/tileset/object/well_hoist.png) (CC BY 3.0 / GPL 3.0)
   - Source: [LPC Style Well](https://opengameart.org/node/17451)
-
-By multiple:
-- [wooden_crosses](../tiled/tileset/item/gothic/wooden_crosses.png) (CC BY-SA 3.0)
-  - Crosses by Carlo Enrico Victoria (Nemisys) & Tuomo Untinen (Reemax): https://opengameart.org/node/31884 (CC BY-SA 3.0 / GPL 3.0)
-  - Flowers by bluecarrot16: https://opengameart.org/node/80124 (OGA BY 2.0+ / CC BY 2.0+ / GPL 2.0+)
-  - Lei based on work by GDJ: https://openclipart.org/detail/230975 (CC0)
 
 Creative Commons 0 (CC0) (no attribution required):
 - [barrels_2](../tiled/tileset/item/pot/barrels_2.png) by Hyptosis, isaiah658, & Jordan Irwin (AntumDeluge)
@@ -263,7 +238,6 @@ Creative Commons 0 (CC0) (no attribution required):
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
 - [rotating_orbs](../tiled/tileset/object/rotating_orbs.png) by Robert C. (reworked by Jordan Irwin) (source: [Shiny Orbs 64x64](https://opengameart.org/node/12771))
-- [skull_post](../tiled/tileset/item/gothic/skull_post.png) by Jordan Irwin & Angry Amish (source: [Skull Post](https://opengameart.org/node/81427))
 - [snake_skeleton](../tiled/tileset/item/corpse/snake_skeleton.png) by Jordan Irwin ([base image](http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg))
 - [spears](../tiled/tileset/item/weapon/spears.png) by Jordan Irwin
 - [swordfish](../tiled/tileset/building/decoration/swordfish.png) by Jordan Irwin ([source](https://opengameart.org/node/79120))
