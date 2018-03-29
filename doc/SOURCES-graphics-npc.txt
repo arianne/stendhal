@@ -4,6 +4,12 @@ data/sprites/npc/
 
 data/sprites/npc/alternative/
 
+crystal*npc.png  qubodup; GPL 2.0; http://opengameart.org/node/11013
+tendertwig.png   ???; ???; ???
+tomi.png         ???; ???; ???
+vulcanus.png     ???; ???; ???
+zekiel.png       ???; ???; ???
+
 data/sprites/npc/animal/
 
 butterfly.*   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79095

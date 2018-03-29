@@ -107,15 +107,6 @@ By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https:/
     - [Mushroom (Champignon)](https://opengameart.org/node/23139)
     - [Fidget spinner](https://openclipart.org/detail/283528)
 
-By [qubodup](https://opengameart.org/users/qubodup):
-- GNU Gneral Public License (GPL) version 2.0 or later:
-  - crystal NPCs (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
-    - [crystalbluenpc](../data/sprites/npc/alternative/crystalbluenpc.png)
-    - [crystalpinknpc](../data/sprites/npc/alternative/crystalpinknpc.png)
-    - [crystalpurplenpc](../data/sprites/npc/alternative/crystalpurplenpc.png)
-    - [crystalrednpc](../data/sprites/npc/alternative/crystalrednpc.png)
-    - [crystalyellownpc](../data/sprites/npc/alternative/crystalyellownpc.png)
-
 By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 - Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215) (CC BY 3.0)
   - [devil_monk](../data/sprites/monsters/undead/devil_monk.png)
