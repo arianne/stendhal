@@ -3,119 +3,20 @@ Files declared in this document that do not specify a filename extension fall un
 
 ### Character/NPC/Creature Sprites:
 
-By [bagzie](https://opengameart.org/users/bagzie):
-- [OGA BY 3.0](../doc/Licenses/OGA-BY-3.0.txt):
-  - bats (source: [Bat Sprite](https://opengameart.org/node/26447))
-    - Reworked for Stendhal by Jordan Irwin (AntumDeluge)
-      - [bat](../data/sprites/monsters/animal/bat.png)
-      - [killer_bat](../data/sprites/monsters/animal/killer_bat.png)
-
 By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
 - Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
   - cats (source: [[LPC] Cats and Dogs](https://opengameart.org/node/69399))
     - [cat](../data/sprites/cat.png) (pet)
-  - horses (source: [[LPC] Horses](https://opengameart.org/node/69398))
-    - Reworked for Stendhal by Jordan Irwin (AntumDeluge): https://opengameart.org/node/77472
-      - [horse](../data/sprites/monsters/farm_animal/horse.png)
-      - [white_horse](../data/sprites/monsters/farm_animal/white_horse.png)
-      - [unicorn](../data/sprites/monsters/mythical_being/unicorn.png)
-
-By [Charles Sanchez (CharlesGabriel, Antifarea)](https://opengameart.org/users/charlesgabriel):
-- [earth_elemental](../data/sprites/monsters/elemental/earth_elemental.png) ([source](https://opengameart.org/node/3393)) (CC BY 3.0)
-- [glow_monster](../data/sprites/monsters/mutant/glow_monster.png) ([source](https://opengameart.org/node/4125)) (CC BY 3.0)
-- [killer_bee](../data/sprites/monsters/animal/killer_bee.png) ([source](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures)) (CC BY-SA 3.0)
-- [vampire_lord](../data/sprites/monsters/vampire/vampire_lord.png) ([source](https://opengameart.org/node/4125)) (CC BY 3.0)
 
 By [diamonddmgirl](https://opengameart.org/user/39061):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   [dress_025](../data/sprites/outfit/dress/dress_025.png) ([source](https://opengameart.org/node/72198))
 
-By [Diligent Dodo / soniccuz](https://stendhalgame.org/character/soniccuz.html):
-- GNU Gneral Public License (GPL) version 2.0 or later:
-  - [mimic](../data/sprites/monsters/hybrid/mimic.png)
-  - [mimic_idle](../data/sprites/monsters/hybrid/mimic_idle.png)
-
-By [Dominik Gmiterko (ienze)](https://opengameart.org/user/1755):
-- Creative Commons Attribution (CC BY) version 3.0:
-  - [crab](../data/sprites/monsters/animal/crab.png)
-
-By [DoubleU Creativity](https://opengameart.org/user/30566):
-- Creative Commons Attribution (CC BY) version 3.0:
-  - [robot_aruthon](../data/sprites/monsters/hybrid/robot_aruthon.png)
-
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- Creative Commons Attribution (CC BY) version 3.0 or later:
-  - [king_cobra](../data/sprites/monsters/huge_animal/king_cobra.png)
-  - minotaur ([source](https://opengameart.org/node/76913))
-    - [mino_king](../data/sprites/monsters/minotaur/mino_king.png)
-    - [minotaur](../data/sprites/monsters/minotaur/minotaur.png)
-  - Based on [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack by Svetlana Kushnariova (Cabbit):
-    - [albino_elf_queen](../data/sprites/monsters/albino_elf/albino_elf_queen.png)
-    - [archangel](../data/sprites/monsters/giant_human/archangel.png)
-  - Based on [Muscleman/Ogre/Minotaur](https://opengameart.org/node/24876) by Tuomo Untinen (Reemax):
-    - [red_troll](../data/sprites/monsters/troll/red_troll.png)
-    - [troll](../data/sprites/monsters/troll/troll.png)
-- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
-  - Based on [[LPC] Horses](https://opengameart.org/node/69398) by bluecarrot16 & [24x32 bases](https://opengameart.org/node/24944) by Svetlana Kushnariova (Cabbit):
-    - [centaur](../data/sprites/monsters/mythical_being/centaur.png)
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - [armor outfit](../data/sprites/outfit/dress/dress_037.png)
   - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
   - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
-
-By [Kevin Smith (TKZ Productions)](https://opengameart.org/users/TKZ-Productions):
-- [dark_aruthon](../data/sprites/monsters/hybrid/dark_aruthon.png) (CC BY 3.0)
-  - Source: [A Lonely Nightmare - Minimare (Monster)](https://opengameart.org/node/50703)
-
-By [Kevin Smith (TKZ productions)](https://opengameart.org/users/TKZ-Productions) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- [robot_aruthon](../data/sprites/monsters/hybrid/robot_aruthon.png) (CC BY 3.0);
-  - Source: [Minimare Rework](https://opengameart.org/node/82760)
-
-By [onu](https://sourceforge.net/u/onu) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- [sheepmen](../data/sprites/monsters/sheepman/sheepman.png) (OGA BY 3.0)
-  - [OpenGameArt.org submission](https://opengameart.org/node/81800).
-  - Based on [minotaur sprite](https://opengameart.org/node/76913).
-
-
-By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [diamonddmgirl](https://opengameart.org/users/diamonddmgirl), & [ZigWin](https://opengameart.org/users/ZigWin):
-- [dark elves](../data/sprites/monsters/dark_elf) (OGA BY 3.0)
-  - Sources:
-    - [Cabbit Bases Collection](https://opengameart.org/node/79237)
-    - [Edited and Extended 24x32 Character Pack](https://opengameart.org/node/66147)
-    - [MagicWands](https://opengameart.org/node/52970)
-
-By [onu](https://sourceforge.net/u/onu), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [diamonddmgirl](https://opengameart.org/user/39061), [Michele Bucelli (Buch)](https://opengameart.org/user/645), [SoCay](https://opengameart.org/users/socay), [Guyome41](https://opengameart.org/users/guyome41), & [rones](https://openclipart.org/user-detail/rones):
-- [oni](../data/sprites/monsters/oni/oni_king.png) (OGA BY 3.0)
-  - Sources: 
-    - [24x32 bases](https://opengameart.org/node/24944)
-    - [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969)
-    - [Edited and Extended 24x32 Character Pack](https://opengameart.org/node/66147)
-    - [RPG portraits](https://opengameart.org/node/29662)
-    - [Shmup Enemies](https://opengameart.org/node/20636)
-    - [Minecraft Items](https://opengameart.org/node/77076)
-    - [Mushroom (Champignon)](https://opengameart.org/node/23139)
-    - [Fidget spinner](https://openclipart.org/detail/283528)
-
-By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
-- Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215) (CC BY 3.0)
-  - [devil_monk](../data/sprites/monsters/undead/devil_monk.png)
-  - [chaos_sorceror](../data/sprites/monsters/chaos/chaos_sorceror.png)
-- Source: [rpg enemies--updated](https://opengameart.org/node/6262) (CC BY 3.0)
-  - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
-  - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
-  - [tiny_skelly](../data/sprites/monsters/hybrid/tiny_skelly.png)
-- Source: [Dark Soldier for Valyria Tear](https://opengameart.org/node/12858) (CC BY-SA 3.0)
-  - [chaos_commander](../data/sprites/monsters/chaos/chaos_commander.png)
-  - [chaos_soldier](../data/sprites/monsters/chaos/chaos_soldier.png)
-  - [chaos_warrior](../data/sprites/monsters/chaos/chaos_warrior.png)
-
-By [Stephen Challener (Redshrike)](https://opengameart.org/users/Redshrike), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [One Man Army](https://opengameart.org/users/One-Man-Army), [DkuCook](https://opengameart.org/users/DkuCook), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- [ratfolk](../data/sprites/monsters/ratfolk) (OGA BY 3.0)
-  - Source: [Ratfolk](https://opengameart.org/node/82451)
-
-By Stephen Challener (Redshrike) & William.Thompsonj:
-- OpenGameArt Attribution (OGA BY) version 3.0:
-  - [ghosthound](../data/sprites/monsters/undead/ghosthound.png) ([source](https://opengameart.org/node/20830))
 
 By Stephen Challener (Redshrike) & Zachariah Husiar (Zabin):
 - Source: [RPG Tiles: Cobble stone paths & town objects](https://opengameart.org/node/14914)
@@ -124,40 +25,10 @@ By Stephen Challener (Redshrike) & Zachariah Husiar (Zabin):
 By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
-    - [air_elemental](../data/sprites/npc/air_elemental.png)
     - [dress_005](../data/sprites/outfit/dress/dress_005.png)
     - [dress_006](../data/sprites/outfit/dress/dress_006.png)
     - [dress_010](../data/sprites/outfit/dress/dress_010.png)
     - [dress_027](../data/sprites/outfit/dress/dress_027.png)
-    - [fire_elemental](../data/sprites/monsters/elemental/fire_elemental.png)
-    - [mermaid](../data/sprites/monsters/hybrid/mermaid.png)
-    - [water_elemental](../data/sprites/monsters/elemental/water_elemental.png)
-
-By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- Source: [Orc](https://opengameart.org/node/77703) (CC BY 3.0)
-  - [mountain_orc](../data/sprites/monsters/orc/mountain_orc.png)
-  - [mountain_orc_chief](../data/sprites/monsters/orc/mountain_orc_chief.png)
-  - [mountain_orc_hunter](../data/sprites/monsters/orc/mountain_orc_hunter.png)
-  - [mountain_orc_warrior](../data/sprites/monsters/orc/mountain_orc_warrior.png)
-  - [orc](../data/sprites/monsters/orc/orc.png)
-  - [orc_chief](../data/sprites/monsters/orc/orc_chief.png)
-  - [orc_hunter](../data/sprites/monsters/orc/orc_hunter.png)
-  - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
-  - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
-- [brain_ahouga](../data/sprites/monsters/hybrid/brain_ahouga.png) (CC BY 3.0)
-  - Source: [Brain monster](https://opengameart.org/node/15590)
-
-By [yokati](https://opengameart.org/user/1404), [Svetlana Kushnariova (Cabbit)](https://opengameart.org/user/15048), [diamonddmgirl](https://opengameart.org/user/39061), [Michael Williams (BizmasterStudios)](https://opengameart.org/user/34190), [GrumpyDiamond](https://opengameart.org/user/32684), [One Man Army](https://opengameart.org/user/40926), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
-- [kobolds](../data/sprites/monsters/kobold/kobold.png) (CC BY-SA 3.0)
-  - Source: [Kobolds (Dog Soldier Rework)](https://opengameart.org/node/81952)
-
-Creative Commons 0 (CC0) (no attribution required):
-- [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
-- gnome by isaiah658 & Jordan Irwin ([source](https://opengameart.org/node/78045))
-  - [gnome](../data/sprites/monsters/gnome/gnome.png)
-  - [infantryman](../data/sprites/monsters/gnome/infantryman.png)
-  - [woman_gnome](../data/sprites/monsters/gnome/woman_gnome.png)
-- [myling](../data/sprites/monsters/undead/myling.png) by Artisticdude ([source](http://opengameart.org/node/14803))
 
 
 ### Corpse Sprites:
