@@ -103,10 +103,6 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
-By [Casper Nilsson](https://opengameart.org/user/2664):
-- Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
-  - [tan_tent](../tiled/tileset/object/tan_tent.png)
-
 By [Curt](https://opengameart.org/users/curt):
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
   - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
@@ -162,11 +158,6 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Tuomo Untinen
 By [NoLogoGames](https://opengameart.org/user/27266):
   - [flower/pointed_yellow](../tiled/tileset/plant/flower/pointed_yellow.png) (source: [Flowers Tileset](https://opengameart.org/node/78584))
 
-By [qubodup](https://opengameart.org/users/qubodup):
-- GNU Gneral Public License (GPL) version 2.0 or later:
-    - crystals (source: [Rotating Crystal Animation (8-Step)](http://opengameart.org/node/11013))
-      - [rotating_crystal](../tiled/tileset/object/rotating_crystal.png)
-
 By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
 - [desert](../tiled/tileset/terrain/desert.png) (CC BY-SA 3.0)
   - Source: [RPG Terrains](https://opengameart.org/node/70104)
@@ -189,12 +180,6 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - [ship-1](../tiled/structure/boat/ship-1.png) (GPL 3.0) (removed)
   - Source: [[LPC] Wooden ship tiles](http://opengameart.org/node/38270)
 
-By [Xenodora](https://opengameart.org/user/5683):
-- [suspension_bridge](../tiled/tileset/object/suspension_bridge.png) (CC BY-SA 3.0 / GPL 2.0+)
-  - Source: [LPC style wood bridges and steel flooring](https://opengameart.org/node/15135)
-- [well_hoist](../tiled/tileset/object/well_hoist.png) (CC BY 3.0 / GPL 3.0)
-  - Source: [LPC Style Well](https://opengameart.org/node/17451)
-
 Creative Commons 0 (CC0) (no attribution required):
 - [barrels_2](../tiled/tileset/item/pot/barrels_2.png) by Hyptosis, isaiah658, & Jordan Irwin (AntumDeluge)
   - Source: [Barrels (Mage City Arcanos Rework)](https://opengameart.org/node/79172) (CC0)
@@ -204,9 +189,6 @@ Creative Commons 0 (CC0) (no attribution required):
 - brick_wall ([base image](http://opengameart.org/node/2048))
   - [brick_wall](../tiled/tileset/terrain/wall/brick_wall.png)
   - [brick_wall_red](../tiled/tileset/terrain/wall/brick_wall_red.png)
-- creep by StumpyStrust & Charlie (source: [Animated Creepy Thing](http://opengameart.org/node/20435))
-  - [creep_large](../tiled/tileset/object/creep_large.png)
-  - [creep_med](../tiled/tileset/object/creep_med.png)
 - [crystal rocks/minerals](../tiled/tileset/ground/rock/blue_crystal.png) by Jordan Irwin (re-colors: gold, green, icy, purple, & red)
   - Sources:
     - [Minerals](http://openclipart.org/detail/173471) by qubodup
@@ -215,7 +197,6 @@ Creative Commons 0 (CC0) (no attribution required):
 - [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
-- [rotating_orbs](../tiled/tileset/object/rotating_orbs.png) by Robert C. (reworked by Jordan Irwin) (source: [Shiny Orbs 64x64](https://opengameart.org/node/12771))
 - [snake_skeleton](../tiled/tileset/item/corpse/snake_skeleton.png) by Jordan Irwin ([base image](http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg))
 - [spears](../tiled/tileset/item/weapon/spears.png) by Jordan Irwin
 - [swordfish](../tiled/tileset/building/decoration/swordfish.png) by Jordan Irwin ([source](https://opengameart.org/node/79120))

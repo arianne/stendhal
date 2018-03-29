@@ -197,6 +197,14 @@ tiled/tileset/logic/item/
 
 tiled/tileset/object/
 
+creep_large.*         StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
+creep_med.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
+rotating_crystal.png  Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+rotating_orbs.png     Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
+suspension_bridge.*   Xenodora; CC BY-SA 3.0; https://opengameart.org/node/15135
+tan_tent.png          Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
+well_hoist.*          Xenodora; CC BY 3.0; https://opengameart.org/node/17451
+
 tiled/tileset/object/misc/
 
 tiled/tileset/object/rock/
