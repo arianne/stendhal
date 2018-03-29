@@ -118,9 +118,6 @@ By Daniel Cook:
     - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
     - [OpenGameArt.org](https://opengameart.org/node/11758)
 
-By [Hyptosis](https://opengameart.org/user/2937) & [mold](https://opengameart.org/user/12427):
-- [wolf_statue](../tiled/tileset/item/statue/wolf_statue.png) (CC0)
-
 By [Hyptosis](https://opengameart.org/user/2937), [Zachariah Husiar (Zabin)](https://opengameart.org/user/3356), & [Jetrel](https://opengameart.org/user/402):
 - [stone_doorway](../tiled/tileset/building/door/stone_doorway.png)
   - Source: [Lots of free 2d tiles and sprites by Hyptosis](https://opengameart.org/node/13500) (CC BY 3.0)
@@ -171,9 +168,6 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/users/sharm), [bluecarrot16
     - [[LPC] Street Lamp](https://opengameart.org/content/lpc-street-lamp)
     - [LPC C.Nilsson contest entry](https://opengameart.org/content/lpc-cnilsson)
 
-By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Hyptosis](https://opengameart.org/user/2937):
-- [urn_with_flowers](../tiled/tileset/item/statue/urn_with_flowers.png) (CC BY-SA 3.0)
-
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727) & [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax):
 - [green_bookshelf](../tiled/tileset/furniture/shelve/green_bookshelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
@@ -190,8 +184,6 @@ By [qubodup](https://opengameart.org/users/qubodup):
 By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888):
 - [desert](../tiled/tileset/terrain/desert.png) (CC BY-SA 3.0)
   - Source: [RPG Terrains](https://opengameart.org/node/70104)
-- [swordsman statue](../tiled/tileset/item/statue/swordsman.png)
-  - Source: [Statues](https://opengameart.org/node/70109) (CC BY-SA 3.0)
 
 By [Rayane Félix (RayaneFLX)](https://opengameart.org/user/42888), [Hyptosis](https://opengameart.org/user/2937), [bluecarrot16](https://opengameart.org/user/18016), [Leonard Pabin](https://opengameart.org/user/232), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [ground/sand_2](../tiled/tileset/ground/sand_2.png) (CC BY-SA 3.0)

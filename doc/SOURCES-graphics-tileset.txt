@@ -166,6 +166,10 @@ tiled/tileset/item/pot/
 
 tiled/tileset/item/statue/
 
+swordsman.png       Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70109
+urn_with_flowers.*  Lanea Zimmerman (Sharm), Hyptosis; CC BY-SA 3.0; https://opengameart.org/node/11192, https://opengameart.org/node/17021
+wolf_statue.png     Hyptosis, mold; CC0; https://opengameart.org/node/81798
+
 tiled/tileset/item/textile/
 
 tiled/tileset/item/weapon/
