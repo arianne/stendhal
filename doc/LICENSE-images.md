@@ -50,14 +50,8 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
     - [mino_king](../data/sprites/monsters/minotaur/mino_king.png)
     - [minotaur](../data/sprites/monsters/minotaur/minotaur.png)
   - Based on [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack by Svetlana Kushnariova (Cabbit):
-    - [adosbankassistantnpc (Rachel)](../data/sprites/npc/adosbankassistantnpc.png)
     - [albino_elf_queen](../data/sprites/monsters/albino_elf/albino_elf_queen.png)
     - [archangel](../data/sprites/monsters/giant_human/archangel.png)
-    - [blacksmithnpc (Xoderos)](../data/sprites/npc/blacksmithnpc.png)
-    - [goldsmithnpc (Joshua)](../data/sprites/npc/goldsmithnpc.png)
-    - [hotelreceptionistnpc (Linda)](../data/sprites/npc/hotelreceptionistnpc.png)
-    - [ringsmithnpc (Ognir)](../data/sprites/npc/ringsmithnpc.png)
-    - [woodcutternpc (Woody)](../data/sprites/npc/woodcutternpc.png)
   - Based on [Muscleman/Ogre/Minotaur](https://opengameart.org/node/24876) by Tuomo Untinen (Reemax):
     - [red_troll](../data/sprites/monsters/troll/red_troll.png)
     - [troll](../data/sprites/monsters/troll/troll.png)
@@ -76,11 +70,6 @@ By [Kevin Smith (TKZ Productions)](https://opengameart.org/users/TKZ-Productions
 By [Kevin Smith (TKZ productions)](https://opengameart.org/users/TKZ-Productions) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [robot_aruthon](../data/sprites/monsters/hybrid/robot_aruthon.png) (CC BY 3.0);
   - Source: [Minimare Rework](https://opengameart.org/node/82760)
-
-By [Lori Angela Nagel (Jastiv)](https://opengameart.org/user/1074):
-- Source: [Stendal confectioners](https://opengameart.org/node/82267) (CC BY 3.0/4.0)
-  - [confectionerapplepienpc](../data/sprites/npc/confectionerapplepienpc.png)
-  - [confectionercherrypienpc](../data/sprites/npc/confectionercherrypienpc.png)
 
 By [onu](https://sourceforge.net/u/onu) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - [sheepmen](../data/sprites/monsters/sheepman/sheepman.png) (OGA BY 3.0)
@@ -111,7 +100,6 @@ By [Stephen Challener (Redshrike)](https://opengameart.org/users/redshrike):
 - Source: [A load of overworld 3/4 RPG sprites](https://opengameart.org/node/5215) (CC BY 3.0)
   - [devil_monk](../data/sprites/monsters/undead/devil_monk.png)
   - [chaos_sorceror](../data/sprites/monsters/chaos/chaos_sorceror.png)
-  - [chaos_sorcerornpc](../data/sprites/npc/chaos_sorcerornpc.png)
 - Source: [rpg enemies--updated](https://opengameart.org/node/6262) (CC BY 3.0)
   - [ice_golem](../data/sprites/monsters/golem/ice_golem.png)
   - [stone_golem](../data/sprites/monsters/golem/stone_golem.png)
@@ -137,29 +125,13 @@ By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
 - Creative Commons Attribution (OGA BY / CC BY) version 3.0:
   - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
     - [air_elemental](../data/sprites/npc/air_elemental.png)
-    - [boynpc (Finn Farmer)](../data/sprites/npc/boynpc.png)
     - [dress_005](../data/sprites/outfit/dress/dress_005.png)
     - [dress_006](../data/sprites/outfit/dress/dress_006.png)
     - [dress_010](../data/sprites/outfit/dress/dress_010.png)
     - [dress_027](../data/sprites/outfit/dress/dress_027.png)
     - [fire_elemental](../data/sprites/monsters/elemental/fire_elemental.png)
     - [mermaid](../data/sprites/monsters/hybrid/mermaid.png)
-    - [youngsoldiernpc](../data/sprites/npc/youngsoldiernpc.png)
     - [water_elemental](../data/sprites/monsters/elemental/water_elemental.png)
-    - [witch2npc](../data/sprites/npc/witch2npc.png)
-  - Source: [24x32 characters with faces (big pack)](https://opengameart.org/node/24823)
-    - [granmanpc](../data/sprites/npc/granmanpc.png)
-    - [kingcozartnpc](../data/sprites/npc/kingcozartnpc.png)
-    - [magic_jesgternpc](../data/sprites/npc/magic_jesternpc.png)
-
-By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit) & [diamonddmgirl](https://opengameart.org/users/diamonddmgirl):
-- [youngwomannpc (Josephine)](../data/sprites/npc/youngwomannpc.png) (OGA BY 3.0)
-
-By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit), [One Man Army](https://opengameart.org/user/40926), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
-- [chefnpc (Leander)](../data/sprites/npc/chefnpc.png) (OGA BY 3.0)
-
-By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/Cabbit), [Stephen Challener (Redshrike)](https://opengameart.org/users/Redshrike), [One Man Army](https://opengameart.org/users/One-Man-Army), & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- [ratchefnpc (Gaston)](../data/sprites/npc/ratchefnpc.png) ([OGA BY 3.0](https://opengameart.org/node/82451))
 
 By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
 - Source: [Orc](https://opengameart.org/node/77703) (CC BY 3.0)
@@ -172,8 +144,6 @@ By [Tuomo Untinen (Reemax)](https://opengameart.org/users/reemax) & [Jordan Irwi
   - [orc_hunter](../data/sprites/monsters/orc/orc_hunter.png)
   - [orc_spearman](../data/sprites/monsters/orc/orc_spearman.png)
   - [orc_warrior](../data/sprites/monsters/orc/orc_warrior.png)
-  - [orcbuyernpc](../data/sprites/npc/orcbuyernpc.png)
-  - [orcsalesmannpc](../data/sprites/npc/orcsalesmannpc.png)
 - [brain_ahouga](../data/sprites/monsters/hybrid/brain_ahouga.png) (CC BY 3.0)
   - Source: [Brain monster](https://opengameart.org/node/15590)
 
@@ -185,10 +155,8 @@ Creative Commons 0 (CC0) (no attribution required):
 - [chick](../data/sprites/monsters/farm_animal/chick.png) by Shepardskin & Jordan Irwin ([source](https://opengameart.org/node/76895))
 - gnome by isaiah658 & Jordan Irwin ([source](https://opengameart.org/node/78045))
   - [gnome](../data/sprites/monsters/gnome/gnome.png)
-  - [gnomenpc](../data/sprites/npc/gnomenpc.png)
   - [infantryman](../data/sprites/monsters/gnome/infantryman.png)
   - [woman_gnome](../data/sprites/monsters/gnome/woman_gnome.png)
-- [mithrilforgernpc](../data/sprites/npc/mithrilforgernpc.png) by Sollision & Jordan Irwin ([source](https://opengameart.org/node/76967))
 - [myling](../data/sprites/monsters/undead/myling.png) by Artisticdude ([source](http://opengameart.org/node/14803))
 
 
