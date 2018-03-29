@@ -117,13 +117,6 @@ By Daniel Cook:
     - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
     - [OpenGameArt.org](https://opengameart.org/node/11758)
 
-By [Johann C](https://opengameart.org/users/johann-c):
-- GNU Gneral Public License (GPL) version 3.0:
-  - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
-    - [rocks](../tiled/tileset/object/rock/rocks.png)
-    - [rock_face](../tiled/tileset/object/rock/rock_face.png) (removed)
-    - [pillars_stone](../tiled/tileset/object/rock/pillars_stone.png)
-
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:

@@ -201,6 +201,9 @@ tiled/tileset/object/misc/
 
 tiled/tileset/object/rock/
 
+pillars_stone.*  Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+rocks.*          Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+
 tiled/tileset/plant/
 
 cactus_2.*     Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
