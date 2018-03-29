@@ -102,8 +102,6 @@ Creative Commons 0 (CC0) (no attribution required):
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
-    - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
-    - [red_crystal_small](../tiled/tileset/ground/rock/red_crystal_small.png)
     - [cannon](../tiled/tileset/item/weapon/cannon.png)
     - [stone (stairs)](../tiled/tileset/terrain/stairs/stone.png)
     - [stone (wall)](../tiled/tileset/terrain/wall/stone.png)
@@ -165,10 +163,6 @@ Creative Commons 0 (CC0) (no attribution required):
 - brick_wall ([base image](http://opengameart.org/node/2048))
   - [brick_wall](../tiled/tileset/terrain/wall/brick_wall.png)
   - [brick_wall_red](../tiled/tileset/terrain/wall/brick_wall_red.png)
-- [crystal rocks/minerals](../tiled/tileset/ground/rock/blue_crystal.png) by Jordan Irwin (re-colors: gold, green, icy, purple, & red)
-  - Sources:
-    - [Minerals](http://openclipart.org/detail/173471) by qubodup
-    - [Purple Amethyst](https://openclipart.org/detail/122773) by MrSmiles
 - [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
 - [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
