@@ -167,9 +167,6 @@ By [Johann C](https://opengameart.org/users/johann-c):
     - [pillars_stone](../tiled/tileset/object/rock/pillars_stone.png)
 
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
-- Creative Commons Zero (CC0):
-  - tileset:
-    - [gnome_homes](../tiled/tileset/building/gnome_homes.png) (source: [mushroom_houses](https://opengameart.org/node/20713))
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
     - [wooden_ns (stairs)](../tiled/tileset/building/stairs/wooden_ns.png)
@@ -198,8 +195,6 @@ By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
   - Source: [Liberated Pixel Cup Base Assets](https://opengameart.org/node/13470)
 - [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
-- [tan_building](../tiled/tileset/building/tan_building.png) (OGA BY 3.0 / CC BY 3.0 / GPL 2.0+)
-  - Source: [[LPC] Adobe Building Set](https://opengameart.org/node/17502)
 - [wooden_with_candles (table)](../tiled/tileset/furniture/table/wooden_with_candles.png) (CC BY-SA 3.0 / GPL 3.0)
   - Sources:
     - table & cloth: [[LPC] House Insides](https://opengameart.org/node/20850) (CC BY-SA 3.0 / GPL 3.0)
@@ -274,10 +269,6 @@ By Zabin, Daneeklu, & Jetrel:
     - [bazaar_table_1](../tiled/tileset/furniture/table/bazaar_table_1.png)
 
 By multiple:
-- [thatched_roof_cottage](../tiled/tileset/building/thatched_roof_cottage1.png)
-  - Roof & walls: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41379) (CC BY-SA / GPL)
-  - Door: [Lanea Zimmerman, Daniel Armstrong, & bluecarrot16](https://opengameart.org/node/41378) (CC BY-SA / GPL)
-  - Chimney: [Tuomo Untinen](https://opengameart.org/node/35455) (CC BY-SA / GPL)
 - [wooden_crosses](../tiled/tileset/item/gothic/wooden_crosses.png) (CC BY-SA 3.0)
   - Crosses by Carlo Enrico Victoria (Nemisys) & Tuomo Untinen (Reemax): https://opengameart.org/node/31884 (CC BY-SA 3.0 / GPL 3.0)
   - Flowers by bluecarrot16: https://opengameart.org/node/80124 (OGA BY 2.0+ / CC BY 2.0+ / GPL 2.0+)
@@ -291,7 +282,6 @@ Multiple sources:
   - [Parchment by Last-Dino](https://openclipart.org/detail/271903) (CC0)
 
 Creative Commons 0 (CC0) (no attribution required):
-- [chimney_smoke](../tiled/tileset/building/chimney_smoke.png) by Jordan Irwin ([source](https://opengameart.org/node/79111))
 - [barrels_2](../tiled/tileset/item/pot/barrels_2.png) by Hyptosis, isaiah658, & Jordan Irwin (AntumDeluge)
   - Source: [Barrels (Mage City Arcanos Rework)](https://opengameart.org/node/79172) (CC0)
 - bench_wooden ([source](https://opengameart.org/node/79117))
