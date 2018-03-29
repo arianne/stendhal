@@ -103,10 +103,6 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
-By [Curt](https://opengameart.org/users/curt):
-- [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
-  - Source: [[LPC] Street Lamp](https://opengameart.org/node/20039)
-
 By Daniel Cook:
 - [suit_of_armor2](../tiled/tileset/item/armor/suit_of_armor2.png)
   - Sources:
@@ -123,7 +119,6 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
     - [red_drapes](../tiled/tileset/furniture/curtain/red_drapes.png)
     - [red_gold_gathered (curtains)](../tiled/tileset/furniture/curtain/red_gold_gathered.png)
     - [royal_blue_drapes](../tiled/tileset/furniture/curtain/royal_blue_drapes.png)
-    - [torch_2](../tiled/tileset/furniture/light/torch_2.png)
     - [lava](../tiled/tileset/ground/fire/lava.png)
     - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
