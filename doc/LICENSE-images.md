@@ -102,7 +102,6 @@ Creative Commons 0 (CC0) (no attribution required):
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
-    - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)
     - [red_crystal_small](../tiled/tileset/ground/rock/red_crystal_small.png)
     - [cannon](../tiled/tileset/item/weapon/cannon.png)
