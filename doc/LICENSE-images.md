@@ -103,12 +103,6 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
-By Daniel Cook:
-- [suit_of_armor2](../tiled/tileset/item/armor/suit_of_armor2.png)
-  - Sources:
-    - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
-    - [OpenGameArt.org](https://opengameart.org/node/11758)
-
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
