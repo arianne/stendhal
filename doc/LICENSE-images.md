@@ -103,12 +103,6 @@ Creative Commons 0 (CC0) (no attribution required):
 
 ### Tilesets:
 
-By Alex Smith (cynicmusic) & bluecarrot16:
-- [palm_trees](../tiled/tileset/plant/tree/palm_trees.png) (CC BY-SA 3.0):
-  - Sources:
-    - [[LPC] Beach / Desert](https://opengameart.org/node/80156) (CC BY-SA 3.0)
-    - [Pixelsphere 32x32 Tileset + Grass + Trees](https://opengameart.org/node/55328) (CC0)
-
 By Barbara Rivera:
 - [headstone_1](../tiled/tileset/item/gothic/headstone_1.png) (CC BY-SA 3.0 / GPL 3.0)
   - Source: [Concept Art for LPC Entry](https://opengameart.org/content/concept-art-for-lpc-entry)
@@ -153,7 +147,6 @@ By [Johann C](https://opengameart.org/users/johann-c):
   - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
     - [cactus_2](../tiled/tileset/plant/cactus_2.png)
     - [mushroom3](../tiled/tileset/plant/mushroom3.png)
-    - [trees_1](../tiled/tileset/plant/tree/trees_1.png)
     - [rocks](../tiled/tileset/object/rock/rocks.png)
     - [rock_face](../tiled/tileset/object/rock/rock_face.png) (removed)
     - [pillars_stone](../tiled/tileset/object/rock/pillars_stone.png)
@@ -181,8 +174,6 @@ By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 By [Lanea Zimmerman (Sharm)](https://opengameart.org/user/1727):
 - [chimney_brown_stacks](../tiled/tileset/building/decoration/chimney_brown_stacks.png)
   - Source: [LPC Asset List](http://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors)
-- [crack_willow](../tiled/tileset/plant/tree/crack_willow.png)
-  - Source: [Liberated Pixel Cup Base Assets](https://opengameart.org/node/13470)
 - [drawer_shelf](../tiled/tileset/furniture/shelve/drawer_shelf.png) (CC BY 3.0 / CC BY-SA 3.0 / GPL 3.0)
   - Source: [LPC Shelves Rework](https://opengameart.org/node/81362)
 
@@ -280,7 +271,6 @@ Creative Commons 0 (CC0) (no attribution required):
   - base images:
     - [Teddy Bear](http://openclipart.org/detail/166981) by PrinterKiller
     - [Doll](http://openclipart.org/detail/64909) by Jordan Irwin
-- [umbrella_thorn](../tiled/tileset/plant/tree/umbrella_thorn.png) by Carl Olsson (source: [Trees](http://opengameart.org/node/15082))
 
 
 ### GUI Decoration:
