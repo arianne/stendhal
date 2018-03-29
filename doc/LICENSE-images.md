@@ -106,12 +106,6 @@ Creative Commons 0 (CC0) (no attribution required):
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   - tileset:
-    - [lt_blue_drapes](../tiled/tileset/furniture/curtain/lt_blue_drapes.png)
-    - [peach_drapes](../tiled/tileset/furniture/curtain/peach_drapes.png)
-    - [purple_drapes](../tiled/tileset/furniture/curtain/purple_drapes.png)
-    - [red_drapes](../tiled/tileset/furniture/curtain/red_drapes.png)
-    - [red_gold_gathered (curtains)](../tiled/tileset/furniture/curtain/red_gold_gathered.png)
-    - [royal_blue_drapes](../tiled/tileset/furniture/curtain/royal_blue_drapes.png)
     - [lava](../tiled/tileset/ground/fire/lava.png)
     - [rope_ladder](../tiled/tileset/ground/ladder/rope_ladder.png)
     - [huge_boulder](../tiled/tileset/ground/rock/huge_boulder.png)

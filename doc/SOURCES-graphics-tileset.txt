@@ -97,6 +97,21 @@ tiled/tileset/furniture/crockery/
 
 tiled/tileset/furniture/curtain/
 
+blue_green.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+curtain_rails.png    ???; ???; ???
+curtain_rod.png      ???; ???; ???
+dark_red.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+green.png            ???; ???; ???
+light_blue.png       ???; ???; ???
+lt_blue_drapes.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+peach.png            ???; ???; ???
+peach_drapes.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+purple_drapes.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+red.png              ???; ???; ???
+red_drapes.*         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+red_gold_gathered.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+royal_blue_drapes.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
+
 tiled/tileset/furniture/kitchen/
 
 tiled/tileset/furniture/light/
