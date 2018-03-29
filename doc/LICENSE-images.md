@@ -106,7 +106,6 @@ Creative Commons 0 (CC0) (no attribution required):
 By [Casper Nilsson](https://opengameart.org/user/2664):
 - Source: [LPC C.Nilsson](https://opengameart.org/content/lpc-cnilsson) (CC BY-SA 3.0 / GPL 3.0)
   - [tan_tent](../tiled/tileset/object/tan_tent.png)
-  - [lily_pads](../tiled/tileset/plant/lily_pads.png)
 
 By [Curt](https://opengameart.org/users/curt):
 - [lamps (blue & bronze)](../tiled/tileset/furniture/light/lamp_blue.png) (CC BY 3.0)
@@ -121,8 +120,6 @@ By Daniel Cook:
 By [Johann C](https://opengameart.org/users/johann-c):
 - GNU Gneral Public License (GPL) version 3.0:
   - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
-    - [cactus_2](../tiled/tileset/plant/cactus_2.png)
-    - [mushroom3](../tiled/tileset/plant/mushroom3.png)
     - [rocks](../tiled/tileset/object/rock/rocks.png)
     - [rock_face](../tiled/tileset/object/rock/rock_face.png) (removed)
     - [pillars_stone](../tiled/tileset/object/rock/pillars_stone.png)

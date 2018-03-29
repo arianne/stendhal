@@ -203,6 +203,10 @@ tiled/tileset/object/rock/
 
 tiled/tileset/plant/
 
+cactus_2.*     Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+lily_pads.png  Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
+mushroom_3.*   Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
+
 tiled/tileset/plant/bush/
 
 tiled/tileset/plant/flower/
