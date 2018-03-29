@@ -118,10 +118,6 @@ By Daniel Cook:
     - [lostgarden.com](http://www.lostgarden.com/2006/07/more-free-game-graphics.html)
     - [OpenGameArt.org](https://opengameart.org/node/11758)
 
-By [Hyptosis](https://opengameart.org/user/2937), [Zachariah Husiar (Zabin)](https://opengameart.org/user/3356), & [Jetrel](https://opengameart.org/user/402):
-- [stone_doorway](../tiled/tileset/building/door/stone_doorway.png)
-  - Source: [Lots of free 2d tiles and sprites by Hyptosis](https://opengameart.org/node/13500) (CC BY 3.0)
-
 By [Johann C](https://opengameart.org/users/johann-c):
 - GNU Gneral Public License (GPL) version 3.0:
   - Sources: [[LPC] A shoot'em up complete graphic kit](http://opengameart.org/node/11079) • [Pouf-Pouf Production](http://poufpoufproduction.fr/)
