@@ -1,30 +1,32 @@
+This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Audio_copyright/SFX/Weather
+
 data/sounds/weather/
 
-rain_heavy.ogg            Marcus Dellicompagni - www.PoundSound.co.uk, CC0, http://freesound.org/people/dingo1/sounds/134721
-rain_heavy.wav.xz         Marcus Dellicompagni - www.PoundSound.co.uk, CC0, http://freesound.org/people/dingo1/sounds/134721
-rain_light.ogg            Zepp2010, CC0, http://freesound.org/people/Zepp2010/sounds/163264
-rain_light.wav.xz         Zepp2010, CC0, http://freesound.org/people/Zepp2010/sounds/163264
-rain.ogg                  klangfabrik, CC0, http://freesound.org/people/klangfabrik/sounds/157149/
-rain.wav.xz               klangfabrik, CC0, http://freesound.org/people/klangfabrik/sounds/157149/
-thunder-01.ogg            vonz, CC0, http://freesound.org/people/vonz/sounds/188767/
-thunder-01.wav.xz         vonz, CC0, http://freesound.org/people/vonz/sounds/188767/
-thunder-02.ogg            Andy_Gardner, CC0, http://freesound.org/people/Andy_Gardner/sounds/238145/
-thunder-02.wav.xz         Andy_Gardner, CC0, http://freesound.org/people/Andy_Gardner/sounds/238145/
-thunder-03.ogg            sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-thunder-03.wav.xz         sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-thunder-04.ogg            sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-thunder-04.wav.xz         sphion, CC0, http://freesound.org/people/sphion/sounds/158525/
-thunder-05.ogg            Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-thunder-05.wav.xz         Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-thunder-06.ogg            Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-thunder-06.wav.xz         Dave Welsh, CC0, http://freesound.org/people/Dave%20Welsh/sounds/194364/
-thunder-07.ogg            Xythe, CC0, http://freesound.org/people/Xythe/sounds/37299/
-thunder-07.wav.xz         Xythe, CC0, http://freesound.org/people/Xythe/sounds/37299/
-thunder-08.ogg            Yoyodaman234, CC0, http://freesound.org/people/Yoyodaman234/sounds/253953/      
-thunder-08.wav.xz         Yoyodaman234, CC0, http://freesound.org/people/Yoyodaman234/sounds/253953/
-wind_heavy.ogg            stewdio2003, CC0, http://freesound.org/people/stewdio2003/sounds/238374/
-wind_heavy.wav.xz         stewdio2003, CC0, http://freesound.org/people/stewdio2003/sounds/238374/
-wind_light.ogg            MrAuralization, CC0, http://freesound.org/people/MrAuralization/sounds/243617/
-wind_light.wav.xz         MrAuralization, CC0, http://freesound.org/people/MrAuralization/sounds/243617/
-wind.ogg                  felix.blume, CC0, http://freesound.org/people/felix.blume/sounds/146436/
-wind.wav.xz               felix.blume, CC0, http://freesound.org/people/felix.blume/sounds/146436/
+rain_heavy.ogg            Marcus Dellicompagni - www.PoundSound.co.uk; CC0; http://freesound.org/people/dingo1/sounds/134721
+rain_heavy.wav.xz         Marcus Dellicompagni - www.PoundSound.co.uk; CC0; http://freesound.org/people/dingo1/sounds/134721
+rain_light.ogg            Zepp2010; CC0; http://freesound.org/people/Zepp2010/sounds/163264
+rain_light.wav.xz         Zepp2010; CC0; http://freesound.org/people/Zepp2010/sounds/163264
+rain.ogg                  klangfabrik; CC0; http://freesound.org/people/klangfabrik/sounds/157149/
+rain.wav.xz               klangfabrik; CC0; http://freesound.org/people/klangfabrik/sounds/157149/
+thunder-01.ogg            vonz; CC0; http://freesound.org/people/vonz/sounds/188767/
+thunder-01.wav.xz         vonz; CC0; http://freesound.org/people/vonz/sounds/188767/
+thunder-02.ogg            Andy_Gardner; CC0; http://freesound.org/people/Andy_Gardner/sounds/238145/
+thunder-02.wav.xz         Andy_Gardner; CC0; http://freesound.org/people/Andy_Gardner/sounds/238145/
+thunder-03.ogg            sphion; CC0; http://freesound.org/people/sphion/sounds/158525/
+thunder-03.wav.xz         sphion; CC0; http://freesound.org/people/sphion/sounds/158525/
+thunder-04.ogg            sphion; CC0; http://freesound.org/people/sphion/sounds/158525/
+thunder-04.wav.xz         sphion; CC0; http://freesound.org/people/sphion/sounds/158525/
+thunder-05.ogg            Dave Welsh; CC0; http://freesound.org/people/Dave%20Welsh/sounds/194364/
+thunder-05.wav.xz         Dave Welsh; CC0; http://freesound.org/people/Dave%20Welsh/sounds/194364/
+thunder-06.ogg            Dave Welsh; CC0; http://freesound.org/people/Dave%20Welsh/sounds/194364/
+thunder-06.wav.xz         Dave Welsh; CC0; http://freesound.org/people/Dave%20Welsh/sounds/194364/
+thunder-07.ogg            Xythe; CC0; http://freesound.org/people/Xythe/sounds/37299/
+thunder-07.wav.xz         Xythe; CC0; http://freesound.org/people/Xythe/sounds/37299/
+thunder-08.ogg            Yoyodaman234; CC0; http://freesound.org/people/Yoyodaman234/sounds/253953/      
+thunder-08.wav.xz         Yoyodaman234; CC0; http://freesound.org/people/Yoyodaman234/sounds/253953/
+wind_heavy.ogg            stewdio2003; CC0; http://freesound.org/people/stewdio2003/sounds/238374/
+wind_heavy.wav.xz         stewdio2003; CC0; http://freesound.org/people/stewdio2003/sounds/238374/
+wind_light.ogg            MrAuralization; CC0; http://freesound.org/people/MrAuralization/sounds/243617/
+wind_light.wav.xz         MrAuralization; CC0; http://freesound.org/people/MrAuralization/sounds/243617/
+wind.ogg                  felix.blume; CC0; http://freesound.org/people/felix.blume/sounds/146436/
+wind.wav.xz               felix.blume; CC0; http://freesound.org/people/felix.blume/sounds/146436/
