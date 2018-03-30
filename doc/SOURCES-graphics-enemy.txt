@@ -357,7 +357,7 @@ madaram_peasant.png        ???; ???; ???
 madaram_queen.png          ???; ???; ???
 madaram_soldier.png        ???; ???; ???
 madaram_stalker.png        ???; ???; ???
-madaram_trooper.png        ???; ???; ???
+madaram_trooper.png        Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu, Michele Bucelli (Buch), Shawneth; OGA BY 3.0; https://opengameart.org/node/66147, https://opengameart.org/node/29662, https://opengameart.org/node/73162
 madaram_windwalker.png     ???; ???; ???
 
 data/sprites/monsters/minotaur/
