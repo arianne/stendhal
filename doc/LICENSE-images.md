@@ -165,7 +165,6 @@ Creative Commons 0 (CC0) (no attribution required):
   - [brick_wall_red](../tiled/tileset/terrain/wall/brick_wall_red.png)
 - [ground/stone](tiled/tileset/terrain/ground/stone.png) (source: [Stone Terrain](https://opengameart.org/node/79141))
 - [ground_3](../tiled/tileset/ground/ground_3.png) (source: [Public Domain Tiles](http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545))
-- [juice_glass](../tiled/tileset/item/drink/juice_glass.png) by Jordan Irwin ([base image](http://openclipart.org/detail/12865))
 - [snake_skeleton](../tiled/tileset/item/corpse/snake_skeleton.png) by Jordan Irwin ([base image](http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg))
 - [spears](../tiled/tileset/item/weapon/spears.png) by Jordan Irwin
 - [swordfish](../tiled/tileset/building/decoration/swordfish.png) by Jordan Irwin ([source](https://opengameart.org/node/79120))

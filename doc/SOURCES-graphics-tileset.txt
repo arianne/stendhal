@@ -427,6 +427,16 @@ worldmap.png    ???; ???; ???
 
 tiled/tileset/item/drink/
 
+beers_and_flasks.png  ???; ???; ???
+bottle_and_glass.png  ???; ???; ???
+bottles_and_cups.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+casks.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+cognac.png            ???; ???; ???
+fierywater.png        ???; ???; ???
+juice_glass.*         Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711, http://openclipart.org/detail/12865
+red_wine.png          ???; ???; ???
+white_wine.png        ???; ???; ???
+
 tiled/tileset/item/food/
 
 tiled/tileset/item/gothic/
