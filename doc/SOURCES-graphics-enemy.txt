@@ -318,7 +318,7 @@ mimic_idle.png       Diligent Dodo / soniccuz; GPL 2.0; Stendhal
 necrosophia.png      ???; ???; ???
 red_roohako.png      ???; ???; ???
 robot_aruthon.png    Kevin Smith (TKZ Productions), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82760
-snarfkin.png         ???; ???; ???
+snarfkin.png         Kemono & Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82910
 tiny_skelly.png      Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 violet_avenger.png   ???; ???; ???
 winged_blurble.png   ???; ???; ???
