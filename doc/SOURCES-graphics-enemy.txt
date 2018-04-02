@@ -74,7 +74,7 @@ chaos_warrior.png      Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge)
 data/sprites/monsters/dark_elf/
 
 baby_drow.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu, ZigWin; OGA BY 3.0; ???
-dark_elf.png               ???; ???; ???
+dark_elf.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/117
 dark_elf_admiral.png       ???; ???; ???
 dark_elf_archer.png        ???; ???; ???
 dark_elf_captain.png       ???; ???; ???
