@@ -474,7 +474,7 @@ truskull_warrior.png       ???; ???; ???
 
 data/sprites/monsters/undead/
 
-bloody_zombie.png       ???; ???; ???
+bloody_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 dead_lich.png           ???; ???; ???
 death.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 death_knight.png        ???; ???; ???
@@ -488,16 +488,16 @@ fallen_warrior.png      ???; ???; ???
 ghost.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ghosthound.png          Stephen Challener (Redshrike), William Thompson (William.Thompsonj); OGA BY 3.0; https://opengameart.org/node/20830
 green_phantom.png       ???; ???; ???
-headless_monster.png    ???; ???; ???
+headless_monster.png    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 high_lich.png           ???; ???; ???
 incorporeal_armor.png   ???; ???; ???
 invisible_man.png       ???; ???; ???
 lich.png                ???; ???; ???
 myling.*                Artisticdude; CC0; http://opengameart.org/node/14803
-rotten_zombie.png       ???; ???; ???
+rotten_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 skeleton.png            ???; ???; ???
 warrior_skeleton.png    ???; ???; ???
-zombie.png              ???; ???; ???
+zombie.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 
 data/sprites/monsters/vampire/
 
