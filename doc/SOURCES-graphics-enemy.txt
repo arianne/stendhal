@@ -475,16 +475,16 @@ truskull_warrior.png       ???; ???; ???
 data/sprites/monsters/undead/
 
 bloody_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
-dead_lich.png           ???; ???; ???
+dead_lich.png           Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 death.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-death_knight.png        ???; ???; ???
+death_knight.png        Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 demon_skeleton.png      ???; ???; ???
 devil_monk.png          Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 devil_queen.png         ???; ???; ???
 elder_skeleton.png      ???; ???; ???
 fallen_high_priest.png  ???; ???; ???
 fallen_priest.png       ???; ???; ???
-fallen_warrior.png      ???; ???; ???
+fallen_warrior.png      Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 ghost.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ghosthound.png          Stephen Challener (Redshrike), William Thompson (William.Thompsonj); OGA BY 3.0; https://opengameart.org/node/20830
 green_phantom.png       ???; ???; ???
