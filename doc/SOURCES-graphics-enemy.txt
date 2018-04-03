@@ -408,12 +408,12 @@ Sources:
 - https://opengameart.org/node/23139
 - https://openclipart.org/detail/283528
 
-oni.xcf.bz2      Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0
-oni_archer.png   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu, SoCay; OGA BY 3.0
-oni_king.png     Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0
-oni_priest.png   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu, Guyome41, rones; OGA BY 3.0
-oni_queen.png    Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0
-oni_warrior.png  Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/118
+oni.xcf.bz2     Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0
+oni_archer.png  Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu, SoCay; OGA BY 3.0
+oni_king.png    Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0
+oni_priest.png  Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu, Guyome41, rones; OGA BY 3.0
+oni_queen.png   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michele Bucelli (Buch), onu/olonu; OGA BY 3.0
+oni_warrior.*   Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/118
 
 data/sprites/monsters/orc/
 
