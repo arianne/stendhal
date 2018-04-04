@@ -3,7 +3,7 @@ This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Graphics
 data/sprites/ (should be moved to data/sprites/pet ?)
 
 baby_dragon.png           ???; ???; ???
-cat.png                   ???; ???; ???
+cat.png                   bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69399
 purple_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal; Copyright © 2017-2018 Kimmo Rundelin
 sheep.png                 ???; ???; ???
 shorn-sheep_more_fur.png  ???; ???; ???

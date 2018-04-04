@@ -3,11 +3,6 @@ Files declared in this document that do not specify a filename extension fall un
 
 ### Character/NPC/Creature Sprites:
 
-By [bluecarrot16](https://opengameart.org/users/bluecarrot16):
-- Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0:
-  - cats (source: [[LPC] Cats and Dogs](https://opengameart.org/node/69399))
-    - [cat](../data/sprites/cat.png) (pet)
-
 By [diamonddmgirl](https://opengameart.org/user/39061):
 - OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
   [dress_025](../data/sprites/outfit/dress/dress_025.png) ([source](https://opengameart.org/node/72198))
