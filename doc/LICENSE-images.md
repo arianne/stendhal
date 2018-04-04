@@ -91,12 +91,6 @@ Creative Commons 0 (CC0) (no attribution required):
 - [shovel](../data/sprites/tool/shovel.png) by Jordan Irwin ([base image](http://openclipart.org/detail/116893)) (removed?)
 
 
-### Animation Effects:
-
-Creative Commons 0 (CC0) (no attribution required):
-- [fire_explosion_2x2](../data/sprites/effects/fire_explosion_2x2.png) by StumpyStrust (source: [Explosion Sheet](http://opengameart.org/node/15394))
-
-
 ### Tilesets:
 
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/user/5625):
