@@ -1,0 +1,5 @@
+This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Graphics_copyright/Pet
+
+pet (should be moved to data/sprites/pet ?)
+
+purple_dragon.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal; Copyright © 2017-2018 Kimmo Rundelin
