@@ -1,0 +1,12 @@
+This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Graphics_copyright/Outfit
+
+data/sprites/outfit/dress/
+
+dress_005.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_006.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_007.png (gi)          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80841
+dress_010.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_025.png               diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
+dress_027.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_037.png (armor)       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
+dress_057.png (lederhosen)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80172

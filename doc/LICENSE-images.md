@@ -1,27 +1,6 @@
 Files declared in this document that do not specify a filename extension fall under their respective license regardless of filename extension.
 
 
-### Character/NPC/Creature Sprites:
-
-By [diamonddmgirl](https://opengameart.org/user/39061):
-- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
-  [dress_025](../data/sprites/outfit/dress/dress_025.png) ([source](https://opengameart.org/node/72198))
-
-By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- OpenGameArt.org Attribution (OGA BY) version 3.0 or later:
-  - [armor outfit](../data/sprites/outfit/dress/dress_037.png)
-  - [gi outfit](../data/sprites/outfit/dress/dress_007.png)
-  - [lederhosen outfit](../data/sprites/outfit/dress/dress_057.png)
-
-By [Svetlana Kushnariova (Cabbit)](https://opengameart.org/users/cabbit):
-- Creative Commons Attribution (OGA BY / CC BY) version 3.0:
-  - Source: [24x32 characters, 16x16 tiles](https://opengameart.org/node/72969) pack
-    - [dress_005](../data/sprites/outfit/dress/dress_005.png)
-    - [dress_006](../data/sprites/outfit/dress/dress_006.png)
-    - [dress_010](../data/sprites/outfit/dress/dress_010.png)
-    - [dress_027](../data/sprites/outfit/dress/dress_027.png)
-
-
 ### Corpse Sprites:
 
 By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
