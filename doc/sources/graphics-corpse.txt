@@ -1,0 +1,13 @@
+This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Graphics_copyright/Enemy
+
+data/sprites/corpse/
+
+cloaked*          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81954
+feathered.png     beakman; CC0; http://openclipart.org/detail/23073
+halo*             freedo; CC0; https://openclipart.org/detail/20950
+leafy*            Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
+puddle_*.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
+rock.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+tail_rodent*.png  ???; CC0; http://www.clker.com/clipart-185713.html
+winged_bat.png    Machovka; CC0; http://openclipart.org/detail/2699
+wooden.png        Farmeral; CC0; https://openclipart.org/detail/20280
