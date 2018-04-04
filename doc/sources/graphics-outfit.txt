@@ -10,3 +10,8 @@ dress_025.png               diamonddmgirl; OGA BY 3.0; https://opengameart.org/n
 dress_027.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_037.png (armor)       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_057.png (lederhosen)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80172
+
+data/sprites/outfit/head/
+
+head_084.*    yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+head_085.png  yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
