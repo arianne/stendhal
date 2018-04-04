@@ -1,0 +1,39 @@
+This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Graphics_copyright/Item
+
+data/sprites/items/crystal/
+
+crystal_blue.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+crystal_pink.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+crystal_purple.png  Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+crystal_red.png     Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+crystal_yellow.png  Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+crystals.xcf.bz2    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
+
+data/sprites/items/food/
+
+crab_meat.png  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
+
+data/sprites/items/helmet/
+
+elvish_hat.png  Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
+
+data/sprites/items/misc/
+
+venom_gland.png  Jordan Irwin; OGA BY 3.0; Stendhal
+
+data/sprites/items/ring/
+
+antipoison_rings.xcf.bz2  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
+antitoxin_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
+antivenom_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
+aquamarine-ring.png       ???; ???; ???
+emerald-ring.png          ???; ???; ???
+engagement_ring.png       ???; ???; ???
+gold-ring.png             ???; ???; ???
+medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
+silver-ring.png           ???; ???; ???
+wedding.png               ???; ???; ???
+
+data/sprites/items/tool/
+
+shovel.png  laabadon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/116893
