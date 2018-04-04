@@ -57,3 +57,21 @@ watersplash.png       ???; ???; ???
 data/sprites/effects/
 
 fire_explosion_2x2.png  StumpyStrust; CC0; http://opengameart.org/node/15394
+
+data/sprites/status/
+
+confuse.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+healer.png    rejon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/35905
+heavy.*       migranerp, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/190320
+merchant.png  gnokii, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/171507
+poison.*      ???; ???; ???
+shock.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+zombie.png    ???; ???; ???
+
+data/sprites/status/panel/
+
+confuse.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+heavy.png    migranerp, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/190320
+poison.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+shock.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+zombie.png   ???; ???; ???
