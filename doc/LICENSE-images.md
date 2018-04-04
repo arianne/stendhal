@@ -174,16 +174,6 @@ Creative Commons 0 (CC0) (no attribution required):
     - [Doll](http://openclipart.org/detail/64909) by Jordan Irwin
 
 
-### GUI Decoration:
-
-By [Jordan Irwin (AntumDeluge)](https://opengameart.org/users/AntumDeluge):
-- Creative Commons Attribution (CC BY) version 3.0 or later:
-  - [panel_tile_aqua_001](../data/gui/panel_tile_aqua_001.png)
-
-Creative Commons 0 (CC0) (no attribution required):
-- [panel_leather_black_001](../data/gui/panel_leather_black_001.png) by Duion ([source](http://opengameart.org/node/15132))
-
-
 ### Icons:
 
 The following files are released into the public domain and can be distributed under the terms and conditions of the Creative Commons 0 license (See Licenses/CC0-1.0.txt). For any areas that do not legally accept the public domain or CC0 these files can be distributed under the terms and conditions of the GPL (See license.txt):
