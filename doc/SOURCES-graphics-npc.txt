@@ -4,7 +4,7 @@ data/sprites/npc/
 
 adosbankassistantnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 albinoelf2npc.png             ???; ???; ???
-albinoelfnpc.*                ???; ???; ???
+albinoelfnpc.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/115
 amazoness_princessnpc.png     ???; ???; ???
 angelnpc.*                    ???; ???; ???
 apothecarynpc.*               ???; ???; ???
