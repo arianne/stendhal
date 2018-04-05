@@ -620,11 +620,11 @@ red_crystal.*        Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSm
 red_crystal_small.*  Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 red_obsidian.png     ???; ???; ???
 rock_cluster.png     ???; ???; ???
-rock_red.*           ???, Jordan Irwin (AntumDeluge); ???; ???
+rock_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rock_snow.*          ???; ???; ???
-rocks.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-rocks_2.*            ???; ???; ???
-rocks_3.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rocks.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rocks_2.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+rocks_3.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rubble.png           ???; ???; ???
 sandy_rocks.*        ???; ???; ???
 square_crystal.png   ???; ???; ???
