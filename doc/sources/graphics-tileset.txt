@@ -427,7 +427,7 @@ pale_book_bottle_shelf.png         ???; ???; ???
 rack.png                           ???; ???; ???
 shelf_3.png                        ???; ???; ???
 shelf_4.png                        ???; ???; ???
-small_shelf.png                    ???; ???; ???
+small_shelf.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wardrobe_lateral.png               ???; ???; ???
 
 tiled/tileset/furniture/sink/
@@ -823,8 +823,8 @@ wooden_crosses.*     Carlo Enrico Victoria (Nemisys), Tuomo Untinen (Reemax), bl
 
 tiled/tileset/item/household/
 
-food_preparation.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-food_preparation_2.png  ???; ???; ???
+food_preparation.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+food_preparation_2.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/instrument/
 
