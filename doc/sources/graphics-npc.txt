@@ -33,7 +33,7 @@ chaos_sorcerornpc.png         Stephen Challener (Redshrike); OGA BY 3.0; https:/
 chefnpc.png                   Svetlana Kushnariova (Cabbit), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
 chieffalatheennpc.png         ???; ???; ???
 childnpc.png                  ???; ???; ???
-cloakedwomannpc.png           ???; ???; ???
+cloakedwomannpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/719/
 confectionerapplepienpc.png   Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 confectionercherrypienpc.png  Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 curatornpc.png                ???; ???; ???
@@ -67,7 +67,7 @@ goldsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 grandadnpc.png                ???; ???; ???
 granmanpc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 greendwarfnpc.png             ???; ???; ???
-greenelfwizardnpc.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/114
+greenelfwizardnpc.png         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/114
 grim_reaper_npc.png           ???; ???; ???
 grim_reaper2_npc.png          ???; ???; ???
 groundskeepernpc.png          ???; ???; ???
@@ -82,7 +82,7 @@ hotelguestnpc.png             ???; ???; ???
 hotelreceptionistnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 housewifenpc.png              ???; ???; ???
 icecreamsellernpc.png         ???; ???; ???
-investigatornpc.png           ???; ???; ???
+investigatornpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/103
 jailedbarbariannpc.png        ???; ???; ???
 kid1npc.png                   ???; ???; ???
 kid2npc.png                   ???; ???; ???
@@ -102,7 +102,7 @@ mageelfnpc.png                ???; ???; ???
 magic_jesternpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 magicianhousegreeternpc.png   ???; ???; ???
 maidnpc.png                   ???; ???; ???
-man_000_npc.png               ???; ???; ???
+man_000_npc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/91
 man_001_npc.png               ???; ???; ???
 man_002_npc.png               ???; ???; ???
 man_004_npc.png               ???; ???; ???
@@ -139,7 +139,7 @@ photographernpc.png           ???; ???; ???
 pinkgirlnpc.*                 ???; ???; ???
 pirate_sailornpc.png          ???; ???; ???
 pirate_sailor2npc.png         ???; ???; ???
-plinknpc.png                  ???; ???; ???
+plinknpc.png                  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/718/
 postelfnpc.png                ???; ???; ???
 priestnpc.png                 ???; ???; ???
 princess2npc.png              ???; ???; ???
@@ -171,7 +171,7 @@ supertrainedguynpc.png        ???; ???; ???
 swimmer1npc.png               ???; ???; ???
 swimmer2npc.png               ???; ???; ???
 swimmer3npc.png               ???; ???; ???
-swimmer4npc.png               ???; ???; ???
+swimmer4npc.png               ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/92
 swimmer5npc.png               ???; ???; ???
 swimmer6npc.png               ???; ???; ???
 swimmer7npc.png               ???; ???; ???
@@ -209,10 +209,10 @@ writernpc.png                 ???; ???; ???
 xpphunternpc.png              ???; ???; ???
 yetifemalenpc.png             ???; ???; ???
 yetimalenpc.png               ???; ???; ???
-youngnpc.png                  ???; ???; ???
+youngnpc.png                  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/87
 youngsoldiernpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 youngwitchnpc.png             ???; ???; ???
-youngwomannpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/24823
+youngwomannpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/24823
 
 data/sprites/npc/alternative/
 
