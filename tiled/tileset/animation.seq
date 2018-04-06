@@ -303,6 +303,9 @@ tileset/furniture/light/lights_candle.png	*	24:25
 
 tileset/furniture/light/torch_top.png * 0:1:2:3
 
+tileset/furniture/table/fancy_blue_red.png	0	0:8:9
+tileset/furniture/table/fancy_blue_red.png	3	3:10:11
+
 tileset/ground/water/dungeon_water.png	0	0:1:2:1
 tileset/ground/water/dungeon_water.png	1	1:2:1:0
 tileset/ground/water/dungeon_water.png	2	2:1:0:1
