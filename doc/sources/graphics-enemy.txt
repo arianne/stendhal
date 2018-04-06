@@ -127,15 +127,15 @@ water_elemental.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengame
 data/sprites/monsters/elf/
 
 archer_elf.png       ???; ???; ???
-archmage_elf.png     ???; ???; ???
-commander_elf.png    ???; ???; ???
-elf.png              ???; ???; ???
-elf_bodyguard.png    ???; ???; ???
-elf_sacerdotist.png  ???; ???; ???
-elf_wizard.png       ???; ???; ???
-mage_elf.png         ???; ???; ???
-militia_elf.png      ???; ???; ???
-soldier_elf.png      ???; ???; ???
+archmage_elf.png     Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/82
+commander_elf.png    Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/102, https://github.com/arianne/stendhal/issues/121
+elf.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/99
+elf_bodyguard.png    Svetlana Kushnariova (Cabbit), onu/olonu, Shaun Williams; CC BY 3.0; https://github.com/arianne/stendhal/issues/88
+elf_sacerdotist.png  Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/77, https://sourceforge.net/p/arianne/patches/715/
+elf_wizard.png       Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/69
+mage_elf.png         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
+militia_elf.png      Svetlana Kushnariova (Cabbit), onu/olonu, Chris Hamons; OGA BY 3.0; https://github.com/arianne/stendhal/issues/100
+soldier_elf.png      Svetlana Kushnariova (Cabbit), onu/olonu, kanaya2529; OGA BY 3.0; https://github.com/arianne/stendhal/issues/101
 
 data/sprites/monsters/ent/
 
