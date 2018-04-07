@@ -478,7 +478,7 @@ bloody_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge
 dead_lich.png           Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 death.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 death_knight.png        Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
-demon_skeleton.png      ???; ???; ???
+demon_skeleton.png      artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 devil_monk.png          Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 devil_queen.png         ???; ???; ???
 elder_skeleton.png      ???; ???; ???
@@ -495,7 +495,7 @@ invisible_man.png       ???; ???; ???
 lich.png                ???; ???; ???
 myling.*                Artisticdude; CC0; http://opengameart.org/node/14803
 rotten_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
-skeleton.png            ???; ???; ???
+skeleton.png            artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 warrior_skeleton.png    ???; ???; ???
 zombie.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 
