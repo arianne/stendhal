@@ -388,7 +388,7 @@ data/sprites/monsters/mythical_animal/
 
 balrog.png        ???; ???; ???
 black_dragon.png  ???; ???; ???
-gashadokuro.png   ???; ???; ???
+gashadokuro.png   artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 
 data/sprites/monsters/mythical_being/
 
