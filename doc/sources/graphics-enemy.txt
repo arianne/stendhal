@@ -77,7 +77,7 @@ baby_drow.png              Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA
 dark_elf.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/117
 dark_elf_admiral.png       ???; ???; ???
 dark_elf_archer.png        ???; ???; ???
-dark_elf_captain.png       ???; ???; ???
+dark_elf_captain.png       Svetlana Kushnariova (Cabbit), onu/olonu, Muhammad Amiruddin (Amir027); OGA BY 3.0; https://github.com/arianne/stendhal/issues/123
 dark_elf_elite_archer.png  ???; ???; ???
 dark_elf_general.png       Svetlana Kushnariova (Cabbit), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/122
 dark_elf_knight.png        ???; ???; ???
