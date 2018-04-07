@@ -79,7 +79,7 @@ dark_elf_admiral.png       ???; ???; ???
 dark_elf_archer.png        ???; ???; ???
 dark_elf_captain.png       ???; ???; ???
 dark_elf_elite_archer.png  ???; ???; ???
-dark_elf_general.png       ???; ???; ???
+dark_elf_general.png       Svetlana Kushnariova (Cabbit), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/122
 dark_elf_knight.png        ???; ???; ???
 dark_elf_master.png        Svetlana Kushnariova (Cabbit), onu/olonu, Andrew Kelley (superjoe); OGA BY 3.0; https://github.com/arianne/stendhal/issues/116
 dark_elf_matronmother.png  Svetlana Kushnariova (Cabbit), onu/olonu, 59naga; OGA BY 3.0; https://github.com/arianne/stendhal/issues/119
