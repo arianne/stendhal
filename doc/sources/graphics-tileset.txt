@@ -770,7 +770,7 @@ worldmap.png    ???; ???; ???
 
 tiled/tileset/item/drink/
 
-beers_and_flasks.png  ???; ???; ???
+beers_and_flasks.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bottle_and_glass.png  ???; ???; ???
 bottles_and_cups.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 casks.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

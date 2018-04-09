@@ -386,7 +386,7 @@ werewolf.png             ???; ???; ???
 
 data/sprites/monsters/mythical_animal/
 
-balrog.png        ???; ???; ???
+balrog.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 black_dragon.png  ???; ???; ???
 gashadokuro.png   artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 
