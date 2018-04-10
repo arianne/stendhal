@@ -381,7 +381,7 @@ imperial_experiment.png  artisticdude, Tuomo Untinen (Reemax), onu/olonu; CC0; h
 imperial_mutant.*        ???; ???; ???
 lamia.*                  ???; ???; ???
 naga.png                 ???; ???; ???
-werewolf.png             ???; ???; ???
+werewolf.png             yolkati, Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/125
 
 
 data/sprites/monsters/mythical_animal/
