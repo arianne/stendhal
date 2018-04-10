@@ -70,7 +70,7 @@ public class PriestessNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see a beautiful woman hidden under swathes of fabric.");
-		npc.setEntityClass("noimagenpc"); /* cloakedwoman2npc */
+		npc.setEntityClass("cloakedwoman2npc");
 		npc.setPosition(9, 10);
 		npc.initHP(100);
 		zone.add(npc);
