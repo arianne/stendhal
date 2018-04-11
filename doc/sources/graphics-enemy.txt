@@ -28,7 +28,7 @@ bat.png               bagzie; OGA BY 3.0; https://opengameart.org/node/26447
 bear.png              ???; ???; ???
 black_bear.png        ???; ???; ???
 black_slime.*         meriharakka; ???; Stendhal
-boar.png              ???; ???; ???
+boar.png              Daniel Eddeland (daneeklu), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83210, https://opengameart.org/node/11629
 brown_slime.*         meriharakka; ???; Stendhal
 caiman.png            ???; ???; ???
 chicken.png           ???; ???; ???
