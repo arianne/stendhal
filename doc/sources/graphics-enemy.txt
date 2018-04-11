@@ -189,7 +189,7 @@ data/sprites/monsters/giant_animal/
 
 crocodile.png  ???; ???; ???
 dwarf_golem.*  ???; ???; ???
-giantrat.*     ???; ???; ???
+giantrat.png   Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
 shark.png      ???; ???; ???
 
 data/sprites/monsters/giant_human/
@@ -442,12 +442,12 @@ sheepman.png          onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https:/
 
 data/sprites/monsters/small_animal/
 
-caverat.png    ???; ???; ???
-mouse.*        Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
-rat.png        ???; ???; ???
-razorrat.png   ???; ???; ???
-venomrat.png   ???; ???; ???
-zombierat.png  ???; ???; ???
+caverat.png  Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
+mouse.*      Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
+rat.*        Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
+razorrat.png Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
+venomrat.png Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
+zombierat.*  Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
 
 data/sprites/monsters/troll/
 
