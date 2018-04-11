@@ -496,7 +496,7 @@ lich.png                ???; ???; ???
 myling.*                Artisticdude; CC0; http://opengameart.org/node/14803
 rotten_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 skeleton.png            artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
-warrior_skeleton.png    ???; ???; ???
+warrior_skeleton.png    artisticdude, LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 zombie.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 
 data/sprites/monsters/vampire/
