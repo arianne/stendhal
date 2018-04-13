@@ -133,7 +133,7 @@ oldwomannpc.png               ???; ???; ???
 oracle*npc.*                  ???; ???; ???
 orcbuyernpc.png               Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsalesmannpc.png            Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
-orcsamannpc.png               ???; ???; ???
+orcsamannpc.png               Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orientalwizardnpc.png         ???; ???; ???
 paulnpc.png                   ???; ???; ???
 photographernpc.png           ???; ???; ???
