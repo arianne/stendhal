@@ -6,7 +6,7 @@ adosbankassistantnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 albinoelf2npc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/128
 albinoelfnpc.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/115
 amazoness_princessnpc.png     ???; ???; ???
-angelnpc.*                    ???; ???; ???
+angelnpc.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 apothecarynpc.*               ???; ???; ???
 badmayornpc.png               ???; ???; ???
 bakernpc.png                  ???; ???; ???
