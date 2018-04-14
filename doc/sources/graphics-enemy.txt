@@ -195,12 +195,12 @@ shark.png      ???; ???; ???
 data/sprites/monsters/giant_human/
 
 amazoness_giant.png         ???; ???; ???
-angel.png                   ???; ???; ???
-archangel.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+angel.png                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+archangel.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 black_giant.png             ???; ???; ???
-dark_angel.png              ???; ???; ???
+dark_angel.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 dark_archangel.png          ???; ???; ???
-fallen_angel.png            ???; ???; ???
+fallen_angel.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 giant.png                   ???; ???; ???
 giant_elder.png             ???; ???; ???
 ice_giant.png               ???; ???; ???
