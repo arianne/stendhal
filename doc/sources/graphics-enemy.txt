@@ -159,10 +159,10 @@ cow.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 goat.png         bluecarrot16; CC BY 3.0; https://opengameart.org/node/36051; Based on "LPC Style Farm Animals" by Daniel Eddeland (daneeklu), commissioned by Thomas Bruno (tebruno99). License: CC-BY 3.0 / GPL 2+. http://opengameart.org/content/lpc-style-farm-animals
 grass_snake.png  ???; ???; ???
 hen.png          ???; ???; ???
-horse.png        bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69398
+horse.png        bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 piglet.png       ???; ???; ???
 ram.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-white_horse.png  bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69398
+white_horse.png  bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 
 data/sprites/monsters/frogman/
 
@@ -392,9 +392,9 @@ gashadokuro.png   artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengam
 
 data/sprites/monsters/mythical_being/
 
-centaur.png  bluecarrot16, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/79289
-pegasus.png  bluecarrot16, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77472
-unicorn.png  bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69398
+centaur.png  bluecarrot16, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79289
+pegasus.png  bluecarrot16, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/77472
+unicorn.png  bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 
 data/sprites/monsters/oni/
 
