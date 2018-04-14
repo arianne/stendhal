@@ -501,8 +501,8 @@ zombie.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge
 
 data/sprites/monsters/vampire/
 
-vampire_lord.png               Charles Sanchez (CharlesGabriel), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/4125, https://opengameart.org/node/24944
-vampire_lord_bride.png         ???; ???; ???
+vampire_lord.png               Charles Sanchez (CharlesGabriel), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83035
+vampire_lord_bride.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
 vampire_lord_bride_evil.png    ???; ???; ???
 vampire_lord_evil.png          ???; ???; ???
 vampirette.png                 ???; ???; ???
