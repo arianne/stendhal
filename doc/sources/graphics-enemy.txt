@@ -280,7 +280,7 @@ imperial_veteran.png         ???; ???; ???
 kalavan_citizen.png          ???; ???; ???
 kalavan_housewife.png        ???; ???; ???
 kalavan_peasant.png          ???; ???; ???
-kalavan_wisewoman.png        ???; ???; ???
+kalavan_wisewoman.png        Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
 little_assassin.png          ???; ???; ???
 littlewitch.png              Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/127
 littlewizard.png             Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/126
