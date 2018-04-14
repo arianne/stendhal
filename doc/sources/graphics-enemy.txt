@@ -188,7 +188,7 @@ superogre.png     Svetlana Kushnariova (Cabbit), onu/olonu, chasergaming; CC0; h
 data/sprites/monsters/giant_animal/
 
 crocodile.png  ???; ???; ???
-dwarf_golem.*  ???; ???; ???
+dwarf_golem.*  Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/6262, https://opengameart.org/node/72969
 giantrat.png   Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869
 shark.png      ???; ???; ???
 
