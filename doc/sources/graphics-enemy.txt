@@ -393,7 +393,7 @@ gashadokuro.png   artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengam
 data/sprites/monsters/mythical_being/
 
 centaur.png  bluecarrot16, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/79289
-pegasus.png  ???; ???; ???
+pegasus.png  bluecarrot16, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77472
 unicorn.png  bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69398
 
 data/sprites/monsters/oni/
