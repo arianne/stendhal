@@ -31,7 +31,7 @@ black_slime.*         meriharakka; ???; Stendhal
 boar.png              Daniel Eddeland (daneeklu), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83210, https://opengameart.org/node/11629
 brown_slime.*         meriharakka; ???; Stendhal
 caiman.png            ???; ???; ???
-chicken.png           ???; ???; ???
+chicken.png           Daniel Eddeland (daneeklu); CC BY 3.0; https://opengameart.org/node/11629
 cobra.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
 crab.png              Dominik Gmiterko (ienze); CC BY 3.0; https://opengameart.org/node/6270
 deer.png              ???; ???; ???
