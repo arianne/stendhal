@@ -451,9 +451,9 @@ zombierat.*  Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; http
 
 data/sprites/monsters/troll/
 
-cave_troll.*   ???; ???; ???
-red_troll.png  Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/78138
-troll.png      Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/78138
+cave_troll.png  Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/78138
+red_troll.png   Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/78138
+troll.png       Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/78138
 
 data/sprites/monsters/truskull/
 
