@@ -199,7 +199,7 @@ angel.png                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDe
 archangel.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 black_giant.png             ???; ???; ???
 dark_angel.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
-dark_archangel.png          ???; ???; ???
+dark_archangel.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 fallen_angel.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 giant.png                   ???; ???; ???
 giant_elder.png             ???; ???; ???
