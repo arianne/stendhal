@@ -99,6 +99,7 @@ kingcozartnpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https:/
 koboldbarmaidnpc.png          ???; ???; ???
 koboldbarregularnpc.png       ???; ???; ???
 littlegirlnpc.png             ???; ???; ???
+littlegirl2npc.png            Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/139
 madscientistnpc.png           ???; ???; ???
 mageelfnpc.png                ???; ???; ???
 magic_jesternpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
