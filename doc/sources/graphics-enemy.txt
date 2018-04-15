@@ -90,8 +90,8 @@ dark_elf_wizard.png        Svetlana Kushnariova (Cabbit), onu/olonu, jaschon; OG
 
 data/sprites/monsters/demon/
 
-demon.png                   Svetlana Kushnariova (Cabbit), onu/olonu, surt, ahmadmanga; CCO; https://github.com/arianne/stendhal/issues/135
-imp.png                     ???; ???; ???
+demon.png                   Svetlana Kushnariova (Cabbit), onu/olonu, Carl Olsson (surt), ahmadmanga; CCO; https://github.com/arianne/stendhal/issues/135
+imp.png                     Svetlana Kushnariova (Cabbit), onu/olonu, Carl Olsson (surt); CC0; https://github.com/arianne/stendhal/issues/138
 imperial_demon_lord.png     Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), onu/olonu, Andrew Kelley (superjoe), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/78
 imperial_demon_servant.png  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Bertram, onu/olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/120, https://opengameart.org/node/12858
 winged_blue_imp.*           ???; ???; ???
