@@ -73,7 +73,7 @@ public class BuyerNPC implements ZoneConfigurator {
 
 		};
 		npc.setDescription("You see an impatient man. He has a military air about him.");
-		npc.setEntityClass("noimagenpc"); /* blacklordnpc */
+		npc.setEntityClass("blacklordnpc");
 		npc.setPosition(19, 4);
 		npc.initHP(100);
 		zone.add(npc);
