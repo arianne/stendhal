@@ -126,7 +126,7 @@ water_elemental.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengame
 
 data/sprites/monsters/elf/
 
-archer_elf.png       ???; ???; ???
+archer_elf.png       Svetlana Kushnariova (Cabbit), onu/olonu, SoCay; CC BY 3.0/4.0; https://github.com/arianne/stendhal/issues/142
 archmage_elf.png     Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/82
 commander_elf.png    Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/102, https://github.com/arianne/stendhal/issues/121
 elf.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/99
