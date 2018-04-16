@@ -44,7 +44,7 @@ killer_bat.png        bagzie; OGA BY 3.0; https://opengameart.org/node/26447
 killer_bee.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 lion.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 monkey.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-pandabear.png         ???; ???; ???
+pandabear.png         danielmahon; CC BY-SA 3.0; https://opengameart.org/node/21008, Twitter: @danielmahon
 penguin.png           ???; ???; ???
 pigeon.png            ???; ???; ???
 poisonous_spider.png  Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
