@@ -506,5 +506,5 @@ vampire_lord_bride.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (Antu
 vampire_lord_bride_evil.png    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
 vampire_lord_evil.png          Charles Sanchez (CharlesGabriel), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83035
 vampirette.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
-vampirette_evil.png            ???; ???; ???
+vampirette_evil.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
 vampirette_transformation.png  ???; ???; ???
