@@ -167,7 +167,7 @@ scarletarmynpc.png            ???; ???; ???
 sellernpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 seller2npc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 sickleinghalfelfnpc.png       ???; ???; ???
-sickvampirenpc.png            ???; ???; ???
+sickvampirenpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
 signguynpc.png                ???; ???; ???
 sokobannpc.png                ???; ???; ???
 supertrainedguynpc.png        ???; ???; ???
