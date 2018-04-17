@@ -467,7 +467,7 @@ oriental_table.png           ???; ???; ???
 rectangular_with_meals.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square.png                   ???; ???; ???
 square_pale.png              ???; ???; ???
-stone_desk.png               ???; ???; ???
+stone_desk.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_copper.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_linen.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
 table_with_beer.png          ???; ???; ???
