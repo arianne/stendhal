@@ -10,7 +10,7 @@ albino_elf_swordsman.png  Svetlana Kushnariova (Cabbit), onu/olonu, Justis; OGA 
 
 data/sprites/monsters/amazon/
 
-amazoness_archer.png             ???; ???; ???
+amazoness_archer.png             ???, Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), onu/olonu; ???; https://github.com/arianne/stendhal/issues/144
 amazoness_archer_commander.png   ???; ???; ???
 amazoness_bodyguard.png          Svetlana Kushnariova (Cabbit), onu/olonu, arikel; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/113
 amazoness_coastguard.png         ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/108
