@@ -20,7 +20,7 @@ hair_003.png  ???; ???; ???
 hair_004.png  ???; ???; ???
 hair_005.png  ???; ???; ???
 hair_006.png  ???; ???; ???
-hair_007.png  ???; ???; ???
+hair_007.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_008.png  ???; ???; ???
 hair_009.png  ???; ???; ???
 hair_010.png  ???; ???; ???
@@ -64,7 +64,7 @@ hair_053.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org
 hair_054.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_055.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_056.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_057.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_057.*    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_058.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_059.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_060.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
