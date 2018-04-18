@@ -40,7 +40,7 @@ hair_023.png  ???; ???; ???
 hair_024.png  ???; ???; ???
 hair_025.png  ???; ???; ???
 hair_026.png  ???; ???; ???
-hair_027.png  ???; ???; ???
+hair_027.png  Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 hair_028.png  ???; ???; ???
 hair_029.png  ???; ???; ???
 hair_030.png  ???; ???; ???
@@ -84,7 +84,7 @@ hair_073.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org
 hair_074.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_075.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_076.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_077.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_077.*    Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 hair_078.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_079.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_080.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
