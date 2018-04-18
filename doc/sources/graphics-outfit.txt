@@ -22,7 +22,7 @@ hair_005.png  ???; ???; ???
 hair_006.png  ???; ???; ???
 hair_007.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_008.png  ???; ???; ???
-hair_009.png  ???; ???; ???
+hair_009.*    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 hair_010.png  ???; ???; ???
 hair_011.png  ???; ???; ???
 hair_012.png  ???; ???; ???
@@ -66,7 +66,7 @@ hair_055.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org
 hair_056.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_057.*    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_058.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_059.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_059.*    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 hair_060.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_061.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_062.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
