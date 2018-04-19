@@ -538,8 +538,16 @@ public final class StatsPanelController {
 		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
+				// User deleted. Reset all states.
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						panel.resetStatuses();
+					}
+				});
 				return;
 			}
+			
 			Object value = event.getNewValue();
 	        final StatusID ID = StatusID.getStatusID(event.getPropertyName());
 	        final boolean enabled = value != null;

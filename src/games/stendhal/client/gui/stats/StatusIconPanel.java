@@ -137,6 +137,17 @@ class StatusIconPanel extends JComponent {
             status.setVisible(visible);
         }
     }
+    
+    /**
+     * Hide all status icons. This is called when the user entity is deleted.
+     */
+    void resetStatuses() {
+    	for (JLabel status : statusIDMap.values()) {
+    		if (status.isVisible()) {
+    			status.setVisible(false);
+    		}
+    	}
+    }
 
 	/**
 	 * Set the away status message. null value will hide the icon.
