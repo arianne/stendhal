@@ -15,7 +15,7 @@ dress_057.png (lederhosen)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://open
 data/sprites/outfit/hair/
 
 hair_001.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_002.png  ???; ???; ???
+hair_002.png  diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 hair_003.png  ???; ???; ???
 hair_004.png  ???; ???; ???
 hair_005.png  ???; ???; ???
@@ -59,7 +59,7 @@ hair_042.png  Cobra Hubbard (BlueVortexGames); CC BY 3.0; https://opengameart.or
 hair_043.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_050.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_051.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_052.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_052.png  Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 hair_053.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_054.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_055.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
