@@ -8,6 +8,8 @@ dress_007.png (gi)          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://open
 dress_010.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_025.png               diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 dress_027.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_033.png               bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
+dress_034.png               bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_037.png (armor)       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_042.png (cloak)       Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_057.png (lederhosen)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80172
