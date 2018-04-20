@@ -168,7 +168,7 @@ sellernpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 seller2npc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 sickleinghalfelfnpc.png       ???; ???; ???
 sickvampirenpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
-signguynpc.png                ???; ???; ???
+signguynpc.png                Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/81952
 sokobannpc.png                ???; ???; ???
 supertrainedguynpc.png        ???; ???; ???
 swimmer1npc.png               ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/143
