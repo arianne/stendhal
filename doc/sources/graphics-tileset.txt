@@ -439,52 +439,52 @@ pale_brown_stone.*      ???, Kimmo Rundelin (kiheru); ???; ???
 
 tiled/tileset/furniture/table/
 
-alchemists_table.*           Lanea Zimmerman (Sharm), Bonsaiheldin ( http://bonsaiheld.org/ ), johnny_automatic, Last-Dino; CC BY-SA 3.0; https://github.com/AntumDeluge/game-resources/tree/master/collection/lpc/tileset/tables_rework
-bazaar_table_1.*             Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jetrel; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
-bazaar_table_2.png           Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jetrel, Hyptosis; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
-bazaar_table_3.png           Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Tuomo Untinen (Reemax), Hyptosis; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
-bazaar_table_4.png           Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Tuomo Untinen (Reemax), Hyptosis; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
-bazaar_table_5.png           Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jetrel; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
-bench.png                    ???; ???; ???
-brick_base.png               ???; ???; ???
-concrete_table.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-desk.*                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-desk_wooden.png              ???; ???; ???
-fancy_blue_red.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-flowers_on_bench2.png        Lanea Zimmerman (Sharm), Jetrel, Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
-flowers_on_benches.png       ???; ???; ???
-grey_fancy.png               ???; ???; ???
-grey_fancy_horizontal.png    ???; ???; ???
-grey_long.png                ???; ???; ???
-grey_pale.*                  ???; ???; ???
-grey_plain.*                 ???; ???; ???
-hotdog_stand.png             ???; ???; ???
-long_front_on.png            ???; ???; ???
-long_front_on_pale.png       ???; ???; ???
-long_side_on_pale.png        ???; ???; ???
-orb_table.*                  ???; ???; ???
-oriental_table.png           ???; ???; ???
-rectangular_with_meals.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-square.png                   ???; ???; ???
-square_pale.png              ???; ???; ???
-stone_desk.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-table_copper.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-table_linen.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
-table_with_beer.png          ???; ???; ???
-table_with_beer_dark.png     ???; ???; ???
-table_with_hob.*             ???; ???; ???
-table_with_hob_pale.*        ???; ???; ???
-table_wooden_brown.*         ???; ???; ???
-tree_stump_table.png         ???; ???; ???
-vendors_table.*              Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
-white.*                      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
-white_counter_top.png        ???; ???; ???
-wooden.png                   ???; ???; ???
-wooden_pale.png              ???; ???; ???
-wooden_rectangular.*         ???; ???; ???
-wooden_trestle.png           ???; ???; ???
-wooden_trestle_vertical.png  ???; ???; ???
-wooden_with_candles.*        Lanea Zimmerman (Sharm), liftarn, Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/81367, https://opengameart.org/node/20850, https://openclipart.org/detail/2658
+alchemists_table.*         Lanea Zimmerman (Sharm), Bonsaiheldin ( http://bonsaiheld.org/ ), johnny_automatic, Last-Dino; CC BY-SA 3.0; https://github.com/AntumDeluge/game-resources/tree/master/collection/lpc/tileset/tables_rework
+bazaar_table_1.*           Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jetrel; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
+bazaar_table_2.png         Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jetrel, Hyptosis; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
+bazaar_table_3.png         Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Tuomo Untinen (Reemax), Hyptosis; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
+bazaar_table_4.png         Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Tuomo Untinen (Reemax), Hyptosis; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
+bazaar_table_5.png         Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jetrel; CC BY-SA 3.0/4.0; https://opengameart.org/node/81369
+bench.png                  ???; ???; ???
+brick_base.png             ???; ???; ???
+concrete_table.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+desk.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+desk_wooden.png            ???; ???; ???
+fancy_blue_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+flowers_on_bench2.png      Lanea Zimmerman (Sharm), Jetrel, Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
+flowers_on_benches.png     ???; ???; ???
+grey_fancy.png             ???; ???; ???
+grey_fancy_horizontal.png  ???; ???; ???
+grey_long.png              ???; ???; ???
+grey_pale.*                ???; ???; ???
+grey_plain.*               ???; ???; ???
+hotdog_stand.png           ???; ???; ???
+long_front_on.png          ???; ???; ???
+long_front_on_pale.png     ???; ???; ???
+long_side_on_pale.png      ???; ???; ???
+orb_table.*                ???; ???; ???
+oriental_table.png         ???; ???; ???
+rectangular_with_meals.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+square.png                 ???; ???; ???
+square_pale.png            ???; ???; ???
+stone_desk.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+table_copper.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+table_linen.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
+table_with_beer.png        ???; ???; ???
+table_with_beer_dark.png   ???; ???; ???
+table_with_hob.*           ???; ???; ???
+table_with_hob_pale.*      ???; ???; ???
+table_wooden_brown.*       ???; ???; ???
+tree_stump_table.png       ???; ???; ???
+vendors_table.*            Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
+white.*                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
+white_counter_top.png      ???; ???; ???
+wooden.png                 ???; ???; ???
+wooden_pale.png            ???; ???; ???
+wooden_rectangular.*       ???; ???; ???
+wooden_trestle.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+wooden_trestle_vertical.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+wooden_with_candles.*      Lanea Zimmerman (Sharm), liftarn, Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/81367, https://opengameart.org/node/20850, https://openclipart.org/detail/2658
 
 tiled/tileset/ground/
 
@@ -786,7 +786,7 @@ beehive1.png            ???; ???; ???
 beehive2.png            ???; ???; ???
 bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cookies.*               ???; ???; ???
-fish_crates.png         ???; ???; ???
+fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fruit_basket.png        ???; ???; ???
 meals_1.png             ???; ???; ???
 meals_2.png             ???; ???; ???
@@ -912,7 +912,7 @@ dress.png              ???; ???; ???
 halloween_bunting.png  ???; ???; ???
 lace.png               ???; ???; ???
 large_dress.png        ???; ???; ???
-laundry.png            ???; ???; ???
+laundry.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_hat.png            ???; ???; ???
 towels.png             ???; ???; ???
 trousers.png           ???; ???; ???
@@ -1054,6 +1054,7 @@ ship.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skulls_on_spikes_l.png  ???; ???; ???
 skulls_on_spikes_r.png  ???; ???; ???
 stalactite.png          ???; ???; ???
+stone_well.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 suspension_bridge.*     Xenodora; CC BY-SA 3.0; https://opengameart.org/node/15135
 tan_tent.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 tent.png                ???; ???; ???
@@ -1139,8 +1140,8 @@ polyanthus.png          ???; ???; ???
 purple.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_blue_clusters.png   ???; ???; ???
 red_white.png           ???; ???; ???
-small_flower_bed.png    ???; ???; ???
-small_flower_bed_2.png  ???; ???; ???
+small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_purple_white.png  ???; ???; ???
 stone_edge_beds.png     ???; ???; ???
 
