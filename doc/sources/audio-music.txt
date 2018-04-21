@@ -2,25 +2,25 @@ This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Audio_co
 
 data/music/
 
-a_weird_place.ogg            Storyteller; GPL
-adventurers_wish.ogg         Storyteller; GPL
-ambiance-church-1.ogg        Natalie; public domain; http://soundbible.com/253-Church-Bells-Ringing.html
-ambiance-demon-1.ogg         Adam Webb; public domain; http://soundbible.com/1883-Scary-Demon-Haunting.html
-ambiance-restaurant-1.ogg    stephan; public domain; http://soundbible.com/1664-Restaurant-Ambiance.html
-bongos.*                     MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
-christmastree.*              Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
-come_to_rest.ogg             Storyteller; GPL
-deep_forest.ogg              Storyteller; GPL
-dungeon_entrance.ogg         Storyteller; GPL
-lost_in_the_fog.ogg          Storyteller; GPL
-medieval_harp.ogg            Storyteller; GPL
-mystical_aura.ogg            Storyteller; GPL
-new_hope.ogg                 Storyteller; GPL
-ohhowjoyfully.*              Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
-sacred_moments.ogg           Storyteller; GPL
-sewers.ogg                   Norien; GPL
-snowflakelittlewhiteskirt.*  Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902) 
-the_forsaken_mine.ogg        Storyteller; GPL
-the_magical_tower.ogg        Storyteller; GPL
-the_old_tavern.ogg           Storyteller; GPL
-warriors_fight.ogg           Storyteller; GPL
+a_weird_place.ogg			Storyteller; GPL
+adventurers_wish.ogg		Storyteller; GPL
+ambiance-church-1.ogg		Natalie; public domain; http://soundbible.com/253-Church-Bells-Ringing.html
+ambiance-demon-1.ogg		Adam Webb; public domain; http://soundbible.com/1883-Scary-Demon-Haunting.html
+ambiance-restaurant-1.ogg	stephan; public domain; http://soundbible.com/1664-Restaurant-Ambiance.html
+bongos.*					MarleneAyni; CC0; http://freesound.org/people/MarleneAyni/sounds/89608/
+christmastree.*				Markus Keunecke; public domain; based on score "Es lebe hoch der Zimmermannsgeselle (1799)" or even older
+come_to_rest.ogg			Storyteller; GPL
+deep_forest.ogg				Storyteller; GPL
+dungeon_entrance.ogg		Storyteller; GPL
+lost_in_the_fog.ogg			Storyteller; GPL
+medieval_harp.ogg			Storyteller; GPL
+mystical_aura.ogg			Storyteller; GPL
+new_hope.ogg				Storyteller; GPL
+ohhowjoyfully.*				Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
+sacred_moments.ogg			Storyteller; GPL
+sewers.ogg					Norien; GPL
+snowflakelittlewhiteskirt.*	Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902) 
+the_forsaken_mine.ogg		Storyteller; GPL
+the_magical_tower.ogg		Storyteller; GPL
+the_old_tavern.ogg			Storyteller; GPL
+warriors_fight.ogg			Storyteller; GPL
