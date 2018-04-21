@@ -23,8 +23,8 @@ dress_018.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://o
 dress_019.png               ???; ???; ???
 dress_020.png               ???; ???; ???
 dress_021.png               ???; ???; ???
-dress_022.png               ???; ???; ???
-dress_023.png               ???; ???; ???
+dress_022.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_023.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_024.png               ???; ???; ???
 dress_025.png               diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 dress_026.png               ???; ???; ???
