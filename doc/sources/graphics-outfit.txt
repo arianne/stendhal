@@ -56,7 +56,7 @@ dress_051.png               ???; ???; ???
 dress_052.png               ???; ???; ???
 dress_053.png               ???; ???; ???
 dress_054.png               ???; ???; ???
-dress_055.png               bleutailfly; ???; Stendhal
+dress_055.png               bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_056.png               ???; ???; ???
 dress_057.png (lederhosen)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80172
 dress_072.png               bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
