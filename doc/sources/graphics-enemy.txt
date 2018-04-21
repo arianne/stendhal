@@ -281,7 +281,7 @@ kalavan_citizen.png          ???; ???; ???
 kalavan_housewife.png        ???; ???; ???
 kalavan_peasant.png          ???; ???; ???
 kalavan_wisewoman.png        Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
-little_assassin.png          ???; ???; ???
+little_assassin.png          Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlewitch.png              Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/127
 littlewizard.png             Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/126
 masked_ninja.png             ???; ???; ???
