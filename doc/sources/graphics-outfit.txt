@@ -5,7 +5,7 @@ data/sprites/outfit/dress/
 dress_001.png               Jordan Irwin (AntumDeluge); CC0; Stendhal
 dress_002.png               ???; ???; ???
 dress_003.png               ???; ???; ???
-dress_004.png               ???; ???; ???
+dress_004.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_005.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_006.png               Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_007.png (gi)          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80841
