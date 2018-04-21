@@ -47,8 +47,8 @@ dress_042.png (cloak)       Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://o
 dress_043.png               ???; ???; ???
 dress_044.png               bleutailfly; ???; Stendhal
 dress_045.png               ???; ???; ???
-dress_046.png               bleutailfly; ???; Stendhal
-dress_047.png               bleutailfly; ???; Stendhal
+dress_046.png               bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
+dress_047.png               bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_048.*                 ???; ???; ???
 dress_049.*                 ???; ???; ???
 dress_050.png               ???; ???; ???
