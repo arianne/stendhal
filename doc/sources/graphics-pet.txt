@@ -1,4 +1,3 @@
-This file should be synced with: https://stendhalgame.org/wiki/Stendhal:Graphics_copyright/Pet
 
 data/sprites/ (should be moved to data/sprites/pet ?)
 
