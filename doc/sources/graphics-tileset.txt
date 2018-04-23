@@ -433,6 +433,7 @@ dark_brown_stone.png	Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_front_on.*			???, Kimmo Rundelin (kiheru); ???; ???
 dark_side_on.*			Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 jacuzzi_dark_side_on.*	???, Kimmo Rundelin (kiheru); ???; ???
+manger.*				Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pale_brown_stone.*		???, Kimmo Rundelin (kiheru); ???; ???
 
 tiled/tileset/furniture/table/
