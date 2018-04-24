@@ -147,7 +147,7 @@ data/sprites/monsters/fairy/
 baby_angel.*	Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 clurichaun.png	johnnnny; ???; Stendhal
 leprechaun.png	johnnnny; ???; Stendhal
-littlefairy.png	???; ???; ???
+littlefairy.png	Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/149, https://opengameart.org/node/23314
 
 data/sprites/monsters/farm_animal/
 
