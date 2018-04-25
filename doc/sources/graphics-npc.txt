@@ -133,7 +133,7 @@ oldmaidnpc.png					???; ???; ???
 oldmannpc.*						Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 oldratwomannpc.png				???; ???; ???
 oldwomannpc.png					???; ???; ???
-oracle*npc.*					Svetlana Kushnariova (Cabbit), Nila122, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
+oracle*npc.*					Svetlana Kushnariova (Cabbit), Nila122, olonu, leangoro, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
 orcbuyernpc.png					Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsalesmannpc.png				Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsamannpc.png					Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
