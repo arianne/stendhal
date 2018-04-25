@@ -451,7 +451,7 @@ desk.*						Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 desk_wooden.png				???; ???; ???
 fancy_blue_red.*			Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flowers_on_bench2.png		Lanea Zimmerman (Sharm), Jetrel, Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
-flowers_on_benches.png		???; ???; ???
+flowers_on_benches.*		Lanea Zimmerman (Sharm), bluecarrot16, Kimmo Rundelin (kiheru), Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
 grey_fancy.png				???; ???; ???
 grey_fancy_horizontal.png	???; ???; ???
 grey_long.png				???; ???; ???
