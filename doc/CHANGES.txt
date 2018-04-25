@@ -17,67 +17,67 @@ The Arianne project would like to give special thanks to Cabbit
 who created the base template sprites that are used throughout
 this release, & diamonddmgirl for her additions to the set:
 
-- Svetlana Kushnariova (Cabbit)	https://opengameart.org/users/cabbit
-- diamonddmgirl					https://opengameart.org/users/diamonddmgirl
+- Svetlana Kushnariova (Cabbit)  https://opengameart.org/users/cabbit
+- diamonddmgirl                  https://opengameart.org/users/diamonddmgirl
 
 We would like to thank OpenGameArt.org & the rest of its community,
 specifically the following authors. Many of which may not have
 contributed directly to Stendhal, but whose works helped make this
 release:
 
-- amaranthia					https://opengameart.org/users/amaranthia
-- Angry Amish					https://opengameart.org/users/angry-amish
-- artisticdude					https://opengameart.org/users/artisticdude
-- bagzie						https://opengameart.org/users/bagzie
+- amaranthia                     https://opengameart.org/users/amaranthia
+- Angry Amish                    https://opengameart.org/users/angry-amish
+- artisticdude                   https://opengameart.org/users/artisticdude
+- bagzie                         https://opengameart.org/users/bagzie
 - Barbara Rivera
-- bluecarrot16					https://opengameart.org/users/bluecarrot16
-- Casper Nilsson				https://opengameart.org/users/cnilsson
-- Charles Gabriel (Antifarea)	https://opengameart.org/users/charlesgabriel
+- bluecarrot16                   https://opengameart.org/users/bluecarrot16
+- Casper Nilsson                 https://opengameart.org/users/cnilsson
+- Charles Gabriel (Antifarea)    https://opengameart.org/users/charlesgabriel
 - Cobra Hubbard (BlueVortexGames)
-								https://opengameart.org/users/bluevortexgames
-- Curt							https://opengameart.org/users/curt
-- Daniel Eddeland (daneeklu)	https://opengameart.org/users/daneeklu
-- danielmahon					https://opengameart.org/users/danielmahon
-- DkuCook						https://opengameart.org/users/dkucook
-- Dominik Gmiterko (ienze)		https://opengameart.org/users/ienze
-- Fabzy							https://opengameart.org/users/fabzy
-- GrumpyDiamond					https://opengameart.org/users/grumpydiamond
-- Hyptosis						https://opengameart.org/users/hyptosis
-- isaiah658						https://opengameart.org/users/isaiah658
-- Jetrel						https://opengameart.org/users/jetrel
-- Johann C						https://opengameart.org/users/johann-c
-- Kemono						https://opengameart.org/users/kemono
-- Kevin Smith (TKZ Productions)	https://opengameart.org/users/tkz-productions
-- Lanea Zimmerman (Sharm)		https://opengameart.org/users/sharm
-- Leonard Pabin					https://opengameart.org/users/leonard-pabin
-- LordNeo						https://opengameart.org/users/lordneo
-- Lori Angela Nagel (Jastiv)	https://opengameart.org/users/jastiv
+                                 https://opengameart.org/users/bluevortexgames
+- Curt                           https://opengameart.org/users/curt
+- Daniel Eddeland (daneeklu)     https://opengameart.org/users/daneeklu
+- danielmahon                    https://opengameart.org/users/danielmahon
+- DkuCook                        https://opengameart.org/users/dkucook
+- Dominik Gmiterko (ienze)       https://opengameart.org/users/ienze
+- Fabzy                          https://opengameart.org/users/fabzy
+- GrumpyDiamond                  https://opengameart.org/users/grumpydiamond
+- Hyptosis                       https://opengameart.org/users/hyptosis
+- isaiah658                      https://opengameart.org/users/isaiah658
+- Jetrel                         https://opengameart.org/users/jetrel
+- Johann C                       https://opengameart.org/users/johann-c
+- Kemono                         https://opengameart.org/users/kemono
+- Kevin Smith (TKZ Productions)  https://opengameart.org/users/tkz-productions
+- Lanea Zimmerman (Sharm)        https://opengameart.org/users/sharm
+- Leonard Pabin                  https://opengameart.org/users/leonard-pabin
+- LordNeo                        https://opengameart.org/users/lordneo
+- Lori Angela Nagel (Jastiv)     https://opengameart.org/users/jastiv
 - Michael Williams (BizmasterStudios)
-								https://opengameart.org/users/bizmasterstudios
-- mold							https://opengameart.org/users/mold
-- Nila122						https://opengameart.org/users/nila122
-- NoLogoGames					https://opengameart.org/users/nologogames
-- Rayane Félix (RayaneFLX)		https://opengameart.org/users/rayaneflx
-- RedVoxel						https://opengameart.org/users/redvoxel
-- Shepardskin					https://opengameart.org/users/shepardskin
-- Sollision						https://opengameart.org/users/sollision
-- Stephen Challener (Redshrike)	https://opengameart.org/users/redshrike
-- Tuomo Untinen (Reemax)		https://opengameart.org/users/reemax
-- William Thompson				https://opengameart.org/users/williamthompsonj
+                                 https://opengameart.org/users/bizmasterstudios
+- mold                           https://opengameart.org/users/mold
+- Nila122                        https://opengameart.org/users/nila122
+- NoLogoGames                    https://opengameart.org/users/nologogames
+- Rayane Félix (RayaneFLX)       https://opengameart.org/users/rayaneflx
+- RedVoxel                       https://opengameart.org/users/redvoxel
+- Shepardskin                    https://opengameart.org/users/shepardskin
+- Sollision                      https://opengameart.org/users/sollision
+- Stephen Challener (Redshrike)  https://opengameart.org/users/redshrike
+- Tuomo Untinen (Reemax)         https://opengameart.org/users/reemax
+- William Thompson               https://opengameart.org/users/williamthompsonj
 - Wolthera van Hövell tot Westerflier (TheraHedwig)
-								https://opengameart.org/users/therahedwig
-- Xenodora						https://opengameart.org/users/xenodora
-- Yamilian						https://opengameart.org/users/yamilian
-- Yar							https://opengameart.org/users/yar
-- yolkati						https://opengameart.org/users/yolkati
-- Zachariah Husiar (Zabin)		https://opengameart.org/users/zabin
+                                 https://opengameart.org/users/therahedwig
+- Xenodora                       https://opengameart.org/users/xenodora
+- Yamilian                       https://opengameart.org/users/yamilian
+- Yar                            https://opengameart.org/users/yar
+- yolkati                        https://opengameart.org/users/yolkati
+- Zachariah Husiar (Zabin)       https://opengameart.org/users/zabin
 
 We would also like to thank these authors:
 
-- Daniel Cook	http://www.lostgarden.com/
-- Firkin		https://openclipart.org/user-detail/Firkin
-- Guido Bos		http://www.neorice.com/
-- leangoro		https://openclipart.org/user-detail/leangoro
+- Daniel Cook  http://www.lostgarden.com/
+- Firkin       https://openclipart.org/user-detail/Firkin
+- Guido Bos    http://www.neorice.com/
+- leangoro     https://openclipart.org/user-detail/leangoro
 
 And finally, thank you to the Stendhal project members Kimmo Rundelin (kiheru),
 olonu, & Jordan Irwin (AntumDeluge) who put in extra hours of work to take on
