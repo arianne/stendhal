@@ -77,7 +77,7 @@ dark_elf.png				Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://gi
 dark_elf_admiral.png		???; ???; ???
 dark_elf_archer.png			Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVortexGames), SoCay, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/150
 dark_elf_captain.png		Svetlana Kushnariova (Cabbit), onu/olonu, Muhammad Amiruddin (Amir027); OGA BY 3.0; https://github.com/arianne/stendhal/issues/123
-dark_elf_elite_archer.png	???; ???; ???
+dark_elf_elite_archer.png	Svetlana Kushnariova (Cabbit), Nila122, SoCay, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/150
 dark_elf_general.png		Svetlana Kushnariova (Cabbit), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/122
 dark_elf_knight.png			???; ???; ???
 dark_elf_master.png			Svetlana Kushnariova (Cabbit), onu/olonu, Andrew Kelley (superjoe); OGA BY 3.0; https://github.com/arianne/stendhal/issues/116
