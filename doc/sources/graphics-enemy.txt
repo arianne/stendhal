@@ -231,7 +231,7 @@ black_death.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blue_dragon.png           ???; ???; ???
 bone_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chaos_*_dragonrider.*     Kimmo Rundelin (kiheru), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/77901
-flying_golden_dragon.png  ???; ???; ???
+flying_golden_dragon.png  ZaPaper; CC BY 3.0; https://opengameart.org/node/79018; Credits to http://www.buko-studios.com/ Commissioned by PlayCraft: https://www.playcraftapp.com/
 giant_kobold.png          Svetlana Kushnariova, yokati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
 giant_spider.png          Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
 golden_death.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

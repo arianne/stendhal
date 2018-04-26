@@ -71,6 +71,7 @@ release:
 - Yar                            https://opengameart.org/users/yar
 - yolkati                        https://opengameart.org/users/yolkati
 - Zachariah Husiar (Zabin)       https://opengameart.org/users/zabin
+- ZaPaper                        https://opengameart.org/users/zapaper
 
 We would also like to thank these authors:
 
