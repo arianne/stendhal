@@ -5,6 +5,7 @@
 *world*
 - many new NPC and enemy sprite images
 - separate sprites for mountain orcs: chief, hunter, warrior
+- moved vulcanus, tomi, & zekiel animated tilesets to tileset/character directory
 
 *client*
 - players can change skin color
