@@ -222,7 +222,7 @@ data/sprites/npc/alternative/
 
 crystal*npc.png  qubodup; GPL 2.0; http://opengameart.org/node/11013
 tendertwig.png   ???; ???; ???
-tomi.png         ???; ???; ???
+tomi.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 vulcanus.png     ???; ???; ???
 zekiel.png       ???; ???; ???
 
