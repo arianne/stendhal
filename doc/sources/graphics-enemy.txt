@@ -97,8 +97,8 @@ winged_blue_imp.*           ???; ???; ???
 
 data/sprites/monsters/dwarf/
 
-duergar.png         ???; ???; ???
-duergar_axe.png     ???; ???; ???
+duergar.png         Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
+duergar_axe.png     Svetlana Kushnariova (Cabbit), GrumpyDiamond, olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 duergar_black.png   ???; ???; ???
 duergar_elder.png   ???; ???; ???
 duergar_elite.png   ???; ???; ???
