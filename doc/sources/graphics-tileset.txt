@@ -35,7 +35,7 @@ wizards_tower.png             ???; ???; ???
 
 tiled/tileset/character/
 
-captive_tomi.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+captive_tomi.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83718
 vulcanus.png      Svetlana Kushnariova (Cabbit), Nila122, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82370, https://opengameart.org/node/72969, https://opengameart.org/node/29293, https://opengameart.org/node/54590
 zekiel.png        ???; ???; ???
 
