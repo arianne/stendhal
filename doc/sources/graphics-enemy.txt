@@ -44,7 +44,7 @@ killer_bee.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0;
 lion.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 monkey.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pandabear.png         danielmahon; CC BY-SA 3.0; https://opengameart.org/node/21008, Twitter: @danielmahon
-penguin.png           ???; ???; ???
+penguin.png           Kelvin Shadewing, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; https://opengameart.org/node/83751; http://kyrodianlegends.com/
 pigeon.png            ???; ???; ???
 poisonous_spider.png  Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
 reindeer.*            ???; ???; ???
