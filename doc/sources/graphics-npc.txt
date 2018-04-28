@@ -231,5 +231,5 @@ data/sprites/npc/animal/
 butterfly.*   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79095
 cat.png       bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69399
 fish_roach.*  Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal; Based on data/sprites/item/food/roach.png
-puppy.*       ???; ???; http://charas-project.net/resources_download.php?id=35116&file=resources%2FCharasets%2F11827_1191282125.png
+puppy.png     triceratops; CC BY 3.0; https://opengameart.org/node/55254
 rabbit.png    Stephen Challener (Redshrike); CC BY-SA 3.0; https://opengameart.org/node/14851
