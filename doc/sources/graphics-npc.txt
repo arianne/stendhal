@@ -44,7 +44,7 @@ drugsdealernpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 dwarfguardnpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarfnpc.png                  ???; ???; ???
 easterbunnynpc.png            ???; ???; ???
-elegantladynpc.png            ???; ???; ???
+elegantladynpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 elfbankeroldnpc.*             ???; ???; ???
 elfbankladynpc.*              ???; ???; ???
 elfbuyernpc.png               ???; ???; ???
