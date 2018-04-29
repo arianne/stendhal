@@ -142,7 +142,7 @@ paulnpc.png                   ???; ???; ???
 photographernpc.png           ???; ???; ???
 pinkgirlnpc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/140
 pirate_sailornpc.png          ???; ???; ???
-pirate_sailor2npc.png         ???; ???; ???
+pirate_sailor2npc.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 plinknpc.png                  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/718/
 postelfnpc.png                ???; ???; ???
 priestnpc.png                 ???; ???; ???
