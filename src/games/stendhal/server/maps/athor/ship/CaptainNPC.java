@@ -94,7 +94,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 		};
 
 		npc.setPosition(23, 38);
-		npc.setEntityClass("noimagenpc"); /* piratenpc */
+		npc.setEntityClass("piratenpc");
 		npc.setDescription ("You see Brownbeard, Captain of Athor Ferry. He will bring you from the mainland to the island.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
