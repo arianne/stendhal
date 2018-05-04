@@ -63,7 +63,7 @@ fishsoupmakernpc.png          ???; ???; ???
 floattingladynpc.*            Svetlana Kushnariova (Cabbit), Nila122, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
 friendlywizardnpc.png         ???; ???; ???
 gamesupervisornpc.png         ???; ???; ???
-girlnpc.png                   ???; ???; ???
+girlnpc.png                   Svetlana Kushnariova (Cabbit), Tracy, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
 gnomenpc.png                  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 goldsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 grandadnpc.png                ???; ???; ???
@@ -98,6 +98,7 @@ kid9npc.png                   ???; ???; ???
 kingcozartnpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 koboldbarmaidnpc.png          ???; ???; ???
 koboldbarregularnpc.png       ???; ???; ???
+lifeguardfemalenpc.png        Svetlana Kushnariova (Cabbit), olonu, ???; ???
 liljohnnnnynpc.png            Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlegirlnpc.png             ???; ???; ???
 littlegirl2npc.png            Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/139
