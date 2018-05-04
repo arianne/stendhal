@@ -9,7 +9,7 @@ angelnpc.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 apothecarynpc.*               ???; ???; ???
 badmayornpc.png               ???; ???; ???
 bakernpc.png                  Svetlana Kushnariova (Cabbit), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/69527
-barmannpc.png                 ???; ???; ???
+barmannpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 barman2npc.png                ???; ???; ???
 barman3npc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 barracksbuyernpc.png          ???; ???; ???
