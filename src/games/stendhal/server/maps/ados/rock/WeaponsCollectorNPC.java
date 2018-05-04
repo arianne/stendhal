@@ -61,7 +61,7 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 			 * maps.quests.UltimateCollector. */
 		};
 
-		npc.setEntityClass("noimagenpc"); /* oldwizardnpc */
+		npc.setEntityClass("oldwizardnpc");
 		npc.setPosition(16, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
