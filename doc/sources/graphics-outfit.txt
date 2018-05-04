@@ -11,7 +11,7 @@ dress_007.png (gi)               Jordan Irwin (AntumDeluge); OGA BY 3.0; https:/
 dress_008.png (lab coat)         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/141
 dress_009.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/50909
 dress_010.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_011.png                    ???; ???; ???
+dress_011.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_012.png                    ???; ???; ???
 dress_013.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/AntumDeluge/game-resources
 dress_014.png                    ???; ???; ???
@@ -50,7 +50,7 @@ dress_046.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; S
 dress_047.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_048.*                      ???; ???; ???
 dress_049.*                      ???; ???; ???
-dress_050.png                    ???; ???; ???
+dress_050.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_051.png                    ???; ???; ???
 dress_052.png                    ???; ???; ???
 dress_053.png                    ???; ???; ???
