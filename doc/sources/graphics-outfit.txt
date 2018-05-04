@@ -43,7 +43,7 @@ dress_039.png                    ???; ???; ???
 dress_040.png                    ???; ???; ???
 dress_041.png                    ???; ???; ???
 dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_043.png                    ???; ???; ???
+dress_043.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_044.*                      bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_045.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
 dress_046.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
