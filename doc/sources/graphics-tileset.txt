@@ -174,7 +174,7 @@ stairs_orange.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 winding.*                   ???; ???; ???
 winding_2.png               ???; ???; ???
 wooden_ns.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79115
-wooden_stairs.png           ???; ???; ???
+wooden_stairs.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/wall/
 
