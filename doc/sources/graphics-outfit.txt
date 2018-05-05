@@ -39,7 +39,7 @@ dress_035.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_036.png                    ???; ???; ???
 dress_037.png (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_038.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_039.png                    ???; ???; ???
+dress_039.png                    Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
 dress_040.png                    ???; ???; ???
 dress_041.png                    ???; ???; ???
 dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
