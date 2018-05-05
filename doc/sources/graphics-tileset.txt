@@ -362,7 +362,7 @@ tiled/tileset/furniture/light/
 candelabra.png       ???; ???; ???
 dark_torch.*         ???; ???; ???
 flames.*             ???; ???; ???
-floating_candle.png  ???; ???; ???
+floating_candle.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 iron_lamp.*          ???; ???; ???
 lamp_blue.png        Curt, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj); CC BY 3.0; https://opengameart.org/node/81455
 lamp_bronze.png      Curt, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj); CC BY 3.0; https://opengameart.org/node/81455
