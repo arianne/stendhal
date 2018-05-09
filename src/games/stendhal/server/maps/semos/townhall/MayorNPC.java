@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 public class MayorNPC implements ZoneConfigurator {
@@ -62,6 +63,7 @@ public class MayorNPC implements ZoneConfigurator {
 		npc.setEntityClass("mayornpc");
 		npc.setDescription("The mighty mayor of Semos, Mayor Sakhs, is walking infront of you. He seems to be nervous...");
 		npc.setPosition(13, 3);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.initHP(100);
 		zone.add(npc);
 	}
