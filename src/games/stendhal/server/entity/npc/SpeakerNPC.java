@@ -191,6 +191,9 @@ public class SpeakerNPC extends NPC {
 
 		setSize(1, 1);
 
+		// Set default collision action to reverse.
+		collisionAction = CollisionAction.REVERSE;
+
 		// set the default perception range for player chatting
 		setPerceptionRange(5);
 		updateModifiedAttributes();
