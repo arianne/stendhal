@@ -24,6 +24,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -104,6 +105,7 @@ public class RetireeNPC implements ZoneConfigurator {
 
 		};
 		npc.setPosition(24, 43);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("beggarnpc");
 		npc.setDescription("Diogenes is an elderly man, but sprightly for his age. He looks friendly and helpful.");
 		npc.setSounds(Arrays.asList("laugh-1", "laugh-2"));

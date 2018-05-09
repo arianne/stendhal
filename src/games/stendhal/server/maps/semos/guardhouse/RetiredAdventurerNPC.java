@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -101,6 +102,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 
 		};
 		npc.setPosition(4, 9);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("noimagenpc"); /* oldheronpc */
 		npc.setDescription("You see Hayunn Naratha. Beneath his grey hair and tatty armor you see glinting clever eyes and wiry muscles.");
 		npc.setBaseHP(100);

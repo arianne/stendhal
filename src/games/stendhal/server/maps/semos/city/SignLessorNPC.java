@@ -28,6 +28,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.office.RentedSignList;
@@ -186,6 +187,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 
 		};
 		npc.setPosition(20, 50);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("signguynpc");
 		zone.add(npc);
 		npc.setDescription("You see Gordon. He keeps an eye on the signs close to him.");

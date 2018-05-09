@@ -22,6 +22,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -60,6 +61,7 @@ public class HealerNPC implements ZoneConfigurator {
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("healing")));
 		new HealerAdder().addHealer(npc, 0);
 		npc.setPosition(5, 46);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setDescription("You see kind Carmen. She looks like someone you could ask for help.");
 		npc.setEntityClass("welcomernpc");
 		npc.setSounds(Arrays.asList("giggle-1", "giggle-2"));

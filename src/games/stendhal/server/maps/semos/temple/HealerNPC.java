@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
@@ -67,6 +68,7 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.setEntityClass("welcomernpc");
 		npc.setDescription("You see Ilisa. She is young, pretty and her magical aura is enclosing her.");
 		npc.setPosition(9, 6);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.initHP(100);
 		zone.add(npc);
 	}

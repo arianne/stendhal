@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -79,6 +80,7 @@ public class MayorNPC implements ZoneConfigurator {
 		mayor.setDescription("You see the respected mayor of Ados.");
 		mayor.setEntityClass("badmayornpc");
 		mayor.setPosition(3, 9);
+		mayor.setCollisionAction(CollisionAction.STOP);
 		mayor.initHP(100);
 		zone.add(mayor);
 	}

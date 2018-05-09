@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -71,6 +72,7 @@ public class TaxmanNPC implements ZoneConfigurator {
 		npc.setDescription("You see a terrifying half human, the Tax Man.");
 		npc.setEntityClass("taxmannpc");
 		npc.setPosition(2, 14);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.initHP(100);
 		zone.add(npc);
 

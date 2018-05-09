@@ -14,6 +14,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
@@ -178,6 +179,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		buyitems.put("sheep", 150);
 		new BuyerAdder().addBuyer(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.setPosition(40, 45);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("buyernpc");
 		npc.setDescription("You see Sato. He loves sheep.");
 		npc.setSounds(Arrays.asList("hiccup-1", "sneeze-1"));
