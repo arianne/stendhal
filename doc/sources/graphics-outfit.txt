@@ -51,7 +51,7 @@ dress_047.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; S
 dress_048.*                      ???; ???; ???
 dress_049.*                      ???; ???; ???
 dress_050.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_051.png                    ???; ???; ???
+dress_051.png                    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_052.*                      Katie Russell (kymara), Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_053.png                    ???; ???; ???
 dress_054.png                    ???; ???; ???
