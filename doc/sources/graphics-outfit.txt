@@ -12,8 +12,7 @@ dress_008.png (lab coat)         Svetlana Kushnariova (Cabbit), onu/olonu; OGA B
 dress_009.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/50909
 dress_010.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_011.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_012.png                    ???; ???; ???
-dress_012.xcf.bz2                Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
+dress_012.*                      Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_013.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/AntumDeluge/game-resources
 dress_014.png                    ???; ???; ???
 dress_015.png                    ???; ???; ???
