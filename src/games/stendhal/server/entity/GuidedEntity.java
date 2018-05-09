@@ -38,7 +38,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public Registrator pathnotifier = new Registrator();
 
 	/** Action entity will take after collision */
-    private CollisionAction collisionAction;
+    protected CollisionAction collisionAction;
 
     /**
      * The entity is using a random path
