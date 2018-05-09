@@ -36,7 +36,7 @@ dress_032.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_033.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_034.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_035.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_036.png                    ???; ???; ???
+dress_036.*                      Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_037.png (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_038.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_039.png                    Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
