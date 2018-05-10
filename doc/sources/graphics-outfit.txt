@@ -28,7 +28,7 @@ dress_024.png                    ???; ???; ???
 dress_025.png                    diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 dress_026.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_027.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_028.png                    ???; ???; ???
+dress_028.*                      bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_029.png                    ???; ???; ???
 dress_030.png                    ???; ???; ???
 dress_031.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
