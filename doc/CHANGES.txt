@@ -7,6 +7,7 @@
 - separate sprites for mountain orcs: chief, hunter, warrior
 - moved vulcanus, tomi, & zekiel animated tilesets to tileset/character directory
 - NPCs will now change direction after collision with another entity by default.
+- Extra player outfits added.
 
 *client*
 - players can change skin color
