@@ -58,6 +58,8 @@ dress_054.png                    ???; ???; ???
 dress_055.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_056.png                    ???; ???; ???
 dress_057.png (lederhosen)       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80172
+dress_058.png (dirndl)           ???; ???; ???
+dress_059.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_072.png                    bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_073.png                    ???; ???; ???
 dress_074.png                    ???; ???; ???
