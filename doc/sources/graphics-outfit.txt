@@ -19,7 +19,7 @@ dress_015.png                    ???; ???; ???
 dress_016.png                    ???; ???; ???
 dress_017.png                    ???; ???; ???
 dress_018.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_019.png                    ???; ???; ???
+dress_019.*                      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_020.png                    ???; ???; ???
 dress_021.png                    ???; ???; ???
 dress_022.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
