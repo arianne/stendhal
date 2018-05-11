@@ -41,7 +41,7 @@ dress_037.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https:/
 dress_038.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_039.png (cloak)            Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
 dress_040.*                      Charles Gabriel, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83035
-dress_041.png                    ???; ???; ???
+dress_041.png (cleric robes)     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_043.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_044.*   (hula-hoop)        bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
