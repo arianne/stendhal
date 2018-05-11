@@ -56,7 +56,7 @@ dress_052.*   (denim)            Katie Russell (kymara), Jordan Irwin (AntumDelu
 dress_053.png (business suit)    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_054.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_055.png (tank top)         bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
-dress_056.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_056.*                      bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_057.png (lederhosen)       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80172
 dress_058.png (dirndl)           ???; ???; ???
 dress_059.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
