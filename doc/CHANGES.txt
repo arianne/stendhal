@@ -69,6 +69,7 @@ release:
 - William Thompson               https://opengameart.org/users/williamthompsonj
 - Wolthera van Hövell tot Westerflier (TheraHedwig)
                                  https://opengameart.org/users/therahedwig
+- wulax                          https://opengameart.org/users/wulax
 - Xenodora                       https://opengameart.org/users/xenodora
 - Yamilian                       https://opengameart.org/users/yamilian
 - Yar                            https://opengameart.org/users/yar
