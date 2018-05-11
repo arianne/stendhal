@@ -16,12 +16,12 @@ dress_012.*   (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (An
 dress_013.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/AntumDeluge/game-resources
 dress_014.*   (robes)            wulax, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/11165
 dress_015.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_016.*                      Jordan Irwin; OGA BY 3.0; Stendhal
+dress_016.*                      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_017.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_018.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_019.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-dress_020.png                    ???; ???; ???
-dress_021.*   (priest robes)     Jordan Irwin; OGA BY 3.0; Stendhal
+dress_020.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+dress_021.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_022.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_023.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_024.png                    ???; ???; ???
@@ -30,7 +30,7 @@ dress_026.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_027.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_028.*   (armor)            bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
 dress_029.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_030.png (priest robes)     Jordan Irwin; OGA BY 3.0; Stendhal
+dress_030.png (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_031.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_032.png (dress / skirt)    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_033.png (overalls)         bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal
