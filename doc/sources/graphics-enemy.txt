@@ -263,7 +263,7 @@ elder_cannibal.png           ???; ???; ???
 emperor_dalmung.png          ???; ???; ???
 hunter.*                     ???; ???; ???
 imperial_archer.png          Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
-imperial_archer_leader.png   Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
+imperial_archer_leader.png   Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
 imperial_chief.png           ???; ???; ???
 imperial_commander.png       ???; ???; ???
 imperial_defender.png        ???; ???; ???
