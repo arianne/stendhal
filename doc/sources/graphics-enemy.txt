@@ -2,7 +2,7 @@
 data/sprites/monsters/albino_elf/
 
 albino_elf_archer.png     Svetlana Kushnariova (Cabbit), Michael Williams (Bizmaster Studios), olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/146
-albino_elf_king.png       ???; ???; ???
+albino_elf_king.png       Svetlana Kushnariova (Cabbit), olonu, ztn; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
 albino_elf_magician.png   Svetlana Kushnariova (Cabbit), onu/olonu, Rawdanitsu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/104
 albino_elf_queen.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 albino_elf_swordsman.png  Svetlana Kushnariova (Cabbit), onu/olonu, Justis; OGA BY 3.0; https://github.com/arianne/stendhal/issues/115
