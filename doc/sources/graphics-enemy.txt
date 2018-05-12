@@ -18,7 +18,7 @@ amazoness_commander.png          Svetlana Kushnariova (Cabbit), onu/olonu; OGA B
 amazoness_elite_coastguard.png   ???; ???; ???
 amazoness_hunter.png             Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
 amazoness_imperator.png          ???; ???; ???
-amazoness_vigilance.png          ???; ???; ???
+amazoness_vigilance.png          Svetlana Kushnariova (Cabbit), olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
 
 data/sprites/monsters/animal/
 
