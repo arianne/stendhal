@@ -103,7 +103,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 		};
 		npc.setPosition(4, 9);
 		npc.setCollisionAction(CollisionAction.STOP);
-		npc.setEntityClass("noimagenpc"); /* oldheronpc */
+		npc.setEntityClass("oldheronpc");
 		npc.setDescription("You see Hayunn Naratha. Beneath his grey hair and tatty armor you see glinting clever eyes and wiry muscles.");
 		npc.setBaseHP(100);
 		npc.setHP(85);
