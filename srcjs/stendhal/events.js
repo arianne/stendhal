@@ -13,8 +13,7 @@
 
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
-var stendhal.ui = stendhal.ui = stendhal.ui || {};
-var stendhal.ui.html = stendhal.ui.html = stendhal.ui.html || {}; 
+
 
 marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(entity) {
@@ -37,18 +36,99 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 	}
 });
 
-marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
+
+marauroa.rpeventFactory["examine"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new ExamineEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["global_visual_effect"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new GlobalVisualEffectEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["group_change_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new GroupChangeEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["group_invite_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new GroupInviteEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["image_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new ImageEffectEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["player_logged_on"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new PlayerLoggedOnEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["player_logged_out"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new PlayerLoggedOutEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		stendhal.ui.chatLog.addLine(this["texttype"].toLowerCase(), this["text"]);
 	}
 });
 
 
-marauroa.rpeventFactory["text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+marauroa.rpeventFactory["progress_status_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		rpobject.say(this["text"]);
+		// TODO: new ProgressStatusEvent();
 	}
 });
+
+
+marauroa.rpeventFactory["reached_achievement"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new ReachedAchievementEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		if (this.hasOwnProperty("title")) {
+			stendhal.ui.chatLog.addLine("normal", this["title"]);
+		}
+		if (this.hasOwnProperty("caption")) {
+			stendhal.ui.chatLog.addLine("normal", this["caption"]);
+		}
+		if (this.hasOwnProperty("content")) {
+			stendhal.ui.chatLog.addLine("normal", "Item\t-\tPrice\t-\tDescription");
+			for (var obj in this["content"]) {
+				if (this["content"].hasOwnProperty(obj)) {
+					var slotObj = this["content"][obj];
+					var data = this["content"][obj]["a"];
+					stendhal.ui.chatLog.addLine("normal", data["subclass"] + "\t"
+							+ data["price"] + "\t" + data["description_info"]);
+				}
+			}
+		}
+	}
+});
+
 
 marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
@@ -81,67 +161,60 @@ marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeven
 	}
 });
 
-marauroa.rpeventFactory["show_item_list"] = marauroa.util.fromProto(marauroa.rpeventFactory._default, {
+
+marauroa.rpeventFactory["text"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		if (this.hasOwnProperty("title")) {
-			stendhal.ui.chatLog.addLine("normal", this["title"]);
-		}
-		if (this.hasOwnProperty("caption")) {
-			stendhal.ui.chatLog.addLine("normal", this["caption"]);
-		}
-		if (this.hasOwnProperty("content")) {
-			stendhal.ui.chatLog.addLine("normal", "Item\t-\tPrice\t-\tDescription");
-			for (var obj in this["content"]) {
-				if (this["content"].hasOwnProperty(obj)) {
-					var slotObj = this["content"][obj];
-					var data = this["content"][obj]["a"];
-			stendhal.ui.chatLog.addLine("normal", this.title);
-		}
-		if (this.hasOwnProperty("caption")) {
-			stendhal.ui.chatLog.addLine("normal", this["caption"]);
-		}
-		if (this.hasOwnProperty("content")) {
-			stendhal.ui.chatLog.addLine("normal", "Item\t-\tPrice\t-\tDescription");
-			for (var obj in this["content"]) {
-				if (this["content"].hasOwnProperty(obj)) {
-					var slotObj = this["content"][obj];
-					console.log("logging thingy: " + obj + " : " + typeof(slotObj));
-					var data = this.content[obj].a;
-					stendhal.ui.chatLog.addLine("normal", data["subclass"] + "\t"
-							+ data["price"] + "\t" + data["description_info"]);
-				}
-			}
-		}
+		rpobject.say(this["text"]);
+	}
+});
+
+
+marauroa.rpeventFactory["trade_state_change_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new TradeStateChangeEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["transition_graph"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new TransitionGraphEvent();
+	}
+});
+
+
+marauroa.rpeventFactory["view_change"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		// TODO: new ViewChangeEvent();
 	}
 });
 
 marauroa.rpeventFactory["pvp_new_challenge_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
-		execute: function(rpobject) {
-			var challenger = this["challenger"];
-			var dimensions = stendhal.ui.html.gamewindowSize();
-			var idReject = "reject-" + challenger;
-			var idAccept = "accept-" + challenger;
-			var reject = "<button id=\"" + idReject + ""\">Reject</button>";
-			var accept = "<button id=\"" + idAccept + "\">Accept</button>";
-			var content = accept + " " + reject;
-			var popup = new stendhal.ui.Popup(challenger + " challenged you!", content, dimensions.width / 2, dimensions.height / 2);
-			
-			popup.popupdiv.querySelector("#" + idReject).addEventListener("click", function (e) {
-				popup.close();
-			});
-			
-			popup.popupdiv.querySelector("#" + idAccept).addEventListener("click", function (e) {
-				var action = {
-						"type": "challenge",
-						"action": "accept",
-						"target": challenger
-				};
-				marauroa.clientFramework.sendAction(action);
-				popup.close();
-			});
-			
-			popup.onClose = function() {
-			}
+	execute: function(rpobject) {
+		var challenger = this["challenger"];
+		var dimensions = stendhal.ui.html.gamewindowSize();
+		var idReject = "reject-" + challenger;
+		var idAccept = "accept-" + challenger;
+		var reject = "<button id=\"" + idReject + ""\">Reject</button>";
+		var accept = "<button id=\"" + idAccept + "\">Accept</button>";
+		var content = accept + " " + reject;
+		var popup = new stendhal.ui.Popup(challenger + " challenged you!", content, dimensions.width / 2, dimensions.height / 2);
+		
+		popup.popupdiv.querySelector("#" + idReject).addEventListener("click", function (e) {
+			popup.close();
+		});
+		
+		popup.popupdiv.querySelector("#" + idAccept).addEventListener("click", function (e) {
+			var action = {
+					"type": "challenge",
+					"action": "accept",
+					"target": challenger
+			};
+			marauroa.clientFramework.sendAction(action);
+			popup.close();
+		});
+		
+		popup.onClose = function() {
 		}
 	}
-);
+});
