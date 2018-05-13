@@ -171,10 +171,10 @@ wizard_frogman.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/monsters/gargoyle/
 
-dark_gargoyle.png   ???; ???; ???
-elder_gargoyle.png  ???; ???; ???
-gargoyle.png        ???; ???; ???
-venom_gargoyle.png  ???; ???; ???
+dark_gargoyle.png   Nila122, Stephen Challener (Redshrike), olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/162
+elder_gargoyle.png  Nila122, Stephen Challener (Redshrike), olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/162
+gargoyle.png        Nila122, Stephen Challener (Redshrike), olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/162
+venom_gargoyle.png  Nila122, Stephen Challener (Redshrike), olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/162
 
 data/sprites/monsters/giant/
 
