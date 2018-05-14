@@ -109,7 +109,7 @@ dwarf.png           Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond,
 dwarf_guardian.png  ???; ???; ???
 elder_dwarf.png     ???; ???; ???
 giant_dwarf.png     Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
-hero_dwarf.png      ???; ???; ???
+hero_dwarf.png      Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 leader_dwarf.png    ???; ???; ???
 lord_durin.png      ???; ???; ???
 
