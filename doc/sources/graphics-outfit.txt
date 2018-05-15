@@ -1,4 +1,20 @@
 
+data/sprites/outfit/
+
+
+data/sprites/outfit/body/
+
+
+data/sprites/outfit/detail/
+
+detail_001.png (balloon)     ???; ???; ???
+detail_002.png (balloon)     ???; ???; ???
+detail_003.png (balloon)     ???; ???; ???
+detail_004.png (balloon)     ???; ???; ???
+detail_005.*   (flag)        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+detail_006.png (bride veil)  ???; ???; ???
+detail_007.png (umbrella)    ???; ???; ???
+
 data/sprites/outfit/dress/
 
 dress_001.png (jumpsuit)         Jordan Irwin (AntumDeluge); CC0; Stendhal
