@@ -99,12 +99,12 @@ data/sprites/monsters/dwarf/
 
 duergar.png         Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 duergar_axe.png     Svetlana Kushnariova (Cabbit), GrumpyDiamond, olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
-duergar_black.png   ???; ???; ???
+duergar_black.png   Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 duergar_elder.png   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/164
-duergar_elite.png   ???; ???; ???
-duergar_hero.png    ???; ???; ???
+duergar_elite.png   Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, olonu, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
+duergar_hero.png    Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 duergar_king.png    Svetlana Kushnariova (Cabbit), Razare2015, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/163
-duergar_wizard.png  ???; ???; ???
+duergar_wizard.png  Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, qubodup, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83728
 dwarf.png           Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarf_guardian.png  Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 elder_dwarf.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
