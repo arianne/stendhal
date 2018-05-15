@@ -100,7 +100,7 @@ data/sprites/monsters/dwarf/
 duergar.png         Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 duergar_axe.png     Svetlana Kushnariova (Cabbit), GrumpyDiamond, olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 duergar_black.png   ???; ???; ???
-duergar_elder.png   ???; ???; ???
+duergar_elder.png   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/164
 duergar_elite.png   ???; ???; ???
 duergar_hero.png    ???; ???; ???
 duergar_king.png    Svetlana Kushnariova (Cabbit), Razare2015, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/163
