@@ -1062,7 +1062,7 @@ suspension_bridge.*     Xenodora; CC BY-SA 3.0; https://opengameart.org/node/151
 tan_tent.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 tent.png                ???; ???; ???
 testgrid.png            ???; ???; ???
-trellis_small.png       ???; ???; ???
+trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                ???; ???; ???
 well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
 well_tan.png            ???; ???; ???
