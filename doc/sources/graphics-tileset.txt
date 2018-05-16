@@ -1036,7 +1036,7 @@ vegetable.png      ???; ???; ???
 
 tiled/tileset/object/
 
-arrows.png              ???; ???; ???
+arrows.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 birds.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                ???; ???; ???
@@ -1044,29 +1044,28 @@ creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/
 creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 ents.png                ???; ???; ???
 hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
-letters.png             ???; ???; ???
-mine_carts.*            ???; ???; ???
-mine_rails.png          ???; ???; ???
+letters.png             Juan; ???; Stendhal
+mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+mine_rails.png          ???; ???; Mirage tilesets
 question_marks.png      ???; ???; ???
 roofed_well.png         ???; ???; ???
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
-row_boat.*              ???; ???; ???
-scarecrow.*             ???; ???; ???
+row_boat.*              Daniel Eddeland (daneeklu); CC BY-SA 3.0; https://opengameart.org/node/11117, https://opengameart.org/node/79264
+scarecrow.*             bleutailfly, Kimmo Rundelin (kiheru); ???; Stendhal
 ship.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-skulls_on_spikes_l.png  ???; ???; ???
-skulls_on_spikes_r.png  ???; ???; ???
-stalactite.png          ???; ???; ???
+skulls_on_spikes_l.png  omero; ???; ???
+skulls_on_spikes_r.png  omero; ???; ???
+stalactite.png          Katie Russell (kymara); ???; ???
 stone_well.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 suspension_bridge.*     Xenodora; CC BY-SA 3.0; https://opengameart.org/node/15135
 tan_tent.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
-tent.png                ???; ???; ???
-testgrid.png            ???; ???; ???
+tent.png                sshk5; ???; ???
+testgrid.png            tigertoes; ???; ???
 trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                ???; ???; ???
 well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
-well_tan.png            ???; ???; ???
-well_with_rope.png      ???; ???; ???
+well_with_rope.png      ???; ???; Mirage tilesets
 
 tiled/tileset/object/misc/
 
