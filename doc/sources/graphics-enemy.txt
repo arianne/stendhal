@@ -489,7 +489,7 @@ ghosthound.png          Stephen Challener (Redshrike), William Thompson (William
 green_phantom.png       ???; ???; ???
 headless_monster.png    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 high_lich.png           ???; ???; ???
-incorporeal_armor.png   ???; ???; ???
+incorporeal_armor.png   Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 invisible_man.png       ???; ???; ???
 lich.png                ???; ???; ???
 myling.*                Artisticdude; CC0; http://opengameart.org/node/14803
