@@ -123,7 +123,7 @@ militiaelfnpc.png             Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3
 minernpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 mithrilforgernpc.png          Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
 mothernpc.png                 ???; ???; ???
-naughtyteennpc.png            ???; ???; ???
+naughtyteennpc.*              Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 naughtyteen2npc.*             Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 nightguardbrownnpc.png        ???; ???; ???
 nightguardswordnpc.png        ???; ???; ???
