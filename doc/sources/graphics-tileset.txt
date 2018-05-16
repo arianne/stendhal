@@ -902,7 +902,7 @@ romanic_art2.png         ???; ???; ???
 seahorse.png             ???; ???; ???
 skullpedestal.png        ???; ???; ???
 skull_carving.png        ???; ???; ???
-stone_dragon.png         ???; ???; ???
+stone_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 swordsman.png            Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70109
 urn_with_flowers.*       Lanea Zimmerman (Sharm), Hyptosis; CC BY-SA 3.0; https://opengameart.org/node/11192, https://opengameart.org/node/17021
 warlock.png              ???; ???; ???
