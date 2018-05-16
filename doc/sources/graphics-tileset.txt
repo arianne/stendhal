@@ -1038,7 +1038,7 @@ tiled/tileset/object/
 
 arrows.png              ???; ???; ???
 birds.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-boardwalk.png           ???; ???; ???
+boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                ???; ???; ???
 creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
