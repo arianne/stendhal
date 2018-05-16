@@ -1043,7 +1043,7 @@ boat.png                ???; ???; ???
 creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 ents.png                ???; ???; ???
-hay_cart.png            ???; ???; ???
+hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
 letters.png             ???; ???; ???
 mine_carts.*            ???; ???; ???
 mine_rails.png          ???; ???; ???
