@@ -879,7 +879,7 @@ broken_lion.png          ???; ???; ???
 buddha.png               ???; ???; ???
 cross.png                ???; ???; ???
 crystal_statues.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dryad_marble.png         ???; ???; ???
+dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC BY-SA 3.0; https://opengameart.org/node/64532
 eaglehead.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fairypool.png            ???; ???; ???
 flowered_arch.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
