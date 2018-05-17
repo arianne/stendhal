@@ -691,7 +691,7 @@ hot_iron_piece.png        ???; ???; ???
 huge_orb.png              ???; ???; ???
 logs_snow.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow1.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-native_masks.png          ???; ???; ???
+native_masks.*            alles, Jordan Irwin (AntumDeluge); CC0; https://pixabay.com/en/masks-africa-african-masks-wooden-1675016/
 postbox.png               ???; ???; ???
 postbox_2.png             ???; ???; ???
 ropes.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
