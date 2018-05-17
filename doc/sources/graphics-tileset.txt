@@ -614,6 +614,7 @@ huge_boulder.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart
 icy_crystal.*        Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 large_boulder.png    ???; ???; ???
 large_pebble.*       ???; ???; ???
+lava_rock.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 mossy_boulder.png    ???; ???; ???
 mossy_rubble.png     ???; ???; ???
 obsidian.png         ???; ???; ???
