@@ -240,4 +240,4 @@ butterfly.*   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/no
 cat.png       bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69399
 fish_roach.*  Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal; Based on data/sprites/item/food/roach.png
 puppy.png     triceratops; CC BY 3.0; https://opengameart.org/node/55254
-rabbit.png    Stephen Challener (Redshrike); CC BY-SA 3.0; https://opengameart.org/node/14851
+rabbit.png    Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/14851
