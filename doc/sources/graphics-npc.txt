@@ -79,7 +79,7 @@ halfelfnpc.png                ???; ???; ???
 hanknpc.png                   ???; ???; ???
 heraldnpc.png                 ???; ???; ???
 hoeingmannpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802; Original Pepper&Carrot webcomic created by David Revoy.
-holidaymakernpc.png           ???; ???; ???
+holidaymakernpc.png           ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
 hotelchefnpc.png              ???; ???; ???
 hotelguestnpc.png             ???; ???; ???
 hotelreceptionistnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
