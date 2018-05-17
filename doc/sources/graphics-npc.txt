@@ -84,7 +84,7 @@ hotelchefnpc.png              ???; ???; ???
 hotelguestnpc.png             ???; ???; ???
 hotelreceptionistnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 housewifenpc.png              ???; ???; ???
-icecreamsellernpc.png         ???; ???; ???
+icecreamsellernpc.png         ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
 investigatornpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/103
 jailedbarbariannpc.png        ???; ???; ???
 kid1npc.png                   ???; ???; ???
