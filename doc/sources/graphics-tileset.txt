@@ -1050,7 +1050,6 @@ letters.png             Juan; ???; Stendhal
 mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mine_rails.png          ???; ???; Mirage tilesets
 question_marks.png      ???; ???; ???
-roofed_well.png         ???; ???; ???
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
 row_boat.*              Daniel Eddeland (daneeklu); CC BY-SA 3.0; https://opengameart.org/node/11117, https://opengameart.org/node/79264
