@@ -1069,10 +1069,6 @@ well.png                ???; ???; ???
 well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
 well_with_rope.png      ???; ???; Mirage tilesets
 
-tiled/tileset/object/misc/
-
-temp_hell_placeholder.png  ???; ???; ???
-
 tiled/tileset/object/rock/
 
 pillars_stone.*  Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
@@ -1251,8 +1247,9 @@ desert.png  Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/nod
 
 tiled/tileset/terrain/ground/
 
-stone.*        Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
-stone-red.png  Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+glowing_stone.*  Rachel J Morris (Moosader), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+stone.*          Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+stone-red.png    Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 
 tiled/tileset/terrain/stairs/
 
