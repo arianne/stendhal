@@ -221,7 +221,7 @@ wood_2.png                       ???; ???; ???
 tiled/tileset/building/window/
 
 broken_window.png               ???; ???; ???
-brown_with_cream_shutters.png   ???; ???; ???
+brown_with_cream_shutters.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 classic_window.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_brown.png                  ???; ???; ???
 int_small_windows_dark_red.png  ???; ???; ???
