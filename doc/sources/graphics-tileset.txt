@@ -631,7 +631,7 @@ rocks_2.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rocks_3.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rubble.png           ???; ???; ???
 sandy_rocks.*        ???; ???; ???
-square_crystal.png   ???; ???; ???
+square_crystal.*     Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/54984
 
 tiled/tileset/ground/water/
 
