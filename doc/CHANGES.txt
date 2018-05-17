@@ -38,6 +38,7 @@ release:
 - Charles Gabriel (Antifarea)    https://opengameart.org/users/charlesgabriel
 - Cobra Hubbard (BlueVortexGames)
                                  https://opengameart.org/users/bluevortexgames
+- Crisisworks                    https://opengameart.org/users/crisisworks
 - Curt                           https://opengameart.org/users/curt
 - Daniel Eddeland (daneeklu)     https://opengameart.org/users/daneeklu
 - danielmahon                    https://opengameart.org/users/danielmahon
