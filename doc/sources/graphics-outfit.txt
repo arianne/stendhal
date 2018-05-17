@@ -84,7 +84,7 @@ dress_074.png (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https:/
 dress_075.png                    ???; ???; ???
 dress_076.png                    ???; ???; ???
 dress_078.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
-dress_079.png (cloak)            ???; ???; ???
+dress_079.png (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_080.png ("S" suit)         Jordan Irwin (AntumDeluge); CC0; Stendhal
 dress_081.png (bunny suit?)      ???; ???; ???
 dress_082.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
