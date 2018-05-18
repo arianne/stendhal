@@ -143,7 +143,7 @@ orcsalesmannpc.png            Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge)
 orcsamannpc.png               Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orientalwizardnpc.png         ???; ???; ???
 paulnpc.png                   ???; ???; ???
-photographernpc.png           ???; ???; ???
+photographernpc.png           Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 pinkgirlnpc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/140
 pirate_sailornpc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83642
 pirate_sailor2npc.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
