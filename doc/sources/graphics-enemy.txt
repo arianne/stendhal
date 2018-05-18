@@ -15,7 +15,7 @@ amazoness_bodyguard.png          Svetlana Kushnariova (Cabbit), onu/olonu, arike
 amazoness_coastguard.png         ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/108
 amazoness_coastguard_master.png  Svetlana Kushnariova (Cabbit), onu/olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
 amazoness_commander.png          Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
-amazoness_elite_coastguard.png   ???; ???; ???
+amazoness_elite_coastguard.png   Svetlana Kushnariova (Cabbit), olonu, dwtoch; OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 amazoness_hunter.png             Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
 amazoness_imperator.png          ???; ???; ???
 amazoness_vigilance.png          Svetlana Kushnariova (Cabbit), olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
