@@ -11,39 +11,50 @@
  ***************************************************************************/
 package games.stendhal.common.constants;
 
+import games.stendhal.common.color.ARGB;
+import games.stendhal.common.color.HSL;
+
 /**
- * Acceptable colors that can be used for skin
+ * Acceptable colors that can be used for skin.
  *
  * @author AntumDeluge, kiheru
  */
 public enum SkinColor {
-	COLOR1(0xff513216),
-	COLOR2(0xff827940),
-	COLOR3(0xffd8d79a),
-	COLOR4(0xff3b311c),
-	COLOR5(0xffa29475),
-	COLOR6(0xff804a2f),
-	COLOR7(0xff6c5a33),
-	COLOR8(0xffd8cc47),
-	COLOR9(0xff3b190f),
-	COLOR10(0xff602710),
-	COLOR11(0xffac8121),
-	COLOR12(0xff16120a),
-	COLOR13(0xff764b00),
-	COLOR14(0xffbfb4ae),
-	COLOR15(0xff966c00),
-	COLOR16(0xffb59d55);
+	COLOR1(0.03f, 0.02f),
+	COLOR2(0.03f, 0.35f),
+	COLOR3(0.03f, 0.65f),
+	COLOR4(0.03f, 0.98f),
+	
+	COLOR5(0.06f, 0.02f),
+	COLOR6(0.06f, 0.35f),
+	COLOR7(0.06f, 0.65f),
+	COLOR8(0.06f, 0.98f),
+	
+	COLOR9(0.09f, 0.02f),
+	COLOR10(0.09f, 0.35f),
+	COLOR11(0.09f, 0.65f),
+	COLOR12(0.09f, 0.98f),
+	
+	COLOR13(0.12f, 0.02f),
+	COLOR14(0.12f, 0.35f),
+	COLOR15(0.12f, 0.65f),
+	COLOR16(0.12f, 0.98f);
 
 	private final int color;
 
 	/**
 	 * Constructor that sets the value of SkinColor.
 	 *
-	 * @param color
-	 * 		Color to use for this skin tone
+	 * @param hue
+	 * 		Hue of the skin tone in HSL space
+	 * @param lightness
+	 * 		Lightness of the skin tone in HSL space
 	 */
-	private SkinColor(int color) {
-		this.color = color;
+	SkinColor(float hue, float lightness) {
+		float[] hsl = { hue, 0.75f, lightness };
+		int[] rgb = new int[4];
+		HSL.hsl2rgb(hsl, rgb);
+		this.color = ARGB.mergeRgb(rgb);
 	}
 
 	/**
