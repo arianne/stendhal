@@ -202,7 +202,7 @@ dark_archangel.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDe
 fallen_angel.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 giant.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84455
 giant_elder.png             ???; ???; ???
-ice_giant.png               ???; ???; ???
+ice_giant.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84455
 imperial_general_giant.png  ???; ???; ???
 master_giant.png            ???; ???; ???
 
