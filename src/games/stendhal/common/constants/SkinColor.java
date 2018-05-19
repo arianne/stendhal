@@ -56,6 +56,24 @@ public enum SkinColor {
 		HSL.hsl2rgb(hsl, rgb);
 		this.color = ARGB.mergeRgb(rgb);
 	}
+	
+	/**
+	 * Find the skin color corresponding to an integer color value.
+	 *
+	 * @param color color as RGB int
+	 * @return skin color corresponding to the integer value, or
+	 * 	<code>null</code> if no skin color matches
+	 */
+	private static SkinColor findColor(int color) {
+		// Mask out alpha, we are not interested in it.
+		color &= 0xffffff;
+		for (SkinColor c : values()) {
+			if (color == c.color) {
+				return c;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Get the corresponding color RGB.
@@ -74,11 +92,21 @@ public enum SkinColor {
 	 * 	if no skin color matches
 	 */
 	public static SkinColor fromInteger(int color) {
-		for (SkinColor c : values()) {
-			if (color == c.color) {
-				return c;
-			}
+		SkinColor c = findColor(color);
+		if (c != null) {
+			return c;
 		}
 		return COLOR1;
+	}
+	
+	/**
+	 * Check if an integer color corresponds to a valid skin color.
+	 *
+	 * @param color color to be checked
+	 * @return <code>true</code> if the color is a valid skin color, otherwise
+	 * 	<code>false</code>
+	 */
+	public static boolean isValidColor(int color) {
+		return findColor(color) != null;
 	}
 }

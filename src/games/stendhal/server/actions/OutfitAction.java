@@ -15,6 +15,8 @@ package games.stendhal.server.actions;
 import static games.stendhal.common.constants.Actions.OUTFIT;
 import static games.stendhal.common.constants.Actions.VALUE;
 
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.SkinColor;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
@@ -62,7 +64,8 @@ public class OutfitAction implements ActionListener {
 
 				// Players may change skin color
 				color = action.get("skin");
-				if (color != null) {
+				// Only allow certain skin colors.
+				if (color != null && SkinColor.isValidColor(MathHelper.parseInt(color))) {
 					player.put(COLOR_MAP, "skin", color);
 				} else {
 					player.remove(COLOR_MAP, "skin");
