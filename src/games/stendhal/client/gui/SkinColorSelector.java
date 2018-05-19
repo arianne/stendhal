@@ -23,6 +23,8 @@ import javax.swing.colorchooser.DefaultColorSelectionModel;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.color.ARGB;
+import games.stendhal.common.color.HSL;
 import games.stendhal.common.constants.SkinColor;
 
 /**
@@ -108,7 +110,25 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 
 			for (int y = 0; y < COLOR_MAP.length; y++) {
 				for (int x = 0; x < COLOR_MAP[0].length; x++) {
-					g.setColor(new Color(COLOR_MAP[y][x].getColor()));
+					/**
+					 * Fake the color a bit. The TrueColor blend just bends
+					 * a bit the lightness of the image to the direction of the
+					 * color so the color may look too light or too dark to the
+					 * user compared to the result. Adjust the lightness of the
+					 * displayed color to compensate.
+					 */
+					int color = COLOR_MAP[y][x].getColor();
+					int[] argb = new int[4];
+					ARGB.splitRgb(color, argb);
+					float[] hsl = new float[3];
+					HSL.rgb2hsl(argb, hsl);
+					float lightness = hsl[2];
+					lightness = (lightness - 0.5f) * 0.75f + 0.45f;
+					hsl[2] = lightness;
+					HSL.hsl2rgb(hsl, argb);
+					color = ARGB.mergeRgb(argb);
+					
+					g.setColor(new Color(color));
 					g.fillRect(x * COLOR_ITEM_WIDTH, y * COLOR_ITEM_HEIGHT, COLOR_ITEM_WIDTH, COLOR_ITEM_HEIGHT);
 				}
 			}
