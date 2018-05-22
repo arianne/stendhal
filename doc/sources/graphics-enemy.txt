@@ -10,7 +10,7 @@ albino_elf_swordsman.png  Svetlana Kushnariova (Cabbit), onu/olonu, Justis; OGA 
 data/sprites/monsters/amazon/
 
 amazoness_archer.png             ???, Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), onu/olonu; ???; https://github.com/arianne/stendhal/issues/144
-amazoness_archer_commander.png   ???; ???; ???
+amazoness_archer_commander.png   Svetlana Kushnariova (Cabbit), diamonddmgirl, Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/66349
 amazoness_bodyguard.png          Svetlana Kushnariova (Cabbit), onu/olonu, arikel; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/113
 amazoness_coastguard.png         ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/108
 amazoness_coastguard_master.png  Svetlana Kushnariova (Cabbit), onu/olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
@@ -247,7 +247,7 @@ data/sprites/monsters/human/
 apprentice_assassin.png      Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/717/
 armored_leader.png           ???; ???; ???
 armored_warrior.png          ???; ???; ???
-assassin.png                 ???; ???; ???
+assassin.png                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 bandit.png                   ???; ???; ???
 barbarian.png                ???; ???; ???
 barbarian_chaman.png         ???; ???; ???
@@ -291,7 +291,7 @@ risecia_leader.png           ???; ???; ???
 risecia_swordsman.png        ???; ???; ???
 risecia_thug.png             ???; ???; ???
 samurai.png                  ???; ???; ???
-shadows_assassin.png         ???; ???; ???
+shadows_assassin.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 soldier_archer.png           ???; ???; ???
 soldier_colonel.png          ???; ???; ???
 soldier_common.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/130
