@@ -884,7 +884,7 @@ dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC 
 eaglehead.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fairypool.png            ???; ???; ???
 flowered_arch.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-gazingball_statue.png    ???; ???; ???
+gazingball_statue.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 girl_with_bird.png       ???; ???; ???
 goddess_icon.png         ???; ???; ???
 green_stone.png          ???; ???; ???
@@ -1124,7 +1124,7 @@ daisy_white.png         ???; ???; ???
 daisy_yellow.png        ???; ???; ???
 flowers_mixed.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flower_bed_1.png        ???; ???; ???
-flower_snow.png         ???; ???; ???
+flower_snow.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 foxgloves.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hothouse_flowers.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leafy_daisy_blue.png    ???; ???; ???
@@ -1194,7 +1194,7 @@ dead_tree_4.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dead_tree_5.png          ???; ???; ???
 dead_tree_6.png          ???; ???; ???
 dead_tree_7.png          ???; ???; ???
-deadtree_snow.png        ???; ???; ???
+deadtree_snow.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 evergreen.png            ???; ???; ???
 fall_trees.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fir_trees.png            ???; ???; ???
