@@ -202,7 +202,7 @@
   <image source="../../tileset/furniture/chair/sofa_chair_grey.png" width="96" height="128"/>
  </tileset>
  <tileset firstgid="1234" name="..\tileset\item\statue\gazingball_statue.png" tilewidth="32" tileheight="32" tilecount="39" columns="3">
-  <image source="../../tileset/item/statue/gazingball_statue.png" width="96" height="416"/>
+  <image source="../../tileset/item/statue/gazingball_statue.png" width="96" height="128"/>
  </tileset>
  <tileset firstgid="1273" name="..\tileset\logic\protection.png" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/logic/protection.png" width="64" height="32"/>
@@ -233,7 +233,7 @@
  </layer>
  <layer name="3_roof" width="43" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAXDFYgy08eeSYwMDB1A3AnEUxiJlxsFo2AUjAJ6g0gSy0VS1VMC/FhQ6SgS7YapdwXqdwNidxbquQ0d+APNNmSB0JQAD6B+HSD2oqFbRwFpADnNg+ruPqS6+z4JaTIQrc4PIqENcA/Jnh6gvotIfGT34csjvWhp6jQT8fbjA6SYQ2oeRgb4yp5LQL+9B+IrePINqWVXEgV5EJ8/rwLNvQbE1/GYT0o4JVKxrCA2jOhZDyCDHUSmdWSArG7HALl7qANqlRXYAKhf1AvtE+UOkn5RHtAdN5gh7ro1RNPMPQraduSUA+h6CMUlKXWnJVoZF0VhOYCuR2UItbeUh5BbCYFNQzRvDRYwUPUwOYCSth8yoLefXwPrvo9A/J2MOpBafiYW8AHtewV051sy3IuvbURMmOMq7/fhKK9+Ad33B4g/A/E3KrYvSA3z2USUp/LMkDAVp2N8nsRiVxcRbv0KDVNuOrr17BAqh0YBJvhCw/Y9OeAHHveo0imtfYGW+4MVqADDgR0aFkx0CpNnTIj6UBFopzSR9oLc9xeq7x8QS5Hg3tcUxAFo3g9UdoPsQ69jviDVkVpAeW0g1gDi30wQPaB6VBJIc5LgVlDZKwxUr0ZhfKC79SM07EDxbYUU7zA7laH+HGwAFBZiWNwFysP8g9C9uIASEW4FAJWk4n9AIAAA
+   H4sIAAAAAAAAA2NgGAXDFYgy08eeSYwMDB1A3AnEUxiJlxsFo2AUjAJ6g0gSy0VS1VMC/FhQ6SgS7YapdwXqdwNidxbquQ0d+APNNmSB0JQAD6B+HSD2oqFbRwFpADnNg+ruPqS6+z4JaTIQrc4PIqENcA/Jnh6gvotIfGT34csjvWhp6jQT8fbjA6SYQ2oeRgb4yp5LQL9dBuIrePINqWVXEgV5EJ8/rwLNvQbE1/GYT0o4JVKxrCA2jOhZDyCDHUSmdWSArG7HALl7qANqlRXYAKhf1AvtE+UOkn5RHtAdN5gh7ro1RNPMPQraduSUA+h6CMUlKXWnJVoZF0VhOYCuR2UItbeUh5BbCYFNQzRvDRYwUPUwOYCSth8yoLefXwPrvo9A/J2MOpBafiYW8AHtewV051sy3IuvbURMmOMq7/fhKK9+Ad33B4g/A/E3KrYvSA3z2USUp/LMkDAVp2N8nsRiVxcRbv0KDVNuOrr17BAqh0YBJvhCw/Y9OeAHHveo0imtfYGW+4MVqADDgR0aFkx0CpNnTIj6UBFopzSR9oLc9xeq7x8QS5Hg3tcUxAFo3g9UdoPsQ69jviDVkVpAeW0g1gDi30wQPaB6VBJIc5LgVlDZKwxUr0ZhfKC79SM07EDxbYUU7zA7laH+HGwAFBZiWNwFysP8g9C9uIASEW4FAJA19rFAIAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="43" height="48">
