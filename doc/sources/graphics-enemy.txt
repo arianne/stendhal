@@ -299,7 +299,7 @@ soldier_elite_archer.png     ???; ???; ???
 soldier_general.png          ???; ???; ???
 soldier_knight.*             ???; ???; ???
 soldier_lieutenant.png       ???; ???; ???
-soldier_sergeant.png         ???; ???; ???
+soldier_sergeant.png         Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_wizard.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/716/
 super_human.png              ???; ???; ???
 
