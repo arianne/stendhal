@@ -26,7 +26,7 @@ life_tower.png                ???; ???; ???
 museum.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 outhouse.png                  ???; ???; ???
 stone_ruins.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-stone_tower.png               ???; ???; ???
+stone_tower.png               Remos Turcuman (Bleed); CC BY 3.0; https://opengameart.org/node/61012; Bleed's Game Art - http://remusprites.carbonmade.com
 tan_building.png              Lanea Zimmerman (Sharm); OGA BY 3.0; https://opengameart.org/node/17502
 thatched_roof_cottage*        Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpectrum), bluecarrot16, Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/41379, https://opengameart.org/node/41378, https://opengameart.org/node/35455
 tower_chalet.png              ???; ???; ???
@@ -37,7 +37,7 @@ tiled/tileset/character/
 
 captive_tomi.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83718
 vulcanus.png      Svetlana Kushnariova (Cabbit), Nila122, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82370, https://opengameart.org/node/72969, https://opengameart.org/node/29293, https://opengameart.org/node/54590
-zekiel.png        ???; ???; ???
+zekiel.*          etcgood1, Robert C. (Mumu); CC BY 4.0; https://opengameart.org/node/75195, https://opengameart.org/node/78832
 
 tiled/tileset/building/decoration/
 
@@ -88,7 +88,7 @@ wreaths.png               ???; ???; ???
 
 tiled/tileset/building/door/
 
-brown_3_doors.png         ???; ???; ???
+brown_door.*              Lanea Zimmerman (Sharm), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html
 closed.png                ???; ???; ???
 closed_with_key.png       ???; ???; ???
 closed_with_notice.png    ???; ???; ???
@@ -124,7 +124,7 @@ dark_red_ns_detail.png         ???; ???; ???
 dark_red_ns_fancy.png          ???; ???; ???
 detail_ew.png                  ???; ???; ???
 detail_ns.png                  ???; ???; ???
-dojo_entrances.png             ???; ???; ???
+dojo_entrances.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_purple_ns_ew.png         ???; ???; ???
 grey.*                         ???; ???; ???
 grey_centred.png               ???; ???; ???
@@ -161,26 +161,26 @@ yellow.png             ???; ???; ???
 
 tiled/tileset/building/stairs/
 
-blue_stone.png              ???; ???; ???
-dark_stairs.png             ???; ???; ???
-grey_stone_stairs.png       ???; ???; ???
-grey_stone_stairs_down.png  ???; ???; ???
-int_ew.png                  ???; ???; ???
-int_ns.*                    ???; ???; ???
-int_we.*                    ???; ???; ???
-stairs.*                    ???; ???; ???
-stairs_grey.png             ???; ???; ???
-stairs_orange.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-winding.*                   ???; ???; ???
-winding_2.png               ???; ???; ???
-wooden_ns.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79115
-wooden_stairs.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+blue_stone.png            ???; ???; ???
+dark_stairs.png           ???; ???; ???
+grey_stone_stairs.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+grey_stone_stairs_down.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+int_ew.png                ???; ???; ???
+int_ns.*                  ???; ???; ???
+int_we.*                  ???; ???; ???
+stairs.*                  ???; ???; ???
+stairs_grey.png           ???; ???; ???
+stairs_orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+winding.*                 ???; ???; ???
+winding_2.png             ???; ???; ???
+wooden_ns.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79115
+wooden_stairs.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/wall/
 
 bricked_corners.png              ???; ???; ???
 bricked_edges.png                ???; ???; ???
-dojo_walls.png                   ???; ???; ???
+dojo_walls.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earthen_3.png                    ???; ???; ???
 glass.png                        ???; ???; ???
 glass_details.png                ???; ???; ???
@@ -221,7 +221,7 @@ wood_2.png                       ???; ???; ???
 tiled/tileset/building/window/
 
 broken_window.png               ???; ???; ???
-brown_with_cream_shutters.png   ???; ???; ???
+brown_with_cream_shutters.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 classic_window.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_brown.png                  ???; ???; ???
 int_small_windows_dark_red.png  ???; ???; ???
@@ -513,7 +513,7 @@ eye.png                      ???; ???; ???
 grass_2.png                  ???; ???; ???
 grass_corners.png            ???; ???; ???
 grass_edges.png              ???; ???; ???
-grass_snow.png               ???; ???; ???
+grass_snow.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gravel.png                   ???; ???; ???
 greenGround2.png             ???; ???; ???
 green_paving.png             ???; ???; ???
@@ -614,6 +614,7 @@ huge_boulder.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart
 icy_crystal.*        Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 large_boulder.png    ???; ???; ???
 large_pebble.*       ???; ???; ???
+lava_rock.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 mossy_boulder.png    ???; ???; ???
 mossy_rubble.png     ???; ???; ???
 obsidian.png         ???; ???; ???
@@ -631,7 +632,7 @@ rocks_2.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rocks_3.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rubble.png           ???; ???; ???
 sandy_rocks.*        ???; ???; ???
-square_crystal.png   ???; ???; ???
+square_crystal.*     Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/54984
 
 tiled/tileset/ground/water/
 
@@ -663,7 +664,7 @@ empty
 tiled/tileset/item/
 
 awning_1.png              ???; ???; ???
-awnng_2.png               ???; ???; ???
+awning_2.*                Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0/4.0; https://opengameart.org/node/11117
 bazaar_produce.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 black_board.png           ???; ???; ???
 boxes.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -690,7 +691,7 @@ hot_iron_piece.png        ???; ???; ???
 huge_orb.png              ???; ???; ???
 logs_snow.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow1.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-native_masks.png          ???; ???; ???
+native_masks.*            alles, Jordan Irwin (AntumDeluge); CC0; https://pixabay.com/en/masks-africa-african-masks-wooden-1675016/
 postbox.png               ???; ???; ???
 postbox_2.png             ???; ???; ???
 ropes.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -879,7 +880,7 @@ broken_lion.png          ???; ???; ???
 buddha.png               ???; ???; ???
 cross.png                ???; ???; ???
 crystal_statues.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dryad_marble.png         ???; ???; ???
+dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC BY-SA 3.0; https://opengameart.org/node/64532
 eaglehead.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fairypool.png            ???; ???; ???
 flowered_arch.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -891,21 +892,21 @@ green_stone_2.png        ???; ???; ???
 green_stone_3.png        ???; ???; ???
 grey_stone.*             ???, Kimmo Rundelin (kiheru); ???; ???
 horned_man.png           ???; ???; ???
-lion_statues.png         ???; ???; ???
+lion_statues.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 metal_and_stone.png      ???; ???; ???
 nymph_aqua.png           ???; ???; ???
 nymph_reddish.png        ???; ???; ???
 plants_potted_stone.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_stone_3.png          ???; ???; ???
-romanic_art1.png         ???; ???; ???
+romanic_art1.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 romanic_art2.png         ???; ???; ???
 seahorse.png             ???; ???; ???
 skullpedestal.png        ???; ???; ???
 skull_carving.png        ???; ???; ???
-stone_dragon.png         ???; ???; ???
+stone_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 swordsman.png            Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70109
 urn_with_flowers.*       Lanea Zimmerman (Sharm), Hyptosis; CC BY-SA 3.0; https://opengameart.org/node/11192, https://opengameart.org/node/17021
-warlock.png              ???; ???; ???
+warlock.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wolf_statue.png          Hyptosis, mold; CC0; https://opengameart.org/node/81798
 
 tiled/tileset/item/textile/
@@ -1036,41 +1037,36 @@ vegetable.png      ???; ???; ???
 
 tiled/tileset/object/
 
-arrows.png              ???; ???; ???
+arrows.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 birds.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-boardwalk.png           ???; ???; ???
+boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                ???; ???; ???
 creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 ents.png                ???; ???; ???
-hay_cart.png            ???; ???; ???
-letters.png             ???; ???; ???
-mine_carts.*            ???; ???; ???
-mine_rails.png          ???; ???; ???
+giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/291622
+hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
+letters.png             Juan; ???; Stendhal
+mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+mine_rails.png          ???; ???; Mirage tilesets
 question_marks.png      ???; ???; ???
-roofed_well.png         ???; ???; ???
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
-row_boat.*              ???; ???; ???
-scarecrow.*             ???; ???; ???
+row_boat.*              Daniel Eddeland (daneeklu); CC BY-SA 3.0; https://opengameart.org/node/11117, https://opengameart.org/node/79264
+scarecrow.*             bleutailfly, Kimmo Rundelin (kiheru); ???; Stendhal
 ship.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-skulls_on_spikes_l.png  ???; ???; ???
-skulls_on_spikes_r.png  ???; ???; ???
-stalactite.png          ???; ???; ???
+skulls_on_spikes_l.png  omero; ???; ???
+skulls_on_spikes_r.png  omero; ???; ???
+stalactite.png          Katie Russell (kymara); ???; ???
 stone_well.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 suspension_bridge.*     Xenodora; CC BY-SA 3.0; https://opengameart.org/node/15135
 tan_tent.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
-tent.png                ???; ???; ???
-testgrid.png            ???; ???; ???
-trellis_small.png       ???; ???; ???
+tent.png                sshk5; ???; ???
+testgrid.png            tigertoes; ???; ???
+trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                ???; ???; ???
 well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
-well_tan.png            ???; ???; ???
-well_with_rope.png      ???; ???; ???
-
-tiled/tileset/object/misc/
-
-temp_hell_placeholder.png  ???; ???; ???
+well_with_rope.png      ???; ???; Mirage tilesets
 
 tiled/tileset/object/rock/
 
@@ -1140,7 +1136,7 @@ pointed_yellow.png      NoLogoGames; CC BY 4.0; https://opengameart.org/node/785
 polyanthus.png          ???; ???; ???
 purple.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_blue_clusters.png   ???; ???; ???
-red_white.png           ???; ???; ???
+red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_purple_white.png  ???; ???; ???
@@ -1178,8 +1174,8 @@ stump_pale_brown.png   ???; ???; ???
 stump_pale_purple.png  ???; ???; ???
 stump_purple.png       ???; ???; ???
 stump_rectangular.png  ???; ???; ???
-stump_snow.png         ???; ???; ???
-stump_snow1.png        ???; ???; ???
+stump_snow.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+stump_snow1.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_vertical.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/tree/
@@ -1210,7 +1206,7 @@ palm_trees.*             bluecarrot1, Alex Smith (cynicmusic); CC BY-SA 3.0; htt
 palm_trees2.png          ???; ???; ???
 pine_snowy.png           ???; ???; ???
 pine_tree*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-snow_on_pine.png         ???; ???; ???
+snow_on_pine.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spruce.png               ???; ???; ???
 spruce_xmas.png          ???; ???; ???
 spruce_xmas2.png         ???; ???; ???
@@ -1250,8 +1246,9 @@ desert.png  Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/nod
 
 tiled/tileset/terrain/ground/
 
-stone.*        Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
-stone-red.png  Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+glowing_stone.*  Rachel J Morris (Moosader), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+stone.*          Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+stone-red.png    Rachel J Morris (Moosader); CC0; https://opengameart.org/node/79141, https://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 
 tiled/tileset/terrain/stairs/
 

@@ -98,7 +98,7 @@ public class WizardNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setEntityClass("noimagenpc"); /* wisemannpc */
+		npc.setEntityClass("wisemannpc");
 		npc.setPosition(7, 2);
 		npc.initHP(100);
 		npc.setDescription("You see the mighty magician Haizen. He is able to let people teleport around with his scrolls.");

@@ -41,6 +41,7 @@ confectionercherrypienpc.png  Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https:/
 curatornpc.png                ???; ???; ???
 customeronchairnpc.png        ???; ???; ???
 drugsdealernpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+dwarf_guardiannpc.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarfguardnpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarfnpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 easterbunnynpc.png            ???; ???; ???
@@ -77,24 +78,24 @@ gypsywomannpc.png             ???; ???; ???
 halfelfnpc.png                ???; ???; ???
 hanknpc.png                   ???; ???; ???
 heraldnpc.png                 ???; ???; ???
-hoeingmannpc.png              ???; ???; ???
-holidaymakernpc.png           ???; ???; ???
+hoeingmannpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802; Original Pepper&Carrot webcomic created by David Revoy.
+holidaymakernpc.png           ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
 hotelchefnpc.png              ???; ???; ???
 hotelguestnpc.png             ???; ???; ???
 hotelreceptionistnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 housewifenpc.png              ???; ???; ???
-icecreamsellernpc.png         ???; ???; ???
+icecreamsellernpc.png         ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
 investigatornpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/103
 jailedbarbariannpc.png        ???; ???; ???
-kid1npc.png                   ???; ???; ???
-kid2npc.png                   ???; ???; ???
+kid1npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/67861
+kid2npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/67861, https://opengameart.org/node/72198
 kid3npc.png                   ???; ???; ???
 kid4npc.png                   ???; ???; ???
 kid5npc.png                   ???; ???; ???
 kid6npc.png                   ???; ???; ???
 kid7npc.png                   ???; ???; ???
-kid8npc.png                   ???; ???; ???
-kid9npc.png                   ???; ???; ???
+kid8npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/67861, https://opengameart.org/node/23314
+kid9npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/67861
 kingcozartnpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 koboldbarmaidnpc.png          ???; ???; ???
 koboldbarregularnpc.png       ???; ???; ???
@@ -119,10 +120,10 @@ marmaidnpc.png                ???; ???; ???
 mayornpc.png                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 meatandfishsmokernpc.png      ???; ???; ???
 militiaelfnpc.png             Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/100
-minernpc.png                  ???; ???; ???
+minernpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 mithrilforgernpc.png          Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
 mothernpc.png                 ???; ???; ???
-naughtyteennpc.png            ???; ???; ???
+naughtyteennpc.*              Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 naughtyteen2npc.*             Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 nightguardbrownnpc.png        ???; ???; ???
 nightguardswordnpc.png        ???; ???; ???
@@ -130,6 +131,7 @@ noimagenpc.png                ???; ???; ???
 oldcowboynpc.png              ???; ???; ???
 olddwarfnpc.png               ???; ???; ???
 oldfishermannpc.png           ???; ???; ???
+oldheronpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldmaidnpc.png                ???; ???; ???
 oldmannpc.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 oldratwomannpc.png            ???; ???; ???
@@ -141,7 +143,7 @@ orcsalesmannpc.png            Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge)
 orcsamannpc.png               Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orientalwizardnpc.png         ???; ???; ???
 paulnpc.png                   ???; ???; ???
-photographernpc.png           ???; ???; ???
+photographernpc.png           Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 pinkgirlnpc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/140
 pirate_sailornpc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83642
 pirate_sailor2npc.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
@@ -164,6 +166,7 @@ reddemonnpc.png               ???; ???; ???
 retiredteachernpc.png         ???; ???; ???
 richardstallmannpc.png        ???; ???; ???
 ringsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
+royalguardnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 rudolphnpc.png                ???; ???; ???
 sailor1npc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 santaclausnpc.png             ???; ???; ???
@@ -185,16 +188,18 @@ swimmer7npc.png               ???; ???; ???
 swimmer8npc.png               ???, Svetlana Kushnariova (Cabbit), olonu; ???; ???
 tavernbarmaidnpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 taxmannpc.png                 ???; ???; ???
+thiefnpc.*                    Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 timekeepernpc.png             ???; ???; ???
 transparentnpc.png            ???; ???; ???
 vergernpc.png                 ???; ???; ???
 wannabekingnpc.png            ???; ???; ???
 weaponrytradernpc.png         ???; ???; ???
-weaponsellernpc.png           ???; ???; ???
+weaponsellernpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 welcomernpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
-wellroundedguynpc.png         ???; ???; ???
+wellroundedguynpc.png         Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/50909
 whitesorceressnpc.png         ???; ???; ???
 wifenpc.png                   ???; ???; ???
+wisemannpc.*                  Svetlana Kushnariova (Cabbit), Sollision, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/52761
 witch2npc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 wizardwomannpc.png            ???; ???; ???
 woman_003_npc.png             ???; ???; ???
@@ -204,7 +209,7 @@ woman_006_npc.png             ???; ???; ???
 woman_007_npc.png             ???; ???; ???
 woman_008_npc.png             ???; ???; ???
 woman_009_npc.png             ???; ???; ???
-woman_011_npc.png             ???; ???; ???
+woman_011_npc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 woman_013_npc.png             ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://github.com/arianne/stendhal/issues/161
 woman_014_npc.png             ???; ???; ???
 woman_015_npc.png             ???; ???; ???
@@ -227,7 +232,7 @@ crystal*npc.png  qubodup; GPL 2.0; http://opengameart.org/node/11013
 tendertwig.png   ???; ???; ???
 tomi.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83718
 vulcanus.png     Svetlana Kushnariova (Cabbit), Nila122, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82370, https://opengameart.org/node/72969, https://opengameart.org/node/29293, https://opengameart.org/node/54590
-zekiel.png       ???; ???; ???
+zekiel.*         etcgood1; CC BY 4.0; https://opengameart.org/node/75195
 
 data/sprites/npc/animal/
 
@@ -235,4 +240,4 @@ butterfly.*   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/no
 cat.png       bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/69399
 fish_roach.*  Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal; Based on data/sprites/item/food/roach.png
 puppy.png     triceratops; CC BY 3.0; https://opengameart.org/node/55254
-rabbit.png    Stephen Challener (Redshrike); CC BY-SA 3.0; https://opengameart.org/node/14851
+rabbit.png    Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/14851

@@ -38,6 +38,7 @@ release:
 - Charles Gabriel (Antifarea)    https://opengameart.org/users/charlesgabriel
 - Cobra Hubbard (BlueVortexGames)
                                  https://opengameart.org/users/bluevortexgames
+- Crisisworks                    https://opengameart.org/users/crisisworks
 - Curt                           https://opengameart.org/users/curt
 - Daniel Eddeland (daneeklu)     https://opengameart.org/users/daneeklu
 - danielmahon                    https://opengameart.org/users/danielmahon
@@ -52,6 +53,7 @@ release:
 - Kemono                         https://opengameart.org/users/kemono
 - Kevin Smith (TKZ Productions)  https://opengameart.org/users/tkz-productions
 - Lanea Zimmerman (Sharm)        https://opengameart.org/users/sharm
+- lawnjelly                      https://opengameart.org/users/lawnjelly
 - Leonard Pabin                  https://opengameart.org/users/leonard-pabin
 - LordNeo                        https://opengameart.org/users/lordneo
 - Lori Angela Nagel (Jastiv)     https://opengameart.org/users/jastiv
@@ -76,6 +78,7 @@ release:
 - yolkati                        https://opengameart.org/users/yolkati
 - Zachariah Husiar (Zabin)       https://opengameart.org/users/zabin
 - ZaPaper                        https://opengameart.org/users/zapaper
+- ztn                            https://opengameart.org/users/ztn
 
 We would also like to thank these authors:
 
