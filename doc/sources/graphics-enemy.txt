@@ -268,7 +268,7 @@ imperial_chief.png           ???; ???; ???
 imperial_commander.png       ???; ???; ???
 imperial_defender.png        ???; ???; ???
 imperial_elite_archer.png    Svetlana Kushnariova (Cabbit), olonu, Fabzy, SoCay; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/151
-imperial_elite_guardian.png  ???; ???; ???
+imperial_elite_guardian.png  Svetlana Kushnariova (Cabbit), LordNeo, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
 imperial_general.png         ???; ???; ???
 imperial_high_priest.png     Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/157
 imperial_knight.png          Stephen Challener (Redshrike), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/165
