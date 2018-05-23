@@ -4,6 +4,8 @@ data/sprites/outfit/
 
 data/sprites/outfit/body/
 
+body_096.png (horse mount)  bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
+body_097.png (horse mount)  bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 
 data/sprites/outfit/detail/
 
