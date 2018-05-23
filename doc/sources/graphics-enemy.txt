@@ -320,7 +320,7 @@ robot_aruthon.png    Kevin Smith (TKZ Productions), Jordan Irwin (AntumDeluge); 
 snarfkin.png         Kemono & Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82910
 tiny_skelly.png      Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 violet_avenger.png   ???; ???; ???
-winged_blurble.png   ???; ???; ???
+winged_blurble.png   Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/20221
 xenocium.png         ???; ???; ???
 
 data/sprites/monsters/kobold/
