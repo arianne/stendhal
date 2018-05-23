@@ -74,7 +74,7 @@ data/sprites/monsters/dark_elf/
 
 baby_drow.png              Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/97
 dark_elf.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/117
-dark_elf_admiral.png       ???; ???; ???
+dark_elf_admiral.png       Svetlana Kushnariova (Cabbit), diamonddmgirl, kanaya2529, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/80570
 dark_elf_archer.png        Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVortexGames), SoCay, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/150
 dark_elf_captain.png       Svetlana Kushnariova (Cabbit), onu/olonu, Muhammad Amiruddin (Amir027); OGA BY 3.0; https://github.com/arianne/stendhal/issues/123
 dark_elf_elite_archer.png  Svetlana Kushnariova (Cabbit), Nila122, SoCay, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/150
@@ -278,7 +278,7 @@ imperial_scientist.png       Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.
 imperial_veteran.png         ???; ???; ???
 kalavan_citizen.png          ???; ???; ???
 kalavan_housewife.png        ???; ???; ???
-kalavan_peasant.png          ???; ???; ???
+kalavan_peasant.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_wisewoman.png        Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
 little_assassin.png          Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlewitch.png              Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/127
