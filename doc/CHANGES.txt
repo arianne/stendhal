@@ -59,6 +59,7 @@ release:
 - Lori Angela Nagel (Jastiv)     https://opengameart.org/users/jastiv
 - Michael Williams (BizmasterStudios)
                                  https://opengameart.org/users/bizmasterstudios
+- Michele Bucelli (Buch)         https://opengameart.org/users/buch
 - mold                           https://opengameart.org/users/mold
 - Nila122                        https://opengameart.org/users/nila122
 - NoLogoGames                    https://opengameart.org/users/nologogames
