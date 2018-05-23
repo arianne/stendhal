@@ -69,6 +69,7 @@ release:
 - Stephen Challener (Redshrike)  https://opengameart.org/users/redshrike
 - Tuomo Untinen (Reemax)         https://opengameart.org/users/reemax
 - William Thompson               https://opengameart.org/users/williamthompsonj
+- Wolfgang Wozniak (Ouren)       https://opengameart.org/users/ouren
 - Wolthera van Hövell tot Westerflier (TheraHedwig)
                                  https://opengameart.org/users/therahedwig
 - wulax                          https://opengameart.org/users/wulax
