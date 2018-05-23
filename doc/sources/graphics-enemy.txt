@@ -309,7 +309,7 @@ arachne.png          ???; ???; ???
 blue_mohiko.png      ???; ???; ???
 brain_ahouga.png     Tuomo Untinen (Reemax); CC BY 3.0; https://opengameart.org/node/15590
 dark_aruthon.png     Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50703
-googon.png           ???; ???; ???
+googon.*             Tracy, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/13716
 grobble_monster.png  ???; ???; ???
 mermaid.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 mimic.*              Diligent Dodo/soniccuz; GPL 2.0; Stendhal

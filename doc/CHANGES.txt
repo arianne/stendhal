@@ -68,6 +68,7 @@ release:
 - Shepardskin                    https://opengameart.org/users/shepardskin
 - Sollision                      https://opengameart.org/users/sollision
 - Stephen Challener (Redshrike)  https://opengameart.org/users/redshrike
+- Tracy                          https://opengameart.org/users/tracy
 - Tuomo Untinen (Reemax)         https://opengameart.org/users/reemax
 - William Thompson               https://opengameart.org/users/williamthompsonj
 - Wolfgang Wozniak (Ouren)       https://opengameart.org/users/ouren
