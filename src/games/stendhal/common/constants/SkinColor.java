@@ -20,26 +20,30 @@ import games.stendhal.common.color.HSL;
  * @author AntumDeluge, kiheru
  */
 public enum SkinColor {
-	COLOR1(0.03f, 0.02f),
-	COLOR2(0.03f, 0.35f),
-	COLOR3(0.03f, 0.65f),
-	COLOR4(0.03f, 0.98f),
+	COLOR1(0.05f, 0.70f),
+	COLOR2(0.05f, 0.55f),
+	COLOR3(0.05f, 0.40f),
+	COLOR4(0.05f, 0.25f),
 	
-	COLOR5(0.06f, 0.02f),
-	COLOR6(0.06f, 0.35f),
-	COLOR7(0.06f, 0.65f),
-	COLOR8(0.06f, 0.98f),
+	COLOR5(0.07f, 0.70f),
+	COLOR6(0.07f, 0.55f),
+	COLOR7(0.07f, 0.40f),
+	COLOR8(0.07f, 0.25f),
 	
-	COLOR9(0.09f, 0.02f),
-	COLOR10(0.09f, 0.35f),
-	COLOR11(0.09f, 0.65f),
-	COLOR12(0.09f, 0.98f),
+	COLOR9(0.09f, 0.70f),
+	COLOR10(0.09f, 0.55f),
+	COLOR11(0.09f, 0.40f),
+	COLOR12(0.09f, 0.25f),
 	
-	COLOR13(0.12f, 0.02f),
-	COLOR14(0.12f, 0.35f),
-	COLOR15(0.12f, 0.65f),
-	COLOR16(0.12f, 0.98f);
+	COLOR13(0.11f, 0.70f),
+	COLOR14(0.11f, 0.55f),
+	COLOR15(0.11f, 0.40f),
+	COLOR16(0.11f, 0.25f);
 
+	private static final float HUE_MIN = 0.05f;
+	private static final float HUE_MAX = 0.11f;
+	private static final float SAT_MIN = 0.25f;
+	private static final float SAT_MAX = 0.70f;
 	private final int color;
 
 	/**
@@ -47,32 +51,45 @@ public enum SkinColor {
 	 *
 	 * @param hue
 	 * 		Hue of the skin tone in HSL space
-	 * @param lightness
+	 * @param saturation
 	 * 		Lightness of the skin tone in HSL space
 	 */
-	SkinColor(float hue, float lightness) {
-		float[] hsl = { hue, 0.75f, lightness };
+	SkinColor(float hue, float saturation) {
+		float[] hsl = { hue, saturation, 0.5f };
 		int[] rgb = new int[4];
 		HSL.hsl2rgb(hsl, rgb);
 		this.color = ARGB.mergeRgb(rgb);
 	}
 	
 	/**
-	 * Find the skin color corresponding to an integer color value.
+	 * Find the nearest skin color corresponding to an integer color value.
+	 * The lookup is done based on the hue and saturation, ignoring lightness.
 	 *
 	 * @param color color as RGB int
-	 * @return skin color corresponding to the integer value, or
-	 * 	<code>null</code> if no skin color matches
+	 * @return skin color corresponding to the integer value
 	 */
-	private static SkinColor findColor(int color) {
-		// Mask out alpha, we are not interested in it.
-		color &= 0xffffff;
+	public static SkinColor fromInteger(int color) {
+		// Normalize lightness, and look up after the color after that
+		int[] argb = new int[4];
+		ARGB.splitRgb(color, argb);
+		float hsl[] = new float[3];
+		HSL.rgb2hsl(argb, hsl);
+		float bestDelta = Float.MAX_VALUE;
+		SkinColor result = null;
 		for (SkinColor c : values()) {
-			if (color == c.color) {
-				return c;
+			ARGB.splitRgb(c.color, argb);
+			float[] stdHsl = new float[3];
+			HSL.rgb2hsl(argb, stdHsl);
+			float hDelta = hsl[0] - stdHsl[0];
+			float sDelta = hsl[1] - stdHsl[1];
+			float delta = hDelta * hDelta + sDelta * sDelta;
+			if (delta < bestDelta) {
+				result = c;
+				bestDelta = delta;
 			}
 		}
-		return null;
+		
+		return result;
 	}
 
 	/**
@@ -83,21 +100,6 @@ public enum SkinColor {
 	public int getColor() {
 		return color;
 	}
-
-	/**
-	 * Find the skin color corresponding to an integer color value.
-	 *
-	 * @param color color as RGB int
-	 * @return skin color corresponding to the integer value, or a default value
-	 * 	if no skin color matches
-	 */
-	public static SkinColor fromInteger(int color) {
-		SkinColor c = findColor(color);
-		if (c != null) {
-			return c;
-		}
-		return COLOR1;
-	}
 	
 	/**
 	 * Check if an integer color corresponds to a valid skin color.
@@ -107,6 +109,24 @@ public enum SkinColor {
 	 * 	<code>false</code>
 	 */
 	public static boolean isValidColor(int color) {
-		return findColor(color) != null;
+		float[] hsl = new float[3];
+		int[] rgb = new int[4];
+		ARGB.splitRgb(color, rgb);
+		HSL.rgb2hsl(rgb, hsl);
+		/* 
+		 * Lightness is not checked. We don't really want to limit it, other
+		 * than the natural limits of preventing pure black and white, and
+		 * those are already checked by having limits for saturation.
+		 * Also we are more lenient at low lightness, as the color
+		 * component resolution is there very low.
+		 */
+		float hueMargin = (1f - hsl[2]) / 4f + 0.02f;
+		float satMargin = (1f - hsl[2]) / 3f + 0.0125f;
+		return isInRange(hsl[0], HUE_MIN, HUE_MAX, hueMargin)
+				&& isInRange(hsl[1], SAT_MIN, SAT_MAX, satMargin);
+	}
+	
+	private static boolean isInRange(float val, float min, float max, float margin) {
+		return (val + margin >= min) && (val - margin <= max);
 	}
 }

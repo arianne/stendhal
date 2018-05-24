@@ -18,8 +18,9 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
-import javax.swing.colorchooser.DefaultColorSelectionModel;
 
+import games.stendhal.client.gui.AbstractColorSelector.HSLSelectionModel;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.MathHelper;
@@ -34,6 +35,7 @@ import games.stendhal.common.constants.SkinColor;
 class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColorSelectionModel> {
 	/** Palette selector component. */
 	private final JComponent paletteSelector;
+	private final JComponent lightnessSelector;
 
 	/**
 	 * Create a new ColorSelector.
@@ -42,12 +44,15 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		super(new SkinColorSelectionModel());
 		paletteSelector = new SkinPaletteSelector(getSelectionModel());
 		add(paletteSelector);
+		lightnessSelector = new LightnessSelector(getSelectionModel());
+		add(lightnessSelector, SLayout.EXPAND_X);
 	}
 
 	@Override
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);
 		paletteSelector.setEnabled(enabled);
+		lightnessSelector.setEnabled(enabled);
 	}
 
 	/**
@@ -58,9 +63,6 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		private static final int COLOR_ITEM_WIDTH, COLOR_ITEM_HEIGHT;
 		/** Color mapping. */
 		private static final SkinColor[][] COLOR_MAP;
-
-		/** Currently selected row and column. */
-		private int row, column;
 
 		static {
 			/* Construct the color map. */
@@ -110,25 +112,7 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 
 			for (int y = 0; y < COLOR_MAP.length; y++) {
 				for (int x = 0; x < COLOR_MAP[0].length; x++) {
-					/**
-					 * Fake the color a bit. The TrueColor blend just bends
-					 * a bit the lightness of the image to the direction of the
-					 * color so the color may look too light or too dark to the
-					 * user compared to the result. Adjust the lightness of the
-					 * displayed color to compensate.
-					 */
-					int color = COLOR_MAP[y][x].getColor();
-					int[] argb = new int[4];
-					ARGB.splitRgb(color, argb);
-					float[] hsl = new float[3];
-					HSL.rgb2hsl(argb, hsl);
-					float lightness = hsl[2];
-					lightness = (lightness - 0.5f) * 0.75f + 0.45f;
-					hsl[2] = lightness;
-					HSL.hsl2rgb(hsl, argb);
-					color = ARGB.mergeRgb(argb);
-					
-					g.setColor(new Color(color));
+					g.setColor(new Color(COLOR_MAP[y][x].getColor()));
 					g.fillRect(x * COLOR_ITEM_WIDTH, y * COLOR_ITEM_HEIGHT, COLOR_ITEM_WIDTH, COLOR_ITEM_HEIGHT);
 				}
 			}
@@ -142,6 +126,9 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			// Highlight the selection
 			g.setColor(Color.WHITE);
 			Insets ins = getInsets();
+			int idx = model.getSkinColor().ordinal();
+			int row = idx / COLOR_MAP[0].length;
+			int column = idx % COLOR_MAP.length;
 			int x = ins.left + column * COLOR_ITEM_WIDTH;
 			int y = ins.top + row * COLOR_ITEM_HEIGHT;
 			g.drawRect(x, y, COLOR_ITEM_WIDTH - 1, COLOR_ITEM_HEIGHT - 1);
@@ -150,8 +137,8 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 		@Override
 		void select(Point point) {
 			Insets ins = getInsets();
-			row = (point.y - ins.top) / COLOR_ITEM_HEIGHT;
-			column = (point.x - ins.left) / COLOR_ITEM_WIDTH;
+			int row = (point.y - ins.top) / COLOR_ITEM_HEIGHT;
+			int column = (point.x - ins.left) / COLOR_ITEM_WIDTH;
 
 			/* Cursor position is tracked outside of selector area if mouse
 			 * button is held down. Must reset row and column to minimun or
@@ -162,6 +149,12 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 
 			SkinColor selectedColor = COLOR_MAP[row][column];
 			model.setSelectedColor(selectedColor);
+			/*
+			 * At high and low lightness changing the base color does not
+			 * always change the resulting color. Force a repaint so that
+			 * the new base color get highlighted. 
+			 */
+			repaint();
 		}
 	}
 
@@ -169,7 +162,7 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 	 * Color selection model that is capable of returning, and accepting HSL
 	 * space color data in addition of the usual RGB.
 	 */
-	static class SkinColorSelectionModel extends DefaultColorSelectionModel {
+	static class SkinColorSelectionModel extends HSLSelectionModel {
 		/** The enum corresponding to current color. */
 		private SkinColor enumColor;
 
@@ -183,23 +176,37 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 				return;
 			}
 			enumColor = color;
-			super.setSelectedColor(new Color(enumColor.getColor()));
+			setSelectedColor(new Color(enumColor.getColor()));
+		}
+		
+		SkinColor getSkinColor() {
+			return enumColor;
 		}
 
-		/**
-		 * Used for setting outfit colors other than skin.
-		 *
-		 * @param color
-		 * 		Target outfit color
-		 */
 		@Override
 		public void setSelectedColor(Color color) {
 			if (color != null) {
+				boolean keepLightness = enumColor != null;
 				enumColor = SkinColor.fromInteger(color.getRGB());
+				
+				int[] argb = new int[4];
+				ARGB.splitRgb(enumColor.getColor(), argb);
+				float[] hsl = new float[3];
+				HSL.rgb2hsl(argb, hsl);
+				setHS(hsl[0], hsl[1]);
+				if (!keepLightness) {
+					/*
+					 * Take lightness from the set color - it is coming
+					 * from the current player outfit
+					 */
+					ARGB.splitRgb(color.getRGB(), argb);
+					HSL.rgb2hsl(argb, hsl);
+					setL(hsl[2]);
+				}
 			} else {
 				enumColor = SkinColor.COLOR1;
+				super.setSelectedColor(new Color(enumColor.getColor()));
 			}
-			super.setSelectedColor(new Color(enumColor.getColor()));
 		}
 	}
 }
