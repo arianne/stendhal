@@ -479,7 +479,7 @@ death.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 death_knight.png        Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 demon_skeleton.png      artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 devil_monk.png          Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
-devil_queen.png         ???; ???; ???
+devil_queen.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/66147
 elder_skeleton.png      ???; ???; ???
 fallen_high_priest.png  ???; ???; ???
 fallen_priest.png       ???; ???; ???
