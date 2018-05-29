@@ -64,6 +64,7 @@ release:
 - mold                           https://opengameart.org/users/mold
 - Nila122                        https://opengameart.org/users/nila122
 - NoLogoGames                    https://opengameart.org/users/nologogames
+- patvanmackelberg               https://opengameart.org/users/patvanmackelberg
 - Rayane Félix (RayaneFLX)       https://opengameart.org/users/rayaneflx
 - RedVoxel                       https://opengameart.org/users/redvoxel
 - Shepardskin                    https://opengameart.org/users/shepardskin

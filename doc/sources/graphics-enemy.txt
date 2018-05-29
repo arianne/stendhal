@@ -37,7 +37,7 @@ deer.png              ???; ???; ???
 dodo_bird.png         ???; ???; ???
 dog.png               ???; ???; ???
 elephant.*            lawnjelly, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/84509
-fox.png               ???; ???; ???
+fox.png               patvanmackelberg; CC0; https://opengameart.org/node/48199
 green_slime.*         meriharakka; ???; Stendhal
 killer_bat.png        bagzie; OGA BY 3.0; https://opengameart.org/node/26447
 killer_bee.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
