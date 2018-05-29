@@ -1,4 +1,4 @@
-﻿Changelog
+﻿﻿Changelog
 ---------
 
 1.27
@@ -64,6 +64,7 @@ release:
 - mold                           https://opengameart.org/users/mold
 - Nila122                        https://opengameart.org/users/nila122
 - NoLogoGames                    https://opengameart.org/users/nologogames
+- One Man Army                   https://opengameart.org/users/one-man-army
 - Onno Timmerman (Enquest)       https://opengameart.org/users/enquest
 - patvanmackelberg               https://opengameart.org/users/patvanmackelberg
 - Rayane Félix (RayaneFLX)       https://opengameart.org/users/rayaneflx
