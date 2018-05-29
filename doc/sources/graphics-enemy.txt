@@ -266,17 +266,17 @@ imperial_archer.png          Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY
 imperial_archer_leader.png   Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
 imperial_chief.png           ???; ???; ???
 imperial_commander.png       ???; ???; ???
-imperial_defender.png        ???; ???; ???
+imperial_defender.png        Svetlana Kushnariova (Cabbit), Spring, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/68650
 imperial_elite_archer.png    Svetlana Kushnariova (Cabbit), olonu, Fabzy, SoCay; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_elite_guardian.png  Svetlana Kushnariova (Cabbit), LordNeo, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
-imperial_general.png         ???; ???; ???
+imperial_general.png         Svetlana Kushnariova (Cabbit), Nila122, Dan Štefka (sufan02), olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/25629, https://opengameart.org/node/68435
 imperial_high_priest.png     Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/157
 imperial_knight.png          Stephen Challener (Redshrike), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/165
 imperial_leader.png          Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/722/
 imperial_priest.png          Svetlana Kushnariova (Cabbit), onu/olonu; LordNeo; https://github.com/arianne/stendhal/issues/89
 imperial_scientist.png       Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/70
 imperial_veteran.png         ???; ???; ???
-kalavan_citizen.png          ???; ???; ???
+kalavan_citizen.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_housewife.png        ???; ???; ???
 kalavan_peasant.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_wisewoman.png        Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
@@ -293,12 +293,12 @@ risecia_thug.png             ???; ???; ???
 samurai.png                  ???; ???; ???
 shadows_assassin.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 soldier_archer.png           ???; ???; ???
-soldier_colonel.png          ???; ???; ???
+soldier_colonel.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 soldier_common.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/130
 soldier_elite_archer.png     ???; ???; ???
-soldier_general.png          ???; ???; ???
+soldier_general.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 soldier_knight.*             ???; ???; ???
-soldier_lieutenant.png       ???; ???; ???
+soldier_lieutenant.png       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_sergeant.png         Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_wizard.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/716/
 super_human.png              ???; ???; ???

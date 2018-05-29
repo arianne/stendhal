@@ -40,6 +40,7 @@ release:
                                  https://opengameart.org/users/bluevortexgames
 - Crisisworks                    https://opengameart.org/users/crisisworks
 - Curt                           https://opengameart.org/users/curt
+- Dan Štefka (sufan02)           https://opengameart.org/users/sufan02
 - Daniel Eddeland (daneeklu)     https://opengameart.org/users/daneeklu
 - danielmahon                    https://opengameart.org/users/danielmahon
 - DkuCook                        https://opengameart.org/users/dkucook
@@ -66,6 +67,7 @@ release:
 - Rayane Félix (RayaneFLX)       https://opengameart.org/users/rayaneflx
 - RedVoxel                       https://opengameart.org/users/redvoxel
 - Shepardskin                    https://opengameart.org/users/shepardskin
+- Spring                         https://opengameart.org/users/spring
 - Sollision                      https://opengameart.org/users/sollision
 - Stephen Challener (Redshrike)  https://opengameart.org/users/redshrike
 - Tracy                          https://opengameart.org/users/tracy
