@@ -80,7 +80,7 @@ hanknpc.png                   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin
 heraldnpc.png                 ???; ???; ???
 hoeingmannpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802; Original Pepper&Carrot webcomic created by David Revoy.
 holidaymakernpc.png           ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
-hotelchefnpc.png              ???; ???; ???
+hotelchefnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/69527
 hotelguestnpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 hotelreceptionistnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 housewifenpc.png              ???; ???; ???
