@@ -187,6 +187,9 @@ rattlesnake-1.*          fws.gov; public domain; http://soundbible.com/237-Rattl
 roar-dragon-1.*          JoelAudio; CC0; http://freesound.org/people/JoelAudio/sounds/85568/
 roar-dragon-2.*          frasbr; CC0; http://freesound.org/people/frasbr/sounds/145729/
 roar-large-1.*           ibm5155; CC0; http://freesound.org/people/ibm5155/sounds/174913/
+robot-1.ogg              Jordan Irwin (AntumDeluge); BSD; Stendhal
+robot-2.ogg              ???; ???; ???
+robot-3.ogg              Loge the 60th; Public Domain; http://soundbible.com/1758-Door-Entry-Notification.html
 rocks-1.*                ALLANZ10D; CC0; http://freesound.org/people/ALLANZ10D/sounds/155934/
 saur-3.ogg               ???; ???; free sound pack
 saur-4.ogg               ???; ???; free sound pack
