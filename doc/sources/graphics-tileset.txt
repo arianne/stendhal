@@ -1133,7 +1133,7 @@ leafy_daisy_white.png   ???; ???; ???
 leafy_daisy_yellow.png  ???; ???; ???
 planted_containers.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pointed_yellow.png      NoLogoGames; CC BY 4.0; https://opengameart.org/node/78584
-polyanthus.png          ???; ???; ???
+polyanthus.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 purple.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_blue_clusters.png   ???; ???; ???
 red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
