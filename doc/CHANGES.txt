@@ -29,6 +29,7 @@ contributed directly to Stendhal, but whose works helped make this
 release:
 
 - amaranthia                     https://opengameart.org/users/amaranthia
+- Andrew Kelley (superjoe)       https://opengameart.org/users/superjoe
 - Angry Amish                    https://opengameart.org/users/angry-amish
 - artisticdude                   https://opengameart.org/users/artisticdude
 - bagzie                         https://opengameart.org/users/bagzie
