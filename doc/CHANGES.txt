@@ -35,6 +35,7 @@ release:
 - Barbara Rivera
 - Bertram                        https://opengameart.org/users/bertram
 - bluecarrot16                   https://opengameart.org/users/bluecarrot16
+- Calciumtrice                   https://opengameart.org/users/calciumtrice
 - Casper Nilsson                 https://opengameart.org/users/cnilsson
 - Charles Gabriel (Antifarea)    https://opengameart.org/users/charlesgabriel
 - Cobra Hubbard (BlueVortexGames)
