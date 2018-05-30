@@ -79,7 +79,7 @@ dark_elf_archer.png        Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVor
 dark_elf_captain.png       Svetlana Kushnariova (Cabbit), onu/olonu, Muhammad Amiruddin (Amir027); OGA BY 3.0; https://github.com/arianne/stendhal/issues/123
 dark_elf_elite_archer.png  Svetlana Kushnariova (Cabbit), Nila122, SoCay, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/150
 dark_elf_general.png       Svetlana Kushnariova (Cabbit), onu/olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/122
-dark_elf_knight.png        ???; ???; ???
+dark_elf_knight.png        Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 dark_elf_master.png        Svetlana Kushnariova (Cabbit), onu/olonu, Andrew Kelley (superjoe); OGA BY 3.0; https://github.com/arianne/stendhal/issues/116
 dark_elf_matronmother.png  Svetlana Kushnariova (Cabbit), onu/olonu, 59naga; OGA BY 3.0; https://github.com/arianne/stendhal/issues/119
 dark_elf_ranger.png        Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/95
@@ -252,7 +252,7 @@ bandit.png                   ???; ???; ???
 barbarian.png                ???; ???; ???
 barbarian_chaman.png         ???; ???; ???
 barbarian_elite.*            ???; ???; ???
-barbarian_king.png           ???; ???; ???
+barbarian_king.png           Svetlana Kushnariova (Cabbit), diamonddmgirl, Bart Kelsey, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/3755
 barbarian_leader.png         ???; ???; ???
 barbarian_priest.png         ???; ???; ???
 barbarian_wolf.png           ???; ???; ???
@@ -297,7 +297,7 @@ soldier_colonel.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; h
 soldier_common.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/130
 soldier_elite_archer.png     ???; ???; ???
 soldier_general.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
-soldier_knight.*             ???; ???; ???
+soldier_knight.png           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_lieutenant.png       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_sergeant.png         Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
 soldier_wizard.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/716/
