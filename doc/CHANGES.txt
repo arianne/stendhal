@@ -33,6 +33,7 @@ release:
 - artisticdude                   https://opengameart.org/users/artisticdude
 - bagzie                         https://opengameart.org/users/bagzie
 - Barbara Rivera
+- Bertram                        https://opengameart.org/users/bertram
 - bluecarrot16                   https://opengameart.org/users/bluecarrot16
 - Casper Nilsson                 https://opengameart.org/users/cnilsson
 - Charles Gabriel (Antifarea)    https://opengameart.org/users/charlesgabriel
@@ -88,12 +89,14 @@ release:
 - ZaPaper                        https://opengameart.org/users/zapaper
 - ztn                            https://opengameart.org/users/ztn
 
-We would also like to thank these authors:
+We would also like to thank these authors from other communities:
 
-- Daniel Cook  http://www.lostgarden.com/
-- Firkin       https://openclipart.org/user-detail/Firkin
-- Guido Bos    http://www.neorice.com/
-- leangoro     https://openclipart.org/user-detail/leangoro
+- Daniel Cook       http://www.lostgarden.com/
+- Firkin            https://openclipart.org/user-detail/Firkin
+- Guido Bos         http://www.neorice.com/
+- johnny_automatic  https://openclipart.org/user-detail/johnny_automatic
+- leangoro          https://openclipart.org/user-detail/leangoro
+- liftarn           https://openclipart.org/user-detail/liftarn
 
 And finally, thank you to the Stendhal project members Kimmo Rundelin (kiheru),
 olonu, & Jordan Irwin (AntumDeluge) who put in extra hours of work to take on

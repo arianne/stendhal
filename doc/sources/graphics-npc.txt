@@ -213,7 +213,7 @@ woman_009_npc.png             ???; ???; ???
 woman_011_npc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 woman_013_npc.png             ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://github.com/arianne/stendhal/issues/161
 woman_014_npc.png             Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
-woman_015_npc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+woman_015_npc.png             Svetlana Kushnariova (Cabbit), liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://openclipart.org/detail/232340
 woman_016_npc.png             ???; ???; ???
 womanexoticdressnpc.png       ???; ???; ???
 womanonstoolnpc.png           ???; ???; ???
