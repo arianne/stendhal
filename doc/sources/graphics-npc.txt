@@ -14,7 +14,7 @@ barman2npc.png                Svetlana Kushnariova (Cabbit), diamonddmgirl, olon
 barman3npc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 barracksbuyernpc.png          ???; ???; ???
 beggarnpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-bbqgrillmasternpc.png         ???; ???; ???
+bbqgrillmasternpc.png         Svetlana Kushnariova (Cabbit), One Man Army, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/69527
 beardmannpc.png               ???; ???; ???
 beautifulgirlnpc.png          ???; ???; ???
 beekeepernpc.png              ???; ???; ???
