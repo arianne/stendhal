@@ -67,7 +67,9 @@ class HelpAction implements SlashAction {
 				"- /info \t\tFind out what the current server time is",
 				"- /mute\t\tMute or unmute the sounds",
 				"- /walk \t\tToggles autowalk",
-				"- /volume\t\tLists or sets the volume for sound and music"
+				"- /volume\t\tLists or sets the volume for sound and music",
+				"- /clear\tClear chat log.",
+				"- /help\t\tShow help information."
 		};
 
 		for (final String line : lines) {
