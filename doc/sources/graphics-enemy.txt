@@ -17,7 +17,7 @@ amazoness_coastguard_master.png  Svetlana Kushnariova (Cabbit), onu/olonu, Sprin
 amazoness_commander.png          Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
 amazoness_elite_coastguard.png   Svetlana Kushnariova (Cabbit), olonu, dwtoch; OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 amazoness_hunter.png             Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
-amazoness_imperator.png          ???; ???; ???
+amazoness_imperator.png          Svetlana Kushnariova (Cabbit), Nila122, Sollision, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/29293, https://opengameart.org/node/76967
 amazoness_vigilance.png          Svetlana Kushnariova (Cabbit), olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
 
 data/sprites/monsters/animal/
@@ -248,7 +248,7 @@ apprentice_assassin.png      Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.
 armored_leader.png           ???; ???; ???
 armored_warrior.png          ???; ???; ???
 assassin.png                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
-bandit.png                   ???; ???; ???
+bandit.png                   Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 barbarian.png                ???; ???; ???
 barbarian_chaman.png         ???; ???; ???
 barbarian_elite.*            ???; ???; ???
