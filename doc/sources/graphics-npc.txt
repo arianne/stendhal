@@ -24,7 +24,7 @@ blacksmithnpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 blackwizardpriestnpc.png      ???; ???; ???
 blueoldwizardnpc.png          ???; ???; ???
 bluesorceressnpc.png          ???; ???; ???
-bossmannpc.png                ???; ???; ???
+bossmannpc.png                Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 boyguardnpc.png               Svetlana Kushnariova (Cabbit), diamonddmgirl, Cobra Hubbard (BlueVortexGames), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/27202
 boynpc.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 brownwizardnpc.png            ???; ???; ???
