@@ -93,10 +93,7 @@ class GameKeyHandler implements KeyListener {
 				 */
 				final Direction direction = keyCodeToDirection(e.getKeyCode());
 
-				/* TODO: Remove MOTION condition when auto-walk testing is
-				 * finished.
-				 *
-				 * Check if the player is currently using auto-walk or the Alt
+				/* Check if the player is currently using auto-walk or the Alt
 				 * key is pressed.
 				 */
 				User user = User.get();
