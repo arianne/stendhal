@@ -32,7 +32,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
-import games.stendhal.common.constants.Testing;
 
 /**
  * Page for general settings.
@@ -87,17 +86,15 @@ class GeneralSettings {
 		page.add(showPoisonToggle);
 
 		// Continuous movement
-		if (Testing.MOVEMENT) {
-			moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",
-											"Continuous movement", "Change maps & pass through portals without stopping");
-			moveContinuousToggle.addItemListener(new ItemListener() {
-				@Override
-				public void itemStateChanged(ItemEvent e) {
-					new MoveContinuousAction().sendAction(e.getStateChange() == ItemEvent.SELECTED);
-				}
-			});
-			page.add(moveContinuousToggle);
-		}
+		moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",
+										"Continuous movement", "Change maps and pass through portals without stopping");
+		moveContinuousToggle.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				new MoveContinuousAction().sendAction(e.getStateChange() == ItemEvent.SELECTED);
+			}
+		});
+		page.add(moveContinuousToggle);
 
 		// Client dimensions
 		JComponent clientSizeBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);

@@ -35,6 +35,7 @@ import games.stendhal.server.actions.equip.ReorderAction;
 import games.stendhal.server.actions.move.AutoWalkAction;
 import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
+import games.stendhal.server.actions.move.MoveContinuousAction;
 import games.stendhal.server.actions.move.MoveToAction;
 import games.stendhal.server.actions.move.PushAction;
 import games.stendhal.server.actions.pet.ForsakeAction;
@@ -110,6 +111,7 @@ public class CommandCenter {
 		ListProducersAction.register();
 		LookAction.register();
 		MoveAction.register();
+		MoveContinuousAction.register();
 		MoveToAction.register();
 		NameAction.register();
 		OutfitAction.register();

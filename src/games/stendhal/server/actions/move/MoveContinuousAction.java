@@ -27,6 +27,9 @@ import marauroa.common.game.RPAction;
  *   - Execute slash command "movecont".
  *   - Change "Continuous Movement" setting in settings dialog.
  *
+ * FIXME: Causes issues with portals where player is teleported
+ *        to side opposite of direction pushed.
+ *
  * @author AntumDeluge
  */
 public class MoveContinuousAction implements ActionListener {

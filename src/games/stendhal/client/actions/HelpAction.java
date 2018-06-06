@@ -80,6 +80,7 @@ class HelpAction implements SlashAction {
 				"- /clickmode \tSwitches between single click mode and double click mode.",
 				"- /walk \tToggles autowalk on/off.",
 				"- /stopwalk \tTurns autowalk off.",
+				"- /movecont \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
 				"* CLIENT SETTINGS:",
 				"- /mute \tMute or unmute the sounds.",
 				"- /volume \tLists or sets the volume for sound and music.",
