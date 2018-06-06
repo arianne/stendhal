@@ -38,6 +38,14 @@ class GameKeyHandler implements KeyListener {
 	private long lastAction = 0;
 
 	/**
+	 * Double key presses.
+	 */
+	private final int doublePressThreshold = 300;
+	private int curKeyPress = -1;
+	private int prevKeyPress = -1;
+	private long doublePressStart;
+
+	/**
 	 * Delayed direction release holder.
 	 */
 	private DelayedDirectionRelease directionRelease;
@@ -56,6 +64,7 @@ class GameKeyHandler implements KeyListener {
 	@Override
 	public void keyPressed(final KeyEvent e) {
 		final int keyCode = e.getKeyCode();
+		curKeyPress = keyCode;
 
 		/* Ignore if the key is already pressed down. */
 		if (!client.keyIsPressed(keyCode)) {
@@ -97,7 +106,7 @@ class GameKeyHandler implements KeyListener {
 				 * key is pressed.
 				 */
 				User user = User.get();
-				if ((user.getRPObject().has(AUTOWALK) || e.isAltDown())) {
+				if ((user.getRPObject().has(AUTOWALK) || this.isDoublePress())) {
 					/* Face direction pressed and toggle auto-walk. */
 					this.processAutoWalk(direction, user);
 				} else {
@@ -140,6 +149,8 @@ class GameKeyHandler implements KeyListener {
 	@Override
 	public void keyReleased(final KeyEvent e) {
 		final int keyCode = e.getKeyCode();
+		prevKeyPress = keyCode;
+		doublePressStart = System.currentTimeMillis();
 
 		/* Ignore if the key is not found in the pressedStateKeys list. */
 		if (client.keyIsPressed(keyCode)) {
@@ -167,6 +178,25 @@ class GameKeyHandler implements KeyListener {
 	@Override
 	public void keyTyped(final KeyEvent e) {
 		// Ignore. All the work is done in keyPressed and keyReleased methods.
+	}
+
+	/**
+	 * Checks if user hits same key twice within double press threshold.
+	 *
+	 * FIXME: Delayed direction release seems to interfere sometimes.
+	 *
+	 * @return <code>true</code> if same key is pressed a second time within threshold limit
+	 */
+	public boolean isDoublePress() {
+		if ((curKeyPress == prevKeyPress) && ((System.currentTimeMillis() - doublePressStart) < doublePressThreshold)) {
+			// Reset key press values
+			curKeyPress = -1;
+			prevKeyPress = -1;
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
