@@ -727,10 +727,14 @@ wall_hanging_dkgreen.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/blood/
 
-floor_stain.png     ???; ???; ???
-floor_stains_2.png  ???; ???; ???
-nsew_stains.png     ???; ???; ???
-small_stains.png    ???; ???; ???
+floor_stain-noblood.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+floor_stain.png             ???; ???; ???
+floor_stains_2-noblood.png  Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+floor_stains_2.png          ???; ???; ???
+nsew_stains-noblood.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+nsew_stains.png             ???; ???; ???
+small_stains-noblood.png    Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+small_stains.png            ???; ???; ???
 
 tiled/tileset/item/chemistry/
 
