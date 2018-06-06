@@ -473,7 +473,7 @@ truskull_warrior.png       ???; ???; ???
 
 data/sprites/monsters/undead/
 
-bloody_zombie.png       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
+bloody_zombie*.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 dead_lich.png           Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 death.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 death_knight.png        Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
