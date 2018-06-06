@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+1.28
+*client*
+- sprites & tiles replaced with images suffixed with "-noblood" when blood disabled
+
+
 1.27
 *world*
 - many new NPC and enemy sprite images
