@@ -9,6 +9,7 @@ Changelog
 - new enemy sprites:
   - kalavan_housewife
   - madaram_peasant
+  - madaram_queen
   - madaram_soldier
 
 *client*
