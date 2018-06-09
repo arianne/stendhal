@@ -64,6 +64,7 @@ fishsoupmakernpc.png          ???; ???; ???
 floattingladynpc.*            Svetlana Kushnariova (Cabbit), Nila122, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
 friendlywizardnpc.png         ???; ???; ???
 gamesupervisornpc.png         ???; ???; ???
+gardenernpc.png               Svetlana Kushnariova (Cabbit), bleutailfly, olonu, Jordan Irwin (AntumDeluge); ???; https://opengameart.org/node/72969, Stendhal
 girlnpc.png                   Svetlana Kushnariova (Cabbit), Tracy, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
 gnomenpc.png                  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 goldsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
@@ -78,6 +79,7 @@ gypsywomannpc.png             ???; ???; ???
 halfelfnpc.png                ???; ???; ???
 hanknpc.png                   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 heraldnpc.png                 ???; ???; ???
+highpriestnpc.png             Svetlana kushnariova (Cabbit), Sollision, Andrew Kelley (superjoe), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/76967, https://opengameart.org/node/17839
 hoeingmannpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802; Original Pepper&Carrot webcomic created by David Revoy.
 holidaymakernpc.png           ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
 hotelchefnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/69527
