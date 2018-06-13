@@ -88,7 +88,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
 
-		npc.setEntityClass("noimagenpc"); /* doctornpc */
+		npc.setEntityClass("doctornpc");
 		npc.setPosition(53, 28);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
