@@ -40,6 +40,7 @@ confectionerapplepienpc.png   Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https:/
 confectionercherrypienpc.png  Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 curatornpc.png                ???; ???; ???
 customeronchairnpc.png        ???; ???; ???
+doctornpc.png                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 drugsdealernpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dwarf_guardiannpc.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 dwarfguardnpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
@@ -113,7 +114,7 @@ magicianhousegreeternpc.png   ???; ???; ???
 maidnpc.png                   ???; ???; ???
 man_000_npc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/91
 man_001_npc.png               ???; ???; ???
-man_002_npc.png               ???; ???; ???
+man_002_npc.png               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 man_004_npc.png               ???; ???; ???
 man_005_npc.png               ???; ???; ???
 man_008_npc.png               ???; ???; ???
@@ -155,7 +156,7 @@ plinknpc.png                  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https:/
 postelfnpc.png                ???; ???; ???
 priestnpc.png                 ???; ???; ???
 princess2npc.png              ???; ???; ???
-principalnpc.png              ???; ???; ???
+principalnpc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 ratchefnpc.png                Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 ratchild1npc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
 ratchild2npc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
