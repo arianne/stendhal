@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
-
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -235,10 +233,13 @@ public class Portal extends Entity implements UseListener {
 		if (player.teleport(destZone, dest.getX(), dest.getY(), null, null)) {
 			/* Allow player to continue movement after teleport via portal
 			 * without the need to release and press direction again.
+			 *
+			 * FIXME: Cannot predict which side of portal player will end up.
 			 */
-			if (!player.has(MOVE_CONTINUOUS)) {
-				player.stop();
-			}
+			//if (!player.has(MOVE_CONTINUOUS)) {
+			//	player.stop();
+			//}
+			player.stop();
 
 			dest.onUsedBackwards(player);
 		}
