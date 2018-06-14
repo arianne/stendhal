@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.constants.Actions.COND_STOP;
+import static games.stendhal.common.constants.Actions.TYPE;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -100,6 +103,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.constants.Testing;
 import marauroa.client.net.IPerceptionListener;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** The main class that create the screen and starts the arianne client. */
@@ -315,14 +319,15 @@ public class j2DClient implements UserInterface {
 		chatText.getPlayerChatText().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(final FocusEvent e) {
-				/* TODO: Remove condition when movement testing is finished. */
-				if (Testing.MOVEMENT) {
-					/* FIXME: Player continues walking if arrow key is pressed when
-					 * 		text input area loses focus. This feature/bug should be
-					 * 		fixed because auto-walk is now implemented.
-					 */
-					client.clearPressedKeys();
-				}
+				/* Stops player movement via keypress when focus is lost.
+				 *
+				 * FIXME: When focus is regained, direction key must be
+				 *        pressed twice to resume walking. Key states
+				 *        not flushed correctly?
+				 */
+				final RPAction stop = new RPAction();
+				stop.put(TYPE, COND_STOP);
+				ClientSingletonRepository.getClientFramework().send(stop);
 			}
 		});
 
