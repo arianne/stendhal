@@ -239,7 +239,7 @@ public class Portal extends Entity implements UseListener {
 			//if (!player.has(MOVE_CONTINUOUS)) {
 			//	player.stop();
 			//}
-			player.stop();
+			player.forceStop();
 
 			dest.onUsedBackwards(player);
 		}
