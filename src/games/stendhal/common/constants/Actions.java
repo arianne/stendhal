@@ -192,6 +192,7 @@ public final class Actions {
 	public final static String AUTOWALK = "autowalk";
 	/* Property indicating player is using continuous movement. */
 	public final static String MOVE_CONTINUOUS = "move.continuous";
+	public final static String COND_STOP = "conditional_stop";
 
 	private Actions() {
 		// hide constructor

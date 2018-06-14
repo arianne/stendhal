@@ -33,6 +33,7 @@ import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.actions.equip.EquipAction;
 import games.stendhal.server.actions.equip.ReorderAction;
 import games.stendhal.server.actions.move.AutoWalkAction;
+import games.stendhal.server.actions.move.ConditionalStopAction;
 import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveContinuousAction;
@@ -99,6 +100,7 @@ public class CommandCenter {
 		CastSpellAction.register();
 		ChallengePlayerAction.register();
 		ChatAction.register();
+		ConditionalStopAction.register();
 		CStatusAction.register();
 		DisplaceAction.register();
 		DropAction.register();
