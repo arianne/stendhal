@@ -418,6 +418,15 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
+	 * Forces player to stop moving, bypassing auto-walk
+	 */
+	public void forceStop() {
+		this.remove(AUTOWALK);
+		directions.clear();
+		super.stop();
+	}
+
+	/**
 	 * Get the away message.
 	 *
 	 * @return The away message, or <code>null</code> if unset.
