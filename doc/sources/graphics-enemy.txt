@@ -306,7 +306,7 @@ super_human.png              ???; ???; ???
 data/sprites/monsters/hybrid/
 
 arachne.png          ???; ???; ???
-blue_mohiko.png      ???; ???; ???
+blue_mohiko.png      Svetlana Kushnariova (Cabbit), bluecarrot16, Michael Williams (BizmasterStudios), olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/36060, https://opengameart.org/node/77334
 brain_ahouga.png     Tuomo Untinen (Reemax); CC BY 3.0; https://opengameart.org/node/15590
 dark_aruthon.png     Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50703
 googon.*             Tracy, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/13716

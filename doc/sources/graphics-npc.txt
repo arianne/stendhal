@@ -71,7 +71,7 @@ gnomenpc.png                  isaiah658, Jordan Irwin (AntumDeluge); CC0; https:
 goldsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 grandadnpc.png                ???; ???; ???
 granmanpc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-greendwarfnpc.png             ???; ???; ???
+greendwarfnpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 greenelfwizardnpc.png         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/114
 grim_reaper_npc.png           ???; ???; ???
 grim_reaper2_npc.png          ???; ???; ???
@@ -117,7 +117,7 @@ man_001_npc.png               ???; ???; ???
 man_002_npc.png               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 man_004_npc.png               ???; ???; ???
 man_005_npc.png               ???; ???; ???
-man_008_npc.png               ???; ???; ???
+man_008_npc.png               Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/80841
 manwithhatnpc.png             ???; ???; ???
 marketsellernpc.png           ???; ???; ???
 marmaidnpc.png                ???; ???; ???
@@ -133,7 +133,7 @@ nightguardbrownnpc.png        ???; ???; ???
 nightguardswordnpc.png        ???; ???; ???
 noimagenpc.png                ???; ???; ???
 oldcowboynpc.png              ???; ???; ???
-olddwarfnpc.png               ???; ???; ???
+olddwarfnpc.png               Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 oldfishermannpc.png           ???; ???; ???
 oldheronpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldmaidnpc.png                ???; ???; ???
@@ -154,7 +154,7 @@ pirate_sailor2npc.png         Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 piratenpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83642
 plinknpc.png                  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/718/
 postelfnpc.png                ???; ???; ???
-priestnpc.png                 ???; ???; ???
+priestnpc.png                 Svetlana Kushnariova (Cabbit), onu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944
 princess2npc.png              ???; ???; ???
 principalnpc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 ratchefnpc.png                Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
@@ -191,7 +191,7 @@ swimmer6npc.png               ???, Svetlana Kushnariova (Cabbit), diamonddmgirl,
 swimmer7npc.png               ???; ???; ???
 swimmer8npc.png               ???, Svetlana Kushnariova (Cabbit), olonu; ???; ???
 tavernbarmaidnpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-taxmannpc.png                 ???; ???; ???
+taxmannpc.png                 Svetlana Kushnariova (Cabbit), diamonddmgirl, onu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 thiefnpc.*                    Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 timekeepernpc.png             ???; ???; ???
 transparentnpc.png            ???; ???; ???
