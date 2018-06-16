@@ -58,9 +58,10 @@ public class FoodMill extends Item {
 
     @Override
 	public boolean onUsed(final RPEntity user) {
+    	final String tool = getName();
     	/* is the mill equipped at all? */
     	if (!isContained()) {
-    		user.sendPrivateText("You should be carrying the " + getName() + " in order to use it.");
+    		user.sendPrivateText("You should be carrying the " + tool + " in order to use it.");
     		return false;
     	}
 
@@ -68,7 +69,7 @@ public class FoodMill extends Item {
 
     	/* is it in a hand? */
     	if (!slotName.endsWith("hand")) {
-    		user.sendPrivateText("You should hold the " + getName() + " in either hand in order to use it.");
+    		user.sendPrivateText("You should hold the " + tool + " in either hand in order to use it.");
     		return false;
     	}
 
