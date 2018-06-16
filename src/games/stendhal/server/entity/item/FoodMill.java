@@ -72,7 +72,7 @@ public class FoodMill extends Item {
     		return false;
     	}
 
-    	String otherhand = getOtherHand(slotName);
+    	final String otherhand = getOtherHand(slotName);
 
     	final RPObject first = user.getSlot(otherhand).getFirst();
 
