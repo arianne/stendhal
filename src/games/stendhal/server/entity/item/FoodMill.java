@@ -35,7 +35,9 @@ public class FoodMill extends Item {
 	/** The resulting processed item */
 	private String output;
 	/** Items that do not require a "container". */
-	private final List<String> containerNotRequired = new ArrayList<String>();
+	private final List<String> containerNotRequired = new ArrayList<String>() {{
+		add("scroll eraser");
+	}};
 
     public FoodMill(final String name, final String clazz,
             final String subclass, final Map<String, String> attributes) {
@@ -56,7 +58,6 @@ public class FoodMill extends Item {
     		output = "sugar";
     	} else if ("scroll eraser".equals(getName())) {
     		input = "marked scroll";
-    		container = "money";
     		output = "empty scroll";
     	} else {
     		input = "apple";
