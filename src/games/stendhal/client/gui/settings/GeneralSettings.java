@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.DOUBLE_TAP_AUTOWALK_PROPERTY;
 import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINUOUS_PROPERTY;
 
 import java.awt.Component;
@@ -81,6 +82,12 @@ class GeneralSettings {
 		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
+
+		// Double-tap direction for auto-walk
+		JCheckBox doubleTapAutowalkToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_TAP_AUTOWALK_PROPERTY, "false",
+										"Double-tap direction for auto-walk (buggy)",
+										"Initiates auto-walk when direction key is double-tapped");
+		page.add(doubleTapAutowalkToggle);
 
 		// Continuous movement
 		moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",

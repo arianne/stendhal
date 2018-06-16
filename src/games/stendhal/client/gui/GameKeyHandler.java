@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.DOUBLE_TAP_AUTOWALK_PROPERTY;
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.DIR;
 import static games.stendhal.common.constants.Actions.FACE;
@@ -26,6 +27,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.Direction;
 import marauroa.common.game.RPAction;
 
@@ -106,7 +108,9 @@ class GameKeyHandler implements KeyListener {
 				 * key is pressed.
 				 */
 				User user = User.get();
-				if ((user.getRPObject().has(AUTOWALK) || this.isDoublePress())) {
+				if ((user.getRPObject().has(AUTOWALK) ||
+						("true".equals(WtWindowManager.getInstance().getProperty(DOUBLE_TAP_AUTOWALK_PROPERTY, "false"))
+						&& this.isDoublePress()))) {
 					/* Face direction pressed and toggle auto-walk. */
 					this.processAutoWalk(direction, user);
 				} else {
