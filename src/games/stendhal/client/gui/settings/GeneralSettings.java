@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
-import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINUOUS_PROPERTY;
 
 import java.awt.Component;
 import java.awt.Frame;
@@ -47,9 +47,6 @@ class GeneralSettings {
 	private static final String POISON_MESSAGE_PROPERTY = "ui.poisonmessage";
 
 	private static final String DIMENSIONS_PROPERTY = "ui.dimensions";
-
-	/** Property used for continuous movement through map changes & portals. */
-	private static final String  MOVE_CONTINUOUS_PROPERTY = MOVE_CONTINUOUS;
 
 	/** Container for the setting components. */
 	private final JComponent page;

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.common.constants;
 
+import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINUOUS_PROPERTY;
 
 /**
  * contains constants needed for server and client to process actions.
@@ -191,7 +192,7 @@ public final class Actions {
 	/* Property indicating player is using auto-walk. */
 	public final static String AUTOWALK = "autowalk";
 	/* Property indicating player is using continuous movement. */
-	public final static String MOVE_CONTINUOUS = "move.continuous";
+	public final static String MOVE_CONTINUOUS = MOVE_CONTINUOUS_PROPERTY;
 	public final static String COND_STOP = "conditional_stop";
 
 	private Actions() {
