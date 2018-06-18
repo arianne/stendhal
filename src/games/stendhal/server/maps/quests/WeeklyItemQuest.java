@@ -157,6 +157,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 		// misc
 		items.put("giant heart",5);
+		items.put("venom gland",1);
 
 		// resource
 		items.put("mithril bar",1);
