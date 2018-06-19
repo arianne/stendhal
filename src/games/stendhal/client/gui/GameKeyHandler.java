@@ -43,9 +43,8 @@ class GameKeyHandler implements KeyListener {
 	 * Double key presses.
 	 */
 	private final int doublePressThreshold = 300;
-	private int curKeyPress = -1;
 	private int prevKeyPress = -1;
-	private long doublePressStart;
+	private long doublePressStart = -1;
 
 	/**
 	 * Delayed direction release holder.
@@ -66,7 +65,7 @@ class GameKeyHandler implements KeyListener {
 	@Override
 	public void keyPressed(final KeyEvent e) {
 		final int keyCode = e.getKeyCode();
-		curKeyPress = keyCode;
+		final boolean doublePress = isDoublePress(keyCode);
 
 		/* Ignore if the key is already pressed down. */
 		if (!client.keyIsPressed(keyCode)) {
@@ -110,7 +109,7 @@ class GameKeyHandler implements KeyListener {
 				User user = User.get();
 				if ((user.getRPObject().has(AUTOWALK) ||
 						("true".equals(WtWindowManager.getInstance().getProperty(DOUBLE_TAP_AUTOWALK_PROPERTY, "false"))
-						&& this.isDoublePress()))) {
+						&& doublePress))) {
 					/* Face direction pressed and toggle auto-walk. */
 					this.processAutoWalk(direction, user);
 				} else {
@@ -153,8 +152,6 @@ class GameKeyHandler implements KeyListener {
 	@Override
 	public void keyReleased(final KeyEvent e) {
 		final int keyCode = e.getKeyCode();
-		prevKeyPress = keyCode;
-		doublePressStart = System.currentTimeMillis();
 
 		/* Ignore if the key is not found in the pressedStateKeys list. */
 		if (client.keyIsPressed(keyCode)) {
@@ -189,17 +186,22 @@ class GameKeyHandler implements KeyListener {
 	 *
 	 * FIXME: Delayed direction release seems to interfere sometimes.
 	 *
+	 * @param keyCode Key to check for double press
 	 * @return <code>true</code> if same key is pressed a second time within threshold limit
 	 */
-	public boolean isDoublePress() {
-		if ((curKeyPress == prevKeyPress) && ((System.currentTimeMillis() - doublePressStart) < doublePressThreshold)) {
-			// Reset key press values
-			curKeyPress = -1;
-			prevKeyPress = -1;
+	public boolean isDoublePress(final int keyCode) {
+		if (!(doublePressStart < 0)) {
+			if (keyCode == prevKeyPress && (System.currentTimeMillis() - doublePressStart) < doublePressThreshold) {
+				// Reset key press values
+				prevKeyPress = -1;
+				doublePressStart = -1;
 
-			return true;
+				return true;
+			}
 		}
 
+		prevKeyPress = keyCode;
+		doublePressStart = System.currentTimeMillis();
 		return false;
 	}
 
