@@ -118,6 +118,7 @@ We would also like to thank these authors from other communities:
 - johnny_automatic  https://openclipart.org/user-detail/johnny_automatic
 - leangoro          https://openclipart.org/user-detail/leangoro
 - liftarn           https://openclipart.org/user-detail/liftarn
+- meriharakka       Stendhal community
 
 And finally, thank you to the Stendhal project members Kimmo Rundelin (kiheru),
 olonu, & Jordan Irwin (AntumDeluge) who put in extra hours of work to take on
