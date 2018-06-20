@@ -123,6 +123,16 @@ class VisualSettings {
 		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",
 				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");
 		page.add(showBloodToggle);
+		// Inform players that some images won't update until after client is restarted.
+		// FIXME: Can't images be updated via map change?
+		showBloodToggle.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				final String msg = "Some changes will not take effect until the client is restarted.";
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
+			}
+
+		});
 
 		// show creature speech bubbles
 		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, "true",
