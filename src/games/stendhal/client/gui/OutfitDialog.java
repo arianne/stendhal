@@ -177,47 +177,6 @@ class OutfitDialog extends JDialog {
 	}
 
 	/**
-	 * Create a new outfit dialog with extended outfit features: Currently
-	 * mouth and eyes.
-	 *
-	 * @param parent
-	 * 		The parent object of this dialog
-	 * @param title
-	 * 		Text to be displayed in title bar
-	 * @param outfit
-	 * 		10-digit code representing original outfit features (old outfit
-	 * 		system)
-	 * @param outfitColor
-	 * 		Coloring information for outfit parts (<b>Note that outfitColor can
-	 * 		be modified by the dialog</b>)
-	 */
-	OutfitDialog(final Frame parent, final String title, long outfit,
-			final OutfitColor outfitColor) {
-		this(parent, title, (int)(outfit / 10000), outfitColor);
-
-		// Follow the model changes
-		eyes.addListener(eyesLabel);
-		eyes.addListener(outfitLabel);
-		mouth.addListener(mouthLabel);
-		mouth.addListener(outfitLabel);
-
-		// Analyze current outfit
-		int mouthsIndex = (int) (outfit % 100);
-		outfit = outfit / 100;
-		int eyesIndex = (int) (outfit % 100);
-
-		// Reset special outfits
-		mouthsIndex = checkIndex(mouthsIndex, mouth);
-		eyesIndex = checkIndex(eyesIndex, eyes);
-
-		// Set the current outfit indices; this will update the labels as well
-		eyes.setIndex(eyesIndex);
-		mouth.setIndex(mouthsIndex);
-
-		pack();
-	}
-
-	/**
 	 * Check an index is within player accessible limits.
 	 *
 	 * @param index current index
@@ -734,30 +693,6 @@ class OutfitDialog extends JDialog {
 		for (ResetListener l : resetListeners) {
 			l.reset();
 		}
-	}
-
-	/**
-	 * Set the state of the selector for extened outfit features: Currently
-	 * mouth and eyes.
-	 *
-	 * @param outfit
-	 * 		14-digit integer representing extended features
-	 * @param colors
-	 * 		Color state of outfit parts (will not be modiefied like the one
-	 * 		passed to constructor)
-	 */
-	void setState(long outfit, final OutfitColor colors) {
-		// Analyze the outfit code
-		int mouthsIndex = (int) (outfit % 100);
-		outfit = outfit / 100;
-		int eyesIndex = (int) (outfit % 100);
-		outfit = outfit / 100;
-
-		mouth.setIndex(mouthsIndex);
-		eyes.setIndex(eyesIndex);
-
-		// Run code for original (old) outfit system to update listeners
-		this.setState((int)outfit, colors);
 	}
 
 	/**

@@ -152,29 +152,6 @@ public class Outfit {
 	}
 
 	/**
-	 * Constructor with code to add extended features: Currently mouth and eyes.
-	 *
-	 * @param code
-	 * 		The outfit code including extended features
-	 */
-	public Outfit(final long code) {
-
-		this.body = (int) (code % 100);
-
-		this.dress = (int) (code / 100 % 100);
-
-		this.head = (int) (code / 10000 % 100);
-
-		this.hair = (int) (code / 1000000 % 100);
-
-		this.detail = (int) (code / 100000000 % 100);
-
-		this.mouth = (int) (code / (100000000 * 100) % 100);
-
-		this.eyes = (int) (code / (100000000 * 10000) % 100);
-	}
-
-	/**
 	 * Gets the index of this outfit's body style.
 	 *
 	 * @return The index, or null if this outfit doesn't contain a body.
