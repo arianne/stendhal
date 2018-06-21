@@ -372,27 +372,27 @@ zantedeschia_grower.png     ???; ???; ???
 
 data/sprites/items/helmet/
 
-aventail.png                ???; ???; ???
+aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_helmet.png            ???; ???; ???
 blue_helmet.png             ???; ???; ???
-chain_helmet.png            ???; ???; ???
-chaos_helmet.png            ???; ???; ???
+chain_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+chaos_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_helmet.png  ???; ???; ???
 elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
-enhanced_golden_helmet.png  ???; ???; ???
-golden_helmet.png           ???; ???; ???
-golden_horned_barbute.png   ???; ???; ???
+enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+golden_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_horned_barbute.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 holy_forest_helmet.png      ???; ???; ???
-horned_helmet.png           ???; ???; ???
-leather_helmet.png          ???; ???; ???
+horned_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 liberty_helmet.png          ???; ???; ???
 lion_clan_helmet.png        ???; ???; ???
-magic_chain_helmet.png      ???; ???; ???
-mithril_helmet.png          ???; ???; ???
+magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+mithril_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 red_helmet.png              ???; ???; ???
-robins_hat.png              ???; ???; ???
+robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           ???; ???; ???
-studded_helmet.png          ???; ???; ???
+studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 xeno_helmet.*               ???; ???; ???
 
 data/sprites/items/herb/
