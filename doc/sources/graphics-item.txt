@@ -576,12 +576,12 @@ wedding.png               Katie Russell (kymara); GPL 2.0; Stendhal
 
 data/sprites/items/scent/
 
-blue_scent.png    ???; ???; ???
-golden_scent.png  ???; ???; ???
-green_scent.png   ???; ???; ???
-indigo_scent.png  ???; ???; ???
-pink_scent.png    ???; ???; ???
-red_scent.png     ???; ???; ???
+blue_scent.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_scent.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+green_scent.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+indigo_scent.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+pink_scent.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+red_scent.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/scroll/
 
