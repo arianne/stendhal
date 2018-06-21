@@ -93,25 +93,25 @@ book_yellow.png     Anders Asplund (Danter); ???; Ultima VI (based on book_black
 
 data/sprites/items/boots/
 
-black_boots.png            ???; ???; ???
-blue_boots.png             ???; ???; ???
+black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+blue_boots.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 chain_boots.png            Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-work of studded_boots.png)
-chaos_boots.png            ???; ???; ???
+chaos_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_boots.png  ???; ???; ???
 elvish_boots.png           ???; ???; ???
-golden_boots.png           ???; ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-color of steel_boots.png)
-green_dragon_boots.png     ???; ???; ???
+golden_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 killer_boots.png           ???; ???; ???
-leather_boots.png          David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/ )
-lion_clan_boots.png        ???; ???; ???
-mainio_boots.png           ???; ???; ???
+leather_boots.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+lion_clan_boots.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+mainio_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mithril_boots.png          ???; ???; ???
-red_boots.png              ???; ???; ???
-shadow_boots.png           ???; ???; ???
-steel_boots.png            ???; ???; Ragnarok Online ( http://ro.gnjoy.com/ )
+red_boots.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            ???; ???; ???
 studded_boots.png          Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ )
-xeno_boots.png             ???; ???; ???
+xeno_boots.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 
 data/sprites/items/box/
 
