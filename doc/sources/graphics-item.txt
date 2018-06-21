@@ -616,33 +616,33 @@ beech.png                     ???; ???; ???
 black_shield.png              ???; ???; ???
 bluetowershield.png           ???; ???; ???
 blue_shield.png               ???; ???; ???
-buckler.png                   David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/ )
+buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_shield.png              ???; ???; ???
-crown_shield.png              ???; ???; ???
+crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 darkangels_clan_shield.png    ???; ???; ???
 devilknights_clan_shield.png  ???; ???; ???
 edragons_clan_shield.png      ???; ???; ???
 elvish_shield.png             ???; ???; ???
-enhanced_lion_shield.png      ???; ???; ???
+enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 goldentowershield.png         ???; ???; ???
-golden_shield.png             ???; ???; ???
+golden_shield.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_shield.png       ???; ???; ???
-lich_shield.png               ???; ???; ???
+lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 light_shield.png              ???; ???; ???
 lion_clan_shield.png          ???; ???; ???
-lion_shield.png               David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/ ), https://sourceforge.net/p/crossfire/code/18951/tree/client/trunk/pixmaps/16x16.png
+lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mainio_shield.png             ???; ???; ???
 mithril_shield.png            ???; ???; ???
 pine.png                      ???; ???; ???
-plate_shield.png              ???; ???; ???
+plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 redwood.png                   ???; ???; ???
 red_shield.png                ???; ???; ???
 shadow_shield.png             ???; ???; ???
 silvertowershield.png         ???; ???; ???
-skull_shield.png              ???; ???; ???
-studded_shield.png            David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/ ) (re-color of wooden_shield.png)
-unicorn_shield.png            ???; ???; ???
-wooden_shield.png             David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/ )
+skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+unicorn_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+wooden_shield.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 xeno_shield.png               ???; ???; ???
 
 data/sprites/items/special/
