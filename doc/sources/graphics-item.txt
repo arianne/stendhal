@@ -408,19 +408,19 @@ data/sprites/items/jewellery/
 
 blackpearl.png          ???; ???; ???
 blackpearlnecklace.png  ???; ???; ???
-carbuncle.png           ???; ???; ???
-carbuncle_crystal.png   ???; ???; ???
-emerald.png             ???; ???; ???
-emerald_crystal.png     ???; ???; ???
+carbuncle.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+carbuncle_crystal.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+emerald.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+emerald_crystal.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_brilliant.*     ???; ???; ???
-greater_carbuncle.png   ???; ???; ???
-greater_emerald.png     ???; ???; ???
-greater_sapphire.png    ???; ???; ???
-obsidian.png            ???; ???; ???
+greater_carbuncle.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+greater_emerald.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+greater_sapphire.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+obsidian.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 pearl.png               ???; ???; ???
 pearlnecklace.png       ???; ???; ???
-sapphire.png            ???; ???; ???
-sapphire_crystal.png    ???; ???; ???
+sapphire.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+sapphire_crystal.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/key/
 
