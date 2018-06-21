@@ -3,15 +3,25 @@ Changelog
 
 1.28
 *world*
-- new NPC sprites:
-  - gardenernpc (Sue)
-  - highpriestnpc (Aenihata)
-  - maidnpc (Coralia)
 - new enemy sprites:
+  - blue_mohiko
+  - fallen_priest
   - kalavan_housewife
   - madaram_peasant
   - madaram_queen
   - madaram_soldier
+- new NPC sprites:
+  - doctornpc (Dr. Feelgood)
+  - gardenernpc (Sue)
+  - greendwarfnpc (Gulimo & Loretta)
+  - highpriestnpc (Aenihata)
+  - maidnpc (Coralia)
+  - man_002_npc (Lawrence)
+  - man_008_npc (Martin Farmer)
+  - olddwarfnpc (Ritati Dragontracker & Hogart)
+  - priestnpc (Priest)
+  - principalnpc (Femme Fatale)
+  - taxmannpc (Mr Taxman)
 - no longer required to have 1 money to use scroll eraser
 - added "venom gland" item to weekly item quest
 
