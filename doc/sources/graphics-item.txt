@@ -62,22 +62,22 @@ xeno_armor.png                ???; ???; ???
 
 data/sprites/items/axe/
 
-axe.png                      ???; ???; ???
+axe.png                      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 bardiche.png                 ???; ???; ???
-battle_axe.png               ???; ???; ???
-black_halberd.png            ???; ???; ???
-black_scythe.png             ???; ???; ???
+battle_axe.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+black_halberd.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+black_scythe.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_axe.png                ???; ???; ???
-durin_axe.png                ???; ???; ??? (re-color of battle_axe.png)
-golden_twosided_poleaxe.png  ???; ???; ???
-halberd.png                  ???; ???; ???
+durin_axe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-color of battle_axe
+golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+halberd.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 hand_axe.png                 ???; ???; ???
-magic_twosided_poleaxe.png   ???; ???; ???
-oldscythe.png                ???; ???; ???
-scythe.png                   ???; ???; ???
+magic_twosided_poleaxe.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked twosided_poleaxe
+oldscythe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+scythe.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 sickle.png                   ???; ???; ???
 small_axe.png                ???; ???; ???
-twosided_poleaxe.png         ???; ???; ???
+twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/book/
 
