@@ -519,11 +519,11 @@ silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/ranged/
 
-composite_bow.png    ???; ???; ???
+composite_bow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 crossbow.png         ???; ???; ???
-hunter_crossbow.png  ???; ???; ???
-longbow.png          ???; ???; ???
-mithril_bow.png      ???; ???; ???
+hunter_crossbow.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+longbow.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+mithril_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-work of longbow
 wooden_bow.png       ???; ???; ???
 
 data/sprites/items/relic/
