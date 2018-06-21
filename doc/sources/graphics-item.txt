@@ -27,37 +27,37 @@ data/sprites/items/armor/
 barbarian_armor.png           ???; ???; ???
 black_armor.png               ???; ???; ???
 blue_armor.png                ???; ???; ???
-chain_armor.png               ???; ???; ???
-chaos_armor.png               ???; ???; ???
+chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+chaos_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dress.png                     ???; ???; ???
 dust_robe.png                 ???; ???; ???
 dwarvish_armor.png            ???; ???; ???
-earth_robe.png                ???; ???; ???
+earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_armor.png              ???; ???; ???
-enhanced_chainmail.png        ???; ???; ???
-enhanced_iron_cuirass.png     ???; ???; ???
-enhanced_leather_cuirass.png  ???; ???; ???
-fire_robe.png                 ???; ???; ???
-golden_armor.png              ???; ???; ???
-golden_chainmail.png          ???; ???; ???
-ice_armor.png                 ???; ???; ???
-iron_scale_armor.png          ???; ???; ???
+enhanced_chainmail.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+enhanced_iron_cuirass.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+enhanced_leather_cuirass.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+fire_robe.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_chainmail.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+ice_armor.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+iron_scale_armor.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_armor.png             ???; ???; ???
-leather_cuirass.png           ???; ???; ???
-leather_scale_armor.png       ???; ???; ???
+leather_cuirass.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 light_armor.png               ???; ???; ???
 magic_plate_armor.png         ???; ???; ???
 mainio_armor.png              ???; ???; ???
 mithril_armor.png             ???; ???; ???
 plate_armor.png               ???; ???; ???
 red_armor.png                 ???; ???; ???
-scale_armor.png               ???; ???; ???
+scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scuba_gear.png                ???; ???; ???
-shadow_armor.png              ???; ???; ???
-stone_armor.png               ???; ???; ???
-studded_armor.png             ???; ???; ???
-water_robe.png                ???; ???; ???
-wind_robe.png                 ???; ???; ???
+shadow_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+stone_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+studded_armor.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+water_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+wind_robe.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 xeno_armor.png                ???; ???; ???
 
 data/sprites/items/axe/
