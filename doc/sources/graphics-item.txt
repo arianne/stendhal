@@ -121,31 +121,31 @@ stocking.png  ???; ???; ???
 
 data/sprites/items/cloak/
 
-black_cloak.png         David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-black_dragon_cloak.png  David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-blue_dragon_cloak.png   David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-blue_elf_cloak.png      David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ )
-blue_striped_cloak.png  David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-work)
-bone_dragon_cloak.png   David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-brightgreen_cloak.png   David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-chaos_cloak.png         David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-cloak.png               David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ )
-dwarf_cloak.png         David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-elf_cloak.png           David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
+black_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+black_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+blue_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+blue_elf_cloak.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+blue_striped_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+bone_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+brightgreen_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+chaos_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+cloak.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+dwarf_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+elf_cloak.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_cloak.png        ???; ???; ???
-golden_cloak.png        David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-green_dragon_cloak.png  David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-lich_cloak.png          David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-lion_clan_cloak.png     David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-mainio_cloak.png        ???; ???; ???
+golden_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+green_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+lion_clan_cloak.png     ???; ???; ???
+mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_cloak.png       ???; ???; ???
-red_cloak.png           David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-work)
-red_dragon_cloak.png    David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
+red_cloak.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 rift_cloak.png          ???; ???; ???
-shadow_cloak.png        David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-stone_cloak.png         David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-vampire_cloak.png       David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-color)
-xeno_cloak.png          David N Hurst (darth_bob); GPL 2.0; Crossfire ( http://crossfire.real-time.com/spoiler/cloaks/ ) (re-work)
+shadow_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+stone_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+vampire_cloak.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+xeno_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 
 data/sprites/items/club/
 
