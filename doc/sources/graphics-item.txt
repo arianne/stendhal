@@ -482,7 +482,7 @@ dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
 ent_twig.png             ???; ???; ???
 giant_heart.png          ???; ???; ???
 lemon.png                ???; ???; ???
-marbles.png              ???; ???; ???
+marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 metal_rod.png            ???; ???; ???
 mithril_ring.png         ???; ???; ???
 olive_oil.png            ???; ???; ???
@@ -602,7 +602,7 @@ kirdneh.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 marked.png            Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
 nalwor.png            Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 purple.png            Anders Asplund (Danter); GPL 2.0; Stendhal
-rainbow_beans.png     ???; ???; ???
+rainbow_beans.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red.png               Anders Asplund (Danter); GPL 2.0; Stendhal
 smile.png             Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 summon.png            Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
