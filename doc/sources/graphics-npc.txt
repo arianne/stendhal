@@ -111,7 +111,7 @@ madscientistnpc.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3
 mageelfnpc.png                ???; ???; ???
 magic_jesternpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 magicianhousegreeternpc.png   ???; ???; ???
-maidnpc.png                   ???; ???; ???
+maidnpc.*                     Svetlana Kushnariova (Cabbit), Vesa Vanhatupa (Master484), isaiah658, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20467, https://opengameart.org/node/71384
 man_000_npc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/91
 man_001_npc.png               ???; ???; ???
 man_002_npc.png               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
