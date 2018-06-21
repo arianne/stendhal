@@ -5,22 +5,22 @@ bag01.png  ???; ???; ???
 
 data/sprites/items/ammunition/
 
-dark_arrow.png      ???; ???; ???
-fire_arrow.png      ???; ???; ???
+dark_arrow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+fire_arrow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 fumble_arrow.png    ???; ???; ???
-golden_arrow.png    ???; ???; ???
-golden_bolt.png     ???; ???; ???
-ice_arrow.png       ???; ???; ???
-light_arrow.png     ???; ???; ???
+golden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+ice_arrow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+light_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 poison_arrow.*      ???; ???; ???
-power_arrow.png     ???; ???; ???
-power_bolt.png      ???; ???; ???
+power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+power_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 slowdown_arrow.png  ???; ???; ???
 speedup_arrow.png   ???; ???; ???
-steel_arrow.png     ???; ???; ???
-steel_bolt.png      ???; ???; ???
+steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+steel_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wooden_arrow.png    Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ )
-wooden_bolt.png     ???; ???; ???
+wooden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/armor/
 
