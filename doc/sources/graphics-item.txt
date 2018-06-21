@@ -501,11 +501,11 @@ virgin_olive_oil.png     ???; ???; ???
 
 data/sprites/items/missile/
 
-dart.png           ???; ???; ???
-fire_shuriken.png  ???; ???; ???
-poison_dart.png    ???; ???; ???
-power_dart.png     ???; ???; ???
-shuriken.png       ???; ???; ???
+dart.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+fire_shuriken.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+poison_dart.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+shuriken.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 snowballs.png      ???; ???; ???
 vomit.png          ???; ???; ???
 wooden_spear.png   Nadine Schlonies (dine); GPL 2.0; Stendhal
