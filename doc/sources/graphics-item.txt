@@ -153,19 +153,19 @@ chaos_hammer.png         ???; ???; ???
 club.png                 ???; ???; ???
 club_of_thorns.png       ???; ???; ???
 enhanced_mace.png        ???; ???; ???
-flail.png                ???; ???; ???
-golden_flail.png         ???; ???; ???
-golden_hammer.png        ???; ???; ???
-golden_mace.png          ???; ???; ???
-grand_warhammer.png      ???; ???; ???
-hammer.png               ???; ???; ???
-ice_grand_warhammer.png  ???; ???; ???
-mace.png                 ???; ???; ???
+flail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_flail.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_hammer.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_mace.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+grand_warhammer.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+hammer.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+ice_grand_warhammer.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
+mace.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 rod_of_the_gm.png        ???; ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-color of skull_staff.png)
 skull_staff.png          ???; ???; Ragnarok Online (Evil Bone Wand) ( http://ro.gnjoy.com/ )
 staff.png                Anders Asplund (Danter); GPL 2.0; Stendhal
 ugmash.png               Katie Russell (kymara); ???; ???
-vulcano_hammer.png       ???; ???; ???
+vulcano_hammer.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
 wizard_staff.png         ???; ???; ???
 
 data/sprites/items/container/
