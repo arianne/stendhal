@@ -11,6 +11,7 @@ Changelog
   - madaram_queen
   - madaram_soldier
 - new NPC sprites:
+  - barracksbuyernpc (Mrotho)
   - doctornpc (Dr. Feelgood)
   - gardenernpc (Sue)
   - greendwarfnpc (Gulimo & Loretta)
