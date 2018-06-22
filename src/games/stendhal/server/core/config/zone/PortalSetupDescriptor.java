@@ -22,7 +22,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 	/**
 	 * Logger.
 	 */
-	private static final Logger LOGGER = Logger.getLogger(PortalSetupDescriptor.class);
+	private static final Logger logger = Logger.getLogger(PortalSetupDescriptor.class);
 
 	/**
 	 * The named portal identifier.
@@ -154,7 +154,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 			final Portal portal = (Portal) EntityFactoryHelper.create(className,
 					getParameters(), getAttributes());
 			if (portal == null) {
-				LOGGER.warn("Unable to create portal: " + className);
+				logger.warn("Unable to create portal: " + className);
 
 				return;
 			}
@@ -172,7 +172,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 			final Portal oportal = zone.getPortal(getX(), getY());
 			if (oportal != null) {
 				if (isReplacing()) {
-					LOGGER.debug("Replacing portal: " + oportal);
+					logger.debug("Replacing portal: " + oportal);
 					zone.remove(oportal);
 				} else {
 					// reserved, and told not to replace it. just discard the portal
@@ -182,7 +182,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 			zone.add(portal);
 		} catch (final IllegalArgumentException ex) {
-			LOGGER.error("Error with portal factory", ex);
+			logger.error("Error with portal factory", ex);
 		}
 	}
 }
