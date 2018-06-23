@@ -33,6 +33,7 @@ Changelog
 
 *code*
 - portals can use "face" attribute to set player facing direction when used as a destination
+- portals can use "offset" attribute to offset player positioning in relation to destination
 
 
 1.27

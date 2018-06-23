@@ -47,6 +47,9 @@ public class Portal extends Entity implements UseListener {
 	/** Attribute for player face direction. */
 	protected static final String ATTR_FACE = "face";
 
+	/** Attribute for player positioning. */
+	protected static final String ATTR_OFFSET = "offset";
+
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Portal.class);
 
@@ -69,6 +72,7 @@ public class Portal extends Entity implements UseListener {
 					portal.addAttribute(ATTR_USE, Type.FLAG);
 					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
 					portal.addAttribute(ATTR_FACE, Type.STRING);
+					portal.addAttribute(ATTR_OFFSET, Type.INT);
 				}
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -238,7 +242,47 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		if (player.teleport(destZone, dest.getX(), dest.getY(), null, null)) {
+		int destX = dest.getX();
+		int destY = dest.getY();
+
+		// Offset positioning of player in relation to the destination portal.
+		if (dest.hasOffset()) {
+			final int pos = dest.getOffset();
+			switch (pos) {
+				case 0:
+					destX = destX - 1;
+					destY = destY - 1;
+					break;
+				case 1:
+					destY = destY - 1;
+					break;
+				case 2:
+					destX = destX + 1;
+					destY = destY - 1;
+					break;
+				case 3:
+					destX = destX - 1;
+					break;
+				case 4:
+					destX = destX + 1;
+					break;
+				case 5:
+					destX = destX - 1;
+					destY = destY + 1;
+					break;
+				case 6:
+					destY = destY + 1;
+					break;
+				case 7:
+					destX = destX + 1;
+					destY = destY + 1;
+					break;
+				default:
+					logger.debug("Invalid destination portal offset positioning: " + Integer.toString(pos));
+			}
+		}
+
+		if (player.teleport(destZone, destX, destY, null, null)) {
 			/* Allow player to continue movement after teleport via portal
 			 * without the need to release and press direction again.
 			 *
@@ -342,5 +386,26 @@ public class Portal extends Entity implements UseListener {
 	 */
 	public final boolean hasFaceDirection() {
 		return (face != null);
+	}
+
+	/**
+	 * Gets offset positioning value when used as a destination. Valid values
+	 * are 0-7.
+	 *
+	 * @return
+	 *			<code>Integer</code> value of offset.
+	 */
+	public final int getOffset() {
+		return getInt("offset");
+	}
+
+	/**
+	 * Checks if portal has an offset positioning when used as a destination.
+	 *
+	 * @return
+	 * 			<code>true<code> if "offset" attribute set.
+	 */
+	public final boolean hasOffset() {
+		return has("offset");
 	}
 }
