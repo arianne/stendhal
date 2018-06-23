@@ -5,6 +5,7 @@ Changelog
 *world*
 - new enemy sprites:
   - blue_mohiko
+  - fallen_high_priest
   - fallen_priest
   - kalavan_housewife
   - madaram_peasant
