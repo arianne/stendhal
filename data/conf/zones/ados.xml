@@ -5817,11 +5817,13 @@ It has been three days since I decided to explore the lower levels of the caves 
     <portal x="15" y="30" ref="down1">
     	<destination zone="-6_ados_abandoned_keep" ref="up1" />
     	<attribute name="face">north</attribute>
+    	<attribute name="offset">1</attribute>
     </portal>
     
     <portal x="16" y="30" ref="down2">
     	<destination zone="-6_ados_abandoned_keep" ref="up2" />
     	<attribute name="face">north</attribute>
+    	<attribute name="offset">1</attribute>
     </portal>
   </zone>
   
