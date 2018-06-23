@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
@@ -53,6 +54,9 @@ public class Portal extends Entity implements UseListener {
 	private String destinationZone;
 
 	private Object destinationReference;
+
+	/** Direction player should face after teleport when portal is used as destination. */
+	private Direction face;
 
 	public static void generateRPClass() {
 		try {
@@ -263,6 +267,41 @@ public class Portal extends Entity implements UseListener {
 	 *            the player who used the other portal teleporting to us
 	 */
 	public void onUsedBackwards(final RPEntity user) {
-		// do nothing
+		if (hasFaceDirection()) {
+			user.setDirection(getFaceDirection());
+		}
+	}
+
+	/**
+	 * Sets the direction attribute for the portal which determines the direction the
+	 * player should face when this portal is used as a destination.
+	 *
+	 * @param dir
+	 * 			<code>Direction</code> player should face.
+	 */
+	public final void setFaceDirection(final Direction dir) {
+		logger.debug("Setting portal direction: " + dir.toString());
+		face = dir;
+	}
+
+	/**
+	 * Get the direction player should face when portal is used as a destination.
+	 *
+	 * @return
+	 * 			<code>Direction</code> player should face.
+	 */
+	public final Direction getFaceDirection() {
+		return face;
+	}
+
+	/**
+	 * Check if the portal has defined a direction for player to face when
+	 * portal is used as a destination.
+	 *
+	 * @return
+	 * 			<code>true</code> if portal's direction attribute is set.
+	 */
+	public final boolean hasFaceDirection() {
+		return (face != null);
 	}
 }

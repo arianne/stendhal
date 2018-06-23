@@ -31,6 +31,9 @@ Changelog
 - double direction key press is used instead of holding Alt. key to intitiate auto-walk
 - players can set continuous movement to continue walking after map change or teleport without releasing direction key
 
+*code*
+- portals can use "face" attribute to set player facing direction when used as a destination
+
 
 1.27
 *world*

@@ -78,6 +78,7 @@
 		<attribute name="ref" type="string"></attribute>
 		<attribute name="replacing" type="boolean"></attribute>
 		<attribute name="condition" type="string"></attribute>
+		<attribute name="face" type="string" use="optional" />
 	</complexType>
 	<complexType name="configurator">
 		<sequence>
