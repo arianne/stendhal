@@ -481,7 +481,7 @@ demon_skeleton.png      artisticdude, Jordan Irwin (AntumDeluge); CC0; https://o
 devil_monk.png          Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 devil_queen.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, johnny_automatic, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/66147, https://openclipart.org/detail/4365
 elder_skeleton.png      ???; ???; ???
-fallen_high_priest.png  ???; ???; ???
+fallen_high_priest.png  Stephen Challener (Redshrike), olonu; OGA BY 3.0; https://opengameart.org/node/5215, https://opengameart.org/node/6262
 fallen_priest.png       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/6262, Stendhal
 fallen_warrior.png      Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 ghost.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
