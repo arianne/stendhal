@@ -80,6 +80,16 @@
       <attribute name="hidden" />
     </portal>
     
+  	<portal x="13" y="126" ref="keep1">
+  		<destination zone="-1_ados_abandoned_keep" ref="up1" />
+  		<attribute name="face">north</attribute>
+  	</portal>
+  	
+  	<portal x="14" y="126" ref="keep2">
+  		<destination zone="-1_ados_abandoned_keep" ref="up2" />
+  		<attribute name="face">north</attribute>
+  	</portal>
+    
     <!-- wishing well-->
     <entity x="86" y="21">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
@@ -5193,6 +5203,21 @@ Southeast: Docks
       <attribute name="class">blackboard</attribute>
     </entity>
     
+  	<!-- Portals -->
+  	<portal x="13" y="126" ref="up1">
+  		<destination zone="0_ados_mountain_n2_w" ref="keep1" />
+  		<attribute name="face">north</attribute>
+  	</portal>
+  	
+  	<portal x="14" y="126" ref="up2">
+  		<destination zone="0_ados_mountain_n2_w" ref="keep2" />
+  		<attribute name="face">north</attribute>
+  	</portal>
+  	
+  	<portal x="2" y="30" ref="down">
+  		<destination zone="-2_ados_abandoned_keep" ref="up" />
+  		<attribute name="face">east</attribute>
+  	</portal>
   </zone>
   
   <zone name="-1_ados_tunnel_w" level="-1" x="500768" y="499744" file="Level -1/ados/tunnel_w.tmx">
@@ -5422,6 +5447,11 @@ Southeast: Docks
   
   
   <zone name="-2_ados_abandoned_keep" level="-2" x="500512" y="499744" file="Level -2/ados/abandoned_keep.tmx">
+  	<!-- Portals -->
+  	<portal x="2" y="30" ref="up">
+  		<destination zone="-1_ados_abandoned_keep" ref="down" />
+  		<attribute name="face">east</attribute>
+  	</portal>
   </zone>
   
   <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
@@ -5542,6 +5572,16 @@ East Tunnel: Uncharted</attribute>
       <attribute name="class">blackboard</attribute>
     </entity>
     
+    <!--  Portals -->
+    <portal x="17" y="0" ref="down1">
+    	<destination zone="-4_ados_abandoned_keep" ref="up1" />
+    	<attribute name="face">south</attribute>
+    </portal>
+    
+    <portal x="18" y="0" ref="down2">
+    	<destination zone="-4_ados_abandoned_keep" ref="up2" />
+    	<attribute name="face">south</attribute>
+    </portal>
   </zone>
   
   <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
@@ -5734,6 +5774,26 @@ It has been three days since I decided to explore the lower levels of the caves 
       <attribute name="class">blackboard</attribute>
     </entity>
     
+    <!-- Portals -->
+    <portal x="17" y="0" ref="up1">
+    	<destination zone="-3_ados_abandoned_keep" ref="down1" />
+    	<attribute name="face">south</attribute>
+    </portal>
+    
+    <portal x="18" y="0" ref="up2">
+    	<destination zone="-3_ados_abandoned_keep" ref="down2" />
+    	<attribute name="face">south</attribute>
+    </portal>
+    
+    <portal x="28" y="15" ref="down1">
+    	<destination zone="-5_ados_abandoned_keep" ref="up1" />
+    	<attribute name="face">west</attribute>
+    </portal>
+    
+    <portal x="28" y="16" ref="down2">
+    	<destination zone="-5_ados_abandoned_keep" ref="up2" />
+    	<attribute name="face">west</attribute>
+    </portal>
   </zone>
   
   
@@ -5742,6 +5802,27 @@ It has been three days since I decided to explore the lower levels of the caves 
   
   <zone name="-5_ados_abandoned_keep" level="-5" x="500512" y="499744" file="Level -5/ados/abandoned_keep.tmx">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    
+    <!-- Portals -->
+    <portal x="28" y="15" ref="up1">
+    	<destination zone="-4_ados_abandoned_keep" ref="down1" />
+    	<attribute name="face">west</attribute>
+    </portal>
+    
+    <portal x="28" y="16" ref="up2">
+    	<destination zone="-4_ados_abandoned_keep" ref="down2" />
+    	<attribute name="face">west</attribute>
+    </portal>
+    
+    <portal x="15" y="30" ref="down1">
+    	<destination zone="-6_ados_abandoned_keep" ref="up1" />
+    	<attribute name="face">north</attribute>
+    </portal>
+    
+    <portal x="16" y="30" ref="down2">
+    	<destination zone="-6_ados_abandoned_keep" ref="up2" />
+    	<attribute name="face">north</attribute>
+    </portal>
   </zone>
   
   
@@ -5749,6 +5830,16 @@ It has been three days since I decided to explore the lower levels of the caves 
   
   
   <zone name="-6_ados_abandoned_keep" level="-6" x="500512" y="499744" file="Level -6/ados/abandoned_keep.tmx">
+    <!-- Portals -->
+    <portal x="15" y="30" ref="up1">
+    	<destination zone="-5_ados_abandoned_keep" ref="down1" />
+    	<attribute name="face">north</attribute>
+    </portal>
+    
+    <portal x="16" y="30" ref="up2">
+    	<destination zone="-5_ados_abandoned_keep" ref="down2" />
+    	<attribute name="face">north</attribute>
+    </portal>
   </zone>
   
   
