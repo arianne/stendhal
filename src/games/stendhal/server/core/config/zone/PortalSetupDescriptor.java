@@ -8,8 +8,6 @@ package games.stendhal.server.core.config.zone;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.Direction;
-
 //
 //
 
@@ -45,11 +43,6 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 	 * Whether replacing an existing portal at that location.
 	 */
 	protected boolean replacing;
-
-	/**
-	 * Direction player will face after using portal as a destination.
-	 */
-	protected Direction face;
 
 	/**
 	 * Create a portal setup descriptor.
@@ -136,41 +129,6 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 		this.replacing = replacing;
 	}
 
-	/**
-	 * Setup direction player should face after using portal as a
-	 * destination. <code>dir</code> can be one of "north", "east",
-	 * "south", "west", "up", "right", "down", or "left".
-	 *
-	 * @param dir
-	 * 			<code>String</code> representation of direction to face.
-	 */
-	public void setFaceDirection(String dir) {
-		// Convert to lowercase.
-		dir = dir.toLowerCase();
-
-		logger.debug("Portal face attribute: " + dir);
-		switch (dir) {
-			case "north":
-			case "up":
-				face = Direction.UP;
-				break;
-			case "south":
-			case "down":
-				face = Direction.DOWN;
-				break;
-			case "east":
-			case "right":
-				face = Direction.RIGHT;
-				break;
-			case "west":
-			case "left":
-				face = Direction.LEFT;
-				break;
-			default:
-				logger.warn("Not a valid direction: " + dir);
-		}
-	}
-
 	//
 	// SetupDescriptor
 	//
@@ -211,8 +169,8 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 			}
 
 			// Set facing direction for portal used as destination.
-			if (face != null) {
-				portal.setFaceDirection(face);
+			if (portal.has("face")) {
+				portal.setFaceDirection(portal.get("face"));
 			}
 
 			// Check for an existing portal at the location

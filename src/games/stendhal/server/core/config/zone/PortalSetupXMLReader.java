@@ -45,12 +45,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	 */
 	protected PortalSetupDescriptor read(final Element element, final int x,
 			final int y, final Object identifier) {
-		final PortalSetupDescriptor desc = new PortalSetupDescriptor(x, y, identifier);
-		if (element.hasAttribute("face")) {
-			desc.setFaceDirection(element.getAttribute("face"));
-		}
-
-		return desc;
+		return new PortalSetupDescriptor(x, y, identifier);
 	}
 
 	/**

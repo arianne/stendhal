@@ -44,6 +44,9 @@ public class Portal extends Entity implements UseListener {
 	protected static final String ATTR_HIDDEN = "hidden";
 	protected static final String ATTR_USE = "use";
 
+	/** Attribute for player face direction. */
+	protected static final String ATTR_FACE = "face";
+
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Portal.class);
 
@@ -65,6 +68,7 @@ public class Portal extends Entity implements UseListener {
 					portal.isA("entity");
 					portal.addAttribute(ATTR_USE, Type.FLAG);
 					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
+					portal.addAttribute(ATTR_FACE, Type.STRING);
 				}
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -282,6 +286,41 @@ public class Portal extends Entity implements UseListener {
 	public final void setFaceDirection(final Direction dir) {
 		logger.debug("Setting portal direction: " + dir.toString());
 		face = dir;
+	}
+
+	/**
+	 * Setup direction player should face after using portal as a
+	 * destination. <code>dir</code> can be one of "north", "east",
+	 * "south", "west", "up", "right", "down", or "left".
+	 *
+	 * @param dir
+	 * 			<code>String</code> representation of direction to face.
+	 */
+	public final void setFaceDirection(String dir) {
+		// Convert to lowercase.
+		dir = dir.toLowerCase();
+
+		logger.debug("Portal face attribute: " + dir);
+		switch (dir) {
+			case "north":
+			case "up":
+				setFaceDirection(Direction.UP);
+				break;
+			case "south":
+			case "down":
+				setFaceDirection(Direction.DOWN);
+				break;
+			case "east":
+			case "right":
+				setFaceDirection(Direction.RIGHT);
+				break;
+			case "west":
+			case "left":
+				setFaceDirection(Direction.LEFT);
+				break;
+			default:
+				logger.warn("Not a valid direction: " + dir);
+		}
 	}
 
 	/**
