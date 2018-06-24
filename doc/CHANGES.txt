@@ -21,6 +21,7 @@ Changelog
   - man_002_npc (Lawrence)
   - man_008_npc (Martin Farmer)
   - olddwarfnpc (Ritati Dragontracker & Hogart)
+  - orientalwizardnpc (Jaer)
   - priestnpc (Priest)
   - principalnpc (Femme Fatale)
   - taxmannpc (Mr Taxman)

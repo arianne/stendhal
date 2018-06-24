@@ -145,7 +145,7 @@ oracle*npc.*                  Svetlana Kushnariova (Cabbit), Nila122, olonu, lea
 orcbuyernpc.png               Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsalesmannpc.png            Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsamannpc.png               Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
-orientalwizardnpc.png         ???; ???; ???
+orientalwizardnpc.*           bleutailfly, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/79237, https://opengameart.org/node/82929
 paulnpc.png                   ???; ???; ???
 photographernpc.png           Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 pinkgirlnpc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/140
