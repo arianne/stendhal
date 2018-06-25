@@ -102,6 +102,7 @@ kid9npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jord
 kingcozartnpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 koboldbarmaidnpc.png          ???; ???; ???
 koboldbarregularnpc.png       ???; ???; ???
+largeblackwizardnpc.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
 lifeguardfemalenpc.png        Svetlana Kushnariova (Cabbit), olonu, ???; ???
 lifeguardmalenpc.png          Svetlana Kushnariova (Cabbit), olonu, ???; ???
 liljohnnnnynpc.png            Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147

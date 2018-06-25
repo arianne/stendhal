@@ -19,6 +19,7 @@ Changelog
   - gardenernpc (Sue)
   - greendwarfnpc (Gulimo & Loretta)
   - highpriestnpc (Aenihata)
+  - largeblackwizardnpc (Ravashack)
   - maidnpc (Coralia)
   - man_002_npc (Lawrence)
   - man_008_npc (Martin Farmer)
