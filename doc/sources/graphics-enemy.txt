@@ -255,7 +255,7 @@ barbarian_elite.*            ???; ???; ???
 barbarian_king.png           Svetlana Kushnariova (Cabbit), diamonddmgirl, Bart Kelsey, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/3755
 barbarian_leader.png         ???; ???; ???
 barbarian_priest.png         ???; ???; ???
-barbarian_wolf.png           ???; ???; ???
+barbarian_wolf.png           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 cannibal.*                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 cannibalwoman.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 darkmonk.png                 Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/124
