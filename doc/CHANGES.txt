@@ -12,6 +12,7 @@ Changelog
   - madaram_peasant
   - madaram_queen
   - madaram_soldier
+  - red_roohako
 - new NPC sprites:
   - barracksbuyernpc (Mrotho)
   - doctornpc (Dr. Feelgood)
@@ -27,6 +28,7 @@ Changelog
   - orientalwizardnpc (Jaer)
   - priestnpc (Priest)
   - principalnpc (Femme Fatale)
+  - recruiter1npc (Stefan)
   - slim_woman_npc (Liliana)
   - taxmannpc (Mr Taxman)
 - no longer required to have 1 money to use scroll eraser
