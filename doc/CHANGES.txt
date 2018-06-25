@@ -4,6 +4,7 @@ Changelog
 1.28
 *world*
 - new enemy sprites:
+  - cyclops
   - blue_mohiko
   - fallen_high_priest
   - fallen_priest
