@@ -1501,7 +1501,7 @@ big	ADJ
 biggest	ADJ
 biting	ADJ
 black	ADJ-COL
-blank	ADJ
+blank	ADJ =empty
 bloody	ADJ
 blue	ADJ-COL
 broken	ADJ
