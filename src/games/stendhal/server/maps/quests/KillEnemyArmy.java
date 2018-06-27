@@ -143,7 +143,7 @@ import marauroa.common.Pair;
 							  "dark elf sacerdotist",
 							  "dark elf admiral",
 							  "dark elf master",
-						"dark elf matronmother"));
+							  "dark elf matronmother"));
 		enemys.put("chaos",
 				Arrays.asList("chaos soldier",
 							  "chaos warrior",
