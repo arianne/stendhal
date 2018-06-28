@@ -13,6 +13,7 @@ Changelog
   - madaram_queen
   - madaram_soldier
   - red_roohako
+  - thing
 - new NPC sprites:
   - barracksbuyernpc (Mrotho)
   - doctornpc (Dr. Feelgood)

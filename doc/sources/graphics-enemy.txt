@@ -239,7 +239,7 @@ green_dragon.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 king_cobra.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
 kraken.png                ???; ???; ???
 red_dragon.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-thing.png                 ???; ???; ???
+thing.png                 IndigoFenix, olonu; CC BY 3.0/4.0; https://opengameart.org/node/84760
 twin_head_dragon.png      ZaPaper, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/79018; Credits to http://www.buko-studios.com/ Commissioned by PlayCraft: https://www.playcraftapp.com/
 
 data/sprites/monsters/human/
