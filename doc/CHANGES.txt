@@ -18,6 +18,7 @@ Changelog
   - barracksbuyernpc (Mrotho)
   - doctornpc (Dr. Feelgood)
   - elfflowergrowernpc (Seremela)
+  - elfprincessnpc (Tywysoga)
   - gardenernpc (Sue)
   - greendwarfnpc (Gulimo & Loretta)
   - highpriestnpc (Aenihata)

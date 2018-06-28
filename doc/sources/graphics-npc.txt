@@ -52,7 +52,7 @@ elfbankladynpc.*              ???; ???; ???
 elfbuyernpc.png               ???; ???; ???
 elfflowergrowernpc.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 elfmayornpc.*                 ???; ???; ???
-elfprincessnpc.*              ???; ???; ???
+elfprincessnpc.png            Svetlana Kushnariova (Cabbit), diamonddmgirl, Rawdanitsu, olonu; CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/18068
 estateagentnpc.png            Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/131
 estateagent2npc.png           Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/132
 executivenpc.png              Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/131
