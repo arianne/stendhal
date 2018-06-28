@@ -85,8 +85,7 @@ public class CollisionDetection {
 				 * NOTE: Right now our collision detection system is binary, so
 				 * something or is blocked or is not.
 				 */
-				boolean b = collisionLayer.getTileAt(x, y) != 0;
-				if (b) {
+				if (collisionLayer.getTileAt(x, y) != 0) {
 					map.set(x, y);
 				}
 			}
