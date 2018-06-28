@@ -17,6 +17,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,6 +33,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Direction;
 import games.stendhal.common.Line;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.filter.FilterCriteria;
@@ -149,6 +151,30 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/** User representable name of the zone. */
 	private final String readableName;
+
+	/** Facing directions for portals. */
+	private final int UP_FN = 8;
+	private final int UP_FE = 9;
+	private final int UP_FS = 10;
+	private final int UP_FW = 11;
+	private final int DOWN_FN = 12;
+	private final int DOWN_FE = 13;
+	private final int DOWN_FS = 14;
+	private final int DOWN_FW = 15;
+	private final List<Integer> stairsUp = new ArrayList<Integer>() {{
+		add(2);
+		add(UP_FN);
+		add(UP_FE);
+		add(UP_FS);
+		add(UP_FW);
+	}};
+	private final List<Integer> stairsDown = new ArrayList<Integer>() {{
+		add(3);
+		add(DOWN_FN);
+		add(DOWN_FE);
+		add(DOWN_FS);
+		add(DOWN_FW);
+	}};
 
 	public StendhalRPZone(final String name) {
 		super(name);
@@ -572,36 +598,32 @@ public class StendhalRPZone extends MarauroaRPZone {
 		final int ZONE_CHANGE = 1;
 		final int DOOR = 6;
 		final int PORTAL = 4;
-		final int PORTAL_STAIRS_DOWN = 3;
-		final int PORTAL_STAIRS_UP = 2;
 		final int ONE_WAY_PORTAL_DESTINATION = 5;
 
 		try {
 			if (clazz.contains("logic/portal")) {
-				switch (type) {
-
-				case ENTRY_POINT:
-				case ZONE_CHANGE:
-					setEntryPoint(x, y);
-					break;
-
-				case ONE_WAY_PORTAL_DESTINATION:
-				case PORTAL_STAIRS_UP:
-				case PORTAL_STAIRS_DOWN:
+				if (stairsUp.contains(type) || stairsDown.contains(type) || (type == ONE_WAY_PORTAL_DESTINATION)) {
 					createLevelPortalAt(type, x, y);
-					break;
+				} else {
+					switch (type) {
 
-				case PORTAL:
-					break;
+					case ENTRY_POINT:
+					case ZONE_CHANGE:
+						setEntryPoint(x, y);
+						break;
 
-				case DOOR:
-					break;
+					case PORTAL:
+						break;
 
-				default:
-					logger.error("Unknown Portal (class/type: " + clazz + ":"
-							+ type + ") at (" + x + "," + y + ") of " + getID()
-							+ " found");
-					break;
+					case DOOR:
+						break;
+
+					default:
+						logger.error("Unknown Portal (class/type: " + clazz + ":"
+								+ type + ") at (" + x + "," + y + ") of " + getID()
+								+ " found");
+						break;
+					}
 				}
 			} else if (clazz.contains("sheep.png")) {
 				final Sheep sheep = new Sheep();
@@ -652,6 +674,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if (type != 5) {
 			portal = new Portal();
+
+			switch (type) {
+
+			case UP_FN:
+			case DOWN_FN:
+				portal.setFaceDirection(Direction.UP);
+				break;
+			case UP_FE:
+			case DOWN_FE:
+				portal.setFaceDirection(Direction.RIGHT);
+				break;
+			case UP_FS:
+			case DOWN_FS:
+				portal.setFaceDirection(Direction.DOWN);
+				break;
+			case UP_FW:
+			case DOWN_FW:
+				portal.setFaceDirection(Direction.LEFT);
+				break;
+			default:
+				break;
+			}
 		} else {
 			portal = new OneWayPortalDestination();
 		}
@@ -677,12 +721,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 			/*
 			 * Portals in the correct direction?
 			 */
-			if (type == 2) {
+			if (stairsUp.contains(type)) {
 				/* portal stairs up */
 				if ((zone.getLevel() - getLevel()) != 1) {
 					continue;
 				}
-			} else if (type == 3) {
+			} else if (stairsDown.contains(type)) {
 				/* portal stairs down */
 				if ((zone.getLevel() - getLevel()) != -1) {
 					continue;
