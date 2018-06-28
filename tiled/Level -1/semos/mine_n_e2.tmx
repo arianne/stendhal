@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
- <tileset firstgid="1" name="../../tileset/ground/brown.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+ <tileset firstgid="1" name="ground/brown" tilewidth="32" tileheight="32" tilecount="5" columns="5">
   <image source="../../tileset/ground/brown.png" trans="ff00ff" width="160" height="32"/>
  </tileset>
- <tileset firstgid="6" name="../../tileset/building/wall/wall_brown.png" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+ <tileset firstgid="6" name="building/wall/wall_brown" tilewidth="32" tileheight="32" tilecount="12" columns="3">
   <image source="../../tileset/building/wall/wall_brown.png" width="96" height="128"/>
  </tileset>
- <tileset firstgid="18" name="../../tileset/furniture/light/torch_top.png" tilewidth="32" tileheight="32" tilecount="4" columns="1">
+ <tileset firstgid="18" name="furniture/light/torch_top" tilewidth="32" tileheight="32" tilecount="4" columns="1">
   <image source="../../tileset/furniture/light/torch_top.png" trans="ff00ff" width="32" height="128"/>
  </tileset>
- <tileset firstgid="22" name="../../tileset/building/door/door_n.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+ <tileset firstgid="22" name="building/door/door_n" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/building/door/door_n.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="28" name="../../tileset/building/roof/yellow.png" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+ <tileset firstgid="28" name="building/roof/yellow" tilewidth="32" tileheight="32" tilecount="20" columns="5">
   <image source="../../tileset/building/roof/yellow.png" width="160" height="128"/>
  </tileset>
- <tileset firstgid="48" name="../../tileset/object/arrows.png" tilewidth="32" tileheight="32" tilecount="10" columns="2">
+ <tileset firstgid="48" name="object/arrows" tilewidth="32" tileheight="32" tilecount="10" columns="2">
   <image source="../../tileset/object/arrows.png" trans="ff00ff" width="64" height="160"/>
  </tileset>
  <tileset firstgid="58" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="74" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="74" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="75" name="logic/creature/human_soldier" tilewidth="32" tileheight="32" tilecount="9" columns="9">
@@ -30,40 +30,40 @@
  <tileset firstgid="84" name="logic/creature/mountain_dwarf" tilewidth="32" tileheight="32" tilecount="5" columns="5">
   <image source="../../tileset/logic/creature/mountain_dwarf.png" width="160" height="32"/>
  </tileset>
- <tileset firstgid="89" name="../../tileset/ground/rock/pebbles.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
+ <tileset firstgid="89" name="ground/rock/pebbles" tilewidth="32" tileheight="32" tilecount="3" columns="1">
   <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="92" name="../../tileset/ground/rock/rocks.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+ <tileset firstgid="92" name="ground/rock/rocks" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="../../tileset/ground/rock/rocks.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="96" name="../../tileset/plant/bush/various_small.png" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+ <tileset firstgid="96" name="plant/bush/various_small" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../../tileset/plant/bush/various_small.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="105" name="../../tileset/ground/rock/green_crystal2.png" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+ <tileset firstgid="105" name="ground/rock/green_crystal2" tilewidth="32" tileheight="32" tilecount="20" columns="5">
   <image source="../../tileset/ground/rock/green_crystal2.png" width="160" height="128"/>
  </tileset>
- <tileset firstgid="125" name="../../tileset/item/corpse/skull_pale.png" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+ <tileset firstgid="125" name="item/corpse/skull_pale" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/item/corpse/skull_pale.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="127" name="../../tileset/ground/earth_edges.png" tilewidth="32" tileheight="32" tilecount="18" columns="6">
+ <tileset firstgid="127" name="ground/earth_edges" tilewidth="32" tileheight="32" tilecount="18" columns="6">
   <image source="../../tileset/ground/earth_edges.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="145" name="../../tileset/ground/water/pool.png" tilewidth="32" tileheight="32" tilecount="72" columns="3">
+ <tileset firstgid="145" name="ground/water/pool" tilewidth="32" tileheight="32" tilecount="72" columns="3">
   <image source="../../tileset/ground/water/pool.png" width="96" height="768"/>
  </tileset>
- <tileset firstgid="217" name="../../tileset/ground/ground.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+ <tileset firstgid="217" name="ground/ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
   <image source="../../tileset/ground/ground.png" width="96" height="352"/>
  </tileset>
- <tileset firstgid="250" name="../../tileset/ground/grass_corners.png" tilewidth="32" tileheight="32" tilecount="24" columns="6">
+ <tileset firstgid="250" name="ground/grass_corners" tilewidth="32" tileheight="32" tilecount="24" columns="6">
   <image source="../../tileset/ground/grass_corners.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="274" name="../../tileset/ground/blue_paving.png" tilewidth="32" tileheight="32" tilecount="2" columns="1">
+ <tileset firstgid="274" name="ground/blue_paving" tilewidth="32" tileheight="32" tilecount="2" columns="1">
   <image source="../../tileset/ground/blue_paving.png" width="32" height="64"/>
  </tileset>
  <tileset firstgid="276" name="wall/int_rock" tilewidth="32" tileheight="32" tilecount="140" columns="10">
   <image source="../../tileset/building/wall/int_rock.png" width="320" height="448"/>
  </tileset>
- <tileset firstgid="416" name="hybrid" tilewidth="32" tileheight="32" tilecount="16" columns="16">
+ <tileset firstgid="416" name="logic/creature/hybrid" tilewidth="32" tileheight="32" tilecount="16" columns="16">
   <image source="../../tileset/logic/creature/hybrid.png" trans="ff00ff" width="512" height="32"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
