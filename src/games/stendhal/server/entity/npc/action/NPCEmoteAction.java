@@ -27,18 +27,39 @@ public class NPCEmoteAction implements ChatAction {
 
 	private final String npcAction;
 
+	/** Determines if emote action will be directed at player. */
+	private final boolean towardPlayer;
+
 	/**
 	 * Creates a new EmoteAction.
 	 *
 	 * @param npcAction text to say as emote
 	 */
-	public NPCEmoteAction(String npcAction) {
+	public NPCEmoteAction(final String npcAction) {
 		this.npcAction = npcAction.trim();
+		this.towardPlayer = true;
+	}
+
+	/**
+	 * Creates a new EmoteAction that can optionally be directed at the player.
+	 *
+	 * @param npcAction
+	 * 			Text to say as emote.
+	 * @param towardPlayer
+	 * 			<code>boolean</code>: If <true>, will be directed at player.
+	 */
+	public NPCEmoteAction(final String npcAction, final boolean towardPlayer) {
+		this.npcAction = npcAction.trim();
+		this.towardPlayer = towardPlayer;
 	}
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		raiser.say("!me " + npcAction + " " + player.getName());
+		if (towardPlayer) {
+			raiser.say("!me " + npcAction + " " + player.getName());
+		} else {
+			raiser.say("!me " + npcAction);
+		}
 	}
 
 	@Override
