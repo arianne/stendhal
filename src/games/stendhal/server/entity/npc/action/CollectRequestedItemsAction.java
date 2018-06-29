@@ -42,6 +42,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	private final ChatAction toExecuteOnCompletion;
 	private final String questSlot;
 	private final ConversationStates stateAfterCompletion;
+	private final Integer index;
 
 	/**
 	 * create a new CollectRequestedItemsAction
@@ -56,6 +57,17 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	public CollectRequestedItemsAction(String itemName, String quest, String questionForMore, String alreadyBrought, ChatAction completionAction, ConversationStates stateAfterCompletion) {
 		this.itemName = checkNotNull(itemName);
 		this.questSlot = checkNotNull(quest);
+		this.index = null;
+		this.questionForMore = checkNotNull(questionForMore);
+		this.alreadyBrought = checkNotNull(alreadyBrought);
+		this.toExecuteOnCompletion = checkNotNull(completionAction);
+		this.stateAfterCompletion = checkNotNull(stateAfterCompletion);
+	}
+
+	public CollectRequestedItemsAction(String itemName, String quest, int index, String questionForMore, String alreadyBrought, ChatAction completionAction, ConversationStates stateAfterCompletion) {
+		this.itemName = checkNotNull(itemName);
+		this.questSlot = checkNotNull(quest);
+		this.index = checkNotNull(index);
 		this.questionForMore = checkNotNull(questionForMore);
 		this.alreadyBrought = checkNotNull(alreadyBrought);
 		this.toExecuteOnCompletion = checkNotNull(completionAction);
@@ -134,7 +146,11 @@ public final class CollectRequestedItemsAction implements ChatAction {
 
 		 // update the quest state if some items are handed over
 		if (result) {
-			player.setQuest(questSlot, itemsTodo.toStringForQuestState());
+			if (index == null ) {
+				player.setQuest(questSlot, itemsTodo.toStringForQuestState());
+			} else {
+				player.setQuest(questSlot, index, itemsTodo.toStringForQuestState());
+			}
 		}
 
 		return result;
@@ -149,7 +165,11 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	ItemCollection getMissingItems(final Player player) {
 		final ItemCollection missingItems = new ItemCollection();
 
-		missingItems.addFromQuestStateString(player.getQuest(questSlot));
+		if (index == null) {
+			missingItems.addFromQuestStateString(player.getQuest(questSlot));
+		} else {
+			missingItems.addFromQuestStateString(player.getQuest(questSlot), index);
+		}
 
 		return missingItems;
 	}
