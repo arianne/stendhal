@@ -816,12 +816,25 @@ public class StendhalClient extends ClientFramework {
 
 		// work around a bug in the chat-action definition in 0.98 and below
 		String type = action.get("type");
-		String serverVersion = User.getServerRelease();
-		if (((serverVersion == null) || (serverVersion.compareTo("0.99")) >= 0) && (RPClass.getRPClass(type) != null)) {
+		if (serverVersionAtLeast("0.99") && (RPClass.getRPClass(type) != null)) {
 			action.setRPClass(type);
 			action.remove("type");
 		}
 		super.send(action);
+	}
+	
+	/**
+	 * Check if the connected server is of at least as recent as the specified
+	 * version.
+	 * 
+	 * @param required string representation of required server version
+	 * @return <code>true</code> if the server is new enough, or the version
+	 * is unknown, <code>false</code> if the server is older than the required
+	 * version
+	 */
+	public boolean serverVersionAtLeast(String required) {
+		String serverVersion = User.getServerRelease();
+		return (serverVersion == null) || (Version.compare(serverVersion, required) >= 0);
 	}
 
 	/**

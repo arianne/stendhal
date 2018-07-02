@@ -22,6 +22,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.OutfitStore;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
@@ -34,7 +35,6 @@ import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Version;
 
 /**
  * The 2D view of a player.
@@ -213,14 +213,14 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			} else if (!hasBuddy)  {
 				list.add(ActionType.IGNORE.getRepresentation());
 			}
-			String serverVersion = User.getServerRelease();
-			if ((serverVersion == null) || (Version.compare(serverVersion, "0.87") > 0)) {
+			StendhalClient client = StendhalClient.get();
+			if (client.serverVersionAtLeast("0.88")) {
 				list.add(ActionType.TRADE.getRepresentation());
 			}
-			if ((serverVersion == null) || (Version.compare(serverVersion, "0.92") > 0)) {
+			if (client.serverVersionAtLeast("0.92")) {
 				list.add(ActionType.INVITE.getRepresentation());
 			}
-			if ((serverVersion == null) || (Version.compare(serverVersion, "1.23") > 0)) {
+			if (client.serverVersionAtLeast("1.24")) {
 				if(System.getProperty("stendhal.pvpchallenge") != null) {
 					list.add(ActionType.CHALLENGE.getRepresentation());
 					list.add(ActionType.ACCEPT_CHALLENGE.getRepresentation());
