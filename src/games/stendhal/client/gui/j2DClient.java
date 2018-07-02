@@ -325,9 +325,11 @@ public class j2DClient implements UserInterface {
 				 *        pressed twice to resume walking. Key states
 				 *        not flushed correctly?
 				 */
-				final RPAction stop = new RPAction();
-				stop.put(TYPE, COND_STOP);
-				ClientSingletonRepository.getClientFramework().send(stop);
+				if (client.serverVersionAtLeast("1.27.5")) {
+					final RPAction stop = new RPAction();
+					stop.put(TYPE, COND_STOP);
+					ClientSingletonRepository.getClientFramework().send(stop);
+				}
 			}
 		});
 
