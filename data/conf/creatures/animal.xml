@@ -94,7 +94,7 @@
     <level value="20"/>
     <experience value="280"/>
     <respawn value="1260"/>
-    <corpse name="small_boneless"/>
+    <corpse name="small_boneless" harmless="spiderweb" />
     <drops>
       <item value="money" quantity="[10,20]" probability="75.0"/>
     </drops>
@@ -119,7 +119,7 @@
     <level value="25"/>
     <experience value="400"/>
     <respawn value="1300"/>
-    <corpse name="small_boneless"/>
+    <corpse name="small_boneless" harmless="spiderweb" />
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
       <item value="greater poison" quantity="[1,1]" probability="10.0"/>
@@ -149,7 +149,7 @@
     <level value="110"/>
     <experience value="14400"/>
     <respawn value="5400"/>
-    <corpse name="animal_2x2" width="2" height="2"/>
+    <corpse name="animal_2x2" harmless="spiderweb_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="70.0"/>
       <item value="greater poison" quantity="[1,2]" probability="80.0"/>
