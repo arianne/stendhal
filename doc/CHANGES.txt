@@ -17,6 +17,7 @@ Changelog
 - new NPC sprites:
   - barracksbuyernpc (Mrotho)
   - doctornpc (Dr. Feelgood)
+  - elfbankeroldnpc (Grafindle)
   - elfflowergrowernpc (Seremela)
   - elfprincessnpc (Tywysoga)
   - gardenernpc (Sue)
