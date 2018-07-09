@@ -177,7 +177,7 @@ public class ZooFood extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING, null,
-                new MultipleActions(new SetQuestAction(QUEST_SLOT, "start;"),
+                new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;", 5.0),
 				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, 1, items, "Oh, thank you! Please help us by"
                 + " bringing [item] as soon as you can."))
 		);
