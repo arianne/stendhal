@@ -1166,7 +1166,7 @@
     <level value="5"/>
     <experience value="50"/>
     <respawn value="1200"/>
-    <corpse name="animal"/>
+    <corpse name="animal_2x2" harmless="bag_2x2" width="3" height="2" />
     <drops>
       <item value="meat" quantity="[1,10]" probability="100.0"/>
       <item value="ham" quantity="[2,8]" probability="70.0"/>
