@@ -283,7 +283,7 @@ kalavan_wisewoman.png        Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.
 little_assassin.png          Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlewitch.png              Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/127
 littlewizard.png             Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA BY 3.0; https://github.com/arianne/stendhal/issues/126
-masked_ninja.png             ???; ???; ???
+masked_ninja.*               Svetlana Kushnariova (Cabbit), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
 master_assassin.png          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 monk.png                     Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/124
 risecia_archer.png           ???; ???; ???

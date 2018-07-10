@@ -13,6 +13,7 @@ Changelog
   - madaram_peasant
   - madaram_queen
   - madaram_soldier
+  - masked_ninja
   - red_roohako
   - thing
 - new NPC sprites:
