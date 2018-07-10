@@ -69,7 +69,7 @@ gardenernpc.png               Svetlana Kushnariova (Cabbit), bleutailfly, olonu,
 girlnpc.png                   Svetlana Kushnariova (Cabbit), Tracy, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
 gnomenpc.png                  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 goldsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
-grandadnpc.png                ???; ???; ???
+grandadnpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 granmanpc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 greendwarfnpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 greenelfwizardnpc.png         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/114

@@ -21,6 +21,7 @@ Changelog
   - elfflowergrowernpc (Seremela)
   - elfprincessnpc (Tywysoga)
   - gardenernpc (Sue)
+  - grandadnpc (Valo)
   - greendwarfnpc (Gulimo & Loretta)
   - highpriestnpc (Aenihata)
   - largeblackwizardnpc (Ravashack)
