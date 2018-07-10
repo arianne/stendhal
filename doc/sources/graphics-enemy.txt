@@ -346,7 +346,7 @@ lutin_wench.png     ???; ???; ???
 data/sprites/monsters/madaram/
 
 kasarkutominubat.png       Svetlana Kushnariova (Cabbit), onu/olonu, NicholasJudy456; OGA BY 3.0; https://github.com/arianne/stendhal/issues/109
-madaram_archer.png         ???; ???; ???
+madaram_archer.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, David E. Gervais, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/6622
 madaram_axeman.png         ???; ???; ???
 madaram_buster_blader.png  ???; ???; ???
 madaram_cavalry.png        ???; ???; ???
