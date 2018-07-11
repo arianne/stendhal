@@ -349,7 +349,7 @@ kasarkutominubat.png       Svetlana Kushnariova (Cabbit), onu/olonu, NicholasJud
 madaram_archer.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, David E. Gervais, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/6622
 madaram_axeman.png         ???; ???; ???
 madaram_buster_blader.png  ???; ???; ???
-madaram_cavalry.png        ???; ???; ???
+madaram_cavalry.*          Stephen Challener (Redshrike), wulax, olonu; CC BY-SA 3.0; https://opengameart.org/node/11152, https://opengameart.org/node/11165
 madaram_healer.png         ???; ???; ???
 madaram_hero.png           ???; ???; ???
 madaram_peasant.png        Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/83661

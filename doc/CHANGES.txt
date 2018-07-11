@@ -10,6 +10,7 @@ Changelog
   - fallen_priest
   - kalavan_housewife
   - madaram_archer
+  - madaram_cavalry
   - madaram_peasant
   - madaram_queen
   - madaram_soldier
