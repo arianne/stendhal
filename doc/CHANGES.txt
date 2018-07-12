@@ -38,6 +38,7 @@ Changelog
   - recruiter1npc (Stefan)
   - slim_woman_npc (Liliana)
   - taxmannpc (Mr Taxman)
+  - witchnpc (Jynath)
 - no longer required to have 1 money to use scroll eraser
 - added "venom gland" item to weekly item quest
 - Katinka awards positive karma for accepting Zoo Food quest
