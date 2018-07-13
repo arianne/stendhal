@@ -43,6 +43,7 @@ Changelog
 - added "venom gland" item to weekly item quest
 - Katinka awards positive karma for accepting Zoo Food quest
 - New "harmless" corpse sprite for spiders
+- More NPCs won't turn around after collision
 
 *client*
 - sprites & tiles replaced with images suffixed with "-noblood" when blood disabled

@@ -93,7 +93,7 @@ public class KidsNPCs implements ZoneConfigurator {
 			npc.setPosition(start[i].getX(), start[i].getY());
 			npc.setDescription(descriptions[i]);
 			npc.setDirection(Direction.DOWN);
-			npc.setCollisionAction(CollisionAction.REVERSE);
+			npc.setCollisionAction(CollisionAction.STOP);
 			npc.initHP(100);
 			zone.add(npc);
 		}

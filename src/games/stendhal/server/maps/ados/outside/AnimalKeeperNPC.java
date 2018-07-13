@@ -24,6 +24,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -135,6 +136,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		npc.setEntityClass("woman_007_npc");
 		npc.setPosition(41, 40);
 		//npc.setDirection(Direction.DOWN);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.initHP(100);
 		npc.setDescription("You see Katinka. She takes care of the animals around in the sanctuary.");
 		zone.add(npc);

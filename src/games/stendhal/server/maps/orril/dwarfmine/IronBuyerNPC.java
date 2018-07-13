@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
@@ -74,6 +75,7 @@ public class IronBuyerNPC implements ZoneConfigurator {
 		loretta.setDescription("You see Loretta, an elderly female dwarf. She is working on the mine-cart rails.");
 		loretta.setEntityClass("greendwarfnpc");
 		loretta.setPosition(49, 68);
+		loretta.setCollisionAction(CollisionAction.STOP);
 		loretta.initHP(100);
 		zone.add(loretta);
 	}

@@ -21,6 +21,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
@@ -90,6 +91,7 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.setEntityClass("grandadnpc");
 		npc.setDescription("You see ancient and wizened Valo. He is surrounded by some kind of glowing light.");
 		npc.setPosition(26, 5);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.initHP(100);
 		zone.add(npc);
 	}

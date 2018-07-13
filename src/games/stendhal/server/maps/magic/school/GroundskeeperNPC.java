@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -76,6 +77,7 @@ public class GroundskeeperNPC implements ZoneConfigurator {
 
 		groundskeeperNPC.setEntityClass("groundskeepernpc");
 		groundskeeperNPC.setPosition(35, 13);
+		groundskeeperNPC.setCollisionAction(CollisionAction.STOP);
 		groundskeeperNPC.initHP(1000);
 		groundskeeperNPC.setDescription("You see Morgrin, the facility manager of the Magic City school. He is always busy and needs a helping hand.");
 		zone.add(groundskeeperNPC);

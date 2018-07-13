@@ -24,6 +24,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -91,6 +92,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 		npc.setEntityClass("doctornpc");
 		npc.setPosition(53, 28);
 		//npc.setDirection(Direction.DOWN);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.initHP(100);
 		npc.setDescription("You see Dr. Feelgood. He is an expert in his job.");
 		zone.add(npc);
