@@ -208,6 +208,7 @@ wifenpc.png                   ???; ???; ???
 wisemannpc.*                  Svetlana Kushnariova (Cabbit), Sollision, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/52761
 witchnpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86131
 witch2npc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+witch3npc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86131
 wizardwomannpc.png            ???; ???; ???
 woman_003_npc.png             ???; ???; ???
 woman_004_npc.png             ???; ???; ???
