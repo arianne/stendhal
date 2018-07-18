@@ -167,9 +167,9 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	/**
 	 * draw an outfix part
 	 *
-	 * @param ctx   ctx
-	 * @param part  part
-	 * @param index index
+	 * @param {CanvasRenderingContext2D}   ctx
+	 * @param {string}  part
+	 * @param {Number} index
 	 */
 	drawOutfitPart: function(ctx, part, index) {
 		var n = index;
@@ -179,7 +179,20 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			n = "0" + index;
 		}
 		var filename = "/data/sprites/outfit/" + part + "/" + part + "_" + n + ".png";
-		this.drawSprite(ctx, filename);
+		var colors = this["outfit_colors"];
+		var image, colorname;
+		if (part === "body" || part === "head") {
+			colorname = "skin";
+		} else {
+			colorname = part;
+		}
+		if (typeof(colors) !== "undefined" && (typeof(colors[colorname]) !== "undefined")) {
+			image = stendhal.data.sprites.getFiltered(filename, "trueColor", colors[colorname]);
+		} else {
+			image = stendhal.data.sprites.get(filename);
+		}
+		
+		this.drawSprite(ctx, image);
 	},
 
 	/** 
@@ -202,7 +215,8 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 				filename = filename + "/" + this["subclass"];
 			}
 			filename = filename + ".png";
-			this.drawSprite(ctx, filename);
+			var image = stendhal.data.sprites.get(filename);
+			this.drawSprite(ctx, image);
 		}
 		this.drawAttack(ctx);
 		this.drawFloaters(ctx);
@@ -346,10 +360,13 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 	},
 	
-	drawSprite: function(ctx, filename) {
+	/**
+	 * @param {CanvasRenderingContext2D} ctx
+	 * @param {Image} image
+	 */
+	drawSprite: function(ctx, image) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
-		var image = stendhal.data.sprites.get(filename);
 		if (image.height) { // image.complete is true on missing image files
 			var nFrames = 3;
 			var nDirections = 4;
@@ -590,7 +607,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			case "4":
 				imagePath = "/data/sprites/combat/blade_strike_dark.png";
 			}
-			this.attackSprite = (function(imagePath, ranged, dir, width, height) {
+			this.attackSprite = (function(imagePath, ranged, dir) {
 				return {
 					initTime: Date.now(),
 					image: stendhal.data.sprites.get(imagePath),
