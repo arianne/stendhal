@@ -113,7 +113,6 @@ stendhal.data.sprites = {
 		 */
 		splitrgb: function(rgb) {
 			rgb &= 0xffffff;
-			var orig = rgb;
 			var b = rgb & 0xff;
 			rgb >>>= 8;
 			var g = rgb & 0xff;
@@ -130,7 +129,7 @@ stendhal.data.sprites = {
 			var g = rgb[1] / 255;
 			var b = rgb[2] / 255;
 			
-			var max, min;
+			var max, min, maxVar;
 			// Find the max and minimum colors, and remember which one it was
 			if (r > g) {
 				max = r;
@@ -149,7 +148,8 @@ stendhal.data.sprites = {
 			}
 
 			// lightness
-			l = (max + min) / 2;
+			var l = (max + min) / 2;
+			var s, h;
 
 			// saturation
 			var diff = max - min;
@@ -165,9 +165,9 @@ stendhal.data.sprites = {
 				}
 
 				// hue
-				if (maxVar == 0) {
+				if (maxVar === 0) {
 					h = (g - b) / diff;
-				} else if (maxVar == 1) {
+				} else if (maxVar === 1) {
 					h = 2 + (b - r) / diff;
 				} else {
 					h = 4 + (r - g) / diff;
