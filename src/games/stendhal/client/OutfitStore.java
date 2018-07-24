@@ -32,28 +32,21 @@ public class OutfitStore {
 	private Logger logger = Logger.getLogger(OutfitStore.class);
 
 	/** outfit directory */
-	final String outfits = "data/sprites/outfit";
-
+	private static final String OUTFITS = "data/sprites/outfit";
 	/** body directory */
-	final String bodies = outfits + "/body";
-
+	private static final String BODIES = OUTFITS + "/body";
 	/** dress directory */
-	final String dresses = outfits + "/dress";
-
+	private static final String DRESSES = OUTFITS + "/dress";
 	/** head directory */
-	final String heads = outfits + "/head";
-
+	private static final String HEADS = OUTFITS + "/head";
 	/** mouth directory */
-	final String mouths = outfits + "/mouth";
-
+	private static final String MOUTHS = OUTFITS + "/mouth";
 	/** eyes directory */
-	final String eyes = outfits + "/eyes";
-
+	private static final String EYES = OUTFITS + "/eyes";
 	/** hair directory */
-	final String hairs = outfits + "/hair";
-
+	private static final String HAIRS = OUTFITS + "/hair";
 	/** detail directory */
-	final String details = outfits + "/detail";
+	private static final String DETAILS = OUTFITS + "/detail";
 
 	/**
 	 * The singleton.
@@ -185,7 +178,7 @@ public class OutfitStore {
 	public Sprite getBodySprite(final int index, OutfitColor color) {
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = bodies + "/body_" + suffix + ".png";
+		final String ref = BODIES + "/body_" + suffix + ".png";
 
 		if (!store.existsSprite(ref)) {
 			return null;
@@ -210,7 +203,7 @@ public class OutfitStore {
 
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = dresses + "/dress_" + suffix + ".png";
+		final String ref = DRESSES + "/dress_" + suffix + ".png";
 
 		return store.getColoredSprite(ref, color.getColor(OutfitColor.DRESS));
 	}
@@ -254,7 +247,7 @@ public class OutfitStore {
 
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = hairs + "/hair_" + suffix + ".png";
+		final String ref = HAIRS + "/hair_" + suffix + ".png";
 
 		return store.getColoredSprite(ref, color.getColor(OutfitColor.HAIR));
 	}
@@ -270,7 +263,7 @@ public class OutfitStore {
 	public Sprite getEyesSprite(final int index, OutfitColor color) {
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = eyes + "/eyes_" + suffix + ".png";
+		final String ref = EYES + "/eyes_" + suffix + ".png";
 
 		if (!store.existsSprite(ref)) {
 			return null;
@@ -289,7 +282,7 @@ public class OutfitStore {
 	public Sprite getMouthSprite(final int index) {
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = mouths + "/mouth_" + suffix + ".png";
+		final String ref = MOUTHS + "/mouth_" + suffix + ".png";
 
 		if (!store.existsSprite(ref)) {
 			return null;
@@ -310,7 +303,7 @@ public class OutfitStore {
 	public Sprite getHeadSprite(final int index, OutfitColor color) {
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = heads + "/head_" + suffix + ".png";
+		final String ref = HEADS + "/head_" + suffix + ".png";
 
 		if (!store.existsSprite(ref)) {
 			return null;
@@ -335,7 +328,7 @@ public class OutfitStore {
 
 		final String suffix = getSpriteSuffix(index);
 
-		final String ref = details + "/detail_" + suffix + ".png";
+		final String ref = DETAILS + "/detail_" + suffix + ".png";
 
 		return store.getColoredSprite(ref, color.getColor(OutfitColor.DETAIL));
 	}
@@ -402,7 +395,6 @@ public class OutfitStore {
 			Sprite sprite = cache.get(fullRef);
 			if (sprite == null) {
 				Sprite plain = getOutfit(code, color);
-				SpriteStore store = SpriteStore.get();
 				sprite = store.modifySprite(plain, adjColor, blend, fullRef);
 
 			}
