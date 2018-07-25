@@ -33,6 +33,8 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.client.gui.wt.core.SettingChangeListener;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 /**
  * Page for general settings.
@@ -51,8 +53,6 @@ class GeneralSettings {
 
 	/** Container for the setting components. */
 	private final JComponent page;
-
-	private static JCheckBox moveContinuousToggle;
 
 	/**
 	 * Create new GeneralSettings.
@@ -90,12 +90,19 @@ class GeneralSettings {
 		page.add(doubleTapAutowalkToggle);
 
 		// Continuous movement
-		moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",
+		final JCheckBox moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",
 										"Continuous movement", "Change maps and pass through portals without stopping");
 		moveContinuousToggle.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				new MoveContinuousAction().sendAction(e.getStateChange() == ItemEvent.SELECTED);
+			}
+		});
+		WtWindowManager.getInstance().registerSettingChangeListener(MOVE_CONTINUOUS_PROPERTY,
+				new SettingChangeListener() {
+			@Override
+			public void changed(String newValue) {
+				moveContinuousToggle.setSelected(Boolean.parseBoolean(newValue));
 			}
 		});
 		page.add(moveContinuousToggle);
@@ -163,15 +170,5 @@ class GeneralSettings {
 		if (frameState != Frame.MAXIMIZED_BOTH) {
 			mainFrame.setSize(clientFrame.getFrameDefaultSize());
 		}
-	}
-
-	/**
-	 * Retrieves the check box component for setting continuous movement.
-	 *
-	 * @return
-	 * 		JCheckBox component for continuous movement
-	 */
-	public static JCheckBox getMoveContinuousToggle() {
-		return moveContinuousToggle;
 	}
 }

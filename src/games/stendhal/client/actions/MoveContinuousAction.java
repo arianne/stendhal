@@ -14,11 +14,8 @@ package games.stendhal.client.actions;
 import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 import static games.stendhal.common.constants.Actions.TYPE;
 
-import javax.swing.JCheckBox;
-
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.settings.SettingsDialog;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
@@ -49,14 +46,7 @@ public class MoveContinuousAction implements SlashAction {
 		boolean enabled = Boolean.parseBoolean(wm.getProperty(MOVE_CONTINUOUS, "false"));
 		wm.setProperty(MOVE_CONTINUOUS, Boolean.toString(!enabled));
 
-		// Was not called from settings GUI so we need to update check box state.
-		JCheckBox moveContinuousToggle = SettingsDialog.getMoveContinuousToggle();
-		if (moveContinuousToggle != null) {
-			moveContinuousToggle.setSelected(!enabled);
-			return true;
-		} else {
-			return sendAction(!enabled);
-		}
+		return sendAction(!enabled);
 	}
 
 	/**
