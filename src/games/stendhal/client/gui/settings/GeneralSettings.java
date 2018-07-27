@@ -40,7 +40,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  * Page for general settings.
  */
 class GeneralSettings {
-	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoraisecorpse";
+	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoinspectcorpses";
 
 	/** Property used for the double click setting. */
 	private static final String DOUBLE_CLICK_PROPERTY = "ui.doubleclick";
