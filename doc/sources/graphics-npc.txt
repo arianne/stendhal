@@ -77,7 +77,7 @@ grim_reaper_npc.png           ???; ???; ???
 grim_reaper2_npc.png          ???; ???; ???
 groundskeepernpc.png          ???; ???; ???
 gypsywomannpc.png             ???; ???; ???
-halfelfnpc.png                ???; ???; ???
+halfelfnpc.*                  Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, Stendhal
 hanknpc.*                     Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 heraldnpc.png                 ???; ???; ???
 highpriestnpc.*               Svetlana kushnariova (Cabbit), Sollision, Andrew Kelley (superjoe), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/76967, https://opengameart.org/node/17839

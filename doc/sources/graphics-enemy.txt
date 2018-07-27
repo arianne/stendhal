@@ -347,7 +347,7 @@ data/sprites/monsters/madaram/
 
 kasarkutominubat.png       Svetlana Kushnariova (Cabbit), onu/olonu, NicholasJudy456; OGA BY 3.0; https://github.com/arianne/stendhal/issues/109
 madaram_archer.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, David E. Gervais, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/6622
-madaram_axeman.png         ???; ???; ???
+madaram_axeman.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/83728
 madaram_buster_blader.png  ???; ???; ???
 madaram_cavalry.*          Stephen Challener (Redshrike), wulax, olonu; CC BY-SA 3.0; https://opengameart.org/node/11152, https://opengameart.org/node/11165
 madaram_healer.png         ???; ???; ???
