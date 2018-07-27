@@ -15,6 +15,8 @@ import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 import static games.stendhal.common.constants.Actions.TYPE;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
@@ -60,6 +62,11 @@ public class MoveContinuousAction implements SlashAction {
 	 *		<code>true</code>
 	 */
 	public boolean sendAction(final boolean enable, final boolean notify) {
+		if (!StendhalClient.serverVersionAtLeast("1.27.5")) {
+			ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
+					"The server version does not support continuous movement mode.", NotificationType.SERVER));
+			return false;
+		}
 		// Create action to be sent to server.
 		final RPAction action = new RPAction();
 		action.put(TYPE, MOVE_CONTINUOUS);
