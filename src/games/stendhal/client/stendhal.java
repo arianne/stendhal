@@ -314,7 +314,7 @@ public final class stendhal {
 			GameLoop.get().runOnce(new Runnable() {
 				@Override
 				public void run() {
-					boolean moveContinuous = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(MOVE_CONTINUOUS, "false"));
+					boolean moveContinuous = WtWindowManager.getInstance().getPropertyBoolean(MOVE_CONTINUOUS, false);
 					if (moveContinuous) {
 						new MoveContinuousAction().sendAction(true, false);
 					}

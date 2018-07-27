@@ -35,7 +35,7 @@ class ClickModeAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(String[] params, String remainder) {
-		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
 		doubleClick = !doubleClick;
 		WtWindowManager.getInstance().setProperty("ui.doubleclick", Boolean.toString(doubleClick));
 		if (doubleClick) {

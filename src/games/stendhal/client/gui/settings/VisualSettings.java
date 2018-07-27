@@ -99,7 +99,7 @@ class VisualSettings {
 		toggleComponents(page);
 
 		// Lighting effects
-		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, "true",
+		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, true,
 				"Light effects", "Show night time lighting, and other coloring effects");
 		page.add(mapColoring);
 		// Coloring setting needs a map change to take an effect, so we need to
@@ -115,12 +115,12 @@ class VisualSettings {
 			}
 		});
 
-		JCheckBox weather = SettingsComponentFactory.createSettingsToggle("ui.draw_weather", "true",
+		JCheckBox weather = SettingsComponentFactory.createSettingsToggle("ui.draw_weather", true,
 				"Draw weather", "Draw weather effects.");
 		page.add(weather);
 
 		// blood
-		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",
+		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, true,
 				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");
 		page.add(showBloodToggle);
 		// Inform players that some images won't update until after client is restarted.
@@ -135,12 +135,12 @@ class VisualSettings {
 		});
 
 		// show creature speech bubbles
-		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, "true",
+		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, true,
 										"Show creature speech bubbles", "Show creature speech bubbles in the client display");
 		page.add(showCreatureSpeechToggle);
 
 		final JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
-				"true", "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
+				true, "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
 		page.add(scaleScreenToggle);
 		page.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
 

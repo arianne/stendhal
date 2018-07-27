@@ -41,7 +41,7 @@ class UseableRing2DView extends Ring2DView {
 
 	@Override
 	public StendhalCursor getCursor() {
-		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
 		if (doubleClick) {
 			return StendhalCursor.ACTIVITY;
 		} else {

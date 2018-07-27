@@ -19,11 +19,11 @@ import javax.swing.JCheckBox;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 class SettingsComponentFactory {
-	static JCheckBox createSettingsToggle(final String parameter, String defaultValue, String label, String tooltip) {
+	static JCheckBox createSettingsToggle(final String parameter, boolean defaultValue, String label, String tooltip) {
 		boolean selected = false;
 		JCheckBox toggle = new JCheckBox(label);
 		toggle.setToolTipText(tooltip);
-		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(parameter, defaultValue));
+		selected = WtWindowManager.getInstance().getPropertyBoolean(parameter, defaultValue);
 		toggle.setSelected(selected);
 
 		toggle.addItemListener(new ItemListener(){

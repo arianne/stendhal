@@ -246,7 +246,7 @@ public class Zone {
 	 *	otherwise
 	 */
 	private boolean isColoringEnabled() {
-		return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.colormaps", "true"));
+		return WtWindowManager.getInstance().getPropertyBoolean("ui.colormaps", true);
 	}
 
 	/**

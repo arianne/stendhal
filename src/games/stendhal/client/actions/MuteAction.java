@@ -35,7 +35,7 @@ class MuteAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		boolean play = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true"));
+		boolean play = WtWindowManager.getInstance().getPropertyBoolean("sound.play", true);
 		play = !play;
 		WtWindowManager.getInstance().setProperty("sound.play", Boolean.toString(play));
 		ClientSingletonRepository.getSound().mute(!play, true, new Time(2, Time.Unit.SEC));

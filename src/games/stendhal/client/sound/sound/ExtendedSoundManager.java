@@ -170,7 +170,7 @@ public class ExtendedSoundManager extends SoundManagerNG {
 	private float mMasterVolume = 1.0f;
 
 	ExtendedSoundManager() {
-		super(!Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("sound.play", "true")),
+		super(!WtWindowManager.getInstance().getPropertyBoolean("sound.play", true),
 				mDeviceEvaluator.createDeviceList(mAudioFormat), mAudioFormat);
 		initVolumes();
 	}

@@ -62,7 +62,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 
 		// for the clicked entity....
 		final EntityView<?> view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
-		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
 		if ((view != null) && view.isInteractive()) {
 			if (isCtrlDown()) {
 				view.onAction();
