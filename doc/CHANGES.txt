@@ -3,43 +3,7 @@ Changelog
 
 1.28
 *world*
-- new enemy sprites:
-  - cyclops
-  - blue_mohiko
-  - fallen_high_priest
-  - fallen_priest
-  - kalavan_housewife
-  - madaram_archer
-  - madaram_cavalry
-  - madaram_peasant
-  - madaram_queen
-  - madaram_soldier
-  - masked_ninja
-  - red_roohako
-  - thing
-- new NPC sprites:
-  - barracksbuyernpc (Mrotho)
-  - doctornpc (Dr. Feelgood)
-  - elfbankeroldnpc (Grafindle)
-  - elfflowergrowernpc (Seremela)
-  - elfprincessnpc (Tywysoga)
-  - gardenernpc (Sue)
-  - grandadnpc (Valo)
-  - greendwarfnpc (Gulimo & Loretta)
-  - highpriestnpc (Aenihata)
-  - largeblackwizardnpc (Ravashack)
-  - maidnpc (Coralia)
-  - man_002_npc (Lawrence)
-  - man_008_npc (Martin Farmer)
-  - olddwarfnpc (Ritati Dragontracker & Hogart)
-  - orientalwizardnpc (Jaer)
-  - priestnpc (Priest)
-  - principalnpc (Femme Fatale)
-  - recruiter1npc (Stefan)
-  - slim_woman_npc (Liliana)
-  - taxmannpc (Mr Taxman)
-  - witchnpc (Jynath)
-  - witch3npc (Esolte Vietta)
+- many new enemy & NPC sprites
 - no longer required to have 1 money to use scroll eraser
 - added "venom gland" item to weekly item quest
 - Katinka awards positive karma for accepting Zoo Food quest
