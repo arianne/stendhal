@@ -213,14 +213,13 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			} else if (!hasBuddy)  {
 				list.add(ActionType.IGNORE.getRepresentation());
 			}
-			StendhalClient client = StendhalClient.get();
-			if (client.serverVersionAtLeast("0.88")) {
+			if (StendhalClient.serverVersionAtLeast("0.88")) {
 				list.add(ActionType.TRADE.getRepresentation());
 			}
-			if (client.serverVersionAtLeast("0.92")) {
+			if (StendhalClient.serverVersionAtLeast("0.92")) {
 				list.add(ActionType.INVITE.getRepresentation());
 			}
-			if (client.serverVersionAtLeast("1.24")) {
+			if (StendhalClient.serverVersionAtLeast("1.24")) {
 				if(System.getProperty("stendhal.pvpchallenge") != null) {
 					list.add(ActionType.CHALLENGE.getRepresentation());
 					list.add(ActionType.ACCEPT_CHALLENGE.getRepresentation());

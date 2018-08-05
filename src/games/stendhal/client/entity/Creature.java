@@ -160,7 +160,7 @@ public class Creature extends RPEntity {
 	// Called when entity says text
 	@Override
 	public void onTalk(final String text) {
-		boolean showCreatureSpeech = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.creaturespeech", "true"));
+		boolean showCreatureSpeech = WtWindowManager.getInstance().getPropertyBoolean("gamescreen.creaturespeech", true);
 		if (showCreatureSpeech) {
 			super.onTalk(text);
 		}

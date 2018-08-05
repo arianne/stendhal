@@ -341,7 +341,7 @@ public class SpriteStore {
 		BufferedImage sourceImage = null;
 
 		// No blood mode
-		boolean showBlood = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
+		boolean showBlood = WtWindowManager.getInstance().getPropertyBoolean("gamescreen.blood", true);
 		String safeRef = ref.split(".png")[0] + "-safe.png";
 		URL safeURL = DataLoader.getResource(safeRef);
 		if (!showBlood && (safeURL != null)) {

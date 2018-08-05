@@ -374,7 +374,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 				return true;
 			}
 
-			boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+			boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
 			if (doubleClick) {
 				return false;
 			}

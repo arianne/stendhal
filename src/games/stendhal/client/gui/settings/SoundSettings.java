@@ -68,7 +68,7 @@ class SoundSettings {
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 
 		JCheckBox muteToggle = new JCheckBox("Play Sounds");
-		boolean soundOn = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(SOUND_PROPERTY, "true"));
+		boolean soundOn = WtWindowManager.getInstance().getPropertyBoolean(SOUND_PROPERTY, true);
 		muteToggle.setSelected(soundOn);
 		muteToggle.addItemListener(new MuteListener());
 		page.add(muteToggle);
