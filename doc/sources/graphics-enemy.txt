@@ -250,7 +250,7 @@ armored_warrior.png        ???; ???; ???
 assassin.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 bandit.png                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 barbarian.*                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/82377
-barbarian_chaman.png       ???; ???; ???
+barbarian_chaman.*         Svetlana Kushnariova (Cabbit), Carl Olsson (surt), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/82377, https://opengameart.org/node/2261
 barbarian_elite.*          ???; ???; ???
 barbarian_king.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Bart Kelsey, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/3755
 barbarian_leader.png       ???; ???; ???
