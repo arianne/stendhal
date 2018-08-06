@@ -540,7 +540,7 @@ public class j2DClient implements UserInterface {
 				 *        pressed twice to resume walking. Key states
 				 *        not flushed correctly?
 				 */
-				if (client.serverVersionAtLeast("1.27.5")) {
+				if (StendhalClient.serverVersionAtLeast("1.27.5")) {
 					final RPAction stop = new RPAction();
 					stop.put(TYPE, COND_STOP);
 					ClientSingletonRepository.getClientFramework().send(stop);

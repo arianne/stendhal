@@ -2,6 +2,7 @@ package games.stendhal.server.entity.item;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
@@ -78,30 +79,30 @@ public class FoodMillTest {
 		Player user  =  PlayerTestHelper.createPlayer("fmbob");
 		fm.onUsed(user);
 		assertEquals("You should be carrying the scroll eraser in order to use it.", PlayerTestHelper.getPrivateReply(user));
+		assertFalse(user.isEquipped("empty scroll"));
 
 		user.equip("bag", fm);
 		fm.onUsed(user);
 		assertEquals("You should hold the scroll eraser in either hand in order to use it.", PlayerTestHelper.getPrivateReply(user));
+		assertFalse(user.isEquipped("empty scroll"));
+		
 		user.equip("lhand", fm);
 		fm.onUsed(user);
-
 		assertEquals("Your other hand looks empty.", PlayerTestHelper.getPrivateReply(user));
+		assertFalse(user.isEquipped("empty scroll"));
+		
 		PlayerTestHelper.equipWithItemToSlot(user, "cheese", "rhand");
-
+		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","bag");
 		fm.onUsed(user);
 		assertEquals("You need to have at least a marked scroll in your other hand", PlayerTestHelper.getPrivateReply(user));
+		assertFalse(user.isEquipped("empty scroll"));
 
 		user.drop("cheese");
-
-		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","bag");
-
+		user.drop("marked scroll");
 		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","rhand");
-
-		fm.onUsed(user);
-		assertEquals("You don't have a money with you", PlayerTestHelper.getPrivateReply(user));
-		PlayerTestHelper.equipWithItem(user, "money");
 		fm.onUsed(user);
 		assertTrue(user.isEquipped("empty scroll"));
+		assertFalse(user.isEquipped("marked scroll"));
 	}
 
 	@Test

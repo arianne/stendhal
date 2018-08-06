@@ -711,14 +711,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				if(playerToNotifyAbout.isGhost()) {
 					playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
 					playerToNotifyAbout.notifyWorldAboutChanges();
-					if (player.isGhost()) {
+					if (player.isGhost() && (player != playerToNotifyAbout)) {
 						player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
 						player.notifyWorldAboutChanges();
 					}
 				} else {
 					player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
 					player.notifyWorldAboutChanges();
-					if (!player.isGhost()) {
+					if (!player.isGhost() && (player != playerToNotifyAbout)) {
 						playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
 						playerToNotifyAbout.notifyWorldAboutChanges();
 					}

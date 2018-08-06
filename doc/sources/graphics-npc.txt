@@ -135,7 +135,7 @@ nightguardswordnpc.png        ???; ???; ???
 noimagenpc.png                ???; ???; ???
 oldcowboynpc.png              ???; ???; ???
 olddwarfnpc.png               Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
-oldfishermannpc.png           ???; ???; ???
+oldfishermannpc.*             ???, Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); ???; ???, https://opengameart.org/node/72969
 oldheronpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldmaidnpc.png                ???; ???; ???
 oldmannpc.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

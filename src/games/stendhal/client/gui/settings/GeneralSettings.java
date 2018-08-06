@@ -40,7 +40,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  * Page for general settings.
  */
 class GeneralSettings {
-	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoraisecorpse";
+	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoinspectcorpses";
 
 	/** Property used for the double click setting. */
 	private static final String DOUBLE_CLICK_PROPERTY = "ui.doubleclick";
@@ -64,33 +64,33 @@ class GeneralSettings {
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 
 		// click mode
-		JCheckBox clickModeToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_CLICK_PROPERTY, "false",
+		JCheckBox clickModeToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_CLICK_PROPERTY, false,
 				"Double Click Mode", "Move and attack with double click. If not checked, a single click is enough.");
 		page.add(clickModeToggle);
 
 		// raising corpses
-		JCheckBox autoRaiseToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_AUTORAISECORPSE, "true",
+		JCheckBox autoRaiseToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_AUTORAISECORPSE, true,
 				"Auto inspect corpses", "Automatically open the loot window for corpses of creatures you can loot");
 		page.add(autoRaiseToggle);
 
 		// show healing messages
-		JCheckBox showHealingToggle = SettingsComponentFactory.createSettingsToggle(HEALING_MESSAGE_PROPERTY, "false",
+		JCheckBox showHealingToggle = SettingsComponentFactory.createSettingsToggle(HEALING_MESSAGE_PROPERTY, false,
 				"Show healing messages", "Show healing messages in the chat log");
 		page.add(showHealingToggle);
 
 		// show poison messages
-		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
+		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, false,
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
 
 		// Double-tap direction for auto-walk
-		JCheckBox doubleTapAutowalkToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_TAP_AUTOWALK_PROPERTY, "false",
+		JCheckBox doubleTapAutowalkToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_TAP_AUTOWALK_PROPERTY, false,
 										"Double-tap direction for auto-walk (buggy)",
 										"Initiates auto-walk when direction key is double-tapped");
 		page.add(doubleTapAutowalkToggle);
 
 		// Continuous movement
-		final JCheckBox moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, "false",
+		final JCheckBox moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, false,
 										"Continuous movement", "Change maps and pass through portals without stopping");
 		moveContinuousToggle.addItemListener(new ItemListener() {
 			@Override
@@ -125,7 +125,7 @@ class GeneralSettings {
 		// Save client dimensions
 		JCheckBox saveDimensionsToggle =
 				SettingsComponentFactory.createSettingsToggle(
-						DIMENSIONS_PROPERTY, "true", "Save size",
+						DIMENSIONS_PROPERTY, true, "Save size",
 						"Restores the client's width, height, and maximized state in future sessions");
 		clientSizeBox.add(saveDimensionsToggle);
 

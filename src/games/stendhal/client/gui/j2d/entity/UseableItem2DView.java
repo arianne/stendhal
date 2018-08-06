@@ -49,7 +49,7 @@ class UseableItem2DView extends StackableItem2DView<StackableItem> {
 
 	@Override
 	public StendhalCursor getCursor() {
-		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
 		if (doubleClick) {
 			return StendhalCursor.ACTIVITY;
 		} else {

@@ -249,8 +249,8 @@ armored_leader.png         ???; ???; ???
 armored_warrior.png        ???; ???; ???
 assassin.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 bandit.png                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
-barbarian.png              ???; ???; ???
-barbarian_chaman.png       ???; ???; ???
+barbarian.*                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/82377
+barbarian_chaman.*         Svetlana Kushnariova (Cabbit), Carl Olsson (surt), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/82377, https://opengameart.org/node/2261
 barbarian_elite.*          ???; ???; ???
 barbarian_king.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Bart Kelsey, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/3755
 barbarian_leader.png       ???; ???; ???
@@ -321,7 +321,7 @@ snarfkin.png         Kemono & Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://
 tiny_skelly.png      Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 violet_avenger.*     Svetlana Kushnariova (Cabbit), johnny_automatic, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://openclipart.org/detail/4365
 winged_blurble.png   Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/20221
-xenocium.png         ???; ???; ???
+xenocium.*           Rexi Andriansyah (Rexes), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86934, https://opengameart.org/node/75162
 
 data/sprites/monsters/kobold/
 

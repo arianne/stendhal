@@ -832,7 +832,7 @@ public class StendhalClient extends ClientFramework {
 	 * is unknown, <code>false</code> if the server is older than the required
 	 * version
 	 */
-	public boolean serverVersionAtLeast(String required) {
+	public static boolean serverVersionAtLeast(String required) {
 		String serverVersion = User.getServerRelease();
 		return (serverVersion == null) || (Version.compare(serverVersion, required) >= 0);
 	}
