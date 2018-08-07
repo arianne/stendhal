@@ -651,9 +651,9 @@ public class j2DClient implements UserInterface {
 			((StyledTabbedPaneUI) ui).setTabLabelMargins(1);
 		}
 		tabs.setFocusable(false);
-		tabs.add("Friends", buddyPane);
+		tabs.add("好友", buddyPane);
 
-		tabs.add("Group", GroupPanelController.get().getComponent());
+		tabs.add("队伍", GroupPanelController.get().getComponent());
 
 		tabBackground.add(tabs, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.add(tabBackground, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
@@ -828,7 +828,7 @@ public class j2DClient implements UserInterface {
 				if (offline || client.logout()) {
 					GameLoop.get().stop();
 				} else {
-					logger.warn("You can't logout now.");
+					logger.warn("你暂时不能离开.");
 					gameRunning = true;
 				}
 			} catch (final InvalidVersionException|TimeoutException|BannedAddressException e) {
@@ -931,7 +931,7 @@ public class j2DClient implements UserInterface {
 		if (mw instanceof InternalManagedWindow) {
 			addDialog((InternalManagedWindow) mw);
 		} else {
-			throw new IllegalArgumentException("Unsupport ManagedWindow type: "
+			throw new IllegalArgumentException("不支持窗口管理器: "
 					+ mw.getClass().getName());
 		}
 	}
@@ -1119,7 +1119,7 @@ public class j2DClient implements UserInterface {
 
 		// ** Private channel **
 		edit = new KTextEdit();
-		edit.setChannelName("Personal");
+		edit.setChannelName("个人");
 		/*
 		 * Give it a different background color to make it different from the
 		 * main chat log.

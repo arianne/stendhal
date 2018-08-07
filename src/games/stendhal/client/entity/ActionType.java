@@ -25,42 +25,42 @@ import marauroa.common.game.RPObject;
  * @author astridemma
  */
 public enum ActionType {
-	LOOK("look", "Look") {
+	LOOK("look", "察看") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	READ("look", "Read"),
-	LOOK_CLOSELY("use", "Look closely"),
-	INSPECT("inspect", "Inspect") {
+	READ("look", "读"),
+	LOOK_CLOSELY("use", "细看"),
+	INSPECT("inspect", "检查") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	ATTACK("attack", "Attack"),
-	STOP_ATTACK("stop", "Stop attack"),
-	PUSH("push", "Push"),
-	CLOSE("use", "Close"),
-	OPEN("use", "Open") {
+	ATTACK("attack", "攻击"),
+	STOP_ATTACK("stop", "停止攻击"),
+	PUSH("push", "推开"),
+	CLOSE("use", "关闭"),
+	OPEN("use", "打开") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	OWN("own", "Own"),
-	USE("use", "Use") {
+	OWN("own", "拥有"),
+	USE("use", "使用") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	HARVEST("use", "Harvest"),
-	PICK("use", "Pick"),
+	HARVEST("use", "收获"),
+	PICK("use", "捡起"),
 	PROSPECT("use", "Prospect"),
-	FISH("use", "Fish"),
-	WISH("use", "Make a Wish"),
+	FISH("use", "钓鱼"),
+	WISH("use", "许愿"),
 	LEAVE_SHEEP("forsake", "Leave sheep") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
@@ -77,7 +77,7 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
-	ADD_BUDDY("addbuddy", "Add to Buddies") {
+	ADD_BUDDY("addbuddy", "添加好友") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			RPAction rpaction = super.fillTargetInfo(entity);
@@ -85,7 +85,7 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
-	IGNORE("ignore", "Ignore") {
+	IGNORE("ignore", "屏闭") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			RPAction rpaction = super.fillTargetInfo(entity);
@@ -93,7 +93,7 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
-	UNIGNORE("unignore", "Remove Ignore") {
+	UNIGNORE("unignore", "取消屏闭") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			RPAction rpaction = super.fillTargetInfo(entity);
@@ -101,7 +101,7 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
-	TRADE("trade", "Trade") {
+	TRADE("trade", "交易") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			RPAction rpaction = super.fillTargetInfo(entity);
@@ -127,7 +127,7 @@ public enum ActionType {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	SET_OUTFIT("outfit", "Set outfit"),
+	SET_OUTFIT("outfit", "配备"),
 	WHERE("where", "Where") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
@@ -137,8 +137,8 @@ public enum ActionType {
 		}
 	},
 	ADMIN_VIEW_NPC_TRANSITIONS("npctransitions", "(*)View Transitions"),
-	KNOCK("knock", "Knock"),
-	INVITE("group_management", "Invite") {
+	KNOCK("knock", "敲打"),
+	INVITE("group_management", "邀请") {
 
 		@Override
 		public RPAction fillTargetInfo(IEntity entity) {
@@ -150,9 +150,9 @@ public enum ActionType {
 		}
 
 	},
-	WALK_START("walk", "Walk"),
-	WALK_STOP("walk", "Stop"),
-	CHALLENGE("challenge", "Challenge") {
+	WALK_START("walk", "行走"),
+	WALK_STOP("walk", "停步"),
+	CHALLENGE("challenge", "挑战") {
 
 		@Override
 		public RPAction fillTargetInfo(IEntity entity) {
@@ -164,7 +164,7 @@ public enum ActionType {
 		}
 
 	},
-	ACCEPT_CHALLENGE("challenge", "Accept") {
+	ACCEPT_CHALLENGE("challenge", "接受") {
 
 		@Override
 		public RPAction fillTargetInfo(IEntity entity) {

@@ -63,9 +63,9 @@ class GroupPanel {
 	 */
 	private static final int LIST_INDENT = 5;
 	/** Tooltip for inviting members for a new group */
-	private static final String START_GROUP_TOOLTIP = "Start a new group";
+	private static final String START_GROUP_TOOLTIP = "组建队伍";
 	/** Tooptip for inviting members to an existing group */
-	private static final String INVITE_TOOLTIP = "Invite a new member";
+	private static final String INVITE_TOOLTIP = "不存在此玩家";
 	/** Image used for the group message button */
 	private static final ImageIcon MESSAGE_ICON = new ImageIcon(DataLoader.getResource("data/gui/chat.png"));
 	/** Image used for the invite button */
@@ -125,7 +125,7 @@ class GroupPanel {
 		});
 
 		// The optionally shown member label
-		memberLabel = new JLabel("Members:");
+		memberLabel = new JLabel("成员:");
 		pane.add(memberLabel);
 		memberLabel.setVisible(false);
 
@@ -172,7 +172,7 @@ class GroupPanel {
 			}
 		});
 		messageButton.setFocusable(false);
-		messageButton.setToolTipText("Send a message to all group members");
+		messageButton.setToolTipText("给所有团队成员发信");
 		buttonBox.add(messageButton);
 
 		inviteButton = new JButton(INVITE_ICON);
@@ -185,7 +185,7 @@ class GroupPanel {
 		leaveGroupButton.setEnabled(false);
 		leaveGroupButton.addActionListener(new LeaveActionListener());
 		leaveGroupButton.setFocusable(false);
-		leaveGroupButton.setToolTipText("Resign from the group");
+		leaveGroupButton.setToolTipText("离开队伍");
 		buttonBox.add(leaveGroupButton);
 
 		// We have no space to waste in the panel
@@ -279,8 +279,8 @@ class GroupPanel {
 		if (invites.containsKey(name)) {
 			return;
 		}
-		JButton joinButton = new JButton("Join " + name);
-		joinButton.setToolTipText("Join the group led by " + name);
+		JButton joinButton = new JButton("加入 " + name);
+		joinButton.setToolTipText("加入" + name +" 的队伍");
 		joinButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -343,7 +343,7 @@ class GroupPanel {
 	void addPlayers(List<Player> players) {
 		for (Player player : players) {
 			if (!addPlayer(player)) {
-				logger.error("Added player is not a member even though she should be. Player: " + player.getName(), new Throwable());
+				logger.error("你想添加的队员" + player.getName() + "还没有注册" , new Throwable());
 			}
 		}
 	}
@@ -380,7 +380,7 @@ class GroupPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			j2DClient.get().setChatLine("/group invite ");
-			j2DClient.get().addEventLine(new HeaderLessEventLine("Fill in the name of the player you want to invite", NotificationType.CLIENT));
+			j2DClient.get().addEventLine(new HeaderLessEventLine("填入你想邀请的玩家", NotificationType.CLIENT));
 		}
 	}
 

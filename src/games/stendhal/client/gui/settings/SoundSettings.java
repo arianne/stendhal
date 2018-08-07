@@ -67,15 +67,15 @@ class SoundSettings {
 		page = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 
-		JCheckBox muteToggle = new JCheckBox("Play Sounds");
-		boolean soundOn = WtWindowManager.getInstance().getPropertyBoolean(SOUND_PROPERTY, true);
+		JCheckBox muteToggle = new JCheckBox("播放声音");
+		boolean soundOn = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(SOUND_PROPERTY, "true"));
 		muteToggle.setSelected(soundOn);
 		muteToggle.addItemListener(new MuteListener());
 		page.add(muteToggle);
 
 		// Device selector
 		JComponent hbox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		JComponent selectorLabel = new JLabel("Sound device:");
+		JComponent selectorLabel = new JLabel("声音设备:");
 		hbox.add(selectorLabel);
 		JComponent selector = createDeviceSelector();
 		hbox.add(selector);
@@ -89,33 +89,33 @@ class SoundSettings {
 		// Sliders for the sound channels
 		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		page.add(row, SLayout.EXPAND_X);
-		JLabel label = new JLabel("Master");
+		JLabel label = new JLabel("主音量");
 		row.add(label);
 		SBoxLayout.addSpring(row);
 		JSlider masterVolume = createMasterVolumeSlider();
-		masterVolume.setToolTipText("Volume of all sound channels");
+		masterVolume.setToolTipText("全部声音音量");
 		row.add(masterVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(masterVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		page.add(row, SLayout.EXPAND_X);
-		label = new JLabel("GUI");
+		label = new JLabel("图像");
 		row.add(label);
 		SBoxLayout.addSpring(row);
 		JSlider guiVolume = createVolumeSlider("gui");
-		guiVolume.setToolTipText("Volume of interactive operations, such as closing windows");
+		guiVolume.setToolTipText("操作相关声音,比如关闭窗口");
 		row.add(guiVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(guiVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		page.add(row, SLayout.EXPAND_X);
-		label = new JLabel("Effects");
+		label = new JLabel("音效");
 		row.add(label);
 		SBoxLayout.addSpring(row);
 		JSlider effectsVolume = createVolumeSlider("sfx");
-		effectsVolume.setToolTipText("Volume of fighting, and other effects");
+		effectsVolume.setToolTipText("打击效果等音量");
 		row.add(effectsVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(effectsVolume);
@@ -192,7 +192,7 @@ class SoundSettings {
 				wm.setProperty(DEVICE_PROPERTY, (selected != null) ? selected.toString() : DEFAULT_DEVICE);
 				wm.save();
 				// Warn the user about the delayed effect
-				String msg = "Changing the sound device will take effect when you next time restart the game.";
+				String msg = "改变声音设置，将在下次启动游戏时生效。";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});

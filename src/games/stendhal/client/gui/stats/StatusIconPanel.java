@@ -157,7 +157,7 @@ class StatusIconPanel extends JComponent {
 	void setAway(String message) {
 		boolean isAway = message != null;
 		if (isAway) {
-			away.setToolTipText("<html>You are away with the message:<br><b>" + message);
+			away.setToolTipText("<html>设置你离开时的状态为:<br><b>" + message);
 		}
 		if (away.isVisible() != isAway) {
 			away.setVisible(isAway);
@@ -172,7 +172,7 @@ class StatusIconPanel extends JComponent {
 	void setGrumpy(String message) {
 		boolean isGrumpy = message != null;
 		if (isGrumpy) {
-			grumpy.setToolTipText("<html>You are grumpy with the message:<br><b>" + message);
+			grumpy.setToolTipText("<html>设置你拒接消息时回复的内容:<br><b>" + message);
 		}
 		if (grumpy.isVisible() != isGrumpy) {
 			grumpy.setVisible(isGrumpy);

@@ -51,7 +51,7 @@ class SettingsPanel extends JButton {
 	 * Creates a new instance of SettingsPanel.
 	 */
 	SettingsPanel() {
-		setText("Menu");
+		setText("菜单");
 		setIcon(createArrowIcon(true));
 		setSelectedIcon(createArrowIcon(false));
 		// Don't steal focus from the game screen
@@ -170,14 +170,14 @@ class SettingsPanel extends JButton {
 	 * @param column
 	 */
 	private void createAccountsMenu(Column column) {
-		JComponent label = createMenuTitle("Accounts");
+		JComponent label = createMenuTitle("帐号");
 		column.addComponent(label);
 
-		JMenuItem item = createMenuItem("Change Password", "changepassword");
+		JMenuItem item = createMenuItem("修改密码", "changepassword");
 		column.addComponent(item);
-		item = createMenuItem("Merge Accounts", "merge");
+		item = createMenuItem("合并帐号", "merge");
 		column.addComponent(item);
-		item = createMenuItem("Login History", "loginhistory");
+		item = createMenuItem("登陆记录", "loginhistory");
 		column.addComponent(item);
 	}
 
@@ -187,12 +187,12 @@ class SettingsPanel extends JButton {
 	 * @param column
 	 */
 	private void createToolsMenu(Column column) {
-		JComponent label = createMenuTitle("Tools");
+		JComponent label = createMenuTitle("工具");
 		column.addComponent(label);
 
-		JMenuItem item = createMenuItem("Take Screenshot", "takescreenshot");
+		JMenuItem item = createMenuItem("截屏", "takescreenshot");
 		column.addComponent(item);
-		item = createMenuItem("Settings", "settings");
+		item = createMenuItem("设置", "settings");
 		column.addComponent(item);
 	}
 
@@ -202,16 +202,16 @@ class SettingsPanel extends JButton {
 	 * @param column
 	 */
 	private void createCommandsMenu(Column column) {
-		JComponent label = createMenuTitle("Commands");
+		JComponent label = createMenuTitle("命令");
 		column.addComponent(label);
 
-		JMenuItem item = createMenuItem("Atlas", "atlas");
+		JMenuItem item = createMenuItem("总地图", "atlas");
 		column.addComponent(item);
-		item = createMenuItem("Online Players", "who");
+		item = createMenuItem("在线用户", "who");
 		column.addComponent(item);
-		item = createMenuItem("Hall of Fame", "halloffame");
+		item = createMenuItem("荣誉厅", "halloffame");
 		column.addComponent(item);
-		item = createMenuItem("Travel Log", "travellog");
+		item = createMenuItem("旅行日记", "travellog");
 		column.addComponent(item);
 	}
 
@@ -221,18 +221,18 @@ class SettingsPanel extends JButton {
 	 * @param column
 	 */
 	private void createHelpMenu(Column column) {
-		JComponent label = createMenuTitle("Help");
+		JComponent label = createMenuTitle("帮助");
 		column.addComponent(label);
 
-		JMenuItem item = createMenuItem("Manual", "manual");
+		JMenuItem item = createMenuItem("手册", "manual");
 		column.addComponent(item);
-		item = createMenuItem("FAQ", "faq");
+		item = createMenuItem("提问", "faq");
 		column.addComponent(item);
-		item = createMenuItem("Beginners Guide", "beginnersguide");
+		item = createMenuItem("新手村", "beginnersguide");
 		column.addComponent(item);
-		item = createMenuItem("Commands", "help");
+		item = createMenuItem("命令", "help");
 		column.addComponent(item);
-		item = createMenuItem("Rules", "rules");
+		item = createMenuItem("规则", "rules");
 		column.addComponent(item);
 	}
 
