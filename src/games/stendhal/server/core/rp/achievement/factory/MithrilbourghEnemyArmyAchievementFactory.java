@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2018 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,14 +32,12 @@ public class MithrilbourghEnemyArmyAchievementFactory extends AbstractAchievemen
 		LinkedList<Achievement> achievements = new LinkedList<Achievement>();
 
 		// Index where number of completions is stored
-		// final int INDEX = 3;
+		// final int IDX = 3;
 
 		/* Disabled until ready to implement
-		achievements.add(createAchievement("quest.special.weekly_army.0005", "Sergeant", "Finish Kill Enemy Army quest 5 times",
-				Achievement.MEDIUM_BASE_SCORE, false,
-				new QuestStateGreaterThanCondition("kill_enemy_army", INDEX, 4)));*/
+		achievements.add(createAchievement("quest.special.kill_enemy_army.0005", "Sergeant", "Finish Kill Enemy Army quest 5 times",
+				Achievement.MEDIUM_BASE_SCORE, false, new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 4)));*/
 
 		return achievements;
 	}
-
 }
