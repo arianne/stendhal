@@ -20,10 +20,10 @@ public class Profile {
 	static final int DEFAULT_SERVER_PORT = 32160;
 
 	/** Old server names to remap. */
-	private static final String[] OLD_SERVER_HOSTS = { "stendhal.ath.cx", "stendhal.game-host.org" };
+	private static final String[] OLD_SERVER_HOSTS = { "tzmm.com.cn", "www.tzmm.com.cn" };
 
 	/** Default server name to replace old ones with. */
-	private static final String NEW_SERVER_HOST = "stendhalgame.org";
+	private static final String NEW_SERVER_HOST = "tzmm.com.cn";
 
 	private String host;
 

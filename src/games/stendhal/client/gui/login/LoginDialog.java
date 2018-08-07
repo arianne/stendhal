@@ -122,7 +122,7 @@ public class LoginDialog extends JDialog {
 
 		JLabel l;
 
-		this.setTitle("Login to Server");
+		this.setTitle("登陆");
 		this.setResizable(false);
 
 		//
@@ -139,7 +139,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Profiles
 		 */
-		l = new JLabel("Account profiles");
+		l = new JLabel("用户详情");
 
 		c.insets = new Insets(4, 4, 15, 4);
 		// column
@@ -170,7 +170,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Server Host
 		 */
-		l = new JLabel("Server name");
+		l = new JLabel("服务器名称");
 		c.insets = new Insets(4, 4, 4, 4);
 		// column
 		c.gridx = 0;
@@ -188,7 +188,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Server Port
 		 */
-		l = new JLabel("Server port");
+		l = new JLabel("服务器端口");
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 2;
@@ -206,7 +206,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Username
 		 */
-		l = new JLabel("Type your username");
+		l = new JLabel("用户名");
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 3;
@@ -222,7 +222,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Password
 		 */
-		l = new JLabel("Type your password");
+		l = new JLabel("用户密码");
 
 		c.gridx = 0;
 		c.gridy = 4;
@@ -239,7 +239,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Save Profile/Login
 		 */
-		saveLoginBox = new JCheckBox("Save login profile locally");
+		saveLoginBox = new JCheckBox("保存登陆信息");
 		saveLoginBox.setSelected(false);
 
 		c.gridx = 0;
@@ -250,7 +250,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Save Profile Password
 		 */
-		savePasswordBox = new JCheckBox("Save password");
+		savePasswordBox = new JCheckBox("保存密码");
 		savePasswordBox.setSelected(true);
 		savePasswordBox.setEnabled(false);
 
@@ -261,7 +261,7 @@ public class LoginDialog extends JDialog {
 		contentPane.add(savePasswordBox, c);
 
 		loginButton = new JButton();
-		loginButton.setText("Login to Server");
+		loginButton.setText("登陆");
 		loginButton.setMnemonic(KeyEvent.VK_L);
 		this.rootPane.setDefaultButton(loginButton);
 
@@ -273,7 +273,7 @@ public class LoginDialog extends JDialog {
 		});
 
 		JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton("取消");
 		cancelButton.setMnemonic(KeyEvent.VK_C);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
@@ -338,7 +338,7 @@ public class LoginDialog extends JDialog {
 		JButton button = new JButton(icon);
 		// Clear the margins that buttons normally add
 		button.setMargin(new Insets(0, 0, 0, 0));
-		button.setToolTipText("Remove the selected account from the list");
+		button.setToolTipText("删除此帐户");
 
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -373,7 +373,7 @@ public class LoginDialog extends JDialog {
 
 		} catch (final NumberFormatException ex) {
 			JOptionPane.showMessageDialog(this,
-					"That is not a valid port number. Please try again.",
+					"端口不可用，请重新输入",
 					"Invalid port", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
@@ -422,10 +422,10 @@ public class LoginDialog extends JDialog {
 		Object[] options = { "Remove", "Cancel" };
 
 		Integer confirmRemoveProfile = JOptionPane.showOptionDialog(this,
-			"This will permanently remove a user profile from your local list of accounts.\n"
-			+ "It will not delete an account on any servers.\n"
-			+ "Are you sure you want to remove \'" + profile.getUser() + "@" + profile.getHost() + "\' profile?",
-			"Remove user profile from local list of accounts",
+			"此操作会永久删除本地存储的用户信息\n"
+			+ "但不会删除服务器中的帐户\n"
+			+ "确定要删除 \'" + profile.getUser() + "@" + profile.getHost() + "\' 帐户信息?",
+			"删除列表中的此帐户",
 			JOptionPane.OK_CANCEL_OPTION,
 			JOptionPane.QUESTION_MESSAGE,
 			null,
@@ -486,15 +486,15 @@ public class LoginDialog extends JDialog {
 					setEnabled(true);
 				}
 			});
-			String message = "unable to connect to server";
+			String message = "连接服务器失败";
 
 			if (profile != null) {
 				message = message + " " + profile.getHost() + ":" + profile.getPort();
 			} else {
-				message = message + ", because profile was null";
+				message = message + ", 用户信息为空";
 			}
 			Logger.getLogger(LoginDialog.class).error(message, ex);
-			handleError("Unable to connect to server. Did you misspell the server name?", "Connection failed");
+			handleError("连接服务器失败，请核对服务器名称", "Connection failed");
 			return;
 		}
 
@@ -510,7 +510,7 @@ public class LoginDialog extends JDialog {
 					try {
 						setVisible(false);
 					} catch (NullPointerException npe) {
-						Logger.getLogger(LoginDialog.class).error("Error probably related to bug in JRE occured", npe);
+						Logger.getLogger(LoginDialog.class).error("此错误可能是JRE产生", npe);
 						LoginDialog.this.dispose();
 					}
 				}
@@ -520,7 +520,7 @@ public class LoginDialog extends JDialog {
 			handleError("You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");
 		} catch (final TimeoutException e) {
-			handleError("Server is not available right now.\nThe server may be down or, if you are using a custom server,\nyou may have entered its name and port number incorrectly.",
+			handleError("服务器目前不可用\n服务器可能停机\n 或者核对服务器名称和端口名称",
 					"Error Logging In");
 		} catch (final LoginFailedException e) {
 			handleError(e.getMessage(), "Login failed");
@@ -528,7 +528,7 @@ public class LoginDialog extends JDialog {
 				System.exit(1);
 			}
 		} catch (final BannedAddressException e) {
-			handleError("Your IP is banned.",
+			handleError("你的IP被墙",
 					"IP Banned");
 		}
 	}
@@ -579,7 +579,7 @@ public class LoginDialog extends JDialog {
 			// Ignore
 		} catch (final IOException ioex) {
 			JOptionPane.showMessageDialog(this,
-					"An error occurred while loading your login information",
+					"载入用户信息时发生错误",
 					"Error Loading Login Information",
 					JOptionPane.WARNING_MESSAGE);
 		}
@@ -709,7 +709,7 @@ public class LoginDialog extends JDialog {
 			}
 		} catch (final IOException ioex) {
 			JOptionPane.showMessageDialog(this,
-					"An error occurred while saving your login information",
+					"保存登陆信息发生错误",
 					"Error Saving Login Information",
 					JOptionPane.WARNING_MESSAGE);
 		}

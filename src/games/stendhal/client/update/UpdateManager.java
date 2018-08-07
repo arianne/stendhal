@@ -93,9 +93,9 @@ class UpdateManager {
 		downloadUpdateProp(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
-				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from\r\n"
+				UpdateGUIDialogs.messageBox("Sorry, 需要下载更新补丁\r\n"
 						+ serverFolder
-						+ "\r\nbut that server is not reachable at the moment. Please try again later.");
+						+ "\r\n但升级服务器目前不正常，请稍等.");
 				System.exit(1);
 			}
 			return;
@@ -117,7 +117,7 @@ class UpdateManager {
 		System.out.println("Update state: " + versionState + " initialDownload: " + initialDownload + " fromVersion: " + fromVersion);
 		switch (versionState) {
 		case CURRENT:
-			System.out.println("Current Version");
+			System.out.println("当前版本");
 			break;
 
 		case ERROR:
@@ -322,7 +322,7 @@ class UpdateManager {
 		final HttpClient httpClient = new HttpClient(serverFolder + file, true);
 		httpClient.setProgressListener(updateProgressBar);
 		if (!httpClient.fetchFile(jarFolder + file)) {
-			UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file " + file);
+			UpdateGUIDialogs.messageBox("下载升级补丁是发生错误" + file);
 			return false;
 		}
 		try {
