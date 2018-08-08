@@ -37,6 +37,8 @@ public class MithrilbourghEnemyArmyAchievementFactory extends AbstractAchievemen
 
 		achievements.add(createAchievement("quest.special.kill_enemy_army.0005", "Sergeant", "Finish Kill Enemy Army quest 5 times",
 				Achievement.MEDIUM_BASE_SCORE, false, new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 4)));
+		achievements.add(createAchievement("quest.special.kill_enemy_army.0025", "Major", "Finish Kill Enemy Army quest 25 times",
+				Achievement.HARD_BASE_SCORE, false, new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 24)));
 
 		return achievements;
 	}
