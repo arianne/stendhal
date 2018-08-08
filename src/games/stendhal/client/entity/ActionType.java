@@ -25,13 +25,13 @@ import marauroa.common.game.RPObject;
  * @author astridemma
  */
 public enum ActionType {
-	LOOK("look", "察看") {
+	LOOK("look", "查看") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	READ("look", "读"),
+	READ("look", "阅读"),
 	LOOK_CLOSELY("use", "细看"),
 	INSPECT("inspect", "检查") {
 		@Override
@@ -49,8 +49,8 @@ public enum ActionType {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	OWN("own", "拥有"),
-	USE("use", "使用") {
+	OWN("own", "Own"),
+	USE("use", "Use") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
@@ -58,7 +58,7 @@ public enum ActionType {
 	},
 	HARVEST("use", "收获"),
 	PICK("use", "捡起"),
-	PROSPECT("use", "Prospect"),
+	PROSPECT("use", "勘察"),
 	FISH("use", "钓鱼"),
 	WISH("use", "许愿"),
 	LEAVE_SHEEP("forsake", "Leave sheep") {
@@ -69,7 +69,7 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
-	LEAVE_PET("forsake", "Leave pet") {
+	LEAVE_PET("forsake", "丢弃宠物") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			RPAction rpaction = super.fillTargetInfo(entity);
@@ -127,8 +127,8 @@ public enum ActionType {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
-	SET_OUTFIT("outfit", "配备"),
-	WHERE("where", "Where") {
+	SET_OUTFIT("outfit", "打扮"),
+	WHERE("where", "所在地") {
 		@Override
 		public RPAction fillTargetInfo(final IEntity entity) {
 			RPAction rpaction = super.fillTargetInfo(entity);
@@ -137,7 +137,7 @@ public enum ActionType {
 		}
 	},
 	ADMIN_VIEW_NPC_TRANSITIONS("npctransitions", "(*)View Transitions"),
-	KNOCK("knock", "敲打"),
+	KNOCK("knock", "敲击"),
 	INVITE("group_management", "邀请") {
 
 		@Override

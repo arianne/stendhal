@@ -39,7 +39,7 @@ public class CharacterMap extends JButton {
 	public CharacterMap(final JTextComponent textField) {
 		super("☺");
 		setFocusable(false);
-		setToolTipText("Insert a special character");
+		setToolTipText("插入一个特殊字符");
 
 		final JPopupMenu menu = new JPopupMenu();
 

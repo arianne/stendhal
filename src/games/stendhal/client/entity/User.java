@@ -89,9 +89,9 @@ public class User extends Player {
 
 		String text;
 		if (message == null) {
-			text = "You are no longer marked as being away.";
+			text = "离开状开已取消";
 		} else {
-			text = "You have been marked as being away.";
+			text = "设置你的状态为离开";
 		}
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, NotificationType.INFORMATION));
 	}
@@ -249,7 +249,7 @@ public class User extends Player {
 				for (final String playername : players) {
 						ClientSingletonRepository.getUserInterface().addEventLine(
 							new HeaderLessEventLine(
-							playername + " has left Stendhal.",
+							playername + " 已离开Stendhal游戏",
 							NotificationType.INFORMATION));
 				}
 			}
@@ -259,7 +259,7 @@ public class User extends Player {
 				for (final String playerName : players) {
 					ClientSingletonRepository.getUserInterface().addEventLine(
 							new HeaderLessEventLine(
-							playerName + " has joined Stendhal.",
+							playerName + " 已上线Stendhal.",
 							NotificationType.INFORMATION));
 				}
 			}

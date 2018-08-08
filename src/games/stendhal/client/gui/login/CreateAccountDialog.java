@@ -512,7 +512,7 @@ public class CreateAccountDialog extends JDialog {
 				allNumbers = false;
 			}
 			if (allNumbers) {
-				badPasswordReason = "只使用数字做为密码，将非常不安全\n"
+				badPasswordReason = "只使用数字做为密码，这非常不安全\n"
 						+ "确定使用这个密码?";
 			}
 

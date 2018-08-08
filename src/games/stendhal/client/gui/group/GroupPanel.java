@@ -343,7 +343,7 @@ class GroupPanel {
 	void addPlayers(List<Player> players) {
 		for (Player player : players) {
 			if (!addPlayer(player)) {
-				logger.error("你想添加的队员" + player.getName() + "还没有注册" , new Throwable());
+				logger.error("你要添加的队员" + player.getName() + "还没有注册" , new Throwable());
 			}
 		}
 	}
@@ -380,7 +380,7 @@ class GroupPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			j2DClient.get().setChatLine("/group invite ");
-			j2DClient.get().addEventLine(new HeaderLessEventLine("填入你想邀请的玩家", NotificationType.CLIENT));
+			j2DClient.get().addEventLine(new HeaderLessEventLine("在聊天输入框填入你想邀请的玩家名称", NotificationType.CLIENT));
 		}
 	}
 
@@ -415,11 +415,11 @@ class GroupPanel {
 				return;
 			}
 			JPopupMenu popup = new JPopupMenu();
-			JMenuItem item = new JMenuItem("Shared");
+			JMenuItem item = new JMenuItem("分享");
 			item.addActionListener(new LootmodeActionListener("shared"));
 			popup.add(item);
 
-			item = new JMenuItem("Single");
+			item = new JMenuItem("自用");
 			item.addActionListener(new LootmodeActionListener("single"));
 			popup.add(item);
 

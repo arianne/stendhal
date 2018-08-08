@@ -278,7 +278,7 @@ class OutfitDialog extends JDialog {
 		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		content.add(column, SLayout.EXPAND_Y);
 		/* hair color */
-		JComponent selector = createColorSelector("Hair", OutfitColor.HAIR,
+		JComponent selector = createColorSelector("发型", OutfitColor.HAIR,
 				hairLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
@@ -286,19 +286,19 @@ class OutfitDialog extends JDialog {
 		// TODO: Remove condition after outfit testing is finished
 		if (Testing.OUTFITS) {
 			/* eyes color */
-			selector = createColorSelector("Eyes", OutfitColor.EYES, eyesLabel);
+			selector = createColorSelector("眼睛", OutfitColor.EYES, eyesLabel);
 			selector.setAlignmentX(CENTER_ALIGNMENT);
 			column.add(selector);
 		}
 
 		/* skin color */
-		selector = createColorSelector("Skin", OutfitColor.SKIN, true, bodyLabel,
+		selector = createColorSelector("皮肤", OutfitColor.SKIN, true, bodyLabel,
 				headLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 
 		/* dress color */
-		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
+		selector = createColorSelector("外套", OutfitColor.DRESS, dressLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);
 		SBoxLayout.addSpring(column);
@@ -338,7 +338,7 @@ class OutfitDialog extends JDialog {
 
 		JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		buttonBox.setAlignmentX(RIGHT_ALIGNMENT);
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton("取消");
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -347,7 +347,7 @@ class OutfitDialog extends JDialog {
 		});
 		cancelButton.setMnemonic(KeyEvent.VK_C);
 		buttonBox.add(cancelButton);
-		JButton okButton = new JButton("Change Outfit");
+		JButton okButton = new JButton("确认");
 		okButton.setMnemonic(KeyEvent.VK_A);
 		okButton.addActionListener(new ActionListener() {
 			@Override
@@ -506,7 +506,7 @@ class OutfitDialog extends JDialog {
 			boolean skinPalette, final OutfitLabel... labels) {
 
 		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
-		final JCheckBox enableToggle = new JCheckBox(niceName + " color");
+		final JCheckBox enableToggle = new JCheckBox(niceName + " 颜色");
 
 		container.add(enableToggle);
 		// get the current state
@@ -750,7 +750,7 @@ class OutfitDialog extends JDialog {
 		 */
 		SelectorModel(int n) {
 			if (n <= 0) {
-				throw new IllegalArgumentException("Can not create a model with " + n + " elements");
+				throw new IllegalArgumentException("不能修改第 " + n + " 个特点");
 			}
 			this.n = n;
 		}
@@ -771,7 +771,7 @@ class OutfitDialog extends JDialog {
 		 */
 		void setIndex(int index) {
 			if (!isAllowed(index)) {
-				LOGGER.warn("Index out of allowed range [0-" + n + "]: " + index,
+				LOGGER.warn("取值范围只能在 [0-" + n + "]: " + index,
 						new Throwable());
 				index = 0;
 			}

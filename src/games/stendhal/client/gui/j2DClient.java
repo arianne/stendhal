@@ -973,7 +973,7 @@ public class j2DClient implements UserInterface {
 		if (outfitDialog == null) {
 			// Here we actually want to call new OutfitColor(). Modifying
 			// OutfitColor.PLAIN would be a bad thing.
-			outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
+			outfitDialog = new OutfitDialog(frame, "乔装打扮", outfit,
 					new OutfitColor(player));
 
 			outfitDialog.setVisible(true);
@@ -1101,7 +1101,7 @@ public class j2DClient implements UserInterface {
 		// ** Main channel **
 		// Follow settings changes for the main channel
 		WtWindowManager wm = WtWindowManager.getInstance();
-		final NotificationChannel mainChannel = new NotificationChannel("Main", edit, true, "");
+		final NotificationChannel mainChannel = new NotificationChannel("广播频道", edit, true, "");
 		wm.registerSettingChangeListener("ui.healingmessage", new SettingChangeAdapter("ui.healingmessage", "false") {
 			@Override
 			public void changed(String newValue) {
@@ -1119,7 +1119,7 @@ public class j2DClient implements UserInterface {
 
 		// ** Private channel **
 		edit = new KTextEdit();
-		edit.setChannelName("个人");
+		edit.setChannelName("Personal");
 		/*
 		 * Give it a different background color to make it different from the
 		 * main chat log.
@@ -1134,7 +1134,7 @@ public class j2DClient implements UserInterface {
 		String personalDefault = NotificationType.PRIVMSG.toString() + ","
 				+ NotificationType.CLIENT + "," + NotificationType.GROUP + ","
 				+ NotificationType.TUTORIAL + "," + NotificationType.SUPPORT;
-		channelManager.addChannel(new NotificationChannel("Personal", edit, false, personalDefault));
+		channelManager.addChannel(new NotificationChannel("私人频道", edit, false, personalDefault));
 
 		return list;
 	}
