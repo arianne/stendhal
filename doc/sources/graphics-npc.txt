@@ -199,7 +199,7 @@ timekeepernpc.png             ???; ???; ???
 transparentnpc.png            ???; ???; ???
 vergernpc.png                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 wannabekingnpc.png            ???; ???; ???
-weaponrytradernpc.png         ???; ???; ???
+weaponrytradernpc.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://opengameart.org/node/83523
 weaponsellernpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 welcomernpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
 wellroundedguynpc.*           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/50909
