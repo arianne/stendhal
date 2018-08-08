@@ -72,6 +72,7 @@ public abstract class AbstractAchievementFactory {
 		list.add(new SemosMonsterQuestAchievementFactory());
 		list.add(new UndergroundZoneAchievementFactory());
 		list.add(new KirdnehItemAchievementFactory());
+		list.add(new MithrilbourghEnemyArmyAchievementFactory());
 		return list;
 	}
 
