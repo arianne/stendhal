@@ -51,7 +51,7 @@ class SettingsPanel extends JButton {
 	 * Creates a new instance of SettingsPanel.
 	 */
 	SettingsPanel() {
-		setText("菜单");
+		setText("功能菜单");
 		setIcon(createArrowIcon(true));
 		setSelectedIcon(createArrowIcon(false));
 		// Don't steal focus from the game screen
@@ -170,7 +170,7 @@ class SettingsPanel extends JButton {
 	 * @param column
 	 */
 	private void createAccountsMenu(Column column) {
-		JComponent label = createMenuTitle("帐号");
+		JComponent label = createMenuTitle("帐号设置");
 		column.addComponent(label);
 
 		JMenuItem item = createMenuItem("修改密码", "changepassword");
@@ -190,9 +190,9 @@ class SettingsPanel extends JButton {
 		JComponent label = createMenuTitle("工具");
 		column.addComponent(label);
 
-		JMenuItem item = createMenuItem("截屏", "takescreenshot");
+		JMenuItem item = createMenuItem("游戏截图", "takescreenshot");
 		column.addComponent(item);
-		item = createMenuItem("设置", "settings");
+		item = createMenuItem("游戏设置", "settings");
 		column.addComponent(item);
 	}
 

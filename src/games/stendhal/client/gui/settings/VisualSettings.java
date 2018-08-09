@@ -64,11 +64,11 @@ class VisualSettings {
 	/** Default decorative font. */
 	private static final String DEFAULT_FONT = "BlackChancery";
 	/** Default font size. */
-	private static final int DEFAULT_FONT_SIZE = 14;
+	private static final int DEFAULT_FONT_SIZE = 15;
 	/** Smallest size in the font size selector. */
-	private static final int FONT_MIN_SIZE = 10;
+	private static final int FONT_MIN_SIZE = 11;
 	/** Largest size in the font size selector. */
-	private static final int FONT_MAX_SIZE = 20;
+	private static final int FONT_MAX_SIZE = 21;
 	/** Property used for the decorative font. */
 	private static final String FONT_PROPERTY = "ui.logfont";
 	/** Property used for the decorative font. */
@@ -100,7 +100,7 @@ class VisualSettings {
 
 		// Lighting effects
 		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, "true",
-				"Light effects", "Show night time lighting, and other coloring effects");
+				"灯光效果", "在夜间显示照明和一些灯光效果");
 		page.add(mapColoring);
 		// Coloring setting needs a map change to take an effect, so we need to
 		// inform the player about the delayed effect.
@@ -108,27 +108,27 @@ class VisualSettings {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
-				String tmp = enabled ? "enabled" : "disabled";
-				String msg = "Lighting effects are now " + tmp
-						+ ". You may need to change map or relogin for it to take effect.";
+				String tmp = enabled ? "生效" : "取消";
+				String msg = "灯光效果目前 " + tmp
+						+ ". 你需要转换地图或重新登陆才能看到效果";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});
 
 		JCheckBox weather = SettingsComponentFactory.createSettingsToggle("ui.draw_weather", "true",
-				"Draw weather", "Draw weather effects.");
+				"天气效果", "显示天气效果");
 		page.add(weather);
 
 		// blood
 		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",
-				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");
+				"显示血迹和尸体", "在打斗时显示血迹和尸体");
 		page.add(showBloodToggle);
 		// Inform players that some images won't update until after client is restarted.
 		// FIXME: Can't images be updated via map change?
 		showBloodToggle.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				final String msg = "Some changes will not take effect until the client is restarted.";
+				final String msg = "一些改变只有在下次进入游戏时才能生效";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 
@@ -136,11 +136,11 @@ class VisualSettings {
 
 		// show creature speech bubbles
 		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, "true",
-										"Show creature speech bubbles", "Show creature speech bubbles in the client display");
+										"显示生物对话气泡", "在主画面中显示生物的对话框效果");
 		page.add(showCreatureSpeechToggle);
 
 		final JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
-				"true", "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
+				"true", "拉伸画面适应窗口大小", "<html>选中后，游戏画面会填满可用空间<br>默认此项启用</html>");
 		page.add(scaleScreenToggle);
 		page.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
 
@@ -181,7 +181,7 @@ class VisualSettings {
 				Object selected = selector.getSelectedItem();
 				wm.setProperty(STYLE_PROPERTY, selected.toString());
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
-						"The new style will be used the next time you start the game client.",
+						"新主题在下次启动游戏时生效",
 						NotificationType.CLIENT));
 			}
 		});
@@ -307,14 +307,14 @@ class VisualSettings {
 		styleTypeSelection.add(definedStyleSelector);
 		*/
 		JComponent definedStylesHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		JLabel selectorLabel = new JLabel("Client style:");
+		JLabel selectorLabel = new JLabel("主题设置:");
 		selectorLabel.setName("defined");
 		definedStylesHBox.add(selectorLabel);
 		JComponent selector = createStyleSelector();
 		selector.setName("defined");
 		definedStylesHBox.add(selector);
-		definedStylesHBox.setToolTipText("<html>The style used to draw the controls in the game client."
-				+ "<p>This affects the look only, and will not change the behavior of the game.</html>");
+		definedStylesHBox.setToolTipText("<html>主题会应用在游戏控制面板上。"
+				+ "<p>仅仅是改变显示，而不会改变游戏内容</html>");
 		/*
 		styleBox.add(definedStyleSelector);*/
 		styleBox.add(definedStylesHBox);
@@ -402,7 +402,7 @@ class VisualSettings {
 
 		// Fill the selector, and set current size as the selection
 		int current = WtWindowManager.getInstance().getPropertyInt(FONT_SIZE_PROPERTY, DEFAULT_FONT_SIZE);
-		selector.addItem("default (14)");
+		selector.addItem("15");
 		for (int size = FONT_MIN_SIZE; size <= FONT_MAX_SIZE; size += 2) {
 			Integer obj = size;
 			selector.addItem(obj);
@@ -415,8 +415,8 @@ class VisualSettings {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = selector.getSelectedItem();
-				if ("default (14)".equals(selected)) {
-					selected = "14";
+				if ("15".equals(selected)) {
+					selected = "15";
 				}
 				WtWindowManager.getInstance().setProperty(FONT_SIZE_PROPERTY, selected.toString());
 

@@ -79,9 +79,8 @@ class SoundSettings {
 		hbox.add(selectorLabel);
 		JComponent selector = createDeviceSelector();
 		hbox.add(selector);
-		selector.setToolTipText("<html>Sound output device. <b>auto</b> should"
-				+ " work for most people,<br>but try others if you can not get"
-				+ " sound to work otherwise</html>");
+		selector.setToolTipText("<html>声音输出设备设置为 <b>自动</b> "
+				+ " 多数情况下不用修改,<br>没声音时可修改</html>");
 		sliderComponents.add(selectorLabel);
 		sliderComponents.add(selector);
 		page.add(hbox);
@@ -122,18 +121,18 @@ class SoundSettings {
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		page.add(row, SLayout.EXPAND_X);
-		label =new JLabel("Creatures");
+		label =new JLabel("生物声效");
 		row.add(label);
 		SBoxLayout.addSpring(row);
 		JSlider creaturesVolume = createVolumeSlider("creature");
-		creaturesVolume.setToolTipText("Volume of creature noises");
+		creaturesVolume.setToolTipText("生物叫声大小");
 		row.add(creaturesVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(creaturesVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		page.add(row, SLayout.EXPAND_X);
-		label = new JLabel("Ambient");
+		label = new JLabel("周围环境音效");
 		row.add(label);
 		SBoxLayout.addSpring(row);
 		JSlider ambientVolume = createVolumeSlider("ambient");
@@ -143,11 +142,11 @@ class SoundSettings {
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		page.add(row, SLayout.EXPAND_X);
-		label = new JLabel("Music");
+		label = new JLabel("背景音乐");
 		row.add(label);
 		SBoxLayout.addSpring(row);
 		JSlider musicVolume = createVolumeSlider("music");
-		musicVolume.setToolTipText("Music volume");
+		musicVolume.setToolTipText("背景音乐音量");
 		row.add(musicVolume);
 		sliderComponents.add(label);
 		sliderComponents.add(musicVolume);

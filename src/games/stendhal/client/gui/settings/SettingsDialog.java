@@ -34,17 +34,17 @@ public class SettingsDialog extends JDialog {
 	 * @param parent parent window, or <code>null</code>
 	 */
 	public SettingsDialog(Frame parent) {
-		super(parent, "Settings");
+		super(parent, "设置");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		int pad = SBoxLayout.COMMON_PADDING;
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
 		JTabbedPane tabs = new JTabbedPane();
 		add(tabs);
-		tabs.add("General", new GeneralSettings().getComponent());
-		tabs.add("Visuals", new VisualSettings().getComponent());
-		tabs.add("Sound", new SoundSettings().getComponent());
+		tabs.add("常用设置", new GeneralSettings().getComponent());
+		tabs.add("显示", new VisualSettings().getComponent());
+		tabs.add("声音", new SoundSettings().getComponent());
 		setResizable(false);
-		JButton closeButton = new JButton("Close");
+		JButton closeButton = new JButton("关闭");
 		closeButton.setAlignmentX(RIGHT_ALIGNMENT);
 		closeButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad),
 				closeButton.getBorder()));
