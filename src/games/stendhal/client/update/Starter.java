@@ -46,9 +46,9 @@ public class Starter {
 			if (Float.parseFloat(version) < 1.7f) {
 				JOptionPane.showMessageDialog(
 						null,
-						"You need at least Java 7 (also known as 1.7.0) but you only have "
+						"游戏需要JAVA版本至少为 Java 7。"
 						+ version
-						+ ". You can download it at https://java.com");
+						+ ". 你可以在 https://java.com 下载");
 			}
 		} catch (final RuntimeException e) {
 			// ignore

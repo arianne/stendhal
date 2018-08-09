@@ -44,14 +44,14 @@ public class GroupMessageAction implements ActionListener {
 		}
 
 		if (Jail.isInJail(player)) {
-			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
+			player.sendPrivateText("一个异常的推力阻止你通过，请使用 /support <text> 联系管理员!");
 			return;
 		}
 
 		// is the player in a group?
 		Group group = SingletonRepository.getGroupManager().getGroup(player.getName());
 		if (group == null) {
-			player.sendPrivateText(NotificationType.ERROR, "You are not in a group");
+			player.sendPrivateText(NotificationType.ERROR, "你没有组队");
 			return;
 		}
 

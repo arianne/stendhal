@@ -129,7 +129,7 @@ public class UseAction implements ActionListener {
 		final String zonename = player.getZone().getName();
 
 		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
-			player.sendPrivateText("For security reasons items may not be used in jail.");
+			player.sendPrivateText("因安全原因，监狱中不能使用物品。");
 			return true;
 		}
 
@@ -146,10 +146,10 @@ public class UseAction implements ActionListener {
 		if (object instanceof Item) {
 			final Item item = (Item) object;
 			if (item.isBound() && !player.isBoundTo(item)) {
-				player.sendPrivateText("This "
+				player.sendPrivateText("这个 "
 						+ item.getName()
-						+ " is a special reward for " + item.getBoundTo()
-						+ ". You do not deserve to use it.");
+						+ " 是 " + item.getBoundTo() + "的专用酬劳" 
+						+ ". 你不应该使用它.");
 				return true;
 			}
 		}

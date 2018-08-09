@@ -27,14 +27,14 @@ class BareBonesBrowserLaunchCommandsFactory {
 
 	private static void initialize() {
 		commandsAndUrls = new HashMap<String, String>();
-		commandsAndUrls.put("beginnersguide", "https://stendhalgame.org/wiki/BeginnersGuide");
-		commandsAndUrls.put("faq", "https://stendhalgame.org/wiki/StendhalFAQ");
-		commandsAndUrls.put("manual", "https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings");
-		commandsAndUrls.put("rules", "https://stendhalgame.org/wiki/Stendhal_Rules");
-		commandsAndUrls.put("changepassword", "https://stendhalgame.org/account/change-password.html");
-		commandsAndUrls.put("loginhistory", "https://stendhalgame.org/account/history.html");
-		commandsAndUrls.put("merge", "https://stendhalgame.org/account/merge.html");
-		commandsAndUrls.put("halloffame", "https://stendhalgame.org/world/hall-of-fame/active_overview.html");
+		commandsAndUrls.put("beginnersguide", "https://tzmm.com.cn/wiki/BeginnersGuide");
+		commandsAndUrls.put("faq", "https://tzmm.com.cn/wiki/StendhalFAQ");
+		commandsAndUrls.put("manual", "https://tzmm.com.cn/wiki/Stendhal_Manual/Controls_and_Game_Settings");
+		commandsAndUrls.put("rules", "https://tzmm.com.cn/wiki/Stendhal_Rules");
+		commandsAndUrls.put("changepassword", "https://tzmm.com.cn/account/change-password.html");
+		commandsAndUrls.put("loginhistory", "https://tzmm.com.cn/account/history.html");
+		commandsAndUrls.put("merge", "https://tzmm.com.cn/account/merge.html");
+		commandsAndUrls.put("halloffame", "https://tzmm.com.cn/world/hall-of-fame/active_overview.html");
 	}
 
 	/**

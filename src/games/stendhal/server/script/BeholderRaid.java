@@ -36,6 +36,6 @@ public class BeholderRaid extends CreateRaid {
 
 	@Override
 	protected String getInfo() {
-		return "Not safe for players below level 12";
+		return "不适合12级以下的玩家";
 	}
 }

@@ -54,7 +54,8 @@ public class StendhalFirstScreen extends JFrame {
 	private static final long serialVersionUID = -7825572598938892220L;
 
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
-	private static final String FONT_NAME = "BlackChancery";
+//	private static final String FONT_NAME = "BlackChancery";
+	private static final String FONT_NAME = "";
 	private static final int FONT_SIZE = 16;
 
 	private final StendhalClient client;
@@ -111,21 +112,21 @@ public class StendhalFirstScreen extends JFrame {
 		JComponent contentPane = new ResizableLabel(icon);
 		setContentPane(contentPane);
 
-		Font font = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
+		Font font = new Font(FONT_NAME, Font.BOLD, FONT_SIZE);
 
 		//
 		// Login
 		//
 		String gameName = ClientGameConfiguration.get("GAME_NAME");
-		Action loginAction = new AbstractAction("Login to " + gameName) {
+		Action loginAction = new AbstractAction("进入" + gameName) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LoginDialog(StendhalFirstScreen.this, client).setVisible(true);
 			}
 		};
 		loginAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_L);
-		loginAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to login to a "
-				+ gameName + " server");
+		loginAction.putValue(Action.SHORT_DESCRIPTION, "点击进入"
+				+ gameName );
 
 		loginButton = new JButton();
 		loginButton.setAction(loginAction);
@@ -134,15 +135,15 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// Create account
 		//
-		Action createAccountAction = new AbstractAction("Create an account") {
+		Action createAccountAction = new AbstractAction("注册用户") {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CreateAccountDialog(StendhalFirstScreen.this, client);
 			}
 		};
 		createAccountAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A);
-		createAccountAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to create an account on a "
-				+ gameName + " server.");
+		createAccountAction.putValue(Action.SHORT_DESCRIPTION, "点击注册"
+				+ gameName + "新用户");
 
 		createAccountButton = new JButton();
 		createAccountButton.setFont(font);
@@ -151,22 +152,22 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// Help
 		//
-		Action helpAction = new AbstractAction("Help") {
+		Action helpAction = new AbstractAction("游戏帮助") {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BareBonesBrowserLaunch.openURL("https://stendhalgame.org/wiki/Stendhal_Manual");
+				BareBonesBrowserLaunch.openURL("https://tzmm.com.cn/wiki/Stendhal_Manual");
 			}
 		};
 		helpAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_H);
 
-		helpButton = new JButton();
+		helpButton = new JButton("帮助");
 		helpButton.setFont(font);
 		helpButton.setAction(helpAction);
 
 		//
 		// Credits
 		//
-		Action showCreditsAction = new AbstractAction("Credits") {
+		Action showCreditsAction = new AbstractAction("制作团队") {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CreditsDialog(StendhalFirstScreen.this);
@@ -215,7 +216,7 @@ public class StendhalFirstScreen extends JFrame {
 		// LoginGUI
 		//
 		setTitle(gameName + " " + stendhal.VERSION
-				+ " - a multiplayer online game using Arianne");
+				+ " - 多人在线RPG网游");
 
 		url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());

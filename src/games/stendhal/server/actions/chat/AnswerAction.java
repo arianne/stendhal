@@ -33,7 +33,7 @@ class AnswerAction implements ActionListener {
 				action.put(TARGET, player.getLastPrivateChatter());
 				new TellAction().onAction(player, action);
 			} else {
-				player.sendPrivateText("Nobody has talked privately to you.");
+				player.sendPrivateText("没有人给你发私信.");
 			}
 		}
 	}

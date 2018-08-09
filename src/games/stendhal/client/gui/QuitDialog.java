@@ -70,20 +70,20 @@ import games.stendhal.client.entity.User;
 
 		// create "yes" button
 		yesButton = new JButton();
-		yesButton.setText("Yes");
+		yesButton.setText("是");
 		yesButton.setMnemonic(KeyEvent.VK_Y);
 		yesButton.addActionListener(new QuitConfirmCB());
 		content.add(yesButton);
 
 		// create "no" button
 		JButton noButton = new JButton();
-		noButton.setText("No");
+		noButton.setText("不");
 		noButton.setMnemonic(KeyEvent.VK_N);
 		noButton.addActionListener(new QuitCancelCB());
 		content.add(noButton);
 
 		// Pack the whole thing in a managed window
-		InternalManagedWindow window = new InternalManagedWindow("quit", "Quit");
+		InternalManagedWindow window = new InternalManagedWindow("quit", "离开游戏");
 		window.setContent(content);
 		window.setMinimizable(false);
 		window.setHideOnClose(true);

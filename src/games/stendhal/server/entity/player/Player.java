@@ -2638,7 +2638,8 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public String getLanguage() {
-		return language;
+//		return language;
+		return "zh_CN";
 	}
 
 	/**
@@ -2648,7 +2649,8 @@ public class Player extends RPEntity implements UseListener {
 	 *            language
 	 */
 	public void setLanguage(String language) {
-		this.language = language;
+//		this.language = language;
+		this.language = "zh_CN";
 	}
 
 	/**

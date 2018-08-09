@@ -38,7 +38,7 @@ public class Translate {
 	 * loads the language files
 	 */
 	public static void init() {
-		init("es");
+		init("zh_CN");
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Translate {
 		try {
 			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".txt");
 			if (is == null) {
-				logger.warn("data/language/" + language + ".txt does not exist on classpath)");
+				logger.warn("data/language/" + language + ".txt 语言文件不存在)");
 				return;
 			}
 			BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(is, "UTF-8"));

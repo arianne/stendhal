@@ -473,7 +473,7 @@ class KTextEdit extends JComponent {
 				fo.close();
 			}
 
-			addLine("", "Chat log has been saved to " + fname, NotificationType.CLIENT);
+			addLine("", "聊天记录被保存到 " + fname, NotificationType.CLIENT);
 		} catch (final IOException ex) {
 			logger.error(ex, ex);
 		}
@@ -507,7 +507,7 @@ class KTextEdit extends JComponent {
 	 */
 	class LinkListener {
 		/** Allowed patterns for links to be opened in a browser. */
-		final Pattern whitelist = Pattern.compile("^https?://stendhalgame\\.org(/.*)*$");
+		final Pattern whitelist = Pattern.compile("^https?://tzmm\\.com\\.cn(/.*)*$");
 
 		/**
 		 * Called when a text marked with "#" is clicked.
@@ -516,8 +516,8 @@ class KTextEdit extends JComponent {
 		 */
 		void linkClicked(String text) {
 			if (whitelist.matcher(text).matches()) {
-				addLine(new HeaderLessEventLine("Trying to open #'" + text
-						+ "' in your browser.", NotificationType.CLIENT));
+				addLine(new HeaderLessEventLine("在浏览器中打开 #'" + text
+						 , NotificationType.CLIENT));
 				BareBonesBrowserLaunch.openURL(text);
 			}
 		}

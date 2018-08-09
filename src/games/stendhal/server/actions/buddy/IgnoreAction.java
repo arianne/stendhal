@@ -66,12 +66,12 @@ class IgnoreAction implements ActionListener {
 				}
 				if (namesAndReasons.isEmpty()) {
 					//	no, we can't just use the slot size test above as 'id' is in there, a bogus entry.
-					player.sendPrivateText("Your ignore list is empty.");
+					player.sendPrivateText("你的屏闭列表是空的。");
 				} else if (namesAndReasons.size() < 50) {
-					player.sendPrivateText("Your ignore list contains " + Grammar.enumerateCollection(namesAndReasons) + ".");
+					player.sendPrivateText("你屏闭的玩家有：" + Grammar.enumerateCollection(namesAndReasons) + ".");
 				} else {
 					// list could be unfeasibly long to print out to player so give a sublist but also the total number out of interest
-					player.sendPrivateText("You are ignoring " + namesAndReasons.size() + " players. The first 50 entries in your ignore list are "
+					player.sendPrivateText("你屏闭了 " + namesAndReasons.size() + " 个玩家. 这是列表中的前50个玩家名单。"
 							+ Grammar.enumerateCollection(namesAndReasons.subList(0, 50)) + ".");
 				}
 			}
@@ -93,7 +93,7 @@ class IgnoreAction implements ActionListener {
 			}
 
 			if (player.addIgnore(who, duration, reason)) {
-				player.sendPrivateText(who + " was added to your ignore list.");
+				player.sendPrivateText(who + " 已加入你的屏闭列表。");
 			}
 		}
 

@@ -754,9 +754,9 @@ public abstract class RPEntity extends AudibleEntity {
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
 			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-					getTitle() + " suffers "
-							+ Grammar.quantityplnoun(damage, "point")
-							+ " of damage from " + attacker.getTitle(),
+					getTitle() + " 受到 " + attacker.getTitle()
+							+ Grammar.quantityplnoun(damage, "点")
+							+ "的伤害" ,
 					NotificationType.NEGATIVE));
 		}
 	}
@@ -829,8 +829,8 @@ public abstract class RPEntity extends AudibleEntity {
 		if ((amount > 0) && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
-							getTitle() + " is poisoned, losing "
-							+ Grammar.quantityplnoun(amount, "health point")
+							getTitle() + " 已中毒, 失去了"
+							+ Grammar.quantityplnoun(amount, "生命值")
 							+ ".", NotificationType.POISON));
 		}
 	}
@@ -1398,18 +1398,18 @@ public abstract class RPEntity extends AudibleEntity {
 							NotificationType.SIGNIFICANT_POSITIVE);
 					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 							getTitle()
-							+ " earns "
+							+ " 挣到 "
 							+ Grammar.quantityplnoun(amount,
-									"experience point") + ".",
+									"经验值") + "。",
 									NotificationType.SIGNIFICANT_POSITIVE));
 				} else if (amount < 0) {
 					addTextIndicator(Integer.toString(amount),
 							NotificationType.SIGNIFICANT_NEGATIVE);
 					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 							getTitle()
-							+ " loses "
+							+ " 失去 "
 							+ Grammar.quantityplnoun(-amount,
-									"experience point") + ".",
+									"经验值") + "。",
 									NotificationType.SIGNIFICANT_NEGATIVE));
 				}
 			}
@@ -1419,7 +1419,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 		if (changes.has("level") && object.has("level")
 				&& (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
-			final String text = getTitle() + " reaches Level " + getLevel();
+			final String text = getTitle() + " 升到 " + getLevel() + " 级。";
 			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
 					NotificationType.SIGNIFICANT_POSITIVE));
 
@@ -1433,7 +1433,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Called when the entity dies.
 	 */
 	private void onDeath() {
-	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "death");
+	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "死亡");
 	}
 
 	/**

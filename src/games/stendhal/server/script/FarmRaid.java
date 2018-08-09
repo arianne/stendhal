@@ -40,6 +40,6 @@ public class FarmRaid extends CreateRaid {
 
 	@Override
 	protected String getInfo() {
-		return "A raid safe for lowest level Player.";
+		return "对于新骑手比较安全.";
 	}
 }

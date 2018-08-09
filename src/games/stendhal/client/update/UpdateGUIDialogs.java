@@ -44,14 +44,14 @@ class UpdateGUIDialogs {
 		// ask user
 		int resCode;
 		if (update) {
-			resCode = LoneOptionDialog.showConfirmDialog("There is a new version which is "
-					+ sizeString + " KB.\r\n" + "Should "
-					+ ClientGameConfiguration.get("GAME_NAME") + " be updated?",
+			resCode = LoneOptionDialog.showConfirmDialog("找到新版本，要下载 "
+					+ sizeString + " KB.\r\n" + "的补丁"
+					+ ClientGameConfiguration.get("GAME_NAME") + " 确认安装?",
 					DIALOG_TITLE, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		} else {
-			resCode = LoneOptionDialog.showConfirmDialog("We need to download some additional files which are "
-						+ sizeString + " KB.\r\n" + "Should "
-					+ ClientGameConfiguration.get("GAME_NAME") + " be installed?",
+			resCode = LoneOptionDialog.showConfirmDialog("需要下载以下文件："
+						+ sizeString + " KB.\r\n" 
+					+ ClientGameConfiguration.get("GAME_NAME") + " 确认安装?",
 					DIALOG_TITLE, JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 		}

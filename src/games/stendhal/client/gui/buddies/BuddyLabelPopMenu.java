@@ -32,7 +32,7 @@ class BuddyLabelPopMenu extends JPopupMenu {
 			createOfflineMenu(buddyName);
 		}
 
-		JMenuItem removeBuddyMenuItem = new JMenuItem("Remove");
+		JMenuItem removeBuddyMenuItem = new JMenuItem("删除");
 		this.add(removeBuddyMenuItem);
 		removeBuddyMenuItem.addActionListener(new RemovebuddyAction(buddyName));
 	}
@@ -40,7 +40,7 @@ class BuddyLabelPopMenu extends JPopupMenu {
 	// this one will fill into the chatline : /tell postman tell buddyName
 	// and then you type the message
 	private void createOfflineMenu(final String buddyName) {
-		JMenuItem leaveMessageBuddyMenuItem = new JMenuItem("Leave Message");
+		JMenuItem leaveMessageBuddyMenuItem = new JMenuItem("离开消息");
 		this.add(leaveMessageBuddyMenuItem);
 		leaveMessageBuddyMenuItem.addActionListener(new LeaveBuddyMessageAction(buddyName));
 	}
@@ -49,21 +49,21 @@ class BuddyLabelPopMenu extends JPopupMenu {
 
 		// this one will fill into the chatline : /tell buddyName
 		// and then you type the message
-		JMenuItem talkBuddyMenuItem = new JMenuItem("Talk");
+		JMenuItem talkBuddyMenuItem = new JMenuItem("讲话");
 		this.add(talkBuddyMenuItem);
 		talkBuddyMenuItem.addActionListener(new TalkBuddyAction(buddyName));
 
 
-		JMenuItem whereBuddyMenuItem = new JMenuItem("Where");
+		JMenuItem whereBuddyMenuItem = new JMenuItem("地点");
 		this.add(whereBuddyMenuItem);
 		whereBuddyMenuItem.addActionListener(new WhereBuddyAction(buddyName));
 
-		JMenuItem inviteBuddyMenuItem = new JMenuItem("Invite");
+		JMenuItem inviteBuddyMenuItem = new JMenuItem("邀请");
 		this.add(inviteBuddyMenuItem);
 		inviteBuddyMenuItem.addActionListener(new InviteBuddyAction(buddyName));
 
 		if (User.isAdmin()) {
-			JMenuItem teleportToBuddyMenuItem = new JMenuItem("(*)Teleport To");
+			JMenuItem teleportToBuddyMenuItem = new JMenuItem("(*)传送至");
 			this.add(teleportToBuddyMenuItem);
 			teleportToBuddyMenuItem.addActionListener(new TeleportToBuddyAction(buddyName));
 		}

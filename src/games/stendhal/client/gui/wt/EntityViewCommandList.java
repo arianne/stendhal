@@ -55,7 +55,7 @@ public class EntityViewCommandList extends CommandList {
 		// tell the entity what happened
 		ActionType action = ActionType.getbyRep(command);
 		if (action == null) {
-			LOGGER.error("Unknown command: '" + command + "'");
+			LOGGER.error("未知命令: '" + command + "'");
 			return;
 		}
 		view.onAction(ActionType.getbyRep(command));

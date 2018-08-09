@@ -79,7 +79,7 @@ public class AlterKills extends ScriptImpl {
 		}
 
 		// Notify player of changes
-		target.sendPrivateText(NotificationType.SUPPORT, "Your " + kill_type + " kill count for " + enemy + " was changed to "
+		target.sendPrivateText(NotificationType.SUPPORT, "你 " + kill_type + " 杀死 " + enemy + " 的数量改写到 "
 				+ Integer.toString(kill_count) + " by " + admin.getTitle());
 	}
 
@@ -90,15 +90,15 @@ public class AlterKills extends ScriptImpl {
 	 */
 	private void showUsage(final Player admin) {
 		List<String> usage = Arrays.asList(
-				"\nUsage:",
+				"\n用法:",
 				"    /script AlterKills.class <player> <solo|shared> <count> <enemy>",
 				"    /script AlterKills.class !help",
 				"Args:",
-				"    player:\tPlayer to modify.",
-				"    solo:\tAlter solo kill count.",
-				"    shared:\tAlter shared kill count.",
-				"    count:\tNumber of kills to change to.",
-				"    enemy:\tName of enemy.");
+				"    player:\t改为用户名.",
+				"    solo:\t计算单人杀怪数量.",
+				"    shared:\t计算共同杀怪数量.",
+				"    count:\t杀怪数量.",
+				"    enemy:\t敌人名字.");
 		admin.sendPrivateText(NotificationType.CLIENT, String.join("\n", usage));
 	}
 }

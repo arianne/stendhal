@@ -33,7 +33,7 @@ class ProfileAction implements SlashAction{
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		String url = "https://stendhalgame.org/character/";
+		String url = "https://tzmm.com.cn/character/";
 		String name = null;
 		if ((params.length > 0) && (params[0] != null)) {
 			name = params[0];
@@ -45,7 +45,7 @@ class ProfileAction implements SlashAction{
 		}
 		url = url + name + ".html";
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-				"Trying to open #" + url + " in your browser.",
+				"试试在浏览器中打开 #" + url ,
 		NotificationType.CLIENT));
 
 		BareBonesBrowserLaunch.openURL(url);

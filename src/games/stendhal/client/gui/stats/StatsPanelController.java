@@ -187,7 +187,7 @@ public final class StatsPanelController {
 		// a confusing negative required xp.
 		final String nextS = (next < 0) ? "\u2014" : Integer.toString(next);
 
-		final String text = "Level:" + SPC + level + SPC + "(" + nextS + ")";
+		final String text = "等级:" + SPC + level + SPC + "(" + nextS + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -205,7 +205,7 @@ public final class StatsPanelController {
 		if (maxhpModified != 0) {
 			maxhpvalue = maxhpModified;
 		}
-		final String text = "HP:" + SPC + hp + "/" + maxhpvalue;
+		final String text = "生命:" + SPC + hp + "/" + maxhpvalue;
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -220,7 +220,7 @@ public final class StatsPanelController {
 	private void updateAtk() {
 		// atk uses 10 levels shifted starting point
 		final int next = Level.getXP(atk - 9) - atkxp;
-		final String text = "ATK:" + SPC + atk + "×" + (1 + weaponAtk) + SPC + "(" + next + ")";
+		final String text = "攻击:" + SPC + atk + "×" + (1 + weaponAtk) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -235,7 +235,7 @@ public final class StatsPanelController {
 	private void updateDef() {
 		// def uses 10 levels shifted starting point
 		final int next = Level.getXP(def - 9) - defxp;
-		final String text = "DEF:" + SPC + def + "×" + (1 + itemDef) + SPC + "(" + next + ")";
+		final String text = "防御:" + SPC + def + "×" + (1 + itemDef) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -250,7 +250,7 @@ public final class StatsPanelController {
 	private void updateRatk() {
 		// ratk uses 10 levels shifted starting point
 		final int next = Level.getXP(ratk - 9) - ratkxp;
-		final String text = "RATK:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
+		final String text = "远程攻击:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -349,7 +349,7 @@ public final class StatsPanelController {
 				amount += obj.getInt("quantity");
 			}
 		}
-		final String text = "Money:" + SPC + amount;
+		final String text = "金币:" + SPC + amount;
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -426,7 +426,7 @@ public final class StatsPanelController {
 			}
 			xp = Integer.parseInt((String) event.getNewValue());
 			updateLevel();
-			final String text = "XP:" + SPC + xp;
+			final String text = "经验:" + SPC + xp;
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {

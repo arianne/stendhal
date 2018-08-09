@@ -31,6 +31,6 @@ public class CountObjects extends ScriptImpl {
 				count++;
 			}
 		}
-		admin.sendPrivateText("Number of objects " + count);
+		admin.sendPrivateText("物品数量 " + count);
 	}
 }

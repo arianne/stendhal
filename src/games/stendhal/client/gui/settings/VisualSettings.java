@@ -64,11 +64,11 @@ class VisualSettings {
 	/** Default decorative font. */
 	private static final String DEFAULT_FONT = "BlackChancery";
 	/** Default font size. */
-	private static final int DEFAULT_FONT_SIZE = 12;
+	private static final int DEFAULT_FONT_SIZE = 15;
 	/** Smallest size in the font size selector. */
-	private static final int FONT_MIN_SIZE = 8;
+	private static final int FONT_MIN_SIZE = 11;
 	/** Largest size in the font size selector. */
-	private static final int FONT_MAX_SIZE = 20;
+	private static final int FONT_MAX_SIZE = 21;
 	/** Property used for the decorative font. */
 	private static final String FONT_PROPERTY = "ui.logfont";
 	/** Property used for the decorative font. */
@@ -99,8 +99,8 @@ class VisualSettings {
 		toggleComponents(page);
 
 		// Lighting effects
-		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, true,
-				"Light effects", "Show night time lighting, and other coloring effects");
+		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, "true",
+				"灯光效果", "在夜间显示照明和一些灯光效果");
 		page.add(mapColoring);
 		// Coloring setting needs a map change to take an effect, so we need to
 		// inform the player about the delayed effect.
@@ -108,39 +108,39 @@ class VisualSettings {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
-				String tmp = enabled ? "enabled" : "disabled";
-				String msg = "Lighting effects are now " + tmp
-						+ ". You may need to change map or relogin for it to take effect.";
+				String tmp = enabled ? "生效" : "取消";
+				String msg = "灯光效果目前 " + tmp
+						+ ". 你需要转换地图或重新登陆才能看到效果";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});
 
-		JCheckBox weather = SettingsComponentFactory.createSettingsToggle("ui.draw_weather", true,
-				"Draw weather", "Draw weather effects.");
+		JCheckBox weather = SettingsComponentFactory.createSettingsToggle("ui.draw_weather", "true",
+				"天气效果", "显示天气效果");
 		page.add(weather);
 
 		// blood
-		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, true,
-				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");
+		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",
+				"显示血迹和尸体", "在打斗时显示血迹和尸体");
 		page.add(showBloodToggle);
 		// Inform players that some images won't update until after client is restarted.
 		// FIXME: Can't images be updated via map change?
 		showBloodToggle.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				final String msg = "Some changes will not take effect until the client is restarted.";
+				final String msg = "一些改变只有在下次进入游戏时才能生效";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 
 		});
 
 		// show creature speech bubbles
-		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, true,
-										"Show creature speech bubbles", "Show creature speech bubbles in the client display");
+		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, "true",
+										"显示生物对话气泡", "在主画面中显示生物的对话框效果");
 		page.add(showCreatureSpeechToggle);
 
 		final JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
-				true, "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
+				"true", "拉伸画面适应窗口大小", "<html>选中后，游戏画面会填满可用空间<br>默认此项启用</html>");
 		page.add(scaleScreenToggle);
 		page.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
 
@@ -181,7 +181,7 @@ class VisualSettings {
 				Object selected = selector.getSelectedItem();
 				wm.setProperty(STYLE_PROPERTY, selected.toString());
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
-						"The new style will be used the next time you start the game client.",
+						"新主题在下次启动游戏时生效",
 						NotificationType.CLIENT));
 			}
 		});
@@ -196,13 +196,13 @@ class VisualSettings {
 	 */
 	private JComponent createTransparencySelector() {
 		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
-		JLabel label = new JLabel("Transparency mode:");
+		JLabel label = new JLabel("透明模式:");
 		row.add(label);
 		final JComboBox<String> selector = new JComboBox<>();
 		final String[][] data = {
-				{"Automatic (default)", "auto", "The appropriate mode is decided automatically based on the system speed."},
-				{"Full translucency", "translucent", "Use semitransparent images where available. This is slow on some systems."},
-				{"Simple transparency", "bitmask", "Use simple transparency where parts of the image are either fully transparent or fully opaque.<p>Use this setting on old computers, if the game is unresponsive otherwise."}
+				{"Automatic (default)", "auto", "这个模式会基于电脑性能自动配置"},
+				{"Full translucency", "translucent", "使用半透明图像，用于一些特殊电脑"},
+				{"Simple transparency", "bitmask", "使用简单透明，适用于旧电脑,如果游戏不正常请打开此项"}
 		};
 
 		// Convenience mapping for getting the data rows from either short or
@@ -236,13 +236,13 @@ class VisualSettings {
 				String[] selectedData = desc2data.get(selected);
 				wm.setProperty(TRANSPARENCY_PROPERTY, selectedData[1]);
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
-						"The new transparency mode will be used the next time you start the game client.",
+						"新透明模式将在下次启动游戏时生效",
 						NotificationType.CLIENT));
 			}
 		});
 		row.add(selector);
 
-		StringBuilder toolTip = new StringBuilder("<html>The transparency mode used for the graphics. The available options are:<dl>");
+		StringBuilder toolTip = new StringBuilder("<html>选择图像的透明模式:<dl>");
 		for (String[] optionData : data) {
 			toolTip.append("<dt><b>");
 			toolTip.append(optionData[0]);
@@ -307,14 +307,14 @@ class VisualSettings {
 		styleTypeSelection.add(definedStyleSelector);
 		*/
 		JComponent definedStylesHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		JLabel selectorLabel = new JLabel("Client style:");
+		JLabel selectorLabel = new JLabel("主题设置:");
 		selectorLabel.setName("defined");
 		definedStylesHBox.add(selectorLabel);
 		JComponent selector = createStyleSelector();
 		selector.setName("defined");
 		definedStylesHBox.add(selector);
-		definedStylesHBox.setToolTipText("<html>The style used to draw the controls in the game client."
-				+ "<p>This affects the look only, and will not change the behavior of the game.</html>");
+		definedStylesHBox.setToolTipText("<html>主题会应用在游戏控制面板上。"
+				+ "<p>仅仅是改变显示，而不会改变游戏内容</html>");
 		/*
 		styleBox.add(definedStyleSelector);*/
 		styleBox.add(definedStylesHBox);
@@ -396,13 +396,13 @@ class VisualSettings {
 	 */
 	private JComponent createFontSizeSelector() {
 		JComponent container = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
-		container.add(new JLabel("Text size:"));
+		container.add(new JLabel("字体大小:"));
 
 		final JComboBox<Object> selector = new JComboBox<>();
 
 		// Fill the selector, and set current size as the selection
 		int current = WtWindowManager.getInstance().getPropertyInt(FONT_SIZE_PROPERTY, DEFAULT_FONT_SIZE);
-		selector.addItem("default (12)");
+		selector.addItem("15");
 		for (int size = FONT_MIN_SIZE; size <= FONT_MAX_SIZE; size += 2) {
 			Integer obj = size;
 			selector.addItem(obj);
@@ -415,8 +415,8 @@ class VisualSettings {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = selector.getSelectedItem();
-				if ("default (12)".equals(selected)) {
-					selected = "12";
+				if ("15".equals(selected)) {
+					selected = "15";
 				}
 				WtWindowManager.getInstance().setProperty(FONT_SIZE_PROPERTY, selected.toString());
 
@@ -428,7 +428,7 @@ class VisualSettings {
 			}
 		});
 		container.add(selector);
-		container.setToolTipText("Common text size");
+		container.setToolTipText("命令字体大小");
 		return container;
 	}
 
@@ -450,14 +450,14 @@ class VisualSettings {
 			fontBox.setBackground(style.getPlainColor());
 		}
 
-		JCheckBox fontToggle = new JCheckBox("Custom Decorative Font");
-		fontToggle.setToolTipText("Set a custom font for the travel log and achievements");
+		JCheckBox fontToggle = new JCheckBox("自定义装饰字体");
+		fontToggle.setToolTipText("为游戏日志和文档设置自定义字体");
 		fontBox.add(fontToggle);
 
 		JComponent fontRow = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		SBoxLayout.addSpring(fontRow);
 		fontBox.add(fontRow, SLayout.EXPAND_X);
-		final JLabel label = new JLabel("Font:");
+		final JLabel label = new JLabel("字体:");
 		fontRow.add(label);
 		final JComboBox<String> fontList = new JComboBox<>();
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

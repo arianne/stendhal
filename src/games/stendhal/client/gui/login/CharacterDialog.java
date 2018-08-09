@@ -93,7 +93,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 */
 	public CharacterDialog(final Map<String, RPObject> characters, JFrame owner) {
 		super(owner);
-		setTitle("Choose character");
+		setTitle("选择角色");
 
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -129,7 +129,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		SBoxLayout.addSpring(buttonBar);
 
 		// Action buttons. Should these be of uniform size?
-		JButton newCharButton = new JButton("New Character");
+		JButton newCharButton = new JButton("新色色");
 		newCharButton.setMnemonic(KeyEvent.VK_N);
 		newCharButton.addActionListener(new CreateCharacterAction(this));
 		// Disable creating unreasonable amounts of characters. Enough is enough.
@@ -138,7 +138,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		}
 		buttonBar.add(newCharButton);
 
-		JButton exitButton = new JButton("Cancel");
+		JButton exitButton = new JButton("退出");
 		exitButton.setMnemonic(KeyEvent.VK_C);
 		exitButton.addActionListener(new ActionListener() {
 			@Override
@@ -222,7 +222,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 
 		// this if-block is here for compatibility with stendhal server 0.84
 		if (character.has("name")) {
-			label.append("<br>Level: ");
+			label.append("<br>等级: ");
 			String level = "0";
 			if (character.has("level")) {
 				level = character.get("level");
@@ -289,13 +289,13 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			dispose();
 		} catch (TimeoutException e) {
 			logger.error(e, e);
-			handleError("Your connection timed out, please login again.", "Choose Character");
+			handleError("登陆超时，请重新登陆", "Choose Character");
 		} catch (InvalidVersionException e) {
 			logger.error(e, e);
-			handleError("Your version of Stendhal is incompatible with the server.", "Choose Character");
+			handleError("你的客户端与服务器不匹配.", "Choose Character");
 		} catch (BannedAddressException e) {
 			logger.error(e, e);
-			handleError("Please login again.", "Choose Character");
+			handleError("请重新登陆", "Choose Character");
 		}
 	}
 
@@ -330,7 +330,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		@Override
 		public void actionPerformed(final ActionEvent evt) {
 			String name = JOptionPane.showInputDialog(parent,
-					"Please enter the name of your character (only letters allowed):",
+					"请填入角色名 (只能填字符):",
 					"Create Character",
 					JOptionPane.QUESTION_MESSAGE);
 
@@ -348,13 +348,13 @@ public final class CharacterDialog extends JDialog implements Runnable {
 				}
 			} catch (TimeoutException e) {
 				logger.error(e, e);
-				parent.handleError("Your connection timed out, please login again.", "Choose Character");
+				parent.handleError("连接超时，请重新登陆", "Choose Character");
 			} catch (InvalidVersionException e) {
 				logger.error(e, e);
-				parent.handleError("Your version of Stendhal is incompatible with the server.", "Choose Character");
+				parent.handleError("客户端与服务器版本不一致", "Choose Character");
 			} catch (BannedAddressException e) {
 				logger.error(e, e);
-				parent.handleError("Please login again.", "Choose Character");
+				parent.handleError("请重新登陆", "Choose Character");
 			}
 		}
 	}

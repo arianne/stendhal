@@ -37,9 +37,9 @@ public class TellAction implements ActionListener {
 	 */
 	private String createFullMessageText(String senderName, String receiverName, String text) {
 		if (senderName.equals(receiverName)) {
-			return "You mutter to yourself: " + text;
+			return "你自言自语：" + text;
 		} else {
-			return senderName + " tells you: " + text;
+			return senderName + " 对你说: " + text;
 		}
 	}
 
@@ -62,7 +62,7 @@ public class TellAction implements ActionListener {
 		receiver.sendPrivateText(NotificationType.PRIVMSG, message);
 
 		if (!senderName.equals(receiverName)) {
-			player.sendPrivateText(NotificationType.PRIVMSG, "You tell " + receiverName + ": " + text);
+			player.sendPrivateText(NotificationType.PRIVMSG, "你对 " + receiverName + " 说: " + text);
 		}
 
 		receiver.setLastPrivateChatter(senderName);

@@ -45,7 +45,7 @@ class BareBonesBrowserLaunchCommand implements SlashAction{
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-				"Trying to open #" + urlToOpen + " in your browser.",
+				"在浏览器中打开网圵 #" + urlToOpen ,
 		NotificationType.CLIENT));
 
 		BareBonesBrowserLaunch.openURL(urlToOpen);

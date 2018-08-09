@@ -52,7 +52,7 @@ class StatsPanel extends JPanel {
 
 		manaIndicator = ManaIndicator.create();
 		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		manaIndicator.setToolTipText("Mana");
+		manaIndicator.setToolTipText("魔法");
 		add(manaIndicator, SLayout.EXPAND_X);
 
 		hpLabel = new StatLabel();

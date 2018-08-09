@@ -73,43 +73,43 @@ public class AdosWildlifeRaid implements TurnListener {
 		switch (turnCounter) {
 
 			case 0:
-				shout("Katinka shouts: Help. There are two Orcs approaching our Wildlife Refuge");
+				shout("Katinka 喊道: 救命. 两个兽人接近我们的野外营地。");
 				wait = 5 * 3;
 				break;
 
 			case 1:
-				shout("Head of Soldiers shouts: Katinka, stay calm.");
+				shout("士兵头领说: Katinka, 别慌.");
 				break;
 
 			case 2:
-				shout("Head of Soldiers shouts: I will send one of our soldiers called Marcus to help you.");
+				shout("士兵头领说: 我会派几个 Marcus 士兵帮助你。");
 				wait = 60 * 3;
 				break;
 
 			case 3:
-				shout("Marcus shouts: I killed those two Orcs. But further investigation showed:");
+				shout("Marcus 士兵: 我杀了这两个兽人，但从探子的消息看出:");
 				break;
 
 			case 4:
-				shout("Marcus shouts: They were only in the vanguard of a huge bunch of Warrior Orcs.");
+				shout("Marcus 士兵: 他们两个只是一支强大兽人部队的前锋。.");
 				break;
 
 			case 5:
-				shout("Marcus shouts: We need reinforcements within about 10 minutes.");
+				shout("Marcus 士兵: 我们要在10分钟内加强防御工事");
 				wait = 10 * 3;
 				break;
 
 			case 6:
-				shout("Io Flotto shouts: I created a portal near Carmen in the south west of Semos.");
+				shout("Io Flotto 说: 我在Semons村西面临近Carmen的地方修建了一个通道。");
 				break;
 
 			case 7:
-				shout("Io Flotto shouts: You can use it to get to the Ados Wildlife Refuge in time.");
+				shout("Io Flotto 说: 你们可以从那里及时赶到 Ados 野外营地.");
 				wait = 120 * 3;
 				break;
 
 			case 8:
-				shout("Katinka shouts: Argh! They have eaten our boars. Help us!");
+				shout("Katinka 大喊: 啊! 他们吃了我们的船，快救救我们!");
 				// shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
 				wait = 600 * 3;
 				break;
