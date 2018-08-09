@@ -32,7 +32,7 @@ public class AlterQuest extends ScriptImpl {
 
 		// help text
 		if (args.size() < 2) {
-			admin.sendPrivateText("Usage /script AlterQuest.class <player> <questname> <state>. Ommit <state> to remove the quest.");
+			admin.sendPrivateText("用法 /script AlterQuest.class <player> <questname> <state>. Ommit <state> 删除任务");
 			return;
 		}
 

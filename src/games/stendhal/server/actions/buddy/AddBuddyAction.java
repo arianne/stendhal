@@ -49,7 +49,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (countBuddies(player) > 500) {
-			player.sendPrivateText(NotificationType.ERROR, "Sorry, you have already too many buddies");
+			player.sendPrivateText(NotificationType.ERROR, "抱歉，你的好友太多了");
 			return;
 		}
 
@@ -81,7 +81,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 
 		Collection<String> validNames = checkcommand.getValidNames();
 		if (validNames.isEmpty()) {
-			player.sendPrivateText(NotificationType.ERROR, "Sorry, " + who + " could not be found.");
+			player.sendPrivateText(NotificationType.ERROR, "抱歉,查不到" + who );
 			return;
 		}
 
@@ -91,9 +91,9 @@ class AddBuddyAction implements ActionListener, TurnListener {
 
 		if (player.addBuddy(who, (buddy != null) && !buddy.isGhost())) {
 			new GameEvent(player.getName(), "buddy", "add", who).raise();
-			player.sendPrivateText(who + " was added to your buddy list.");
+			player.sendPrivateText(who + " 已加入你的好友列表");
 		} else {
-			player.sendPrivateText(who + " was already on your buddy list.");
+			player.sendPrivateText(who + " 已在你的好友列表中");
 		}
 
 		new BuddyCleanup(player).cleanup();

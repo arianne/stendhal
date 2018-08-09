@@ -179,8 +179,8 @@ public class User extends Player {
 		super.onHealed(amount);
 		ClientSingletonRepository.getUserInterface().addEventLine(
 				new HeaderLessEventLine(
-						getTitle() + " heals "
-						+ Grammar.quantityplnoun(amount, "health point") + ".",
+						getTitle() + " 治愈 "
+						+ Grammar.quantityplnoun(amount, "生命值") + "。",
 						NotificationType.HEAL));
 	}
 

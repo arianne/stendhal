@@ -43,6 +43,6 @@ public class AnimalRaid extends CreateRaid {
 
 	@Override
 	protected String getInfo() {
-		return " * Not safe for players below level 5";
+		return " * 不适合5级以下玩家.";
 	}
 }

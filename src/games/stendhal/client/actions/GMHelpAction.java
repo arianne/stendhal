@@ -44,14 +44,14 @@ class GMHelpAction implements SlashAction {
 		if (params[0] == null) {
 			lines = Arrays.asList(
 				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal:Administration",
-				"Here are the most-used GM commands:",
+				"下面是GM用的一些常用命令:",
 				"* GENERAL:",
 				"- /gmhelp [alter|script|support]",
-				"\t\tFor more info about alter, script or the supportanswer shortcuts.",
+				"\t\t查看关于 alter, script 或者 supportanswer 的快捷方式.",
 				"- /adminnote <player> <note>",
-				"\t\tLogs a note about #player.",
+				"\t\t关于 #player 的一些记录.",
 				"- /inspect <player>",
-				"\t\tShow complete details of #player.",
+				"\t\t显示有关 #player 的完整信息.",
 				"- /script <scriptname>",
 				"\t\tLoad (or reload) a script on the server. See #/gmhelp #script for details.",
 				"* CHATTING:",

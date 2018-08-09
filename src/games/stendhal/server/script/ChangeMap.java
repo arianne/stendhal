@@ -32,7 +32,7 @@ public class ChangeMap extends ScriptImpl {
 	public void execute(final Player admin, final List<String> args) {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		if (args.size() != 2) {
-			sandbox.privateText(admin, "Usage: /script modified_zone path_to_tmx");
+			sandbox.privateText(admin, "用法: /script modified_zone path_to_tmx");
 			return;
 		}
 		IRPZone zn = world.getRPZone(args.get(0));

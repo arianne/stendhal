@@ -45,7 +45,7 @@ public class AskForSupportAction  implements ActionListener {
 
 		String text = action.get(TEXT).trim();
 		if ("".equals(text)) {
-			player.sendPrivateText("Usage /support <your message here>");
+			player.sendPrivateText("使用 /support <信息内容>");
 			return;
 		}
 
@@ -62,7 +62,7 @@ public class AskForSupportAction  implements ActionListener {
 				// the player have to wait one minute since the last support
 				// message was sent
 				if (timeLastMsg < 60000) {
-					player.sendPrivateText("Until your sentence is over you may only send one support message per minute.");
+					player.sendPrivateText("一分钟只能发一条，请把你的问题一次性写完再发.");
 					return;
 				}
 			}
@@ -71,8 +71,8 @@ public class AskForSupportAction  implements ActionListener {
 		}
 
 		final String message = action.get(TEXT)
-				+ "\r\nPlease use #/supportanswer #" + sender
-				+ " to answer.";
+				+ "\r\n请使用 #/supportanswer #" + sender
+				+ " 回复.";
 
 		String username = PlayerEntryContainer.getContainer().get(player).username;
 
@@ -81,9 +81,9 @@ public class AskForSupportAction  implements ActionListener {
 		String temp = sender + " (" + username + ")";
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(temp, message);
 
-		player.sendPrivateText(NotificationType.SUPPORT, "You ask for support: "
+		player.sendPrivateText(NotificationType.SUPPORT, "你的申请: "
 				+ action.get(TEXT)
-				+ "\nIt may take a little time until your question is answered.");
+				+ "\n正在受理，但还需要一点时间");
 		player.notifyWorldAboutChanges();
 	}
 }

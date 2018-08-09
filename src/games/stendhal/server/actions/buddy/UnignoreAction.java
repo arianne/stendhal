@@ -27,9 +27,9 @@ class UnignoreAction implements ActionListener {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);
 			if (player.getIgnore(who) == null) {
-				player.sendPrivateText(who + " was not being ignored by you.");
+				player.sendPrivateText(who + " 没有被你屏闭。");
 			} else if (player.removeIgnore(who)) {
-				player.sendPrivateText(who + " was removed from your ignore list.");
+				player.sendPrivateText(who + " 已从你的屏闭名单中删除");
 			}
 		}
 

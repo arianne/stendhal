@@ -35,6 +35,6 @@ public class AngelRaid extends CreateRaid {
 
 	@Override
 	protected String getInfo() {
-		return "Not safe for players below level 150";
+		return "对150级以下的玩家不安全";
 	}
 }

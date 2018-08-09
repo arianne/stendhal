@@ -94,12 +94,12 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 						}
 					}
 
-					String message = player.getName() + " has a large amount of items";
+					String message = player.getName() + " 有太多的此物品";
 					if (caught) {
 
 						new GameEvent("bug inspect", "jail", player.getName(), Integer.toString(-1), "possible bug abuse").raise();
 						SingletonRepository.getJail().imprison(player.getName(), player, -1, "possible bug abuse");
-						player.sendPrivateText(NotificationType.SUPPORT, "Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
+						player.sendPrivateText(NotificationType.SUPPORT, "请用 /support 给管理员发消息，报告因bug造成你多出了大量的物品.");
 						player.notifyWorldAboutChanges();
 
 						message = "auto jailed " + player.getName() + " because of a large number of items";

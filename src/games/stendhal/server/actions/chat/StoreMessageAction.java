@@ -102,16 +102,16 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 		}
 
 		if (!characterExists) {
-			sourceplayer.sendPrivateText(NotificationType.ERROR, "postman tells you: Sorry, " + target + " could not be found, so your message cannot be stored.");
+			sourceplayer.sendPrivateText(NotificationType.ERROR, "信使带话: 抱歉, " + target + " 没找到，所以无法保存你的消息.");
 			return;
 		}
 
 		if (checkcommand.isIgnored()) {
-			sourceplayer.sendPrivateText("postman tells you: I cannot reach " + target + " on your behalf.");
+			sourceplayer.sendPrivateText("信使带话: 我不能送 " + target + " 到你要的地区.");
 			return;
 		}
 
-		sourceplayer.sendPrivateText("postman tells you: Message accepted for delivery");
+		sourceplayer.sendPrivateText("信使带话: 信息已投递");
 
 		return;
 	}

@@ -34,7 +34,7 @@ class RemoveBuddyAction implements ActionListener {
 				if (name.equalsIgnoreCase(who)) {
 					if (player.removeBuddy(name)) {
 						new GameEvent(player.getName(), "buddy", "remove", name).raise();
-						player.sendPrivateText(name + " was removed from your buddy list.");
+						player.sendPrivateText(name + " 已从你的好友列表中删除");
 
 						++removed;
 					}
@@ -42,7 +42,7 @@ class RemoveBuddyAction implements ActionListener {
 			}
 
 			if (removed == 0) {
-				player.sendPrivateText("There is no \"" + who + "\" in your buddy list.");
+				player.sendPrivateText("你的好友列表中没有叫 \"" + who + "\"的玩家");
 			}
 		}
 
