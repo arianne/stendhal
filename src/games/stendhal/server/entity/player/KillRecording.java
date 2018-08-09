@@ -98,6 +98,38 @@ class KillRecording {
 	}
 
 	/**
+	 * Changes kill count to specified value.
+	 *
+	 * @param name name of killed entity
+	 * @param mode 'solo' or 'shared'
+	 * @param count value to set
+	 */
+	public void setKillCount(final String name, final String mode, final int count) {
+		final String key = mode + "." + name;
+		player.setKeyedSlot(KILL_SLOT_NAME, key, Integer.toString(count));
+	}
+
+	/**
+	 * Changes solo kill count to specified value.
+	 *
+	 * @param name name of killed entity
+	 * @param count value to set
+	 */
+	public void setSoloKillCount(final String name, final int count) {
+		setKillCount(name, "solo", count);
+	}
+
+	/**
+	 * Changes shared kill count to specified value.
+	 *
+	 * @param name of killed entity
+	 * @param count value to set
+	 */
+	public void setSharedKillCount(final String name, final int count) {
+		setKillCount(name, "shared", count);
+	}
+
+	/**
 	 * Return information about how much creatures with the given name player killed.
 	 * @param name of the killed creature.
 	 * @param mode either "solo", "shared", or null.
