@@ -161,8 +161,8 @@ grand_warhammer.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free
 hammer.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 ice_grand_warhammer.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
 mace.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-rod_of_the_gm.png        ???; ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-color of skull_staff.png)
-skull_staff.png          ???; ???; Ragnarok Online (Evil Bone Wand) ( http://ro.gnjoy.com/ )
+rod_of_the_gm.png        Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/87071
+skull_staff.*            Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/87071
 staff.png                Anders Asplund (Danter); GPL 2.0; Stendhal
 ugmash.png               Katie Russell (kymara); ???; ???
 vulcano_hammer.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
