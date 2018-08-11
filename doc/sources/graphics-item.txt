@@ -682,7 +682,7 @@ golden_orc_sword.png         ???; ???; ???
 great_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 hell_dagger.png              ???; ???; ???
 ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-imperator_sword.png          ???; ???; ???
+imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
 imperial_dagger.png          ???; ???; ???
 katana.png                   ???; ???; ???
 kilij.png                    durkham; GPL 2.0; Stendhal
