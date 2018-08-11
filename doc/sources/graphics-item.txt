@@ -696,7 +696,7 @@ orc_sword.png                ???; ???; ???
 orcish_sword.png             ???; ???; ???
 r_hand_sword.png             ???; ???; ???
 scimitar.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-short_sword.png              ???; ???; ???
+short_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 soul_dagger.png              ???; ???; ???
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_sword.png            ???; ???; ???
