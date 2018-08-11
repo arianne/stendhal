@@ -33,7 +33,7 @@ dress.png                     ???; ???; ???
 dust_robe.png                 ???; ???; ???
 dwarvish_armor.png            ???; ???; ???
 earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-elvish_armor.png              ???; ???; ???
+elvish_armor.png              Groundhug McHampster (h4mt4r0)?; ???; https://sourceforge.net/p/arianne/patches/270/
 enhanced_chainmail.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 enhanced_iron_cuirass.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 enhanced_leather_cuirass.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -98,7 +98,7 @@ blue_boots.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 chain_boots.png            Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-work of studded_boots.png)
 chaos_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_boots.png  ???; ???; ???
-elvish_boots.png           ???; ???; ???
+elvish_boots.png           Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/271/
 golden_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 killer_boots.png           ???; ???; ???
@@ -171,7 +171,7 @@ wizard_staff.png         ???; ???; ???
 data/sprites/items/container/
 
 backpack.png                 ???; ???; ???
-bottle.png                   Anders Asplund (Danter); GPL 2.0; Stendhal
+bottle.png                   Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 bottle_eared.png             ???; ???; ???
 bottle_fat.png               ???; ???; ???
 bottle_large.png             ???; ???; ???
@@ -184,7 +184,7 @@ bottle_tall.png              ???; ???; ???
 bottle_triangular.png        ???; ???; ???
 empty_goblet.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 empty_sack.png               ???; ???; ???
-flask.png                    Anders Asplund (Danter); GPL 2.0; Stendhal
+flask.png                    Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 full_goblet.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 keyring.png                  ???; ???; ???
 vial.png                     ???; ???; ???
@@ -217,31 +217,31 @@ data/sprites/items/drink/
 
 antidote.png                   Anders Asplund (Danter); GPL 2.0; Stendhal
 beer.png                       ???; ???; Zelda 3 (replaced???)
-deadly_poison.png              ???; ???; ???
-disease_poison.png             ???; ???; ???
+deadly_poison.png              Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+disease_poison.png             Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 fierywater.png                 ???; ???; ???
 fish_soup.png                  ???; ???; ???
-greater_antidote.png           ???; ???; ???
-greater_poison.png             Anders Asplund (Danter); GPL 2.0; Stendhal
-greater_potion.png             Anders Asplund (Danter); GPL 2.0; Stendhal
-holy_water.*                   ???; ???; ???
+greater_antidote.png           Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+greater_poison.png             Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+greater_potion.png             Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+holy_water.*                   Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 koboldish_torcibud_mild.png    ???; ???; ???
 koboldish_torcibud_strong.png  ???; ???; ???
 koboldish_torcibud_vsop.png    ???; ???; ???
 love_potion.png                ???; ???; ???
 mana.png                       ???; ???; ???
-mega_poison.png                ???; ???; ???
-mega_potion.png                ???; ???; ???
+mega_poison.png                Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+mega_potion.png                Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 milk.png                       ???; ???; ???
-minor_potion.png               ???; ???; ???
+minor_potion.png               Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 pina_colada.png                ???; ???; ???
 pina_colada2.png               ???; ???; ???
-poison.png                     Anders Asplund (Danter); GPL 2.0; Stendhal
-potion.png                     Anders Asplund (Danter); GPL 2.0; Stendhal
+poison.png                     Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+potion.png                     Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 red_juice.png                  ???; ???; ???
 soup.png                       ???; ???; "modified from the image at tiled/tileset/item/food/rustic_meals.png"
 tea.png                        ???; ???; ???
-twilight_elixir.png            ???; ???; ???
+twilight_elixir.png            Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 waterbottle.png                ???; ???; ???
 wine.png                       Anders Asplund (Danter); GPL 2.0; Stendhal (Zelda 3, replaced???)
 
