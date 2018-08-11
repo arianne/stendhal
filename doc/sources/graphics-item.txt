@@ -52,7 +52,7 @@ mithril_armor.png             ???; ???; ???
 plate_armor.png               ???; ???; ???
 red_armor.png                 ???; ???; ???
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-scuba_gear.png                ???; ???; ???
+scuba_gear.png                Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
 shadow_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 studded_armor.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -170,7 +170,7 @@ wizard_staff.png         ???; ???; ???
 
 data/sprites/items/container/
 
-backpack.png                 ???; ???; ???
+backpack.png                 Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
 bottle.png                   Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 bottle_eared.png             ???; ???; ???
 bottle_fat.png               ???; ???; ???
