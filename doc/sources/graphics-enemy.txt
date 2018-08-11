@@ -204,7 +204,7 @@ giant.*                   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDelu
 giant_elder.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
 ice_giant.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
 imperial_general_giant.*  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
-master_giant.png          ???; ???; ???
+master_giant.*            Svetlana Kushnariova (Cabbit), LokiF, David E. Gervais, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/2529, http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/84455
 
 data/sprites/monsters/gnome/
 
