@@ -689,7 +689,7 @@ kilij.png                    durkham; GPL 2.0; Stendhal
 knife.png                    ???; ???; ???
 l_hand_sword.png             ???; ???; ???
 magic_dagger.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-magic_sword.png              ???; ???; ???
+magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nihonto.png                  johnnnny?; ???; https://sourceforge.net/p/arianne/patches/109/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 orc_sword.png                Fernando Miranda Muro (barbanegra)?; ???; ???
