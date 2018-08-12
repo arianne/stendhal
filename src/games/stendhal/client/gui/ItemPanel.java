@@ -325,7 +325,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	private void reorder(final IEntity entity) {
 		// Don't needlessly send reordering commands to servers that do not
 		// understand them
-		if (User.getServerRelease().compareTo("1.00.5") < 0) {
+		if (!StendhalClient.serverVersionAtLeast("1.00.5")) {
 			return;
 		}
 		// GameLoop may modify slot contents, so we need to scan the contents in
@@ -337,16 +337,14 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 				RPSlot slot = rpobject.getContainerSlot();
 				int i = 0;
 				for (RPObject content : slot) {
-					if (content == rpobject) {
-						if (itemNumber != i) {
-							RPAction action = new RPAction();
-							action.put(EquipActionConsts.TYPE, "reorder");
-							action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
-							action.put("new_position", itemNumber);
+					if (content == rpobject && itemNumber != i) {
+						RPAction action = new RPAction();
+						action.put(EquipActionConsts.TYPE, "reorder");
+						action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
+						action.put("new_position", itemNumber);
 
-							StendhalClient.get().send(action);
-							return;
-						}
+						StendhalClient.get().send(action);
+						return;
 					}
 					i++;
 				}
@@ -360,10 +358,8 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	private class ItemPanelMouseHandler extends MouseHandler {
 		@Override
 		protected void onDragStart(Point point) {
-			if (view != null) {
-				if (view.isMovable()) {
-					DragLayer.get().startDrag(view.getEntity());
-				}
+			if (view != null && view.isMovable()) {
+				DragLayer.get().startDrag(view.getEntity());
 			}
 		}
 
