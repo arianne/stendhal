@@ -12,11 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.awt.geom.Rectangle2D;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -41,21 +38,6 @@ public class PlayerTest {
 	@After
 	public void tearDown() throws Exception {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
-	}
-
-	/**
-	 * Tests for getHearingArea.
-	 */
-	@Test
-	public final void testGetHearingArea() {
-		final RPObject rpo = new RPObject();
-		rpo.put("type", "player");
-		rpo.put("outfit", 0);
-		final User pl = new User();
-		pl.initialize(rpo);
-
-		final Rectangle2D rect = pl.getHearingArea();
-		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 	}
 
 	/**
