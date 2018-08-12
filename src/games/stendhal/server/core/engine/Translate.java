@@ -83,7 +83,7 @@ public class Translate {
 	 * @param text text to translate
 	 * @return translated text
 	 */
-	public static String _(String text) {
+	public static String getText(String text) {
 		String language = threadLocal.get();
 		String res = null;
 		Map<String, String> map = texts.get(language);
