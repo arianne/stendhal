@@ -142,7 +142,7 @@ public class User extends Player {
 	 * @return true if this player is a group and it uses shared looting
 	 */
 	public static boolean isGroupSharingLoot() {
-		return groupLootmode != null && groupLootmode.equals("shared");
+		return "shared".equals(groupLootmode);
 	}
 
 	/**
@@ -318,7 +318,7 @@ public class User extends Player {
 		} else {
 			text = "You have been marked as being away.";
 		}
-		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, NotificationType.INFORMATION));
+		notifyUser(text, NotificationType.INFORMATION);
 	}
 
 	/**
@@ -368,25 +368,7 @@ public class User extends Player {
 
 		// The first time we ignore it.
 		if (object != null) {
-			if (changes.has("offline")) {
-				final String[] players = changes.get("offline").split(",");
-				for (final String playername : players) {
-						ClientSingletonRepository.getUserInterface().addEventLine(
-							new HeaderLessEventLine(
-							playername + " has left Stendhal.",
-							NotificationType.INFORMATION));
-				}
-			}
-
-			if (changes.has("online")) {
-				final String[] players = changes.get("online").split(",");
-				for (final String playerName : players) {
-					ClientSingletonRepository.getUserInterface().addEventLine(
-							new HeaderLessEventLine(
-							playerName + " has joined Stendhal.",
-							NotificationType.INFORMATION));
-				}
-			}
+			notifyUserAboutPlayerOnlineChanges(changes);
 
 			if (changes.hasSlot(IGNORE_SLOT)) {
 				RPObject ign = changes.getSlot(IGNORE_SLOT).getFirst();
@@ -411,11 +393,26 @@ public class User extends Player {
 	@Override
 	public void onHealed(final int amount) {
 		super.onHealed(amount);
-		ClientSingletonRepository.getUserInterface().addEventLine(
-				new HeaderLessEventLine(
-						getTitle() + " heals "
-						+ Grammar.quantityplnoun(amount, "health point") + ".",
-						NotificationType.HEAL));
+		String pointDesc = Grammar.quantityplnoun(amount, "health point");
+		notifyUser(getTitle() + " heals " + pointDesc + ".", NotificationType.HEAL);
+	}
+	
+	private void notifyUser(String message, NotificationType type) {
+		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(message, type));
+	}
+	
+	private void notifyUserAboutPlayerOnlineChanges(RPObject changes) {
+		notifyUserAboutPlayerStatus(changes, "offline", " has left Stendhal.");
+		notifyUserAboutPlayerStatus(changes, "online", " has joined Stendhal.");
+	}
+	
+	private void notifyUserAboutPlayerStatus(RPObject changes, String status, String messageEnd) {
+		if (changes.has(status)) {
+			String[] players = changes.get(status).split(",");
+			for (String playername : players) {
+				notifyUser(playername + messageEnd, NotificationType.INFORMATION);
+			}
+		}
 	}
 
 	/**
