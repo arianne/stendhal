@@ -80,19 +80,19 @@ class ChatLogArea {
 		KTextEdit edit = new KTextEdit();
 		list.add(edit);
 
-		final NotificationChannel mainChannel = createMainChannel(edit);
+		NotificationChannel mainChannel = setupMainChannel(edit);
 		channelManager.addChannel(mainChannel);
 
 		// ** Private channel **
 		edit = new KTextEdit();
 		list.add(edit);
-		NotificationChannel personal = createPersonalChannel(edit);
+		NotificationChannel personal = setupPersonalChannel(edit);
 		channelManager.addChannel(personal);
 
 		return list;
 	}
 
-	private NotificationChannel createPersonalChannel(KTextEdit edit) {
+	private NotificationChannel setupPersonalChannel(KTextEdit edit) {
 		edit.setChannelName("Personal");
 		/*
 		 * Give it a different background color to make it different from the
@@ -111,24 +111,24 @@ class ChatLogArea {
 		return new NotificationChannel("Personal", edit, false, personalDefault);
 	}
 
-	private NotificationChannel createMainChannel(KTextEdit edit) {
-		NotificationChannel mainChannel = new NotificationChannel("Main", edit, true, "");
+	private NotificationChannel setupMainChannel(KTextEdit edit) {
+		NotificationChannel channel = new NotificationChannel("Main", edit, true, "");
 		
 		// Follow settings changes for the main channel
 		WtWindowManager wm = WtWindowManager.getInstance();
 		wm.registerSettingChangeListener("ui.healingmessage", new SettingChangeAdapter("ui.healingmessage", "false") {
 			@Override
 			public void changed(String newValue) {
-				mainChannel.setTypeFiltering(NotificationType.HEAL, Boolean.parseBoolean(newValue));
+				channel.setTypeFiltering(NotificationType.HEAL, Boolean.parseBoolean(newValue));
 			}
 		});
 		wm.registerSettingChangeListener("ui.poisonmessage", new SettingChangeAdapter("ui.poisonmessage", "false") {
 			@Override
 			public void changed(String newValue) {
-				mainChannel.setTypeFiltering(NotificationType.POISON, Boolean.parseBoolean(newValue));
+				channel.setTypeFiltering(NotificationType.POISON, Boolean.parseBoolean(newValue));
 			}
 		});
-		return mainChannel;
+		return channel;
 	}
 
 	private void setupTabChangeHandling(BitSet changedChannels) {
@@ -185,6 +185,10 @@ class ChatLogArea {
 			this.changedChannels = changedChannels;
 			
 			colors = new Color[STEPS];
+			initColors();
+		}
+
+		private void initColors() {
 			Color endColor;
 
 			Style style = StyleUtil.getStyle();
