@@ -15,7 +15,6 @@ import static games.stendhal.client.gui.settings.SettingsProperties.DOUBLE_TAP_A
 import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINUOUS_PROPERTY;
 
 import java.awt.Component;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -160,15 +159,6 @@ class GeneralSettings {
 	 */
 	private void resetClientDimensions() {
 		j2DClient clientFrame = j2DClient.get();
-		Frame mainFrame = clientFrame.getMainFrame();
-		int frameState = mainFrame.getExtendedState();
-
-		/*
-		 *  Do not attempt to reset client dimensions if window is maximized.
-		 *  Prevents resizing errors for child components.
-		 */
-		if (frameState != Frame.MAXIMIZED_BOTH) {
-			mainFrame.setSize(clientFrame.getFrameDefaultSize());
-		}
+		clientFrame.resetClientDimensions();
 	}
 }

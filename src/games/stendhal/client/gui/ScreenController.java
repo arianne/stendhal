@@ -42,9 +42,6 @@ class ScreenController implements PositionChangeListener {
 	private static final int TUTORIAL_CENTER_TILE_HEIGHT = 8;
 
 	private final GameScreen screen;
-	// nextFrame() gets called all the time. Avoid needlessly creating new
-	// objects for it.
-	private final Runnable nextFrameRunner = new NextFrameRunner();
 	private TextBoxFactory textBoxFactory;
 
 	/**
@@ -111,13 +108,6 @@ class ScreenController implements PositionChangeListener {
 	}
 
 	/**
-	 * Tell the screen to prepare for rendering the next frame.
-	 */
-	void nextFrame() {
-		SwingUtilities.invokeLater(nextFrameRunner);
-	}
-
-	/**
 	 * Set the offline status of the client.
 	 *
 	 * @param offline
@@ -140,14 +130,6 @@ class ScreenController implements PositionChangeListener {
 			}
 		});
 	}
-
-	private final class NextFrameRunner implements Runnable {
-		@Override
-		public void run() {
-			screen.nextFrame();
-		}
-	}
-
 
 	/**
 	 * Create a text box with the appropriate text color for a notification
