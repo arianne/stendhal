@@ -37,8 +37,8 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		questAchievements.add(createAchievement("quest.special.elf_princess.0025", "Faiumoni's Casanova", "Finish elf princess quest 25 times",
 												Achievement.MEDIUM_BASE_SCORE, true, new QuestStateGreaterThanCondition("elf_princess", 2, 24)));
 		// Kill Monks quest achievement
-		questAchievements.add(createAchievement("quest.special.kill_monks.0050", "Heretic", "Finish Kill Monks quest 50 times",
-				Achievement.MEDIUM_BASE_SCORE, true, new QuestStateGreaterThanCondition("kill_monks", 2, 49)));
+		questAchievements.add(createAchievement("quest.special.kill_monks.0025", "Heretic", "Finish Kill Monks quest 25 times",
+				Achievement.HARD_BASE_SCORE, true, new QuestStateGreaterThanCondition("kill_monks", 2, 24)));
 
 		// Maze
 		questAchievements.add(createAchievement("quest.special.maze", "Pathfinder", "Finish the maze",
