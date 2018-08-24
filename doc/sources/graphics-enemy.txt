@@ -487,7 +487,7 @@ fallen_priest.*        Svetlana Kushnariova (Cabbit), Stephen Challener (Redshri
 fallen_warrior.*       Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82964; Copyright © Lori Angela Nagel 2018
 ghost.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ghosthound.png         Stephen Challener (Redshrike), William Thompson (William.Thompsonj); OGA BY 3.0; https://opengameart.org/node/20830
-green_phantom.png      ???; ???; ???
+green_phantom.*        Svetlana Kushnariova (Cabbit), Charles Gabriel, AlexCons, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83035, https://opengameart.org/node/15360
 headless_monster.png   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 high_lich.png          ???; ???; ???
 incorporeal_armor.png  Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
