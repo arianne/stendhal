@@ -54,7 +54,7 @@ public class WishmanNPC implements ZoneConfigurator {
 		};
 
 		wishman.setDescription("You see Wishman, once a mighty storm trooper in Blordrough's dark legion, now guardian of all thats left of their dragons.");
-		wishman.setEntityClass("noimagenpc"); // "stormtroopernpc"
+		wishman.setEntityClass("stormtroopernpc");
 		wishman.setPosition(30, 28);
 		wishman.initHP(100);
 		zone.add(wishman);

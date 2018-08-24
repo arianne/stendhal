@@ -183,6 +183,7 @@ sickvampirenpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 signguynpc.png                Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/81952
 slim_woman_npc.*              Svetlana Kushnariova (Cabbit), Yamilian, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11445
 sokobannpc.png                ???; ???; ???
+stormtroopernpc.png           Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/50932
 supertrainedguynpc.png        Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 swimmer1npc.png               ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/143
 swimmer2npc.png               ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/143
