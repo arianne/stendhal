@@ -899,7 +899,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				isAttacking = false;
 			} else {
 				rangedAttack = entity.isDoingRangedAttack();
-				if (attackPainter == null || !attackPainter.hasNatureAndWeapon(nature, weapon)) {
+				if (attackPainter == null || !attackPainter.hasNatureAndWeapon(nature, weapon) || attackPainter.natureChanged(nature)) {
 					attackPainter = AttackPainter.get(nature, weapon, (int) Math.min(entity.getWidth(), entity.getHeight()));
 				}
 				attackPainter.prepare(getState(entity));

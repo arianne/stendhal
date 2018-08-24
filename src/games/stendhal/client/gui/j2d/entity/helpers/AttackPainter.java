@@ -23,6 +23,8 @@ import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.MemoryCache;
 import games.stendhal.client.entity.RPEntity;
@@ -37,6 +39,9 @@ import games.stendhal.common.constants.Nature;
  * An utility for drawing the attack sprites.
  */
 public final class AttackPainter {
+	/* Logger instance */
+	private static final Logger logger = Logger.getLogger(AttackPainter.class);
+
 	/** Number of frames in attack sprites. */
 	private static final int NUM_ATTACK_FRAMES = 3;
 	/** Tile size for convenience. */
@@ -137,12 +142,17 @@ public final class AttackPainter {
 		Map<Direction, Sprite[]> weaponSprites = null;
 		Map<Direction, Sprite[]> rangedSprites = null;
 		if (weapon != null) {
-			WeaponRef ref = new WeaponRef(weapon, size);
+			final String weapon_nature = weapon + "_" + nature.toString().toLowerCase();
+			WeaponRef ref = new WeaponRef(weapon_nature, size);
 			if (!"ranged".equals(weapon)) {
 				weaponSprites = getSpriteMap(ref, size, WEAPON_CACHE, new SpriteMaker() {
 					@Override
 					public Sprite getSprite() {
-						return createWeaponImage(weapon);
+						Sprite weapon_sprite = createWeaponImage(weapon_nature);
+						if (weapon_sprite == null) {
+							weapon_sprite = createWeaponImage(weapon);
+						}
+						return weapon_sprite;
 					}
 				});
 			} else {
@@ -173,6 +183,11 @@ public final class AttackPainter {
 	 */
 	private static Sprite createWeaponImage(String weapon) {
 		SpriteStore st = SpriteStore.get();
+		// Avoid showing an error since not all weapon_nature sprites may be available
+		if (!st.existsSprite("data/sprites/combat/" + weapon + ".png")) {
+			logger.debug("Weapon sprite \"" + weapon + ".png\" not found");
+			return null;
+		}
 		Sprite template = st.getCombatSprite(weapon + ".png");
 		// Never use the fail safe sprite for attacks
 		if (template == st.getFailsafe()) {
@@ -555,6 +570,16 @@ public final class AttackPainter {
 		}
 
 		frame = 0;
+	}
+
+	/**
+	 * Checks if nature has changed so new sprite can be used for AttackPainter.
+	 *
+	 * @param nature New Nature to check against this one
+	 * @return <code>true</code> if new Nature matches current one
+	 */
+	public boolean natureChanged(Nature nature) {
+		return !nature.equals(this.nature);
 	}
 
 	/**
