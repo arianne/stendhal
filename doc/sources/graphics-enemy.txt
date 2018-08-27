@@ -492,7 +492,7 @@ headless_monster.png   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge)
 high_lich.png          ???; ???; ???
 incorporeal_armor.png  Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 invisible_man.png      ???; ???; ???
-lich.png               ???; ???; ???
+lich.*                 Stephen Challener (Redshrike), Lori Angela Nagel (Jastiv), artisticdude, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/82964, https://opengameart.org/node/6262, https://opengameart.org/node/83067
 myling.*               Artisticdude; CC0; http://opengameart.org/node/14803
 rotten_zombie.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
 skeleton.png           artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
