@@ -489,7 +489,7 @@ ghost.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ghosthound.png         Stephen Challener (Redshrike), William Thompson (William.Thompsonj); OGA BY 3.0; https://opengameart.org/node/20830
 green_phantom.*        Svetlana Kushnariova (Cabbit), Charles Gabriel, AlexCons, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83035, https://opengameart.org/node/15360
 headless_monster.png   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82939
-high_lich.png          ???; ???; ???
+high_lich.*            Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/6262, https://opengameart.org/node/84455
 incorporeal_armor.png  Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 invisible_man.png      ???; ???; ???
 lich.*                 Stephen Challener (Redshrike), Lori Angela Nagel (Jastiv), artisticdude, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/82964, https://opengameart.org/node/6262, https://opengameart.org/node/83067
