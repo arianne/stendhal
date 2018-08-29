@@ -30,7 +30,6 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -200,7 +199,7 @@ public class FishSoupForHughie extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 1.0));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
