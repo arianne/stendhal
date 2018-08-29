@@ -6,7 +6,7 @@
   
   <item name="medicinal ring">
     <type class="ring" subclass="medicinal_ring" tileid="-1"/>
-    <description>You see a medicinal ring. It may protect you from being poisoned.</description>
+    <description>You see a medicinal ring. It may protect you from being poisoned when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
     </attributes>
@@ -26,7 +26,7 @@
   <!-- DISABLED
   <item name="antivenom ring">
     <type class="ring" subclass="antivenom_ring" tileid="-1"/>
-    <description>You see an antivenom ring. It has a good chance to protect you from poisoning.</description>
+    <description>You see an antivenom ring. It has a good chance to protect you from poisoning when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
     </attributes>
@@ -45,7 +45,7 @@
   
   <item name="antitoxin ring">
     <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
-    <description>You see an antitoxin ring. It is highly resistant to poison.</description>
+    <description>You see an antitoxin ring. It is highly resistant to poison when worn on the finger.</description>
     <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
     <attributes>
     </attributes>
