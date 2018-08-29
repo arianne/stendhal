@@ -374,7 +374,7 @@ data/sprites/items/helmet/
 
 aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_helmet.png            ???; ???; ???
-blue_helmet.png             ???; ???; ???
+blue_helmet.png             kymara?; ???; ???
 chain_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_helmet.png  ???; ???; ???
@@ -389,11 +389,11 @@ liberty_helmet.png          ???; ???; ???
 lion_clan_helmet.png        ???; ???; ???
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mithril_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-red_helmet.png              ???; ???; ???
+red_helmet.png              kymara?; ???; ???
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           ???; ???; ???
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-xeno_helmet.*               ???; ???; ???
+xeno_helmet.*               kymara?, Jordan Irwin (AntumDeluge); ???; ???
 
 data/sprites/items/herb/
 
