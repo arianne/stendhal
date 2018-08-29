@@ -25,7 +25,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -53,7 +52,7 @@ import games.stendhal.server.maps.Region;
  * <ul>
  * <li> magical egg
  * <li> 5000 XP
- * <li> 10 karma in total
+ * <li> 11 karma in total
  * </ul>
  *
  * REPETITIONS:
@@ -104,7 +103,7 @@ public class KillSpiders extends AbstractQuest {
 				});
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new SetQuestAction(QUEST_SLOT, "started"));
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "started", 1.0));
 		//actions.add(new StartRecordingKillsAction(QUEST_SLOT,1,"spider", "poisonous spider", "giant spider"));
 
 
