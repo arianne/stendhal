@@ -665,7 +665,7 @@ assassin_dagger.png          ???; ???; ???
 biting_sword.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_dagger.png             Hades_the_Emperor?; ???; ???
 black_sword.png              ???; ???; ???
-blooddrinker.png             bleutailfly?; ???; ???
+blooddrinker.png             bleutailfly; CC BY-SA 3.0; Stendhal
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 broadsword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 buster.png                   ???; ???; ???
