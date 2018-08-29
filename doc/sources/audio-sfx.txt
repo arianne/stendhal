@@ -6,6 +6,7 @@ arrow-hit-1.ogg          Storyteller; GPL
 attack-fire-1.*          Nic3_one; CC0; http://freesound.org/people/Nic3_one/sounds/166555/
 attack-fire-2.*          Nic3_one; CC0; http://freesound.org/people/Nic3_one/sounds/166555/
 attack-fire-3.*          Nic3_one; CC0; http://freesound.org/people/Nic3_one/sounds/166555/
+baby_croc-*              Félix Blume; CC0; https://freesound.org/people/felix.blume/sounds/403373/
 bat-1.*                  polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
 bat-2.*                  polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
 bat-3.*                  polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
