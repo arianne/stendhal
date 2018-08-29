@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -75,6 +76,7 @@ public class PrincessNPC implements ZoneConfigurator {
 
 		princessNPC.setEntityClass("amazoness_princessnpc");
 		princessNPC.setPosition(6, 13);
+		princessNPC.setCollisionAction(CollisionAction.STOP);
 		princessNPC.initHP(100);
 		princessNPC.setDescription("You see Princess Esclara. She smells of coconut and pineapples...");
 		zone.add(princessNPC);

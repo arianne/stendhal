@@ -21,6 +21,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -70,6 +71,7 @@ public class FishSoupMakerNPC implements ZoneConfigurator {
 		npc.setDescription("You see Florence Boullabaisse. She is an excellent soup chef.");
 		npc.setEntityClass("fishsoupmakernpc");
 		npc.setPosition(63, 14);
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.add(npc);

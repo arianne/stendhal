@@ -21,6 +21,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
@@ -94,6 +95,7 @@ public class MaidNPC implements ZoneConfigurator {
 		tavernMaid.setPlayerChatTimeout(TIME_OUT);
 		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);
+		tavernMaid.setCollisionAction(CollisionAction.STOP);
 		tavernMaid.initHP(100);
 		tavernMaid.setDescription("You see Old Mother Helena. She is a fantastic cook and her soup is world-famous.");
 		zone.add(tavernMaid);

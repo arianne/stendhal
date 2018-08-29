@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -77,6 +78,7 @@ public class JailedBarbNPC implements ZoneConfigurator {
 
 		JailedBarbNPC.setEntityClass("jailedbarbariannpc");
 		JailedBarbNPC.setPosition(11, 12);
+		JailedBarbNPC.setCollisionAction(CollisionAction.STOP);
 		JailedBarbNPC.initHP(100);
 		JailedBarbNPC.setDescription("You see the jailed Barbarian Lorenz. What did he do to the Amazonesses?");
 		zone.add(JailedBarbNPC);
