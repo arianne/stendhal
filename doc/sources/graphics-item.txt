@@ -26,7 +26,7 @@ data/sprites/items/armor/
 
 barbarian_armor.png           ???; ???; ???
 black_armor.png               ???; ???; ???
-blue_armor.png                bleutailfly?; ???; ???
+blue_armor.png                bleutailfly; CC BY-SA 3.0; Stendhal
 chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 chaos_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dress.png                     ???; ???; ???
@@ -50,7 +50,7 @@ magic_plate_armor.png         ???; ???; ???
 mainio_armor.png              vesper?; ???; ???
 mithril_armor.png             tigertoes?; ???; ???
 plate_armor.png               ???; ???; ???
-red_armor.png                 bleutailfly?; ???; ???
+red_armor.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scuba_gear.png                Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
 shadow_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -58,7 +58,7 @@ stone_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere
 studded_armor.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 water_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wind_robe.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_armor.png                bleutailfly?; ???; ???
+xeno_armor.png                bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/axe/
 
@@ -451,7 +451,7 @@ yellow.png     ???; ???; ???
 data/sprites/items/legs/
 
 black_legs.png            ???; ???; ???
-blue_legs.png             ???; ???; ???
+blue_legs.png             bleutailfly; CC BY-SA 3.0; Stendhal
 chain_legs.png            ???; ???; ???
 chaos_legs.png            ???; ???; ???
 darkangels_clan_legs.png  ???; ???; ???
@@ -462,11 +462,11 @@ jewelled_legs.png         ???; ???; ???
 leather_legs.png          ???; ???; ???
 mainio_legs.png           ???; ???; ???
 mithril_legs.png          ???; ???; ???
-red_legs.png              ???; ???; ???
+red_legs.png              bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_legs.png           ???; ???; ???
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.png          ???; ???; ???
-xeno_legs.png             bleutailfly?; ???; ???
+xeno_legs.png             bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/misc/
 
@@ -615,7 +615,7 @@ data/sprites/items/shield/
 beech.png                     ???; ???; ???
 black_shield.png              ???; ???; ???
 bluetowershield.png           ???; ???; ???
-blue_shield.png               ???; ???; ???
+blue_shield.png               bleutailfly; CC BY-SA 3.0; Stendhal
 buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_shield.png              ???; ???; ???
 crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -636,14 +636,14 @@ mithril_shield.png            ???; ???; ???
 pine.png                      ???; ???; ???
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 redwood.png                   ???; ???; ???
-red_shield.png                ???; ???; ???
+red_shield.png                bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_shield.png             ???; ???; ???
 silvertowershield.png         ???; ???; ???
 skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 unicorn_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wooden_shield.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_shield.png               bleutailfly?; ???; ???
+xeno_shield.png               bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/special/
 
@@ -700,7 +700,7 @@ short_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 soul_dagger.png              ???; ???; ???
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_sword.png            herodot?, athana?; ???; ???
-xeno_sword.png               bleutailfly?; ???; ???
+xeno_sword.png               bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/token/
 
