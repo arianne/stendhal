@@ -1206,7 +1206,7 @@ locust_tree.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 maple_tree.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 oak_tree.png             ???; ???; ???
 palm_tree.png            ???; ???; ???
-palm_trees.*             bluecarrot1, Alex Smith (cynicmusic); CC BY-SA 3.0; https://opengameart.org/node/80156, https://opengameart.org/node/55328
+palm_trees.*             bluecarrot16, Alex Smith (cynicmusic); CC BY-SA 3.0; https://opengameart.org/node/80156, https://opengameart.org/node/55328
 palm_trees2.png          ???; ???; ???
 pine_snowy.png           ???; ???; ???
 pine_tree*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
