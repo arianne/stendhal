@@ -94,7 +94,7 @@ book_yellow.png     Anders Asplund (Danter); ???; Ultima VI (based on book_black
 data/sprites/items/boots/
 
 black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-blue_boots.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+blue_boots.png             bleutailfly; CC BY-SA 3.0; Stendhal
 chain_boots.png            Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-work of studded_boots.png)
 chaos_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_boots.png  Krakow Mobile?; ???; ???
@@ -106,12 +106,12 @@ leather_boots.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 lion_clan_boots.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mainio_boots.png           David E. Gervais, vesper; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_boots.png          tigertoes?; ???; Stendhal, https://sourceforge.net/p/arianne/patches/187/
-red_boots.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+red_boots.png              bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            ???; ???; ???
 studded_boots.png          Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ )
-xeno_boots.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+xeno_boots.png             bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/box/
 
