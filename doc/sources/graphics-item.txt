@@ -125,7 +125,7 @@ black_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 black_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 blue_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 blue_elf_cloak.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-blue_striped_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+blue_striped_cloak.png  David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
 bone_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 brightgreen_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -139,7 +139,7 @@ lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 lion_clan_cloak.png     ???; ???; ???
 mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_cloak.png       tigertoes?; ???; Stendhal, https://sourceforge.net/p/arianne/patches/187/
-red_cloak.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+red_cloak.png           David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
 red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 rift_cloak.png          ???; ???; ???
 shadow_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
