@@ -475,7 +475,7 @@ square_pale.png            ???; ???; ???
 stone_desk.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_copper.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_linen.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
-table_with_beer.png        ???; ???; ???
+table_with_beer.png        bleutailfly, Katie Russel (kymara); CC BY-SA 3.0; Stendhal
 table_with_beer_dark.png   ???; ???; ???
 table_with_hob.*           ???; ???; ???
 table_with_hob_pale.*      ???; ???; ???
