@@ -117,7 +117,7 @@ data/sprites/items/box/
 
 basket.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 present.png   Katie Russell (kymara); GPL 2.0; Stendhal
-stocking.png  bleutailfly?; ???; Stendhal
+stocking.png  bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/cloak/
 
