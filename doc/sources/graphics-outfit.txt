@@ -148,7 +148,7 @@ hair_035.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
 hair_036.png  ???; ???; ???
 hair_037.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hair_038.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_039.png  ???; ???; ???
+hair_039.png  bleutailfly; CC BY-SA 3.0; Stendhal
 hair_040.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_041.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 hair_042.png  Cobra Hubbard (BlueVortexGames); CC BY 3.0; https://opengameart.org/node/27202
