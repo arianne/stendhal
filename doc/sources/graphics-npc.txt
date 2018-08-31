@@ -95,7 +95,7 @@ kid2npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jord
 kid3npc.png                   ???; ???; ???
 kid4npc.png                   ???; ???; ???
 kid5npc.png                   ???; ???; ???
-kid6npc.png                   ???; ???; ???
+kid6npc.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 kid7npc.png                   ???; ???; ???
 kid8npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/67861, https://opengameart.org/node/23314
 kid9npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/67861
