@@ -12,7 +12,7 @@ golden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 golden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 ice_arrow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 light_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-poison_arrow.*      ???; ???; ???
+poison_arrow.png    bleutailfly; CC BY-SA 3.0; Stendhal
 power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 slowdown_arrow.png  ???; ???; ???
