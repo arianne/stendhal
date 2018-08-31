@@ -92,7 +92,7 @@ investigatornpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https:/
 jailedbarbariannpc.png        Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kid1npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/67861
 kid2npc.*                     Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/67861, https://opengameart.org/node/72198
-kid3npc.png                   ???; ???; ???
+kid3npc.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 kid4npc.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 kid5npc.png                   ???; ???; ???
 kid6npc.*                     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
