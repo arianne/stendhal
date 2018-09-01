@@ -862,7 +862,7 @@ pot_grey.png            bleutailfly; CC BY-SA 3.0; Stendhal
 pot_on_metal.png        ???; ???; ???
 pot_on_stone.png        ???; ???; ???
 pot_purple.png          bleutailfly; CC BY-SA 3.0; Stendhal
-pot_tall.png            ???; ???; ???
+pot_tall.png            bleutailfly, Katie Russel (kymara); CC BY-SA 3.0; Stendhal
 small_barrel.png        bleutailfly; CC BY-SA 3.0; Stendhal
 wastebin.png            ???; ???; ???
 wooden_bins.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
