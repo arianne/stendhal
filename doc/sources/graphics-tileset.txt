@@ -249,22 +249,22 @@ toilet.*   bleutailfly; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/bed/
 
-double_blue.png        ???; ???; ???
+double_blue.png        bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 double_peach.png       bleutailfly; CC BY-SA 3.0; Stendhal
-double_pink_rose.png   ???; ???; ???
-double_purple_gold.*   ???; ???; ???
+double_pink_rose.png   bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+double_purple_gold.*   bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 double_red.*           bleutailfly; CC BY-SA 3.0; Stendhal
-double_white_pink.*    ???; ???; ???
+double_white_pink.*    bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 pillow_red.png         bleutailfly; CC BY-SA 3.0; Stendhal
 pillow_yellow.png      bleutailfly; CC BY-SA 3.0; Stendhal
 side_on.png            bleutailfly; CC BY-SA 3.0; Stendhal
 side_on_bluer.*        bleutailfly; CC BY-SA 3.0; Stendhal
 single_blue.png        bleutailfly; CC BY-SA 3.0; Stendhal
-single_dingy_white.*   ???; ???; ???
-single_grey.*          ???; ???; ???
-single_pink_roses.png  ???; ???; ???
-single_purple_gold.*   ???; ???; ???
-single_white_pink.*    ???; ???; ???
+single_dingy_white.*   bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+single_grey.*          bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+single_pink_roses.png  bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+single_purple_gold.*   bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+single_white_pink.*    bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/carpet/
 
