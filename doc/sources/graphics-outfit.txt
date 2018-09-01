@@ -64,8 +64,8 @@ dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_043.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_044.*   (hula-hoop)        bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_045.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
-dress_046.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal; may or may not have been made by bleutailfly
-dress_047.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal; may or may not have been made by bleutailfly
+dress_046.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+dress_047.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_048.*   (stick horse)      bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_049.*   (yo-yo)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_050.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
