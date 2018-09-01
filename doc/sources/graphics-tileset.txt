@@ -1055,7 +1055,7 @@ question_marks.png      ???; ???; ???
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
 row_boat.*              Daniel Eddeland (daneeklu); CC BY-SA 3.0; https://opengameart.org/node/11117, https://opengameart.org/node/79264
-scarecrow.*             bleutailfly, Kimmo Rundelin (kiheru); ???; Stendhal
+scarecrow.*             bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ship.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skulls_on_spikes_l.png  omero; ???; ???
 skulls_on_spikes_r.png  omero; ???; ???
