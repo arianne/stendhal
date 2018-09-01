@@ -284,7 +284,7 @@ clown-fish.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 coconut.png                ???; ???; ???
 cod.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cod_smoked.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-collard.png                ???; ???; ???
+collard.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
 crepesuzette.png           ???; ???; ???
@@ -325,7 +325,7 @@ sandwich.png               Katie Russell (kymara); GPL 2.0; Stendhal
 sausage.png                ???; ???; ???
 sausage_on_bun.png         ???; ???; ???
 small_easter_egg.png       ???; ???; ??? (based on items/food/egg.png???)
-spinach.png                ???; ???; ???
+spinach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spotted_egg.png            ???; ???; ???
 sugar.png                  ???; ???; ???
 surgeonfish.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
