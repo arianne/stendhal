@@ -72,7 +72,7 @@ import games.stendhal.server.maps.Region;
  * <ul>
  * <li>a <item>present</item></li>
  * <li>500 XP</li>
- * <li>20 karma</li>
+ * <li>10 karma</li>
  * </ul>
  *
  * REPETITIONS:
