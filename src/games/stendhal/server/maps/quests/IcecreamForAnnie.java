@@ -72,7 +72,7 @@ import games.stendhal.server.maps.Region;
  * <ul>
  * <li>a <item>present</item></li>
  * <li>500 XP</li>
- * <li>10 karma</li>
+ * <li>12 karma total (2 + 10)</li>
  * </ul>
  *
  * REPETITIONS:
@@ -211,7 +211,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Thank you!",
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
 
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
