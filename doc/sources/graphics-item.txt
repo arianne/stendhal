@@ -81,15 +81,15 @@ twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 
 data/sprites/items/book/
 
-book_black.png      Anders Asplund (Danter); ???; Ultima VI (re-work???)
-book_blue.png       Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_gray.png       Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_green.png      Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_purple.png     Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_red.png        Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_turquoise.png  Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_white.png      Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
-book_yellow.png     Anders Asplund (Danter); ???; Ultima VI (based on book_black.png)
+book_black.png      bleutailfly; CC BY-SA 3.0; Stendhal
+book_blue.png       bleutailfly; CC BY-SA 3.0; Stendhal
+book_gray.png       bleutailfly; CC BY-SA 3.0; Stendhal
+book_green.png      bleutailfly; CC BY-SA 3.0; Stendhal
+book_purple.png     bleutailfly; CC BY-SA 3.0; Stendhal
+book_red.png        bleutailfly; CC BY-SA 3.0; Stendhal
+book_turquoise.png  bleutailfly; CC BY-SA 3.0; Stendhal
+book_white.png      bleutailfly; CC BY-SA 3.0; Stendhal
+book_yellow.png     bleutailfly; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/boots/
 
