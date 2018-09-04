@@ -221,9 +221,9 @@ veteran_goblin.png  ???; ???; ???
 
 data/sprites/monsters/golem/
 
-ice_golem.png     Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
-stone_golem.png   Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
-wooden_golem.png  ???; ???; ???
+ice_golem.png    Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
+stone_golem.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
+wooden_golem.*   Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 
 data/sprites/monsters/huge_animal/
 
