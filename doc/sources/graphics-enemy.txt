@@ -315,7 +315,7 @@ grobble_monster.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengame
 mermaid.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 mimic.*              Diligent Dodo/soniccuz; GPL 2.0; Stendhal
 mimic_idle.png       Diligent Dodo / soniccuz; GPL 2.0; Stendhal
-necrosophia.png      ???; ???; ???
+necrosophia.*        Wolf W. (Ouren), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/45981
 red_roohako.*        Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 robot_aruthon.png    Kevin Smith (TKZ Productions), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82760
 snarfkin.png         Kemono & Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/82910
