@@ -306,7 +306,7 @@ super_human.png            Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin 
 
 data/sprites/monsters/hybrid/
 
-arachne.png          ???; ???; ???
+arachne.*            Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/21036
 blue_mohiko.*        Svetlana Kushnariova (Cabbit), bluecarrot16, Michael Williams (BizmasterStudios), olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/36060, https://opengameart.org/node/77334
 brain_ahouga.png     Tuomo Untinen (Reemax); CC BY 3.0; https://opengameart.org/node/15590
 dark_aruthon.png     Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50703
