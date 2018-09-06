@@ -9,10 +9,11 @@ body_097.png (horse mount)  bluecarrot16; OGA BY 3.0; https://opengameart.org/no
 
 data/sprites/outfit/detail/
 
-detail_001.png (balloon)     ???; ???; ???
-detail_002.png (balloon)     ???; ???; ???
-detail_003.png (balloon)     ???; ???; ???
-detail_004.png (balloon)     ???; ???; ???
+balloon.xcf.bz2              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+detail_001.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+detail_002.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+detail_003.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+detail_004.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 detail_005.*   (flag)        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 detail_006.*   (bride veil)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
 detail_007.png (umbrella)    ???; ???; ???
