@@ -41,7 +41,7 @@ confectionerapplepienpc.png   Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https:/
 confectionercherrypienpc.png  Lori Angela Nagel (Jastiv); CC BY 3.0/4.0; https://opengameart.org/node/82267; Copyright Lori Angela Nagel 2018
 curatornpc.png                ???; ???; ???
 customeronchairnpc.png        ???; ???; ???
-deadmannpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+deadmannpc*.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 doctornpc.png                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 drugsdealernpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dwarf_guardiannpc.png         Svetlana Kushnariova (Cabbit), diamonddmgirl, GrumpyDiamond, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
