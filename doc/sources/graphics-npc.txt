@@ -139,7 +139,7 @@ olddwarfnpc.png               Svetlana Kushnariova (Cabbit), olonu, bearmetal, J
 oldfishermannpc.*             ???, Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); ???; ???, https://opengameart.org/node/72969
 oldheronpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldmaidnpc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-oldmannpc.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+oldmannpc.*                   Kimmo Rundelin (kiheru), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 oldratwomannpc.png            Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 oldwitchnpc.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldwizardnpc.*                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/158
