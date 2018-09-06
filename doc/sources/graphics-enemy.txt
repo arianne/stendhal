@@ -33,7 +33,7 @@ caiman.png            ???; ???; ???
 chicken.png           Daniel Eddeland (daneeklu); CC BY 3.0; https://opengameart.org/node/11629
 cobra.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
 crab.png              Dominik Gmiterko (ienze); CC BY 3.0; https://opengameart.org/node/6270
-deer.png              Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
+deer.*                Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
 dodo_bird.png         ???; ???; ???
 dog.png               ???; ???; ???
 elephant.*            lawnjelly, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/84509
