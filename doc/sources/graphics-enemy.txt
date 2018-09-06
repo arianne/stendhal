@@ -47,7 +47,7 @@ pandabear.png         danielmahon; CC BY-SA 3.0; https://opengameart.org/node/21
 penguin.png           Kelvin Shadewing, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; https://opengameart.org/node/83751; http://kyrodianlegends.com/
 pigeon.*              Onno Timmerman (Enquest), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84675
 poisonous_spider.png  Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
-reindeer.*            ???; ???; ???
+reindeer.*            Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
 snake.png             Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 spider.png            Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
 tiger.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
