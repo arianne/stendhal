@@ -173,7 +173,7 @@ retiredteachernpc.png         ???; ???; ???
 richardstallmannpc.png        ???; ???; ???
 ringsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 royalguardnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-rudolphnpc.png                ???; ???; ???
+rudolphnpc.*                  Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
 sailor1npc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 santaclausnpc.png             ???; ???; ???
 scarletarmynpc.png            ???; ???; ???
