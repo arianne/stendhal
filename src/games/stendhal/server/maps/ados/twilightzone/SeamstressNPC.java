@@ -61,7 +61,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 		seamstress.setVisibility(70);
 		// walk through
 		seamstress.setResistance(0);
-		seamstress.setEntityClass("noimagenpc"); /* woman_002_npc */
+		seamstress.setEntityClass("woman_002_npc");
 		seamstress.setPosition(7, 7);
 		seamstress.initHP(40);
 		zone.add(seamstress);

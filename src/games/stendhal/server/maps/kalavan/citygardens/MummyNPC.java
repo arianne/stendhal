@@ -67,7 +67,7 @@ public class MummyNPC implements ZoneConfigurator {
 		};
 
 		mummyNPC.setDescription("You see a woman, resting on a bench while watching her daughter playing.");
-		mummyNPC.setEntityClass("noimagenpc"); // "woman_000_npc"
+		mummyNPC.setEntityClass("woman_000_npc");
 		mummyNPC.setPosition(53, 88);
 		mummyNPC.initHP(100);
 		zone.add(mummyNPC);
