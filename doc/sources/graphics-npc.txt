@@ -141,6 +141,7 @@ oldheronpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 oldmaidnpc.png                ???; ???; ???
 oldmannpc.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 oldratwomannpc.png            ???; ???; ???
+oldwitchnpc*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldwizardnpc.*                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/158
 oldwomannpc.png               ???; ???; ???
 oracle*npc.*                  Svetlana Kushnariova (Cabbit), Nila122, olonu, leangoro, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
