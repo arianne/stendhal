@@ -11,6 +11,7 @@ christmastree.*              Markus Keunecke; public domain; based on score "Es 
 come_to_rest.ogg             Storyteller; GPL
 deep_forest.ogg              Storyteller; GPL
 dungeon_entrance.ogg         Storyteller; GPL
+eerie_curious.ogg            Leerie; CC BY 3.0; https://opengameart.org/node/43367
 lost_in_the_fog.ogg          Storyteller; GPL
 medieval_harp.ogg            Storyteller; GPL
 mystical_aura.ogg            Storyteller; GPL

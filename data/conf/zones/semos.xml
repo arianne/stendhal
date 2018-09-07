@@ -4505,6 +4505,15 @@ Southwest: Or'ril Castle and Fado City
       <parameter name="color_method">softlight</parameter>
       <parameter name="color">#22ffdd</parameter>
     </attributes>
+
+    <!-- Music -->
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">eerie_curious</parameter>
+      </implementation>
+    </entity>
+
     <!-- Don't allow teleporting in as we don't want marked scrolls made 
       or ring abused -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
