@@ -17,7 +17,7 @@ beggarnpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 bbqgrillmasternpc.*           Svetlana Kushnariova (Cabbit), One Man Army, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/69527
 beardmannpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 beautifulgirlnpc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-beekeepernpc.png              bleutailfly; CC BY-SA 3.0; Stendhal
+beekeepernpc.*                bleutailfly, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 blacklordnpc.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/137
 blacksheepnpc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/134
 blacksmithnpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
