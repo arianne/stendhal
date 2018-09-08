@@ -35,12 +35,12 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	private static final String QUEST_SLOT = "hell_timer";
 	/**
 	 * The mean time player may normally stay in hell (excluding grace time).
-	 * The actual time is random. 
+	 * The actual time is random.
 	 */
 	private static final int MEAN_WAIT_TIME = MathHelper.SECONDS_IN_ONE_HOUR;
 	/**
 	 * The mean time player may stay in hell (excluding grace time) when they
-	 * have been caught recently. The actual time is random. 
+	 * have been caught recently. The actual time is random.
 	 */
 	private static final int SHORT_WAIT_TIME = 3 * MathHelper.SECONDS_IN_ONE_MINUTE;
 	/**
@@ -95,7 +95,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 		{ "Lawyer tells you: As per the contract you agreed to by falling down"
 			+ " the chasm, it's strictly forbidden to stay in hell while alive."
 			+ " You can remedy that by forfeiting your live status. However, as"
-			+ " your legal counsel, I advice that it would be more advantageous"
+			+ " your legal counsel, I advice that     it would be more advantageous"
 			+ " for ... you take the matter to the reapers for arbitration."
 			+ " Thank you for paying my fee of $FEE money! I recommend you to"
 			+ " contact me again in case you visit the hell while alive again. "
@@ -115,13 +115,21 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			+ " The masses of slaughtered innocents makes you eligible for our"
 			+ " platinum program, and on top of that we have arranged"
 			+ " personally for you...", "You jump to the pit to escape the"
-			+ " salesman." 
+			+ " salesman." },
+		{ "Hell's teacher tells you: $NAME! I saw you! What do you think,"
+		    + " you are doing out here? Go home immedietaly! And I want you to"
+		    + " write 'I will complete my homework before playing online games'."
+		    + " A hundred times. In your best handwriting. Until Monday."
+		    + " Have it signed by your parents. When you are done, you will write"
+		    + " a thousand word essay on 'The hell is no place for the living'.",
+		    "The teacher turns around fetching a cane and you decide it's"
+		    + " better to start running to the pit."
 		}
 	};
 	private static final String PIT_ZONE_NAME = "int_hell_pit";
-	
+
 	Map<Player, TurnListener> runningTimers = new IdentityHashMap<>();
-	
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
@@ -168,11 +176,11 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			}
 		}
 	}
-	
+
 	private class TimerStage1 implements TurnListener {
 		private final Player player;
 		private final boolean recaught;
-		
+
 		TimerStage1(Player player, boolean recaught) {
 			this.player = player;
 			this.recaught = recaught;
@@ -190,7 +198,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(GRACE_TIME_INTERVAL, timer);
 		}
 	}
-	
+
 	/**
 	 * Timer that sends the player the message from the official, and does any
 	 * extra action.
@@ -198,7 +206,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	private class TimerStage2 implements TurnListener {
 		private final Player player;
 		private final boolean recaught;
-		
+
 		TimerStage2(Player player, boolean recaught) {
 			this.player = player;
 			this.recaught = recaught;
@@ -234,7 +242,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(GRACE_TIME_INTERVAL, timer);
 		}
 	}
-	
+
 	/**
 	 * Timer that sends the player the leaving message and starts blanking the
 	 * screen.
@@ -242,7 +250,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 	private class TimerStage3 implements TurnListener {
 		private final Player player;
 		private final String message;
-		
+
 		TimerStage3(Player player, String message) {
 			this.player = player;
 			this.message = message;
@@ -257,17 +265,17 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			player.addEvent(new GlobalVisualEffectEvent("blacken", 1000 * GRACE_TIME_INTERVAL));
 		}
 	}
-	
+
 	/**
 	 * The timer that finally sends the player to the pit.
 	 */
 	private class FinalTimer implements TurnListener {
 		private final Player player;
-		
+
 		FinalTimer(Player player) {
 			this.player = player;
 		}
-		
+
 		@Override
 		public void onTurnReached(int currentTurn) {
 			StendhalRPZone pit = SingletonRepository.getRPWorld().getZone(PIT_ZONE_NAME);
