@@ -136,6 +136,7 @@ naughtyteen2npc.*             Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin
 nightguardbrownnpc.png        ???; ???; ???
 nightguardswordnpc.png        ???; ???; ???
 noimagenpc.png                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/24944
+nunnpc.*                      Charles Gabriel, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/3393, https://opengameart.org/node/24944
 oldcowboynpc.png              ???; ???; ???
 olddwarfnpc.png               Svetlana Kushnariova (Cabbit), olonu, bearmetal, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/154
 oldfishermannpc.*             ???, Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); ???; ???, https://opengameart.org/node/72969

@@ -73,7 +73,7 @@ public class NunNPC implements ZoneConfigurator {
 		};
 
 		nunnpc.setDescription("You see Sister Benedicta, a holy nun.");
-		nunnpc.setEntityClass("noimagenpc"); /* nunnpc */
+		nunnpc.setEntityClass("nunnpc");
 		nunnpc.setDirection(Direction.RIGHT);
 		nunnpc.setPosition(53, 54);
 		nunnpc.initHP(100);
