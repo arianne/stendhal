@@ -222,7 +222,7 @@ woman_002_npc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, olon
 woman_003_npc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 woman_004_npc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 woman_005_npc.png             ???; ???; ???
-woman_006_npc.png             ???; ???; ???
+woman_006_npc.*               Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 woman_007_npc.png             ???; ???; ???
 woman_008_npc.png             ???; ???; ???
 woman_009_npc.png             ???; ???; ???

@@ -61,7 +61,7 @@ public class MotherNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye.");
 			}
 		};
-		npc.setEntityClass("noimagenpc"); // "woman_006_npc"
+		npc.setEntityClass("woman_006_npc");
 		npc.setPosition(30, 9);
 		npc.initHP(100);
 		npc.setDescription("You see Anastasia, looking worried.");
