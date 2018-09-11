@@ -4,7 +4,7 @@ data/sprites/npc/
 adosbankassistantnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 albinoelf2npc.png             Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/128
 albinoelfnpc.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/115
-amazoness_princessnpc.png     ???; ???; ???
+amazoness_princessnpc.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 angelnpc.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 apothecarynpc.*               ???; ???; ???
 badmayornpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
