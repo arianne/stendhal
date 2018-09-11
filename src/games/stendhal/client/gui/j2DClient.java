@@ -11,9 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.awt.Component;
 import java.awt.Frame;
-import java.util.Collection;
 import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -126,107 +124,9 @@ public class j2DClient implements UserInterface {
 	/**
 	 * A constructor for JUnit tests.
 	 */
-	public j2DClient() {
+	public j2DClient(J2DClientGUI gui) {
 		setDefault(this);
-		gui = new J2DClientGUI() {
-
-			@Override
-			public void updateUser(User user) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public JFrame getFrame() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			@Override
-			public void resetClientDimensions() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setOffline(boolean offline) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void requestQuit(StendhalClient client) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void triggerPainting() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public Collection<PositionChangeListener> getPositionChangeListeners() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public void setChatLine(String text) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void afterPainting() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void beforePainting() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void addDialog(Component dialog) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public boolean isOffline() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			@Override
-			public void addAchievementBox(String title, String description,
-					String category) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void addGameScreenText(double x, double y, String text,
-					NotificationType type, boolean isTalking) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void switchToSpellState(RPObject spell) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void chooseOutfit() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+		this.gui = gui;
 	}
 
 	/**

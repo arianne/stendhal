@@ -22,7 +22,7 @@ import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPObject;
 
-interface J2DClientGUI {	
+public interface J2DClientGUI {
 	void addDialog(Component dialog);
 	void addAchievementBox(String title, String description, String category);
 	void addGameScreenText(double x, double y, String text, NotificationType type,
