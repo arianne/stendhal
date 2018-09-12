@@ -240,7 +240,7 @@ yetifemalenpc.png             Teiv?; ???; ???
 yetimalenpc.png               Teiv?; ???; ???
 youngnpc.png                  Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/87
 youngsoldiernpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-youngwitchnpc.png             ???; ???; ???
+youngwitchnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 youngwomannpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/24823
 
 data/sprites/npc/alternative/
