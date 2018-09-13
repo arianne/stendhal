@@ -626,6 +626,30 @@
     </equipable>
   </item>
   
+  <item name="sedative">
+    <type class="drink" subclass="sedative" tileid="-1" />
+    <description>You see a sedative. It's effects can protect you from a shocked state.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StatusHealer" />
+    <attributes>
+      <immunization value="shocked" />
+      <amount value="400" />
+      <frequency value="1"/>
+      <quantity value="1"/>
+      <regen value="1"/>
+      <menu value="Drink|Use" />
+    </attributes>
+    <weight value="1.0" />
+    <value value="1" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="bag" />
+      <slot name="trade" />
+    </equipable>
+  </item>
+  
   <!--<item name="holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
