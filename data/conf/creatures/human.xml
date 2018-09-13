@@ -2224,6 +2224,7 @@
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="5.0"/>
       <item value="antidote" quantity="[2,5]" probability="20.0"/>
+      <item value="sedative" quantity="[1,2]" probability="5.0"/>
     </drops>
     <equips>
     </equips>

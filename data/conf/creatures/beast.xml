@@ -468,6 +468,7 @@
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="shadow helmet" quantity="[1,1]" probability="0.6"/>
       <item value="chaos helmet" quantity="[1,1]" probability="0.2"/>
+      <item value="sedative" quantity="[2,4]" probability="8.0"/>
     </drops>
     <equips>
     </equips>
