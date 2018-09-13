@@ -18,9 +18,13 @@ import java.util.Map;
 
 import games.stendhal.server.entity.status.StatusType;
 
+/**
+ * Consumable item that can be used to cure/prevent a single or multiple status effects.
+ *
+ * @author AntumDeluge
+ */
 public class StatusHealer extends ConsumableItem {
 
-	//private Feeder feeder;
 	private EnumSet<StatusType> immunizations = EnumSet.noneOf(StatusType.class);
 
 	/**
