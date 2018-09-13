@@ -259,8 +259,9 @@
   <item name="antidote">
     <type class="drink" subclass="antidote" tileid="-1"/>
     <description>You see an antidote, to cure you of poison and protect you for a while.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <implementation class-name="games.stendhal.server.entity.item.StatusHealer"/>
     <attributes>
+      <immunization value="poisoned"/>
       <amount value="400"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -282,8 +283,9 @@
   <item name="greater antidote">
     <type class="drink" subclass="greater_antidote" tileid="-1"/>
     <description>You see a greater antidote, to cure you of poison and protect you for a long while.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <implementation class-name="games.stendhal.server.entity.item.StatusHealer"/>
     <attributes>
+      <immunization value="poisoned"/>
       <amount value="800"/>
       <frequency value="1"/>
       <quantity value="1"/>
