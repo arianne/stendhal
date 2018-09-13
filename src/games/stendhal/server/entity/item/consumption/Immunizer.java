@@ -18,7 +18,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.item.StatusHealer;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
 
@@ -26,26 +25,18 @@ class Immunizer implements Feeder {
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-		TurnListener tl;
-
-		if (item instanceof StatusHealer) {
-			EnumSet<StatusType> immunizations = item.getImmunizations();
-			if (immunizations == null) {
-				return false;
-			}
-
-			for (StatusType st: immunizations) {
-				player.getStatusList().setImmune(st);
-			}
-
-			tl = new StatusHealerEater(player, immunizations);
-		} else {
-			player.getStatusList().setImmune(StatusType.POISONED);
-
-			// first remove all effects from previously used immunities to
-			// restart the timer
-			tl = new AntidoteEater(player);
+		EnumSet<StatusType> immunizations = item.getImmunizations();
+		if (immunizations == null) {
+			return false;
 		}
+
+		for (StatusType st: immunizations) {
+			player.getStatusList().setImmune(st);
+		}
+
+		// first remove all effects from previously used immunities to
+		// restart the timer
+		final TurnListener tl = new StatusHealerEater(player, immunizations);
 
 		// set a timer to remove the immunity effect after some time
 		final TurnNotifier notifier = SingletonRepository.getTurnNotifier();

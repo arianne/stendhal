@@ -19,10 +19,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 
-public class AntidoteEaterTest {
+public class StatusHealerEaterTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -40,8 +41,8 @@ public class AntidoteEaterTest {
 	@Test
 	public void testHashCode() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		AntidoteEater eater1 = new AntidoteEater(bob);
-		AntidoteEater eater2 = new AntidoteEater(bob);
+		StatusHealerEater eater1 = new StatusHealerEater(bob, StatusType.POISONED);
+		StatusHealerEater eater2 = new StatusHealerEater(bob, StatusType.POISONED);
 		assertTrue(eater1.equals(eater2));
 		assertTrue(eater2.equals(eater1));
 		assertEquals(eater1.hashCode(), eater2.hashCode());

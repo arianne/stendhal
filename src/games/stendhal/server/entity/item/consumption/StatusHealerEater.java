@@ -20,7 +20,7 @@ import games.stendhal.server.entity.status.StatusList;
 import games.stendhal.server.entity.status.StatusType;
 
 /**
- * Some code copied from server.entity.item.consumption.AntidoteEater
+ * Times out status healing/immunizing items.
  *
  * @author hendrik
  * @author AntumDeluge
