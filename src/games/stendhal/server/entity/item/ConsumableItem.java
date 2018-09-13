@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import java.util.EnumSet;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -21,6 +22,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.consumption.Feeder;
 import games.stendhal.server.entity.item.consumption.FeederFactory;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import marauroa.common.game.RPObject;
 
 /**
@@ -35,7 +37,7 @@ public class ConsumableItem extends StackableItem implements Comparable<Consumab
 
 	/** How much of this item has not yet been consumed. */
 	private int left;
-	private final Feeder feeder;
+	protected final Feeder feeder;
 
 	@Override
 	public void put(final String attribute, final double value) {
@@ -173,6 +175,13 @@ public class ConsumableItem extends StackableItem implements Comparable<Consumab
 		final float result = (float) other.getRegen() / (float) other.getFrecuency()
 				- (float) getRegen() / (float) getFrecuency();
 		return (int) Math.signum(result);
+	}
+
+	/*
+	 * Sub-classes that use immunizations should override this.
+	 */
+	public EnumSet<StatusType> getImmunizations() {
+		return null;
 	}
 
 }

@@ -239,6 +239,7 @@ pina_colada2.png               ???; ???; ???
 poison.png                     Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 potion.png                     Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 red_juice.png                  ???; ???; ???
+sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tea.png                        ???; ???; ???
 twilight_elixir.png            Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/

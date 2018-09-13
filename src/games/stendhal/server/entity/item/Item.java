@@ -209,6 +209,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		// Items that protect against poisoning
 		entity.addAttribute("antipoison", Type.FLOAT, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
+		// Consumable items the heas status effects
+		entity.addAttribute("immunization", Type.STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
+
 		// Some items are quest rewards that other players
 		// don't deserve. Not hidden because the client uses it for an anti
 		// theft hack
