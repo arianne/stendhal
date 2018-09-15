@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -60,7 +61,7 @@ import marauroa.common.Pair;
  * REWARD:<ul>
  * <li> 5000 XP
  * <li> 10 greater potion
- * <li> some karma
+ * <li> Karma: 11 total (10 + 1)
  * </ul>
  *
  * REPETITIONS: <ul><li>once in a week</ul>
@@ -139,7 +140,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 		toKill.put("stone golem",new Pair<Integer, Integer>(0,1));
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 1.0));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 
 
@@ -155,7 +156,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Oh never mind. We'll go on sunbathing then. Not that we aren't tired of it...",
-				new SetQuestAction(QUEST_SLOT, "rejected"));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -2.0));
 	}
 
 	private void step_2() {
