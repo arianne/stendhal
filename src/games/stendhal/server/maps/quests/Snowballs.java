@@ -29,7 +29,6 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -56,7 +55,7 @@ import games.stendhal.server.maps.Region;
  * <li> You give the snowballs to Mr. Yeti.
  * <li> Mr. Yeti gives you 20 cod or perch.
  * <p>
- * REWARD: <li> 20 cod or perch <li> 50 XP <li> 20 karma in total
+ * REWARD: <li> 20 cod or perch <li> 50 XP <li> 22 karma in total (20 + 2)
  * <p>
  * REPETITIONS: <li> Unlimited, but 2 hours of waiting is
  * required between repetitions
@@ -205,7 +204,7 @@ public class Snowballs extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
