@@ -16,7 +16,7 @@ detail_003.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 detail_004.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 detail_005.*   (flag)        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 detail_006.*   (bride veil)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
-detail_007.png (umbrella)    ???; ???; ???
+detail_007.*   (umbrella)    Diligent Dodo (soniccuz); CC BY-SA 3.0; https://sourceforge.net/p/arianne/patches/687/
 
 data/sprites/outfit/dress/
 
