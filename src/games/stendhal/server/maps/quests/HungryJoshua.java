@@ -61,7 +61,7 @@ import games.stendhal.server.maps.Region;
  * REWARD:
  * <ul>
  * <li> 200 XP</li>
- * <li> Karma: 10</li>
+ * <li> Karma: 12 total (10 + 2)</li>
  * <li> ability to use the keyring</li>
  * </ul>
  *
@@ -146,7 +146,7 @@ public class HungryJoshua extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
