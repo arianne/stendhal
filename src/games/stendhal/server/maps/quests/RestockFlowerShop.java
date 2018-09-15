@@ -260,7 +260,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		reward.add(new EquipItemAction("nalwor city scroll", 5));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-		reward.add(new SayTextAction("Thank you so much! Now I can fill all of my orders."));
+		reward.add(new SayTextAction("Thank you so much! Now I can fill all of my orders. Here are some Nalwor City scrolls to show my appreciation."));
 
 		ChatAction rewardAction = new MultipleActions(reward);
 
