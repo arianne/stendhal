@@ -53,7 +53,7 @@ import games.stendhal.server.util.ItemCollection;
  * <li>XP: 300</li>
  * <li><1-5> Crepes Suzettes</li>
  * <li><2-8> Minor Potions</li>
- * <li>Karma: 5</li>
+ * <li>Karma: 6 total (5 + 1)</li>
  * </ul>
  *
  * REPETITIONS:
@@ -213,7 +213,7 @@ public class FruitsForCoralia extends AbstractQuest {
     		ConversationStates.QUESTION_1,
     		null,
 			new MultipleActions(
-				new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 1.0),
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! I'd like these fresh fruits: [items].")));
 
     	// reject quest response
