@@ -17,6 +17,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager2;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -102,7 +103,7 @@ public class SBoxLayout implements LayoutManager2 {
 	/** Amount of axially expandable components. */
 	private int expandable;
 	/** Amount of padding between components. */
-	private int padding = 0;
+	private int padding;
 
 	/**
 	 * Create a new SBoxLayout.
@@ -110,7 +111,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 * @param direction layout direction
 	 */
 	public SBoxLayout(boolean direction) {
-		constraints = new IdentityHashMap<Component, EnumSet<SLayout>>();
+		constraints = new IdentityHashMap<>();
 		if (direction == VERTICAL) {
 			d = verticalDirection;
 		} else {
@@ -140,26 +141,14 @@ public class SBoxLayout implements LayoutManager2 {
 		this.padding = padding;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.awt.LayoutManager2#addLayoutComponent(java.awt.Component, java.lang.Object)
-	 */
 	@Override
 	public void addLayoutComponent(Component component, Object flags) {
 		EnumSet<SLayout> constraintFlags = EnumSet.noneOf(SLayout.class);
 		if (flags != null) {
 			if (flags instanceof SLayout) {
 				constraintFlags.add(d.translate((SLayout) flags));
-			} else if (flags instanceof EnumSet<?> || flags instanceof SLayout) {
-				// Type checking within the rather poor limits of generics
-				EnumSet<?> eflags = (EnumSet<?>) flags;
-				// Translate to axial & perpendicular
-				for (SLayout flag : SLayout.values()) {
-					if (eflags.contains(flag)) {
-						flag = d.translate(flag);
-						constraintFlags.add(flag);
-					}
-				}
+			} else if (flags instanceof EnumSet<?>) {
+				translateFlags((EnumSet<?>) flags, constraintFlags);
 			} else {
 				throw new IllegalArgumentException("Invalid flags: " + flags);
 			}
@@ -170,6 +159,11 @@ public class SBoxLayout implements LayoutManager2 {
 			}
 		}
 		constraints.put(component, constraintFlags);
+	}
+
+	@SuppressWarnings("unlikely-arg-type")
+	private void translateFlags(EnumSet<?> rawFlags, EnumSet<SLayout> constraintFlags) {
+		Arrays.stream(SLayout.values()).filter(rawFlags::contains).map(d::translate).forEach(constraintFlags::add);
 	}
 
 	/*
@@ -455,7 +449,7 @@ public class SBoxLayout implements LayoutManager2 {
 				int xAlign = 0;
 				int yAlign = 0;
 
-				EnumSet<?> flags = constraints.get(c);
+				EnumSet<SLayout> flags = constraints.get(c);
 				if (flags.contains(SLayout.EXPAND_PERPENDICULAR)) {
 					d.setSecondary(cPref, d.getSecondary(realDim));
 				} else {
@@ -651,7 +645,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 */
 	@Override
 	public void removeLayoutComponent(Component component) {
-		EnumSet<?> constr = constraints.get(component);
+		EnumSet<SLayout> constr = constraints.get(component);
 		if (constr.contains(SLayout.EXPAND_AXIAL)) {
 			expandable--;
 		}
@@ -859,7 +853,6 @@ public class SBoxLayout implements LayoutManager2 {
 	 * An utility component for layout.
 	 */
 	private static class Spring extends JComponent {
-		private static final long serialVersionUID = -6405699460017588727L;
 	}
 
 	/**
