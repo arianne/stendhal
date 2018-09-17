@@ -196,7 +196,7 @@ swimmer3npc.png               ???, Svetlana Kushnariova (Cabbit), Fabzy; ???; ht
 swimmer4npc.png               ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/92; Outfit author is not confirmed
 swimmer5npc.png               ???, Svetlana Kushnariova (Cabbit); ???; https://github.com/arianne/stendhal/issues/145; Outfit author is not confirmed
 swimmer6npc.png               ???, Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu; ???; https://github.com/arianne/stendhal/issues/144; Outfit author is not confirmed
-swimmer7npc.png               ???; ???; ???
+swimmer7npc.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 swimmer8npc.png               ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969; Outfit author is not confirmed
 tavernbarmaidnpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 taxmannpc.*                   Svetlana Kushnariova (Cabbit), diamonddmgirl, onu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
