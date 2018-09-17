@@ -266,7 +266,7 @@ hunter.*                   ???; ???; ???
 imperial_archer.*          Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_archer_leader.*   Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
 imperial_chief.png         ???; ???; ???
-imperial_commander.png     ???; ???; ???
+imperial_commander.*       Svetlana Kushnariova (Cabbit); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72575
 imperial_defender.*        Svetlana Kushnariova (Cabbit), Spring, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/68650
 imperial_elite_archer.*    Svetlana Kushnariova (Cabbit), olonu, Fabzy, SoCay; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_elite_guardian.*  Svetlana Kushnariova (Cabbit), LordNeo, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
