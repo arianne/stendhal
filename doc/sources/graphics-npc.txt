@@ -109,7 +109,7 @@ largeblackwizardnpc.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 lifeguardfemalenpc.png        ???, Svetlana Kushnariova (Cabbit), olonu, ???; https://opengameart.org/node/72969; Outfit author is not confirmed
 lifeguardmalenpc.png          ???, Svetlana Kushnariova (Cabbit), olonu, ???; https://opengameart.org/node/72969; Outfit author is not confirmed
 liljohnnnnynpc.png            Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
-littlegirlnpc.png             ???; ???; ???
+littlegirlnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944
 littlegirl2npc.png            Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/139
 madscientistnpc.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/141
 mageelfnpc.png                Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
