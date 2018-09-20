@@ -993,8 +993,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1003,8 +1002,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1013,8 +1011,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1023,8 +1020,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1033,8 +1029,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1043,8 +1038,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1053,8 +1047,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1063,8 +1056,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1073,8 +1065,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1083,8 +1074,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1093,8 +1083,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1103,8 +1092,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1113,8 +1101,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1123,8 +1110,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1133,8 +1119,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1143,8 +1128,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1153,8 +1137,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1163,8 +1146,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -1173,8 +1155,7 @@ below average.
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">200</parameter>
-        <parameter name="rejected">You hold yourself back from falling
-					into a vast chasm.</parameter>
+        <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
