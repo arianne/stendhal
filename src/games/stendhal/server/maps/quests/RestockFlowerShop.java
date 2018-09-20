@@ -77,7 +77,6 @@ public class RestockFlowerShop extends AbstractQuest {
 	// Different types of flowers needed in quest
 	private static final List<String> flowerTypes = Arrays.asList(
 			"daisies", "lilia", "pansy", "rose", "zantedeschia");
-	public static List<Integer> requestedQuantities = Arrays.asList();
 
 	private final int MAX_FLOWERS = flowerTypes.size() * 10;
 
@@ -329,6 +328,12 @@ public class RestockFlowerShop extends AbstractQuest {
 				null);
 	}
 
+	@Override
+	public boolean isRepeatable(Player player) {
+		return new AndCondition(
+				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
+				new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)).fire(player, null, null);
+	}
 
 	@Override
 	public String getNPCName() {
