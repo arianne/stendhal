@@ -38,5 +38,6 @@
 	<classpathentry kind="lib" path="libs/jetty-util-9.2.14.v20151106.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-webapp-9.2.14.v20151106.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-xml-9.2.14.v20151106.jar"/>
+	<classpathentry kind="lib" path="libs/luaj-jse-3.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
