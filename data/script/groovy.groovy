@@ -2,8 +2,9 @@ import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.entity.player.*
 import games.stendhal.server.scripting.*
-import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.npc.*
 import games.stendhal.server.pathfinder.Path
+import games.stendhal.server.entity.mapstuff.sign.Sign
 
 // Simple sample script that creates a sign prooving Groovy is active
 
@@ -23,8 +24,7 @@ if(game.setZone(myZone))   // if zone exists
   {  
   // We create now a sign and place it on position 31,50 with some text
   sign=new Sign()
-  sign.setX(8)
-  sign.setY(47)
+  sign.setPosition(8, 47)
   sign.setText("Welcome to Stendhal!\nPlease report any problems and issues at our webpage.\nhttps://stendhalgame.org ")
   
   // Add our new Object to the game world
