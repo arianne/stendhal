@@ -4,13 +4,22 @@ package games.stendhal.server.core.scripting;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.reflect.ClassPath;
+import com.google.common.reflect.ClassPath.ClassInfo;
 
 import games.stendhal.common.CommandlineParser;
 import games.stendhal.common.ErrorBuffer;
@@ -22,6 +31,7 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 import marauroa.common.game.RPAction;
+
 
 /**
  * ServerExtension to load Groovy and Java scripts.
@@ -164,6 +174,30 @@ public class ScriptRunner extends StendhalServerExtension implements
 		return (ret);
 	}
 
+	
+	/**
+	 * Fetch classes of available scripts.
+	 *
+	 * @param pckgname the package name of scripts
+	 * @return list of script classes
+	 * @throws ClassNotFoundException if getting the class loader or reading the
+	 * 	script resources fail
+	 */
+	private static ArrayList<Class<?>> getClasses(final String packageName) throws ClassNotFoundException {
+		final ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
+		try {
+			ClassLoader classLoader = ScriptRunner.class.getClassLoader();
+			ImmutableSet<ClassInfo> infos = ClassPath.from(classLoader).getTopLevelClasses(packageName);
+			for (ClassInfo info : infos) {
+				classes.add(info.load());
+			}
+			return classes;
+		} catch (IOException e) {
+			throw new ClassNotFoundException("failed to list classes");
+		}
+	}
+
+	
 	/**
 	 * Lists the available scripts
 	 *
@@ -172,67 +206,87 @@ public class ScriptRunner extends StendhalServerExtension implements
 	 * @return true
 	 */
 	private boolean listScripts(final Player player, List<String> filterTerm) {
+
+		StringBuilder stringBuilder = new StringBuilder("list of available scripts:\n");
+		List<String> allScripts=new LinkedList<String>();
+
 		// *.groovy scripts is in data/script/
 		final File dirGroovy = new File(scriptDir);
-		// *.class scripts is in data/script/games/stendhal/server/script/
-		final File dirClasses = new File(scriptDir+"games/stendhal/server/script/");
-		final String[] scriptsGroovy = dirGroovy.list(new FilenameFilter() {
+		List<String> scriptsGroovy; 
+		final String[] lg=dirGroovy.list(new FilenameFilter() {
 				@Override
 				public boolean accept(final File dir, final String name) {
 					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
 				}
 			});
-		final String[] scriptsJava = dirClasses.list(new FilenameFilter(){
+		if(lg!=null) {
+			scriptsGroovy=Arrays.asList(lg);
+		} else {
+			scriptsGroovy=new LinkedList<String>();
+		}
+		
+		// *.class scripts could be in data/script/games/stendhal/server/script/
+		final File dirClasses = new File(scriptDir+"games/stendhal/server/script/");
+		List<String> scriptsJava;		
+		final String[] lj=dirClasses.list(new FilenameFilter(){
 				@Override
 				public boolean accept(final File dir, final String name) {
 					// remove filenames with '$' inside because they are inner classes
 					return (name.endsWith(".class") && (name.indexOf('$') == -1));
 				}
 			});
-
-		int scriptsGroovyLength = 0;
-		if (scriptsGroovy!=null) {
-			scriptsGroovyLength=scriptsGroovy.length;
-		}
-		int scriptsJavaLength = 0;
-		if (scriptsJava!=null) {
-			scriptsJavaLength=scriptsJava.length;
-		}
-		final int scriptsLength = scriptsGroovyLength + scriptsJavaLength;
-		// concatenating String arrays scriptsGroovy and scriptsJava to scripts
-		final String[] scripts= new String[scriptsLength];
-
-		if (scriptsGroovy!=null) {
-		System.arraycopy(scriptsGroovy, 0, scripts, 0, scriptsGroovyLength);
+		if(lj!=null) {
+		    scriptsJava = Arrays.asList(lj);
+		} else {
+			scriptsJava = new LinkedList<String>();
 		}
 
-		if (scriptsJava!=null) {
-		System.arraycopy(scriptsJava, 0, scripts, scriptsGroovyLength, scriptsJavaLength);
+
+		// precompiled java scripts
+		try {
+			ArrayList<Class<?>> dir = getClasses("games.stendhal.server.script");
+			Collections.sort(dir, new Comparator<Class<?>>() {
+				@Override
+				public int compare(Class<?> o1, Class<?> o2) {
+					return o1.getSimpleName().compareTo(o2.getSimpleName());
+				}
+			});
+
+			for (final Class<?> clazz : dir) {
+				    scriptsJava.add(clazz.getSimpleName()+".class");
+			}
+
+		} catch (final ClassNotFoundException e) {
+			logger.error(e, e);
+		} catch (final SecurityException e) {
+			logger.error(e, e);
 		}
 
-		StringBuilder stringBuilder = new StringBuilder();
-
+		allScripts.addAll(scriptsGroovy);
+		allScripts.addAll(scriptsJava);
+		
+		stringBuilder.append("results for /script ");
 		if (!filterTerm.isEmpty()) {
-			stringBuilder.append("results for /script ");
 			for (int i=0; i<filterTerm.size(); i++) {
 				stringBuilder.append(" "+ filterTerm.get(i));
 			}
 			stringBuilder.append(":\n");
 		}
 
-		for (int i = 0; i < scriptsLength; i++) {
+		for (int i = 0; i < allScripts.size(); i++) {
 			// if arguments given, will look for matches.
 			if (!filterTerm.isEmpty()) {
 				int j = 0;
 				for (j = 0; j < filterTerm.size(); j++) {
-					if (scripts[i].matches(searchTermToRegex(filterTerm.get(j)))) {
-						stringBuilder.append(scripts[i]+"\n");
+					if (allScripts.get(i).matches(searchTermToRegex(filterTerm.get(j)))) {
+						stringBuilder.append(allScripts.get(i)+"\n");
 					}
 				}
 			} else {
-				stringBuilder.append(scripts[i]+"\n");
+				stringBuilder.append(allScripts.get(i)+"\n");
 			}
 		}
+
 		stringBuilder.append("(end of listing).");
 		player.sendPrivateText(stringBuilder.toString());
 		return true;
