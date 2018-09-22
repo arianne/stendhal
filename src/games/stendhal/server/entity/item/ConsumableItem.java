@@ -12,8 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import java.util.EnumSet;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -180,8 +181,7 @@ public class ConsumableItem extends StackableItem implements Comparable<Consumab
 	/*
 	 * Sub-classes that use immunizations should override this.
 	 */
-	public EnumSet<StatusType> getImmunizations() {
-		return null;
+	public Set<StatusType> getImmunizations() {
+		return Collections.emptySet();
 	}
-
 }

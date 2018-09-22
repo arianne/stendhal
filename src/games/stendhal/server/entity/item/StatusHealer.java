@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import games.stendhal.server.entity.status.StatusType;
 
@@ -24,8 +25,7 @@ import games.stendhal.server.entity.status.StatusType;
  * @author AntumDeluge
  */
 public class StatusHealer extends ConsumableItem {
-
-	private EnumSet<StatusType> immunizations = EnumSet.noneOf(StatusType.class);
+	private final Set<StatusType> immunizations = EnumSet.noneOf(StatusType.class);
 
 	/**
 	 * Constructor: Creates a status-healing item.
@@ -50,13 +50,10 @@ public class StatusHealer extends ConsumableItem {
 	 * @param item
 	 * 			Item to copy.
 	 */
-	public StatusHealer(ConsumableItem item) {
+	public StatusHealer(StatusHealer item) {
 		super(item);
 
-		// FIXME: Is this necessary?
-		if (item.has("immunization")) {
-			setImmunization(item.get("immunization"));
-		}
+		immunizations.addAll(item.getImmunizations());
 	}
 
 	/**
@@ -78,11 +75,7 @@ public class StatusHealer extends ConsumableItem {
 	}
 
 	@Override
-	public EnumSet<StatusType> getImmunizations() {
-		if (immunizations.size() < 1) {
-			return null;
-		}
-
+	public Set<StatusType> getImmunizations() {
 		return immunizations;
 	}
 }

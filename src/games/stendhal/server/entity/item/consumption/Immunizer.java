@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
-import java.util.EnumSet;
+import java.util.Set;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
@@ -25,8 +25,8 @@ class Immunizer implements Feeder {
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-		EnumSet<StatusType> immunizations = item.getImmunizations();
-		if (immunizations == null) {
+		Set<StatusType> immunizations = item.getImmunizations();
+		if (immunizations.isEmpty()) {
 			return false;
 		}
 
