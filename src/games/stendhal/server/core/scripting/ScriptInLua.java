@@ -57,6 +57,9 @@ public class ScriptInLua extends ScriptingSandbox {
 		globals.set("game", game);
 		globals.set("logger", CoerceJavaToLua.coerce(logger));
 		globals.set("stendhal", CoerceJavaToLua.coerce(new LuaHelper()));
+		globals.load(
+				"ConversationStates = luajava.bindClass(\"games.stendhal.server.entity.npc.ConversationStates\")\n"
+				+ "ConversationPhrases = luajava.bindClass(\"games.stendhal.server.entity.npc.ConversationPhrases\")").call();
 	}
 
 	/**
