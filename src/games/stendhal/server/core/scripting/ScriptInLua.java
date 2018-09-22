@@ -38,6 +38,6 @@ public class ScriptInLua extends ScriptingSandbox {
 		LuaValue chunk = globals.loadfile(luaScript);
 		chunk.call();
 
-		return false;
+		return true;
 	}
 }
