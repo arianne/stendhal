@@ -24,17 +24,19 @@ import games.stendhal.server.entity.player.Player;
  */
 public class ScriptInLua extends ScriptingSandbox {
 
+	private Globals globals;
+
 	private final String luaScript;
 
 	public ScriptInLua(String filename) {
 		super(filename);
 
+		globals = JsePlatform.standardGlobals();
 		luaScript = filename;
 	}
 
 	@Override
 	public boolean load(Player player, List<String> args) {
-		Globals globals = JsePlatform.standardGlobals();
 		LuaValue chunk = globals.loadfile(luaScript);
 		chunk.call();
 
