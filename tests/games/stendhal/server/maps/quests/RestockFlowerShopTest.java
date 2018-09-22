@@ -81,7 +81,7 @@ public class RestockFlowerShopTest {
 				boolean last = needed.size() == 1;
 				en.step(player, item);
 				if (last) {
-					assertEquals("Thank you so much! Now I can fill all of my orders.", getReply(seremela));
+					assertEquals("Thank you so much! Now I can fill all of my orders. Here are some Nalwor City scrolls to show my appreciation.", getReply(seremela));
 				} else {
 					assertEquals("Thank you! What else did you bring?", getReply(seremela));
 				}
