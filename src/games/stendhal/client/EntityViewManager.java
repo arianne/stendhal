@@ -264,6 +264,7 @@ class EntityViewManager {
 				view.applyChanges();
 				if (area.intersects(view.getArea())) {
 					visibleViews.add(view);
+					view.setVisibleScreenArea(area);
 				}
 			}
 		}

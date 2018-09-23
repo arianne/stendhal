@@ -714,6 +714,10 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	@Override
 	public void setInspector(final Inspector inspector) {
 	}
+	
+	@Override
+	public void setVisibleScreenArea(Rectangle area) {
+	}
 
 	/**
 	 * Set the sprite.
