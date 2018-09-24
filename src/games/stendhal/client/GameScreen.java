@@ -69,7 +69,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	private static final Logger logger = Logger.getLogger(GameScreen.class);
 
 	/** Map KeyEvents to a number, i.e. to determine position in spells slot based on pressed key **/
-	private static final Map<Integer, Integer> keyEventMapping = new HashMap<Integer, Integer>();
+	private static final Map<Integer, Integer> keyEventMapping = new HashMap<>();
 	static {
 		keyEventMapping.put(KeyEvent.VK_1, Integer.valueOf(1));
 		keyEventMapping.put(KeyEvent.VK_2, Integer.valueOf(2));
@@ -375,12 +375,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				inspectable.setInspector(ground);
 			}
 			if (entity.isUser()) {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						center();
-					}
-				});
+				SwingUtilities.invokeLater(this::center);
 			}
 		}
 	}
@@ -391,12 +386,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param effect effect renderer
 	 */
 	public void addEffect(final EffectLayer effect) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				globalEffects.add(effect);
-			}
-		});
+		SwingUtilities.invokeLater(() -> globalEffects.add(effect));
 	}
 
 	/*
@@ -556,6 +546,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	@Override
 	public void paintComponent(final Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, getWidth(), getHeight());
 		if (StendhalClient.get().isInTransfer()) {
 			/*
 			 * A hack to prevent proper drawing during zone change when the draw
@@ -563,8 +555,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			 * caught by the paintImmediately() wrapper. Prevents entity view
 			 * images from being initialized before zone coloring is ready.
 			 */
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, getWidth(), getHeight());
 			return;
 		}
 
@@ -634,7 +624,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 
-		drawEndOfTheWorld(g, xAdjust, yAdjust);
 		viewManager.prepareViews(clip);
 
 		final String set = gameLayers.getAreaName();
@@ -661,38 +650,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			} else {
 				it.remove();
 			}
-		}
-	}
-
-	/**
-	 * Fill with black the areas outside the map.
-	 *
-	 * @param g graphics
-	 * @param xAdjust x position of the screen
-	 * @param yAdjust y position of the screen
-	 */
-	private void drawEndOfTheWorld(Graphics g, int xAdjust, int yAdjust) {
-		// End of the world (map falls short of the view)?
-		if (xAdjust > 0) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, xAdjust, sh);
-		}
-
-		if (yAdjust > 0) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, sw, yAdjust);
-		}
-
-		int tmpY = yAdjust + convertWorldToPixelUnits(wh);
-		if (tmpY < sh) {
-			g.setColor(Color.BLACK);
-			g.fillRect(svx, tmpY, sw, sh);
-		}
-
-		int tmpX = yAdjust + convertWorldToPixelUnits(ww);
-		if (tmpX < sw) {
-			g.setColor(Color.BLACK);
-			g.fillRect(tmpX, svy, sw, sh);
 		}
 	}
 
@@ -1147,23 +1104,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	@Override
 	public void onZoneChange(Zone zone) {
 		removeAllObjects();
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				globalEffects.clear();
-			}
-		});
+		SwingUtilities.invokeLater(() -> globalEffects.clear());
 	}
 
 	@Override
 	public void onZoneChangeCompleted(final Zone zone) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				setMaxWorldSize(zone.getWidth(), zone.getHeight());
-			}
-		});
-		// Change layers here ?
+		SwingUtilities.invokeLater(() -> setMaxWorldSize(zone.getWidth(), zone.getHeight()));
 	}
 
 	/**
