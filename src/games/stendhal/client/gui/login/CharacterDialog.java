@@ -148,8 +148,8 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		});
 		buttonBar.add(exitButton);
 
-		pack();
 		setSize(Math.min(getWidth(), DIALOG_WIDTH), Math.min(getHeight(), DIALOG_HEIGHT));
+		pack();
 		if (owner != null) {
 			owner.setEnabled(false);
 			this.setLocationRelativeTo(owner);
