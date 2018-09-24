@@ -573,16 +573,6 @@ public final class AttackPainter {
 	}
 
 	/**
-	 * Checks if nature has changed so new sprite can be used for AttackPainter.
-	 *
-	 * @param nature New Nature to check against this one
-	 * @return <code>true</code> if new Nature matches current one
-	 */
-	public boolean natureChanged(Nature nature) {
-		return !nature.equals(this.nature);
-	}
-
-	/**
 	 * Interface for attack image retrievers.
 	 */
 	private interface SpriteMaker {
