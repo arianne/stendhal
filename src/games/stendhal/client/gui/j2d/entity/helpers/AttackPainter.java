@@ -22,11 +22,13 @@ import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.MemoryCache;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.gui.TransparencyMode;
 import games.stendhal.client.sprite.ImageSprite;
@@ -56,16 +58,16 @@ public final class AttackPainter {
 	private static final int ICON_OFFSET = 8;
 
 	/** Cache for previously constructed sprite sets. */
-	private static final MemoryCache<NatureRef, Map<Direction, Sprite[]>> SWEEP_CACHE = new MemoryCache<NatureRef, Map<Direction, Sprite[]>>();
+	private static final MemoryCache<NatureRef, Map<Direction, Sprite[]>> SWEEP_CACHE = new MemoryCache<>();
 	/** Cache for the weapon sprites. */
-	private static final MemoryCache<WeaponRef, Map<Direction, Sprite[]>> WEAPON_CACHE = new MemoryCache<WeaponRef, Map<Direction, Sprite[]>>();
+	private static final MemoryCache<WeaponRef, Map<Direction, Sprite[]>> WEAPON_CACHE = new MemoryCache<>();
 	/** Colors used for drawing distance attacks. */
 	private static final Map<Nature, Color> ARROW_COLOR;
 
 	/** Stroke used for drawing distance attacks. */
 	private static final Stroke ARROW_STROKE = new BasicStroke(2);
 	static {
-		ARROW_COLOR = new EnumMap<Nature, Color>(Nature.class);
+		ARROW_COLOR = new EnumMap<>(Nature.class);
 		ARROW_COLOR.put(Nature.CUT, Color.LIGHT_GRAY);
 		ARROW_COLOR.put(Nature.DARK, Color.DARK_GRAY);
 		ARROW_COLOR.put(Nature.LIGHT, new Color(255, 240, 140)); // light yellow
@@ -138,7 +140,6 @@ public final class AttackPainter {
 	 * @return painter
 	 */
 	public static AttackPainter get(Nature nature, final String weapon, int size) {
-		Map<Direction, Sprite[]> sprites = getSpriteMap(nature, size);
 		Map<Direction, Sprite[]> weaponSprites = null;
 		Map<Direction, Sprite[]> rangedSprites = null;
 		if (weapon != null) {
@@ -148,11 +149,11 @@ public final class AttackPainter {
 				weaponSprites = getSpriteMap(ref, size, WEAPON_CACHE, new SpriteMaker() {
 					@Override
 					public Sprite getSprite() {
-						Sprite weapon_sprite = createWeaponImage(weapon_nature);
-						if (weapon_sprite == null) {
-							weapon_sprite = createWeaponImage(weapon);
+						Sprite weaponSprite = createWeaponImage(weapon_nature);
+						if (weaponSprite == null) {
+							weaponSprite = createWeaponImage(weapon);
 						}
-						return weapon_sprite;
+						return weaponSprite;
 					}
 				});
 			} else {
@@ -171,6 +172,7 @@ public final class AttackPainter {
 			}
 		}
 
+		Map<Direction, Sprite[]> sprites = getSpriteMap(nature, size);
 		return new AttackPainter(nature, weapon, sprites, weaponSprites, rangedSprites);
 	}
 
@@ -309,11 +311,11 @@ public final class AttackPainter {
 		Map<Direction, Sprite[]> map = cache.get(ref);
 		if (map == null) {
 			if (size == 1) {
-				SpriteStore st = SpriteStore.get();
 				Sprite template = maker.getSprite();
 				if (template == null) {
 					return null;
 				}
+				SpriteStore st = SpriteStore.get();
 				map = splitTiles(st, template);
 				cache.put(ref, map);
 			} else {
@@ -337,8 +339,7 @@ public final class AttackPainter {
 	 */
 	private static Map<Direction, Sprite[]> scale(
 			Map<Direction, Sprite[]> origMap, int size) {
-		Map<Direction, Sprite[]> map = new EnumMap<Direction, Sprite[]>(
-				Direction.class);
+		Map<Direction, Sprite[]> map = new EnumMap<>(Direction.class);
 		for (Direction d : Direction.values()) {
 			Sprite[] sprites = origMap.get(d);
 			if (sprites != null) {
@@ -384,8 +385,7 @@ public final class AttackPainter {
 			Sprite orig) {
 		int twidth = NUM_ATTACK_FRAMES * TILE_SIZE;
 		int theight = 4 * TILE_SIZE;
-		Map<Direction, Sprite[]> map = new EnumMap<Direction, Sprite[]>(
-				Direction.class);
+		Map<Direction, Sprite[]> map = new EnumMap<>(Direction.class);
 		int y = 0;
 		map.put(Direction.UP,
 				st.getTiles(orig, 0, y, NUM_ATTACK_FRAMES, twidth, theight));
@@ -413,8 +413,6 @@ public final class AttackPainter {
 	 */
 	public void draw(Graphics2D g2d, Direction direction, int x, int y,
 			int width, int height) {
-
-
 		drawAttackSprite(g2d, sprites, direction, x, y, width, height);
 		drawAttackSprite(g2d, weaponSprites, direction, x, y, width, height);
 
@@ -490,9 +488,8 @@ public final class AttackPainter {
 	 * @param width attacker width
 	 * @param height attacker height
 	 */
-	public void drawDistanceAttack(final Graphics2D g2d, final RPEntity entity,
-			final RPEntity target, final int x, final int y, final int width,
-			final int height) {
+	public void drawDistanceAttack(Graphics2D g2d, RPEntity entity, 
+			IEntity target, int x, int y, int width, int height) {
 		Nature nature = entity.getShownDamageType();
 
 		int startX = x + width / 2;
@@ -532,9 +529,7 @@ public final class AttackPainter {
 	 *         <code>false</code>
 	 */
 	public boolean hasNatureAndWeapon(Nature nature, String weapon) {
-		return this.nature == nature
-				&& ((weapon == null && this.weapon == null) || (weapon != null && weapon
-						.equals(this.weapon)));
+		return (this.nature == nature) && Objects.equals(this.weapon, weapon);
 	}
 
 	/**
@@ -645,8 +640,7 @@ public final class AttackPainter {
 			if (o instanceof WeaponRef) {
 				WeaponRef obj = (WeaponRef) o;
 				return (size == obj.size)
-						&& ((weapon == null && obj.weapon == null) || (weapon != null && weapon
-								.equals(obj.weapon)));
+						&& Objects.equals(weapon, obj.weapon);
 			}
 			return false;
 		}
