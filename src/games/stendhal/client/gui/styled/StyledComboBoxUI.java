@@ -47,7 +47,7 @@ public class StyledComboBoxUI extends BasicComboBoxUI {
 	}
 
 	@Override
-	protected ListCellRenderer<?> createRenderer() {
+	protected ListCellRenderer<Object> createRenderer() {
 		/*
 		 * In java 6 the transparency setting of the entries gets
 		 * overridden by StyledLabelUI. (It works ok in java 1.5).

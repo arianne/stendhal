@@ -31,10 +31,10 @@ import java.util.Collection;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.xml.bind.DatatypeConverter;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.io.BaseEncoding;
 
 /** Finds duplicate, empty and placeholder tiles in tiled/tileset/**. */
 public class DuplicateTileFinder {
@@ -164,12 +164,12 @@ public class DuplicateTileFinder {
 		 * @param data a hex string of the fingerprint
 		 */
 		FingerPrint(String data) {
-			this.data = DatatypeConverter.parseHexBinary(data);
+			this.data = BaseEncoding.base16().decode(data);
 		}
 		
 		@Override
 		public String toString() {
-			return DatatypeConverter.printHexBinary(data);
+			return BaseEncoding.base16().encode(data);
 		}
 		
 		@Override
