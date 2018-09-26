@@ -256,15 +256,19 @@ class EntityViewManager {
 	 * dispatch thread.
 	 *
 	 * @param area visible area
+	 * @param setVisibleArea inform the entities about the visible area. This
+	 * 	should be only done when the whole screen is drawn
 	 */
-	void prepareViews(Rectangle area) {
+	void prepareViews(Rectangle area, boolean setVisibleArea) {
 		visibleViews.clear();
 		synchronized (views) {
 			for (EntityView<IEntity> view : views) {
 				view.applyChanges();
 				if (area.intersects(view.getArea())) {
 					visibleViews.add(view);
-					view.setVisibleScreenArea(area);
+					if (setVisibleArea) {
+						view.setVisibleScreenArea(area);
+					}
 				}
 			}
 		}

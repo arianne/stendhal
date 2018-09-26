@@ -59,7 +59,7 @@ import marauroa.common.game.RPSlot;
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
-public class GameScreen extends JComponent implements IGameScreen, DropTarget,
+public final class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	GameObjects.GameObjectListener, StendhalClient.ZoneChangeListener {
 	/**
 	 * serial version uid.
@@ -338,11 +338,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return (int) Math.ceil(sh / (SIZE_UNIT_PIXELS * scale));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#nextFrame()
-	 */
 	@Override
 	public void nextFrame() {
 		adjustView();
@@ -360,11 +355,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return achievementBoxFactory;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
-	 */
 	@Override
 	public void addEntity(final IEntity entity) {
 		EntityView<IEntity> view = viewManager.addEntity(entity);
@@ -389,11 +379,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		SwingUtilities.invokeLater(() -> globalEffects.add(effect));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
-	 */
 	@Override
 	public void removeEntity(final IEntity entity) {
 		viewManager.removeEntity(entity);
@@ -433,20 +418,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				int dx = speed * dvx / scalediv;
 				int dy = speed * dvy / scalediv;
 
-				/*
-				 * Don't overshoot. Don't stall.
-				 */
-				if (dvx < 0) {
-					dx = MathHelper.clamp(dx, dvx, -1);
-				} else if (dvx > 0) {
-					dx = MathHelper.clamp(dx, 1, dvx);
-				}
-
-				if (dvy < 0) {
-					dy = MathHelper.clamp(dy, dvy, -1);
-				} else if (dvy > 0) {
-					dy = MathHelper.clamp(dy, 1, dvy);
-				}
+				dx = limitMoveDelta(dx, dvx);
+				dy = limitMoveDelta(dy, dvy);
 
 				/*
 				 * Adjust view
@@ -458,6 +431,23 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				dvy -= dy;
 			}
 		}
+	}
+
+	/**
+	 * Adjust screen movement so that it does not stall, and that it does not
+	 * overshoot the target.
+	 *
+	 * @param moveDelta suggested movement of the screen
+	 * @param viewDelta distance from the target
+	 * @return moveDelta adjusted to sane range
+	 */
+	private int limitMoveDelta(int moveDelta, int viewDelta) {
+		if (viewDelta < 0) {
+			moveDelta = MathHelper.clamp(moveDelta, viewDelta, -1);
+		} else if (viewDelta > 0) {
+			moveDelta = MathHelper.clamp(moveDelta, 1, viewDelta);
+		}
+		return moveDelta;
 	}
 
 	/**
@@ -510,11 +500,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		dvy = cvy - svy;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#center()
-	 */
 	@Override
 	public void center() {
 		svx += dvx;
@@ -522,7 +507,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		dvx = 0;
 		dvy = 0;
-
 		speed = 0;
 	}
 
@@ -624,7 +608,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 
-		viewManager.prepareViews(clip);
+		boolean fullDraw = (clip.width == sw && clip.height == sh);
+		viewManager.prepareViews(clip, fullDraw);
 
 		final String set = gameLayers.getAreaName();
 		gameLayers.drawLayers(g, set, "floor_bundle", startTileX,
@@ -747,11 +732,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		center();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#setOffline(boolean)
-	 */
 	@Override
 	public void setOffline(final boolean offline) {
 		this.offline = offline;
@@ -773,11 +753,18 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		sx = keepSpriteOnMapX(sprite, sx);
 		sy = keepSpriteOnMapY(sprite, sy);
+		sy = findFreeTextBoxPosition(sprite, sx, sy);
 
-		/*
-		 * Adjust the position of boxes placed at the same point to make it
-		 * clear for the player there are more than one.
-		 */
+		texts.add(new RemovableSprite(sprite, sx, sy, Math.max(
+				RemovableSprite.STANDARD_PERSISTENCE_TIME, textLength
+						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
+	}
+
+	/**
+	 * Adjust the position of boxes placed at the same point to make it
+	 * clear for the player there are more than one.
+	 */
+	private int findFreeTextBoxPosition(Sprite sprite, int x, int sy) {
 		boolean found = true;
 		int tries = 0;
 
@@ -786,7 +773,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 			synchronized (texts) {
 				for (final RemovableSprite item : texts) {
-					if ((item.getX() == sx) && (item.getY() == sy)) {
+					if ((item.getX() == x) && (item.getY() == sy)) {
 						found = true;
 						sy += SIZE_UNIT_PIXELS / 2;
 						sy = keepSpriteOnMapY(sprite, sy);
@@ -801,10 +788,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				break;
 			}
 		}
-
-		texts.add(new RemovableSprite(sprite, sx, sy, Math.max(
-				RemovableSprite.STANDARD_PERSISTENCE_TIME, textLength
-						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
+		return sy;
 	}
 
 	/**
@@ -848,11 +832,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return sx;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#removeText(games.stendhal.client.gui.j2d.Text)
-	 */
 	@Override
 	public void removeText(final RemovableSprite entity) {
 		texts.remove(entity);
@@ -868,22 +847,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// staticSprites contents are not zone specific, so don't clear those
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#clearTexts()
-	 */
 	@Override
 	public void clearTexts() {
 		texts.clear();
 		staticSprites.clear();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
-	 */
 	@Override
 	public EntityView<?> getEntityViewAt(final double x, final double y) {
 		final int sx = convertWorldToPixelUnits(x);
@@ -891,12 +860,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return viewManager.getEntityViewAt(x, y, sx, sy);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getMovableEntityViewAt(double,
-	 *      double)
-	 */
 	@Override
 	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
 		final int sx = convertWorldToPixelUnits(x);
@@ -904,10 +867,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return viewManager.getMovableEntityViewAt(x, y, sx, sy);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see games.stendhal.client.IGameScreen#getTextAt(int, int)
-	 */
 	@Override
 	public RemovableSprite getTextAt(final int x, final int y) {
 		// staticTexts are drawn on top of the others; those in the end of the
@@ -974,21 +933,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return (int) (w * SIZE_UNIT_PIXELS);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#convertScreenViewToWorld(java.awt.Point)
-	 */
 	@Override
 	public Point2D convertScreenViewToWorld(final Point p) {
 		return convertScreenViewToWorld(p.x, p.y);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#convertScreenViewToWorld(int, int)
-	 */
 	@Override
 	public Point2D convertScreenViewToWorld(final int x, final int y) {
 		return new Point.Double(((x / scale) + getScreenViewX()) / SIZE_UNIT_PIXELS,
@@ -1013,15 +962,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return svy;
 	}
 
-	//
-	// PositionChangeListener
-	//
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#positionChanged(double, double)
-	 */
 	@Override
 	public void positionChanged(final double x, final double y) {
 		final int ix = (int) x;
@@ -1104,7 +1044,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	@Override
 	public void onZoneChange(Zone zone) {
 		removeAllObjects();
-		SwingUtilities.invokeLater(() -> globalEffects.clear());
+		SwingUtilities.invokeLater(globalEffects::clear);
 	}
 
 	@Override
