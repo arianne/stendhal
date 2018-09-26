@@ -39,13 +39,14 @@ import games.stendhal.server.util.TimeUtil;
  * QUEST: KillBlordroughs
  *
  * PARTICIPANTS: <ul>
- * <li> Despot Halb Errvl
+ * <li> Mrotho
  * <li> some creatures
  * </ul>
  *
  * STEPS:<ul>
- * <li> Despot asking you to kill 100 blordrough warriors.
- * <li> Kill them and go back to Despot for your reward.
+ * <li> Mrotho asking you to kill 100 blordrough warriors.
+ * <li> 
+ * <li> Kill them and go back to Mrotho for your reward.
  * </ul>
  *
  *
@@ -61,7 +62,7 @@ import games.stendhal.server.util.TimeUtil;
 
  public class KillBlordroughs extends AbstractQuest {
 
-	private static final String QUEST_NPC = "Despot Halb Errvl";
+	private static final String QUEST_NPC = "Mrotho";
 	private static final String QUEST_SLOT = "kill_blordroughs";
 	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
 	protected final int killsnumber = 100;
@@ -260,7 +261,7 @@ import games.stendhal.server.util.TimeUtil;
 
 				if(killed==0) {
 					// player killed no creatures but asked about quest again.
-					npc.say("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #blordroughs?");
+					npc.say("You have to kill #blordroughs, remember?");
 					return;
 				}
 				if(killed < killsnumber) {
@@ -277,11 +278,11 @@ import games.stendhal.server.util.TimeUtil;
 							Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this moneys, and remember, i may wish you to do this job again in one week!");
 				}
 				rewardPlayer(player, killed);
-			} else {
+			} else {				
 				final Long currtime = System.currentTimeMillis();
 				if (questCanBeGiven(player, currtime)) {
 					// will give quest to player.
-					npc.say("I need help in battles with #Blordrough warriors. They really annoying me. Kill at least 100 of any blordrough soldiers and i will reward you.");
+					npc.say("Ados army need help in battles with #Blordrough warriors. They really annoying us. Kill at least 100 of any blordrough warriors and you will get reward.");
 					writeQuestRecord(player);
 				} else {
 					npc.say(getNPCTextReply(player, currtime));
@@ -294,11 +295,14 @@ import games.stendhal.server.util.TimeUtil;
 	 * add quest state to npc's fsm.
 	 */
 	private void step_1() {
+		npc.addGreeting("Greetings. Have you come to enlist as a soldier?");
+		npc.addReply(ConversationPhrases.YES_MESSAGES, "Huh! Well, I would give you a #quest then...");
+		npc.addReply(ConversationPhrases.NO_MESSAGES, "Good! You wouldn't have fit in here anyway. Perhaps you want to #offer some of that armor instead...");
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("Blordrough","blordrough","blordroughs"),
 				null,
 				ConversationStates.ATTENDING,
-				"My Mithrilbourgh army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.",
+				"Ados army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.",
 				null);
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -316,15 +320,26 @@ import games.stendhal.server.util.TimeUtil;
 		npc = npcs.get(QUEST_NPC);
 		fillQuestInfo(
 				"Kill Blordroughs",
-				"Despot Halb Errvl wants some Blordrough warriors killed.",
+				"Mrotho wants some Blordrough warriors killed.",
 				true);
 		step_1();
 	}
 
 	@Override
 	public List<String> getHistory(final Player player) {
-		// not currently an active quest
-		return new ArrayList<String>();
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+				return res;
+		}
+		res.add("I have met Mrotho in Ados barracks.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		if (questState.contains("done")) {
+			res.add("I killed blordroughs and get reward from "+QUEST_NPC);
+			return res;
+		} else {
+			res.add("I killed "+Integer.toString(getKilledCreaturesNumber(player))+" blordroughs (need "+Integer.toString(killsnumber)+ ").");
+		}
+        return res;
 	}
 
 	/**
@@ -345,7 +360,9 @@ import games.stendhal.server.util.TimeUtil;
 
 	@Override
 	public String getNPCName() {
-		return "Despot Halb Errvl";
+		return "Mrotho";
 	}
+	
+	
 }
 
