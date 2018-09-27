@@ -37,8 +37,10 @@ public class PassiveNPC extends NPC {
 		// Health bar drawing is supressed
 		put("no_hpbar", "");
 
-		setSize(1, 1);
+		// Remove "attack" option from menus
+		put("no_attack", "");
 
+		setSize(1, 1);
 		updateModifiedAttributes();
 	}
 

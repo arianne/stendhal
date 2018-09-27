@@ -43,6 +43,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Nature;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an RP entity.
@@ -378,7 +379,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			drawHPbar(g2d, x, y, width);
 		}
 	}
-	
+
 	private int getStatusBarHeight() {
 		if (titleSprite != null) {
 			return 3 + titleSprite.getHeight();
@@ -733,19 +734,24 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		/*
-		 * Menu is used to provide an alternate action for some entities (like
-		 * puppies - and they should not be attackable).
-		 *
-		 * For now normally attackable entities get a menu only in Capture The
-		 * Flag, and then they don't need attack. If that changes, this code
-		 * will need to be adjusted.
-		 */
-		if (!entity.getRPObject().has("menu")) {
-			if (entity.isAttackedBy(User.get())) {
-				list.add(ActionType.STOP_ATTACK.getRepresentation());
-			} else {
-				list.add(ActionType.ATTACK.getRepresentation());
+		final RPObject obj = entity.getRPObject();
+		if (!obj.has("no_attack")) {
+			/* FIXME: PassiveNPC no longer has "Attack" option in menu. Should this
+			 *        code be changed?
+			 *
+			 * Menu is used to provide an alternate action for some entities (like
+			 * puppies - and they should not be attackable).
+			 *
+			 * For now normally attackable entities get a menu only in Capture The
+			 * Flag, and then they don't need attack. If that changes, this code
+			 * will need to be adjusted.
+			 */
+			if (!entity.getRPObject().has("menu")) {
+				if (entity.isAttackedBy(User.get())) {
+					list.add(ActionType.STOP_ATTACK.getRepresentation());
+				} else {
+					list.add(ActionType.ATTACK.getRepresentation());
+				}
 			}
 		}
 
@@ -855,7 +861,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	public int getZIndex() {
 		return 8000;
 	}
-	
+
 	@Override
 	public void setVisibleScreenArea(Rectangle area) {
 		Rectangle drawingArea = getDrawingArea();
