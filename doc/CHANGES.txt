@@ -26,6 +26,7 @@ Changelog
 
 *bugfixes*
 - shock status effect cannot be overridden by auto-walk
+- pets can be walked over so as to not trap players
 
 
 1.27
