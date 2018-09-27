@@ -1,0 +1,34 @@
+# Project: jniguihead
+# Makefile created by Dev-C++ 5.7.1
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = ../../head_jni_BETA/jniguihead.o ../../head_jni_BETA/head.o ../../head_jni_BETA/jnihead.o
+LINKOBJ  = ../../head_jni_BETA/jniguihead.o ../../head_jni_BETA/head.o ../../head_jni_BETA/jnihead.o
+LIBS     = -L"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/lib" -L"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc -mwindows -n -s
+INCS     = -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/include" -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/mingw32/include" -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Java/jdk 1.4/include" -I"C:/Program Files (x86)/Java/jdk 1.4/include/win32"
+CXXINCS  = -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/include" -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/mingw32/include" -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Users/GMan/Dev-Cpp 5.7.1/MinGW32/lib/gcc/mingw32/4.8.1/include/c++" -I"C:/Program Files (x86)/Java/jdk 1.4/include" -I"C:/Program Files (x86)/Java/jdk 1.4/include/win32"
+BIN      = jniguihead.exe
+CXXFLAGS = $(CXXINCS) -Os
+CFLAGS   = $(INCS) -Os
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+../../head_jni_BETA/jniguihead.o: jniguihead.c
+	$(CC) -c jniguihead.c -o ../../head_jni_BETA/jniguihead.o $(CFLAGS)
+
+../../head_jni_BETA/head.o: ../head.c
+	$(CC) -c ../head.c -o ../../head_jni_BETA/head.o $(CFLAGS)
+
+../../head_jni_BETA/jnihead.o: ../jnihead.c
+	$(CC) -c ../jnihead.c -o ../../head_jni_BETA/jnihead.o $(CFLAGS)

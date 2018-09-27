@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sf.launch4j.example</groupId>
+	<artifactId>ExitCodeApp</artifactId>
+	<version>1.0</version>
+	<name>ExitCodeApp</name>
+    <packaging>jar</packaging>
+
+    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+      <sourceDirectory>src</sourceDirectory>
+	  <resources>
+		<resource>
+		  <directory>src</directory>
+		  <excludes>
+		    <exclude>**/*.java</exclude>
+		  </excludes>
+	    </resource>
+	  </resources>
+      <plugins>
+        <plugin>
+	      <artifactId>maven-compiler-plugin</artifactId>
+		  <version>3.1</version>
+		  <configuration>
+		    <source>1.6</source>
+			<target>1.6</target>
+		  </configuration>
+		</plugin>
+        <plugin>
+          <groupId>com.akathist.maven.plugins.launch4j</groupId>
+          <artifactId>launch4j-maven-plugin</artifactId>
+          <version>1.7.6</version>
+          <executions>
+            <execution>
+              <id>l4j</id>
+              <phase>package</phase>
+              <goals><goal>launch4j</goal></goals>
+              <configuration>
+                <headerType>console</headerType>
+                <outfile>target/ExitCodeApp.exe</outfile>
+                <jar>target/ExitCodeApp-1.0.jar</jar>
+                <errTitle>ExitCodeApp</errTitle>
+                <classPath>
+                  <mainClass>net.sf.launch4j.example.ExitCodeApp</mainClass>
+                  <addDependencies>false</addDependencies>
+                  <preCp>anything</preCp>
+                </classPath>
+                <jre>
+                  <minVersion>1.5.0</minVersion>
+                </jre>
+                <versionInfo>
+                  <fileVersion>1.0.0.0</fileVersion>
+                  <txtFileVersion>1.0</txtFileVersion>
+                  <fileDescription>Simple app for testing exit code.</fileDescription>
+                  <copyright>Copyright (C) 2015 GK</copyright>
+                  <productVersion>3.9.0.0</productVersion>
+                  <txtProductVersion>3.9</txtProductVersion>
+                  <productName>ExitCodeApp</productName>
+                  <internalName>ExitCodeApp</internalName>
+                  <originalFilename>ExitCodeApp.exe</originalFilename>
+                </versionInfo>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+  </project> 

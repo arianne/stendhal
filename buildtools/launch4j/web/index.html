@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Launch4j - Cross-platform Java executable wrapper</title>
+		<meta name="description" content="Cross-platform Java executable wrapper for creating lightweight Windows native EXEs. Provides advanced JRE search, application startup configuration and better user experience.">
+		<meta name="keywords" content="java executable wrapper, java application wrapper, exe wrapper, jar wrapper, wrap, wraps, wrapping, free software, launch, launcher, linux, mac, windows, open source, ant, native splash screen, deploy, build tool">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Grzegorz Kowal" >
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="container">
+			<div id="top">
+				<img style="width: 249px; height: 58px;" src="launch4j.gif" alt="launch4j"> <span class="version">3.12</span>
+			</div>
+			<div id="leftnav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="docs.html">Docs</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+					<li><a href="http://sourceforge.net/project/screenshots.php?group_id=95944">Screenshots</a></li>
+					<li><a href="http://sourceforge.net/projects/launch4j/files/launch4j-3/3.12">Download</a></li>
+					<li><a href="http://sourceforge.net/projects/launch4j/support">Support</a></li>
+					<li><a href="http://sourceforge.net/projects/launch4j">Project summary</a></li>
+					<li><a href="http://sourceforge.net/tracker/?atid=613100&amp;group_id=95944">Bug tracker</a></li>
+					<li><a href="links.html">Links</a></li>
+				</ul>
+				<br />
+				<a class="button" href="https://sourceforge.net/projects/launch4j/files/launch4j-3/3.12" rel="nofollow"><img alt="Downloads" src="https://img.shields.io/sourceforge/dm/launch4j.svg"></a>
+				<a class="button" href="https://sourceforge.net/p/launch4j/" rel="nofollow"><img alt="Download Launch4j" src="https://sourceforge.net/sflogo.php?type=10&group_id=95944"></a>
+			</div>
+			<div id="content">
+<h2>Cross-platform Java executable wrapper</h2>
+<p>
+    Launch4j is a cross-platform tool for wrapping
+    Java applications distributed as jars in lightweight Windows
+    native executables. The executable can be
+    configured to search for a certain JRE version or
+    use a bundled one, and it's possible to set
+    runtime options, like the initial/max heap size.
+    The wrapper also provides better user experience
+    through an application icon, a native pre-JRE
+    splash screen, and a Java download page in case
+    the appropriate JRE cannot be found.
+</p>
+<img style="width: 352px; height: 498px; margin-left: 100px;" src="launch4j-use.gif" alt="How to use Launch4">
+<h2>Features</h2>
+<ul>
+	<li>Launch4j wraps jars in Windows native executables and allows to run them
+		like a regular Windows program. It's possible to wrap applications
+		on Windows, Linux and Mac OS X!
+	</li>
+	<li>Also creates <strong>launchers</strong> for jars and class files without wrapping.</li>
+	<li>
+		Supports executable jars and <strong>dynamic classpath</strong> resolution using
+		environment variables and wildcards.
+	</li>
+	<li><strong>Doesn't extract the jar</strong> from the executable.</li>
+	<li>Custom application icon with multiple resolutions and color depths.</li>
+	<li><strong>Native pre-JRE splash screen</strong> in BMP format shown until
+		the Java application starts.
+	</li>
+	<li>Initial <strong>priority</strong> and <strong>single application instance</strong> features.
+	</li>
+	<li>Works with a bundled JRE or searches for newest Sun or IBM JRE / JDK in given
+		version range and type (64-bit or 32-bit).</li>
+	<li>Opens <strong>Java download page</strong> if an appropriate Java version cannot be
+		found or a <strong>support website</strong> in case of an error.
+	</li>
+	<li>Supports <strong>GUI and console apps</strong>.</li>
+	<li>Supports Windows <strong>application manifests</strong>.</li>
+	<li>Passes command line arguments, also supports constant arguments.</li>
+	<li>Allows to set the initial/max heap size also <strong>dynamically</strong> in percent of free memory.</li>
+	<li>JVM options: set system properties, tweak the garbage collection...</li>
+	<li>Runtime JVM options from an .l4j.ini file.</li>
+	<li>Runtime command line switches to change the compiled options.</li>
+	<li>Access to environment variables, the <strong>registry</strong> and executable file path through system properties.</li>
+	<li><strong>Set environment variables.</strong></li>
+	<li>Option to change current directory to the executable location.</li>
+	<li>The JRE's bin directory is appended to the Path environment variable.</li>
+	<li>Ability to restart the application based on exit code.</li>
+	<li>Custom <strong>version information</strong> shown by Windows Explorer.</li>
+	<li>Digital signing of the executable with sign4j.</li>
+	<li>Supports Windows Security Features of the Windows 8 certification kit.</li>
+	<li><strong>GUI</strong> and command line interface.</li>
+	<li>Build integration through an <strong>Ant task</strong> and a <strong><a href="https://github.com/lukaszlenart/launch4j-maven-plugin">Maven Plugin</a></strong>.</li>
+	<li><strong>Lightweight: 35 KB!</strong></li>
+	<li><strong>It's free</strong> and may be used for commercial purposes.</li>
+	<li>Includes a sample application and <strong>Ant script</strong>
+		that automates the build process from Java sources to native executable.
+	</li>
+	<li>The wrapped program works on all Windows platforms,
+		Launch4j works on Windows, Linux and Mac OS X.
+	</li>
+</ul>
+<h2>License</h2>
+<p>
+	This program is free software licensed under the
+	<a href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>, the <em>head</em> subproject
+	(the code which is attached to the wrapped jars) is licensed under the
+	<a href="http://opensource.org/licenses/mit-license.html">MIT License</a>.
+	Launch4j may be used for wrapping closed source, commercial applications.
+</p>
+<h2>Info</h2>
+<p>
+	Running Launch4j on other Java enabled platforms is a matter of getting a binary version
+	of <a href="http://www.mingw.org/">MinGW</a> binutils 2.22 (<em>windres</em> and <em>ld</em> only)
+	for your system or compiling them. If you'll provide these, I'll be able to create a binary package
+	available for download.
+</p>
+<a href="http://sourceforge.net/forum/forum.php?forum_id=332683"></a>
+			</div>
+			<div class="footer">
+			    All trademarks mentioned are properties of their respective owners.<br />
+            	Copyright &copy; 2005-2017 Grzegorz Kowal
+            	<p style="margin-top: 0.5em">
+            	    <a href="https://sourceforge.net/p/launch4j/" rel="nofollow"><img alt="Download Launch4j Executable Wrapper" src="https://sourceforge.net/sflogo.php?type=16&group_id=95944"></a>
+            	</p>
+			</div>
+		</div>
+	</body>
+</html>

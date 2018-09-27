@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Launch4j - Cross-platform Java executable wrapper</title>
+		<meta name="description" content="Cross-platform Java executable wrapper for creating lightweight Windows native EXEs. Provides advanced JRE search, application startup configuration and better user experience.">
+		<meta name="keywords" content="java executable wrapper, java application wrapper, exe wrapper, jar wrapper, wrap, wraps, wrapping, free software, launch, launcher, linux, mac, windows, open source, ant, native splash screen, deploy, build tool">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Grzegorz Kowal" >
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="container">
+			<div id="top">
+				<img style="width: 249px; height: 58px;" src="launch4j.gif" alt="launch4j"> <span class="version">3.12</span>
+			</div>
+			<div id="leftnav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="docs.html">Docs</a></li>
+					<li><a href="changelog.html">Changelog</a></li>
+					<li><a href="http://sourceforge.net/project/screenshots.php?group_id=95944">Screenshots</a></li>
+					<li><a href="http://sourceforge.net/projects/launch4j/files/launch4j-3/3.12">Download</a></li>
+					<li><a href="http://sourceforge.net/projects/launch4j/support">Support</a></li>
+					<li><a href="http://sourceforge.net/projects/launch4j">Project summary</a></li>
+					<li><a href="http://sourceforge.net/tracker/?atid=613100&amp;group_id=95944">Bug tracker</a></li>
+					<li><a href="links.html">Links</a></li>
+				</ul>
+				<br />
+				<a class="button" href="https://sourceforge.net/projects/launch4j/files/launch4j-3/3.12" rel="nofollow"><img alt="Downloads" src="https://img.shields.io/sourceforge/dm/launch4j.svg"></a>
+				<a class="button" href="https://sourceforge.net/p/launch4j/" rel="nofollow"><img alt="Download Launch4j" src="https://sourceforge.net/sflogo.php?type=10&group_id=95944"></a>
+			</div>
+			<div id="content">
+<h2>Changelog</h2>
+
+<h4>Changes in version 3.12 (17-05-2018)</h4>
+<ul class="changes">
+	<li class="warn">Ticket #179, #183 The generated executable fully supports Java 9 and newer (Sergey Karpushin).</li>
+	<li>Ticket #161 Support of update version higher than 99 (Sergey Karpushin).</li>
+	<li>Ticket #177 Launching on Java 9 JDK and newer is now possible (not just JRE).</li>
+	<li>Known issue: launch4j itself does not support Java 9 Early Access, use a public release instead or Java 10.</li>
+</ul>
+
+<h4>Changes in version 3.11 (27-06-2017)</h4>
+<ul class="changes">
+	<li>Log more regarding Java search and missing resources.</li>
+  	<li>Log resource file during build.</li>
+  	<li>Added basic Java 9 support (only major version is detected right now due to version scheme change).</li>
+  	<li>Ticket #145 Allow literal use of % in JRE options and set environment variables, use %% (blueskyhigh).</li>
+  	<li>Added Linux 64-bit binaries (Sebastian Bögl).</li>
+  	<li>Added IBM Java 1.8 support.</li>
+  	<li>JNI header: fixed a crash where launch4j would try to `free` non-heap memory (Alexander Floh).</li>
+  	<li>Ticket #160 Removed old Mac OS X package which caused problems on newer versions of the system.</li>
+</ul>
+
+<h4>Changes in version 3.9 (20-07-2016)</h4>
+<ul class="changes">
+	<li>Ticket #146 Fixed java version check where the update number was greater than 99 (e.g. 1.8.0_101).</li>
+	<li>Enlarged the total classpath length to 30KB.</li>
+	<li>Ticket #142 Unbound VersionInfo returns wrong LanguageID (Sebastian Bögl).</li>
+	<li>Ticket #141 Ensure encoding of resource file to be iso-8859-1 (Thomas Scheithauer).</li>
+	<li>More reactive splash screen response to main window appearance (Federico Fissore).</li>
+	<li>FR #95 Launch4j should return an exit value (Sebastian Bögl).</li>
+	<li>FR #94 Add the working directory classifier for OS X (Sebastian Bögl).</li>
+	<li>FR #39 Launch Java VM through JNI (Ryan Rusaw) - BETA!</li>
+	<li>FR #69 Configure the language property of generated executables (Sebastian Bögl).</li>
+	<li>FR #77 Add legal trademarks as an additional field in version info tab (Sebastian Bögl).</li>
+	<li>Added a simple example how to use the Maven plugin (demo/ExitCodeApp).</li>
+</ul>
+
+<h4>Changes in version 3.8 (09-05-2015)</h4>
+<ul class="changes">
+	<li>FR #59 Mavenized launch4j (thanks to taxone, Paul Jungwirth, Lukasz Lenart).</li>
+	<li>Ticket #139 Sign4j compiles and works on Linux (Tim Angus).</li>
+</ul>
+
+<h4>Changes in version 3.7 (01-03-2015)</h4>
+<ul class="changes">
+	<li>Fixed false positive virus warnings that appeared in version 3.6.</li>
+</ul>
+
+<h4>Changes in version 3.6 (06-01-2015)</h4>
+<ul class="changes">
+	<li>FR #86 The 32/64 bit search is fully configurable (64, 64/32, 32/64, 32) - added option 32/64.</li>
+	<li>FR #70 Java search sequence - bundled JRE can be used before or after the min/max version search (bundledJreAsFallback).</li>
+	<li>Fixed: Crash when classpath contained wildcard patterns where the dependency was in the same directory as the launcher.</li>
+	<li>Fixed launch4j GUI application closing - the process was still running.</li>
+</ul>
+
+<h4>Changes in version 3.5 (09-10-2014)</h4>
+<ul class="changes">
+	<li>Ticket #75 Fixed exit value of -1 results in launch4j error.</li>
+	<li>Ticket #133, #134 Fixed runtimeBits JRE option.</li>
+	<li>FR #28, #72 Ability to restart the application based on exit code (Pascal Gruen, GK).</li>
+</ul>
+
+<h4>Changes in version 3.4 (21-04-2014)</h4>
+<ul class="changes">
+	<li>FR #61 Added a new special variable JREHOMEDIR (Stefan Knoefel).</li>
+	<li>Ticket #130 Removed ant from launch4j classpath to fix problems with other ant versions.</li>
+	<li>Updated JGoodies libraries.</li>
+	<li>Added logging based on launch4j environment variable for file association launch testing.</li>
+</ul>
+
+<h4>Changes in version 3.3 (02-04-2014)</h4>
+<ul class="changes">
+	<li>FR #60 Check the registry during JRE search, so that only valid runtimes are taken into account.</li>
+	<li>Ticket #128 Updated MAC OS X 10.8 windres to 2.24.51.20140326 - version info was compiled incorrectly (Code Buddy).</li>
+	<li>Added support for Japanese characters (Toshimm).</li>
+	<li>Ticket #82, #125 Take configuration encoding into account and save file with UTF-8 encoding.</li>
+</ul>
+
+<h4>Changes in version 3.2 (24-03-2014)</h4>
+<ul class="changes">
+	<li>Ticket #126, #127: Fixed crash when classpath was not defined.</li>
+	<li>Corrected problem with loading jvm options from ini file when bundled JRE is used.</li>
+	<li>FR #63, #80 Add possibility to configure 32/64 bit search.</li>
+	<li>Improved logging (--l4j-debug and --l4j-debug-all).</li>
+</ul>
+
+<h4>Changes in version 3.1.0-beta2 (20-08-2013)</h4>
+<ul class="changes">
+	<li>Removed the custom process name feature which was not compatible with newer Windows versions.</li>
+	<li>#121 Fixed heap calculation on systems with more than 4GB of memory.</li>
+	<li>#115 Added 64-bit bundled JRE option to control when the 32-bit maximum heap is applied.</li>
+	<li>Reduced the 32-bit max heap size to the safer 1GB.</li>
+	<li>Changes in --l4j-debug for better readability.</li>
+	<li>Fixed Can discard changes popup which appeared even if no changes were made.</li>
+	<li>Corrected permissions, owner and group in tgz packages.</li>
+	<li>#117 Fixed launch4j home dir search in case of jar and class files.</li>
+	<li>#111 Support paths with spaces in Linux systems.</li>
+	<li>#91 Linux launch4j starting script no longer changes the current directory.</li>
+	<li>#77 Allow line feeds in custom messages.</li>
+	<li>#57 Escape backslashes.</li>
+</ul>
+
+<h4>Changes in version 3.1.0-beta1 (02-12-2012)</h4>
+<ul class="changes">
+	<li>Migrated code to Java 1.6.</li>
+	<li>Updated binutils to 2.22</li>
+	<li>Added Max OS X x86 support (two versions).</li>
+	<li>Added feature to digitally sign executables - sign4j by the Bramfeld team, sponsored by Servoy.</li>
+	<li>FR #3569093 Support Windows Security Features of the Windows 8 certification kit (Luc Bruninx).</li>
+</ul>
+
+<h4>Changes in version 3.0.2 (02-01-2011)</h4>
+<ul class="changes">
+	<li>Fixed the command line in Exec error message.</li>
+	<li>Fixed set environment variable bug.</li>
+	<li>Added wrapper logging to launch4j GUI.</li>
+	<li>Fixed critical bug: heap size over the limit.</li>
+</ul>
+
+<h4>Changes in version 3.0.1 (20-07-2008)</h4>
+<ul class="changes">
+	<li>Enhanced the runtime logging (--l4j-debug).</li>
+	<li>Fixed critical bug #1925387 64-bit JDK detection problem caused a runtime search error (found by Stivo).</li>
+	<li>Fixed bug #1919406, #1989479 Not every option is loaded from saved xml file (found by Robert Lachner, Jan-Philipp Rathje).</li>
+	<li>Fixed bug #1930222 Simple typo (found by Daniel).</li>
+</ul>
+
+<h4>Changes in version 3.0.0 (16-03-2008)</h4>
+<ul class="changes">
+	<li>FR #1390075 Added dynamic initial/max heap values.</li>
+	<li>FR #1707827 Allow to prefer JDK private runtimes over JREs (Ian Roberts).</li>
+	<li>FR #1730245 Allow to run only a single aplication instance (Sylvain Mina).</li>
+	<li>FR #1391610 Added IBM JRE/JDK support.</li>
+	<li>Added environment variable expansion in bundled JRE path.</li>
+	<li>Fixed critical bug #1882524 JRE detection problem on 64-bit Windows.</li>
+	<li>Fixed bug #1758912 Vista elevation to full administrator privileges.</li>
+	<li>Fixed bug #1784341 Problems with spaces in paths under linux (Michael Piefel).</li>
+	<li>Fixed bug where /bin was appended to path environment variable instead of jre_path/bin.</li>
+</ul>
+
+<h4>Changed license to BSD, MIT (26-01-2008)</h4>
+<ul class="changes">
+	<li>
+		The upcoming Launch4j 3.0.0 release will be licensed under the much more
+		liberal new BSD license. The head subproject (the binary header attached to wrapped jars)
+		will be licensed under the similar MIT license.
+	</li>
+</ul>
+
+<h4>Changes in version 3.0.0-pre2 (29-10-2006)</h4>
+<ul class="changes">
+	<li>Enhanced GUI.</li>
+	<li>Redesigned error reporting.</li>
+	<li>Added custom error messages.</li>
+	<li>Added support website feature.</li>
+	<li>Added PWD and OLDPWD special variables and access to the registry.</li>
+	<li>Runtime ini file extension changed to .l4j.ini, added comments (#).</li>
+	<li>FR #1427811 Initial process priority.</li>
+	<li>FR #1547339 Added VarFileInfo structure to Version Info (Stephan Laertz).</li>
+	<li>FR #1584295 Updated documentation for --l4j-debug.
+	<li>Fixed &lt;jarArgs/&gt; and &lt;args/&gt; config conversion bug (found by Dafe Simonek).</li>
+	<li>Fixed the Ant task exception reporting bug, added tmpdir and bindir attributes.</li>
+	<li>Fixed bug #1563415 Problem with launching application when ini file exists (found by mojomax).</li>
+	<li>Fixed bug #1527619 Console header wildcard expansion (found by erikjv).</li>
+	<li>Fixed bug #1544167 NPE when dontwrap and only classpath given (found by Hendrik Schreiber).</li>
+	<li>Fixed bug #1584264 Dropdown boxes get mixed up (found by Larsen).</li>
+</ul>
+
+<h4>News (17-10-2006)</h4>
+<ul class="changes">
+	<li><a href="http://9stmaryrd.com/tools/launch4j-maven-plugin/">Launch4j Maven Plugin by Paul A. Jungwirth</a></li>
+</ul>
+
+<h4>Changes in version 3.0.0-pre1 (21-07-2006)</h4>
+<ul class="changes">
+	<li>Improved configuration file format and embedded Ant config.</li>
+	<li>Launch executable jars, regular jars and class files.</li>
+	<li>Added dynamic classpath resolution with environment variable references and wildcards.</li>
+	<li>Added option to set environment variables before launching the application.</li>
+	<li>New command line switches to change the compiled options.</li>
+	<li>Improved debug information.</li>
+	<li>Added support for XP visual style manifests.</li>
+	<li>Added option to disable use of private JREs.</li>
+	<li>Many small fixes and improvements...</li>
+</ul>
+
+<h4 class="warn">Configuration file changes in 3.x</h4>
+<ul class="changes">
+	<li>Previous formats (1.x and 2.x) are supported.</li>
+	<li><em>&lt;headerType&gt;</em> accepts gui|console</li>
+	<li><em>&lt;jarArgs&gt;</em> was changed to <em>&lt;cmdLine&gt;</em></li>
+	<li>
+		<em>&lt;launch4jConfig&gt;&lt;headerObjects&gt;&lt;file&gt;</em> was changed to
+		<em>&lt;launch4jConfig&gt;&lt;obj&gt;</em>
+	</li>
+	<li>
+		<em>&lt;launch4jConfig&gt;&lt;libs&gt;&lt;file&gt;</em> was changed to
+		<em>&lt;launch4jConfig&gt;&lt;lib&gt;</em>
+	</li>
+	<li>
+		<em>&lt;launch4jConfig&gt;&lt;jre&gt;&lt;args&gt;</em> was changed to multiple
+		<em>&lt;launch4jConfig&gt;&lt;jre&gt;&lt;opt&gt;</em>
+	</li>
+</ul>
+
+<h4 class="warn">Embedded Ant configuration changes in 3.x</h4>
+<ul class="changes">
+	<li>
+		<em>&lt;jre args="value"&gt;</em> was changed to
+		<em>&lt;jre&gt;&lt;opt&gt;value&lt;/opt&gt;&lt;/jre&gt;</em>
+	</li>
+	<li>Now it's possible to define headerObjects, libs and classpath.</li>
+</ul>
+
+<h4>Changes in version 2.1.5 (21-07-2006)</h4>
+<ul class="changes">
+	<li>Changed the Java download site to http://java.com/download.</li>
+	<li>Now it's possible to use absolute and relative paths to specify the bundled JRE.</li>
+</ul>
+
+<h4>Changes in version 2.1.4 (15-06-2006)</h4>
+<ul class="changes">
+	<li>
+		Fixed bug #1503996 Only the first wrapper instance had a custom process name
+		(found by Helge Böhme).
+	</li>
+</ul>
+
+<h4>Changes in version 2.1.3 (31-05-2006)</h4>
+<ul class="changes">
+	<li>
+		Fixed bug #1497453 Ant task doesn't support relative jar path with '..'
+		(found by Aston, Pavel Moukhataev).
+	</li>
+	<li>Jar argument size limit is now 16KB.</li>
+	<li>Environment variable size limit raised to 32KB.</li>
+	<li>Allow to concatenate multiple env. variables in one property (Maria D.)</li>
+	<li>Added launch4j.tmpdir property.</li>
+</ul>
+
+<h4>Changes in version 2.1.2 (03-04-2006)</h4>
+<ul class="changes">
+	<li>Important bugfix: insufficient command line buffer size was increased to 32KB
+	(found by Sebastian Kopsan).</li>
+	<li>Added runtime JVM options from an .ini file.</li>
+	<li>Launch4j's bin directory is now configurable through launch4j.bindir
+	system property.</li>
+</ul>
+
+<h4>Changes in version 2.1.1 (25-01-2006)</h4>
+<ul class="changes">
+	<li>Fixed bug #1402748. Validation error occurred when using an Ant task with
+		embedded config and dontWrapJar option (found by Chris Nokleberg).</li>
+</ul>
+
+<h4>Changes in version 2.1.0 (10-01-2006)</h4>
+<ul class="changes">
+	<li><b>More features and smaller header: 18 KB!!</b></li>
+	<li>Added launcher mode, you can choose whether or not to wrap the jar.</li>
+	<li>Spanish translation of the website/docs and program messages
+		(Patricio Martínez Ros).</li>
+	<li>JRE's bin directory is appended to the Path environment variable
+		(Ianiv Schweber).</li>
+	<li>Added special variables EXEDIR and EXEFILE that hold the executable's
+		directory and full path.</li>
+	<li>Support for mapping environment variables to system properties.</li>
+	<li>Added debug launching mode - various information is displayed before
+		starting the Java application.</li>
+	<li>Fixed min/max JRE version checking, previous versions allowed these
+		to be equal (found by Ryan).</li>
+	<li>Bug fixed. Quotes in jar/JVM arguments were handled incorrectly (found by Juan Alvarez Ferrando).</li>
+	<li>A few other enhancements.</li>
+</ul>
+
+<h4>Changes in version 2.0.0 (31-10-2005)</h4>
+<ul class="changes">
+	<li>Launch4j for Mac OS X is available thanks to Peter Centgraf.</li>
+	<li>Added support for custom headers.</li>
+	<li>Fixed bug #1343908, command line arguments with spaces were handled
+		incorrectly by the console header (found by Oliver Schaefer / Steve Alberty).</li>
+	<li>Fixed stdin redirection bug (found by Timo Santasalo).</li>
+</ul>
+
+<h4>Changes in version 2.0 RC3 (13-08-2005) - final RC</h4>
+<ul class="changes">
+	<li>Correct handling of pathnames with spaces.</li>
+	<li>Fixed the '%20' pathname bug.</li>
+	<li>Fixed basedir bug (Richard Xing).</li>
+	<li>Splash screen can be closed when the application window becomes visible
+		with out specifying it's title (Martin Busik).
+		Update your config file: <em>&lt;waitForTitle&gt;title&lt;/waitForTitle&gt;</em>
+		is now <em>&lt;waitForWindow&gt;true&lt;/waitForWindow&gt;</em>.
+	</li>
+	<li>Fixed build.bat files in demo directories.</li>
+</ul>
+
+<h4>Changes in version 2.0 RC2 (21-06-2005)</h4>
+<ul class="changes">
+	<li>chdir allows to change the current directory to arbitrary paths
+		relative to the executable (FR #1144907). It's incompatible with
+		previous versions, update your config file:
+		<em>&lt;chdir&gt;true&lt;/chdir&gt;</em>
+		is now <em>&lt;chdir&gt;.&lt;/chdir&gt;</em>.
+	</li>
+	<li>Bundled JRE path no longer depends on chdir function.</li>
+	<li>Fixed Ant task bug, build files outside launch4j's directory
+		wouldn't work. Josh Elsasser submitted a patch that works without
+		setting launch4j's home dir in the build file. Thanks!
+	</li>
+	<li>Removed static edge from splash screen (Serge Baranov).</li>
+	<li>Program checks that the output file path doesn't contain spaces.</li>
+	<li>Fixed a NPE bug caused by a missing maxVersion property
+		(found by Morgan Schweers).
+	</li>
+	<li>Fixed relative JRE path bug (found by Nili_).</li>
+	<li>Cleaned up the Builder class.</li>
+	<li>Fixed Ant task NPE where the config was entirely defined in the
+		build file (Josh Elsasser).
+	</li>
+</ul>
+
+<h4>Changes in version 2.0 RC (07-06-2005)</h4>
+<ul class="changes">
+	<li>Added an Ant task for better build integration.</li>
+	<li>Added 2.x documentation.</li>
+	<li>Updated the demo configuration files.</li>
+	<li>Fixed issues with relative paths in the configuration.</li>
+	<li>Removed the '-1' option in console mode.</li>
+	<li>Minor fixes.</li>
+</ul>
+
+<h4>Changes in version 2.0 beta2 (23-05-2005)</h4>
+<ul class="changes">
+	<li># comments are recognized when importing 1.x cfg files.</li>
+	<li>Added version information.</li>
+	<li>Resource file is displayed when a resource error occurs.</li>
+	<li>Fixed a bug found by Max, options on the first tab were always enabled.</li>
+</ul>
+
+<h4>Changes in version 2.0 beta1 (13-05-2005)</h4>
+<ul class="changes">
+	<li>Completely new, cross-platform wrapper - create windows executables on Linux.</li>
+	<li>New .xml configuration file.</li>
+	<li>Application icon with multiple resolutions and color depths.</li>
+	<li>Swing GUI interface.</li>
+	<li>Header compiled with MinGW port of gcc instead of VC++.</li>
+</ul>
+
+<h4>Changes in version 1.4.2 (12-03-2005)</h4>
+<ul class="changes">
+	<li>Fixed bug #1158143, stayAlive without a splash screen caused
+		an infinite loop (found by Gregory Kotsaftis).
+	</li>
+</ul>
+
+<h4>Changes in version 1.4.1 (04-03-2005)</h4>
+<ul class="changes">
+	<li>Fixed bug #1119040, buffer for reading config properties
+		was too short (found by Tom Jensen and Neil).
+	</li>
+	<li>Added configurable splash timeout (FR #1102951).</li>
+	<li>Added option to disable the error message on splash timeout (FR #1109159).</li>
+	<li>Option to keep the gui launcher 'alive' after starting an application (FR #1124653).</li>
+	<li>Removed version info.</li>
+	<li>'waitfor' property is now optional.</li>
+</ul>
+
+<h4>Changes in version 1.4.0 (26-01-2005)</h4>
+<ul class="changes">
+	<li>Removed .lch4j suffix from process name, now it has the
+		form of the executable filename. The temporary launchers are stored in
+		launch4j-tmp directory (suggested by Emmanuel).
+	</li>
+	<li>Added support for console apps (FR #1050053).</li>
+</ul>
+
+<h4>Changes in version 1.3.1 (05-11-2004)</h4>
+<ul class="changes">
+	<li>Fixed a bug where explorer window was opened instead of
+		launching the application when setProcName was set to false
+		(found by Rob Jones).
+	</li>
+	<li>Fixed temporary launcher deletion bug.</li>
+</ul>
+
+<h4>Changes in version 1.3.0 (01-11-2004)</h4>
+<ul class="changes">
+	<li>Now you can configure launch4j to:
+		<ul class="changes">
+			<li>Use a bundled JRE.</li>
+			<li>Search for java, show an error message if the
+				right version cannot be found and open the java download page.</li>
+			<li>And a feature you asked for: use bundled JRE, if
+				that fails search for java and bring up the java download page on error.</li>
+		</ul>
+	</li>
+	<li>Enhanced code that sets the custom process name. In
+		case launch4j can't refresh the temporary launcher, bundled JRE on a
+		read only file system for example, it will use one created previously,
+		if it's present and has the correct size. If not, launching will still
+		continue, but with javaw.exe process name.Temporary launchers are
+		now created in the jre directory instead of jre/bin.
+	</li>
+	<li>errTitle property allows to set the title of the error message box.</li>
+</ul>
+
+<h4>Changes in version 1.2.1 (25-09-2004)</h4>
+<ul class="changes">
+	<li>Bugfix that allows launching from command line using short
+		name (#1026514 / found by Zach Del)
+	</li>
+</ul>
+
+<h4>Changes in version 1.2.0 (10-09-2004)</h4>
+<ul class="changes">
+	<li><strong>Custom process name</strong> (<i>myapp.lch4j.exe</i>)</li>
+	<li><strong>9 KB stub!</strong></li>
+	<li>Jar arguments</li>
+	<li>Bugfix that allows launching from command line.</li>
+	<li>Hide splash on javaw error.</li>
+	<li>Easier configuration with case insensitive parameters + show unrecognized parameter.</li>
+	<li>12 KB demo application, 34 KB with splash screen.</li>
+	<li>Configuration parameter <em>'args'</em> changed to <em>'jvmArgs'</em></li>
+</ul>
+			</div>
+			<div class="footer">
+			    All trademarks mentioned are properties of their respective owners.<br />
+            	Copyright &copy; 2005-2017 Grzegorz Kowal
+            	<p style="margin-top: 0.5em">
+            	    <a href="https://sourceforge.net/p/launch4j/" rel="nofollow"><img alt="Download Launch4j Executable Wrapper" src="https://sourceforge.net/sflogo.php?type=16&group_id=95944"></a>
+            	</p>
+			</div>
+		</div>
+	</body>
+</html>
