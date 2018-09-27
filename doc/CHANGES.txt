@@ -7,7 +7,7 @@ Changelog
 - some item sprites re-drawn
 - no longer required to have 1 money to use scroll eraser
 - added "venom gland" item to weekly item quest
-- katinka awards positive karma for accepting Zoo Food quest
+- more NPCs award karma for accepting quests
 - new "harmless" corpse sprite for spiders
 - more NPCs won't turn around after collision
 - new hair outfit sprite
@@ -23,6 +23,9 @@ Changelog
 - portals can use "face" attribute to set player facing direction when used as a destination
 - portals can use "offset" attribute to offset player positioning in relation to destination
 - new implementation for antidotes & other status healing items
+
+*bugfixes*
+- shock status effect cannot be overridden by auto-walk
 
 
 1.27
@@ -146,7 +149,7 @@ the huge task of creating & replacing sprite & tileset images.
 - implemented stacked item management
 - display zone name
 - implemented gate, walk blocker and PassiveNPC
- 
+
 *bugfixes*
 - fixed a double login bug resulting in item duplication (thanks to pepsz for the report)
 - fixed a NullPointerException on quit dialog
@@ -155,7 +158,7 @@ the huge task of creating & replacing sprite & tileset images.
 1.25
 
 *world*
-- made new images for rams and lions 
+- made new images for rams and lions
 - made new images for pine, locust trees and new old ents
 - made new ship tiles
 - added soldiers to Ados wall
@@ -177,11 +180,11 @@ the huge task of creating & replacing sprite & tileset images.
 1.24
 
 *world*
-- Mermaids linger around near the outer edge of grotto 
+- Mermaids linger around near the outer edge of grotto
 - New images for farm animals: cow and bull
 - New images for dragons: green and red as well as green and red dragon riders
 - New images for ghost, death, black death and golden death
-- New images for brown, green and black slimes 
+- New images for brown, green and black slimes
 
 *client*
 - none
@@ -197,9 +200,9 @@ the huge task of creating & replacing sprite & tileset images.
 1.23
 
 *world*
-- Mizuno sells ice, fire, and light arrows. 
+- Mizuno sells ice, fire, and light arrows.
 - Because of a bad curse, many creatures, animals and people have lost their appearance
-- Please join us at https://stendhalgame.org/chat/ if you want to help with creating new graphics 
+- Please join us at https://stendhalgame.org/chat/ if you want to help with creating new graphics
 
 
 1.22
@@ -207,7 +210,7 @@ the huge task of creating & replacing sprite & tileset images.
 *world*
 - Winter has started and the weather shows it
 - Semos is decorated for Christmas
-- New Christmas song: "O how joyfully"  
+- New Christmas song: "O how joyfully"
 - KillMonks quest history shows tally marks
 
 *client*
@@ -231,11 +234,11 @@ the huge task of creating & replacing sprite & tileset images.
 - Help For the Harvest quest works again.
 
 *code*
-- In TeleporterBehaviour, zoneName.startsWith() 
+- In TeleporterBehaviour, zoneName.startsWith()
   now checks a variable so teleporting NPCs can be a little more customizable.
 - TeleporterBehaviour can now be passed an array of zones to choose from or leave null for the default list.
 
-*future changes* 
+*future changes*
 - preparation for testing pet leveling and growing
 - Fighting pets will attack things along side their owners. Instead of just in self-defense.
 
@@ -251,8 +254,8 @@ the huge task of creating & replacing sprite & tileset images.
 
 *code*
 - Support Postgres databases in addition to H2 (recommended) and MySQL
-- Setup Travis for continuous integration tests and fixed some order dependent tests 
-- Migrated test coverage analysis from Cobertura to Jacoco 
+- Setup Travis for continuous integration tests and fixed some order dependent tests
+- Migrated test coverage analysis from Cobertura to Jacoco
 - Git repository is mirrored instantaneously between Github and Sourceforge in both directions
 - Yearly special event quests now pick up the current year as part of their quest slot automatically
 - Backend for puzzles
@@ -381,7 +384,7 @@ the huge task of creating & replacing sprite & tileset images.
 *world*
 - Semos city is decorated for Christmas
 - Falling snow
-- Leaderhosen outfit 
+- Leaderhosen outfit
 
 
 *code*
@@ -444,7 +447,7 @@ the huge task of creating & replacing sprite & tileset images.
 - wedding ring supports double click
 - message on shocked
 - code cleanup and documentation improvements
-- excessly high atk and def level are capped for fighters with little experience 
+- excessly high atk and def level are capped for fighters with little experience
   (average players should not notice much of a difference)
 
 
@@ -469,8 +472,8 @@ the huge task of creating & replacing sprite & tileset images.
 
 
 *developer's note*
-- If you developed a game based on stendhal and use the automatic updater, 
-  you will need to edit game.properties and add UPDATE_SIGNER_KEY. 
+- If you developed a game based on stendhal and use the automatic updater,
+  you will need to edit game.properties and add UPDATE_SIGNER_KEY.
   The required value will printed in the webstart console.
 
 
@@ -479,7 +482,7 @@ the huge task of creating & replacing sprite & tileset images.
 *fixes*
 - disabled reference to an empty item file which broke the website
 - fixed a karma exploit on accepting accpeted quests
-- fixed PVP defense against weaker players 
+- fixed PVP defense against weaker players
 
 
 1.12
@@ -667,8 +670,8 @@ the huge task of creating & replacing sprite & tileset images.
 - Adventurers have discovered a pit full of snakes beneath Ados caves
 - New dropped items: elvish hat
 - New quest items: stone legs
-- More light on Ados market, around Athor island and more light effects 
-- New look for mountain orc 
+- More light on Ados market, around Athor island and more light effects
+- New look for mountain orc
 - Dwarves rebuilt rails in Semos Mine
 - Introducing Mimics, cobra, king cobra, and lamia to the world
 - More sounds and descriptions for creatures
@@ -702,7 +705,7 @@ the huge task of creating & replacing sprite & tileset images.
 - more creature descriptions added
 - new sprite shown when blood and corpses setting is turned off
 - new sound effects for multiple creatures
-- Leander explains his task better 
+- Leander explains his task better
 - new corpses for slimes, ents and stone golems
 - dwarvish legs now available
 
@@ -748,10 +751,10 @@ the huge task of creating & replacing sprite & tileset images.
 - jail exit is straight to outside the cell
 - bulletin board added to bank for future announcements and general fun
 - olive added as food item to allow for addition of olive oil - several trees added to maps for this
-- jail added to rat city 
+- jail added to rat city
 
 *client*
-- replaced the separate menu buttons with one large menu 
+- replaced the separate menu buttons with one large menu
 - HP bar of ignored players is drawn in full color to make them visible at night
 - chat spam filter takes the length of the messages into account
 
@@ -770,11 +773,11 @@ the huge task of creating & replacing sprite & tileset images.
 
 *world*
 - Ados Botanical Gardens
-- new lamps 
+- new lamps
 - map layering and collisions fixes
 - new blend mode for enabling lighting in any zone
 - Monogenes informs players about public chest
-- 3 achievements activated 
+- 3 achievements activated
 
 *fixes*
 - don't accidently pick the first item on click spam on an item which was used up
@@ -848,8 +851,8 @@ the huge task of creating & replacing sprite & tileset images.
 
 *world*
 - Venethiel teaches players about Haizen's maze
-- Will warns players leaving Semos city 
-- reworked Fado hotel restaurant 
+- Will warns players leaving Semos city
+- reworked Fado hotel restaurant
 - more creature descriptions added
 - moved Semos city wall into the city
 - Monogenes is now next to the bird station in Semos city
@@ -857,7 +860,7 @@ the huge task of creating & replacing sprite & tileset images.
 - Player bound items do not move under pushed player, unless they belong to the said player
 - Mixed creature fighting profiles. Used mainly for dragons, who will attack at a distance if they can't get close to player
 - killer bees are a new creature in fado forest
-- Zinnia, Calla, Lobelia and Periwinkle hint which nearby quests you still need to start (that fit your level) 
+- Zinnia, Calla, Lobelia and Periwinkle hint which nearby quests you still need to start (that fit your level)
 
 *other*
 - added /profile <name> to open the webprofile of a character
@@ -885,7 +888,7 @@ the huge task of creating & replacing sprite & tileset images.
 * lots of testing
 * nice descriptions for many NPCs
 * fixed map bugs
-* added social buttons to website 
+* added social buttons to website
 
 
 
@@ -950,7 +953,7 @@ the huge task of creating & replacing sprite & tileset images.
 
 - Farmer achievement can be reached due to garlic grower implementation
 - Stop player vs player attack if either player move into a protection zone
-- Fixed descriptions for items that can be picked 
+- Fixed descriptions for items that can be picked
 
 
 0.97
@@ -959,7 +962,7 @@ the huge task of creating & replacing sprite & tileset images.
 * Revival Weeks*
 - Faiumoni's inhabitants are excited for the Mine Town Revival Weeks already and decorated Semos City and the Mine Town area
 - Caroline finally found her way to the Mine Town for selling snacks and drinks
-- NPCs and games have been moved in relation to the former years 
+- NPCs and games have been moved in relation to the former years
 
 *world*
 - More Semos NPCs help players now if they need some advise of what to do next
@@ -1013,7 +1016,7 @@ the huge task of creating & replacing sprite & tileset images.
 - the quest log hints if a quest which has been started isn't suitable for the current level
 - danger signs are more prominent
 - protect areas near healer npcs Katerina and Jynath and widen the entrances to avoid common social problems
- 
+
 *website*
 - added an interactive Atlas to the website
 - improvements to the arianne.sourceforge.net website including an rss feed
@@ -1048,7 +1051,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 
 *client*
 - text boxes are now attached to the bottom of the screen
-- renamed the stendhal-FULL-0.xx.zip to stendhal-0.xx.zip. 
+- renamed the stendhal-FULL-0.xx.zip to stendhal-0.xx.zip.
   the extra client without sound made sense a long time ago
   when the full client had twice the size of the soundless client.
 
@@ -1101,7 +1104,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - deathmatch creature spawn time dependent on player level and (inversely) on number of players in ring
 - get fresh water at some hidden new springs
 - Kill Enemy Army quest history with more detail and records number of completions
-- Xhiphin Zohos is thirsty and asks for water 
+- Xhiphin Zohos is thirsty and asks for water
 - decorated Semos for Easter
 - Easter Bunny drops small easter eggs as he walks
 
@@ -1145,7 +1148,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 *world*
 - sheep growing quest from Nishiya
 - Help Jef by finding his mom, Amber, in a new quest
-- Caroline moved into her refurbished house in Ados 
+- Caroline moved into her refurbished house in Ados
 - the required item to collect (if chosen from a list) is displayed in more quest histories
 - message about where you died, on death
 - sound on level up
@@ -1332,7 +1335,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - Diogenes tells you about postman, he recently remembered that used to be his job
 - a sign at the flowers field which shows the meaning of these flowers
 - marked path from semos to ados city and to the athor ferry pier on ados coast
-- new npc added to ados market, who buys blue shield 
+- new npc added to ados market, who buys blue shield
 - Simon in Ados church offers helpful guidance
 - blackjack max stake raised to 400
 - bakers want more button mushrooms
@@ -1352,7 +1355,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - getting an amulet when killing thing
 
 *code*
-- portals can do actions 
+- portals can do actions
 - Messages from NPCs to offline players for postman can be stored in a table (without postman online)
 - SBoxLayout supports alignment and padding
 - support messages will get sent using postman if the player was offline
@@ -1385,7 +1388,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - a script for calculating item drop rarities
 - quests history refactored to not use xml
 - many semos npcs reverted to not use xml for configuration
-  
+
 *bugfixes*
 - upper part of grain is not counted as grain (can move between grain fields)
 - raid creatures no longer have attack weakest profile even if the creature normally would
@@ -1428,13 +1431,13 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - npc conditions and actions for randomised item collection quests
 - fixed bug with xp display after death
 - ranged attack bug fixes on using up last missile and throwing from 1 tile away
-- email address field may be left completely empty on account creation 
+- email address field may be left completely empty on account creation
 - /inspect command output improved for viewing quests, karma, and coordinates
 
 *website*
 - performance optimisation
 - bugfixes including player display on firefox
-- spouse of a married player is displayed 
+- spouse of a married player is displayed
 
 0.83: Dark or Light, Fire or Ice?
 30th April 2010
@@ -1529,12 +1532,12 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 
 0.81.2
 *bug fixes*
-- fixed a crash on Linux using alsa (non pulse) audio drivers and Sun Java (not OpenJDK) 
+- fixed a crash on Linux using alsa (non pulse) audio drivers and Sun Java (not OpenJDK)
   if all channels are in use by another application
-- fixed InvalidVersionExceptions in the network code on high latency connections 
+- fixed InvalidVersionExceptions in the network code on high latency connections
   (for example for people living outside Europe to an server in Europe)
 - handle failure to load sprite images more gracefully
-- improved logging of uncaught exceptions 
+- improved logging of uncaught exceptions
 
 0.81.2 contains the first results of the Client Quality Weeks. Thanks everyone for providing
 your error log files and pleace continue to do so.
@@ -1556,7 +1559,7 @@ your error log files and pleace continue to do so.
 - a dragbar for making the game screen smaller (handy for netbooks)
 - new quest from Ouchit with new NPC in ados forest
 - having multiple correct answers for a riddle now possible
-- athor labyrinth redrawn 
+- athor labyrinth redrawn
 - h2 database support
 - ignored players are drawn as black forms
 
@@ -1572,7 +1575,7 @@ your error log files and pleace continue to do so.
 - fixed leander stealing all the pizzas of a player who has failed the quest previously
 
 *code*
-- sound system rewritten and using oggs 
+- sound system rewritten and using oggs
 - more client refactoring
 
 *website*
@@ -1600,7 +1603,7 @@ your error log files and pleace continue to do so.
 - ShopSigns show item images, price and stats in a popup window
 - /ignore <player> ignores public chat from player as well as private
 *bug fixes*
-- Semos Village and south east of Semos city redesigned to direct new players better 
+- Semos Village and south east of Semos city redesigned to direct new players better
 - '/sound mute on' command is now simply '/mute'
 - /mute is remembered across restarts
 - fixed unwanted popping up of minimized keyring window
@@ -1643,9 +1646,9 @@ your error log files and pleace continue to do so.
 
 * changes for admins
 - new command /script -list
-- new /script SetServerWelcome.class which will set a new login welcome message until the server is restarted 
+- new /script SetServerWelcome.class which will set a new login welcome message until the server is restarted
 - fixed broken logging of source position for items moved around on the ground
-- added $ignore and $spam supportanswer shortcuts, also changed the $abuse shortcut to $notsupport 
+- added $ignore and $spam supportanswer shortcuts, also changed the $abuse shortcut to $notsupport
 
 
 0.78: Semos Mine Town Revival Weeks
@@ -1660,7 +1663,7 @@ your error log files and pleace continue to do so.
 - semos mine town revival weeks with outfits, tic tac toe, paper chase and susi
 
 * changes for developer / hosters / admins
-- replaced old forked map editor with the official one from http://mapeditor.org/ 
+- replaced old forked map editor with the official one from http://mapeditor.org/
 - fixed error message: object does not have slot !quests
 - check existence of character to be jailed
 - check that the player in /jail-command exists
@@ -1677,7 +1680,7 @@ your error log files and pleace continue to do so.
 - don't let pets/sheep dying result in concurrent modification
 - Make it possible to name pets back to their original name
 - allow always using the animal type to rename a pet (even if it has a name already)
-- give 20 xp for the Cherub in the starting zone so players don't get to level 4 instantly 
+- give 20 xp for the Cherub in the starting zone so players don't get to level 4 instantly
 - new items added to NPC buyers
 - moved the chatlog to the main client window
 - minimap and buddies are now a side panel
@@ -1713,7 +1716,7 @@ your error log files and pleace continue to do so.
 - a large memory hole fixed
 - Jenny from the Mill sells flower seeds to plant on a patch in Semos Plains N
 - added NPCs to website
-- prevent creation of accounts with commonly used passwords from a list 
+- prevent creation of accounts with commonly used passwords from a list
 - Sato puts his sheep in the den
 * new artwork
 - potions, antidotes, poisons
@@ -1728,11 +1731,11 @@ your error log files and pleace continue to do so.
 0.74: What goes around comes around
 23rd May 2009
 
-- player karma affects what skills they lose on death 
+- player karma affects what skills they lose on death
  --max 20% for non ring wearers with negative karma, and 10% as before if player karma was 0. if they had positive karma they lose less
  --Ring wearers lose max 2%, average 1% and less with positive karma
 - new hybrid spider creature in nalwor drow tunnels
-- new houses in ados, numbers 69 to 77 
+- new houses in ados, numbers 69 to 77
 - tutorial event linking to stendhal rules
 - find out content of Ignore list by typing /ignore (with no parameters)
 - deathmatch: if occupied then challenging player is told who is inside so they can say yes/no about entering
@@ -1743,9 +1746,9 @@ your error log files and pleace continue to do so.
 - Daily monster, daily item and weekly item quests give karma.
 - Daily Item quest gives less XP than monster now, (as it gives more karma)
 - max level players get a large karma reward from daily and weekly quests (as they cannot earn xp from it)
-- in fighting, made the 'level difference to not need karma' be dependent on level instead of being a fixed 20 levels 
+- in fighting, made the 'level difference to not need karma' be dependent on level instead of being a fixed 20 levels
 - answer a riddle to leave hell, as another option instead of losing karma
-- more creature descriptions 
+- more creature descriptions
 - new raid scripts added, and list raids which gives the names. existing scripts renamed to be all same format
 *Admin*
 - gag is adminlevel 200
@@ -1786,7 +1789,7 @@ your error log files and pleace continue to do so.
 - min respawn time for creatures (10 seconds)
 - NPCs will not buy items from a player killer at all
 - NPCs will sell to a player killer but they charge 1.5 times the normal price
-- doors into the oni palace now a level checking portal 
+- doors into the oni palace now a level checking portal
 - Thanatos says the new def of trophy helmet, and says if it is at max, as he
 changes it
 - marked scrolls don't get player bound (old ones to be unbound)
@@ -1829,19 +1832,19 @@ to players inside
 - chatlog can be saved by right clicking on gamelog. it is saved in home/stendhal/gamelog.txt
 - /info returns current server time
 - Susi and her father living in a house in Ados
-- special outfit lender Liliana in magic city 
-- creatures equip the items they have, and use the respective attack rate 
-- infantry gnome, archmage elf, dark elf knight, dark elf sacerdotist, black 
+- special outfit lender Liliana in magic city
+- creatures equip the items they have, and use the respective attack rate
+- infantry gnome, archmage elf, dark elf knight, dark elf sacerdotist, black
 dragon and balrog attack at different rates from the default, and hit either
 harder or weaker accordingly
 - rare monsters that do not appear in DM or daily quests. a big bad wolf and an
 unicorn added for now
 - new item, red dragon cloak
 - walkblocker squares coloured pink on minimap
-*Improvements* 
+*Improvements*
 - player level info added to character panel
 - player atk and def displayed as base 'times' (weapon + 1) on character panel
-- Deathmatch recruiter walks in safer (upper) part of swamp 
+- Deathmatch recruiter walks in safer (upper) part of swamp
 - find out which heroes are in the deathmatch already by asking Thonatus, the recruiter
 - increased spawn delay of creatures in DM by 5 sec
 - decrease how long player is forced to wait after requesting bail
@@ -1861,9 +1864,9 @@ unicorn added for now
 - NPCShoutZone.java: messages are now also send to all supporters as stated in todo
 - Snowballs.java: let NPC say when new snowballs could be needed
 - Soup making exploit to boost karma now fixed
-- Zara re-offers quest if player previously rejected 
+- Zara re-offers quest if player previously rejected
 - security measures on nalwor jail removed so players can heal there
-- sheep and pet only get hungrier when there are players in the same zone 
+- sheep and pet only get hungrier when there are players in the same zone
 - rose leigh says Bye directly after giving flower so other players can say hi
 - dwarf golem moved to giant animal instead of giant human
 *Misc*
@@ -1877,14 +1880,14 @@ unicorn added for now
 0.71: Semos Mine Town Revival Weeks!
 30th November 2008
 
-- chatlog stops automatic scroll on when not at bottom of text 
+- chatlog stops automatic scroll on when not at bottom of text
 - chatlog highlighted pink if the scroll was halted and there are unread messages
 - tab-completion toggles through all online players in chat line
 - attribute all players who kill in DM not just the DM starter
 - fix a bug in heal which was confusing the DM assistant
 - fix a bug in the calculation of DM score
 - add npc to guide players to the rat city and help them avoid going wrong way
-- leander buys cheese 
+- leander buys cheese
 - place a few creatures that were low level but only accessible by going past
 high level cretaures, in better places to aid mayor task
 - fixed a bug with using balloons
@@ -1927,7 +1930,7 @@ orc sword
 - script for GM to run which corrects the slot of a player in DM so they can
 claim victory
 - NPCShoutZone script for GM
-- /ban command for GM 
+- /ban command for GM
 - invited guest cannot use invitation scroll to get to church unless the
 engaged player is online
 - older invitation scrolls with a different format will not work now (magic lost)
@@ -1952,7 +1955,7 @@ engaged player is online
 - corrected xp of golden death
 - path between kirdneh and fado
 - added -Dstendhal.quest.regex analog to -Dstendhal.zone.regex to speed up restart while developing.
-- fado battle arena for raids - clear space and divided levels 
+- fado battle arena for raids - clear space and divided levels
 - hedges, waterfall and vegetable growers redrawn
 - spinach, salad, all mushrooms and all herbs now using vegetable grower
 - can *destroy blood and corpse now, (but ths is not clean) and blocked *destroy of portal
@@ -1961,7 +1964,7 @@ engaged player is online
 - cleaned up /inspect of a player
 - made sally give time remaining to campfire test and reworked parts
 - AmazonPrincess uses 'new' ChatAction way
-- in battle karma isn't used when the level difference is enough that no luck is needed 
+- in battle karma isn't used when the level difference is enough that no luck is needed
 - pet is starving message re-introduced
 - 'use' only seen on items which are useable
 - item guard creatures like the thing can check if a quest is active before dropping item
@@ -1974,7 +1977,7 @@ engaged player is online
 - katinka accepts abandoned pets, who are rehomed in the pet sanctuary
 - pets can eat from passive entity respawn points
 - items which are not placed by a player now expire correctly
-- lorenz and xoderos given improved response coverage for their quests 
+- lorenz and xoderos given improved response coverage for their quests
 - player is no longer told 'you can't consume any more', but eat too much and you choke or choke to death
 - eating, poisoned, choking and combat icons moved up 8 pixels so they don't overhang entity's feet
 - red combat square made slightly smaller so that it is not outside the entity area (which casued map trouble)
@@ -1993,7 +1996,7 @@ engaged player is online
 - balrog home in semos mines w2 redecorated
 - all tiles of unknown origin now redrawn
 - 'can drop items from bag even when closed' bug fixed
-- honeymoon logic for just married couples is smarter 
+- honeymoon logic for just married couples is smarter
 - townhall redecorated
 - all east-west doors have much better look and feel
 - client bug Freeze on rapid Login button uses now fixed
@@ -2035,7 +2038,7 @@ engaged player is online
 - cloak buyer added to central Amazon area
 - odds and ends buy added to -3 abandoned keep
 - veggie and herb buyer added to assassin HQ cellar
-- scrolls now available by bartering with gardener lady in kalavan 
+- scrolls now available by bartering with gardener lady in kalavan
 - milk now available from semos farm
 - honey now availble from beekeeper in fado forest
 
@@ -2093,14 +2096,14 @@ engaged player is online
 
 - semos city decorated for Christmas!
 - meet santa as he wanders around, get a hat and stocking
-- more new and replacement graphics 
+- more new and replacement graphics
 - most fado interiors redecorated
 - direct route from kalavan -> kirdneh now possible sue to links with -1_fado_great_caves
 - ice elementals add to ice cap in semos outdoor mountain temple, water
 elementals moved up to 1 kikareukin cave and air elementals added at 6
-kikareukin islands. 
+kikareukin islands.
 - elementals stats reflect level better - same atk but more def and hp.
-- nymphs in a glen in fado forest 
+- nymphs in a glen in fado forest
 - rooms beyond lich at orril palace opened
 - learn how to 'use' orbs to teleport you
 - to only receive messages from buddies, turn on /grumpy
@@ -2135,7 +2138,7 @@ kikareukin islands.
  - magic underground city (with wizard school, theater, etc)
  - imperial underground city (sedah)
  - kalavan castle
- - kalavan city 
+ - kalavan city
  - fado forest extensions
  - amazon island and tunnels
 - New Creatures:
@@ -2185,7 +2188,7 @@ kikareukin islands.
  - Semos bank more secure (one player areas near chests)
  - Magic bank where you can access all chests for fee and limited time
  - more redrawn tiles
- - ados bank, townhall_0 both easier to travel across 
+ - ados bank, townhall_0 both easier to travel across
  - level 170-210 creatures rebalanced
 
 0.62: Sky towers and deep dungeons
@@ -2194,7 +2197,7 @@ kikareukin islands.
 - Keyring 2 slots bigger to accommodate new items players may acquire
 - On entering centre zone for first time, get atmospheric message
 - Nalwor tower open; resident princess with a quest
-- Quest for the Club of Thorns in expanded Kotoch Entrance 
+- Quest for the Club of Thorns in expanded Kotoch Entrance
 - Ados bar with Maid who buys food
 - Ados castle full of bandits and ninja
 - East of Fado extended, includes woodcutter, leprechauns and oni palace
@@ -2211,7 +2214,7 @@ kikareukin islands.
 - More new map artistry - notably grass and chests
 - Fixed memory leak
 - Speed up creature logic
-- Bug fixes to some quests 
+- Bug fixes to some quests
 
 0.61: Wofol opens its doors
 22nd June 2007
@@ -2364,7 +2367,7 @@ Technical:
   - improved logging of game events
 
 
-0.55.1 
+0.55.1
 Nov 4, 2006
 - fixed /drop
 - readded missing files for key autorepeat handling on Linux based systems
@@ -2413,7 +2416,7 @@ Sep 03, 2006
 - gave archer elf and archer kobold something to shoot
 - made iron casting take time
 
-0.52 
+0.52
 Aug 14, 2006
 
 - players
@@ -2450,7 +2453,7 @@ Aug 14, 2006
   - support for two weapons as pair (swapped slots rhand and lhand on client) (they are not yet in game)
 
 
-0.51.2 
+0.51.2
 Jul 10, 2006
 (unofficial server-only release)
 
@@ -2475,7 +2478,7 @@ Marauroa:
 - removed a buggy debug-message from marauroa with used 2-5 times more cpu-time than the creature.logic-loop
 
 
-0.51.1 
+0.51.1
 Jul XX, 2006
 
 - Fixed elves Nalwor teleporter.
@@ -2497,7 +2500,7 @@ June 21, 2006
 - Added Wood on the forest quest.
 
 
-0.50 
+0.50
 June 17, 2006
 
 - Fixed MacOS display and focus bug.
@@ -2527,7 +2530,7 @@ June 17, 2006
 - Added NPC "Bario" with new quest
 
 
-0.48: Buddies 
+0.48: Buddies
 Apr 31, 2006
 
 - Added jail command
@@ -2578,7 +2581,7 @@ Mar 23, 2006
 - Better corpse representation
 
 
-0.46 
+0.46
 Mar 10, 2006
 
 - Fixed sheep
@@ -2623,7 +2626,7 @@ Mar 01, 2006
 - Added new zones ( in this release 3 new zones, but really around 20 more ).
 
 
-0.44 
+0.44
 Jan 29, 2006
 
 - Fixed a null pointer bug at creature logic.
@@ -2649,7 +2652,7 @@ Jan 29, 2006
   - Black bear
 
 
-0.43 
+0.43
 Jan 20, 2006
 
 - Exit of tavern now belongs to tavern.
@@ -2703,7 +2706,7 @@ Jan 14, 2006
 - Fixed food stackable bug.
 
 
-0.41 
+0.41
 Jan 03, 2005
 
 - Fixed a bug on legs slot name.
@@ -2796,7 +2799,7 @@ Oct 23, 2005
 - Create a batch converter for maps.
 
 
-0.32 
+0.32
 Sep 24, 2005
 
 - Many bug fixes
@@ -2806,7 +2809,7 @@ Sep 24, 2005
 - Threaded A*
 
 
-0.31 
+0.31
 Jul 08, 2005
 
 - Fixed a bug at statistics system.
@@ -2864,7 +2867,7 @@ Jun 09, 2005
 - Added own and release sheep commands
 
 
-0.20: new Monsters, more dungeons and better eXPerience 
+0.20: new Monsters, more dungeons and better eXPerience
 Jun 05, 2005
 
 - Added new monsters
@@ -2885,7 +2888,7 @@ Jun 05, 2005
 - Added new RP values
 
 
-0.13: Better RP than before 
+0.13: Better RP than before
 May 30, 2005
 
 - Added API for identifing several attackers.
@@ -2907,7 +2910,7 @@ May 30, 2005
 - Fixed portal collision bug
 
 
-0.12 
+0.12
 May 22, 2005
 
 - Fixed a severe bug that happens when a creature respawn over a player.
@@ -2937,7 +2940,7 @@ May 20, 2005
 - Fixed rendering order
 
 
-0.10 
+0.10
 May 12, 2005
 
 - Color game dialog log console.
@@ -2950,7 +2953,7 @@ May 12, 2005
 - Major bug fixes
 
 
-0.03 
+0.03
 Apr 28, 2005
 
 - Added A*
