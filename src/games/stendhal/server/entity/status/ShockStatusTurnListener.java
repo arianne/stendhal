@@ -14,6 +14,7 @@ package games.stendhal.server.entity.status;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * handles the shock status each turn
@@ -45,7 +46,11 @@ public class ShockStatusTurnListener implements TurnListener {
 		// Stop the entity's movement after n steps
 		int stepsTaken = entity.getStepsTaken();
 		if (stepsTaken >= status.getStepsDelay()) {
-			entity.stop();
+			if (entity instanceof Player) {
+				((Player) entity).forceStop();
+			} else {
+				entity.stop();
+			}
 			entity.clearPath();
 		}
 
