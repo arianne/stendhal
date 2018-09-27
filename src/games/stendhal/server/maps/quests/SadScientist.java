@@ -46,6 +46,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasDescriptionItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -331,16 +332,31 @@ public class SadScientist extends AbstractQuest {
 				player.equipOrPutOnGround(item);
 			}
 		};
-		npc.add(ConversationStates.ATTENDING, "Vera",
-				new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
-				ConversationStates.ATTENDING,
-				"What? How do you know her? Well it is a sad story." +
-				" She was picking arandula for Ilisa (they were friends)" +
+
+		final String mayor_response = "She was picking arandula for Ilisa (they were friends)" +
 				" and she saw the catacombs entrance. 3 months later a" +
-				" young hero saw her, and she was a vampirette. What a" +
-				" sad story. I kept this for her husband. A letter. " +
+				" young hero saw her, and she was a vampirette.";
+
+		// Player has not received note
+		npc.add(ConversationStates.ATTENDING, "Vera",
+				new AndCondition(
+						new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
+						new NotCondition(new PlayerHasDescriptionItemWithHimCondition("note", LETTER_DESCRIPTION))),
+				ConversationStates.ATTENDING,
+				"What? How do you know her? Well it is a sad story. " +
+				mayor_response + " I kept this for her husband. A letter. " +
 				"I think he is in Kalavan." ,
 				action);
+
+		// Player is already carrying note
+		npc.add(ConversationStates.ATTENDING, "Vera",
+				new AndCondition(
+						new QuestStateStartsWithCondition(QUEST_SLOT, "find_vera"),
+						new PlayerHasDescriptionItemWithHimCondition("note", LETTER_DESCRIPTION)),
+				ConversationStates.ATTENDING,
+				mayor_response + " Please deliver that letter to her husband. " +
+				"I think he is in Kalavan.",
+				null);
 	}
 
 	private void playerReturnsAfterGivingWhenFinished(final SpeakerNPC npc) {
