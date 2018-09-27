@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.condition;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -63,7 +64,7 @@ public class PlayerHasDescriptionItemWithHimCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return 43790 * itemName.hashCode();
+		return Objects.hash(itemName, itemDescr);
 	}
 
 	@Override
