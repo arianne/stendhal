@@ -82,6 +82,10 @@
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>
+		<replaceregexp file="launch4j.xml"
+			match="stendhal-starter-.*(\.jar|\.exe)&lt;"
+			replace="stendhal-starter-${version}\1&lt;"
+			byline="true"/>
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="GAME_NAME=.*"
