@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 
+<!-- NOTE: The "local" task used in "dist_client_binary" & "dist_client_exe" requires at least ant version 1.8 -->
+
 <project name="stendhal" default="compile" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
 	<!--
 		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
@@ -33,6 +35,7 @@
 	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
 	<property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
 	<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
+	<property name="client_starter_exename" value="stendhal-starter-${version}.exe"/>
 
 	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
 
@@ -531,6 +534,12 @@
 
 	</target>
 
+	<target name="launch4j" depends="client_build" description="Pack client .jar into Win32 executable">
+		<java jar="buildtools/launch4j/launch4j.jar" fork="true">
+			<arg value="launch4j.xml" />
+		</java>
+	</target>
+
 
 	<target name="signjar" unless="exclude.signing">
 		<signjar 
@@ -622,37 +631,85 @@
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
 	</target>
 
-	<target name="dist_client_binary" depends="client_build">
-		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
+	<target name="stage_dist_client">
+		<fail message="&quot;stage_dist_client&quot; is called by either &quot;dist_client_binary&quot; or &quot;dist_client_exe&quot; target and cannot be invoked on its own">
+			<condition>
+				<not>
+					<isset property="stage"/>
+				</not>
+			</condition>
+		</fail>
 
-		<copy tofile="${buildroot}/stendhal-${version}/stendhal-starter.jar" file="${lib}/${client_starter_jarname}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal.jar" file="${lib}/${client_jarname}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${log4j_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${marauroa_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${jorbis_jar}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${lib}/${client_sound_data}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${lib}/${client_music_data}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${lib}/${client_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib">
+		<mkdir dir="${stage}"/>
+		<mkdir dir="${stage}/lib"/>
+		<mkdir dir="${stage}/log"/>
+
+		<local name="starter_executable"/>
+		<local name="suffix"/>
+		<condition property="starter_executable" value="${client_starter_exename}" else="${client_starter_jarname}">
+			<and>
+				<contains string="${stage}" substring="-win32"/>
+			</and>
+		</condition>
+		<condition property="suffix" value="exe" else="jar">
+			<and>
+				<contains string="${stage}" substring="-win32"/>
+			</and>
+		</condition>
+
+		<copy tofile="${stage}/stendhal-starter.${suffix}" file="${lib}/${starter_executable}"/>
+		<copy tofile="${stage}/lib/stendhal.jar" file="${lib}/${client_jarname}"/>
+		<copy tofile="${stage}/lib/log4j.jar" file="${log4j_jar}"/>
+		<copy tofile="${stage}/lib/marauroa.jar" file="${marauroa_jar}"/>
+		<copy tofile="${stage}/lib/jorbis.jar" file="${jorbis_jar}"/>
+		<copy tofile="${stage}/lib/stendhal-sound-data.jar" file="${lib}/${client_sound_data}"/>
+		<copy tofile="${stage}/lib/stendhal-music-data.jar" file="${lib}/${client_music_data}"/>
+		<copy tofile="${stage}/lib/stendhal-data.jar" file="${lib}/${client_data}"/>
+		<copy todir="${stage}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
 				<include name="*.html"/>
 			</fileset>
 		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
+		<copy todir="${stage}/doc">
 			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
-		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
-		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="icon.ico"/>
-		<zip destfile="${buildroot}/stendhal-${version}.zip">
-			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
-			<zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
+		<touch file="${stage}/log/stendhal.txt" />
+		<copy todir="${stage}" file="README.md"/>
+		<copy todir="${stage}" file="icon.ico"/>
+	</target>
+
+	<target name="dist_client_binary" depends="client_build">
+		<local name="stage"/>
+		<property name="stage" value="${buildroot}/stendhal-${version}"/>
+
+		<antcall target="stage_dist_client">
+			<param name="stage" value="${stage}"/>
+		</antcall>
+
+		<zip destfile="${stage}.zip">
+			<zipfileset dir="${stage}" excludes="stendhal-starter.jar"/>
+			<zipfileset dir="${stage}" includes="stendhal-starter.jar" filemode="755"/>
 		</zip>
-		<delete dir="${buildroot}/stendhal-${version}"/>
+
+		<delete dir="${stage}"/>
+	</target>
+
+	<target name="dist_client_exe" depends="launch4j">
+		<local name="stage"/>
+		<property name="stage" value="${buildroot}/stendhal-${version}-win32"/>
+
+		<antcall target="stage_dist_client">
+			<param name="stage" value="${stage}"/>
+		</antcall>
+
+		<zip destfile="${stage}.zip">
+			<zipfileset dir="${stage}" excludes="stendhal-starter.exe"/>
+			<zipfileset dir="${stage}" includes="stendhal-starter.exe" filemode="755"/>
+		</zip>
+
+		<delete dir="${stage}"/>
 	</target>
 
 
