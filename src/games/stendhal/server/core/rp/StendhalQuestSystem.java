@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.common.constants.Occasion;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
@@ -177,13 +178,13 @@ public class StendhalQuestSystem {
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
 
-		if (System.getProperty("stendhal.christmas") != null) {
+		if (Occasion.CHRISTMAS) {
 			loadQuest(new GoodiesForRudolph());
 		}
-		if (System.getProperty("stendhal.easter") != null) {
+		if (Occasion.EASTER) {
 			loadQuest(new EasterGiftsForChildren());
 		}
-		if (System.getProperty("stendhal.minetown") != null) {
+		if (Occasion.MINETOWN) {
 			loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 			loadQuest(new MineTownRevivalWeeks());
 		}
