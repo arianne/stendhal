@@ -809,6 +809,26 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.collides(x, y, w, h);
 	}
 
+	/**
+	 * Checks if a position can be occupied by an entity.
+	 *
+	 * @param x
+	 * 		Horizontal coordinate of position to check.
+	 * @param y
+	 * 		Vertical coordinate of position to check.
+	 * @return
+	 * 		<code>true</code> if the position can be occupied.
+	 */
+	public boolean isAreaOccupiable(final int x, final int y) {
+		for (final Entity entity: getEntitiesAt(x, y)) {
+			if (entity.has("no_occupy_area")) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	@Override
 	public synchronized void add(final RPObject object) {
 		add(object, true);
