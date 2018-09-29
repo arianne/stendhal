@@ -1681,7 +1681,48 @@ Mature sheep wanted: please speak to Sato.
     <configurator class-name="games.stendhal.server.maps.semos.city.RudolphNPC"
       condition="stendhal.christmas" />
     <configurator class-name="games.stendhal.server.maps.semos.city.DragonKeeperNPC" condition="stendhal.petleveling" />
-      
+    
+    <!-- START: Mine Town Weeks -->
+    
+    <!-- Boutique Girls Table -->
+    <entity x="43" y="7" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a vendor's table.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+    <entity x="47" y="9" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a vendor's table.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    <entity x="43" y="7" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a vendor's table.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+    <entity x="49" y="8" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a vendor's table.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    <entity x="49" y="7" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a vendor's table.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    <entity x="52" y="8" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a vendor's table.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- END: Mine Town Weeks -->  
 
     <entity x="53" y="23">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
