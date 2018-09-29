@@ -172,7 +172,7 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("spell")) {
 			Spell.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("wallblocker")) {
+		if (!RPClass.hasRPClass("walkblocker")) {
 			WalkBlocker.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("house_portal")) {
