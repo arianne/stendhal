@@ -1756,6 +1756,7 @@ it back as you got it!
     </portal>
     
   </zone>
+  
   <!-- Magic underground city is here -->
   <zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
     <configurator class-name="games.stendhal.server.maps.magic.city.GreeterNPC" />
@@ -1797,9 +1798,20 @@ it back as you got it!
       <destination zone="int_magic_bric_a_brac" ref="entrance_right" />
     </portal>
     
-    <portal x="113" y="40" ref="clothing_entrance">
+    <portal x="113" y="40" ref="clothing_entrance" condition="!stendhal.minetown">
       <destination zone="int_magic_clothing_boutique" ref="entrance" />
     </portal>
+    
+    <!-- Need to create a target destination so players aren't trapped inside clothing boutique -->
+    <portal x="113" y="41" ref="clothing_entrance" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <entity x="113" y="40" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Gone to Semos City for Mine Town Weeks.</attribute>
+      <attribute name="class">notice</attribute>
+    </entity>
     
     <portal x="91" y="111" ref="flower_entrance">
       <destination zone="int_magic_flower_shop" ref="entrance_right" />
@@ -1897,8 +1909,8 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   </zone>
 
   <zone name="int_magic_clothing_boutique" file="interiors/magic/clothing_boutique.tmx">
-    <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" />
-    <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" />
+    <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" condition="!stendhal.minetown" />
+    <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" condition="!stendhal.minetown" />
 
     <!-- Clock -->
     <entity x="18" y="0">
