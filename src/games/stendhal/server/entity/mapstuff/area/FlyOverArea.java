@@ -13,6 +13,7 @@ package games.stendhal.server.entity.mapstuff.area;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
@@ -33,6 +34,7 @@ public class FlyOverArea extends AreaEntity {
 
 		setRPClass("flyover");
 		put("type", "flyover");
+		put("no_occupy_area", "");
 
 		// Count as collision for the client and pathfinder
 		setResistance(100);
@@ -42,6 +44,7 @@ public class FlyOverArea extends AreaEntity {
 		final RPClass flyover = new RPClass("flyover");
 		flyover.isA("area");
 		flyover.addAttribute("class", Type.STRING);
+		flyover.addAttribute("no_occupy_area", Type.FLAG, Definition.VOLATILE);
 	}
 
 	@Override
