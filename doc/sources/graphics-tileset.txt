@@ -384,6 +384,7 @@ tiled/tileset/furniture/other/
 birdcage.png               ???; ???; ???
 chess.png                  ???; ???; ???
 clothes_rack.png           ???; ???; ???
+costumes.*                 bleutailfly, Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); CC BY-SA 3.0; https://opengameart.org/node/14851, https://opengameart.org/node/88413, https://opengameart.org/node/24944
 drawer.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 drawer_without_runner.png  bleutailfly; CC BY-SA 3.0; Stendhal
 drawer_with_mirror.png     bleutailfly; CC BY-SA 3.0; Stendhal
