@@ -11,8 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -39,6 +42,11 @@ public class DropAction extends EquipmentAction {
 			return;
 		}
 
+		if (!isTargetOccupiable(action)) {
+			player.sendPrivateText("There is no space on there.");
+			return;
+		}
+
 		final Entity entity = source.getEntity();
 		final String itemName = source.getEntityName();
 
@@ -59,4 +67,25 @@ public class DropAction extends EquipmentAction {
 		}
 	}
 
+	/**
+	 * Checks if an area can be occupied by an entity.
+	 *
+	 * @param action
+	 * 		RPAction that contains zone ID & coordinates for target.
+	 * @return
+	 * 		<code>true</code> if the area can be occupied.
+	 */
+	private boolean isTargetOccupiable(final RPAction action) {
+		if (action.has("zoneid") && action.has(EquipActionConsts.GROUND_X) && action.has(EquipActionConsts.GROUND_Y)) {
+			final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(action.get("zoneid"));
+			final int x = action.getInt(EquipActionConsts.GROUND_X);
+			final int y = action.getInt(EquipActionConsts.GROUND_Y);
+
+			if (!zone.isAreaOccupiable(x, y)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
 }

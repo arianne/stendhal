@@ -192,7 +192,8 @@ public class DisplaceAction implements ActionListener {
 	 * @return true, iff allowed
 	 */
 	private boolean entityCollides(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity) {
-		boolean res = zone.simpleCollides(entity, x, y, entity.getWidth(), entity.getHeight());
+		boolean res = zone.simpleCollides(entity, x, y, entity.getWidth(), entity.getHeight()) || !zone.isAreaOccupiable(x, y);
+
 		if (res) {
 			player.sendPrivateText("There is no space there.");
 		}
