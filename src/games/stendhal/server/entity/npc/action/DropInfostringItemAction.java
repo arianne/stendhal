@@ -14,14 +14,11 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -71,13 +68,9 @@ public class DropInfostringItemAction implements ChatAction {
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		final List<Item> items = player.getAllEquipped(itemName);
 		boolean res = false;
-		for (final Item item : items) {
-			if (infostring.equalsIgnoreCase(item.getInfoString())) {
-				res = player.drop(item.getName(), amount);
-				break;
-			}
+		if (player.isEquippedWithInfostring(itemName, infostring, amount)) {
+			res = player.dropWithInfostring(itemName, infostring, amount);
 		}
 
 		if (!res) {
