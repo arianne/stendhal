@@ -2303,6 +2303,96 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	/**
+	 * Removes a specific amount of an item with matching info string from
+	 * the RPEntity. The item can either be stackable or non-stackable.
+	 * The units can be distributed over different slots. If the RPEntity
+	 * doesn't have enough units of the item, doesn't remove anything.
+	 *
+	 * @param name
+	 * 		Name of item to remove.
+	 * @param infostring
+	 * 		Required item info string to match.
+	 * @param amount
+	 * 		Number of items to remove from entity.
+	 * @return
+	 * 		<code>true</code> if dropping the item(s) was successful.
+	 */
+	public boolean dropWithInfostring(final String name, final String infostring, final int amount) {
+		if (isEquippedWithInfostring(name, infostring, amount)) {
+			int toDrop = amount;
+
+			for (RPSlot slot : this.slots(Slots.CARRYING)) {
+
+				Iterator<RPObject> objectsIterator = slot.iterator();
+				while (objectsIterator.hasNext()) {
+					final RPObject object = objectsIterator.next();
+					if (!(object instanceof Item)) {
+						continue;
+					}
+
+					final Item item = (Item) object;
+					if (!item.getName().equals(name) || !item.has("infostring") || !item.getInfoString().equals(infostring)) {
+						continue;
+					}
+
+					if (item instanceof StackableItem) {
+						// The item is stackable, we try to remove
+						// multiple ones.
+						final int quantity = item.getQuantity();
+						if (toDrop >= quantity) {
+							new ItemLogger().destroy(this, slot, item);
+							slot.remove(item.getID());
+							toDrop -= quantity;
+							// Recreate the iterator to prevent
+							// ConcurrentModificationExceptions.
+							// This inefficient, but simple.
+							objectsIterator = slot.iterator();
+						} else {
+							((StackableItem) item).setQuantity(quantity - toDrop);
+							new ItemLogger().splitOff(this, item, toDrop);
+							toDrop = 0;
+						}
+					} else {
+						// The item is not stackable, so we only remove a
+						// single one.
+						slot.remove(item.getID());
+						new ItemLogger().destroy(this, slot, item);
+						toDrop--;
+						// recreate the iterator to prevent
+						// ConcurrentModificationExceptions.
+						objectsIterator = slot.iterator();
+					}
+
+					if (toDrop == 0) {
+						updateItemAtkDef();
+						notifyWorldAboutChanges();
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Removes a single item with matching info string from the RPEntity.
+	 * The item can either be stackable or non-stackable. The units can
+	 * be distributed over different slots. If the RPEntity doesn't have
+	 * enough units of the item, doesn't remove anything.
+	 *
+	 * @param name
+	 * 		Name of item to remove.
+	 * @param infostring
+	 * 		Required item info string to match.
+	 * @return
+	 * 		<code>true</code> if dropping the item(s) was successful.
+	 */
+	public boolean dropWithInfostring(final String name, final String infostring) {
+		return dropWithInfostring(name, infostring, 1);
+	}
+
+	/**
 	 * Determine if this entity is equipped with a minimum quantity of an item.
 	 *
 	 * @param name
@@ -2347,6 +2437,36 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public boolean isEquipped(final String name) {
 		return isEquipped(name, 1);
+	}
+
+	/**
+	 * Checks if entity carry a number of items with specified info string.
+	 *
+	 * @param name
+	 * 		Name of item to check.
+	 * @param infostring
+	 * 		Info string of item to check.
+	 * @param amount
+	 * 		Quantity of carried items to check.
+	 * @return
+	 * 		<code>true</code> if entity is carrying at least specified amount of items matching name & infostring.
+	 */
+	public boolean isEquippedWithInfostring(final String name, final String infostring, final int amount) {
+		return getAllEquippedWithInfostring(name, infostring).size() >= amount;
+	}
+
+	/**
+	 * Checks if entity carry a number of items with specified info string.
+	 *
+	 * @param name
+	 * 		Name of item to check.
+	 * @param infostring
+	 * 		Info string of item to check.
+	 * @return
+	 * 		<code>true</code> if entity is carrying at least one of items matching name & infostring.
+	 */
+	public boolean isEquippedWithInfostring(final String name, final String infostring) {
+		return isEquippedWithInfostring(name, infostring, 1);
 	}
 
 	/**
@@ -2494,6 +2614,31 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Retrieves all of an item with matching info string.
+	 *
+	 * @param name
+	 * 		Name of item to match.
+	 * @param infostring
+	 * 		Info string of item to match.
+	 * @return
+	 * 		List<Item>
+	 */
+	public List<Item> getAllEquippedWithInfostring(final String name, final String infostring) {
+		List <Item> infostringItems = new LinkedList<Item>();
+		for (final Item i: getAllEquipped(name)) {
+			// FIXME: Might be better to not ignore case, but using to not break server.entity.npc.action.DropInfostringItemAction
+			if (i.has("infostring") && i.getInfoString().equalsIgnoreCase(infostring)) {
+				// DEBUG:
+				System.out.println("Found matching \"" + name + "\" item with infostring \"" + infostring + "\"");
+
+				infostringItems.add(i);
+			}
+		}
+
+		return infostringItems;
 	}
 
 	/**
