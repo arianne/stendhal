@@ -44,7 +44,9 @@ public class OutfitAction implements ActionListener {
 			if (outfit.isChoosableByPlayers()) {
 				new GameEvent(player.getName(), OUTFIT,
 						action.get(VALUE)).raise();
-				player.setOutfit(outfit, false);
+				// hack
+				player.setOutfitWithDetail(outfit, false);
+				//player.setOutfit(outfit, false);
 
 				// Players may change hair color
 				String color = action.get("hair");

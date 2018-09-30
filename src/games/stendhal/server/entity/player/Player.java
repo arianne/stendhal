@@ -1688,6 +1688,31 @@ public class Player extends RPEntity implements UseListener {
 		notifyWorldAboutChanges();
 	}
 
+	// Hack to preserve detail layer
+	public void setOutfitWithDetail(final Outfit outfit) {
+		setOutfitWithDetail(outfit, false);
+	}
+
+	// Hack to preserve detail layer
+	public void setOutfitWithDetail(final Outfit outfit, final boolean temporary) {
+		// preserve detail layer
+		final int detailCode = getOutfit().getCode() / 100000000;
+
+		// set the new outfit
+		setOutfit(outfit, temporary);
+
+		if (detailCode > 0) {
+			System.out.println("Old outfit had detail");
+
+			// get current outfit code
+			int outfitCode = outfit.getCode() + (detailCode * 100000000);
+
+			// re-add detail
+			put("outfit", outfitCode);
+			notifyWorldAboutChanges();
+		}
+	}
+
 	public Outfit getOriginalOutfit() {
 		if (has("outfit_org")) {
 			return new Outfit(getInt("outfit_org"));
