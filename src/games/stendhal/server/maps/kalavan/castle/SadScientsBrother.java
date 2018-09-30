@@ -24,12 +24,16 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
 public class SadScientsBrother implements ZoneConfigurator {
 
+	private final String brotherName = "Sergej Elos";
+	private final String questSlot = "sad_scientist";
+	private final String gobletDescr = "You see a goblet filled with " + brotherName + "'s blood.";
+
 	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		final Creature creature = new ItemGuardCreature(manager.getCreature("imperial scientist"), "goblet", "sad_scientist", "kill_scientist", 0);
-		creature.setName("Sergej Elos");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("imperial scientist"), "goblet", questSlot, gobletDescr, questSlot, "kill_scientist", 0);
+		creature.setName(brotherName);
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 43, 85, creature, 1);
 		zone.add(point);
 	}
