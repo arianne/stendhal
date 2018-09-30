@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.area;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -25,12 +23,12 @@ import marauroa.common.game.RPClass;
  * FIXME: Players should not be able to set items in this area
  *        as is done with WalkBlocker.
  */
-public class FlyOverArea extends AreaEntity {
+public class FlyOverArea extends WalkBlocker {
 	/**
 	 * Create an area that can be "flown" over.
 	 */
 	public FlyOverArea() {
-		super(1, 1);
+		super();
 
 		setRPClass("flyover");
 		put("type", "flyover");
@@ -45,14 +43,5 @@ public class FlyOverArea extends AreaEntity {
 		flyover.isA("area");
 		flyover.addAttribute("class", Type.STRING);
 		flyover.addAttribute("no_occupy_area", Type.FLAG, Definition.VOLATILE);
-	}
-
-	@Override
-	public boolean isObstacle(final Entity entity) {
-		if (entity instanceof RPEntity) {
-			return true;
-		}
-
-		return super.isObstacle(entity);
 	}
 }
