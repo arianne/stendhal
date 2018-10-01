@@ -206,6 +206,7 @@ hair_092.*    Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVortexGames); CC
 hair_093.*    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 hair_094.*    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hair_095.*    Svetlana Kushnariova (Cabbit), Silveira Neto; CC BY-SA 4.0; https://opengameart.org/node/72969, https://github.com/silveira/openpixels
+hair_096.*    Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
 hair_099.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
 data/sprites/outfit/head/
