@@ -41,6 +41,7 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	private final String questname;
 	private final String message;
 	private final int index;
+	private final boolean commaString;
 
 	/**
 	 * Creates a new SayRequiredItemssFromCollectionAction.
@@ -54,6 +55,7 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 		this.questname = checkNotNull(questname);
 		this.index = 0;
 		this.message = checkNotNull(message);
+		this.commaString = false;
 	}
 
 	/**
@@ -69,6 +71,27 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 		this.questname = checkNotNull(questname);
 		this.index = index;
 		this.message = checkNotNull(message);
+		this.commaString = false;
+	}
+
+	/*
+	 * Hack to get items from quest state index using comma-separated string.
+	 */
+	public SayRequiredItemsFromCollectionAction(final String questname, final String message, final boolean commaString) {
+		this.questname = questname;
+		this.index = 0;
+		this.message = checkNotNull(message);
+		this.commaString = commaString;
+	}
+
+	/*
+	 * Hack to get items from quest state index using comma-separated string.
+	 */
+	public SayRequiredItemsFromCollectionAction(final String questname, final int index, final String message, final boolean commaString) {
+		this.questname = questname;
+		this.index = index;
+		this.message = checkNotNull(message);
+		this.commaString = commaString;
 	}
 
 	@Override
@@ -93,7 +116,12 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	private ItemCollection getMissingItems(final Player player) {
 		final ItemCollection missingItems = new ItemCollection();
 
-		missingItems.addFromQuestStateString(player.getQuest(questname), index);
+		// Hack to get items from quest state index using comma-separated string.
+		if (!commaString) {
+			missingItems.addFromQuestStateString(player.getQuest(questname), index);
+		} else {
+			missingItems.addFromString(player.getQuest(questname, index));
+		}
 
 		return missingItems;
 	}

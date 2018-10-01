@@ -35,17 +35,51 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	/**
      * Construct an ItemCollection from a quest state string in
      * the form "item1=n1;item2=n2;...".
+     *
      * @param str
+     * 		Quest state string.
      */
 	public void addFromQuestStateString(final String str) {
 		addFromQuestStateString(str, 0);
 	}
 
-    public void addFromQuestStateString(final String str, final int position) {
+	/**
+     * Construct an ItemCollection from a quest state string in
+     * the form "item1=n1;item2=n2;...".
+     *
+	 * @param str
+	 * 		Quest state string.
+	 * @param position
+	 * 		Index of item list in quest state string.
+	 */
+	public void addFromQuestStateString(final String str, final int position) {
+		addFromQuestStateString(str, position, false);
+	}
+
+	/**
+     * Construct an ItemCollection from a quest state string in
+     * the form "item1=n1;item2=n2;..." or "item1=n1,item2=n2,...".
+     *
+	 * @param str
+	 * 		Quest state string.
+	 * @param position
+	 * 		Index of item list in quest state string.
+	 * @param invert
+	 * 		If <code>true</code>, string will be parsed using "," instead of ";".
+	 */
+    public void addFromQuestStateString(final String str, final int position, final boolean invert) {
 	    if (str != null) {
-	    	final String[] slots = str.split(",");
+	    	// FIXME: Hack to get item list from comma-separated list
+	    	String slotDelim = ",";
+	    	String itemDelim = ";";
+	    	if (invert) {
+	    		slotDelim = ";";
+	    		itemDelim = ",";
+	    	}
+
+	    	final String[] slots = str.split(slotDelim);
 	    	if (slots[position] != null) {
-		        final List<String> items = Arrays.asList(slots[position].split(";"));
+		        final List<String> items = Arrays.asList(slots[position].split(itemDelim));
 
 	    		for (final String item : items) {
 	    			final String[] pair = item.split("=");
@@ -59,10 +93,32 @@ public class ItemCollection extends TreeMap<String, Integer> {
 	}
 
     /**
+     * Adds a list of items from a comma separated string.
+     *
+     * @param str
+     * 		Comma-separate string to parse.
+     */
+    public void addFromString(final String str) {
+    	if (str != null) {
+    		final List<String> items = Arrays.asList(str.split(","));
+    		for (final String item : items) {
+    			final String[] pair = item.split("=");
+    			if (pair.length > 1) {
+    				addItem(pair[0], Integer.parseInt(pair[1]));
+    			}
+    		}
+    	}
+    }
+
+    /**
      * Return the items as quest state string.
      * @return semicolon separated states list
      */
     public String toStringForQuestState() {
+    	return toStringForQuestState(false);
+    }
+
+    public String toStringForQuestState(final boolean commaString) {
         final StringBuilder sb = new StringBuilder();
         boolean first = true;
 
@@ -70,7 +126,11 @@ public class ItemCollection extends TreeMap<String, Integer> {
             if (first) {
                 first = false;
             } else {
-                sb.append(';');
+            	if (!commaString) {
+            		sb.append(";");
+            	} else {
+            		sb.append(",");
+            	}
             }
 
             sb.append(e.getKey());
