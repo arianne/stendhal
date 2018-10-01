@@ -65,7 +65,12 @@ public final class RPEventImageViewer {
 	}
 
 	private void view() {
-		final ViewPanel vp = new ImageViewPanel(genURL(), caption);
-		new ImageViewWindow(title, vp);
+		URL url = genURL();
+		if (url != null) {
+			final ViewPanel vp = new ImageViewPanel(url, caption);
+			new ImageViewWindow(title, vp);
+		} else {
+			logger.error("No such image: " + path);
+		}
 	}
 }

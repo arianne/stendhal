@@ -27,11 +27,7 @@ import org.apache.log4j.Logger;
  * @author timothyb89
  */
 class ImageViewPanel extends ViewPanel {
-
-	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = 7018901196859465211L;
+	private static final Logger logger = Logger.getLogger(ImageViewPanel.class);
 
 	private static final String FONT_COLOR = "#FFFFFF";
 	private static final String FONT_SIZE = "5";
@@ -63,7 +59,7 @@ class ImageViewPanel extends ViewPanel {
 			// maybe there's a better way?
 			image = ImageIO.read(url);
 		} catch (final Exception e) {
-			Logger.getLogger(ImageViewPanel.class).error(e, e);
+			logger.error("Failed to read image from '" + url + "'", e);
 		}
 	}
 
