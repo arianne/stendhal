@@ -305,4 +305,8 @@ public class BalloonForBobby extends AbstractQuest {
 		return NPCName;
 	}
 
+	@Override
+	public boolean isRepeatable(final Player player) {
+		return true;
+	}
 }
