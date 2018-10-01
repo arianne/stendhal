@@ -172,6 +172,7 @@ pig-1.ogg                ???; ???; free sound pack
 pig-2.ogg                ???; ???; free sound pack
 pig-3.ogg                ???; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/pig/
 pop-2.ogg                ???; ???; free sound pack
+pout-1.ogg               Jordan Irwin (AntumDeluge); CC0; Stendhal
 punch-1.ogg              ???; ???; free sound pack
 punch-2.ogg              ???; ???; free sound pack
 punch-3.ogg              ???; ???; free sound pack
