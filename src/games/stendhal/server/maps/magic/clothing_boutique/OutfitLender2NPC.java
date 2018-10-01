@@ -73,6 +73,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		final Pair<Outfit, Boolean> RED_SLIME = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(88)), false);
 		final Pair<Outfit, Boolean> BLUE_SLIME = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(91)), false);
 		final Pair<Outfit, Boolean> GINGERBREAD_MAN = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(92)), false);
+		final Pair<Outfit, Boolean> WHITE_CAT = new Pair<Outfit, Boolean>(new Outfit(null, 0, 98, 0, 78), false);
+		final Pair<Outfit, Boolean> BLACK_CAT = new Pair<Outfit, Boolean>(new Outfit(null, 0, 98, 0, 79), false);
 
 		outfitTypes.put("glasses", GLASSES);
 		outfitTypes.put("goblin face", GOBLIN_FACE);
@@ -83,6 +85,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		outfitTypes.put("red slime", RED_SLIME);
 		outfitTypes.put("blue slime", BLUE_SLIME);
 		outfitTypes.put("gingerbread man", GINGERBREAD_MAN);
+		outfitTypes.put("white cat", WHITE_CAT);
+		outfitTypes.put("black cat", BLACK_CAT);
 	}
 
 	private void buildBoutiqueArea(final StendhalRPZone zone) {
@@ -168,6 +172,8 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 				priceList.put("green slime", (int) (N * 3000));
 				priceList.put("gingerbread man", (int) (N * 1200));
 				priceList.put("umbrella", (int) (N * 300));
+				priceList.put("black cat", (int) (N * 4500));
+				priceList.put("white cat", (int) (N * 4500));
 			    addGreeting("Hello, I hope you are enjoying looking around our gorgeous boutique.");
 				addQuest("Just look fabulous!");
 				add(
@@ -175,7 +181,13 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"Please tell me which outfit you would like, ask to #hire #glasses, #hire a #goblin #face, #hire a #thing #face, #hire a #umbrella, #hire a #purple #slime outfit, #hire a #green #slime, #hire a #red #slime, #hire a #blue #slime, or #hire a #gingerbread #man outfit.",
+					"Please tell me which outfit you would like,"
+					+ " ask to #hire #glasses, #hire a #goblin #face,"
+					+ " #hire a #thing #face, #hire a #umbrella,"
+					+ " #hire a #purple #slime outfit, #hire a #green #slime,"
+					+ " #hire a #red #slime, #hire a #blue #slime,"
+					+ " #hire a #gingerbread #man outfit,"
+					+ " #hire a #white #cat, or #hire a #black #cat.",
 					new ExamineChatAction("outfits2.png", "Outfits", "Price varies"));
 				addJob("I work with magic in a fun way! Ask about the #offer.");
 				addHelp("I can cast a spell to dress you in a magical outfit. They wear off after some time. I hope I can #offer you something you like. If not Liliana also rents out from a different range.");
