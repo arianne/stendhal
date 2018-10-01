@@ -27,7 +27,7 @@ public class Outfits {
 	 */
 
 	/** number of player selectable heads */
-	public static final int HEAD_OUTFITS = 21;
+	public static final int HEAD_OUTFITS = 22;
 	// TODO: Remove when testing outfits is finished
 	public static final int HEAD_OUTFITS_TESTING = 7;
 

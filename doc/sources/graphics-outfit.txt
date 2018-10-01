@@ -211,7 +211,7 @@ hair_099.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org
 
 data/sprites/outfit/head/
 
-head_021.png  bleutailfly; CC BY-SA 3.0; https://postimg.cc/LJNNSqff
+head_021.*    Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://postimg.cc/LJNNSqff
 head_081.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 head_083.*    Crisisworks, Jordan Irwin (AntumDeluge); CC BY 4.0; https://opengameart.org/node/83903, https://evilartbunny.itch.io/spirit-of-the-wind
 head_084.*    yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
