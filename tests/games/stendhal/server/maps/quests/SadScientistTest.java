@@ -196,7 +196,7 @@ public class SadScientistTest {
 		en.step(player, "hi");
 		assertEquals("Welcome citizen! Do you need #help?", getReply(npc));
 		en.step(player, "vera");
-		assertEquals("What? How do you know her? Well it is a sad story. She was picking arandula for Ilisa (they were friends) and she saw the catacombs entrance. 3 months later a young hero saw her, and she was a vampirette. What a sad story. I kept this for her husband. A letter. I think he is in Kalavan.", getReply(npc));
+		assertEquals("What? How do you know her? Well it is a sad story. She was picking arandula for Ilisa (they were friends) and she saw the catacombs entrance. 3 months later a young hero saw her, and she was a vampirette. I kept this for her husband. A letter. I think he is in Kalavan.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Have a good day and enjoy your stay!", getReply(npc));
 
@@ -235,7 +235,7 @@ public class SadScientistTest {
 
 		// -----------------------------------------------
 
-		PlayerTestHelper.equipWithItem(player, "goblet");
+		PlayerTestHelper.equipWithItem(player, "goblet", QUEST_SLOT);
 		player.setSharedKill("Sergej Elos");
 
 		en.step(player, "hi");
