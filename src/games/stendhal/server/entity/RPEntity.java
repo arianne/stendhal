@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.WeakHashMap;
+import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
 
@@ -210,7 +211,7 @@ public abstract class RPEntity extends GuidedEntity {
 		/** Maximum amount of killer names. */
 		private static final int MAX_SIZE = 10;
 		/** List of killer names. */
-		private final LinkedList<String> list = new LinkedList<String>();
+		private final LinkedList<String> list = new LinkedList<>();
 		/**
 		 * A flag for detecting when the killer list has grown over the
 		 * maximum size.
@@ -312,18 +313,18 @@ public abstract class RPEntity extends GuidedEntity {
 
 	public RPEntity(final RPObject object) {
 		super(object);
-		attackSources = new ArrayList<Entity>();
-		damageReceived = new CounterMap<Entity>(true);
-		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
+		attackSources = new ArrayList<>();
+		damageReceived = new CounterMap<>(true);
+		enemiesThatGiveFightXP = new WeakHashMap<>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
 	}
 
 	public RPEntity() {
 		super();
-		attackSources = new ArrayList<Entity>();
-		damageReceived = new CounterMap<Entity>(true);
-		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
+		attackSources = new ArrayList<>();
+		damageReceived = new CounterMap<>(true);
+		enemiesThatGiveFightXP = new WeakHashMap<>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
 	}
@@ -1365,7 +1366,7 @@ public abstract class RPEntity extends GuidedEntity {
 				// XXX hack - need some generic isDroppable
 				if (object instanceof CaptureTheFlagFlag) {
 					if (droppables == null) {
-						droppables = new ArrayList<Item>();
+						droppables = new ArrayList<>();
 					}
 					droppables.add((Item)object);
 				}
@@ -1971,7 +1972,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return list of all attacking RPEntities
 	 */
 	public List<RPEntity> getAttackingRPEntities() {
-		final List<RPEntity> list = new ArrayList<RPEntity>();
+		final List<RPEntity> list = new ArrayList<>();
 
 		for (final Entity entity : getAttackSources()) {
 			if (entity instanceof RPEntity) {
@@ -2198,18 +2199,21 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return true iff dropping the desired amount was successful.
 	 */
 	public boolean drop(final String name, final int amount) {
-		// first of all we check that this RPEntity has enough of the
-		// specified item. We need to do this to ensure an atomic transaction
-		// semantic later on because the required amount may be distributed
-		// to several stacks.
-		if (!isEquipped(name, amount)) {
+		return drop(item -> name.equals(item.getName()), amount);
+	}
+	
+	private boolean isEquipped(Predicate<Item> condition, int amount) {
+		return getAllEquipped(condition).stream().mapToInt(Item::getQuantity).sum() >= amount;
+	}
+	
+	private boolean drop(Predicate<Item> condition, int amount) {
+		if (!isEquipped(condition, amount)) {
 			return false;
 		}
 
 		int toDrop = amount;
 
 		for (RPSlot slot : this.slots(Slots.CARRYING)) {
-
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
 				final RPObject object = objectsIterator.next();
@@ -2219,7 +2223,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 				final Item item = (Item) object;
 
-				if (!item.getName().equals(name)) {
+				if (!condition.test(item)) {
 					continue;
 				}
 
@@ -2318,61 +2322,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * 		<code>true</code> if dropping the item(s) was successful.
 	 */
 	public boolean dropWithInfostring(final String name, final String infostring, final int amount) {
-		if (isEquippedWithInfostring(name, infostring, amount)) {
-			int toDrop = amount;
-
-			for (RPSlot slot : this.slots(Slots.CARRYING)) {
-
-				Iterator<RPObject> objectsIterator = slot.iterator();
-				while (objectsIterator.hasNext()) {
-					final RPObject object = objectsIterator.next();
-					if (!(object instanceof Item)) {
-						continue;
-					}
-
-					final Item item = (Item) object;
-					if (!item.getName().equals(name) || !item.has("infostring") || !item.getInfoString().equals(infostring)) {
-						continue;
-					}
-
-					if (item instanceof StackableItem) {
-						// The item is stackable, we try to remove
-						// multiple ones.
-						final int quantity = item.getQuantity();
-						if (toDrop >= quantity) {
-							new ItemLogger().destroy(this, slot, item);
-							slot.remove(item.getID());
-							toDrop -= quantity;
-							// Recreate the iterator to prevent
-							// ConcurrentModificationExceptions.
-							// This inefficient, but simple.
-							objectsIterator = slot.iterator();
-						} else {
-							((StackableItem) item).setQuantity(quantity - toDrop);
-							new ItemLogger().splitOff(this, item, toDrop);
-							toDrop = 0;
-						}
-					} else {
-						// The item is not stackable, so we only remove a
-						// single one.
-						slot.remove(item.getID());
-						new ItemLogger().destroy(this, slot, item);
-						toDrop--;
-						// recreate the iterator to prevent
-						// ConcurrentModificationExceptions.
-						objectsIterator = slot.iterator();
-					}
-
-					if (toDrop == 0) {
-						updateItemAtkDef();
-						notifyWorldAboutChanges();
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
+		return drop(item -> (name.equals(item.getName()) && infostring.equals(item.getInfoString())), amount);
 	}
 
 	/**
@@ -2404,27 +2354,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *         number.
 	 */
 	public boolean isEquipped(final String name, final int amount) {
-		if (amount <= 0) {
-			return false;
-		}
-
-		int found = 0;
-
-		for (RPSlot slot : this.slots(Slots.CARRYING)) {
-
-			for (final RPObject object : slot) {
-				if (!(object instanceof Item)) {
-					continue;
-				}
-
-				found += getItemCount(name, (Item) object);
-				if (found >= amount) {
-					return true;
-				}
-			}
-		}
-
-		return false;
+		return isEquipped(item -> name.equals(item.getName()), amount);
 	}
 
 	/**
@@ -2600,16 +2530,28 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *         found
 	 */
 	public List<Item> getAllEquipped(final String name) {
-		final List<Item> result = new LinkedList<Item>();
+		return getAllEquipped(item -> name.equals(item.getName()));
+	}
+	
+	private List<Item> getAllEquipped(Predicate<Item> condition) {
+		final List<Item> result = new ArrayList<>();
 
 		for (RPSlot slot : this.slots(Slots.CARRYING)) {
-
-			for (final RPObject object : slot) {
-				if (object instanceof Item) {
-					final Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						result.add(item);
-					}
+			result.addAll(getAllInSlot(slot, condition));
+		}
+		return result;
+	}
+	
+	private List<Item> getAllInSlot(RPSlot slot, Predicate<Item> condition) {
+		List<Item> result = new ArrayList<>();
+		for (final RPObject object : slot) {
+			if (object instanceof Item) {
+				final Item item = (Item) object;
+				if (condition.test(item)) {
+					result.add(item);
+				}
+				for (RPSlot itemslot : item.slots()) {
+					result.addAll(getAllInSlot(itemslot, condition));
 				}
 			}
 		}
@@ -2626,19 +2568,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return
 	 * 		List<Item>
 	 */
-	public List<Item> getAllEquippedWithInfostring(final String name, final String infostring) {
-		List <Item> infostringItems = new LinkedList<Item>();
-		for (final Item i: getAllEquipped(name)) {
-			// FIXME: Might be better to not ignore case, but using to not break server.entity.npc.action.DropInfostringItemAction
-			if (i.has("infostring") && i.getInfoString().equalsIgnoreCase(infostring)) {
-				// DEBUG:
-				System.out.println("Found matching \"" + name + "\" item with infostring \"" + infostring + "\"");
-
-				infostringItems.add(i);
-			}
-		}
-
-		return infostringItems;
+	public List<Item> getAllEquippedWithInfostring(String name, String infostring) {
+		return getAllEquipped(item -> name.equals(item.getName())
+				&& infostring.equalsIgnoreCase(item.getInfoString()));
 	}
 
 	/**
@@ -2740,7 +2672,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	public List<Item> getWeapons() {
-		final List<Item> weapons = new ArrayList<Item>();
+		final List<Item> weapons = new ArrayList<>();
 		Item weaponItem = getWeapon();
 		if (weaponItem != null) {
 			weapons.add(weaponItem);
@@ -3024,7 +2956,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return a list of all equipped defensive items
 	 */
 	public List<Item> getDefenseItems() {
-		List<Item> items = new LinkedList<Item>();
+		List<Item> items = new LinkedList<>();
 		if (hasShield()) {
 			items.add(getShield());
 		}
@@ -3589,7 +3521,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		// Stop other creatures and players attacks on me.
 		// Probably I am dead, and I don't want to die again with a second corpse.
-		for (Entity attacker : new LinkedList<Entity>(attackSources)) {
+		for (Entity attacker : new LinkedList<>(attackSources)) {
 			if (attacker instanceof RPEntity) {
 				((RPEntity) attacker).stopAttack();
 			}
