@@ -6,6 +6,7 @@ data/sprites/outfit/body/
 
 body_078.*   (white cat)    Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/84455, https://opengameart.org/node/88413
 body_079.png (black cat)    Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/84455, https://opengameart.org/node/88413
+body_095.png (alien)        Fabzy; CC BY-SA 3.0; https://opengameart.org/node/88800
 body_096.png (horse mount)  bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 body_097.png (horse mount)  bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
 
