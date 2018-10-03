@@ -173,6 +173,7 @@ public class HellTimer implements ZoneConfigurator, ZoneEnterExitListener {
 			TurnListener listener = runningTimers.get(object);
 			if (listener != null) {
 				SingletonRepository.getTurnNotifier().dontNotify(listener);
+				runningTimers.remove(object);
 			}
 		}
 	}
