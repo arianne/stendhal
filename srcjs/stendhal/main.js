@@ -16,12 +16,15 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.main = {
 	errorCounter: 0,
+	zoneFile: null,
 
 	onDataMap: function(data) {
 		var zoneinfo = {};
 		var deserializer = marauroa.Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
 		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
+		console.log("zoneinfo", zoneinfo);
+		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 	},
 
@@ -98,7 +101,7 @@ stendhal.main = {
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
 				stendhal.ui.stats.update();
-				stendhal.data.map.load(marauroa.currentZoneName);
+				stendhal.data.map.load(marauroa.currentZoneName, stendhal.main.zoneFile);
 			}
 		}
 	},

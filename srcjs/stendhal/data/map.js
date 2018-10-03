@@ -86,7 +86,7 @@ stendhal.data = stendhal.data || {};
 
 stendhal.data.map = {
 
-	lastMap : "",
+	lastMapFilename : "",
 
 	offsetX : 0,
 	offsetY : 0,
@@ -232,14 +232,12 @@ stendhal.data.map = {
 		this.layers.push(layer);
 	},
 
-	load: function(locat) {
+	load: function(location, filenameOverride) {
 		var filename = "";
-		if (this.lastMap != locat) {
-			this.lastMap = locat;
-			var body = document.getElementById("body");
-			body.style.cursor = "wait";
-			console.log(locat);
-			var temp = /([^_]*)_([^_]*)_(.*)/.exec(locat);
+		if (filenameOverride) {
+			filename = "/tiled/" + escape(filenameOverride);
+		} else {
+			var temp = /([^_]*)_([^_]*)_(.*)/.exec(location);
 			if (temp) {
 				if (temp[1] == "int") {
 					temp[1] = "interiors";
@@ -248,9 +246,17 @@ stendhal.data.map = {
 				}
 				filename = "/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx";
 			} else {
-				var temp = /[^_]*_(.*)/.exec(locat);
+				var temp = /[^_]*_(.*)/.exec(location);
 				filename = "/tiled/interiors/abstract/" + escape(temp[1]) + ".tmx";
 			}
+		}
+
+		if (this.lastMapFilename != filename) {
+			this.lastMapFilename = filename;
+			var body = document.getElementById("body");
+			body.style.cursor = "wait";
+			console.log("load map", location, filename);
+
 			this.requestMap(filename);
 		}
 	},
