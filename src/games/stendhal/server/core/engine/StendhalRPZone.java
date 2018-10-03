@@ -1322,7 +1322,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public void removeZoneEnterExitListener(final ZoneEnterExitListener listener) {
-		zoneListeners.add(listener);
+		zoneListeners.remove(listener);
 	}
 
 
