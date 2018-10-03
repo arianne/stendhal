@@ -18,6 +18,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import org.hamcrest.Matcher;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -69,6 +70,7 @@ public class WikipediaAccessTest {
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
+	@Ignore
 	public void testGPL() {
 		final String response = getWikiText("GPL");
 		assertThat("There should be explained the GNU GPL.", response, containsString("software license"));
