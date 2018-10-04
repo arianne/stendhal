@@ -35,7 +35,7 @@ import games.stendhal.server.entity.status.PoisonStatus;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
+import games.stendhal.server.maps.ados.barracks.BuyerNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
@@ -60,7 +60,7 @@ public class KillBlordroughsTest {
 
 		final StendhalRPZone zone = new StendhalRPZone("admin_test");
 		new BuyerNPC().configureZone(zone, null);
-		npc = SingletonRepository.getNPCList().get("Despot Halb Errvl");
+		npc = SingletonRepository.getNPCList().get("Mrotho");
 		en = npc.getEngine();
 		quest.addToWorld();
 	}
@@ -126,84 +126,82 @@ public class KillBlordroughsTest {
 
 	@Test
 	public void TestChatting() {
+		// first time getting a quest
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Well state what you want then!", getReply(npc));
+		assertEquals("Huh! Well, I would give you a #quest then...", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I need help in battles with #Blordrough warriors. "+
-				"They really annoying me. Kill at least 100 of any "+
-				"blordrough soldiers and i will reward you.", getReply(npc));
+		assertEquals("Ados army need help in battles with #Blordrough warriors. "+
+				"They really annoying us. Kill at least 100 of any blordrough warriors "+
+				"and you will get reward.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 
+		// second time, quest isn't even started
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I already explained to you what i need. Are you an idiot, as you cant remember this simple thing about #blordroughs?", getReply(npc));
+		assertEquals("You have to kill #blordroughs, remember?", getReply(npc));
 		en.step(player, "blordrough");
-		assertEquals("My Mithrilbourgh army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.", getReply(npc));
+		assertEquals("Ados army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 	}
 
 	@Test
 	public void TestKilling() {
 		int killed;
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I need help in battles with #Blordrough warriors. "+
-				"They really annoying me. Kill at least 100 of any "+
-				"blordrough soldiers and i will reward you.", getReply(npc));
+		assertEquals("Ados army need help in battles with #Blordrough warriors. "+
+				"They really annoying us. Kill at least 100 of any blordrough warriors "+
+				"and you will get reward.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 
 		killed = quest.killsnumber-1;
 		KillRandomBlordroughs(killed);
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "quest");
 		assertEquals("You killed only "+killed+" blordrough "+
 				Grammar.plnoun(killed, "soldier")+".", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 		// make it full number.
 		KillRandomBlordroughs(1);
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		int tempxp = player.getXP();
 		int tempmoneys = player.getEquippedItemClass("bag", "money").getQuantity();
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
-		assertEquals("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight me again.", getReply(npc));
+		assertEquals("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight our army again.", getReply(npc));
         assertEquals(tempxp, player.getXP()-500000);
         assertEquals(tempmoneys, player.getEquippedItemClass("bag", "money").getQuantity()-50000);
         assertEquals(tempkarma, player.getKarma()-5, 0.000001);
         en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 	}
 
 	@Test
 	public void TestExtraKilling() {
 		int killed;
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
-		en.step(player, "yes");
-		assertEquals("Well state what you want then!", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		en.step(player, "quest");
-		assertEquals("I need help in battles with #Blordrough warriors. "+
-				"They really annoying me. Kill at least 100 of any "+
-				"blordrough soldiers and i will reward you.", getReply(npc));
+		assertEquals("Ados army need help in battles with #Blordrough warriors. "+
+				"They really annoying us. Kill at least 100 of any blordrough warriors "+
+				"and you will get reward.", getReply(npc));
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 		// killing 351 creature
 		killed = quest.killsnumber*3+quest.killsnumber/2+1;
 		KillRandomBlordroughs(killed);
 		en.step(player, "hi");
-		assertEquals("I hope you have disturbed me for a good reason?", getReply(npc));
-		en.step(player, "yes");
-		assertEquals("Well state what you want then!", getReply(npc));
+		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		double tempkarma = player.getKarma();
 		en.step(player, "quest");
 		assertEquals("Pretty good! You killed "+(killed-quest.killsnumber)+" extra "+
@@ -212,6 +210,6 @@ public class KillBlordroughsTest {
 				getReply(npc));
 		assertEquals(tempkarma, player.getKarma()-30, 0.000001);
 		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+		assertEquals("Goodbye, comrade.", getReply(npc));
 	}
 }
