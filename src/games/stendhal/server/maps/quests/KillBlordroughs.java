@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -271,7 +272,7 @@ import games.stendhal.server.util.TimeUtil;
 				}
 				if(killed == killsnumber) {
 					// player killed no more no less then needed soldiers
-					npc.say("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight me again.");
+					npc.say("Good work! Take this moneys. And if you will need assassin job again, ask me in one week. I think they will try to fight our army again.");
 				} else {
 					// player killed more then needed soldiers
 					npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
@@ -295,9 +296,27 @@ import games.stendhal.server.util.TimeUtil;
 	 * add quest state to npc's fsm.
 	 */
 	private void step_1() {
-		npc.addGreeting("Greetings. Have you come to enlist as a soldier?");
-		npc.addReply(ConversationPhrases.YES_MESSAGES, "Huh! Well, I would give you a #quest then...");
-		npc.addReply(ConversationPhrases.NO_MESSAGES, "Good! You wouldn't have fit in here anyway. Perhaps you want to #offer some of that armor instead...");
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new GreetingMatchesNameCondition(npc.getName()), 
+				false,
+				ConversationStates.ATTENDING,
+				"Greetings. Have you come to enlist as a soldier?",
+				null);
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.YES_MESSAGES,
+				new GreetingMatchesNameCondition(npc.getName()), 
+				false,
+				ConversationStates.ATTENDING,
+				"Huh! Well, I would give you a #quest then...",
+				null);
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.NO_MESSAGES,
+				new GreetingMatchesNameCondition(npc.getName()), 
+				false,
+				ConversationStates.ATTENDING,
+				"Good! You wouldn't have fit in here anyway. Perhaps you want to #offer some of that armor instead...",
+				null);	
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("Blordrough","blordrough","blordroughs"),
 				null,
@@ -306,7 +325,7 @@ import games.stendhal.server.util.TimeUtil;
 				null);
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				null,
+				new GreetingMatchesNameCondition(npc.getName()),
 				ConversationStates.ATTENDING,
 				null,
 				new QuestAction());
