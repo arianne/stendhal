@@ -101,7 +101,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 						marauroa.clientFramework.sendAction(action);
 					}
 				});
-			} else {
+			} else if (this !== marauroa.me) {
 				list.push({
 					title: "Attack",
 					type: "attack"

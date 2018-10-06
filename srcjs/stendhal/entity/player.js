@@ -48,8 +48,8 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	buildActions: function(list) {
 		marauroa.rpobjectFactory["rpentity"].buildActions.apply(this, arguments);
 		var playerName = this["_name"];
-		var hasBuddy = playerName in marauroa.me["buddies"];
-		if (!hasBuddy) {
+		var isUnknown = (marauroa.me !== this) && ((marauroa.me["buddies"] == null) || !(playerName in marauroa.me["buddies"]));
+		if (isUnknown) {
 			list.push({
 				title: "Add to buddies",
 				action: function(entity) {
@@ -75,7 +75,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 					marauroa.clientFramework.sendAction(action);
 				}
 			});
-		} else if (!hasBuddy) {
+		} else if (isUnknown) {
 			list.push({
 				title: "Ignore",
 				action: function(entity) {
@@ -87,7 +87,6 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 					marauroa.clientFramework.sendAction(action);
 				}
 			});
-		
 		}
 	/*
 
