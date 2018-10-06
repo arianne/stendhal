@@ -187,7 +187,7 @@ stendhal.ui.ImageViewer = function(title, caption, path) {
 	}
 
 	var content = "<h3>" + stendhal.ui.html.esc(caption) + "</h3><img src=\"" + stendhal.ui.html.esc(path) + "\">";
-	this.popup = new stendhal.ui.Popup(title, content, 0, 0);
+	this.popup = new stendhal.ui.Popup(title, content, 100, 50);
 
 	this.close = function() {
 		this.popup.close();
