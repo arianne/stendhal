@@ -86,7 +86,7 @@ dress_060.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_061.png (ranger uniform)   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/50909
 dress_062.png (armor)            bleutailfly; CC BY-SA 3.0; https://postimg.cc/xcf7MS00
 dress_072.png (armor)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-dress_073.png                    ???; ???; ???
+dress_073.png (superstendhal)    bleutailfly; CC BY-SA 3.0; https://postimg.cc/p5LbSWQw
 dress_074.png (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_075.png                    ???; ???; ???
 dress_076.png                    ???; ???; ???
