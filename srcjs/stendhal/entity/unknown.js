@@ -72,7 +72,7 @@ marauroa.rpobjectFactory["unknown"] = marauroa.util.fromProto(marauroa.rpobjectF
 		marauroa.rpobjectFactory["unknown"].proto.init.apply(this, arguments);
 		var that = this;
 		setTimeout(function() {
-			console.log("Unknown entity", that["_rpclass"], that["x"], that["y"]);
+			console.log("Unknown entity", that["_rpclass"], that["x"], that["y"], that);
 		}, 1);
 	},
 	
