@@ -39,7 +39,10 @@ marauroa.rpeventFactory["attack"] = marauroa.util.fromProto(marauroa.rpeventFact
 
 marauroa.rpeventFactory["examine"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		// TODO: new ExamineEvent();
+		if (rpobject !== marauroa.me) {
+			return;
+		}
+		new stendhal.ui.ImageViewer(this["title"], this["caption"], this["path"]);
 	}
 });
 
@@ -68,6 +71,7 @@ marauroa.rpeventFactory["group_invite_event"] = marauroa.util.fromProto(marauroa
 marauroa.rpeventFactory["image_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
 		// TODO: new ImageEffectEvent();
+		console.log("image_event", this, rpobject);
 	}
 });
 

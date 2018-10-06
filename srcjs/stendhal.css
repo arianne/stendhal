@@ -124,8 +124,16 @@ span.logi {text-decoration: underline}
 	width: 200px; 
 }
 
+.popupdiv {
+	border: 1px solid #000;
+	background-color: #FFF;
+}
+
 .popuptitle {
-	cursor: default; background-color: #FFF
+	cursor: default; background-color: #FFF;
+	background-color: #00A;
+	color: #FFF;
+	padding: 3px;
 }
 
 .popuptitleclose {
