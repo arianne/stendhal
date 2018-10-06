@@ -119,6 +119,7 @@ stendhal.ui.gamewindow = {
 			var remove = sprite.draw(this.ctx);
 			if (remove) {
 				this.textSprites.splice(i, 1);
+				i--;
 			}
 		}
 	},
