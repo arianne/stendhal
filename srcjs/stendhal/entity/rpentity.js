@@ -209,6 +209,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.drawOutfitPart(ctx, "dress", (Math.floor(this["outfit"]/100) % 100));
 			this.drawOutfitPart(ctx, "head", (Math.floor(this["outfit"]/10000) % 100));
 			this.drawOutfitPart(ctx, "hair", (Math.floor(this["outfit"]/1000000) % 100));
+			this.drawOutfitPart(ctx, "detail", (Math.floor(this["outfit"]/100000000) % 100));
 		} else {
 			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
 			if (typeof(this["subclass"]) != "undefined") {
