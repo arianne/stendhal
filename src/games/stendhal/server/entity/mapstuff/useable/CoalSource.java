@@ -79,6 +79,7 @@ public class CoalSource extends PlayerActivityEntity {
 		put("name", "coal_source");
 		put("state", 0);
 
+		setMenu("Pick|Use");
 		setDescription("You see something black on the rock.");
 		handleRespawn();
 	}
