@@ -13,7 +13,13 @@ Changelog
 - new hair outfit sprite
 - new sedative item that cures/prevents shocked status
 
-*client*
+*web client*
+- added support for more entities (fishing, coal picking, wishing well, nine switches game, tic tac toe game board)
+- added support for event maps
+- fixed broken menu on empty buddy list
+- added detail outfit layer (e. g. balloon)
+
+*java client*
 - sprites & tiles replaced with images suffixed with "-safe" when blood disabled
 - double direction key press is used instead of holding Alt. key to intitiate auto-walk
 - players can set continuous movement to continue walking after map change or teleport without releasing direction key
