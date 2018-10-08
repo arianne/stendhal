@@ -383,9 +383,13 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			var drawX = ((this["width"] * 32) - this["drawWidth"]) / 2;
 			var frame = 0;
 			if (this["speed"] > 0 && nFrames != 1) {
+				var animLength = nFrames * 2 - 2;
 				// % Works normally with *floats* (just whose bright idea was
 				// that?), so use floor() as a workaround
-				frame = Math.floor(Date.now() / 100) % nFrames;
+				frame = Math.floor(Date.now() / 100) % animLength;
+				if (frame >= nFrames) {
+					frame = animLength - frame;
+				}
 			}
 			var drawY = (this["height"] * 32) - this["drawHeight"];
 			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
