@@ -534,7 +534,7 @@
 
 	</target>
 
-	<target name="launch4j" depends="client_build" description="Pack client .jar into Win32 executable">
+	<target name="launch4j" depends="client_build" description="Call client .jar from Win32 executable">
 		<java jar="buildtools/launch4j/launch4j.jar" fork="true">
 			<arg value="launch4j.xml" />
 		</java>
@@ -645,7 +645,7 @@
 	</target>
 
 	<target name="stage_dist_client">
-		<fail message="&quot;stage_dist_client&quot; is called by either &quot;dist_client_binary&quot; or &quot;dist_client_exe&quot; target and cannot be invoked on its own">
+		<fail message="&quot;stage_dist_client&quot; is called by &quot;dist_client_binary&quot; target and cannot be invoked on its own">
 			<condition>
 				<not>
 					<isset property="stage"/>
@@ -657,20 +657,7 @@
 		<mkdir dir="${stage}/lib"/>
 		<mkdir dir="${stage}/log"/>
 
-		<local name="starter_executable"/>
-		<local name="suffix"/>
-		<condition property="starter_executable" value="${client_starter_exename}" else="${client_starter_jarname}">
-			<and>
-				<contains string="${stage}" substring="-win32"/>
-			</and>
-		</condition>
-		<condition property="suffix" value="exe" else="jar">
-			<and>
-				<contains string="${stage}" substring="-win32"/>
-			</and>
-		</condition>
-
-		<copy tofile="${stage}/stendhal-starter.${suffix}" file="${lib}/${starter_executable}"/>
+		<copy tofile="${stage}/stendhal-starter.jar" file="${lib}/${client_starter_jarname}"/>
 		<copy tofile="${stage}/lib/stendhal.jar" file="${lib}/${client_jarname}"/>
 		<copy tofile="${stage}/lib/log4j.jar" file="${log4j_jar}"/>
 		<copy tofile="${stage}/lib/marauroa.jar" file="${marauroa_jar}"/>
@@ -693,6 +680,22 @@
 		<copy todir="${stage}" file="icon.ico"/>
 	</target>
 
+	<target name="stage_dist_client_exe" description="Calls 'stage_dist_client' target and copies the client Win32 executable into stage directory">
+		<fail message="&quot;stage_dist_client_exe&quot; is called by &quot;dist_client_exe&quot; target and cannot be invoked on its own">
+			<condition>
+				<not>
+					<isset property="stage"/>
+				</not>
+			</condition>
+		</fail>
+
+		<antcall target="stage_dist_client">
+			<param name="stage" value="${stage}"/>
+		</antcall>
+
+		<copy tofile="${stage}/stendhal-starter.exe" file="${lib}/${client_starter_exename}"/>
+	</target>
+
 	<target name="dist_client_binary" depends="client_build">
 		<local name="stage"/>
 		<property name="stage" value="${buildroot}/stendhal-${version}"/>
@@ -713,7 +716,7 @@
 		<local name="stage"/>
 		<property name="stage" value="${buildroot}/stendhal-${version}-win32"/>
 
-		<antcall target="stage_dist_client">
+		<antcall target="stage_dist_client_exe">
 			<param name="stage" value="${stage}"/>
 		</antcall>
 

@@ -2,9 +2,9 @@
 
 <launch4jConfig>
   <headerType>gui</headerType>
-  <jar>build/lib/stendhal-starter-1.27.5.jar</jar>
+  <jar>stendhal-starter.jar</jar>
   <outfile>build/lib/stendhal-starter-1.27.5.exe</outfile>
-  <dontWrapJar>false</dontWrapJar>
+  <dontWrapJar>true</dontWrapJar>
   <priority>normal</priority>
   <stayAlive>false</stayAlive>
   <icon>icon.ico</icon>
