@@ -538,8 +538,6 @@
 		<java jar="buildtools/launch4j/launch4j.jar" fork="true">
 			<arg value="launch4j.xml" />
 		</java>
-
-		<antcall target="signexe"/>
 	</target>
 
 
@@ -550,17 +548,6 @@
 			storepass="${keystore.password}"
 			tsaurl="http://tsa.starfieldtech.com"
 			jar="${lib}/${client_starter_jarname}" />
-	</target>
-
-	<target name="signexe" unless="exclude.signing">
-		<taskdef name="signexe" classname="net.jsign.PESignerTask" classpath="buildtools/jsign-2.0.jar"/>
-
-		<signexe
-			alias="${keystore.alias}"
-			keystore="keystore.ks"
-			storepass="${keystore.password}"
-			tsaurl="http://tsa.starfieldtech.com"
-			file="${lib}/${client_starter_exename}" />
 	</target>
 
 	<target name="docs" description="Build javadocs for fixedStendhal">
