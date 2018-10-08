@@ -84,7 +84,7 @@ class GeneralSettings {
 
 		// Double-tap direction for auto-walk
 		JCheckBox doubleTapAutowalkToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_TAP_AUTOWALK_PROPERTY, false,
-										"Double-tap direction for auto-walk (buggy)",
+										"Double-tap direction for auto-walk (experimental)",
 										"Initiates auto-walk when direction key is double-tapped");
 		page.add(doubleTapAutowalkToggle);
 
