@@ -120,6 +120,9 @@ public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(enKatinka.step(player, "yes"));
 		assertTrue(player.hasQuest("zoo_food"));
 		assertTrue(getReply(katinkaNpc).startsWith("Oh, thank you! Please help us by bringing"));
+		// player asks for quest again while quest is active
+		assertTrue(enKatinka.step(player, "task"));
+		assertTrue(getReply(katinkaNpc).startsWith("You are already on a quest to fetch"));
 
 		assertTrue(enKatinka.step(player, "bye"));
 		assertEquals("Goodbye!", getReply(katinkaNpc));
