@@ -438,7 +438,7 @@ tileset/furniture/light/xmas_lights.png	*	14:15
 tileset/furniture/light/xmas_lights.png	*	16:17
 tileset/furniture/light/xmas_lights.png	*	18:19
 
-tileset/building/roof/roof_borders_xmas.png     *       0:9     
+tileset/building/roof/roof_borders_xmas.png     *       0:9
 tileset/building/roof/roof_borders_xmas.png     *       1:10
 tileset/building/roof/roof_borders_xmas.png     *       2:11
 tileset/building/roof/roof_borders_xmas.png     *       3:12
@@ -556,7 +556,7 @@ tileset/furniture/sink/dark_brown_stone.png	1	1:5:7:9:11:13
 
 tileset/furniture/sink/manger.png	0	0:1:2:3:4:5
 tileset/furniture/sink/manger.png	6	6:7:8:9:10:11
-tileset/furniture/sink/manger.png	12	12:13:14:15:16:17	
+tileset/furniture/sink/manger.png	12	12:13:14:15:16:17
 
 # more animated flames
 tileset/ground/fire/flame.png * 0:1:2
