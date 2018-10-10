@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -149,7 +150,7 @@ public class ZooFood extends AbstractQuest {
 
         // Player has never done the zoo quest, player asks what the task was
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotCompletedCondition(QUEST_SLOT),
+				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, "Our animals are hungry. We need " +
 						"more food to feed them. Can you help us?",
 				null);
@@ -197,6 +198,13 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, DELAY, "Thanks, we have enough food to feed the animals here for another"));
 
+		// player requests quest while quest still active
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				null,
+				new SayRequiredItemAction(QUEST_SLOT, 1, "You are already on a quest to fetch [item]."));
 	}
 
 	private void step_2() {
