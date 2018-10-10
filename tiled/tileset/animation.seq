@@ -92,19 +92,19 @@ tileset/plant/tree/christmas_tree.png	25@160	25@180:29:25@320:29
 tileset/plant/tree/christmas_tree.png	26@160	26@180:30:26@320:30
 
 # Christmas tree 1 (alt. animation)
-tileset/plant/tree/christmas_tree.png	5@160		5@320:1:5@320:1
-tileset/plant/tree/christmas_tree.png	6@160		6@320:2:6@320:2
-tileset/plant/tree/christmas_tree.png	12@160		12@320:8:12@320:8
-tileset/plant/tree/christmas_tree.png	13@160		13@320:9:13@320:9
-tileset/plant/tree/christmas_tree.png	14@160		14@320:10:14@320:10
-tileset/plant/tree/christmas_tree.png	15@160		15@320:11:15@320:11
-tileset/plant/tree/christmas_tree.png	20@160		20@320:16:20@320:16
-tileset/plant/tree/christmas_tree.png	21@160		21@320:17:21@320:17
-tileset/plant/tree/christmas_tree.png	22@160		22@320:18:22@320:18
-tileset/plant/tree/christmas_tree.png	23@160		23@320:19:23@320:19
-tileset/plant/tree/christmas_tree.png	28@160		28@320:24:28@320:24
-tileset/plant/tree/christmas_tree.png	29@160		29@320:25:29@320:25
-tileset/plant/tree/christmas_tree.png	30@160		30@320:26:30@320:26
+tileset/plant/tree/christmas_tree.png	5@160	5@320:1:5@320:1
+tileset/plant/tree/christmas_tree.png	6@160	6@320:2:6@320:2
+tileset/plant/tree/christmas_tree.png	12@160	12@320:8:12@320:8
+tileset/plant/tree/christmas_tree.png	13@160	13@320:9:13@320:9
+tileset/plant/tree/christmas_tree.png	14@160	14@320:10:14@320:10
+tileset/plant/tree/christmas_tree.png	15@160	15@320:11:15@320:11
+tileset/plant/tree/christmas_tree.png	20@160	20@320:16:20@320:16
+tileset/plant/tree/christmas_tree.png	21@160	21@320:17:21@320:17
+tileset/plant/tree/christmas_tree.png	22@160	22@320:18:22@320:18
+tileset/plant/tree/christmas_tree.png	23@160	23@320:19:23@320:19
+tileset/plant/tree/christmas_tree.png	28@160	28@320:24:28@320:24
+tileset/plant/tree/christmas_tree.png	29@160	29@320:25:29@320:25
+tileset/plant/tree/christmas_tree.png	30@160	30@320:26:30@320:26
 
 # Christmas tree 2
 tileset/plant/tree/christmas_tree2.png	1@160	1@180:5:1@320:5
@@ -122,19 +122,19 @@ tileset/plant/tree/christmas_tree2.png	25@160	25@180:29:25@320:29
 tileset/plant/tree/christmas_tree2.png	26@160	26@180:30:26@320:30
 
 # Christmas tree 2 (alt. animation)
-tileset/plant/tree/christmas_tree2.png	5@160		5@320:1:5@320:1
-tileset/plant/tree/christmas_tree2.png	6@160		6@320:2:6@320:2
-tileset/plant/tree/christmas_tree2.png	12@160		12@320:8:12@320:8
-tileset/plant/tree/christmas_tree2.png	13@160		13@320:9:13@320:9
-tileset/plant/tree/christmas_tree2.png	14@160		14@320:10:14@320:10
-tileset/plant/tree/christmas_tree2.png	15@160		15@320:11:15@320:11
-tileset/plant/tree/christmas_tree2.png	20@160		20@320:16:20@320:16
-tileset/plant/tree/christmas_tree2.png	21@160		21@320:17:21@320:17
-tileset/plant/tree/christmas_tree2.png	22@160		22@320:18:22@320:18
-tileset/plant/tree/christmas_tree2.png	23@160		23@320:19:23@320:19
-tileset/plant/tree/christmas_tree2.png	28@160		28@320:24:28@320:24
-tileset/plant/tree/christmas_tree2.png	29@160		29@320:25:29@320:25
-tileset/plant/tree/christmas_tree2.png	30@160		30@320:26:30@320:26
+tileset/plant/tree/christmas_tree2.png	5@160	5@320:1:5@320:1
+tileset/plant/tree/christmas_tree2.png	6@160	6@320:2:6@320:2
+tileset/plant/tree/christmas_tree2.png	12@160	12@320:8:12@320:8
+tileset/plant/tree/christmas_tree2.png	13@160	13@320:9:13@320:9
+tileset/plant/tree/christmas_tree2.png	14@160	14@320:10:14@320:10
+tileset/plant/tree/christmas_tree2.png	15@160	15@320:11:15@320:11
+tileset/plant/tree/christmas_tree2.png	20@160	20@320:16:20@320:16
+tileset/plant/tree/christmas_tree2.png	21@160	21@320:17:21@320:17
+tileset/plant/tree/christmas_tree2.png	22@160	22@320:18:22@320:18
+tileset/plant/tree/christmas_tree2.png	23@160	23@320:19:23@320:19
+tileset/plant/tree/christmas_tree2.png	28@160	28@320:24:28@320:24
+tileset/plant/tree/christmas_tree2.png	29@160	29@320:25:29@320:25
+tileset/plant/tree/christmas_tree2.png	30@160	30@320:26:30@320:26
 
 tileset/plant/flower/daisy_blue.png	0	2:4:6:0@3500
 tileset/plant/flower/daisy_blue.png	2	4:6:0:2@3500
