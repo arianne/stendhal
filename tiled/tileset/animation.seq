@@ -136,6 +136,42 @@ tileset/plant/tree/christmas_tree2.png	28@160	28@320:24:28@320:24
 tileset/plant/tree/christmas_tree2.png	29@160	29@320:25:29@320:25
 tileset/plant/tree/christmas_tree2.png	30@160	30@320:26:30@320:26
 
+# Christmas tree lights (must match tree animations)
+tileset/light/xmas_tree_lights.png	1@160	1@180:5:1@320:5
+tileset/light/xmas_tree_lights.png	2@160	2@180:6:2@320:6
+tileset/light/xmas_tree_lights.png	8@160	8@180:12:8@320:12
+tileset/light/xmas_tree_lights.png	9@160	9@180:13:9@320:13
+tileset/light/xmas_tree_lights.png	10@160	10@180:14:10@320:14
+tileset/light/xmas_tree_lights.png	11@160	11@180:15:11@320:15
+tileset/light/xmas_tree_lights.png	16@160	16@180:20:16@320:20
+tileset/light/xmas_tree_lights.png	17@160	17@180:21:17@320:21
+tileset/light/xmas_tree_lights.png	18@160	18@180:22:18@320:22
+tileset/light/xmas_tree_lights.png	19@160	19@180:23:19@320:23
+tileset/light/xmas_tree_lights.png	24@160	24@180:28:24@320:28
+tileset/light/xmas_tree_lights.png	25@160	25@180:29:25@320:29
+tileset/light/xmas_tree_lights.png	26@160	26@180:30:26@320:30
+tileset/light/xmas_tree_lights.png	27@160	27@180:31:27@320:31
+tileset/light/xmas_tree_lights.png	33@160	33@180:37:33@320:37
+tileset/light/xmas_tree_lights.png	34@160	34@180:38:34@320:38
+
+# Christmas tree lights .alt (must match alt. tree animations)
+tileset/light/xmas_tree_lights.png	5@160	5@320:1:5@320:1
+tileset/light/xmas_tree_lights.png	6@160	6@320:2:6@320:2
+tileset/light/xmas_tree_lights.png	12@160	12@320:8:12@320:8
+tileset/light/xmas_tree_lights.png	13@160	13@320:9:13@320:9
+tileset/light/xmas_tree_lights.png	14@160	14@320:10:14@320:10
+tileset/light/xmas_tree_lights.png	15@160	15@320:11:15@320:11
+tileset/light/xmas_tree_lights.png	20@160	20@320:16:20@320:16
+tileset/light/xmas_tree_lights.png	21@160	21@320:17:21@320:17
+tileset/light/xmas_tree_lights.png	22@160	22@320:18:22@320:18
+tileset/light/xmas_tree_lights.png	23@160	23@320:19:23@320:19
+tileset/light/xmas_tree_lights.png	28@160	28@320:24:28@320:24
+tileset/light/xmas_tree_lights.png	29@160	29@320:25:29@320:25
+tileset/light/xmas_tree_lights.png	30@160	30@320:26:30@320:26
+tileset/light/xmas_tree_lights.png	31@160	31@320:27:31@320:27
+tileset/light/xmas_tree_lights.png	37@160	37@320:33:37@320:33
+tileset/light/xmas_tree_lights.png	38@160	38@320:34:38@320:34
+
 tileset/plant/flower/daisy_blue.png	0	2:4:6:0@3500
 tileset/plant/flower/daisy_blue.png	2	4:6:0:2@3500
 tileset/plant/flower/daisy_blue.png	4	6:0:2:4@3500
