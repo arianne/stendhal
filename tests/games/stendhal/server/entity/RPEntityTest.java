@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2018 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +25,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -35,6 +35,7 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.CaptureTheFlagFlag;
+import games.stendhal.server.entity.item.Container;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -49,18 +50,15 @@ import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class RPEntityTest {
-
-	private class MockRPentity extends RPEntity {
+	private class MockRPEntity extends RPEntity {
 		@Override
 		protected void dropItemsOn(final Corpse corpse) {
 			// do Nothing
-
 		}
 
 		@Override
 		public void logic() {
 			// do Nothing
-
 		}
 	}
 
@@ -120,19 +118,8 @@ public class RPEntityTest {
 	 */
 	@Test
 	public void testCalculateRiskForCanHit() {
-		final RPEntity entity = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
+		
 		int defenderDEF = 1;
 		int attackerATK = 1;
 		assertThat(entity.calculateRiskForCanHit(1, defenderDEF, attackerATK), is(19));
@@ -179,26 +166,51 @@ public class RPEntityTest {
 		assertThat(entity.calculateRiskForCanHit(19, defenderDEF, attackerATK), is(-90));
 		assertThat(entity.calculateRiskForCanHit(20, defenderDEF, attackerATK), is(-100));
 	}
+	
+	/*
+	 * Quest tests do a lot of simple drops. Testing some harder cases
+	 * here.
+	 */
+	@Test
+	public void testDrop() {
+		final RPEntity entity = new MockRPEntity();
+		entity.addSlot(new PlayerSlot("bag"));
+		
+		// More than one non stackable 
+		entity.equip("bag", ItemTestHelper.createItem("carrot"));
+		entity.equip("bag", ItemTestHelper.createItem("wooden shield"));
+		entity.equip("bag", ItemTestHelper.createItem("wooden shield"));
+		entity.equip("bag", ItemTestHelper.createItem("money", 4));
+		assertEquals(2, entity.getNumberOfEquipped("wooden shield"));
+		entity.drop("wooden shield", 2);
+		assertEquals(0, entity.getNumberOfEquipped("wooden shield"));
+
+		// Stackable in more than one stack
+		entity.addSlot(new PlayerSlot("rhand"));
+		entity.equip("rhand", ItemTestHelper.createItem("money", 3));
+		assertEquals(2, entity.getAllEquipped("money").size());
+		assertEquals(7, entity.getNumberOfEquipped("money"));
+		entity.drop("money", 5);
+		assertEquals(2, entity.getNumberOfEquipped("money"));
+		assertEquals(1, entity.getAllEquipped("money").size());
+		
+		// Stackable more than one stack, one of then nested
+		Item bag = new Container("testbag", "container", "testbag", Collections.emptyMap());
+		entity.equip("bag", bag);
+		bag.getSlot("content").add(ItemTestHelper.createItem("money", 40));
+		assertEquals(42, entity.getNumberOfEquipped("money"));
+		entity.drop("money", 5);
+		assertEquals(37, entity.getNumberOfEquipped("money"));
+		
+		assertEquals(1, entity.getNumberOfEquipped("carrot"));
+	}
 
 	/**
 	 * Tests for getItemAtkforsimpleweapon.
 	 */
 	@Test
 	public void testGetItemAtkforsimpleweapon() {
-		final RPEntity entity = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
 		entity.addSlot(new PlayerSlot("lhand"));
 		entity.addSlot(new PlayerSlot("rhand"));
 
@@ -218,21 +230,7 @@ public class RPEntityTest {
 	 */
 	@Test
 	public void testGetItemAtkforcheese() {
-
-		final RPEntity entity = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
 		entity.addSlot(new PlayerSlot("lhand"));
 		entity.addSlot(new PlayerSlot("rhand"));
 
@@ -252,20 +250,8 @@ public class RPEntityTest {
 	@Test
 	public void testGetItemAtkforLeftandRightweaponCorrectlyWorn() {
 		ItemTestHelper.generateRPClasses();
-		final RPEntity entity = new RPEntity() {
+		RPEntity entity = new MockRPEntity();
 
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
-			}
-		};
 		entity.addSlot(new PlayerSlot("lhand"));
 		entity.addSlot(new PlayerSlot("rhand"));
 
@@ -287,20 +273,7 @@ public class RPEntityTest {
 	public void testGetItemAtkforLeftandRightweaponIncorrectlyWorn() {
 
 		ItemTestHelper.generateRPClasses();
-		final RPEntity entity = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
 		entity.addSlot(new PlayerSlot("lhand"));
 		entity.addSlot(new PlayerSlot("rhand"));
 
@@ -323,12 +296,7 @@ public class RPEntityTest {
 	public void testAttackCanHitreturnTruedamageZero() {
 		MockStendlRPWorld.get();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
-		final RPEntity attacker = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
+		final RPEntity attacker = new MockRPEntity() {
 			@Override
 			public boolean canHit(final RPEntity defender) {
 				return true;
@@ -339,25 +307,9 @@ public class RPEntityTest {
 					Nature damageType) {
 				return 0;
 			}
-
-			@Override
-			public void logic() {
-				// do nothing
-			}
 		};
 
-		final RPEntity defender = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-			}
-		};
-
+		final RPEntity defender = new MockRPEntity();
 		zone.add(attacker);
 		zone.add(defender);
 
@@ -394,12 +346,7 @@ public class RPEntityTest {
 	public void testAttackCanHitreturnTruedamage30() {
 		MockStendlRPWorld.get();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
-		final RPEntity attacker = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
+		final RPEntity attacker = new MockRPEntity() {
 			@Override
 			public boolean canHit(final RPEntity defender) {
 				return true;
@@ -410,29 +357,13 @@ public class RPEntityTest {
 					Nature damageType, boolean ranged, int maxRange) {
 				return 30;
 			}
-
-			@Override
-			public void logic() {
-				// do nothing
-			}
 		};
 		attacker.updateModifiedAttributes();
 
-		final RPEntity defender = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
+		final RPEntity defender = new MockRPEntity() {
 			@Override
 			public void onDamaged(final Entity attacker, final int damage) {
 				assertEquals(30, damage);
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
 			}
 		};
 		defender.updateModifiedAttributes();
@@ -473,10 +404,10 @@ public class RPEntityTest {
 	@Test
 	public void testIsAttacking() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
-		final RPEntity attacker = new MockRPentity();
+		final RPEntity attacker = new MockRPEntity();
 		attacker.updateModifiedAttributes();
 		assertFalse("attacktarget = null", attacker.isAttacking());
-		final RPEntity defender = new MockRPentity();
+		final RPEntity defender = new MockRPEntity();
 		defender.updateModifiedAttributes();
 		zone.add(attacker);
 		zone.add(defender);
@@ -520,21 +451,7 @@ public class RPEntityTest {
 	 */
 	@Test
 	public void testaddXP() {
-
-		final RPEntity entity = new RPEntity() {
-
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
 		entity.setXP(300);
 		final int oldXP = entity.getXP();
 		entity.addXP(Integer.MAX_VALUE);
@@ -546,7 +463,7 @@ public class RPEntityTest {
 	 */
 	@Test
 	public void testSlotNameToEquip() {
-		final RPEntity baglessentity = new MockRPentity();
+		final RPEntity baglessentity = new MockRPEntity();
 		final Item item = createMock(Item.class);
 		final List<String> slotnames = Arrays.asList("bag");
 		replay(item);
@@ -554,7 +471,7 @@ public class RPEntityTest {
 		verify(item);
 
 		reset(item);
-		final RPEntity entityWithBag = new MockRPentity() {
+		final RPEntity entityWithBag = new MockRPEntity() {
 			{
 				addSlot(new RPSlot("bag"));
 			}
@@ -566,7 +483,7 @@ public class RPEntityTest {
 		verify(item);
 
 		reset(item);
-		final RPEntity entityWithFullBag = new MockRPentity() {
+		final RPEntity entityWithFullBag = new MockRPEntity() {
 			{
 				RPSlot slot = new RPSlot("bag");
 				addSlot(slot);
@@ -582,15 +499,14 @@ public class RPEntityTest {
 
 	@Test
 	public void testgetDroppables() {
-
-		RPEntity entity = new MockRPentity();
+		RPEntity entity = new MockRPEntity();
 		Item cheese = SingletonRepository.getEntityManager().getItem("cheese");
 		Item flag = new CaptureTheFlagFlag();
 
 		List<Item> droppables;
 
 		droppables = entity.getDroppables();
-		assertEquals(null, droppables);
+		assertTrue(droppables.isEmpty());
 
 		entity.addSlot(new PlayerSlot("lhand"));
 		entity.addSlot(new PlayerSlot("rhand"));
@@ -601,13 +517,13 @@ public class RPEntityTest {
 		entity.getSlot("bag").add(flag);
 
 		droppables = entity.getDroppables();
-		assertEquals(null, droppables);
+		assertTrue(droppables.isEmpty());
 
 		// only droppable items (flag) are droppable right now
 		entity.getSlot("lhand").add(cheese);
 
 		droppables = entity.getDroppables();
-		assertEquals(null, droppables);
+		assertTrue(droppables.isEmpty());
 
 		// flags are droppable
 		entity.getSlot("rhand").add(flag);
@@ -620,7 +536,7 @@ public class RPEntityTest {
 		entity.getSlot("rhand").remove(flag.getID());
 
 		droppables = entity.getDroppables();
-		assertEquals(null, droppables);
+		assertTrue(droppables.isEmpty());
 	}
 
 	@Test
@@ -647,7 +563,7 @@ public class RPEntityTest {
 		player.dropDroppableItem(flag);
 
 		droppables = player.getDroppables();
-		assertEquals(null, droppables);
+		assertTrue(droppables.isEmpty());
 	}
 
 	@Test
@@ -672,12 +588,10 @@ public class RPEntityTest {
 		// but that won't happen
 
 		while (true) {
-
 			player.maybeDropDroppables(attacker);
-
 			droppables = player.getDroppables();
 
-			if (droppables == null) {
+			if (droppables.isEmpty()) {
 				break;
 			}
 		}
@@ -685,17 +599,7 @@ public class RPEntityTest {
 
 	@Test
 	public void testModifiedBaseHP() throws Exception {
-		final RPEntity entity = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
 		assertThat(entity.getBaseHP(), is(0));
 		entity.initHP(100);
 		assertThat(entity.getBaseHP(), is(100));
@@ -710,17 +614,7 @@ public class RPEntityTest {
 
 	@Test
 	public void testModifiedDef() throws Exception {
-		final RPEntity entity = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-			}
-
-			@Override
-			public void logic() {
-				// do nothing
-			}
-		};
+		final RPEntity entity = new MockRPEntity();
 		assertThat(entity.getDef(), is(0));
 		entity.setDef(100);
 		assertThat(entity.getDef(), is(100));
