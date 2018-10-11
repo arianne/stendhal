@@ -2,7 +2,7 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
-  <!-- Start Anti-poison -->
+  <!-- START: Status Protection -->
 
   <item name="medicinal ring">
     <type class="ring" subclass="medicinal_ring" tileid="-1"/>
@@ -63,7 +63,26 @@
   </item>
   DISABLED -->
 
-  <!-- End Anti-poison -->
+  <item name="insulated ring">
+    <type class="ring" subclass="insulated_ring" tileid="-1"/>
+    <description>You see an insulated ring that may protect from being shocked. It must be worn on the finger.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StatusResistantItem"/>
+    <attributes>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <resistance type="shocked" value="0.66" slots="finger;"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="finger"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
+  <!-- END: Status Protection -->
 
   <item name="wedding ring">
     <type class="ring" subclass="wedding" tileid="-1"/>

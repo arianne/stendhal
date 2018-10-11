@@ -571,6 +571,7 @@ aquamarine-ring.png       ???; ???; ??? (based on silver-ring.png???)
 emerald-ring.png          ???; ???; ??? (based on gold-ring.png/aquamarine-ring.png???)
 engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (based on wedding.png???)
 gold-ring.png             ???; ???; ??? (based on silver-ring.png???)
+insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 silver-ring.png           ???; ???; ???
 wedding.png               Katie Russell (kymara); GPL 2.0; Stendhal
