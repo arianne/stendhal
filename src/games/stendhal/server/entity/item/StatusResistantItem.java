@@ -381,4 +381,18 @@ public class StatusResistantItem extends SlotActivatedItem {
 	public StatusResistancesList getStatusResistancesList() {
 		return this.resistances;
 	}
+
+
+/* XXX --- HELPER METHODS --- XXX */
+
+	@Override
+	public String toString() {
+		StringBuilder st = new StringBuilder();
+		st.append(super.toString() + "\n");
+		if (!resistances.isEmpty()) {
+			st.append("Status resistances:\n\t" + resistances.toString().toLowerCase());
+		}
+
+		return st.toString();
+	}
 }

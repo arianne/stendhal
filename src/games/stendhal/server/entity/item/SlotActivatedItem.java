@@ -271,4 +271,24 @@ public abstract class SlotActivatedItem extends Item {
 	protected boolean onDeactivate() {
 		return !canDeactivate();
 	}
+
+
+/* XXX --- HELPER METHODS --- XXX */
+
+	@Override
+	public String toString() {
+		StringBuilder st = new StringBuilder();
+		st.append(super.toString());
+		if (!activeSlotsList.isEmpty()) {
+			st.append("\n\n-- Slot Activated Item --\nItem is activated in slots:\n\t" + activeSlotsList.get(0));
+			final int slot_count = activeSlotsList.size();
+			if (slot_count > 1) {
+				for (final String slot_name : activeSlotsList.subList(1, slot_count)) {
+					st.append(", " + slot_name);
+				}
+			}
+		}
+
+		return st.toString();
+	}
 }
