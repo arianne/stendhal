@@ -110,9 +110,7 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		en1.step(player, "yes");
 		assertEquals("Thank you! I'll be waiting for your return.", getReply(henry));
 		en1.step(player, "task");
-		assertEquals("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?", getReply(henry));
-		en1.step(player, "yes");
-		assertEquals("Thank you! I'll be waiting for your return.", getReply(henry));
+		assertEquals("I have already asked you to find my friends Peter, Tom, and Charles.", getReply(henry));
 		en1.step(player, "map");
 		assertEquals("If you find my friends, I will give you the map.", getReply(henry));
 		en1.step(player, "treasure");
