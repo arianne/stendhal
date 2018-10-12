@@ -85,7 +85,7 @@ class SwingClientGUI implements J2DClientGUI {
 	/** Property name used to determine if scaling is wanted. */
 	private static final String SCALE_PREFERENCE_PROPERTY = "ui.scale_screen";
 	private static final Logger logger = Logger.getLogger(SwingClientGUI.class);
-	
+
 	private final JLayeredPane pane;
 	private final GameScreen screen;
 	private final ScreenController screenController;
@@ -124,7 +124,7 @@ class SwingClientGUI implements J2DClientGUI {
 		 */
 		pane = new JLayeredPane();
 		pane.setLayout(new FreePlacementLayout());
-		
+
 		// Create the main game screen
 		screen = new GameScreen(client);
 		GameScreen.setDefaultScreen(screen);
@@ -136,25 +136,25 @@ class SwingClientGUI implements J2DClientGUI {
 
 		quitDialog = new QuitDialog();
 		pane.add(quitDialog.getQuitDialog(), JLayeredPane.MODAL_LAYER);
-		
+
 		setupChatEntry();
 		chatLogArea = createChatLog(channelManager);
 		containerPanel = createContainerPanel();
 		leftColumn = createLeftPanel(client);
 		frame = prepareMainWindow(splash);
-		
+
 		setupChatText();
-		
+
 		setupZoneChangeListeners(client);
 		setupOverallLayout();
-		
+
 		int divWidth = verticalSplit.getDividerSize();
 		WtWindowManager.getInstance().registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
 				new ScalingSettingChangeListener(divWidth));
-		
+
 		setInitialWindowStates();
 		frame.setVisible(true);
-		
+
 		/*
 		 * Used by settings dialog to restore the client's dimensions back to
 		 * the original width and height. Needs to be called after
@@ -167,19 +167,19 @@ class SwingClientGUI implements J2DClientGUI {
 				requestQuit(client);
 			}
 		});
-		
+
 		setupKeyHandling(client);
-		
+
 		locationHacksAndBugWorkaround();
 		WindowUtils.restoreSize(frame);
 	}
-	
+
 	private void setupInternalWindowProperties() {
 		WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 	}
-	
+
 	private void setupChatEntry() {
 		final KeyListener tabcompletion = new ChatCompletionHelper(chatText,
 				World.get().getPlayerList().getNamesList(),
@@ -195,13 +195,13 @@ class SwingClientGUI implements J2DClientGUI {
 			}
 		});
 	}
-	
+
 	private void setupKeyHandling(StendhalClient client) {
 		gameKeyHandler = new GameKeyHandler(client, screen);
 		chatText.addKeyListener(gameKeyHandler);
 		screen.addKeyListener(gameKeyHandler);
 	}
-	
+
 	private JComponent createChatLog(NotificationChannelManager channelManager) {
 		JComponent chatLogArea = new ChatLogArea(channelManager).getComponent();
 		chatLogArea.setPreferredSize(new Dimension(screen.getWidth(), 171));
@@ -209,10 +209,10 @@ class SwingClientGUI implements J2DClientGUI {
 		InputMap input = chatLogArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		input.put(KeyStroke.getKeyStroke("control PAGE_UP"), "navigatePrevious");
 		input.put(KeyStroke.getKeyStroke("control PAGE_DOWN"), "navigateNext");
-		
+
 		return chatLogArea;
 	}
-	
+
 	/**
 	 * Create the container panel (right side panel), and its child components.
 	 *
@@ -250,7 +250,7 @@ class SwingClientGUI implements J2DClientGUI {
 
 		return containerPanel;
 	}
-	
+
 	/**
 	 * Create the left side panel of the client.
 	 *
@@ -290,7 +290,7 @@ class SwingClientGUI implements J2DClientGUI {
 
 		return leftColumn;
 	}
-	
+
 	private JFrame prepareMainWindow(JFrame splash) {
 		JFrame frame = MainFrame.prepare(splash);
 		JComponent glassPane = DragLayer.get();
@@ -298,16 +298,16 @@ class SwingClientGUI implements J2DClientGUI {
 		glassPane.setVisible(true);
 		setupWindowWideListeners(frame);
 		WindowUtils.watchFontSize(frame);
-		
+
 		return frame;
 	}
-	
+
 	private void setupChatText() {
 		Dimension displaySize = stendhal.getDisplaySize();
 		chatText.getPlayerChatText().setMaximumSize(new Dimension(displaySize.width, Integer.MAX_VALUE));
 		GameLoop.get().runAtQuit(chatText::saveCache);
 	}
-		
+
 	@Override
 	public void requestQuit(StendhalClient client) {
 		if (client.getConnectionState() || !offline) {
@@ -316,13 +316,13 @@ class SwingClientGUI implements J2DClientGUI {
 			System.exit(0);
 		}
 	}
-	
+
 	@Override
 	public void setOffline(final boolean offline) {
 		screenController.setOffline(offline);
 		this.offline = offline;
 	}
-	
+
 	/**
 	 * Requests repaint at the window areas that are painted according to the
 	 * game loop frame rate.
@@ -340,7 +340,7 @@ class SwingClientGUI implements J2DClientGUI {
 			}
 		}
     }
-	
+
 	private void locationHacksAndBugWorkaround() {
 		/*
 		 * On some systems the window may end up occasionally unresponsive
@@ -373,7 +373,7 @@ class SwingClientGUI implements J2DClientGUI {
 			}
 		});
 	}
-	
+
 	/**
 	 * For small screens. Setting the maximum window size does
 	 * not help - pack() happily ignores it.
@@ -391,7 +391,7 @@ class SwingClientGUI implements J2DClientGUI {
 		verticalSplit.setDividerLocation(Math.min(stendhal.getDisplaySize().height,
 				maxBounds.height  - 80));
 	}
-	
+
 	/**
 	 * Modify the states of the on screen windows. The window manager normally
 	 * restores the state of the window as it was on the previous session. For
@@ -415,7 +415,7 @@ class SwingClientGUI implements J2DClientGUI {
 		keyring.setVisible(false);
 		spells.setVisible(false);
 	}
-	
+
 	private void setupWindowWideListeners(JFrame frame) {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
@@ -452,12 +452,12 @@ class SwingClientGUI implements J2DClientGUI {
 			}
 		});
 	}
-	
+
 	private void setupOverallLayout() {
 		Dimension displaySize = stendhal.getDisplaySize();
 		Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
 		frame.setContentPane(windowContent);
-		
+
 		// Set maximum size to prevent the entry requesting massive widths, but
 		// force expand if there's extra space anyway
 		chatText.getPlayerChatText().setMaximumSize(new Dimension(displaySize.width, Integer.MAX_VALUE));
@@ -472,15 +472,15 @@ class SwingClientGUI implements J2DClientGUI {
 		chatBox.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		chatBox.add(chatEntryBox, SLayout.EXPAND_X);
 		chatBox.add(chatLogArea, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
-		
+
 		verticalSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		verticalSplit.setBorder(null);
-		
+
 		/*
 		 * Fix the container panel size, so that it is always visible
 		 */
 		containerPanel.setMinimumSize(containerPanel.getPreferredSize());
-		
+
 		leftColumn.setMinimumSize(new Dimension());
 		// Splitter between the left column and game screen
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftColumn, verticalSplit);
@@ -492,19 +492,19 @@ class SwingClientGUI implements J2DClientGUI {
 		pane.setPreferredSize(new Dimension(displaySize.width + divWidth, displaySize.height));
 		horizontalSplit.setBorder(null);
 		windowContent.add(horizontalSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
-		
+
 		JComponent rightSidePanel = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		JComponent settings = new SettingsPanel();
 		rightSidePanel.add(settings, SLayout.EXPAND_X);
 		rightSidePanel.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		windowContent.add(rightSidePanel, SLayout.EXPAND_Y);
-		
+
 		frame.pack();
 		horizontalSplit.setDividerLocation(leftColumn.getPreferredSize().width);
-		
+
 		smallScreenHacks();
-	}	
-	
+	}
+
 	private void setupZoneChangeListeners(StendhalClient client) {
 		client.addZoneChangeListener(screen);
 		client.addZoneChangeListener(minimap);
@@ -539,7 +539,7 @@ class SwingClientGUI implements J2DClientGUI {
 	@Override
 	public JFrame getFrame() {
 		return frame;
-	}	
+	}
 
 	@Override
 	public void resetClientDimensions() {
@@ -627,19 +627,19 @@ class SwingClientGUI implements J2DClientGUI {
 			outfitDialog.toFront();
 		}
 	}
-	
+
 	private final class HorizontalSplitListener extends ComponentAdapter {
 		private final Dimension displaySize;
 		private final JSplitPane split;
 		// Start with a large value, so that the divider is placed as left
 		// as possible
 		private int oldWidth = Integer.MAX_VALUE;
-		
+
 		HorizontalSplitListener(Dimension displaySize, JSplitPane split) {
 			this.displaySize = displaySize;
 			this.split = split;
 		}
-		
+
 		@Override
 		public void componentResized(ComponentEvent e) {
 			if (screen.isScaled()) {
@@ -689,15 +689,15 @@ class SwingClientGUI implements J2DClientGUI {
 			}
 		}
 	}
-	
+
 	private class ScalingSettingChangeListener implements SettingChangeListener {
 		private final int divWidth;
-		
+
 		ScalingSettingChangeListener(int divWidth) {
 			this.divWidth = divWidth;
 			changed(WtWindowManager.getInstance().getProperty(SCALE_PREFERENCE_PROPERTY, "true"));
 		}
-		
+
 		@Override
 		public final void changed(String newValue) {
 			boolean scale = Boolean.parseBoolean(newValue);
@@ -708,7 +708,7 @@ class SwingClientGUI implements J2DClientGUI {
 				pane.setMaximumSize(null);
 			} else {
 				Dimension displaySize = stendhal.getDisplaySize();
-				
+
 				// Set the limits
 				verticalSplit.setMaximumSize(new Dimension(displaySize.width + divWidth, Integer.MAX_VALUE));
 				pane.setMaximumSize(displaySize);
@@ -724,7 +724,7 @@ class SwingClientGUI implements J2DClientGUI {
 			}
 		}
 	}
-	
+
 	/**
 	 * The layered pane where the game screen is does not automatically resize
 	 * the game screen. This handler is needed to do that work.

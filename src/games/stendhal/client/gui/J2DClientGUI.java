@@ -32,7 +32,7 @@ public interface J2DClientGUI {
 	void chooseOutfit();
 	/**
 	 * Get the objects that should be informed about user position changes.
-	 * 
+	 *
 	 * @return
 	 */
 	Collection<PositionChangeListener> getPositionChangeListeners();

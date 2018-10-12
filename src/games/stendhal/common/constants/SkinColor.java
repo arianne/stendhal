@@ -113,7 +113,7 @@ public enum SkinColor {
 		int[] rgb = new int[4];
 		ARGB.splitRgb(color, rgb);
 		HSL.rgb2hsl(rgb, hsl);
-		/* 
+		/*
 		 * Lightness is not checked. We don't really want to limit it, other
 		 * than the natural limits of preventing pure black and white, and
 		 * those are already checked by having limits for saturation.

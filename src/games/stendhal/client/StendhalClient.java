@@ -826,7 +826,7 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Check if the connected server is of at least as recent as the specified
 	 * version.
-	 * 
+	 *
 	 * @param required string representation of required server version
 	 * @return <code>true</code> if the server is new enough, or the version
 	 * is unknown, <code>false</code> if the server is older than the required

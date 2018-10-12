@@ -2179,7 +2179,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Low level drop. <b>Does not check the containing slot or owner. This is
 	 * meant to be used only by higher level drop() methods.</b>
-	 * 
+	 *
 	 * @param item dropped item
 	 * @param amount maximum amout to drop
 	 * @return dropped amount
@@ -3356,7 +3356,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Gets an items as a stream of items, followed by any contained items
 	 * recursively.
-	 * 
+	 *
 	 * @param item
 	 * @return stream of items
 	 */
@@ -3372,7 +3372,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	
 	/**
 	 * Get a stream of all items in a slot.
-	 * 
+	 *
 	 * @param slot
 	 * @return items in the slot
 	 */
@@ -3384,7 +3384,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	
 	/**
 	 * Get a stream of all equipped items.
-	 * 
+	 *
 	 * @return equipped items
 	 */
 	private Stream<Item> equippedStream() {
@@ -3395,7 +3395,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	
 	/**
 	 * A convenience method for getting a method for matching item names.
-	 * 
+	 *
 	 * @param name name to match
 	 * @return a predicate for matching the name
 	 */

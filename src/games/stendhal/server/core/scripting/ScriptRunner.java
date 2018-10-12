@@ -212,7 +212,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 		// *.groovy scripts is in data/script/
 		final File dirGroovy = new File(scriptDir);
-		List<String> scriptsGroovy; 
+		List<String> scriptsGroovy;
 		final String[] lg=dirGroovy.list(new FilenameFilter() {
 				@Override
 				public boolean accept(final File dir, final String name) {

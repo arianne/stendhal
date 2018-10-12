@@ -342,7 +342,7 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 			autoOpenedAlready = true;
 			boolean autoRaiseCorpse = WtWindowManager.getInstance().getPropertyBoolean("gamescreen.autoinspectcorpses", true);
 			if (autoRaiseCorpse
-					&& (entity.getCorpseOwner() != null) 
+					&& (entity.getCorpseOwner() != null)
 					&& entity.getCorpseOwner().equals(User.getCharacterName())
 					&& !entity.isEmpty()) {
 				/*

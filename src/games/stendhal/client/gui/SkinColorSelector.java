@@ -152,7 +152,7 @@ class SkinColorSelector extends AbstractColorSelector<SkinColorSelector.SkinColo
 			/*
 			 * At high and low lightness changing the base color does not
 			 * always change the resulting color. Force a repaint so that
-			 * the new base color get highlighted. 
+			 * the new base color get highlighted.
 			 */
 			repaint();
 		}

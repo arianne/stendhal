@@ -46,7 +46,7 @@ import games.stendhal.server.util.TimeUtil;
  *
  * STEPS:<ul>
  * <li> Mrotho asking you to kill 100 blordrough warriors.
- * <li> 
+ * <li>
  * <li> Kill them and go back to Mrotho for your reward.
  * </ul>
  *
@@ -298,21 +298,21 @@ import games.stendhal.server.util.TimeUtil;
 	private void step_1() {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new GreetingMatchesNameCondition(npc.getName()), 
+				new GreetingMatchesNameCondition(npc.getName()),
 				false,
 				ConversationStates.ATTENDING,
 				"Greetings. Have you come to enlist as a soldier?",
 				null);
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
-				new GreetingMatchesNameCondition(npc.getName()), 
+				new GreetingMatchesNameCondition(npc.getName()),
 				false,
 				ConversationStates.ATTENDING,
 				"Huh! Well, I would give you a #quest then...",
 				null);
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
-				new GreetingMatchesNameCondition(npc.getName()), 
+				new GreetingMatchesNameCondition(npc.getName()),
 				false,
 				ConversationStates.ATTENDING,
 				"Good! You wouldn't have fit in here anyway. Perhaps you want to #offer some of that armor instead...",

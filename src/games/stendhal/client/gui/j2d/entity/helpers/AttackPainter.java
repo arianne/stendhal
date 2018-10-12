@@ -488,7 +488,7 @@ public final class AttackPainter {
 	 * @param width attacker width
 	 * @param height attacker height
 	 */
-	public void drawDistanceAttack(Graphics2D g2d, RPEntity entity, 
+	public void drawDistanceAttack(Graphics2D g2d, RPEntity entity,
 			IEntity target, int x, int y, int width, int height) {
 		Nature nature = entity.getShownDamageType();
 

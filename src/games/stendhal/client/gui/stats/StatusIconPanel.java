@@ -137,7 +137,7 @@ class StatusIconPanel extends JComponent {
             status.setVisible(visible);
         }
     }
-    
+
     /**
      * Hide all status icons. This is called when the user entity is deleted.
      */
