@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal ../items.xsd ">
-  
+
   <item name="leather helmet">
     <type class="helmet" subclass="leather_helmet" tileid="-1"/>
     <description>You see a leather helmet, it seems more like a hat than a defensive item.</description>
@@ -19,7 +19,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="trophy helmet">
     <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
     <description>You see a Trophy Helmet. Those who were brave and finished the death match, win this helmet.</description>
@@ -38,7 +38,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="robins hat">
     <type class="helmet" subclass="robins_hat" tileid="-1"/>
     <description>You see a robins hat. It's cute but that's about it.</description>
@@ -56,7 +56,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="studded helmet">
     <type class="helmet" subclass="studded_helmet" tileid="-1"/>
     <description>You see a studded helmet, it should protect your head against cuts but perhaps not hard blows.</description>
@@ -74,7 +74,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="elvish hat">
     <type class="helmet" subclass="elvish_hat" tileid="-1"/>
     <description>You see an elvish hat. The elf craftmanship has made the leafy material stronger than one would think.</description>
@@ -92,7 +92,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="chain helmet">
     <type class="helmet" subclass="chain_helmet" tileid="-1"/>
     <description>You see a solid chain helmet, it will be excellent protection for your head.</description>
@@ -110,7 +110,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="viking helmet">
     <type class="helmet" subclass="horned_helmet" tileid="-1"/>
     <description>You see a viking helmet. The previous owner wore it to many battles.</description>
@@ -128,7 +128,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="aventail">
     <type class="helmet" subclass="aventail" tileid="-1"/>
     <description>You see a aventail. It's a clever design.</description>
@@ -147,7 +147,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="blue helmet">
     <type class="helmet" subclass="blue_helmet" tileid="-1"/>
     <description>You see a brand new blue helmet.</description>
@@ -166,7 +166,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="red helmet">
     <type class="helmet" subclass="red_helmet" tileid="-1"/>
     <description>You see a red helmet, it reminds you of a jester's hat but you can be sure it has better protection than that.</description>
@@ -185,7 +185,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="golden helmet">
     <type class="helmet" subclass="golden_helmet" tileid="-1"/>
     <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>
@@ -204,7 +204,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="horned golden helmet">
     <type class="helmet" subclass="enhanced_golden_helmet" tileid="-1"/>
     <description>You see a horned golden helmet.</description>
@@ -223,7 +223,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="shadow helmet">
     <type class="helmet" subclass="shadow_helmet" tileid="-1"/>
     <description>You see a heavy shadow helmet. Instead of shining, it darkly gleams.</description>
@@ -235,7 +235,7 @@
     <weight value="15.0"/>
     <value value="7000"/>
     <susceptibility type="light" value="1.4"/>
-    <susceptibility type="dark" value="0.85"/> 
+    <susceptibility type="dark" value="0.85"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -244,9 +244,9 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <!-- xeno notes
-  
+
 Some other possible DEF : LVL values:
 15 : 70-80
 17-21 : 90-105
@@ -258,7 +258,7 @@ Possible drops:
 xenocium at 1.5%
 
 Possibly add to weekly item quest. -->
-  
+
   <item name="xeno helmet">
     <type class="helmet" subclass="xeno_helmet" tileid="-1" />
     <description>You see a xeno helmet.</description>
@@ -277,7 +277,7 @@ Possibly add to weekly item quest. -->
       <slot name="head" />
     </equipable>
   </item>
-  
+
   <item name="chaos helmet">
     <type class="helmet" subclass="chaos_helmet" tileid="-1"/>
     <description>You see a chaos helmet.</description>
@@ -296,7 +296,7 @@ Possibly add to weekly item quest. -->
       <slot name="head"/>
     </equipable>
   </item>
-  
+
   <item name="mainio helmet">
     <type class="helmet" subclass="lion_clan_helmet" tileid="-1"/>
     <description>You see a strange mainio helmet. You can barely see when wearing it, but it protects your head very well.</description>
@@ -315,7 +315,7 @@ Possibly add to weekly item quest. -->
       <slot name="head"/>
     </equipable>
   </item>
-  
+
   <item name="magic chain helmet">
     <type class="helmet" subclass="magic_chain_helmet" tileid="-1"/>
     <description>You see a magic chain helmet.</description>
@@ -338,7 +338,7 @@ Possibly add to weekly item quest. -->
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="liberty helmet">
     <type class="helmet" subclass="liberty_helmet" tileid="-1"/>
     <description>You see the liberty helmet. It's light and strong, you feel free wearing it.</description>
@@ -357,7 +357,7 @@ Possibly add to weekly item quest. -->
       <slot name="head"/>
     </equipable>
   </item>
-  
+
   <item name="black helmet">
     <type class="helmet" subclass="black_helmet" tileid="-1"/>
     <description>You see a black helmet.</description>
@@ -369,7 +369,7 @@ Possibly add to weekly item quest. -->
     <weight value="15.0"/>
     <value value="123032"/>
     <susceptibility type="light" value="1.3"/>
-    <susceptibility type="dark" value="0.85"/> 
+    <susceptibility type="dark" value="0.85"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -378,7 +378,7 @@ Possibly add to weekly item quest. -->
       <slot name="head"/>
     </equipable>
   </item>
-  
+
   <item name="mithril helmet">
     <type class="helmet" subclass="mithril_helmet" tileid="-1"/>
     <description>You see a mithril helmet.</description>
@@ -390,7 +390,7 @@ Possibly add to weekly item quest. -->
     <weight value="12.0"/>
     <value value="323032"/>
     <susceptibility type="light" value="0.9"/>
-    <susceptibility type="dark" value="1.3"/> 
+    <susceptibility type="dark" value="1.3"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -399,5 +399,5 @@ Possibly add to weekly item quest. -->
       <slot name="head"/>
     </equipable>
   </item>
-  
+
 </items>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: air -->
-  
+
   <creature name="air elemental">
     <type class="elemental" subclass="air_elemental" tileid="elemental.png:4"/>
     <description>You see an air elemental and feel a fresh breeze past you.</description>
@@ -32,7 +32,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="djinn">
     <type class="elemental" subclass="djinn" tileid="elemental.png:0"/>
     <description>You see a djinn. He isn't caught in a bottle or lamp so someone must have let him free and gave him the order to kill you.</description>
@@ -63,12 +63,12 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>   
-  
+  </creature>
+
   <!-- END: air -->
-  
+
   <!-- START: earth -->
-  
+
   <creature name="nymph">
     <type class="elemental" subclass="nymph" tileid="elemental.png:6"/>
     <description>You see a nymph. She loves nature very much! As you take a look at her she feels disturbed in sun-bathing and talking to the birds, perhaps she was best left alone.</description>
@@ -100,7 +100,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="earth elemental">
     <type class="elemental" subclass="earth_elemental" tileid="elemental.png:1"/>
     <description>You see an earth elemental. The earth is quaking as it moves over the surface.</description>
@@ -129,11 +129,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: earth -->
-  
+
   <!-- START: fire -->
-  
+
   <creature name="fire elemental">
     <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
     <description>You see a fire elemental and hardly can stand the heat.</description>
@@ -167,11 +167,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: fire -->
-  
+
   <!-- START: ice -->
-  
+
   <creature name="ice elemental">
     <type class="elemental" subclass="ice_elemental" tileid="elemental.png:5"/>
     <description>You see an ice elemental and sense a shiver on your spine.</description>
@@ -206,7 +206,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="ice golem">
     <type class="golem" subclass="ice_golem" tileid="golem.png:2"/>
     <description>You see an Ice golem. Ice Golems are elementals made out of ice. You should watch out for its icy fists or you might get hurt.</description>
@@ -241,8 +241,8 @@
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>    
-  
+  </creature>
+
   <creature name="ice giant">
     <type class="giant_human" subclass="ice_giant" tileid="giant_human.png:2"/>
     <description>You see an ice giant. His skin is covered with frozen hoarfrost and his breath feels like the cold north wind.</description>
@@ -278,11 +278,11 @@
       <profile name="heal" params="5,50"/>
     </ai>
   </creature>
-  
+
   <!-- END: ice -->
-  
+
   <!-- START: stone -->
-  
+
   <creature name="stone golem">
     <type class="golem" subclass="stone_golem" tileid="golem.png:0"/>
     <description>You see a stone golem, it only exists to protect. What was it crafted for to protect, and what would one do if it lost its purpose?</description>
@@ -319,7 +319,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dwarf golem">
     <type class="giant_animal" subclass="dwarf_golem" tileid="giant_human.png:5"/>
     <description>You see a dwarf golem. A long time ago a dwarf got turned into a big rock by some mystical forces. To save their friend the other dwarves created a golem out of this rock! From this day the dwarf golem lives together with them.</description>
@@ -351,11 +351,11 @@
       <profile name="heal" params="5,50"/>
     </ai>
   </creature>
-  
+
   <!-- END: stone -->
-  
+
   <!-- START: water -->
-  
+
   <creature name="water elemental">
     <type class="elemental" subclass="water_elemental" tileid="elemental.png:3"/>
     <description>You see a Water elemental which is made of water and various other liquids.</description>
@@ -391,11 +391,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: water -->
-  
+
   <!-- START: wood -->
-  
+
   <creature name="wooden golem">
     <type class="golem" subclass="wooden_golem" tileid="golem.png:1"/>
     <description>You see a wooden golem. The scroll with ancient words in his head keeps it walking.</description>
@@ -452,7 +452,7 @@
     </equips>
     <abilities>
       <susceptibility type="fire" value="1.1"/>
-    </abilities> 
+    </abilities>
     <ai>
       <says>
         <sound value="snap-branch-1" />
@@ -466,46 +466,46 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
-  <creature name="old ent">      
+
+  <creature name="old ent">
    <type class="ent" subclass="old_ent" tileid="ent.png:1"/>
-   <description>You see an old ent. It has seen many years passing by and survived a lot of storms. You can see that it is very old because it has already lost all of its leaves and most of its bark is broken...</description>    
-   <attributes>      
-    <atk value="573"/>   
-    <def value="128"/>   
-    <hp value="400"/>    
-    <speed value="0.2"/>     
-    <size value="2,2"/>      
-   </attributes>     
-   <level value="83"/>   
-   <experience value="6540"/>    
+   <description>You see an old ent. It has seen many years passing by and survived a lot of storms. You can see that it is very old because it has already lost all of its leaves and most of its bark is broken...</description>
+   <attributes>
+    <atk value="573"/>
+    <def value="128"/>
+    <hp value="400"/>
+    <speed value="0.2"/>
+    <size value="2,2"/>
+   </attributes>
+   <level value="83"/>
+   <experience value="6540"/>
    <respawn value="3010"/>
    <blood name="green" />
-   <corpse name="wooden_2x2" harmless="wooden_2x2" width="2" height="2" />     
-   <drops>   
-     <item value="money" quantity="[30,50]" probability="100.0"/>    
-     <item value="greater potion" quantity="[1,2]" probability="30.0"/>      
-     <item value="wood" quantity="[1,3]" probability="70.0"/>    
-     <item value="button mushroom" quantity="[3,5]" probability="20.0"/>     
-    </drops>     
-    <equips>     
-    </equips> 
+   <corpse name="wooden_2x2" harmless="wooden_2x2" width="2" height="2" />
+   <drops>
+     <item value="money" quantity="[30,50]" probability="100.0"/>
+     <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+     <item value="wood" quantity="[1,3]" probability="70.0"/>
+     <item value="button mushroom" quantity="[3,5]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
     <abilities>
       <susceptibility type="fire" value="1.3"/>
-    </abilities> 
+    </abilities>
     <ai>
       <says>
         <sound value="snap-branch-1" />
         <sound value="creak-tree-2" />
       </says>
-      <profile name="brave"/>   
-      <profile name="offensive"/>   
-      <profile name="human"/>   
-      <profile name="heal" params="15,50"/>     
-      <profile name="patrolling"/>      
-    </ai>    
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
   </creature>
-  
+
   <creature name="entwife">
     <type class="ent" subclass="entwife" tileid="ent.png:3"/>
     <description>You see an entwife. It is stronger than an ent and lives in a group in an ancient forest.</description>
@@ -548,7 +548,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: wood -->
-  
+
 </creatures>

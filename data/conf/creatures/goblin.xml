@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: goblin -->
-  
+
   <creature name="goblin">
     <type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
     <description>You see a goblin, it is an evil and mischievous creature.</description>
@@ -42,7 +42,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="veteran goblin">
     <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
     <description>You see a veteran goblin, an old warrior...</description>
@@ -81,7 +81,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="soldier goblin">
     <type class="goblin" subclass="soldier_goblin" tileid="goblin.png:1"/>
     <description>You see a soldier goblin, a young warrior.</description>
@@ -121,7 +121,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: goblin -->
-  
-</creatures>  
+
+</creatures>

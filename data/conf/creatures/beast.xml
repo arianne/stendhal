@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: beholder -->
-  
+
   <creature name="young beholder">
     <type class="beholder" subclass="young_beholder" tileid="beholder.png:2"/>
     <description>You see a young beholder. His huge eye will find you everywhere!</description>
@@ -32,7 +32,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="beholder">
     <type class="beholder" subclass="beholder" tileid="beholder.png:0"/>
     <description>You see a beholder which can see you very well with his huge eye...</description>
@@ -58,7 +58,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elder beholder">
     <type class="beholder" subclass="elder_beholder" tileid="beholder.png:1"/>
     <description>You see an elder beholder, his nasty eye will scare you.</description>
@@ -85,11 +85,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: beholder -->
-  
+
   <!-- START: gargoyle -->
-  
+
   <creature name="gargoyle">
     <type class="gargoyle" subclass="gargoyle" tileid="gargoyle.png:2"/>
     <description>You see a gargoyle, You should think that it is a statue, but no, it is alive!</description>
@@ -120,7 +120,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <creature name="elder gargoyle">
     <type class="gargoyle" subclass="elder_gargoyle" tileid="gargoyle.png:1"/>
     <description>You see an elder gargoyle, it is wise...</description>
@@ -150,7 +150,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <creature name="dark gargoyle">
     <type class="gargoyle" subclass="dark_gargoyle" tileid="gargoyle.png:0"/>
     <description>You see a dark gargoyle, do you feel the fear?</description>
@@ -183,8 +183,8 @@
       <profile name="offensive"/>
       <profile name="human"/>
     </ai>
-  </creature>  
-  
+  </creature>
+
   <creature name="venom gargoyle">
     <type class="gargoyle" subclass="venom_gargoyle" tileid="gargoyle.png:3"/>
     <description>You see a venom gargoyle, a hideous and poisonous creature.</description>
@@ -220,12 +220,12 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature> 
-  
+  </creature>
+
   <!-- END: gargoyle -->
-  
+
   <!-- START: misc -->
-  
+
   <creature name="mimic">
     <type class="hybrid" subclass="mimic_idle" tileid="hybrid.png:14"/>
     <description>You see a mimic. Its content might be different from what you expect.</description>
@@ -257,7 +257,7 @@
       <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_idle;mimic),"/>
     </ai>
   </creature>
-  
+
   <creature name="snarfkin">
     <type class="hybrid" subclass="snarfkin" tileid="hybrid.png:11"/>
     <description>You see a snarfkin, the favourite pet of wizards. Be careful, its claws are poisonous!</description>
@@ -287,11 +287,11 @@
       <profile name="poisonous" params="5,greater poison"/>
     </ai>
   </creature>
-  
+
   <!-- END: misc -->
-  
+
   <!-- START: mutant -->
-  
+
   <creature name="glow monster">
     <type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
     <description></description>
@@ -322,7 +322,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <creature name="dark mutant">
     <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
     <description></description>
@@ -354,7 +354,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="googon">
     <type class="hybrid" subclass="googon" tileid="hybrid.png:10"/>
     <description>You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.</description>
@@ -383,7 +383,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="grobble monster">
     <type class="hybrid" subclass="grobble_monster" tileid="hybrid.png:12"/>
     <description></description>
@@ -449,7 +449,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="imperial experiment">
     <type class="mutant" subclass="imperial_experiment" tileid="mutant.png:4"/>
     <description>You see an imperial experiment which mirrors the fate of many of science departments test subjects. It's skin glows and standing before it taxes your body.</description>
@@ -479,7 +479,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="imperial mutant">
     <type class="mutant" subclass="imperial_mutant" tileid="mutant.png:3"/>
     <description></description>
@@ -512,7 +512,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="thing">
     <type class="huge_animal" subclass="thing" tileid="huge_animal.png:8"/>
     <description>You see a thing. It looks like a very mutated human and is so scary that you think it has to come from another world.</description>
@@ -543,11 +543,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: mutant -->
-  
+
   <!-- START: slime -->
-  
+
   <creature name="green slime">
     <type class="animal" subclass="green_slime" tileid="animal.png:12"/>
     <description>You see a green slime, sticky and shiny.</description>
@@ -577,7 +577,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="brown slime">
     <type class="animal" subclass="brown_slime" tileid="animal.png:5"/>
     <description>You see a brown slime, sticky and hungry.</description>
@@ -607,7 +607,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="black slime">
     <type class="animal" subclass="black_slime" tileid="animal.png:3"/>
     <description>You see a black slime, with a sticky trail behind it.</description>
@@ -637,7 +637,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="twilight slime">
     <type class="animal" subclass="twilight_slime" tileid="animal.png:-1"/>
     <description>You see a twilight slime, so strange and beautiful. Why is it coming towards you? Runnnnnnnnn!</description>
@@ -668,7 +668,7 @@
       <profile name="rare"/>
     </ai>
   </creature>
-  
+
   <!-- END: slime -->
-  
-</creatures>  
+
+</creatures>

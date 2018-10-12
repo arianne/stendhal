@@ -41,7 +41,7 @@ Walk on, and you will be returned to the land of the living...
 
   <zone name="int_admin_playground" file="interiors/abstract/admin_playground.tmx"
     accessible="false">
-    
+
     <entity x="8" y="5">
       <implementation class-name="games.stendhal.server.entity.mapstuff.block.BlockTarget" />
 	  <connector name="floorbutton1" />
@@ -49,7 +49,7 @@ Walk on, and you will be returned to the land of the living...
         You see a plain point on the ground. Something heavy stood here before.
 	  </attribute>
     </entity>
- 
+
     <entity x="11" y="5">
       <implementation class-name="games.stendhal.server.entity.mapstuff.block.Block">
         <parameter name="multiPush">true</parameter>
@@ -72,7 +72,7 @@ Walk on, and you will be returned to the land of the living...
       	<port name="active" expression="floorbutton1.active" />
       </connector>
 	</entity>
-    
+
   </zone>
 
   <zone name="int_abstract_server_down" file="interiors/abstract/server_down.tmx"

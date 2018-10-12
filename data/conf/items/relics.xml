@@ -20,7 +20,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="skull ring">
     <type class="relic" subclass="skull_ring" tileid="-1"/>
     <description>You see a skull ring.</description>
@@ -38,7 +38,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-  
+
   <item name="amulet">
     <type class="relic" subclass="amulet" tileid="-1"/>
     <description/>
@@ -55,7 +55,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-  
+
   <item name="ankh">
     <type class="relic" subclass="ankh" tileid="-1"/>
     <description>You see a mysterious ankh. You don't know what it is for.</description>
@@ -72,5 +72,5 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-  
+
 </items>

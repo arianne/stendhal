@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal ../zones.xsd ">
-  <!-- ** Load zones. Written from left to right and from top to bottom. 
+  <!-- ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it! -->
 
   <!-- Level 6 -->
@@ -160,14 +160,14 @@
       <attribute name="text">
 WORLDS FUNNIEST JOKES
 
-If a man stands in the middle of the 
-forest speaking and there is no woman 
+If a man stands in the middle of the
+forest speaking and there is no woman
 around to hear him, is he still wrong?
 
-Everyone has a photographic memory, 
+Everyone has a photographic memory,
 some just don't have film.
 
-Eagles may soar, free and proud, but 
+Eagles may soar, free and proud, but
 weasels never get sucked into jet engines.
 
 There's no future in time travel.
@@ -185,10 +185,10 @@ natural stupidity.
 
 Honk if you love peace and quiet.
 
-Always remember you're unique, 
+Always remember you're unique,
 just like everyone else.
 
-Half the people in the world are 
+Half the people in the world are
 below average.
       	</attribute>
       <attribute name="class">transparent</attribute>
@@ -464,7 +464,7 @@ below average.
   </zone>
 
   <zone name="int_nalwor_assassinhq_cellar" file="interiors/nalwor/assassinhq_cellar.tmx">
-    <!-- <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.KaryoNPC" 
+    <!-- <configurator class-name="games.stendhal.server.maps.nalwor.assassinhq.KaryoNPC"
       /> -->
     <configurator
       class-name="games.stendhal.server.maps.nalwor.assassinhq.ChiefFalatheenDishwasherNPC" />
@@ -525,8 +525,8 @@ below average.
       class-name="games.stendhal.server.maps.nalwor.assassinhq.LilJohnnnnyNPC" />
     <configurator
       class-name="games.stendhal.server.maps.nalwor.assassinhq.SchoolMarmNPC" />
-    <!-- this portal commented out until we can add upper floors of assassinhq 
-      <portal x="24" y="11" ref="hq1up"> <destination zone="int_nalwor_assassinhq_2" 
+    <!-- this portal commented out until we can add upper floors of assassinhq
+      <portal x="24" y="11" ref="hq1up"> <destination zone="int_nalwor_assassinhq_2"
       ref="hq2down"/> </portal> -->
     <portal x="23" y="11" ref="hq1down">
       <destination zone="int_nalwor_assassinhq_0" ref="hq0up" />
@@ -553,16 +553,16 @@ below average.
       </implementation>
     </entity>
   </zone>
-  <!-- These levels have been commented out until such time that new maps 
-    can be added <zone name="int_nalwor_assassinhq_2" file="interiors/nalwor/assassinhq_2.tmx"> 
-    <portal x="24" y="11" ref="hq2up"> <destination zone="int_nalwor_assassinhq_3" 
-    ref="hq3down"/> </portal> <portal x="23" y="11" ref="hq2down"> <destination 
-    zone="int_nalwor_assassinhq_1" ref="hq1up"/> </portal> </zone> <zone name="int_nalwor_assassinhq_3" 
-    file="interiors/nalwor/assassinhq_3.tmx"> <portal x="24" y="11" ref="hq3up"> 
-    <destination zone="int_nalwor_assassinhq_4" ref="hq4down"/> </portal> <portal 
-    x="23" y="11" ref="hq3down"> <destination zone="int_nalwor_assassinhq_2" 
-    ref="hq2up"/> </portal> </zone> <zone name="int_nalwor_assassinhq_4" file="interiors/nalwor/assassinhq_4.tmx"> 
-    <portal x="23" y="11" ref="hq4down"> <destination zone="int_nalwor_assassinhq_3" 
+  <!-- These levels have been commented out until such time that new maps
+    can be added <zone name="int_nalwor_assassinhq_2" file="interiors/nalwor/assassinhq_2.tmx">
+    <portal x="24" y="11" ref="hq2up"> <destination zone="int_nalwor_assassinhq_3"
+    ref="hq3down"/> </portal> <portal x="23" y="11" ref="hq2down"> <destination
+    zone="int_nalwor_assassinhq_1" ref="hq1up"/> </portal> </zone> <zone name="int_nalwor_assassinhq_3"
+    file="interiors/nalwor/assassinhq_3.tmx"> <portal x="24" y="11" ref="hq3up">
+    <destination zone="int_nalwor_assassinhq_4" ref="hq4down"/> </portal> <portal
+    x="23" y="11" ref="hq3down"> <destination zone="int_nalwor_assassinhq_2"
+    ref="hq2up"/> </portal> </zone> <zone name="int_nalwor_assassinhq_4" file="interiors/nalwor/assassinhq_4.tmx">
+    <portal x="23" y="11" ref="hq4down"> <destination zone="int_nalwor_assassinhq_3"
     ref="hq3up"/> </portal> </zone> -->
   <zone name="int_nalwor_bank" file="interiors/nalwor/bank.tmx">
     <configurator class-name="games.stendhal.server.maps.nalwor.bank.BankNPC" />
@@ -595,7 +595,7 @@ below average.
         <parameter name="rejected">The door is locked.</parameter>
       </implementation>
     </portal>
-    <!-- seems strange to lock it from the inside? Else, a player will leave 
+    <!-- seems strange to lock it from the inside? Else, a player will leave
       their key in the nalwor bank chest -->
     <portal x="17" y="21" ref="customer_room_exit">
       <destination zone="int_nalwor_bank" ref="customer_room_entrance" />
@@ -966,14 +966,14 @@ below average.
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
-    
+
     <entity x="57" y="64">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">perch</parameter>
       </implementation>
     </entity>
-    
+
     <!-- Ambiance on fishing dock -->
     <entity x="56" y="60">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -1270,7 +1270,7 @@ below average.
       </implementation>
     </entity>
   </zone>
-  
+
   <zone name="int_hell_pit" file="interiors/nalwor/hell_pit.tmx">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
     <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperClones" />

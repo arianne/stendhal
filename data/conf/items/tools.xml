@@ -39,7 +39,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="scroll eraser">
     <type class="tool" subclass="scrolleraser" tileid="-1"/>
     <description>You see a scroll eraser. Put a marked scroll in the opposite hand to clean the scroll.</description>
@@ -130,7 +130,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="magical needle">
     <type class="tool" subclass="magical_needle" tileid="-1"/>
     <description>You see a magical needle with a very sharp point.</description>
@@ -148,7 +148,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="pick">
     <type class="tool" subclass="pick" tileid="-1"/>
     <description>You see a pick. It is a tool which helps you to get some coal.</description>
@@ -166,7 +166,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <!-- disabled <item name="shovel">
     <type class="tool" subclass="shovel" tileid="-1"/>
     <description>You see a shovel, a tool for digging.</description>
@@ -185,5 +185,5 @@
       <slot name="rhand"/>
     </equipable>
   </item> -->
-  
+
 </items>

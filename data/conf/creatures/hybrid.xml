@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: arachnid -->
-  
+
   <creature name="arachne">
     <type class="hybrid" subclass="arachne" tileid="hybrid.png:13"/>
     <description>You see Arachne, a horrid half woman half spider. With so many legs she can hit you very fast, and her poisonous bite is fierce.</description>
@@ -24,7 +24,7 @@
       <item value="mega poison" quantity="[1,2]" probability="10.0"/>
       <item value="medicinal ring" quantity="[1,1]" probability="1.0" />
     </drops>
-    <equips>      
+    <equips>
       <slot name="rhand" item="dark dagger"/>
     </equips>
     <ai>
@@ -35,11 +35,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: arachnid -->
-  
+
   <!-- START: feline -->
-  
+
   <creature name="cat woman">
     <type class="mutant" subclass="cat_woman" tileid="mutant.png:5"/>
      <description>You see a cat woman. She's agile, stealthy, fast and sharp, so stay focused and don't get cut!</description>
@@ -70,11 +70,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: feline -->
-  
+
   <!-- START: frogman -->
-  
+
   <creature name="frogman">
     <type class="frogman" subclass="frogman" tileid="frogman.png:1"/>
     <description>You see a frogman which lives in a lake which isn't very deep.</description>
@@ -110,7 +110,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elite frogman">
     <type class="frogman" subclass="caped_frogman" tileid="frogman.png:0"/>
     <description>You see an elite frogman. His huge eyes let you shiver!</description>
@@ -145,7 +145,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="wizard frogman">
     <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:2"/>
     <description>You see a mighty wizard frogman. His wand and magical cloak show his wisdom and power.</description>
@@ -179,11 +179,11 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <!-- END: frogman -->
-  
+
   <!-- START: kobold -->
-  
+
   <creature name="kobold">
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
     <description>You see a kobold. People say that it is a mythical spirit.</description>
@@ -306,7 +306,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="veteran kobold">
     <type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
     <description>You see a veteran kobold, it is mighty!</description>
@@ -347,7 +347,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="leader kobold">
     <type class="kobold" subclass="leader_kobold" tileid="kobold.png:2"/>
     <description>You see a leader kobold, one of the mighty warriors.</description>
@@ -389,11 +389,11 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: kobold -->
-  
+
   <!-- START mermaid -->
-  
+
     <creature name="mermaid">
     <type class="hybrid" subclass="mermaid" tileid="hybrid.png:15"/>
      <description>You see a mermaid. They perfer their own company and are not too happy to see you here.</description>
@@ -423,11 +423,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END mermaid -->
-  
+
   <!-- START: minotaur -->
-  
+
   <creature name="minotaur">
     <type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
     <description>You see a minotaur. He escaped from his labyrinth and is very angry now!</description>
@@ -464,7 +464,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="minotaur king">
     <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
     <description>You see a Minotaur King. He doesn't have to escape from his labyrinth to be very angry...</description>
@@ -503,11 +503,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: minotaur -->
-  
+
   <!-- START: naga -->
-  
+
   <creature name="naga">
     <type class="mutant" subclass="naga" tileid="naga.png:2"/>
     <description> You see a naga. She awaits unwary victims to whom she may give her deadly kiss.</description>
@@ -540,7 +540,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="high naga">
     <type class="mutant" subclass="high_naga" tileid="naga.png:1"/>
     <description></description>
@@ -574,7 +574,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="armed naga">
     <type class="mutant" subclass="armed_naga" tileid="naga.png:0"/>
     <description></description>
@@ -610,7 +610,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="lamia">
     <type class="mutant" subclass="lamia" tileid="naga.png:3"/>
     <description></description>
@@ -643,11 +643,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: naga -->
-  
+
   <!-- START: ratfolk -->
-  
+
    <creature name="ratman">
     <type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
     <description>You see a ratman. He is a mutation that comes from old times.</description>
@@ -758,12 +758,12 @@
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>   
-   
+  </creature>
+
   <!-- END: ratfolk -->
-  
+
   <!-- START: sheepman -->
-  
+
   <creature name="sheepman">
     <type class="sheepman" subclass="sheepman" tileid="sheepman.png:3"/>
     <description></description>
@@ -798,7 +798,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="armored sheepman">
     <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:0"/>
     <description></description>
@@ -832,7 +832,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elder sheepman">
     <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:1"/>
     <description></description>
@@ -865,7 +865,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <creature name="elite sheepman">
     <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:2"/>
     <description></description>
@@ -899,11 +899,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: sheepman -->
-  
+
   <!-- START: werewolf -->
-  
+
   <creature name="werewolf">
     <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
     <description>You see a werewolf. Normally he is a human but at fullmoon nights he turns into a dangerous beast! His poison seems to last forever.</description>
@@ -932,11 +932,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: werewolf -->
-  
+
   <!-- START: xeno -->
-  
+
   <creature name="xenocium">
     <type class="hybrid" subclass="xenocium" tileid="hybrid.png:6"/>
     <description></description>
@@ -970,7 +970,7 @@
       <profile name="heal" params="15,50"/>
     </ai>
   </creature>
-  
+
   <!-- END: xeno -->
-  
-</creatures>  
+
+</creatures>

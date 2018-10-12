@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: duergar -->
-  
+
   <creature name="duergar">
     <type class="dwarf" subclass="duergar" tileid="dwarf_duergar.png:6"/>
     <description>You see a duergar. It is a close relative to dwarves but with a diabolically tainted blood.</description>
@@ -32,7 +32,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="duergar axeman">
     <type class="dwarf" subclass="duergar_axe" tileid="dwarf_duergar.png:0"/>
     <description></description>
@@ -63,7 +63,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elder duergar">
     <type class="dwarf" subclass="duergar_elder" tileid="dwarf_duergar.png:2"/>
     <description></description>
@@ -89,8 +89,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>  
-  
+  </creature>
+
   <creature name="duergar elite">
     <type class="dwarf" subclass="duergar_elite" tileid="dwarf_duergar.png:3"/>
     <description></description>
@@ -106,7 +106,7 @@
     <respawn value="1640"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[3,27]" probability="90.0"/>      
+      <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="enhanced mace" quantity="[1,1]" probability="15.5"/>
       <item value="stone boots" quantity="[1,1]" probability="1.5"/>
       <item value="stone armor" quantity="[1,1]" probability="0.5"/>
@@ -119,7 +119,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="duergar hero">
     <type class="dwarf" subclass="duergar_hero" tileid="dwarf_duergar.png:4"/>
     <description></description>
@@ -151,7 +151,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="duergar wizard">
     <type class="dwarf" subclass="duergar_wizard" tileid="dwarf_duergar.png:7"/>
     <description></description>
@@ -179,7 +179,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="black duergar">
     <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
     <description></description>
@@ -195,7 +195,7 @@
     <respawn value="1800"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[3,27]" probability="90.0"/>      
+      <item value="money" quantity="[3,27]" probability="90.0"/>
       <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
       <item value="black legs" quantity="[1,1]" probability="0.0010"/>
       <item value="halberd" quantity="[1,1]" probability="0.5"/>
@@ -213,7 +213,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="duergar king">
     <type class="dwarf" subclass="duergar_king" tileid="dwarf_duergar.png:5"/>
     <description></description>
@@ -229,7 +229,7 @@
     <respawn value="2880"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[30,97]" probability="90.0"/>      
+      <item value="money" quantity="[30,97]" probability="90.0"/>
       <item value="stone armor" quantity="[1,1]" probability="0.1"/>
       <item value="black armor" quantity="[1,1]" probability="0.0001"/>
       <item value="horned golden helmet" quantity="[1,1]" probability="0.5"/>
@@ -243,11 +243,11 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: duergar -->
-  
+
   <!-- START: dwarf -->
-  
+
   <creature name="dwarf">
     <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
     <description>You see a dwarf who works in the mine to find some iron for us.</description>
@@ -280,7 +280,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dwarf guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
     <description>You see a dwarf guardian who fights against the humans.</description>
@@ -314,7 +314,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elder dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
     <description>You see an elder dwarf, a mighty warrior tired of fighting.</description>
@@ -348,7 +348,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
     <description>You see a hero dwarf. He is an old dwarf warrior who became a hero for fighting in many dwarf wars and he is very famous for his strength and brutality.</description>
@@ -381,7 +381,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
     <description>You see a leader dwarf. He is the most mighty dwarf of his tribe so he enjoys much popularity there.</description>
@@ -416,11 +416,11 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: dwarf -->
-  
+
   <!-- START: giant dwarf -->
-  
+
   <creature name="giant dwarf">
     <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:5"/>
     <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because some of the other dwarves don't really see him as one of them because of his height... But in his big heart he is a dwarf and in a battle he will fight against each enemy!</description>
@@ -453,7 +453,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="Dhohr Nuggetcutter">
     <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:6"/>
     <description></description>
@@ -486,7 +486,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="Lord Durin">
     <type class="dwarf" subclass="lord_durin" tileid="dwarf.png:7"/>
     <description>You see the mighty Lord Durin, an ancient dwarf who has led his race through countless battles.</description>
@@ -520,11 +520,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: giant dwarf -->
-  
+
   <!-- START: mountain dwarf -->
-  
+
   <creature name="mountain dwarf">
     <type class="dwarf" subclass="dwarf" tileid="mountain_dwarf.png:1"/>
     <description>You see a mountain dwarf. He likes earth, stones and rocks. Deep within the mountain, where no animal and no human has ever been, you can hear the sound of his pickaxe as he searches for gold and ore.</description>
@@ -556,7 +556,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mountain dwarf guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
     <description>You see a mountain dwarf guardian. He has to watch out for enemies and guards the mountain dwarfs while they are doing their work.</description>
@@ -587,8 +587,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>  
-  
+  </creature>
+
   <creature name="mountain elder dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="mountain_dwarf.png:2"/>
     <description>You see a mountain elder dwarf. For many years he worked deep in the mountain and found much gold and ore in his life. Soon he will be too old to do this work but at the moment he is still a strong dwarf.</description>
@@ -621,8 +621,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature> 
-  
+  </creature>
+
   <creature name="mountain hero dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="mountain_dwarf.png:3"/>
     <description>You see a mountain hero dwarf. Many, many dwarves admire him! He was a member of a dwarvish group which discovered a very big gold deposit!</description>
@@ -656,7 +656,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mountain leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="mountain_dwarf.png:4"/>
     <description>You see a mountain leader dwarf. He is responsible for the mountain dwarves and their work, and also for the organization of the guardian troops. But in serious cases he will also fight on his own!</description>
@@ -693,7 +693,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: mountain dwarf -->
-  
+
 </creatures>

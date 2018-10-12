@@ -100,7 +100,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
     <item name="mithril bow">
     <type class="ranged" subclass="mithril_bow" tileid="-1"/>
    <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
@@ -120,5 +120,5 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
 </items>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: dark -->
-  
+
   <creature name="dark angel">
     <type class="giant_human" subclass="dark_angel" tileid="giant_human.png:6"/>
     <description>You see a dark angel. He is an strong evil angel, and for now he is under cover of darkness.</description>
@@ -49,7 +49,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="dark archangel">
     <type class="giant_human" subclass="dark_archangel" tileid="giant_human.png:12"/>
     <description>You see a dark archangel. After she fell from heaven her soul became as dark as she is now.</description>
@@ -95,11 +95,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: dark -->
-  
+
   <!-- START: fallen -->
-  
+
   <creature name="fallen angel">
     <type class="giant_human" subclass="fallen_angel" tileid="giant_human.png:7"/>
     <description>You see a fallen angel. When he turned away from good, he fell down from heaven.</description>
@@ -136,11 +136,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: fallen -->
-  
+
   <!-- START: light -->
-  
+
   <creature name="baby angel">
     <type class="fairy" subclass="baby_angel" tileid="fairy.png:0"/>
     <description>You see a baby angel. Will it ever get a chance to grow up?</description>
@@ -182,7 +182,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="angel">
     <type class="giant_human" subclass="angel" tileid="giant_human.png:4"/>
     <description>You see an angel. With his flame sword he guards the way and doesn't let you pass.</description>
@@ -224,7 +224,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="archangel">
     <type class="giant_human" subclass="archangel" tileid="giant_human.png:11"/>
     <description>You see an archangel. She wants to kill you because she doesn't want you in the clouds.</description>
@@ -271,7 +271,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: light -->
-  
+
 </creatures>

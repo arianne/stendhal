@@ -21,7 +21,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
    <item name="summon pet scroll">
     <type class="scroll" subclass="summon_pet" tileid="-1"/>
     <description/>
@@ -41,7 +41,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="blank pet scroll">
     <type class="scroll" subclass="blank_pet_scroll" tileid="-1"/>
     <description/>

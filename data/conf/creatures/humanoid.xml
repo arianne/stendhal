@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: aruthon -->
-  
+
   <creature name="robot aruthon">
     <type class="hybrid" subclass="robot_aruthon" tileid="hybrid.png:4"/>
     <description></description>
@@ -37,7 +37,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark aruthon">
     <type class="hybrid" subclass="dark_aruthon" tileid="hybrid.png:2"/>
     <description></description>
@@ -75,11 +75,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: aruthon -->
-  
+
   <!-- START: fairy -->
-  
+
   <creature name="leprechaun">
     <type class="fairy" subclass="leprechaun" tileid="fairy.png:2"/>
     <description>You see a leprechaun, you would be lucky if you found his treasure.</description>
@@ -112,7 +112,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="littlefairy">
     <type class="fairy" subclass="littlefairy" tileid="fairy.png:3"/>
     <description>You see a little fairy, which is magical and nice.</description>
@@ -139,7 +139,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="clurichaun">
     <type class="fairy" subclass="clurichaun" tileid="fairy.png:1"/>
     <description>You see a clurichaun. He is rich, but you don't know if you are able to find his gold!</description>
@@ -172,12 +172,12 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature> 
-  
+  </creature>
+
   <!-- END: fairy -->
-  
+
   <!-- START: misc -->
-  
+
   <creature name="brain ahouga">
     <type class="hybrid" subclass="brain_ahouga" tileid="hybrid.png:1"/>
     <description>You see a brain ahouga, a very strange creature only living in your dreams!</description>
@@ -206,11 +206,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: misc -->
-  
+
   <!-- START: mohiko -->
-  
+
   <creature name="blue mohiko">
     <type class="hybrid" subclass="blue_mohiko" tileid="hybrid.png:0"/>
     <description></description>
@@ -241,11 +241,11 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <!-- END: mohiko -->
-  
+
   <!-- START: roohako -->
-  
+
   <creature name="red roohako">
     <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
     <description>You see a red roohako. It is coming for you in your deepest dreams.</description>
@@ -272,7 +272,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <!-- END: roohako -->
-  
+
 </creatures>

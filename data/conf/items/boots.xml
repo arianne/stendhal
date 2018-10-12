@@ -13,7 +13,7 @@
     <weight value="17.0"/>
     <value value="23625"/>
     <susceptibility type="light" value="1.2"/>
-    <susceptibility type="dark" value="0.9"/> 
+    <susceptibility type="dark" value="0.9"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -22,7 +22,7 @@
       <slot name="feet"/>
     </equipable>
   </item>
-  
+
 <item name="blue boots">
     <type class="boots" subclass="blue_boots" tileid="-1"/>
     <description>You see a pair of blue boots.</description>
@@ -41,7 +41,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="chain boots">
     <type class="boots" subclass="chain_boots" tileid="-1"/>
     <description>You see a pair of chain boots, quite rusty but still strong.</description>
@@ -59,7 +59,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="chaos boots">
     <type class="boots" subclass="chaos_boots" tileid="-1"/>
     <description>You see a pair of chaos boots. Your steps are unsteady in them, but the extra defence they give is worth it.</description>
@@ -78,7 +78,7 @@
       <slot name="feet"/>
     </equipable>
   </item>
-  
+
    <item name="elvish boots">
     <type class="boots" subclass="elvish_boots" tileid="-1"/>
     <description>You see a pair of elvish boots.</description>
@@ -97,7 +97,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="golden boots">
     <type class="boots" subclass="golden_boots" tileid="-1"/>
     <description>You see a pair of golden boots. They will be heavy to wear but well worth their weight.</description>
@@ -116,7 +116,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="green thing boots">
     <type class="boots" subclass="green_dragon_boots" tileid="-1"/>
     <description>You see a pair of green thing boots. They're slimy inside, ewwww.</description>
@@ -135,7 +135,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
    <item name="killer boots">
     <type class="boots" subclass="killer_boots" tileid="-1"/>
     <description>You see a high heeled pair of killer boots. Are you brave enough to wear them?</description>
@@ -153,7 +153,7 @@
       <slot name="feet"/>
     </equipable>
   </item>
-  
+
   <item name="leather boots">
     <type class="boots" subclass="leather_boots" tileid="-1"/>
     <description>You see a simple pair of leather boots to give your feet some protection.</description>
@@ -171,7 +171,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="mainio boots">
     <type class="boots" subclass="mainio_boots" tileid="-1"/>
     <description>You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.</description>
@@ -190,7 +190,7 @@
       <slot name="feet"/>
     </equipable>
   </item>
-  
+
   <item name="mithril boots">
     <type class="boots" subclass="mithril_boots" tileid="-1"/>
     <description>You see a sparkling set of mithril boots.</description>
@@ -211,7 +211,7 @@
       <slot name="feet"/>
     </equipable>
   </item>
-  
+
   <item name="red boots">
     <type class="boots" subclass="red_boots" tileid="-1"/>
     <description>You see a pair of red boots, the colour reminds you of fresh blood.</description>
@@ -229,7 +229,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
    <item name="shadow boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>
     <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
@@ -241,7 +241,7 @@
     <weight value="17.0"/>
     <value value="5103"/>
     <susceptibility type="light" value="1.4"/>
-    <susceptibility type="dark" value="0.8"/> 
+    <susceptibility type="dark" value="0.8"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -269,7 +269,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="stone boots">
     <type class="boots" subclass="stone_boots" tileid="-1"/>
     <description>You see a pair of stone boots.  They may be heavy, but they protect your feet well.</description>
@@ -327,5 +327,5 @@
       <slot name="feet"/>
     </equipable>
   </item>
-   
+
 </items>

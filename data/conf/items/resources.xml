@@ -444,7 +444,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="horse hair">
     <type class="resource" subclass="horsehair" tileid="-1"/>
     <description>You see some horse hairs.</description>
@@ -484,7 +484,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="candle">
     <type class="resource" subclass="candle" tileid="-1"/>
     <description>You see a candle in a candle stick.</description>

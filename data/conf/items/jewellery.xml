@@ -100,7 +100,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
    <item name="black pearl">
     <type class="jewellery" subclass="blackpearl" tileid="-1"/>
     <description>You see a black pearl, so dark and shiny.</description>
@@ -120,5 +120,5 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
 </items>

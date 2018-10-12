@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-  
+
     <item name="backpack">
     <type class="container" subclass="backpack" tileid="-1"/>
     <description>You see a backpack.</description>
@@ -20,10 +20,10 @@
       <slot name="back"/>
 <!--      <slot name="bag"/>
       <slot name="trade"/>
- -->      
+ -->
     </equipable>
   </item>
-  
+
   <item name="empty sack">
     <type class="container" subclass="empty_sack" tileid="-1"/>
     <description>You see an empty sack. It will not stand up, unless you fill it first.</description>
@@ -41,7 +41,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="flask">
     <type class="container" subclass="flask" tileid="-1"/>
     <description>You see a flask. This flask is good for storing medicine.</description>
@@ -59,7 +59,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <!-- Not used yet
   <item name="bottle">
     <type class="container" subclass="bottle" tileid="-1"/>
@@ -78,7 +78,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="large bottle">
     <type class="container" subclass="bottle_large" tileid="-1"/>
     <description>You see a large bottle.</description>
@@ -96,7 +96,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="medium bottle">
     <type class="container" subclass="bottle_medium" tileid="-1"/>
     <description>You see a medium sized bottle.</description>
@@ -115,7 +115,7 @@
     </equipable>
   </item>
   -->
-  
+
   <item name="eared bottle">
     <type class="container" subclass="bottle_eared" tileid="-1"/>
     <description>You see an eared bottle. It is empty, someone drank the contents.</description>
@@ -133,7 +133,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="fat bottle">
     <type class="container" subclass="bottle_fat" tileid="-1"/>
     <description>You see a fat bottle. It is empty, someone drank the contents.</description>
@@ -151,7 +151,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <!-- Not used yet
   <item name="short rounded bottle">
     <type class="container" subclass="bottle_short_rounded" tileid="-1"/>
@@ -170,7 +170,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="short triangular bottle">
     <type class="container" subclass="bottle_short_triangular" tileid="-1"/>
     <description>You see a short triangular bottle. It is empty, someone drank the contents.</description>
@@ -189,7 +189,7 @@
     </equipable>
   </item>
   -->
-  
+
   <item name="slim bottle">
     <type class="container" subclass="bottle_slim" tileid="-1"/>
     <description>You see a slim bottle. It is empty, someone drank the contents.</description>
@@ -207,7 +207,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <!-- Not used yet
   <item name="squared bottle">
     <type class="container" subclass="bottle_squared" tileid="-1"/>
@@ -226,7 +226,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="tall bottle">
     <type class="container" subclass="bottle_tall" tileid="-1"/>
     <description>You see a tall bottle. It is empty, someone drank the contents.</description>
@@ -244,7 +244,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="triangular bottle">
     <type class="container" subclass="bottle_triangular" tileid="-1"/>
     <description>You see a triangular bottle. It is empty, someone drank the contents.</description>
@@ -263,7 +263,7 @@
     </equipable>
   </item>
   -->
-  
+
   <item name="empty goblet">
     <type class="container" subclass="empty_goblet" tileid="-1"/>
     <description>You see an empty goblet.  You wonder what could it hold.</description>
@@ -279,7 +279,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="goblet">
     <type class="container" subclass="full_goblet" tileid="-1"/>
     <description>You see a goblet.  You look at its contents, and shiver at the blood inside.</description>
@@ -297,7 +297,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="keyring">
     <type class="container" subclass="keyring" tileid="-1"/>
     <description>You see a keyring.</description>
@@ -313,10 +313,10 @@
       <slot name="belt"/>
 <!--      <slot name="bag"/>
       <slot name="trade"/>
- -->      
+ -->
     </equipable>
   </item>
-  
+
   <!-- Not used yet
   <item name="vial">
     <type class="container" subclass="vial" tileid="-1"/>
@@ -336,5 +336,5 @@
     </equipable>
   </item>
   -->
-  
+
 </items>

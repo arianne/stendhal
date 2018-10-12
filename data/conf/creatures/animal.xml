@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
       <!-- START: Aquatic -->
-      
+
   <creature name="kraken">
 	<type class="huge_animal" subclass="kraken" tileid="huge_animal.png:13"/>
 	<description>From the depths of the sea rises a Kraken!</description>
@@ -39,7 +39,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-    
+
   <creature name="shark">
     <type class="giant_animal" subclass="shark" tileid="giant_animal.png:2"/>
     <description>A shark! Best move cautiously.</description>
@@ -76,11 +76,11 @@
       <profile name="patrolling"/>
    </ai>
  </creature>
-   
+
   <!-- END: Aquatic -->
 
   <!-- START: arachnid -->
-  
+
   <creature name="spider">
     <type class="animal" subclass="spider" tileid="animal.png:18"/>
     <description>You see a spider. It makes a giant spider web to trap you!</description>
@@ -105,7 +105,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="poisonous spider">
     <type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
     <description>You see a poisonous spider. Be careful! Its poison is very strong! It will make you very weak and can probably kill you!</description>
@@ -135,7 +135,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="giant spider">
     <type class="huge_animal" subclass="giant_spider" tileid="huge_animal.png:5"/>
     <description>You see a giant spider. It has very long legs which are quite dangerous.</description>
@@ -167,11 +167,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: arachnid -->
-  
+
   <!-- START: crustacean -->
-  
+
   <creature name="crab">
     <type class="animal" subclass="crab" tileid="animal.png:8"/>
     <description>You see a little crab that comes from the beach, be careful of its pincers.</description>
@@ -202,11 +202,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: crustacean -->
-  
+
   <!-- START: fowl -->
-  
+
   <creature name="chick">
     <type class="farm_animal" subclass="chick" tileid="farm_animal.png:2"/>
     <description>You see a little chick, it doesn't like to be away from its mother.</description>
@@ -239,7 +239,7 @@
       <profile name="coward"/>
     </ai>
   </creature>
-  
+
   <creature name="chicken">
     <type class="animal" subclass="chicken" tileid="animal.png:25"/>
     <description>You see a chicken, isn't it nice?</description>
@@ -253,7 +253,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
-	<corpse name="small_winged" harmless="feathered" />    
+	<corpse name="small_winged" harmless="feathered" />
     <drops>
       <item value="chicken" quantity="[1,2]" probability="50.0"/>
     </drops>
@@ -271,7 +271,7 @@
       <profile name="coward"/>
     </ai>
   </creature>
-  
+
     <creature name="dodo">
     <type class="animal" subclass="dodo_bird" tileid="animal.png:29"/>
     <description>You see a dodo bird, aren't they supposed to be extinct?</description>
@@ -302,7 +302,7 @@
       <profile name="non offensive"/>
     </ai>
   </creature>
-  
+
   <creature name="mother hen">
     <type class="farm_animal" subclass="hen" tileid="farm_animal.png:6"/>
     <description>You see a mother hen, she will probably hurt you if you touch her sons.</description>
@@ -333,7 +333,7 @@
       <profile name="non offensive"/>
     </ai>
   </creature>
-  
+
   <creature name="penguin">
     <type class="animal" subclass="penguin" tileid="animal.png:16"/>
     <description>You see a penguin, smart and silly.</description>
@@ -366,7 +366,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="pigeon">
     <type class="animal" subclass="pigeon" tileid="animal.png:23"/>
     <description>You see a pigeon, it loves the little seeds.</description>
@@ -397,11 +397,11 @@
       <profile name="coward"/>
     </ai>
   </creature>
-  
+
   <!-- END: fowl -->
-  
+
   <!-- START: insect -->
-  
+
   <creature name="killer bee">
     <type class="animal" subclass="killer_bee" tileid="animal.png:27"/>
     <description>You see a killer bee which will sting you to death!</description>
@@ -436,11 +436,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: insect -->
-  
+
   <!-- START: mammal -->
-  
+
   <creature name="deer" condition="!stendhal.christmas">
     <type class="animal" subclass="deer" tileid="animal.png:9"/>
     <description>You see a defenseless deer, do not have fear of it.</description>
@@ -469,7 +469,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="deer" condition="stendhal.christmas">
     <type class="animal" subclass="reindeer" tileid="animal.png:9"/>
     <description>You see a reindeer running freely, and wonder if he is one of Santa's special helpers.</description>
@@ -498,7 +498,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mouse">
     <type class="small_animal" subclass="mouse" tileid="farm_animal.png:8"/>
     <description>You see a small mouse that seems to be very hungry.</description>
@@ -529,7 +529,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="rat">
     <type class="small_animal" subclass="rat" tileid="small_animal.png:1"/>
     <description>You see a small rat that seems to be extremely hungry.</description>
@@ -563,7 +563,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="bat">
     <type class="animal" subclass="bat" tileid="animal.png:0"/>
     <description>You see a bat, it will seek your blood, don't be distracted...</description>
@@ -594,7 +594,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="caverat">
     <type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
     <description>You see a caverat which is dirty and loves the dungeons.</description>
@@ -626,7 +626,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="piglet">
     <type class="farm_animal" subclass="piglet" tileid="farm_animal.png:9"/>
     <description>You see a piglet, a bit dirty.</description>
@@ -657,7 +657,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="babybear">
     <type class="animal" subclass="babybear" tileid="animal.png:21"/>
     <description>You see a babybear, isn't it sweet?</description>
@@ -687,7 +687,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="beaver">
     <type class="farm_animal" subclass="beaver" tileid="farm_animal.png:0"/>
     <description>You see a beaver. It likes to build dams in the river.</description>
@@ -714,7 +714,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="big bad wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:26"/>
 	<description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
@@ -750,7 +750,7 @@
       <profile name="rare"/>
     </ai>
   </creature>
-  
+
   <creature name="boar">
     <type class="animal" subclass="boar" tileid="animal.png:4"/>
     <description>You see a boar, they are pretty wild!</description>
@@ -781,7 +781,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="bull">
     <type class="farm_animal" subclass="bull" tileid="farm_animal.png:1"/>
     <description>You see a bull, run away!!!</description>
@@ -811,7 +811,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="cow">
     <type class="farm_animal" subclass="cow" tileid="farm_animal.png:3"/>
     <description>You see a cow, taste her delicious milk.</description>
@@ -841,7 +841,7 @@
       <profile name="animal"/>
     </ai>
   </creature>
-  
+
   <creature name="fox">
     <type class="animal" subclass="fox" tileid="animal.png:24"/>
 	<description>You see a fox, it becomes extinct!</description>
@@ -867,7 +867,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="goat">
     <type class="farm_animal" subclass="goat" tileid="farm_animal.png:4"/>
     <description>You see a goat, which is wild and lives in the mountain.</description>
@@ -897,7 +897,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="horse">
     <type class="farm_animal" subclass="horse" tileid="farm_animal.png:7"/>
     <description>You see a horse, don't slap it or it will run away!</description>
@@ -928,7 +928,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="monkey">
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
     <description>You see a monkey, would you like to offer it a banana?</description>
@@ -962,7 +962,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="panda">
     <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
     <description>You see a panda which comes from an exotic land.</description>
@@ -992,7 +992,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="ram">
     <type class="farm_animal" subclass="ram" tileid="farm_animal.png:10"/>
     <description>You see a ram, maybe you are able to shear it?</description>
@@ -1022,7 +1022,7 @@
       <profile name="offensive"/>
     </ai>
   </creature>
-  
+
   <creature name="white horse">
     <type class="farm_animal" subclass="white_horse" tileid="farm_animal.png:11"/>
     <description>You see a white horse, they love to stay with their brown friends.</description>
@@ -1053,7 +1053,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="wolf">
     <type class="animal" subclass="wolf" tileid="animal.png:20"/>
 	<description>You see a wolf. It is wild and very hungry!</description>
@@ -1087,7 +1087,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="bear">
     <type class="animal" subclass="bear" tileid="animal.png:1"/>
     <description>You see a bear. You are lucky and found it awake.</description>
@@ -1120,7 +1120,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="lion">
     <type class="animal" subclass="lion" tileid="animal.png:14"/>
     <description>You see a lion, dangerous and hungry...</description>
@@ -1152,7 +1152,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elephant">
     <type class="animal" subclass="elephant" tileid="animal.png:11"/>
     <description>You see an elephant, a huge animal with lots of ham and meat. Are you sure that you want to attack it?</description>
@@ -1186,7 +1186,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="tiger">
     <type class="animal" subclass="tiger" tileid="animal.png:19"/>
     <description>You see a tiger, which likes deer and human meat.</description>
@@ -1218,7 +1218,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="venomrat">
     <type class="small_animal" subclass="venomrat" tileid="small_animal.png:3"/>
     <description>You see a venomrat, extremely poisonous.</description>
@@ -1252,7 +1252,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="killer bat">
     <type class="animal" subclass="killer_bat" tileid="animal.png:13"/>
     <description>You see a killer bat which will suck your blood!</description>
@@ -1284,7 +1284,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="black bear">
     <type class="animal" subclass="black_bear" tileid="animal.png:2"/>
     <description>You see a strong black bear which hibernates in winter.</description>
@@ -1317,7 +1317,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="razorrat">
     <type class="small_animal" subclass="razorrat" tileid="small_animal.png:2"/>
     <description>You see a razorrat, its noise will make you crazy!</description>
@@ -1348,7 +1348,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="giantrat">
     <type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
     <description>You see a giant rat. It seems like it survived from an experiment which went wrong.</description>
@@ -1382,11 +1382,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: mammal -->
-  
+
   <!-- START: mythical -->
-  
+
   <creature name="unicorn">
     <type class="mythical_being" subclass="unicorn" tileid="mythical_being.png:1"/>
     <description>You see a rare unicorn. It is widely believed to be only a myth.</description>
@@ -1415,8 +1415,8 @@
       <profile name="patrolling"/>
       <profile name="rare"/>
     </ai>
-  </creature>   
-  
+  </creature>
+
   <creature name="centaur">
     <type class="mythical_being" subclass="centaur" tileid="mythical_being.png:0"/>
     <description> You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.</description>
@@ -1448,7 +1448,7 @@
       <profile name="rare"/>
     </ai>
   </creature>
-  
+
   <creature name="pegasus">
     <type class="mythical_being" subclass="pegasus" tileid="mythical_being.png:2"/>
     <description>You see Pegasus, the winged horse. His name means Lightning and he carries bolts of Thunder.</description>
@@ -1479,11 +1479,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: mythical -->
-  
+
   <!-- START: reptile -->
-  
+
   <creature name="caiman">
     <type class="animal" subclass="caiman" tileid="animal.png:6"/>
     <description>You see a caiman, which is hidden in the water.</description>
@@ -1517,7 +1517,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="grass snake">
     <type class="farm_animal" subclass="grass_snake" tileid="farm_animal.png:5"/>
     <description>You see a grass snake which is quite dangerous.</description>
@@ -1549,7 +1549,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="snake">
     <type class="animal" subclass="snake" tileid="animal.png:7"/>
     <description>You see a snake, it came from the forest to poison you!</description>
@@ -1581,7 +1581,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="crocodile">
     <type class="giant_animal" subclass="crocodile" tileid="giant_animal.png:0"/>
     <description>You see a crocodile, it arises from the deep waters in the rivers.</description>
@@ -1614,8 +1614,8 @@
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>  
-  
+  </creature>
+
   <creature name="cobra">
     <type class="animal" subclass="cobra" tileid="animal.png:28"/>
     <description></description>
@@ -1645,7 +1645,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="king cobra">
     <type class="huge_animal" subclass="king_cobra" tileid="huge_animal.png:9"/>
     <description>You see a king cobra. It is extremely venomous.</description>
@@ -1677,7 +1677,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: reptile -->
-  
+
 </creatures>

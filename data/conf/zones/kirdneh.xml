@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal ../zones.xsd ">
-  <!-- ** Load zones. Written from left to right and from top to bottom. 
+  <!-- ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it! -->
 
   <!-- Level 6 -->
@@ -350,7 +350,7 @@
       <parameter name="x">15</parameter>
       <parameter name="y">13</parameter>
     </configurator>
-    
+
     <!-- Planter box -->
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
       <parameter name="x">37</parameter>
@@ -358,7 +358,7 @@
       <parameter name="width">1</parameter>
       <parameter name="height">3</parameter>
     </configurator>
-    
+
     <!-- Portals -->
     <portal x="19" y="23" ref="entrance">
       <destination zone="0_kirdneh_city" ref="27" />
@@ -372,31 +372,31 @@
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <entity x="28" y="15">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
     </entity>
-    
+
     <entity x="33" y="15">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
     </entity>
-    
+
     <entity x="28" y="20">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
     </entity>
-    
+
     <entity x="33" y="20">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
     </entity>
-    
+
     <entity x="22" y="2">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -404,7 +404,7 @@
       <attribute name="width">3</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <entity x="7" y="16">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -412,13 +412,13 @@
       <attribute name="width">4</attribute>
       <attribute name="height">3</attribute>
     </entity>
-    
+
     <entity x="12" y="5">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
     </entity>
-    
+
     <!-- Counters -->
     <entity x="2" y="13">
       <implementation
@@ -427,7 +427,7 @@
       <attribute name="width">1</attribute>
       <attribute name="height">9</attribute>
     </entity>
-    
+
     <entity x="2" y="22">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -435,7 +435,7 @@
       <attribute name="width">7</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="28" y="22">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -443,7 +443,7 @@
       <attribute name="width">6</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
   </zone>
 
   <zone name="int_kirdneh_house_28" file="interiors/kirdneh/house_28.tmx"

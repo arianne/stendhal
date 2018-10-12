@@ -38,7 +38,7 @@
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
-  </item> 
+  </item>
 
   <item name="lilia">
     <type class="flower" subclass="lilia" tileid="-1"/>

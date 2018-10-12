@@ -78,7 +78,7 @@
       <slot name="legs"/>
     </equipable>
   </item>
-  
+
   <item name="dwarvish legs">
     <type class="legs" subclass="dwarvish_legs" tileid="-1"/>
     <description>You see a pair of dwarvish legs, designed by master craftsmen.</description>
@@ -97,7 +97,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="elvish legs">
     <type class="legs" subclass="elvish_legs" tileid="-1"/>
     <description>You see a pair of elvish legs.</description>
@@ -116,7 +116,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="golden legs">
     <type class="legs" subclass="golden_legs" tileid="-1"/>
     <description>You see a pair of shining, strong golden legs.</description>
@@ -135,7 +135,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="jewelled legs">
     <type class="legs" subclass="jewelled_legs" tileid="-1"/>
     <description>You see a beautiful pair of jewelled legs. A large red gem glints at you and they're encrusted all over with sapphires.</description>
@@ -154,7 +154,7 @@
       <slot name="legs"/>
     </equipable>
   </item>
-  
+
   <item name="leather legs">
     <type class="legs" subclass="leather_legs" tileid="-1"/>
     <description>You see a pair of leather legs. They look new but they're poor quality.</description>
@@ -172,7 +172,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="mainio legs">
     <type class="legs" subclass="mainio_legs" tileid="-1"/>
     <description>You see a pair of odd looking mainio legs. They are somewhat startling but they give you a good protection.</description>
@@ -191,7 +191,7 @@
       <slot name="legs"/>
     </equipable>
   </item>
-  
+
   <item name="mithril legs">
     <type class="legs" subclass="mithril_legs" tileid="-1"/>
     <description>You see a pair of mithril legs. They will serve you well.</description>
@@ -212,7 +212,7 @@
       <slot name="legs"/>
     </equipable>
   </item>
-  
+
   <item name="red legs">
     <type class="legs" subclass="red_legs" tileid="-1"/>
     <description>A pair of red legs are in your grasp.</description>
@@ -230,7 +230,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="shadow legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
     <description>You see a pair of shadow legs. The weight of them is incredible.</description>
@@ -272,7 +272,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="studded legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
     <description>You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner ... or his enemies.</description>

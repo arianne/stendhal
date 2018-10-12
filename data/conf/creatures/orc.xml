@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: orc -->
-  
+
   <creature name="orc">
     <type class="orc" subclass="orc" tileid="orc.png:2"/>
     <description>You see an orc which is noisy and silly.</description>
@@ -37,7 +37,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="orc spearman">
     <type class="orc" subclass="orc_spearman" tileid="orc.png:4"/>
     <description>You see an orc spearman. Run away fast before a spear pierces you.</description>
@@ -71,7 +71,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="orc hunter">
     <type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
     <description>You see an orc hunter. It it seeking for you!</description>
@@ -90,7 +90,7 @@
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="enhanced chainmail" quantity="[1,1]" probability="4.0"/>
       <item value="scale armor" quantity="[1,1]" probability="1.0"/>
-      <item value="golden mace" quantity="[1,1]" probability="8.0"/> 
+      <item value="golden mace" quantity="[1,1]" probability="8.0"/>
       <item value="chain boots" quantity="[1,1]" probability="2.5"/>
       <item value="claymore" quantity="[1,1]" probability="0.5"/>
     </drops>
@@ -106,7 +106,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="orc warrior">
     <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
     <description>You see an orc warrior which doesn't like you searching in the mountain.</description>
@@ -141,7 +141,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="orc chief">
     <type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
     <description>You see an orc chief which is too busy to attend to you!</description>
@@ -179,11 +179,11 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: orc -->
-  
+
   <!-- START: mountain orc -->
-  
+
   <creature name="mountain orc">
     <type class="orc" subclass="mountain_orc" tileid="mountain_orc.png:2"/>
     <description></description>
@@ -217,7 +217,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mountain orc warrior">
     <type class="orc" subclass="mountain_orc_warrior" tileid="mountain_orc.png:3"/>
     <description></description>
@@ -251,7 +251,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mountain orc hunter">
     <type class="orc" subclass="mountain_orc_hunter" tileid="mountain_orc.png:1"/>
     <description></description>
@@ -285,7 +285,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mountain orc chief">
     <type class="orc" subclass="mountain_orc_chief" tileid="mountain_orc.png:0"/>
     <description></description>
@@ -322,7 +322,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: mountain orc -->
-  
+
 </creatures>

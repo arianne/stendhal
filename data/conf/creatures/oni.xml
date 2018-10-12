@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: oni -->
-  
+
   <creature name="oni warrior">
     <type class="oni" subclass="oni_warrior" tileid="oni.png:0"/>
     <description>You see an oni warrior. His purple skin colour should not lull you into a false sense of security!</description>
@@ -21,7 +21,7 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="90.0"/>
       <item value="shadow legs" quantity="[1,1]" probability="0.8"/>
-      <item value="shadow boots" quantity="[1,1]" probability="1.0"/> 
+      <item value="shadow boots" quantity="[1,1]" probability="1.0"/>
       <item value="pie" quantity="[1,2]" probability="5.0"/>
     </drops>
     <equips>
@@ -32,7 +32,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="oni archer">
     <type class="oni" subclass="oni_archer" tileid="oni.png:1"/>
     <description>You see an oni archer. His arrows will follow you everywhere for protecting his queen!</description>
@@ -51,7 +51,7 @@
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="golden legs" quantity="[1,1]" probability="2.0"/>
       <item value="golden arrow" quantity="[8,15]" probability="5.0"/>
-      <item value="golden boots" quantity="[1,1]" probability="2.0"/> 
+      <item value="golden boots" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="power arrow" quantity="10000"/>
@@ -64,7 +64,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="oni priest">
     <type class="oni" subclass="oni_priest" tileid="oni.png:2"/>
     <description>You see a mysterious oni priest, uttering strange incantations.</description>
@@ -94,7 +94,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="oni king">
     <type class="oni" subclass="oni_king" tileid="oni.png:3"/>
     <description>You see the oni king. His power leads brave oni troops around his kingdom.</description>
@@ -125,7 +125,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <creature name="oni queen">
     <type class="oni" subclass="oni_queen" tileid="oni.png:4"/>
     <description>You see the oni queen. She supports her husband and takes an eye onto their kingdom while he conquers new land and fights on battlefields.</description>
@@ -158,7 +158,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <!-- END: oni -->
-  
+
 </creatures>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: chaos -->
-  
+
   <creature name="chaos green dragonrider">
     <type class="huge_animal" subclass="chaos_green_dragonrider" tileid="huge_animal.png:3"/>
     <description>You see a chaos green dragonrider. Don't misjudge him as to believe it's a normal green dragon, as it is controlled by a mysterious sorcerer seated on his back.</description>
@@ -44,7 +44,7 @@
       <profile name="strategy" params="archer(9),,dual attack"/>
     </ai>
   </creature>
-  
+
   <creature name="chaos red dragonrider">
     <type class="huge_animal" subclass="chaos_red_dragonrider" tileid="huge_animal.png:11"/>
     <description>You see a chaos red dragonrider. He might look like a red dragon, but the sorcerer seated on his back guides him to give even more strength out.</description>
@@ -84,11 +84,11 @@
       <profile name="strategy" params="archer(9),,dual attack"/>
     </ai>
   </creature>
-  
+
   <!-- END: chaos -->
-  
+
   <!-- START: dragon -->
-  
+
   <creature name="green dragon">
     <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
     <description>You see a green dragon. He looks very tall and strong.</description>
@@ -125,7 +125,7 @@
    	  <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="bone dragon">
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
     <description>You see a bone dragon. It's been said that there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
@@ -162,7 +162,7 @@
       <profile name="strategy" params="archer,,dual attack"/>
     </ai>
   </creature>
-  
+
   <creature name="blue dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
     <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don't forget that it also has claws and teeth!</description>
@@ -203,7 +203,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="red dragon">
     <type class="huge_animal" subclass="red_dragon" tileid="huge_animal.png:7"/>
     <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. It's red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
@@ -241,7 +241,7 @@
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
     </ai>
   </creature>
-  
+
   <creature name="black dragon">
     <type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
     <description>You see a black dragon. As you see this huge black creature you almost faint! If you concentrate you can feel the deep growling of it in your bones.</description>
@@ -282,11 +282,11 @@
       <profile name="strategy" params="archer(9),attack weakest,dual attack"/>
     </ai>
   </creature>
-  
+
   <!-- STOP: dragon -->
-  
+
   <!-- START: flying -->
-  
+
   <creature name="flying golden dragon">
     <type class="huge_animal" subclass="flying_golden_dragon" tileid="huger_animal.png:0"/>
     <description>You see a flying golden dragon. As it spreads its mighty wings you shiver... this mystical creature seems to have much power in it!</description>
@@ -327,7 +327,7 @@
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
     </ai>
   </creature>
-  
+
   <creature name="twin headed dragon">
     <type class="huge_animal" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
     <description>You see a twin headed dragon. The two heads are staring at you with their four eyes!</description>
@@ -366,7 +366,7 @@
       <profile name="strategy" params="archer,attack weakest,dual attack"/>
     </ai>
   </creature>
-  
+
   <!-- STOP: flying -->
-  
+
 </creatures>

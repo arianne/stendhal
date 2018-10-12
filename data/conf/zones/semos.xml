@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal ../zones.xsd ">
-  <!-- ** Load zones. Written from left to right and from top to bottom. 
+  <!-- ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it! -->
 
   <!-- Ground level -->
-  
+
   <zone name="0_semos_canyon" level="0" x="500320" y="499680" file="Level 0/semos/canyon.tmx" accessible="false">
   <!-- NPCs -->
   <!--  Not ready
   <configurator class-name="games.stendhal.server.maps.semos.canyon.TollboothNPC" />
   -->
-  
+
   <!-- Bridge Portals -->
   <portal x="35" y="30" ref="north_l">
     <destination zone="0_semos_canyon" ref="south_l" />
   </portal>
-  
+
   <portal x="36" y="30" ref="north_r">
     <destination zone="0_semos_canyon" ref="south_r" />
   </portal>
-  
+
   <portal x="35" y="31" ref="south_l">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
   </portal>
-  
+
   <portal x="36" y="31" ref="south_r">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
   </portal>
-  
+
   </zone>
 
   <zone name="0_semos_mountain_n_w4" level="0" x="499616" y="499744"
@@ -40,7 +40,7 @@
 
     <configurator
       class-name="games.stendhal.server.maps.semos.mountain.YellowCrystalNPC" />
-      
+
       <entity x="28" y="27">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">trout</parameter>
@@ -202,17 +202,17 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Disabled until Antivenom Ring quest is ready
     <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC" />
     -->
-    
+
     <!-- Portals -->
     <portal x="33" y="13" ref="lab_exit">
       <destination zone="int_apothecary_cabin" ref="lab_entrance" />
     </portal>
-    
+
     <!-- Clock -->
     <entity x="13" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
-    
+
     <!-- Stuff to read -->
     <entity x="15" y="10">
       <implementation
@@ -222,7 +222,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 3 eggs
 2 flasks of water</attribute>
     </entity>
-    
+
     <entity x="13" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -232,7 +232,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       </implementation>
     </entity>
   </zone>
-  
+
   <zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
     file="Level 0/semos/mountain_n2.tmx">
     <attributes>
@@ -286,7 +286,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
-      
+
     </entity>
 
     <!-- writing on the wooden arch MINE TOWN WEEKS -->
@@ -352,7 +352,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <attribute name="width">4</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <!-- Square tables -->
     <entity x="56" y="117" condition="stendhal.minetown">
       <implementation
@@ -367,7 +367,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <!-- ENDMINE TOWN WEEKS -->
 
   </zone>
@@ -1113,7 +1113,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <destination zone="int_semos_wizards_tower_9" ref="portal_from_spire_1" />
       <attribute name="hidden" />
     </portal>
-    <!-- <portal x="7" y="28" ref="portal_to_malleus_plain"> <destination 
+    <!-- <portal x="7" y="28" ref="portal_to_malleus_plain"> <destination
       zone="malleus_plain" ref="portal_to_malleus" /> </portal> -->
 
     <entity x="9" y="15">
@@ -1223,7 +1223,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
   <!-- Plains of the wizards -->
   <zone name="malleus_plain" file="interiors/abstract/malleus_plain.tmx"
     accessible="false">
-    <!-- <portal x="7" y="28" ref="portal_to_malleus"> <destination zone="int_semos_wizards_tower_8" 
+    <!-- <portal x="7" y="28" ref="portal_to_malleus"> <destination zone="int_semos_wizards_tower_8"
       ref="portal_to_malleus_plain" /> </portal> -->
     <portal x="23" y="28" ref="cliff_way">
       <destination zone="malleus_plain" ref="cliff_way_back" />
@@ -1340,7 +1340,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <entity x="70" y="50">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">
-As you read this sign I want you to know that I realized the meaning of these flowers... 
+As you read this sign I want you to know that I realized the meaning of these flowers...
 
 If you plant a flower, you don't plant it for yourself. You plant it as a present for someone else. People who say "Oh, that's my flower and nobody else should get it!" will get disappointed... It is very difficult to pick your own flowers. You have to make a present to another player with planting a flower and then one day you will get the reward by finding a flower, which someone else has planted as a present for others. :)
 
@@ -1550,8 +1550,8 @@ The sharper minded amongst you might prefer to click directly on the creature. I
       </implementation>
 	</entity>
 
-    <!-- <entity x="1" y="1"> <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource"> 
-      <parameter name="sound">wind-2</parameter> <parameter name="volume">5</parameter> 
+    <!-- <entity x="1" y="1"> <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <parameter name="sound">wind-2</parameter> <parameter name="volume">5</parameter>
       </implementation> </entity> -->
     <entity x="13" y="42">
       <implementation
@@ -1681,12 +1681,12 @@ Mature sheep wanted: please speak to Sato.
     <configurator class-name="games.stendhal.server.maps.semos.city.RudolphNPC"
       condition="stendhal.christmas" />
     <configurator class-name="games.stendhal.server.maps.semos.city.DragonKeeperNPC" condition="stendhal.petleveling" />
-    
+
     <!-- START: Mine Town Weeks Boutique -->
-    
+
     <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" condition="stendhal.minetown" />
     <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" condition="stendhal.minetown" />
-    
+
     <!-- Boutique Girls Table -->
     <entity x="43" y="7" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -1724,8 +1724,8 @@ Mature sheep wanted: please speak to Sato.
       <attribute name="width">1</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
-    <!-- END: Mine Town Weeks Boutique -->  
+
+    <!-- END: Mine Town Weeks Boutique -->
 
     <entity x="53" y="23">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.Gate">
@@ -2026,9 +2026,9 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
 
 
     <!-- TEST - Make the bird statue in semos a semi-safe zone -->
-    <!-- <entity x="26" y="40"> <implementation class-name="games.stendhal.server.entity.mapstuff.area.CreatureProtectionArea"> 
-      <parameter name="width">6</parameter> <parameter name="height">6</parameter> 
-      <parameter name="default">block</parameter> <parameter name="rules"> -animal:wolf 
+    <!-- <entity x="26" y="40"> <implementation class-name="games.stendhal.server.entity.mapstuff.area.CreatureProtectionArea">
+      <parameter name="width">6</parameter> <parameter name="height">6</parameter>
+      <parameter name="default">block</parameter> <parameter name="rules"> -animal:wolf
       +animal:* -*:lich,*:ghost +undead:* </parameter> </implementation> </entity> -->
 
     <entity x="45" y="55">
@@ -2053,7 +2053,7 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
     <entity x="42" y="35">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
-      <attribute name="text">You read: "The Old Semos Tavern" 
+      <attribute name="text">You read: "The Old Semos Tavern"
 This sounds like a very nice place to meet some interesting people and have a nice evening together.</attribute>
       <attribute name="width">1</attribute>
       <attribute name="height">1</attribute>
@@ -2103,7 +2103,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
-      <attribute name="resistance">0</attribute>    
+      <attribute name="resistance">0</attribute>
     </entity>
 
     <entity x="14" y="4" condition="stendhal.minetown">
@@ -2222,10 +2222,10 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="height">4</attribute>
     </entity>
 
-    <!-- Sign for the Trading Center <entity x="11" y="17"> <implementation 
-      class-name="games.stendhal.server.entity.mapstuff.sign.TradeCenterSign"> 
-      <parameter name="shop">tradeswords</parameter> <parameter name="title">Trading 
-      - swords</parameter> </implementation> <attribute name="class">blackboard</attribute> 
+    <!-- Sign for the Trading Center <entity x="11" y="17"> <implementation
+      class-name="games.stendhal.server.entity.mapstuff.sign.TradeCenterSign">
+      <parameter name="shop">tradeswords</parameter> <parameter name="title">Trading
+      - swords</parameter> </implementation> <attribute name="class">blackboard</attribute>
       </entity> -->
 
     <entity x="2" y="11">
@@ -2465,7 +2465,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">3</attribute>
       <attribute name="height">3</attribute>
     </entity>
-    
+
     <entity x="4" y="9">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -2513,7 +2513,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">2</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="7" y="6">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -2522,7 +2522,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">1</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="9" y="10">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -2664,7 +2664,7 @@ Holy mackerel! These chips are tasty.
     <attributes>
       <parameter name="file" condition="stendhal.christmas">interiors/semos/bank_xmas.tmx</parameter>
     </attributes>
-    <!-- to disallow making or using marked scrolls for getting to trading 
+    <!-- to disallow making or using marked scrolls for getting to trading
       table area -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator
@@ -4414,7 +4414,7 @@ Southwest: Or'ril Castle and Fado City
     </entity>
 
     <entity x="60" y="61">
-      <!-- all dialogs for this NPC are quest-related, so we don't need a 
+      <!-- all dialogs for this NPC are quest-related, so we don't need a
         special SpeakerNPC factory for him. -->
       <implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC">
         <parameter name="name">Markovich</parameter>
@@ -4476,7 +4476,7 @@ Southwest: Or'ril Castle and Fado City
 
   <!-- Level -7 -->
 
-  <!-- If we call it _jail, players can't move items around in it for security 
+  <!-- If we call it _jail, players can't move items around in it for security
     reasons. This issue is fixed now. -->
   <zone name="-7_kanmararn_prison" level="-7" x="500160" y="500064"
     file="Level -7/kanmararn/jail.tmx">
@@ -4558,7 +4558,7 @@ Southwest: Or'ril Castle and Fado City
       </implementation>
     </entity>
 
-    <!-- Don't allow teleporting in as we don't want marked scrolls made 
+    <!-- Don't allow teleporting in as we don't want marked scrolls made
       or ring abused -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <portal x="43" y="49" ref="exit1">
@@ -4595,4 +4595,4 @@ Southwest: Or'ril Castle and Fado City
 
 </zones>
 
- 	  	 
+ 	  	

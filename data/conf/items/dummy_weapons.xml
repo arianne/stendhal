@@ -8,7 +8,7 @@
   <item name="dummy_ranged">
     <type class="ranged" subclass="dummy_ranged" tileid="-1"/>
     <description>Ranged weapon. This description should not be seen.</description>
-    <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>    
+    <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>
     <attributes>
       <atk value="12"/>
       <range value="3"/>
@@ -18,11 +18,11 @@
     <equipable>
     </equipable>
   </item>
-  
+
   <item name="dummy_melee_8">
     <type class="club" subclass="dummy_melee_8" tileid="-1"/>
     <description>Ranged weapon. This description should not be seen.</description>
-    <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>    
+    <implementation class-name="games.stendhal.server.entity.item.DummyWeapon"/>
     <attributes>
       <atk value="22"/>
       <range value="8"/>
@@ -32,5 +32,5 @@
     <equipable>
     </equipable>
   </item>
-  
+
 </items>

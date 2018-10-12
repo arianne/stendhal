@@ -42,7 +42,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="battle axe">
     <type class="axe" subclass="battle_axe" tileid="-1"/>
     <description>You see a battle axe. It is well crafted and sharp despite its age.</description>
@@ -62,7 +62,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="black halberd">
     <type class="axe" subclass="black_halberd" tileid="-1"/>
     <description>You see a black halberd. It's immensely heavy so will make huge blows but you can only swing it at a very slow rate.</description>
@@ -84,7 +84,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="black scythe">
     <type class="axe" subclass="black_scythe" tileid="-1"/>
     <description>You see a black scythe. Its attack is awesome for a farming tool.</description>
@@ -106,11 +106,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="chaos axe">
     <type class="axe" subclass="chaos_axe" tileid="-1"/>
     <description>You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden coloured, but thinking too long about it makes you confused.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="52"/>
       <rate value="8"/>
@@ -128,7 +128,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="durin axe">
     <type class="axe" subclass="durin_axe" tileid="-1"/>
     <description>You see a durin axe, a great prize from the dwarves.</description>
@@ -149,7 +149,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="golden twoside axe">
     <type class="axe" subclass="golden_twosided_poleaxe" tileid="-1"/>
     <description>You see a golden twoside axe.  This axe is a rare find.</description>
@@ -211,7 +211,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="magic twoside axe">
     <type class="axe" subclass="magic_twosided_poleaxe" tileid="-1"/>
     <description>You see a magic twoside axe. The nature of the magic isn't clear to you.</description>
@@ -233,7 +233,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="old scythe">
     <type class="axe" subclass="oldscythe" tileid="-1"/>
     <description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
@@ -253,7 +253,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="scythe">
     <type class="axe" subclass="scythe" tileid="-1"/>
     <description>You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.</description>
@@ -274,7 +274,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="sickle">
     <type class="axe" subclass="sickle" tileid="-1"/>
     <description>You see a sickle, it is a useful tool for farming.</description>

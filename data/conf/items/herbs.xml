@@ -120,5 +120,5 @@
       <slot name="bag"/>
     </equipable>
   </item>
-  
+
 </items>

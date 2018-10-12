@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: albino elf -->
-  
+
   <creature name="albino elf swordsman">
     <type class="albino_elf" subclass="albino_elf_swordsman" tileid="albino_elf.png:4"/>
     <description>You see an albino elf swordsman who is a professional in using swords. He can attack you from behind in a blink of an eye.</description>
@@ -34,7 +34,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="albino elf archer">
     <type class="albino_elf" subclass="albino_elf_archer" tileid="albino_elf.png:0"/>
     <description>You see an albino elf archer. He is so sharp-eyed that he could hit a bee from a distance of 100 meters.</description>
@@ -67,7 +67,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="albino elf magician">
     <type class="albino_elf" subclass="albino_elf_magician" tileid="albino_elf.png:2"/>
     <description>You see an albino elf magician. He knows all the secrets of magic. You'd be better to not let him unleash his full power!</description>
@@ -83,7 +83,7 @@
     <respawn value="1600"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="elf cloak" quantity="[1,1]" probability="2.5"/> 
+      <item value="elf cloak" quantity="[1,1]" probability="2.5"/>
       <item value="greater potion" quantity="[1,2]" probability="20.0"/>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="empty scroll" quantity="[1,2]" probability="8.0"/>
@@ -98,7 +98,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="albino elf queen">
     <type class="albino_elf" subclass="albino_elf_queen" tileid="albino_elf.png:3"/>
     <description>You see an albino elf queen. She is the matriarch of the albino elf race and she will do everything to protect it.</description>
@@ -128,7 +128,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="albino elf king">
     <type class="albino_elf" subclass="albino_elf_king" tileid="albino_elf.png:1"/>
     <description>You see an albino elf king. He is the patriarch of albino elves and won countless of battles with his powerful albino elf army.</description>
@@ -160,11 +160,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: albino elf -->
-  
+
   <!-- START: dark elf -->
-  
+
   <creature name="child dark elf">
     <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
     <description>You see a child dark elf. You should know that dark elves are already quite strong and intelligent when they are children. Don't think you can fight him so easily!</description>
@@ -195,7 +195,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf archer">
     <type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
     <description>You see a dark elf archer. Dark elf archer's flawless aim can be fatal for those who dare to oppose them.</description>
@@ -230,7 +230,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf">
     <type class="dark_elf" subclass="dark_elf" tileid="dark_elf.png:6"/>
     <description></description>
@@ -262,7 +262,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf elite archer">
     <type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
     <description></description>
@@ -296,7 +296,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf captain">
     <type class="dark_elf" subclass="dark_elf_captain" tileid="dark_elf.png:1"/>
     <description></description>
@@ -332,7 +332,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf knight">
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
     <description></description>
@@ -366,7 +366,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
     <description>You see a Dark Elf General. It is commanding the evil troops of Nalwor Caves against intruders.</description>
@@ -403,7 +403,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf wizard">
     <type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
     <description>Dark elf wizards are very powerful and dangerous. They are specialised in dark magic.</description>
@@ -444,7 +444,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf viceroy">
     <type class="dark_elf" subclass="dark_elf_viceroy" tileid="dark_elf.png:8"/>
     <description></description>
@@ -481,7 +481,7 @@
       <profile name="heal" params="5,50"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf ranger">
     <type class="dark_elf" subclass="dark_elf_ranger" tileid="dark_elf.png:11"/>
     <description></description>
@@ -520,7 +520,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf sacerdotist">
     <type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="dark_elf.png:7"/>
     <description></description>
@@ -561,7 +561,7 @@
       <profile name="heal" params="10,50"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf admiral">
     <type class="dark_elf" subclass="dark_elf_admiral" tileid="dark_elf.png:13"/>
     <description></description>
@@ -597,7 +597,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf master">
     <type class="dark_elf" subclass="dark_elf_master" tileid="dark_elf.png:12"/>
     <description>You see a dark elf master. Beware of his high skills on magic and swordsmanship!</description>
@@ -639,7 +639,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="dark elf matronmother">
     <type class="dark_elf" subclass="dark_elf_matronmother" tileid="dark_elf.png:5"/>
     <description>Dusky and shrouded, this matriarch rules her clan with a soft touch and sharp fangs. An expert in venoms and poisons, you wouldn't ever want to turn your back on her. </description>
@@ -683,11 +683,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: dark elf -->
-  
+
   <!-- START: elf -->
-  
+
   <creature name="elf">
     <type class="elf" subclass="elf" tileid="elf.png:3"/>
     <description>You see an elf which loves the forest and lives in peace.</description>
@@ -721,7 +721,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="militia elf">
     <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
     <description>You see a militia elf which trains hard to beat you!</description>
@@ -755,10 +755,10 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="archer elf">
     <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
-    <description>You see an archer elf which can do much damage with its wooden arrows.</description> 
+    <description>You see an archer elf which can do much damage with its wooden arrows.</description>
     <attributes>
       <atk value="198"/>
       <def value="42"/>
@@ -791,7 +791,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="soldier elf">
     <type class="elf" subclass="soldier_elf" tileid="elf.png:7"/>
     <description>You see a soldier elf, a good partner of the militia elves.</description>
@@ -825,7 +825,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="mage elf">
     <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
     <description>You see a mage elf. She can feel pure magic when she stands outside in the forest and just frees her mind.</description>
@@ -857,7 +857,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="commander elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
     <description>You see a busy commander elf. He has control over the army of elves.</description>
@@ -893,7 +893,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="archmage elf">
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
     <description>You see an archmage elf. She is pretty.</description>
@@ -926,7 +926,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elf sacerdotist">
     <type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
     <description></description>
@@ -961,7 +961,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="elf wizard">
     <type class="elf" subclass="elf_wizard" tileid="elf.png:9"/>
     <description>You see an elf wizard. He is a very wise elf who knows almost every kind of magic. He likes to use nature spells to make every plant and creature fertile, but he is also able to defend himself when he has to do.</description>
@@ -996,7 +996,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <creature name="elf bodyguard">
     <type class="elf" subclass="elf_bodyguard" tileid="elf.png:8"/>
     <description></description>
@@ -1028,7 +1028,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-  
+
   <!-- END: elf -->
-  
+
 </creatures>

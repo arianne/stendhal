@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: demon -->
-  
+
   <creature name="violet avenger">
     <type class="hybrid" subclass="violet_avenger" tileid="hybrid.png:8"/>
     <description></description>
@@ -31,7 +31,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="devil queen">
     <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
     <description></description>
@@ -63,7 +63,7 @@
       <profile name="heal" params="5,50"/>
     </ai>
   </creature>
-  
+
   <creature name="demon">
     <type class="demon" subclass="demon" tileid="demon.png:4"/>
     <description>You see a demon. He personifies evil.</description>
@@ -97,7 +97,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="imperial demon servant">
     <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
     <description>You see an imperial demon servant who carries out whims of his demon lords. </description>
@@ -126,7 +126,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="imperial demon lord">
     <type class="demon" subclass="imperial_demon_lord" tileid="demon.png:2"/>
     <description>You see an imperial demon lord. He holds the rank of General among demons, and very few out rank it in hell.</description>
@@ -158,7 +158,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="balrog">
     <type class="mythical_animal" subclass="balrog" tileid="enormous_creature.png:0"/>
     <description>You see a huge balrog. He is slow hitting, but terribly strong as he stands towering above you.</description>
@@ -202,11 +202,11 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: demon -->
-  
+
   <!-- START: imp -->
-  
+
   <creature name="imp">
     <type class="demon" subclass="imp" tileid="demon.png:0"/>
     <description>You see an imp. He may look a little bit cute, but don't forget he is one of the devil's servants!</description>
@@ -239,7 +239,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="winged blue imp">
     <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
     <description>You see a winged blue imp. It's endowed with the power of evil. His trident is able to poison even the bravest warriors.</description>
@@ -271,7 +271,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: imp -->
-  
-</creatures>  
+
+</creatures>

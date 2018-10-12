@@ -3,7 +3,7 @@
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
   <!-- capture-the-flag stuff -->
-  
+
   <!-- Remove lines with "*****************" to re-enable -->
   <!-- *************************
   <item name="flag">
@@ -11,13 +11,13 @@
     <description>You see a flag.</description>
 
     <implementation class-name="games.stendhal.server.entity.item.CaptureTheFlagFlag"/>
-    
+
     <attributes>
     </attributes>
 
     <weight value="1.0"/>
     <value  value="1"/>
-    
+
     <equipable>
       <slot name="rhand"/>
       <slot name="lhand"/>
@@ -32,8 +32,8 @@
 
 ****************** -->
   <!-- weapons experiments  -->
-  
-  <!-- TODO: maybe have a pretty small max quanity - 50?  100?   to force players to go back, or somehow recharge --> 
+
+  <!-- TODO: maybe have a pretty small max quanity - 50?  100?   to force players to go back, or somehow recharge -->
   <!-- ****************************
   <item name="ctf bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
@@ -54,8 +54,8 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
-  
+
+
   <item name="fumble arrow">
     <type class="ammunition" subclass="fumble_arrow" tileid="-1"/>
     <description>You see a fumble arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
@@ -77,7 +77,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="slowdown arrow">
     <type class="ammunition" subclass="slowdown_arrow" tileid="-1"/>
     <description>You see a slowdown arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
@@ -99,7 +99,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="speedup arrow">
     <type class="ammunition" subclass="speedup_arrow" tileid="-1"/>
     <description>You see a speedup arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
@@ -143,7 +143,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
   <item name="slowdown snowball">
     <type class="missile" subclass="snowballs" tileid="-1"/>
     <description>You see a slowdown snowball. With a supply of these, you can try to slow down any CTF player.</description>

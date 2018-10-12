@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal ../zones.xsd ">
-  <!-- ** Load zones. Written from left to right and from top to bottom. 
+  <!-- ** Load zones. Written from left to right and from top to bottom.
     ** Please respect it! -->
 
   <!-- Level 7 -->
@@ -11,7 +11,7 @@
     <attributes>
       <parameter name="color_method">time</parameter>
     </attributes>
-    <!--Don't allow teleporting in as we don't want marked scrolls made or 
+    <!--Don't allow teleporting in as we don't want marked scrolls made or
       ring abused -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 

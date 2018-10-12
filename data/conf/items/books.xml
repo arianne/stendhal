@@ -16,7 +16,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
+
   <item name="blue book">
     <type class="book" subclass="book_blue" tileid="-1"/>
     <description>You see a book with the words GEMS AND MINERALS on the front cover.</description>

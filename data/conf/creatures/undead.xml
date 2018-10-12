@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-  
+
   <!-- START: animal -->
-  
+
   <creature name="zombie rat">
     <type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
     <description>You see a hungry zombie rat and it doesn't like to see you.</description>
@@ -36,7 +36,7 @@
       <profile name="offensive"/>
     </ai>
   </creature>
-  
+
   <creature name="ghost hound">
     <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
     <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>
@@ -74,11 +74,11 @@
       <profile name="rare"/>
     </ai>
   </creature>
-  
+
   <!-- END: animal -->
-  
+
   <!-- START: fallen -->
-  
+
   <creature name="fallen warrior">
     <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
     <description></description>
@@ -109,7 +109,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="fallen priest">
     <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
     <description>You see a fallen priest. He was once just a regular human priest, until the dark powers corrupted him and turned him to the dark side. </description>
@@ -140,7 +140,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="fallen high priest">
     <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
     <description></description>
@@ -171,11 +171,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: fallen -->
-  
+
   <!-- START: lich -->
-  
+
   <creature name="lich">
     <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
     <description>You see a lich, a dark desolate creature which has been doomed to wander in endless turmoil, feeding on the souls of the righteous.</description>
@@ -208,7 +208,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="dead lich">
     <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
     <description>You see a dead lich with his huge green and heavy cloak. Although he is dead and bony, he'll seek revenge for his too early passing and will always return fast and ruthless!</description>
@@ -240,7 +240,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="high lich">
     <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
     <description>The terrible grinning skull of a high lich leers at you as it prepares to slaughter you in a myriad of magical ways.</description>
@@ -272,11 +272,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: lich -->
-  
+
   <!-- START: misc -->
-  
+
   <creature name="death knight">
     <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
     <description>You see a death knight. Some time ago he fought in tournaments where his only aim was to kill as many enemies as possible.</description>
@@ -309,7 +309,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="necrosophia">
     <type class="hybrid" subclass="necrosophia" tileid="hybrid.png:7"/>
     <description>You see Necrosophia. She is a mighty beast, she will burn you with fire while you are disoriented by the rainbow beans.</description>
@@ -347,11 +347,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: misc -->
-  
+
   <!-- START: mummy -->
-  
+
   <creature name="mummy">
     <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
     <description>You see a mummy which usually sleeps in a coffin.</description>
@@ -381,9 +381,9 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
-    </ai>  
+    </ai>
   </creature>
-  
+
   <creature name="royal mummy">
     <type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
     <description>You see a royal mummy. You wonder what keeps this king's soul from finding peace.</description>
@@ -416,11 +416,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: mummy -->
-  
+
   <!-- START: skeleton -->
-  
+
   <creature name="skeleton">
     <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
     <description>You see a skeleton which survives to get revenge.</description>
@@ -459,7 +459,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="tiny skelly">
     <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
     <description>You see a tiny skelly. It is silly, little and evil, be careful with its poison...</description>
@@ -494,7 +494,7 @@
       <profile name="poisonous" params="5,poison"/>
     </ai>
   </creature>
-  
+
   <creature name="warrior skeleton">
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
     <description>You see a warrior skeleton, it's just a normal skeleton with a shield!</description>
@@ -530,8 +530,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature> 
-  
+  </creature>
+
   <creature name="elder skeleton">
     <type class="undead" subclass="elder_skeleton" tileid="undead.png:7"/>
     <description>You see the bones of an old man. He lived to a ripe old age, and is sure to know a thing or two that separates him from all the vengeful skeletons that died young.</description>
@@ -549,7 +549,7 @@
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="mace" quantity="[1,1]" probability="5.0"/>
-      <item value="skull shield" quantity="[1,1]" probability="3.0"/> 
+      <item value="skull shield" quantity="[1,1]" probability="3.0"/>
       <item value="studded legs" quantity="[1,1]" probability="10.0"/>
       <item value="dagger" quantity="[1,1]" probability="5.5"/>
     </drops>
@@ -567,8 +567,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>   
-  
+  </creature>
+
   <creature name="demon skeleton">
     <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
     <description>You see a demon skeleton. Demon skeletons have ascended from the underworld and they are going to take over this world. You really should slay them before it is too late!</description>
@@ -603,7 +603,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="gashadokuro">
     <type class="mythical_animal" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
     <description>A giant figure made of bone, known only as gashadokuro, towers before you. He is created from the bones of starving humans.</description>
@@ -631,11 +631,11 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- END: skeleton -->
-  
+
   <!-- START: specter -->
-  
+
   <creature name="ghost">
     <type class="undead" subclass="ghost" tileid="undead.png:5"/>
     <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
@@ -667,7 +667,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
     <description>You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.</description>
@@ -700,7 +700,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="invisible man">
     <type class="undead" subclass="invisible_man" tileid="undead_fallen.png:6"/>
     <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
@@ -730,7 +730,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="green phantom">
     <type class="undead" subclass="green_phantom" tileid="undead.png:12"/>
     <attributes>
@@ -758,8 +758,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>   
-  
+  </creature>
+
   <creature name="incorporeal armor">
     <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
     <description>You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.</description>
@@ -789,7 +789,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="black death">
     <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
     <description>You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.</description>
@@ -835,7 +835,7 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <creature name="golden death">
     <type class="huge_animal" subclass="golden_death" tileid="huge_animal.png:12"/>
     <description>You see the golden death. He came to take your soul away to pay for all your sins.</description>
@@ -879,11 +879,11 @@
       <profile name="attack weakest"/>
     </ai>
   </creature>
-  
+
   <!-- END: specter -->
-  
+
   <!-- START: vampire -->
-  
+
   <creature name="vampire bride">
     <type class="vampire" subclass="vampire_lord_bride" tileid="vampire.png:0"/>
     <description>You see a vampire bride. She was resurrected from the dead by a wicked vampire lord.</description>
@@ -946,7 +946,7 @@
       <profile name="strategy" params=",outfit_changer(hand_to_hand;vampirette;vampirette_evil),"/>
     </ai>
   </creature>
-  
+
   <creature name="vampire lord">
     <type class="vampire" subclass="vampire_lord" tileid="vampire.png:2"/>
     <description>You see a vampire lord. Be careful, he is after your blood!</description>
@@ -977,11 +977,11 @@
       <profile name="strategy" params=",outfit_changer(attack_weakest;vampire_lord;vampire_lord_evil),"/>
     </ai>
   </creature>
-   
+
   <!-- END: vampire -->
-  
+
   <!-- START: zombie -->
-  
+
   <creature name="bloody zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
     <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
@@ -1018,7 +1018,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="zombie">
     <type class="undead" subclass="zombie" tileid="undead.png:11"/>
     <description>You see a zombie. It woke up just to take revenge, be silent.</description>
@@ -1053,7 +1053,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="headless monster">
     <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
     <description>You see a headless monster, how can he hear that we come to him?</description>
@@ -1067,7 +1067,7 @@
     <level value="21"/>
     <experience value="300"/>
     <respawn value="1260"/>
-    <!-- a corpse with a skull is somewhat inapropriate for a headless monster, 
+    <!-- a corpse with a skull is somewhat inapropriate for a headless monster,
         but we don't have anything better -->
     <corpse name="humanoid"/>
     <drops>
@@ -1082,8 +1082,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>  
-  
+  </creature>
+
   <creature name="rotten zombie">
     <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
     <description>You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.</description>
@@ -1120,7 +1120,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <!-- Disabled until future review
   <creature name="myling">
     <type class="undead" subclass="myling" tileid="undead.png:14"/>
@@ -1152,7 +1152,7 @@
     </ai>
   </creature>
   -->
-  
+
   <!-- END: zombie -->
-  
+
 </creatures>
