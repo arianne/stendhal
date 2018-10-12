@@ -17,8 +17,6 @@ import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINU
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -91,10 +89,10 @@ class GeneralSettings {
 		// Continuous movement
 		final JCheckBox moveContinuousToggle = SettingsComponentFactory.createSettingsToggle(MOVE_CONTINUOUS_PROPERTY, false,
 										"Continuous movement", "Change maps and pass through portals without stopping");
-		moveContinuousToggle.addItemListener(new ItemListener() {
+		moveContinuousToggle.addActionListener(new ActionListener() {
 			@Override
-			public void itemStateChanged(ItemEvent e) {
-				new MoveContinuousAction().sendAction(e.getStateChange() == ItemEvent.SELECTED);
+			public void actionPerformed(final ActionEvent e) {
+				new MoveContinuousAction().sendAction(moveContinuousToggle.isSelected());
 			}
 		});
 		WtWindowManager.getInstance().registerSettingChangeListener(MOVE_CONTINUOUS_PROPERTY,
