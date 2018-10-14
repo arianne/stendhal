@@ -37,14 +37,14 @@
 	<complexType name="implementation">
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>
-	
+
 	<complexType name="behavior">
 		<sequence>
 			<element name="parameter" type="Q1:pair" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 		<attribute name="class-name" type="string"/>
 	</complexType>
-	
+
 	<complexType name="pair">
 		<attribute name="name" type="string"/>
 		<attribute name="value" type="string"/>
@@ -98,11 +98,11 @@
 		<attribute name="type" type="string" />
 		<attribute name="value" type="decimal" />
 	</complexType>
-	
+
 	<complexType name="resistance">
 		<attribute name="type" type="string" />
 		<attribute name="value" type="decimal" />
 		<attribute name="slots" type="string" />
 	</complexType>
-	
+
 </schema>

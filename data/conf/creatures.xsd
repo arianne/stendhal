@@ -54,7 +54,7 @@
 		</xsd:sequence>
 		<xsd:attribute name="value" type="xsd:positiveInteger"/>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="Blood">
 		<xsd:attribute name="name" type="xsd:string" use="required"/>
 	</xsd:complexType>
@@ -127,7 +127,7 @@
 		<xsd:attribute name="value" type="xsd:string" />
 		<xsd:attribute name="state" type="xsd:string"></xsd:attribute>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="Sound">
 		<xsd:attribute name="value" type="xsd:string" />
 	</xsd:complexType>
@@ -135,7 +135,7 @@
 	<xsd:complexType name="Movement">
 		<xsd:attribute name="value" type="xsd:string" />
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="Death">
 	  <xsd:attribute name="value" type="xsd:string" />
 	</xsd:complexType>
@@ -193,7 +193,7 @@
       </xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="Slot">
 	    <xsd:sequence>
 	    </xsd:sequence>
