@@ -49,10 +49,10 @@ stendhal.ui.gamewindow = {
 				}
 				if (name === "2_object") {
 					this.drawEntities();
-					this.drawTextSprites();
 				}
 			}
 			this.drawEntitiesTop();
+			this.drawTextSprites();
 		}
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
