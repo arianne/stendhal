@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-	
+
   <item name="chaos hammer">
     <type class="club" subclass="chaos_hammer" tileid="-1"/>
     <description>You see a chaos hammer. It is a fearsome weapon.</description>

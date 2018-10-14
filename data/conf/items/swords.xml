@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-	
+
   <item name="assassin dagger">
     <type class="sword" subclass="assassin_dagger" tileid="-1"/>
     <description>You see an assassin dagger, easy to pull out and use when needed.</description>

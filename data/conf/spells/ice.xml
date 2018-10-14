@@ -13,7 +13,7 @@
 			<def value="0" />
 			<amount value="30" />
 			<regen  value="0" />
-			<rate  value="0" />			
+			<rate  value="0" />
 			<lifesteal value="0" />
 			<modifier value="-0.25" />
 		</attributes>

@@ -846,7 +846,7 @@
       <parameter name="x">2</parameter>
       <parameter name="y">10</parameter>
     </configurator>
-	
+
     <!-- Portals -->
     <portal x="4" y="14" ref="out">
       <destination zone="0_athor_island" ref="apartment_6_entrance" />

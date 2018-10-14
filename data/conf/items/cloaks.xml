@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-	
+
   <item name="black cloak">
     <type class="cloak" subclass="black_cloak" tileid="-1"/>
     <description>You see a black cloak. The last owner had black thoughts. Will you?</description>

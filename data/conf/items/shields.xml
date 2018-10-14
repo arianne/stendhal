@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-	
+
   <item name="black shield">
     <type class="shield" subclass="black_shield" tileid="-1"/>
     <description>You see a black shield. Its darkness will surely protect you.</description>

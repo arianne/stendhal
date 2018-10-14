@@ -22,7 +22,7 @@
       <slot name="legs"/>
     </equipable>
   </item>
-	
+
   <item name="blue legs">
     <type class="legs" subclass="blue_legs" tileid="-1"/>
     <description>You see a pair of shiny new blue legs.</description>
@@ -41,7 +41,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-	
+
   <item name="chain legs">
     <type class="legs" subclass="chain_legs" tileid="-1"/>
     <description>You see a pair of well made chain legs. They should protect you against any attacks aimed low.</description>
@@ -59,7 +59,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-	
+
   <item name="chaos legs">
     <type class="legs" subclass="chaos_legs" tileid="-1"/>
     <description>You see a pair of chaos legs. The strange colours confuse you.</description>
