@@ -3,7 +3,7 @@
 <launch4jConfig>
   <headerType>gui</headerType>
   <jar>stendhal-starter.jar</jar>
-  <outfile>build/lib/stendhal-starter-1.27.5.exe</outfile>
+  <outfile>build/lib/stendhal-starter-1.28.5.exe</outfile>
   <dontWrapJar>true</dontWrapJar>
   <priority>normal</priority>
   <stayAlive>false</stayAlive>
