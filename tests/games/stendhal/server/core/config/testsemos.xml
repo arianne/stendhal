@@ -46,7 +46,7 @@
 	<zone name="0_semos_mountain_n_w2" level="0" x="499872" y="499872"
 		file="Level 0/semos/mountain_n_w2.tmx">
 	</zone>
-	
+
     <!-- Interiors of the wizards tower -->
     <zone name="int_semos_wizards_tower_basement" file="interiors/semos/wizards_tower_basement.tmx">
     </zone>
@@ -410,5 +410,3 @@
 	<!--  Level 6 -->
 
 </zones>
-
- 	  	 

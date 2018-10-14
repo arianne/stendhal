@@ -1,5 +1,5 @@
 <FindBugsFilter>
-	<Match> 
+	<Match>
 		<Bug pattern="EQ_UNUSUAL" />
 		<Or>
 			<Package name="games.stendhal.server.entity.npc.action" />
@@ -8,13 +8,13 @@
 		</Or>
 	</Match>
 
-	<Match> 
+	<Match>
 		<Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
 		<Package name="~games\.stendhal\.server\.entity.*" />
 	</Match>
 
 	<!-- disable refactoring hint for named static inner classes -->
-	<Match> 
+	<Match>
 		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
 	</Match>
 
@@ -68,7 +68,7 @@
 	</Match>
 
 	<Match>
-		<!--the class loader is created inside a do privileged block, 
+		<!--the class loader is created inside a do privileged block,
 		    the code was just extracted in into its own method  -->
 		<Bug pattern="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED" />
 		<Class name="games.stendhal.client.update.Bootstrap" />
@@ -89,7 +89,7 @@
 	<Match>
 		<Bug pattern="EI_EXPOSE_REP"/>
 		<Class name="games.stendhal.tools.tiled.LayerDefinition"/>
-	</Match>	
+	</Match>
 
 	<!-- disable warnings for casts to java.awt.Graphics2D -->
 	<Match>
@@ -98,19 +98,19 @@
 			<Class name="games.stendhal.client.gui.DragLayer"/>
 			<Class name="games.stendhal.client.gui.ScrollerPanel"/>
 		</Or>
-	</Match>	
+	</Match>
 
 	<!-- disable unnecessary warning for cast to DomesticAnimal -->
 	<Match>
 		<Bug pattern="BC_UNCONFIRMED_CAST"/>
 		<Class name="games.stendhal.server.core.rp.StendhalRPAction"/>
 		<Method name="startAttack"/>
-	</Match>	
+	</Match>
 
 	<!-- disable misleading warning to use Random.nextInt() instead of Random.nextDouble() -->
 	<Match>
 		<Bug pattern="DM_NEXTINT_VIA_NEXTDOUBLE"/>
 		<Class name="games.stendhal.common.rand"/>
 		<Method name="randExponential"/>
-	</Match>	
+	</Match>
 </FindBugsFilter>

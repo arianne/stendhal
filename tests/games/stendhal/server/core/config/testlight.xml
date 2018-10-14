@@ -13,7 +13,7 @@
 			<def value="0" />
 			<amount value="100" />
 			<regen  value="100" />
-			<rate  value="1" />			
+			<rate  value="1" />
 			<lifesteal value="0.5" />
 		</attributes>
 	</spell>
