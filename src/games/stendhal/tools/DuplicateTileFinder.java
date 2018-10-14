@@ -47,13 +47,13 @@ public class DuplicateTileFinder {
 	private final FingerPrint emptyTile = new FingerPrint("1CEAF73DF40E531DF3BFB26B4FB7CD95FB7BFF1D");
 	/** Fingerprint for the placeholder tile. */
 	private final FingerPrint placeholder = new FingerPrint("1B720CBE931D798C0C3A7E94F145C56C00CF524E");
-	
+
 	public static void main(String[] args) {
 		DuplicateTileFinder finder = new DuplicateTileFinder();
 		finder.scan("tiled/tileset");
 		finder.report();
 	}
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -65,7 +65,7 @@ public class DuplicateTileFinder {
 			System.exit(1);
 		}
 	}
-	
+
 	/**
 	 * Print information about empty, placeholder, and duplicate tiles.
 	 */
@@ -88,7 +88,7 @@ public class DuplicateTileFinder {
 			}
 		}
 	}
-	
+
 	/**
 	 * Scan a file tree recursively.
 	 *
@@ -109,7 +109,7 @@ public class DuplicateTileFinder {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Process a file, if it contains a png image.
 	 * @param path file path
@@ -146,11 +146,11 @@ public class DuplicateTileFinder {
 			}
 		}
 	}
-	
+
 	/** Object for holding tile fingerprint data. */
 	private static class FingerPrint {
 		private final byte[] data;
-		
+
 		/**
 		 * Create fingerprint from data.
 		 * @param data fingerprint data
@@ -158,7 +158,7 @@ public class DuplicateTileFinder {
 		FingerPrint(byte[] data) {
 			this.data = data;
 		}
-		
+
 		/**
 		 * Create fingerprint from string representation.
 		 * @param data a hex string of the fingerprint
@@ -166,12 +166,12 @@ public class DuplicateTileFinder {
 		FingerPrint(String data) {
 			this.data = BaseEncoding.base16().decode(data);
 		}
-		
+
 		@Override
 		public String toString() {
 			return BaseEncoding.base16().encode(data);
 		}
-		
+
 		@Override
 		public boolean equals(Object o) {
 			if (o == null || getClass() != o.getClass()) {
@@ -185,14 +185,14 @@ public class DuplicateTileFinder {
 			return Arrays.hashCode(data);
 		}
 	}
-	
+
 	/**
 	 * Information about a tile.
 	 */
 	private static class Tile {
 		private final String image;
 		private final int x, y;
-		
+
 		/**
 		 * Create a tile from image name and tile coordinates.
 		 * @param image image name
@@ -204,7 +204,7 @@ public class DuplicateTileFinder {
 			this.x = x;
 			this.y = y;
 		}
-		
+
 		@Override
 		public String toString() {
 			return image + ": (" + x + ", " + y + ")";
