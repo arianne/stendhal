@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -23,12 +23,12 @@ marauroa.rpobjectFactory["creature"] = marauroa.util.fromProto(marauroa.rpobject
 
 	onclick: function(x, y) {
 		var action = {
-				"type": "attack", 
+				"type": "attack",
 				"target": "#" + this["id"]
 			};
 		marauroa.clientFramework.sendAction(action);
 	},
-	
+
 	// Overrides the one in creature
 	say: function (text) {
 		this.addSpeechBubble(text);

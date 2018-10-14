@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -37,7 +37,7 @@ stendhal.main = {
 		marauroa.clientFramework.onDisconnect = function(reason, error){
 			stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
 		};
-	
+
 		marauroa.clientFramework.onLoginRequired = function() {
 			window.location = "/index.php?id=content/account/login&url="
 				+ escape(window.location.pathname + window.location.hash);
@@ -84,7 +84,7 @@ stendhal.main = {
 				}
 			}
 		};
-		
+
 		marauroa.clientFramework.onTransfer = function(items) {
 			for (var i in items) {
 				if (items[i]["name"].match(".data_map$")) {
@@ -142,14 +142,14 @@ stendhal.main = {
 		stendhal.main.registerMarauroaEventHandlers();
 		stendhal.main.registerBrowserEventHandlers();
 		marauroa.clientFramework.connect(null, null);
-		
+
 		if (document.getElementById("gamewindow")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
-			
+
 			document.addEventListener("click", function(e) {
 				if (e.target.dataItem) {
 					marauroa.clientFramework.sendAction({
-						type: "use", 
+						type: "use",
 						"target_path": e.target.dataItem.getIdPath(),
 						"zone": marauroa.currentZoneName
 					});
@@ -157,7 +157,7 @@ stendhal.main = {
 			});
 		}
 	},
-	
+
 	onerror: function(error) {
 		stendhal.main.errorCounter++;
 		if (stendhal.main.errorCounter > 5) {

@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -28,7 +28,7 @@ stendhal.ui.stats = {
 		stendhal.ui.stats.dirty = false;
 		var div = document.getElementById("stats");
 		var object = marauroa.me;
-		div.innerText = 
+		div.innerText =
 			"HP: " + object["hp"] + " / " + object["base_hp"] + "\r\n"
 			+ "ATK: " + object["atk"] + " x " + object["atk_item"] + "\r\n"
 			+ "DEF: " + object["def"] + " x " + object["def_item"] + "\r\n"

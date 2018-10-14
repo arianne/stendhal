@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -61,7 +61,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.onXPChanged(this[key] - oldValue);
 		}
 	},
-	
+
 	unset: function(key) {
 		if (key === "target" && this._target) {
 			this._target.onAttackStopped(this);
@@ -83,7 +83,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		/*
 		 * Menu is used to provide an alternate action for some entities (like
 		 * puppies - and they should not be attackable).
-		 * 
+		 *
 		 * For now normally attackable entities get a menu only in Capture The
 		 * Flag, and then they don't need attack. If that changes, this code
 		 * will need to be adjusted.
@@ -96,7 +96,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 						var action = {
 							"type": "stop",
 							"zone": marauroa.currentZoneName,
-							"attack": "" 
+							"attack": ""
 						};
 						marauroa.clientFramework.sendAction(action);
 					}
@@ -116,7 +116,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 	},
 
-	/** 
+	/**
 	 * says a text
 	 */
 	say: function (text) {
@@ -132,7 +132,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			}
 		}
 	},
-	
+
 	addSpeechBubble: function(text) {
 		var x = this["_x"] * 32 + 32;
 		var y = this["_y"] * 32 - 16;
@@ -148,7 +148,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 				ctx.strokeStyle = "#000000";
 				ctx.strokeRect(x, y - 15, width, 20);
 				ctx.fillRect(x, y - 15, width, 20);
-				
+
 				ctx.beginPath();
 				ctx.moveTo(x, y);
 				ctx.lineTo(x - 5, y + 8);
@@ -191,11 +191,11 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		} else {
 			image = stendhal.data.sprites.get(filename);
 		}
-		
+
 		this.drawSprite(ctx, image);
 	},
 
-	/** 
+	/**
 	 * draw RPEntities
 	 */
 	draw: function(ctx) {
@@ -223,7 +223,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		this.drawFloaters(ctx);
 		this.drawStatusIcons(ctx);
 	},
-	
+
 	drawStatusIcons: function(ctx) {
 		function _drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y) {
 			var frame = Math.floor(Date.now() / delay) % nFrames;
@@ -241,7 +241,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			var xdim = icon.width / nFrames;
 			_drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y);
 		}
-		
+
 		var x = this["_x"] * 32 - 10;
 		var y = (this["_y"] + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
@@ -274,7 +274,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			ctx.drawImage(stendhal.data.sprites.get("/data/sprites/status/merchant.png"), x + 12, y - 10);
 		}
 	},
-	
+
 	/**
 	 * Draw colored ellipses (or rectangles on browsers that do not support
 	 * ellipses) when the entity is being attacked, or is attacking the user.
@@ -286,7 +286,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			 * As of 2015-9-15 CanvasRenderingContext2D.ellipse() is not
 			 * supported in most browsers. Fall back to rectangles on these.
 			 * Also on Chrome 45.0.2454.85 ellipse() does not seem to support
-			 * the begin angle parameter correctly, nor does the stroke 
+			 * the begin angle parameter correctly, nor does the stroke
 			 * direction work as it should so it can't be used as a workaround.
 			 * Currently the second ellipse part is drawn as a full ellipse, but
 			 * the code below should eventually draw the right thing once
@@ -335,9 +335,9 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			if (this.attackResult.draw(ctx, (this["_x"] + this["width"]) * 32 - 10, (this["_y"] + this["height"]) * 32 - 10)) {
 				this.attackResult = null;
 			}
-		} 
+		}
 	},
-	
+
 	/**
 	 * Draw entities in this.floaters array. Each floater should have
 	 * draw(ctx, x, y) method, where ctx is the canvas context, and x, y are
@@ -360,7 +360,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			}
 		}
 	},
-	
+
 	/**
 	 * @param {CanvasRenderingContext2D} ctx
 	 * @param {Image} image
@@ -407,13 +407,13 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	drawHealthBar: function(ctx, x, y) {
 		var drawX = x + ((this["width"] * 32) - this["drawWidth"]) / 2;
 		var drawY = y + (this["height"] * 32) - this["drawHeight"] - HEALTH_BAR_HEIGHT;
-		
+
 		ctx.strokeStyle = "#000000";
 		ctx.lineWidth = 2;
 		ctx.beginPath();
 		ctx.rect(drawX, drawY, this["drawWidth"], HEALTH_BAR_HEIGHT - 2);
 		ctx.stroke();
-		
+
 		ctx.fillStyle = "#E0E0E0";
 		ctx.fillRect(drawX, drawY, this["drawWidth"], HEALTH_BAR_HEIGHT - 2);
 
@@ -444,7 +444,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.drawOutlineText(ctx, title, this.titleStyle, x + (this["width"] * 32 - textMetrics.width) / 2, drawY - 5 - HEALTH_BAR_HEIGHT);
 		}
 	},
-	
+
 	drawAttack: function(ctx) {
 		if (this.attackSprite == null) {
 			return;
@@ -471,7 +471,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 		return this._target;
 	},
-	
+
 	onDamaged: function(source, damage) {
 		this.attackResult = this.createResultIcon("/data/sprites/combat/hitted.png");
 	},
@@ -483,7 +483,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	onMissed: function(source) {
 		this.attackResult = this.createResultIcon("/data/sprites/combat/missed.png");
 	},
-	
+
 	onHPChanged: function(change) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#00ff00");
@@ -491,7 +491,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.addFloater(change.toString(), "#ff0000");
 		}
 	},
-	
+
 	onXPChanged: function(change) {
 		if (change > 0) {
 			this.addFloater("+" + change, "#4169e1");
@@ -501,7 +501,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			stendhal.ui.chatLog.addLine("significant_negative", this["title"] + " loses " + Math.abs(change) + " experience points.");
 		}
 	},
-	
+
 	addFloater: function(message, color) {
 		if (!this.hasOwnProperty("floaters")) {
 			this.floaters = [];
@@ -521,12 +521,12 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			}
 		});
 	},
-	
+
 	/**
 	 * Create a closure for drawing attack result icons. The resulting object
 	 * has a method draw(context, x, y) which returns true when the attack
 	 * result has expired and draw() should no longer be called.
-	 * 
+	 *
 	 * @param imagePath path to the result icon
 	 * @return object for drawing the icon
 	 */
@@ -568,15 +568,15 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 					expired: function() {
 						return Date.now() - this.initTime > 180;
 					},
-					draw: function(ctx, x, y, entityWidth, entityHeight) {			
+					draw: function(ctx, x, y, entityWidth, entityHeight) {
 						var dtime = Date.now() - this.initTime;
 						// We can use fractional "frame" for the lines. Just
 						// draw the arrow where it should be at the moment.
 						var frame = Math.min(dtime / 60, 4);
-						
+
 						var startX = x + entityWidth / 4;
 						var startY = y + entityHeight / 4;
-						
+
 						var yLength = (targetY - startY) / 4;
 						var xLength = (targetX - startX) / 4;
 
@@ -584,7 +584,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 						var endY = startY + yLength;
 						startX += frame * xLength;
 						var endX = startX + xLength;
-						
+
 						ctx.strokeStyle = color;
 						ctx.lineWidth = 2;
 						ctx.moveTo(startX, startY);
@@ -638,10 +638,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			})(imagePath, ranged, this["dir"]);
 		}
 	},
-	
+
 	/**
 	 * Called when this entity is selected as the attack target.
-	 * 
+	 *
 	 * @param attacked The entity that selected this as the target
 	 */
 	onTargeted: function(attacker) {
@@ -653,10 +653,10 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.attackers.size += 1;
 		}
 	},
-	
+
 	/**
 	 * Called when an entity deselects this as its attack target.
-	 * 
+	 *
 	 * @param attacker The entity that had this as the attack target, but
 	 * 	stopped attacking
 	 */
@@ -666,7 +666,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			this.attackers.size -= 1;
 		}
 	},
-	
+
 	destroy: function(obj) {
 		if (this._target) {
 			this._target.onAttackStopped(this);

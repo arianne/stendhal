@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -17,7 +17,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 /**
  * General entity
  */
-marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFactory["_default"], { 
+marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFactory["_default"], {
 	minimapShow: false,
 	minimapStyle: "rgb(200,255,200)",
 	zIndex: 10000,
@@ -39,7 +39,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	/**
 	 * is the other entity next to this entity?
 	 *
-	 * @return true, if the other entity is right next to us; false otherwise 
+	 * @return true, if the other entity is right next to us; false otherwise
 	 */
 	isNextTo: function(other) {
 		if (!other || !this["x"] || !this["y"] || !other["x"] || !other["y"]) {
@@ -103,7 +103,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	drawSprite: function(ctx) {
 		this.drawSpriteAt(ctx, this["x"] * 32, this["y"] * 32);
 	},
-	
+
 	drawSpriteAt: function(ctx, x, y) {
 		var image = stendhal.data.sprites.get(this.sprite.filename);
 		if (image.height) {
@@ -114,11 +114,11 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			ctx.drawImage(image, offsetX, offsetY, width, height, x, y, width, height);
 		}
 	},
-	
+
 	/**
 	 * Draws text in specified color with black outline. Setting the font is the
 	 * caller's responsibility.
-	 * 
+	 *
 	 * @param ctx graphics context
 	 * @param color text inner color
 	 * @param x x coordinate
@@ -153,7 +153,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		return "[" + res.substr(0, res.length - 1) + "]";
 	},
 
-	/** 
+	/**
 	 * says a text
 	 */
 	say: function (text) {
@@ -161,7 +161,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			stendhal.ui.chatLog.addLine("normal", text);
 		}
 	},
-	
+
 	/**
 	 * Create the default action for this entity. If the entity specifies a
 	 * default action description, interpret it as an action command.
@@ -173,7 +173,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			"read" : "look",
 			"zone": marauroa.currentZoneName
 		};
-		
+
 		var actionCommand = "look";
 		var act = this["action"];
 		if (typeof(act) === "string") {
@@ -195,7 +195,7 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	},
 
 	isObstacle: function(entity) {
-		return ((entity != this) 
+		return ((entity != this)
 			&& (this.getResistance() * (entity.getResistance() / 100) > 95));
 	},
 

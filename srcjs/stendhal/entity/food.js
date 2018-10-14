@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -24,7 +24,7 @@ marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFact
 		}
 		// TODO: play sound effect
 	},
-	
+
 	draw: function(ctx) {
 		var image = stendhal.data.sprites.get("/data/sprites/food.png");
 		if (image.height) {
@@ -34,7 +34,7 @@ marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFact
 			ctx.drawImage(image, 0, offset, 32, 32, localX, localY, 32, 32);
 		}
 	},
-	
+
 	onclick: function(x, y) {
 		var action = {
 				"type": "look",
@@ -42,7 +42,7 @@ marauroa.rpobjectFactory["food"] = marauroa.util.fromProto(marauroa.rpobjectFact
 			};
 		marauroa.clientFramework.sendAction(action);
 	},
-	
+
 	isVisibleToAction: function(filter) {
 		return true;
 	},

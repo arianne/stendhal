@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -42,7 +42,7 @@ marauroa.rpobjectFactory["activeEntity"] = marauroa.util.fromProto(marauroa.rpob
 				this["_x"] = this["_x"] + movement;
 				this["_y"] = serverY;
 				break;
-			case "3": 
+			case "3":
 				this["_y"] = this["_y"] + movement;
 				this["_x"] = serverX;
 				break;
@@ -108,7 +108,7 @@ marauroa.rpobjectFactory["activeEntity"] = marauroa.util.fromProto(marauroa.rpob
 			var otherStartY = Math.floor(other["_y"]);
 			var otherEndX = Math.ceil(other["_x"] + other["width"]);
 			var otherEndY = Math.ceil(other["_y"] + other["height"]);
-			
+
 			if (thisStartX < otherEndX && thisEndX > otherStartX
 				&& thisStartY < otherEndY && thisEndY > otherStartY) {
 				return true;

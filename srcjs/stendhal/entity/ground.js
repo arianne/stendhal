@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -24,7 +24,7 @@ stendhal.zone.ground = {
 		return false;
 	},
 
-	
+
 	/**
 	 * Calculates whether the click was close enough to a zone border to trigger
 	 * a zone change.
@@ -53,7 +53,7 @@ stendhal.zone.ground = {
 		var gameX = x + stendhal.ui.gamewindow.offsetX;
 		var gameY = y + stendhal.ui.gamewindow.offsetY;
 		var action = {
-			"type": "moveto", 
+			"type": "moveto",
 			"x": "" + Math.floor(gameX / 32),
 			"y": "" + Math.floor(gameY / 32)
 		};

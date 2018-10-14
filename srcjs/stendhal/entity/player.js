@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -22,13 +22,13 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	minimapShow: true,
 	minimapStyle: "rgb(255, 255, 255)",
 	dir: 3,
-	
+
 	set: function(key, value) {
 		marauroa.rpobjectFactory["rpentity"].set.apply(this, arguments);
 		if (key === "ghostmode") {
 			this.minimapShow = false;
 		}
-		
+
 		// stats
 		if (marauroa.me !== this) {
 			return;
@@ -97,7 +97,7 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		list.add(ActionType.INVITE.getRepresentation());
 		*/
 	},
-	
+
 	isIgnored: function() {
 		if (!marauroa.me["!ignore"]) {
 			return false;
@@ -120,23 +120,22 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		return this["resistance"];
 	},
 
-	/** 
+	/**
 	 * says a text
 	 */
 	say: function (text) {
 		if (this.isIgnored()) {
 			return;
 		}
-		marauroa.rpobjectFactory["rpentity"].say.apply(this, arguments);		
+		marauroa.rpobjectFactory["rpentity"].say.apply(this, arguments);
 	},
 
-	/** 
+	/**
 	 * Can the player hear this chat message?
 	 */
 	isInHearingRange: function(entity) {
-		return (this.isAdmin() 
-			|| ((Math.abs(this["x"] - entity["x"]) < 15) 
+		return (this.isAdmin()
+			|| ((Math.abs(this["x"] - entity["x"]) < 15)
 				&& (Math.abs(this["y"] - entity["y"]) < 15)));
 	}
 });
-

@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -92,7 +92,7 @@ stendhal.ui.Menu = function(entity, x, y) {
 	if (stendhal.ui.globalpopup) {
 		stendhal.ui.globalpopup.popup.close();
 	}
-	
+
 	var actions = [];
 	var that = this;
 	entity.buildActions(actions);
@@ -131,7 +131,7 @@ stendhal.ui.Menu = function(entity, x, y) {
 				actions[i].action(entity);
 			} else {
 				var action = {
-					"type": actions[i].type, 
+					"type": actions[i].type,
 					"target": "#" + entity.id,
 					"zone": marauroa.currentZoneName
 				};
@@ -139,7 +139,7 @@ stendhal.ui.Menu = function(entity, x, y) {
 			}
 		}
 	});
-	
+
 	this.close = function() {
 		this.popup.close();
 		stendhal.ui.globalpopup = null;

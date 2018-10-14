@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -15,12 +15,12 @@ stendhal.data = stendhal.data || {};
 
 	/**
 	 * preloads images
-	 * 
+	 *
 	 * @param images image url to load
 	 * @param callback callback to invoke
 	 * @constructor
 	 */
-	// Start http://www.webreference.com/programming/javascript/gr/column3/ 
+	// Start http://www.webreference.com/programming/javascript/gr/column3/
 	function ImagePreloader(images, callback) {
 		// store the call-back
 		this.callback = callback;
@@ -260,11 +260,11 @@ stendhal.data.map = {
 			this.requestMap(filename);
 		}
 	},
-	
+
 	collision: function(x, y) {
 		return this.collisionData[y * stendhal.data.map.numberOfXTiles + x] != 0;
 	},
-	
+
 	isProtected: function(x, y) {
 		return this.protection[y * stendhal.data.map.numberOfXTiles + x] != 0;
 	}

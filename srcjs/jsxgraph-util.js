@@ -35,13 +35,13 @@
   * It is used for reading GEONExT, Geogebra and Intergeo files.
   *
   * Only Huffman codes are decoded in gunzip.
-  * The code is based on the source code for gunzip.c by Pasi Ojala 
+  * The code is based on the source code for gunzip.c by Pasi Ojala
   * @see <a href="http://www.cs.tut.fi/~albert/Dev/gunzip/gunzip.c">http://www.cs.tut.fi/~albert/Dev/gunzip/gunzip.c</a>
   * @see <a href="http://www.cs.tut.fi/~albert">http://www.cs.tut.fi/~albert</a>
   */
 JXG = {};
 JXG.Util = {};
-                                 
+
 /**
  * Unzip zip files
  */
@@ -58,7 +58,7 @@ JXG.Util.Unzip = function (barray){
         modeZIP=false,
 
         CRC, SIZE,
-    
+
         bitReverse = [
         0x00, 0x80, 0x40, 0xc0, 0x20, 0xa0, 0x60, 0xe0,
         0x10, 0x90, 0x50, 0xd0, 0x30, 0xb0, 0x70, 0xf0,
@@ -93,7 +93,7 @@ JXG.Util.Unzip = function (barray){
         0x0f, 0x8f, 0x4f, 0xcf, 0x2f, 0xaf, 0x6f, 0xef,
         0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff
     ],
-    
+
     cplens = [
         3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31,
         35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0
@@ -117,22 +117,22 @@ JXG.Util.Unzip = function (barray){
         7,  7,  8,  8,  9,  9, 10, 10,
         11, 11, 12, 12, 13, 13
     ],
-    
+
     border = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15],
-    
+
     bA = barray,
 
     bytepos=0,
     bitpos=0,
     bb = 1,
     bits=0,
-    
+
     NAMEMAX = 256,
-    
+
     nameBuf = [],
-    
+
     fileout;
-    
+
     function readByte(){
         bits+=8;
         if (bytepos<bA.length){
@@ -146,7 +146,7 @@ JXG.Util.Unzip = function (barray){
     function byteAlign(){
         bb = 1;
     };
-    
+
     function readBit(){
         var carry;
         bits++;
@@ -163,7 +163,7 @@ JXG.Util.Unzip = function (barray){
     function readBits(a) {
         var res = 0,
             i = a;
-    
+
         while(i--) {
             res = (res<<1) | readBit();
         }
@@ -172,7 +172,7 @@ JXG.Util.Unzip = function (barray){
         }
         return res;
     };
-        
+
     function flushBuffer(){
         //document.write('FLUSHBUFFER:'+buf32k);
         bIdx = 0;
@@ -188,7 +188,7 @@ JXG.Util.Unzip = function (barray){
             bIdx=0;
         }
     };
-    
+
     function HufNode() {
         this.b0=0;
         this.b1=0;
@@ -197,22 +197,22 @@ JXG.Util.Unzip = function (barray){
     };
 
     var LITERALS = 288;
-    
+
     var literalTree = new Array(LITERALS);
     var distanceTree = new Array(32);
     var treepos=0;
     var Places = null;
     var Places2 = null;
-    
+
     var impDistanceTree = new Array(64);
     var impLengthTree = new Array(64);
-    
+
     var len = 0;
     var fpos = new Array(17);
     fpos[0]=0;
     var flens;
     var fmax;
-    
+
     function IsPat() {
         while (1) {
             if (fpos[len] >= fmax)
@@ -233,7 +233,7 @@ JXG.Util.Unzip = function (barray){
         }
         treepos++;
         len++;
-    	
+
         tmp = IsPat();
         if (debug)
         	document.write("<br>IsPat "+tmp);
@@ -295,7 +295,7 @@ JXG.Util.Unzip = function (barray){
             	document.write("Places["+a+"].b1="+Places[a].b1+"<br>");
         	}
         }
-    
+
         /*if(show) {
             var tmp;
             for(tmp=currentTree;tmp<Places;tmp++) {
@@ -313,7 +313,7 @@ JXG.Util.Unzip = function (barray){
         }*/
         return 0;
     };
-    
+
     function DecodeValue(currentTree) {
         var len, i,
             xtreepos=0,
@@ -355,7 +355,7 @@ JXG.Util.Unzip = function (barray){
         	document.write("ret3");
         return -1;
     };
-    
+
     function DeflateLoop() {
     var last, c, type, i, len;
 
@@ -393,7 +393,7 @@ JXG.Util.Unzip = function (barray){
         if(type==0) {
             var blockLen, cSum;
 
-            // Stored 
+            // Stored
             byteAlign();
             blockLen = readByte();
             blockLen |= (readByte()<<8);
@@ -426,7 +426,7 @@ JXG.Util.Unzip = function (barray){
                 144    110010000    400
                 :    :       :
                 255    111111111    511
-    
+
                 Note the bit order!
                 */
 
@@ -479,9 +479,9 @@ JXG.Util.Unzip = function (barray){
         } else if(type==2) {
             var j, n, literalCodes, distCodes, lenCodes;
             var ll = new Array(288+32);    // "static" just to preserve stack
-    
-            // Dynamic Huffman tables 
-    
+
+            // Dynamic Huffman tables
+
             literalCodes = 257 + readBits(5);
             distCodes = 1 + readBits(5);
             lenCodes = 4 + readBits(4);
@@ -489,9 +489,9 @@ JXG.Util.Unzip = function (barray){
             for(j=0; j<19; j++) {
                 ll[j] = 0;
             }
-    
+
             // Get the decode tree code lengths
-    
+
             //document.write("<br>");
             for(j=0; j<lenCodes; j++) {
                 ll[border[j]] = readBits(3);
@@ -516,7 +516,7 @@ JXG.Util.Unzip = function (barray){
             	}
             }
             //document.write('<BR>tree created');
-    
+
             //read in literal and distance code lengths
             n = literalCodes + distCodes;
             i = 0;
@@ -530,7 +530,7 @@ JXG.Util.Unzip = function (barray){
                 	document.write("<br>"+z+" i:"+i+" decode: "+j+"    bits "+bits+"<br>");
                 if(j<16) {    // length of code in bits (0..15)
                        ll[i++] = j;
-                } else if(j==16) {    // repeat last length 3 to 6 times 
+                } else if(j==16) {    // repeat last length 3 to 6 times
                        var l;
                     j = 3 + readBits(2);
                     if(i+j > n) {
@@ -544,7 +544,7 @@ JXG.Util.Unzip = function (barray){
                 } else {
                     if(j==17) {        // 3 to 10 zero length codes
                         j = 3 + readBits(3);
-                    } else {        // j == 18: 11 to 138 zero length codes 
+                    } else {        // j == 18: 11 to 138 zero length codes
                         j = 11 + readBits(7);
                     }
                     if(i+j > n) {
@@ -576,7 +576,7 @@ JXG.Util.Unzip = function (barray){
             var ll2 = new Array();
             for (i=literalCodes; i <ll.length; i++){
                 ll2[i-literalCodes]=ll[i];
-            }    
+            }
             if(CreateTree(distanceTree, distCodes, ll2, 0)) {
                 flushBuffer();
                 return 1;
@@ -594,7 +594,7 @@ JXG.Util.Unzip = function (barray){
                     }
                     j--;
                     len = readBits(cplext[j]) + cplens[j];
-    
+
                     j = DecodeValue(distanceTree);
                     if(cpdext[j] > 8) {
                         dist = readBits(8);
@@ -628,10 +628,10 @@ JXG.Util.Unzip.prototype.unzipFile = function(name) {
 			return unzipped[i][0];
 		}
 	}
-	
+
   };
-    
-    
+
+
 JXG.Util.Unzip.prototype.unzip = function() {
 	//convertToByteArray(input);
 	if (debug)
@@ -650,13 +650,13 @@ JXG.Util.Unzip.prototype.unzip = function() {
 		document.write(bA[i]+" ");
 		if ((i+1)%16==0)
 			document.write("<br>");
-	}	
+	}
 	*/
 	//alert(bA);
 	nextFile();
 	return unzipped;
   };
-    
+
  function nextFile(){
  	if (debug)
  		alert("NEXTFILE");
@@ -700,51 +700,51 @@ JXG.Util.Unzip.prototype.unzip = function() {
 			tmp[1] = readByte();
 			if (debug)
 				alert("ZIP-Version: "+tmp[1]+" "+tmp[0]/10+"."+tmp[0]%10);
-			
+
 			gpflags = readByte();
 			gpflags |= (readByte()<<8);
 			if (debug)
 				alert("gpflags: "+gpflags);
-			
+
 			var method = readByte();
 			method |= (readByte()<<8);
 			if (debug)
 				alert("method: "+method);
-			
+
 			readByte();
 			readByte();
 			readByte();
 			readByte();
-			
+
 			var crc = readByte();
 			crc |= (readByte()<<8);
 			crc |= (readByte()<<16);
 			crc |= (readByte()<<24);
-			
+
 			var compSize = readByte();
 			compSize |= (readByte()<<8);
 			compSize |= (readByte()<<16);
 			compSize |= (readByte()<<24);
-			
+
 			var size = readByte();
 			size |= (readByte()<<8);
 			size |= (readByte()<<16);
 			size |= (readByte()<<24);
-			
+
 			if (debug)
 				alert("local CRC: "+crc+"\nlocal Size: "+size+"\nlocal CompSize: "+compSize);
-			
+
 			var filelen = readByte();
 			filelen |= (readByte()<<8);
-			
+
 			var extralen = readByte();
 			extralen |= (readByte()<<8);
-			
+
 			if (debug)
 				alert("filelen "+filelen);
 			i = 0;
 			nameBuf = [];
-			while (filelen--){ 
+			while (filelen--){
 				var c = readByte();
 				if (c == "/" | c ==":"){
 					i = 0;
@@ -753,20 +753,20 @@ JXG.Util.Unzip.prototype.unzip = function() {
 			}
 			if (debug)
 				alert("nameBuf: "+nameBuf);
-			
+
 			//nameBuf[i] = "\0";
 			if (!fileout)
 				fileout = nameBuf;
-			
+
 			var i = 0;
 			while (i < extralen){
 				c = readByte();
 				i++;
 			}
-				
+
 			CRC = 0xffffffff;
 			SIZE = 0;
-			
+
 			if (size = 0 && fileOut.charAt(fileout.length-1)=="/"){
 				//skipdir
 				if (debug)
@@ -786,21 +786,21 @@ JXG.Util.Unzip.prototype.unzip = function() {
 		}
 	}
  };
-	
+
 function skipdir(){
-    var crc, 
+    var crc,
         tmp = [],
         compSize, size, os, i, c;
-    
+
 	if ((gpflags & 8)) {
 		tmp[0] = readByte();
 		tmp[1] = readByte();
 		tmp[2] = readByte();
 		tmp[3] = readByte();
-		
-		if (tmp[0] == parseInt("50",16) && 
-            tmp[1] == parseInt("4b",16) && 
-            tmp[2] == parseInt("07",16) && 
+
+		if (tmp[0] == parseInt("50",16) &&
+            tmp[1] == parseInt("4b",16) &&
+            tmp[2] == parseInt("07",16) &&
             tmp[3] == parseInt("08",16))
         {
             crc = readByte();
@@ -810,45 +810,45 @@ function skipdir(){
 		} else {
 			crc = tmp[0] | (tmp[1]<<8) | (tmp[2]<<16) | (tmp[3]<<24);
 		}
-		
+
 		compSize = readByte();
 		compSize |= (readByte()<<8);
 		compSize |= (readByte()<<16);
 		compSize |= (readByte()<<24);
-		
+
 		size = readByte();
 		size |= (readByte()<<8);
 		size |= (readByte()<<16);
 		size |= (readByte()<<24);
-		
+
 		if (debug)
 			alert("CRC:");
 	}
 
 	if (modeZIP)
 		nextFile();
-	
+
 	tmp[0] = readByte();
 	if (tmp[0] != 8) {
 		if (debug)
 			alert("Unknown compression method!");
-        return 0;	
+        return 0;
 	}
-	
+
 	gpflags = readByte();
 	if (debug){
 		if ((gpflags & ~(parseInt("1f",16))))
 			alert("Unknown flags set!");
 	}
-	
+
 	readByte();
 	readByte();
 	readByte();
 	readByte();
-	
+
 	readByte();
 	os = readByte();
-	
+
 	if ((gpflags & 4)){
 		tmp[0] = readByte();
 		tmp[2] = readByte();
@@ -858,7 +858,7 @@ function skipdir(){
 		for (i=0;i<len;i++)
 			readByte();
 	}
-	
+
 	if ((gpflags & 8)){
 		i=0;
 		nameBuf=[];
@@ -872,33 +872,33 @@ function skipdir(){
 		if (debug)
 			alert("original file name: "+nameBuf);
 	}
-		
+
 	if ((gpflags & 16)){
 		while (c=readByte()){
 			//FILE COMMENT
 		}
 	}
-	
+
 	if ((gpflags & 2)){
 		readByte();
 		readByte();
 	}
-	
+
 	DeflateLoop();
-	
+
 	crc = readByte();
 	crc |= (readByte()<<8);
 	crc |= (readByte()<<16);
 	crc |= (readByte()<<24);
-	
+
 	size = readByte();
 	size |= (readByte()<<8);
 	size |= (readByte()<<16);
 	size |= (readByte()<<24);
-	
+
 	if (modeZIP)
 		nextFile();
-	
+
 };
 
 };
@@ -975,9 +975,9 @@ JXG.Util.Base64 = {
                 output.push(String.fromCharCode(chr3));
             }
         }
-        
-        output = output.join(''); 
-        
+
+        output = output.join('');
+
         if (utf8) {
             output = JXG.Util.Base64._utf8_decode(output);
         }
@@ -1038,26 +1038,26 @@ JXG.Util.Base64 = {
         }
         return string.join('');
     },
-    
+
     _destrip: function (stripped, wrap){
         var lines = [], lineno, i,
             destripped = [];
-        
-        if (wrap==null) 
+
+        if (wrap==null)
             wrap = 76;
-            
+
         stripped.replace(/ /g, "");
         lineno = stripped.length / wrap;
         for (i = 0; i < lineno; i++)
             lines[i]=stripped.substr(i * wrap, wrap);
         if (lineno != stripped.length / wrap)
             lines[lines.length]=stripped.substr(lineno * wrap, stripped.length-(lineno * wrap));
-            
+
         for (i = 0; i < lines.length; i++)
             destripped.push(lines[i]);
         return destripped.join('\n');
     },
-    
+
     decodeAsArray: function (input){
         var dec = this.decode(input),
             ar = [], i;
@@ -1066,7 +1066,7 @@ JXG.Util.Base64 = {
         }
         return ar;
     },
-    
+
     decodeGEONExT : function (input) {
         return decodeAsArray(destrip(input),false);
     }

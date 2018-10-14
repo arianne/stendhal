@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -36,7 +36,7 @@ stendhal.ui.chatLog = {
 		var div = document.createElement("div");
 		div.className = "log" + type;
 		div.innerHTML = "[" + time + "] " + stendhal.ui.chatLog.formatLogEntry(message);
-		
+
 		var isAtBottom = (chatElement.scrollHeight - chatElement.clientHeight) === chatElement.scrollTop;
 		chatElement.appendChild(div);
 
@@ -44,12 +44,12 @@ stendhal.ui.chatLog = {
 			chatElement.scrollTop = chatElement.scrollHeight;
 		}
 	},
-	
+
 	formatLogEntry: function(message) {
 		var res = "";
 		var delims = [" ", ",", ".", "!", "?", ":", ";"];
 		var length = message.length;
-		var inHighlight = false, inUnderline = false, 
+		var inHighlight = false, inUnderline = false,
 			inHighlightQuote = false, inUnderlineQuote = false;
 		for (var i = 0; i < length; i++) {
 			var c = message[i];

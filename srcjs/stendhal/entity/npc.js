@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -22,7 +22,7 @@ marauroa.rpobjectFactory["npc"] = marauroa.util.fromProto(marauroa.rpobjectFacto
 	titleStyle: "#c8c8ff",
 	"hp": 100,
 	"base_hp": 100,
-	
+
 	drawTop: function(ctx) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;

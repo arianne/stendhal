@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -15,7 +15,7 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
 (function() {
-	
+
 marauroa.rpobjectFactory["game_board"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
 	zIndex: 100,
 
@@ -29,7 +29,7 @@ marauroa.rpobjectFactory["game_board"] = marauroa.util.fromProto(marauroa.rpobje
 	set: function(key, value) {
 		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
 		if (key === "class") {
-			this.sprite.filename = "data/sprites/gameboard/" 
+			this.sprite.filename = "data/sprites/gameboard/"
 				+ this["class"] + ".png";
 		}
 	},

@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
@@ -26,15 +26,15 @@ stendhal.data.cache = {
 			var tx = stendhal.data.cache.db.transaction(storeName, IDBTransaction.READ_ONLY);
 			var store = tx.objectStore(storeName);
 			var items = [];
-			
-			tx.oncomplete = function(evt) {  
+
+			tx.oncomplete = function(evt) {
 				callback(items);
 			};
 			var cursorRequest = store.openCursor();
 			cursorRequest.onerror = function(error) {
 				console.log(error);
 			};
-			cursorRequest.onsuccess = function(evt) {                    
+			cursorRequest.onsuccess = function(evt) {
 				var cursor = evt.target.result;
 				if (cursor) {
 					items.push(cursor.value);
