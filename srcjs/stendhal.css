@@ -1,4 +1,8 @@
-body {font-family: "Arial"}
+body {
+	font-family: "Arial";
+	padding: 0;
+	margin: 0;
+}
 
 li.online {color: #0A0}
 li.offline {color: #A00}
@@ -16,6 +20,10 @@ li.offline {color: #A00}
 	padding:0.1em;
 }
 
+#menubutton {
+	width: 100%
+}
+
 div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px solid black; background-color:#CCC; float: left; 
 padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; font-size:10px}
 .equipment {position:relative; height:160px; border: 1px solid black}
@@ -31,7 +39,8 @@ padding: 1px; margin: 2px; text-align: right; color:#FFF; font-weight: bold; fon
 
 #chat {
 	height:190px; border: 1px solid #000; padding:0.5em; 
-	overflow-y: scroll; word-wrap:break-word; display: block
+	overflow-y: scroll; word-wrap:break-word; display: block;
+	color: #000; background-color: #FFF;
 }
 
 #zoneinfo {
@@ -130,9 +139,7 @@ span.logi {text-decoration: underline}
 }
 
 .popuptitle {
-	cursor: default; background-color: #FFF;
-	background-color: #00A;
-	color: #FFF;
+	cursor: default;
 	padding: 3px;
 }
 
@@ -149,4 +156,9 @@ span.logi {text-decoration: underline}
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	user-select: none;
+}
+
+.background {
+	background: url(/data/gui/panelwood003.jpg);
+	color: #FFF;
 }

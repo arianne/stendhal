@@ -30,7 +30,7 @@ stendhal.ui.Popup = function(title, content, x, y) {
 	};
 
 	function createTitleHtml() {
-		return "<div class='popuptitle'><div class='popuptitleclose'>X</div>" + stendhal.ui.html.esc(title) + "</div>";
+		return "<div class='popuptitle background'><div class='popuptitleclose'>X</div>" + stendhal.ui.html.esc(title) + "</div>";
 	}
 
 	function onClose(e) {
