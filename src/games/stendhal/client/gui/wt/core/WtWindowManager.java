@@ -173,7 +173,7 @@ public final class WtWindowManager {
 
 		return MathHelper.parseIntDefault(value, defaultValue);
 	}
-	
+
 	/**
 	 * Returns a boolean property.
 	 *
@@ -189,7 +189,7 @@ public final class WtWindowManager {
 		if (value == null) {
 			return defaultValue;
 		}
-		
+
 		return Boolean.parseBoolean(value);
 	}
 

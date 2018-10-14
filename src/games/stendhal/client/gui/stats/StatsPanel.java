@@ -201,7 +201,7 @@ class StatsPanel extends JPanel {
 	void setStatus(final StatusID ID, final boolean visible) {
 	    statusIcons.setStatus(ID, visible);
 	}
-	
+
 	/**
 	 * Hide all status icons. This is called when the user entity is deleted.
 	 */

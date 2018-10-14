@@ -822,7 +822,7 @@ public class StendhalClient extends ClientFramework {
 		}
 		super.send(action);
 	}
-	
+
 	/**
 	 * Check if the connected server is of at least as recent as the specified
 	 * version.

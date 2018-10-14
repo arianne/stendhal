@@ -227,7 +227,7 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 			}
 		}
 	}
-	
+
 	/**
 	 * Color selection model that is capable of returning, and accepting HSL
 	 * space color data in addition of the usual RGB.
@@ -307,7 +307,7 @@ public abstract class AbstractColorSelector<T extends ColorSelectionModel> exten
 			super.setSelectedColor(new Color(ARGB.mergeRgb(rgb)));
 		}
 	}
-	
+
 	/**
 	 * Lightness part of the selector.
 	 */

@@ -45,11 +45,11 @@ public class User extends Player {
 	private static final StaticUserProxy NO_USER = new NoUserProxy();
 	private static final Logger logger = Logger.getLogger(User.class);
 	private static final String IGNORE_SLOT = "!ignore";
-	
+
 	private static String groupLootmode;
 	private static Set<String> groupMembers = Collections.emptySet();
 	private static StaticUserProxy userProxy = NO_USER;
-	
+
 	private final Set<String> ignore = new HashSet<String>();
 	private final SpeedPredictor speedPredictor;
 
@@ -73,7 +73,7 @@ public class User extends Player {
 	public static User get() {
 		return userProxy.getUser();
 	}
-	
+
 	/**
 	 * is the user object not set, yet?
 	 *
@@ -82,7 +82,7 @@ public class User extends Player {
 	public static boolean isNull() {
 		return userProxy == NO_USER;
 	}
-	
+
 	/**
 	 * Resets the class to uninitialized.
 	 */
@@ -164,7 +164,7 @@ public class User extends Player {
 	public static boolean isPlayerInGroup(String otherPlayer) {
 		return groupMembers.contains(otherPlayer);
 	}
-	
+
 	/**
 	 * updates the group information
 	 *
@@ -215,7 +215,7 @@ public class User extends Player {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove players from the set of ignored players.
 	 * Player names are the attributes prefixed with '_'.
@@ -252,7 +252,7 @@ public class User extends Player {
 
 		return -1;
 	}
-	
+
 	/**
 	 * checks whether the user owns a pet
 	 *
@@ -270,7 +270,7 @@ public class User extends Player {
 	public int getPetID() {
 		return rpObject.getInt("pet");
 	}
-	
+
 	/**
 	 * checks whether the user owns a sheep
 	 *
@@ -396,16 +396,16 @@ public class User extends Player {
 		String pointDesc = Grammar.quantityplnoun(amount, "health point");
 		notifyUser(getTitle() + " heals " + pointDesc + ".", NotificationType.HEAL);
 	}
-	
+
 	private void notifyUser(String message, NotificationType type) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(message, type));
 	}
-	
+
 	private void notifyUserAboutPlayerOnlineChanges(RPObject changes) {
 		notifyUserAboutPlayerStatus(changes, "offline", " has left Stendhal.");
 		notifyUserAboutPlayerStatus(changes, "online", " has joined Stendhal.");
 	}
-	
+
 	private void notifyUserAboutPlayerStatus(RPObject changes, String status, String messageEnd) {
 		if (changes.has(status)) {
 			String[] players = changes.get(status).split(",");
@@ -475,7 +475,7 @@ public class User extends Player {
 		boolean isIgnoring(String name);
 		double squareDistanceTo(double x, double y);
 	}
-	
+
 	private static class NormalUserProxy implements StaticUserProxy {
 		private final User user;
 
@@ -558,7 +558,7 @@ public class User extends Player {
 		public boolean isAdmin() {
 			return false;
 		}
-		
+
 		@Override
 		public boolean isIgnoring(String name) {
 			return false;

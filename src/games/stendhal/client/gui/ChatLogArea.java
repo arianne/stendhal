@@ -36,16 +36,16 @@ import games.stendhal.common.NotificationType;
 class ChatLogArea {
 	/** Background color of the private chat tab. Light blue. */
 	private static final String PRIVATE_TAB_COLOR = "0xdcdcff";
-	
+
 	private final NotificationChannelManager channelManager;
 	private final JTabbedPane tabs = new JTabbedPane(SwingConstants.BOTTOM);
 	private final Timer animator = new Timer(100, null);
-	
+
 	ChatLogArea(NotificationChannelManager channelManager) {
 		this.channelManager = channelManager;
 		createLogArea();
 	}
-	
+
 	/**
 	 * Create the chat log tabs.
 	 *
@@ -55,10 +55,10 @@ class ChatLogArea {
 		tabs.setFocusable(false);
 		List<JComponent> logs = createChannelComponents();
 		BitSet changedChannels = new BitSet(logs.size());
-		
+
 		// Must be done before adding tabs
 		setupTabChangeHandling(changedChannels);
-		
+
 		Iterator<NotificationChannel> it = channelManager.getChannels().iterator();
 		for (JComponent tab : logs) {
 			tabs.add(it.next().getName(), tab);
@@ -69,7 +69,7 @@ class ChatLogArea {
 
 		return tabs;
 	}
-	
+
 	/**
 	 * Create chat channels.
 	 *
@@ -107,13 +107,13 @@ class ChatLogArea {
 		String personalDefault = NotificationType.PRIVMSG.toString() + ","
 				+ NotificationType.CLIENT + "," + NotificationType.GROUP + ","
 				+ NotificationType.TUTORIAL + "," + NotificationType.SUPPORT;
-		
+
 		return new NotificationChannel("Personal", edit, false, personalDefault);
 	}
 
 	private NotificationChannel setupMainChannel(KTextEdit edit) {
 		NotificationChannel channel = new NotificationChannel("Main", edit, true, "");
-		
+
 		// Follow settings changes for the main channel
 		WtWindowManager wm = WtWindowManager.getInstance();
 		wm.registerSettingChangeListener("ui.healingmessage", new SettingChangeAdapter("ui.healingmessage", "false") {
@@ -149,7 +149,7 @@ class ChatLogArea {
 			}
 		});
 	}
-	
+
 	private void setupHiddenChannelMessageHandling(BitSet changedChannels) {
 		channelManager.addHiddenChannelListener(new NotificationChannelManager.HiddenChannelListener() {
 			@Override
@@ -165,25 +165,25 @@ class ChatLogArea {
 			}
 		});
 	}
-	
+
 	private void setupAnimation(BitSet changedChannels) {
 		animator.addActionListener(new AnimationActionListener(changedChannels));
 	}
-	
+
 	JComponent getComponent() {
 		return tabs;
 	}
-	
+
 	private class AnimationActionListener implements ActionListener {
 		private final BitSet changedChannels;
 		private static final int STEPS = 10;
 		private final Color[] colors;
 		private int colorIndex;
 		private int change = 1;
-		
+
 		private AnimationActionListener(BitSet changedChannels) {
 			this.changedChannels = changedChannels;
-			
+
 			colors = new Color[STEPS];
 			initColors();
 		}
@@ -218,7 +218,7 @@ class ChatLogArea {
 				colors[i] = new Color(r - i * rDelta / STEPS, g - i * gDelta / STEPS, b - i * bDelta / STEPS, alpha);
 			}
 		}
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			colorIndex += change;

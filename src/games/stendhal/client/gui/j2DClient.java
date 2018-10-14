@@ -143,14 +143,14 @@ public class j2DClient implements UserInterface {
 			JFrame splash) {
 		this.client = client;
 		setDefault(this);
-		
+
 		/*
 		 * Register the slash actions in the client side command line parser.
 		 * This needs to be at least before getting the actions to
 		 * ChatCompletionHelper.
 		 */
 		SlashActionRepository.register();
-		
+
 		gui = new SwingClientGUI(client, userContext, channelManager, splash);
 
 		for (PositionChangeListener listener : gui.getPositionChangeListeners()) {
@@ -166,7 +166,7 @@ public class j2DClient implements UserInterface {
 		positionChangeListener.add(getSoundSystemFacade());
 	} // constructor
 
-	
+
 
 	/**
 	 * Check the used java version, and show a warning if it's not known to be
@@ -203,14 +203,14 @@ public class j2DClient implements UserInterface {
 		gameRunning = true;
 		loop.start();
 	}
-	
+
 	/**
 	 * Called at quit.
 	 */
 	private void cleanup() {
 		// try to save the window configuration
 		WtWindowManager.getInstance().save();
-		
+
 		// Fall back in case sound system hangs. Can happen at least when using
 		// the pulseaudio driver and the sound daemon is shut down while the
 		// client has the line open.
@@ -263,7 +263,7 @@ public class j2DClient implements UserInterface {
 		client.loop(0);
 		gui.afterPainting();
 	}
-	
+
 	private void tryLogout() {
 		logger.info("Request logout");
 		try {
@@ -322,7 +322,7 @@ public class j2DClient implements UserInterface {
 					+ mw.getClass().getName());
 		}
 	}
-	
+
 	public void requestQuit() {
 		gui.requestQuit(client);
 	}
@@ -349,7 +349,7 @@ public class j2DClient implements UserInterface {
 	public void chooseOutfit() {
 		gui.chooseOutfit();
 	}
-	
+
 	/**
 	 * Get the main window component.
 	 *
@@ -358,7 +358,7 @@ public class j2DClient implements UserInterface {
 	public Frame getMainFrame() {
 		return gui.getFrame();
 	}
-	
+
 	/**
 	 * Resets the clients width and height to their default values.
 	 */

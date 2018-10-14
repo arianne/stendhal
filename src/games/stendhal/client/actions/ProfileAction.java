@@ -72,5 +72,4 @@ class ProfileAction implements SlashAction{
 	public int getMinimumParameters() {
 		return 0;
 	}
-
 }

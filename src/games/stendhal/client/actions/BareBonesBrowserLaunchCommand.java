@@ -72,5 +72,4 @@ class BareBonesBrowserLaunchCommand implements SlashAction{
 	public int getMinimumParameters() {
 		return 0;
 	}
-
 }

@@ -78,7 +78,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 		} else {
 			list.add(ActionType.WALK_STOP.getRepresentation());
 		}
-		
+
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
 

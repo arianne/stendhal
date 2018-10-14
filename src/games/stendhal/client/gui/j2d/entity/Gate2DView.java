@@ -132,4 +132,3 @@ class Gate2DView extends Entity2DView<IEntity> {
 		return 5000;
 	}
 }
-

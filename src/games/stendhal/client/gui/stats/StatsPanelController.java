@@ -547,7 +547,7 @@ public final class StatsPanelController {
 				});
 				return;
 			}
-			
+
 			Object value = event.getNewValue();
 	        final StatusID ID = StatusID.getStatusID(event.getPropertyName());
 	        final boolean enabled = value != null;
