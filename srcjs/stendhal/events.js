@@ -143,10 +143,11 @@ marauroa.rpeventFactory["sound_event"] = marauroa.util.fromProto(marauroa.rpeven
 		}
 		// Further adjustments if the sound has a radius
 		if (this.hasOwnProperty("radius")) {
-			if (!marauroa.me) {
+			if (!marauroa.me || !rpobject || !rpobject["_x"]) {
 				// Can't calculate the distance yet. Ignore the sound.
 				return;
 			}
+
 			var radius = parseInt(this["radius"], 10);
 			var xdist = marauroa.me["_x"] - rpobject["_x"];
 			var ydist = marauroa.me["_y"] - rpobject["_y"];
