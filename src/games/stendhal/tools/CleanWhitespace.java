@@ -200,9 +200,14 @@ public class CleanWhitespace {
 	 * Show help information.
 	 */
 	private static void showUsage() {
-		String st = "Usage:\t" + CleanWhitespace.class.getSimpleName() + " <dir>[ <dir> ...] <ext>[,<ext>,...]"
-				+ "\n\nARGUMENTS:\n\tdir\tRoot directory to scan for files. Multiple directories can by specified before the \"ext\" argument."
-				+ "\n\text\tFilename extensions filter. Can be a comma-separated string for multiple extensions (e.g. ext1,ext2,...).";
+		String st = "Description:\n\tScans files within a directory hierarchy & strips any trailing whitespace (spaces & tabs) from lines &"
+				+ "\n\tmultiple trailing newlines at end of file are replaced with a single one. If file does not end with an"
+				+ "\n\tempty newline a single one is appended."
+				+ "\n\nUsage:\n\t" + CleanWhitespace.class.getSimpleName() + " <dir>[ <dir> ...] <ext>[,<ext>,...]"
+				+ "\n\nArguments:\n\tdir\tRoot directory to scan for files. Multiple directories can by specified before the \"ext\""
+				+ "\n\t\targument."
+				+ "\n\text\tFilename extensions filter. Can be a comma-separated string for multiple extensions (e.g. "
+				+ "\n\t\text1,ext2,...).";
 		System.out.println(st);
 	}
 }
