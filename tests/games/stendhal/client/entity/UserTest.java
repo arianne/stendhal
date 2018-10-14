@@ -39,18 +39,18 @@ public class UserTest {
 	private static final String CARMEN = "Carmen";
 	private EventLine eventLine;
 	private User user;
-	
+
 	@BeforeClass
 	public static void setupWorld() {
 		GameObjects.createInstance(null);
 	}
-	
+
 	@After
 	public void cleanUp() {
 		User.setNull();
 		User.updateGroupStatus(null, null);
 	}
-	
+
 	@Before
 	public void setupSystem() {
 		final SoundSystemFacade soundFacade = new NoSoundFacade();
@@ -75,7 +75,7 @@ public class UserTest {
 			}
 		});
 	}
-	
+
 	private void setupUser() {
 		user = new User();
 		RPObject rpObject = new RPObject();
@@ -85,37 +85,37 @@ public class UserTest {
 		rpObject.put("y", 0);
 		user.initialize(rpObject);
 	}
-	
+
 	@Test
 	public void testBuddyMessages() {
 		setupUser();
-		
+
 		RPObject changes = new RPObject();
 		changes.put("offline", CARMEN);
 		user.onChangedAdded(user.getRPObject(), changes);
 		assertEquals("Carmen has left Stendhal.", eventLine.getText());
-		
+
 		changes.remove("offline");
 		changes.put("online", CARMEN);
 		user.onChangedAdded(user.getRPObject(), changes);
-		
+
 		assertEquals("Carmen has joined Stendhal.", eventLine.getText());
 	}
-	
+
 	@Test
 	public void testGetCharacterName() {
 		assertNull(User.getCharacterName());
 		setupUser();
 		assertEquals("test user", User.getCharacterName());
 	}
-	
+
 	@Test
 	public void testGetPlayerLevel() {
 		assertEquals(0, User.getPlayerLevel());
 		setupUser();
 		assertEquals(42, User.getPlayerLevel());
 	}
-	
+
 	@Test
 	public void testGetServerRelease() {
 		assertNull(User.getServerRelease());
@@ -127,7 +127,7 @@ public class UserTest {
 	@Test
 	public void testIgnoring() {
 		assertFalse(User.isIgnoring(CARMEN));
-		
+
 		setupUser();
 		assertFalse(User.isIgnoring(CARMEN));
 		RPObject changes = new RPObject();
@@ -137,15 +137,15 @@ public class UserTest {
 		changes.getSlot("!ignore").add(carmen);
 		user.onChangedAdded(user.getRPObject(), changes);
 		assertTrue(User.isIgnoring(CARMEN));
-		
+
 		user.onChangedRemoved(user.getRPObject(), changes);
 		assertFalse(User.isIgnoring(CARMEN));
 	}
-	
+
 	@Test
 	public void testIsAdmin() {
 		assertFalse(User.isAdmin());
-		
+
 		setupUser();
 		assertFalse(User.isAdmin());
 		user.getRPObject().put("adminlevel", 0);
@@ -157,7 +157,7 @@ public class UserTest {
 		user.getRPObject().put("adminlevel", 1000);
 		assertTrue(User.isAdmin());
 	}
-	
+
 	@Test
 	public void testIsGroupSharingLoot() {
 		assertFalse(User.isGroupSharingLoot());
@@ -166,20 +166,20 @@ public class UserTest {
 		User.updateGroupStatus(Arrays.asList("Carmen"), "shared");
 		assertTrue(User.isGroupSharingLoot());
 	}
-	
+
 	@Test
 	public void testIsPlayerInGroup() {
 		assertFalse(User.isPlayerInGroup(CARMEN));
 		User.updateGroupStatus(Arrays.asList(CARMEN), "shared");
 		assertTrue(User.isPlayerInGroup(CARMEN));
 	}
-	
+
 	@Test
 	public void testNoUser() {
 		assertTrue(User.isNull());
 		assertNull(User.get());
 	}
-	
+
 	@Test
 	public void testOnAway() {
 		setupUser();
@@ -188,14 +188,14 @@ public class UserTest {
 		user.onAway(null);
 		assertEquals("You are no longer marked as being away.", eventLine.getText());
 	}
-	
+
 	@Test
 	public void testOnHealed() {
 		setupUser();
 		user.onHealed(5);
 		assertEquals("test user heals 5 health points.", eventLine.getText());
 	}
-	
+
 	@Test
 	public void testPet() {
 		setupUser();
@@ -209,7 +209,7 @@ public class UserTest {
 		assertTrue(user.hasPet());
 		assertEquals(1, user.getPetID());
 	}
-	
+
 	@Test
 	public void testSheep() {
 		setupUser();
@@ -223,14 +223,14 @@ public class UserTest {
 		assertTrue(user.hasSheep());
 		assertEquals(1, user.getSheepID());
 	}
-	
+
 	@Test
 	public void testSquareDistance() {
 		assertEquals(Double.POSITIVE_INFINITY, User.squaredDistanceTo(3, 4), 0.001);
 		setupUser();
 		assertEquals(25.0, User.squaredDistanceTo(3, 4), 0.001);
 	}
-	
+
 	@Test
 	public void testUser() {
 		setupUser();

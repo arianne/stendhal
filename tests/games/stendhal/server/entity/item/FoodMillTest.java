@@ -85,12 +85,12 @@ public class FoodMillTest {
 		fm.onUsed(user);
 		assertEquals("You should hold the scroll eraser in either hand in order to use it.", PlayerTestHelper.getPrivateReply(user));
 		assertFalse(user.isEquipped("empty scroll"));
-		
+
 		user.equip("lhand", fm);
 		fm.onUsed(user);
 		assertEquals("Your other hand looks empty.", PlayerTestHelper.getPrivateReply(user));
 		assertFalse(user.isEquipped("empty scroll"));
-		
+
 		PlayerTestHelper.equipWithItemToSlot(user, "cheese", "rhand");
 		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","bag");
 		fm.onUsed(user);

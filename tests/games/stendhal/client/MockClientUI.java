@@ -34,7 +34,7 @@ import marauroa.common.game.RPObject;
  */
 public class MockClientUI extends j2DClient {
 	private final ErrorBuffer buffer = new ErrorBuffer();
-	
+
 	public MockClientUI() {
 		super(new J2DClientGUI() {
 			@Override

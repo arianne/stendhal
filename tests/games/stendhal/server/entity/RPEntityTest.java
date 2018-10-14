@@ -119,7 +119,7 @@ public class RPEntityTest {
 	@Test
 	public void testCalculateRiskForCanHit() {
 		final RPEntity entity = new MockRPEntity();
-		
+
 		int defenderDEF = 1;
 		int attackerATK = 1;
 		assertThat(entity.calculateRiskForCanHit(1, defenderDEF, attackerATK), is(19));
@@ -166,7 +166,7 @@ public class RPEntityTest {
 		assertThat(entity.calculateRiskForCanHit(19, defenderDEF, attackerATK), is(-90));
 		assertThat(entity.calculateRiskForCanHit(20, defenderDEF, attackerATK), is(-100));
 	}
-	
+
 	/*
 	 * Quest tests do a lot of simple drops. Testing some harder cases
 	 * here.
@@ -175,8 +175,8 @@ public class RPEntityTest {
 	public void testDrop() {
 		final RPEntity entity = new MockRPEntity();
 		entity.addSlot(new PlayerSlot("bag"));
-		
-		// More than one non stackable 
+
+		// More than one non stackable
 		entity.equip("bag", ItemTestHelper.createItem("carrot"));
 		entity.equip("bag", ItemTestHelper.createItem("wooden shield"));
 		entity.equip("bag", ItemTestHelper.createItem("wooden shield"));
@@ -193,7 +193,7 @@ public class RPEntityTest {
 		entity.drop("money", 5);
 		assertEquals(2, entity.getNumberOfEquipped("money"));
 		assertEquals(1, entity.getAllEquipped("money").size());
-		
+
 		// Stackable more than one stack, one of then nested
 		Item bag = new Container("testbag", "container", "testbag", Collections.emptyMap());
 		entity.equip("bag", bag);
@@ -201,7 +201,7 @@ public class RPEntityTest {
 		assertEquals(42, entity.getNumberOfEquipped("money"));
 		entity.drop("money", 5);
 		assertEquals(37, entity.getNumberOfEquipped("money"));
-		
+
 		assertEquals(1, entity.getNumberOfEquipped("carrot"));
 	}
 
