@@ -32,8 +32,12 @@ import java.util.List;
  * 		Comma-separated string of filename extensions to include in scan.
  */
 public class CleanWhitespace {
+	/* List of root directories to be scanned */
 	private final List<File> dir;
+	/* File extensions to be filtered */
 	private final List<String> ext;
+	/* If "false", all files found are processed */
+	private boolean filterExtensions = true;
 
 	public CleanWhitespace(final List<String> dir, final List<String> ext) {
 		this.dir = new ArrayList<>();
@@ -41,13 +45,21 @@ public class CleanWhitespace {
 			this.dir.add(new File(dirname));
 		}
 		this.ext = ext;
+
+		if (this.ext.contains("*")) {
+			filterExtensions = false;
+		}
 	}
 
 	/**
 	 * The method that does the work.
 	 */
 	public void clean() {
-		System.out.println("Cleaning file types: " + ext.toString());
+		if (filterExtensions) {
+			System.out.println("Cleaning file types: " + ext.toString());
+		} else {
+			System.out.println("Cleaning all file types (*).");
+		}
 
 		for (final File D : dir) {
 			System.out.println("\nExamining files in \"" + D.toString() + "\" ...");
@@ -94,12 +106,17 @@ public class CleanWhitespace {
 			if (filename.isDirectory()) {
 				fileList.addAll(getFiles(filename));
 			} else if (filename.isFile()) {
-				final String fstr = filename.toString();
-				if (fstr.contains(".")) {
-					final String ext = fstr.substring(fstr.lastIndexOf(".") + 1);
-					if (this.ext.contains(ext)) {
-						fileList.add(filename);
+				// FIXME: Should filter out non-text files.
+				if (filterExtensions) {
+					final String fstr = filename.toString();
+					if (fstr.contains(".")) {
+						final String ext = fstr.substring(fstr.lastIndexOf(".") + 1);
+						if (this.ext.contains(ext)) {
+							fileList.add(filename);
+						}
 					}
+				} else {
+					fileList.add(filename);
 				}
 			}
 		}
@@ -207,7 +224,7 @@ public class CleanWhitespace {
 				+ "\n\nArguments:\n\tdir\tRoot directory to scan for files. Multiple directories can by specified before the \"ext\""
 				+ "\n\t\targument."
 				+ "\n\text\tFilename extensions filter. Can be a comma-separated string for multiple extensions (e.g. "
-				+ "\n\t\text1,ext2,...).";
+				+ "\n\t\text1,ext2,...). An asterix (*) denotes that all file types should be scanned.";
 		System.out.println(st);
 	}
 }
