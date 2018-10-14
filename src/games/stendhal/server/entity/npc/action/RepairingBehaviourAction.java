@@ -36,5 +36,4 @@ public class RepairingBehaviourAction extends AbstractBehaviourAction<RepairerBe
 			Sentence sentence, EventRaiser npc) {
 		npc.say("I am sorry, I could not understand you.");
 	}
-
 }

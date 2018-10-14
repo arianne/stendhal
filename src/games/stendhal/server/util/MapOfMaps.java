@@ -128,5 +128,4 @@ public class MapOfMaps<K, V, W> implements Map<K, Map<V, W>> {
                 }
                 return map.put(subKey, value);
         }
-
 }

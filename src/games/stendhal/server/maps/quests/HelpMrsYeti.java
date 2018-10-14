@@ -431,4 +431,3 @@ import games.stendhal.server.maps.Region;
 		return Region.SEMOS_YETI_CAVE;
 	}
 }
-

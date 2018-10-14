@@ -279,4 +279,3 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 			zone.add(npc);
 	}
 }
-

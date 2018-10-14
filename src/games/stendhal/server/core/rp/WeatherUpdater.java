@@ -499,4 +499,3 @@ public class WeatherUpdater implements TurnListener {
 		}
 	}
 }
-

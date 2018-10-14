@@ -309,7 +309,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		// Player says "bye" or "no" while listing flowers
 		List<String> endDiscussionPhrases = new ArrayList<>(ConversationPhrases.NO_MESSAGES);
 		endDiscussionPhrases.addAll(ConversationPhrases.GOODBYE_MESSAGES);
-		
+
 		npc.add(ConversationStates.QUESTION_1,
 				endDiscussionPhrases,
 				null,

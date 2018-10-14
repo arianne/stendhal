@@ -30,4 +30,3 @@ public class RewardPlayerAction implements ChatAction, ITPPQuestConstants {
 		    	player.setQuest(QUEST_SLOT, "done");
 			}
 }
-

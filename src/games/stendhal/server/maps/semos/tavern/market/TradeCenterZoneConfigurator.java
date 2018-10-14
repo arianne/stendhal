@@ -84,5 +84,4 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 		}
 		return null;
 	}
-
 }

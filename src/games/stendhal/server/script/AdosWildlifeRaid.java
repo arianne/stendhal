@@ -157,6 +157,4 @@ public class AdosWildlifeRaid implements TurnListener {
 		createPortal();
 		TurnNotifier.get().notifyInTurns(0, this);
 	}
-
-
 }

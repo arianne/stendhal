@@ -279,7 +279,7 @@ import games.stendhal.server.util.TimeUtil;
 							Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this moneys, and remember, i may wish you to do this job again in one week!");
 				}
 				rewardPlayer(player, killed);
-			} else {				
+			} else {
 				final Long currtime = System.currentTimeMillis();
 				if (questCanBeGiven(player, currtime)) {
 					// will give quest to player.
@@ -316,7 +316,7 @@ import games.stendhal.server.util.TimeUtil;
 				false,
 				ConversationStates.ATTENDING,
 				"Good! You wouldn't have fit in here anyway. Perhaps you want to #offer some of that armor instead...",
-				null);	
+				null);
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("Blordrough","blordrough","blordroughs"),
 				null,
@@ -381,7 +381,4 @@ import games.stendhal.server.util.TimeUtil;
 	public String getNPCName() {
 		return "Mrotho";
 	}
-	
-	
 }
-

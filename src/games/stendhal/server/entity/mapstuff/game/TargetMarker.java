@@ -36,6 +36,4 @@ public class TargetMarker extends AreaEntity {
 		put("type", "game_board");
 		put("class", "target");
 	}
-
-
 }

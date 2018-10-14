@@ -30,8 +30,8 @@ import games.stendhal.server.entity.player.Player;
  * @author yoriy
  */
 public class CountUnusedSprites extends ScriptImpl {
-	
-	
+
+
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		Collection<DefaultCreature> allCreatures = SingletonRepository.getEntityManager().getDefaultCreatures();
@@ -39,9 +39,9 @@ public class CountUnusedSprites extends ScriptImpl {
 		// TODO: implement spells processing
 		//Collection<Spell> allSpells = SingletonRepository.getEntityManager().getSpells();
 		final StringBuilder sb=new StringBuilder();
-		
+
         /* items */
-		
+
 		final File dirItemSprites = new File("data/sprites/items");
 		String[] itemclasses = dirItemSprites.list(new FilenameFilter() {
 			@Override
@@ -50,7 +50,7 @@ public class CountUnusedSprites extends ScriptImpl {
 			}
 		}
 		);
-		
+
 		for(final String f : itemclasses) {
 			final File dirF = new File("data/sprites/items/"+f);
 			String[] subclasses = dirF.list(new FilenameFilter() {
@@ -60,7 +60,7 @@ public class CountUnusedSprites extends ScriptImpl {
 				};
 			}
 			);
-			
+
 			if(subclasses == null) continue;
 			for(final String g: subclasses) {
 				// have both class and subclass, check if we have such item in Stendhal world
@@ -70,16 +70,16 @@ public class CountUnusedSprites extends ScriptImpl {
                    if(h.getItemSubclass().equals(realsubclass)) {
                 	   found = true;
                    }
-				}	
+				}
 				if(found == false) {
 					sb.append("found unused item: ("+ f + "/" + realsubclass +")\n");
 				};
 			}
 		};
-	
-	
+
+
 	/* mosters */
-	
+
 	final File dirMonsterSprites = new File("data/sprites/monsters");
 	String[] monsterclasses = dirMonsterSprites.list(new FilenameFilter() {
 		@Override
@@ -88,7 +88,7 @@ public class CountUnusedSprites extends ScriptImpl {
 		}
 	}
 	);
-	
+
 	for(final String f : monsterclasses) {
 		final File dirF = new File("data/sprites/monsters/"+f);
 		String[] subclasses = dirF.list(new FilenameFilter() {
@@ -98,7 +98,7 @@ public class CountUnusedSprites extends ScriptImpl {
 			};
 		}
 		);
-		
+
 		if(subclasses == null) continue;
 		for(final String g: subclasses) {
 			// have both class and subclass, check if we have such item in Stendhal world
@@ -108,7 +108,7 @@ public class CountUnusedSprites extends ScriptImpl {
                if(h.getCreatureSubclass().equals(realsubclass)) {
             	   found = true;
                }
-			}	
+			}
 			if(found == false) {
 				sb.append("found unused creature: ("+ f + "/" + realsubclass +")\n");
 			};
@@ -116,7 +116,6 @@ public class CountUnusedSprites extends ScriptImpl {
 	};
 
 admin.sendPrivateText("list of pictures: " + sb.toString());
-	
+
 	}
 }
-	

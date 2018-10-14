@@ -67,5 +67,4 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.setSounds(Arrays.asList("giggle-1", "giggle-2"));
 		zone.add(npc);
 	}
-
 }

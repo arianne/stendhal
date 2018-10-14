@@ -182,5 +182,4 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	public String toString() {
 		return "CollectRequestedItemsAction < state on completion: "+stateAfterCompletion.toString()+", execute on completion: "+toExecuteOnCompletion.toString()+">";
 	}
-
 }

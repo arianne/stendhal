@@ -97,4 +97,3 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 		return tempCreature;
 	}
 }
-

@@ -60,5 +60,3 @@ public class DiverNPC implements ZoneConfigurator  {
 		zone.add(npc);
 	}
 }
-
-

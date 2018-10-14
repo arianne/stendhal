@@ -74,5 +74,4 @@ public class MillerNPC implements ZoneConfigurator {
 		npc.setEntityClass("woman_003_npc");
 		zone.add(npc);
 	}
-
 }

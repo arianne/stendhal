@@ -56,5 +56,4 @@ public class RabbitNPC implements ZoneConfigurator {
 	        zone.add(mammal);
 		}
 	}
-
 }

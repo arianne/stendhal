@@ -32,4 +32,3 @@ public class ProvideArrowsAction implements ChatAction {
 		// new EquipItemAction("slowdown snowball", 100).fire(player,  sentence, npc);
 	}
 }
-

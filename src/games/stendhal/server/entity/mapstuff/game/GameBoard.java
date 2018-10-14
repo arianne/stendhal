@@ -222,5 +222,4 @@ public abstract class GameBoard extends AreaEntity {
 		entity.isA("entity");
 		entity.addAttribute("class", Type.STRING);
 	}
-
 }

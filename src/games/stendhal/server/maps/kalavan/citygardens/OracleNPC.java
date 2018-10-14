@@ -95,5 +95,4 @@ public class OracleNPC implements ZoneConfigurator {
 		npc.setEntityClass("oracle4npc");
 		zone.add(npc);
 	}
-
 }

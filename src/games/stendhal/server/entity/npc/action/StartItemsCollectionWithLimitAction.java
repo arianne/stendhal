@@ -144,6 +144,4 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		}
 		return true;
 	}
-
-
 }

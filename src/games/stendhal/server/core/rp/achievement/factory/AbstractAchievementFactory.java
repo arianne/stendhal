@@ -75,5 +75,4 @@ public abstract class AbstractAchievementFactory {
 		list.add(new MithrilbourghEnemyArmyAchievementFactory());
 		return list;
 	}
-
 }

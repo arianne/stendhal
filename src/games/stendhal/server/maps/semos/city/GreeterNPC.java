@@ -58,5 +58,4 @@ public class GreeterNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.LEFT);
 		zone.add(npc);
 	}
-
 }

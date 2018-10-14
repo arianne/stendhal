@@ -226,6 +226,4 @@ public class OutgoingPhase extends TPPQuest {
 	private void destroyPiedPiper() {
 		piedpiper.getZone().remove(piedpiper);
 	}
-
 }
-

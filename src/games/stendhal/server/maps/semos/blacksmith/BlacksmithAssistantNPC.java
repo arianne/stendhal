@@ -98,5 +98,3 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 		zone.add(npc);
 	}
 }
-
-

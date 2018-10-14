@@ -66,5 +66,4 @@ public final class NPCSetDirection implements ChatAction {
 		final NPCSetDirection other = (NPCSetDirection) obj;
 		return direction.equals(other.direction);
 	}
-
 }

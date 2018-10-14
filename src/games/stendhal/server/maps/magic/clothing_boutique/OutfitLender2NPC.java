@@ -220,4 +220,3 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		zone.add(npc);
 	}
 }
-

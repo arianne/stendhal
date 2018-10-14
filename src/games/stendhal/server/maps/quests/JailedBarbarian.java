@@ -378,4 +378,3 @@ import games.stendhal.server.maps.Region;
 		return "Lorenz";
 	}
 }
-

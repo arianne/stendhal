@@ -103,4 +103,3 @@ public class DaylightUpdater implements TurnListener {
 		attr.getZone().notifyOnlinePlayers();
 	}
 }
-

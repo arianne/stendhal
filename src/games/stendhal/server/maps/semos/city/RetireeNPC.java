@@ -111,5 +111,4 @@ public class RetireeNPC implements ZoneConfigurator {
 		npc.setSounds(Arrays.asList("laugh-1", "laugh-2"));
 		zone.add(npc);
 	}
-
 }

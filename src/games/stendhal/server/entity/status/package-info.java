@@ -24,4 +24,3 @@
  * </ul>
  */
 package games.stendhal.server.entity.status;
-

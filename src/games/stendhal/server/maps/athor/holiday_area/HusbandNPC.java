@@ -58,4 +58,3 @@ public class HusbandNPC implements ZoneConfigurator  {
 		zone.add(npc);
 	}
 }
-

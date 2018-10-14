@@ -52,4 +52,3 @@ public class InmateNPC implements ZoneConfigurator  {
 			zone.add(npc);
 	}
 }
-

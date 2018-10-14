@@ -86,5 +86,3 @@ public class GoToPosition implements Observer {
 		}
 	}
 }
-
-

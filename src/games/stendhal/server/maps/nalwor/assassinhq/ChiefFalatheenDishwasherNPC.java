@@ -60,4 +60,3 @@ public class ChiefFalatheenDishwasherNPC implements ZoneConfigurator  {
 			zone.add(npc);
 	}
 }
-

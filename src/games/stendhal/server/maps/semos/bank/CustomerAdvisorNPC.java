@@ -86,5 +86,4 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngnpc");
 		zone.add(npc);
 	}
-
 }

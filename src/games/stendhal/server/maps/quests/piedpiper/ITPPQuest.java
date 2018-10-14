@@ -67,4 +67,3 @@ public interface ITPPQuest extends ITPPQuestConstants {
 	 */
 	void prepare();
 }
-

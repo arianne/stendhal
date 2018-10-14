@@ -591,4 +591,3 @@ import marauroa.common.Pair;
 		return Region.SEMOS_SURROUNDS;
 	}
 }
-

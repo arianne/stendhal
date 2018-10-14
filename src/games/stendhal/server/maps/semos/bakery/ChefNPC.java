@@ -121,5 +121,3 @@ public class ChefNPC implements ZoneConfigurator  {
 			zone.add(npc);
 	}
 }
-
-

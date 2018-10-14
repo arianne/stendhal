@@ -109,6 +109,4 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 		npc.setHP(85);
 		zone.add(npc);
 	}
-
-
 }

@@ -517,4 +517,3 @@ import games.stendhal.server.maps.Region;
 		return Region.SEMOS_MINES;
 	}
 }
-

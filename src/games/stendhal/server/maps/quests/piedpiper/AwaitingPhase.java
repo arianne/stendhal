@@ -244,6 +244,4 @@ public class AwaitingPhase extends TPPQuest {
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_AWAITING;
 	}
-
 }
-

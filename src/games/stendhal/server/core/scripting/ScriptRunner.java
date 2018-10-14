@@ -174,7 +174,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 		return (ret);
 	}
 
-	
+
 	/**
 	 * Fetch classes of available scripts.
 	 *
@@ -197,7 +197,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 		}
 	}
 
-	
+
 	/**
 	 * Lists the available scripts
 	 *
@@ -224,10 +224,10 @@ public class ScriptRunner extends StendhalServerExtension implements
 		} else {
 			scriptsGroovy=new LinkedList<String>();
 		}
-		
+
 		// *.class scripts could be in data/script/games/stendhal/server/script/
 		final File dirClasses = new File(scriptDir+"games/stendhal/server/script/");
-		List<String> scriptsJava;		
+		List<String> scriptsJava;
 		final String[] lj=dirClasses.list(new FilenameFilter(){
 				@Override
 				public boolean accept(final File dir, final String name) {
@@ -264,7 +264,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 		allScripts.addAll(scriptsGroovy);
 		allScripts.addAll(scriptsJava);
-		
+
 		stringBuilder.append("results for /script ");
 		if (!filterTerm.isEmpty()) {
 			for (int i=0; i<filterTerm.size(); i++) {
@@ -432,5 +432,4 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 		player.sendPrivateText(text);
 	}
-
 }

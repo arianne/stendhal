@@ -46,5 +46,3 @@ public class MarkScrollAction implements ActionListener {
 	}
 
 }
-
-

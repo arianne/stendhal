@@ -112,7 +112,7 @@ public abstract class RPEntity extends GuidedEntity {
 	protected int level;
 	private int mana;
 	private int base_mana;
-	
+
 	protected boolean ignoreCollision;
 	private String deathSound;
 	private String bloodClass;
@@ -2145,7 +2145,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public boolean drop(final String name, final int amount) {
 		return drop(nameMatches(name), amount);
 	}
-	
+
 	private boolean isEquipped(Predicate<Item> condition, int amount) {
 		Iterable<Item> matching = getAllEquipped(condition)::iterator;
 		int count = 0;
@@ -2171,11 +2171,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				return true;
 			}
 		}
-		
+
 		logger.error("Not enough items dropped even though the entity was checked to have them", new Throwable());
 		return false;
 	}
-	
+
 	/**
 	 * Low level drop. <b>Does not check the containing slot or owner. This is
 	 * meant to be used only by higher level drop() methods.</b>
@@ -2378,7 +2378,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public List<Item> getAllEquipped(final String name) {
 		return getAllEquipped(nameMatches(name));
 	}
-	
+
 	private List<Item> getAllEquipped(Predicate<Item> condition) {
 		return equippedStream().filter(condition).collect(Collectors.toList());
 	}
@@ -3352,7 +3352,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets an items as a stream of items, followed by any contained items
 	 * recursively.
@@ -3369,7 +3369,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		Stream<Item> internalItems = slots.flatMap(this::slotStream);
 		return Stream.concat(stream, internalItems);
 	}
-	
+
 	/**
 	 * Get a stream of all items in a slot.
 	 *
@@ -3381,7 +3381,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		Stream<Item> items = objects.filter(Item.class::isInstance).map(Item.class::cast);
 		return items.flatMap(this::itemStream);
 	}
-	
+
 	/**
 	 * Get a stream of all equipped items.
 	 *
@@ -3392,7 +3392,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		Stream<RPSlot> slots = slotNames.map(this::getSlot).filter(Objects::nonNull);
 		return slots.flatMap(this::slotStream);
 	}
-	
+
 	/**
 	 * A convenience method for getting a method for matching item names.
 	 *

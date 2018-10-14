@@ -60,7 +60,7 @@ public class Reaper2NPC implements ZoneConfigurator {
 		npc.setPosition(68, 76);
 		zone.add(npc);
 	}
-	
+
 	static SpeakerNPC createNPC(String name) {
 		final SpeakerNPC npc = new SpeakerNPC(name) {
 

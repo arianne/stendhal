@@ -53,4 +53,3 @@ public class YanNPC implements ZoneConfigurator  {
 		zone.add(npc);
 	}
 }
-
