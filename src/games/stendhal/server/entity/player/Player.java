@@ -1702,8 +1702,6 @@ public class Player extends RPEntity implements UseListener {
 		setOutfit(outfit, temporary);
 
 		if (detailCode > 0) {
-			System.out.println("Old outfit had detail");
-
 			// get current outfit code
 			int outfitCode = outfit.getCode() + (detailCode * 100000000);
 
