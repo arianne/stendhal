@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+1.28.1
+- Server only security update: Marauroa failed to verify username on client transfer (thanks to pepzs for the report)
+
 1.28
 *world*
 - many new enemy & NPC sprites
