@@ -201,7 +201,7 @@ swimmer8npc.png               ???, Svetlana Kushnariova (Cabbit), olonu; ???; ht
 tavernbarmaidnpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 taxmannpc.*                   Svetlana Kushnariova (Cabbit), diamonddmgirl, onu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 thiefnpc.*                    Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
-timekeepernpc.png             ???; ???; ???
+timekeepernpc.png             diamonddmgirl; CC0; https://opengameart.org/node/89255
 transparentnpc.png            ???; ???; ???
 vergernpc.png                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 wannabekingnpc.png            ???; ???; ???
