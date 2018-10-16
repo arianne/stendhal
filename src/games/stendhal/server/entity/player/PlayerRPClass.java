@@ -48,7 +48,7 @@ public class PlayerRPClass {
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
 		player.addAttribute("outfit", Type.INT);
-		player.addAttribute("outfit_org", Type.INT, Definition.HIDDEN);
+		player.addAttribute("outfit_org", Type.INT);
 		player.addAttribute("outfit_colors", Type.MAP);
 		player.addAttribute("outfit_expire_age", Type.INT, Definition.HIDDEN);
 
