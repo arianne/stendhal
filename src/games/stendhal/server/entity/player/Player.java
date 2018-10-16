@@ -1703,7 +1703,7 @@ public class Player extends RPEntity implements UseListener {
 
 		if (detailCode > 0) {
 			// get current outfit code
-			int outfitCode = outfit.getCode() + (detailCode * 100000000);
+			final int outfitCode = outfit.getCode() + (detailCode * 100000000);
 
 			// re-add detail
 			put("outfit", outfitCode);
