@@ -55,17 +55,11 @@ public class Outfit {
 	/** The body index, as a value between 0 and 99, or null. */
 	private final Integer body;
 
-	/** The eyes index, as a value between 0 and 99, or null. */
-	private Integer eyes;
-
-	/** The mouth index, as a value between 0 and 99, or null. */
-	private Integer mouth;
-
 	/**
 	 * Creates a new default outfit (naked person).
 	 */
 	public Outfit() {
-		this(0, 0, 0, 0, 0, 0, 0);
+		this(0, 0, 0, 0, 0);
 	}
 
 	/**
@@ -83,8 +77,6 @@ public class Outfit {
 	 *            The index of the dress style, or null
 	 * @param body
 	 *            The index of the body style, or null
-	 *
-	 * TODO: Remove when new outfit system implemented.
 	 */
 	public Outfit(final Integer detail, final Integer hair, final Integer head,
 			final Integer dress, final Integer body) {
@@ -93,36 +85,6 @@ public class Outfit {
 		this.head = head;
 		this.dress = dress;
 		this.body = body;
-		// Set unused features to 0
-		this.mouth = 0;
-		this.eyes = 0;
-	}
-
-	/**
-	 * Constructor that adds mouth and eyes outfits parts.
-	 *
-	 * @param detail
-	 *            The index of the detail style, or null
-	 * @param hair
-	 *            The index of the hair style, or null
-	 * @param head
-	 *            The index of the head style, or null
-	 * @param dress
-	 *            The index of the dress style, or null
-	 * @param body
-	 *            The index of the body style, or null
-	 * @param mouth
-	 *            The index of the mouth style, or null
-	 * @param eyes
-	 *            The index of the eyes style, or null
-	 */
-	public Outfit(final Integer detail, final Integer hair, final Integer head,
-			final Integer dress, final Integer body, final Integer mouth,
-			final Integer eyes) {
-		this(detail, hair, head, dress, body);
-
-		this.mouth = mouth;
-		this.eyes = eyes;
 	}
 
 	/**
@@ -144,11 +106,6 @@ public class Outfit {
 		this.hair = (int) (code / Math.pow(100, 3) % 100);
 
 		this.detail = (int) (code / Math.pow(100, 4) % 100);
-
-		// Set unused features to 0
-		this.mouth = 0;
-
-		this.eyes = 0;
 	}
 
 	/**
@@ -185,24 +142,6 @@ public class Outfit {
 	 */
 	public Integer getHead() {
 		return head;
-	}
-
-	/**
-	 * Gets the index of this outfit's mouth style.
-	 *
-	 * @return The index, or null if this outfit doesn't contain a mouth.
-	 */
-	public Integer getMouth() {
-		return mouth;
-	}
-
-	/**
-	 * Gets the index of this outfit's eyes style.
-	 *
-	 * @return The index, or null if this outfit doesn't contain eyes.
-	 */
-	public Integer getEyes() {
-		return eyes;
 	}
 
 	/**
@@ -418,8 +357,7 @@ public class Outfit {
 		newBody = Rand.randUniform(1, 5);
 		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead
 				+ " " + newDress + " " + newBody);
-		return new Outfit(0, newHair, newHead, newDress, newBody,
-				null, null);
+		return new Outfit(0, newHair, newHead, newDress, newBody);
 	}
 
 	/**
