@@ -75,8 +75,8 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(4), ou.getBody());
 
 		final String outfitnumber = "0501020304";
-		assertEquals(Integer.valueOf(5), ou.getDetail());
 		ou = new Outfit(Integer.parseInt(outfitnumber));
+		assertEquals(Integer.valueOf(5), ou.getDetail());
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
