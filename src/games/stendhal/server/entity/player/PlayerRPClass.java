@@ -31,7 +31,7 @@ public class PlayerRPClass {
 	 */
 	static void generateRPClass() {
 		final RPClass player = new RPClass("player");
-		player.isA("rpentity");
+		player.isA("dressed_entity");
 
 		// Note: text and private_text need to be kept because volatile
 		//       attributes have been stored to the database in the past.
@@ -47,11 +47,6 @@ public class PlayerRPClass {
 		player.addRPEvent(Events.REACHED_ACHIEVEMENT, Definition.PRIVATE);
 
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
-
-		player.addAttribute("outfit", Type.INT);
-		player.addAttribute("outfit_org", Type.INT, Definition.PRIVATE);
-		player.addAttribute("outfit_colors", Type.MAP);
-		player.addAttribute("outfit_expire_age", Type.INT, Definition.HIDDEN);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 		player.addAttribute("grumpy", Type.LONG_STRING, Definition.VOLATILE);

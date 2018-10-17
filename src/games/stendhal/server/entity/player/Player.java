@@ -53,6 +53,7 @@ import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
+import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.Outfit;
@@ -73,11 +74,9 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
-public class Player extends RPEntity implements UseListener {
+public class Player extends DressedEntity implements UseListener {
 
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
-	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail",
-			"dress", "hair", "body", "head", "eyes" };
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Player.class);
@@ -1615,96 +1614,6 @@ public class Player extends RPEntity implements UseListener {
 		return this != entity
 				&& SingletonRepository.getRuleProcessor().getTurn()
 						- turnOfLastPush > 10;
-	}
-
-	@Override
-	public void setOutfit(final Outfit outfit) {
-		setOutfit(outfit, false);
-	}
-
-	/**
-	 * Makes this player wear the given outfit. If the given outfit contains
-	 * null parts, the current outfit will be kept for these parts. If the
-	 * outfit change includes any colors, they should be changed <b>after</b>
-	 * calling this.
-	 *
-	 * @param outfit
-	 *            The new outfit.
-	 * @param temporary
-	 *            If true, the original outfit will be stored so that it can be
-	 *            restored later.
-	 */
-	public void setOutfit(final Outfit outfit, final boolean temporary) {
-		// if the new outfit is temporary and the player is not wearing
-		// a temporary outfit already, store the current outfit in a
-		// second slot so that we can return to it later.
-		if (temporary && !has("outfit_org")) {
-			put("outfit_org", get("outfit"));
-
-			// remember the old color selections.
-			for (String part : RECOLORABLE_OUTFIT_PARTS) {
-				String tmp = part + "_orig";
-				String color = get("outfit_colors", part);
-				if (color != null) {
-					put("outfit_colors", tmp, color);
-					if (!"hair".equals(part)) {
-						remove("outfit_colors", part);
-					}
-				} else if (has("outfit_colors", tmp)) {
-					// old saved colors need to be cleared in any case
-					remove("outfit_colors", tmp);
-				}
-			}
-		}
-
-		// if the new outfit is not temporary, remove the backup
-		if (!temporary && has("outfit_org")) {
-			remove("outfit_org");
-
-			// clear colors
-			for (String part : RECOLORABLE_OUTFIT_PARTS) {
-				if (has("outfit_colors", part)) {
-					remove("outfit_colors", part);
-				}
-			}
-		}
-
-		// combine the old outfit with the new one, as the new one might
-		// contain null parts.
-		final Outfit newOutfit = outfit.putOver(getOutfit());
-		put("outfit", newOutfit.getCode());
-		notifyWorldAboutChanges();
-	}
-
-	// Hack to preserve detail layer
-	public void setOutfitWithDetail(final Outfit outfit) {
-		setOutfitWithDetail(outfit, false);
-	}
-
-	// Hack to preserve detail layer
-	public void setOutfitWithDetail(final Outfit outfit, final boolean temporary) {
-		// preserve detail layer
-		final int detailCode = getOutfit().getCode() / 100000000;
-
-		// set the new outfit
-		setOutfit(outfit, temporary);
-
-		if (detailCode > 0) {
-			// get current outfit code
-			final int outfitCode = outfit.getCode() + (detailCode * 100000000);
-
-			// re-add detail
-			put("outfit", outfitCode);
-			notifyWorldAboutChanges();
-		}
-	}
-
-	public Outfit getOriginalOutfit() {
-		if (has("outfit_org")) {
-			return new Outfit(getInt("outfit_org"));
-		}
-
-		return null;
 	}
 
 	/**

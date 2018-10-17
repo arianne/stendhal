@@ -15,6 +15,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
+import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.BabyDragon;
@@ -190,6 +191,11 @@ public class RPClassGenerator {
 		}
 
 		// RPEntity sub-classes
+		if (!RPClass.hasRPClass("dressed_entity")) {
+			DressedEntity.generateRPClass();
+		}
+
+		// DressedEntity sub-classes
 		if (!RPClass.hasRPClass("npc")) {
 			NPC.generateRPClass();
 		}

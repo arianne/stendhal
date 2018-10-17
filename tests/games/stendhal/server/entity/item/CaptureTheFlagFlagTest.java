@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -24,7 +25,7 @@ public class CaptureTheFlagFlagTest {
 	/**
 	 * TODO: move this in to test utils
 	 */
-	class TestEntity extends RPEntity {
+	class TestEntity extends DressedEntity {
 		public String name;
 		public TestEntity(String name) {
 			this.name = name;

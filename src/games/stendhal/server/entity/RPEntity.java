@@ -2748,44 +2748,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	/**
-	 * Gets this RPEntity's outfit.
-	 *
-	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use
-	 * the outfit system.
-	 *
-	 * @return The outfit, or null if this RPEntity is represented as a single
-	 *         sprite rather than an outfit combination.
-	 */
-	public Outfit getOutfit() {
-		if (has("outfit")) {
-			return new Outfit(getInt("outfit"));
-		}
-		return null;
-	}
-
-	/**
-	 * gets the color map
-	 *
-	 * @return color map
-	 */
-	public Map<String, String> getOutfitColors() {
-		return getMap("outfit_colors");
-	}
-
-	/**
-	 * Sets this RPEntity's outfit.
-	 *
-	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use
-	 * the outfit system.
-	 *
-	 * @param outfit
-	 *            The new outfit.
-	 */
-	public void setOutfit(final Outfit outfit) {
-		put("outfit", outfit.getCode());
-	}
-
-	/**
 	 * Set the entity's formatted title.
 	 *
 	 * @param title

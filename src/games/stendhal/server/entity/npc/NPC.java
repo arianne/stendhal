@@ -24,8 +24,8 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.events.SoundEvent;
 import marauroa.common.game.Definition;
@@ -35,7 +35,7 @@ import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 
-public abstract class NPC extends RPEntity {
+public abstract class NPC extends DressedEntity {
 	/**
 	 * Probability of generating a sound event at each turn, if the creature has
 	 * specified sounds.
@@ -85,12 +85,11 @@ public abstract class NPC extends RPEntity {
 	public static void generateRPClass() {
 		try {
 			final RPClass npc = new RPClass("npc");
-			npc.isA("rpentity");
+			npc.isA("dressed_entity");
 			npc.addAttribute("class", Type.STRING);
 			npc.addAttribute("subclass", Type.STRING);
 			//npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
 			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
-			npc.addAttribute("outfit", Type.INT);
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}

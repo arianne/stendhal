@@ -11,6 +11,7 @@ package games.stendhal.server.entity.item;
 import java.util.HashMap;
 import java.util.Map;
 
+import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.SlotOwner;
@@ -97,17 +98,22 @@ public class CaptureTheFlagFlag extends Item {
 
 		// System.out.println("CaptureTheFlagFlag.onEquipped(): " + this.get("name") + " -> " + equipper);
 
-		Outfit flagOutfit;
-		flagOutfit  = new Outfit(this.detailValue, null, null, null, null);
+		if (equipper instanceof DressedEntity) {
+			DressedEntity dressed = (DressedEntity) equipper;
 
-		equipper.put("outfit_colors", "detail", this.colorValue);
+			Outfit flagOutfit;
+			flagOutfit  = new Outfit(this.detailValue, null, null, null, null);
 
-		equipper.setOutfit(flagOutfit.putOver(equipper.getOutfit()));
+			dressed.put("outfit_colors", "detail", this.colorValue);
+			dressed.setOutfit(flagOutfit.putOver(dressed.getOutfit()));
 
-		// equipper.put("outfit_colors", "detail", colorValue);
-		// equipper.put("outfit_colors", "detail", 0x00ff00);
+			// dressed.put("outfit_colors", "detail", colorValue);
+			// dressed.put("outfit_colors", "detail", 0x00ff00);
 
-		return true;
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -131,16 +137,20 @@ public class CaptureTheFlagFlag extends Item {
 			return false;
 		}
 
-		//
-		// note that we just replace the outfit detail, versus
-		// trying to replace what was there originally.
-		//
-		Outfit   noFlagOutfit = new Outfit(0, null, null, null, null);
-		RPEntity entity       = (RPEntity) owner;
+		if (owner instanceof DressedEntity) {
+			//
+			// note that we just replace the outfit detail, versus
+			// trying to replace what was there originally.
+			//
+			Outfit   noFlagOutfit = new Outfit(0, null, null, null, null);
+			DressedEntity entity       = (DressedEntity) owner;
 
-		entity.setOutfit(noFlagOutfit.putOver(entity.getOutfit()));
+			entity.setOutfit(noFlagOutfit.putOver(entity.getOutfit()));
 
-		return true;
+			return true;
+		}
+
+		return false;
 	}
 
 }
