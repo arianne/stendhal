@@ -21,6 +21,7 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * The game board for the 9 switches game.
@@ -81,10 +82,26 @@ public class NineSwitchesGameBoard implements TurnListener {
 		boolean completed = checkBoard();
 		if (completed) {
 			npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
-			// TODO: Remove when outfit testing finished
 			Outfit balloonOutfit;
 			balloonOutfit = new Outfit(1, null, null, null, null);
-			user.setOutfit(balloonOutfit);
+
+			// FIXME: temp hack to preserve original outfit
+			String outfit_org = null;
+			if (user.has("outfit_org")) {
+				outfit_org = user.get("outfit_org");
+			}
+
+			// Players should use overridden method
+			if (user instanceof Player) {
+				((Player) user).setOutfit(balloonOutfit);
+			} else {
+				user.setOutfit(balloonOutfit);
+			}
+
+			if (outfit_org != null) {
+				user.put("outfit_org", outfit_org);
+			}
+
 			user.put("outfit_colors", "detail", Rand.rand(balloonColors));
 
 			playerName = null;
