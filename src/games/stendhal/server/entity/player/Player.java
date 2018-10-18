@@ -67,8 +67,10 @@ import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusType;
+import games.stendhal.server.events.HeadlessPrivateTextEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
@@ -1025,7 +1027,7 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public void sendPrivateText(final String text) {
-		sendPrivateText(getServerNotificationType(clientVersion), text);
+		sendPrivateText(text, false);
 	}
 
 	/**
@@ -1038,7 +1040,41 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public void sendPrivateText(final NotificationType type, final String text) {
-		this.addEvent(new PrivateTextEvent(type, text));
+		sendPrivateText(type, text, false);
+	}
+
+	/**
+	 * Sends a message that only this entity can read.
+	 *
+	 * @param text
+	 * 			The message.
+	 * @param headless
+	 * 			If <code>true</code>, does not draw a chat balloon on canvas.
+	 */
+	@Override
+	public void sendPrivateText(final String text, final boolean headless) {
+		sendPrivateText(getServerNotificationType(clientVersion), text, headless);
+	}
+
+	/**
+	 * Sends a message that only this entity can read.
+	 *
+	 * @param type
+	 * 			NotificationType
+	 * @param text
+	 * 			The message.
+	 * @param headless
+	 * 			If <code>true</code>, does not draw a chat balloon on canvas.
+	 */
+	@Override
+	public void sendPrivateText(final NotificationType type, final String text, final boolean headless) {
+		RPEvent event;
+		if (headless) {
+			event = new HeadlessPrivateTextEvent(type, text);
+		} else {
+			event = new PrivateTextEvent(type, text);
+		}
+		this.addEvent(event);
 		this.notifyWorldAboutChanges();
 	}
 

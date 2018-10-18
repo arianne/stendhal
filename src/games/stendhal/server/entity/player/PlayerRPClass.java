@@ -40,6 +40,7 @@ public class PlayerRPClass {
 //		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		player.addRPEvent(Events.PRIVATE_TEXT, Definition.PRIVATE);
+		player.addRPEvent(Events.HEADLESS_PRIVATE_TEXT, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_ON, Definition.PRIVATE);
 		player.addRPEvent(Events.PLAYER_LOGGED_OUT, Definition.PRIVATE);
 		player.addRPEvent(Events.TRADE_STATE_CHANGE, Definition.PRIVATE);

@@ -859,6 +859,17 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param text message contents
 	 */
 	public void onPrivateListen(final String texttype, final String text) {
+		onPrivateListen(texttype, text, false);
+	}
+
+	/**
+	 * Called when entity listen to text from talker.
+	 *
+	 * @param texttype type of talk (normal private talk, administrator message)
+	 * @param text message contents
+	 * @param headless If <code>true</code>, does not draw on canvas.
+	 */
+	public void onPrivateListen(final String texttype, final String text, final boolean headless) {
 		NotificationType type;
 		try {
 			type = NotificationType.valueOf(texttype);
@@ -871,7 +882,7 @@ public abstract class RPEntity extends AudibleEntity {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, type));
 
 		// Scene settings messages should not disturb playing, just create some atmosphere
-		if (type != NotificationType.SCENE_SETTING) {
+		if (!headless && type != NotificationType.SCENE_SETTING) {
 			ClientSingletonRepository.getUserInterface().addGameScreenText(
 					getX() + (getWidth() / 2.0), getY(),
 					text.replace("|", ""), type, false);

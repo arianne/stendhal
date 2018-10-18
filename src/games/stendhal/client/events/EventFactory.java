@@ -66,6 +66,8 @@ class EventFactory {
 			event = new PublicTextEvent();
 		} else if (name.equals(Events.PRIVATE_TEXT)) {
 			event = new PrivateTextEvent();
+		} else if (name.equals(Events.HEADLESS_PRIVATE_TEXT)) {
+			event = new HeadlessPrivateTextEvent();
 		} else if (name.equals(Events.ATTACK)) {
 			event = new AttackEvent();
 		} else if (name.equals(Events.TRADE_STATE_CHANGE)) {

@@ -20,6 +20,8 @@ public final class Events {
 	/** private text events, including private chat and status messages */
 	public static final String PRIVATE_TEXT = "private_text";
 
+	public static final String HEADLESS_PRIVATE_TEXT = "headless_private_text";
+
 	/** public chat */
 	public static final String PUBLIC_TEXT = "text";
 

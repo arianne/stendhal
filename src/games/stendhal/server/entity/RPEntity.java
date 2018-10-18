@@ -2698,6 +2698,32 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// does nothing in this implementation.
 	}
 
+	/**
+	 * Sends a message that only this entity can read.
+	 *
+	 * @param text
+	 * 			The message.
+	 * @param headless
+	 * 			If <code>true</code>, does not draw a chat balloon on canvas.
+	 */
+	public void sendPrivateText(final String text, final boolean headless) {
+		// does nothing in this implementation.
+	}
+
+	/**
+	 * Sends a message that only this entity can read.
+	 *
+	 * @param type
+	 * 			NotificationType
+	 * @param text
+	 * 			The message.
+	 * @param headless
+	 * 			If <code>true</code>, does not draw a chat balloon on canvas.
+	 */
+	public void sendPrivateText(final NotificationType type, final String text, final boolean headless) {
+		// does nothing in this implementation.
+	}
+
 	public float getItemAtk() {
 		int weapon = 0;
 		final List<Item> weapons = getWeapons();
