@@ -102,7 +102,7 @@ public class DeepInspect extends ScriptImpl {
 			sb.append(value + ": " + target.get(value) + "\n");
 		}
 
-		admin.sendPrivateText(sb.toString());
+		admin.sendPrivateText(sb.toString(), true);
 		sb.setLength(0);
 
 		// Inspect slots
@@ -120,7 +120,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString());
+			admin.sendPrivateText(sb.toString(), true);
 			sb.setLength(0);
 		}
 
@@ -150,7 +150,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString());
+			admin.sendPrivateText(sb.toString(), true);
 			sb.setLength(0);
 
 
@@ -168,7 +168,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString());
+			admin.sendPrivateText(sb.toString(), true);
 			sb.setLength(0);
 
 
@@ -183,7 +183,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString());
+			admin.sendPrivateText(sb.toString(), true);
 			sb.setLength(0);
 		}
 	}
