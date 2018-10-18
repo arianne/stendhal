@@ -331,7 +331,6 @@ public class Outfit {
 		} else {
 			return false;
 		}
-
 	}
 
 	/**
@@ -346,7 +345,6 @@ public class Outfit {
 	 * </ul>
 	 * @return the new random outfit
 	 */
-
 	public static Outfit getRandomOutfit() {
 		final int newHair = Rand.randUniform(1, 26);
 		final int newHead;// = Rand.randUniform(1, 15);
@@ -380,12 +378,10 @@ public class Outfit {
 			Outfit outfit = (Outfit)other;
 			return this.getCode() == outfit.getCode();
 		}
-
 	}
 
 	@Override
 	public int hashCode() {
 		return this.getCode();
 	}
-
 }
