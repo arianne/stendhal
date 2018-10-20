@@ -33,7 +33,7 @@ cafesellernpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 chaos_sorcerornpc.png         Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 chefnpc.png                   Svetlana Kushnariova (Cabbit), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/69527
 chessplayernpc.png            Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
-chieffalatheennpc.png         ???; ???; ???
+chieffalatheennpc.png         Svetlana Kushnariova (Cabbit) bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://github.com/bleutailfly/bleu-doodles/blob/98cd893/clothing/armor1.png
 childnpc.png                  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 cloakedwomannpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/719/
 cloakedwoman2npc.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
