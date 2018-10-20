@@ -566,6 +566,8 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 					buffer = createVolatileImage(width, height);
 				}
 				Graphics2D gr = buffer.createGraphics();
+				gr.setColor(Color.BLACK);
+				gr.fillRect(0, 0, width, height);
 				gr.setClip(0, 0, width, height);
 				renderScene(gr, xAdjust, yAdjust);
 				graphics.drawImage(buffer, -xAdjust, -yAdjust, null);
