@@ -287,8 +287,8 @@ littlewizard.png           Svetlana Kushnariova (Cabbit), onu/olonu, ZigWin; OGA
 masked_ninja.*             Svetlana Kushnariova (Cabbit), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
 master_assassin.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 monk.png                   Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/124
-risecia_archer.png         ???; ???; ???
-risecia_leader.*           Svetlana Kushnariova (Cabbit) bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://github.com/bleutailfly/bleu-doodles/blob/98cd893/clothing/armor1.png
+risecia_archer.*           Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/66349
+risecia_leader.*           Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://github.com/bleutailfly/bleu-doodles/blob/98cd893/clothing/armor1.png
 risecia_swordsman.png      ???; ???; ???
 risecia_thug.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 samurai.png                ???; ???; ???
