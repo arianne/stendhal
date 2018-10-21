@@ -265,7 +265,7 @@ emperor_dalmung.*          Svetlana Kushnariova (Cabbit), wulax, DkuCook, olonu,
 hunter.*                   ???, Svetlana Kushnariova, olonu; ???; https://opengameart.org/node/72969, https://opengameart.org/node/66349
 imperial_archer.*          Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_archer_leader.*   Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
-imperial_chief.png         ???; ???; ???
+imperial_chief.*           Svetlana Kushnariova (Cabbit), Gwes, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10653
 imperial_commander.*       Svetlana Kushnariova (Cabbit); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72575
 imperial_defender.*        Svetlana Kushnariova (Cabbit), Spring, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/68650
 imperial_elite_archer.*    Svetlana Kushnariova (Cabbit), olonu, Fabzy, SoCay; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/151
