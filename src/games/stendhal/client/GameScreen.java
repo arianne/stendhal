@@ -548,6 +548,9 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		if (graphics.getClipBounds() == null) {
 			graphics.setClip(0, 0, getWidth(), getHeight());
 		}
+		Rectangle clip = graphics.getClipBounds();
+		boolean fullRedraw = (clip.width == sw && clip.height == sh);
+		
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
 
@@ -569,12 +572,12 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 				gr.setColor(Color.BLACK);
 				gr.fillRect(0, 0, width, height);
 				gr.setClip(0, 0, width, height);
-				renderScene(gr, xAdjust, yAdjust);
+				renderScene(gr, xAdjust, yAdjust, fullRedraw);
 				graphics.drawImage(buffer, -xAdjust, -yAdjust, null);
 				gr.dispose();
 			} while (buffer.contentsLost());
 		} else {
-			renderScene(graphics, xAdjust, yAdjust);
+			renderScene(graphics, xAdjust, yAdjust, fullRedraw);
 		}
 
 		// Don't scale text to keep it readable
@@ -590,8 +593,10 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	 * @param g graphics
 	 * @param xAdjust x coordinate offset
 	 * @param yAdjust y coordinate offset
+	 * @param fullRedraw <code>true</code> if this is called for a full game
+	 * 	screen redraw
 	 */
-	private void renderScene(Graphics2D g, int xAdjust, int yAdjust) {
+	private void renderScene(Graphics2D g, int xAdjust, int yAdjust, boolean fullRedraw) {
 		// Adjust the graphics object so that the drawn objects do not need to
 		// know about converting the position to screen
 		g.translate(xAdjust, yAdjust);
@@ -610,8 +615,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 
-		boolean fullDraw = (clip.width == sw && clip.height == sh);
-		viewManager.prepareViews(clip, fullDraw);
+		viewManager.prepareViews(clip, fullRedraw);
 
 		final String set = gameLayers.getAreaName();
 		gameLayers.drawLayers(g, set, "floor_bundle", startTileX,
