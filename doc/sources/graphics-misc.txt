@@ -58,6 +58,10 @@ data/sprites/effects/
 
 fire_explosion_2x2.png  StumpyStrust; CC0; http://opengameart.org/node/15394
 
+data/sprites/examine/
+
+parchment_background.svgz  Arvin61r48; CC0; https://openclipart.org/detail/233273
+
 data/sprites/status/
 
 confuse.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
