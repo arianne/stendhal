@@ -33,7 +33,6 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
@@ -1333,14 +1332,11 @@ public abstract class RPEntity extends AudibleEntity {
 			def = changes.getInt("modified_def");
 		}
 
-		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.COMBAT) {
-			if (changes.has("ratk")) {
-				ratk = changes.getInt("ratk");
-			}
-			if (changes.has("modified_ratk")) {
-				ratk = changes.getInt("modified_ratk");
-			}
+		if (changes.has("ratk")) {
+			ratk = changes.getInt("ratk");
+		}
+		if (changes.has("modified_ratk")) {
+			ratk = changes.getInt("modified_ratk");
 		}
 
 		if (changes.has("level")) {
@@ -1358,11 +1354,8 @@ public abstract class RPEntity extends AudibleEntity {
 			defXP = changes.getInt("def_xp");
 		}
 
-		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.COMBAT) {
-			if (changes.has("ratk_xp")) {
-				ratkXP = changes.getInt("ratk_xp");
-			}
+		if (changes.has("ratk_xp")) {
+			ratkXP = changes.getInt("ratk_xp");
 		}
 
 		if (changes.has("atk_item")) {
@@ -1373,11 +1366,8 @@ public abstract class RPEntity extends AudibleEntity {
 			defItem = changes.getInt("def_item");
 		}
 
-		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.COMBAT) {
-			if (changes.has("ratk_item")) {
-				ratkItem = changes.getInt("ratk_item");
-			}
+		if (changes.has("ratk_item")) {
+			ratkItem = changes.getInt("ratk_item");
 		}
 
 		if (changes.has("mana")) {

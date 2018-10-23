@@ -21,7 +21,6 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
-import games.stendhal.common.constants.Testing;
 
 /**
  * Display panel for status icons and player stats. The methods may be safely
@@ -64,13 +63,8 @@ class StatsPanel extends JPanel {
 		defLabel = new StatLabel();
 		add(defLabel, SLayout.EXPAND_X);
 
-		/* FIXME: ranged stat is disabled until fully implemented */
-		if (Testing.COMBAT) {
-			ratkLabel = new StatLabel();
-			add(ratkLabel, SLayout.EXPAND_X);
-		} else {
-			ratkLabel = null;
-		}
+		ratkLabel = new StatLabel();
+		add(ratkLabel, SLayout.EXPAND_X);
 
 		xpLabel = new StatLabel();
 		add(xpLabel, SLayout.EXPAND_X);

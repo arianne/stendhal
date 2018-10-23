@@ -21,7 +21,6 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
@@ -231,10 +230,6 @@ public abstract class UpdateConverter {
     	if (!object.has("atk_xp")) {
     		object.put("atk_xp", "0");
     		object.put("def_xp", "0");
-    		/* TODO: Remove condition after ranged stat testing is finished. */
-    		if (Testing.COMBAT) {
-    			object.put("ratk_xp", "0");
-    		}
     	}
 
     	if (object.has("devel")) {
@@ -246,11 +241,12 @@ public abstract class UpdateConverter {
     		object.put("release", "0.00");
     		object.put("atk", "10");
     		object.put("def", "10");
-    		/* TODO: Remove condition after ranged stat testing is finished. */
-    		if (Testing.COMBAT) {
-    			object.put("ratk", "10");
-    		}
     	}
+
+    	// Port to <next version>
+		if (!object.has("ratk_xp")) {
+			object.put("ratk_xp", "10");
+		}
 
     	if (!object.has("age")) {
     		object.put("age", "0");

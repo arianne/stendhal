@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.constants.Testing;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -120,12 +119,9 @@ public final class StatsPanelController {
 		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 
-		/* TODO: Remove condition after ranged stat testing is finished. */
-		if (Testing.COMBAT) {
-			listener = new RATKChangeListener();
-			addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
-			pcs.addPropertyChangeListener("ratk_xp", listener);
-		}
+		listener = new RATKChangeListener();
+		addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
+		pcs.addPropertyChangeListener("ratk_xp", listener);
 
 		listener = new XPChangeListener();
 		pcs.addPropertyChangeListener("xp", listener);
@@ -139,11 +135,8 @@ public final class StatsPanelController {
 		listener = new ArmorChangeListener();
 		pcs.addPropertyChangeListener("def_item", listener);
 
-		/* FIXME: ranged stat is disabled by default until fully implemented */
-		if (Testing.COMBAT) {
-			listener = new RangedWeaponChangeListener();
-			pcs.addPropertyChangeListener("ratk_item", listener);
-		}
+		listener = new RangedWeaponChangeListener();
+		pcs.addPropertyChangeListener("ratk_item", listener);
 
 		listener = new MoneyChangeListener();
 		for (String slot : MONEY_SLOTS) {
