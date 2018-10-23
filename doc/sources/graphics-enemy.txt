@@ -276,7 +276,7 @@ imperial_knight.*          Stephen Challener (Redshrike), LordNeo, olonu, Jordan
 imperial_leader.png        Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/722/
 imperial_priest.png        Svetlana Kushnariova (Cabbit), onu/olonu; LordNeo; https://github.com/arianne/stendhal/issues/89
 imperial_scientist.png     Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/70
-imperial_veteran.png       ???; ???; ???
+imperial_veteran.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_citizen.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_housewife.png      Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 kalavan_peasant.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
