@@ -2725,22 +2725,31 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			weapon += weaponItem.getAttack();
 		}
 
-		// range weapons
-		StackableItem ammunitionItem = null;
+		return weapon;
+	}
+
+	/**
+	 * Retrieves total range attack value of held weapon & ammunition.
+	 */
+	public float getItemRatk() {
+		float ratk = 0;
+		final List<Item> weapons = getWeapons();
+
 		if (weapons.size() > 0) {
-			if (weapons.get(0).isOfClass("ranged")) {
+			final Item held = getWeapons().get(0);
+			ratk += held.getRangedAttack();
+
+			StackableItem ammunitionItem = null;
+			if (held.isOfClass("ranged")) {
 				ammunitionItem = getAmmunition();
 
 				if (ammunitionItem != null) {
-					weapon += ammunitionItem.getAttack();
-				} else {
-					// If there is no ammunition...
-					weapon = 0;
+					ratk += ammunitionItem.getRangedAttack();
 				}
 			}
 		}
 
-		return weapon;
+		return ratk;
 	}
 
 	public float getItemDef() {
@@ -2829,6 +2838,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public void updateItemAtkDef() {
 		put("atk_item", ((int) getItemAtk()));
+		put("ratk_item", ((int) getItemRatk()));
 		put("def_item", ((int) getItemDef()));
 		notifyWorldAboutChanges();
 	}
