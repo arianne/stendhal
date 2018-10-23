@@ -42,7 +42,6 @@ import games.stendhal.common.TradeState;
 import games.stendhal.common.Version;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
-import games.stendhal.common.constants.Testing;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.GameEvent;
@@ -183,11 +182,8 @@ public class Player extends RPEntity implements UseListener {
 		player.put("atk_xp", 0);
 		player.put("def", 10);
 		player.put("def_xp", 0);
-		/* TODO: Remove condition after ranged stat testing is finished. */
-		if (Testing.COMBAT) {
-			player.put("ratk", 10);
-			player.put("ratk_xp", 0);
-		}
+		player.put("ratk", 10);
+		player.put("ratk_xp", 0);
 		player.put("level", 0);
 		player.setXP(0);
 
@@ -279,34 +275,34 @@ public class Player extends RPEntity implements UseListener {
 
 		unlockedPortals = new LinkedList<Integer>();
 
-		/* TODO: Remove condition when ranged stat testing is finished. */
-		if (Testing.COMBAT) {
+		/*
+		 * TODO: Remove if VOLATILE definition is removed from "ratk" and
+		 * "ratk_xp" attributes.
+		 */
+		if (!this.has("ratk_xp")) {
 			/*
-			 * TODO: Remove if VOLATILE definition is removed from "ratk" and
-			 * "ratk_xp" attributes.
+			 * If an existing character does not have ranged stat set it at
+			 * same level and experience as new character.
 			 */
-			if (!this.has("ratk_xp")) {
-				/*
-				 * If an existing character does not have ranged stat set it at
-				 * same level and experience as new character.
-				 */
-				this.put("ratk", 10);
-				this.put("ratk_xp", 0);
+			this.put("ratk", 10);
+			this.put("ratk_xp", 0);
 
+			/*
+			 * if player's current level is 20 or higher give a buffer based
+			 * on about 25% of current atk experience.
+			 */
+			/*
+			if (this.getLevel() > 19) {
 				/*
-				 * if player's current level is 20 or higher give a buffer based
-				 * on about 25% of current atk experience.
+				 * Using setRatkXPinternal() instead of setRatkXP() here to
+				 * avoid multiple calls to updateModifiedAttributes().
 				 */
-				if (this.getLevel() > 19) {
-					/*
-					 * Using setRatkXPinternal() instead of setRatkXP() here to
-					 * avoid multiple calls to updateModifiedAttributes().
-					 */
-					// FIXME: Is this formula accurate?
-					this.setRatkXPInternal((int) (this.getAtkXP() * 0.0026),
-							false);
-				}
+				/*
+				// FIXME: Is this formula accurate?
+				this.setRatkXPInternal((int) (this.getAtkXP() * 0.0026),
+						false);
 			}
+			*/
 		}
 
 		updateModifiedAttributes();
