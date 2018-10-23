@@ -245,7 +245,7 @@ public abstract class UpdateConverter {
 
     	// Port to <next version>
 		if (!object.has("ratk_xp")) {
-			object.put("ratk_xp", "10");
+			object.put("ratk_xp", "0");
 		}
 
     	if (!object.has("age")) {
