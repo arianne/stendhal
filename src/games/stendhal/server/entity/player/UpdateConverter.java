@@ -243,7 +243,6 @@ public abstract class UpdateConverter {
     		object.put("def", "10");
     	}
 
-    	// Port to <next version>
 		if (!object.has("ratk_xp")) {
 			object.put("ratk_xp", "0");
 		}
