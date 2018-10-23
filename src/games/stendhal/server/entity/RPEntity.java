@@ -3128,10 +3128,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			&& (((getDamageType() == getRangedDamageType()) || squaredDistance(defender) > 0));
 
 		Nature nature;
+		final float itemAtk;
 		if (isRanged) {
 			nature = getRangedDamageType();
+			itemAtk = getItemRatk();
 		} else {
 			nature = getDamageType();
+			itemAtk = getItemAtk();
 		}
 
 		// Try to inflict a status effect
@@ -3149,7 +3152,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
-			int damage = damageDone(defender, getItemAtk(), nature, isRanged, maxRange);
+			int damage = damageDone(defender, itemAtk, nature, isRanged, maxRange);
 
 			if (damage > 0) {
 

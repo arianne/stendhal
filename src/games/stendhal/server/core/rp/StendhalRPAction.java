@@ -324,7 +324,11 @@ public class StendhalRPAction {
 			// disabled attack xp for attacking NPC's
 			if (!(defender instanceof SpeakerNPC)
 					&& player.getsFightXpFrom(defender)) {
-				player.incAtkXP();
+				if (isRanged) {
+					player.incRatkXP();
+				} else {
+					player.incAtkXP();
+				}
 			}
 		}
 
@@ -335,8 +339,14 @@ public class StendhalRPAction {
 			}
 
 			final List<Item> weapons = player.getWeapons();
+			final float itemAtk;
+			if (isRanged) {
+				itemAtk = player.getItemRatk();
+			} else {
+				itemAtk = player.getItemAtk();
+			}
 
-			int damage = player.damageDone(defender, player.getItemAtk(), player.getDamageType());
+			int damage = player.damageDone(defender, itemAtk, player.getDamageType());
 			if (damage > 0) {
 
 				// limit damage to target HP
