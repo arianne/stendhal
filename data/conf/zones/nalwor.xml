@@ -38,6 +38,51 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
+
+    <!-- Archery Range -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
+      <parameter name="x">96</parameter>
+      <parameter name="y">96</parameter>
+      <parameter name="width">21</parameter>
+      <parameter name="height">12</parameter>
+    </configurator>
+
+    <entity x="97" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="99" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="101" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="103" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="105" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="107" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="109" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="111" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="113" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+    <entity x="115" y="102">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.FlyOverArea" />
+    </entity>
+
+    <!-- sign indicating future assassins' dojo -->
+    <entity x="97" y="116">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">COMING SOON: Assassins' Dojo</attribute>
+    </entity>
   </zone>
 
   <zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128"
