@@ -21,26 +21,35 @@ public class TrainingDummy extends NPC {
 	public TrainingDummy() {
 		super();
 
-		init("other/training_dummy");
+		init("other/training_dummy", "You see a training dummy.");
 	}
 
 	public TrainingDummy(final String image) {
 		super();
 
-		init(image);
+		init(image, "You see a training dummy.");
+	}
+
+	public TrainingDummy(final String image, final String descr) {
+		super();
+
+		init(image, descr);
 	}
 
 	/**
 	 * Initializes attributes.
 	 * @param image
 	 * 		Sprite image to be used.
+	 * @param descr
+	 * 		Text to show when player "looks".
 	 */
-	private void init(final String image) {
+	private void init(final String image, final String descr) {
 		put("unnamed", "");
 		put("no_hpbar", "");
 
 		setEntityClass(image);
 		setName("training dummy");
+		setDescription(descr);
 
 		initHP(1);
 	}
