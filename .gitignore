@@ -46,3 +46,4 @@ build_server_xmlconf
 *.umlproject
 /*.cert
 /*.csr
+/map.map
