@@ -14,6 +14,7 @@ package games.stendhal.server.script;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
@@ -85,7 +87,6 @@ public class DeepInspect extends ScriptImpl {
 		} catch (IOException e) {
 			admin.sendPrivateText(NotificationType.ERROR, e.toString());
 		}
-
 	}
 
 	/**
@@ -98,8 +99,31 @@ public class DeepInspect extends ScriptImpl {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Inspecting " + target.get("name") + "\n");
 
+		final List<String> locationSlots = Arrays.asList("zoneid", "x", "y");
+
 		for (final String value : target) {
-			sb.append(value + ": " + target.get(value) + "\n");
+			// skip attributes used on the location info section below
+			if (!locationSlots.contains(value)) {
+				sb.append(value + ": " + target.get(value) + "\n");
+			}
+		}
+
+		// location info
+		if (target.has("zoneid") && target.has("x") && target.has("y")) {
+			final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(target.get("zoneid"));
+			final int zoneX = zone.getX();
+			final int zoneY = zone.getY();
+			final int zoneZ = zone.getLevel();
+			final int X = target.getInt("x");
+			final int Y = target.getInt("y");
+			final String absolutePos = Integer.toString(zoneX + X) + "," + Integer.toString(zoneY + Y) + "," + Integer.toString(zoneZ);
+
+			sb.append("\nLocation info:\n");
+			sb.append("  Zone ID:\t\t" + zone.getName() + "\n");
+
+			sb.append("  Zone coordinates:\t" + Integer.toString(zone.getX()) + "," + Integer.toString(zone.getY()) + "," + Integer.toString(zone.getLevel()) + "\n");
+			sb.append("  Relative pos:\t" + target.get("x") + "," + target.get("y") + "\n");
+			sb.append("  Absolute pos:\t" + absolutePos + "\n");
 		}
 
 		admin.sendPrivateText(sb.toString(), true);
