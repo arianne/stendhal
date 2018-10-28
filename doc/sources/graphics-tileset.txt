@@ -933,6 +933,7 @@ box_of_weapons.png  Lanea Zimmerman (Sharm), Tuomo Untinen (Reemax); CC BY-SA 3.
 cannon.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79098
 composite_bow.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_arrow.png    ???; ???; ???
+hanging_bows.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 longbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_arrow.png     ???; ???; ???
 skull_spear.png     ???; ???; ???
