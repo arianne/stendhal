@@ -40,6 +40,8 @@
     </attributes>
 
     <!-- Archery Range -->
+    <configurator class-name="games.stendhal.server.maps.nalwor.forest.ArcheryRange" />
+
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
       <parameter name="x">96</parameter>
       <parameter name="y">96</parameter>

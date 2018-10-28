@@ -162,6 +162,7 @@ postelfnpc.png                ???; ???; ???
 priestnpc.*                   Svetlana Kushnariova (Cabbit), onu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944
 princess2npc.png              ???; ???; ???
 principalnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
+rangernpc.*                   Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 ratchefnpc.png                Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 ratchild1npc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
 ratchild2npc.png              Svetlana Kushnariova (Cabbit), diamonddmgirl, Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
