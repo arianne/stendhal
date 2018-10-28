@@ -423,9 +423,9 @@
 		</javac>
 		<delete file="${src}/games/stendhal/client/StendhalBuild.java" quiet="true" failonerror="false" />
 
-		<!-- compile Starter.java for Java 1.2. So we will be able to
+		<!-- compile Starter.java for Java 1.4. So we will be able to
 		 display a dialogbox if running on an old Java Version -->
-		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.2" target="1.2" deprecation="${javac.deprecation}" includeantruntime="false">
+		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.4" target="1.4" deprecation="${javac.deprecation}" includeantruntime="false">
 			<include name="games/stendhal/client/update/Starter.java"/>
 
 			<compilerarg value="-encoding"/>
@@ -647,6 +647,7 @@
 		<zip destfile="${buildroot}/stendhal-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
 			<zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
+			<zipfileset dir="buildtools/launch4j" includes="stendhal-starter.exe" filemode="755"/>
 		</zip>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
