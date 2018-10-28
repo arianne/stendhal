@@ -1586,7 +1586,7 @@ public class Player extends RPEntity implements UseListener {
 	 *            The player who initiated the teleporting, or null if no player
 	 *            is responsible. This is only to give feedback if something
 	 *            goes wrong. If no feedback is wanted, use null.
-	 * @return true iff teleporting was successful
+	 * @return <code>true</code> if teleporting was successful.
 	 */
 	public boolean teleport(final StendhalRPZone zone, final int x,
 			final int y, final Direction dir, final Player teleporter) {
@@ -1605,7 +1605,28 @@ public class Player extends RPEntity implements UseListener {
 			}
 			return false;
 		}
+	}
 
+	/**
+	 * Teleports player to given destination using zoneid string.
+	 *
+	 * @param zoneid
+	 * 		<code>String</code> name/ID of zone.
+	 * @param x
+	 * 		Destination's horizontal coordinate.
+	 * @param y
+	 * 		Distination's vertical coordinate.
+	 * @param dir
+	 * 		The direction in which the player should look after
+	 * 		teleporting, or null if the direction shouldn't change.
+	 * @param teleporter
+	 * @return
+	 * 		<code>true</code> if teleporting was successful.
+	 */
+	public boolean teleport(final String zoneid, final int x,
+			final int y, final Direction dir, final Player teleporter) {
+		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneid);
+		return teleport(zone, x, y, dir, teleporter);
 	}
 
 	/**
