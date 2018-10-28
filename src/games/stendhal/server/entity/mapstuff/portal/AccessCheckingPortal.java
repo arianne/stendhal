@@ -51,7 +51,10 @@ abstract class AccessCheckingPortal extends Portal {
 
     /** Optional action to take when access is rejected. */
     protected ChatAction rejectedAction;
-    
+
+    /** Override continuous movement setting. */
+    protected boolean forceStop = false;
+
     /**
      * Creates an access checking portal with default values.
      */
@@ -256,12 +259,20 @@ abstract class AccessCheckingPortal extends Portal {
 				rejectedAction.fire((Player) user, null, null);
 			}
 
-			/*
-			 * Supesses sprite bounce-back in the case of non-resistant portals
-			 */
-			if (getResistance() != 0) {
-				user.stop();
-				user.clearPath();
+			if (forceStop) {
+				if (user instanceof Player) {
+					((Player) user).forceStop();
+				} else {
+					user.stop();
+				}
+			} else {
+				/*
+				 * Suppresses sprite bounce-back in the case of non-resistant portals
+				 */
+				if (getResistance() != 0) {
+					user.stop();
+					user.clearPath();
+				}
 			}
 		}
 	}
@@ -348,6 +359,16 @@ abstract class AccessCheckingPortal extends Portal {
 	 */
 	public void setRejectedAction(ChatAction rejectedAction) {
 		this.rejectedAction = rejectedAction;
+	}
+
+	/**
+	 * Sets flag to override continuous movement & force entity to stop.
+	 *
+	 * @param forceStop
+	 * 		If <code>true</code>, entity is forced to stop movement.
+	 */
+	public void setForceStop(final boolean forceStop) {
+		this.forceStop = forceStop;
 	}
 
 	/**

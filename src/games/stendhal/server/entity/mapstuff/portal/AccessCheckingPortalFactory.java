@@ -68,6 +68,7 @@ abstract class AccessCheckingPortalFactory implements
 		final String requiredPassword = getStringValue(ctx, "password");
 		final int listeningRadius = getIntValue(ctx, "radius");
 		final ChatAction rejectedAction = getRejectedAction(ctx);
+		final boolean forceStop = ctx.getBoolean("forceStop", false);
 		final boolean ignoreNoDestination = ctx.getBoolean("ignoreNoDestination", false);
 
 		if (instantAction) {
@@ -91,6 +92,7 @@ abstract class AccessCheckingPortalFactory implements
 		if (rejectedAction != null) {
 			portal.setRejectedAction(rejectedAction);
 		}
+		portal.setForceStop(forceStop);
 		portal.setIgnoreNoDestination(ignoreNoDestination);
 
 		return portal;
