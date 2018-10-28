@@ -65,6 +65,7 @@ abstract class AccessCheckingPortalFactory implements
 		final String rejectedMessage = getStringValue(ctx, "rejected");
 		final String requiredPassword = getStringValue(ctx, "password");
 		final int listeningRadius = getIntValue(ctx, "radius");
+		final boolean ignoreNoDestination = ctx.getBoolean("ignoreNoDestination", false);
 
 		if (instantAction) {
 		    portal.setInstantAction(instantAction);
@@ -84,6 +85,7 @@ abstract class AccessCheckingPortalFactory implements
 		if (listeningRadius > 0) {
 		    portal.setListeningRadius(listeningRadius);
 		}
+		portal.setIgnoreNoDestination(ignoreNoDestination);
 
 		return portal;
 	}

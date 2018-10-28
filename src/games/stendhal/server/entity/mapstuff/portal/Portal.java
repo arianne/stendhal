@@ -64,6 +64,9 @@ public class Portal extends Entity implements UseListener {
 	/** Direction player should face after teleport when portal is used as destination. */
 	private Direction face;
 
+	/** If "true", will not emit logger error about missing destination */
+	private boolean ignoreNoDestination = false;
+
 	public static void generateRPClass() {
 		try {
 				if (!RPClass.hasRPClass(RPCLASS_NAME)){
@@ -106,6 +109,13 @@ public class Portal extends Entity implements UseListener {
 	 */
 	public void setIdentifier(final Object reference) {
 		this.identifier = reference;
+	}
+
+	/**
+	 * Sets flag to suppress error about missing destination.
+	 */
+	public void setIgnoreNoDestination(final boolean ignoreNoDestination) {
+		this.ignoreNoDestination = ignoreNoDestination;
 	}
 
 	/**
@@ -219,8 +229,10 @@ public class Portal extends Entity implements UseListener {
 		}
 
 		if (getDestinationZone() == null) {
-			// This portal is incomplete
-			logger.error(this + " has no destination.");
+			if (!ignoreNoDestination) {
+				// This portal is incomplete
+				logger.error(this + " has no destination.");
+			}
 			return false;
 		}
 
