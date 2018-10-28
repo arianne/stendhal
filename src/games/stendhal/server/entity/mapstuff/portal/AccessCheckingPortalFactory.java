@@ -6,11 +6,13 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
-//
-//
+import org.codehaus.groovy.control.CompilationFailedException;
 
 import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
+import games.stendhal.server.entity.npc.ChatAction;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 
 /**
  * A factory for <code>AccessCheckingPortal</code> objects.
@@ -65,6 +67,7 @@ abstract class AccessCheckingPortalFactory implements
 		final String rejectedMessage = getStringValue(ctx, "rejected");
 		final String requiredPassword = getStringValue(ctx, "password");
 		final int listeningRadius = getIntValue(ctx, "radius");
+		final ChatAction rejectedAction = getRejectedAction(ctx);
 		final boolean ignoreNoDestination = ctx.getBoolean("ignoreNoDestination", false);
 
 		if (instantAction) {
@@ -84,6 +87,9 @@ abstract class AccessCheckingPortalFactory implements
 		}
 		if (listeningRadius > 0) {
 		    portal.setListeningRadius(listeningRadius);
+		}
+		if (rejectedAction != null) {
+			portal.setRejectedAction(rejectedAction);
 		}
 		portal.setIgnoreNoDestination(ignoreNoDestination);
 
@@ -120,5 +126,29 @@ abstract class AccessCheckingPortalFactory implements
      */
     protected int getIntValue(final ConfigurableFactoryContext ctx, final String key) {
         return ctx.getInt(key, -1);
+    }
+
+    /**
+     * Creates a new ChatAction from ConfigurableFactoryContext.
+     *
+     * @param ctx
+     * 		ConfigurableFactoryContext
+     * @return
+     * 		ChatAction instance
+     */
+    protected ChatAction getRejectedAction(final ConfigurableFactoryContext ctx) {
+		String value = ctx.getString("rejectedAction", null);
+		if (value == null) {
+			return null;
+		}
+		Binding groovyBinding = new Binding();
+		final GroovyShell interp = new GroovyShell(groovyBinding);
+		try {
+			String code = "import games.stendhal.server.entity.npc.action.*;\r\n"
+				+ value;
+			return (ChatAction) interp.evaluate(code);
+		} catch (CompilationFailedException e) {
+			throw new IllegalArgumentException(e);
+		}
     }
 }

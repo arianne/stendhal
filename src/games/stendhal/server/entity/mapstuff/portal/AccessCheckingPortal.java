@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
@@ -48,6 +49,9 @@ abstract class AccessCheckingPortal extends Portal {
     /** Optional password to use portal. */
     protected String requiredPassword;
 
+    /** Optional action to take when access is rejected. */
+    protected ChatAction rejectedAction;
+    
     /**
      * Creates an access checking portal with default values.
      */
@@ -247,6 +251,11 @@ abstract class AccessCheckingPortal extends Portal {
 	protected void rejected(final RPEntity user) {
 		if (rejectedMessage != null) {
 			sendMessage(user, rejectedMessage);
+
+			if (rejectedAction != null) {
+				rejectedAction.fire((Player) user, null, null);
+			}
+
 			/*
 			 * Supesses sprite bounce-back in the case of non-resistant portals
 			 */
@@ -329,6 +338,16 @@ abstract class AccessCheckingPortal extends Portal {
 	 */
 	public void setRequiredPassword(final String password) {
 	    requiredPassword = password;
+	}
+
+	/**
+	 * Initiates an action to take on rejection.
+	 *
+	 * @param rejectedAction
+	 * 		ChatAction to execute.
+	 */
+	public void setRejectedAction(ChatAction rejectedAction) {
+		this.rejectedAction = rejectedAction;
 	}
 
 	/**
