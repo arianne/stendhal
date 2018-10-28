@@ -2656,6 +2656,17 @@ public class Player extends RPEntity implements UseListener {
 	public int getRequiredItemQuantity(String questname, int index) {
 		return quests.getRequiredItemQuantity(questname, index);
 	}
+	
+	@Override
+	protected void handleLeaveZone(int nx, final int ny) {
+		// Players using continuous movement should stop if they cross
+		// the zone border when using mouse for movement
+		boolean stopAfter = hasPath();
+		super.handleLeaveZone(nx, ny);
+		if (stopAfter) {
+			stop();
+		}
+	}
 
 	/**
 	 * Gets the number of repetitions in a substate of quest slot
