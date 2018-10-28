@@ -809,6 +809,14 @@ public class StendhalRPAction {
 	private static boolean isValidPlacement(final StendhalRPZone zone, final Entity entity,
 			final Shape allowedArea, final int oldX, final int oldY,
 			final int newX, final int newY, final boolean checkPath) {
+
+		// allow admins in ghostmode to teleport to collision tiles
+		if (entity instanceof Player) {
+			if (((Player) entity).isGhost()) {
+				return true;
+			}
+		}
+
 		if (!zone.collides(entity, newX, newY)) {
 			// Check the possibleArea now. This is a performance
 			// optimization because the pathfinding is very expensive.
