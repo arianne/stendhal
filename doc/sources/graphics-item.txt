@@ -525,6 +525,7 @@ crossbow.png         ???; ???; ???
 hunter_crossbow.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 longbow.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-work of longbow
+training_bow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wooden_bow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/relic/
