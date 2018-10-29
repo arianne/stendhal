@@ -41,7 +41,7 @@ public class ShopSign extends Sign implements UseListener {
 	protected String title;
 
 	/** Caption to display above the table */
-	private String caption;
+	protected String caption;
 
 	/** true, if this sign is for items sold by an NPC */
 	private boolean seller;
@@ -82,16 +82,27 @@ public class ShopSign extends Sign implements UseListener {
 	}
 
 	/**
-	 * generates the item list for this shop
+	 * Generates the item list for this shop.
 	 *
 	 * @return ItemList
 	 */
-	private List<Item> generateItemList() {
-		List<Item> itemList = new LinkedList<Item>();
-		Map<String, Integer> items = shops.get(shopName);
+	protected List<Item> generateItemList() {
+		return generateItemList(shops.get(shopName));
+	}
+
+	/**
+	 * Generates the item list for this shop.
+	 *
+	 * @param items
+	 * 		Items and prices to be added to sign.
+	 * @return ItemList
+	 */
+	protected List<Item> generateItemList(final Map<String, Integer> items) {
+		final List<Item> itemList = new LinkedList<>();
 		for (Map.Entry<String, Integer> entry : items.entrySet()) {
 			itemList.add(prepareItem(entry.getKey(), entry.getValue()));
 		}
+
 		return itemList;
 	}
 
