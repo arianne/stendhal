@@ -85,7 +85,8 @@ public class ItemTransformer {
 			// make sure saved individual information is
 			// restored
 			final String[] individualAttributes = { "infostring",
-					"description", "bound", "undroppableondeath" };
+					"description", "bound", "undroppableondeath",
+					"uses"};
 			for (final String attribute : individualAttributes) {
 				if (rpobject.has(attribute)) {
 					item.put(attribute, rpobject.get(attribute));

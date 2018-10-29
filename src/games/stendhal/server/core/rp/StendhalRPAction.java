@@ -41,11 +41,13 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.AttackEvent;
+import marauroa.common.game.RPObject;
 import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.RPServerManager;
@@ -395,6 +397,21 @@ public class StendhalRPAction {
 			//deteriorate weapons of attacker
 			for (Item weapon : weapons) {
 				weapon.deteriorate();
+
+				if (weapon instanceof BreakableItem) {
+					final BreakableItem breakable = (BreakableItem) weapon;
+					if (breakable.isBroken() && breakable.isContained()) {
+						final RPObject slot = breakable.getContainer();
+						if (breakable.getContainerSlot().remove(breakable.getID()) != null) {
+							if (slot instanceof Entity) {
+								((Entity) slot).notifyWorldAboutChanges();
+							}
+							player.sendPrivateText("Your " + breakable.getName() + " has broken!");
+						} else {
+							logger.error("Could not remove BreakableItem \"" + breakable.getName() + "\" with ID " + breakable.getID().toString());
+						}
+					}
+				}
 			}
 			//randomly choose one defensive item to deteriorate
 			List<Item> defenseItems = defender.getDefenseItems();

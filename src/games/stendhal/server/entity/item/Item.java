@@ -238,6 +238,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 
 		// True for items that should be bound automatically at loot (or login)
 		entity.addAttribute("autobind", Type.FLAG, (byte) (Definition.HIDDEN | Definition.VOLATILE));
+
+		// Number of uses for BreakableItem
+		entity.addAttribute("uses", Type.INT);
 	}
 
 
