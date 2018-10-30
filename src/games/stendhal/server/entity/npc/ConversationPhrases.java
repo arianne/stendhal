@@ -60,6 +60,8 @@ public class ConversationPhrases {
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye", "goodbye",
 			"farewell", "cya", "adios");
 
+	public static final List<String> PURCHASE_MESSAGES = Arrays.asList("buy", "purchase");
+
 	/**
 	 * Combine a string collection (list) with additional strings.
 	 *
@@ -93,5 +95,4 @@ public class ConversationPhrases {
 		}
 		return ret;
 	}
-
 }

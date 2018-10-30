@@ -70,7 +70,7 @@ public class SellerAdder {
 		}
 
 		engine.add(ConversationStates.ATTENDING,
-				"buy",
+				ConversationPhrases.PURCHASE_MESSAGES,
 				new SentenceHasErrorCondition(),
 				false,
 				ConversationStates.ATTENDING,
@@ -82,7 +82,7 @@ public class SellerAdder {
 			new NotCondition(sellerBehaviour.getTransactionCondition()));
 
 		engine.add(ConversationStates.ATTENDING,
-				"buy",
+				ConversationPhrases.PURCHASE_MESSAGES,
 				condition,
 				false,
 				ConversationStates.ATTENDING,
@@ -94,7 +94,7 @@ public class SellerAdder {
 			sellerBehaviour.getTransactionCondition());
 
 		engine.add(ConversationStates.ATTENDING,
-				"buy",
+				ConversationPhrases.PURCHASE_MESSAGES,
 				condition,
 				false,
 				ConversationStates.ATTENDING,
