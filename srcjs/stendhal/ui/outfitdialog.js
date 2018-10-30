@@ -9,45 +9,45 @@ stendhal.ui.OutfitDialog = function() {
 		return;
 	}
 	var self = this;
-		
-	var content = "<div>" + 
+
+	var content = "<div>" +
 		"<button type='button' id='setoutfitprevhair'>&lt;</button>"+
 		"<canvas id='setoutfithaircanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnexthair'>&gt;</button><br>" +
-		
+
 		"<button type='button' id='setoutfitprevhead'>&lt;</button>" +
 		"<canvas id='setoutfitheadcanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnexthead'>&gt;</button><br>" +
-		
+
 		"<button type='button' id='setoutfitprevbody'>&lt;</button>" +
 		"<canvas id='setoutfitbodycanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnextbody'>&gt;</button><br>" +
-		
+
 		"<button type='button' id='setoutfitprevdress'>&lt;</button>" +
 		"<canvas id='setoutfitdresscanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnextdress'>&gt;</button>" +
-		
+
 		"</div>" +
 		"<div><canvas id='setoutfitcompositecanvas' width='48' height='64'></canvas></div><br>" +
 		"<div><button type='button' id='setoutfitcancel'>Cancel</button>" +
 		"<button type='button' id='setoutfitapply'>Change Outfit</button></div>";
-	
+
 	function indexString(index) {
 		if (index < 10) {
 			return "0" + index;
 		}
 		return "" + index;
 	}
-	
+
 	function getPartSprite(part, index) {
 		var fname = "/data/sprites/outfit/" + part + "/" + part + "_0" + indexString(index) + ".png";
 		return stendhal.data.sprites.get(fname);
 	}
-	
+
 	function makeSelector(part, partChanged) {
 		var selector = (function() {
 			var _image = null;
-			
+
 			function _draw() {
 				var canvas = document.getElementById('setoutfit' + part + 'canvas');
 				var ctx = canvas.getContext("2d");
@@ -56,12 +56,12 @@ stendhal.ui.OutfitDialog = function() {
 				if (_image.width != 0) {
 					ctx.drawImage(_image, -48, -128);
 				}
-				_image.onload = function() { 
+				_image.onload = function() {
 					ctx.drawImage(_image, -48, -128);
 					partChanged();
 				}
 			}
-			
+
 			function _previous() {
 				var numOutfits = maxindex + 1;
 				index = index + maxindex;
@@ -69,7 +69,7 @@ stendhal.ui.OutfitDialog = function() {
 				selector.draw();
 				partChanged();
 			}
-			
+
 			function _next() {
 				var numOutfits = maxindex + 1;
 				index++;
@@ -77,11 +77,11 @@ stendhal.ui.OutfitDialog = function() {
 				selector.draw();
 				partChanged();
 			}
-			
+
 			function _getImage() {
 				return _image;
 			}
-			
+
 			return {
 				draw: _draw,
 				previous: _previous,
@@ -92,7 +92,7 @@ stendhal.ui.OutfitDialog = function() {
 				}
 			};
 		})();
-		
+
 		var outfit = marauroa.me["outfit"];
 		var maxindex;
 		var divider;
@@ -111,8 +111,8 @@ stendhal.ui.OutfitDialog = function() {
 				break;
 		}
 		var index = Math.floor(outfit/divider) % 100;
-		
-		var prevButton = document.getElementById("setoutfitprev" + part); 
+
+		var prevButton = document.getElementById("setoutfitprev" + part);
 		prevButton.addEventListener("click", function(e) {
 			selector.previous();
 		});
@@ -120,7 +120,7 @@ stendhal.ui.OutfitDialog = function() {
 			selector.next();
 		});
 		selector.draw();
-		
+
 		return selector;
 	}
 
@@ -139,7 +139,7 @@ stendhal.ui.OutfitDialog = function() {
 		draw(ctx, dressSelector);
 		draw(ctx, hairSelector);
 	}
-	
+
 	function partChanged() {
 		drawComposite();
 	}
@@ -149,14 +149,14 @@ stendhal.ui.OutfitDialog = function() {
 		stendhal.ui.OutfitDialog.instance = null;
 	}
 	stendhal.ui.OutfitDialog.instance = self;
-		
+
 	var hairSelector = makeSelector("hair", partChanged);
 	var headSelector = makeSelector("head", partChanged);
 	var bodySelector = makeSelector("body", partChanged);
 	var dressSelector = makeSelector("dress", partChanged);
-	
+
 	drawComposite();
-	
+
 	document.getElementById("setoutfitcancel").addEventListener("click", function(e) {
 		self.popup.close();
 	});

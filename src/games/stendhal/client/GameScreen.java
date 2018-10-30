@@ -550,7 +550,7 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		}
 		Rectangle clip = graphics.getClipBounds();
 		boolean fullRedraw = (clip.width == sw && clip.height == sh);
-		
+
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
 

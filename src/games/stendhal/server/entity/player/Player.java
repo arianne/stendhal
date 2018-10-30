@@ -2656,7 +2656,7 @@ public class Player extends RPEntity implements UseListener {
 	public int getRequiredItemQuantity(String questname, int index) {
 		return quests.getRequiredItemQuantity(questname, index);
 	}
-	
+
 	@Override
 	protected void handleLeaveZone(int nx, final int ny) {
 		// Players using continuous movement should stop if they cross
