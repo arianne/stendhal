@@ -330,6 +330,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
+	 * Retrieves default attack rate for items.
+	 */
+	public static int getDefaultAttackRate() {
+		return DEFAULT_ATTACK_RATE;
+	}
+
+	/**
 	 * Each Item is subject to deterioration that weakens the item
 	 *
 	 * @return the current degree of deterioration

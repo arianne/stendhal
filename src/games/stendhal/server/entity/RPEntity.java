@@ -3063,7 +3063,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final List<Item> weapons = getWeapons();
 
 		if (weapons.isEmpty()) {
-			return 5;
+			return Item.getDefaultAttackRate();
 		}
 		int best = weapons.get(0).getAttackRate();
 		for (final Item weapon : weapons) {
