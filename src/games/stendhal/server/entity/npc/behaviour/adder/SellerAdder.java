@@ -69,23 +69,36 @@ public class SellerAdder {
 									+ ".", null);
 		}
 
-		engine.add(ConversationStates.ATTENDING, "buy", new SentenceHasErrorCondition(),
-				false, ConversationStates.ATTENDING,
-				null, new ComplainAboutSentenceErrorAction());
+		engine.add(ConversationStates.ATTENDING,
+				"buy",
+				new SentenceHasErrorCondition(),
+				false,
+				ConversationStates.ATTENDING,
+				null,
+				new ComplainAboutSentenceErrorAction());
 
 		ChatCondition condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
 			new NotCondition(sellerBehaviour.getTransactionCondition()));
-		engine.add(ConversationStates.ATTENDING, "buy", condition,
-			false, ConversationStates.ATTENDING,
-			null, sellerBehaviour.getRejectedTransactionAction());
+
+		engine.add(ConversationStates.ATTENDING,
+				"buy",
+				condition,
+				false,
+				ConversationStates.ATTENDING,
+				null,
+				sellerBehaviour.getRejectedTransactionAction());
 
 		condition = new AndCondition(
 			new NotCondition(new SentenceHasErrorCondition()),
 			sellerBehaviour.getTransactionCondition());
 
-		engine.add(ConversationStates.ATTENDING, "buy", condition, false,
-				ConversationStates.ATTENDING, null,
+		engine.add(ConversationStates.ATTENDING,
+				"buy",
+				condition,
+				false,
+				ConversationStates.ATTENDING,
+				null,
 				new BehaviourAction(sellerBehaviour, "buy", "sell") {
 					@Override
 					public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -147,9 +160,12 @@ public class SellerAdder {
 				});
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				false, ConversationStates.ATTENDING,
-				null, new ChatAction() {
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				false,
+				ConversationStates.ATTENDING,
+				null,
+				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final String itemName = currentBehavRes.getChosenItemName();
@@ -165,9 +181,11 @@ public class SellerAdder {
 				});
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				false, ConversationStates.ATTENDING,
-				"Ok, how else may I help you?", null);
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				false,
+				ConversationStates.ATTENDING,
+				"Ok, how else may I help you?",
+				null);
 	}
-
 }
