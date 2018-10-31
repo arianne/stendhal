@@ -14,6 +14,7 @@ package games.stendhal.server.actions.move;
 import static games.stendhal.common.constants.Actions.PUSH;
 import static games.stendhal.common.constants.Actions.TARGET;
 
+import java.awt.Point;
 import java.util.Set;
 
 import games.stendhal.common.Direction;
@@ -25,6 +26,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
@@ -70,8 +72,10 @@ public class PushAction implements ActionListener {
 		if (canPush(pusher, pushed)) {
 			final Direction dir = pusher.getDirectionToward(pushed);
 
-			final int x = pushed.getX() + dir.getdx();
-			final int y = pushed.getY() + dir.getdy();
+			final Point prevPos = new Point(pushed.getX(), pushed.getY());
+
+			final int x = prevPos.x + dir.getdx();
+			final int y = prevPos.y + dir.getdy();
 
 			final StendhalRPZone zone = pusher.getZone();
 			if (!zone.collides(pushed, x, y)) {
@@ -92,6 +96,13 @@ public class PushAction implements ActionListener {
 					 * ("Hey you, try chasing me instead!")
 					 */
 					pushed.setPath(null);
+				}
+
+				// check for portals in new position
+				for (final Entity areaEntity : zone.getEntitiesAt(x, y)) {
+					if (areaEntity instanceof Portal) {
+						((Portal) areaEntity).onPushedOntoFrom(pushed, pusher, prevPos);
+					}
 				}
 			}
 		}

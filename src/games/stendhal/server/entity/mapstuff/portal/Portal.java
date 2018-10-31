@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import java.awt.Point;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -330,6 +331,14 @@ public class Portal extends Entity implements UseListener {
 		if (hasFaceDirection()) {
 			user.setDirection(getFaceDirection());
 		}
+	}
+
+	/**
+	 * Sub-classes can override for actions to be taken if entity was pushed onto portal.
+	 */
+	@SuppressWarnings("unused")
+	public void onPushedOntoFrom(final RPEntity pushed, final RPEntity pusher, final Point prevPos) {
+		// implementing classes can override
 	}
 
 	/**
