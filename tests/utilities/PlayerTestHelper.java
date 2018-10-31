@@ -256,16 +256,25 @@ public abstract class PlayerTestHelper {
 	}
 
 	/**
-	 * Reset the conversation state of the named NPC.
+	 * Reset the conversation state of the NPC.
 	 *
-	 * @param npcName
+	 * @param npc
+	 * 		SpeakerNPC
 	 */
-	public static void resetNPC(final String npcName) {
-		final SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
-
+	public static void resetNPC(final SpeakerNPC npc) {
 		if (npc != null) {
 			npc.setCurrentState(ConversationStates.IDLE);
 		}
+	}
+
+	/**
+	 * Reset the conversation state of the named NPC.
+	 *
+	 * @param npcName
+	 * 		NPC string name
+	 */
+	public static void resetNPC(final String npcName) {
+		resetNPC(SingletonRepository.getNPCList().get(npcName));
 	}
 
 	/**
