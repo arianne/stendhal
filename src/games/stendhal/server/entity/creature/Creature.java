@@ -214,6 +214,7 @@ public class Creature extends NPC {
 
 		setDescription(copy.getDescription());
 		setAtk(copy.getAtk());
+		setRatk(copy.getRatk());
 		setDef(copy.getDef());
 		setXP(copy.getXP());
 		initHP(copy.getBaseHP());
@@ -263,35 +264,43 @@ public class Creature extends NPC {
 	 * clearDropItemList first!
 	 *
 	 * @param clazz
-	 *            The creature's class, e.g. "golem"
+	 * 		The creature's class, e.g. "golem".
 	 * @param subclass
-	 *            The creature's subclass, e.g. "wooden_golem"
+	 * 		The creature's subclass, e.g. "wooden_golem".
 	 * @param name
-	 *            Typically the same as clazz, except for NPCs
+	 * 		Typically the same as clazz, except for NPCs.
 	 * @param hp
-	 *            The creature's maximum health points
-	 * @param attack
-	 *            The creature's attack strength
-	 * @param defense
-	 *            The creature's attack strength
+	 * 		The creature's maximum health points.
+	 * @param atk
+	 * 		The creature's attack strength.
+	 * @param ratk
+	 * 		The creature's ranged attack strength.
+	 * @param def
+	 * 		The creature's attack strength.
 	 * @param level
-	 *            The creature's level
+	 * 		The creature's level.
 	 * @param xp
-	 *            The creature's experience
+	 * 		The creature's experience.
 	 * @param width
-	 *            The creature's width, in squares
+	 * 		The creature's width, in squares.
 	 * @param height
-	 *            The creature's height, in squares
+	 * 		The creature's height, in squares.
 	 * @param baseSpeed
+	 * 		The normal speed at which the creature moves.
 	 * @param dropItems
+	 * 		List of items that the creature drops on death.
 	 * @param aiProfiles
-	 * @param noises
-	 * @param respawnTime in turns
+	 * 		Creature's behaviours.
+	 * @param noises.
+	 * 		Sound effects used by the client when player is near creature.
+	 * @param respawnTime
+	 * 		How often creature respawns, in turns.
 	 * @param description
+	 * 		String description displayed when player examines creature.
 	 */
 	public Creature(final String clazz, final String subclass, final String name, final int hp,
-			final int attack, final int defense, final int level, final int xp, final int width, final int height,
-			final double baseSpeed, final List<DropItem> dropItems,
+			final int atk, final int ratk, final int def, final int level, final int xp, final int width,
+			final int height, final double baseSpeed, final List<DropItem> dropItems,
 			final Map<String, String> aiProfiles, final LinkedHashMap<String, LinkedList<String>> noises,
 			final int respawnTime, final String description) {
 		this();
@@ -317,8 +326,9 @@ public class Creature extends NPC {
 		put("x", 0);
 		put("y", 0);
 		setDescription(description);
-		setAtk(attack);
-		setDef(defense);
+		setAtk(atk);
+		setRatk(ratk);
+		setDef(def);
 		setXP(xp);
 		setBaseHP(hp);
 		setHP(hp);
@@ -1006,6 +1016,12 @@ public class Creature extends NPC {
 		// Give creatures a bit weapon atk to prevent having too high
 		// personal atk values
 		return 5f;
+	}
+
+	@Override
+	public float getItemRatk() {
+		// Just doing the same as getItemAtk().
+		return getItemAtk();
 	}
 
 	// *** Damage type code ***

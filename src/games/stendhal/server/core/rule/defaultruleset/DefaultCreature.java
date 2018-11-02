@@ -54,11 +54,14 @@ public class DefaultCreature {
 	/** Map Tile Id in the way tileset.png:pos. */
 	private String tileid;
 
-	/** hitpoints. */
+	/** hit points. */
 	private int hp;
 
-	/** Attack points. */
+	/** attack points. */
 	private int atk;
+
+	/** ranged attack points */
+	private int ratk;
 
 	/** defense points. */
 	private int def;
@@ -138,9 +141,10 @@ public class DefaultCreature {
 		return description;
 	}
 
-	public void setRPStats(final int hp, final int atk, final int def, final double speed) {
+	public void setRPStats(final int hp, final int atk, final int ratk, final int def, final double speed) {
 		this.hp = hp;
 		this.atk = atk;
+		this.ratk = ratk;
 		this.def = def;
 		this.speed = speed;
 	}
@@ -151,6 +155,10 @@ public class DefaultCreature {
 
 	public int getAtk() {
 		return atk;
+	}
+
+	public int getRatk() {
+		return ratk;
 	}
 
 	public int getDef() {
@@ -271,7 +279,7 @@ public class DefaultCreature {
 			}
 		});
 
-		final Creature creature = new Creature(clazz, subclass, name, hp, atk, def,
+		final Creature creature = new Creature(clazz, subclass, name, hp, atk, ratk, def,
 				level, xp, width, height, speed, dropsItems, aiProfiles,
 				creatureSays, respawn, description);
 		creature.equip(equipsItems);
@@ -402,6 +410,7 @@ public class DefaultCreature {
 		}
 		os.append("    <attributes>\n");
 		os.append("      <atk value=\"" + atk + "\"/>\n");
+		os.append("      <ratk value=\"" + ratk + "\"/>\n");
 		os.append("      <def value=\"" + def + "\"/>\n");
 		os.append("      <hp value=\"" + hp + "\"/>\n");
 		os.append("      <speed value=\"" + speed + "\"/>\n");
