@@ -250,6 +250,7 @@ toilet.*   bleutailfly; CC BY-SA 3.0; Stendhal
 tiled/tileset/furniture/bed/
 
 double_blue.png        bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+double_blue_brass.png  bleutailfly; CC BY-SA 3.0; Stendhal
 double_peach.png       bleutailfly; CC BY-SA 3.0; Stendhal
 double_pink_rose.png   bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 double_purple_gold.*   bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
