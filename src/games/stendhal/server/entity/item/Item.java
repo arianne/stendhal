@@ -333,6 +333,23 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
+	 * Returns turn delay for this item's attack.
+	 *
+	 * @param meleeDistance
+	 * 		<code>true</code> if the entity is standing next to its attack target.
+	 * @return
+	 * 		Turn delay for this items attack.
+	 */
+	public int getAttackRate(final boolean meleeDistance) {
+		// range weapons should not use modified attack rate for melee attacks
+		if (meleeDistance && has("range")) {
+			return DEFAULT_ATTACK_RATE;
+		}
+
+		return getAttackRate();
+	}
+
+	/**
 	 * Retrieves default attack rate for items.
 	 */
 	public static int getDefaultAttackRate() {

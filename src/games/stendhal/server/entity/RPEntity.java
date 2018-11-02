@@ -3061,14 +3061,16 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public int getAttackRate() {
 
+		boolean meleeDistance = isAttacking() && nextTo(getAttackTarget());
+
 		final List<Item> weapons = getWeapons();
 
 		if (weapons.isEmpty()) {
 			return Item.getDefaultAttackRate();
 		}
-		int best = weapons.get(0).getAttackRate();
+		int best = weapons.get(0).getAttackRate(meleeDistance);
 		for (final Item weapon : weapons) {
-			final int res = weapon.getAttackRate();
+			final int res = weapon.getAttackRate(meleeDistance);
 			if (res < best) {
 				best = res;
 			}
