@@ -509,6 +509,43 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			}
 		}
 
+		@Override
+		public int hashCode() {
+			final Player player = timedPlayer.get();
+
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((player == null) ? 0 : player.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			final Player player = timedPlayer.get();
+
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Timer other = (Timer) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (player == null) {
+				if (other.timedPlayer.get() != null)
+					return false;
+			} else if (!player.equals(other.timedPlayer.get()))
+				return false;
+			return true;
+		}
+
+		private ArcheryRange getOuterType() {
+			return ArcheryRange.this;
+		}
+	}
+
 
 	/**
 	 * Action that notifies
