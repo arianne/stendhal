@@ -2811,112 +2811,134 @@ My fee:
     <portal x="0" y="3" ref="left1">
       <destination zone="int_ados_castle_left" ref="bottom1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="4" ref="left2">
       <destination zone="int_ados_castle_left" ref="bottom2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="5" ref="left3">
       <destination zone="int_ados_castle_left" ref="bottom3"/>
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="6" ref="left4">
       <destination zone="int_ados_castle_left" ref="bottom4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="7" ref="left5">
       <destination zone="int_ados_castle_left" ref="bottom5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="8" ref="left6">
       <destination zone="int_ados_castle_left" ref="bottom6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="9" ref="left7">
       <destination zone="int_ados_castle_left" ref="bottom7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="10" ref="left8">
       <destination zone="int_ados_castle_left" ref="bottom8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="11" ref="left9">
       <destination zone="int_ados_castle_left" ref="bottom9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="12" ref="left10">
       <destination zone="int_ados_castle_left" ref="bottom10" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="13" ref="left11">
       <destination zone="int_ados_castle_left" ref="bottom11" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- right corridor -->
     <portal x="31" y="3" ref="right1">
       <destination zone="int_ados_castle_right" ref="bottom1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="4" ref="right2">
       <destination zone="int_ados_castle_right" ref="bottom2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="5" ref="right3">
       <destination zone="int_ados_castle_right" ref="bottom3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="6" ref="right4">
       <destination zone="int_ados_castle_right" ref="bottom4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="7" ref="right5">
       <destination zone="int_ados_castle_right" ref="bottom5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="8" ref="right6">
       <destination zone="int_ados_castle_right" ref="bottom6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="9" ref="right7">
       <destination zone="int_ados_castle_right" ref="bottom7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="10" ref="right8">
       <destination zone="int_ados_castle_right" ref="bottom8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="11" ref="right9">
       <destination zone="int_ados_castle_right" ref="bottom9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="12" ref="right10">
       <destination zone="int_ados_castle_right" ref="bottom10" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="13" ref="right11">
       <destination zone="int_ados_castle_right" ref="bottom11" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
   </zone>
@@ -2929,102 +2951,122 @@ My fee:
     <portal x="31" y="35" ref="bottom1">
       <destination zone="int_ados_castle_entrance" ref="left1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="36" ref="bottom2">
       <destination zone="int_ados_castle_entrance" ref="left2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="37" ref="bottom3">
       <destination zone="int_ados_castle_entrance" ref="left3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="38" ref="bottom4">
       <destination zone="int_ados_castle_entrance" ref="left4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="39" ref="bottom5">
       <destination zone="int_ados_castle_entrance" ref="left5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="40" ref="bottom6">
       <destination zone="int_ados_castle_entrance" ref="left6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="41" ref="bottom7">
       <destination zone="int_ados_castle_entrance" ref="left7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="42" ref="bottom8">
       <destination zone="int_ados_castle_entrance" ref="left8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="43" ref="bottom9">
       <destination zone="int_ados_castle_entrance" ref="left9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="44" ref="bottom10">
       <destination zone="int_ados_castle_entrance" ref="left10" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="45" ref="bottom11">
       <destination zone="int_ados_castle_entrance" ref="left11" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- top corridor -->
     <portal x="31" y="3" ref="top1">
       <destination zone="int_ados_castle_throne" ref="left1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="4" ref="top2">
       <destination zone="int_ados_castle_throne" ref="left2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="5" ref="top3">
       <destination zone="int_ados_castle_throne" ref="left3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="6" ref="top4">
       <destination zone="int_ados_castle_throne" ref="left4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="7" ref="top5">
      <destination zone="int_ados_castle_throne" ref="left5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="8" ref="top6">
       <destination zone="int_ados_castle_throne" ref="left6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="9" ref="top7">
       <destination zone="int_ados_castle_throne" ref="left7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="10" ref="top8">
       <destination zone="int_ados_castle_throne" ref="left8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="11" ref="top9">
       <destination zone="int_ados_castle_throne" ref="left9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
   </zone>
@@ -3034,102 +3076,122 @@ My fee:
     <portal x="0" y="35" ref="bottom1">
       <destination zone="int_ados_castle_entrance" ref="right1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="36" ref="bottom2">
       <destination zone="int_ados_castle_entrance" ref="right2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="37" ref="bottom3">
       <destination zone="int_ados_castle_entrance" ref="right3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="38" ref="bottom4">
       <destination zone="int_ados_castle_entrance" ref="right4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="39" ref="bottom5">
       <destination zone="int_ados_castle_entrance" ref="right5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="40" ref="bottom6">
       <destination zone="int_ados_castle_entrance" ref="right6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="41" ref="bottom7">
       <destination zone="int_ados_castle_entrance" ref="right7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="42" ref="bottom8">
       <destination zone="int_ados_castle_entrance" ref="right8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="43" ref="bottom9">
       <destination zone="int_ados_castle_entrance" ref="right9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="44" ref="bottom10">
       <destination zone="int_ados_castle_entrance" ref="right10" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="45" ref="bottom11">
       <destination zone="int_ados_castle_entrance" ref="right11" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- top corridor -->
     <portal x="0" y="3" ref="top1">
       <destination zone="int_ados_castle_throne" ref="right1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="4" ref="top2">
       <destination zone="int_ados_castle_throne" ref="right2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="5" ref="top3">
       <destination zone="int_ados_castle_throne" ref="right3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="6" ref="top4">
       <destination zone="int_ados_castle_throne" ref="right4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="7" ref="top5">
       <destination zone="int_ados_castle_throne" ref="right5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="8" ref="top6">
       <destination zone="int_ados_castle_throne" ref="right6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="9" ref="top7">
       <destination zone="int_ados_castle_throne" ref="right7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="10" ref="top8">
       <destination zone="int_ados_castle_throne" ref="right8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="11" ref="top9">
       <destination zone="int_ados_castle_throne" ref="right9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
   </zone>
@@ -3139,92 +3201,110 @@ My fee:
     <portal x="0" y="16" ref="left1">
       <destination zone="int_ados_castle_left" ref="top1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="17" ref="left2">
       <destination zone="int_ados_castle_left" ref="top2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="18" ref="left3">
       <destination zone="int_ados_castle_left" ref="top3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="19" ref="left4">
       <destination zone="int_ados_castle_left" ref="top4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="20" ref="left5">
       <destination zone="int_ados_castle_left" ref="top5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="21" ref="left6">
       <destination zone="int_ados_castle_left" ref="top6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="22" ref="left7">
       <destination zone="int_ados_castle_left" ref="top7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="23" ref="left8">
       <destination zone="int_ados_castle_left" ref="top8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="24" ref="left9">
       <destination zone="int_ados_castle_left" ref="top9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- right corridor -->
     <portal x="31" y="16" ref="right1">
       <destination zone="int_ados_castle_right" ref="top1" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="17" ref="right2">
       <destination zone="int_ados_castle_right" ref="top2" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="18" ref="right3">
       <destination zone="int_ados_castle_right" ref="top3" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="19" ref="right4">
       <destination zone="int_ados_castle_right" ref="top4" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="20" ref="right5">
       <destination zone="int_ados_castle_right" ref="top5" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="21" ref="right6">
       <destination zone="int_ados_castle_right" ref="top6" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="22" ref="right7">
       <destination zone="int_ados_castle_right" ref="top7" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="23" ref="right8">
       <destination zone="int_ados_castle_right" ref="top8" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="24" ref="right9">
       <destination zone="int_ados_castle_right" ref="top9" />
       <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- garden -->
