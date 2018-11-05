@@ -15,7 +15,7 @@ import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MODE;
 import static games.stendhal.common.constants.Actions.TYPE;
 import static games.stendhal.common.constants.Actions.WALK;
-import static games.stendhal.common.constants.Common.PATHSET;
+import static games.stendhal.common.constants.General.PATHSET;
 
 import java.util.Collection;
 import java.util.Collections;

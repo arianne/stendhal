@@ -13,11 +13,8 @@ package games.stendhal.common.constants;
 
 /**
  * Generic constants.
- *
- * @author
- *         AntumDeluge
  */
-public class Common {
+public class General {
 
 	/* Property indicating entity has a path set. */
 	public final static String PATHSET = "pathset";

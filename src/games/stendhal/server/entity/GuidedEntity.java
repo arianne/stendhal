@@ -9,7 +9,7 @@ package games.stendhal.server.entity;
 //
 //
 
-import static games.stendhal.common.constants.Common.PATHSET;
+import static games.stendhal.common.constants.General.PATHSET;
 
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
