@@ -26,6 +26,7 @@
     <!-- Portals -->
     <portal x="18" y="52" ref="ent1n">
       <destination zone="0_ados_mountain_n2_w" ref="ent1s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -35,11 +36,13 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="19" y="52" ref="ent2n">
       <destination zone="0_ados_mountain_n2_w" ref="ent2s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -49,11 +52,13 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="20" y="52" ref="ent3n">
       <destination zone="0_ados_mountain_n2_w" ref="ent3s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -63,11 +68,13 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="21" y="52" ref="ent4n">
       <destination zone="0_ados_mountain_n2_w" ref="ent4s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -77,6 +84,7 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
