@@ -570,6 +570,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <portal x="76" y="36" ref="wizardstower_entrance">
       <destination zone="int_semos_wizards_tower_basement"
         ref="wizardstower_exit" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="77" y="0">
@@ -617,6 +618,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
     <portal x="15" y="29" ref="wizardstower_exit">
       <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="16" ref="basement_teleport">
