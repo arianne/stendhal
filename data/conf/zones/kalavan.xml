@@ -41,15 +41,19 @@
 
     <portal x="63" y="72" ref="castle_entrance_left">
       <destination zone="int_kalavan_castle" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="72" ref="castle_entrance_right">
       <destination zone="int_kalavan_castle" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="48" ref="castle_2_entrance_left">
       <destination zone="int_kalavan_castle_2" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="48" ref="castle_2_entrance_right">
       <destination zone="int_kalavan_castle_2" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -75,9 +79,11 @@
     <configurator class-name="games.stendhal.server.maps.kalavan.castle.KingNPC" />
     <portal x="31" y="63" ref="entrance_left">
       <destination zone="0_kalavan_castle" ref="castle_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="32" y="63" ref="entrance_right">
       <destination zone="0_kalavan_castle" ref="castle_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="31" y="39" ref="upstairs">
       <destination zone="int_kalavan_castle_1" ref="downstairs" />
@@ -99,9 +105,11 @@
   <zone name="int_kalavan_castle_2" file="interiors/kalavan/castle_2.tmx">
     <portal x="15" y="15" ref="entrance_left">
       <destination zone="0_kalavan_castle" ref="castle_2_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="16" y="15" ref="entrance_right">
       <destination zone="0_kalavan_castle" ref="castle_2_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="16" y="10" ref="downstairs">
       <destination zone="int_kalavan_castle_1" ref="upstairs" />
