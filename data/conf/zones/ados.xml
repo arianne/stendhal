@@ -521,6 +521,7 @@
     <!-- Portals -->
     <portal x="67" y="78" ref="carolines_house_entrance">
       <destination zone="int_ados_carolines_house_0" ref="entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Tables -->
@@ -1109,18 +1110,22 @@ West: Semos
 
     <portal x="60" y="16" ref="tavern_entrance_left">
       <destination zone="int_ados_tavern_0" ref="entrance_left"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="65" y="16" ref="tavern_entrance_right">
       <destination zone="int_ados_tavern_0" ref="entrance_right"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="38" y="52" ref="goldsmith_entrance">
       <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="54" y="19" ref="6">
       <destination zone="int_ados_bank" ref="0"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="54" y="19">
@@ -1132,10 +1137,12 @@ West: Semos
 
     <portal x="27" y="39" ref="10">
       <destination zone="int_ados_bakery" ref="0" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="38" ref="11">
       <destination zone="int_ados_haunted_house" ref="0" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="74" ref="house_50">
@@ -1200,6 +1207,7 @@ West: Semos
         <parameter name="key">small key</parameter>
         <parameter name="rejected">The door is locked.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="19" y="85" ref="house_57">
@@ -1262,22 +1270,27 @@ Please leave my mail at my neighbour's house.
 
     <portal x="62" y="86" ref="storage_outside_1">
       <destination zone="int_ados_storage" ref="storage_inside_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="63" y="86" ref="storage_outside_2">
       <destination zone="int_ados_storage" ref="storage_inside_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="64" y="86" ref="storage_outside_3">
       <destination zone="int_ados_storage" ref="storage_inside_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="65" y="86" ref="storage_outside_4">
       <destination zone="int_ados_storage" ref="storage_inside_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="66" y="86" ref="storage_outside_5">
       <destination zone="int_ados_storage" ref="storage_inside_right"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="74" y="14">
@@ -1388,6 +1401,7 @@ Please leave my mail at my neighbour's house.
 
     <portal x="22" y="17" ref="0">
       <destination zone="0_ados_city_n" ref="6" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="3" y="11">
@@ -1569,6 +1583,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <!-- Portals -->
     <portal x="15" y="30" ref="0">
       <destination zone="0_ados_city_n" ref="11" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="28" ref="downstairs">
@@ -1616,6 +1631,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <!-- Portals -->
     <portal x="26" y="14" ref="0">
       <destination zone="0_ados_city_n" ref="10" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1700,10 +1716,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="8" y="30" ref="entrance_left">
       <destination zone="0_ados_city" ref="library_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="30" ref="entrance_right">
       <destination zone="0_ados_city" ref="library_entrance_right"/>
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -1716,10 +1734,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="12" y="17" ref="entrance_left">
       <destination zone="0_ados_city_n" ref="tavern_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="27" y="17" ref="entrance_right">
       <destination zone="0_ados_city_n" ref="tavern_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1732,10 +1752,12 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="key">small key</parameter>
         <parameter name="rejected">Zara would be angry if you forgot the key inside her house.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="2" ref="up_zaras_house">
       <destination zone="int_ados_zaras_house_1" ref="down_zaras_house" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1744,6 +1766,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="11" y="4" ref="down_zaras_house">
       <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="3" y="3">
@@ -1778,6 +1801,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="4" y="14" ref="entrance_goldsmith">
       <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1810,6 +1834,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="10" y="14" ref="entrance">
    	  <destination zone="0_ados_city_n2" ref="carolines_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1822,6 +1847,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="12" y="23" ref="entrance">
       <destination zone="0_ados_wall" ref="felina_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2080,10 +2106,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="24" y="58" ref="entrance_left">
       <destination zone="0_ados_wall" ref="barracks_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="25" y="58" ref="entrance_right">
       <destination zone="0_ados_wall" ref="barracks_entrance_center" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="2" y="46" ref="down">
@@ -2119,10 +2147,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="14" y="30" ref="storage_inside_left">
       <destination zone="0_ados_city_n" ref="storage_outside_1"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="30" ref="storage_inside_right">
       <destination zone="0_ados_city_n" ref="storage_outside_5" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2133,10 +2163,12 @@ You should never dive with a cold or severe allergy because, you may not be able
 
     <portal x="6" y="18" ref="sewing_entrance_left">
       <destination zone="0_ados_city" ref="sewing_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="18" ref="sewing_entrance_right">
       <destination zone="0_ados_city" ref="sewing_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -2184,6 +2216,7 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="quest">mithril_cloak</parameter>
         <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="18" ref="twilight_door_right">
@@ -2192,6 +2225,7 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="quest">mithril_cloak</parameter>
         <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2205,6 +2239,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="15" y="30" ref="bar_entrance">
       <destination zone="0_ados_city" ref="bar" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="2" ref="upstair_left">
@@ -2249,6 +2284,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="22" y="17" ref="entrance">
       <destination zone="0_ados_city" ref="town_hall_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="4" y="4" ref="upstairs">
@@ -2658,6 +2694,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_fishermans_hut_west">
       <destination zone="0_ados_city" ref="fishermans_hut_west_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2669,6 +2706,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_fishermans_hut_north">
       <destination zone="0_ados_city" ref="fishermans_hut_north_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2731,6 +2769,7 @@ My fee:
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_meat_market">
       <destination zone="0_ados_city" ref="meat_market_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -3237,6 +3276,7 @@ My fee:
     <!-- Portals -->
     <portal x="7" y="14" ref="entrance">
       <destination zone="0_ados_city" ref="ross_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -4490,14 +4530,17 @@ Southeast: Docks
 
     <portal x="101" y="22" ref="felina_entrance">
       <destination zone="int_ados_felinas_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="100" y="52" ref="barracks_entrance_left">
       <destination zone="int_ados_barracks_0" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="101" y="52" ref="barracks_entrance_center">
       <destination zone="int_ados_barracks_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="101" y="52">
@@ -4510,6 +4553,7 @@ Southeast: Docks
 
     <portal x="102" y="52" ref="barracks_entrance_right">
       <destination zone="int_ados_barracks_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="71" y="92">
@@ -4755,38 +4799,47 @@ Southeast: Docks
 
     <portal x="43" y="21" ref="library_entrance_left">
       <destination zone="int_ados_library" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="51" y="21" ref="library_entrance_right">
       <destination zone="int_ados_library" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="39" y="57" ref="sewing_entrance">
       <destination zone="int_ados_sewing_room" ref="sewing_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="50" y="39" ref="bar">
       <destination zone="int_ados_bar" ref="bar_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="67" y="65" ref="fishermans_hut_west_entrance">
       <destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="75" y="61" ref="fishermans_hut_north_entrance">
       <destination zone="int_ados_fishermans_hut_north" ref="entrance_fishermans_hut_north" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="75" y="70" ref="meat_market_entrance">
       <destination zone="int_ados_meat_market" ref="entrance_meat_market" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="34" y="110" ref="ross_house_entrance">
       <destination zone="int_ados_ross_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="42" y="93" ref="town_hall_entrance">
       <destination zone="int_ados_town_hall" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="40" ref="castle_left_entrance">
@@ -4987,6 +5040,7 @@ Southeast: Docks
 
     <portal x="53" y="25" ref="church_entrance">
       <destination zone="int_ados_church_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Houses not ready for sale
@@ -5049,6 +5103,7 @@ Southeast: Docks
 
     <portal x="107" y="98" ref="fishermans_hut_south_entrance">
       <destination zone="int_ados_fishermans_hut_south" ref="entrance_fishermans_hut_south" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -5077,14 +5132,17 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="19" y="19" ref="entrance_left">
       <destination zone="0_ados_city_s" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="20" y="19" ref="entrance_centre">
       <destination zone="0_ados_city_s" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="19" ref="entrance_right">
       <destination zone="0_ados_city_s" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="2" y="2" ref="upstairs">
@@ -5236,6 +5294,7 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_fishermans_hut_south">
       <destination zone="0_ados_city_s" ref="fishermans_hut_south_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
