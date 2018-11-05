@@ -4753,11 +4753,13 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="81" y="29" ref="broken_bars_1">
       <destination zone="0_ados_swamp" ref="broken_bars_2" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="81" y="30" ref="broken_bars_2">
       <destination zone="0_ados_swamp" ref="broken_bars_1" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
