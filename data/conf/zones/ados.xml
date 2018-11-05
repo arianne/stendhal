@@ -3246,6 +3246,7 @@ My fee:
     <!-- secret dungeon-->
     <portal x="15" y="3" ref="secret">
       <destination zone="int_ados_castle_dungeons" ref="entrance2"/>
+      <attribute name="resistance">0</attribute>
     </portal>
 
   </zone>
