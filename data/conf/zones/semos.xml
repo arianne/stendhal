@@ -515,6 +515,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
     <portal x="63" y="115" ref="right1">
       <destination zone="0_semos_mountain_n_w2" ref="left1" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="115" ref="left1">
       <destination zone="0_semos_mountain_n_w2" ref="right1" />
@@ -523,9 +524,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="condition">new LevelLessThanCondition(50)</parameter>
         <parameter name="rejected">The gnomes don't want you getting in here.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="116" ref="right2">
       <destination zone="0_semos_mountain_n_w2" ref="left2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="116" ref="left2">
       <destination zone="0_semos_mountain_n_w2" ref="right2" />
@@ -534,9 +537,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="condition">new LevelLessThanCondition(50)</parameter>
         <parameter name="rejected">The gnomes don't want you getting in here.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="117" ref="right3">
       <destination zone="0_semos_mountain_n_w2" ref="left3" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="117" ref="left3">
       <destination zone="0_semos_mountain_n_w2" ref="right3" />
@@ -545,6 +550,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="condition">new LevelLessThanCondition(50)</parameter>
         <parameter name="rejected">The gnomes don't want you getting in here.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <entity x="39" y="23">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
