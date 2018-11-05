@@ -4518,12 +4518,15 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="11" y="22" ref="jail_lock_inside">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="9" ref="jail_lock_inside2">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="13" ref="jail_lock_outside2">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_inside2" />
@@ -4532,6 +4535,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="36" y="18" ref="jail_lock_outside3">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_inside3" />
@@ -4540,6 +4544,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="36" y="22" ref="jail_lock_inside3">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside3" />
@@ -4548,6 +4553,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="44" y="9" ref="jail_lock_inside4">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside4" />
@@ -4556,6 +4562,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="44" y="13" ref="jail_lock_outside4">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_inside4" />
@@ -4564,6 +4571,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
