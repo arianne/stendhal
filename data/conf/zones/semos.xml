@@ -3751,16 +3751,19 @@ Southwest: Or'ril Castle and Fado City
   <zone name="int_wofol_house1" file="interiors/wofol/house1.tmx">
     <portal x="5" y="8" ref="entrance">
       <destination zone="-1_semos_mine_n_w2" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house2" file="interiors/wofol/house2.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_n_w2" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house3" file="interiors/wofol/house3.tmx">
     <portal x="6" y="13" ref="entrance">
       <destination zone="-1_semos_mine_n_w2" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3768,12 +3771,15 @@ Southwest: Or'ril Castle and Fado City
     file="Level -1/semos/mine_n_w2.tmx">
     <portal x="121" y="17" ref="house1_entrance">
       <destination zone="int_wofol_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="103" y="46" ref="house2_entrance">
       <destination zone="int_wofol_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="115" y="46" ref="house3_entrance">
       <destination zone="int_wofol_house3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3782,6 +3788,7 @@ Southwest: Or'ril Castle and Fado City
 
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
 
@@ -3814,11 +3821,13 @@ Southwest: Or'ril Castle and Fado City
     <configurator class-name="games.stendhal.server.maps.wofol.house5.GhostNPC" />
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house7" file="interiors/wofol/house7.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house7_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_blacksmith" file="interiors/wofol/blacksmith.tmx">
@@ -3826,35 +3835,42 @@ Southwest: Or'ril Castle and Fado City
       class-name="games.stendhal.server.maps.wofol.blacksmith.BlacksmithNPC" />
     <portal x="5" y="11" ref="entrance_left">
       <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="11" ref="entrance_right">
       <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house8" file="interiors/wofol/house8.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house8_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house9" file="interiors/wofol/house9.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house9_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house6" file="interiors/wofol/house6.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house6_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house10" file="interiors/wofol/house10.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house10_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
   <zone name="int_wofol_library_0" file="interiors/wofol/library_0.tmx">
     <portal x="4" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="library_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="21" y="3" ref="upstairs">
       <destination zone="int_wofol_library_1" ref="downstairs" />
@@ -3881,6 +3897,7 @@ Southwest: Or'ril Castle and Fado City
       class-name="games.stendhal.server.maps.wofol.bar.KoboldBarmaidNPC" />
     <portal x="3" y="8" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="bar_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3888,30 +3905,37 @@ Southwest: Or'ril Castle and Fado City
     <configurator class-name="games.stendhal.server.maps.wofol.bakery.BakerNPC" />
     <portal x="5" y="14" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_townhall" file="interiors/wofol/townhall.tmx">
     <portal x="5" y="31" ref="entrance_left">
       <destination zone="-1_semos_mine_nw" ref="townhall_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="45" y="31" ref="entrance_centre">
       <destination zone="-1_semos_mine_nw" ref="townhall_entrance_centre" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="56" y="31" ref="entrance_right">
       <destination zone="-1_semos_mine_nw" ref="townhall_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_warehouse" file="interiors/wofol/warehouse.tmx">
     <portal x="3" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="warehouse_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_weaponshop" file="interiors/wofol/weaponshop.tmx">
     <portal x="5" y="10" ref="entrance_left">
       <destination zone="-1_semos_mine_nw" ref="weaponshop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="6" y="10" ref="entrance_right">
       <destination zone="-1_semos_mine_nw" ref="weaponshop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3919,54 +3943,71 @@ Southwest: Or'ril Castle and Fado City
     file="Level -1/semos/mine_nw.tmx">
     <portal x="6" y="23" ref="house4_entrance">
       <destination zone="int_wofol_house4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="24" y="23" ref="house9_entrance">
       <destination zone="int_wofol_house9" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="40" y="25" ref="house7_entrance">
       <destination zone="int_wofol_house7" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="5" y="65" ref="bar_entrance">
       <destination zone="int_wofol_bar" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="17" y="65" ref="blacksmith_entrance_left">
       <destination zone="int_wofol_blacksmith" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="28" y="65" ref="blacksmith_entrance_right">
       <destination zone="int_wofol_blacksmith" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="45" y="65" ref="house8_entrance">
       <destination zone="int_wofol_house8" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="58" y="65" ref="house5_entrance">
       <destination zone="int_wofol_house5" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="86" ref="house6_entrance">
       <destination zone="int_wofol_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="4" y="76" ref="bakery_entrance">
       <destination zone="int_wofol_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="59" y="79" ref="library_entrance">
       <destination zone="int_wofol_library_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="30" y="94" ref="house10_entrance">
       <destination zone="int_wofol_house10" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="56" y="99" ref="townhall_entrance_left">
       <destination zone="int_wofol_townhall" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="65" y="99" ref="townhall_entrance_centre">
       <destination zone="int_wofol_townhall" ref="entrance_centre" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="70" y="99" ref="townhall_entrance_right">
       <destination zone="int_wofol_townhall" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="61" y="46" ref="warehouse_entrance">
       <destination zone="int_wofol_warehouse" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="15" y="109" ref="weaponshop_entrance">
       <destination zone="int_wofol_weaponshop" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Spikes -->
