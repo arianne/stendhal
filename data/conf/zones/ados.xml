@@ -5426,6 +5426,7 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="25" y="28" ref="dragonlairinside">
       <destination zone="-1_ados_outside_w" ref="dragonlairoutside" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="28" ref="dragonlairoutside">
@@ -5435,6 +5436,7 @@ Southeast: Docks
         <parameter name="action">new MultipleActions([new SetQuestAction("dragon_lair", "done;"), new SetQuestToTimeStampAction("dragon_lair", 1)])</parameter>
         <parameter name="rejected">Wishman has locked the door to prevent casualties.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
