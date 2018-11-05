@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.awt.Point;
 import java.util.List;
 
@@ -28,6 +30,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
+import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -77,6 +80,7 @@ public class Portal extends Entity implements UseListener {
 					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
 					portal.addAttribute(ATTR_FACE, Type.STRING);
 					portal.addAttribute(ATTR_OFFSET, Type.INT);
+					portal.addAttribute(MOVE_CONTINUOUS, Type.FLAG, Definition.VOLATILE);
 				}
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -299,16 +303,6 @@ public class Portal extends Entity implements UseListener {
 		}
 
 		if (player.teleport(destZone, destX, destY, null, null)) {
-			/* Allow player to continue movement after teleport via portal
-			 * without the need to release and press direction again.
-			 *
-			 * FIXME: Cannot predict which side of portal player will end up.
-			 */
-			//if (!player.has(MOVE_CONTINUOUS)) {
-			//	player.stop();
-			//}
-			player.forceStop();
-
 			dest.onUsedBackwards(player, hadPath);
 		}
 
@@ -339,10 +333,11 @@ public class Portal extends Entity implements UseListener {
 		}
 		if (user instanceof Player) {
 			final Player player = (Player) user;
-			/* Because this is destination portal, cannot depend on Player.handlePortal() here
+			/* Destination portals determine if continuous movement can be used after teleport.
+			 * Because this is destination portal, cannot depend on Player.handlePortal() here
 			 * to accurately determine if player had path set.
 			 */
-			if (hadPath) {
+			if (hadPath || !has(MOVE_CONTINUOUS) || !player.has(MOVE_CONTINUOUS)) {
 				player.forceStop();
 			}
 		}
