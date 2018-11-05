@@ -1103,6 +1103,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">60</parameter>
         <parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="75" y="68" ref="palace_entrance_right">
@@ -1112,6 +1113,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">60</parameter>
         <parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="18" y="120">
@@ -1127,18 +1129,22 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_oni_palace_0" file="interiors/fado/palace_0.tmx">
     <portal x="5" y="30" ref="entrance1_left">
       <destination zone="0_fado_forest_e" ref="palace_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="30" ref="entrance1_right">
       <destination zone="0_fado_forest_e" ref="palace_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="25" y="30" ref="entrance2_left">
       <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="26" y="30" ref="entrance2_right">
       <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="5" y="4" ref="upstairs_left_1">
