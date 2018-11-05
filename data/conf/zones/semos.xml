@@ -1811,6 +1811,7 @@ Mature sheep wanted: please speak to Sato.
 
     <portal x="42" y="37" ref="tavern_entrance">
       <destination zone="int_semos_tavern_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!--for the admin house -->
@@ -1821,22 +1822,27 @@ Mature sheep wanted: please speak to Sato.
 
     <portal x="53" y="37" ref="temple_entrance">
       <destination zone="int_semos_temple" ref="entrance_center_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="41" ref="blacksmith_entrance">
       <destination zone="int_semos_blacksmith" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="22" ref="library_entrance_left">
       <destination zone="int_semos_library" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="22" ref="library_entrance_right">
       <destination zone="int_semos_library" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="52" y="19" ref="storage_entrance">
       <destination zone="int_semos_storage_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="18" y="21">
@@ -1848,22 +1854,27 @@ Mature sheep wanted: please speak to Sato.
 
     <portal x="18" y="22" ref="bank_entrance">
       <destination zone="int_semos_bank" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="29" y="13" ref="townhall_entrance_left">
       <destination zone="int_semos_townhall" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="30" y="13" ref="townhall_entrance">
       <destination zone="int_semos_townhall" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="31" y="13" ref="townhall_entrance_right">
       <destination zone="int_semos_townhall" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="44" y="19" ref="bakery_entrance">
       <destination zone="int_semos_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="42" y="37">
@@ -2189,6 +2200,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <portal x="22" y="17" ref="entrance">
       <destination zone="0_semos_city" ref="tavern_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="4" y="4" ref="upstairs">
@@ -2371,18 +2383,22 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <portal x="10" y="23" ref="entrance_left">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="23" ref="entrance_center_left">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="23" ref="entrance_center_right">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="23" ref="entrance_right">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="10" ref="restart_life">
@@ -2398,6 +2414,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC" />
     <portal x="15" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="blacksmith_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="1" y="1">
@@ -2541,10 +2558,12 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <portal x="8" y="30" ref="entrance_left">
       <destination zone="0_semos_city" ref="library_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="30" ref="entrance_right">
       <destination zone="0_semos_city" ref="library_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="25" y="18">
@@ -2641,6 +2660,7 @@ Holy mackerel! These chips are tasty.
 
     <portal x="9" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="storage_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="2" ref="downstairs">
@@ -2672,11 +2692,14 @@ Holy mackerel! These chips are tasty.
 
     <portal x="9" y="30" ref="entrance">
       <destination zone="0_semos_city" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="10" y="30" ref="entrance_right">
       <destination zone="0_semos_city" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
+
     <!-- for the admin house -->
     <portal x="24" y="8" ref="house_exit_3">
       <implementation
@@ -3032,14 +3055,17 @@ Holy mackerel! These chips are tasty.
 
     <portal x="14" y="46" ref="entrance_left">
       <destination zone="0_semos_city" ref="townhall_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="46" ref="entrance">
       <destination zone="0_semos_city" ref="townhall_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="46" ref="entrance_right">
       <destination zone="0_semos_city" ref="townhall_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -3051,6 +3077,7 @@ Holy mackerel! These chips are tasty.
     <configurator class-name="games.stendhal.server.maps.semos.bakery.ItemsOnTable" />
     <portal x="26" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="29" y="7">
