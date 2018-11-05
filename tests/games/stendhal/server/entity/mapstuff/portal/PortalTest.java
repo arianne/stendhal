@@ -206,7 +206,7 @@ public class PortalTest {
 	public final void testOnUsedBackwards() {
 		final Portal port = new Portal();
 		final Player player = PlayerTestHelper.createPlayer("player");
-		port.onUsedBackwards(player);
+		port.onUsedBackwards(player, player.hasPath());
 	}
 
 }
