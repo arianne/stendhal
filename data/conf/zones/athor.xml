@@ -238,18 +238,22 @@
 
     <portal x="123" y="15" ref="labyrinth_hut_entrance">
       <destination zone="int_athor_labyrinth_entrance" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="50" ref="cocktail_bar_entrance">
       <destination zone="int_athor_cocktail_bar" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="87" y="40" ref="dressing_room_m_entrance">
       <destination zone="int_athor_dressing_room_m" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="82" y="40" ref="dressing_room_f_entrance">
       <destination zone="int_athor_dressing_room_f" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="117" y="95" ref="quicksand_1">
@@ -1047,6 +1051,7 @@
     <!-- Portals -->
     <portal x="6" y="14" ref="out">
       <destination zone="0_athor_island" ref="dressing_room_m_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1065,6 +1070,7 @@
     <!-- Portals -->
     <portal x="9" y="14" ref="out">
       <destination zone="0_athor_island" ref="dressing_room_f_entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1076,6 +1082,7 @@
     <!-- Portals -->
     <portal x="9" y="17" ref="entrance">
       <destination zone="0_athor_island" ref="cocktail_bar_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1084,6 +1091,7 @@
     <!-- Portals -->
     <portal x="8" y="14" ref="out">
       <destination zone="0_athor_island" ref="labyrinth_hut_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1262,6 +1270,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
       <destination zone="0_athor_island" ref="pool" />
     </portal>
 
+    <!-- FIXME: LockedDoor doesn't require "move.continuous" attribute -->
     <portal x="124" y="118" ref="labyrinth_locked_door">
       <destination zone="-1_athor_island_e" ref="labyrinth2" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
@@ -1277,12 +1286,15 @@ You get your stake back when there is a draw. If you win, you get the double of 
     <configurator class-name="games.stendhal.server.maps.athor.labyrinth.MinotaurKingCreature" />
 
     <!-- Portals -->
+    <!-- FIXME: this portal does not appear to be necessary -->
     <portal x="1" y="118" ref="labyrinth1">
       <destination zone="-1_athor_island" ref="labyrinth_locked_door" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="1" y="119" ref="labyrinth2">
       <destination zone="-1_athor_island" ref="labyrinth_locked_door" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1424,7 +1436,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
 
    <!-- Portals -->
    <portal x="31" y="40" ref="surfaceSpot">
-   <destination zone="0_athor_ship_w2" ref="divingSpot"/>
+     <destination zone="0_athor_ship_w2" ref="divingSpot"/>
    </portal>
 
        <!-- whirpool -->
