@@ -632,6 +632,7 @@ West: Semos
 
     <portal x="75" y="50" ref="magician_house_entrance">
       <destination zone="int_ados_magician_house" ref="entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="56" y="95">
@@ -650,6 +651,7 @@ West: Semos
 
     <portal x="12" y="13" ref="entrance">
       <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="9" y="6">
