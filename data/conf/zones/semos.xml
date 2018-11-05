@@ -253,6 +253,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="80" y="108" ref="frank_house">
       <destination zone="int_semos_frank_house" ref="exit" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -378,6 +379,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="7" y="30" ref="exit">
       <destination zone="0_semos_mountain_n2" ref="frank_house" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
