@@ -1609,6 +1609,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="key">sedah gate key</parameter>
         <parameter name="rejected">The gate is locked</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="116" y="73" ref="in2">
@@ -1617,6 +1618,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="key">sedah gate key</parameter>
         <parameter name="rejected">The gate is locked</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="117" y="73" ref="in3">
@@ -1625,52 +1627,64 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="key">sedah gate key</parameter>
         <parameter name="rejected">The gate is locked</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="115" y="72" ref="out">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="115" y="74" ref="out1">
       <destination zone="-1_fado_great_cave_w2" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="116" y="74" ref="out2">
       <destination zone="-1_fado_great_cave_w2" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="117" y="74" ref="out3">
       <destination zone="-1_fado_great_cave_w2" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="116" y="76" ref="in">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="69" y="92" ref="house1_entrance">
       <destination zone="int_sedah_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="39" y="94" ref="house0_entrance">
       <destination zone="int_sedah_house0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="99" y="103" ref="house2_entrance">
       <destination zone="int_sedah_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="91" y="115" ref="mausoleum_entrance">
       <destination zone="int_sedah_mausoleum" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="121" y="105" ref="house3_entrance">
       <destination zone="int_sedah_barracks_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="108" ref="house4_entrance">
       <destination zone="int_sedah_house4_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1678,10 +1692,12 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house0" file="interiors/sedah/house0.tmx">
     <portal x="19" y="30" ref="entrance_left">
       <destination zone="-1_fado_great_cave_w2" ref="house0_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="20" y="30" ref="entrance_right">
       <destination zone="-1_fado_great_cave_w2" ref="house0_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1689,6 +1705,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house1" file="interiors/sedah/house1.tmx">
     <portal x="6" y="13" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1696,6 +1713,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house2" file="interiors/sedah/house2.tmx">
     <portal x="6" y="13" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1703,6 +1721,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house4_0" file="interiors/sedah/house4.tmx">
     <portal x="15" y="28" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="13" ref="up">
@@ -1722,6 +1741,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_mausoleum" file="interiors/sedah/mausoleum.tmx">
     <portal x="6" y="14" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="mausoleum_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1729,6 +1749,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_barracks_0" file="interiors/sedah/house3.tmx">
     <portal x="16" y="28" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="4" y="4" ref="up">
@@ -1769,14 +1790,17 @@ it back as you got it!
   <zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
     <portal x="52" y="96" ref="shop_in">
       <destination zone="int_sedah_storage" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="37" y="116" ref="house5_in">
       <destination zone="int_sedah_house5" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="92" y="102" ref="house6_in">
       <destination zone="int_sedah_house6" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1787,6 +1811,7 @@ it back as you got it!
 
     <portal x="17" y="28" ref="out">
       <destination zone="-1_fado_great_cave_w" ref="shop_in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1794,6 +1819,7 @@ it back as you got it!
   <zone name="int_sedah_house5" file="interiors/sedah/house5.tmx">
     <portal x="6" y="13" ref="out">
       <destination zone="-1_fado_great_cave_w" ref="house5_in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1801,6 +1827,7 @@ it back as you got it!
   <zone name="int_sedah_house6" file="interiors/sedah/house6.tmx">
     <portal x="6" y="13" ref="out">
       <destination zone="-1_fado_great_cave_w" ref="house6_in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
