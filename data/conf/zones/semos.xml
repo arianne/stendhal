@@ -4248,9 +4248,11 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="minimum-level">150</parameter>
         <parameter name="rejected">Aenihata's barrier is strong. The balrog would kill you instantly, run away!</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="42" y="44" ref="exit_balrog" replacing="true">
       <destination zone="-2_semos_mine_w2" ref="to_balrog" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
