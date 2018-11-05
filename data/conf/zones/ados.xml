@@ -5230,6 +5230,7 @@ Southeast: Docks
 
     <portal x="92" y="90" ref="pit_escape_down">
       <destination zone="-2_ados_snake_pit" ref="pit_escape_up" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="53" y="59" ref="jump_down_l">
@@ -5242,10 +5243,12 @@ Southeast: Docks
 
     <portal x="53" y="61" ref="land_l">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="54" y="61" ref="land_r">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -5475,6 +5478,7 @@ East Tunnel: Uncharted</attribute>
 
     <portal x="59" y="3" ref="pit_escape_up">
       <destination zone="-1_ados_caves_e" ref="pit_escape_down" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="0" y="0">
