@@ -3200,6 +3200,7 @@ Holy mackerel! These chips are tasty.
 
     <portal x="108" y="47" ref="pad_entrance">
       <destination zone="int_semos_swanky_pad" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="27" y="50">
@@ -3286,6 +3287,7 @@ East: Ados city
     <configurator class-name="games.stendhal.server.maps.semos.pad.DealerNPC" />
     <portal x="7" y="18" ref="entrance">
       <destination zone="0_semos_road_e" ref="pad_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
