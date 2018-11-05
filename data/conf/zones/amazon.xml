@@ -44,6 +44,7 @@
     <!-- Portals -->
     <portal x="10" y="18" ref="out">
       <destination zone="0_amazon_island_ne" ref="in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -55,6 +56,7 @@
     <!-- Portals -->
     <portal x="7" y="14" ref="out">
       <destination zone="0_amazon_island_sw" ref="in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -115,6 +117,7 @@
     <!-- Portals -->
     <portal x="48" y="98" ref="in">
       <destination zone="int_amazon_princess_hut" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="60" y="105">
@@ -141,6 +144,7 @@
     <!-- Portals -->
     <portal x="64" y="26" ref="in">
       <destination zone="int_amazon_prison_hut" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
