@@ -775,6 +775,7 @@ areas.
 
     <portal x="67" y="24" ref="0">
       <destination zone="-1_ados_outside_nw" ref="0"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="67" y="24">
@@ -804,6 +805,7 @@ West: Semos
 
     <portal x="59" y="38" ref="sanctuary">
       <destination zone="int_ados_pet_sanctuary" ref="in"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -817,14 +819,17 @@ West: Semos
         <parameter name="key">pet sanctuary key</parameter>
         <parameter name="rejected">Restricted access: animal keepers and vets only.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="9" ref="door_left">
       <destination zone="int_ados_pet_sanctuary" ref="door_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="22" y="30" ref="in">
       <destination zone="0_ados_outside_nw" ref="sanctuary"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -5255,6 +5260,7 @@ Southeast: Docks
   <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="Level -1/ados/outside_nw.tmx">
     <portal x="4" y="23" ref="0">
       <destination zone="0_ados_outside_nw" ref="0" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
