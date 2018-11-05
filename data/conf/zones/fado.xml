@@ -93,14 +93,17 @@
     <!-- Portals -->
     <portal x="36" y="17" ref="tavern_entrance_left">
       <destination zone="int_fado_tavern" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="48" y="17" ref="tavern_entrance_right">
       <destination zone="int_fado_tavern" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="46" y="38" ref="bank_entrance">
       <destination zone="int_fado_bank" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="46" y="38">
@@ -112,34 +115,42 @@
 
     <portal x="56" y="38" ref="bakery_entrance">
       <destination zone="int_fado_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="14" y="60" ref="hotel_entrance">
       <destination zone="int_fado_hotel_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="55" y="50" ref="church_entrance">
       <destination zone="int_fado_church" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="71" y="99" ref="shepherd_house_entrance">
       <destination zone="int_fado_shepherd_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="82" y="44" ref="battle_arena_entrance">
       <destination zone="int_fado_battle_arena" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="24" y="16" ref="house_entrance">
       <destination zone="int_fado_house" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="14" y="11" ref="weaponshop_entrance">
       <destination zone="int_fado_weaponshop" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="35" y="57" ref="hut_entrance">
       <destination zone="int_fado_hut" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="16" y="10">
@@ -323,6 +334,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
     <!-- Portals -->
     <portal x="12" y="18" ref="entrance">
       <destination zone="0_fado_city" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="2" y="8">
@@ -379,6 +391,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
     <!-- Portals -->
     <portal x="26" y="14" ref="entrance">
       <destination zone="0_fado_city" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -391,10 +404,12 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
 
     <portal x="16" y="30" ref="entrance_left">
       <destination zone="0_fado_city" ref="tavern_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="41" y="30" ref="entrance_right">
       <destination zone="0_fado_city" ref="tavern_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- round table upper left -->
@@ -467,10 +482,12 @@ collard (special exotic type of cabbage - hard to find. often grows indoors)
     <!-- Portals -->
     <portal x="6" y="10" ref="entrance_left">
       <destination zone="0_fado_city" ref="house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="10" ref="entrance_right">
       <destination zone="0_fado_city" ref="house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -521,6 +538,7 @@ bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
 
     <portal x="5" y="16" ref="entrance">
       <destination zone="0_fado_city" ref="weaponshop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="15" y="13">
@@ -561,6 +579,7 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="3" y="10" ref="entrance">
       <destination zone="0_fado_city" ref="hut_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -573,18 +592,22 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="10" y="23" ref="entrance_left2">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="23" ref="entrance_left">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="23" ref="entrance_right">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="23" ref="entrance_right2">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -593,6 +616,7 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="10" y="30" ref="entrance">
       <destination zone="0_fado_city" ref="shepherd_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="15" y="20">
@@ -615,10 +639,12 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="11" y="13" ref="entrance_left">
       <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="13" ref="entrance_right">
       <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -661,6 +687,7 @@ If the bride is called Helen, you should say 'marry Helen'
     <!-- Portals -->
     <portal x="8" y="63" ref="entrance">
       <destination zone="0_fado_city" ref="hotel_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="41" y="50" ref="dressing_rooms_entrance">
@@ -670,6 +697,7 @@ If the bride is called Helen, you should say 'marry Helen'
         <parameter name="quest">marriage</parameter>
         <parameter name="rejected">The dressing rooms are only for a bride and groom to get dressed in.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -977,10 +1005,12 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
     <portal x="30" y="62" ref="entrance_left">
       <destination zone="0_fado_city" ref="battle_arena_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="31" y="62" ref="entrance_right">
       <destination zone="0_fado_city" ref="battle_arena_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="54" y="3" ref="basement_entrance">
@@ -1003,6 +1033,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">150</parameter>
         <parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -1012,16 +1043,19 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">150</parameter>
         <parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="30" y="6" ref="stairs1up">
       <destination zone="int_fado_battle_pit" ref="stairs1down" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="6" ref="stairs2up">
       <destination zone="int_fado_battle_pit" ref="stairs2down" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
