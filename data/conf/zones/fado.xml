@@ -1082,12 +1082,14 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="60" y="80" ref="woodcutter_entrance">
       <destination zone="int_fado_woodcutter_lodge" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
   <zone name="int_fado_woodcutter_lodge" file="interiors/fado/woodcutter_lodge.tmx">
     <portal x="7" y="18" ref="entrance">
       <destination zone="0_fado_forest" ref="woodcutter_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -1265,6 +1267,7 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="53" y="26" ref="imorgens_house_entrance">
       <destination zone="int_imorgens_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1308,6 +1311,7 @@ For example say:  11  if you want the room called Water of Love.
     <!-- Portals -->
     <portal x="4" y="14" ref="entrance">
       <destination zone="0_fado_forest_s" ref="imorgens_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1347,10 +1351,12 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="26" y="42" ref="hut1_entrance">
       <destination zone="int_fado_elf_hut_1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="25" y="30" ref="hut2_entrance">
       <destination zone="int_fado_elf_hut_2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="84" y="59">
@@ -1363,10 +1369,12 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="97" y="85" ref="hut3_entrance">
       <destination zone="int_fado_elf_hut_3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="10" y="43" ref="hut4_entrance">
       <destination zone="int_fado_elf_hut_4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1382,6 +1390,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_fado_elf_hut_1" file="interiors/fado/elf_hut_1.tmx">
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1390,6 +1399,7 @@ For example say:  11  if you want the room called Water of Love.
     <configurator class-name="games.stendhal.server.maps.fado.forest.CraftsmanNPC" />
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1397,6 +1407,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_fado_elf_hut_3" file="interiors/fado/elf_hut_3.tmx">
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1405,6 +1416,7 @@ For example say:  11  if you want the room called Water of Love.
     <configurator class-name="games.stendhal.server.maps.fado.hut.BlueCrystalNPC" />
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
