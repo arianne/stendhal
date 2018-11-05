@@ -4127,6 +4127,7 @@ My fee:
 
     <portal x="21" y="100" ref="farm">
       <destination zone="int_ados_farm_house" ref="in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -4160,6 +4161,7 @@ My fee:
     <!-- Portals -->
     <portal x="22" y="23" ref="in">
       <destination zone="0_ados_forest_w2" ref="farm" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="22" y="14" ref="up">
