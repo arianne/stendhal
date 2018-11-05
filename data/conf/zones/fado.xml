@@ -1430,10 +1430,12 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="112" y="17" ref="school_entrance_left">
       <destination zone="int_magic_school_0" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="113" y="17" ref="school_entrance_right">
       <destination zone="int_magic_school_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="117" y="122">
@@ -1450,6 +1452,7 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="102" y="50" ref="house1_entrance">
       <destination zone="int_magic_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1543,26 +1546,32 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="85" y="112" ref="house2_entrance">
       <destination zone="int_magic_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="27" y="72" ref="shrine_entrance_left">
       <destination zone="int_magic_shrine" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="72" ref="shrine_entrance_right">
       <destination zone="int_magic_shrine" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="74" y="102" ref="house4_entrance">
       <destination zone="int_magic_house4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="47" y="61" ref="lounge_entrance">
       <destination zone="int_magic_lounge" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="37" ref="bank_entrance">
       <destination zone="int_magic_bank" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="48" y="112">
@@ -1793,6 +1802,7 @@ it back as you got it!
   <zone name="-1_fado_great_cave_e2" level="-1" x="500128" y="500640" file="Level -1/fado/great_cave_e2.tmx">
     <portal x="121" y="78" ref="house5_entrance">
       <destination zone="int_magic_house5" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1812,39 +1822,48 @@ it back as you got it!
 
     <portal x="12" y="108" ref="theater_entrance_left">
       <destination zone="int_magic_theater" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="108" ref="theater_entrance_right">
       <destination zone="int_magic_theater" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="77" y="50" ref="house3_entrance">
       <destination zone="int_magic_house3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="80" y="10" ref="house6_entrance_left">
       <destination zone="int_magic_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="81" y="10" ref="house6_entrance_right">
       <destination zone="int_magic_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="91" y="93" ref="bricabrac_entrance_left">
       <destination zone="int_magic_bric_a_brac" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="92" y="93" ref="bricabrac_entrance_right">
       <destination zone="int_magic_bric_a_brac" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="113" y="40" ref="clothing_entrance" condition="!stendhal.minetown">
       <destination zone="int_magic_clothing_boutique" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Need to create a target destination so players aren't trapped inside clothing boutique -->
     <portal x="113" y="41" ref="clothing_entrance" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="113" y="40" condition="stendhal.minetown">
@@ -1855,6 +1874,7 @@ it back as you got it!
 
     <portal x="91" y="111" ref="flower_entrance">
       <destination zone="int_magic_flower_shop" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="54" y="48">
@@ -1912,14 +1932,17 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="30" y="1" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="31" y="1" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="32" y="1" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1933,10 +1956,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="11" y="23" ref="entrance_left">
       <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="23" ref="entrance_right">
       <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1944,6 +1969,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <zone name="int_magic_lounge" file="interiors/magic/lounge.tmx">
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="lounge_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1968,6 +1994,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
     <!-- Portals -->
     <portal x="18" y="23" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Tables -->
@@ -1990,10 +2017,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <zone name="int_magic_flower_shop" file="interiors/magic/flower_shop.tmx">
     <portal x="16" y="23" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e3" ref="flower_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="23" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e3" ref="flower_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2013,6 +2042,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2022,6 +2052,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2042,6 +2073,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2049,6 +2081,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <zone name="int_magic_house4" file="interiors/magic/house4.tmx">
     <portal x="15" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2069,10 +2102,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="9" y="18" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="10" y="18" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2106,6 +2141,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="12" y="23" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2114,10 +2150,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
     <configurator class-name="games.stendhal.server.maps.magic.school.TeacherNPC" />
     <portal x="19" y="28" ref="entrance_left">
       <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="20" y="28" ref="entrance_right">
       <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="18" y="3" ref="downstairs">
@@ -2152,10 +2190,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="14" y="13" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="13" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="6" y="5">
@@ -2209,6 +2249,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="15" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="2" y="8">
