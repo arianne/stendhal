@@ -172,6 +172,8 @@ class GeneralSettings {
 
 	/**
 	 * Creates a drop-down selector for setting battle karma mode.
+	 *
+	 * TODO: add some tooltips
 	 */
 	private JComponent createCombatKarmaSelector() {
 		int pad = SBoxLayout.COMMON_PADDING;
@@ -195,15 +197,20 @@ class GeneralSettings {
 		selector.setSelectedItem(currentMode);
 
 		selector.addActionListener(new ActionListener() {
+			/**
+			 * Sends action to the server.
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new SetCombatKarmaAction().sendAction(selector.getSelectedItem().toString());
 			}
 		});
 
-		// FIXME: setting not updated in realtime when using slash command
-		WtWindowManager.getInstance().registerSettingChangeListener(COMBAT_KARMA,
+		WtWindowManager.getInstance().registerSettingChangeListener("combat.karma",
 				new SettingChangeListener() {
+			/**
+			 * Updates the GUI when setting is changed via slash command.
+			 */
 			@Override
 			public void changed(final String newValue) {
 				selector.setSelectedItem(newValue);

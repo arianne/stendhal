@@ -21,6 +21,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
 
@@ -34,7 +35,14 @@ public class SetCombatKarmaAction implements SlashAction {
 
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		return sendAction(params[0]);
+		final boolean sent = sendAction(params[0]);
+
+		if (sent) {
+			// update GUI to reflect new setting when used as a slash action
+			WtWindowManager.getInstance().setProperty("combat.karma", params[0]);
+		}
+
+		return sent;
 	}
 
 	/**

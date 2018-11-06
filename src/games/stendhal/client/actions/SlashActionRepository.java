@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import static games.stendhal.common.constants.General.COMBAT_KARMA;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Set;
@@ -124,7 +126,7 @@ public class SlashActionRepository {
 		actions.put("challenge", new CreateChallengeAction());
 		actions.put("accept", new AcceptChallengeAction());
 
-		actions.put("combatkarma", new SetCombatKarmaAction());
+		actions.put(COMBAT_KARMA, new SetCombatKarmaAction());
 	}
 
 	/**
