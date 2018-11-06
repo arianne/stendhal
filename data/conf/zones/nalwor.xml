@@ -114,6 +114,7 @@
         <parameter name="key">assassins id</parameter>
         <parameter name="rejected">You must have an assassins ID before	you can enter.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="57" y="83" ref="hqrightdoorin">
       <destination zone="int_nalwor_assassinhq_0" ref="hqrightdoor" />
@@ -122,6 +123,7 @@
         <parameter name="key">assassins id</parameter>
         <parameter name="rejected">You must have an assassins ID before you can enter.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -529,6 +531,7 @@ below average.
     </entity>
     <portal x="6" y="0" ref="hqcellardown">
       <destination zone="-1_nalwor_caves_e" ref="crawlyhole1" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="24" y="11" ref="hqcellarup">
       <destination zone="int_nalwor_assassinhq_0" ref="hq0down" />
@@ -555,15 +558,18 @@ below average.
     </entity>
     <portal x="24" y="11" ref="hq0up">
       <destination zone="int_nalwor_assassinhq_1" ref="hq1down" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="23" y="11" ref="hq0down">
       <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellarup" />
     </portal>
     <portal x="7" y="20" ref="hqleftdoor">
       <destination zone="0_nalwor_forest_ne" ref="hqleftdoorin" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="24" y="20" ref="hqrightdoor">
       <destination zone="0_nalwor_forest_ne" ref="hqrightdoorin" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -577,6 +583,7 @@ below average.
       ref="hq2down"/> </portal> -->
     <portal x="23" y="11" ref="hq1down">
       <destination zone="int_nalwor_assassinhq_0" ref="hq0up" />
+      <attribute name="move.continuous" />
     </portal>
     <entity x="10" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -1218,6 +1225,7 @@ below average.
       class-name="games.stendhal.server.maps.nalwor.tunnel.DiscipleAssassinCreature" />
     <portal x="61" y="80" ref="crawlyhole1">
       <destination zone="int_nalwor_assassinhq_cellar" ref="hqcellardown" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
