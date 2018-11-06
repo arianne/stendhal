@@ -26,7 +26,7 @@ import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
 
 /**
- * Sets entity's "combat.karma" attribute to determine when karma is used on combat.
+ * Sets entity's combat karma attribute to determine when karma is used on combat.
  */
 public class SetCombatKarmaAction implements SlashAction {
 

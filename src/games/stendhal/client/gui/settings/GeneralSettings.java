@@ -172,8 +172,6 @@ class GeneralSettings {
 
 	/**
 	 * Creates a drop-down selector for setting battle karma mode.
-	 *
-	 * TODO: add some tooltips
 	 */
 	private JComponent createCombatKarmaSelector() {
 		int pad = SBoxLayout.COMMON_PADDING;
@@ -222,6 +220,21 @@ class GeneralSettings {
 
 		karmaHBox.add(selectorLabel);
 		karmaHBox.add(selector);
+
+		// tooltip info
+		final String[][] tooltipData = {
+				{"Never", KARMA_SETTINGS.get(0), "Karma will never be used."},
+				{"Normal (default)", KARMA_SETTINGS.get(1), "Karma is used for stronger enemies."},
+				{"Always", KARMA_SETTINGS.get(2), "Karma is used regardless of how strong or weak enemy is."}
+		};
+
+		final StringBuilder descr = new StringBuilder();
+		descr.append("Karma can be used in combat to give a slight edge. It helps in three ways:");
+		descr.append("<br>1) Increases attack strength.");
+		descr.append("<br>2) Increases defense.");
+		descr.append("<br>3) Increases chances of hitting enemy.");
+		descr.append("<br><br>The following three settings define when karma is used in combat:");
+		karmaHBox.setToolTipText(ConvenienceMapper.createTooltip(descr.toString(), tooltipData));
 
 		karmaBox.add(karmaHBox);
 

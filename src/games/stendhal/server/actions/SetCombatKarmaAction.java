@@ -24,7 +24,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * Sets entity's "combat.karma" attribute to determine when karma is used on combat.
+ * Sets entity's combat karma attribute to determine when karma is used on combat.
  */
 public class SetCombatKarmaAction implements ActionListener {
 
