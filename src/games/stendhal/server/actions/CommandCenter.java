@@ -123,6 +123,7 @@ public class CommandCenter {
 		QuestListAction.register();
 		ReorderAction.register();
 		SentenceAction.register();
+		SetCombatKarmaAction.register();
 		StoreMessageAction.register();
 		StopAction.register();
 		TradeAction.register();

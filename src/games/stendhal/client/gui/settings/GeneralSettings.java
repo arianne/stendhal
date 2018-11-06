@@ -13,6 +13,8 @@ package games.stendhal.client.gui.settings;
 
 import static games.stendhal.client.gui.settings.SettingsProperties.DOUBLE_TAP_AUTOWALK_PROPERTY;
 import static games.stendhal.client.gui.settings.SettingsProperties.MOVE_CONTINUOUS_PROPERTY;
+import static games.stendhal.common.Constants.KARMA_SETTINGS;
+import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -21,10 +23,14 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.actions.MoveContinuousAction;
+import games.stendhal.client.actions.SetCombatKarmaAction;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
@@ -32,6 +38,7 @@ import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.wt.core.SettingChangeListener;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import marauroa.common.game.RPObject;
 
 /**
  * Page for general settings.
@@ -104,6 +111,9 @@ class GeneralSettings {
 		});
 		page.add(moveContinuousToggle);
 
+		// combat karma
+		page.add(createCombatKarmaSelector());
+
 		// Client dimensions
 		JComponent clientSizeBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		TitledBorder titleB = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
@@ -158,5 +168,56 @@ class GeneralSettings {
 	private void resetClientDimensions() {
 		j2DClient clientFrame = j2DClient.get();
 		clientFrame.resetClientDimensions();
+	}
+
+	/**
+	 * Creates a drop-down selector for setting battle karma mode.
+	 */
+	private JComponent createCombatKarmaSelector() {
+		int pad = SBoxLayout.COMMON_PADDING;
+
+		final JLabel selectorLabel = new JLabel("Use karma in combat:");
+
+		final JComboBox<String> selector = new JComboBox<>();
+		for (final String mode : KARMA_SETTINGS) {
+			selector.addItem(mode);
+		}
+
+		final RPObject player = StendhalClient.get().getPlayer();
+
+		// use player attribute if available to set combat karma mode
+		final String currentMode;
+		if (player.has(COMBAT_KARMA) && KARMA_SETTINGS.contains(player.get(COMBAT_KARMA))) {
+			currentMode = player.get(COMBAT_KARMA);
+		} else {
+			currentMode = KARMA_SETTINGS.get(1);
+		}
+		selector.setSelectedItem(currentMode);
+
+		selector.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SetCombatKarmaAction().sendAction(selector.getSelectedItem().toString());
+			}
+		});
+
+		// FIXME: setting not updated in realtime when using slash command
+		WtWindowManager.getInstance().registerSettingChangeListener(COMBAT_KARMA,
+				new SettingChangeListener() {
+			@Override
+			public void changed(final String newValue) {
+				selector.setSelectedItem(newValue);
+			}
+		});
+
+		final JComponent karmaBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		final JComponent karmaHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
+
+		karmaHBox.add(selectorLabel);
+		karmaHBox.add(selector);
+
+		karmaBox.add(karmaHBox);
+
+		return karmaBox;
 	}
 }

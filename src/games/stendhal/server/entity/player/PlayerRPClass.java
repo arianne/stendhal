@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+import static games.stendhal.common.constants.General.COMBAT_KARMA;
 
 import games.stendhal.common.constants.Events;
 import marauroa.common.game.Definition;
@@ -59,6 +60,9 @@ public class PlayerRPClass {
 		/* Player movement. */
 		player.addAttribute(AUTOWALK, Type.FLAG, Definition.VOLATILE);
 		player.addAttribute(MOVE_CONTINUOUS, Type.FLAG, Definition.VOLATILE);
+
+		/* setting for using karma during combat */
+		player.addAttribute(COMBAT_KARMA, Type.STRING, Definition.PRIVATE);
 
 		// Use this for admin menus and usage.
 		player.addAttribute("admin", Type.FLAG);

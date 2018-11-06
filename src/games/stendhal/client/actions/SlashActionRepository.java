@@ -123,6 +123,8 @@ public class SlashActionRepository {
 		// PvP challenge actions
 		actions.put("challenge", new CreateChallengeAction());
 		actions.put("accept", new AcceptChallengeAction());
+
+		actions.put("combatkarma", new SetCombatKarmaAction());
 	}
 
 	/**
