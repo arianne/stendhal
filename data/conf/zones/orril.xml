@@ -326,6 +326,7 @@
 
     <portal x="39" y="5" ref="jynath_house_entrance">
       <destination zone="int_orril_jynath_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="67" y="9">
@@ -346,10 +347,12 @@ Northeast: Semos
 
     <portal x="15" y="30" ref="entrance_left">
       <destination zone="0_orril_river_s" ref="jynath_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="30" ref="entrance">
       <destination zone="0_orril_river_s" ref="jynath_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="8" ref="orb_left">
