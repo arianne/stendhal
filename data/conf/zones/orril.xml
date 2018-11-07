@@ -1100,42 +1100,55 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
       /> -->
     <portal x="146" y="98" ref="house1_entrance">
       <destination zone="int_rat_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="162" y="104" ref="house2_entrance">
       <destination zone="int_rat_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="174" y="104" ref="house3_entrance">
       <destination zone="int_rat_house3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="168" y="91" ref="hostel_entrance">
       <destination zone="int_rat_hostel" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="183" y="86" ref="house4_entrance">
       <destination zone="int_rat_house4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="183" y="90" ref="house4_entrance2">
       <destination zone="int_rat_house4" ref="entrance2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="204" y="104" ref="flower_shop_entrance">
       <destination zone="int_rat_flower_shop" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="170" y="128" ref="library_entrance">
       <destination zone="int_rat_library" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="148" y="117" ref="smith_shop_entrance">
       <destination zone="int_rat_smith_shop" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="217" y="104" ref="house5_entrance">
       <destination zone="int_rat_house5" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="228" y="104" ref="house6_entrance">
       <destination zone="int_rat_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="229" y="93" ref="house7_entrance">
       <destination zone="int_rat_house7" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="200" y="109" ref="bakery_entrance">
       <destination zone="int_rat_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_rat_house1" file="interiors/ratcity/house1.tmx">
@@ -1143,6 +1156,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
       class-name="games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC" />
     <portal x="1" y="17" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="2" y="2" ref="house1_downstairs">
       <destination zone="-4_orril_dungeon" ref="house1_upstairs" />
@@ -1151,6 +1165,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_hostel" file="interiors/ratcity/hostel.tmx">
     <portal x="3" y="14" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="hostel_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="2" y="2" ref="hostel_downstairs">
       <destination zone="-4_orril_dungeon" ref="hostel_upstairs" />
@@ -1159,6 +1174,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_house2" file="interiors/ratcity/house2.tmx">
     <portal x="10" y="10" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="15" y="9" ref="house2_downstairs">
       <destination zone="-4_orril_dungeon" ref="house2_upstairs" />
@@ -1167,6 +1183,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_house3" file="interiors/ratcity/house3.tmx">
     <portal x="13" y="10" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="14" y="2" ref="house3_downstairs">
       <destination zone="-4_orril_dungeon" ref="house3_upstairs" />
@@ -1175,9 +1192,11 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_house4" file="interiors/ratcity/house4.tmx">
     <portal x="12" y="4" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="12" y="17" ref="entrance2">
       <destination zone="-3_orril_dungeon" ref="house4_entrance2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="6" y="2" ref="house4_downstairs">
       <destination zone="-4_orril_dungeon" ref="house4_upstairs" />
@@ -1186,11 +1205,13 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_house5" file="interiors/ratcity/house5.tmx">
     <portal x="4" y="14" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_rat_house6" file="interiors/ratcity/house6.tmx">
     <portal x="15" y="14" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house6_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="2" y="12" ref="house6_downstairs">
       <destination zone="-4_orril_dungeon" ref="house6_upstairs" />
@@ -1199,6 +1220,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_flower_shop" file="interiors/ratcity/flower_shop.tmx">
     <portal x="16" y="12" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="flower_shop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="2" y="2" ref="flower_shop_downstairs">
       <destination zone="-4_orril_dungeon" ref="flower_shop_upstairs" />
@@ -1207,6 +1229,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_library" file="interiors/ratcity/library.tmx">
     <portal x="9" y="14" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="library_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="2" y="2" ref="library_downstairs">
       <destination zone="-4_orril_dungeon" ref="library_upstairs" />
@@ -1215,9 +1238,11 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_smith_shop" file="interiors/ratcity/smith_shop.tmx">
     <portal x="4" y="14" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="5" y="14" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="14" y="3" ref="smith_shop_downstairs">
       <destination zone="-4_orril_dungeon" ref="smith_shop_upstairs" />
@@ -1226,12 +1251,14 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
   <zone name="int_rat_house7" file="interiors/ratcity/house7.tmx">
     <portal x="16" y="4" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="house7_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_rat_bakery" file="interiors/ratcity/bakery.tmx">
     <configurator class-name="games.stendhal.server.maps.ratcity.bakery.RatChefNPC" />
     <portal x="10" y="1" ref="entrance">
       <destination zone="-3_orril_dungeon" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
