@@ -120,14 +120,17 @@
 
     <portal x="60" y="96" ref="outside_gate_left2">
       <destination zone="0_orril_castle" ref="inside_gate_left2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="61" y="96" ref="outside_gate_left">
       <destination zone="0_orril_castle" ref="inside_gate_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="62" y="96" ref="outside_gate">
       <destination zone="0_orril_castle" ref="inside_gate" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="62" y="96">
@@ -139,44 +142,54 @@
 
     <portal x="63" y="96" ref="outside_gate_right">
       <destination zone="0_orril_castle" ref="inside_gate_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="64" y="96" ref="outside_gate_right2">
       <destination zone="0_orril_castle" ref="inside_gate_right2" />
+      <attribute name="move.continuous" />
     </portal>
 
 
     <portal x="60" y="93" ref="inside_gate_left2">
       <destination zone="0_orril_castle" ref="outside_gate_left2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="61" y="93" ref="inside_gate_left">
       <destination zone="0_orril_castle" ref="outside_gate_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="62" y="93" ref="inside_gate">
       <destination zone="0_orril_castle" ref="outside_gate" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="63" y="93" ref="inside_gate_right">
       <destination zone="0_orril_castle" ref="outside_gate_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="64" y="93" ref="inside_gate_right2">
       <destination zone="0_orril_castle" ref="outside_gate_right2" />
+      <attribute name="move.continuous" />
     </portal>
 
 
     <portal x="61" y="72" ref="castle_entrance_left">
       <destination zone="int_orril_castle_0" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="62" y="72" ref="castle_entrance">
       <destination zone="int_orril_castle_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="63" y="72" ref="castle_entrance_right">
       <destination zone="int_orril_castle_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -192,14 +205,17 @@
 
     <portal x="26" y="62" ref="entrance_left">
       <destination zone="0_orril_castle" ref="castle_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="27" y="62" ref="entrance">
       <destination zone="0_orril_castle" ref="castle_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="62" ref="entrance_right">
       <destination zone="0_orril_castle" ref="castle_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="8" y="1" ref="4">
