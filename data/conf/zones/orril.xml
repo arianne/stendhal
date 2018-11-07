@@ -548,56 +548,67 @@ Northeast: Semos
     <portal x="13" y="0" ref="barracks1">
       <destination zone="int_constantines_villa_barracks"
         ref="door1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="14" y="0" ref="barracks2">
       <destination zone="int_constantines_villa_barracks"
         ref="door2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="0" ref="barracks3">
       <destination zone="int_constantines_villa_barracks"
         ref="door3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="0" ref="barracks4">
       <destination zone="int_constantines_villa_barracks"
         ref="door4" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="0" ref="barracks5">
       <destination zone="int_constantines_villa_barracks"
         ref="door5" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="44" ref="livingroom1">
       <destination zone="int_constantines_villa_livingroom"
         ref="door1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="43" ref="livingroom2">
       <destination zone="int_constantines_villa_livingroom"
         ref="door2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="42" ref="livingroom3">
       <destination zone="int_constantines_villa_livingroom"
         ref="door3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="31" ref="livingroom4">
       <destination zone="int_constantines_villa_livingroom"
         ref="door4" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="30" ref="livingroom5">
       <destination zone="int_constantines_villa_livingroom"
         ref="door5" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="29" ref="livingroom6">
       <destination zone="int_constantines_villa_livingroom"
         ref="door6" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -609,46 +620,55 @@ Northeast: Semos
     <portal x="50" y="18" ref="door_right_1">
       <destination zone="int_constantines_villa_library"
         ref="library1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="50" y="19" ref="door_right_2">
       <destination zone="int_constantines_villa_library"
         ref="library2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="50" y="20" ref="door_right_3">
       <destination zone="int_constantines_villa_library"
         ref="library3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="50" y="21" ref="door_right_4">
       <destination zone="int_constantines_villa_library"
         ref="library4" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="29" ref="door1">
       <destination zone="int_constantines_villa_entrance"
         ref="barracks1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="14" y="29" ref="door2">
       <destination zone="int_constantines_villa_entrance"
         ref="barracks2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="29" ref="door3">
       <destination zone="int_constantines_villa_entrance"
         ref="barracks3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="29" ref="door4">
       <destination zone="int_constantines_villa_entrance"
         ref="barracks4" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="29" ref="door5">
       <destination zone="int_constantines_villa_entrance"
         ref="barracks5" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- flushing toilets -->
@@ -727,31 +747,37 @@ Northeast: Semos
     <portal x="49" y="44" ref="door1">
       <destination zone="int_constantines_villa_entrance"
         ref="livingroom1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="49" y="43" ref="door2">
       <destination zone="int_constantines_villa_entrance"
         ref="livingroom2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="49" y="42" ref="door3">
       <destination zone="int_constantines_villa_entrance"
         ref="livingroom3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="49" y="31" ref="door4">
       <destination zone="int_constantines_villa_entrance"
         ref="livingroom4" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="49" y="30" ref="door5">
       <destination zone="int_constantines_villa_entrance"
         ref="livingroom5" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="49" y="29" ref="door6">
       <destination zone="int_constantines_villa_entrance"
         ref="livingroom6" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -841,21 +867,25 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
     <portal x="0" y="18" ref="library1">
       <destination zone="int_constantines_villa_barracks"
         ref="door_right_1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="0" y="19" ref="library2">
       <destination zone="int_constantines_villa_barracks"
         ref="door_right_2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="0" y="20" ref="library3">
       <destination zone="int_constantines_villa_barracks"
         ref="door_right_3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="0" y="21" ref="library4">
       <destination zone="int_constantines_villa_barracks"
         ref="door_right_4" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <!-- Level -1 -->
