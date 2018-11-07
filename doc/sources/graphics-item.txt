@@ -48,7 +48,7 @@ leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere
 light_armor.png               Phillip Lenssen?, Katie Russell (kymara); ???; ???
 magic_plate_armor.png         ???; ???; ???
 mainio_armor.png              vesper?; ???; ???
-mithril_armor.png             tigertoes?; ???; ???
+mithril_armor.png             janay; CC BY-SA 3.0; Stendhal
 plate_armor.png               ???; ???; ???
 red_armor.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -105,7 +105,7 @@ killer_boots.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leather_boots.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lion_clan_boots.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mainio_boots.png           David E. Gervais, vesper; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-mithril_boots.png          tigertoes?; ???; Stendhal, https://sourceforge.net/p/arianne/patches/187/
+mithril_boots.png          janay; CC BY-SA 3.0; Stendhal
 red_boots.png              bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -138,7 +138,7 @@ green_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lion_clan_cloak.png     ???; ???; ???
 mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-mithril_cloak.png       tigertoes?; ???; Stendhal, https://sourceforge.net/p/arianne/patches/187/
+mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal
 red_cloak.png           David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
 red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 rift_cloak.png          ???; ???; ???
@@ -203,7 +203,7 @@ data/sprites/items/documents/
 closed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ???
 coupon.png             ???; ???; ???
 ice_scroll.png         laguz?; ???; ???
-license.png            tigertoes?; ???; ???
+license.png            tigertoes; CC BY-SA 3.0; Stendhal
 map.png                Katie Russell (kymara); GPL 2.0; Stendhal
 mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
 opened_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ???
@@ -279,8 +279,8 @@ cherry.png                 ???; ???; ???; Committed by Miguel Angel
 cherrypie.png              omero?; ???; ???
 chicken.png                kymara?; ???; ???
 chinese-cabbage.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-chocolatebar.png           tigertoes?; ???; ???
-chocolateshake.png         tigertoes?; ???; ???
+chocolatebar.png           tigertoes; CC BY-SA 3.0; Stendhal
+chocolateshake.png         tigertoes; CC BY-SA 3.0; Stendhal
 clown-fish.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 coconut.png                megajack64?; ???; ???; Committed by kymara
 cod.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -389,7 +389,7 @@ leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.f
 liberty_helmet.png          ???; ???; ???
 lion_clan_helmet.png        ???; ???; ???
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-mithril_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal
 red_helmet.png              kymara?; ???; ???
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           ???; ???; ???
@@ -402,7 +402,7 @@ arandula.png       ???; ???; Charas???
 kekik.png          ???; ???; ???
 kokuda.png         ???; ???; ???
 mandragora.png     ???; ???; ???
-reindeer_moss.png  ???; ???; ???
+reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
 sclaria.png        ???; ???; ???
 
 data/sprites/items/jewellery/
@@ -462,7 +462,7 @@ golden_legs.png           bleutailfly; CC BY-SA 3.0; Stendhal
 jewelled_legs.png         ???; ???; ???
 leather_legs.png          ???; ???; ???
 mainio_legs.png           ???; ???; ???
-mithril_legs.png          ???; ???; ???
+mithril_legs.png          janay; CC BY-SA 3.0; Stendhal
 red_legs.png              bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_legs.png           ???; ???; ???
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
@@ -473,25 +473,25 @@ data/sprites/items/misc/
 
 ankh.png                 ???; ???; ???
 bat_entrails.png         Katie Russell (kymara); GPL 2.0; Stendhal
-bobbin.png               ???; ???; ???
+bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
 bulb.png                 ???; ???; ???
-canotuna.png             ???; ???; ???
+canotuna.png             tigertoes; CC BY-SA 3.0; Stendhal
 cards.png                Daniel Herding (mort); GPL 2.0; Stendhal
 creditcard.png           ???; ???; ???
 decent_meal.png          ???; ???; ???
 dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
-ent_twig.png             ???; ???; ???
+ent_twig.png             gummipferd; ???; ???
 giant_heart.png          ???; ???; ???
 lemon.png                ???; ???; ???
 marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-metal_rod.png            ???; ???; ???
-mithril_ring.png         ???; ???; ???
+metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
+mithril_ring.png         tigertoes; CC BY-SA 3.0; Stendhal
 olive_oil.png            ???; ???; ???
 pinto_beans.png          ???; ???; ???
 potato.png               ???; ???; ???
 rodent_trap.png          ???; ???; ???
 seed.png                 ???; ???; ???
-snowglobe.png            ???; ???; ???
+snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         ???; ???; ???
 teddy.png                Daniel Herding (mort); GPL 2.0; Stendhal
 tripe.png                ???; ???; ???
@@ -552,12 +552,12 @@ horsehair.png       ???; ???; ???
 iron.png            Daniel Herding (mort); GPL 2.0; Stendhal
 iron_ore.png        Daniel Herding (mort); GPL 2.0; Stendhal
 mithril_bar.png     Daniel Herding (mort); GPL 2.0; Stendhal (based on iron.png)
-mithril_fabric.png  ???; ???; ???
+mithril_fabric.png  tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ore.png     Nadine Schlonies (dine); GPL 2.0; Stendhal (based on gold_ore.png)
-mithril_thread.png  ???; ???; ???
+mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
 oil.png             ???; ???; ???
-silkgland.png       ???; ???; ???
-silkthread.png      ???; ???; ???
+silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
+silkthread.png      tigertoes; CC BY-SA 3.0; Stendhal
 sugarcane.png       wmbec7718; ???; ???
 wood.png            Daniel Herding (mort); GPL 2.0; Stendhal
 wool.png            Nadine Schlonies (dine); GPL 2.0; Stendhal
@@ -610,7 +610,7 @@ red.png               Anders Asplund (Danter); GPL 2.0; Stendhal
 smile.png             Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 summon.png            Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
 summon_pet.png        Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-twilightmoss.png      ???; ???; ???
+twilightmoss.png      tigertoes; CC BY-SA 3.0; Stendhal
 yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/shield/
@@ -635,7 +635,7 @@ light_shield.png              ???; ???; ???
 lion_clan_shield.png          ???; ???; ???
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mainio_shield.png             ???; ???; ???
-mithril_shield.png            ???; ???; ???
+mithril_shield.png            tigertoes - gonna redo; ???; ???
 pine.png                      ???; ???; ???
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 redwood.png                   ???; ???; ???
@@ -659,7 +659,7 @@ GM_tokend_old_gold.png    Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_old_silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_silver.png      Anders Asplund (Danter); GPL 2.0; Stendhal
 lucky_charm.png           ???; ???; ???
-mithril_clasp.png         ???; ???; ???
+mithril_clasp.png         tigertoes; CC BY-SA 3.0; Stendhal
 mythical_egg.png          ???; ???; ???
 
 data/sprites/items/sword/
@@ -718,7 +718,7 @@ cake_pan.png          ???; ???; ???
 fishing_rod.png       Nadine Schlonies (dine); GPL 2.0; Stendhal
 foodmill.png          ???; ???; ???
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-magical_needle.png    ???; ???; ???
+magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
 magical_scissors.png  ???; ???; ???
 pestleandmortar.png   ???; ???; ???
 pick.png              ???; ???; ???
