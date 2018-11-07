@@ -1064,17 +1064,21 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
         <parameter name="key">kotoch prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="15" y="8" ref="kotoch_lock_inside">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="15" y="9" ref="kotoch_exit_inside">
       <destination zone="-3_kotoch_prison" ref="kotoch_exit_outside" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="15" y="11" ref="kotoch_exit_outside">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
