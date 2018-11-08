@@ -62,6 +62,11 @@ class StatsPanel extends JPanel {
 
 		ratkLabel = new StatLabel();
 		add(ratkLabel, SLayout.EXPAND_X);
+		/* only show RATK stat if set by server
+		 *
+		 * TODO: this can be removed in future versions
+		 */
+		ratkLabel.setVisible(false);
 
 		defLabel = new StatLabel();
 		add(defLabel, SLayout.EXPAND_X);
@@ -109,6 +114,13 @@ class StatsPanel extends JPanel {
 	 * @param ratk
 	 */
 	void setRatk(String ratk) {
+		/* only show RATK stat if set by server
+		 *
+		 * TODO: this can be removed in future versions
+		 */
+		if (!ratkLabel.isVisible()) {
+			ratkLabel.setVisible(true);
+		}
 		ratkLabel.setText(ratk);
 	}
 
