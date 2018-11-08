@@ -60,11 +60,11 @@ class StatsPanel extends JPanel {
 		atkLabel = new StatLabel();
 		add(atkLabel, SLayout.EXPAND_X);
 
-		defLabel = new StatLabel();
-		add(defLabel, SLayout.EXPAND_X);
-
 		ratkLabel = new StatLabel();
 		add(ratkLabel, SLayout.EXPAND_X);
+
+		defLabel = new StatLabel();
+		add(defLabel, SLayout.EXPAND_X);
 
 		xpLabel = new StatLabel();
 		add(xpLabel, SLayout.EXPAND_X);
