@@ -10,7 +10,7 @@ leafy*            Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
 puddle_*.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
 rock.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 rodent_small.png  rg1024, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://openclipart.org/detail/31207
+rodent_large.png  rg1024, lumocra?, bleutailfly, Jordan Irwin (AntumDeluge); ???; https://openclipart.org/detail/31207, ???
 spiderweb*        j4p4n; CC0; https://openclipart.org/detail/274095
-tail_rodent*      ???; CC0; http://www.clker.com/clipart-185713.html
 winged_bat.png    Machovka; CC0; http://openclipart.org/detail/2699
 wooden.png        Farmeral; CC0; https://openclipart.org/detail/20280
