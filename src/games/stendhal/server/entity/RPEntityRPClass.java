@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import static games.stendhal.common.constants.Common.PATHSET;
+import static games.stendhal.common.constants.General.PATHSET;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;

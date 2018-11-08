@@ -93,14 +93,17 @@
     <!-- Portals -->
     <portal x="36" y="17" ref="tavern_entrance_left">
       <destination zone="int_fado_tavern" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="48" y="17" ref="tavern_entrance_right">
       <destination zone="int_fado_tavern" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="46" y="38" ref="bank_entrance">
       <destination zone="int_fado_bank" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="46" y="38">
@@ -112,34 +115,42 @@
 
     <portal x="56" y="38" ref="bakery_entrance">
       <destination zone="int_fado_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="14" y="60" ref="hotel_entrance">
       <destination zone="int_fado_hotel_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="55" y="50" ref="church_entrance">
       <destination zone="int_fado_church" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="71" y="99" ref="shepherd_house_entrance">
       <destination zone="int_fado_shepherd_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="82" y="44" ref="battle_arena_entrance">
       <destination zone="int_fado_battle_arena" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="24" y="16" ref="house_entrance">
       <destination zone="int_fado_house" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="14" y="11" ref="weaponshop_entrance">
       <destination zone="int_fado_weaponshop" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="35" y="57" ref="hut_entrance">
       <destination zone="int_fado_hut" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="16" y="10">
@@ -323,6 +334,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
     <!-- Portals -->
     <portal x="12" y="18" ref="entrance">
       <destination zone="0_fado_city" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="2" y="8">
@@ -379,6 +391,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
     <!-- Portals -->
     <portal x="26" y="14" ref="entrance">
       <destination zone="0_fado_city" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -391,10 +404,12 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
 
     <portal x="16" y="30" ref="entrance_left">
       <destination zone="0_fado_city" ref="tavern_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="41" y="30" ref="entrance_right">
       <destination zone="0_fado_city" ref="tavern_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- round table upper left -->
@@ -467,10 +482,12 @@ collard (special exotic type of cabbage - hard to find. often grows indoors)
     <!-- Portals -->
     <portal x="6" y="10" ref="entrance_left">
       <destination zone="0_fado_city" ref="house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="10" ref="entrance_right">
       <destination zone="0_fado_city" ref="house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -521,6 +538,7 @@ bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
 
     <portal x="5" y="16" ref="entrance">
       <destination zone="0_fado_city" ref="weaponshop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="15" y="13">
@@ -561,6 +579,7 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="3" y="10" ref="entrance">
       <destination zone="0_fado_city" ref="hut_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -573,18 +592,22 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="10" y="23" ref="entrance_left2">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="23" ref="entrance_left">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="23" ref="entrance_right">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="23" ref="entrance_right2">
       <destination zone="0_fado_city" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -593,6 +616,7 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="10" y="30" ref="entrance">
       <destination zone="0_fado_city" ref="shepherd_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="15" y="20">
@@ -615,10 +639,12 @@ where panning for gold is possible. this spot is south of Or'ril castle.
     <!-- Portals -->
     <portal x="11" y="13" ref="entrance_left">
       <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="13" ref="entrance_right">
       <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -661,6 +687,7 @@ If the bride is called Helen, you should say 'marry Helen'
     <!-- Portals -->
     <portal x="8" y="63" ref="entrance">
       <destination zone="0_fado_city" ref="hotel_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="41" y="50" ref="dressing_rooms_entrance">
@@ -670,6 +697,7 @@ If the bride is called Helen, you should say 'marry Helen'
         <parameter name="quest">marriage</parameter>
         <parameter name="rejected">The dressing rooms are only for a bride and groom to get dressed in.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -977,10 +1005,12 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
     <portal x="30" y="62" ref="entrance_left">
       <destination zone="0_fado_city" ref="battle_arena_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="31" y="62" ref="entrance_right">
       <destination zone="0_fado_city" ref="battle_arena_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="54" y="3" ref="basement_entrance">
@@ -1003,6 +1033,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">150</parameter>
         <parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -1012,16 +1043,19 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">150</parameter>
         <parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="30" y="6" ref="stairs1up">
       <destination zone="int_fado_battle_pit" ref="stairs1down" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="6" ref="stairs2up">
       <destination zone="int_fado_battle_pit" ref="stairs2down" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -1048,12 +1082,14 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="60" y="80" ref="woodcutter_entrance">
       <destination zone="int_fado_woodcutter_lodge" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
   <zone name="int_fado_woodcutter_lodge" file="interiors/fado/woodcutter_lodge.tmx">
     <portal x="7" y="18" ref="entrance">
       <destination zone="0_fado_forest" ref="woodcutter_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -1069,6 +1105,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">60</parameter>
         <parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="75" y="68" ref="palace_entrance_right">
@@ -1078,6 +1115,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="minimum-level">60</parameter>
         <parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="18" y="120">
@@ -1093,18 +1131,22 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_oni_palace_0" file="interiors/fado/palace_0.tmx">
     <portal x="5" y="30" ref="entrance1_left">
       <destination zone="0_fado_forest_e" ref="palace_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="30" ref="entrance1_right">
       <destination zone="0_fado_forest_e" ref="palace_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="25" y="30" ref="entrance2_left">
       <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="26" y="30" ref="entrance2_right">
       <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="5" y="4" ref="upstairs_left_1">
@@ -1225,6 +1267,7 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="53" y="26" ref="imorgens_house_entrance">
       <destination zone="int_imorgens_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1268,6 +1311,7 @@ For example say:  11  if you want the room called Water of Love.
     <!-- Portals -->
     <portal x="4" y="14" ref="entrance">
       <destination zone="0_fado_forest_s" ref="imorgens_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1307,10 +1351,12 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="26" y="42" ref="hut1_entrance">
       <destination zone="int_fado_elf_hut_1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="25" y="30" ref="hut2_entrance">
       <destination zone="int_fado_elf_hut_2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="84" y="59">
@@ -1323,10 +1369,12 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="97" y="85" ref="hut3_entrance">
       <destination zone="int_fado_elf_hut_3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="10" y="43" ref="hut4_entrance">
       <destination zone="int_fado_elf_hut_4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1342,6 +1390,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_fado_elf_hut_1" file="interiors/fado/elf_hut_1.tmx">
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1350,6 +1399,7 @@ For example say:  11  if you want the room called Water of Love.
     <configurator class-name="games.stendhal.server.maps.fado.forest.CraftsmanNPC" />
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1357,6 +1407,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_fado_elf_hut_3" file="interiors/fado/elf_hut_3.tmx">
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1365,6 +1416,7 @@ For example say:  11  if you want the room called Water of Love.
     <configurator class-name="games.stendhal.server.maps.fado.hut.BlueCrystalNPC" />
     <portal x="9" y="19" ref="entrance">
       <destination zone="0_fado_forest_s_e2" ref="hut4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1390,10 +1442,12 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="112" y="17" ref="school_entrance_left">
       <destination zone="int_magic_school_0" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="113" y="17" ref="school_entrance_right">
       <destination zone="int_magic_school_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="117" y="122">
@@ -1410,6 +1464,7 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="102" y="50" ref="house1_entrance">
       <destination zone="int_magic_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1503,26 +1558,32 @@ For example say:  11  if you want the room called Water of Love.
 
     <portal x="85" y="112" ref="house2_entrance">
       <destination zone="int_magic_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="27" y="72" ref="shrine_entrance_left">
       <destination zone="int_magic_shrine" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="72" ref="shrine_entrance_right">
       <destination zone="int_magic_shrine" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="74" y="102" ref="house4_entrance">
       <destination zone="int_magic_house4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="47" y="61" ref="lounge_entrance">
       <destination zone="int_magic_lounge" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="37" ref="bank_entrance">
       <destination zone="int_magic_bank" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="48" y="112">
@@ -1548,6 +1609,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="key">sedah gate key</parameter>
         <parameter name="rejected">The gate is locked</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="116" y="73" ref="in2">
@@ -1556,6 +1618,7 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="key">sedah gate key</parameter>
         <parameter name="rejected">The gate is locked</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="117" y="73" ref="in3">
@@ -1564,52 +1627,64 @@ For example say:  11  if you want the room called Water of Love.
         <parameter name="key">sedah gate key</parameter>
         <parameter name="rejected">The gate is locked</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="115" y="72" ref="out">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="115" y="74" ref="out1">
       <destination zone="-1_fado_great_cave_w2" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="116" y="74" ref="out2">
       <destination zone="-1_fado_great_cave_w2" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="117" y="74" ref="out3">
       <destination zone="-1_fado_great_cave_w2" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="116" y="76" ref="in">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="69" y="92" ref="house1_entrance">
       <destination zone="int_sedah_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="39" y="94" ref="house0_entrance">
       <destination zone="int_sedah_house0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="99" y="103" ref="house2_entrance">
       <destination zone="int_sedah_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="91" y="115" ref="mausoleum_entrance">
       <destination zone="int_sedah_mausoleum" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="121" y="105" ref="house3_entrance">
       <destination zone="int_sedah_barracks_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="108" ref="house4_entrance">
       <destination zone="int_sedah_house4_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1617,10 +1692,12 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house0" file="interiors/sedah/house0.tmx">
     <portal x="19" y="30" ref="entrance_left">
       <destination zone="-1_fado_great_cave_w2" ref="house0_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="20" y="30" ref="entrance_right">
       <destination zone="-1_fado_great_cave_w2" ref="house0_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1628,6 +1705,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house1" file="interiors/sedah/house1.tmx">
     <portal x="6" y="13" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1635,6 +1713,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house2" file="interiors/sedah/house2.tmx">
     <portal x="6" y="13" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1642,6 +1721,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_house4_0" file="interiors/sedah/house4.tmx">
     <portal x="15" y="28" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="13" ref="up">
@@ -1661,6 +1741,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_mausoleum" file="interiors/sedah/mausoleum.tmx">
     <portal x="6" y="14" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="mausoleum_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1668,6 +1749,7 @@ For example say:  11  if you want the room called Water of Love.
   <zone name="int_sedah_barracks_0" file="interiors/sedah/house3.tmx">
     <portal x="16" y="28" ref="entrance">
       <destination zone="-1_fado_great_cave_w2" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="4" y="4" ref="up">
@@ -1708,14 +1790,17 @@ it back as you got it!
   <zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
     <portal x="52" y="96" ref="shop_in">
       <destination zone="int_sedah_storage" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="37" y="116" ref="house5_in">
       <destination zone="int_sedah_house5" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="92" y="102" ref="house6_in">
       <destination zone="int_sedah_house6" ref="out" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1726,6 +1811,7 @@ it back as you got it!
 
     <portal x="17" y="28" ref="out">
       <destination zone="-1_fado_great_cave_w" ref="shop_in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1733,6 +1819,7 @@ it back as you got it!
   <zone name="int_sedah_house5" file="interiors/sedah/house5.tmx">
     <portal x="6" y="13" ref="out">
       <destination zone="-1_fado_great_cave_w" ref="house5_in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1740,6 +1827,7 @@ it back as you got it!
   <zone name="int_sedah_house6" file="interiors/sedah/house6.tmx">
     <portal x="6" y="13" ref="out">
       <destination zone="-1_fado_great_cave_w" ref="house6_in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1753,6 +1841,7 @@ it back as you got it!
   <zone name="-1_fado_great_cave_e2" level="-1" x="500128" y="500640" file="Level -1/fado/great_cave_e2.tmx">
     <portal x="121" y="78" ref="house5_entrance">
       <destination zone="int_magic_house5" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1772,39 +1861,48 @@ it back as you got it!
 
     <portal x="12" y="108" ref="theater_entrance_left">
       <destination zone="int_magic_theater" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="108" ref="theater_entrance_right">
       <destination zone="int_magic_theater" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="77" y="50" ref="house3_entrance">
       <destination zone="int_magic_house3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="80" y="10" ref="house6_entrance_left">
       <destination zone="int_magic_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="81" y="10" ref="house6_entrance_right">
       <destination zone="int_magic_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="91" y="93" ref="bricabrac_entrance_left">
       <destination zone="int_magic_bric_a_brac" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="92" y="93" ref="bricabrac_entrance_right">
       <destination zone="int_magic_bric_a_brac" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="113" y="40" ref="clothing_entrance" condition="!stendhal.minetown">
       <destination zone="int_magic_clothing_boutique" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Need to create a target destination so players aren't trapped inside clothing boutique -->
     <portal x="113" y="41" ref="clothing_entrance" condition="stendhal.minetown">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="113" y="40" condition="stendhal.minetown">
@@ -1815,6 +1913,7 @@ it back as you got it!
 
     <portal x="91" y="111" ref="flower_entrance">
       <destination zone="int_magic_flower_shop" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="54" y="48">
@@ -1872,14 +1971,17 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="30" y="1" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="31" y="1" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="32" y="1" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1893,10 +1995,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="11" y="23" ref="entrance_left">
       <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="23" ref="entrance_right">
       <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1904,6 +2008,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <zone name="int_magic_lounge" file="interiors/magic/lounge.tmx">
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="lounge_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1928,6 +2033,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
     <!-- Portals -->
     <portal x="18" y="23" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Tables -->
@@ -1950,10 +2056,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <zone name="int_magic_flower_shop" file="interiors/magic/flower_shop.tmx">
     <portal x="16" y="23" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e3" ref="flower_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="23" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e3" ref="flower_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1973,6 +2081,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1982,6 +2091,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2002,6 +2112,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="10" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2009,6 +2120,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <zone name="int_magic_house4" file="interiors/magic/house4.tmx">
     <portal x="15" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2029,10 +2141,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="9" y="18" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="10" y="18" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2066,6 +2180,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="12" y="23" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2074,10 +2189,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
     <configurator class-name="games.stendhal.server.maps.magic.school.TeacherNPC" />
     <portal x="19" y="28" ref="entrance_left">
       <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="20" y="28" ref="entrance_right">
       <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="18" y="3" ref="downstairs">
@@ -2112,10 +2229,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="14" y="13" ref="entrance_left">
       <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="13" ref="entrance_right">
       <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="6" y="5">
@@ -2169,6 +2288,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 
     <portal x="15" y="18" ref="entrance">
       <destination zone="-1_fado_great_cave_n_e3" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="2" y="8">

@@ -280,8 +280,8 @@ public class ReverseArrow extends AbstractQuest implements
 		}
 
 		@Override
-		public void onUsedBackwards(final RPEntity user) {
-			super.onUsedBackwards(user);
+		public void onUsedBackwards(final RPEntity user, final boolean hadPath) {
+			super.onUsedBackwards(user, hadPath);
 
 			if (user instanceof Player) {
 				finish(true, (Player) user);

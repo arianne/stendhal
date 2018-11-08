@@ -162,6 +162,7 @@
     <!-- add portal at 0_semos_mountain_n2_w to enable this zone
     <portal x="7" y="19" ref="exit">
       <destination zone="0_semos_mountain_n2_w" ref="apothecary_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     -->
     <portal x="3" y="13" ref="lab_entrance">
@@ -206,6 +207,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="33" y="13" ref="lab_exit">
       <destination zone="int_apothecary_cabin" ref="lab_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Clock -->
@@ -251,6 +253,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="80" y="108" ref="frank_house">
       <destination zone="int_semos_frank_house" ref="exit" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -376,6 +379,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="7" y="30" ref="exit">
       <destination zone="0_semos_mountain_n2" ref="frank_house" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -409,6 +413,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="6" y="11" ref="entrance">
       <destination zone="0_semos_mountain_n2_e2" ref="stores_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -421,12 +426,15 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="7" y="18" ref="entrance1">
       <destination zone="0_semos_mountain_n2_e2" ref="throne_entrance1" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="18" ref="entrance2">
       <destination zone="0_semos_mountain_n2_e2" ref="throne_entrance2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="32" y="18" ref="entrance3">
       <destination zone="0_semos_mountain_n2_e2" ref="throne_entrance3" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -440,6 +448,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
     <portal x="67" y="47" ref="stores_entrance">
       <destination zone="int_mithrilbourgh_stores" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="102" y="42" ref="floor_door_0">
       <destination zone="0_semos_mountain_n2_e2" ref="upper_door" />
@@ -455,12 +464,15 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     </portal>
     <portal x="80" y="47" ref="throne_entrance1">
       <destination zone="int_mithrilbourgh_throne_room" ref="entrance1" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="86" y="47" ref="throne_entrance2">
       <destination zone="int_mithrilbourgh_throne_room" ref="entrance2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="92" y="47" ref="throne_entrance3">
       <destination zone="int_mithrilbourgh_throne_room" ref="entrance3" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- wishing well -->
@@ -505,6 +517,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
     <portal x="63" y="115" ref="right1">
       <destination zone="0_semos_mountain_n_w2" ref="left1" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="115" ref="left1">
       <destination zone="0_semos_mountain_n_w2" ref="right1" />
@@ -513,9 +526,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="condition">new LevelLessThanCondition(50)</parameter>
         <parameter name="rejected">The gnomes don't want you getting in here.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="116" ref="right2">
       <destination zone="0_semos_mountain_n_w2" ref="left2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="116" ref="left2">
       <destination zone="0_semos_mountain_n_w2" ref="right2" />
@@ -524,9 +539,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="condition">new LevelLessThanCondition(50)</parameter>
         <parameter name="rejected">The gnomes don't want you getting in here.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="117" ref="right3">
       <destination zone="0_semos_mountain_n_w2" ref="left3" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="64" y="117" ref="left3">
       <destination zone="0_semos_mountain_n_w2" ref="right3" />
@@ -535,6 +552,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="condition">new LevelLessThanCondition(50)</parameter>
         <parameter name="rejected">The gnomes don't want you getting in here.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <entity x="39" y="23">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -554,6 +572,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <portal x="76" y="36" ref="wizardstower_entrance">
       <destination zone="int_semos_wizards_tower_basement"
         ref="wizardstower_exit" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="77" y="0">
@@ -601,6 +620,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
     <portal x="15" y="29" ref="wizardstower_exit">
       <destination zone="0_semos_mountain_n_w2" ref="wizardstower_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="16" ref="basement_teleport">
@@ -1464,6 +1484,7 @@ Southeast: Farmhouse
       class-name="games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC" />
     <portal x="13" y="16" ref="entrance">
       <destination zone="0_semos_village_w" ref="guard_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <entity x="17" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -1514,9 +1535,11 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 
     <portal x="12" y="23" ref="entrance_left">
       <destination zone="0_semos_village_w" ref="hostel_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="13" y="23" ref="entrance_right">
       <destination zone="0_semos_village_w" ref="hostel_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -1536,9 +1559,11 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 
     <portal x="16" y="34" ref="guard_house_entrance">
       <destination zone="int_semos_guard_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="29" y="40" ref="hostel_entrance">
       <destination zone="int_semos_hostel" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="38" y="42">
@@ -1811,6 +1836,7 @@ Mature sheep wanted: please speak to Sato.
 
     <portal x="42" y="37" ref="tavern_entrance">
       <destination zone="int_semos_tavern_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!--for the admin house -->
@@ -1821,22 +1847,27 @@ Mature sheep wanted: please speak to Sato.
 
     <portal x="53" y="37" ref="temple_entrance">
       <destination zone="int_semos_temple" ref="entrance_center_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="41" ref="blacksmith_entrance">
       <destination zone="int_semos_blacksmith" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="6" y="22" ref="library_entrance_left">
       <destination zone="int_semos_library" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="22" ref="library_entrance_right">
       <destination zone="int_semos_library" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="52" y="19" ref="storage_entrance">
       <destination zone="int_semos_storage_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="18" y="21">
@@ -1848,22 +1879,27 @@ Mature sheep wanted: please speak to Sato.
 
     <portal x="18" y="22" ref="bank_entrance">
       <destination zone="int_semos_bank" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="29" y="13" ref="townhall_entrance_left">
       <destination zone="int_semos_townhall" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="30" y="13" ref="townhall_entrance">
       <destination zone="int_semos_townhall" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="31" y="13" ref="townhall_entrance_right">
       <destination zone="int_semos_townhall" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="44" y="19" ref="bakery_entrance">
       <destination zone="int_semos_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="42" y="37">
@@ -2189,6 +2225,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <portal x="22" y="17" ref="entrance">
       <destination zone="0_semos_city" ref="tavern_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="4" y="4" ref="upstairs">
@@ -2371,18 +2408,22 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <portal x="10" y="23" ref="entrance_left">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="23" ref="entrance_center_left">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="23" ref="entrance_center_right">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="23" ref="entrance_right">
       <destination zone="0_semos_city" ref="temple_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="10" ref="restart_life">
@@ -2398,6 +2439,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC" />
     <portal x="15" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="blacksmith_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="1" y="1">
@@ -2541,10 +2583,12 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <portal x="8" y="30" ref="entrance_left">
       <destination zone="0_semos_city" ref="library_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="30" ref="entrance_right">
       <destination zone="0_semos_city" ref="library_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="25" y="18">
@@ -2641,6 +2685,7 @@ Holy mackerel! These chips are tasty.
 
     <portal x="9" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="storage_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="2" ref="downstairs">
@@ -2672,11 +2717,14 @@ Holy mackerel! These chips are tasty.
 
     <portal x="9" y="30" ref="entrance">
       <destination zone="0_semos_city" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="10" y="30" ref="entrance_right">
       <destination zone="0_semos_city" ref="bank_entrance" />
+      <attribute name="move.continuous" />
     </portal>
+
     <!-- for the admin house -->
     <portal x="24" y="8" ref="house_exit_3">
       <implementation
@@ -3032,14 +3080,17 @@ Holy mackerel! These chips are tasty.
 
     <portal x="14" y="46" ref="entrance_left">
       <destination zone="0_semos_city" ref="townhall_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="46" ref="entrance">
       <destination zone="0_semos_city" ref="townhall_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="46" ref="entrance_right">
       <destination zone="0_semos_city" ref="townhall_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -3051,6 +3102,7 @@ Holy mackerel! These chips are tasty.
     <configurator class-name="games.stendhal.server.maps.semos.bakery.ItemsOnTable" />
     <portal x="26" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="29" y="7">
@@ -3148,6 +3200,7 @@ Holy mackerel! These chips are tasty.
 
     <portal x="108" y="47" ref="pad_entrance">
       <destination zone="int_semos_swanky_pad" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="27" y="50">
@@ -3234,6 +3287,7 @@ East: Ados city
     <configurator class-name="games.stendhal.server.maps.semos.pad.DealerNPC" />
     <portal x="7" y="18" ref="entrance">
       <destination zone="0_semos_road_e" ref="pad_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -3697,16 +3751,19 @@ Southwest: Or'ril Castle and Fado City
   <zone name="int_wofol_house1" file="interiors/wofol/house1.tmx">
     <portal x="5" y="8" ref="entrance">
       <destination zone="-1_semos_mine_n_w2" ref="house1_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house2" file="interiors/wofol/house2.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_n_w2" ref="house2_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house3" file="interiors/wofol/house3.tmx">
     <portal x="6" y="13" ref="entrance">
       <destination zone="-1_semos_mine_n_w2" ref="house3_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3714,12 +3771,15 @@ Southwest: Or'ril Castle and Fado City
     file="Level -1/semos/mine_n_w2.tmx">
     <portal x="121" y="17" ref="house1_entrance">
       <destination zone="int_wofol_house1" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="103" y="46" ref="house2_entrance">
       <destination zone="int_wofol_house2" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="115" y="46" ref="house3_entrance">
       <destination zone="int_wofol_house3" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3728,6 +3788,7 @@ Southwest: Or'ril Castle and Fado City
 
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house4_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
 
@@ -3760,11 +3821,13 @@ Southwest: Or'ril Castle and Fado City
     <configurator class-name="games.stendhal.server.maps.wofol.house5.GhostNPC" />
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house5_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house7" file="interiors/wofol/house7.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house7_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_blacksmith" file="interiors/wofol/blacksmith.tmx">
@@ -3772,35 +3835,42 @@ Southwest: Or'ril Castle and Fado City
       class-name="games.stendhal.server.maps.wofol.blacksmith.BlacksmithNPC" />
     <portal x="5" y="11" ref="entrance_left">
       <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="11" ref="entrance_right">
       <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house8" file="interiors/wofol/house8.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house8_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house9" file="interiors/wofol/house9.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house9_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house6" file="interiors/wofol/house6.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house6_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_house10" file="interiors/wofol/house10.tmx">
     <portal x="7" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="house10_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
   <zone name="int_wofol_library_0" file="interiors/wofol/library_0.tmx">
     <portal x="4" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="library_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="21" y="3" ref="upstairs">
       <destination zone="int_wofol_library_1" ref="downstairs" />
@@ -3827,6 +3897,7 @@ Southwest: Or'ril Castle and Fado City
       class-name="games.stendhal.server.maps.wofol.bar.KoboldBarmaidNPC" />
     <portal x="3" y="8" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="bar_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3834,30 +3905,37 @@ Southwest: Or'ril Castle and Fado City
     <configurator class-name="games.stendhal.server.maps.wofol.bakery.BakerNPC" />
     <portal x="5" y="14" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="bakery_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_townhall" file="interiors/wofol/townhall.tmx">
     <portal x="5" y="31" ref="entrance_left">
       <destination zone="-1_semos_mine_nw" ref="townhall_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="45" y="31" ref="entrance_centre">
       <destination zone="-1_semos_mine_nw" ref="townhall_entrance_centre" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="56" y="31" ref="entrance_right">
       <destination zone="-1_semos_mine_nw" ref="townhall_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_warehouse" file="interiors/wofol/warehouse.tmx">
     <portal x="3" y="13" ref="entrance">
       <destination zone="-1_semos_mine_nw" ref="warehouse_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
   <zone name="int_wofol_weaponshop" file="interiors/wofol/weaponshop.tmx">
     <portal x="5" y="10" ref="entrance_left">
       <destination zone="-1_semos_mine_nw" ref="weaponshop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="6" y="10" ref="entrance_right">
       <destination zone="-1_semos_mine_nw" ref="weaponshop_entrance" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -3865,54 +3943,71 @@ Southwest: Or'ril Castle and Fado City
     file="Level -1/semos/mine_nw.tmx">
     <portal x="6" y="23" ref="house4_entrance">
       <destination zone="int_wofol_house4" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="24" y="23" ref="house9_entrance">
       <destination zone="int_wofol_house9" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="40" y="25" ref="house7_entrance">
       <destination zone="int_wofol_house7" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="5" y="65" ref="bar_entrance">
       <destination zone="int_wofol_bar" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="17" y="65" ref="blacksmith_entrance_left">
       <destination zone="int_wofol_blacksmith" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="28" y="65" ref="blacksmith_entrance_right">
       <destination zone="int_wofol_blacksmith" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="45" y="65" ref="house8_entrance">
       <destination zone="int_wofol_house8" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="58" y="65" ref="house5_entrance">
       <destination zone="int_wofol_house5" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="63" y="86" ref="house6_entrance">
       <destination zone="int_wofol_house6" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="4" y="76" ref="bakery_entrance">
       <destination zone="int_wofol_bakery" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="59" y="79" ref="library_entrance">
       <destination zone="int_wofol_library_0" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="30" y="94" ref="house10_entrance">
       <destination zone="int_wofol_house10" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="56" y="99" ref="townhall_entrance_left">
       <destination zone="int_wofol_townhall" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="65" y="99" ref="townhall_entrance_centre">
       <destination zone="int_wofol_townhall" ref="entrance_centre" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="70" y="99" ref="townhall_entrance_right">
       <destination zone="int_wofol_townhall" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="61" y="46" ref="warehouse_entrance">
       <destination zone="int_wofol_warehouse" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="15" y="109" ref="weaponshop_entrance">
       <destination zone="int_wofol_weaponshop" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Spikes -->
@@ -4153,9 +4248,11 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="minimum-level">150</parameter>
         <parameter name="rejected">Aenihata's barrier is strong. The balrog would kill you instantly, run away!</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="42" y="44" ref="exit_balrog" replacing="true">
       <destination zone="-2_semos_mine_w2" ref="to_balrog" />
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -4491,12 +4588,15 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="11" y="22" ref="jail_lock_inside">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="9" ref="jail_lock_inside2">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside2" />
+      <attribute name="move.continuous" />
     </portal>
     <portal x="19" y="13" ref="jail_lock_outside2">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_inside2" />
@@ -4505,6 +4605,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="36" y="18" ref="jail_lock_outside3">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_inside3" />
@@ -4513,6 +4614,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="36" y="22" ref="jail_lock_inside3">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside3" />
@@ -4521,6 +4623,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="44" y="9" ref="jail_lock_inside4">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_outside4" />
@@ -4529,6 +4632,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
     <portal x="44" y="13" ref="jail_lock_outside4">
       <destination zone="-7_kanmararn_prison" ref="jail_lock_inside4" />
@@ -4537,6 +4641,7 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="key">kanmararn prison key</parameter>
         <parameter name="rejected">You do not have the key to open the lock.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 

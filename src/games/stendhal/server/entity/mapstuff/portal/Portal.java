@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
+
 import java.awt.Point;
 import java.util.List;
 
@@ -28,6 +30,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.StatusType;
+import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -77,6 +80,7 @@ public class Portal extends Entity implements UseListener {
 					portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
 					portal.addAttribute(ATTR_FACE, Type.STRING);
 					portal.addAttribute(ATTR_OFFSET, Type.INT);
+					portal.addAttribute(MOVE_CONTINUOUS, Type.FLAG, Definition.VOLATILE);
 				}
 		} catch (final SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -204,6 +208,9 @@ public class Portal extends Entity implements UseListener {
 	 *         otherwise.
 	 */
 	protected boolean usePortal(final Player player) {
+		// check if player has path set to be used with Portal.onUsedBackwards
+		final boolean hadPath = player.hasPath();
+
 		if (!player.isZoneChangeAllowed()) {
 			player.sendPrivateText("For some reason you cannot get through right now.");
 			return false;
@@ -296,18 +303,9 @@ public class Portal extends Entity implements UseListener {
 		}
 
 		if (player.teleport(destZone, destX, destY, null, null)) {
-			/* Allow player to continue movement after teleport via portal
-			 * without the need to release and press direction again.
-			 *
-			 * FIXME: Cannot predict which side of portal player will end up.
-			 */
-			//if (!player.has(MOVE_CONTINUOUS)) {
-			//	player.stop();
-			//}
-			player.forceStop();
-
-			dest.onUsedBackwards(player);
+			dest.onUsedBackwards(player, hadPath);
 		}
+
 		return true;
 	}
 
@@ -322,14 +320,26 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	/**
-	 * if this portal is the destination of another portal used.
+	 * If this portal is the destination of another portal used.
 	 *
 	 * @param user
-	 *            the player who used the other portal teleporting to us
+	 * 		the player who used the other portal teleporting to us
+	 * @param hadPath
+	 * 		determines if entity was using mouse click to use portal
 	 */
-	public void onUsedBackwards(final RPEntity user) {
+	public void onUsedBackwards(final RPEntity user, final boolean hadPath) {
 		if (hasFaceDirection()) {
 			user.setDirection(getFaceDirection());
+		}
+		if (user instanceof Player) {
+			final Player player = (Player) user;
+			/* Destination portals determine if continuous movement can be used after teleport.
+			 * Because this is destination portal, cannot depend on Player.handlePortal() here
+			 * to accurately determine if player had path set.
+			 */
+			if (hadPath || !has(MOVE_CONTINUOUS) || !player.has(MOVE_CONTINUOUS)) {
+				player.forceStop();
+			}
 		}
 	}
 

@@ -152,7 +152,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	}
 
 	@Override
-	public void onUsedBackwards(final RPEntity user) {
+	public void onUsedBackwards(final RPEntity user, final boolean hadPath) {
 		keepOpen();
 		notifyWorldAboutChanges();
 	}

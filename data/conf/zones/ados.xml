@@ -26,6 +26,7 @@
     <!-- Portals -->
     <portal x="18" y="52" ref="ent1n">
       <destination zone="0_ados_mountain_n2_w" ref="ent1s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -35,11 +36,13 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="19" y="52" ref="ent2n">
       <destination zone="0_ados_mountain_n2_w" ref="ent2s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -49,11 +52,13 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="20" y="52" ref="ent3n">
       <destination zone="0_ados_mountain_n2_w" ref="ent3s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -63,11 +68,13 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="21" y="52" ref="ent4n">
       <destination zone="0_ados_mountain_n2_w" ref="ent4s" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -77,6 +84,7 @@
         <parameter name="minimum-level">100</parameter>
         <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -513,6 +521,7 @@
     <!-- Portals -->
     <portal x="67" y="78" ref="carolines_house_entrance">
       <destination zone="int_ados_carolines_house_0" ref="entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Tables -->
@@ -624,6 +633,7 @@ West: Semos
 
     <portal x="75" y="50" ref="magician_house_entrance">
       <destination zone="int_ados_magician_house" ref="entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="56" y="95">
@@ -642,6 +652,7 @@ West: Semos
 
     <portal x="12" y="13" ref="entrance">
       <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="9" y="6">
@@ -765,6 +776,7 @@ areas.
 
     <portal x="67" y="24" ref="0">
       <destination zone="-1_ados_outside_nw" ref="0"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="67" y="24">
@@ -794,6 +806,7 @@ West: Semos
 
     <portal x="59" y="38" ref="sanctuary">
       <destination zone="int_ados_pet_sanctuary" ref="in"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -807,14 +820,17 @@ West: Semos
         <parameter name="key">pet sanctuary key</parameter>
         <parameter name="rejected">Restricted access: animal keepers and vets only.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="13" y="9" ref="door_left">
       <destination zone="int_ados_pet_sanctuary" ref="door_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="22" y="30" ref="in">
       <destination zone="0_ados_outside_nw" ref="sanctuary"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1094,18 +1110,22 @@ West: Semos
 
     <portal x="60" y="16" ref="tavern_entrance_left">
       <destination zone="int_ados_tavern_0" ref="entrance_left"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="65" y="16" ref="tavern_entrance_right">
       <destination zone="int_ados_tavern_0" ref="entrance_right"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="38" y="52" ref="goldsmith_entrance">
       <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="54" y="19" ref="6">
       <destination zone="int_ados_bank" ref="0"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="54" y="19">
@@ -1117,10 +1137,12 @@ West: Semos
 
     <portal x="27" y="39" ref="10">
       <destination zone="int_ados_bakery" ref="0" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="12" y="38" ref="11">
       <destination zone="int_ados_haunted_house" ref="0" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="74" ref="house_50">
@@ -1185,6 +1207,7 @@ West: Semos
         <parameter name="key">small key</parameter>
         <parameter name="rejected">The door is locked.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="19" y="85" ref="house_57">
@@ -1247,22 +1270,27 @@ Please leave my mail at my neighbour's house.
 
     <portal x="62" y="86" ref="storage_outside_1">
       <destination zone="int_ados_storage" ref="storage_inside_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="63" y="86" ref="storage_outside_2">
       <destination zone="int_ados_storage" ref="storage_inside_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="64" y="86" ref="storage_outside_3">
       <destination zone="int_ados_storage" ref="storage_inside_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="65" y="86" ref="storage_outside_4">
       <destination zone="int_ados_storage" ref="storage_inside_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="66" y="86" ref="storage_outside_5">
       <destination zone="int_ados_storage" ref="storage_inside_right"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="74" y="14">
@@ -1373,6 +1401,7 @@ Please leave my mail at my neighbour's house.
 
     <portal x="22" y="17" ref="0">
       <destination zone="0_ados_city_n" ref="6" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="3" y="11">
@@ -1554,6 +1583,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <!-- Portals -->
     <portal x="15" y="30" ref="0">
       <destination zone="0_ados_city_n" ref="11" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="28" ref="downstairs">
@@ -1601,6 +1631,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <!-- Portals -->
     <portal x="26" y="14" ref="0">
       <destination zone="0_ados_city_n" ref="10" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1685,10 +1716,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="8" y="30" ref="entrance_left">
       <destination zone="0_ados_city" ref="library_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="30" ref="entrance_right">
       <destination zone="0_ados_city" ref="library_entrance_right"/>
+      <attribute name="move.continuous" />
     </portal>
   </zone>
 
@@ -1701,10 +1734,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="12" y="17" ref="entrance_left">
       <destination zone="0_ados_city_n" ref="tavern_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="27" y="17" ref="entrance_right">
       <destination zone="0_ados_city_n" ref="tavern_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1717,10 +1752,12 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="key">small key</parameter>
         <parameter name="rejected">Zara would be angry if you forgot the key inside her house.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="11" y="2" ref="up_zaras_house">
       <destination zone="int_ados_zaras_house_1" ref="down_zaras_house" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1729,6 +1766,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="11" y="4" ref="down_zaras_house">
       <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="3" y="3">
@@ -1763,6 +1801,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="4" y="14" ref="entrance_goldsmith">
       <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1795,6 +1834,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="10" y="14" ref="entrance">
    	  <destination zone="0_ados_city_n2" ref="carolines_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -1807,6 +1847,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="12" y="23" ref="entrance">
       <destination zone="0_ados_wall" ref="felina_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2065,10 +2106,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="24" y="58" ref="entrance_left">
       <destination zone="0_ados_wall" ref="barracks_entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="25" y="58" ref="entrance_right">
       <destination zone="0_ados_wall" ref="barracks_entrance_center" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="2" y="46" ref="down">
@@ -2104,10 +2147,12 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="14" y="30" ref="storage_inside_left">
       <destination zone="0_ados_city_n" ref="storage_outside_1"/>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="30" ref="storage_inside_right">
       <destination zone="0_ados_city_n" ref="storage_outside_5" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2118,10 +2163,12 @@ You should never dive with a cold or severe allergy because, you may not be able
 
     <portal x="6" y="18" ref="sewing_entrance_left">
       <destination zone="0_ados_city" ref="sewing_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="18" ref="sewing_entrance_right">
       <destination zone="0_ados_city" ref="sewing_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -2169,6 +2216,7 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="quest">mithril_cloak</parameter>
         <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="7" y="18" ref="twilight_door_right">
@@ -2177,6 +2225,7 @@ You should never dive with a cold or severe allergy because, you may not be able
         <parameter name="quest">mithril_cloak</parameter>
         <parameter name="rejected">The only way out is to help Ida by making her well again. Find the elixir she needs.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2190,6 +2239,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="15" y="30" ref="bar_entrance">
       <destination zone="0_ados_city" ref="bar" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="2" ref="upstair_left">
@@ -2234,6 +2284,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="22" y="17" ref="entrance">
       <destination zone="0_ados_city" ref="town_hall_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="4" y="4" ref="upstairs">
@@ -2643,6 +2694,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_fishermans_hut_west">
       <destination zone="0_ados_city" ref="fishermans_hut_west_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2654,6 +2706,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_fishermans_hut_north">
       <destination zone="0_ados_city" ref="fishermans_hut_north_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2716,6 +2769,7 @@ My fee:
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_meat_market">
       <destination zone="0_ados_city" ref="meat_market_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -2724,117 +2778,167 @@ My fee:
     <!-- entrance -->
     <portal x="15" y="30" ref="entranceleft">
       <destination zone="0_ados_city" ref="castle_left_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="30" ref="entranceright">
       <destination zone="0_ados_city" ref="castle_left_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!--hallway-->
     <portal x="15" y="24" ref="hall1">
       <destination zone="int_ados_castle_entrance" ref="hall1a" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="24" ref="hall2">
       <destination zone="int_ados_castle_entrance" ref="hall2a" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="15" y="21" ref="hall1a">
       <destination zone="int_ados_castle_entrance" ref="hall1" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="21" ref="hall2a">
       <destination zone="int_ados_castle_entrance" ref="hall2" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- left corridor -->
     <portal x="0" y="3" ref="left1">
       <destination zone="int_ados_castle_left" ref="bottom1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="4" ref="left2">
       <destination zone="int_ados_castle_left" ref="bottom2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="5" ref="left3">
       <destination zone="int_ados_castle_left" ref="bottom3"/>
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="6" ref="left4">
       <destination zone="int_ados_castle_left" ref="bottom4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="7" ref="left5">
       <destination zone="int_ados_castle_left" ref="bottom5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="8" ref="left6">
       <destination zone="int_ados_castle_left" ref="bottom6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="9" ref="left7">
       <destination zone="int_ados_castle_left" ref="bottom7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="10" ref="left8">
       <destination zone="int_ados_castle_left" ref="bottom8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="11" ref="left9">
       <destination zone="int_ados_castle_left" ref="bottom9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="12" ref="left10">
       <destination zone="int_ados_castle_left" ref="bottom10" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="13" ref="left11">
       <destination zone="int_ados_castle_left" ref="bottom11" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- right corridor -->
     <portal x="31" y="3" ref="right1">
       <destination zone="int_ados_castle_right" ref="bottom1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="4" ref="right2">
       <destination zone="int_ados_castle_right" ref="bottom2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="5" ref="right3">
       <destination zone="int_ados_castle_right" ref="bottom3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="6" ref="right4">
       <destination zone="int_ados_castle_right" ref="bottom4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="7" ref="right5">
       <destination zone="int_ados_castle_right" ref="bottom5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="8" ref="right6">
       <destination zone="int_ados_castle_right" ref="bottom6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="9" ref="right7">
       <destination zone="int_ados_castle_right" ref="bottom7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="10" ref="right8">
       <destination zone="int_ados_castle_right" ref="bottom8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="11" ref="right9">
       <destination zone="int_ados_castle_right" ref="bottom9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="12" ref="right10">
       <destination zone="int_ados_castle_right" ref="bottom10" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="13" ref="right11">
       <destination zone="int_ados_castle_right" ref="bottom11" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
   </zone>
@@ -2846,83 +2950,123 @@ My fee:
     <!-- bottom corridor -->
     <portal x="31" y="35" ref="bottom1">
       <destination zone="int_ados_castle_entrance" ref="left1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="36" ref="bottom2">
       <destination zone="int_ados_castle_entrance" ref="left2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="37" ref="bottom3">
       <destination zone="int_ados_castle_entrance" ref="left3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="38" ref="bottom4">
       <destination zone="int_ados_castle_entrance" ref="left4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="39" ref="bottom5">
       <destination zone="int_ados_castle_entrance" ref="left5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="40" ref="bottom6">
       <destination zone="int_ados_castle_entrance" ref="left6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="41" ref="bottom7">
       <destination zone="int_ados_castle_entrance" ref="left7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="42" ref="bottom8">
       <destination zone="int_ados_castle_entrance" ref="left8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="43" ref="bottom9">
       <destination zone="int_ados_castle_entrance" ref="left9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="44" ref="bottom10">
       <destination zone="int_ados_castle_entrance" ref="left10" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="45" ref="bottom11">
       <destination zone="int_ados_castle_entrance" ref="left11" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- top corridor -->
     <portal x="31" y="3" ref="top1">
       <destination zone="int_ados_castle_throne" ref="left1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="4" ref="top2">
       <destination zone="int_ados_castle_throne" ref="left2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="5" ref="top3">
       <destination zone="int_ados_castle_throne" ref="left3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="6" ref="top4">
       <destination zone="int_ados_castle_throne" ref="left4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="7" ref="top5">
      <destination zone="int_ados_castle_throne" ref="left5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="8" ref="top6">
       <destination zone="int_ados_castle_throne" ref="left6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="9" ref="top7">
       <destination zone="int_ados_castle_throne" ref="left7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="10" ref="top8">
       <destination zone="int_ados_castle_throne" ref="left8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="11" ref="top9">
       <destination zone="int_ados_castle_throne" ref="left9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
   </zone>
@@ -2931,83 +3075,123 @@ My fee:
     <!-- bottom corridor -->
     <portal x="0" y="35" ref="bottom1">
       <destination zone="int_ados_castle_entrance" ref="right1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="36" ref="bottom2">
       <destination zone="int_ados_castle_entrance" ref="right2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="37" ref="bottom3">
       <destination zone="int_ados_castle_entrance" ref="right3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="38" ref="bottom4">
       <destination zone="int_ados_castle_entrance" ref="right4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="39" ref="bottom5">
       <destination zone="int_ados_castle_entrance" ref="right5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="40" ref="bottom6">
       <destination zone="int_ados_castle_entrance" ref="right6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="41" ref="bottom7">
       <destination zone="int_ados_castle_entrance" ref="right7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="42" ref="bottom8">
       <destination zone="int_ados_castle_entrance" ref="right8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="43" ref="bottom9">
       <destination zone="int_ados_castle_entrance" ref="right9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="44" ref="bottom10">
       <destination zone="int_ados_castle_entrance" ref="right10" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="45" ref="bottom11">
       <destination zone="int_ados_castle_entrance" ref="right11" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- top corridor -->
     <portal x="0" y="3" ref="top1">
       <destination zone="int_ados_castle_throne" ref="right1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="4" ref="top2">
       <destination zone="int_ados_castle_throne" ref="right2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="5" ref="top3">
       <destination zone="int_ados_castle_throne" ref="right3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="6" ref="top4">
       <destination zone="int_ados_castle_throne" ref="right4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="7" ref="top5">
       <destination zone="int_ados_castle_throne" ref="right5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="8" ref="top6">
       <destination zone="int_ados_castle_throne" ref="right6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="9" ref="top7">
       <destination zone="int_ados_castle_throne" ref="right7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="10" ref="top8">
       <destination zone="int_ados_castle_throne" ref="right8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="11" ref="top9">
       <destination zone="int_ados_castle_throne" ref="right9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
   </zone>
@@ -3016,93 +3200,133 @@ My fee:
     <!-- left corridor -->
     <portal x="0" y="16" ref="left1">
       <destination zone="int_ados_castle_left" ref="top1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="17" ref="left2">
       <destination zone="int_ados_castle_left" ref="top2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="18" ref="left3">
       <destination zone="int_ados_castle_left" ref="top3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="19" ref="left4">
       <destination zone="int_ados_castle_left" ref="top4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="20" ref="left5">
       <destination zone="int_ados_castle_left" ref="top5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="21" ref="left6">
       <destination zone="int_ados_castle_left" ref="top6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="22" ref="left7">
       <destination zone="int_ados_castle_left" ref="top7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="23" ref="left8">
       <destination zone="int_ados_castle_left" ref="top8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="0" y="24" ref="left9">
       <destination zone="int_ados_castle_left" ref="top9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- right corridor -->
     <portal x="31" y="16" ref="right1">
       <destination zone="int_ados_castle_right" ref="top1" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="17" ref="right2">
       <destination zone="int_ados_castle_right" ref="top2" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="18" ref="right3">
       <destination zone="int_ados_castle_right" ref="top3" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="19" ref="right4">
       <destination zone="int_ados_castle_right" ref="top4" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="20" ref="right5">
       <destination zone="int_ados_castle_right" ref="top5" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="21" ref="right6">
       <destination zone="int_ados_castle_right" ref="top6" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="22" ref="right7">
       <destination zone="int_ados_castle_right" ref="top7" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="23" ref="right8">
       <destination zone="int_ados_castle_right" ref="top8" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <portal x="31" y="24" ref="right9">
       <destination zone="int_ados_castle_right" ref="top9" />
+      <attribute name="move.continuous" />
+      <attribute name="hidden" />
     </portal>
 
     <!-- garden -->
     <portal x="15" y="29" ref="outgardenleft">
       <destination zone="0_ados_city" ref="ingardenleft" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="16" y="29" ref="outgardencenter">
       <destination zone="0_ados_city" ref="ingardenright" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="29" ref="outgardenright">
       <destination zone="0_ados_city" ref="ingardenright" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- secret dungeon-->
     <portal x="15" y="3" ref="secret">
       <destination zone="int_ados_castle_dungeons" ref="entrance2"/>
+      <attribute name="resistance">0</attribute>
     </portal>
 
   </zone>
@@ -3119,6 +3343,7 @@ My fee:
 
     <portal x="9" y="27" ref="crawlyspacedown">
       <destination zone="-1_ados_city" ref="crawlyspaceup" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -3132,6 +3357,7 @@ My fee:
     <!-- Portals -->
     <portal x="7" y="14" ref="entrance">
       <destination zone="0_ados_city" ref="ross_house_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -4112,6 +4338,7 @@ My fee:
 
     <portal x="21" y="100" ref="farm">
       <destination zone="int_ados_farm_house" ref="in" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -4145,6 +4372,7 @@ My fee:
     <!-- Portals -->
     <portal x="22" y="23" ref="in">
       <destination zone="0_ados_forest_w2" ref="farm" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="22" y="14" ref="up">
@@ -4383,14 +4611,17 @@ Southeast: Docks
 
     <portal x="101" y="22" ref="felina_entrance">
       <destination zone="int_ados_felinas_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="100" y="52" ref="barracks_entrance_left">
       <destination zone="int_ados_barracks_0" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="101" y="52" ref="barracks_entrance_center">
       <destination zone="int_ados_barracks_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="101" y="52">
@@ -4403,6 +4634,7 @@ Southeast: Docks
 
     <portal x="102" y="52" ref="barracks_entrance_right">
       <destination zone="int_ados_barracks_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <point-of-interest x="71" y="92">
@@ -4556,10 +4788,12 @@ Southeast: Docks
     <!-- castle garden entrance -->
     <portal x="17" y="24" ref="ingardenleft">
       <destination zone="int_ados_castle_throne" ref="outgardenleft" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="18" y="24" ref="ingardenright">
       <destination zone="int_ados_castle_throne" ref="outgardenright" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- castle dungeon-->
@@ -4646,38 +4880,47 @@ Southeast: Docks
 
     <portal x="43" y="21" ref="library_entrance_left">
       <destination zone="int_ados_library" ref="entrance_left" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="51" y="21" ref="library_entrance_right">
       <destination zone="int_ados_library" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="39" y="57" ref="sewing_entrance">
       <destination zone="int_ados_sewing_room" ref="sewing_entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="50" y="39" ref="bar">
       <destination zone="int_ados_bar" ref="bar_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="67" y="65" ref="fishermans_hut_west_entrance">
       <destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="75" y="61" ref="fishermans_hut_north_entrance">
       <destination zone="int_ados_fishermans_hut_north" ref="entrance_fishermans_hut_north" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="75" y="70" ref="meat_market_entrance">
       <destination zone="int_ados_meat_market" ref="entrance_meat_market" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="34" y="110" ref="ross_house_entrance">
       <destination zone="int_ados_ross_house" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="42" y="93" ref="town_hall_entrance">
       <destination zone="int_ados_town_hall" ref="entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="17" y="40" ref="castle_left_entrance">
@@ -4686,6 +4929,7 @@ Southeast: Docks
         <parameter name="minimum-level">10</parameter>
         <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="18" y="40" ref="castle_centre_entrance">
@@ -4694,6 +4938,7 @@ Southeast: Docks
         <parameter name="minimum-level">10</parameter>
         <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="19" y="40" ref="castle_right_entrance">
@@ -4702,6 +4947,7 @@ Southeast: Docks
         <parameter name="minimum-level">10</parameter>
         <parameter name="rejected">Assassins have taken over the castle and blocked the door. You are too weak to force it open.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -4736,11 +4982,13 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="81" y="29" ref="broken_bars_1">
       <destination zone="0_ados_swamp" ref="broken_bars_2" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
     <portal x="81" y="30" ref="broken_bars_2">
       <destination zone="0_ados_swamp" ref="broken_bars_1" />
+      <attribute name="move.continuous" />
       <attribute name="hidden" />
     </portal>
 
@@ -4873,6 +5121,7 @@ Southeast: Docks
 
     <portal x="53" y="25" ref="church_entrance">
       <destination zone="int_ados_church_0" ref="entrance_right" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Houses not ready for sale
@@ -4935,6 +5184,7 @@ Southeast: Docks
 
     <portal x="107" y="98" ref="fishermans_hut_south_entrance">
       <destination zone="int_ados_fishermans_hut_south" ref="entrance_fishermans_hut_south" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Signs -->
@@ -4963,14 +5213,17 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="19" y="19" ref="entrance_left">
       <destination zone="0_ados_city_s" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="20" y="19" ref="entrance_centre">
       <destination zone="0_ados_city_s" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="21" y="19" ref="entrance_right">
       <destination zone="0_ados_city_s" ref="church_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="2" y="2" ref="upstairs">
@@ -5122,6 +5375,7 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_fishermans_hut_south">
       <destination zone="0_ados_city_s" ref="fishermans_hut_south_entrance" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -5211,6 +5465,7 @@ Southeast: Docks
 
     <portal x="92" y="90" ref="pit_escape_down">
       <destination zone="-2_ados_snake_pit" ref="pit_escape_up" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="53" y="59" ref="jump_down_l">
@@ -5223,10 +5478,12 @@ Southeast: Docks
 
     <portal x="53" y="61" ref="land_l">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="54" y="61" ref="land_r">
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -5245,6 +5502,7 @@ Southeast: Docks
   <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="Level -1/ados/outside_nw.tmx">
     <portal x="4" y="23" ref="0">
       <destination zone="0_ados_outside_nw" ref="0" />
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -5319,6 +5577,7 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="20" y="25" ref="crawlyspaceup">
       <destination zone="int_ados_castle_dungeons" ref="crawlyspacedown" />
+      <attribute name="move.continuous" />
     </portal>
 
     <!-- Music/Ambiance -->
@@ -5403,6 +5662,7 @@ Southeast: Docks
     <!-- Portals -->
     <portal x="25" y="28" ref="dragonlairinside">
       <destination zone="-1_ados_outside_w" ref="dragonlairoutside" />
+      <attribute name="move.continuous" />
     </portal>
 
     <portal x="28" y="28" ref="dragonlairoutside">
@@ -5412,6 +5672,7 @@ Southeast: Docks
         <parameter name="action">new MultipleActions([new SetQuestAction("dragon_lair", "done;"), new SetQuestToTimeStampAction("dragon_lair", 1)])</parameter>
         <parameter name="rejected">Wishman has locked the door to prevent casualties.</parameter>
       </implementation>
+      <attribute name="move.continuous" />
     </portal>
 
   </zone>
@@ -5443,6 +5704,7 @@ East Tunnel: Uncharted</attribute>
     <!-- Portals -->
     <portal x="14" y="4" ref="pit_exit">
       <destination zone="-1_ados_caves_e" ref="pit_entrance" />
+      <attribute name="face">down</attribute>
     </portal>
 
     <portal x="27" y="3" ref="pit2_escape_down">
@@ -5451,10 +5713,12 @@ East Tunnel: Uncharted</attribute>
 	      <parameter name="minimum-level">80</parameter>
 	      <parameter name="rejected">A protective aura prevents you from going any lower.</parameter>
 	    </implementation>
+      <attribute name="face">right</attribute>
     </portal>
 
     <portal x="59" y="3" ref="pit_escape_up">
       <destination zone="-1_ados_caves_e" ref="pit_escape_down" />
+      <attribute name="move.continuous" />
     </portal>
 
     <entity x="0" y="0">
@@ -5490,6 +5754,7 @@ East Tunnel: Uncharted</attribute>
 	      <parameter name="minimum-level">80</parameter>
 	      <parameter name="rejected">A protective aura prevents you from going any lower.</parameter>
 	    </implementation>
+	    <attribute name="resistance">0</attribute>
     </portal>
 
     <!-- Player messages -->
@@ -5614,6 +5879,7 @@ I have found some water but fear I am trapped. I have yet to find any food and t
     <!-- Portals -->
     <portal x="27" y="3" ref="pit3_escape_up">
       <destination zone="-2_ados_snake_pit" ref="pit2_escape_down" />
+      <attribute name="face">down</attribute>
     </portal>
 
   </zone>
