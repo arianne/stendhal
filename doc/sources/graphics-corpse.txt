@@ -1,8 +1,10 @@
 
 data/sprites/corpse/
 
+bag*.png          rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
 cloaked*          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81954
 feathered.png     beakman; CC0; http://openclipart.org/detail/23073
+gnome*            rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207, https://opengameart.org/node/78045
 halo*             freedo; CC0; https://openclipart.org/detail/20950
 leafy*            Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
 puddle_*.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
