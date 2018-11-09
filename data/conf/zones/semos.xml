@@ -1393,6 +1393,9 @@ South: Semos city
 
   </zone>
 
+  <zone name="int_semos_school_0" file="interiors/semos/school_0.tmx" accessible="false">
+  </zone>
+
   <zone name="0_semos_plains_ne" level="0" x="500128" y="499872"
     file="Level 0/semos/plains_ne.tmx">
     <attributes>
