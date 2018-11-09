@@ -117,6 +117,9 @@
  <tileset firstgid="457" name="item/documents/kids_art_2" tilewidth="32" tileheight="32" tilecount="16" columns="4">
   <image source="../../tileset/item/documents/kids_art_2.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="473" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+  <image source="../../tileset/logic/portal.png" width="256" height="64"/>
+ </tileset>
  <layer name="0_floor" width="40" height="40">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu2XOQ4CMQxFI5YGmJadAwAdcBSWhqVhuQlcm18iS5PNiclILl73LT9pnMRTGWPaEQxAlTBXV9sFCzAJYA46HrW+OVftCHwCGJLadw00x+kRUrsHB3AEJ4sfzUn5ncEFXMHN4kdzUn538ABP8LL40ZyUX+nzJ+03A+MApoJ+fdCKoCfkx73bJb4v92738ePOUM7zkWKGcvqlmKHc94vuB83x0/1F9xc9H+X4SexXsT0k9itOD4n96p//5/r+6vum71uz5k/91E/9yvHj7Fe/tUuwAmtHTmq/orUbsAU7Ry6kxxeHTgUiABkAAA==
@@ -144,7 +147,7 @@
  </layer>
  <layer name="objects" width="40" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQ0AAADCoPdPbQ8HFAAAAAAAwJcBSxPzAQAZAAA=
+   H4sIAAAAAAAACu3OAQ0AAAgDoNs/pFVsoZuDBCQAAAAAAMB3XdeDXQMQS4BVABkAAA==
   </data>
  </layer>
  <layer name="collision" width="40" height="40" visible="0" opacity="0.46">

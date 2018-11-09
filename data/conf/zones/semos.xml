@@ -1332,6 +1332,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       </implementation>
     </portal>
 
+    <portal x="21" y="80" ref="school_entrance">
+      <destination zone="int_semos_school_0" ref="exit" />
+      <attribute name="move.continuous" />
+    </portal>
+
     <point-of-interest x="92" y="101">
       <name>Semos Catacombs</name>
       <type>dungeon</type>
@@ -1393,7 +1398,11 @@ South: Semos city
 
   </zone>
 
-  <zone name="int_semos_school_0" file="interiors/semos/school_0.tmx" accessible="false">
+  <zone name="int_semos_school_0" file="interiors/semos/school_0.tmx">
+  <portal x="20" y="38" ref="exit">
+    <destination zone="0_semos_plains_n" ref="school_entrance" />
+      <attribute name="move.continuous" />
+  </portal>
   </zone>
 
   <zone name="0_semos_plains_ne" level="0" x="500128" y="499872"
