@@ -8,7 +8,7 @@
 #./createtileset.sh ../../../../data/sprites/monsters/dwarf 48x64+48+128 dwarf.png
 #./createtileset.sh ../../../../data/sprites/monsters/elemental 48x64+48+128 elemental.png
 #./createtileset.sh ../../../../data/sprites/monsters/elf 48x64+48+128 elf.png
-./createtileset.sh ../../../../data/sprites/monsters/farm_animal 64x64+64+128 farm_animal.png
+#./createtileset.sh ../../../../data/sprites/monsters/farm_animal 64x64+64+128 farm_animal.png
 #./createtileset.sh ../../../../data/sprites/monsters/gargoyle 48x64+48+128 gargoyle.png
 #./createtileset.sh ../../../../data/sprites/monsters/giant 48x64+48+128 giant.png
 #./createtileset.sh ../../../../data/sprites/monsters/giant_animal 64x64+64+128 giant_animal.png
@@ -32,4 +32,5 @@
 #./createtileset.sh ../../../../data/sprites/monsters/troll 48x64+48+128 troll.png
 #./createtileset.sh ../../../../data/sprites/monsters/undead 48x64+48+128 undead.png
 #./createtileset.sh ../../../../data/sprites/monsters/vampire 48x64+48+128 vampire.png
+./createtileset.sh ../../../../data/sprites/monsters/holiday 48x64+48+128 holiday.png
 
