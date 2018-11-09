@@ -1399,10 +1399,16 @@ South: Semos city
   </zone>
 
   <zone name="int_semos_school_0" file="interiors/semos/school_0.tmx">
-  <portal x="20" y="38" ref="exit">
-    <destination zone="0_semos_plains_n" ref="school_entrance" />
-      <attribute name="move.continuous" />
-  </portal>
+    <portal x="20" y="38" ref="exit">
+      <destination zone="0_semos_plains_n" ref="school_entrance" />
+        <attribute name="move.continuous" />
+    </portal>
+
+    <!-- sign indicating other floors are not accessible -->
+    <entity x="20" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Due to renovations other floors are off limits.</attribute>
+    </entity>
   </zone>
 
   <zone name="0_semos_plains_ne" level="0" x="500128" y="499872"
