@@ -1179,6 +1179,10 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg line="${js-files-main2}" />
 			<arg line="${js-files-main3}" />
 		</java>
+
+		<echo file="srcjs/stendhal-compiled.js" append="true">
+//# sourceMappingURL=stendhal-compiled.js.map
+		</echo>
 	</target>
 	
 </project>
