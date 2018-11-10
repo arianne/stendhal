@@ -5,7 +5,7 @@ body {
 }
 
 li.online {color: #0A0}
-li.offline {color: #A00}
+li.offline {color: #AAA}
 #buddyList {
 	border: 1px solid black;
 	width: 128px;
