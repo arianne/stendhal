@@ -162,3 +162,14 @@ span.logi {text-decoration: underline}
 	background: url(/data/gui/panelwood003.jpg);
 	color: #FFF;
 }
+
+.inlineblock {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.menugroup {
+	color: #000;
+	background: #FFF;
+	text-align: center;
+}
