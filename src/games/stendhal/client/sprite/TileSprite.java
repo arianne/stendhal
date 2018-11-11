@@ -272,4 +272,9 @@ class TileSprite implements Sprite {
 					+ "]";
 		}
 	}
+
+	@Override
+	public boolean isConstant() {
+		return sprite.isConstant();
+	}
 }

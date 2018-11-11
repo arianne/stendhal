@@ -30,12 +30,12 @@ import games.stendhal.client.gui.TransparencyMode;
  */
 public class ImageSprite implements Sprite {
 	/** The image to be drawn for this sprite. */
-	private Image image;
+	private final Image image;
 
 	/**
 	 * The identifier reference.
 	 */
-	private Object reference;
+	private final Object reference;
 
 	/**
 	 * Create a new sprite based on an image.
@@ -224,5 +224,10 @@ public class ImageSprite implements Sprite {
 	@Override
 	public int getWidth() {
 		return image.getWidth(null);
+	}
+
+	@Override
+	public boolean isConstant() {
+		return true;
 	}
 }

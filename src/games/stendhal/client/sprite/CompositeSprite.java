@@ -124,7 +124,7 @@ public class CompositeSprite implements Sprite {
 	private CompositeSprite(List<Sprite> slaves, Composite blend, Sprite adj,
 			CompositeRef reference) {
 		// Get a copy. The caller can modify the list
-		this.slaves = new ArrayList<Sprite>(slaves);
+		this.slaves = new ArrayList<>(slaves);
 		this.reference = reference;
 		if (blend != null) {
 			this.adjSprite = adj;
@@ -179,15 +179,13 @@ public class CompositeSprite implements Sprite {
 	 * Merge all ImageSprite layers.
 	 */
 	private void composite() {
-		ArrayList<Sprite> newSlaves = new ArrayList<Sprite>(slaves.size());
+		ArrayList<Sprite> newSlaves = new ArrayList<>(slaves.size());
 		ImageSprite floor = null;
-		ListIterator<Sprite> iter = slaves.listIterator();
 		boolean copied = false;
 
 		// Go through the layers and merge what can be reasonably merged.
-		while (iter.hasNext()) {
-			Sprite current = iter.next();
-			if (current instanceof ImageSprite) {
+		for (Sprite slave : slaves) {
+			if (slave.isConstant()) {
 				if (floor != null) {
 					if (!copied) {
 						/*
@@ -200,10 +198,10 @@ public class CompositeSprite implements Sprite {
 						copied = true;
 					}
 					Graphics g = floor.getGraphics();
-					current.draw(g, 0, 0);
+					slave.draw(g, 0, 0);
 					g.dispose();
 				} else {
-					floor = (ImageSprite) current;
+					floor = (ImageSprite) slave;
 					// Stacks with blends will always need a copy
 					if (blend != null) {
 						floor = new ImageSprite(floor);
@@ -217,7 +215,7 @@ public class CompositeSprite implements Sprite {
 					newSlaves.add(floor);
 					floor = null;
 				}
-				newSlaves.add(current);
+				newSlaves.add(slave);
 			}
 		}
 		if (floor != null) {
@@ -277,7 +275,7 @@ public class CompositeSprite implements Sprite {
 				AnimatedSprite parent = ((AnimatedSprite) sprite);
 				Sprite[] frames = parent.frames;
 				Sprite[] newFrames = new Sprite[frames.length];
-				List<Sprite> tmp = new ArrayList<Sprite>(1);
+				List<Sprite> tmp = new ArrayList<>(1);
 				for (int i = 0; i < frames.length; i++) {
 					tmp.add(frames[i]);
 					/*

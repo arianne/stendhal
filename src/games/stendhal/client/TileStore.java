@@ -23,6 +23,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.sprite.FlippedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.SpriteTileset;
@@ -34,6 +35,13 @@ import marauroa.common.net.InputSerializer;
 
 /** It is class to get tiles from the tileset. */
 class TileStore implements Tileset {
+	/** Tiled reserves 3 highest bits for tile flipping. */
+	private static final int TILE_FLIP_MASK = 0xE0000000;
+	/**
+	 * Tiled reserves 3 highest bits for tile flipping. Mask for getting the
+	 * actual tile number.
+	 */
+	private static final int TILE_ID_MASK = 0xFFFFFFFF ^ TILE_FLIP_MASK;
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(TileStore.class);
 
@@ -293,17 +301,23 @@ class TileStore implements Tileset {
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	@Override
-	public Sprite getSprite(final int index) {
-		if (index >= tiles.size()) {
+	public Sprite getSprite(int index) {
+		int flip = index & TILE_FLIP_MASK;
+		index &= TILE_ID_MASK;
+		if (index >= tiles.size() || index < 0) {
 			logger.error("Accessing unassigned sprite at: " + index);
 			return store.getEmptySprite();
 		}
 
-		final Sprite sprite = tiles.get(index);
+		Sprite sprite = tiles.get(index);
 
 		if (sprite == null) {
 			logger.error("Accessing unassigned sprite at: " + index);
 			return store.getEmptySprite();
+		}
+		
+		if (flip != 0) {
+			sprite = new FlippedSprite(sprite, flip);
 		}
 
 		return sprite;
