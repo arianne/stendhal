@@ -40,6 +40,10 @@ public class SetCombatKarmaAction implements ActionListener {
 
 	@Override
 	public void onAction(final Player player, final RPAction action) {
+		if (System.getProperty("stendhal.karmaconfig") == null) {
+			player.sendPrivateText(NotificationType.ERROR, "Experimental karama settings not supported");
+			return;
+		}
 		if (action.has(COMBAT_KARMA)) {
 			final String combatKarmaMode = action.get(COMBAT_KARMA);
 			// check that mode is valid value
