@@ -32,5 +32,5 @@
 #./createtileset.sh ../../../../data/sprites/monsters/troll 48x64+48+128 troll.png
 #./createtileset.sh ../../../../data/sprites/monsters/undead 48x64+48+128 undead.png
 #./createtileset.sh ../../../../data/sprites/monsters/vampire 48x64+48+128 vampire.png
-./createtileset.sh ../../../../data/sprites/monsters/holiday 48x64+48+128 holiday.png
+./createtileset.sh ../../../../data/sprites/monsters/northpole 48x64+48+128 northpole.png
 
