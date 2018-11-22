@@ -242,7 +242,7 @@ red_juice.png                  ???; ???; ???
 sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tea.png                        ???; ???; ???
-twilight_elixir.png            Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
+twilight_elixir.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 waterbottle.png                Bluelads4?; ???; ???
 wine.png                       Anders Asplund (Danter); GPL 2.0; Stendhal (Zelda 3, replaced???)
 
@@ -492,7 +492,7 @@ potato.png               ???; ???; ???
 rodent_trap.png          ???; ???; ???
 seed.png                 ???; ???; ???
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
-suntan_cream.png         ???; ???; ???
+suntan_cream.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 teddy.png                Daniel Herding (mort); GPL 2.0; Stendhal
 tripe.png                ???; ???; ???
 vampirette_entrails.png  Katie Russell (kymara); GPL 2.0; Stendhal
@@ -508,7 +508,7 @@ poison_dart.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/to
 power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shuriken.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 snowballs.png      ???; ???; ???
-vomit.png          ???; ???; ???
+vomit.png          gummipferd; ???; ???
 wooden_spear.png   Nadine Schlonies (dine); GPL 2.0; Stendhal
 
 data/sprites/items/money/
@@ -555,7 +555,7 @@ mithril_bar.png     Daniel Herding (mort); GPL 2.0; Stendhal (based on iron.png)
 mithril_fabric.png  tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ore.png     Nadine Schlonies (dine); GPL 2.0; Stendhal (based on gold_ore.png)
 mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
-oil.png             ???; ???; ???
+oil.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
 silkthread.png      tigertoes; CC BY-SA 3.0; Stendhal
 sugarcane.png       wmbec7718; ???; ???
@@ -716,10 +716,10 @@ data/sprites/items/tool/
 
 cake_pan.png          ???; ???; ???
 fishing_rod.png       Nadine Schlonies (dine); GPL 2.0; Stendhal
-foodmill.png          ???; ???; ???
+foodmill.png          Durkham?; ???; ???
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
-magical_scissors.png  ???; ???; ???
+magical_scissors.png  Kimmo Rundelin (kiheru); ???; ???
 pestleandmortar.png   ???; ???; ???
 pick.png              ???; ???; ???
 scrolleraser.png      ???; ???; ???
