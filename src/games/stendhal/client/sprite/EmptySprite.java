@@ -206,4 +206,9 @@ public class EmptySprite implements Sprite {
 			return "[" + width + "x" + height + "]";
 		}
 	}
+
+	@Override
+	public boolean isConstant() {
+		return true;
+	}
 }

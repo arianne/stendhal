@@ -126,6 +126,9 @@ stendhal.main = {
 		buddyList.addEventListener("mouseup", stendhal.ui.buddyList.onMouseUp);
 		buddyList.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 
+		var menubutton = document.getElementById("menubutton");
+		menubutton.addEventListener("click", stendhal.ui.menu.onOpenAppMenu);
+
 		var chatinput = document.getElementById("chatinput");
 		chatinput.addEventListener("keydown", stendhal.ui.chatinput.onKeyDown);
 		chatinput.addEventListener("keyup", stendhal.ui.chatinput.onKeyUp);

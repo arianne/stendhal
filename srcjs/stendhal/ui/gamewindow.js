@@ -61,26 +61,24 @@ stendhal.ui.gamewindow = {
 	},
 
 	paintLayer: function(canvas, drawingLayer, tileOffsetX, tileOffsetY) {
-		var layer = stendhal.data.map.layers[drawingLayer];
-		var yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
-		var xMax = Math.min(tileOffsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
-		for (var y = tileOffsetY; y < yMax; y++) {
-			for (var x = tileOffsetX; x < xMax; x++) {
-				var gid = layer[y * stendhal.data.map.numberOfXTiles + x];
+		const layer = stendhal.data.map.layers[drawingLayer];
+		const yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
+		const xMax = Math.min(tileOffsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
+		
+		for (let y = tileOffsetY; y < yMax; y++) {
+			for (let x = tileOffsetX; x < xMax; x++) {
+				let gid = layer[y * stendhal.data.map.numberOfXTiles + x];
+				const flip = gid & 0xE0000000;
+				gid &= 0x1FFFFFFF;
+				
 				if (gid > 0) {
-					var tileset = stendhal.data.map.getTilesetForGid(gid);
-					var base = stendhal.data.map.firstgids[tileset];
-					var idx = gid - base;
-					var tilesetWidth = stendhal.data.map.aImages[tileset].width;
+					const tileset = stendhal.data.map.getTilesetForGid(gid);
+					const base = stendhal.data.map.firstgids[tileset];
+					const idx = gid - base;
 
 					try {
 						if (stendhal.data.map.aImages[tileset].height > 0) {
-							this.ctx.drawImage(stendhal.data.map.aImages[tileset],
-								(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight,
-								stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
-								x * this.targetTileWidth,
-								y * this.targetTileHeight,
-								this.targetTileWidth, this.targetTileHeight);
+							this.drawTile(stendhal.data.map.aImages[tileset], idx, x, y, flip);
 						}
 					} catch (e) {
 						console.error(e);
@@ -90,7 +88,53 @@ stendhal.ui.gamewindow = {
 			}
 		}
 	},
+	
+	drawTile: function(tileset, idx, x, y, flip = 0) {
+		const tilesetWidth = tileset.width;
+		const pixelX = x * this.targetTileWidth;
+		const pixelY = y * this.targetTileHeight;
+		
+		if (flip === 0) {
+			this.ctx.drawImage(tileset,
+					(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight,
+					stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
+					pixelX, pixelY,
+					this.targetTileWidth, this.targetTileHeight);
+		} else {
+			const ctx = this.ctx;
+			ctx.translate(pixelX, pixelY);
+			// an ugly hack to restore the previous transformation matrix
+			const restore = [[1, 0, 0, 1, -pixelX, -pixelY]];
+			
+			if ((flip & 0x80000000) != 0) {
+				// flip horizontally
+				ctx.transform(-1, 0, 0, 1, 0, 0);
+				ctx.translate(-this.targetTileWidth, 0);
 
+				restore.push([-1, 0, 0, 1, 0, 0]);
+				restore.push([1, 0, 0, 1, this.targetTileWidth, 0]);
+			} if ((flip & 0x40000000) != 0) {
+				// flip vertically
+				ctx.transform(1, 0, 0, -1, 0, 0);
+				ctx.translate(0, -this.targetTileWidth);
+				
+				restore.push([1, 0, 0, -1, 0, 0]);
+				restore.push([1, 0, 0, 1, 0, this.targetTileHeight]);
+			} if ((flip & 0x20000000) != 0) {
+				// Coordinate swap
+				ctx.transform(0, 1, 1, 0, 0, 0);
+				restore.push([0, 1, 1, 0, 0, 0]);
+			}
+			
+			this.drawTile(tileset, idx, 0, 0);
+			
+			restore.reverse();
+			for (const args of restore) {
+				ctx.transform.apply(ctx, args);
+			}
+		}
+	},
+	
 	drawEntities: function() {
 		var currentTime = new Date().getTime();
 		var time = currentTime - this.timeStamp;

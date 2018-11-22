@@ -62,7 +62,10 @@ public class PlayerRPClass {
 		player.addAttribute(MOVE_CONTINUOUS, Type.FLAG, Definition.VOLATILE);
 
 		/* setting for using karma during combat */
-		player.addAttribute(COMBAT_KARMA, Type.STRING, Definition.PRIVATE);
+		if (System.getProperty("stendhal.karmaconfig") != null) {
+			// TODO: If it is decided that such a feature was acceptable, we should aim for a better name and location for setting variables
+			player.addAttribute(COMBAT_KARMA, Type.STRING, Definition.PRIVATE);
+		}
 
 		// Use this for admin menus and usage.
 		player.addAttribute("admin", Type.FLAG);

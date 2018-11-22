@@ -5,7 +5,7 @@ body {
 }
 
 li.online {color: #0A0}
-li.offline {color: #A00}
+li.offline {color: #AAA}
 #buddyList {
 	border: 1px solid black;
 	width: 128px;
@@ -161,4 +161,15 @@ span.logi {text-decoration: underline}
 .background {
 	background: url(/data/gui/panelwood003.jpg);
 	color: #FFF;
+}
+
+.inlineblock {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.menugroup {
+	color: #000;
+	background: #FFF;
+	text-align: center;
 }

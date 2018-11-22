@@ -111,8 +111,11 @@ class GeneralSettings {
 		});
 		page.add(moveContinuousToggle);
 
-		// combat karma
-		page.add(createCombatKarmaSelector());
+
+		if (System.getProperty("stendhal.karmaconfig") != null) {
+			// combat karma
+			page.add(createCombatKarmaSelector());
+		}
 
 		// Client dimensions
 		JComponent clientSizeBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);

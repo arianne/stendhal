@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2018 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -126,6 +126,59 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
+	
+	"help": {
+		execute: function(type, params, remainder) {
+			var msg = [
+				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
+				"Here are the most-used commands:",
+				"* CHATTING:",
+				"- /me <action> \tShow a message about what you are doing.",
+				"- /tell <player> <message> \tSend a private message to #player.",
+				"- // <message>\tSend a private message to the last player you sent a message to.",
+				"- /storemessage <player> <message> \t\tStore a private message to deliver for an offline #player.",
+				"- /who \tList all players currently online.",
+				"- /where <player> \tShow the current location of #player.",
+				"- /sentence <text> \tSet message on stendhalgame.org profile page and what players see when using #Look.",
+				"* SUPPORT:",
+				"- /support <message> \t\tAsk an administrator for help.",
+				"- /faq \t\tOpen Stendhal FAQs wiki page in browser.",
+				"* ITEM MANIPULATION:",
+				"- /markscroll <text> \t\tMark your empty scroll and add a #text label.",
+				"* BUDDIES AND ENEMIES:",
+				"- /ignore <player> [minutes|*|- [reason...]] \t\tAdd #player to your ignore list.",
+				"- /ignore \tFind out who is on your ignore list.",
+				"- /unignore <player> \t\tRemove #player from your ignore list.",
+/*				"* STATUS:",
+				"- /away <message> \t\tSet an away message.",
+				"- /away \tRemove away status.",
+				"- /grumpy <message> \t\tSet a message to ignore all non-buddies.",
+				"- /grumpy \tRemove grumpy status.", */
+				"- /name <pet> <name> \t\tGive a name to your pet.",
+/*				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
+				"* PLAYER CONTROL:",
+				"- /clickmode \tSwitches between single click mode and double click mode.",
+				"- /walk \tToggles autowalk on/off.",
+				"- /stopwalk \tTurns autowalk off.",
+				"- /movecont \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
+				"* CLIENT SETTINGS:",
+				"- /mute \tMute or unmute the sounds.",
+				"- /volume \tLists or sets the volume for sound and music.",*/
+				"* MISC:",
+				"- /info \t\tFind out what the current server time is.",
+				"- /clear \tClear chat log.",
+				"- /help \tShow help information."
+			];
+			for (var i = 0; i < msg.length; i++) {
+				stendhal.ui.chatLog.addLine("info", msg[i]);
+			}
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+		},
+
+	
 	"jail": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -298,9 +351,26 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"atlas": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/world/atlas.html?me="
+				+ marauroa.currentZoneName + "." + marauroa.me.x + "." + marauroa.me.y;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"beginnersguide": {
 		execute: function(type, params, remainder) {
 			window.location = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+	
+	"characterselector": {
+		execute: function(type, params, remainder) {
+			window.location = "https://stendhalgame.org/account/mycharacters.html";
 		},
 		getMinParams: 0,
 		getMaxParams: 0
@@ -416,5 +486,6 @@ stendhal.slashActionRepository = {
 		}
 	}
 };
-
+// answer, sentence, drop, add, remove, away, grumpy, profile, clickmode, walk, stopwalk, movecont, mute, settings
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
+stendhal.slashActionRepository["tell"] = stendhal.slashActionRepository["msg"];
