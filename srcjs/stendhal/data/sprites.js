@@ -119,6 +119,12 @@ stendhal.data.sprites = {
 			rgb >>>= 8;
 			return [rgb, g, b];
 		},
+		
+		mergergb: function(rgbArray) {
+			const r = rgbArray[0] << 16;
+			const g = rgbArray[1] << 8;
+			return 0xffffff & (r | g | rgbArray[2]);
+		},
 
 		/**
 		 * @param {Array<Number>} rgb
