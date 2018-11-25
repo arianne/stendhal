@@ -106,21 +106,23 @@ stendhal.ui.gamewindow = {
 			// an ugly hack to restore the previous transformation matrix
 			const restore = [[1, 0, 0, 1, -pixelX, -pixelY]];
 			
-			if ((flip & 0x80000000) != 0) {
+			if ((flip & 0x80000000) !== 0) {
 				// flip horizontally
 				ctx.transform(-1, 0, 0, 1, 0, 0);
 				ctx.translate(-this.targetTileWidth, 0);
 
 				restore.push([-1, 0, 0, 1, 0, 0]);
 				restore.push([1, 0, 0, 1, this.targetTileWidth, 0]);
-			} if ((flip & 0x40000000) != 0) {
+			}
+			if ((flip & 0x40000000) !== 0) {
 				// flip vertically
 				ctx.transform(1, 0, 0, -1, 0, 0);
 				ctx.translate(0, -this.targetTileWidth);
 				
 				restore.push([1, 0, 0, -1, 0, 0]);
 				restore.push([1, 0, 0, 1, 0, this.targetTileHeight]);
-			} if ((flip & 0x20000000) != 0) {
+			}
+			if ((flip & 0x20000000) !== 0) {
 				// Coordinate swap
 				ctx.transform(0, 1, 1, 0, 0, 0);
 				restore.push([0, 1, 1, 0, 0, 0]);

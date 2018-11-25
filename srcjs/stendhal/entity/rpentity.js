@@ -172,27 +172,27 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	 * @param {Number} index
 	 */
 	drawOutfitPart: function(ctx, part, index) {
-		var n = index;
+		let n = index;
 		if (index < 10) {
 			n = "00" + index;
 		} else if(index < 100) {
 			n = "0" + index;
 		}
-		var filename = "/data/sprites/outfit/" + part + "/" + part + "_" + n + ".png";
-		var colors = this["outfit_colors"];
-		var image, colorname;
+		const filename = "/data/sprites/outfit/" + part + "/" + part + "_" + n + ".png";
+		const colors = this["outfit_colors"];
+		let colorname;
 		if (part === "body" || part === "head") {
 			colorname = "skin";
 		} else {
 			colorname = part;
 		}
 		if (typeof(colors) !== "undefined" && (typeof(colors[colorname]) !== "undefined")) {
-			image = stendhal.data.sprites.getFiltered(filename, "trueColor", colors[colorname]);
+			const image = stendhal.data.sprites.getFiltered(filename, "trueColor", colors[colorname]);
+			image.then((img) => this.drawSprite(ctx, img));
 		} else {
-			image = stendhal.data.sprites.get(filename);
+			const image = stendhal.data.sprites.get(filename);
+			this.drawSprite(ctx, image);
 		}
-
-		this.drawSprite(ctx, image);
 	},
 
 	/**
