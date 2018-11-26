@@ -374,4 +374,10 @@ public class StendhalRPWorld extends RPWorld {
 		zonesInRegion.removeAll(removals);
 	}
 
+	/**
+	 * Retrieves that Map object containing region names & zones.
+	 */
+	public Map<String, Set<StendhalRPZone>> getRegionMap() {
+		return regionMap;
+	}
 }
