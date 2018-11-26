@@ -482,8 +482,11 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			timedPlayer = new WeakReference<Player>(player);
 
 			try {
-				// set player's time remaining from quest slot value
-				timeRemaining = Integer.parseInt(timedPlayer.get().getQuest(QUEST_SLOT, 1));
+				final String questState = timedPlayer.get().getQuest(QUEST_SLOT, 0);
+				if (questState != null && questState.equals(STATE_ACTIVE)) {
+					// set player's time remaining from quest slot value
+					timeRemaining = Integer.parseInt(timedPlayer.get().getQuest(QUEST_SLOT, 1));
+				}
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
