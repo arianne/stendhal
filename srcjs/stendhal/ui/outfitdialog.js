@@ -87,8 +87,8 @@ stendhal.ui.OutfitDialog = function() {
 			this._enabled = false;
 			this.x = 0;
 			this.y = 0;
-			canvas.addEventListener("mousedown", e => this._onMouseDown(e));
-			canvas.addEventListener("mousemove", e => this._onMouseMove(e));
+			canvas.addEventListener("mousedown", (e) => this._onMouseDown(e));
+			canvas.addEventListener("mousemove", (e) => this._onMouseMove(e));
 		}
 		
 		set enabled(value) {
@@ -195,6 +195,10 @@ stendhal.ui.OutfitDialog = function() {
 		"<button type='button' id='setoutfitprevdress'>&lt;</button>" +
 		"<canvas id='setoutfitdresscanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnextdress'>&gt;</button>" +
+		
+		"<input type='checkbox' id='setoutfitdresscolortoggle'>" +
+		"<label for='setoutfitdresscolortoggle'>Dress color</label>" +
+		"<canvas id='setoutfitdresscolorcanvas' width='80' height='52'></canvas>" +
 
 		"</div>" +
 		"<div><canvas id='setoutfitcompositecanvas' width='48' height='64'></canvas></div><br>" +
@@ -282,7 +286,7 @@ stendhal.ui.OutfitDialog = function() {
 	}
 	
 	function createColorSelector(part, partSelector) {
-		const toggle = document.getElementById("setoutfit" + part + "colortoggle")
+		const toggle = document.getElementById("setoutfit" + part + "colortoggle");
 		const canvas = document.getElementById("setoutfit" + part + "colorcanvas");
 		const selector = new ColorSelector(canvas, (color) => { partSelector.color = color; });
 		const initialColor = initialColorValue(part);
@@ -297,6 +301,7 @@ stendhal.ui.OutfitDialog = function() {
 	}
 	
 	const hairColorSelector = createColorSelector("hair", hairSelector);
+	const dressColorSelector = createColorSelector("dress", dressSelector);
 	
 	drawComposite();
 
@@ -314,6 +319,10 @@ stendhal.ui.OutfitDialog = function() {
 		let color = hairColorSelector.color;
 		if (color != null) {
 			action["hair"] = color.toString();
+		}
+		color = dressColorSelector.color;
+		if (color != null) {
+			action["dress"] = color.toString();
 		}
 		marauroa.clientFramework.sendAction(action);
 		self.popup.close();
