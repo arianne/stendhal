@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -38,6 +39,12 @@ public class ListZones extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
+		if (args.size() > 1) {
+			admin.sendPrivateText(NotificationType.ERROR, "ERROR: Too many arguments.");
+			showUsage(admin);
+			return;
+		}
+
 		final StringBuilder sb = new StringBuilder();
 
 		String filter = null;
@@ -90,10 +97,24 @@ public class ListZones extends ScriptImpl {
 			admin.sendPrivateText(sb.toString(), true);
 		} else {
 			if (filter == null) {
-				admin.sendPrivateText(NotificationType.WARNING, "WARNING: No zone information found.", true);
+				admin.sendPrivateText(NotificationType.WARNING, "WARNING: No zone information found.");
 			} else {
 				admin.sendPrivateText("No zone names found containing the text \"" + filter + "\".");
 			}
 		}
+	}
+
+	/**
+	 * Shows help text.
+	 *
+	 * @param admin Administrator invoking script
+	 */
+	private void showUsage(final Player admin) {
+		List<String> usage = Arrays.asList(
+				"\nUsage:",
+				"    /script ListZones.class [filter]",
+				"Args:",
+				"    filter:\tOnly return zone names containing matching string.");
+		admin.sendPrivateText(NotificationType.CLIENT, String.join("\n", usage));
 	}
 }
