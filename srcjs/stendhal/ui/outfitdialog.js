@@ -18,6 +18,7 @@ stendhal.ui.OutfitDialog = function() {
 			this._maxindex = maxindex;
 			
 			const canvas = document.getElementById('setoutfit' + part + 'canvas');
+			canvas.style.margin = "5px";
 			this._ctx = canvas.getContext("2d");
 			this._width = canvas.width;
 			this._height = canvas.height;
@@ -28,7 +29,8 @@ stendhal.ui.OutfitDialog = function() {
 		draw() {
 			const image = this._getPartSprite(this._part, this._index, this._color);
 			this._image = image;
-			this._ctx.clearRect(0, 0, this._width, this._height);	
+			this._ctx.fillStyle = "white";
+			this._ctx.fillRect(0, 0, this._width, this._height);
 			
 			image.then((img) => {
 				this._ctx.drawImage(img, -48, -128);
@@ -94,6 +96,7 @@ stendhal.ui.OutfitDialog = function() {
 			
 			gradientCanvas.addEventListener("mousedown", (e) => this._onMouseDownGrad(e));
 			gradientCanvas.addEventListener("mousemove", (e) => this._onMouseMoveGrad(e));
+			gradientCanvas.style.margin = "5px 0px 0px 0px";
 		}
 		
 		set enabled(value) {
@@ -229,38 +232,61 @@ stendhal.ui.OutfitDialog = function() {
 		}
 	}
 
-	const content = "<div>" +
+	const content = "<div class='background'>" +
+	    "<div class='horizontalgroup'>" +
+	    
+	    "<div class='verticalgroup'>" + // part selectors
+	    "<div class='horizontalgroup'>" +
 		"<button type='button' id='setoutfitprevhair'>&lt;</button>"+
 		"<canvas id='setoutfithaircanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnexthair'>&gt;</button>" +
-		
-		"<input type='checkbox' id='setoutfithaircolortoggle'>" +
-		"<label for='setoutfithaircolortoggle'>Hair color</label>" +
-		"<canvas id='setoutfithaircolorcanvas' width='80' height='52'></canvas>" +
-		"<canvas id='setoutfithaircolorgradient' width='80' height='10'></canvas>" +
-		"<br>" +
+		"</div>" + 
 
+		"<div class='horizontalgroup'>" +
 		"<button type='button' id='setoutfitprevhead'>&lt;</button>" +
 		"<canvas id='setoutfitheadcanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnexthead'>&gt;</button><br>" +
+		"</div>" + 
 
+		"<div class='horizontalgroup'>" +
 		"<button type='button' id='setoutfitprevbody'>&lt;</button>" +
 		"<canvas id='setoutfitbodycanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnextbody'>&gt;</button><br>" +
+		"</div>" + 
 
+		"<div class='horizontalgroup'>" +
 		"<button type='button' id='setoutfitprevdress'>&lt;</button>" +
 		"<canvas id='setoutfitdresscanvas' width='48' height='64'></canvas>" +
 		"<button type='button' id='setoutfitnextdress'>&gt;</button>" +
+		"</div>" + 
+		"</div>" + // part selectors
 		
+		"<div class='verticalgroup'>" + // color selectors
+		"<div class='verticalgroup'>" +
+		"<div class='horizontalgroup'>" +
+		"<input type='checkbox' id='setoutfithaircolortoggle'>" +
+		"<label for='setoutfithaircolortoggle'>Hair color</label>" +
+		"</div>" +
+		"<canvas id='setoutfithaircolorcanvas' width='80' height='52'></canvas>" +
+		"<canvas id='setoutfithaircolorgradient' width='80' height='10'></canvas>" +
+		"</div>" +
+		
+		"<div class='verticalgroup'>" +
+		"<div class='horizontalgroup'>" +
 		"<input type='checkbox' id='setoutfitdresscolortoggle'>" +
 		"<label for='setoutfitdresscolortoggle'>Dress color</label>" +
+		"</div>" +
 		"<canvas id='setoutfitdresscolorcanvas' width='80' height='52'></canvas>" +
 		"<canvas id='setoutfitdresscolorgradient' width='80' height='10'></canvas>" +
-
 		"</div>" +
-		"<div><canvas id='setoutfitcompositecanvas' width='48' height='64'></canvas></div><br>" +
-		"<div><button type='button' id='setoutfitcancel'>Cancel</button>" +
-		"<button type='button' id='setoutfitapply'>Change Outfit</button></div>";
+		"</div>" + // color selectors
+	
+		"<div><canvas id='setoutfitcompositecanvas' width='48' height='64'></canvas></div>" +
+		"</div>" + // horizontal group
+		"<div align='right'><button type='button' id='setoutfitcancel'>Cancel</button>" +
+		"<button type='button' id='setoutfitapply'>Change Outfit</button></div>" +
+		
+		"</div>"; //bg
 
 	function indexString(index) {
 		if (index < 10) {
@@ -308,7 +334,8 @@ stendhal.ui.OutfitDialog = function() {
 		}
 		const canvas = document.getElementById('setoutfitcompositecanvas');
 		const ctx = canvas.getContext("2d");
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "white";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
 		draw(ctx, bodySelector);
 		draw(ctx, headSelector);
 		draw(ctx, dressSelector);
