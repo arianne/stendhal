@@ -163,15 +163,27 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			}
 		});
 	},
-
+	
+	drawMultipartOutfit: function(ctx) {
+		const body = this.getOutfitPart("body", (this["outfit"] % 100));
+		const dress = this.getOutfitPart("dress", (Math.floor(this["outfit"]/100) % 100));
+		const head = this.getOutfitPart("head", (Math.floor(this["outfit"]/10000) % 100));
+		const hair = this.getOutfitPart("hair", (Math.floor(this["outfit"]/1000000) % 100));
+		const detail = this.getOutfitPart("detail", (Math.floor(this["outfit"]/100000000) % 100));
+		Promise.all([body, dress, head, hair, detail]).then((images) => {
+			for (const img of images) {
+				this.drawSprite(ctx, img);
+			}
+		});
+	},
+	
 	/**
-	 * draw an outfix part
+	 * Get an outfit part (Image or a Promise)
 	 *
-	 * @param {CanvasRenderingContext2D}   ctx
 	 * @param {string}  part
 	 * @param {Number} index
 	 */
-	drawOutfitPart: function(ctx, part, index) {
+	getOutfitPart: function(part, index) {
 		let n = index;
 		if (index < 10) {
 			n = "00" + index;
@@ -187,11 +199,9 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			colorname = part;
 		}
 		if (typeof(colors) !== "undefined" && (typeof(colors[colorname]) !== "undefined")) {
-			const image = stendhal.data.sprites.getFiltered(filename, "trueColor", colors[colorname]);
-			image.then((img) => this.drawSprite(ctx, img));
+			return stendhal.data.sprites.getFiltered(filename, "trueColor", colors[colorname]);
 		} else {
-			const image = stendhal.data.sprites.get(filename);
-			this.drawSprite(ctx, image);
+			return stendhal.data.sprites.get(filename);
 		}
 	},
 
@@ -205,11 +215,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		this.drawCombat(ctx);
 		var filename;
 		if (typeof(this["outfit"]) != "undefined") {
-			this.drawOutfitPart(ctx, "body", (this["outfit"] % 100));
-			this.drawOutfitPart(ctx, "dress", (Math.floor(this["outfit"]/100) % 100));
-			this.drawOutfitPart(ctx, "head", (Math.floor(this["outfit"]/10000) % 100));
-			this.drawOutfitPart(ctx, "hair", (Math.floor(this["outfit"]/1000000) % 100));
-			this.drawOutfitPart(ctx, "detail", (Math.floor(this["outfit"]/100000000) % 100));
+			this.drawMultipartOutfit(ctx);
 		} else {
 			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
 			if (typeof(this["subclass"]) != "undefined") {
