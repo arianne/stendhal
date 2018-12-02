@@ -72,11 +72,13 @@ stendhal.ui.gamewindow = {
 					var base = stendhal.data.map.firstgids[tileset];
 					var idx = gid - base;
 					var tilesetWidth = stendhal.data.map.aImages[tileset].width;
+					var tilesPerRow = Math.floor(tilesetWidth / stendhal.data.map.tileWidth);
 
 					try {
 						if (stendhal.data.map.aImages[tileset].height > 0) {
 							this.ctx.drawImage(stendhal.data.map.aImages[tileset],
-								(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight, 
+								(idx % tilesPerRow) * stendhal.data.map.tileWidth, 
+								Math.floor(idx / tilesPerRow) * stendhal.data.map.tileHeight, 
 								stendhal.data.map.tileWidth, stendhal.data.map.tileHeight, 
 								x * this.targetTileWidth,
 								y * this.targetTileHeight,
