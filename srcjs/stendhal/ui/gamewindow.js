@@ -91,12 +91,14 @@ stendhal.ui.gamewindow = {
 	
 	drawTile: function(tileset, idx, x, y, flip = 0) {
 		const tilesetWidth = tileset.width;
+		const tilesPerRow = Math.floor(tilesetWidth / stendhal.data.map.tileWidth);
 		const pixelX = x * this.targetTileWidth;
 		const pixelY = y * this.targetTileHeight;
 		
 		if (flip === 0) {
 			this.ctx.drawImage(tileset,
-					(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight,
+					(idx % tilesPerRow) * stendhal.data.map.tileWidth,
+					Math.floor(idx / tilesPerRow) * stendhal.data.map.tileHeight,
 					stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
 					pixelX, pixelY,
 					this.targetTileWidth, this.targetTileHeight);
