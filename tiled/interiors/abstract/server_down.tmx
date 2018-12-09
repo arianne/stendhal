@@ -36,9 +36,6 @@
  <tileset firstgid="1387" name="..\tileset\sky\haze.png" tilewidth="32" tileheight="32" tilecount="18" columns="3">
   <image source="../../tileset/sky/haze.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="1405" name="..\tileset\building\decoration\pacman.png" tilewidth="32" tileheight="32" tilecount="0" columns="0">
-  <image source="../../tileset/building/decoration/pacman.png"/>
- </tileset>
  <tileset firstgid="1405" name="..\tileset\building\decoration\realwordcafe.png" tilewidth="32" tileheight="32" tilecount="72" columns="12">
   <image source="../../tileset/building/decoration/realworldcafe.png" width="384" height="192"/>
  </tileset>
