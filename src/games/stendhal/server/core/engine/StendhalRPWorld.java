@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
 
@@ -55,9 +56,6 @@ public class StendhalRPWorld extends RPWorld {
 
 	/** The Singleton instance. */
 	protected static StendhalRPWorld instance;
-
-	// /** The pathfinder thread. */
-	// private PathfinderThread pathfinderThread;
 
 	private final Map<String, Set<StendhalRPZone>> regionMap = new HashMap<String, Set<StendhalRPZone>>();
 
@@ -141,10 +139,6 @@ public class StendhalRPWorld extends RPWorld {
 
 			// Create the NPC parser word list.
 			WordList.getInstance();
-
-			// create the pathfinder thread and start it
-			// pathfinderThread = new PathfinderThread(this);
-			// pathfinderThread.start();
 
 			final ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI(
 					"/data/conf/zones.xml"));
@@ -289,6 +283,12 @@ public class StendhalRPWorld extends RPWorld {
 		regionMap.get(region).add(zone);
 	}
 
+	public TreeSet<String> getRegions() {
+		// Since we need to make a copy to protect the internal structure,
+		// we use a TreeSet for alphabetical ordering.
+		return new TreeSet<String>(regionMap.keySet());
+	}
+
 	/**
 	 * Retrieves all zones from a specified region with the given flags
 	 *
@@ -372,12 +372,5 @@ public class StendhalRPWorld extends RPWorld {
 			}
 		}
 		zonesInRegion.removeAll(removals);
-	}
-
-	/**
-	 * Retrieves that Map object containing region names & zones.
-	 */
-	public Map<String, Set<StendhalRPZone>> getRegionMap() {
-		return regionMap;
 	}
 }

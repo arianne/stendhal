@@ -12,17 +12,14 @@
 package games.stendhal.server.script;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.TreeSet;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -52,18 +49,13 @@ public class ListZones extends ScriptImpl {
 			filter = args.get(0).toLowerCase();
 		}
 
-		// get regions sorted by name
-		final Map<String, Set<StendhalRPZone>> regionMap = SingletonRepository.getRPWorld().getRegionMap()
-				.entrySet().stream().sorted(Map.Entry.comparingByKey())
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1, LinkedHashMap::new));
+		
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		for (String region : world.getRegions()) {
 
-		for (final Entry<String, Set<StendhalRPZone>> region : regionMap.entrySet()) {
+			final Collection<StendhalRPZone> zoneList = world.getAllZonesFromRegion(region, null, null, null);
 
-			// sort zone names
-			final List<StendhalRPZone> zoneList = region.getValue().stream().collect(Collectors.toList());
-			Collections.sort(zoneList, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-
-			final List<String> addZones = new LinkedList<>();
+			final Set<String> addZones = new TreeSet<>();
 
 			for (final StendhalRPZone zone : zoneList) {
 				final String zoneName = zone.getName();
@@ -77,9 +69,9 @@ public class ListZones extends ScriptImpl {
 			if (!addZones.isEmpty()) {
 				if (sb.length() > 0) {
 					// add whitespace between regions
-					sb.append("\n\nRegion: " + region.getKey());
+					sb.append("\n\nRegion: " + region);
 				} else {
-					sb.append("Region: " + region.getKey());
+					sb.append("Region: " + region);
 				}
 
 				for (final String zoneName : addZones) {
