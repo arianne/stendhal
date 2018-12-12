@@ -34,95 +34,95 @@
  <tileset firstgid="106" name="portals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="113" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="122" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset firstgid="119" name="sofa1" tilewidth="32" tileheight="32">
+ <tileset firstgid="128" name="sofa1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/armchair.png"/>
  </tileset>
- <tileset firstgid="131" name="drink" tilewidth="32" tileheight="32">
+ <tileset firstgid="140" name="drink" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
- <tileset firstgid="147" name="stoned floor" tilewidth="32" tileheight="32">
+ <tileset firstgid="156" name="stoned floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/blue_green.png"/>
  </tileset>
- <tileset firstgid="151" name="urn" tilewidth="32" tileheight="32">
+ <tileset firstgid="160" name="urn" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/urn_with_flowers.png"/>
  </tileset>
- <tileset firstgid="153" name="towels" tilewidth="32" tileheight="32">
+ <tileset firstgid="162" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset firstgid="159" name="water bubbles" tilewidth="32" tileheight="32">
+ <tileset firstgid="186" name="water bubbles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/water_bubbles.png"/>
  </tileset>
- <tileset firstgid="191" name="flower baskets" tilewidth="32" tileheight="32">
+ <tileset firstgid="218" name="flower baskets" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
- <tileset firstgid="194" name="bathroom" tilewidth="32" tileheight="32">
+ <tileset firstgid="221" name="bathroom" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/toilet.png"/>
  </tileset>
- <tileset firstgid="200" name="basin" tilewidth="32" tileheight="32">
+ <tileset firstgid="233" name="basin" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/basin.png"/>
  </tileset>
- <tileset firstgid="203" name="stone plants" tilewidth="32" tileheight="32">
+ <tileset firstgid="236" name="stone plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/plants_potted_stone.png"/>
  </tileset>
- <tileset firstgid="209" name="edges" tilewidth="32" tileheight="32">
+ <tileset firstgid="242" name="edges" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
  </tileset>
- <tileset firstgid="224" name="shelves" tilewidth="32" tileheight="32">
+ <tileset firstgid="257" name="shelves" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset firstgid="230" name="tiles" tilewidth="32" tileheight="32">
+ <tileset firstgid="263" name="tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
- <tileset firstgid="238" name="platform" tilewidth="32" tileheight="32">
+ <tileset firstgid="271" name="platform" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/raised_platform_purple.png"/>
  </tileset>
- <tileset firstgid="250" name="rod" tilewidth="32" tileheight="32">
+ <tileset firstgid="283" name="rod" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/curtain/curtain_rod.png"/>
  </tileset>
- <tileset firstgid="253" name="curtain" tilewidth="32" tileheight="32">
+ <tileset firstgid="286" name="curtain" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/curtain/light_blue.png"/>
  </tileset>
- <tileset firstgid="259" name="pic" tilewidth="32" tileheight="32">
+ <tileset firstgid="292" name="pic" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small_hills.png"/>
  </tileset>
- <tileset firstgid="262" name="double_purple_gold" tilewidth="32" tileheight="32">
+ <tileset firstgid="295" name="double_purple_gold" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_purple_gold.png"/>
  </tileset>
- <tileset firstgid="280" name="table/white" tilewidth="32" tileheight="32">
+ <tileset firstgid="313" name="table/white" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/white.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvNwMDwehDjd0D8Hg1/IEH/RyD+hIY/01H/FyD+ioa/kaD/OxD/QMM/B0G8oOOp
-QDwNjSZF/2QgnoJG09P++UC8gAL7FwLxIgrsx4Zt6aAfAKPQUlsABAAA
+   H4sIAAAAAAAAAONhZGDgGcSYH4gF0LAgCfqFgFgYDYvQUb8oEIuhYXES9EsAsSQalhoE8YKO5zEw
+MMxnQKVJ0T8HqH4uAypNT/t3AdXvpsD+PUD1eymwHxu2pdAMYvQDAKvEf0EABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNiYGBgIROzAjEbELMDsTSJmAOIeaH6ZYE4ngETgMRKgLgUisuQxGXQ9IOAHRYz
-QCARiJOh7GoojU0/LpACxGlQdj0O/V5A7AfFvgTMw6bfH4gDoDiQDP2kAlrqf4TGj6Kz/eiAGPvv
-AvEdCuy/AcTXgViCEYJJsZ8biKWwYHkc4iDMA9XPB8T8OLAyHjkQFgRiAKPphjwABAAA
+   H4sIAAAAAAAAAGNiYGBgIROzAjEbELMDsTSJmAOIeaH6ZYE4ngETgMRqgbgOiuuRxGXQ9IOAHRYz
+QCARiJOh7BYojU0/LpACxGlQdgcO/V5A7AfFvgTMw6bfH4gDoDiQDP2kAlrqZ2ZE5UfR2X50QIz9
+/4D4LwX2/wTiH0BsyQjBpNjPDcRSWLA8DnEQ5oHq5wNifhxYGY8cCAsCMQAhpV6cAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAWsjAxkgTgcYoVAXATFxXjU0hK0ADGyt2rIMKMbSh8A4gYs8q1A3AVlt5Fh
-/kEy9AwmcAiIZ0DZp4D4Aon6jxKhhgMYiZxEpk9s9vMB9fKTmb5BQASoV5SA/nl47CcFyEFpBTL1
-K0FpFQLqAMT9hYIABAAA
+   H4sIAAAAAAAAAGNgQAVqjAxkgTgcYlVAXA3FNXjU0hL0AjGyt1rJMGMKlL4NxJ1Y5PuAeDKU3U+G
++XfI0DOYwF0gXghlvwbijyTqf0CEGk1gJGoRmT6x2a8P1GtAZvoGAVOgXjMC+pfjsZ8UIAelFcjU
+rwSlVQioAwBm7BI6AAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHqgggK95VRzxfAD05HYZ5HYYVD6FxD/oZNbaGG/ACMDgyAj+fYPRwAAZaf5
-AQAEAAA=
+   H4sIAAAAAAAAAGNgGHqgkQK9DdRyxDAEC5DY75DYYVBampGBQZaRPm6hhf2GQL1GROrHZv9wBACd
+qbJcAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDjwF4j/UaD/P4hgHLr2MwL1MlGgfzACALOvCHIABAAA
+   H4sIAAAAAAAAAGNgGAWjgDggx8jAIM9Ivn4FoF5FCvQPtP1KQL3KFOgfjAAAqoQAgwAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">

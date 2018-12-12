@@ -52,25 +52,25 @@
  <tileset firstgid="203" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset firstgid="209" name="sparkles" tilewidth="32" tileheight="32">
+ <tileset firstgid="227" name="sparkles" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/sparkle.png"/>
  </tileset>
- <tileset firstgid="211" name="lamp2" tilewidth="32" tileheight="32">
+ <tileset firstgid="229" name="lamp2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset firstgid="219" name="walls4" tilewidth="32" tileheight="32">
+ <tileset firstgid="237" name="walls4" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/glass_details.png"/>
  </tileset>
- <tileset firstgid="247" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="265" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset firstgid="368" name="entrance/grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="386" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset firstgid="393" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
+ <tileset firstgid="411" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
- <tileset firstgid="401" name="double_white_pink" tilewidth="32" tileheight="32">
+ <tileset firstgid="419" name="double_white_pink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_white_pink.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -80,29 +80,28 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXSS27CMBSF4cuAQVfADoAWlTFr4f0qJJC2wHLYEWwBqYIBkYA+gCEUxB/JkYwx
-LRlwpU+Or3XkxM5ORPb4jeiAI+IxkSVjwuCLva+vP5DNYiOXNcUMeRS0fhElbJH7Ix9WGRVtXkXN
-kk8ihWek8YEJ6migqY0vlvwjnpSMWg/6LbThaKNr5Bc8rw1zOe9/qff/1tbDfHDOP/9Yqfynmvs3
-np+thpbvv1YddA1ehPwr3gzvd8iPML7D/j30DQMtXzLuX+TyX7AJ7r9G1oGLTkRdeDgBkyyXvwAE
-AAA=
+   H4sIAAAAAAAAALXSSQrCMBiG4VRdOu1cuHfEO7j2CM7zPLtzOog30rsIogsFx7fQQoxB7MLAw9/8
+yUdpUq8hhA9+hwIIIoSboCouQt+X18Nk03BDHUeckEVO6udRgIdM5kveHkWUpHkZFU0+Qi+KFGI4
+YI8qaqhLtaHJx+klLElr3ew3eW6hLdWOkr8ydxnvzuK9/7Q/QFq38+Y5G8Z3dyv+sPZexG/npxsb
+B+ffRU/Rd5AfYKgY/SG/pbf7w/vHmCimUn6k3L8Qn/+Cjnn/M+ocCywdWmGNF7yTagUABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA+YiBQrx8FmhtKTGRkYpjCiiiGDWiBmhOJaJHEWKD0TKDGLEVWMFDAfqHcB
-IxkaiQT+QBwAxYFI4jexqMUmRk8wjQZmLkDDyKARiOuBuAHKJgWAoqwFiJuAuBnKxhaNHFBMC1CD
-g00MmAmlO4C4E00MHRQBPdYDxCVkptNyoL4JQFxJgn4AVCIMnwAEAAA=
+   H4sIAAAAAAAAAGNgwA+YiBQrx8FmhtJLGRkYljGiiiGDWiBmhOJaJHEWKL0aKLGGEVWMFLARqHcT
+IxkaiQT+QBwAxYFI4q+xqMUmRk8wjQZmLkDDyKARiOuBuAHKJgWAoqwFiJuAuBnKxhaNHFBMC1CD
+g00MmAmlO4C4E00MHbQAPTYPiNvITKedQH2LgLibBP0ANOS5lAAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA64SCVzcIHZjAwMcxhpZ74FEFsCsT0QWyGJX8ai9joWMVYgvoDEHmpgFRJe
-OsBuIQccB+ITOOTKcLCJAVOhdCsQt6GJURsUQdN3CZnpvByorwKIK0nQDwAOlq66AAQAAA==
+   H4sIAAAAAAAAAGNgoA54TCVzcIG1jAwM6xhpZ74FEFsCsT0QWyGJP8Wi9iUWMVYgvoDEHmpgFRJe
+OsBuIQccB+ITOOTKcLCJAVOhdCsQt6GJURu0QNN3G5npvBOorwuIu0nQDwCHY3eWAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD64RAMzRwFtwTwgXgylhxtATo8XB8wVgxMAAFkA/asABAAA
+   H4sIAAAAAAAAAGNgoD54QgMzRwFtwTwgXgylhxtATo+PB8wVgxMAALpSKNkABAAA
   </data>
  </layer>
  <layer name="objects" width="16" height="16">

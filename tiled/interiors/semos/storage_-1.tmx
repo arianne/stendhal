@@ -31,16 +31,16 @@
  <tileset firstgid="74" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="81" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="90" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="111" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="120" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="112" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="121" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="114" name="light_5x5" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="light_5x5" tilewidth="32" tileheight="32">
   <image source="../../tileset/light/light_5x5.png"/>
  </tileset>
  <layer name="0_floor" width="50" height="32">
@@ -72,27 +72,27 @@ Q58tZdczAADw/684ZJ/KdTauuU86dkJfC7JoIioAGQAA
  </layer>
  <layer name="objects" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UMQ6AIBREQS6HpTX3PwmdLUZJFnHmBC/sD6UAANxzpgMeOtIBAzUdMMmbd155
-o132+YuVbwlgB/7Zb2npAC62gIwOQSeuQQAZAAA=
+   H4sIAAAAAAAAAO3UwQ2AIBREQZrDoz3QfxPcvGKUZBFnKnhhfygFAOCeMx3w0JEOGKjpgEnevPPK
+G+2yz1+sfEsAO/DPfktLB3CxBWR0776IEQAZAAA=
   </data>
  </layer>
  <layer name="collision" width="50" height="32" visible="0" opacity="0.45">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SQQqAMBAD++P+/+ZVQ7sb9ZAUsjCg0MIM2znGmCGEEEKguA/+M6P237VgU3dW
-7Y5eX3bh2PG2Z7cvl47Oc3XOAfRmBu850Ll2rWr/6p2wo3bHDrVDOtLhSjq8YIa9o27pGquGE/a6
-crv775rcqDpWo/b923Hqu6p6HGFmwvcpdE3hyQWeHVXjABkAAA==
+   H4sIAAAAAAAAAO2SQQrAIBADfbbP77UNupu2h0TIwkALCjOsc4wxQwghhEBxH/xnRu2/a8Gm7qza
+Hb2+7MKx423Pbl8uHZ3n6pwD6M0M3nOgc+1a1f7VO2FH7Y4daod0pMOVdHjBDHtH3dI1Vg0n7HXl
+dvffNblRdaxG7fu349R3VfU4wsyE71PomsKTC0RWXFoAGQAA
   </data>
  </layer>
  <layer name="protection" width="50" height="32" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DwQkAAAwDoRs5+7+6R1Fw1VRVVVVVVR89ooOGcAAZAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwEoav97ddjKLhqqqqqqqqqjx49296yABkAAA==
   </data>
  </layer>
  <layer name="blend_ground" width="50" height="32" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WOQ6AMAwFUe4MiH0HAbdm0qYLIIKs/6TpXLiynCQiIiLfKKikimpq4q5zW0sd
-9TTQGHWb+yaaaaGVtrjrPLLTQWfsRcSclDLKX579Usjt9Wf/JOT2+rN/EnJ7/VkRscPCT+xY+Ikd
-/cQiInZd5ZTqiAAZAAA=
+   H4sIAAAAAAAAAO3WOQ6AMAxE0RwcUNh3BJyYSZuKBBRH1jzpdy5cWTaGiIgoDYtq1KAWdaLbxOvR
+gEY0oVl2nWgLWtGGdnTIrvPJiS50Sy9C6hSoRNXPsylZ8/72+rM5Cbm9/mxOQm6vP0tEemj4iR0N
+P7HDn5iISK8Hvq+n5AAZAAA=
   </data>
  </layer>
 </map>

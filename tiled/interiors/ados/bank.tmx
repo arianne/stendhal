@@ -40,54 +40,54 @@
  <tileset firstgid="146" name="stone_desk.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/stone_desk.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="158" name="dark_blue.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="162" name="dark_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="167" name="chest_purple.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="171" name="chest_purple.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="169" name="floors_3.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="173" name="floors_3.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="181" name="wooden.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="185" name="wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="182" name="wooden.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="186" name="wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="187" name="pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="191" name="pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="199" name="oil_paintings.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="203" name="oil_paintings.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="215" name="banners.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="219" name="banners.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/banners.png"/>
  </tileset>
- <tileset firstgid="221" name="flowering_plant.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="225" name="flowering_plant.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png" trans="ff00ff"/>
  </tileset>
  <layer name="0_floor" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvJwMCwchRTjBdRiHGZu4pMPJLchy9eBoP76BF+tMKj7qOtuweLOcSaS6pd+NxH
-bXcTsmswpZMto+6jSdyPum94uo+Qu+lt50D7m1gMABbew8bgCwAA
+   H4sIAAAAAAAAAFvLwMCwdhRTjJdRiHGZu45MPJLchy9eBoP76BF+tMKj7qOtuweLOcSaS6pd+NxH
+bXcTsmswpZMdo+6jSdyPum94uo+Qu+lt50D7m1gMALln2IHgCwAA
   </data>
  </layer>
  <layer name="1_terrain" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2Uyy5DURSGlzJxmdZ9giKRVKuYkrjN8CZmgs46cZkZkWBkwgvQBi0P4mH8J107
+   H4sIAAAAAAAAAM2Uyy5DURSGlzJxmdZ9giKRVKuYkrjN8CZmgs46cZkZkWBswgvQBi0P4lH8J107
 VlbXPu05+0T8yZezzsre6/zd3flHiCgH1sA617l/0hsGA2AajGfMVODcaH8/+xsFN+ASXFFbT+C5
 S01izxE4Bxdc53lujdfN87PGdRGUubbW5A1/afUIquK9Kvw5Laja+dN9p6z9aWl/i6p2/nTf5+8O
 3INbJkn9EONvGSwlpGT4+za+0ausvc5fMcW8MnX6y1rO3wpYTUjlj/xNgjGDWfq9fzOeNRPCX9yc
 6P6UYua4dVpz5M+2ArXPtSLWvYMP0KTO/PPlaEH8Tt/3ojnW+R/HoHUNWuATfPG7/n9DctTydwJO
 Dc6MtZZ89y9NjmZ5f+td/KXJ0az8vYEX8Gr4C8nRUH91UTf4qf2F5GiIP3lmUtpfSI6Gnl/D6El/
-Mv82wCb5s87KUZ2fO2AX7Kl+ktkun4dAn2ALbPfQi+vvgwNwGDhnEPwAdJf68OALAAA=
+Mv82wCb5s87KUZ2fO2AX7Kl+ktkun4dAn2ALbPfQi+vvgwNwGDhnEPwAFz4sXuALAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAwuAvElItQNFLgKxNfI1FtHgA8C1QT41AD3kNh3iVDfBsTtNHDHKBgFQwl0
-AHEnDdWPAuJBHQ42MqjGwR4Fo2AUDBwYLUeHJwAArWmV5OALAAA=
+   H4sIAAAAAAAAAGNgIAyuAvE1ItQNFLgJxLfI1FtHgA8C1QT41ACPkNgPiVDfBsTtNHDHKBgFQwl0
+AHEnDdWPAuJBHQ42MqjGwR4Fo2AUDBwYLUeHJwAAKfPw6+ALAAA=
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">

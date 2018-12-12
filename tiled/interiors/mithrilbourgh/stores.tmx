@@ -37,24 +37,24 @@
  <tileset firstgid="153" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="160" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="169" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="161" name="carpets_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="170" name="carpets_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png"/>
  </tileset>
- <tileset firstgid="173" name="armor" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="armor" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/suit_of_armor2.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvCwMCwZIhidix41BzqmzOKBx4DAGProcKoAwAA
+   H4sIAAAAAAAAAFvLwMCwdohidix41BzqmzOKBx4DAPDyzbeoAwAA
   </data>
  </layer>
  <layer name="1_terrain" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGDgohALAzEPEKsAsQKZWBmIuaHmyDGQD2RHzRk1h0wzNqCZowTE8mjYEIsY
-NqwINUcIiDkpxIJADAA/YrMJqAMAAA==
+   H4sIAAAAAAAAABNhYGDgohALAzEPEKsAsQKZWBmIuaHmyDGQD2RHzRk1h0wzdqKZowTE8mjYEIsY
+NqwINUcIiDkpxIJADABb3gD+qAMAAA==
   </data>
  </layer>
  <layer name="2_object" width="18" height="13">
@@ -66,8 +66,8 @@ xhr/ygQepl/2zDDHQnP33H2h2v3XQo+0P5sM4GD4g66R4fsGovLib6gDAAA=
  </layer>
  <layer name="3_roof" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC5opLJ5lAKYe5qBuAWIO4C4HYjbgLh7AN0zkgAo7FsZIOFPizBfRwMzaQks
-gdgciK1J0AMARvXd16gDAAA=
+   H4sIAAAAAAAAAGNgoC5opLJ5lAKYe5qBuAWIO4C4HYjbgLh7AN0zkgAo7FsZIOFPizDfTgMzaQks
+gdgciK1J0AMA2X8QYqgDAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="18" height="13">
@@ -82,8 +82,8 @@ gdgciK1J0AMARvXd16gDAAA=
  </layer>
  <layer name="collision" width="18" height="13" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvAwMCwYJBicgC5ZqDrweUebOLI9hBSTy7AZycl5lDTPeSYSYo5+OQpcQMxbkE2
-lxh11MYAjLXtK6gDAAA=
+   H4sIAAAAAAAAAFvJwMCwcpBicgC5ZqDrweUeQm4lpJ5cMNDhQ4x7yDGTFHPwydMibEhNA7TEAPnE
+eK6oAwAA
   </data>
  </layer>
  <layer name="protection" width="18" height="13">

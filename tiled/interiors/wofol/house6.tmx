@@ -43,13 +43,13 @@
  <tileset firstgid="110" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="117" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="126" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="118" name="creature/undead.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="127" name="creature/undead.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset firstgid="133" name="double_red" tilewidth="32" tileheight="32">
+ <tileset firstgid="142" name="double_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_red.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -59,9 +59,9 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3LOw6CUBRF0ZsgyNdKotCa2PBp1BqYCLMBhVGzCwogD5FXe5JVnexcRExYO5yQ
+   H4sIAAAAAAAAAO3LOw6CUBRF0ZsgyNdKotCa2PBp1BqYCEMChQmzCwogD5FXe5JVnexcRExYO5yQ
 4Y4YDtwfBIhwGNuzzFfL9xmwV9qtHf+tdtug1Wzf+Gi2HXrNds+8SXtFuPDAEy/Fd4GPFDeFAiWq
-lT/BADN9z8OEAwAA
+lT/BAGdCJZaEAwAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -77,13 +77,13 @@ lT/BADN9z8OEAwAA
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNqgdqAdMApGBCiiodkAHGigPIQDAAA=
+   H4sIAAAAAAAAAGNgGNqgbaAdMApGBCiiodkAybkV1oQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtlYGAoHUDMgIWPC+DST0gPNr0MDKSZQYqd9NKLz0xq6iXF7eTqJdc+XPrJ1Uds
-OqUmBgAjMbKWhAMAAA==
+   H4sIAAAAAAAAAKtjYGCoG0DMgIWPC+DST0gPNr0MDKSZQYqd9NKLz0xq6iXF7eTqJdc+XPrJ1Uds
+OqUmBgBwEnAFhAMAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

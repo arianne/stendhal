@@ -64,16 +64,16 @@
  <tileset firstgid="247" name="dark grassy sink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/dark_brown_stone.png"/>
  </tileset>
- <tileset firstgid="251" name="flower benches" tilewidth="32" tileheight="32">
+ <tileset firstgid="261" name="flower benches" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_bench2.png"/>
  </tileset>
- <tileset firstgid="257" name="flower benches 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="267" name="flower benches 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/flowers_on_benches.png"/>
  </tileset>
- <tileset firstgid="267" name="pot plant" tilewidth="32" tileheight="32">
+ <tileset firstgid="277" name="pot plant" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset firstgid="279" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="289" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">
@@ -83,26 +83,26 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ1Sy4oCQQxM49ubJ1dX3Q8QFPZnvQnrwd9QV0FBXU8e/Ai96dG1GlMQZrpHxoKi
-QyY1qU5nLiIL8FfPZBz7tgQ3YNOJtECLk55jCWOr2jZ0HXCk+YJL157BC3gFf1S7Aruo/QL7iAdg
-xYV1Fmvtewf/fQKabxy1QF/RnreEZ2ISuZsYDUHPflYfgXllgZ79rD51XjHw/+yxzaFlDevo+R1t
-Hs+hvl7r37enb5zX8zQueem56MJ7aEFv9EfPZcSlDC131YKeqy69wxZDee6qBT3XXXyHCbvz7Ou1
-s2xZCjPj2d9nlFHb0F7HhOcduAf/lDaWSN7HB/ABFRkMibAEAAA=
+   H4sIAAAAAAAAAJ2SzWrCUBCF5+5sQVtbd678qVqEFnzZ7ARd+BrRKliIP6su+hB1p+uei3NgSO6N
+xAMfGeOczMnNLEVkBb70mq9j/63BN+g4kR6w+tXrVMLK1NuHbwASvV93xd4/cAJnMFPvBgzR+w7G
+qD9A04V9VludW0PvA3gEE/x+DcwVnXnJZabmkXcT46GY2Z9VN3BeZWJmf1Zvel4x8fmckVXwsod9
+zHyPt0rm0Fzv9d93pN+4auZF3HIzc8OF99CK2ZiPmZ9RP5V4uatWzPziijts9SnXXbVi5paL7zBl
+d55zvTcttxWUmsz+fZKS3rbO+sll3oE9OCi2lsh9Xx/BPxZrdXOwBAAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgYGC4w4AJrqHxbyCxr2NRjw/cRmLfQmLfA+IoIN5PpDkxJNipD8RGJKgnFtwH
-4gdAHI0mrg3Eemhi34H4Bw5zjJDUY3PrTyD+hcQXY0SEEz6/XQDiz2hiIH0fcKiHgYVAfAWLuodA
-fImAXgaonVeh6mFgHhBfJkJvIZR+jyY+D+ouXKAViNuAWIgRU45Q/E8F4mkMmGFFK4CcPpYwINIR
-IbUgAPPLBQL6kNXiAvfQ+DcImAlyxzMc5oLyNb68q8eA8MczAu4CgdlAPBOI5+JRAwC9fh95sAQA
+4gdAHI0mrg3Eemhi34H4Bw5zjJDUY3PrTyD+hcRXYESEEz6/XQDiz2hiIH0fcKiHgYVAfAWLuodA
+fImAXgaonVeh6mFgHhBfJkJvIZR+jyY+D+ouXKAViNuAWIYRU45Q/E8F4mkMmGFFK4CcPpYwINIR
+IbUgAPPLBQL6kNXiAvfQ+DcImAlyxzMc5oLyNb68q8eA8MczAu4CgdlAPBOI5+JRAwAdizGmsAQA
 AA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA7YB6UZGTHlXgLxKyD+SKKZMH3YwG8g/gPEfwmYAbLzE4n2MpCphxDgZ0SE
-E6kApO8LNR2DBpxpaDYxgAdLuqEEYEuHQx3gSvPEpKmneNTj088NDceLaGYMFAAAwSyi67AEAAA=
+   H4sIAAAAAAAAAGNgoA7YB6W5GTHlXgLxKyD+SKKZMH3YACvQHjYgZsdiHzIA2fmJRHsZyNRDCEgy
+IsKJVADS94WajkEDzjQ0mxggRiAeSQXY0uFQB7jSPDFp6ike9fj0i0LtuohmxkABAH6kEt+wBAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="20">

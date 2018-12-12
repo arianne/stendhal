@@ -67,7 +67,7 @@
  <tileset firstgid="185" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="192" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="201" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="12">
@@ -101,8 +101,8 @@ gQYmZcADAAA=
  </layer>
  <layer name="collision" width="20" height="12" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWOwQkAMAgD3X+qjNYFcjH9FBoIgtFTzYw+sVMzm3LqbWqYxJOpxHI8yhKv/a/l
-pf9c3vKol+R4tJPubb6df+EDVvC4ssADAAA=
+   H4sIAAAAAAAAADvJwMBwcohgbIAYtfjkcYkRAsSYicu8k1hoYtyPzx2EzCPWfcSah899lPiXnPgg
+J70Q0ovLvIHOA+gYAD6v0LXAAwAA
   </data>
  </layer>
  <layer name="protection" width="20" height="12">

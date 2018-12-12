@@ -76,16 +76,16 @@
  <tileset firstgid="191" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="198" name="../../tileset/logic/creature/human.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="207" name="../../tileset/logic/creature/human.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human.png"/>
  </tileset>
- <tileset firstgid="207" name="../../tileset/logic/creature/kobold.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="216" name="../../tileset/logic/creature/kobold.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset firstgid="212" name="../../tileset/logic/creature/golem.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="221" name="../../tileset/logic/creature/golem.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
- <tileset firstgid="215" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="224" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="20">
@@ -121,15 +121,15 @@ CQAA
  </layer>
  <layer name="objects" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDAZynkjlriVS3Hol9lUp2YwMnaGj2KBgFQwHsGWH2kgr2MAwNt+4eaAfQ
-COyggx2H6WDHQAAAg8Z9dWAJAAA=
+   H4sIAAAAAAAAAGNgGAVDAdygkjlriVS3Hol9j0p2YwMXaWj2KBgFQwHsGWH2kgr2MAwNt+4eaAfQ
+COyggx2H6WDHQAAA6Vl3RGAJAAA=
   </data>
  </layer>
  <layer name="collision" width="30" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWTUQoAIAhDvf8FvU7/ojWnRZEgRLW9tFIR0Q/ThpoxokEi8mD9qtxOb4/DcKP7
-sPNd3Nl6lXvLe65G5HmKe7ruXfWutDdxV/2d/YMMF/lP2WC1Hjdzpk5utM/jsH3L1IXqWS5a08s5
-APqyen5gCQAA
+   H4sIAAAAAAAAAOWOSwoAMQhDvf8pPcpsS4jWapgPIwSKTfJ0M/MfCsfhXclUJuro9k25ym7G6XCZ
+j+VV3Ox/yn1K6ok67+IiJ5Kay/YT3i77Ji4y0bPuIl+Fm/Vk2Wy6WcY9uUnJjXyMw+6r3FDNZHsV
+F/M7zxd1AVhh1IpgCQAA
   </data>
  </layer>
  <layer name="protection" width="30" height="20">

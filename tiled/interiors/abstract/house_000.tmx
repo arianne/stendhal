@@ -49,13 +49,13 @@
  <tileset firstgid="157" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="164" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="173" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="165" name="../../tileset/building/entrance/detail_ns.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="174" name="../../tileset/building/entrance/detail_ns.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ns.png"/>
  </tileset>
- <tileset firstgid="171" name="double_peach" tilewidth="32" tileheight="32">
+ <tileset firstgid="180" name="double_peach" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_peach.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -66,7 +66,7 @@
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAUwwA/EAliwIJH6hYBYGAsWQVMnRyP9okAshgWLE+l+agFJMvXJoPElqKxf
-FohXA/EaAuZI4ZFbC8TrsIjzETATBtYD8QYi1dIDAACe+loDAAQAAA==
+Foi3APFWAuZI4ZHbBsTbsYjzETATBnYA8U4i1dIDAAA0NwDfAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -78,7 +78,7 @@ voSyCf//CDPMlf0CS6yUve9C9l20LGtssHXcYh3ps0g47LDH4cc9lsEXUl7pHgAEAAA=
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBTwDrQDqAyWAvEyIF5OQB0AqiLJagAEAAA=
+   H4sIAAAAAAAAAGNgGAWjYBTwDrQDqAzWAfF6IN5AQB0AGgoaegAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
@@ -88,8 +88,8 @@ voSyCf//CDPMlf0CS6yUve9C9l20LGtssHXcYh3ps0g47LDH4cc9lsEXUl7pHgAEAAA=
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvCwMCwZJBhYgCpeqhhJyX2E3ILPfVjM2Ow6CfWTHL0UyP+qZ1uCZlH67wGANfG
-gpoABAAA
+   H4sIAAAAAAAAAFvLwMCwdpBhYgCpeqhhJyX2E3ILPfVjM2Ow6CfWTHL0UyP+qZ1uCZlH67wGAFpD
+UCAABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

@@ -22,13 +22,13 @@
  <tileset firstgid="34" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="41" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="50" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="42" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="44" name="wall/int_rock" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="21">
@@ -38,9 +38,9 @@
  </layer>
  <layer name="1_terrain" width="32" height="21">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNlYGDwHWDsBMQuSNiVTmIw+30YUEEkncRG7cduvzMQh9FYDJ/99AADZT/fANsP
-A/js9wfiJBqLDeb0P2r/wNufAMSJSDiZBmL4yj8XGmN89R89wECVP7wDbD8MINufwICaNuiBkdPf
-QGIAOwD1Z4AKAAA=
+   H4sIAAAAAAAAAAtjYGAIG2DsDcS+SNiPTmIw+0MZUEESncRG7cduvw8Qx9NYDJ/99AADZT/fANsP
+A/jsjwDibBqLDeb0P2r/wNufCcRZSDiHBmL4yj9fGmN89R89wECVP7wDbD8MINuPnjbogZHT30Bi
+AArf3HyACgAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="21">
@@ -61,13 +61,13 @@ YBSMAvoDAI2djJmACgAA
  </layer>
  <layer name="collision" width="32" height="21" visible="0" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANNkYGDQHMUDjpEBPcUGi/0DjekNRu0nnP4GOv8NtP30EBvM9g90+I9U++kBRu0f
-xSAMALfdC7GACgAA
+   H4sIAAAAAAAAADNiYGAwGsUDjpEBPcUGi/0DjekNRu0nnP4GOv8NtP30EBvM9g90+I9U++kBRu0f
+xSAMAIALoXuACgAA
   </data>
  </layer>
  <layer name="protection" width="32" height="21" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDodNT/wLnYi9IWDVVVX16w6r8R4AKAAA=
+   H4sIAAAAAAAAAO3DQQ0AAAwDofNU/97mYi9IWDVVVX16ScNIzIAKAAA=
   </data>
  </layer>
 </map>

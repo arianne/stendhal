@@ -40,7 +40,7 @@
  <tileset firstgid="134" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="141" name="imperials" tilewidth="32" tileheight="32">
+ <tileset firstgid="150" name="imperials" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_kalavan.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -67,7 +67,7 @@ d4QDAAA=
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDGfQOtANGAOiisfkAJF8v4IQDAAA=
+   H4sIAAAAAAAAAGNgGAVDGUwbaAeMANBFY/MBN2U36oQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">

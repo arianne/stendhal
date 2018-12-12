@@ -40,10 +40,10 @@
  <tileset firstgid="112" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="119" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="128" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="120" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="129" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="15">
@@ -71,13 +71,13 @@ aEdQCeRTqN+fKq4gHgQgYUqAGpTWAGIvIPah0DxsQBNKa1PZXACIlskQ3AUAAA==
  </layer>
  <layer name="objects" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDCUoG2gGjYBQQAWoG2gEDCIZqHgUAsvtPb9wFAAA=
+   H4sIAAAAAAAAAGNgGAUDCUoG2gGjYBQQAVoH2gEDCIZqHgUASVJCetwFAAA=
   </data>
  </layer>
  <layer name="collision" width="25" height="15" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtnYGAoH0YYG8AnT6p+XGooBdjsoLZ9A2UHtcFgsIMa6ZNYO+jhj+FmBznpA1+c
-DXS5Rg4GAJHtjxbcBQAA
+   H4sIAAAAAAAAAGtgYGBoGEYYG8AnT6p+XGooBdjsoLZ9A2UHtcFgsANdnlhMjh2UgJFqBz61xNqB
+rB+X3GDGAKqzXJLcBQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="15">

@@ -16,67 +16,67 @@
  <tileset firstgid="42" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="49" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="50" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="59" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="54" name="carpet" tilewidth="32" tileheight="32">
+ <tileset firstgid="63" name="carpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset firstgid="63" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="72" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset firstgid="69" name="desk" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="desk" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/desk.png"/>
  </tileset>
- <tileset firstgid="73" name="cabnets" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="cabnets" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset firstgid="117" name="rat" tilewidth="32" tileheight="32">
+ <tileset firstgid="126" name="rat" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/ratfolk.png"/>
  </tileset>
- <tileset firstgid="120" name="plant" tilewidth="32" tileheight="32">
+ <tileset firstgid="129" name="plant" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset firstgid="132" name="single_purple_gold" tilewidth="32" tileheight="32">
+ <tileset firstgid="141" name="single_purple_gold" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_purple_gold.png"/>
  </tileset>
- <tileset firstgid="141" name="stairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="150" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <layer name="0_floor" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNmYGBgHkHYDIjNkbAFGWZYArEVEramsxkwP1hRYAa6/eSYYQPEtliw3SCIZ1ph
-AK8Ta7gwAwAA
+   H4sIAAAAAAAAAGNmYGBgHkHYHogdkLAjGWY4AbEzEnahsxkwPzhTYAa6/eSY4QrEbliw+yCIZ1ph
+AP9QmoAwAwAA
   </data>
  </layer>
  <layer name="1_terrain" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN3MNwrAQAxEUdXOsXEOZ11Y2Et7iincCNnrzoJXSKBfiEj6QQk5NDBHaCFjY5S4
-GX7ccLw79cNueN69+mE3Au9B/bAbMXNvdDA9tMAKG/RsVJC8sMMBJ/caLoz0RC0wAwAA
+   H4sIAAAAAAAAAN3MNwrAQAxEUdXOsXEO911Y2AN7iincCNnrzoJXSKBfiEj6QQk5NDBHaCFjY5S4
+GX7ccLw79cNueN69+mE3Au9B/bAbMXNvdDA9tMAKG/RsVJC8sMMBJ/caLp7p5GowAwAA
   </data>
  </layer>
  <layer name="2_object" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB5IBOIgIE4C4kAoHUyiGfFAHArEYUg4HI/6KVjEEgjYYQ/EDkDsiEeNER65
-ZiB2AmJnIHaB8mkJXKlghjsVzKA3wBcHAwUAduPCiDADAAA=
+   H4sIAAAAAAAAAGNgoB7IAuJoIM4G4igoHUOiGRlAHAfE8Ug4AY/6uVjEMgnY4QHEnkDshUeNNR65
+HiD2BmIfIPaF8mkJ/KhgRgAVzKA3wBcHAwUAfD0r0jADAAA=
   </data>
  </layer>
  <layer name="3_roof" width="17" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFmghgB/OIJONHoUkA8AUeycPDADAAA=
+   H4sIAAAAAAAAAGNgGFmglQB/OIJJaPQoIB8AACD6vaQwAwAA
   </data>
  </layer>
  <layer name="objects" width="16" height="16" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJpAD4d4OV1dMfRA2UA7gAoAV9yPAtIBAJu5FmgABAAA
+   H4sIAAAAAAAAAGNgGJpAD4d4Az0dMQRB/UA7gAoAV9yPAtIBAJW/vX4ABAAA
   </data>
  </layer>
  <layer name="collision" width="17" height="12" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNkYGAwHAIYH6BEPTlmIMtjYxPjBmLcRq55tHIHAwN93UGNNEPtdAgAq1mehTAD
+   H4sIAAAAAAAAALNiYGCwGgIYH6BEPTlmIMtjYxPjBmLcRq55tHIHAwN93UGNNEPtdAgAEs+YZDAD
 AAA=
   </data>
  </layer>

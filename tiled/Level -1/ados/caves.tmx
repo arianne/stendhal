@@ -37,13 +37,13 @@
  <tileset firstgid="206" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="213" name="creature/undead" tilewidth="32" tileheight="32">
+ <tileset firstgid="222" name="creature/undead" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset firstgid="228" name="creature/animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="237" name="creature/animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="258" name="creature/giant_human" tilewidth="32" tileheight="32">
+ <tileset firstgid="267" name="creature/giant_human" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -104,10 +104,10 @@ AAAAAICzeaUDAADgR7y5DwAAAAAAAAAAAAAAAAAAAAAAAAAAAHBe19qQjiBmri3pCAAAAADgEN7u
  </layer>
  <layer name="objects" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3csQ6CMBSGUfD9H44JjYNuLrwEk4kjUeh/qec8wTeUNrklHQYAAAAAAACAmi5j
-ugAAAIC9vNIBAAdb0gEd6uHssC7q6WFd0c49HQAAAAAAwOlM6QAAAADYyP90QEv2nHrMMgEAAAAA
-gG95jwMAAAAAgE+V3mI3wwYAAOAMHukAAJqw3wMAAAAA13QAAACluEeG/+BbBwAAAAAAYG+3dADQ
-jSkdwGGe6QAAynE2APA2pwOAssyeAYBfrYZZ7hMAAAEA
+   H4sIAAAAAAAAAO3cMQ6CMBiGYZi9/724ARoH3Vw4AJOJI1Ho91Of5wTvUNrkL+kwAAAAAAAAANR0
+GdMFAAAA7OWVDgA42JIO6FAPZ4d1UU8P64p27ukAAAAAAABOZ0oHAAAAwEb+pwNasufUY5YJAAAA
+AAB8y3scAAAAAAB8qvQWuxk2AAAAZ/BIBwDQhP0eAAAAALimAwAAKMU9MvwH3zoAAAAAAAB7u6UD
+gG5M6QAO80wHAFCOswGAtzkdAJRl9gwA/GoFApuywAAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">

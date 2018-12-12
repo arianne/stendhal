@@ -70,61 +70,61 @@
  <tileset firstgid="125" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="132" name="brown parving" tilewidth="32" tileheight="32">
+ <tileset firstgid="141" name="brown parving" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png"/>
  </tileset>
- <tileset firstgid="134" name="bed" tilewidth="32" tileheight="32">
+ <tileset firstgid="143" name="bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_blue.png"/>
  </tileset>
- <tileset firstgid="136" name="dark book" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="dark book" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/dark_bookshelf.png"/>
  </tileset>
- <tileset firstgid="142" name="large picture" tilewidth="32" tileheight="32">
+ <tileset firstgid="151" name="large picture" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/large_island.png"/>
  </tileset>
- <tileset firstgid="144" name="bottle shelf" tilewidth="32" tileheight="32">
+ <tileset firstgid="153" name="bottle shelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/dark_bottle_shelf.png"/>
  </tileset>
- <tileset firstgid="150" name="huge animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="159" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset firstgid="164" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="173" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide.png"/>
  </tileset>
- <tileset firstgid="180" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="189" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide_details.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtlYGBoHcKYG4g5gJgTiNlI1NtChnnY9NDKfdjsxGUeqe6iBcbmhsHgLmxuoqa7
-qG3ecI8PYtwwEO4kx87BEJ4DiQGFAz62QAYAAA==
+   H4sIAAAAAAAAAOtjYGDoG8KYG4g5gJgTiNlI1NtLhnnY9NDKfdjsxGUeqe6iBcbmhsHgLmxuoqa7
+qG3ecI8PYtwwEO4kx87BEJ4DiQFnTRhUQAYAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3UTU5CMRSG4TPSBEcgaEQFEgZGEQbGiHMCDCHsAN0AOFBXIBtRUUTwZ4O+N9BI
+   H4sIAAAAAAAAAK3UTU5CMRSG4TPSBEcgaEQFEgZGEQbGiHMCDCHsAN0AOFB3IRtRUUTwZ3G+N9BI
 6j3tbfBLngHcwxeatjctItseWaQTzuWwg03FLg4C5zZkkRbOcI728rtHPOEZY4lPE1sxfVHqSyYv
 eMUEb0rfg6PPzhTvmGGuzIwC+j7wiS98KzOu9doxc3vII6XYt/oanr5DFD1Kyv/rWH1H4j97Gfk9
 f671lkU/c77zZ6Kt3c4AQ9zI3/3oopewJy5J9zcut7hf+dx39F0Edl/iSuk7xgkqgZ1a3ymqqHl+
-fyeLNZtcK31RVt8FIVlnP3x9rntpiOe5ub/RvSz8kxJ+AASKgqVABgAA
+fyeLNZtcK31RVt8FIVlnP3x9rntpiOe5ub/RvSz8kxJ+APdJ36pABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA1IhdJ9QNyPJoYOOoC4E4i7oHwbLGoyiBQDgW4g7gHiXsLOHPLAFIgtB9oR
-AwSygDgbiHNI1DcBiCcC8SQoH5becoE4D4jzSTRvMhBPAeKpJOobLKCGTvbYArE9ENuRqM+B+k6h
-OXCho95QIA4D4nAK7EQGEUAcCcRRRKgFAJ3Uf0tABgAA
+   H4sIAAAAAAAAAGNgoA1IhdLTgXgGmhg6mAjEk4B4MpRvg0VNBpFiIDAFiKcC8TTCzhzywBSILQfa
+EQMEsoA4G4hzSNQ3E4hnAfFsKB+W3nKBOA+I80k0bw4QzwXieSTqGyyghk722AKxPRDbkajPgfpO
+oTlwoaPeUCAOA+JwCuxEBhFAHAnEUUSoBQBdV0cZQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNpgCxBvBeJtQLydCubtAOKdQLwLiHdTwTwQ2AvE+0jU40glu2HAicrmIQNP
-Kps3GP3uBcTeVDCHHFAMxKUDZPdAgBIGiJ9HweAHACoIJGBABgAA
+   H4sIAAAAAAAAAGNgGNpgLxDvA+L9QHyACuYdBOJDQHwYiI9QwTwQOAbEx0nU40glu2HAicrmIQNP
+Kps3GP3uBcTeVDCHHFAMxKUDZPdAgBIGiJ9HweAHAOSCQ+FABgAA
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYHiCmQPtgFEwCugEGgfIXgDHBsEgQAYAAA==
+   H4sIAAAAAAAAAGNgGAWjYHiCRQPtgFEwCugEGgfIXgAFq5dWQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">

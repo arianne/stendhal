@@ -19,21 +19,21 @@
  <tileset firstgid="31" name="necro" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png"/>
  </tileset>
- <tileset firstgid="46" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VsQ2AMAxEURdsxAopKViCGoZgETaFEiKi2PHZAcnF1e93l4go/WDztZG5ycAe
+   H4sIAAAAAAAAAO3VsQ2AMAxEUReMxAopKViCGoZgESaFEiKi2PHZAcnF1e93l4go/WDztZG5ycAe
 hEM1tNioBo2tbUDYrQ1IW9pgYXMbLO1ag4ddavC03xqWDv4afvjhh/8Bf+vg7/T8AM+G3PZsKNke
-DTXbsoFrWzRIbWRDq41o0NqaBpR9bziYQ9uWOwETOIV0ABAAAA==
+DTXbsoFrWzRIbWRDq41o0NqaBpR9bziYQ9uWOwGwwAWTABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UPQ5AQBCG4T2BI7mDXkWilFDp3cF5zXaaZX6+WSIzyVfZ5HkrKcVxrqO1zI0O
+   H4sIAAAAAAAAAO3UPQ5AQBCG4T2BK7mDXkWilFDp3cF1zXaaZX6+WSIzyVfZ5HkrKcVxrqO1zI0O
 di94PwAbpDayQWsjGqy2pQFlaxrQtqTBy+Y0eNtPDROtqeBnYy74tS788MP/nv/m/2ehrRX8jbYX
-vnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wRlhGe1ABAAAA==
+vnk33NneDRzbq0Fioxs0NqrBYlsbELa2AWlfGw7m0Paf7wSzj7cLABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">

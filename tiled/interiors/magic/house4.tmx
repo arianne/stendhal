@@ -52,66 +52,66 @@
  <tileset firstgid="92" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="99" name="doorns" tilewidth="32" tileheight="32">
+ <tileset firstgid="108" name="doorns" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
- <tileset firstgid="111" name="door details" tilewidth="32" tileheight="32">
+ <tileset firstgid="120" name="door details" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
- <tileset firstgid="123" name="ground1" tilewidth="32" tileheight="32">
+ <tileset firstgid="132" name="ground1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground2.png"/>
  </tileset>
- <tileset firstgid="124" name="ground2" tilewidth="32" tileheight="32">
+ <tileset firstgid="133" name="ground2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
- <tileset firstgid="132" name="brush" tilewidth="32" tileheight="32">
+ <tileset firstgid="141" name="brush" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset firstgid="135" name="chest" tilewidth="32" tileheight="32">
+ <tileset firstgid="144" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_dark.png"/>
  </tileset>
- <tileset firstgid="136" name="gravestone" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="gravestone" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/large_gravestone.png"/>
  </tileset>
- <tileset firstgid="145" name="slab" tilewidth="32" tileheight="32">
+ <tileset firstgid="154" name="slab" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/slab.png"/>
  </tileset>
- <tileset firstgid="146" name="warmer" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="warmer" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
- <tileset firstgid="148" name="fairy" tilewidth="32" tileheight="32">
+ <tileset firstgid="157" name="fairy" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/fairy.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtgYGBoGKG4CY1fT4CPrp5euHaA7CWEByo8SMX0DL9qHJge5hETHwPpPhjGFx+j
-4UeZefTGAB83ZE5ABgAA
+   H4sIAAAAAAAAAOtkYGDoHKG4G43fQYCPrp5euG0QhBUx4TdYMT3DrwUHpod5xMTHQLqPmPgYDT/K
+zKM3BgCB0PEpQAYAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2TuwoCMRBFp1LUavH9Xgsb8QfsRa3s1D/STgV/2LuQwDCY2Rkf4MAhzeUkITcZ
+   H4sIAAAAAAAAAM2TuwoCMRBFp1LUavH9Xgsb8QfsRa3s1M/STgU/1ruQwDCY2Rkf4MAhzeUkITcZ
 ETW/RAu0QQdUP6QLRsFXAQdwBCfyzwU0hI/P3uCQGc33zvzat0nkZqBuYCh8W7AMjiu4gXvYdw6m
 BnLm2yn36IGM7P0rfGvmWDCir096T2X/UsN9MvcI65ns/Yu+mmFfz/m8vlRftPtqPt6Xf/Tx/r16
-D69vpeS8vgHp/zL6ynKFbwwmJeSO3BOJZA86QAYAAA==
+D69vpeS8vgHp/zL6ynKFbwwmJeSO3BMnl3rnQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAB/IA4A4kAG6oAgIA4G4hAoXxeHOn0q2TcK8ANjItUlA3EKEKcSUGdApHlp
-QJwOxBkE1NkRaV4mEGcBcTaSWAuRerGBHCDOBeI8IJ4EFWulwDwTCvQOJmBEZfMmUtm8aCqbZ0Fl
-84gFZljEqJGGiM3HxAJc+RgAJZ06jUAGAAA=
+   H4sIAAAAAAAAAGNggAB/IA4A4kAG6oAgIA4G4hAoXxeHOn0q2TcK8ANjItXlAHEuEOcRUGdApHn5
+QFwAxIUE1NkRaV4REBcDcQmSWC+RerGBUiAuA+JyIJ4NFeujwDwTCvQOJmBEZfNmUdm8aCqbZ0Fl
+84gFZljEqJGGiM3HxAJc+RgAys62p0AGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHrAm0pqhgroAOJOIO6iknndQNwDxL1UMg8fyAfiAiAupJJ5FUBcCcRVVDKP
-HDCc0tZwAKPxMXAAAI5m2WFABgAA
+   H4sIAAAAAAAAAGNgGHrAm0pqhgqYCMSTgHgylcybAsRTgXgalczDByqAuBKIq6hkXiMQNwFxM5XM
+IwcMp7Q1HMBofAwcAADjSVs5QAYAAA==
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLlg2iCwj95uGAUjA0wlQs1gTXvEuH0UEAYJdLADAN03VjhABgAA
+   H4sIAAAAAAAAAGNgGLlg/iCwj95uGAUjA8wjQs1gTXvEuH0UEAYJdLADAJbDiTNABgAA
   </data>
  </layer>
  <layer name="collision" width="20" height="20" visible="0" opacity="0.41">

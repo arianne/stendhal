@@ -28,10 +28,10 @@
  <tileset firstgid="115" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="122" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="131" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="123" name="rods" tilewidth="32" tileheight="32">
+ <tileset firstgid="132" name="rods" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/fishrods.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -41,9 +41,9 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYD4r1GYgDomj6SQXo+mF2o9vfDMSt
-QNwCxW00sl+fAbv9xOrHBayA2BqIbaC0Ew79MP/rUdl+YvXjin/k8AfRQy38idEvBcTiWLAzELsA
-sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAxVzFZAAEAAA=
+   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYD4r1GYgDomj6SQXo+mF2o9vfA8R9
+QNwLxf00sl+fAbv9xOrHBayA2BqIbaC0Ew79MP/rUdl+YvXjin/k8AfRQy38idEvBcTiWLAzELsA
+sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAWMCyrgAEAAA=
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -53,8 +53,8 @@ sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAxVzFZAAEAAA=
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNygGkrXQDGpoB6IG4G4AYqbqOIq+gFDIDYCYmMobUln+5HDnxyAHP4geqiF
-/3AHACWGtPgABAAA
+   H4sIAAAAAAAAAGNgGNygBUq3QjGpoAOIu4C4E4q7qeQuegFDIDYCYmMobUln+5HDnxyAHP4geqiF
+/3AHABazH0oABAAA
   </data>
  </layer>
  <layer name="objects" width="16" height="32">
@@ -64,7 +64,7 @@ sSsWOUmofi4gZsSBfYDYF4j9cMhzAjEAxVzFZAAEAAA=
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtiYGCoGmSYGECOHnz6cZmFS55e9hOrnxR76Gk/Ke4ajuFPjv2kxBWlGAAHN26Q
+   H4sIAAAAAAAAAGtmYGBoHmSYGECOHnz6cZmFS55e9hOrnxR76Gk/Ke4ajuFPjv2kxBWlGADDNn2d
 AAQAAA==
   </data>
  </layer>

@@ -34,19 +34,19 @@
  <tileset firstgid="115" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="122" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="131" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="123" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="132" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf_duergar.png"/>
  </tileset>
- <tileset firstgid="131" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="140" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns_closed.png"/>
  </tileset>
- <tileset firstgid="143" name="chests" tilewidth="32" tileheight="32">
+ <tileset firstgid="152" name="chests" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
- <tileset firstgid="149" name="hybrid" tilewidth="32" tileheight="32">
+ <tileset firstgid="158" name="hybrid" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png" trans="ff00ff"/>
  </tileset>
  <layer name="0_floor" width="64" height="32">
@@ -62,36 +62,36 @@ yftXQQAgAAA=
  </layer>
  <layer name="2_object" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Y2UoDMRSGzxP4DKVuuNcbra3euPWiKl644IV1uXBBH0MQCiKoD+wZmsCZY5LJ
+   H4sIAAAAAAAAAO2Y2UoDMRSGzxP4DKVuuNcbra3euPWiKl644IV1uXBBX0UQCiKo7+oZmsCZY5LJ
 MomlJPAxlL/Jf04mk5yZBgA0MplMRsEKMq1guSY9lYcvs8gOskXYRmZq0lN5hOS/CeW2wbxD9Lo9
 vpEfhYcvrrH1HGP38XDVQ5BjH0aMbdzz7yInyBFyinSYt9TfDHpf9D9meioPHVV75xLSRC6Rc+RK
 /F5U6O8G/Uz0v2B6Kg8dtnsnsKsrNv1TeHCqnh25Pm6RAXIP6vVS6HcG/Vr0vwH9+W/jMfT00LFA
 8p8i+beQeWQdRuvjGXlEXqC8ViSF/mHQH0T/JxitrxaJO5aHzfOvuv/7bNwD5BXcmjyHVY2PLz3q
 bLb7vyr/SWg5f//8d5E2Ya/m2Pj4MTxs86f7X9E+Rd9VZA5Zg7+1B4+9DeXapUrviPGbglgePvf/
 i82drvbg8NqlStfVP7E8TPl32Tzazh0F2NVV/y8POfccOXe0NqH1Df/2UOgDD53/ZxjJwxdZH9Pa
-Q/XtgdYuLnoqj5D8U3//cP2GkOL939d7Et7/bbx7AbGNe/6m8yFUT+XhS9X5EKqn8shkMhnOL9bK
-TJYAIAAA
+Q/XtgdYuLnoqj5D8U3//cP2GkOL939d7Et7/bbx7AbGNe/6m8yFUT+XhS9X5EKqn8shkMhnOL5Qw
+SO4AIAAA
   </data>
  </layer>
  <layer name="3_roof" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WQQqAQAiF4TmKJww6RdCqblzLNqOCOoH8H8zK97BdjgEA6OB63/33RwBoZzPm
+   H4sIAAAAAAAAAO3WQQqAQAiF4TmKJwy6SdCqTlvLNqOCOoH8H8zK97BdjgEA6OB63/33RwBoZzPm
 R7DvzVT2Z+TztEy0b2U00b5lN+ZnsO/NVPaz8B8GgD6i903GbbJix4wYM1Ey1ty7v3qHJnrfZNwm
-K3YAAACgrwe6R9rzACAAAA==
+K3YAAACgrwc4759UACAAAA==
   </data>
  </layer>
  <layer name="objects" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YPQrAIAyAUS/dqX/Yq3hRl06CJrSJYvu9RZQQY6ZgCAAA1B0vYy6jOjajPF9k
-1WMA+JtldAGTSfe6F+flvrckh4iiQY6nWjPO6nSn53s1uWeY67x6DwAA2s7RBVRo69L8o/GPAwDw
-lgHHQa8yACAAAA==
+   H4sIAAAAAAAAAO3YzQnAIAyAUZfuBv3DruKQXnoSNKFNFNvvXUQJMeYUDAEAgLrjZcxlVMdmlOeL
+rHoMAH+zjC5gMule9+K83PeW5BBRNMjxVGvGWZ3u9HyvJvcMc51X7wEAQNs5uoAKbV2afzT+cQAA
+3jL7wnrDACAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USwqAMAwFc+6e3pXgQm3I57XoBGZV4nREHGY2AAAAHrhOx3mV4+/9Mwf9uXfQ
+   H4sIAAAAAAAAAO2USwqAMAwFc/de3JXgQm3I57XoBGZV4nREHGY2AAAAHrhOx3mV4+/9Mwf9uXfQ
 ea5ydPVX7Csc9N/v2WSf/py7or/Cken3zttOxfO9/kj/F4b+2u9fcTeFY+Ze/W9SOKL93XffxbHz
-3ehf1591e+6mcETbz+k4Vznopx8AAOAAQgQfEwAgAAA=
+3ehf1591e+6mcETbz+k4Vznopx8AAOAA5pOPGwAgAAA=
   </data>
  </layer>
  <layer name="protection" width="64" height="32">

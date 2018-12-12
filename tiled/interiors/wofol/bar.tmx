@@ -40,7 +40,7 @@
  <tileset firstgid="119" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="126" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="135" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/wood_fire.png"/>
  </tileset>
  <layer name="0_floor" width="17" height="10">
@@ -50,9 +50,9 @@
  </layer>
  <layer name="1_terrain" width="17" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3QSQqDQBCF4QaNoIlujWY4gLrQnMTpDAaSOzjc3H9RgouI3ZKCD7p68XhUoJSy
+   H4sIAAAAAAAAAK3QSQqDQBCF4QaNoIlujWY4gLrQnMTpDAaSgzic2n9RgouI3ZKCD7p68XhUoJSy
 NXR4//j34eCJeMcHX3n3GPDACR6uymxGTAjhSg/TjGVC6bGVUaJaqUUje6uR8Y8eJhlHbrrOWG56
-R4IUGSJNN+lxgYUcBV6y6zpjBtAZnPmoAgAA
+R4IUGSJNN+lxgYUcBV6y6zpjBrZUDfWoAgAA
   </data>
  </layer>
  <layer name="2_object" width="17" height="10">

@@ -49,7 +49,7 @@
  <tileset firstgid="258" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="265" name="intstairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="274" name="intstairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_ns.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="20">
@@ -60,10 +60,10 @@ DAAA
  </layer>
  <layer name="1_terrain" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VyQrCQAwG4PTgUq27te5L3Xqx+jaePHnyzX0Mf9HCUMah0wSh0MB3mSHkh2mJ
-S0TVlCt96qa5SzTANdxLeM+owx4uivs33yN1njhA7UevFHVGTHZ1YvRmrZgxo8zHm9GCNnSgq7l/
-GvwjXw/6MIChZW/W4uTzYQQBjIVzJcXJp/Ye4cw0gSnMlLNIIF8TKgLmsIBl6txj5pPaHytYw4b0
-+4Pzvqb94Tv4TiFwzLsihC3sqDj7Q+r/KPOV+fJUkfLZ7oCI0Ws7I+8O8Bi9NjNeLWXVFIAMAAA=
+   H4sIAAAAAAAAAO3VyQrCQAwG4PTgUq37vtVat16svo0nT558cx/DX3RgKHXoNEEoNPBdJoT8UEpc
+IqomXOlTt5Se0gDX0Jfw3lGHPVw092++R+JdOUDtx6wUfUdMdnVizGatmLGjzMfb0YI2dKCb0n8a
+/CNfD/owgKHlbNbi5BvBGCYwFc6lipNPnz3CmWkGc1hob5FAviZUBCxhBX7i3WPmk7ofawhgQ+n3
+g/N9TffDd7AbAsd8K0LYwo6Kcz+k/o8yX5kvTxUpn+0NiBiztjvy3gCPMWuz4wVMwavfgAwAAA==
   </data>
  </layer>
  <layer name="2_object" width="40" height="20">

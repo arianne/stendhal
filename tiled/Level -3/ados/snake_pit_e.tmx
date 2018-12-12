@@ -16,10 +16,10 @@
  <tileset firstgid="196" name="skull_pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
- <tileset firstgid="197" name="snake_skeleton" tilewidth="32" tileheight="32">
+ <tileset firstgid="198" name="snake_skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/snake_skeleton.png"/>
  </tileset>
- <tileset firstgid="213" name="rocks_3" tilewidth="32" tileheight="32">
+ <tileset firstgid="214" name="rocks_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_3.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -32,13 +32,13 @@ v/4/N/iz/439Cw0m/K0NpuyNDabtTQ122Rs6nLAndjjtTmlBm4kmtMn17gEtsqHxAEAAAA==
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZTU4DMQyFfSrUpfnZ0DUSF2YDZQNUILGDk5AIVWqlMMWxncSZ90leddr4JS9u
+   H4sIAAAAAAAAAO2ZTU4DMQyFfSrUpfnZ0DUSF2YFZQNUILGDi5AIVWqlMMWxncSZ90leddr4JS9u
 xiECAESFU1wpohe8kFMprv/4zu3AOS/FnXDsTYoLrYACTP/P2WP83rT0z8x89U4AAIB9CAAAg7IV
 PHtJv+89MyHRn7l3yaIfa9bPJH+HzO+9s+wB6dofiO4BJl3/4IbieoDJpm8SyQNM9v25CPqZ/Ppk
 I+tnkut+EI6xodNe8Cgwte+L5no4wjww9e2fHjzReh6YyrXt3Wm8xxRPKXYpnguft/ZD7TmmlpcU
 ryneUuwXnmtxVmQa+x7Ecw6YYtyXeJ0XW/v+HEv1xmMORtN/Dus5iKY/Y3VuZJLXPa//QwlW9bDF
 2nvd3Vjsg4jeP0a7D0r6I921aT0Qff0zGg/MoF9TC2fQn6n1wCz6az1gpf/T6Hc01HhglvXPaPV/
-WCUCzBhhX0Vg7WeAke8RWrB2/dH47p0AAAAAAAAAE/EDEfssPwBAAAA=
+WCUCzBhhX0Vg7WeAke8RWrB2/dH47p0AAAAAAAAAE/EDPioP8wBAAAA=
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">

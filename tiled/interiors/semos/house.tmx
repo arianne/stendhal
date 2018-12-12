@@ -64,7 +64,7 @@
  <tileset firstgid="204" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset firstgid="210" name="double_peach" tilewidth="32" tileheight="32">
+ <tileset firstgid="228" name="double_peach" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_peach.png"/>
  </tileset>
  <layer name="0_floor" width="19" height="16">
@@ -74,11 +74,11 @@
  </layer>
  <layer name="1_terrain" width="19" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3Ty07CQBTG8QO6Ed1WRNwqyPNAgglJNxg2JL6ObrRy8QJyEdAHAZTX8U9sw/TQ
+   H4sIAAAAAAAAAK3Ty07CQBTG8QO6Ed1WRNwqyPNAgglJNxg2JL6ObrRy8QJyEdAnApS38E9sw/TQ
 UNL2JL/NzJkvPZPpiYikE3CMQ1zgLIY8DtysU3Txgle8YY6F+Mtb072WkWXjHT308YElflSWt6Z7
 a0ZWAwMMMcIYv1ipLG9N99Zx62bd4RMTTDGT3aV7m+q+HkPO71NlVPCEToTzz7K5+ypu4ET8FnMe
 b8ZWhJy2/M9jGVm26vkKyTD3Hdl+E2Z94xJXAQruvln6Tegq4jpASfU9yPabiFLrnHvx/0PnyMaQ
-c7MySCXgCH/pAH/FwAQAAA==
+c7MySCXgCH/eK+4NwAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="19" height="16">
@@ -90,8 +90,8 @@ EzMpMAOUJpDDawYF5iGHvRQQi1OAJaFmcQExIx6MDPCp4wRiADvaz/vABAAA
  </layer>
  <layer name="3_roof" width="19" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAWeDMQBYtR5EWkWserIBUk4xG8A8U0ixGAgFojTqOSmPiDOo5JZuVQyZyQB
-XGmCVIAvTZgDsQUWbIlD/WiaIB0AAMwOg8fABAAA
+   H4sIAAAAAAAAAGNgQAWeDMQBYtR5EWkWserIBUk4xF8B8WsixGAgFojTqOSmPiDOo5JZuVQyZyQB
+XGmCVIAvTZgDsQUWbIlD/WiaIB0AAO0a4aHABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="19" height="16">

@@ -121,7 +121,7 @@
  <tileset firstgid="339" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="346" name="double_red" tilewidth="32" tileheight="32">
+ <tileset firstgid="355" name="double_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_red.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -131,15 +131,15 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXWSy8DURgG4G+wKbV0KTZ2WEiwowtR/RH07k6sXDfiTtggwYZg4X5fd00qLjsW
-WLBHQvwC76Rn0vY4nXY6nemXPGl65ut5O9OenGMloqwMyYMcKINiGIBBZoiNGaUUsll+IdzCMIww
-oxSuR3iiSI3BODMBN1xPEFzQIuBmrx4o4PLTWUuwAIswDyuMMrZscP4qrDHr3HtlzMj8ZIrPD8Au
-7MF+BvJTrUaJqEnSn38H91EedOa3QTvTkUR+qhUvvxO6mG7YMTF/W5AfXaE05juQ7RTcfw/0Mn2C
-z5mx/rYYUWVq/U/ClCD/G34E0l3TMCPIv4YPiuwlnwZkyzULc4J8s0trfjkUCVRAJVTFuR6PTUP+
-Ffu++SBxaqAW6gTXErEkme+lyPOyUuwZqh4awE6pn7/kfLvKHuKj2N9LOa/JHNAMTtJ3/lIrPl/u
-l9fKF9cnr6EN2IT+qPEDOIQjaMV9uiRt/z+/IF9LHcMJnIIb2R5BvtrzJ535Z3AOF+BFjk/j/evN
-5+tSMJ9Xpf83zfkkmM+nsf8ZXphXeIN3Cp8jzcjXW/x8fpXeoAn5IZXegMH5JZR4X7El6NdKmS+X
-xHtDNf3fVywq/amQ5/sDjQYoCQAQAAA=
+   H4sIAAAAAAAAAMXWSy8DURgG4K/YlFq6FBs7LCTY0YWo/ghBL3olVq4bcSdskGBDsHC/r7smFZcd
+CyzYIyF+gXfSM2l7nE47nc70S540PfP1vJ1pT86xEFFejhRBAVRBOQzAIDPExvRSCfksvxRuYRhG
+mFGK1iM8UazGYJyZgBuuJwyd0CHQxV67oYTLz2YtwQIswjysMPLYss75q7DGrHPv5TE989MpPt8D
+u7AH+znIz7RaTURtJu35d3Af50Fjfg94GV8a+ZlWsnw/BJgg7BiYvy3Ij69IFvPtyHYI7j8EvUyf
+4HNGrL8tRlS5Wv+TMCXI/4YfgWzXNMwI8q/hg2J7yacO2VLNwpwg3+hSm18NZQI1UAt1Sa4nY1WR
+f8W+bzGYOA3QCE2Ca6mY08x3Uux5WSjxDNUMLWCjzM9fUr5NYQ9xUeLvJZ/XJHZoBwdpO38pFZ8v
+9Utr5Yvrk9bQBmxCf9z4ARzCEXhxnz6Tuv+fW5Cvpo7hBE7Bj+yAIF/p+ZPG/DM4hwsIIiek8v61
+5vN1KZjPqdD/m+V8EsznUtn/DC/MK7zBO0XPkUbkay1+PrdCb9iA/IhCr0fn/ApKva9YU/SrJc9X
+SOK9oZ7+7ytmhf5MSPP9AUKcwX8AEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -153,8 +153,8 @@ UTAKBhEAAB9XX70AEAAA
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGBzgBJn6DlLVFaNgIMECIF4IxIsG2B2kAFtGBgZ7xoF2xSggBRwYaAeMAgzw
 FojfYcH0AvuB+DkQXwTiS0D8go52jwL8YO9AOwAP8ARiLyD2ptAcazLrEB8g9gViPwrtJxWA8spL
-NLH9SOxsOrqFGoDc8CcVJADtSRxi7YWPA+0ALOAqEF+D4utAfBuI7wyoi4Y2ODDQDhgFAwIATHJ4
-vAAQAAA=
+NLH9SOxsOrqFGoDc8CcVZALtyRpi7YWPA+0ALOAqEF+D4utAfBuI7wyoi4Y2ODDQDhgFAwIA2wb5
+RgAQAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">

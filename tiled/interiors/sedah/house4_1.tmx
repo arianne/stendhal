@@ -28,10 +28,10 @@
  <tileset firstgid="58" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="65" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="66" name="double_red" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="double_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_red.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -42,8 +42,8 @@
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNkYGBgJhOzADErELMBsRSJmB2IeaD6ZYBYh4Ew0IPSILXSaPpBQJGAfmMkNjb9
-pIDBpl+fQv0GQGxKgX5DCu0nFRCj3wmInSnQ7wLErkTqx5Z+3YDYHYs4evrlAmJJEjE3VD8vEPOR
-iQWAGADtwsC/AAQAAA==
+pIDBpl+fQv0GQGxKgX5DCu0nFRCj3xuIfSjQ7wvEfkTqx5Z+/YE4AIs4evrlAmJJEjE3VD8vEPOR
+iQWAGABvUfbTAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -53,7 +53,7 @@ iQWAGADtwsC/AAQAAA==
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBRoYxHzAGJPItUOVQAAMaqtFwAEAAA=
+   H4sIAAAAAAAAAGNgGAWjYBRoYxELBOIgItUOVQAABsZiOQAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
@@ -63,7 +63,7 @@ iQWAGADtwsC/AAQAAA==
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNkYGBwHCSYEHBEoknVi82s4aSfVDMGm35SATH6iZGjZfgTEh8MGADoXQ97AAQA
+   H4sIAAAAAAAAAPNiYGDwGiSYEPBCoknVi82s4aSfVDMGm35SATH6iZGjZfgTEh8MGAA9QO+uAAQA
 AA==
   </data>
  </layer>

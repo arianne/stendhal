@@ -40,7 +40,7 @@
  <tileset firstgid="128" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="135" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="144" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -67,7 +67,7 @@ EEWBXj8g9h8AvbjcHEemebQEAJinBWyEAwAA
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.51">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtnYGBoHwQYHZCrDxcgRR+6GnrpxWXWQOulJJxJ0U9tvcQCYtMZrdI+ADKPAWuE
+   H4sIAAAAAAAAAJvAwMAwYRBgdECuPlyAFH3oauilF5dZA62XknAmRT+19RILiE1ntEr7AFN9UFCE
 AwAA
   </data>
  </layer>

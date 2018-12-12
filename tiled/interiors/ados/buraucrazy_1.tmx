@@ -85,10 +85,10 @@
  <tileset firstgid="264" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="271" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="280" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="272" name="protection" tilewidth="32" tileheight="32">
+ <tileset firstgid="281" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="19">
@@ -127,14 +127,14 @@ AcTMjAwMs0iUoxdYCMRsQDcsJlFuFIyCUUA9AACwGJ9o4AsAAA==
  </layer>
  <layer name="collision" width="40" height="19" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SwQ0AIAgDdQL339YFwFLQSAIkfYlwFNYcY7XCksKSI+VJf9j+qI5W8wUf643G
-Z/UPRYTv5F8GPmYGNIe2y+p83rzbvbPxWfeDajGz3OZDt2R5e7XfqnxS/0x8Xv9+RmY+5i5aZ23i
-geWj4AsAAA==
+   H4sIAAAAAAAAAO2SwQ0AIAgDdQv3n9QFwFLQSAIkfYlwFNYcY7XCksKSI+VJf9j+qI5W8wUf643G
+Z/UPRYTv5F8GPmYGNIe2y+p83rzbvbPxWfeDajGz3OZDt2R5e7XfqnxS/0x8Xv9+RmY+5i5aZ20I
+hW8d4AsAAA==
   </data>
  </layer>
  <layer name="protection" width="40" height="19" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwDoL3B+qddj6NgL6mqqvriAFfCsRzgCwAA
+   H4sIAAAAAAAAAO3DAQkAAAwDoD3G+hddj6NgL6mqqvriAMPLhHTgCwAA
   </data>
  </layer>
 </map>

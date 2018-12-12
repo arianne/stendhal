@@ -1,142 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="32" height="48" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="../../tileset/furniture/chair/throne_small.png" tilewidth="32" tileheight="32" tilecount="2" columns="1">
-  <image source="../../tileset/furniture/chair/throne_small.png" width="32" height="64"/>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="48" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/furniture/chair/throne_small.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/throne_small.png"/>
  </tileset>
- <tileset firstgid="3" name="../../tileset/building/wall/int_wall_pale.png" tilewidth="32" tileheight="32" tilecount="16" columns="2">
-  <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff" width="64" height="256"/>
+ <tileset firstgid="3" name="../../tileset/building/wall/int_wall_pale.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="19" name="../../tileset/ground/brown.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/ground/brown.png" trans="ff00ff" width="160" height="32"/>
+ <tileset firstgid="19" name="../../tileset/ground/brown.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="24" name="../../tileset/building/window/int_windows_purple.png" tilewidth="32" tileheight="32" tilecount="16" columns="4">
-  <image source="../../tileset/building/window/int_windows_purple.png" trans="ff00ff" width="128" height="128"/>
+ <tileset firstgid="24" name="../../tileset/building/window/int_windows_purple.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/window/int_windows_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="40" name="../../tileset/building/wall/int_wall_purple.png" tilewidth="32" tileheight="32" tilecount="20" columns="2">
-  <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff" width="64" height="320"/>
+ <tileset firstgid="40" name="../../tileset/building/wall/int_wall_purple.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="60" name="../../tileset/furniture/carpet/rug_border.png" tilewidth="32" tileheight="32" tilecount="9" columns="3">
-  <image source="../../tileset/furniture/carpet/rug_border.png" width="96" height="96"/>
+ <tileset firstgid="60" name="../../tileset/furniture/carpet/rug_border.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset firstgid="69" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32" tilecount="10" columns="5">
-  <image source="../../tileset/plant/bush/bushes.png" trans="ffffff" width="160" height="64"/>
+ <tileset firstgid="69" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="79" name="../../tileset/furniture/table/wooden_rectangular.png" tilewidth="32" tileheight="32" tilecount="9" columns="3">
-  <image source="../../tileset/furniture/table/wooden_rectangular.png" trans="ff00ff" width="96" height="96"/>
+ <tileset firstgid="79" name="../../tileset/furniture/table/wooden_rectangular.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_rectangular.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="88" name="../../tileset/item/statue/metal_and_stone.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
-  <image source="../../tileset/item/statue/metal_and_stone.png" width="96" height="64"/>
+ <tileset firstgid="88" name="../../tileset/item/statue/metal_and_stone.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
- <tileset firstgid="94" name="../../tileset/building/entrance/pale_red_ns.png" tilewidth="32" tileheight="32" tilecount="36" columns="9">
-  <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff" width="288" height="128"/>
+ <tileset firstgid="94" name="../../tileset/building/entrance/pale_red_ns.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="130" name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" tilewidth="32" tileheight="32" tilecount="12" columns="3">
-  <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff" width="96" height="128"/>
+ <tileset firstgid="130" name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="142" name="../../tileset/furniture/clock/wooden_clock.png" tilewidth="32" tileheight="32" tilecount="6" columns="1">
-  <image source="../../tileset/furniture/clock/wooden_clock.png" width="32" height="192"/>
+ <tileset firstgid="142" name="../../tileset/furniture/clock/wooden_clock.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
- <tileset firstgid="148" name="../../tileset/item/documents/book.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
-  <image source="../../tileset/item/documents/book.png" width="64" height="64"/>
+ <tileset firstgid="148" name="../../tileset/item/documents/book.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/book.png"/>
  </tileset>
- <tileset firstgid="152" name="../../tileset/building/entrance/detail_ns.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
-  <image source="../../tileset/building/entrance/detail_ns.png" trans="ff00ff" width="96" height="64"/>
+ <tileset firstgid="152" name="../../tileset/building/entrance/detail_ns.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="158" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32" tilecount="7" columns="7">
-  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
+ <tileset firstgid="158" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="165" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ <tileset firstgid="174" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="166" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="../../tileset/logic/protection.png" width="64" height="32"/>
+ <tileset firstgid="175" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="168" name="barrel" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/item/pot/barrel_with_flower.png" width="32" height="32"/>
+ <tileset firstgid="177" name="barrel" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/barrel_with_flower.png"/>
  </tileset>
- <tileset firstgid="169" name="barrel2" tilewidth="32" tileheight="32" tilecount="2" columns="1">
-  <image source="../../tileset/item/pot/barrel.png" width="32" height="64"/>
+ <tileset firstgid="178" name="barrel2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset firstgid="171" name="plants" tilewidth="32" tileheight="32" tilecount="12" columns="6">
-  <image source="../../tileset/plant/indoor/pot_plant_1.png" width="192" height="64"/>
+ <tileset firstgid="180" name="plants" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset firstgid="183" name="shelf3" tilewidth="32" tileheight="32" tilecount="10" columns="2">
-  <image source="../../tileset/furniture/shelve/shelf_3.png" width="64" height="160"/>
+ <tileset firstgid="192" name="shelf3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/shelf_3.png"/>
  </tileset>
- <tileset firstgid="193" name="shelf5" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/furniture/shelve/green_bookshelf.png" width="64" height="96"/>
+ <tileset firstgid="202" name="shelf5" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/green_bookshelf.png"/>
  </tileset>
- <tileset firstgid="199" name="dark_torch" tilewidth="32" tileheight="32" tilecount="8" columns="2">
-  <image source="../../tileset/furniture/light/dark_torch.png" width="64" height="128"/>
+ <tileset firstgid="208" name="dark_torch" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset firstgid="207" name="floor" tilewidth="32" tileheight="32" tilecount="3" columns="3">
-  <image source="../../tileset/ground/indoor/floor.png" width="96" height="32"/>
+ <tileset firstgid="216" name="floor" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor.png"/>
  </tileset>
- <tileset firstgid="210" name="brown_paving" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="../../tileset/ground/brown_paving.png" width="64" height="32"/>
+ <tileset firstgid="219" name="brown_paving" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown_paving.png"/>
  </tileset>
- <tileset firstgid="212" name="holly_garlands" tilewidth="32" tileheight="32" tilecount="3" columns="3">
-  <image source="../../tileset/building/decoration/holly_garlands.png" trans="ff00ff" width="96" height="32"/>
+ <tileset firstgid="221" name="holly_garlands" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/holly_garlands.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="215" name="wreaths" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/building/decoration/wreaths.png" trans="ff00ff" width="64" height="96"/>
+ <tileset firstgid="224" name="wreaths" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wreaths.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="221" name="roof_borders_xmas" tilewidth="32" tileheight="32" tilecount="18" columns="3">
-  <image source="../../tileset/building/roof/roof_borders_xmas.png" trans="ff00ff" width="96" height="192"/>
+ <tileset firstgid="230" name="roof_borders_xmas" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/roof/roof_borders_xmas.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="239" name="spruce_xmas" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/plant/tree/spruce_xmas.png" trans="ff00ff" width="64" height="96"/>
+ <tileset firstgid="248" name="spruce_xmas" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/spruce_xmas.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="245" name="spruce_xmas2" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/plant/tree/spruce_xmas2.png" trans="ff00ff" width="64" height="96"/>
+ <tileset firstgid="254" name="spruce_xmas2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/spruce_xmas2.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="251" name="spruce_xmas4" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/plant/tree/spruce_xmas4.png" trans="ff00ff" width="64" height="96"/>
+ <tileset firstgid="260" name="spruce_xmas4" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/spruce_xmas4.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="257" name="spruce_xmas5" tilewidth="32" tileheight="32" tilecount="6" columns="2">
-  <image source="../../tileset/plant/tree/spruce_xmas5.png" trans="ff00ff" width="64" height="96"/>
+ <tileset firstgid="266" name="spruce_xmas5" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/tree/spruce_xmas5.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="263" name="xmas lights" tilewidth="32" tileheight="32" tilecount="20" columns="4">
-  <image source="../../tileset/furniture/light/xmas_lights.png" width="128" height="160"/>
+ <tileset firstgid="272" name="xmas lights" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/xmas_lights.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3PMQ0AIAwAwTrCvwuoIiyQJlCGG36+fEZEftB4VPdnpVWIz5cknTcvx+fz+Xw+n8/n8/lSRxuNilggABgAAA==
+   H4sIAAAAAAAAAO3PMQ0AIAwAwTrCvxSoGSyQJlCGG36+fEZEftB4VPdnpVWIz5cknTcvx+fz+Xw+
+n8/n8/lSRxsFRXU7ABgAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2Yu0pDQRCGJ2hs1FQWXkCPoJ0aL63XaLD02gmaTn0EtVYL9T1C3sBLq11ewZfQRhv9F86QddlddzfnyIIZ+AhkzpxPZDIDUyKibgcGwVDGz/aDHrAAXv+Icso8KKb+aXAPHsgeB23mRRQLcIIpxf8Ingw1i2DJg2WHv0P122IFrIItsG1hJ31+LSf/LtizsJ+j3yey9lfAugcbGfvzCNX/Jb4s5O9lj+yfAzOeHIIjUAuoFcym/j7QFYAcIfWCXjAQiByh7xCUyG2nqMgRUq/un7InZ+AcXATUyvsnAePkHm/g3eG732IYjIAJMOlZm0WMgjGKZ/5w+O7a0L1s8vOuywN5L7E/oZ/9Z/Nz+OZ0flP/mfx1as3uppJrSrm6krsEV+Ba8Zv676/////dn5B7/22ChiHXSPOuflv/PYMXpbaeOsSnrv8aUt7F3+m/OPwJxTf/5JnFtaKvPsAn6fuPc+rv4wbcgjvq9F+M/oTc+49njG9O57f1n9wz8vt5BprmH+dd/J3+i8OfUHzzT1dbpdbtTNd/nKtqanmfu/RfhfxuLaF3mdjuL7H7eb+1+4zO73v/4dsPU/Osb/f+cwxOJE4D3sH3n2+Wu75TABgAAA==
+   H4sIAAAAAAAAAO2YyUoDQRCGK0ZFUePFgwvoCHpT43J1jQaPrjdBc1MfQT2rB/VhwryBy1VveQVf
+QsF/YIq0TXfb3ZkJDabgI2BNzSehUgVVIqJuC0bBWMbPDoFesAI+20Q5ZRn0pP558AxeyBwnLeaT
+KBWIhsGc5H8Fb5qaVbDmwLrF/yH7TbEBNsEe2DdwkD6/lZP/EBwZOM7R7xJZ+ytg24GdjP15hOzv
+w2+iv5C/lz2ifwksOHIKzkDNozZhMfUPgqIHYvjUJwyAEU/E8H1HQonsdoqMGD718v4pO3IFrsGN
+R624fyIwTfbxBb4t/vZXjIMJMANmHWuziEkwReHMHw7XXeu7l3V+3nV5IO4l9kf0u/9Mfg7XnMqv
+6z+dv07N2d2Qcg0hV5dyt+AO3Et+Xf+1+/v/7/6I7PtvF8SaXJzmbf2m/nsHH1JtPXUkn6r+i4W8
+jb/Tf2H4Iwpv/okzi2uTvurCfCtq5h/n5N/HA3gET9TpvxD9Edn3H88Y15zKb+o/sWfE9/MM1M0/
+ztv4O/0Xhj+i8OafqrZKzduZqv84V1XU8j636b8Kud1afO8yod1fQvfzfmv1GZXf9f7Dtx+m5ljf
+6v3nHFwIXHq8g+8/P/Ow28cAGAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2XSw6CMBCGR0+ht3GjXsWtt/C98SS+TfQYaMJCXRiX3sGfQBOYlEJRXma+5AukQx8h0ykQ+bjQgRd4TXlPGfo4wdWlKAd4hCM4hhO4IDONhLhuzHtIHVM4g3O4TBi/mRA/wTMbs4VFt5MWXlFuFH1/3EfO8z/h2+Ar5/mF/ChqX9R5/3EGZS+gYPjZM4xpz4Kprun8pm/c2ZMGXf7+U04L1aRT4tw72CVznquY99w61J5lz6nvNqE6dGAf9mLivSD+C3i+rMjPK6WOcHwVapdcEmzhNWtLdvVvbxhLqC9F1z+VM+r8TVv/NiwmNVCwgeeLl0829W/HYlL/6k+af1z5D7bnA1ENsnIAGAAA
+   H4sIAAAAAAAAAO2XSw6CMBCGR2+iJ3GjXsWtt/C98Ta+TfQYaMJCXRiXrv0JNIFJKRTlZeZLvkA6
+9BEynQKRjwsdeIHXlPeUoY8TXF2KcoBHOIJjOIELMtNIiOvGvIfUMYUzOIfLhPGbCfETPLMxW1h0
+O2nhFeVG0ffHfeQ8/xO+Db5ynl/Ij6L2RZ33H2dQ9gIKhp89w5j2LJjqms5v+sadPWnQ5e8/5bRQ
+TTolzr2DXTLnuYp5z61D7Vn2nPpuE6pDB/ZhLybeC+K/gOfLivy8UuoIx1ehdsklwRZes7ZkV//2
+hrGE+lJ0/VM5o87ftPVvw2JSAwUbeL54+WRT/3YsJvWv/qT5x5X/YHs+6zteVgAYAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YS0rEQBCGO6NH8HBzA3EnHkFdjB7AIHgDdcxudMC3IMGtCjKH8AE+QEf8xQRqfjuTdNIkGuqDj053dVK9aKogxpTnrsQ7QWBMJ/i9fmuR6eZ8m+O2b84g96wlv1KMDfEcinnYwFnaxDv8aDDPGH7WkL+uPG1nHm7ChYbyzwmrMoLX8Mb81Ohpz/fwAS7CLbgk1vLeTZ9HFc76CJ8KrClKWQ7hkWV9Wo/w2T+O4YmYR8mY1u5L2h+bybq+I2LLcAWuOuQ/gEOH/YpfTuGZp28N4L7jO+fwQsy3KR7T/Irmcr/epfbwDF9KxFzhmtVPxlf4Zuz1L419E4lYD67BdU9nU9zJ6qd1wf00D74zEcX5/nH969Nca+D/IqtnZv07y4u59nO+L7vJmP474/sWm8n/ansU536uuFOkv/nsgYzsb1X2KH+LLx7dEGMAGAAA
+   H4sIAAAAAAAAAO2Y20oDMRCGs+ABPNz5cL6BeCd9BOuF+gAWwcdQ695VC61HkMVbFaQP4QHUX9rA
+9G+2u9kNW7vMBz/JZJJMLoYZiDHFeStwZiUyZjWaXH91iNnMuJv9rjvXEHvdEV/Jx5GYt4TdmsFb
+6sQCcnKxgrxMi7OEteUK4lcVp+5sQcfQ9ozibwiVZQA9Qy9mWKOnzd+hD2gHOoEaYi3rrJ0PSrz1
+E/rKsaYoRelBfcf6tB4Rsn9cQzfCjkejrd2PtD8x43X9TPh2oSa05xH/Cur6PFgJyi10F+iuDnTp
+eeYeehD2KfkTsp/Ilvs1l+rDN/RTwOcL16y2daC+RSn1z/r+iIVvHzqADgO9TfEnrZ9WBffTLDhn
+YvJz/nH9a5OtNXC+6Bh3z0z7O8vy+fZzzpfz0Wj/zjjfEjP+r3ZBfu7nij95+lvIHjiB6G+l9ij/
+il/Bh3iyABgAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2XwQqAMAxD9aY3xf//K/F73EAvstSuWytCHniZdD0kzbZhsLON9TVTqpkNdb1YUu/1w/6ElIiaC9Qnai44f6SFkn8jz5SSf+lpEoHk854zcFzfE8nn6N8u7FeD9q5puZMSPyzaSzVI37zuqf29/1t/+s+PqPxDmcX8IxZq9Uee0eSPF8y/OJBfovIPYcm/DPOvHY2+nh7QvHH5Dv4fJ0jwDJkAGAAA
+   H4sIAAAAAAAAAO2XQQ6AIAwE9Ql60/j/Xxm/IiR6MWwthdaY7CReMKWH3S4wDHa2sb5mSjWzoa4X
+S+q9ftifkBJRc4H6RM0F54+0UPJv5JlS8i89TSKQfN5zBo7reyL5HP3bhf1q0N41LXdS4odFe6kG
+6ZvXPbW/93/rT//5EZV/KLOYf8RCrf7IM5r88YL5FwfyS1T+ISz5l2H+taPR19MDmjcu38H/4wTN
+dRaaABgAAA==
   </data>
  </layer>
  <layer name="objects" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OMQ0AAAjAMPyL4EApLw4IoU32LwIAALggtwcAAOCJGl3WwFW4vAAYAAA=
+   H4sIAAAAAAAAAO3OMQ0AAAjAMPyL4EApLw4IoU32LwIAALggtwcAAOCJGl3WwFW4vAAYAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="48" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2WQQ7AIAgE+f8//GevPSAirohmN+HQiAyxuG0Tkcboxl+R5xXeTkW4yP5v5CNF/pn5R3vDaW8i/w2+V1r+bA2t72yRT76XP7ov1rp3j7a2UzedfxW+lRv1Uc/7R8zfDD9D5Nfle/4xrFqr/pch8uv7H2L+er3deP7k5/CR31+t3oifIfLn+J68iJdGA1nrZHzTRMRHABgAAA==
+   H4sIAAAAAAAAAO2WQQ7AIAgE+f9jfGOvPSAirohmN+HQiAyxuG0Tkcboxl+R5xXeTkW4yP5v5CNF
+/pn5R3vDaW8i/w2+V1r+bA2t72yRT76XP7ov1rp3j7a2UzedfxW+lRv1Uc/7R8zfDD9D5Nfle/4x
+rFqr/pch8uv7H2L+er3deP7k5/CR31+t3oifIfLn+J68iJdGA1nrZHzpTKmYABgAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="48" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3DAQkAAAwEoesf5HOux1Bw1VRVVVVV1VcPwqgmkQAYAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwEoetf5iuux1Bw1VRVVVVV1VcPynG9KwAYAAA=
   </data>
  </layer>
 </map>

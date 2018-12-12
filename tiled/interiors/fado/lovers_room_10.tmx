@@ -61,13 +61,13 @@
  <tileset firstgid="99" name="vendors table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/vendors_table.png"/>
  </tileset>
- <tileset firstgid="120" name="colorful chairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="134" name="colorful chairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/colorful.png"/>
  </tileset>
- <tileset firstgid="136" name="../../tileset/building/wall/int_clay.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="150" name="../../tileset/building/wall/int_clay.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
- <tileset firstgid="236" name="double_white_pink" tilewidth="32" tileheight="32">
+ <tileset firstgid="250" name="double_white_pink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_white_pink.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -78,23 +78,23 @@ xAkAAA==
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNkYGDgoyEWAmIBBgg4QwQmB/BD7bhCpPqrFNrhTAc7iAGk2uGEx45mJEwrO5qQ
-MCV2MOCwIxmIU5BwKg3syALibCScQ8AOPyD2R8MBeOxoxmEHLF6w2RGIRSwYjx3tOOxop6IdI9kf
-IUAciobDqOwPQoAaaZccOwqBuAgJF9PADhCgdVkCAi1A3ArEbTS0AxcYjHbgK9uHkh0MSHaAwFki
-MDkAZIcwEPPSEIsAMQDkTK41xAkAAA==
+   H4sIAAAAAAAAAOXUSw6CMBSF4bsB365I5wLxsQFxok7EjYDK5nSmG/E0YnJDaKml10g8yT8hJF8a
+SAdE1BVsiPr02tUil/UK4275/qOhMf2CYbNPjYnByFhSRspqYpDGWKOYtREwtmjH2tcYMxSUCg1G
+pjHe36XKiCqezQ1GrjFyj8Y/n2OBlqVWns9RNx//rotxQAnrKGCoSd8laid0RhdBQ7dfNEx3e5sM
+YobazSKXKWOEOoKN0RNQ2LtaxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgoA+QI0GtARXt1aOiWcQAdH8a42CjA0cK7cFnLjKmFkD2ixMSpsQOfOGDDJwo
-sIMSe2FAE4mtTkBtPJFi2IAqEGtB2c1EqH8HxO+JNBsEtKG0Jl5VqOALEH8lUq0GlIb5QYmBOH/8
-AuLfJLgJBvTJ0EMsQA4jRQb8/iA3zmFpSQuvKsqAKpTWxqtq4ACpeZFeZsEAoXKXFnYSA9DLXVLq
-W0L1Er76gxR7cNmJr/4g13x8gJj6g97tBkoAAK6tk6/ECQAA
+sIMSe2FAE4mtTkBtPJFi2IAqEGtB2ROJUP8HiP8SaTYIaENpTbyqUAETIwMDMyNxajWgNMwPSgzE
++YMDaD4nkXYgA33StRANkMNIkQG/P8iNc1ha0sKrijKgCqW18aoaOEBqXqSXWTBAqNylhZ3EAPRy
+l5T6llC9hK/+IMUeXHbiqz/INR8fIKb+oHe7gRIAAP1FmUjECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYGSCSCLFRgECfAPi7wPtCArAaJwPD9CMhEfBKBjJAAA/ky4HxAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYGSCSCLFRgECsDAyMLAyDrQryAejcT48wEQkPApGwUgGAPd9NXrECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">

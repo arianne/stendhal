@@ -25,16 +25,16 @@
  <tileset firstgid="85" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/gazingball_statue.png"/>
  </tileset>
- <tileset firstgid="124" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/weird_lamp.png"/>
  </tileset>
- <tileset firstgid="136" name="chest" tilewidth="32" tileheight="32">
+ <tileset firstgid="109" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chests_red.png"/>
  </tileset>
- <tileset firstgid="140" name="statue" tilewidth="32" tileheight="32">
+ <tileset firstgid="113" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/crystal_statues.png"/>
  </tileset>
- <tileset firstgid="152" name="int blue green entrance" tilewidth="32" tileheight="32">
+ <tileset firstgid="125" name="int blue green entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_ns_centered.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -49,9 +49,9 @@ F+nvz24LsvuVsx+cw5D+qdmN3S+tP+Zw/bnZLvWnHJLZpvdL6g/dUZoPf7ZbkN0viT92Rw2k/39I
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBygB49cPYlmEVKPza5JQNyBQ30rifYTUj+JRPOoCYIH0O5RQB5oo7H6UTAK
-hhLoxCHeRVdXjDwwA4hnAvEsMuVHAXVBKBDHA3E4nexbCMSLgHgxlB8BxJFAHIVDnlwwmUh10UAc
-A8SxJJo/HYsYPdLuaP4YvIBaaZeWdrRQSd1ULGLTSHQLuSAEjxyu/tcooB0AAEJa8o4AEAAA
+   H4sIAAAAAAAAAGNgGBygEI9cColmEVKPza5yIM7FoT6LRPsJqS8n0TxqguABtHsUkAeyaax+FIyC
+oQTycIjn09UVIw/UAnEdENeTKT8KqAtCgTgeiMPpZF8bELcDcQeUHwHEkUAchUOeXFBBpLpoII4B
+4lgSza/BIkaPtDuaPwYvoFbapaUdmVRSV4VFrJpEt5ALQvDI4ep/jQLaAQDmPjsnABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -61,8 +61,8 @@ A8SxJJo/HYsYPdLuaP4YvIBaaZeWdrRQSd1ULGLTSHQLuSAEjxyu/tcooB0AAEJa8o4AEAAA
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Suw2AMAxF0SzEiogFEFDzHRWXKVAM/hRI90iviZ04hUsB0DIk9wMA2lbJJtmN
-da+uiqXudUhOyWWsvzU672uW5Pf/KHt3tRnZu6vNiNrdFu+MPqhvejibP/4FiHAD4Z30CQAQAAA=
+   H4sIAAAAAAAAAO3SPQ6AMAgFYC7UUxkv0KhztfXeMjoYUH4Gk/clbym0dIAIACRzcj8AAMgaZ+cc
+xrpXucVS9+qcwTmN9beq875mS37/jxrl7q42I3t3tRlRuyvxzpiC+paHs/XjXwAiXJTDo/gAEAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="32">

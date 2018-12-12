@@ -46,10 +46,10 @@
  <tileset firstgid="243" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="250" name="blue_stone" tilewidth="32" tileheight="32">
+ <tileset firstgid="259" name="blue_stone" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/blue_stone.png"/>
  </tileset>
- <tileset firstgid="253" name="green_stone_3" tilewidth="32" tileheight="32">
+ <tileset firstgid="262" name="green_stone_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="50">
@@ -72,21 +72,21 @@ qNJifw3MLqC9piTi3kE7bmxLr++TxZbeS3S7AdmairWUxh1DIXvJc2Q2aqznljNc6nmqc4v+FuJ8
  </layer>
  <layer name="2_object" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2Y207DMAyG8+iAhHgCJJ4CeADOx1eoYFqzu0kctt0CErhSKoJnO3aStvzSr62Z
-2y9OnTSdc+WaFZzbBFtZT5msNTq2yofPNuqDJ+IWGde26FkZZ+nHd+JYE/9u4HXaAe+CP8Cfkb9C
-O2cufs/A3g+f1LUkcfEHldl+QjbVBw2b6rOV3RLnjZm3d+Pn3c9nnHuK7YlzrGxOVHzjhqu1Xq0Q
-j9lvBWxubdSwV+DXAnasuB/avFcKNqVUrVCKay0lid1r4fTPpZxaq6X/wtbOb4004147b8v+sFad
-5wjXubSX0bBbt33vuPGvMcfwOFN8ia0Rx/aI1e+NU/U21hyj3hemnt/Ss2to9iY6lmpEYuN3kLFq
-jZJ2XdM+/4YYc+06mMtOrS29lgb2JfgKfJ3Zp5L7fQO+Bd9FbS36Lv0PgNkvhexYHVuquY7thd9z
-2NY900zRB2veGvYmGbXNbiqxsbg5N0TenA6DOfY9+AH8iNrn7u8a2x1T61fMxnM7xaaEGdKaWZJ3
-qaQ9k5XdXWM+EdsqacyPgiU2lWfcprnfmmcZxfZE24Jp59i9NO/ftRSz12zULzv137I3smNmvG88
-A58HXyivdww+AZ8q4ynGD7d/+Ug4GAAA
+   H4sIAAAAAAAAAM2Ye07DMAzGMwESxwYkxAmQOAVwAN7PK1Qwrel/SDy23QBXtCJ4tmMnacsnfdqa
+uf3FqZOmcy5f84xzq85W1ksia4WOrfLdZx30wRNxTcK1LXpVxln6sTuTjzXxXwZeqz3wPngLzt0O
+vDP7aefMxR8Y2IfdJ3UtSVz8UWG2n5BN9UHDpvpsZdfEeWPm7d34effzGeceY3viHCubExVfueFq
+rVctxGP2ZwabWxs17CX4I4MdKuyHNu+lgk0pViuUwlqLSWL3apz+uZRSa6X0X9ja+a2RZtxL523Z
+H5aq8xThOpf2Mhp27TbvHTf+JeYYHmeKL7E14tgesfq9cazexppj1PvC1PNbenYNzV4Hx1KNSGz8
+DjJWrVHSrmva598QY65dB1PZsbWl15uBfQ2+Ad8m9innft+B78EPQVuNvkv/A2D2eyY7VMuWaq5l
+e+H3FLZ1zzRX9MGat4a9jkZtsqtCbCxuzg2RN6fjzhz7EfwEfkbtC/d3jW2PqfUrZOO5HWNTwgxp
+zczJO1fSnsnKbq+xmIhtlTTmJ50lNpVn2Ka535pnGcX2RFvDtHPsXpr371IK2Ss26pcd+2/ZG9kh
+M9w3XoAvO18pr3cKPgOfK+MpxjfcCONGOBgAAA==
   </data>
  </layer>
  <layer name="3_roof" width="31" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VQQqAIBgFYe9/heg+EpVURLeJ/qB9UIspnA8eIgizNCV9yX5zf/tekiRJUh0a
-sN2Cbf1Tjg2xHupT3XKdHdQfoe4cW2MT1D9tUHeBuk/5l0j1OgBp8JxYOBgAAA==
+   H4sIAAAAAAAAAO3VOwqAMBQF0Vi5/1rcj4gfVCTb8QnWFlqMkjlwCYHAlElJX1JX9/e37yVJkiSV
+oQHbLdjWP3WxMTZAfao7X2cP9Seou8b22AL1TxnqblD3Kf8SqVwHRZkrdjgYAAA=
   </data>
  </layer>
  <layer name="objects" width="31" height="50">

@@ -25,19 +25,19 @@
  <tileset firstgid="268" name="../../tileset/ground/pothole.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/pothole.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="271" name="../../tileset/logic/item/resources.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="272" name="../../tileset/logic/item/resources.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset firstgid="277" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="278" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="287" name="../../tileset/logic/item/mushroom.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="288" name="../../tileset/logic/item/mushroom.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
- <tileset firstgid="293" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="294" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="300" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="310" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -81,17 +81,17 @@ AAAAAAAAAAAAALAf/AKbFdKqAAABAA==
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WsQ1AIQgFQP8Etna2f/8JXcDKxBjgbgIS4EFrAAAAAAAAAAAAAAAAAAAAAAAA
+   H4sIAAAAAAAAAO3WsQ1AIQgFQP8Gtna2f/8FXcDKxBjgbgIS4EFrAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAUFv/XlfAqal3UE6kvY9U6wvuL9nJgDhGol7tsvVW3ppxAKjt
-9wsAAAAAAAAAAAAAAAAAAAAAAACktgCNN+TOAAABAA==
+9wsAAAAAAAAAAAAAAAAAAAAAAACktgAEzryrAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YsQ3DMAxFQXsf7z9fCrepEkifIu8B18ukGvm5r+sBAAAAAAAAAAAAAAAAAAAA
+   H4sIAAAAAAAAAO3YsQ3DMAxFQXsp7z9aCrepEkifIu8B18ukGvm5r+sBAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAGjkW+kzYf/k9u8OzPFv6fOzd9/2fzb7n+3E0jOrakrpOVc1
 qfSsK9LbztnaY73sf3b2L0mSJEn6tY7vt5PPvqtu7/oTzlilFf92ds+84pmqt2vvq3dR/W5WKr3j
-6jqXnu1JOpWeZWdVS89lonTp7ydzZ9LfAAAAAAAAAAAAAAAAq3wAyc24IwAAAQA=
+6jqXnu1JOpWeZWdVS89lonTp7ydzZ9LfAAAAAAAAAAAAAAAAq3wAhtCduQAAAQA=
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

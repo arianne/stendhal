@@ -22,49 +22,49 @@
  <tileset firstgid="34" name="firewood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
- <tileset firstgid="40" name="book shelves 3" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="book shelves 3" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset firstgid="46" name="bread" tilewidth="32" tileheight="32">
+ <tileset firstgid="52" name="bread" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset firstgid="50" name="meals 1" tilewidth="32" tileheight="32">
+ <tileset firstgid="56" name="meals 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
- <tileset firstgid="52" name="meals 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="meals 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset firstgid="54" name="rustic meals" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="rustic meals" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
- <tileset firstgid="56" name="chest" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
- <tileset firstgid="62" name="lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="68" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="66" name="brush" tilewidth="32" tileheight="32">
+ <tileset firstgid="72" name="brush" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset firstgid="69" name="barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset firstgid="71" name="barrel1" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="barrel1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrels_1.png"/>
  </tileset>
- <tileset firstgid="79" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="80" name="protection" tilewidth="32" tileheight="32">
+ <tileset firstgid="86" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="82" name="wall/int_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="88" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset firstgid="203" name="entrance/grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="209" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset firstgid="228" name="single_grey" tilewidth="32" tileheight="32">
+ <tileset firstgid="234" name="single_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/single_grey.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -74,29 +74,29 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAAtlYGAIoyGOBOIdQJwIxEk0wMlAnAK1o4sBAp4CMS8UU8oGgUlY7HjBgADUYGOz
-4zWSOmqwsdlBTWCBxQ4LKtthjcUOayrbwYDFDhjQBmIdINYlw0x0vbQOK2zxQe2wwhYfIGADxLZI
-6tD52AA+Pch2TAXiXQTwNDSz5xChZy6SHUeJwOh5aBKR+mB2hBOBsdlBjD6YHfUMhMvQBjQ72ojQ
-086APX+4AbEKEl8NiNUZyAPULK/EcbDR7RAEYmEyzJcEYmkglkJjE7IDxBZCwuTYTcgOESAWRcJi
-BMwiNqxE8Jjli8d8UsIKHXgCsTsQewGxNxD74bFHAgcb2Y6dDITLBRg+B8XEqN0NteMwEB8jAV+H
-YmLVHwdiAAueQVPECQAA
+   H4sIAAAAAAAAAItmYGCIoSGOB+J9QJwOxBk0wJlAnAW1YwIDBLwGYl4oppQNAjOw2PGOAQGowcZm
+x0ckddRgY7ODmsAOix12VLbDEYsdjlS2gwGLHTBgCMRGQGxMhpnoemkdVtjig9phhS0+QMAJiJ2R
+1KHzsQF8epDtmA3EBwjgOWhmLyJCz2IkO04TgdHz0Awi9cHsiCUCY7ODGH0wO1oZCJehbWh29BCh
+p5cBe/7wAWIVJL4aEKszkAeoWV6J42Cj2yEIxMJkmC8JxNJALIXGJmQHiC2EhMmxm5AdIkAsioTF
+CJhFbFiJ4DErGI/5pIQVOvAHYl8gDgDiQCAOwWOPBA42sh37GQiXCzB8BYqJUXsQasdJID5DAr4L
+xcSqPwvEAPtwr5bECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDEdgNcvNGwSggFpCT9kZSenVCYssAsSwN7HBGYssBsTwN7HBBYisAsSIF
-Zg1U/JsCsSGN7UA33xyIDYDYiMr2mFLZvJEMziKxz9PIjktI7Csk6AMAsmui5sQJAAA=
+   H4sIAAAAAAAAAGNgGAWDEbgMcvNGwSggFpCT9kZSevVAYssAsSwN7PBEYssBsTwN7PBCYisAsSIF
+Zg1U/FsDsTmN7UA33xaIzYDYgsr2WFPZvJEMLiOxr9LIjhtI7Fsk6AMAq/OPw8QJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXkgJc0YI8CyoAGEGsCsRad9Q41YAnEVnj41NIzCkYBNQEfEAvQ2T5+JExP
-u0fByASXoZgUAABB0S+4xAkAAA==
+   H4sIAAAAAAAAAGNgGAXkgPc0YI8CyoAeEOsDsQGd9Q41YA/EDnj41NIzCkYBNQEfEAvQ2T5+JExP
+u0fByAQ3oZgUAABsrK6DxAkAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCgY3sBtoB4yCUTAIAQADEAzyxAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCgY3cBloB4yCUTAIAQCKvSybxAkAAA==
   </data>
  </layer>
  <layer name="objects" width="25" height="25">
@@ -106,14 +106,14 @@ u0fByASXoZgUAABB0S+4xAkAAA==
  </layer>
  <layer name="collision" width="25" height="25" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNnYGDwH0aYgQ7m0QLgs5+BCmx8ZlML0MOegfILNnFKzMRmx1AMK0J5Bl0NMWZh
-00Nu3sXnTmqVD6N2ENZLKqB1usVnD7l2oYcDMXZQ025ahxkpZpMijy+sCLmBWmmLGml8oDAAbOQU
-DMQJAAA=
+   H4sIAAAAAAAAAAtlYGAIHUaYgQ7m0QLgs5+BCmx8ZlML0MOegfILNnFKzMRmx1AMK0J5Bl0NMWZh
+00Nu3sXnTmqVD6N2ENZLKqB1usVnD7l2oYcDMXZQ025ahxkpZpMijy+sCLmBWmmLGml8oDAA+Ln7
+e8QJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25" visible="0" opacity="0.26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEoYv4/dMsx0DBVVNV9dUDziFCpcQJAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwEoUv5/aMsx0DBVVNV9dUDG9HqdMQJAAA=
   </data>
  </layer>
 </map>

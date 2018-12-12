@@ -37,10 +37,10 @@
  <tileset firstgid="97" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="104" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="113" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="105" name="animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="114" name="animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -67,12 +67,12 @@ hAMAAA==
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWUgKqBdgAUVA+0A2gMBtp/qTQ0GwCdbKFdhAMAAA==
+   H4sIAAAAAAAAAGNgGAWUgOaBdgAUtAy0A2gMBtp/qTQ0GwCg8r4zhAMAAA==
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.49">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMtgYGDIGEDMgMZmQBJD52PTSywYCL1D0c3U1kuKGdTUSwogNZ1SGwMA4MLL4oQD
+   H4sIAAAAAAAAACtkYGAoHEDMgMZmQBJD52PTSywYCL1D0c3U1kuKGdTUSwogNZ1SGwMAd5M1A4QD
 AAA=
   </data>
  </layer>

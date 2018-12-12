@@ -28,83 +28,83 @@
  <tileset firstgid="395" name="../../tileset/furniture/table/fancy_blue_red.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/fancy_blue_red.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="403" name="../../tileset/item/statue/fairypool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="407" name="../../tileset/item/statue/fairypool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="419" name="../../tileset/plant/vine.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="423" name="../../tileset/plant/vine.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="422" name="../../tileset/furniture/light/flames.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="426" name="../../tileset/furniture/light/flames.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="428" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="432" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="435" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="448" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="436" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="449" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="438" name="statue" tilewidth="32" tileheight="32">
+ <tileset firstgid="451" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/goddess_icon.png"/>
  </tileset>
- <tileset firstgid="442" name="platform" tilewidth="32" tileheight="32">
+ <tileset firstgid="455" name="platform" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/platform.png"/>
  </tileset>
- <tileset firstgid="451" name="green block" tilewidth="32" tileheight="32">
+ <tileset firstgid="464" name="green block" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/green_block.png"/>
  </tileset>
- <tileset firstgid="455" name="nain rug" tilewidth="32" tileheight="32">
+ <tileset firstgid="468" name="nain rug" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
- <tileset firstgid="471" name="tiles" tilewidth="32" tileheight="32">
+ <tileset firstgid="484" name="tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
  <layer name="0_floor" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWUMQ7CMAxFk7twCDhE7SO06sptGWDqysARMiBSEUuWidM4SgaGL7XW7+vXj9u7
-c+7kx+gW2a+os//VJTPTpHmfkf2OAv/V1klTUkh8uv9X/hqvsSN/Z62Z/NdO0vrR/A9FJT4IPlby
-+UzzQ+IFsZ+98kOmn5582T8OOF/ez4j94ee7DOAvop/S/oAizU998/3R8kvmVPEO2Q8WvMDyWPi1
-3y/xkT1Hs1o++S3dH+W37Kf1fCV/PvC37OdsyN/Ct/yfraL+gqvrs5W/6wMInQ1/AAkAAA==
+   H4sIAAAAAAAAANWUwQ2DMAxFk106RDsEzgggrt22h05QcWCEHKoGNZYsNw52lBx6+BJYn8fXj+Hp
+nLv4MXok9p509b+6FWaSJO+W2O8k8F/tnTRlxczH+3/lr+k6dOQfrLWQ/95JUj+S/yWoxgfGD0o+
+nUl+yLzI9rNXfij005PP+w8Dzpf2M2J/6PkuA/gL66e2PyBI8mPfdH+k/Jw5Kd7B+wkVL5A8Fr72
++0V+IM/hTMtHv6X7s/yW/bSeL+fPJ/6W/ZwN+Vv4lv+zVdhfdLo+W/mHPrtSjgUACQAA
   </data>
  </layer>
  <layer name="1_terrain" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGD4gDo/cLkYGht1QvIcRt7oiMs3fCzRzHxTvp4H5B4BmHoTiQzQwn1gwav6o
+   H4sIAAAAAAAAAGNgGD4gDo/ccUYGhhNQfJIRt7oiMs0/BTTzNBSfoYH5Z4FmnoPi8zQwn1gwav6o
 +aPmk2Z+ExC7oeFGKpkPMnsNFvHlOOwg1Xx8YdY6BMzPA2IPLOLOQJxLBfNhdqxEw9jMJtd8UsBw
-M/80AfwAiA9iMWc/EN8nQj8A3q55zAAJAAA=
+M/80AfwAiA9iMWc/EN8nQj8A7eJocgAJAAA=
   </data>
  </layer>
  <layer name="2_object" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN1UyQ6CMBClf+xGT8arifv+KS5no0c9gH6Pz9AmpZku0NaDL3kZmHmzMECz7Le4
-soop8p6I38A7+FC0Y3F9hD2xus+WJ5ELXwFbCr4J3Rm+C+Gn8oaaTr/XZzTBRxMbfa3nKMEMak29
-n8TEoy+l6RG+gaPWFPEZOAcXHn3zhjtaIr4C1+DGodXnj70fW80Y8Pn2Q+F6n7ERc19t/if5vBy2
-2yLfNj8XsS3sjtX7Na1lwnfmPXhgVT/uqNFR4r77CnlH1JkRghRn5j/iBZYOmuDKK8APdZlDUgAJ
-AAA=
+   H4sIAAAAAAAAAN1UOQ7CMBCMf8wVV4gWiRsaju9w1IhABQWIjzAotuSsfCW2KRhptMnu7JFN4iz7
+Lc6sZIq8B+IXsADvinYorvewB1b12fIkcuF7wr4E3xrdEb6Txq/L6xMdvaczmuCjiY0u6TlIMINa
+k/aTGHn01Wk6Gl/PUWuM+AScgjOPvnnNHc0RX4BLcOXQ0vlj78dWMwZ8vv1QuN5nbMTcV5P/ST4v
+h203yLfNz0VsDbth1X51a5nwnXkL7ljZjztqtJS4775C3pHuzAhBijPzH3EDrw6a4MorwA+FgcHG
+AAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGBYzMhAVYBuHiHzl2GRxyaGbB45bt4G1LOdin7F50ZS1AxX0EmE34lRM1zB
-aPiMglEwCkbBwAEA2wSHRwAJAAA=
+   H4sIAAAAAAAAAGNgYGBYzshAVYBuHiHzV2GRxyaGbB45bj4M1HOEin7F50ZS1AxX0EmE34lRM1zB
+aPiMglEwCkbBwAEAOQZ0QAAJAAA=
   </data>
  </layer>
  <layer name="objects" width="24" height="24" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBiaYAMjKiYWAAANF/y8AAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBiaYAsjKiYWAADc/I3oAAkAAA==
   </data>
  </layer>
  <layer name="collision" width="24" height="24" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvMyMCweZhgEEBmwwA6H5sYNjOwmY8PkKqOkPnEmkWu+eSCwWI+PcOHErUDZf5o
-+hkc5tNSPTFl4qj5tDOfHupJBcPVfFLikVh9AOAbTLwACQAA
+   H4sIAAAAAAAAADvAyMBwYJhgEEBmwwA6H5sYNjOwmY8PkKqOkPnEmkWu+eSCwWI+PcOHErUDZf5o
++hkc5tNSPTFl4qj5tDOfHupJBcPVfFLikVh9AI8IWPsACQAA
   </data>
  </layer>
  <layer name="protection" width="24" height="24" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvCyMCwZRSP4lE8ikfxKB7Fo3gEYQDJGtoBAAkAAA==
+   H4sIAAAAAAAAADvIyMBwcBSP4lE8ikfxKB7Fo3gEYQB48YA4AAkAAA==
   </data>
  </layer>
 </map>

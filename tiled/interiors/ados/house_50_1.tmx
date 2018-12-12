@@ -40,62 +40,62 @@
  <tileset firstgid="99" name="toilet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/toilet.png"/>
  </tileset>
- <tileset firstgid="105" name="basin" tilewidth="32" tileheight="32">
+ <tileset firstgid="111" name="basin" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bathroom/basin.png"/>
  </tileset>
- <tileset firstgid="108" name="nain rug" tilewidth="32" tileheight="32">
+ <tileset firstgid="114" name="nain rug" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/nain_rug.png"/>
  </tileset>
- <tileset firstgid="124" name="tiles" tilewidth="32" tileheight="32">
+ <tileset firstgid="130" name="tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
- <tileset firstgid="132" name="book" tilewidth="32" tileheight="32">
+ <tileset firstgid="138" name="book" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/book.png"/>
  </tileset>
- <tileset firstgid="136" name="square table" tilewidth="32" tileheight="32">
+ <tileset firstgid="142" name="square table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
- <tileset firstgid="137" name="towels" tilewidth="32" tileheight="32">
+ <tileset firstgid="143" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset firstgid="143" name="pink chair" tilewidth="32" tileheight="32">
+ <tileset firstgid="167" name="pink chair" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_chair_pink.png"/>
  </tileset>
- <tileset firstgid="155" name="sheepfood" tilewidth="32" tileheight="32">
+ <tileset firstgid="179" name="sheepfood" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset firstgid="156" name="double_peach" tilewidth="32" tileheight="32">
+ <tileset firstgid="180" name="double_peach" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_peach.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtkYGBoJAHDAKl6CKlpQMKkmD2qf/DrLwTiIiL045IrBeIyCvSPYgRWAmJlJD4A
-uADauQAEAAA=
+   H4sIAAAAAAAAAGtnYGBoJwHDAKl6CKlpQ8KkmD2qf/DrLwfiCiL045KrBuIaCvSPYgRWAmJlJD4A
+DBUMVQAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNmYGBwJBN7AbEzEPMAMQcS5sYiho5Bapyg+tkYUAErVEwSiDuAOACIg6B8GGYl
-Uj8uTIz+Dgr1U2o/SF0ZEBcCcREQl5KhH6YPZs5A2L8AiBcSYb8gELMDMSea/TFAHEeE/cIMiPQl
-wkBa+ONTS4x+Mwr0c0H9TQjLQfUqQMMIpN8TiB2IxCpArATEalC+BxADAP1WI9IABAAA
+   H4sIAAAAAAAAAPNmYGBwJBN7AbEzEPMAMQcS5sYiho5Bapyg+tkYUAErVEwSiPuAOACIg6B8GGYl
+Uj8uTIz+Pgr1U2o/SF0NEJcDcQUQV5OhH6YPZs5A2L8DiHcSYb8gELMDMSea/TFAHEeE/cIMiPQl
+wkBa+ONTS4x+Mwr0c0H9TQjLQfUqQMMIpN8TiB2IxCpArATEalC+BxADAG6OS4EABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIBEBvwggYB8JhD3AHEKmvhEKJ1EQD8MpCOxLYB4ChC3E6mXGGBCoX5TIDYm
-Um0OEOcCcR4SzifBrgIgLoOyi4C4FIiL8ai3BGIrNP2xQDwHiOcCcTQB/dZAbIPEL4HaPw+I50PF
-8Om3BWI7NP0gd4cCcTgR+tEBzP4YII6DipWToL8CiCvRcDUJ+mkFzCjQK0+h3UpofADnLh1XAAQA
+   H4sIAAAAAAAAAGNggIBEBvwggYB8PhBPAuIUNPGVUDqJgH4YSEdiWwDxGiDuJVIvMcCEQv2mQGxM
+pNoiIC4G4hIkXEqCXWVAXANlVwBxNRBX4lFvCcRWaPpjgXgLEG8F4mgC+q2B2AaJXwW1fxsQb4eK
+4dNvC8R2aPpB7g4F4nAi9KMDmP0xQBwHFaslQX8dENej4UYS9NMKmFGgV55Cu5XQ+ABs2vsvAAQA
 AA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDGUQgscMGyA2LgHjxANk9CmgLAM9xBJ0ABAAA
+   H4sIAAAAAAAAAGNgGAWDGUQgscMGyA27gHj3ANk9CmgLAIu+N3gABAAA
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBRQCmYPtAPIBADeV6QuAAQAAA==
+   H4sIAAAAAAAAAGNgGAWjYBRQCjYPtAPIBADA0idRAAQAAA==
   </data>
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">

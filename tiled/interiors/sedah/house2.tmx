@@ -31,10 +31,10 @@
  <tileset firstgid="124" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="131" name="sword rack" tilewidth="32" tileheight="32">
+ <tileset firstgid="140" name="sword rack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
- <tileset firstgid="135" name="weapon rack" tilewidth="32" tileheight="32">
+ <tileset firstgid="144" name="weapon rack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -44,9 +44,9 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONhYGBgIgNzAzELEMsAsQQJWBqImaF6xRggoBKIq6A0OqhAwqJY9BIDqK23FYjb
-BsBeUgCxbp4AxNOBeDIQTwXiGVS2l1ZungjEU6Bup6abpYBYHAmrArEaEKujicOwJFQvFxAzomE9
-INYHYgMscjDMCcQAQhJdAoQDAAA=
+   H4sIAAAAAAAAAONhYGBgIgNzAzELEMsAsQQJWBqImaF6xRggoBKIq6A0OqhAwqJY9BIDqK23D4j7
+B8BeUgCxbp4JxAuAeA4QzwPihVS2l1ZungXEc6Fup6abpYBYHAmrArEaEKujicOwJFQvFxAzomE9
+INYHYgMscjDMCcQAkwZDnoQDAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
@@ -56,8 +56,8 @@ INYHYgMscjDMCcQAQhJdAoQDAAA=
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJmgGYhbBtoRJAJcbm4H4j4g7gLiHiDup6ejCAB8bu4A4m4GiNsHk5upBTyB
-2AuIvQmoAwDyNv/3hAMAAA==
+   H4sIAAAAAAAAAGNgGJmgB4h7B9oRJAJcbp4AxNOBeDIQTwXiGfR0FAGAz80TgXgKA8Ttg8nN1AKe
+QOwFxN4E1AEAShHMxIQDAAA=
   </data>
  </layer>
  <layer name="objects" width="15" height="15">

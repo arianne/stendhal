@@ -28,91 +28,91 @@
  <tileset firstgid="410" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="417" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="426" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="418" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="427" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="420" name="menorah" tilewidth="32" tileheight="32">
+ <tileset firstgid="429" name="menorah" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/menorah.png"/>
  </tileset>
- <tileset firstgid="428" name="marble" tilewidth="32" tileheight="32">
+ <tileset firstgid="437" name="marble" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/marble.png"/>
  </tileset>
- <tileset firstgid="429" name="church" tilewidth="32" tileheight="32">
+ <tileset firstgid="438" name="church" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/church.png"/>
  </tileset>
- <tileset firstgid="485" name="imperial" tilewidth="32" tileheight="32">
+ <tileset firstgid="494" name="imperial" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
  </tileset>
- <tileset firstgid="499" name="oni" tilewidth="32" tileheight="32">
+ <tileset firstgid="508" name="oni" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/oni.png"/>
  </tileset>
- <tileset firstgid="504" name="blue crystal" tilewidth="32" tileheight="32">
+ <tileset firstgid="513" name="blue crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/blue_crystal.png"/>
  </tileset>
- <tileset firstgid="516" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="525" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset firstgid="522" name="plain_colours" tilewidth="32" tileheight="32">
+ <tileset firstgid="531" name="plain_colours" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
  <layer name="0_floor" width="24" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALvGwMCgwkgbfAlo9isgtmDExJZYxHBhXGqfAc3+B8S6UJzGSB0MM+8XieZHQDEt
-zIeZHQ7F1DY/HAmH0dh8WrifHvE7VM3PB+ICKJ2HxKeW+SAz16DhPCqaX4DFfGq6HxYuBUjhQ033
-D/X0M2r+qPkDZb4fIwJTy/wIJAwAqix0xQAJAAA=
+zIeZHQ7F1DY/HAmH0dh8WrifHvE7VM3PB+ICKJ2HxKeW+SAzt6LhPCqaX4DFfGq6HxYuBUjhQ033
+D/X0M2r+qPkDZb4fIwJTy/wIJAwAJVYLNgAJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UQQrCMBREY7ya4hUEwTvoXqha7yJ6CHHtQl15APUM6kb9gQS/40/ShqogDgyh
-yfzXMtAo9ao1eUPeCmcpOdSefCAfK8o5de16Ip/JF3bWIDetW4HcRODuas98lGG32XOHvQPl+I7J
-ZfgD2h9aZzbTFzg9u2Je+n7OH1FmbJ0X4GM+xpcU4qN8fNOXjz8lz8DzAF/q3sjHL6OUfv789/Jj
-/28K3/f/VsWX9Av8K/V2Y93x+wudsZybi/G1VqquH3v8/kLnjO/mvtUP3m/Yk0+YK3q/YU8+Ye7T
-/awKeslmFiXm7tm4vDQACQAA
+   H4sIAAAAAAAAAO2UQQrCMBREYzcKeizFKwiCd9C9ULXeRfQQ4tqFeoOCegZ15w8k+B1/0jRUBXFg
+CE3mv5aBRqlX7ch78kE4i8mhjuQT+VxRzmpg1gv5Sr6xsza5Y9z15OYCN68981Ga3WPPffYOlOVb
+Jpfmj2l/YpyazEjgDM2Keen7OX9KmZlxFsDHfBFfko+PcvF1Xy7+grwErzx8qXstF7+MYvr589/L
+L/p/Y/iu/7cqvqRf4NcTpRrJY4/fX+iUdWznivhNyrQYn99f6Izx7dy3+sH7DXtyCXOh9xv25BLm
+Pt3PNtAbNrMuMXcHquJV7gAJAAA=
   </data>
  </layer>
  <layer name="2_object" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGCYzoiKyQHoZiCbQ2vzhxtYAfTbSiz+aweKdWARx6WeVNAJNKNrGIfrSANt
-RMQlMWpGAXlgNPyJA+jlF7XKs1Ew9MFVIL5CBEYHxOi5DMQA1BwbEgAJAAA=
+   H4sIAAAAAAAAAGNgYGCYzoiKyQHoZiCbQ2vzhxvYCPTbJiz+aweKdWARx6WeVNAJNKNrGIfrSANt
+RMQlMWpGAXlgNPyJA+jlF7XKs1Ew9MFVIL5CBEYHxOi5DMQA2Iy/EQAJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD04zkhbM8+jmb8KyF9Kgp1LsKhHNxMZLAPKLSfBfFLV0wJQMw6wmYUvvEgF
-1DRrMINWIvxJjBpaA3rnX2oAYswcKuFPCKCXX6SWf8jgF1DfbzS96OUXtvIMmz56AnqXb8T6F5u6
-kVK+DQUAAFpn6YUACQAA
+   H4sIAAAAAAAAAGNgoD24wEhbM2+gmb8ZyF9Hgp1rsahHNxMZrAfKbSDBfFLV0wJQMw6wmYUvvEgF
+1DRrMINWIvxJjBpaA3rnX2oAYswcKuFPCKCXX6SWf8iAmYmBgYUJVQy9/MJWnmHTR09A7/KNWP9i
+UzdSyrehAABlhsHaAAkAAA==
   </data>
  </layer>
  <layer name="objects" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUg8I5xoF0wCkgBX0fjaxSMglGAA3wkoXwgRe0oGLxgHiMEkwIAM5DXiAAJ
+   H4sIAAAAAAAAAGNgGAUg8J1xoF0wCkgB/0bjaxSMglGAA/wioXwgRe0oGLxgHiMEkwIAvFh65wAJ
 AAA=
   </data>
  </layer>
  <layer name="collision" width="24" height="24" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WUQoAIAhD6/6n6Kb9S+I2swgS+pH5phHS6K2Nx88qvDyjizw8PaO1em82Np/p
-p3pehY/WoFzLr4jbfMQbef9VcYpf4YGw//3HOwnd7eh+U2fayVI8VW+v74iR4bMMNdR/AFMzAYb1
-dG0ACQAA
+   H4sIAAAAAAAAAO2WUQoAIAhD6/436ZT9S+I2swgS+pH5phHS6K2Nx88qvDyjizw8PaO1em82Np/p
+p3pehY/WoFzLr4jbfMQbef9VcYpf4YGw//3HOwnd7eh+U2fayVI8VW+v74iR4bMMNdR/AFMzASKK
+ysoACQAA
   </data>
  </layer>
  <layer name="protection" width="24" height="24" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvEyMCwaBSP4lE8ikfxKB7Fo3gEYQA4ONPAAAkAAA==
+   H4sIAAAAAAAAAFvNyMCwehSP4lE8ikfxKB7Fo3gEYQCJcmAzAAkAAA==
   </data>
  </layer>
  <layer name="blend_ground" width="24" height="24" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwlIAwE2mYHPNpoXY4mU/L8MdnJ63ASDQfAEdzEiQACQAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwlIAME2mYHPNpoXY4mU/L8MdnJ63ASDQfALUiWBsACQAA
   </data>
  </layer>
  <layer name="blend_roof" width="24" height="24" opacity="0.8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGH6AgwmCaaV+FIyCUTAKBgtAL79Gy7NRMAqIAwC7MADFAAkAAA==
+   H4sIAAAAAAAAAGNgGH5AkAmCaaV+FIyCUTAKBgtAL79Gy7NRMAqIAwBgWSulAAkAAA==
   </data>
  </layer>
 </map>

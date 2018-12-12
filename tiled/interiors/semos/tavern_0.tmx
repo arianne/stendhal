@@ -88,13 +88,13 @@
  <tileset firstgid="224" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="231" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="240" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="232" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="241" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset firstgid="234" name="grill_top_gray" tilewidth="32" tileheight="32">
+ <tileset firstgid="243" name="grill_top_gray" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/grill_top_gray.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="19">
@@ -105,11 +105,11 @@
  </layer>
  <layer name="1_terrain" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM3UzU7CQBAH8H2NtlT2gnISb8hrIF5QLuIJNSTIl0AiF0lUPjzyNOrz8BT8TYa4
+   H4sIAAAAAAAAAM3UzU7CQBAH8H2NtlT2gnISb8hrIF5QLuIJNSTIl0AiF0lUPjzyNOo78QL8TYa4
 2XS2LetSJ/mFdGbaf5qWNoQQFymMYZLyHM41XMINPDCaICFHnmGqHO8rDzXKv4M2/UptpwW++Pvy
 tPwOPEJX27HNf4c5WRjye9CHgYP8NTHlD+EJRhnk38I98bWdQ+RL8fvOFZWdk4he2lrCinww+S7e
 77j6T/lHEJBjZacQ0XORLwX//H++Qa6/P6bre8z8M2GPm3H5G4Up/ythj5vZ3n/W+d8Je9zMNt+2
-9P/frl5gphyH2jxQ7HYDzSmU4MywH1L+FVQVr/Cm9TjcbhnOoRKzX4ctA7PmeYAJAAA=
+9P/frl5gphyH2jxQ7HYDzSmU4MywH1L+FVQVr/Cm9TjcbhnOoRKzX4ct1InpnIAJAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="19">
@@ -133,13 +133,13 @@ ALP0DFGACQAA
  </layer>
  <layer name="collision" width="32" height="19" visible="0" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvOwMDwfBSThfEBYuQJmUusXaTYQ8h+XHopsR8XmxT/kxsf1LKfXDAY7CcmbOkN
-Bpv9tAr/oWI/IXUj0X5aplFCZtM6fww2+6mN6WEHNTAAtc7rDYAJAAA=
+   H4sIAAAAAAAAAPvAwMDwYRSThfEBYuQJmUusXaTYQ8h+XHopsR8XmxT/kxsf1LKfXDAY7CcmbOkN
+Bpv9tAr/oWI/IXUj0X5aplFCZtM6fww2+6mN6WEHNTAAYhIT/IAJAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="19" visible="0" opacity="0.18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDofOvtDLmYi9IWDVVVd8eDL4pFoAJAAA=
+   H4sIAAAAAAAAAO3DQQ0AAAwDofPvtg7mYi9IWDVVVd8eJErBMoAJAAA=
   </data>
  </layer>
 </map>

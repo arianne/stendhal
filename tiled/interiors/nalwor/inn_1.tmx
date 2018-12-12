@@ -70,13 +70,13 @@
  <tileset firstgid="162" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="169" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="178" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="179" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="188" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="180" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="189" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ns.png"/>
  </tileset>
  <layer name="0_floor" width="35" height="17">
@@ -102,20 +102,20 @@ AQBc2nxiTAkAAA==
  </layer>
  <layer name="3_roof" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjCaSg8eMHxBUQkEqGHnLcO5B+HAWjgFJQAMRbgbiIDmrwAVDZUQnEO4C4
-mgGzLCFXDTkAvezAVpaQo2YUjAJyAQDUML5PTAkAAA==
+   H4sIAAAAAAAAAGNgGAUjCaSg8eMHxBUQkEqGHnLcO5B+HAWjgFJQAMT7gLiIDmrwAVDZUQnEB4G4
+mgGzLCFXDTkAvezAVpaQo2YUjAJyAQBA4Bv+TAkAAA==
   </data>
  </layer>
  <layer name="objects" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAX4wLKBdsAwABsH2gEkgHVEqhtKfhoFo2CogjUD7YBRMAqIBAC+GpTGTAkA
+   H4sIAAAAAAAAAGNgGAX4wLKBdsAwALsG2gEkgO1EqhtKfhoFo2Cogq0D7YBRMAqIBAClXl3yTAkA
 AA==
   </data>
  </layer>
  <layer name="collision" width="35" height="17" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvMwMCweRTjxMgAnzwyn9ZqcLkHG6CXGkLhRyhs8ZlBKB6o7VZi3UyOPDn2kOsn
-ephBi3DDpYZa5pBiF740SQ01o24Zem7B5jZ8fErUkOMeWgBC4TeKGRgA68CZb0wJAAA=
+   H4sIAAAAAAAAANvDwMCwZxTjxMgAnzwyn9ZqcLkHG6CXGkLhRyhs8ZlBKB6o7VZi3UyOPDn2kOsn
+ephBi3DDpYZa5pBiF740SQ01o24Zem7B5jZ8fErUkOMeWgBC4TeKGRgAl0CAbkwJAAA=
   </data>
  </layer>
  <layer name="protection" width="35" height="17">

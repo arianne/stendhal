@@ -46,28 +46,28 @@
  <tileset firstgid="106" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="113" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="122" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="114" name="weaponrack" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="weaponrack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="132" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="141" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/longbow.png"/>
  </tileset>
- <tileset firstgid="133" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="142" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/composite_bow.png"/>
  </tileset>
- <tileset firstgid="134" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="143" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/wooden_bow.png"/>
  </tileset>
- <tileset firstgid="135" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="144" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/golden_arrow.png"/>
  </tileset>
- <tileset firstgid="136" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/power_arrow.png"/>
  </tileset>
- <tileset firstgid="137" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="146" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/steel_arrow.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="20">
@@ -78,23 +78,23 @@ YAkAAA==
  </layer>
  <layer name="1_terrain" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UwQqCUBBF5xvKNqVkm0yzVQn1W0ELDVrUj3sDBRm9z1AHWnjhbN7McDZvJhCR
+   H4sIAAAAAAAAAO2UwQqCUBBF5xvKNqVkm0yzVQn1bUELDVrUR3sDBRm9z1AHWnjhbN7McDZvJhCR
 JcEHgdhkBU4gVqTAc9Q1Q7wRuFbU2Te83/qNzLP3X7062nsHD5ArCmPvE7zAW/Ex9k6d2ftf3qH7
 MsZ7BIcOzobeDVh0sCVzU3hD4bd715hjPa67z7wX6b/JWdXb18fuvsV/ZbHek9nb9rL9tCAR935a
-sgYlcN2+XWAJAAA=
+sgYlyHo0ImAJAAA=
   </data>
  </layer>
  <layer name="2_object" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAyEicAyRJiDDZhDMTlAB4hFyNSLDJxJVK9Ggb2WRKprAeJiIC4B4jYq2GuP
-hAmBGiCuBeJWOtuLDiixlxIwFP07Gs70sdcRiskBA2mvApl6nZDYxJZdMGBCpp3o9gYDcSQQRxHA
-0UjuJKQepDaIgL30BOj2EuvfQCLVRzNgBzB7SY3bUUAcAABNRZ2NYAkAAA==
+   H4sIAAAAAAAAAGNgIAyEicAyRJiDDZhDMTlAB4hFyNSLDJxJVK9Ggb2WRKrrBeIaIK4F4n4q2GuP
+hAmBViBuA+I+OtuLDiixlxIwFP07Gs70sdcRiskBA2mvApl6nZDYxJZdMGBCpp3o9gYDcSQQRxHA
+0UjuJKQepDaIgL30BOj2EuvfQCLVRzNgBzB7SY3bUUAcAACTKOU2YAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAAzKMYH2oG4A4g7CagbBaNgFIyCUTA8QTwSxieGLoeNPQpGwXAGALIVd75g
-CQAA
+   H4sIAAAAAAAAAGNggAAzKMYHJgDxRCCeREDdKBgFo2AUjILhCeKRMD4xdDls7FEwCoYzAAAS8KDi
+YAkAAA==
   </data>
  </layer>
  <layer name="objects" width="30" height="20">
@@ -104,8 +104,8 @@ CQAA
  </layer>
  <layer name="collision" width="30" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtkYGAoHIEYHQyU3cPdv4TsxQdG7R369uKzeyDS86i95NtNqp6hbi8tASF7aeFn
-fPbS2t+UxslQxQDj/+z8YAkAAA==
+   H4sIAAAAAAAAAKtiYGCoGoEYHQyU3cPdv4TsxQdG7R369uKzeyDS86i95NtNqp6hbi8tASF7aeFn
+fPbS2t+UxslQxQC7/KTaYAkAAA==
   </data>
  </layer>
  <layer name="protection" width="30" height="20">
