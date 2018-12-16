@@ -62,6 +62,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.maps.quests.AbstractQuest;
+import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
 
 /**
@@ -305,12 +306,13 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player meets requirements but training area is full
+		Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea); 
 		npc.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
 						new PlayerStatLevelCondition("ratk", "lt", RATK_LIMIT),
 						new PlayerHasItemWithHimCondition("assassins id"),
-						new AreaIsFullCondition(archeryZoneID, archeryArea, MAX_OCCUPANTS)),
+						new AreaIsFullCondition(area, MAX_OCCUPANTS)),
 				ConversationStates.ATTENDING,
 				FULL_MESSAGE,
 				null);
@@ -601,6 +603,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		public ArcheryRangeConditionAndActionPortal() {
 			super(null, null);
+			Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea); 
 
 			rejections = new LinkedHashMap<>();
 			rejections.put(
@@ -609,7 +612,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 							"Hey %s! You can't just walk into the archery range for free.",
 							pushMessage));
 			rejections.put(
-					new NotCondition(new AreaIsFullCondition(archeryZoneID, archeryArea, MAX_OCCUPANTS)),
+					new NotCondition(new AreaIsFullCondition(area, MAX_OCCUPANTS)),
 					Arrays.asList(
 							FULL_MESSAGE,
 							pushMessage));
