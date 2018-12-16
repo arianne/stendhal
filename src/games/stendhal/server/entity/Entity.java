@@ -444,20 +444,6 @@ public abstract class Entity extends RPObject implements Killer {
 		return tempRect;
 	}
 
-	/**
-	 * Checks if entity is within bounds of an area.
-	 *
-	 * @param area
-	 * 		Area dimensions to check.
-	 * @return
-	 * 		<code>true</code> if entity is within area.
-	 */
-	public boolean isInArea(final String zoneid, final Rectangle2D area) {
-		if (!get("zoneid").equals(zoneid)) {
-			return false;
-		}
-		return area.contains(getInt("x"), getInt("y"));
-	}
 
 	/**
 	 * Called when this object is added to a zone.

@@ -414,13 +414,30 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		return null;
 	}
 
+
+	/**
+	 * Checks if entity is within bounds of an area.
+	 *
+	 * @param area
+	 * 		Area dimensions to check.
+	 * @return
+	 * 		<code>true</code> if entity is within area.
+	 */
+	public boolean isPlayerInArea(final Player player, final String zoneid, final Rectangle2D area) {
+		// TODO: Use standard collision check, which can handle entities larger than 1x1
+		if (!player.get("zoneid").equals(zoneid)) {
+			return false;
+		}
+		return area.contains(player.getInt("x"), player.getInt("y"));
+	}
+	
 	/**
 	 * Actions to take when player logs in.
 	 */
 	@Override
 	public void onLoggedIn(final Player player) {
 		// don't allow players to login within archery range area boundaries
-		if (player.isInArea(archeryZoneID, archeryArea) || (player.getX() == PORTAL_POS.x && player.getY() == PORTAL_POS.y)) {
+		if (isPlayerInArea(player, archeryZoneID, archeryArea) || (player.getX() == PORTAL_POS.x && player.getY() == PORTAL_POS.y)) {
 			player.teleport(archeryZoneID, 118, 104, null, null);
 		}
 
@@ -450,7 +467,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		if (player.get("zoneid").equals(archeryZoneID)) {
 			npc.say("Your training time is up " + player.getName() + ".");
 		}
-		if (player.isInArea(archeryZoneID, archeryArea)) {
+		if (isPlayerInArea(player, archeryZoneID, archeryArea)) {
 			player.teleport(archeryZoneID, 118, 104, null, null);
 		}
 
