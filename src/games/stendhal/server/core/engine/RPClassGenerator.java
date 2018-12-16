@@ -66,7 +66,6 @@ import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.GlobalVisualEffectEvent;
 import games.stendhal.server.events.GroupChangeEvent;
 import games.stendhal.server.events.GroupInviteEvent;
-import games.stendhal.server.events.HeadlessPrivateTextEvent;
 import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.ImageEffectEvent;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
@@ -273,9 +272,6 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass(Events.PRIVATE_TEXT)) {
 			PrivateTextEvent.generateRPClass();
-		}
-		if (!RPClass.hasRPClass(Events.HEADLESS_PRIVATE_TEXT)) {
-			HeadlessPrivateTextEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass(Events.PROGRESS_STATUS_CHANGE)) {
 			ProgressStatusEvent.generateRPClass();

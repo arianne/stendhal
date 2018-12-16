@@ -86,7 +86,7 @@ public class ListZones extends ScriptImpl {
 			// add empty newline at end for clarity
 			sb.append("\n");
 
-			admin.sendPrivateText(sb.toString(), true);
+			admin.sendPrivateText(sb.toString());
 		} else {
 			if (filter == null) {
 				admin.sendPrivateText(NotificationType.WARNING, "WARNING: No zone information found.");

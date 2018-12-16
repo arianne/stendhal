@@ -146,7 +146,7 @@ public class InspectAction extends AdministrationAction {
 			st.append(target.toString());
 		}
 
-		player.sendPrivateText(st.toString(), true);
+		player.sendPrivateText(st.toString());
 	}
 
 }

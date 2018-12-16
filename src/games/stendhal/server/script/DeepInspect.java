@@ -126,7 +126,7 @@ public class DeepInspect extends ScriptImpl {
 			sb.append("  Absolute pos:\t" + absolutePos + "\n");
 		}
 
-		admin.sendPrivateText(sb.toString(), true);
+		admin.sendPrivateText(sb.toString());
 		sb.setLength(0);
 
 		// Inspect slots
@@ -144,7 +144,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString(), true);
+			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 		}
 
@@ -174,7 +174,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString(), true);
+			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 
 
@@ -192,7 +192,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString(), true);
+			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 
 
@@ -207,7 +207,7 @@ public class DeepInspect extends ScriptImpl {
 			}
 
 			sb.append("\n");
-			admin.sendPrivateText(sb.toString(), true);
+			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 		}
 	}
