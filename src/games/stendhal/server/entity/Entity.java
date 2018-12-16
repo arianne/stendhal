@@ -460,24 +460,6 @@ public abstract class Entity extends RPObject implements Killer {
 	}
 
 	/**
-	 * Checks if entity is within bounds of an area.
-	 *
-	 * @param x
-	 * 		Horizontal coordinate.
-	 * @param y
-	 * 		Vertical coordinate.
-	 * @param w
-	 * 		Width of area.
-	 * @param h
-	 * 		Height of area.
-	 * @return
-	 * 		<code>true</code> if entity is within area.
-	 */
-	public boolean isInArea(final String zoneid, final int x, final int y, final int w, final int h) {
-		return isInArea(zoneid, new Rectangle(x, y, w, h));
-	}
-
-	/**
 	 * Called when this object is added to a zone.
 	 *
 	 * @param zone
