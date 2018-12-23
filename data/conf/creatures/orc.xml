@@ -29,8 +29,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -63,8 +62,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -99,8 +97,7 @@
     </equips>
     <ai>
     <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
     </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -133,8 +130,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -170,8 +166,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -210,8 +205,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -243,8 +237,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -278,8 +271,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -313,8 +305,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="lion-11" />
-      	<sound value="lion-22" />
+      	<sound value="lion-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

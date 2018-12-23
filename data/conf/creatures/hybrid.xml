@@ -213,10 +213,6 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Grrrr! Wooof!"/>
-        <sound value="panda-1"/>
-        <sound value="panda-2"/>
-        <sound value="raccoon-1"/>
-        <sound value="lama-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -254,10 +250,6 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Woorf wer warf!"/>
-        <sound value="panda-1"/>
-        <sound value="panda-2"/>
-        <sound value="raccoon-1"/>
-        <sound value="lama-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -295,10 +287,6 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Wssss! Warf wit!"/>
-        <sound value="panda-1"/>
-        <sound value="panda-2"/>
-        <sound value="raccoon-1"/>
-        <sound value="lama-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -336,12 +324,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-        <sound value="panda-1"/>
-        <sound value="panda-2"/>
-        <sound value="raccoon-1"/>
-        <sound value="lama-1"/>
-      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -378,12 +360,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-        <sound value="panda-1"/>
-        <sound value="panda-2"/>
-        <sound value="raccoon-1"/>
-        <sound value="lama-1"/>
-      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>

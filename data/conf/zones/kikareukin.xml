@@ -15,14 +15,6 @@
       ring abused -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 
-    <entity x="1" y="1">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">wind-2</parameter>
-        <parameter name="volume">40</parameter>
-      </implementation>
-    </entity>
-
     <entity x="0" y="0">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -49,15 +41,11 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying(temperature=-2)</parameter>
     </attributes>
+
     <configurator
       class-name="games.stendhal.server.maps.kikareukin.islands.AddBalloonListener" />
-    <entity x="1" y="1">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">wind-2</parameter>
-        <parameter name="volume">40</parameter>
-      </implementation>
-    </entity>
+
+
 
     <entity x="0" y="0">
       <implementation

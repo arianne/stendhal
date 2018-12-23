@@ -140,7 +140,7 @@ public class ChatTextController {
 	 */
 	private static class SizeFilter extends DocumentFilter {
 		/** Sound to play if the user tries to enter too long string. */
-		private static final String sound = "click-10";
+		private static final String sound = "click-1";
 		/** Maximum length of the document. */
 		final int maxSize;
 

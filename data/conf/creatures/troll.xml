@@ -30,11 +30,9 @@
     </equips>
     <ai>
       <says>
-      	<sound value="yell-1"/>
-      	<sound value="laugh-33"/>
-      	<sound value="laugh-evil-4"/>
-      	<sound value="grunt-1"/>
-      	<sound value="grunt-2"/>
+      	<sound value="laugh-evil-1"/>
+      	<sound value="grunt-large-1"/>
+      	<sound value="grunt-large-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -73,10 +71,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="yell-1"/>
-        <sound value="groan-1"/>
-        <sound value="moan-1"/>
-        <sound value="fart-1"/>
+        <sound value="grunt-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -109,10 +104,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="yell-1"/>
-        <sound value="groan-1"/>
-        <sound value="moan-1"/>
-        <sound value="fart-1"/>
+        <sound value="grunt-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -143,10 +135,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="yell-1"/>
-        <sound value="groan-1"/>
-        <sound value="moan-1"/>
-        <sound value="fart-1"/>
+        <sound value="grunt-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -176,10 +165,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="yell-1"/>
-        <sound value="groan-1"/>
-        <sound value="moan-1"/>
-        <sound value="fart-1"/>
+        <sound value="grunt-large-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -215,13 +201,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-      	<sound value="gorilla-1"/>
-      	<sound value="gorilla-2"/>
-      	<sound value="gorilla-3"/>
-      	<sound value="gorilla-4"/>
-      	<sound value="gorilla-5"/>
-      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -252,13 +231,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-      	<sound value="gorilla-1"/>
-      	<sound value="gorilla-2"/>
-      	<sound value="gorilla-3"/>
-      	<sound value="gorilla-4"/>
-      	<sound value="gorilla-5"/>
-      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>

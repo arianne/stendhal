@@ -447,7 +447,7 @@
       <attribute name="class">book_red</attribute>
     </entity>
 
-    <!-- Sound/Music/Ambient -->
+    <!-- Sound/Music/Ambient
     <entity x="85" y="14">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -516,7 +516,7 @@
         <parameter name="radius">25</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
     <!-- Portals -->
     <portal x="67" y="78" ref="carolines_house_entrance">
@@ -544,16 +544,6 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
-
-    <entity x="124" y="122">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">wind-2</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
-        <parameter name="radius">70</parameter>
-        <parameter name="volume">60</parameter>
-      </implementation>
-    </entity>
 
     <point-of-interest x="40" y="48">
       <name>Ados Caves Northwest Entrance</name>
@@ -589,16 +579,6 @@
 		  <parameter name="color_method">time</parameter>
 		  <parameter name="weather">varying</parameter>
 	  </attributes>
-
-    <entity x="5" y="124">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">wind-2</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
-        <parameter name="radius">80</parameter>
-        <parameter name="volume">60</parameter>
-      </implementation>
-    </entity>
 
     <entity x="126" y="107">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -745,6 +725,7 @@ areas.
       </implementation>
 	</entity>
 
+<!-- 
     <entity x="56" y="30">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2</parameter>
@@ -764,7 +745,8 @@ areas.
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
+-->
+ 
     <!-- Crackling fire -->
     <entity x="19" y="124">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -846,16 +828,7 @@ West: Semos
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.wall.GreeterSoldierNPC"/>
 
-    <entity x="100" y="26">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-2b, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">20</parameter>
-        <parameter name="radius">25</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
-
+<!--
     <entity x="95" y="49">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2</parameter>
@@ -865,7 +838,8 @@ West: Semos
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
+-->
+ 
     <entity x="88" y="78">
       <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
         <parameter name="width">25</parameter>
@@ -966,6 +940,7 @@ West: Semos
     <configurator class-name="games.stendhal.server.maps.ados.city.KidGhostNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.city.HolidayingWomanNPC" />
 
+<!--
     <entity x="83" y="9">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -1035,50 +1010,11 @@ West: Semos
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
-    <entity x="27" y="117">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-2b, bird-1b</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">10</parameter>
-        <parameter name="radius">25</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="42" y="41">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-2b, bird-1b, bird-3b</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">10</parameter>
-        <parameter name="radius">25</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="13" y="46">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">blackbird-6b, blackbird-8b</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">15</parameter>
-        <parameter name="radius">20</parameter>
-        <parameter name="volume">100</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="33" y="10">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-2b, bird-1b</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">10</parameter>
-        <parameter name="radius">25</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
-
+  -->
+  
     <entity x="25" y="120">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-sparkes-1, fire-3, fire-8</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">10</parameter>
         <parameter name="radius">25</parameter>
@@ -2563,7 +2499,7 @@ You should never dive with a cold or severe allergy because, you may not be able
 
     <entity x="33" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-2</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="volume">40</parameter>
@@ -2649,7 +2585,7 @@ You should never dive with a cold or severe allergy because, you may not be able
 
     <entity x="24" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-2</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="volume">40</parameter>
@@ -2659,7 +2595,7 @@ You should never dive with a cold or severe allergy because, you may not be able
 
     <entity x="34" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-2</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="volume">40</parameter>
@@ -4425,17 +4361,6 @@ My fee:
       <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
-    <!-- Music/Ambiance -->
-    <entity x="123" y="43">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">wind-2</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
-        <parameter name="radius">120</parameter>
-        <parameter name="volume">60</parameter>
-      </implementation>
-    </entity>
-
     <entity x="14" y="50">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">
@@ -4472,17 +4397,6 @@ Southeast: Docks
 
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC" />
-
-    <!-- Music ambiance -->
-    <entity x="3" y="35">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">wind-2</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">1</parameter>
-        <parameter name="radius">90</parameter>
-        <parameter name="volume">60</parameter>
-      </implementation>
-    </entity>
 
     <entity x="61" y="36">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
@@ -4657,7 +4571,7 @@ Southeast: Docks
     <configurator class-name="games.stendhal.server.maps.ados.city.ForeignWomanNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.city.FishesNPC" />
 
-    <!-- Music/Ambiance -->
+    <!-- Music/Ambiance
     <entity x="80" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -4727,6 +4641,7 @@ Southeast: Docks
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
+ -->
 
     <!-- Signs -->
     <entity x="55" y="109">
@@ -5033,7 +4948,7 @@ Southeast: Docks
     <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier3NPC"/>
 
 
-    <!-- Music/Ambiance -->
+    <!-- Music/Ambiance
     <entity x="85" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -5093,26 +5008,7 @@ Southeast: Docks
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
-    <entity x="44" y="12">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">blackbird-6b, blackbird-7b</parameter>
-        <parameter name="min">2</parameter>
-        <parameter name="max">15</parameter>
-        <parameter name="radius">20</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="67" y="23">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-2b, bird-1b</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">10</parameter>
-        <parameter name="radius">25</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
+ -->
 
     <!-- Interactive sounds -->
     <entity x="53" y="24">
@@ -5391,7 +5287,7 @@ Southeast: Docks
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC" />
 
-    <!-- Music/Ambiance -->
+    <!-- Music/Ambiance
     <entity x="96" y="105">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -5401,7 +5297,7 @@ Southeast: Docks
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
+ -->
   </zone>
 
   <zone name="0_ados_coast_sw" level="0" x="500768" y="500256" file="Level 0/ados/coast_sw.tmx">
@@ -5767,13 +5663,16 @@ East Tunnel: Uncharted</attribute>
       </implementation>
     </entity>
 
+<!-- 
     <entity x="21" y="21">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">water-5</parameter>
         <parameter name="radius">20</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
+      
     </entity>
+ -->
 
     <entity x="21" y="24">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
@@ -5858,6 +5757,7 @@ East Tunnel: Uncharted</attribute>
       </implementation>
     </entity>
 
+<!-- 
     <entity x="112" y="16">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">water-5</parameter>
@@ -5865,7 +5765,8 @@ East Tunnel: Uncharted</attribute>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
+ -->
+ 
     <!-- Signs -->
     <entity x="120" y="19">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Reader" />

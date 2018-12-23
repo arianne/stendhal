@@ -60,7 +60,7 @@ public abstract class Food extends AudibleEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		addSounds(SoundLayer.CREATURE_NOISE.groupName, "food", "pop-2");
+		addSounds(SoundLayer.CREATURE_NOISE.groupName, "food", "click-1");
 
 		if (object.has(AMOUNT)) {
 			amount = object.getInt(AMOUNT);

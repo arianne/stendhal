@@ -75,9 +75,9 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	private JComponent content;
 	private boolean hideOnClose = false;
 
-	private String openSound = "click-10";
-	private String minimizeSound = "click-8";
-	private String closeSound = "click-6";
+	private String openSound = "click-1";
+	private String minimizeSound = "click-1";
+	private String closeSound = "click-1";
 
 	private final List<CloseListener> closeListeners = new LinkedList<CloseListener>();
 

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +107,6 @@ public class RetireeNPC implements ZoneConfigurator {
 		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("beggarnpc");
 		npc.setDescription("Diogenes is an elderly man, but sprightly for his age. He looks friendly and helpful.");
-		npc.setSounds(Arrays.asList("laugh-1", "laugh-2"));
 		zone.add(npc);
 	}
 }

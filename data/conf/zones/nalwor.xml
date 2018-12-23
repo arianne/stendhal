@@ -1016,6 +1016,7 @@ below average.
         class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
     </entity>
 
+<!--
     <entity x="87" y="83">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -1026,6 +1027,8 @@ below average.
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
+-->
+
   </zone>
 
   <zone name="0_nalwor_river_s" level="0" x="500256" y="500384"

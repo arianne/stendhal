@@ -114,6 +114,7 @@
       </implementation>
     </entity>
 
+<!--
     <entity x="44" y="9">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -131,27 +132,8 @@
         <parameter name="volume">40</parameter>
       </implementation>
     </entity>
+-->
 
-    <entity x="77" y="119">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">blackbird-6b, bird-2b, lark-1</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">15</parameter>
-        <parameter name="radius">10</parameter>
-        <parameter name="volume">65</parameter>
-      </implementation>
-    </entity>
-    <entity x="62" y="127">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">woodpecker-1</parameter>
-        <parameter name="min">3</parameter>
-        <parameter name="max">15</parameter>
-        <parameter name="radius">14</parameter>
-        <parameter name="volume">65</parameter>
-      </implementation>
-    </entity>
   </zone>
 
   <!-- Interiors in 0_semos_mountain_n2_w -->
@@ -506,6 +488,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <configurator
       class-name="games.stendhal.server.maps.semos.gnomevillage.GarbiddleNPC" />
 
+<!--
     <entity x="77" y="0">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -514,6 +497,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         <parameter name="volume">35</parameter>
       </implementation>
     </entity>
+-->
 
     <portal x="63" y="115" ref="right1">
       <destination zone="0_semos_mountain_n_w2" ref="left1" />
@@ -593,16 +577,6 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       </implementation>
     </entity>
 
-    <entity x="65" y="6">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">woodpecker-1</parameter>
-        <parameter name="min">3</parameter>
-        <parameter name="max">15</parameter>
-        <parameter name="radius">24</parameter>
-        <parameter name="volume">80</parameter>
-      </implementation>
-    </entity>
   </zone>
 
   <!-- Interiors of the wizards tower -->
@@ -1593,45 +1567,12 @@ The sharper minded amongst you might prefer to click directly on the creature. I
       </implementation>
 	</entity>
 
-    <!-- <entity x="1" y="1"> <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-      <parameter name="sound">wind-2</parameter> <parameter name="volume">5</parameter>
-      </implementation> </entity> -->
-    <entity x="13" y="42">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">treecreak-1</parameter>
-        <parameter name="min">25</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
     <entity x="27" y="15">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">frog-1</parameter>
+        <parameter name="sound">mutant-frog-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">10</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="50" y="16">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">lark-1, lark-2</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="16" y="20">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">blackbird-11, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
         <parameter name="radius">10</parameter>
       </implementation>
     </entity>
@@ -1939,71 +1880,17 @@ Mature sheep wanted: please speak to Sato.
     </entity>
 
 
-    <!-- birds and chicken -->
-    <entity x="29" y="8">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">blackbird-11, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="8" y="30">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">chicken-1</parameter>
-        <parameter name="min">10</parameter>
-        <parameter name="max">45</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="47" y="25">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">chicken-1</parameter>
-        <parameter name="min">10</parameter>
-        <parameter name="max">45</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
     <!-- sounds from houses -->
-    <entity x="15" y="42">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">hammer-1, smith-1</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">4</parameter>
-        <parameter name="volume">100</parameter>
-      </implementation>
-    </entity>
-
     <entity x="44" y="39">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">kettle-1, bottle-2, trash-1, trash-21, trash-3, metal-can-1, drain-water-11, dishbreak-1, dishbreak-2, dishes-1, dishes-21, creaky-door-1, creaky-door-2, ice-cubes-1, glass-break-1, window-close-1</parameter>
+        <parameter name="sound">creaky-door-open-1, creaky-door-close-1, glass-break-2</parameter>
         <parameter name="min">30</parameter>
         <parameter name="max">60</parameter>
         <parameter name="radius">10</parameter>
         <parameter name="volume">40</parameter>
       </implementation>
     </entity>
-
-
-    <entity x="16" y="20">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">blackbird-11, blackbird-6b, blackbird-7b, blackbird-8b</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
 
 
     <entity x="6" y="49">
@@ -2233,7 +2120,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
     <entity x="1" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">kettle-1, bottle-2, trash-1, trash-21, trash-3, metal-can-1, drain-water-11, dishbreak-1, dishbreak-2, dishes-1, dishes-21, creaky-door-1, creaky-door-2, ice-cubes-1, glass-break-1, window-close-1</parameter>
+        <parameter name="sound">creaky-door-open-1, creaky-door-close-1, glass-break-2</parameter>
         <parameter name="min">30</parameter>
         <parameter name="max">60</parameter>
         <parameter name="volume">40</parameter>
@@ -2460,29 +2347,10 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="move.continuous" />
     </portal>
 
-    <entity x="1" y="1">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">hammer-1, smith-1</parameter>
-        <parameter name="min">10</parameter>
-        <parameter name="max">60</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="7" y="3">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-sparkes-1, fire-3, fire-8</parameter>
-        <parameter name="min">5</parameter>
-        <parameter name="max">30</parameter>
-      </implementation>
-    </entity>
-
-
     <entity x="7" y="3">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">fire-5</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="volume">50</parameter>
       </implementation>
     </entity>
@@ -3071,17 +2939,6 @@ Holy mackerel! These chips are tasty.
       </implementation>
     </entity>
 
-
-    <entity x="13" y="38">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">cough-2</parameter>
-        <parameter name="min">1</parameter>
-        <parameter name="max">40</parameter>
-        <parameter name="radius">7</parameter>
-      </implementation>
-    </entity>
-
     <entity x="7" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
@@ -3221,6 +3078,7 @@ Holy mackerel! These chips are tasty.
       <attribute name="move.continuous" />
     </portal>
 
+<!--
     <entity x="27" y="50">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -3238,46 +3096,7 @@ Holy mackerel! These chips are tasty.
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
-    <entity x="15" y="15">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">lark-1, lark-2</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="32" y="33">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">lark-1, lark-2</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="83" y="56">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-1b, bird-2b, bird-3b</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="118" y="57">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-1b, bird-2b, bird-3b</parameter>
-        <parameter name="min">30</parameter>
-        <parameter name="max">60</parameter>
-        <parameter name="radius">10</parameter>
-      </implementation>
-    </entity>
+-->
 
     <entity x="113" y="51">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />

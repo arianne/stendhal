@@ -54,6 +54,7 @@
 	   </implementation>
    </portal>
 
+<!-- 
     <entity x="15" y="31">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -107,7 +108,7 @@
         <parameter name="radius">8</parameter>
       </implementation>
     </entity>
-
+ -->
   </zone>
 
   <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
@@ -450,17 +451,7 @@
       <attribute name="height">1</attribute>
     </entity>
 
-    <!-- Interactive sounds -->
-    <entity x="10" y="9">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">drain-water-11</parameter>
-        <parameter name="radius">50</parameter>
-      </implementation>
-      <attribute name="description">You see a toilet.</attribute>
-      <attribute name="width">1</attribute>
-      <attribute name="height">1</attribute>
-    </entity>
-
+<!--
     <entity x="13" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
         <parameter name="sound">water-4</parameter>
@@ -470,10 +461,11 @@
       <attribute name="width">1</attribute>
       <attribute name="height">1</attribute>
     </entity>
+-->
 
     <entity x="6" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="radius">50</parameter>
       </implementation>
       <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
@@ -506,7 +498,7 @@
       <attribute name="height">1</attribute>
     </entity>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="11" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -525,7 +517,7 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
   </zone>
 
@@ -553,7 +545,7 @@
     <!-- fire in the chimney -->
     <entity x="5" y="9">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">4</parameter>
@@ -569,17 +561,7 @@
       <attribute name="height">1</attribute>
     </entity>
 
-    <!-- Interactive sounds -->
-    <entity x="4" y="1">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">drain-water-11</parameter>
-        <parameter name="radius">50</parameter>
-      </implementation>
-      <attribute name="description">You see a toilet.</attribute>
-      <attribute name="width">1</attribute>
-      <attribute name="height">1</attribute>
-    </entity>
-
+<!--
     <entity x="5" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
         <parameter name="sound">water-4</parameter>
@@ -589,6 +571,7 @@
       <attribute name="width">1</attribute>
       <attribute name="height">1</attribute>
     </entity>
+-->
 
     <!-- table at whirpool -->
     <entity x="2" y="5">
@@ -598,7 +581,7 @@
       <attribute name="height">1</attribute>
     </entity>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="3" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -618,7 +601,7 @@
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-
+-->
   </zone>
 
   <zone name="int_athor_apartment_103" file="interiors/athor/holiday_apartment_3.tmx" accessible="false">
@@ -645,7 +628,7 @@
     <!-- fire in the chimney -->
     <entity x="6" y="8">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">4</parameter>
@@ -661,7 +644,7 @@
       <attribute name="height">2</attribute>
     </entity>
 
-    <!-- Interactive sounds -->
+    <!-- Interactive sounds
     <entity x="10" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
         <parameter name="sound">water-4</parameter>
@@ -670,9 +653,9 @@
       <attribute name="description">You see a sink to wash your hands.</attribute>
       <attribute name="width">1</attribute>
       <attribute name="height">1</attribute>
-    </entity>
+    </entity> -->
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="10" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -691,7 +674,7 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
   </zone>
 
@@ -715,7 +698,7 @@
       <attribute name="height">2</attribute>
     </entity>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="11" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -734,7 +717,7 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
     <!-- chimney -->
     <entity x="8" y="7">
@@ -748,7 +731,7 @@
     <!-- fire in the chimney -->
     <entity x="8" y="8">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">4</parameter>
@@ -810,7 +793,7 @@
       <attribute name="height">1</attribute>
     </entity>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="3" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -829,12 +812,12 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity>-->
 
     <!-- oven -->
     <entity x="4" y="7">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="sound">fire-1</parameter>
         <parameter name="radius">50</parameter>
       </implementation>
       <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
@@ -856,7 +839,7 @@
       <destination zone="0_athor_island" ref="apartment_6_entrance" />
     </portal>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="3" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -875,7 +858,7 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
     <!-- whirpool bank -->
     <entity x="2" y="5">
@@ -899,7 +882,7 @@
       <destination zone="0_athor_island" ref="apartment_7_entrance"/>
     </portal>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="2" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -908,9 +891,9 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
-    <!-- Music/Ambiance -->
+    <!-- Music/Ambiance
     <entity x="3" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -939,7 +922,7 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
     <!-- Tables/Counters -->
     <entity x="2" y="10">
@@ -1014,7 +997,7 @@
       <attribute name="height">2</attribute>
     </entity>
 
-    <!-- whirpool -->
+    <!-- whirpool
     <entity x="4" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -1033,7 +1016,7 @@
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
   </zone>
 
@@ -1142,7 +1125,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
       <attribute name="class">blackboard</attribute>
     </entity>
 
-    <!-- Music/Ambiance -->
+    <!-- Music/Ambiance
     <entity x="18" y="35">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>
@@ -1240,7 +1223,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
         <parameter name="max">1</parameter>
         <parameter name="radius">8</parameter>
       </implementation>
-    </entity>
+    </entity> -->
 
     <!-- Creaking ship -->
     <entity x="0" y="0">
@@ -1319,6 +1302,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
       </implementation>
     </entity>
 
+<!--
     <entity x="22" y="47">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2</parameter>
@@ -1408,6 +1392,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
         <parameter name="radius">10</parameter>
       </implementation>
     </entity>
+-->
 
     <!-- Creaking ship -->
     <entity x="0" y="0">
@@ -1439,7 +1424,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
      <destination zone="0_athor_ship_w2" ref="divingSpot"/>
    </portal>
 
-       <!-- whirpool -->
+       <!-- whirpool
     <entity x="31" y="40">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -1448,7 +1433,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
         <parameter name="radius">1</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity>
+    </entity> -->
     </zone>
 
  <!-- Level -4 -->

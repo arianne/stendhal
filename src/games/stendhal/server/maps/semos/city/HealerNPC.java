@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +63,6 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setDescription("You see kind Carmen. She looks like someone you could ask for help.");
 		npc.setEntityClass("welcomernpc");
-		npc.setSounds(Arrays.asList("giggle-1", "giggle-2"));
 		zone.add(npc);
 	}
 }
