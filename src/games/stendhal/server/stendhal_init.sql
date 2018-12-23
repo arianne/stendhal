@@ -33,7 +33,7 @@ create table if not exists character_stats
   zone varchar(50),
 
   timedate timestamp default CURRENT_TIMESTAMP,
-  lastseen timestamp,
+  lastseen timestamp null,
   primary key(name)
   )
  ;
