@@ -20,28 +20,10 @@ public class BreakableItem extends Item {
 
 	public BreakableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
-
-		if (attributes.containsKey("uses")) {
-			put("uses", attributes.get("uses"));
-		} else {
-			// default uses count
-			put("uses", 100);
-		}
 	}
 
-	public BreakableItem(final Item item) {
+	public BreakableItem(final BreakableItem item) {
 		super(item);
-
-		if (!(item instanceof BreakableItem)) {
-			// default uses count
-			put("uses", 100);
-		}
-	}
-
-	public BreakableItem(final Item item, final int uses) {
-		super(item);
-
-		put("uses", uses);
 	}
 
 	/**
