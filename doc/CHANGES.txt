@@ -1,5 +1,15 @@
 Changelog
 ---------
+1.29
+*web client*
+- fixed handling of tileset files with an image width that is not an exact multiple of the tile width
+
+*admin*
+- admin can teleport to coordinates despite map collisions
+
+*sound*
+- deleted sound files from sources which might have provided wrong license information
+
 
 1.28.1
 - Server only security update: Marauroa failed to verify username on client transfer (thanks to pepzs for the report)
