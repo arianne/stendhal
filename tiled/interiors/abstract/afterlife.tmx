@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="64" height="32" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/ground/ice/ice.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ice.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ice/ice.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="4" name="../../tileset/ground/water/golden_waterfall.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="4" name="golden_waterfall.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/golden_waterfall.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="19" name="../../tileset/ground/water/golden_whirlpool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="19" name="golden_whirlpool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/golden_whirlpool.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="31" name="../../tileset/building/castle.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="31" name="castle.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/castle.png"/>
  </tileset>
- <tileset firstgid="351" name="../../tileset/plant/flower/daisy_blue.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="351" name="daisy_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="359" name="../../tileset/plant/flower/daisy_white.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="359" name="daisy_white.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="367" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="367" name="bushes.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="377" name="../../tileset/plant/flower/daisy_yellow.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="377" name="daisy_yellow.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_yellow.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="385" name="../../tileset/plant/flower/daisy_red.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="385" name="daisy_red.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_red.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="393" name="../../tileset/item/statue/fairypool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="393" name="fairypool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="409" name="../../tileset/item/statue/grey_stone.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="409" name="grey_stone.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="413" name="../../tileset/logic/item/sign.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="413" name="sign.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sign.png"/>
  </tileset>
- <tileset firstgid="414" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="414" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="430" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="421" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="431" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="422" name="protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="32">
@@ -87,14 +87,14 @@ GmauqFTdH+8DmO1Z+t7hz/x/AAAAAEZ7ASyS5I8AIAAA
  </layer>
  <layer name="collision" width="64" height="32" opacity="0.57">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TYQqAMAhG1/3vsjP2azAEzdbMgU94sLDY99D61VoHAAD4ibmys2i5VstyHGfZ
+   H4sIAAAAAAAAAO2TYQqAMAhG1/3PsXv2azAEzdbMgU94sLDY99D61VoHAAD4ibmys2i5VstyHGfZ
 83y3M1ukv3XvOMuefCc6x5O/lkNz8PZX8u7IMz9nzP+U8vh79vRL38oWcZ/ca+bP/58x/7f7H5WB
-/c/nxEz4448//vjX9K9S+AMAANTmBroOrnMAIAAA
+/c/nxEz4448//vjX9K9S+AMAANTmBlTeWTMAIAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="32" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwDoL1/mFVcjoOCvaSqqqqqqqqq6usDVidfAAAgAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwDoL1/j+VcjoOCvaSqqqqqqqqq6usDFDrSXgAgAAA=
   </data>
  </layer>
 </map>
