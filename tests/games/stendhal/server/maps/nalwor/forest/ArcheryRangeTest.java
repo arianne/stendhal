@@ -28,12 +28,14 @@ import org.junit.Test;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.quests.AbstractQuest;
 import utilities.QuestHelper;
 import utilities.ZoneAndPlayerTestImpl;
@@ -66,13 +68,10 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 	@Override
 	public void setUp() throws Exception {
 		// FIXME: misspelled "MockStendlRPWorld"?
-		//final StendhalRPWorld world = MockStendlRPWorld.get();
-		//final StendhalRPWorld world = StendhalRPWorld.get();
-
-		//assertTrue(world.)
+		final StendhalRPWorld world = MockStendlRPWorld.get();
 
 		final StendhalRPZone zone = new StendhalRPZone("test_zone");
-		//final StendhalRPZone zone = world.getZone("0_nalwor_forest_n");
+		world.addRPZone(zone);
 		final ArcheryRange range = new ArcheryRange();
 		range.configureZone(zone, null);
 
@@ -208,10 +207,6 @@ public class ArcheryRangeTest extends ZoneAndPlayerTestImpl {
 		en.step(player, "hi");
 
 		// player is new to archery range
-		/* FIXME: NullPointerException because NPC checks for player count in
-		 *        archery training area. But zone where archery range is does
-		 *        not actually exist.
-		 */
 		en.step(player, "train");
 		assertEquals("Hmmm, I haven't seen you around here before."
 				+ " But you have the proper credentials. Do you want me to"
