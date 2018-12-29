@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="earth_pale" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ridge/earth_pale.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="98" name="earth_dark" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ridge/earth_dark.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="194" name="ground" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground.png" width="96" height="352"/>
+ </tileset>
+ <tileset firstgid="227" name="castle" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/castle.png" width="640" height="512"/>
+ </tileset>
+ <tileset firstgid="547" name="museum" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/museum.png" width="224" height="256"/>
+ </tileset>
+ <tileset firstgid="603" name="house_chalet" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/house_chalet.png" width="224" height="256"/>
+ </tileset>
+ <tileset firstgid="659" name="house_3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/house_3.png" width="192" height="256"/>
+ </tileset>
+ <tileset firstgid="707" name="blue" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/roof/blue.png" width="160" height="128"/>
+ </tileset>
+ <tileset firstgid="727" name="cannon" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/weapon/cannon.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="739" name="barrels_1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/barrels_1.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="747" name="stump_vertical" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/stump/stump_vertical.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="748" name="floor_tan" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tan.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="752" name="flowers_mixed" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/flower/flowers_mixed.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="768" name="grass_edges" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_edges.png" width="384" height="96"/>
+ </tileset>
+ <tileset firstgid="804" name="grass_corners" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/grass_corners.png" width="192" height="128"/>
+ </tileset>
+ <tileset firstgid="828" name="vine" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/vine.png" width="32" height="96"/>
+ </tileset>
+ <layer name="0_floor" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YQQqCQBSAYY3oEF6oC7dob0GLjuAhXHSAkAhEzCCDN/i+xQcy4ML5ZQZeW1VVCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwIce6HNF7kVF0c/311z/OYRfrpH+oZhfrpn9qnf6p6Z+b/rnpn5v+uemfW/dlJsS2Z2765+7fF7AHmUX33wfPn9fMradr55m10kX3H0TPoH+dW0/X7jNrpYtuX7Lrgn7m7HzUy+9Efw/6859/Ynge7s9L9fK+S7XetnHf8f3Z6J/CpzPdWZ/DUmP9AQAAAAAAAAAAAAAAAABY6wnroOfLAAABAA==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YTU7CQBgGYIou3Bl3JuBG76CSqAfQY2n0BO6NRu+gp1GP4AkcYhpqbUunIEPo8yQT/uZrO30LJd9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwWR6z9RlPWeqzQUrv8l+5r+z3eA7jJfv7ftPoUpOPh0Lm8k/vNWTwFplD25qLrebP5Z/edcjgJjKHyzD/qmXNWcM1IP/0PkIGn5E5dKmpIv9+k3+/yb/f5N9v8u83+ffb/Rr0oGNGWerjWcYaYNWW3VeOrTsM46jDfhYZi+xzkX57uXZdVPUF5/WV63qJsT3s4zD3ZM78eb3rNscVu8/idorP69ZXN7+oS3//P+0Pfx6rzm9VL7o477xmjbeh5i5ijU396zbntCw/rqb5bXrm07Xm2yiutW59VeemfAxd+vupdO0rx9bVzd+N+M7Ps1fa1iI981S1fTMKmY1L47TFNTGpqDtY4rVEOvlvwna4b+0MZ/nmr6fK33U2R57/9H/LeDh7v/ha/psrz39S+k0fFe4N8t9co4b7edNnAAAAAAAAAAAAAAAAAADQxjdwHn6uAAABAA==
+  </data>
+ </layer>
+ <layer name="2_object" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Y22rCQBAG4GCfq+//CD2fL3obW01pGsEJTKAXEiEHrOn3wbCI2WXx36wwRQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsHxXq6K4jrpZjVvnIeY/Rj39Wud95JrMo83lLbO5jfEu6n5gVt06zzG+RL3KHAAAAAA44lA/eYip+ttTmmtPU/1mf8FU/eSx/e05zLUnPXj4Py4vTr2DZfsccI8OmcPpNZHbd1Qd9RH1E/UVtevJs32myefbuWXOqZ2Bs1NlfpvMbpefm54su7NR5nnZ5MgyVEfyrLzri1bnvb4+kPE6v+u7Hzhv3fu/PZDxNv/3K/kvWtmTr7sfAAAAAAAAAAAAAAAAAIAx9glwdfQAAAEA
+  </data>
+ </layer>
+ <layer name="3_roof" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RsQkAIAADQe3dy/1nEPfQ1glEcwfpA18KAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCzVs+RpddzZNE/m/7Z9M+mfzb9GXvz9gkAAAAAAAAAAAAAAAAAAADgaQtlqpSGAAABAA==
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQoAIAwEwfj/39qIXVrzAtHMwMKVFwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/GCOGr2sY+9rLwAAAAAAAAAAAAAAAAAAAIDXJTk7KWkAAAEA
+  </data>
+ </layer>
+ <layer name="objects" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+  </data>
+ </layer>
+ <layer name="collision" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+  </data>
+ </layer>
+ <layer name="protection" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+  </data>
+ </layer>
+</map>
