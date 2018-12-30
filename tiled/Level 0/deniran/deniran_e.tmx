@@ -27,19 +27,40 @@
  <tileset firstgid="707" name="blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/roof/blue.png" width="160" height="128"/>
  </tileset>
+ <tileset firstgid="727" name="cannon" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/weapon/cannon.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="739" name="barrels_1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/barrels_1.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="747" name="vertical_dark" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ladder/vertical_dark.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="750" name="door" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/door.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="756" name="closed" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/closed.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="757" name="window_centered" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/window/window_centered.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="758" name="chimney_big" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/chimney_big.png" width="32" height="64"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DAQ0AAAzDoPq3NWMXckhYNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVd8/NtPL/wAAAQA=
+   H4sIAAAAAAAAC+3WKRLCQBBA0RDBIbgQF0bgYxAcAcFRSARViCkM6VnoJ55NZfrXLMs0TQsAwzof2mi9bvTvfYYj/3tvRpxhzf7X1XGOddG/W/fVaY51+/P+e+yhVnvkGTyjt6h1l2b/+c0a/ffYQ632SK3+Uesuzb72LPeaYfQ9XFKj/TePgNn/+s1W/aPv4RL9++mfUUT/TaYzdGRR/TOdoSOL6s8Y9M9N/9z0x9s7N29vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADI7QWQf3YSAAABAA==
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3WS04CQRAA0Ma48AguvK+4VreKcgbjZVxwAv+frY2xIzFhMsbq6QHeSyqQMGGoqqmipyml6T/jOsW6CPhN0RGdY5RlrU5ynDWM4xRXnzHksy7HsT1LpVbnOWYN4zTF1WcM+azLcWzPUqnV1SQ/U41inuMysD5f+aTxWeY4C4roWt1NwtL8s8X3vaPq06r3NWdo/qs/0bVa7f/zZJgobhvsmxpqztCi4ncvtZz/odWqZY0ZKmrPyE2D/vfJO/J7iyH6T7f9vXb33qT+D/VfHDV7fR027H+tXRq9Q1vNyEHD3vCj1YwcbWn/t22H0t/Qu9QOHZehd+m27tAW3tVyp33oP+wUZ+/d1XVWv8+fPeR47LjG2XuzlbP620ofy/un/Pqa46XjGmdvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYfJ++/WQYAAABAA==
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3WywqDMBAF0OD//5+1tmrNwt9wCi0EcesDcg5cZhuYB0kJAPa1TUqPSNdc/RLOlH/9fkbtI6+i/4tZ2GVX6lbuih3hSO+YryEymrNbygf05X9TvnWKfCKz/lMZt69u29uX/bcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATrECS0ObPwAAAQA=
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
@@ -57,9 +78,9 @@
    H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128">
+ <layer name="collision" width="128" height="128" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3RwQnAMAwEQbn/plNEMInYGdi/rTszcyRJkiRJ0rpu+/p/sv/fb7j57W/ceP/GG9q/vX+V/dvs3+b2bfZvs3+b/dvs32Z/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAY7es30AAAEA
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
