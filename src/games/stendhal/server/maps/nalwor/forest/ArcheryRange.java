@@ -53,6 +53,7 @@ import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.AreaIsFullCondition;
+import games.stendhal.server.entity.npc.condition.ComparisonOperator;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerStatLevelCondition;
@@ -247,7 +248,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new PlayerStatLevelCondition("ratk", "lteq", RATK_LIMIT),
+						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_OR_EQUALS, RATK_LIMIT),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				null,
@@ -264,7 +265,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, 0, STATE_DONE),
 						new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN),
-						new PlayerStatLevelCondition("ratk", "lt", RATK_LIMIT)),
+						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT)),
 				ConversationStates.QUESTION_1,
 				"It's " + Integer.toString(COST) + " money to train. So, you good for it?",
 				null);
@@ -274,7 +275,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				TRAIN_PHRASES,
 				new AndCondition(
 						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, COOLDOWN)),
-						new PlayerStatLevelCondition("ratk", "lt", RATK_LIMIT)),
+						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT)),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
@@ -282,7 +283,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		// player's RATK level is too high
 		npc.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
-				new PlayerStatLevelCondition("ratk", "gteq", RATK_LIMIT),
+				new PlayerStatLevelCondition("ratk", ComparisonOperator.GREATER_OR_EQUALS, RATK_LIMIT),
 				ConversationStates.ATTENDING,
 				"You are already too skilled to train here. Now get off yer lazy butt and fight some monsters!",
 				null);
@@ -291,7 +292,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		npc.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new PlayerStatLevelCondition("ratk", "lt", RATK_LIMIT),
+						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
 						new NotCondition(new PlayerHasItemWithHimCondition("assassins id"))),
 				ConversationStates.ATTENDING,
 				"You can't train here without permission from the assassins' HQ. Now git, before I sic the dogs on you!",
@@ -306,11 +307,11 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				null);
 
 		// player meets requirements but training area is full
-		Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea); 
+		Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea);
 		npc.add(ConversationStates.ATTENDING,
 				TRAIN_PHRASES,
 				new AndCondition(
-						new PlayerStatLevelCondition("ratk", "lt", RATK_LIMIT),
+						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
 						new PlayerHasItemWithHimCondition("assassins id"),
 						new AreaIsFullCondition(area, MAX_OCCUPANTS)),
 				ConversationStates.ATTENDING,
@@ -432,7 +433,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		}
 		return area.contains(player.getInt("x"), player.getInt("y"));
 	}
-	
+
 	/**
 	 * Actions to take when player logs in.
 	 */
@@ -546,20 +547,26 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		public boolean equals(Object obj) {
 			final Player player = timedPlayer.get();
 
-			if (this == obj)
+			if (this == obj) {
 				return true;
-			if (obj == null)
+			}
+			if (obj == null) {
 				return false;
-			if (getClass() != obj.getClass())
+			}
+			if (getClass() != obj.getClass()) {
 				return false;
+			}
 			Timer other = (Timer) obj;
-			if (!getOuterType().equals(other.getOuterType()))
+			if (!getOuterType().equals(other.getOuterType())) {
 				return false;
+			}
 			if (player == null) {
-				if (other.timedPlayer.get() != null)
+				if (other.timedPlayer.get() != null) {
 					return false;
-			} else if (!player.equals(other.timedPlayer.get()))
+				}
+			} else if (!player.equals(other.timedPlayer.get())) {
 				return false;
+			}
 			return true;
 		}
 
@@ -603,7 +610,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 
 		public ArcheryRangeConditionAndActionPortal() {
 			super(null, null);
-			Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea); 
+			Area area = new Area(SingletonRepository.getRPWorld().getZone(archeryZoneID), archeryArea);
 
 			rejections = new LinkedHashMap<>();
 			rejections.put(

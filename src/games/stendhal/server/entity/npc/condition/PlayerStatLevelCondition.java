@@ -12,6 +12,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -19,15 +21,16 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Compares an integer value attribution.
  */
+@Dev(category=Category.STATS, label="playerStats")
 public class PlayerStatLevelCondition implements ChatCondition {
 
-	final String attribute;
-	final String expression;
-	final int targetLevel;
+	private final String attribute;
+	private final ComparisonOperator comparisonOperator;
+	private final int targetLevel;
 
-	public PlayerStatLevelCondition(final String attribute, final String expression, final int targetLevel) {
+	public PlayerStatLevelCondition(final String attribute, final ComparisonOperator comparisonOperator, final int targetLevel) {
 		this.attribute = attribute;
-		this.expression = expression;
+		this.comparisonOperator = comparisonOperator;
 		this.targetLevel = targetLevel;
 	}
 
@@ -37,22 +40,8 @@ public class PlayerStatLevelCondition implements ChatCondition {
 			return false;
 		}
 
-		final int statLevel = player.getInt(attribute);
-
-		switch (expression) {
-		case "eq":
-			return statLevel == targetLevel;
-		case "lt":
-			return statLevel < targetLevel;
-		case "gt":
-			return statLevel > targetLevel;
-		case "lteq":
-			return statLevel <= targetLevel;
-		case "gteq":
-			return statLevel >= targetLevel;
-		default:
-			return false;
-		}
+		int statLevel = player.getInt(attribute);
+		return comparisonOperator.compare(statLevel, targetLevel);
 	}
 
 	@Override
@@ -60,7 +49,7 @@ public class PlayerStatLevelCondition implements ChatCondition {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((attribute == null) ? 0 : attribute.hashCode());
-		result = prime * result + ((expression == null) ? 0 : expression.hashCode());
+		result = prime * result + ((comparisonOperator == null) ? 0 : comparisonOperator.hashCode());
 		result = prime * result + targetLevel;
 		return result;
 	}
@@ -84,11 +73,11 @@ public class PlayerStatLevelCondition implements ChatCondition {
 		} else if (!attribute.equals(other.attribute)) {
 			return false;
 		}
-		if (expression == null) {
-			if (other.expression != null) {
+		if (comparisonOperator == null) {
+			if (other.comparisonOperator != null) {
 				return false;
 			}
-		} else if (!expression.equals(other.expression)) {
+		} else if (!comparisonOperator.equals(other.comparisonOperator)) {
 			return false;
 		}
 		if (targetLevel != other.targetLevel) {
@@ -99,7 +88,7 @@ public class PlayerStatLevelCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return "PlayerStatLevelCondition [attribute=" + attribute + ", expression=" + expression + ", targetLevel="
+		return "PlayerStatLevelCondition [attribute=" + attribute + ", expression=" + comparisonOperator + ", targetLevel="
 				+ targetLevel + "]";
 	}
 
