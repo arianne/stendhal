@@ -248,7 +248,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				TRAIN_PHRASES,
 				new AndCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_OR_EQUALS, RATK_LIMIT),
+						new PlayerStatLevelCondition("ratk", ComparisonOperator.LESS_THAN, RATK_LIMIT),
 						new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.QUESTION_1,
 				null,
