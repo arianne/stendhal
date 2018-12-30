@@ -4,6 +4,7 @@
 	<group uri="zones/ados.xml"/>
 	<group uri="zones/amazon.xml"/>
 	<group uri="zones/athor.xml"/>
+	<group uri="zones/deniran.xml"/>
 	<group uri="zones/fado.xml"/>
 	<group uri="zones/kalavan.xml"/>
 	<group uri="zones/kikareukin.xml"/>
