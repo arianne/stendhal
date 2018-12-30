@@ -54,4 +54,54 @@ public class PlayerStatLevelCondition implements ChatCondition {
 			return false;
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((attribute == null) ? 0 : attribute.hashCode());
+		result = prime * result + ((expression == null) ? 0 : expression.hashCode());
+		result = prime * result + targetLevel;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		PlayerStatLevelCondition other = (PlayerStatLevelCondition) obj;
+		if (attribute == null) {
+			if (other.attribute != null) {
+				return false;
+			}
+		} else if (!attribute.equals(other.attribute)) {
+			return false;
+		}
+		if (expression == null) {
+			if (other.expression != null) {
+				return false;
+			}
+		} else if (!expression.equals(other.expression)) {
+			return false;
+		}
+		if (targetLevel != other.targetLevel) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerStatLevelCondition [attribute=" + attribute + ", expression=" + expression + ", targetLevel="
+				+ targetLevel + "]";
+	}
+
+
 }
