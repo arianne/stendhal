@@ -16,7 +16,7 @@
     file="Level 0/deniran/deniran_sw.tmx">         
   </zone>
   <zone name="0_deniran_coast_w" level="0" x="499104" y="500256"
-    file="Level 0/deniran/deniran_coast_w.tmx">         
+    file="Level 0/deniran/deniran_river_w.tmx">         
   </zone>
 
   <zone name="0_deniran_n" level="0" x="499232" y="499872"
@@ -29,7 +29,7 @@
     file="Level 0/deniran/deniran_s.tmx">         
   </zone>
   <zone name="0_deniran_coast_s" level="0" x="499232" y="500256"
-    file="Level 0/deniran/deniran_coast_s.tmx">         
+    file="Level 0/deniran/deniran_river_s.tmx">         
   </zone>
 
   <zone name="0_deniran_ne" level="0" x="499360" y="499872"
@@ -42,7 +42,7 @@
     file="Level 0/deniran/deniran_se.tmx">         
   </zone>
   <zone name="0_deniran_coast_e" level="0" x="499360" y="500256"
-    file="Level 0/deniran/deniran_coast_e.tmx">         
+    file="Level 0/deniran/deniran_river_e.tmx">         
   </zone>
 
   <zone name="0_deniran_wall_n" level="0" x="499488" y="499872"
@@ -55,7 +55,7 @@
     file="Level 0/deniran/deniran_wall_s.tmx">         
   </zone>
   <zone name="0_deniran_coast_e2" level="0" x="499488" y="500256"
-    file="Level 0/deniran/deniran_coast_e2.tmx">         
+    file="Level 0/deniran/deniran_river_e2.tmx">         
   </zone>
 
 </zones>
