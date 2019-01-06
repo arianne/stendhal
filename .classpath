@@ -15,7 +15,7 @@
 	<classpathentry kind="lib" path="libs/jorbis.jar"/>
 	<classpathentry kind="lib" path="libs/libtiled.jar"/>
 	<classpathentry kind="lib" path="libs/log4j.jar"/>
-	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.5-bin.jar"/>
+	<classpathentry kind="lib" path="libs/mysql-connector-java-8.0.13.jar"/>
 	<classpathentry kind="lib" path="libs/simple.jar"/>
 	<classpathentry kind="lib" path="libs/swing-layout.jar"/>
 	<classpathentry kind="lib" path="libs/json-simple-1.1.1.jar"/>
