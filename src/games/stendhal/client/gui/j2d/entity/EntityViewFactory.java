@@ -205,7 +205,6 @@ public class EntityViewFactory {
 
 		register("useable_entity", null, null, UseableEntity2DView.class);
 
-		register("flyover", null, null, FlyOverArea2DView.class);
 		register("wall", null, null, Wall2DView.class);
 		register("walkblocker", null, null, WalkBlocker2DView.class);
 		register("well_source", null, null, UseableEntity2DView.class);

@@ -26,7 +26,6 @@ import games.stendhal.client.StendhalClient.ZoneChangeListener;
 import games.stendhal.client.Zone;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.EntityChangeListener;
-import games.stendhal.client.entity.FlyOverArea;
 import games.stendhal.client.entity.HousePortal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
@@ -116,8 +115,6 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			object = new PortalMapObject(entity);
 		} else if (entity instanceof WalkBlocker) {
 			object = new WalkBlockerMapObject(entity);
-		} else if (entity instanceof FlyOverArea) {
-			object = new FlyOverAreaMapObject(entity);
 		} else if (entity instanceof Wall) {
 			object = new WallMapObject(entity);
 		} else if (entity instanceof DomesticAnimal) {
