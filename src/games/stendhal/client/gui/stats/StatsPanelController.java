@@ -64,10 +64,6 @@ public final class StatsPanelController {
 	private int defxp;
 	private int itemDef;
 
-	private int ratk;
-	private int ratkxp;
-	private int weaponRatk;
-
 	private int mana;
 	private int baseMana;
 
@@ -119,10 +115,6 @@ public final class StatsPanelController {
 		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 
-		listener = new RATKChangeListener();
-		addPropertyChangeListenerWithModifiedSupport(pcs, "ratk", listener);
-		pcs.addPropertyChangeListener("ratk_xp", listener);
-
 		listener = new XPChangeListener();
 		pcs.addPropertyChangeListener("xp", listener);
 
@@ -134,9 +126,6 @@ public final class StatsPanelController {
 
 		listener = new ArmorChangeListener();
 		pcs.addPropertyChangeListener("def_item", listener);
-
-		listener = new RangedWeaponChangeListener();
-		pcs.addPropertyChangeListener("ratk_item", listener);
 
 		listener = new MoneyChangeListener();
 		for (String slot : MONEY_SLOTS) {
@@ -233,21 +222,6 @@ public final class StatsPanelController {
 			@Override
 			public void run() {
 				panel.setDef(text);
-			}
-		});
-	}
-
-	/**
-	 * Called when ratk, ratkxp, or weaponRatk changes.
-	 */
-	private void updateRatk() {
-		// ratk uses 10 levels shifted starting point
-		final int next = Level.getXP(ratk - 9) - ratkxp;
-		final String text = "RATK:" + SPC + ratk + "×" + (1 + weaponRatk) + SPC + "(" + next + ")";
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				panel.setRatk(text);
 			}
 		});
 	}
@@ -390,25 +364,6 @@ public final class StatsPanelController {
 	}
 
 	/**
-	 * Listener for ratk and ratk_xp changes.
-	 */
-	private class RATKChangeListener implements PropertyChangeListener {
-		@Override
-		public void propertyChange(final PropertyChangeEvent event) {
-			if (event == null) {
-				return;
-			}
-
-			if ("ratk_xp".equals(event.getPropertyName())) {
-				ratkxp = Integer.parseInt((String) event.getNewValue());
-			} else if ("ratk".equals(event.getPropertyName())) {
-				ratk = Integer.parseInt((String) event.getNewValue());
-			}
-			updateRatk();
-		}
-	}
-
-	/**
 	 * Listener for xp changes.
 	 */
 	private class XPChangeListener implements PropertyChangeListener {
@@ -470,20 +425,6 @@ public final class StatsPanelController {
 			}
 			itemDef = Integer.parseInt((String) event.getNewValue());
 			updateDef();
-		}
-	}
-
-	/**
-	 * Listener for ranged weapon atk changes.
-	 */
-	private class RangedWeaponChangeListener implements PropertyChangeListener {
-		@Override
-		public void propertyChange(final PropertyChangeEvent event) {
-			if (event == null) {
-				return;
-			}
-			weaponRatk = Integer.parseInt((String) event.getNewValue());
-			updateRatk();
 		}
 	}
 

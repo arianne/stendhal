@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
@@ -45,7 +44,6 @@ import games.stendhal.server.entity.item.BreakableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.AttackEvent;
 import marauroa.common.game.RPObject;
@@ -274,8 +272,6 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		final boolean usesTrainingDummy = defender instanceof TrainingDummy;
-
 		defender.rememberAttacker(player);
 		if (defender instanceof Player) {
 			player.storeLastPVPActionTime();
@@ -315,17 +311,7 @@ public class StendhalRPAction {
 			weaponClass = attackWeapon.getWeaponType();
 		}
 
-		final boolean beaten;
-		if (usesTrainingDummy) {
-			// training dummies can always be hit
-			beaten = true;
-		} else {
-			// Throw dices to determine if the attacker has missed the defender
-			beaten = player.canHit(defender);
-		}
-
-		// For checking if RATK XP should be incremented on successful hit
-		boolean addRatkXP = isRanged;
+		final boolean beaten = player.canHit(defender);
 
 		/* TODO: Remove if alternate attack training method implemented in
 		 *       game.
@@ -338,13 +324,7 @@ public class StendhalRPAction {
 			// disabled attack xp for attacking NPC's
 			if (!(defender instanceof SpeakerNPC)
 					&& player.getsFightXpFrom(defender)) {
-				if (isRanged) {
-					player.incRatkXP();
-					// don't allow player to receive double experience from successful hits
-					addRatkXP = false;
-				} else {
 					player.incAtkXP();
-				}
 			}
 		}
 
@@ -354,22 +334,11 @@ public class StendhalRPAction {
 				defender.incDefXP();
 			}
 
-			// FIXME: some of this can be skipped when using a training dummy
 			final List<Item> weapons = player.getWeapons();
-			final float itemAtk;
-			if (isRanged) {
-				itemAtk = player.getItemRatk();
-			} else {
-				itemAtk = player.getItemAtk();
-			}
+			final float itemAtk = player.getItemAtk();
 
 			int damage = player.damageDone(defender, itemAtk, player.getDamageType());
-			if (!usesTrainingDummy && damage > 0) {
-
-				if (addRatkXP && !(defender instanceof SpeakerNPC)) {
-					// Range attack XP is incremented for successful hits regardless of whether player has recently been hit
-					player.incRatkXP();
-				}
+			if (damage > 0) {
 
 				// limit damage to target HP
 				damage = Math.min(damage, defender.getHP());
@@ -380,30 +349,12 @@ public class StendhalRPAction {
 						+ defender.getID() + ": Damage: " + damage);
 
 				result = true;
-				/* TODO: Remove condition for alternate attack training method
-				 *       when implemented in game.
-				 * TODO: Remove condition for ranged attack stat when
-				 *       implemented in game.
-				 */
-				if (Testing.COMBAT) {
-					/* Alternate ATK XP training method raises player's ATK or
-					 * RATK experience only when player has successfully hit
-					 * the target regardless of whether player has recently
-					 * taken damage.
-					 */
-					if (!(defender instanceof SpeakerNPC)) {
-						if (isRanged) {
-							player.incRatkXP();
-						} else {
-							player.incAtkXP();
-						}
-					}
-				}
 			} else {
 				// The attack was too weak, it was blocked
 				logger.debug("attack from " + player.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
+
 			//deteriorate weapons of attacker
 			for (Item weapon : weapons) {
 				weapon.deteriorate();
@@ -423,6 +374,7 @@ public class StendhalRPAction {
 					}
 				}
 			}
+
 			//randomly choose one defensive item to deteriorate
 			List<Item> defenseItems = defender.getDefenseItems();
 			if(!defenseItems.isEmpty()) {
