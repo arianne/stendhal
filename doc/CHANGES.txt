@@ -2,13 +2,22 @@ Changelog
 ---------
 1.29
 *web client*
+- implemented outfit selector
+- add a command menu
 - fixed handling of tileset files with an image width that is not an exact multiple of the tile width
+
+*server*
+- continue movement through portals
+- dedicated Archaeologist achievement
+- provided mysql database update script (mysql_charset_workaround.sql) which changes all tables to mysql specific charset "utf8wb4"
+  Important note: Using the standard conform charset "utf8" on >= MySQL 5.6 results in an item duplication bug
 
 *admin*
 - admin can teleport to coordinates despite map collisions
 
 *sound*
 - deleted sound files from sources which might have provided wrong license information
+
 
 
 1.28.1
