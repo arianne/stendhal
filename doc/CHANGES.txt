@@ -6,6 +6,10 @@ Changelog
 - add a command menu
 - fixed handling of tileset files with an image width that is not an exact multiple of the tile width
 
+*classic client*
+- stendhal-1.29.zip now contains a stendhal-starter.exe file to make it more convenient for MS Windows user
+  It will prompt the user to install Java, if it is missing. Then it invokes stendhal-starter.jar as usual
+  
 *server*
 - continue movement through portals
 - dedicated Archaeologist achievement
