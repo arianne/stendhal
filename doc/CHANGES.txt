@@ -1,6 +1,10 @@
 Changelog
 ---------
 1.29
+
+*world*
+- started to work on Deniran city 
+
 *web client*
 - implemented outfit selector
 - add a command menu
