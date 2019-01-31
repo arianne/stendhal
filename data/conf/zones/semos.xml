@@ -1537,7 +1537,6 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 
   <zone name="0_semos_village_w" level="0" x="500000" y="500000"
     file="Level 0/semos/village_w.tmx">
-    
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="file" condition="stendhal.christmas">Level 0/semos/village_w_xmas.tmx</parameter>
@@ -1549,9 +1548,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
       class-name="games.stendhal.server.maps.semos.village.RatsCreatures" />
     <configurator
       class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
-	<configurator
-      class-name="games.stendhal.server.maps.semos.village.FightTrainingNPC" />
-    
+
     <portal x="16" y="34" ref="guard_house_entrance">
       <destination zone="int_semos_guard_house" ref="entrance" />
       <attribute name="move.continuous" />
