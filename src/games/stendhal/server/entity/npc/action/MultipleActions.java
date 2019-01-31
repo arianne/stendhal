@@ -35,7 +35,7 @@ public class MultipleActions implements ChatAction {
 
 	/**
 	 * Creates a new MultipleActions.
-	 *
+	 *@@
 	 * @param action
 	 *            action to execute
 	 */
