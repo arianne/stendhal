@@ -27,6 +27,11 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<portal x="47" y="33" ref="deniran_tiny_house_entrance">
+			<destination zone="int_deniran_tiny_house" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -180,6 +185,18 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+
+	</zone>
+
+
+	<!-- interiors -->
+
+	<zone name="int_deniran_tiny_house" file="interiors/deniran/tiny_house.tmx">
+
+		<portal x="3" y="6" ref="entrance">
+			<destination zone="0_deniran_w" ref="deniran_tiny_house_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
