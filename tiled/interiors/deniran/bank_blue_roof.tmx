@@ -51,6 +51,9 @@
  <tileset firstgid="234" name="dark_blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_blue.png" width="96" height="96"/>
  </tileset>
+ <tileset firstgid="243" name="chests_banner" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/chests_banner.png" width="32" height="224"/>
+ </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC5NgYGCQGGDMRiQmVT0p5gURwKSqp7Z5o/aP2j/S7UfG9Laf2njU/sFlPzk4iAK9yPaTi4OoYAYAxxIgyQAIAAA=
@@ -63,7 +66,7 @@
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgQIAwhoED5UAcDsRtUH4uEOcBcT4QF5BgTikQVwJxLZRNCohAYhcCcREQFwNxCQlmlAFxHRA3QdmjgHzQMdAOGMEAlIeqGCD5aCAAKA/VM0DyEQyQmp+pDUbz8yiAAVkoLT9A9qtDaU0KzQEA6sIn5wAIAAA=
+   H4sIAAAAAAAAC2NgQIAwhoED5UAcDsRtUH4uEOcBcT4QF2BR/xON/xlKlwJxJRDXQtn41KKDCCR2IRAXAXExEJcQcDsyKAPiOiBugrJHAfmgY6AdMIIBKA9VMUDy0UAAUB6qZ4DkIxgoxaGWXmA0P48CGJCF0vIDZL86lNak0BwAsLywRwAIAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
