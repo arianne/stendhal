@@ -181,7 +181,7 @@ public abstract class UpdateConverter {
      */
     public static void updatePlayerRPObject(final RPObject object) {
     	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
-    			"legs", "feet", "finger", "cloak", "bank", "bank_ados",
+    			"legs", "feet", "finger", "cloak", "bank", "bank_ados", "bank_deniran",
     			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
     			"keyring", "trade" };
 
@@ -206,6 +206,7 @@ public abstract class UpdateConverter {
     	// Port from 0.44 to 0.50: cloak, bank
     	// Port from 0.57 to 0.58: bank_ados, bank_fado
     	// Port from 0.58 to ?: bank_nalwor, keyring, finger
+    	// Port from 1.29 to 1.30: bank_deniran
     	for (final String slotName : slotsNormal) {
     		if (!object.hasSlot(slotName)) {
     			object.addSlot(new PlayerSlot(slotName));

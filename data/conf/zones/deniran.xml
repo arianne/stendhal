@@ -76,6 +76,14 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<entity x="54" y="68">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Deniran Bank!</attribute>
+			<attribute name="width">1</attribute>
+			<attribute name="height">1</attribute>
+			<attribute name="class">transparent</attribute>
+		</entity>
+
 		<portal x="54" y="69" ref="deniran_bank_blue_roof_entrance">
 			<destination zone="int_deniran_bank_blue_roof" ref="entrance" />
 			<attribute name="move.continuous" />
@@ -212,6 +220,77 @@
 			<destination zone="0_deniran" ref="deniran_bank_blue_roof_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+
+		<entity x="14" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+				<parameter name="slot">bank_deniran</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="15" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a conveniently placed table.</attribute>
+		</entity>
+
+		<entity x="14" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+				<parameter name="width">2</parameter>
+				<parameter name="height">3</parameter>
+			</implementation>
+		</entity>
+
+
+		<entity x="17" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a conveniently placed table.</attribute>
+		</entity>
+
+		<entity x="18" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest" />
+		</entity>
+
+		<entity x="17" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+				<parameter name="width">2</parameter>
+				<parameter name="height">3</parameter>
+			</implementation>
+		</entity>
+
+
+		<entity x="25" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+				<parameter name="slot">bank_deniran</parameter>
+			</implementation>
+		</entity>
+
+		<entity x="26" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a conveniently placed table.</attribute>
+		</entity>
+
+		<entity x="25" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+				<parameter name="width">2</parameter>
+				<parameter name="height">3</parameter>
+			</implementation>
+		</entity>
+
+
+		<entity x="28" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a conveniently placed table.</attribute>
+		</entity>
+
+		<entity x="29" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest" />
+		</entity>
+
+		<entity x="28" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+				<parameter name="width">2</parameter>
+				<parameter name="height">3</parameter>
+			</implementation>
+		</entity>
 
 	</zone>
 </zones>
