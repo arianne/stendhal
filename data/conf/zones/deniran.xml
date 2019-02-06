@@ -76,6 +76,11 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<portal x="54" y="69" ref="deniran_bank_blue_roof_entrance">
+			<destination zone="int_deniran_bank_blue_roof" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -200,4 +205,13 @@
 
 	</zone>
 
+
+	<zone name="int_deniran_bank_blue_roof" file="interiors/deniran/bank_blue_roof.tmx">
+
+		<portal x="15" y="14" ref="entrance">
+			<destination zone="0_deniran" ref="deniran_bank_blue_roof_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
 </zones>
