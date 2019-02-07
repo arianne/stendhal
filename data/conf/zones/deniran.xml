@@ -89,6 +89,17 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+		<portal x="95" y="115" ref="deniran_castle_entrance_left">
+			<destination zone="int_deniran_castle" ref="entrance_left" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="96" y="115" ref="deniran_castle_entrance_right">
+			<destination zone="int_deniran_castle" ref="entrance_right" />
+			<attribute name="move.continuous" />
+		</portal>
+
+
 	</zone>
 
 
@@ -293,4 +304,20 @@
 		</entity>
 
 	</zone>
+
+
+	<zone name="int_deniran_castle" file="interiors/deniran/castle.tmx">
+
+		<portal x="15" y="22" ref="entrance_left">
+			<destination zone="0_deniran" ref="deniran_castle_entrance_left" />
+			<attribute name="move.continuous" />
+		</portal>
+
+		<portal x="16" y="22" ref="entrance_right">
+			<destination zone="0_deniran" ref="deniran_castle_entrance_right" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
 </zones>
