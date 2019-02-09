@@ -310,4 +310,25 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+  
+    <item name="deniran scroll">
+    <type class="scroll" subclass="deniran" tileid="-1"/>
+    <description>You see a deniran city scroll, it will take you back to deniran city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+    <infostring value="0_deniran 32 74"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 </items>
