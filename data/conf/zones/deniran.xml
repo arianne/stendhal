@@ -9,7 +9,7 @@
 	<!-- Ground level -->
 
 	<zone name="0_deniran_nw" level="0" x="499104" y="499872"
-		file="Level 0-1_lost_caves_nw.tmx">
+		file="Level 0/deniran/deniran_nw.tmx">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
