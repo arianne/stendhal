@@ -311,7 +311,7 @@
     </equipable>
   </item>
   
-    <item name="deniran scroll">
+    <item name="deniran city scroll">
     <type class="scroll" subclass="deniran" tileid="-1"/>
     <description>You see a deniran city scroll, it will take you back to deniran city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
