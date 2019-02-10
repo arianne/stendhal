@@ -906,6 +906,7 @@
       <item value="black boots" quantity="[1,1]" probability="0.25"/>
       <item value="black halberd" quantity="[1,1]" probability="0.01"/>
       <item value="diamond" quantity="[1,1]" probability="1.0"/>
+      <item value="deniran city scroll" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
