@@ -70,7 +70,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2WS27CMBCGPSdgwba7qGLbXYR6KvZ9naEcoUWt1McNigLlBuV1gy56BBbwWzBiYjwWEZOw6Ui/kkzG+RzHjv+Rc24U0djZRaEwvBbQJZX1g9zakL9KcP6gLpX1WwO/CmdVAz/2vBbt849Urp9DMyNNA36fDvkyMuQvjNWhQ47Gz5G/8vMDmkKz3XUVhW2vFb4fZ22tzXF/AS1F2wHOn3bXz7RVmNfayijc9rtYz7Vjg7l8/EI/h0pfLYM5If8buUkDfOaE/KYj5L+hT+/K+98gf1thbO5Qe6/UM6cK3zL++XH+B3KfDfCZw1z/D2zTeda/53pf4PeGptd/JvxHbG+oO/KE/yic7tdY4xPqOXgO9Mg9yHyL4n5NSu7nWaKOfV47GOMepX1RzK9JyW+WJ+rY54V8+f4+XnD/lfZ8a//H/GM4vCatQnse+5+YX7Tma5wNBgLuWQANAAA=
+   H4sIAAAAAAAAC+2WS07DMBCGPSfoolt2EeqWXVRxqu55nQGOABVIPG4ASktvQB/cgAVH6KL9rXbUieuxGjFxN4z0K8lknM9x7PgfOedGEY2dXVQKw2sBnVJdX8itDPnLBOcX6lNdPy3wm3CWLfBjz+vQLn9L9fo5NDPSNODf0T5fRoH8ibF6tM/R+CXyZ35+QFNotr1uorDtucL346yttTnuL6Bv0XaI8/vt9QNtFOa1tjIqt/ku1nPt0GAuH9/Rzw+lrzn4n2BPMvCZE/JzR8h/Rp9elPe/QP6ywdhcofZaqWdOE75l/PPj/Ffk3jLwmcNc/w/s0nHWv+d6X+D3htzrvxD+I7Y3tB1lwn9UTvdrrPEf6jl4DgzI3ch8h+J+TUru50Wijn1eNxjjAaV9UcyvSclvVibq2OeFfPn+Ph5x/4l2fGv/x/xDOLwmrUJ7HvufmF+05mucNU8qqp8ADQAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="26">
@@ -80,7 +80,7 @@
  </layer>
  <layer name="3_roof" width="32" height="26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWDAUxgpJ9dE+lo1yggDmwExskmOsQLLnu2A8V20MF+etlDTVACdG8pCW4uA6otJ9GPK4HqV+HQUwEUryTBvCqg2moc6vHZMwoGDozm/1EwUCCPkaFhAOwcBaNgwAEA2x84kQANAAA=
+   H4sIAAAAAAAAC2NgGAWDAUxgpJ9dE+lo1yggDmwExskmOsQLLnu2A8V20MF+etmDC+wF2r2PRPtLgOpLSdBTBlRbTqIdK4HqV+HQUwEUryTBvCqg2moc6vHZMwoGDozmf/oAcvL/cAd5jAwNA2DnKBgFAw4Akjd8VwANAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="26">
@@ -93,9 +93,9 @@
    H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAAfBiM/sTxAA0AAA==
   </data>
  </layer>
- <layer name="collision" width="32" height="26" visible="0" opacity="0.45">
+ <layer name="collision" width="32" height="26" opacity="0.45">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+WVUQoAIQhE9f6X7nc/HFN2NEFBCBOfTUYqIgqcZaj+zbfwUT6b78XViLP9Wz/SVxU/qksXH9010s7SD+VFajNnLWrT+F19vOL+6SPbY2bupui/nd9t0/ib9ff2IrPK/v86+JPO760ZluVU8q149ZvwGAeDaKhgAA0AAA==
+   H4sIAAAAAAAAC+2V2woAIAhD7f9/uteQjDSbgxIGwaLjDWoi0r5KpQPNEeXf5o9Mlvor+TPP8vXMrF563rbu3Aw2PiqPKu5JHt4cPXvH0v/X+ehg47/c/5W3s6vZ/x+Cz1S/dc7WihmpP8JHcDzq1oY4VAANAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="26">

@@ -84,9 +84,9 @@
    H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBSAMAnrro8QAIAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="16" visible="0" opacity="0.39">
+ <layer name="collision" width="32" height="16" opacity="0.39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NkYGBgHMUYgBj1+PikqiUEcKnHxSYkP9jtpzS8CAFq+X84209JeqHUfmrEPyX5H5d51ALUDk9K7aenGyiNB1raT2qaoZZZA4UBZpIFpgAIAAA=
+   H4sIAAAAAAAAC2NkYGBgHMVgjAyIUYuPT6paQgCXelxsQvKD3X5Kw4sQoJb/h7P9lKQXSu2nRvyTm/fxmUctQO3wpNR+erqB0nigpf2kphlqmTVQGACCr8aZAAgAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="16">
