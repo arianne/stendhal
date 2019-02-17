@@ -64,6 +64,10 @@ public class CreatureTest {
 		assertSame(onebyone, sevenbyseven.getNearestEnemy(6));
 		assertSame(onebyone, sevenbyseven.getNearestEnemy(5));
 		assertNull(sevenbyseven.getNearestEnemy(4));
+
+		// Test branch with ID: 2
+		enemies.add(sevenbyseven);
+		assertSame(onebyone, sevenbyseven.getNearestEnemy(5));
 	}
 
 
