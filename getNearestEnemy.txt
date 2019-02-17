@@ -1,8 +1,9 @@
-Coverage: 0,778 %
+Coverage: 0,889 %
 Branches: 9
-Reached: 7
+Reached: 8
 #
 1
+2
 3
 4
 5
