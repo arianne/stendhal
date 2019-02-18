@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.SocketException;
 
 import games.stendhal.bot.core.StandardClientFramework;
+import games.stendhal.tools.AdHocCoverage;
 import marauroa.common.game.RPAction;
 
 /**
@@ -75,8 +76,12 @@ public class ShouterMain extends StandardClientFramework {
 	 *            see help
 	 */
 	public static void main(final String[] args) {
+		AdHocCoverage coverage = new AdHocCoverage("ShouterMain-main", 11);
+
 		try {
+			coverage.branchReached(0);
 			if (args.length > 0) {
+				coverage.branchReached(1);
 				int i = 0;
 				String username = null;
 				String password = null;
@@ -85,15 +90,21 @@ public class ShouterMain extends StandardClientFramework {
 				String port = null;
 
 				while (i != args.length) {
+					coverage.branchReached(2);
 					if (args[i].equals("-u")) {
+						coverage.branchReached(3);
 						username = args[i + 1];
 					} else if (args[i].equals("-p")) {
+						coverage.branchReached(4);
 						password = args[i + 1];
 					} else if (args[i].equals("-c")) {
+						coverage.branchReached(5);
 						character = args[i + 1];
 					} else if (args[i].equals("-h")) {
+						coverage.branchReached(6);
 						host = args[i + 1];
 					} else if (args[i].equals("-P")) {
+						coverage.branchReached(7);
 						port = args[i + 1];
 					}
 					i++;
@@ -102,6 +113,7 @@ public class ShouterMain extends StandardClientFramework {
 				if ((username != null) && (password != null)
 						&& (character != null) && (host != null)
 						&& (port != null)) {
+					coverage.branchReached(8);
 					final ShouterMain shouter = new ShouterMain(host, username,
 							password, character, port);
 					shouter.script();
@@ -116,6 +128,7 @@ public class ShouterMain extends StandardClientFramework {
 			System.out.println("Required parameters");
 			StandardClientFramework.printConnectionParameters();
 		} catch (final Exception e) {
+			coverage.branchReached(10);
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}
