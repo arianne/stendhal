@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import games.stendhal.tools.AdHocCoverage;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
@@ -35,6 +36,8 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	private final int min;
 	private final int max;
 	private final int increment;
+
+	private AdHocCoverage coverage = new AdHocCoverage("EquipRandomAmountOfItemAction-equals", 7);
 
 
 	/**
@@ -117,23 +120,30 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
+			coverage.branchReached(0);
 			return true;
 		}
 		if (obj == null) {
+			coverage.branchReached(1);
 			return false;
 		}
 		if (getClass() != obj.getClass()) {
+			coverage.branchReached(2);
 			return false;
 		}
 		final EquipRandomAmountOfItemAction other = (EquipRandomAmountOfItemAction) obj;
 		if (item == null) {
+			coverage.branchReached(3);
 			if (other.item != null) {
+				coverage.branchReached(4);
 				return false;
 			}
 		} else if (!item.equals(other.item)) {
+			coverage.branchReached(5);
 			return false;
 		}
 		if ((min != other.min) || (max != other.max) || (increment != other.increment)){
+			coverage.branchReached(6);
 			return false;
 		}
 		return true;
