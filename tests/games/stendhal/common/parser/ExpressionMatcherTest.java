@@ -120,6 +120,12 @@ public class ExpressionMatcherTest {
 		assertTrue(matcher.match(e1, e4));
 		assertFalse(matcher.match(e1, e5));
 		assertFalse(matcher.match(e4, e5));
+
+		// Test branch with ID: 10
+		final Expression joker = new Expression("*", "VER");
+		matcher.setExactMatching(false);
+		assertTrue(matcher.match(e1, joker));
+		matcher.clear();
 	}
 
 	/**
@@ -142,6 +148,7 @@ public class ExpressionMatcherTest {
 		assertFalse(matcher.match(abcVER, X));
 		assertFalse(matcher.match(abcSUB, X));
 		assertFalse(matcher.match(abcVER, aBc));
+
 	}
 
 	/**
