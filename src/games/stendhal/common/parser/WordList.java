@@ -25,6 +25,7 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import games.stendhal.tools.statistics.AdHocCoverage;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.grammar.Grammar;
@@ -87,31 +88,31 @@ final public class WordList {
 
 		final InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 
-        if (str != null) {
-    		try {
-    			final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
+		if (str != null) {
+			try {
+				final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
 
-    			try {
-    				read(reader, null);
-    			} catch (final IOException e) {
-    				logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
-    			} finally {
-    				try {
-    					reader.close();
-    				} catch (IOException e) {
-    					logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
-    				}
-    			}
+				try {
+					read(reader, null);
+				} catch (final IOException e) {
+					logger.error("error while reading resource file '"+WORDS_FILENAME+"'", e);
+				} finally {
+					try {
+						reader.close();
+					} catch (IOException e) {
+						logger.error("error while closing reader stream for '"+WORDS_FILENAME+"'", e);
+					}
+				}
 			} finally {
-    			try {
-    				str.close();
-    			} catch (IOException e) {
-    				logger.warn("exception on closing resource stream", e);
-    			}
-    		}
-        } else {
-            logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");
-        }
+				try {
+					str.close();
+				} catch (IOException e) {
+					logger.warn("exception on closing resource stream", e);
+				}
+			}
+		} else {
+			logger.error("unable to locate resource file '"+WORDS_FILENAME+"'");
+		}
 	}
 
 	/**
@@ -172,7 +173,7 @@ final public class WordList {
 	 * @param entry
 	 */
 	private void readEntryLine(final String key, final StringTokenizer tk,
-			final WordEntry entry) {
+							   final WordEntry entry) {
 		if (tk.hasMoreTokens()) {
 			entry.setType(new ExpressionType(tk.nextToken()));
 
@@ -217,7 +218,7 @@ final public class WordList {
 			} else if (entry.getPlurSing() != null) {
 				// check plural strings using the Grammar.plural() function
 				if (!entry.isPronoun() && !entry.isObsessional() &&
-					!normalized.equals("is")) {
+						!normalized.equals("is")) {
 					String plural = Grammar.plural(key);
 
 					if ((plural.indexOf(' ') == -1)
@@ -561,9 +562,9 @@ final public class WordList {
 					// ignore suspicious NPC names for now
 				} else {
 					logger.warn("last word of name '" + name
-						+ "' has an unexpected type: "
-						+ lastExpr.getNormalizedWithTypeString()
-						+ " expected type: " + typeString);
+							+ "' has an unexpected type: "
+							+ lastExpr.getNormalizedWithTypeString()
+							+ " expected type: " + typeString);
 				}
 			}
 		}
@@ -591,18 +592,18 @@ final public class WordList {
 	 * @return compound name or null
 	 */
 	public CompoundName searchCompoundName(AbstractList<Expression> expressions, int idx) {
-        Expression first = expressions.get(idx);
+		Expression first = expressions.get(idx);
 
-    	Set<CompoundName> candidates = compoundNames.get(first.getOriginal().toLowerCase());
+		Set<CompoundName> candidates = compoundNames.get(first.getOriginal().toLowerCase());
 
 		if (candidates != null) {
-	    	TreeSet<CompoundName> candidatesSortedFromLongestToShortest = new TreeSet<CompoundName>(new ArrayLengthDescSorter<CompoundName>());
-	    	candidatesSortedFromLongestToShortest.addAll(candidates);
-    		for (CompoundName compName : candidatesSortedFromLongestToShortest) {
-    			if (compName.matches(expressions, idx)) {
-    				return compName;
-    			}
-    		}
+			TreeSet<CompoundName> candidatesSortedFromLongestToShortest = new TreeSet<CompoundName>(new ArrayLengthDescSorter<CompoundName>());
+			candidatesSortedFromLongestToShortest.addAll(candidates);
+			for (CompoundName compName : candidatesSortedFromLongestToShortest) {
+				if (compName.matches(expressions, idx)) {
+					return compName;
+				}
+			}
 		}
 
 		return null;
@@ -647,6 +648,20 @@ final public class WordList {
 		}
 	}
 
+	/*
+	 *	Public access method for `isNameCompatibleLastType`
+	 *
+	 * @param lastExpr last word in an expression
+	 * @param typeString expected type string
+	 * @return <code>true</code> if the expression is of compatible type,
+	 * 	otherwise <code>false</code>
+	 */
+	public static boolean accessIsNameCompatibleLastType(
+			final Expression lastExpr, final String typeString) {
+
+		return isNameCompatibleLastType(lastExpr, typeString);
+	}
+
 	/**
 	 * Check for compatible types.
 	 *
@@ -657,43 +672,73 @@ final public class WordList {
 	 */
 	private static boolean isNameCompatibleLastType(
 			final Expression lastExpr, final String typeString) {
+
+		// COVERAGE
+		AdHocCoverage ahc = new AdHocCoverage("isNameCompatibleLastType", 14);
+
 		final ExpressionType lastType = lastExpr.getType();
 
-		if (lastType.getTypeString().startsWith(typeString)) {
+		if (lastType.getTypeString().startsWith(typeString)) { // ID: 0
+			ahc.branchReached(0);
 			return true;
 		}
 
-		if (typeString.startsWith(lastType.getTypeString())) {
+		if (typeString.startsWith(lastType.getTypeString())) { // ID: 1
+			ahc.branchReached(1);
 			return true;
 		}
 
-		if (lastType.isNumeral()) {
+		if (lastType.isNumeral()) { // ID: 2
+			ahc.branchReached(2);
 			return true;
 		}
 
-		if (lastType.isDynamic()) {
+		if (lastType.isDynamic()) { // ID: 3
+			ahc.branchReached(3);
 			return true;
 		}
 
 		// Ignore words like "chicken", "cat" and "incorporeal armor", which are
 		// registered as objects, but also used as subjects.
-		if (lastType.isObject() && typeString.startsWith(ExpressionType.SUBJECT)) {
+		if (lastType.isObject() && typeString.startsWith(ExpressionType.SUBJECT)) { // ID: 4,5
+			ahc.branchReached(4);
 			return true;
 		}
-		if (lastType.isSubject() && typeString.startsWith(ExpressionType.OBJECT)) {
+		// EXTRA_COVERAGE
+		else {
+			ahc.branchReached(5);
+		}
+		if (lastType.isSubject() && typeString.startsWith(ExpressionType.OBJECT)) { // ID: 6,7
+			ahc.branchReached(6);
 			return true;
+		}
+		// EXTRA COVERAGE
+		else {
+			ahc.branchReached(7);
 		}
 
 		// handle ambiguous cases like "mill"
-		if (Grammar.isAmbiguousNounVerb(lastExpr.getNormalized())) {
-			if (lastType.isVerb() && typeString.equals(ExpressionType.OBJECT)) {
+		if (Grammar.isAmbiguousNounVerb(lastExpr.getNormalized())) { // ID: 8
+			ahc.branchReached(8);
+			if (lastType.isVerb() && typeString.equals(ExpressionType.OBJECT)) { // ID: 9,10
+				ahc.branchReached(9);
 				return true;
 			}
-			if (lastType.isObject() && typeString.equals(ExpressionType.VERB)) {
+			// EXTRA COVERAGE
+			else {
+				ahc.branchReached(10);
+			}
+			if (lastType.isObject() && typeString.equals(ExpressionType.VERB)) { // ID: 11,12
+				ahc.branchReached(11);
 				return true;
+			}
+			// EXTRA COVERAGE
+			else {
+				ahc.branchReached(12);
 			}
 		}
-
+		// ID: 13
+		ahc.branchReached(13);
 		return false;
 	}
 
