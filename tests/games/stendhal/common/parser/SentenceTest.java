@@ -19,6 +19,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashSet;
 import java.util.Set;
 
+import games.stendhal.common.grammar.Grammar;
 import org.junit.Test;
 
 /**
@@ -344,6 +345,52 @@ public class SentenceTest {
 		assertEquals(1, found.getAmount());
 		assertEquals("horse", found.getName());
 	}
+
+
+	/**
+	 * Test for NameSearch
+	 * Testing a branch when a missing word is different from it's singular
+	 *
+	 */
+	@Test
+	public final void testNameSearch() {
+		// Add a set that does not contain the word
+		Set<String> names = new HashSet<String>();
+		names.add("pestle");
+		names.add("mortar");
+		names.add("cow");
+		names.add("horse");
+		NameSearch nameSearch = new NameSearch(names);
+
+		// `staffs` should be turned into `staff` and reach otherwise unreached branches
+		Expression expression = new Expression("staffs", "staffs");
+
+
+		assertEquals(false ,nameSearch.search(expression));
+
+		// TEST: We dont find it and the singular don't match
+
+
+		// TEST: special case to handle misspelled "double" plurals
+
+
+		// TEST: now check for end matches with the "double singular"
+	}
+
+	/*
+	 *	WordList.isNameCompatibleLastType test
+	 *
+	 */
+	@Test
+	public final void testIsNameCompatibleLastType() {
+		Expression lastExp = new Expression("mill", "mill");
+		String typeString = "markmill";
+
+		System.err.println(Grammar.isAmbiguousNounVerb(lastExp.getNormalized()));
+
+		assertEquals(false, WordList.accessIsNameCompatibleLastType(lastExp, typeString));
+	}
+
 
 	/**
 	 * Test for findMatchingName() with plurals.
