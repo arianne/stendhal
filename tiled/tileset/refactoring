@@ -273,8 +273,8 @@ del*/building/house_light_grey.png 0
 /building/house_light_tan.png 1
 del*/building/house_olive_green.png 0
 del*/building/house_orange_red.png 0
-/building/house_pink_blue.png 4
-/building/house_redbrick_greenroof.png 1
+/building/house_pink_blue.png 5
+del*/building/house_redbrick_greenroof.png 0
 /building/house_stone.png 2
 del*/building/red_brick_green_roof.png 0
 /building/stone_tower.png 1
