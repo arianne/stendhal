@@ -48,9 +48,12 @@
  <tileset firstgid="479" name="pebbles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
  </tileset>
+ <tileset firstgid="482" name="floor_sparkle" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/floor_sparkle.png" width="96" height="192"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
