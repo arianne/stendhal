@@ -955,6 +955,176 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
+  <creature name="blordrough soldier">
+    <type class="human" subclass="armored_soldier" tileid="human_armored.png:4"/>
+    <description>You see a man who is fast and strong.</description>
+    <attributes>
+      <atk value="921"/>
+      <def value="98"/>
+      <hp value="2618"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="170"/>
+    <experience value="49900"/>
+    <respawn value="14000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[100,300]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="fish pie" quantity="[1,2]" probability="20.0"/>
+      <item value="chaos shield" quantity="[1,1]" probability="0.5"/>
+      <item value="black legs" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Argh, I'm stronger than you."/>
+        <noise state="idle follow fight" value="I will take you down."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="blordrough elite">
+    <type class="human" subclass="armored_elite" tileid="human_armored.png:5"/>
+    <description>You see a man who is aging, but he knows how to fight.</description>
+    <attributes>
+      <atk value="921"/>
+      <def value="112"/>
+      <hp value="2618"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="170"/>
+    <experience value="52300"/>
+    <respawn value="16000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[100,300]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="fish pie" quantity="[1,2]" probability="20.0"/>
+      <item value="black boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos legs" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You are messing with the wrong man."/>
+        <noise state="idle follow fight" value="losing is for losers."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="blordrough infantry">
+    <type class="human" subclass="armored_infantry" tileid="human_armored.png:6"/>
+    <description>You see a man who has flaming red hair and red beady eyes.</description>
+    <attributes>
+      <atk value="693"/>
+      <def value="105"/>
+      <hp value="3318"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="190"/>
+    <experience value="47300"/>
+    <respawn value="17000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[100,500]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="fish pie" quantity="[1,2]" probability="20.0"/>
+      <item value="black boots" quantity="[1,1]" probability="0.5"/>
+      <item value="black legs" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You just opened a can of worms."/>
+        <noise state="idle follow fight" value="Now its time to go fishing."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="blordrough captain">
+    <type class="human" subclass="armored_infantry" tileid="human_armored.png:7"/>
+    <description>You see a seasoned warrior.</description>
+    <attributes>
+      <atk value="713"/>
+      <def value="141"/>
+      <hp value="3640"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="200"/>
+    <experience value="52600"/>
+    <respawn value="18000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[100,500]" probability="100.0"/>
+      <item value="greater potion" quantity="[2,4]" probability="30.0"/>
+      <item value="fish pie" quantity="[1,2]" probability="20.0"/>
+      <item value="black boots" quantity="[1,1]" probability="0.5"/>
+      <item value="black legs" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You will leave this place."/>
+        <noise state="idle follow fight" value="This is my domain."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="blordrough general">
+    <type class="human" subclass="armored_infantry" tileid="human_armored.png:8"/>
+    <description>You see a lean, mean, fighting machine.</description>
+    <attributes>
+      <atk value="727"/>
+      <def value="106"/>
+      <hp value="4333"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="210"/>
+    <experience value="57000"/>
+    <respawn value="19000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[200,2000]" probability="100.0"/>
+      <item value="mega potion" quantity="[1,2]" probability="30.0"/>
+      <item value="fish pie" quantity="[1,2]" probability="20.0"/>
+      <item value="black boots" quantity="[1,1]" probability="0.5"/>
+      <item value="black shield" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="I know all the fighting tricks."/>
+        <noise state="idle follow fight" value="You are messing with the wrong warrior."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
 
   <!-- END: blordrough -->
 
