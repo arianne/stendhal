@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="stendhal ../creatures.xsd ">
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <!-- START: amazon -->
 
@@ -386,7 +385,7 @@
     <level value="45"/>
     <experience value="1400"/>
     <respawn value="1600"/>
-    <corpse name="humanoid" harmless="cloaked_black" />
+    <corpse name="humanoid" harmless="cloaked_black"/>
     <drops>
       <item value="money" quantity="[20,50]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="15.5"/>
@@ -412,7 +411,7 @@
 
   <creature name="hunter">
     <type class="human" subclass="hunter" tileid="human_evil.png:2"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="371"/>
       <def value="60"/>
@@ -625,7 +624,7 @@
 
   <creature name="barbarian">
     <type class="human" subclass="barbarian" tileid="human_barbarian.png:3"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="350"/>
       <def value="57"/>
@@ -655,7 +654,7 @@
 
   <creature name="barbarian wolf">
     <type class="human" subclass="barbarian_wolf" tileid="human_barbarian.png:5"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="365"/>
       <def value="62"/>
@@ -686,7 +685,7 @@
 
   <creature name="barbarian elite">
     <type class="human" subclass="barbarian_elite" tileid="human_barbarian.png:1"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="413"/>
       <def value="67"/>
@@ -719,7 +718,7 @@
 
   <creature name="barbarian priest">
     <type class="human" subclass="barbarian_priest" tileid="human_barbarian.png:4"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="425"/>
       <def value="68"/>
@@ -751,7 +750,7 @@
 
   <creature name="barbarian chaman">
     <type class="human" subclass="barbarian_chaman" tileid="human_barbarian.png:0"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="449"/>
       <def value="67"/>
@@ -782,7 +781,7 @@
 
   <creature name="barbarian leader">
     <type class="human" subclass="barbarian_leader" tileid="human_barbarian.png:2"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="492"/>
       <def value="75"/>
@@ -817,7 +816,7 @@
 
   <creature name="barbarian king">
     <type class="human" subclass="barbarian_king" tileid="human_barbarian.png:6"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="531"/>
       <def value="79"/>
@@ -852,7 +851,7 @@
   <!-- START: blordrough -->
 
   <creature name="blordrough quartermaster">
-    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"></type>
+    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
     <description>You see a man who gave up his life as a puppet of the Blordrough army, all for the love of dragons. He is wonderfully happy.</description>
     <attributes>
       <atk value="727"/>
@@ -1000,7 +999,7 @@
       <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
-    <level value="170"/>
+    <level value="175"/>
     <experience value="52300"/>
     <respawn value="16000"/>
     <corpse name="humanoid"/>
@@ -1197,7 +1196,7 @@
 
   <creature name="elder cannibal">
     <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="315"/>
       <def value="111"/>
@@ -1642,7 +1641,7 @@
 
   <creature name="imperial defender">
     <type class="human" subclass="imperial_defender" tileid="human_imperial.png:5"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="325"/>
       <def value="36"/>
@@ -1702,7 +1701,7 @@
 
   <creature name="imperial archer">
     <type class="human" subclass="imperial_archer" tileid="human_imperial.png:2"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="331"/>
       <def value="77"/>
@@ -1745,7 +1744,7 @@
     <level value="42"/>
     <experience value="1100"/>
     <respawn value="1620"/>
-    <corpse name="humanoid" harmless="cloaked_blue" />
+    <corpse name="humanoid" harmless="cloaked_blue"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
@@ -1811,7 +1810,7 @@
     <level value="50"/>
     <experience value="1750"/>
     <respawn value="1660"/>
-    <corpse name="humanoid" harmless="cloaked_white" />
+    <corpse name="humanoid" harmless="cloaked_white"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[2,4]" probability="8.0"/>
@@ -1843,7 +1842,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1920"/>
-    <corpse name="humanoid" harmless="cloaked_blue" />
+    <corpse name="humanoid" harmless="cloaked_blue"/>
     <drops>
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="10.0"/>
@@ -1868,7 +1867,7 @@
 
   <creature name="imperial archer leader">
     <type class="human" subclass="imperial_archer_leader" tileid="human_imperial.png:1"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="440"/>
       <def value="69"/>
@@ -1900,7 +1899,7 @@
 
   <creature name="imperial elite archer">
     <type class="human" subclass="imperial_elite_archer" tileid="human_imperial.png:6"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="461"/>
       <def value="62"/>
@@ -1963,7 +1962,7 @@
 
    <creature name="imperial knight">
     <type class="human" subclass="imperial_knight" tileid="human_imperial.png:10"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="536"/>
       <def value="88"/>
@@ -1994,7 +1993,7 @@
 
   <creature name="imperial chief">
     <type class="human" subclass="imperial_chief" tileid="human_imperial.png:3"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="533"/>
       <def value="82"/>
@@ -2025,7 +2024,7 @@
 
   <creature name="imperial commander">
     <type class="human" subclass="imperial_commander" tileid="human_imperial.png:4"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="567"/>
       <def value="122"/>
@@ -2260,7 +2259,7 @@
 
   <creature name="madaram archer">
     <type class="madaram" subclass="madaram_archer" tileid="madaram.png:1"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="332"/>
       <def value="76"/>
@@ -2292,7 +2291,7 @@
 
   <creature name="madaram peasant">
     <type class="madaram" subclass="madaram_peasant" tileid="madaram.png:7"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="357"/>
       <def value="52"/>
@@ -2321,7 +2320,7 @@
 
   <creature name="madaram trooper">
     <type class="madaram" subclass="madaram_trooper" tileid="madaram.png:11"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="370"/>
       <def value="55"/>
@@ -2350,7 +2349,7 @@
 
   <creature name="madaram soldier">
     <type class="madaram" subclass="madaram_soldier" tileid="madaram.png:9"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="400"/>
       <def value="64"/>
@@ -2379,7 +2378,7 @@
 
   <creature name="madaram healer">
     <type class="madaram" subclass="madaram_healer" tileid="madaram.png:5"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="425"/>
       <def value="64"/>
@@ -2409,7 +2408,7 @@
 
   <creature name="madaram axeman">
     <type class="madaram" subclass="madaram_axeman" tileid="madaram.png:2"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="438"/>
       <def value="73"/>
@@ -2438,7 +2437,7 @@
 
   <creature name="madaram queen">
     <type class="madaram" subclass="madaram_queen" tileid="madaram.png:8"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="440"/>
       <def value="64"/>
@@ -2469,7 +2468,7 @@
 
   <creature name="madaram hero">
     <type class="madaram" subclass="madaram_hero" tileid="madaram.png:6"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="453"/>
       <def value="65"/>
@@ -2498,7 +2497,7 @@
 
   <creature name="madaram windwalker">
     <type class="madaram" subclass="madaram_windwalker" tileid="madaram.png:12"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="460"/>
       <def value="67"/>
@@ -2527,7 +2526,7 @@
 
   <creature name="madaram cavalry">
     <type class="madaram" subclass="madaram_cavalry" tileid="madaram.png:4"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="469"/>
       <def value="66"/>
@@ -2558,7 +2557,7 @@
 
   <creature name="madaram stalker">
     <type class="madaram" subclass="madaram_stalker" tileid="madaram.png:10"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="497"/>
       <def value="67"/>
@@ -2587,7 +2586,7 @@
 
   <creature name="madaram buster blader">
     <type class="madaram" subclass="madaram_buster_blader" tileid="madaram.png:3"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="497"/>
       <def value="73"/>
@@ -2623,7 +2622,7 @@
 
   <creature name="madaram pawn">
     <type class="madaram" subclass="madaram_peasant" tileid="chess.png:6"/>
-    <hidden />
+    <hidden/>
     <description>You see a pawn for a game of chess. It will reward nothing if killed.</description>
     <attributes>
       <atk value="100"/>
@@ -2777,7 +2776,7 @@
 
   <creature name="mithrilbourgh soldier">
     <type class="human" subclass="soldier_common" tileid="human_soldier.png:2"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="490"/>
       <def value="78"/>
@@ -2806,7 +2805,7 @@
 
   <creature name="mithrilbourgh archer">
     <type class="human" subclass="soldier_archer" tileid="human_soldier.png:0"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="487"/>
       <def value="76"/>
@@ -2838,7 +2837,7 @@
 
   <creature name="mithrilbourgh knight">
     <type class="human" subclass="soldier_knight" tileid="human_soldier.png:5"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="523"/>
       <def value="78"/>
@@ -2869,7 +2868,7 @@
 
   <creature name="mithrilbourgh elite archer">
     <type class="human" subclass="soldier_elite_archer" tileid="human_soldier.png:3"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="500"/>
       <def value="73"/>
@@ -2902,7 +2901,7 @@
 
   <creature name="mithrilbourgh sergeant">
     <type class="human" subclass="soldier_sergeant" tileid="human_soldier.png:7"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="547"/>
       <def value="80"/>
@@ -2932,7 +2931,7 @@
 
   <creature name="mithrilbourgh lieutenant">
     <type class="human" subclass="soldier_lieutenant" tileid="human_soldier.png:6"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="577"/>
       <def value="80"/>
@@ -2962,7 +2961,7 @@
 
   <creature name="mithrilbourgh colonel">
     <type class="human" subclass="soldier_colonel" tileid="human_soldier.png:1"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="610"/>
       <def value="82"/>
@@ -2992,7 +2991,7 @@
 
   <creature name="mithrilbourgh wizard">
     <type class="human" subclass="soldier_wizard" tileid="human_soldier.png:8"/>
-    <description></description>
+    <description/>
     <attributes>
       <atk value="634"/>
       <def value="80"/>
@@ -3071,7 +3070,7 @@
     <level value="27"/>
     <experience value="460"/>
     <respawn value="1320"/>
-    <corpse name="humanoid" harmless="cloaked_brown" />
+    <corpse name="humanoid" harmless="cloaked_brown"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="80.0"/>
       <item value="potion" quantity="[1,1]" probability="50.0"/>
@@ -3113,7 +3112,7 @@
     <level value="39"/>
     <experience value="980"/>
     <respawn value="1500"/>
-    <corpse name="humanoid" harmless="cloaked_black" />
+    <corpse name="humanoid" harmless="cloaked_black"/>
     <drops>
       <item value="money" quantity="[5,20]" probability="100.0"/>
       <item value="greater potion" quantity="[1,1]" probability="10.0"/>
@@ -3151,7 +3150,7 @@
     <level value="205"/>
     <experience value="86000"/>
     <respawn value="26000"/>
-    <corpse name="humanoid_2x2" harmless="cloaked_red_2x2" width="2" height="2" />
+    <corpse name="humanoid_2x2" harmless="cloaked_red_2x2" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[100,600]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="20.0"/>
