@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../zones.xsd ">
@@ -15,7 +15,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 	
 
@@ -264,6 +264,7 @@
 		file="Level -1/deniran/lost_caves_nw2.tmx">
 
 	</zone>
+	
 
 	<zone name="-1_deniran_lost_caves_nw" level="-1" x="499104" y="499872"
 		file="Level -1/deniran/lost_caves_nw.tmx">
