@@ -959,8 +959,8 @@
     <type class="human" subclass="armored_soldier" tileid="human_armored.png:4"/>
     <description>You see a man who is fast and strong.</description>
     <attributes>
-      <atk value="921"/>
-      <def value="98"/>
+      <atk value="670"/>
+      <def value="102"/>
       <hp value="2618"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -993,7 +993,7 @@
     <type class="human" subclass="armored_elite" tileid="human_armored.png:5"/>
     <description>You see a man who is aging, but he knows how to fight.</description>
     <attributes>
-      <atk value="921"/>
+      <atk value="665"/>
       <def value="112"/>
       <hp value="2618"/>
       <speed value="1.0"/>
@@ -1058,11 +1058,11 @@
   </creature>
   
   <creature name="blordrough captain">
-    <type class="human" subclass="armored_infantry" tileid="human_armored.png:7"/>
+    <type class="human" subclass="armored_captain" tileid="human_armored.png:7"/>
     <description>You see a seasoned warrior.</description>
     <attributes>
-      <atk value="713"/>
-      <def value="141"/>
+      <atk value="685"/>
+      <def value="115"/>
       <hp value="3640"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -1092,7 +1092,7 @@
   </creature>
   
   <creature name="blordrough general">
-    <type class="human" subclass="armored_infantry" tileid="human_armored.png:8"/>
+    <type class="human" subclass="armored_general" tileid="human_armored.png:8"/>
     <description>You see a lean, mean, fighting machine.</description>
     <attributes>
       <atk value="727"/>
