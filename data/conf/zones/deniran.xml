@@ -15,6 +15,20 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+		
+		<portal x="15" y="10" ref="lost_caves_entrance">
+      <destination zone="-1_deniran_lost_caves_nw2" ref="entrance" />
+      <attribute name="move.continuous" />
+    </portal>
+
+    <portal x="15" y="10" ref="deniran_n_w2_entrance">
+      <destination zone="0_deniran_deniran_n_w2" ref="entrance" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+        <parameter name="minimum-level">200</parameter>
+        <parameter name="rejected">It is to dangerous for you at this time. Come back when you have some age on you.</parameter>
+      </implementation>
+      <attribute name="move.continuous" />
+    </portal>
 
 	</zone>
 	
