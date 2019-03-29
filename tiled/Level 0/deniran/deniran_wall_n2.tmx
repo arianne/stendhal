@@ -69,6 +69,9 @@
  <tileset firstgid="665" name="medium_coloured" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/medium_coloured.png" width="448" height="448"/>
  </tileset>
+ <tileset firstgid="861" name="animal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3aS5LbMAwEUOd8OfYkOVcWKVelPJIIEp/Gpxe9mbIlEg+kaHu+Xq/XF5Mqvx7yezN/FkHPlaE/I/ff7QH618rKnv69Y2lP/1qxXvv0rxVre/rXCv1nh/6zE/3sp78875oi/Xn+i/e+Cv17Z1XTSv6rHkDXOkt+/pD5e46B6x+faHP650l2e+vv/ukv8///2YC0n+zvbYB43tNfZhJ5r8x7/yT/aAuU/a7/Tg9U9UesRZS9p3/F8z/yOYzqhV1/aQ9UW/9o+/cZM7t/tv3fol479pY+V9eK9EeuffrXeu5br/0q+/9qfUr8UMZT/E/qu2Mr2QvuXoc8S3b315zZnvxX7706q0mDdp/gLzH1PDdkt6/uf7L+Pt9rFZS99tqV/TPuu5rnieX8O/p/zi+bfXS0cz2xr+D/tBY7BWGfaf+fYLzrL31vF3/mrP/pPzsR/tIeQNdiYjT+1nsAuhbVE/38t94DrOZfqf7o+1f0X33Ge//d+/90d8YlvYZmzKf9F+W/6oGTeT4FsQafxokeTwb/px7YWRuZe+Du94i73kD7a3og0v9pba16wKreO/tz5h5F+t/1wMm4I/w1TvTH+VvURXvNCvaV/S2MUP5o847+3v/Pob0G2rmzv0ddTv0zmq/GVNU/sm5ST/pj9n9U7Sr4S4L8DiCzf4Z70j+PBf3z7P8ZEv1bE/171T1LIuzvegA9d4b+DP2zRHK+9DiD0h+fq3qtXlOpB7qd/yP8V6F/nyDtpf6Wez/9z3vA49709/XUvm91HW1/RJ/96J/rXvSvHfozmmTzjzr3MHX82QMz/CXXQ9erW+g/O9n90fXpnkz+nz2wMw/2TA//09A/p/9VD9Dfbo7aOXdZ/xPy5H/aB/Svnbu6W/lreuDKXuovmUf3/V7TA1b2CH/JfLT7Xrfs9oDUXtMHlv6roOufIVP90XXPlA7+Oz2ArnfVRPjf9YC2n2lfw1+z/hn6M3X97+zpnyP0nx36zw79Zye7Pz/j1/a3/P4HXSvJOLWvyW6/2wMT9v+rea9egx6zxp7+a/9V0GOO8H+yn+yPHq+Fv6QPpvjv9AB6nPSP64PPv6HHRn+G/v+iXZMZ9/SdeU32t3gmZ/TfPW/Q/3uNMrqeuNP/rF7W/l79ZDX+if6W9aN/T3+P+0TOQXoN+tvbR54f6G9TOw8LZC9n8F/1ANrfo+7R9ldj2Xmft/9TD6D9Ovlr4mk/0R89rmz+dz2AnrdHD6DHE9kD9P/eA1XvS38bB9S5n/74VH4G0H926N8jkd8D0D/eyfO6VT7/d/i85fW9Af3rJON3B/TH9QB6LB7+nX//8egBaT949Q39a/RABn9JD9Bf1wfR9+f6nx36z07U3k//fIlc+/TPFY/vfuhfJ/SfHfrPDv1nx9qe/rWC8P8Lq/20BAAAAQA=
@@ -96,10 +99,10 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3csQ0AQAgDMcT+HQv/Ei+QwJ7g6hSJAAAAAAAAAH6pnC4AAAAAAAAAAAAAAAAAAAAAAAAAAADo55sVAAAAALjMRgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGzzACVTKMQAAAEA
+   H4sIAAAAAAAAC+3duQ2AMAwAwAj2hAbR0NAwCQuzAY9A2FHuJnAVx3aeUgAAAAAAAICv7F10BAAAAAD/G/voCAAAgEhqAgAAgHxmtRpA9azlAFyRKwAAAACAVk36owAAqd15m3WwpwMAAAColt4OnPN/FbRpkx8BKPIBAAAA8Jz7kgAAAAAAAADw3mL+DgAAAABUaNXbhFDmCwAAAAAAAEB2zhYAAJDVAWvmmaYAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" visible="0" opacity="0.47">
+ <layer name="collision" width="128" height="128" opacity="0.47">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2Uy47cQAwDJ///08EeAjgLj90PSSRbLMCnGbcoldx/Pp/PHz9+/ECff6Bz+MnxOgo672ovd/9D5931Eul1FPRcovtdOYO1lwjeMqA9j8wLNcfRjNHuZ86I+lZYHlaqM2bXst/zmJlvJ/8MGaKz7PbRyf+HoP4Vhizd/HfmzoH9z6Pc0++sav6zZj96HtNeR2RQ8V9xr4ycwXK3zdR/+p3df8VuZWXJZLbu6G4w+a/asVEYMoxkiToH6b+61gioPcyqh3Jf7f+tbrb/3X3IOB/p/i0jeveyc2XXrewlegaI2k+Zrr8h/GedzeafYfdGYPZf3UfUDNC7Nwuj/+oe0P53+omgaveyzlf2v9tTJCO9ZdTY7UfV/25/FVTWWgHtvsJ/B1ZmgvZu//9T3R/a+7c+7b6mV7T3p/66uI/e9W/36WptlP+7fCeCvOvQ3qP7izqvat+q57Nan9m/6t2A+D52MrD6V4RhNmjn6v5Xelidzeyc3v6P9n2C/x8q3GeA9n2K/xmYZoL2bf/YOaB9s/T99Ft0zrdzK2eB9o38/r/VHM25k5nlzkP7Rvq/QyVnJGjnTHNVyBgN2jnLbNny/CYzE9p7xD7szofZfTZoz1F7sOputeYpO4P2m3Un7PS++p7iHqCdIvZg93z7xz+Zfe6cxcZbLrTHTP/VZ6uCdhntqGq/vtVVA+3yFP+jRNSIzov2yeY/ewciiMyJ9mn/WNA+Gf132gO0T2b/iF2orov2qeK/cg92as2+i/YZPX+WHEqgnUbOnC3PLhU10V6jZ82aa5WKWmi/WT2q5UWB9p45S4bM3/7PskenOn/6DZ1/5f27ulFZTvL/hnr+aLr5/416/l26+7+inn8FFf9Z8/92Xgf3P6j4v2atItI9KvtbbVb/J35rjLD6NzUo+x8585R9y+pD2f81v1lDwf/Tu3a/h4L/a84sut4jKv4juNY+2fXMjDv5ZwY1FyX/6B06cXeV/F/zVqLu/Sm/mn8TB8p9hv+ue7XaN9L9bN6OXrNR8m/iUfXv/YlB1b+Jwf57Y/+9sf/eKPjP2BOW/UNnUPDPykk9sPpXnK/Sjtt/Dgruf2D3/5a7EhWno6DdnzRLNdDeO/hH9/hUH+0dPZvuoL1n+a/cK+VdRntXnNkdqn2gvavOjZGVWaK9n+r/qT+2ntHud2Yx8371zrF5/gbafeWMVJzsMttnF//mHvuPy8LQz2wG+99jt4/V+/rziZmf/ffG/ntj/8b+c1Dp0f6N/Y/D3sNKPvufgz3/bD777439n83b3O3/HrW8Tzz1cIr/rDPV3Y9g/1pEz9L+9Yieo7r/U0DNh82/92WO3Tmx+Y/oyYzD6P9UGGfA6p9tTqeC9O+7AQ/6+7d7HNXu7ZkHhHv758H+e2P/vbH/3th/b1D+/wLA2kU+AAABAA==
   </data>
