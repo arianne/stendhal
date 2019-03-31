@@ -73,7 +73,13 @@ import games.stendhal.server.util.TimeUtil;
 	protected static List<String> BLORDROUGHS = Arrays.asList(
 			"blordrough quartermaster",
 			"blordrough corporal",
-			"blordrough storm trooper");
+			"blordrough storm trooper",
+			"blordrough soldier",
+			"blordrough elite",
+			"blordrough infantry",
+			"blordrough captain",
+			"blordrough general"
+			);
 
 	/**
 	 * function returns list of blordrough creatures.
