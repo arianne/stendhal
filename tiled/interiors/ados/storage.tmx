@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/ground/brown_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="brown_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="3" name="../../tileset/building/wall/int_blue_green.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="3" name="int_blue_green.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="19" name="../../tileset/building/wall/int_green_blue_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="19" name="int_green_blue_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue_2.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="27" name="../../tileset/building/entrance/blue_green.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="27" name="blue_green.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="35" name="../../tileset/building/wall/int_green_blue.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="int_green_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="51" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="bushes.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="61" name="../../tileset/building/entrance/int_iron_bars.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="int_iron_bars.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/int_iron_bars.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="73" name="../../tileset/item/chest/large.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="large.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="81" name="../../tileset/item/armor/weapons_rack.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="81" name="weapons_rack.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="99" name="../../tileset/logic/creature/small_animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="small_animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
- <tileset firstgid="104" name="../../tileset/logic/item/sheepfood.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="104" name="sheepfood.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset firstgid="105" name="../../tileset/logic/creature/sheep.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="105" name="sheep.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/sheep.png"/>
  </tileset>
- <tileset firstgid="106" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="136" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="136" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset firstgid="137" name="black " tilewidth="32" tileheight="32">

@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="40" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset firstgid="17" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="int_wall_dark_red.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset firstgid="33" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="stairs.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset firstgid="45" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="int_windows_dark_red.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
- <tileset firstgid="61" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="warmer.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
- <tileset firstgid="63" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="63" name="chest/large.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset firstgid="71" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="71" name="pot_golden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_golden.png"/>
  </tileset>
- <tileset firstgid="75" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="chair/wooden_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset firstgid="79" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="79" name="bright_bookshelf_and_cupboard.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset firstgid="85" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="101" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="102" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="102" name="protection.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <tileset firstgid="104" name="floors_3.png" tilewidth="32" tileheight="32">
@@ -73,7 +73,7 @@
  <tileset firstgid="218" name="bright_bookshelf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="227" name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="227" name="pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
  <tileset firstgid="239" name="lights_candle.png" tilewidth="32" tileheight="32">

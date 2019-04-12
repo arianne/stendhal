@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/furniture/carpet/carpets.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="carpets.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset firstgid="9" name="../../tileset/furniture/carpet/plain_colours.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="plain_colours.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset firstgid="19" name="../../tileset/building/wall/int_wall_purple.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="19" name="int_wall_purple.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="39" name="../../tileset/furniture/carpet/rug_border.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="39" name="rug_border.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset firstgid="48" name="../../tileset/building/entrance/pale_red_ns.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="48" name="pale_red_ns.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="84" name="../../tileset/building/stairs/int_ns.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="int_ns.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="102" name="../../tileset/furniture/chair/wooden_pale.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="102" name="wooden_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset firstgid="106" name="../../tileset/furniture/table/grey_plain.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="grey_plain.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset firstgid="115" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="115" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="116" name="../../tileset/logic/item/vegetable.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="116" name="vegetable.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <tileset firstgid="129" name="pale_red_walls" tilewidth="32" tileheight="32">
