@@ -1,55 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="22" height="18" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/furniture/carpet/carpets.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="carpets.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset firstgid="9" name="../../tileset/building/wall/int_wall_pale.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="int_wall_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="25" name="../../tileset/building/entrance/pale_red_ns.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="pale_red_ns.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="61" name="../../tileset/furniture/carpet/border2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="border2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/border2.png"/>
  </tileset>
- <tileset firstgid="73" name="../../tileset/building/decoration/fireplace_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="fireplace_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fireplace_2.png"/>
  </tileset>
- <tileset firstgid="82" name="../../tileset/furniture/table/grey_plain.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="grey_plain.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset firstgid="91" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="91" name="bushes.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="101" name="../../tileset/building/decoration/toolset.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="toolset.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/toolset.png"/>
  </tileset>
- <tileset firstgid="119" name="../../tileset/furniture/other/stick.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="119" name="stick.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/stick.png"/>
  </tileset>
- <tileset firstgid="121" name="../../tileset/item/armor/weapons_rack.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="121" name="weapons_rack.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset firstgid="139" name="../../tileset/ground/fire/fire.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="fire.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
- <tileset firstgid="166" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="166" name="portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="182" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="183" name="../../tileset/building/wall/int_wall_dark_red.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="183" name="int_wall_dark_red.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset firstgid="199" name="../../tileset/building/wall/int_wall_dark_red_corners.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="199" name="int_wall_dark_red_corners.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset firstgid="215" name="../../tileset/building/entrance/dark_red_ns.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="215" name="dark_red_ns.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
- <tileset firstgid="227" name="../../tileset/building/window/int_windows_dark_red.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="227" name="int_windows_dark_red.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <tileset firstgid="243" name="tools" tilewidth="32" tileheight="32">
