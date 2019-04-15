@@ -43,7 +43,7 @@ public class DeniranArmy implements ZoneConfigurator  {
 			for(int j=0; j<5; j++) {
 				final PassiveNPC npc = new PassiveNPC();
 				//npc.setIdea("defence");
-				npc.setEntityClass("../monsters/human/deniran_stormtrooper");
+				npc.setEntityClass("deniran_stormtrooper");
 				npc.setDescription("you see Deniran army soldier.");
 				npc.setPosition(70+i, 106+j);
 				npc.setDirection(Direction.DOWN);
