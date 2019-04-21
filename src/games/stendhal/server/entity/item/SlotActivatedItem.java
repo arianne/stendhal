@@ -15,26 +15,17 @@ import games.stendhal.server.entity.RPEntity;
  */
 public abstract class SlotActivatedItem extends Item {
 
-	/* The logger instance */
+	/** The logger instance */
 	private static final Logger logger = Logger.getLogger(SlotActivatedItem.class);
 
-	/* List of slots where this item is active when equipped. */
-	// XXX: Should java.util.Collection be used instead?
+	/** List of slots where this item is active when equipped. */
 	private List<String> activeSlotsList = null;
 
-	/* The active state of the item initialized as deactivated. */
+	/** The active state of the item initialized as deactivated. */
 	protected boolean activated = false;
 
-	/* Slot to track previous equipped location. */
+	/** Slot to track previous equipped location. */
 	private String transitionSlot;
-
-	/* Name of slot being transition to/from. Useful for checking previous
-	 * slot on un-equipping.
-	 *
-	 * FIXME: This slot is not necessary. Can call
-	 *        this.getContainerSlot().getName() from onUnequipped().
-	 */
-	//private String transitionSlot;
 
 
 	/**
@@ -226,19 +217,6 @@ public abstract class SlotActivatedItem extends Item {
 	 * 		<b>true</b> if slot name is found in active slot list
 	 */
 	protected boolean isActiveSlot(String slot) {
-		if (logger.isDebugEnabled() || Testing.DEBUG) {
-			String activeSlotListString = null;
-			for (String slotName: this.activeSlotsList) {
-				if (activeSlotListString == null) {
-					activeSlotListString = slotName;
-				} else {
-					activeSlotListString += ", " + slotName;
-				}
-			}
-			logger.info("Checking slot: " + slot);
-			logger.info("Active slots: " + activeSlotListString);
-		}
-
 		if ((activeSlotsList != null)
 				&& !activeSlotsList.isEmpty() && slot != null) {
 			return activeSlotsList.contains(slot);
@@ -272,14 +250,11 @@ public abstract class SlotActivatedItem extends Item {
 		return !canDeactivate();
 	}
 
-
-/* XXX --- HELPER METHODS --- XXX */
-
 	@Override
 	public String toString() {
 		StringBuilder st = new StringBuilder();
 		st.append(super.toString());
-		if (!activeSlotsList.isEmpty()) {
+		if ((activeSlotsList != null) && !activeSlotsList.isEmpty()) {
 			st.append("\n\n-- Slot Activated Item --\nItem is activated in slots:\n\t" + activeSlotsList.get(0));
 			final int slot_count = activeSlotsList.size();
 			if (slot_count > 1) {

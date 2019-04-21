@@ -30,7 +30,7 @@ import marauroa.common.game.RPObject;
  * an item to survive in some environments (e. g. scuba gear)
  */
 public class LifeSupportGear extends Item {
-	private Logger logger = Logger.getLogger(LifeSupportGear.class);
+	private final Logger logger = Logger.getLogger(LifeSupportGear.class);
 
 	/**
 	 * copy constructor
@@ -55,7 +55,6 @@ public class LifeSupportGear extends Item {
 
 	@Override
 	public boolean onUnequipped() {
-		logger.info("onUnequipped: " + this.getBaseContainer());
 		RPObject entity = this.getBaseContainer();
 		if (entity instanceof Player) {
 			if (isBadSituation((Player) entity)) {

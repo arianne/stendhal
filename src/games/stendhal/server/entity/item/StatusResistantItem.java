@@ -26,8 +26,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 	private StatusResistancesList resistances;
 
 
-/* XXX --- CONSTRUCTORS --- XXX */
-
 	/**
 	 * Default constructor.
 	 *
@@ -66,8 +64,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 		initializeStatusResistancesList(item.resistances.getMap());
 	}
 
-
-/* XXX --- ITEM INITIALIZATION --- XXX */
 
 	/**
 	 * Create or reset resistances to status types for this item.
@@ -123,8 +119,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 		}
 	}
 
-
-/* XXX --- ITEM MANIPULATION --- XXX */
 
 	/**
 	 * Applies or removes a status resistance value for the owning entity.
@@ -220,8 +214,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 	}
 
 
-/* XXX --- ITEM ACTIVATION --- XXX */
-
 	/**
 	 * Actions to take when activated. Super class sets activationState by
 	 * calling this method via onEquipped().
@@ -312,8 +304,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 		return active;
 	}
 
-/* XXX --- ITEM INFORMATION --- XXX */
-
 	/**
 	 * Add resistance values to description.
 	 */
@@ -382,8 +372,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 		return this.resistances;
 	}
 
-
-/* XXX --- HELPER METHODS --- XXX */
 
 	@Override
 	public String toString() {
