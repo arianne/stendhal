@@ -54,6 +54,9 @@
  <tileset firstgid="243" name="chests_banner" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/chests_banner.png" width="32" height="224"/>
  </tileset>
+ <tileset firstgid="250" name="protection" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/protection.png" width="64" height="32"/>
+ </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC5NgYGCQGGDMRiQmVT0p5gURwKSqp7Z5o/aP2j/S7UfG9Laf2njU/sFlPzk4iAK9yPaTi4OoYAYAxxIgyQAIAAA=
@@ -84,14 +87,14 @@
    H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBSAMAnrro8QAIAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="16" opacity="0.39">
+ <layer name="collision" width="32" height="16" visible="0" opacity="0.39">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NkYGBgHMVgjAyIUYuPT6paQgCXelxsQvKD3X5Kw4sQoJb/h7P9lKQXSu2nRvyTm/fxmUctQO3wpNR+erqB0nigpf2kphlqmTVQGACCr8aZAAgAAA==
   </data>
  </layer>
- <layer name="protection" width="32" height="16">
+ <layer name="protection" width="32" height="16" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBSAMAnrro8QAIAAA=
+   H4sIAAAAAAAAC/vFwMDwaxSP4lE8ikfxKB7FIwoDAP+07REACAAA
   </data>
  </layer>
 </map>
