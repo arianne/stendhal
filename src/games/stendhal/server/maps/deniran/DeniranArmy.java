@@ -45,12 +45,24 @@ public class DeniranArmy implements ZoneConfigurator  {
 				//npc.setIdea("defence");
 				npc.setEntityClass("deniran_stormtrooper");
 				npc.setDescription("you see Deniran army soldier.");
-				npc.setPosition(70+i, 106+j);
+				npc.setPosition(17+i, 83+j);
 				npc.setDirection(Direction.DOWN);
 				npc.setName("Deniran soldier");
 				zone.add(npc);
 				npclist.add(npc);
 			}
+			for(int j=0; j<5; j++) {
+				final PassiveNPC npc = new PassiveNPC();
+				//npc.setIdea("defence");
+				npc.setEntityClass("deniran_stormtrooper");
+				npc.setDescription("you see Deniran army soldier.");
+				npc.setPosition(83+i, 83+j);
+				npc.setDirection(Direction.DOWN);
+				npc.setName("Deniran soldier");
+				zone.add(npc);
+				npclist.add(npc);
+			}
+			
 		}
 	};
 }
