@@ -143,6 +143,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+        <configurator class-name="games.stendhal.server.maps.deniran.AdosArmy" />
         <configurator class-name="games.stendhal.server.maps.deniran.DeniranArmy" />
 	</zone>
 	
