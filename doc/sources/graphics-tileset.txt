@@ -312,8 +312,10 @@ colorful.png               bleutailfly; CC BY-SA 3.0; Stendhal
 greenish_grey.png          ???; ???; ???
 sofa.png                   bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_2.png                 ???; ???; ???
+sofa_brown.png             bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_chair*                bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_cream.png             bleutailfly; CC BY-SA 3.0; Stendhal
+sofa_grey.png              bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_red.png               bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_shadow.png            bleutailfly; CC BY-SA 3.0; Stendhal
 stool.png                  bleutailfly; CC BY-SA 3.0; Stendhal
