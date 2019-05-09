@@ -1157,6 +1157,7 @@ small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_purple_white.png  ???; ???; ???
 stone_edge_beds.png     ???; ???; ???
+vines_flowered.png      bleutailfly; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/indoor/
 
