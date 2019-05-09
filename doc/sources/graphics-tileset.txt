@@ -312,7 +312,7 @@ sofa_2.png                 ???; ???; ???
 sofa_chair*                bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_cream.png             bleutailfly; CC BY-SA 3.0; Stendhal
 sofa_red.png               bleutailfly; CC BY-SA 3.0; Stendhal
-sofa_shadow.png            ???; ???; ???
+sofa_shadow.png            bleutailfly; CC BY-SA 3.0; Stendhal
 stool.png                  bleutailfly; CC BY-SA 3.0; Stendhal
 throne.png                 ???; ???; ???
 throne_small.png           ???; ???; ???
