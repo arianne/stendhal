@@ -213,10 +213,13 @@ ornamental_border.png            ???; ???; ???
 stone.png                        ???; ???; ???
 stone2.png                       ???; ???; ???
 stone_grey.png                   ???; ???; ???
+wallpapers.png                   bleutailfly; CC BY-SA 3.0; Stendhal
 walls_siding.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 wall_brown.png                   ???; ???; ???
+white_trim.png                   bleutailfly; CC BY-SA 3.0; Stendhal
 wood.png                         ???; ???; ???
 wood_2.png                       ???; ???; ???
+wood_trim.png                    bleutailfly; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/window/
 
