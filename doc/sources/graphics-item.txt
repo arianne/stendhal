@@ -594,6 +594,7 @@ black.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 blank_pet_scroll.png  Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 blue.png              Anders Asplund (Danter); GPL 2.0; Stendhal
 cyan.png              Anders Asplund (Danter); GPL 2.0; Stendhal
+deniran.png           Anders Asplund (Danter), ???; ???; ???
 empty.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 fado.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 green.png             Anders Asplund (Danter); GPL 2.0; Stendhal
