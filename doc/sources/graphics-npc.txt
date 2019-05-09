@@ -242,6 +242,8 @@ youngnpc.png                  Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; 
 youngsoldiernpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 youngwitchnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 youngwomannpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/24823
+z_female_npc_maker.xcf.bz2    ???; ???; ???
+z_male_npc_maker.xcf.bz2      ???; ???; ???
 
 data/sprites/npc/alternative/
 
