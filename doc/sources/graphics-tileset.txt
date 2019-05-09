@@ -929,6 +929,11 @@ lace.png               bleutailfly; CC BY-SA 3.0; Stendhal
 large_dress.png        ???; ???; ???
 laundry.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_hat.png            ???; ???; ???
+throw_1.png            bleutailfly; CC BY-SA 3.0; Stendhal
+throw_2.png            bleutailfly; CC BY-SA 3.0; Stendhal
+throw_3.png            bleutailfly; CC BY-SA 3.0; Stendhal
+throw_4.png            bleutailfly; CC BY-SA 3.0; Stendhal
+throw_pillows.png      bleutailfly; CC BY-SA 3.0; Stendhal
 towels.png             bleutailfly; CC BY-SA 3.0; Stendhal
 trousers.png           ???; ???; ???
 
