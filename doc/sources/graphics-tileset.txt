@@ -684,6 +684,8 @@ button_grey.png           ???; ???; ???
 buzzing_bees.png          ???; ???; ???
 campfires.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 campfire_snow.png         ???; ???; ???
+caution_ns.png            bleutailfly; CC BY-SA 3.0; Stendhal
+caution_sign.png          bleutailfly; CC BY-SA 3.0; Stendhal
 chapter.png               ???; ???; ???
 firewood.*                Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 fishing_nets.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
