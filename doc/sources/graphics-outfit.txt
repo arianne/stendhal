@@ -55,8 +55,8 @@ dress_029.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_030.png (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_031.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_032.png (dress / skirt)    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_033.png (overalls)         bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-dress_034.png (overalls)         bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+dress_033.png (overalls)         bleutailfly; CC BY-SA 3.0; Stendhal
+dress_034.png (overalls)         bleutailfly; CC BY-SA 3.0; Stendhal
 dress_035.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_036.*   (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_037.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
@@ -66,7 +66,7 @@ dress_040.*                      Charles Gabriel, Jordan Irwin (AntumDeluge); CC
 dress_041.png (cleric robes)     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_043.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_044.*   (hula-hoop)        bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+dress_044.*   (overalls)         bleutailfly; CC BY-SA 3.0; Stendhal
 dress_045.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
 dress_046.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_047.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
