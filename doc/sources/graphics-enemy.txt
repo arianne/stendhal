@@ -151,7 +151,7 @@ littlefairy.*   Svetlana Kushnariova (Cabbit), Fabzy, leangoro, olonu; CC BY-SA 
 
 data/sprites/monsters/farm_animal/
 
-beaver.png       ???; ???; ???
+beaver.png       bleutailfly; CC BY-SA 3.0; Stendhal
 bull.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chick.*          Shepardskin, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76895
 cow.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
