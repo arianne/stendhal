@@ -798,12 +798,12 @@ data/sprites/weather/rain_light.png *@15 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
 data/sprites/weather/wave.png *@125 0:1:2:3:4:5:6:6:6:6:5:4:3:2:1:0:1:2:3:4:5:6:5:4:3:2:1::0:0
 
 # windmill blades
-tileset/building/windmill_blades.png *@125 0:3:6:9:12:15:18:21
-tileset/building/windmill_blades.png *@125 1:4:7:10:13:16:19:22
-tileset/building/windmill_blades.png *@125 2:5:8:11:14:17:20:23
-tileset/building/windmill_blades.png *@125 24:27:30:33:36:39:42:45
-tileset/building/windmill_blades.png *@125 25:28:31:34:37:40:43:46
-tileset/building/windmill_blades.png *@125 26:29:32:35:38:41:44:47
-tileset/building/windmill_blades.png *@125 48:51:54:57:60:63:66:69
-tileset/building/windmill_blades.png *@125 49:52:55:58:61:64:67:70
-tileset/building/windmill_blades.png *@125 50:53:56:59:62:65:68:71
+tileset/building/windmill_blades.png *@125 0:3:6:9:12:15:18:21:72:75:78:81:84:87:90:93
+tileset/building/windmill_blades.png *@125 1:4:7:10:13:16:19:22:73:76:79:82:85:88:91:94
+tileset/building/windmill_blades.png *@125 2:5:8:11:14:17:20:23:74:77:80:83:86:89:92:95
+tileset/building/windmill_blades.png *@125 24:27:30:33:36:39:42:45:96:99:102:105:108:111:114:117
+tileset/building/windmill_blades.png *@125 25:28:31:34:37:40:43:46:97:100:103:106:109:112:115:118
+tileset/building/windmill_blades.png *@125 26:29:32:35:38:41:44:47:98:101:104:107:110:113:116:119
+tileset/building/windmill_blades.png *@125 48:51:54:57:60:63:66:69:120:123:126:129:132:135:138:141
+tileset/building/windmill_blades.png *@125 49:52:55:58:61:64:67:70:121:124:127:130:133:136:139:142
+tileset/building/windmill_blades.png *@125 50:53:56:59:62:65:68:71:122:125:128:131:134:137:140:143
