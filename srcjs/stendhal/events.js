@@ -193,3 +193,33 @@ marauroa.rpeventFactory["view_change"] = marauroa.util.fromProto(marauroa.rpeven
 		// TODO: new ViewChangeEvent();
 	}
 });
+
+marauroa.rpeventFactory["pvp_new_challenge_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
+	execute: function(rpobject) {
+		var challenger = this["challenger"];
+		var dimensions = stendhal.ui.html.gamewindowSize();
+		var idReject = "reject-" + challenger;
+		var idAccept = "accept-" + challenger;
+		var reject = "<button id=\"" + idReject + ""\">Reject</button>";
+		var accept = "<button id=\"" + idAccept + "\">Accept</button>";
+		var content = accept + " " + reject;
+		var popup = new stendhal.ui.Popup(challenger + " challenged you!", content, dimensions.width / 2, dimensions.height / 2);
+		
+		popup.popupdiv.querySelector("#" + idReject).addEventListener("click", function (e) {
+			popup.close();
+		});
+		
+		popup.popupdiv.querySelector("#" + idAccept).addEventListener("click", function (e) {
+			var action = {
+					"type": "challenge",
+					"action": "accept",
+					"target": challenger
+			};
+			marauroa.clientFramework.sendAction(action);
+			popup.close();
+		});
+		
+		popup.onClose = function() {
+		}
+	}
+});

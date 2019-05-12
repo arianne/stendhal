@@ -84,12 +84,12 @@ public class PlayerVsPlayerChallengeManager  implements TurnListener, LogoutList
 	 * @return a currently open challenge object or null
 	 */
 	protected PlayerVsPlayerChallenge getOpenChallengeForPlayers(Player challenger, Player challenged) {
-		for (PlayerVsPlayerChallenge challenge : currentChallenges) {
-			boolean challengerEquals = challenge.getChallenger().equals(challenger);
-			boolean challengedEquals = challenge.getChallenged().equals(challenged);
+		for (PlayerVsPlayerChallenge c : currentChallenges) {
+			boolean challengerEquals = c.getChallenger().equals(challenger) || c.getChallenged().equals(challenger);
+			boolean challengedEquals = c.getChallenged().equals(challenged) || c.getChallenger().equals(challenged);
 			if(challengerEquals && challengedEquals) {
-				if(!challenge.isAccepted()) {
-					return challenge;
+				if(!c.isAccepted()) {
+					return c;
 				}
 			}
 		}

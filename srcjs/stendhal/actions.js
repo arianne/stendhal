@@ -350,6 +350,43 @@ stendhal.slashActionRepository = {
 		getMinParams: 0,
 		getMaxParams: 0
 	},
+	
+	"challenge": {
+		execute: function(type, params, remainder) {
+			var action = {
+					"type": "challenge",
+					"action": "open",
+					"target": params[0]
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+	
+	"accept": {
+		execute: function(type, params, remainder) {
+			var action = {
+					"type": "challenge",
+					"action": "accept",
+					"target": params[0]
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
+	
+	"reject": {
+		execute: function(type, params, remainder) {
+			// just for having a counterpart to accept.
+			return true;
+		},
+		getMinParams: 1,
+		getMaxParams: 1
+	},
 
 	"atlas": {
 		execute: function(type, params, remainder) {
@@ -485,6 +522,7 @@ stendhal.slashActionRepository = {
 			return false;
 		}
 	}
+	
 };
 // answer, sentence, drop, add, remove, away, grumpy, profile, clickmode, walk, stopwalk, movecont, mute, settings
 stendhal.slashActionRepository["supporta"] = stendhal.slashActionRepository["supportanswer"];
