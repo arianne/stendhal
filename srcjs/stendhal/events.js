@@ -193,3 +193,4 @@ marauroa.rpeventFactory["view_change"] = marauroa.util.fromProto(marauroa.rpeven
 		// TODO: new ViewChangeEvent();
 	}
 });
+// Dummy comment to prevent accidental re-push of a rebase done into the wrong direction
