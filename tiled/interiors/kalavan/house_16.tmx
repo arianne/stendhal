@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="../../tileset/furniture/carpet/carpets.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset firstgid="9" name="../../tileset/furniture/table/grey_fancy.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="table/grey_fancy.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_fancy.png"/>
  </tileset>
- <tileset firstgid="18" name="../../tileset/furniture/table/grey_plain.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="18" name="table/grey_plain.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset firstgid="27" name="../../tileset/furniture/light/dark_torch.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="27" name="dark_torch.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/dark_torch.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="35" name="../../tileset/plant/indoor/flowering_plant.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="flowering_plant.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset firstgid="37" name="../../tileset/item/pot/pot_grey.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="pot_grey.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_grey.png"/>
  </tileset>
- <tileset firstgid="38" name="../../tileset/furniture/light/candelabra.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="38" name="candelabra.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
- <tileset firstgid="39" name="../../tileset/plant/indoor/flower_vase.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="39" name="flower_vase.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset firstgid="42" name="../../tileset/furniture/other/piano.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="piano.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/piano.png"/>
  </tileset>
- <tileset firstgid="46" name="../../tileset/item/drink/red_wine.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="red_wine.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
- <tileset firstgid="50" name="../../tileset/furniture/chair/stool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="50" name="stool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset firstgid="51" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset firstgid="52" name="hosta" tilewidth="32" tileheight="32">
