@@ -1,52 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="building/stairs/stairs" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset firstgid="13" name="furniture/table/long_side_on_pale" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="long_side_on_pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset firstgid="16" name="logic/collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="16" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="17" name="logic/portal" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="33" name="ground/stone_floors" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="stone_floors" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/stone_floors.png"/>
  </tileset>
- <tileset firstgid="39" name="building/wall/int_green_blue" tilewidth="32" tileheight="32">
+ <tileset firstgid="39" name="int_green_blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset firstgid="55" name="building/wall/int_wall_thin_bricks" tilewidth="32" tileheight="32">
+ <tileset firstgid="55" name="int_wall_thin_bricks" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
- <tileset firstgid="67" name="furniture/other/tool_rack" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="tool_rack" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/tools_rack.png"/>
  </tileset>
- <tileset firstgid="73" name="item/chest/large" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="large" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset firstgid="81" name="item/corpse/skull_pale" tilewidth="32" tileheight="32">
+ <tileset firstgid="81" name="skull_pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
- <tileset firstgid="83" name="item/pot/dark_barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="dark_barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png"/>
  </tileset>
- <tileset firstgid="85" name="item/pot/small_barrel" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="small_barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset firstgid="87" name="building/decoration/webs" tilewidth="32" tileheight="32">
+ <tileset firstgid="87" name="webs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/webs.png"/>
  </tileset>
- <tileset firstgid="93" name="logic/creature/animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="123" name="logic/creature/huge_animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="huge_animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset firstgid="137" name="item/firewood" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="firewood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/firewood.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
