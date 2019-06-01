@@ -62,9 +62,7 @@ public class DeniranArmy implements ZoneConfigurator  {
 				zone.add(npc);
 				npclist.add(npc);
 			}
-			
+
 		}
 	};
 }
-
-	

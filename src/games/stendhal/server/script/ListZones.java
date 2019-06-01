@@ -49,7 +49,7 @@ public class ListZones extends ScriptImpl {
 			filter = args.get(0).toLowerCase();
 		}
 
-		
+
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (String region : world.getRegions()) {
 

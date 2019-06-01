@@ -20,16 +20,16 @@ public class FlippedSprite implements Sprite {
 	private static final int FLIP_HORIZONTALLY_FLAG = 0x80000000;
 	private static final int FLIP_VERTICALLY_FLAG = 0x40000000;
 	private static final int FLIP_DIAGONALLY_FLAG = 0x20000000;
-	
+
 	private final Sprite orig;
 	private final Object ref;
 	private final AffineTransform flip;
-	
+
 	public FlippedSprite(Sprite orig, int flags) {
 		this.orig = orig;
 		ref = new FlipReference(orig.getReference(), flags);
 		flip = new AffineTransform();
-		
+
 		if ((flags & FLIP_HORIZONTALLY_FLAG) != 0) {
 			flip.scale(-1, 1);
 			flip.translate(-orig.getWidth(), 0);
@@ -43,7 +43,7 @@ public class FlippedSprite implements Sprite {
 			flip.concatenate(axisSwap);
 		}
 	}
-	
+
 	@Override
 	public Sprite createRegion(int x, int y, int width, int height,
 			Object ref) {
@@ -86,16 +86,16 @@ public class FlippedSprite implements Sprite {
 	public boolean isConstant() {
 		return orig.isConstant();
 	}
-	
+
 	private static class FlipReference {
 		private final int flags;
 		private final Object otherRef;
-		
+
 		FlipReference(Object otherRef, int flags) {
 			this.otherRef = otherRef;
 			this.flags = flags;
 		}
-		
+
 		@Override
 		public boolean equals(Object other) {
 			if (other == null) {

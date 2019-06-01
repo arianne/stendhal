@@ -51,9 +51,7 @@ public class AdosArmy implements ZoneConfigurator  {
 				zone.add(npc);
 				npclist.add(npc);
 			}
-			
+
 		}
 	};
 }
-
-	

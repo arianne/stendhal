@@ -315,7 +315,7 @@ class TileStore implements Tileset {
 			logger.error("Accessing unassigned sprite at: " + index);
 			return store.getEmptySprite();
 		}
-		
+
 		if (flip != 0) {
 			sprite = new FlippedSprite(sprite, flip);
 		}

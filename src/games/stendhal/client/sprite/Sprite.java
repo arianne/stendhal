@@ -99,7 +99,7 @@ public interface Sprite {
 	int getWidth();
 	/**
 	 * Check whether the sprite won't change between draws.
-	 * 
+	 *
 	 * @return <code>true</code> if different draws of the sprite always
 	 * have the same result.
 	 */

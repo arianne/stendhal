@@ -81,7 +81,7 @@ public final class ShopList {
 		shops.add("allscrolls", "fado city scroll", 600);
 		shops.add("allscrolls", "kirdneh city scroll", 600);
 		shops.add("allscrolls", "deniran city scroll", 800);
-		
+
 		shops.add("sellstuff", "knife", 15);
 		shops.add("sellstuff", "club", 10);
 		shops.add("sellstuff", "dagger", 25);
