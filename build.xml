@@ -15,7 +15,7 @@
 	<property name="build_client_data" value="${buildroot}/build_client_data"/>
 	<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
 	<property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
-	
+
 	<property name="build_postman" value="${buildroot}/buildbot/"/>
 
 	<property name="build_server" value="${buildroot}/build_server"/>
@@ -27,7 +27,7 @@
 	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
 
 	<property name="build_client" value="${buildroot}/build_client"/>
-	
+
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
 	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
@@ -38,11 +38,11 @@
 
 	<property name="server_jarname" value="stendhal-server-${version}.jar"/>
 	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
-	
+
 	<property name="config_dir" value="data/conf"/>
 
 	<property name="schema_location" value="${config_dir}"/>
-	
+
 	<property name="cobertura.dir" value="${libdir}/cobertura" />
 
 	<import file="build-private.xml" optional="true" />
@@ -103,7 +103,7 @@
 			match="UPDATE_VERSION_CHECK=.*"
 			replace="UPDATE_VERSION_CHECK=${version_server}"
 			byline="true"/>
-		
+
 
 		<replaceregexp file="stendhal.jnlp"
 			match="-0\..*\.jar&quot;"
@@ -392,7 +392,7 @@
 				<include name="**/*.txt"/>
 			</fileset>
 		</copy>
-		
+
 		<echo file="${src}/games/stendhal/client/StendhalBuild.java">
 			package games.stendhal.client;
 			public class StendhalBuild {
@@ -413,7 +413,7 @@
 			<compilerarg value="-Xlint:unchecked"/>
 
 			<!-- Only include the libraries which are distributed to detect
-				 unwanted dependencies (i. e. .jar which are not part of the 
+				 unwanted dependencies (i. e. .jar which are not part of the
 				client-distribution) during compile time -->
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
@@ -529,9 +529,9 @@
 
 
 	<target name="signjar" unless="exclude.signing">
-		<signjar 
+		<signjar
 			alias="${keystore.alias}"
-			keystore="keystore.ks" 
+			keystore="keystore.ks"
 			storepass="${keystore.password}"
 			tsaurl="http://tsa.starfieldtech.com"
 			jar="${lib}/${client_starter_jarname}" />
@@ -685,7 +685,7 @@
 		<copy todir="${buildroot}/stendhal-${version}-src/libs">
 			<fileset dir="libs"/>
 		</copy>
-		
+
 		<copy todir="${buildroot}/stendhal-${version}-src/tests">
 			<fileset dir="tests"/>
 		</copy>
@@ -984,7 +984,7 @@ e = 15
 d = 901709348600732327060541471745573737661809280510473323608385781131560686937229596225645929798090122419343070307904183075525081589946196209839163758401803422679
 		</echo>
 	</target>
-	
+
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
 		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
@@ -1042,7 +1042,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	        </structure>
 	    	<xml destfile="${build_tests_report}/jacoco.xml" />
 	    </jacoco:report>
-		
+
 	</target>
 
 	<target name="report_test" description="Aggregate Testresults">
@@ -1066,7 +1066,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			</fileset>
 		</delete>
 	</target>
-	
+
 	<target name="checkxml" description="Verify XML files are well-formed">
 		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
 			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
@@ -1108,7 +1108,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	</target>
 
 	<target name="js-prepare-build">
-		
+
 		<echo file="build/js/build.js">
 			var stendhal = window.stendhal = window.stendhal || {};
 			stendhal.data = stendhal.data || {};
@@ -1136,8 +1136,8 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 		<property name="js-files-entity2"  value="srcjs/stendhal/entity/chest.js srcjs/stendhal/entity/food.js srcjs/stendhal/entity/gate.js srcjs/stendhal/entity/invisibleentity.js srcjs/stendhal/entity/item.js srcjs/stendhal/entity/portal.js" />
 		<property name="js-files-entity3"  value="srcjs/stendhal/entity/activeentity.js srcjs/stendhal/entity/gameboard.js srcjs/stendhal/entity/rpentity.js srcjs/stendhal/entity/player.js srcjs/stendhal/entity/creature.js" />
 		<property name="js-files-entity4"  value="srcjs/stendhal/entity/domesticanimal.js srcjs/stendhal/entity/npc.js srcjs/stendhal/entity/sign.js srcjs/stendhal/entity/growingspawner.js" />
-		<property name="js-files-entity5"  value="srcjs/stendhal/entity/useableentity.js srcjs/stendhal/entity/walkblocker.js srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" /> 
-		<property name="js-files-entity6"  value="" /> 
+		<property name="js-files-entity5"  value="srcjs/stendhal/entity/useableentity.js srcjs/stendhal/entity/walkblocker.js srcjs/stendhal/entity/zone.js srcjs/stendhal/entity/ground.js" />
+		<property name="js-files-entity6"  value="" />
 		<property name="js-files-ui1"      value="srcjs/stendhal/ui/setdragimage-ie.js srcjs/stendhal/ui/buddylist.js srcjs/stendhal/ui/chatlog.js srcjs/stendhal/ui/gamewindow.js" />
 		<property name="js-files-ui2"      value="srcjs/stendhal/ui/html.js srcjs/stendhal/ui/minimap.js srcjs/stendhal/ui/sound.js srcjs/stendhal/ui/stats.js srcjs/stendhal/ui/chatinput.js" />
 		<property name="js-files-ui3"      value="" />
@@ -1154,9 +1154,9 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 			<arg value="--language_in=ECMASCRIPT_2015"/>
 			<arg value="--compilation_level" />
 			<arg value="ADVANCED" />
-			<arg line="${js-debug}" />			
+			<arg line="${js-debug}" />
 			<arg value="--jscomp_off=checkVars" />
-			
+
 			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
 
 			<arg line="${js-files-license}" />
@@ -1184,5 +1184,5 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 //# sourceMappingURL=stendhal-compiled.js.map
 		</echo>
 	</target>
-	
+
 </project>
