@@ -9,14 +9,14 @@ stendhal.ui.OutfitDialog = function() {
 		return;
 	}
 	const self = this;
-	
+
 	class PartSelector {
 		constructor(part, initialIndex, maxindex, onPartChanged) {
 			this._part = part;
 			this._onPartChanged = onPartChanged;
 			this._index = initialIndex;
 			this._maxindex = maxindex;
-			
+
 			const canvas = document.getElementById('setoutfit' + part + 'canvas');
 			canvas.style.margin = "5px";
 			this._ctx = canvas.getContext("2d");
@@ -25,37 +25,37 @@ stendhal.ui.OutfitDialog = function() {
 			this._color = null;
 			this._image = null;
 		}
-		
+
 		draw() {
 			const image = this._getPartSprite(this._part, this._index, this._color);
 			this._image = image;
 			this._ctx.fillStyle = "white";
 			this._ctx.fillRect(0, 0, this._width, this._height);
-			
+
 			image.then((img) => {
 				this._ctx.drawImage(img, -48, -128);
 				this._onPartChanged();
 			});
 		}
-		
+
 		get image() {
 			return this._image;
 		}
-		
+
 		get index() {
 			return indexString(this._index);
 		}
-		
+
 		set index(newIndex) {
 			this._index = newIndex;
 			this.draw();
 		}
-		
+
 		set color(newColor) {
 			this._color = newColor;
 			this.draw();
 		}
-		
+
 		previous() {
 			const numOutfits = this._maxindex + 1;
 			this._index += this._maxindex;
@@ -63,7 +63,7 @@ stendhal.ui.OutfitDialog = function() {
 			this.draw();
 			this._onPartChanged();
 		}
-		
+
 		next() {
 			const numOutfits = this._maxindex + 1;
 			this._index++;
@@ -71,7 +71,7 @@ stendhal.ui.OutfitDialog = function() {
 			this.draw();
 			this._onPartChanged();
 		}
-		
+
 		_getPartSprite(part, index, color = null) {
 			const fname = "/data/sprites/outfit/" + part + "/" + part + "_0" + indexString(index) + ".png";
 			if (color != null) {
@@ -80,7 +80,7 @@ stendhal.ui.OutfitDialog = function() {
 			return stendhal.data.sprites.getWithPromise(fname);
 		}
 	}
-	
+
 	class ColorSelector {
 		constructor(canvas, gradientCanvas, onColorChanged) {
 			this.ctx = canvas.getContext("2d");
@@ -93,22 +93,22 @@ stendhal.ui.OutfitDialog = function() {
 			this.hX = this.x;
 			canvas.addEventListener("mousedown", (e) => this._onMouseDown(e));
 			canvas.addEventListener("mousemove", (e) => this._onMouseMove(e));
-			
+
 			gradientCanvas.addEventListener("mousedown", (e) => this._onMouseDownGrad(e));
 			gradientCanvas.addEventListener("mousemove", (e) => this._onMouseMoveGrad(e));
 			gradientCanvas.style.margin = "5px 0px 0px 0px";
 		}
-		
+
 		set enabled(value) {
 			this._enabled = value ? true : false;
 			this.draw();
 			this.onColorChanged(this.color);
 		}
-		
+
 		get enabled() {
 			return this._enabled;
 		}
-		
+
 		get color() {
 			if (this.enabled) {
 				const hsl = [this.x / this.baseImage.width, 1 - this.y / this.baseImage.height,
@@ -118,7 +118,7 @@ stendhal.ui.OutfitDialog = function() {
 			}
 			return null;
 		}
-		
+
 		set color(rgb) {
 			if (rgb != null) {
 				const hsl = stendhal.data.sprites.filter.rgb2hsl(stendhal.data.sprites.filter.splitrgb(rgb));
@@ -130,7 +130,7 @@ stendhal.ui.OutfitDialog = function() {
 				this.enabled = false;
 			}
 		}
-		
+
 		_createBaseImage(width, height) {
 			const img = document.createElement("canvas");
 			img.width  = width;
@@ -146,11 +146,11 @@ stendhal.ui.OutfitDialog = function() {
 			}
 			return img;
 		}
-		
+
 		_rgbToCssString(rgb) {
 			return "rgb(".concat(rgb[0], ",", rgb[1], ",", rgb[2], ")");
 		}
-		
+
 		draw() {
 			if (this.enabled) {
 				this.ctx.drawImage(this.baseImage, 0, 0);
@@ -161,7 +161,7 @@ stendhal.ui.OutfitDialog = function() {
 			}
 			this._drawGradientPart();
 		}
-		
+
 		_drawSelection() {
 			this.ctx.strokeStyle = "black";
 			this.ctx.beginPath();
@@ -171,7 +171,7 @@ stendhal.ui.OutfitDialog = function() {
 			this.ctx.lineTo(this.baseImage.width, this.y);
 			this.ctx.stroke();
 		}
-		
+
 		_drawGradientPart() {
 			if (this.enabled) {
 				const gradient = this.gradCtx.createLinearGradient(0, 0, this.baseImage.width, 0);
@@ -179,11 +179,11 @@ stendhal.ui.OutfitDialog = function() {
 				gradient.addColorStop(0, this._rgbToCssString(stops[0]));
 				gradient.addColorStop(0.5, this._rgbToCssString(stops[1]));
 				gradient.addColorStop(1, this._rgbToCssString(stops[2]));
-				
+
 				const ctx = this.gradCtx;
 				ctx.fillStyle = gradient;
 				ctx.fillRect(0, 0, this.baseImage.width, 10);
-				
+
 				ctx.fillStyle = "black";
 				ctx.beginPath();
 				ctx.moveTo(this.hX, 0);
@@ -194,7 +194,7 @@ stendhal.ui.OutfitDialog = function() {
 				this.gradCtx.fillRect(0, 0, this.baseImage.width, 10);
 			}
 		}
-		
+
 		_calculateGradientStops() {
 			const width = this.baseImage.width;
 			const height = this.baseImage.height;
@@ -204,10 +204,10 @@ stendhal.ui.OutfitDialog = function() {
 			const rgbLeft = stendhal.data.sprites.filter.hsl2rgb(hslLeft);
 			const rgbMiddle = stendhal.data.sprites.filter.hsl2rgb(hslMiddle);
 			const rgbRight = stendhal.data.sprites.filter.hsl2rgb(hslRight);
-			
+
 			return [rgbLeft, rgbMiddle, rgbRight];
 		}
-		
+
 		_onMouseDown(event) {
 			if (!this.enabled) {
 				return;
@@ -217,13 +217,13 @@ stendhal.ui.OutfitDialog = function() {
 			this.draw();
 			this.onColorChanged(this.color);
 		}
-		
+
 		_onMouseMove(event) {
 			if (event.buttons) {
 				this._onMouseDown(event);
 			}
 		}
-		
+
 		_onMouseDownGrad(event) {
 			if (!this.enabled) {
 				return;
@@ -232,14 +232,14 @@ stendhal.ui.OutfitDialog = function() {
 			this.draw();
 			this.onColorChanged(this.color);
 		}
-		
+
 		_onMouseMoveGrad(event) {
 			if (event.buttons) {
 				this._onMouseDownGrad(event);
 			}
 		}
 	}
-	
+
 	class PaletteColorSelector extends ColorSelector {
 		constructor(canvas, gradientCanvas, onColorChanged) {
 			super(canvas, gradientCanvas, onColorChanged);
@@ -254,23 +254,23 @@ stendhal.ui.OutfitDialog = function() {
 			this._colorMap = this._colorMap;
 			this._hsMap = this._hsMap;
 		}
-		
+
 		set x(newX) {
 			this._x = Math.floor(newX / this._blockWidth);
 		}
-		
+
 		get x() {
 			return this._x;
 		}
-		
+
 		set y(newY) {
 			this._y = Math.floor(newY / this._blockHeight);
 		}
-		
+
 		get y() {
 			return this._y;
 		}
-		
+
 		get color() {
 			if (this.enabled) {
 				const hs = this._hsMap[this.x][this.y];
@@ -304,7 +304,7 @@ stendhal.ui.OutfitDialog = function() {
 				this.enabled = false;
 			}
 		}
-		
+
 		_createColorMap() {
 			const hues = [0.05, 0.07, 0.09, 0.11];
 			const saturations = [0.70, 0.55, 0.40, 0.25];
@@ -322,17 +322,17 @@ stendhal.ui.OutfitDialog = function() {
 			this._hsMap = hsMap;
 			this._colorMap = colors;
 		}
-		
+
 		_createBaseImage(width, height) {
 			this._createColorMap();
 			const img = document.createElement("canvas");
 			img.width  = width;
 			img.height = height;
 			const ctx = img.getContext("2d");
-			
+
 			const blockWidth = width / 4;
 			const blockHeight = height / 4;
-	
+
 			for (let x = 0; x < 4; x++) {
 				for (let y = 0; y < 4; y++) {
 					const rgb = this._colorMap[x][y];
@@ -342,7 +342,7 @@ stendhal.ui.OutfitDialog = function() {
 			}
 			return img;
 		}
-		
+
 		_calculateGradientStops() {
 			let hs = this._hsMap[this.x][this.y];
 			const hslLeft = [hs[0], hs[1], 0.08];
@@ -351,10 +351,10 @@ stendhal.ui.OutfitDialog = function() {
 			const rgbLeft = stendhal.data.sprites.filter.hsl2rgb(hslLeft);
 			const rgbMiddle = stendhal.data.sprites.filter.hsl2rgb(hslMiddle);
 			const rgbRight = stendhal.data.sprites.filter.hsl2rgb(hslRight);
-			
+
 			return [rgbLeft, rgbMiddle, rgbRight];
 		}
-		
+
 		_drawSelection() {
 			this.ctx.strokeStyle = "white";
 			this.ctx.strokeRect(this.x * this._blockWidth, this.y * this._blockHeight, this._blockWidth, this._blockHeight);
@@ -371,25 +371,25 @@ stendhal.ui.OutfitDialog = function() {
 	"<button type='button' id='setoutfitprevhair'>&lt;</button>"+
 	"<canvas id='setoutfithaircanvas' width='48' height='64'></canvas>" +
 	"<button type='button' id='setoutfitnexthair'>&gt;</button>" +
-	"</div>" + 
+	"</div>" +
 
 	"<div class='horizontalgroup'>" +
 	"<button type='button' id='setoutfitprevhead'>&lt;</button>" +
 	"<canvas id='setoutfitheadcanvas' width='48' height='64'></canvas>" +
 	"<button type='button' id='setoutfitnexthead'>&gt;</button><br>" +
-	"</div>" + 
+	"</div>" +
 
 	"<div class='horizontalgroup'>" +
 	"<button type='button' id='setoutfitprevbody'>&lt;</button>" +
 	"<canvas id='setoutfitbodycanvas' width='48' height='64'></canvas>" +
 	"<button type='button' id='setoutfitnextbody'>&gt;</button><br>" +
-	"</div>" + 
+	"</div>" +
 
 	"<div class='horizontalgroup'>" +
 	"<button type='button' id='setoutfitprevdress'>&lt;</button>" +
 	"<canvas id='setoutfitdresscanvas' width='48' height='64'></canvas>" +
 	"<button type='button' id='setoutfitnextdress'>&gt;</button>" +
-	"</div>" + 
+	"</div>" +
 	"</div>" + // part selectors
 
 	"<div class='verticalgroup'>" + // color selectors
@@ -434,7 +434,7 @@ stendhal.ui.OutfitDialog = function() {
 		}
 		return "" + index;
 	}
-	
+
 	function makeSelector(part, partChanged) {
 		const outfit = marauroa.me["outfit"];
 		let maxindex;
@@ -485,7 +485,7 @@ stendhal.ui.OutfitDialog = function() {
 	function partChanged() {
 		drawComposite();
 	}
-	
+
 	self.popup = new stendhal.ui.Popup("Set outfit", content, 300, 200);
 	self.popup.onClose = function(e) {
 		stendhal.ui.OutfitDialog.instance = null;
@@ -496,7 +496,7 @@ stendhal.ui.OutfitDialog = function() {
 	const headSelector = makeSelector("head", partChanged);
 	const bodySelector = makeSelector("body", partChanged);
 	const dressSelector = makeSelector("dress", partChanged);
-	
+
 	function initialColorValue(part) {
 		const colors = marauroa.me["outfit_colors"];
 		if (colors != null) {
@@ -508,7 +508,7 @@ stendhal.ui.OutfitDialog = function() {
 		}
 		return null;
 	}
-	
+
 	function createColorSelector(classObject, part, ...partSelectors) {
 		const toggle = document.getElementById("setoutfit" + part + "colortoggle");
 		const canvas = document.getElementById("setoutfit" + part + "colorcanvas");
@@ -529,11 +529,11 @@ stendhal.ui.OutfitDialog = function() {
 		selector.draw();
 		return selector;
 	}
-	
+
 	const hairColorSelector = createColorSelector(ColorSelector, "hair", hairSelector);
 	const dressColorSelector = createColorSelector(ColorSelector, "dress", dressSelector);
 	const skinColorSelector = createColorSelector(PaletteColorSelector, "skin", headSelector, bodySelector);
-	
+
 	drawComposite();
 
 	document.getElementById("setoutfitcancel").addEventListener("click", function(e) {

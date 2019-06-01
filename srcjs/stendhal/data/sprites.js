@@ -26,14 +26,14 @@ stendhal.data.sprites = {
 		this[filename] = temp;
 		return temp;
 	},
-	
+
 	getWithPromise: function(filename) {
 		return new Promise((resolve) => {
 			if (typeof(this[filename]) != "undefined") {
 				this[filename].counter++;
 				resolve(this[filename]);
 			}
-			
+
 			const image = new Image();
 			image.counter = 0;
 			this[filename] = image;
@@ -136,7 +136,7 @@ stendhal.data.sprites = {
 			rgb >>>= 8;
 			return [rgb, g, b];
 		},
-		
+
 		mergergb: function(rgbArray) {
 			const r = rgbArray[0] << 16;
 			const g = rgbArray[1] << 8;

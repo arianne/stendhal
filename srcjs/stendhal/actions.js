@@ -126,7 +126,7 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
-	
+
 	"help": {
 		execute: function(type, params, remainder) {
 			var msg = [
@@ -178,7 +178,7 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 		},
 
-	
+
 	"jail": {
 		execute: function(type, params, remainder) {
 			var action = {
@@ -367,7 +367,7 @@ stendhal.slashActionRepository = {
 		getMinParams: 0,
 		getMaxParams: 0
 	},
-	
+
 	"characterselector": {
 		execute: function(type, params, remainder) {
 			window.location = "https://stendhalgame.org/account/mycharacters.html";

@@ -106,7 +106,7 @@ stendhal.ui.menu = {
 			},
 		]
 		var that = this;
-		
+
 		var content = "<div class=\"actionmenu\">";
 		for (var i = 0; i < actions.length; i++) {
 			content += "<div class=\"inlineblock\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(actions[i].title) + "</h4>"

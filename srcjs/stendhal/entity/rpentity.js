@@ -163,7 +163,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			}
 		});
 	},
-	
+
 	drawMultipartOutfit: function(ctx) {
 		const body = this.getOutfitPart("body", (this["outfit"] % 100));
 		const dress = this.getOutfitPart("dress", (Math.floor(this["outfit"]/100) % 100));
@@ -176,7 +176,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			}
 		});
 	},
-	
+
 	/**
 	 * Get an outfit part (Image or a Promise)
 	 *
