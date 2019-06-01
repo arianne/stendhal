@@ -619,7 +619,7 @@
       <item value="greater poison" quantity="[1,2]" probability="75.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="2.5"/>
       <item value="nalwor city scroll" quantity="[1,1]" probability="4.0"/>
-      <item value="empty scroll" quantity="[1,1]" probability="1.0"/>            
+      <item value="empty scroll" quantity="[1,1]" probability="1.0"/>
       <item value="black sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>

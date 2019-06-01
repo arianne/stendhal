@@ -54,7 +54,7 @@
 	   </implementation>
    </portal>
 
-<!-- 
+<!--
     <entity x="15" y="31">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">water-2, wave-11</parameter>

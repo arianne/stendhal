@@ -954,7 +954,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="blordrough soldier">
     <type class="human" subclass="armored_soldier" tileid="human_armored.png:3"/>
     <description>You see a man who is fast and strong.</description>
@@ -988,7 +988,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="blordrough elite">
     <type class="human" subclass="armored_elite" tileid="human_armored.png:4"/>
     <description>You see a man who is aging, but he knows how to fight.</description>
@@ -1022,7 +1022,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="blordrough infantry">
     <type class="human" subclass="armored_infantry" tileid="human_armored.png:5"/>
     <description>You see a man who has flaming red hair and red beady eyes.</description>
@@ -1056,7 +1056,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="blordrough captain">
     <type class="human" subclass="armored_captain" tileid="human_armored.png:6"/>
     <description>You see a seasoned warrior.</description>
@@ -1090,7 +1090,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
+
   <creature name="blordrough general">
     <type class="human" subclass="armored_general" tileid="human_armored.png:7"/>
     <description>You see a lean, mean, fighting machine.</description>

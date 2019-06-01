@@ -310,7 +310,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
+
     <item name="deniran city scroll">
     <type class="scroll" subclass="deniran" tileid="-1"/>
     <description>You see a deniran city scroll, it will take you back to deniran city.</description>

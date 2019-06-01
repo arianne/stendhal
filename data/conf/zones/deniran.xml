@@ -1,23 +1,23 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../zones.xsd ">
 
-	<!-- ** Load zones. Written from left to right and from top to bottom. ** 
+	<!-- ** Load zones. Written from left to right and from top to bottom. **
 		Please respect it! -->
 
 	<!-- Ground level -->
-	
+
 	<zone name="0_deniran_n_w2" level="0" x="499104" y="499744"
 	    file="Level 0/deniran/deniran_n_w2.tmx">
-	    
+
 	    <attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
 	</zone>
-	
+
 
 	<zone name="0_deniran_nw" level="0" x="499104" y="499872"
 		file="Level 0/deniran/deniran_nw.tmx">
@@ -53,7 +53,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 
 
@@ -66,16 +66,16 @@
 		</attributes>
 
 	</zone>
-	
-	
+
+
 	<zone name="0_deniran_n2" level="0" x="499232" y="499744"
 	    file="Level 0/deniran/deniran_n2.tmx">
-	    
+
 	    <attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 
 
@@ -146,8 +146,8 @@
         <configurator class-name="games.stendhal.server.maps.deniran.AdosArmy" />
         <configurator class-name="games.stendhal.server.maps.deniran.DeniranArmy" />
 	</zone>
-	
-	
+
+
 	<zone name="0_deniran_n_e2" level="0" x="499360" y="499744"
 		file="Level 0/deniran/deniran_n_e2.tmx">
 
@@ -155,7 +155,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 
 
@@ -201,8 +201,8 @@
 		</attributes>
 
 	</zone>
-	
-	
+
+
 	<zone name="0_deniran_wall_n2" level="0" x="499488" y="499744"
 		file="Level 0/deniran/deniran_wall_n2.tmx">
 
@@ -265,7 +265,7 @@
 		file="Level -1/deniran/lost_caves_nw2.tmx">
 
 	</zone>
-	
+
 
 	<zone name="-1_deniran_lost_caves_nw" level="-1" x="499104" y="499872"
 		file="Level -1/deniran/lost_caves_nw.tmx">
