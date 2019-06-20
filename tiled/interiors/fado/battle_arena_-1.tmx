@@ -13,7 +13,7 @@
  <tileset firstgid="18" name="skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
- <tileset firstgid="22" name="item/statue/swordsman" tilewidth="32" tileheight="32">
+ <tileset firstgid="22" name="statue/swordsman" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/swordsman.png"/>
  </tileset>
  <tileset firstgid="34" name="fence chunky" tilewidth="32" tileheight="32">
@@ -28,7 +28,7 @@
  <tileset firstgid="87" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs.png"/>
  </tileset>
- <tileset firstgid="93" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="int_grey_green_detail" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green_detail.png"/>
  </tileset>
  <tileset firstgid="105" name="indoor/floor" tilewidth="32" tileheight="32">

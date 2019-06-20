@@ -13,7 +13,7 @@
  <tileset firstgid="8" name="wooden_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset firstgid="12" name=".png" tilewidth="32" tileheight="32">
+ <tileset firstgid="12" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset firstgid="13" name="floor" tilewidth="32" tileheight="32">

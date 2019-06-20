@@ -52,7 +52,7 @@
  <tileset firstgid="222" name="drink" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
- <tileset firstgid="223" name="saule" tilewidth="32" tileheight="32">
+ <tileset firstgid="223" name="green_stone_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
  <tileset firstgid="226" name="potplant" tilewidth="32" tileheight="32">
@@ -67,13 +67,13 @@
  <tileset firstgid="251" name="question_marks" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/question_marks.png"/>
  </tileset>
- <tileset firstgid="252" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="252" name="floor_sparkle" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/floor_sparkle.png"/>
  </tileset>
  <tileset firstgid="270" name="oni" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/oni.png"/>
  </tileset>
- <tileset firstgid="275" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="275" name="green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset firstgid="293" name="red_drapes" tilewidth="32" tileheight="32">

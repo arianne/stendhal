@@ -58,13 +58,13 @@
  <tileset firstgid="249" name="torch" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
- <tileset firstgid="253" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="253" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="254" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="254" name="creature/oni" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/oni.png"/>
  </tileset>
- <tileset firstgid="259" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="259" name="green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset firstgid="277" name="red_drapes" tilewidth="32" tileheight="32">

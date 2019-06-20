@@ -16,13 +16,13 @@
  <tileset firstgid="11" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="12" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="12" name="shadow" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/shadow.png"/>
  </tileset>
- <tileset firstgid="15" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="15" name="wooden_rectangular" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset firstgid="24" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="24" name="barrel_tall" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
  <tileset firstgid="26" name="plain colours" tilewidth="32" tileheight="32">

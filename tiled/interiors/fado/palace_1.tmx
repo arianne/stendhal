@@ -82,10 +82,10 @@
  <tileset firstgid="216" name="oni" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/oni.png"/>
  </tileset>
- <tileset firstgid="221" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="221" name="blue_green_ns_centered" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_ns_centered.png"/>
  </tileset>
- <tileset firstgid="233" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="233" name="blue_green_wide" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_wide.png"/>
  </tileset>
  <tileset firstgid="297" name="double_red" tilewidth="32" tileheight="32">

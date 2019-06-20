@@ -13,28 +13,28 @@
  <tileset firstgid="45" name="carpets" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset firstgid="53" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="wooden_clock" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/clock/wooden_clock.png"/>
  </tileset>
- <tileset firstgid="59" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="59" name="chest/wooden_dark" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_dark.png"/>
  </tileset>
- <tileset firstgid="60" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="pot_purple" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_purple.png"/>
  </tileset>
- <tileset firstgid="61" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="table/long_side_on_pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset firstgid="64" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="stool" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset firstgid="65" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="rug_border" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset firstgid="74" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="75" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="vegetable" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <layer name="0_floor" width="12" height="12">

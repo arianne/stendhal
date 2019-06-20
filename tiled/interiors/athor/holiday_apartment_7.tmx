@@ -70,7 +70,7 @@
  <tileset firstgid="198" name="kitchenstuff" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png"/>
  </tileset>
- <tileset firstgid="214" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="214" name="mossy_brick_paving" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/mossy_brick_paving.png" trans="ff00ff"/>
  </tileset>
  <tileset firstgid="223" name="border" tilewidth="32" tileheight="32">
