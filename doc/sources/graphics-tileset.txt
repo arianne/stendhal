@@ -188,7 +188,7 @@ glass_details.png                ???; ???; ???
 int_blue_green.png               ???; ???; ???
 int_blue_purple.png              ???; ???; ???
 int_blue_purple_2.png            ???; ???; ???
-int_clay.png                     ???; ???; ???
+int_clay.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 int_green_blue.png               ???; ???; ???
 int_green_blue_2.png             ???; ???; ???
 int_green_purple.png             ???; ???; ???
@@ -209,17 +209,17 @@ int_wall_pale.png                ???; ???; ???
 int_wall_purple.png              ???; ???; ???
 int_wall_thin_bricks.png         ???; ???; ???
 ochre_brick_set.png              ???; ???; ???
-old_wood.png                     ???; ???; ???
+old_wood.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 ornamental_border.png            ???; ???; ???
-stone.png                        ???; ???; ???
-stone2.png                       ???; ???; ???
-stone_grey.png                   ???; ???; ???
+stone.png                        Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+stone2.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+stone_grey.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 wallpapers.png                   bleutailfly; CC BY-SA 3.0; Stendhal
 walls_siding.png                 bleutailfly; CC BY-SA 3.0; Stendhal
-wall_brown.png                   ???; ???; ???
+wall_brown.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 white_trim.png                   bleutailfly; CC BY-SA 3.0; Stendhal
-wood.png                         ???; ???; ???
-wood_2.png                       ???; ???; ???
+wood.png                         Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+wood_2.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 wood_trim.png                    bleutailfly; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/window/
@@ -231,14 +231,16 @@ dark_brown.png                  ???; ???; ???
 int_small_windows_dark_red.png  ???; ???; ???
 int_windows_dark_red.png        ???; ???; ???
 int_windows_purple.png          ???; ???; ???
+int_windows_white_centered.png  bleutailfly; CC BY-SA 3.0;
+int_windows_wood_centered.png   bleutailfly; CC BY-SA 3.0;
 lighted_window.png              ???; ???; ???
 painted.png                     ???; ???; ???
-window_below.png                ???; ???; ???
-window_centered.png             ???; ???; ???
-window_left.png                 ???; ???; ???
-window_long.png                 ???; ???; ???
-window_long_below.png           athana?; ???; ???
-window_right.png                ???; ???; ???
+window_below.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+window_centered.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+window_left.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+window_long.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+window_long_below.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+window_right.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 windows_with_flowerboxes.*      Lanea Zimmerman (Sharm), bluecarrot16, Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/node/81885, https://opengameart.org/content/lpc-cnilsson
 
 tiled/tileset/furniture/
@@ -249,7 +251,7 @@ tiled/tileset/furniture/bathroom/
 
 basin.png  ???; ???; ???
 bathtub.*  ???; ???; ???
-toilet.*   bleutailfly; CC BY-SA 3.0; Stendhal
+toilet.*   ???; ???; ???
 
 tiled/tileset/furniture/bed/
 
@@ -281,7 +283,7 @@ border2.png        ???; ???; ???
 brown_rug.png      ???; ???; ???
 brown_rug2.png     bleutailfly; CC BY-SA 3.0; Stendhal
 brown_rug3.png     ???; ???; ???
-carpets.png        bleutailfly, durkham?, juan?; ???; Stendhal; Need to verify all authors
+carpets.png        durkham?, juan?; ???; Stendhal; Need to verify all authors
 carpets_2.png      ???; ???; ???
 dark_blue.png      ???; ???; ???
 dark_red.png       ???; ???; ???
@@ -296,12 +298,12 @@ purple2.png        ???; ???; ???
 red_purple.png     ???; ???; ???
 royalblue.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rug_border.png     ???; ???; ???
-strawberry.png     ???; ???; ???
+strawberry.png     durkham (bug); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/chair/
 
-armchair.png               ???; ???; ???
-armchair_cream.png         ???; ???; ???
+armchair.png               kymara
+armchair_cream.png         kymara 
 armchair_pink.png          ???; ???; ???
 armchair_red.png           ???; ???; ???
 bench_iron.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -341,7 +343,7 @@ tiled/tileset/furniture/curtain/
 
 blue_green.png       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 curtain_rails.png    ???; ???; ???
-curtain_rod.png      ???; ???; ???
+curtain_rod.png      bleutailfly; CC BY-SA 3.0; Stendhal
 dark_red.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 green.png            bleutailfly; CC BY-SA 3.0; Stendhal
 light_blue.png       ???; ???; ???
@@ -384,7 +386,7 @@ torch.*              ???; ???; ???
 torch_2.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20714
 torch_top.png        ???; ???; ???
 weird_lamp.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-xmas_lights.png      ???; ???; ???
+xmas_lights.png      bleutailfly; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/other/
 
@@ -418,7 +420,7 @@ project_leader.png    ???; ???; ???
 sheep_picture.png     ???; ???; ???
 small.png             ???; ???; ???
 small_2.png           bleutailfly; CC BY-SA 3.0; Stendhal
-small_hills.png       ???; ???; ???
+small_hills.png       bleutailfly; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/shelve/
 
@@ -426,7 +428,7 @@ bookshelf.xcf.bz2                  Lanea Zimmerman (Sharm), Tuomo Untinen (Reema
 bright_bookshelf.png               bleutailfly; CC BY-SA 3.0; Stendhal
 bright_bookshelf_and_cupboard.png  bleutailfly; CC BY-SA 3.0; Stendhal
 broad_shelf.png                    ???; ???; ???
-dark_bookshelf.png                 ???; ???; ???
+dark_bookshelf.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 dark_bookshelf_2.png               bleutailfly; CC BY-SA 3.0; Stendhal
 dark_bottle_shelf.png              bleutailfly; CC BY-SA 3.0; Stendhal
 drawer_shelf.*                     Lanea Zimmerman (Sharm); CC BY 3.0; https://opengameart.org/node/81362
@@ -476,7 +478,7 @@ long_side_on_pale.png      bleutailfly; CC BY-SA 3.0; Stendhal
 orb_table.*                ???; ???; ???
 oriental_table.png         bleutailfly; CC BY-SA 3.0; Stendhal
 rectangular_with_meals.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-square.png                 ???; ???; ???
+square.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 square_pale.png            ???; ???; ???
 stone_desk.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_copper.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -490,7 +492,7 @@ tree_stump_table.png       ???; ???; ???
 vendors_table.*            Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
 white.*                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
 white_counter_top.png      ???; ???; ???
-wooden.png                 ???; ???; ???
+wooden.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 wooden_pale.png            bleutailfly; CC BY-SA 3.0; Stendhal
 wooden_rectangular.*       bleutailfly; CC BY-SA 3.0; Stendhal
 wooden_trestle.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -512,19 +514,19 @@ cobbled_paving.png           ???; ???; ???
 cobblestones.png             ???; ???; ???
 dirt_mounds.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 drain.png                    ???; ???; ???
-dry_grass.png                ???; ???; ???
-earth_edges.png              ???; ???; ???
-earth_edges_yellowgreen.png  ???; ???; ???
+dry_grass.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+earth_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+earth_edges_yellowgreen.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 eye.png                      ???; ???; ???
 grass_2.png                  ???; ???; ???
-grass_corners.png            ???; ???; ???
-grass_edges.png              ???; ???; ???
+grass_corners.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+grass_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_snow.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gravel.png                   ???; ???; ???
 greenGround2.png             ???; ???; ???
-green_paving.png             ???; ???; ???
+green_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_paving_4.png           ???; ???; ???
-ground.png                   ???; ???; ???
+ground.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ground_2.png                 ???; ???; ???
 ground_3.png                 Rachel J Morris (Moosader); CC0; http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 ground_4.png                 ???; ???; ???
@@ -549,6 +551,7 @@ square_patch.png             ???; ???; ???
 square_paving.png            ???; ???; ???
 stonecircle.png              ???; ???; ???
 stone_floors.png             ???; ???; ???
+tall_grass.png               Saphy.Len Pabin GPL 2.0 https://opengameart.org/content/the-mana-worldforest-tileset
 
 tiled/tileset/ground/fire/
 
