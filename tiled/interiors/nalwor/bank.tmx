@@ -103,7 +103,7 @@
  <tileset firstgid="335" name="chests banners" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/chests_banner.png"/>
  </tileset>
- <tileset firstgid="341" name="protection" tilewidth="32" tileheight="32">
+ <tileset firstgid="342" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="40">
@@ -158,7 +158,7 @@ qZn3KezMd97uIe9++xqfSfmovBq2xEdrkwLNj+p6NlKnJffKtZu7g5/pzkd1SH5Bn7m+pYhiI7Vk
  </layer>
  <layer name="protection" width="31" height="40" opacity="0.34">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PwQkAMAgEQVOk/beSFpKPoM7AvZeLAACol+d92r3bP91Jvze3AWCbC/FHKY9g
+   H4sIAAAAAAAAAO3PwQkAMAgEQdOk/ZeSFpKPoM7AvZeLAACol+d92r3bP91Jvze3AWCbCwv/VORg
 EwAA
   </data>
  </layer>
