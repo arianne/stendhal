@@ -1,5 +1,22 @@
 Changelog
 ---------
+---------
+1.30
+*world*
+- added Deniran Caves
+- continued on Deniran city and region
+- lots of map improvements like fixed fences, iterior decorations and furniture, tower chalet
+- moving wind mill blades
+- new NPC sprites for bandit, scarletarmynpc, Erodel Bmud, librarianconstantinenpc, man_001_npc, woman_005_npc, woman_007_npc, woman_008_npc, 
+                      elfybuyernpc, elfmayornpc, gamesupervisornpc
+- new creatures sprites for fallen_high_priest, madaram_healer, soldier_elite_archer, beaver, deniran_stormtrooper, armored soldiers or various ranks 
+- Ados army batallione protects trade route to Denrian
+
+*fixes*
+- fixed position for hey cart
+
+
+
 1.29
 
 *world*
