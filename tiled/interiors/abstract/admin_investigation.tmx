@@ -31,7 +31,7 @@
  <tileset firstgid="72" name="chests_banner.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/chests_banner.png"/>
  </tileset>
- <tileset firstgid="78" name="large.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="79" name="large.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
  <layer name="0_floor" width="26" height="13">
@@ -49,12 +49,12 @@ BQAA
  <layer name="2_object" width="26" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGPzAB4i9gNgDiL2hYsh83wFyFzqwRaNxAWM0vgka35SAXhMkjE+tGRBbILHN
-0fgW2DQBgQMOe2zw2EUugLkLhnG5iRrADo0eaBAExME45EKAOJSObhkFlAEAnjnmuUgFAAA=
+0fgW2DQBgQMOe2zw2EUugLkLhnG5iRrADo0eaBAMxCE45EKBOIyObhkFlAEAGryxCUgFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="26" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQgAz8g9schFwDEgXR0yygYGgAAvnBdo0gFAAA=
+   H4sIAAAAAAAAAGNgGAWjYBQgA38gDsAhFwjEQXR0yygYGgAAkyHJyEgFAAA=
   </data>
  </layer>
  <layer name="objects" width="26" height="13">

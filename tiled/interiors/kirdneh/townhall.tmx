@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="40" height="25" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
@@ -67,16 +67,16 @@
  <tileset firstgid="200" name="fence_wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_wooden.png"/>
  </tileset>
- <tileset firstgid="209" name="small_shelf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="212" name="small_shelf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/small_shelf.png"/>
  </tileset>
- <tileset firstgid="217" name="square_pale.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="220" name="square_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
- <tileset firstgid="218" name="girl_with_bird.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="221" name="girl_with_bird.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/girl_with_bird.png"/>
  </tileset>
- <tileset firstgid="230" name="plants" tilewidth="32" tileheight="32">
+ <tileset firstgid="233" name="plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="25">
@@ -87,7 +87,7 @@
  </layer>
  <layer name="1_terrain" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2VuU4DMRCGzdEAkaDhpiNABzwLkOQZgFfgvu/zIUCCji5KlJIGiRJoORp4CX4L
+   H4sIAAAAAAAAAL2VuU4DMRCGzdEAkaDhpiNABzwLkOQZgFfgvu/zIUCCji5KlJIGiR5oORp4Bn4L
 Wxk5M7Z3yeaXPu3anrV/rWfsnFKq3bADdkk71K/pUY3KeWKlMSm+E4yBIXAADs07ReofBR2MPzqn
 G8uNcdD4AVB21iiCeUKR8dHv8afnrJp2jcTasRWwasbtu32Wmfg0CvnjYmPXc+OXUvrrVY1509dE
 fyfglPF3B+7Jk9O4kvMnH/A3p+q5s+DxdwEuGX+xegRrYN2wYfqk9ej/W/TM24z803oCm2DLsA2e
@@ -95,7 +95,7 @@ fyfglPF3B+7Jk9O4kvMnH/A3p+q5s+DxdwEuGX+xegRrYN2wYfqk9ej/W/TM24z803oCm2DLsA2e
 xdv6zVIV1eivEPjGrV+tNPkXowLjT99HyxH+aP49GDj9OCRRUfDH6QW8MvFaWeWf5C/J/8tSJVW/
 C+3dVwp8w/nLKv90ztC7MK/kPLJyz2edfzWDtAYljUI1S+Wez1pZnn9aXE1I90grzz8rriZsvbri
 zr+sJZ0pnFpZv1ahmqVy/aXNea1KoJ1U2gv1NwIGGc7AeWT/BJgEUwnnksaHjb9u0CZwBa4j+6fB
-DJhNOJdvvAv8AiIa+TCgDwAA
+DJhNOJdvvAv8AsnJhLmgDwAA
   </data>
  </layer>
  <layer name="2_object" width="40" height="25">
@@ -108,15 +108,15 @@ DMIJ8IcSqAPieihuGFinYAXkum8DTVwzCgYTAJUT64lUuxSIlxGQw6dmFIxMcIBK5oymv1EwkIDW
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGBhQAcSVaGxkMXSwhQZu2A6ld2KRqwLiajQ2jKaFWwYzOIXEPkEnO1cC8Sok
-Gh+4gMQ+TTMXkQeOMGC678gAuQUbuMWA6b67FJr5HIc4vrjEFd/3gPgsEv8cED+k0H24wBYG3Hl7
-OxoeBfQD1ApvctLfYAEv0DCtwFUgvkZD84ci2EikGCFAq/S3iUgxQmAnA/a2EAhsRMOjYHCA4ZJf
-B1OawuYWcvITDKDXX5TWZ5S4ZRQMLQAAyXTSX6APAAA=
+Gh+4gMQ+TTMXkQeOMGC678gAuQUbuMuA6b4HFJr5Coc4vrjEFd8PgfgsEv8cED+h0H24wBYG3Hl7
+OxoeBfQD1ApvctLfYAGv0TCtwA0gvklD84ci2EikGCFAq/S3iUgxQmAnA/a2EAhsRMOjYHCA4ZJf
+B1OawuYWcvITDKDXX5TWZ5S4ZRQMLQAA2QyJY6APAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OsQkAIAxEUfffxqyjoKVj2FhIQKw0Ef+DD1deCAB+lqadzV6slWlXqxN4Xhx5
-JaOddvoIrosqb0QFADirAwqlxhigDwAA
+   H4sIAAAAAAAAAO3OsQkAIAxEUfffxgykoKVL2FhIQKw0Ef+DD1deCAB+lqadzV6slWlXsxd4XRx5
+JaOddvoIrosqb0QFADirAwjk76GgDwAA
   </data>
  </layer>
  <layer name="objects" width="40" height="25">

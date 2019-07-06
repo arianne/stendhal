@@ -118,10 +118,10 @@
  <tileset firstgid="560" name="creature/human_armored" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_armored.png"/>
  </tileset>
- <tileset firstgid="563" name="creature/human_evil" tilewidth="32" tileheight="32">
+ <tileset firstgid="568" name="creature/human_evil" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
- <tileset firstgid="573" name="logic/portal" tilewidth="32" tileheight="32">
+ <tileset firstgid="578" name="logic/portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -197,14 +197,14 @@ ABbo5gAAAAEA
  </layer>
  <layer name="objects" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3d20oDMRAG4KUvohYUFMRDwRsR4vu/lHjXwlqTtunk8H1Xhd78kJnZpFt2lwUA
-AKDc3SY6AdCLZ/MCurLVs8A/nswJAACALj1OfJ7bRgegeWpkWe4nnhF/URccoz5Yoy5Yoy7W7Sbe
-e6gJ9qmHdn1OOKe+N+ufadttwVo9WFc68RUdINCHPoWmzDyPWnBz5LvWz1Jq5zzH1n4k6gQO5fR+
-qh2CENa+3MsVz441z6nWfl6z7Pc4XYoOQBV6f165a59qhiCEvp9XydqnWiEIoe/nVbr2qUYIupCi
-AwAhUnQAIESKDgCESNEBgBApOgAQIkUHAEKk6AAAwFWl6AAcmPE5SAC53s1IOFuKDsBQXs1lAAK9
-uQ41ybltHnoQxnWtWe6aQS6/P0CZ1p/jTX1qAMaU+3x7M4Bf6mA83nEBczMDuFQNuLfTr5HngHsF
-eUauAfKoAQDgEvz/okzNdzkCAERwn4Bz+U0fgH32FtAf+zkYQ2u93FoeLsueD4BeeJ4/AAAA9GXn
-LA8AAABD+QHnRLZKAAABAA==
+   H4sIAAAAAAAAAO3dy0rDQBQG4NAXUQsKCuJlVRDhrHz/RxJ3LcSa2EzPXL5vVejmhznnZKYpyTQB
+AACsd7fLTgC04tm8gKbs9SzwhydzAgAAoEmPA5/n9tkBqJ4amab7gWfEb9QF56gP5qgL5qiLeYeB
+9x5qgmPqoV4x4Jz62s1/pm63K9bqwbrSiM/sAIk+9ClUZeR5VIObM9/VfpZSO5c5t/Y9USdwaknv
+R+kQpLD2671c8exY8pxq7cc1yn6P/4vsABSh98e1dO2jZAhS6PtxrVn7KBWCFPp+XGvXPkqEoAmR
+HQBIEdkBgBSRHQBIEdkBgBSRHQBIEdkBgBSRHQAAuKrIDsCJEZ+DBLDUuxkJF4vsAHTl1VwGINGb
+61CVnNvGoQehX9ea5a4ZLOX3B1in9ud4U54agD4tfb69GcAPddAf77iAsZkBbFUD7u20q+c54F7B
+Mj3XAMuoAQBgC/5/sU7JdzkCAGRwn4BL+U0fgGP2FtAe+znoQ229XFsetmXPB0ArPM8fAAAA2nJw
+lgcAAICufAM+4s/NAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.49">
