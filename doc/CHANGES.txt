@@ -13,7 +13,7 @@ Changelog
 - Ados army batallione protects trade route to Denrian
 
 *fixes*
-- fixed position for hey cart
+- fixed position for hay cart
 
 
 
