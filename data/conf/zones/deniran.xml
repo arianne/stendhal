@@ -457,14 +457,14 @@
 
 	<!--  Level -3 -->
 	
-    <zone name="-2_deniran_lost_caves_nw2" level="-2" x="499104" y="499744"
-		file="Level -2/deniran/lost_caves_nw2.tmx">
+    <zone name="-3_deniran_lost_caves_nw2" level="-3" x="499104" y="499744"
+		file="Level -3/deniran/lost_caves_nw2.tmx">
 
 	</zone>
 	
 
-	<zone name="-2_deniran_lost_caves_nw" level="-2" x="499104" y="499872"
-		file="Level -2/deniran/lost_caves_nw.tmx">
+	<zone name="-3_deniran_lost_caves_nw" level="-3" x="499104" y="499872"
+		file="Level -3/deniran/lost_caves_nw.tmx">
 
 	</zone>
 
