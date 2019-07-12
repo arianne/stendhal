@@ -267,6 +267,29 @@
     </equipable>
   </item>
 
+<item name="magic cloak">
+    <type class="cloak" subclass="magic_cloak" tileid="-1"/>
+    <description>You see a magic cloak. It was made by the Sikhw monks before they was destroyed.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="23"/>
+      <min_level value="170"/>
+    </attributes>
+    <weight value="8.0"/>
+    <value value="109375"/>
+    <susceptibility type="light" value="0.95"/>
+    <susceptibility type="dark" value="0.95"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="cloak"/>
+    </equipable>
+  </item>
+
   <item name="mainio cloak">
     <type class="cloak" subclass="mainio_cloak" tileid="-1"/>
     <description>You see a mainio cloak. Its flashing colours are absurd! But you wear it because it's very well made.</description>
