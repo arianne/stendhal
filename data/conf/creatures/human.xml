@@ -870,6 +870,7 @@
       <item value="chaos legs" quantity="[1,1]" probability="2.0"/>
       <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
       <item value="black helmet" quantity="[1,1]" probability="0.05"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.005"/>
     </drops>
     <equips>
     </equips>
@@ -904,6 +905,7 @@
       <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
       <item value="black boots" quantity="[1,1]" probability="0.25"/>
       <item value="black halberd" quantity="[1,1]" probability="0.01"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.005"/>
       <item value="diamond" quantity="[1,1]" probability="1.0"/>
       <item value="deniran city scroll" quantity="[1,1]" probability="2.0"/>
     </drops>
@@ -941,6 +943,7 @@
       <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="black boots" quantity="[1,1]" probability="0.5"/>
       <item value="black legs" quantity="[1,1]" probability="0.1"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.005"/>
     </drops>
     <equips>
     </equips>
@@ -975,6 +978,7 @@
       <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="chaos shield" quantity="[1,1]" probability="0.5"/>
       <item value="black legs" quantity="[1,1]" probability="0.1"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.008"/>
     </drops>
     <equips>
     </equips>
@@ -1009,6 +1013,7 @@
       <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="black boots" quantity="[1,1]" probability="0.5"/>
       <item value="chaos legs" quantity="[1,1]" probability="0.1"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.005"/>
     </drops>
     <equips>
     </equips>
@@ -1043,6 +1048,7 @@
       <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="black boots" quantity="[1,1]" probability="0.5"/>
       <item value="black legs" quantity="[1,1]" probability="0.1"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.008"/>
     </drops>
     <equips>
     </equips>
@@ -1077,6 +1083,7 @@
       <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="black boots" quantity="[1,1]" probability="0.5"/>
       <item value="black legs" quantity="[1,1]" probability="0.1"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.02"/>
     </drops>
     <equips>
     </equips>
@@ -1111,6 +1118,7 @@
       <item value="fish pie" quantity="[1,2]" probability="20.0"/>
       <item value="black boots" quantity="[1,1]" probability="0.5"/>
       <item value="black shield" quantity="[1,1]" probability="0.1"/>
+      <item value="magic cloak" quantity="[1,1]" probability="0.02"/>
     </drops>
     <equips>
     </equips>
