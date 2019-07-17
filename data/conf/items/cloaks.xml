@@ -269,7 +269,7 @@
 
 <item name="magic cloak">
     <type class="cloak" subclass="magic_cloak" tileid="-1"/>
-    <description>You see a magic cloak. It was made by the Sikhw druids before they was destroyed.</description>
+    <description>You see a magic cloak.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <def value="23"/>
