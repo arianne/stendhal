@@ -74,7 +74,7 @@ Authors of Stendhal are:
   · Coder (client pathfinding)
   · Bugs fixer 
 - Bleutailfly
-  · Map maker (magic city, Kalavan, hell, kirdneh city)
+  · Map maker (magic city, Kalavan, hell, kirdneh city, Deniran)
   · Artist - creatures and outfits with Charas
   · The Pot Queen (also drew indoor furniture)
 - Johnnnny
