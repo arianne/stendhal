@@ -2344,9 +2344,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
       </implementation>
     </entity>
 
-    <!-- Not sure yet if we want a new chest for this city, or to leave blank
-      for another city? <entity x="27" y="9"> <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-      <parameter name="slot">bank_wizard</parameter> </implementation> </entity> -->
+    <entity x="27" y="9">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_deniran</parameter>
+      </implementation>
+    </entity>
 
     <entity x="24" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
