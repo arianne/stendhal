@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,13 +14,13 @@ package games.stendhal.server.maps;
 
 /**
  * contains region names
- *
  */
 public final class Region {
 	public static final String ADOS_CITY = "Ados City";
 	public static final String ADOS_SURROUNDS = "Ados Surrounds";
 	public static final String AMAZON_ISLAND = "Amazon Island";
 	public static final String ATHOR_ISLAND = "Athor Island";
+	public static final String DENIRAN = "Deniran";
 	public static final String SEMOS_CITY = "Semos City";
 	public static final String SEMOS_SURROUNDS = "Semos Surrounds";
 	public static final String SEMOS_MINES = "Semos Mines";
@@ -36,6 +36,7 @@ public final class Region {
 	public static final String ORRIL_DUNGEONS = "Or'ril Dungeons";
 	public static final String ORRIL_MINES = "Or'ril Mines";
 	public static final String HELL = "Hell";
+
 	private Region() {
 		// hide constructor
 	}

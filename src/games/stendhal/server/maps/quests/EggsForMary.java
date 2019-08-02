@@ -71,13 +71,13 @@ import games.stendhal.server.maps.Region;
  * <li> Unlimited, but 60 minutes of waiting are required between repetitions</li>
  * </ul>
  */
-public class Campfire extends AbstractQuest {
+public class EggsForMary extends AbstractQuest {
 
-S	private static final int REQUIRED_EGGS = 10;
+	private static final int REQUIRED_EGGS = 10;
 
 	private static final int REQUIRED_MINUTES = 60;
 
-	private static final String QUEST_SLOT = "pancakes";
+	private static final String QUEST_SLOT = "eggs_for_marry";
 
 	@Override
 	public String getSlotName() {
@@ -106,8 +106,8 @@ S	private static final int REQUIRED_EGGS = 10;
 			res.add("I do not want to help Mary");
 			return res;
 		}
-		res.add("I do want to help Mary");
-		if (player.isEquipped("wood", REQUIRED_EGGS) || isCompleted(player)) {
+		res.add("I do want to help Mary by collecting 10 eggs.");
+		if (player.isEquipped("egg", REQUIRED_EGGS) || isCompleted(player)) {
 			res.add("I have found the 10 eggs needed to make pancakes");
 		}
 		if (isCompleted(player)) {
@@ -173,7 +173,7 @@ S	private static final int REQUIRED_EGGS = 10;
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"I need more eggs My mom asked me to collect some eggs, she is going to make some pancakes, But I'm afraid of those chickens! Could you please get some for me? I need ten eggs.",
+				"I need more eggs. My mom asked me to collect some eggs, she is going to make some pancakes. But I'm afraid of those chickens! Could you please get some for me? I need ten eggs.",
 				null);
 
 		// player returns - enough time has passed
@@ -271,7 +271,7 @@ S	private static final int REQUIRED_EGGS = 10;
 
 	@Override
 	public String getName() {
-		return "Pancakes";
+		return "Eggs for Marry";
 	}
 
 	@Override
