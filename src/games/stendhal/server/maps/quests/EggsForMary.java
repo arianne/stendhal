@@ -262,7 +262,7 @@ public class EggsForMary extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Pancakes",
+				"Eggs for Mary",
 				"Mary's mom is going to make pancakes, she needs eggs.",
 				true);
 		prepareRequestingStep();
@@ -271,7 +271,7 @@ public class EggsForMary extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Eggs for Marry";
+		return "EggsRorMarry";
 	}
 
 	@Override
