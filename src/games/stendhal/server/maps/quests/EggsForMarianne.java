@@ -56,7 +56,7 @@ import games.stendhal.server.maps.Region;
  * <li> Marianne asks you for eggs for her pancakes</li>
  * <li> You collect 10 eggs from the chickens</li>
  * <li> You give the eggs to Marianne.</li>
- * <li> Marianne gives you 10 pansys in return.<li>
+ * <li> Marianne gives you 5 pansys in return.<li>
  * </ul>
  *
  * REWARD:
