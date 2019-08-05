@@ -55,7 +55,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setPosition(89, 54);
-		npc.setEntityClass("kid10npc");
+		npc.setEntityClass("kid5npc");
 		npc.setDescription("You see a little girl, perhaps she needs some help...");
 		npc.setDirection(Direction.LEFT);
 		zone.add(npc);
