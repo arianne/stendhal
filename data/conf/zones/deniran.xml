@@ -133,6 +133,9 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+    <!-- NPCs -->
+        <configurator class-name="games.stendhal.server.maps.deniran.LittleGirlNPC" />
+
 	</zone>
 
 
@@ -256,8 +259,6 @@
 		</attributes>
 
 	</zone>
-
-
 
 	<!--  Level -1 -->
 

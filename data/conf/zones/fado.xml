@@ -1261,6 +1261,7 @@ For example say:  11  if you want the room called Water of Love.
 
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.fado.forest.BeeKeeperNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.forest.MeatAndFishSmokerNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.OldWomanNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.WitchNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.ItemsOnTable" />

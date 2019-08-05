@@ -271,7 +271,7 @@ public class EggsForMarianne extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "EggsRorMarianne";
+		return "EggsForMarianne";
 	}
 
 	@Override
