@@ -72,19 +72,18 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
             @Override
             protected void createDialog() {
                 addJob("I can #smoke you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod. Just ask me to!");
-                addOffer("I will #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked cod, but you'll have to bring me what is needed.");
-                addHelp("Ask me to #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, that's what I'm good at when you bring me what is needed.");
+                addOffer("I will #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, but you'll have to bring me what is needed.");
+                addHelp("Ask me to #smoke for you any #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, that's what I'm good at when you bring me all that is needed.");
 
                 addReply(Arrays.asList("smoked", "smoked meat", "smoked ham", "smoked trout", "smoked cod"),
-                    "The true secret is which herbs and which wood will make the perfect #smoke.");
+                    "The true secret are which herbs for the aroma along with enough wood for the perfect #smoke.");
                 addReply(Arrays.asList("sclaria", "kekik"),
                     "It grows in many places, at the edges or well in the depths of a forest.");
                 addReply(Arrays.asList("trout", "cod"),
-                    "I wouldn't reveal you where my favorite fishing spots are but I would suggest you go find some books on the subject in one of those scholarly places.");
+                    "I wouldn't reveal you where my favorite fishing spots are but I would suggest you go find some books on the subject, like in one of those scholarly places not many are familiar with anymore...");
                 addReply(Arrays.asList("meat","ham"),
-                    "I don't care if it comes from lion or elephant... I can #smoke that for you!");
-
-                addGoodbye("S' veg!");
+                    "I don't care if that comes from a lion, a bear or even an elephant... I can #smoke that for you!");
+                addGoodbye("S' vegum...");
 
                 final HashSet<String> productsNames = new HashSet<String>();
                 productsNames.add("smoked meat");
@@ -140,7 +139,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                     productsBound);
 
                 new MultiProducerAdder().addMultiProducer(this, behaviour,
-                        "Hi there! Sure you smelled the aroma coming from  my #smoked products!");
+                        "Hi there! Sure you were attracted here by the aroma emanating from my tasty #smoked products!");
             }
         };
 
@@ -148,7 +147,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
         npc.setDirection(Direction.DOWN);
         npc.setPosition(26, 53);
         npc.initHP(100);
-        npc.setDescription("You see Olmo. He seems busy smoking meat and fish.");
+        npc.setDescription("You see Olmo. He seems quite busy smoking meat and fish.");
         zone.add(npc);
     }
 }
