@@ -1,3 +1,4 @@
+/* $Id$ */
 /***************************************************************************
  *                      (C) Copyright 2019 - Stendhal                      *
  ***************************************************************************
@@ -44,36 +45,36 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 /**
- * QUEST: Pancakes
+ * QUEST: EggsForMarianne
  *
  * PARTICIPANTS:
  * <ul>
- * <li> Marianne, a little girl walking around looking for eggs</li>
+ * <li> Marianne, a little girl looking for eggs</li>
  * </ul>
  *
  * STEPS:
  * <ul>
  * <li> Marianne asks you for eggs for her pancakes</li>
- * <li> You collect 10 eggs from the chickens</li>
+ * <li> You collect 10 eggs from chickens</li>
  * <li> You give the eggs to Marianne.</li>
- * <li> Marianne gives you 5 pansys in return.<li>
+ * <li> Marianne gives you some seeds in return.<li>
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li> 5 pansys or 5 daisies</li>
- * <li> 50 XP</li>
- * <li> Karma: 10</li>
+ * <li> pansy or daisy seeds</li>
+ * <li> 100 XP</li>
+ * <li> Karma: 50</li>
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- * <li> Unlimited, but 60 minutes of waiting are required between repetitions</li>
+ * <li> Unlimited, at least 60 minutes have to elapse before repeating</li>
  * </ul>
  */
 public class EggsForMarianne extends AbstractQuest {
 
-	private static final int REQUIRED_EGGS = 10;
+	private static final int REQUIRED_EGGS = 12;
 
 	private static final int REQUIRED_MINUTES = 60;
 
@@ -91,7 +92,10 @@ public class EggsForMarianne extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)).fire(player, null, null);
+		return new AndCondition(
+				new QuestNotInStateCondition(QUEST_SLOT, "start"),
+				new QuestStartedCondition(QUEST_SLOT),
+				new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override
@@ -106,48 +110,56 @@ public class EggsForMarianne extends AbstractQuest {
 			res.add("I do not want to help Marianne");
 			return res;
 		}
-		res.add("I do want to help Marianne by collecting 10 eggs.");
+		res.add("I do want to help Marianne");
 		if (player.isEquipped("egg", REQUIRED_EGGS) || isCompleted(player)) {
-			res.add("I have found the 10 eggs needed to make pancakes");
+			res.add("I have found some eggs for Marianne");
 		}
 		if (isCompleted(player)) {
-			res.add("I have given Marianne the eggs. She gave me some flowers in return. I also gained 50 xp");
+			res.add("I have given Marianne the eggs." +
+		             "She gave me some seeds in return." +
+					 "I also gained some xp");
 		}
 		if(isRepeatable(player)){
-			res.add("Marianne's mom needs more eggs again.");
+			res.add("Marianne needs more eggs again.");
 		}
 		return res;
 	}
-
-
-
+	
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Marianne");
 
 		// player returns with the promised eggs
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("eggs", REQUIRED_EGGS)),
+			new AndCondition(
+					new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS)),
 			ConversationStates.QUEST_ITEM_BROUGHT,
-			"Hi again! You've got the eggs I see; do you have those 10 eggs I asked about earlier?",
+			"Hi again! You've got several eggs I see;" +
+			"Do you have as many eggs as I asked earlier?",
 			null);
 
 		//player returns without promised eggs
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("eggs", REQUIRED_EGGS))),
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					new NotCondition(
+							new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS))),
 			ConversationStates.ATTENDING,
-			"You're back already? Don't forget that you promised to collect ten eggs for me!",
+			"You're back already? " +
+			"You promised to collect a score of eggs for me ... " + 
+			"But it does not seem that you carry enough eggs with you!",
 			null);
 
-		// first chat of player with mary
+		// first chat of player with Marianne
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestNotStartedCondition(QUEST_SLOT)),
-			ConversationStates.ATTENDING, "Hi! I need a little #favor ... ",
+			ConversationStates.ATTENDING, "Hello you ... " +
+					                      "I need a little #favor if you please, you look so kind ... ",
 			null);
 
 		// player who is rejected or 'done' but waiting to start again, returns
@@ -157,7 +169,7 @@ public class EggsForMarianne extends AbstractQuest {
 					new QuestNotInStateCondition(QUEST_SLOT, "start"),
 					new QuestStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
-			"Hi again!",
+			"Hello again, you!",
 			null);
 
 		// if they ask for quest while on it, remind them
@@ -165,7 +177,7 @@ public class EggsForMarianne extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
-			"You already promised me to bring me some eggs! Ten, remember?",
+			"You already promised me to bring me some eggs, do you not remember?",
 			null);
 
 		// first time player asks/ player had rejected
@@ -173,31 +185,47 @@ public class EggsForMarianne extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"I need more eggs. My mom asked me to collect some eggs, she is going to make some pancakes. But I'm afraid of those chickens! Could you please get some for me? I need ten eggs.",
+				"I need a score of eggs. " +
+				"My mom asked me to collect eggs and she is going to make me pancakes! " +
+				"I'm afraid getting close to those chickens! " +
+				"Could you please get eggs for me? " +
+				"Remember .. I need a score of eggs ...",
 				null);
 
 		// player returns - enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
+				new AndCondition(
+						new QuestNotInStateCondition(QUEST_SLOT, "start"),
+						new QuestStartedCondition(QUEST_SLOT),
+						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
-				"My mom needs more eggs again! Could you please get some for me? I need ten eggs.",
+				"My mom needs eggs again! " +
+				"Could you please get more eggs for me? "+
+				"A score of eggs will do ...",
 				null);
 
 		// player returns - enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
+				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"),
+				new QuestStartedCondition(QUEST_SLOT),
+				new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,"Thanks, but I think the eggs you brought already will last me"));
+				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,
+						"Thanks! " +
+						"I think the eggs you already brought me " +
+						"will be enough for another while ..."));
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Okay. You can find eggs in the town. Come back when you get ten eggs!",
+			"Okay. You can find eggs hunting chickens" +
+			"You can find them around the town."+
+			"Come back when you get ten eggs!",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2));
 
 		// player is not willing to help
@@ -205,19 +233,20 @@ public class EggsForMarianne extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Oh dear, what am I going to do with all these flowers? Perhaps I'll just decorate some graves...",
+			"Oh dear, what am I going to do with all these flower seeds?" +
+			"Perhaps I'll just plant them around some graves...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	private void prepareBringingStep() {
-		final SpeakerNPC npc = npcs.get("Mary");
+		final SpeakerNPC npc = npcs.get("Marianne");
 		// player has eggs and tells Marianne, yes, it is for her
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("eggs", REQUIRED_EGGS));
+		reward.add(new DropItemAction("egg", REQUIRED_EGGS));
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
-		reward.add(new IncreaseKarmaAction(10));
+		reward.add(new IncreaseKarmaAction(50));
 		reward.add(new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -225,7 +254,7 @@ public class EggsForMarianne extends AbstractQuest {
 				if (Rand.throwCoin() == 1) {
 					rewardClass = "pansy";
 				} else {
-					rewardClass = "daisies";
+					rewardClass = "daisy";
 				}
 				npc.say("Thank you! Here, take some " + rewardClass + "!");
 				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
@@ -237,25 +266,26 @@ public class EggsForMarianne extends AbstractQuest {
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
-			new PlayerHasItemWithHimCondition("eggs", REQUIRED_EGGS),
+			new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS),
 			ConversationStates.ATTENDING, null,
 			new MultipleActions(reward));
 
 		//player said the eggs was for her but has dropped it from his bag or hands
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
-			new NotCondition(new PlayerHasItemWithHimCondition("eggs", REQUIRED_EGGS)),
+			new NotCondition(new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS)),
 			ConversationStates.ATTENDING,
 			"Hey! Where did you put the eggs?",
 			null);
 
-		// player had eggs but said it is not for mary
+		// player had eggs but said it is not for Marianne
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Oh... well, I hope you find some quickly; I'm getting hungry!",
+			"Oh... well, I hope you find some quickly;" +
+			"I'm getting hungry!",
 			null);
 	}
 
