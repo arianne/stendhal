@@ -119,6 +119,11 @@
 		<portal x="96" y="115" ref="deniran_castle_entrance_right">
 			<destination zone="int_deniran_castle" ref="entrance_right" />
 			<attribute name="move.continuous" />
+		</portal> 
+
+        <portal x="52" y="50" ref="deniran_bakery_entrance">
+			<destination zone="int_deniran_bakery" ref="entrance" />
+			<attribute name="move.continuous" />
 		</portal>
 
 
@@ -662,5 +667,16 @@
 		</portal>
 
 	</zone>
+
+
+    <zone name="int_deniran_bakery" file="interiors/deniran/bakery.tmx">
+
+		<portal x="15" y="12" ref="entrance">
+			<destination zone="0_deniran" ref="deniran_bakery_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+
 
 </zones>
