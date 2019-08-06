@@ -49,7 +49,7 @@ import games.stendhal.server.maps.Region;
  *
  * PARTICIPANTS:
  * <ul>
- * <li> Sally, a scout sitting next to a campfire near Or'ril</li>
+ * <li> Sally, a young scout girl sitting next to a campfire near Or'ril River</li>
  * </ul>
  *
  * STEPS:
@@ -120,16 +120,16 @@ public class Campfire extends AbstractQuest {
 		return res;
 	}
 
-
-
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Sally");
 
 		// player returns with the promised wood
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
+			new AndCondition(
+					new GreetingMatchesNameCondition(npc.getName()),
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?",
 			null);
@@ -180,7 +180,10 @@ public class Campfire extends AbstractQuest {
 		// player returns - enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
+				new AndCondition(
+						new QuestNotInStateCondition(QUEST_SLOT, "start"),
+						new QuestStartedCondition(QUEST_SLOT),
+						new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
 				"My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.",
 				null);
@@ -188,7 +191,10 @@ public class Campfire extends AbstractQuest {
 		// player returns - enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
+				new AndCondition(
+						new QuestNotInStateCondition(QUEST_SLOT, "start"),
+						new QuestStartedCondition(QUEST_SLOT),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,"Thanks, but I think the wood you brought already will last me"));
@@ -198,7 +204,10 @@ public class Campfire extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
+			"Okay." +
+			"You can find some wood in the forest north of here." +
+			"You could also take your chances with the beavers near the river south of here." +
+			"Come back when you get ten pieces of wood!",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2));
 
 		// player is not willing to help
