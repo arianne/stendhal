@@ -54,7 +54,7 @@ public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
 			@Override
 			public void createDialog() {
 
-				addGreeting("What do you want?");
+				addGreeting("What in heaven's name do you want?");
 				addJob("I buy odds and ends. Somebody has to do it.");
 				addHelp("Look at me! I am reduced to buying trinkets! How can I help YOU?");
 				addOffer("Don't bother me unless you have something I want! Check the blackboard for prices.");
