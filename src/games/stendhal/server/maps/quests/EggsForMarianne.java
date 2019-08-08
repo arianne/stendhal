@@ -55,14 +55,14 @@ import games.stendhal.server.maps.Region;
  * STEPS:
  * <ul>
  * <li> Marianne asks you for eggs for her pancakes</li>
- * <li> You collect 10 eggs from chickens</li>
- * <li> You give the eggs to Marianne.</li>
- * <li> Marianne gives you some seeds in return.<li>
+ * <li> You collect a score of eggs from chickens</li>
+ * <li> You give a score of eggs to Marianne.</li>
+ * <li> Marianne gives you some flowers in return.<li>
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li> pansy or daisy seeds</li>
+ * <li> some pansy or daisies</li>
  * <li> 100 XP</li>
  * <li> Karma: 50</li>
  * </ul>
@@ -74,8 +74,10 @@ import games.stendhal.server.maps.Region;
  */
 public class EggsForMarianne extends AbstractQuest {
 
+	//a score of eggs
 	private static final int REQUIRED_EGGS = 12;
 
+	//60 minutes before quest can be repeated
 	private static final int REQUIRED_MINUTES = 60;
 
 	private static final String QUEST_SLOT = "eggs_for_marianne";
@@ -115,9 +117,9 @@ public class EggsForMarianne extends AbstractQuest {
 			res.add("I have found some eggs for Marianne");
 		}
 		if (isCompleted(player)) {
-			res.add("I have given Marianne the eggs." +
-		             "She gave me some seeds in return." +
-					 "I also gained some xp");
+			res.add("I have given Marianne the eggs. " +
+		            "She gave me some flowers in return. " +
+					"I also gained some xp!");
 		}
 		if(isRepeatable(player)){
 			res.add("Marianne needs more eggs again.");
@@ -136,7 +138,7 @@ public class EggsForMarianne extends AbstractQuest {
 					new QuestInStateCondition(QUEST_SLOT, "start"),
 					new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS)),
 			ConversationStates.QUEST_ITEM_BROUGHT,
-			"Hi again! You've got several eggs I see;" +
+			"Hi again! You've got several eggs I see; " +
 			"Do you have as many eggs as I asked earlier?",
 			null);
 
@@ -223,9 +225,9 @@ public class EggsForMarianne extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Okay. You can find eggs hunting chickens" +
-			"You can find them around the town."+
-			"Come back when you get ten eggs!",
+			"Okay. " +
+			"You can find eggs hunting chickens... I am so afraid of getting near those pesky chickens! " +
+			"Please come back when you found enough eggs for me!",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2));
 
 		// player is not willing to help
@@ -233,8 +235,8 @@ public class EggsForMarianne extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Oh dear, what am I going to do with all these flower seeds?" +
-			"Perhaps I'll just plant them around some graves...",
+			"Oh dear, what am I going to do with all these flowers? " +
+			"Perhaps I'll just leave them around some graves...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
@@ -254,7 +256,7 @@ public class EggsForMarianne extends AbstractQuest {
 				if (Rand.throwCoin() == 1) {
 					rewardClass = "pansy";
 				} else {
-					rewardClass = "daisy";
+					rewardClass = "daisies";
 				}
 				npc.say("Thank you! Here, take some " + rewardClass + "!");
 				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
@@ -293,7 +295,7 @@ public class EggsForMarianne extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				"Eggs for Marianne",
-				"Marianne's mom is going to make pancakes, she needs eggs.",
+				"Marianne's mom is going to make some pancakes and she needs some eggs.",
 				true);
 		prepareRequestingStep();
 		prepareBringingStep();
