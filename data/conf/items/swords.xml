@@ -132,7 +132,7 @@
 
   <item name="chaos sword">
     <type class="sword" subclass="chaos_sword" tileid="-1"/>
-    <description>The chaos sword. It hurts them but it heals you.</description>
+    <description>You see a chaos sword. Wielding it allows to hurt your foes and to heal you at the same time.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
       <atk value="32"/>
