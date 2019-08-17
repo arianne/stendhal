@@ -181,7 +181,7 @@
 
   <creature name="mountain orc">
     <type class="orc" subclass="mountain_orc" tileid="mountain_orc.png:2"/>
-    <description></description>
+    <description>You see a mountain orc. Not very cunning but his robustness, stench and loudness could still overwhelm you!</description>
     <attributes>
       <atk value="352"/>
       <def value="57"/>
@@ -214,7 +214,7 @@
 
   <creature name="mountain orc warrior">
     <type class="orc" subclass="mountain_orc_warrior" tileid="mountain_orc.png:3"/>
-    <description></description>
+    <description>You see a mountain orc warrior. Not very cunning but you should not underestimate his robustness and stench!</description>
     <attributes>
       <atk value="377"/>
       <def value="66"/>
@@ -247,7 +247,7 @@
 
   <creature name="mountain orc hunter">
     <type class="orc" subclass="mountain_orc_hunter" tileid="mountain_orc.png:1"/>
-    <description></description>
+    <description>You see a mountain orc hunter. He's in search for raw meat... You could be his next lunch!</description>
     <attributes>
       <atk value="411"/>
       <def value="68"/>
@@ -280,7 +280,7 @@
 
   <creature name="mountain orc chief">
     <type class="orc" subclass="mountain_orc_chief" tileid="mountain_orc.png:0"/>
-    <description></description>
+    <description>You see a mountain orc chief. He's proud, loud and reeks like a thousand orcs together...</description>
     <attributes>
       <atk value="474"/>
       <def value="75"/>
