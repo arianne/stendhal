@@ -99,11 +99,11 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							final long delay = 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
 							final long timeRemaining = Long.parseLong(tokens[1]) + delay - System.currentTimeMillis();
 							if (timeRemaining > 0) {
-								raiser.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+								raiser.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try coming back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
 								raiser.setCurrentState(ConversationStates.ATTENDING);
 								return;
 							}
-							raiser.say("Would you like to help us again?");
+							raiser.say("Would you like to help again clearing this Keep of our enemies, those #dwarves?");
 						} else {
 							raiser.say("Thank you for your help in our time of need. Now we feel much safer.");
 							raiser.setCurrentState(ConversationStates.ATTENDING);
@@ -127,14 +127,14 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Great! Please find them somewhere in this level of the keep and make them pay for their tresspassing!",
+				"Great! Please find all wandering #dwarves somewhere in this level of the keep and make them pay for their tresspassing!",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Ok, I will await someone with enough backbone to do the job.",
+				"Ok, I will await someone having the guts to have the job done.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 

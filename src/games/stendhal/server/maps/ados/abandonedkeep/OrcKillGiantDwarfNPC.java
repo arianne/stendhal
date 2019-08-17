@@ -65,7 +65,7 @@ public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello my fine fellow. Welcome to our humble dwelling.");
+				addGreeting("Hello my fine fellow. Welcome to Ados Abandoned Keep, our humble dwelling!");
 				addJob("I wait for able bodied warriors to defeat the remaining dwarves in our area.");
 				addReply("dwarves", "When we got here, we had to run the dwarves from this area. There are only a few left. Will you help us with this #task?");
 				addHelp("When we got here, we had to run the dwarves from this area. There are only a few left. Will you help us with this #task?");
@@ -76,7 +76,9 @@ public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
 		zogfangNPC.setEntityClass("orcbuyernpc");
 		zogfangNPC.setPosition(10, 107);
 		zogfangNPC.initHP(1000);
-		zogfangNPC.setDescription("You see the old smelling orc Zogfang. He waits for warriors to help him while fighting against dwarves.");
+		zogfangNPC.setDescription(
+				"You see Zogfang, an old and stinking mountain orc. " +
+				"He awaits for warriors to help him clear his humble dwelling from some dwarves.");
 		zone.add(zogfangNPC);
 	}
 }
