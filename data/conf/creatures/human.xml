@@ -3094,6 +3094,7 @@
     </abilities>
     <ai>
       <says>
+      	<noise state="idle follow fight" value="FINIS... OMNIUM... NUNC... EST..."/>
         <noise state="idle follow fight" value="The end of the world is nigh..."/>
         <noise state="idle follow fight" value="Yield to the Power!"/>
         <noise state="death" value="Meet you after Cataclysm."/>
