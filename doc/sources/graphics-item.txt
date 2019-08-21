@@ -75,7 +75,7 @@ hand_axe.png                 ???; ???; ???
 magic_twosided_poleaxe.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked twosided_poleaxe
 oldscythe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scythe.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-sickle.png                   omero?; ???; ???
+sickle.png                   omero; CC BY-SA 3.0; Stendhal
 small_axe.png                ???; ???; ???
 twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
@@ -172,18 +172,18 @@ data/sprites/items/container/
 
 backpack.png                 Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
 bottle.png                   Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-bottle_eared.png             ???; ???; ???
-bottle_fat.png               ???; ???; ???
-bottle_large.png             ???; ???; ???
+bottle_eared.png             omero; CC BY-SA 3.0; Stendhal
+bottle_fat.png               omero; CC BY-SA 3.0; Stendhal
+bottle_large.png             omero; CC BY-SA 3.0; Stendhal
 bottle_medium.png            Anders Asplund (Danter); GPL 2.0; Stendhal
-bottle_short_rounded.png     ???; ???; ???
-bottle_short_triangular.png  ???; ???; ???
-bottle_slim.png              ???; ???; ???
-bottle_squared.png           ???; ???; ???
-bottle_tall.png              ???; ???; ???
-bottle_triangular.png        ???; ???; ???
+bottle_short_rounded.png     omero; CC BY-SA 3.0; Stendhal
+bottle_short_triangular.png  omero; CC BY-SA 3.0; Stendhal
+bottle_slim.png              omero; CC BY-SA 3.0; Stendhal
+bottle_squared.png           omero; CC BY-SA 3.0; Stendhal
+bottle_tall.png              omero; CC BY-SA 3.0; Stendhal
+bottle_triangular.png        omero; CC BY-SA 3.0; Stendhal
 empty_goblet.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-empty_sack.png               omero?; ???; ???
+empty_sack.png               omero; CC BY-SA 3.0; Stendhal
 flask.png                    Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 full_goblet.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 keyring.png                  Jordan Irwin (AntumDeluge); CC0; Stendhal
@@ -219,15 +219,15 @@ antidote.png                   Anders Asplund (Danter); GPL 2.0; Stendhal
 beer.png                       Katie Russell (kymara)?; ???; ???
 deadly_poison.png              Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 disease_poison.png             Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-fierywater.png                 omero?; ???; ???
+fierywater.png                 omero; CC BY-SA 3.0; Stendhal
 fish_soup.png                  Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
 greater_antidote.png           Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 greater_poison.png             Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 greater_potion.png             Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 holy_water.*                   Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-koboldish_torcibud_mild.png    omero?; ???; ???
-koboldish_torcibud_strong.png  omero?; ???; ???
-koboldish_torcibud_vsop.png    omero?; ???; ???
+koboldish_torcibud_mild.png    omero; CC BY-SA 3.0; Stendhal
+koboldish_torcibud_strong.png  omero; CC BY-SA 3.0; Stendhal
+koboldish_torcibud_vsop.png    omero; CC BY-SA 3.0; Stendhal
 love_potion.png                Katie Russell (kymara)?; ???; ???
 mana.png                       Red Queen?; ???; ???
 mega_poison.png                Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/280/
@@ -250,23 +250,23 @@ data/sprites/items/flower/
 
 daisies.png        kymara?; ???; ???
 exotic_flower.png  bleutailfly; CC BY-SA 3.0; Stendhal
-lilia.png          ???; ???; ???
-pansy.png          omero?; ???; ???
+lilia.png          omero?; ???; ???
+pansy.png          omero; CC BY-SA 3.0; Stendhal
 rose.png           ???; ???; ???
-zantedeschia.png   omero?; ???; ???
+zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/
 
 angel_cake.png             geomac?; ???; ???; Committed by kymara
 apple.png                  ???; ???; ???; Committed by Miguel Angel
-applepie.png               omero?; ???; ???
+applepie.png               omero; CC BY-SA 3.0; Stendhal
 arctic_char.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-artichoke.png              omero?; ???; ???
+artichoke.png              omero; CC BY-SA 3.0; Stendhal
 baguette.png               Katie Russell (kymara); GPL 2.0; Stendhal
 banana.png                 Red Queen?; ???; ???
 blackapple.png             tigertoes?; ???; ???
 broccoli.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-butter.png                 butter?; ???; ???
+butter.png                 omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png        Daniel Herding (mort); GPL 2.0; Stendhal
 carrot.png                 ???; ???; ???; Committed by Miguel Angel
 carrotpie.png              Chad F?; ???; ???
@@ -276,7 +276,7 @@ cheesecake.png             barbanegra?; ???; ???; Committed by kymara
 cheesesausage.png          barbanegra?; ???; ???; Committed by kymara
 cheese_sausage_on_bun.png  tigertoes?; ???; ???
 cherry.png                 ???; ???; ???; Committed by Miguel Angel
-cherrypie.png              omero?; ???; ???
+cherrypie.png              omero; CC BY-SA 3.0; Stendhal
 chicken.png                kymara?; ???; ???
 chinese-cabbage.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chocolatebar.png           tigertoes; CC BY-SA 3.0; Stendhal
@@ -288,7 +288,7 @@ cod_smoked.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
-crepesuzette.png           omero?; ???; ???
+crepesuzette.png           omero; CC BY-SA 3.0; Stendhal
 devil_cake.png             geomac?; ???; ???; Committed by kymara
 easter_egg.png             Katie Russell (kymara); GPL 2.0; Stendhal
 egg.png                    ???; ???; ???
@@ -306,7 +306,7 @@ leek.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 licorice.png               tigertoes?; ???; ???
 mackerel.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meat.png                   ???; ???; ???; Committed by Miguel Angel
-meat_smoked.png            ???; ???; ???; Based on meat.png
+meat_smoked.png            omero; CC BY-SA 3.0; Stendhal; Based on meat.png
 olive.png                  tigertoes?; ???; ???
 onion.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pear.png                   Red Queen?; ???; ???
@@ -351,13 +351,13 @@ chinese_cabbage_grower.png  ???; ???; ???
 collard_grower.png          ???; ???; ???
 courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 daisies_grower.png          ???; ???; ???
-egg_grower.png              ???; ???; ???
-garlic_grower.png           ???; ???; ???
+egg_grower.png              omero; CC BY-SA 3.0; Stendhal
+garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
 grapes_grower.png           ???; ???; ???
 kekik_grower.png            ???; ???; ???
 leek_grower.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-lilia_grower.png            ???; ???; ???
-mandragora_grower.png       ???; ???; ???
+lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
+mandragora_grower.png       omero; CC BY-SA 3.0; Stendhal
 onion_grower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pansy_grower.png            ???; ???; ???
 porcini_grower.png          ???; ???; ???
@@ -369,7 +369,7 @@ toadstool_grower.png        ???; ???; ???
 tomato_grower.png           ???; ???; ???
 watermelon_grower.png       ???; ???; ???
 wood_grower.png             Katie Russell (kymara); GPL 2.0; Stendhal
-zantedeschia_grower.png     ???; ???; ???
+zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/helmet/
 
@@ -401,7 +401,7 @@ data/sprites/items/herb/
 arandula.png       ???; ???; Charas???
 kekik.png          ???; ???; ???
 kokuda.png         ???; ???; ???
-mandragora.png     ???; ???; ???
+mandragora.png     omero; CC BY-SA 3.0; Stendhal
 reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
 sclaria.png        ???; ???; ???
 
@@ -474,30 +474,30 @@ data/sprites/items/misc/
 ankh.png                 ???; ???; ???
 bat_entrails.png         Katie Russell (kymara); GPL 2.0; Stendhal
 bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
-bulb.png                 ???; ???; ???
+bulb.png                 omero; CC BY-SA 3.0; Stendhal
 canotuna.png             tigertoes; CC BY-SA 3.0; Stendhal
 cards.png                Daniel Herding (mort); GPL 2.0; Stendhal
 creditcard.png           ???; ???; ???
-decent_meal.png          ???; ???; ???
+decent_meal.png          omero; CC BY-SA 3.0; Stendhal
 dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
 ent_twig.png             gummipferd; ???; ???
 giant_heart.png          ???; ???; ???
-lemon.png                ???; ???; ???
+lemon.png                omero; CC BY-SA 3.0; Stendhal
 marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
 mithril_ring.png         tigertoes; CC BY-SA 3.0; Stendhal
-olive_oil.png            ???; ???; ???
-pinto_beans.png          ???; ???; ???
-potato.png               ???; ???; ???
+olive_oil.png            omero; CC BY-SA 3.0; Stendhal
+pinto_beans.png          omero; CC BY-SA 3.0; Stendhal
+potato.png               omero; CC BY-SA 3.0; Stendhal
 rodent_trap.png          ???; ???; ???
 seed.png                 ???; ???; ???
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 teddy.png                Daniel Herding (mort); GPL 2.0; Stendhal
-tripe.png                ???; ???; ???
+tripe.png                omero; CC BY-SA 3.0; Stendhal
 vampirette_entrails.png  Katie Russell (kymara); GPL 2.0; Stendhal
 venom_gland.png          Jordan Irwin; OGA BY 3.0; Stendhal
-vinegar.png              ???; ???; ???
+vinegar.png              omero; CC BY-SA 3.0; Stendhal
 virgin_olive_oil.png     ???; ???; ???
 
 data/sprites/items/missile/

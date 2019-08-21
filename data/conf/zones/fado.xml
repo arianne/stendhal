@@ -669,8 +669,8 @@ If the bride is called Helen, you should say 'marry Helen'
     <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelChefNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelGuestNPC" />
-    <!-- requires food items that have been reverted from miscs.xml because
-      food needs to be eatable <configurator class-name="games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC"/> -->
+    <!-- requires food items that have been reverted from miscs.xml because food needs to be eatable -->
+    <configurator class-name="games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC"/>
 
     <!-- Interactive sounds -->
     <entity x="72" y="20">

@@ -22,9 +22,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
 /**
- * Provides a Troublesome Customer in Fado's Hotel.
+ * Provides Groongo Rahnnt, The Troublesome Customer in Fado's Hotel.
  *
- * Offers a quest to bring him the meal he's been awaiting to order.
+ * Groongo offers a quest to bring him the meal he's been awaiting to order.
  *
  * @author omero
  *
@@ -35,11 +35,19 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final String[] rants = {
 			"... Bah! I wonder how long a hungry customer has to wait before a waiter shows up...",
-			"... Gah! This place must be run by invisible waiters and lazy chefs...",
-			"... Boh! From time to time I'd also like to have a decent meal...",
-			"... Mah! I counted all the tiles on the floor already... Twice...",
+			"... Boh! From time to time I'd like to have a decent meal...",
 			"... Doh! No wonder this place is almost deserted... One waits forever before enjoying a decent meal...",
-			"... Meh! I'll start notching the table legs for every minute I spend waiting forever here..."
+			"... Gah! This place must be run by invisible waiters and lazy chefs...",
+			"... Hgh! HellooO?! I am wondering... Is there anyone ArOoUunNDd in HheReEeee?!",
+			"... Mah! I counted all the tiles on the floor already... Twice...",
+			"... Meh! I'll start notching the table legs for every minute I'm spending waiting at this table here...",
+			"... Ugh! I should start counting ALL the bugs infesting this place..."
+			/**
+			"... Duh! I should start counting ALL the bugs infesting this place...",
+			"... Wah! I should start counting ALL the bugs infesting this place...",
+			"... Woh! I should start counting ALL the bugs infesting this place...",
+			*/
+			
 		};
 		new MonologueBehaviour(buildNPC(zone), rants, 1);
 	}
@@ -54,11 +62,11 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Gah! It was about time that someone showed up eventually!");
+				addGreeting("Gah! It was about time that someone showed up eventually! Are you ready to do your #task now?!");
 				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!");
 				addJob("Ah! Finally... Want a #task?");
 				addOffer("Do a #task for me and you get a generous tip!");
-				addGoodbye("Buzz off now!");
+				addGoodbye("You... You... Buzz off now!");
 
 				/**
                  * Additional behavior code is in games.stendhal.server.maps.quests.MealForGroongo
@@ -73,6 +81,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 		};
 
+		// Finalize Groongo details
 		npc.setEntityClass("customeronchairnpc");
 		npc.setDescription("You see Groongo Rahnt. He seems impatient to get the attention of someone!");
 		npc.setPosition(70, 24);

@@ -191,6 +191,7 @@ public class MealForGroongo extends AbstractQuest {
     //private static final int MEALREADY_DELAY = 15;
 
     //How much time the player has to get a better reward
+    // FIXME omero: for testing only
     private static final int BRINGTHANKS_DELAY = 10;
 
     //Every when the quest can be repeated
@@ -199,6 +200,7 @@ public class MealForGroongo extends AbstractQuest {
     //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
 
     // how much XP is given as the reward
+    // FIXME omero: for testing only
     private static final int XP_REWARD = 1000;
 
     // which main dishes Groongo will ask for the quest
@@ -989,9 +991,9 @@ public class MealForGroongo extends AbstractQuest {
                 new GreetingMatchesNameCondition(npc.getName()),
                 new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
             ConversationStates.QUEST_OFFERED,
-            "Gah! [insults player]" +
-            " I'm all covered with dust after waiting this much..." +
-            " Are you going to bring me a decent #meal now?",
+            "Gah! Here I stand... Covered in cobwebs... Waiting to order a decent meal... " +
+            "Let me tell you! The service in this restaurant is... is... " +
+            "Are you going to bring me a decent #meal now?",
             null
         );
 
@@ -1044,7 +1046,7 @@ public class MealForGroongo extends AbstractQuest {
                 new QuestNotStartedCondition(QUEST_SLOT),
                 new QuestCompletedCondition(QUEST_SLOT)),
             ConversationStates.QUEST_OFFERED,
-            "Bah! I want to have a decent meal and try something different than soups or pies!" +
+            "Bah! I want to have a decent meal and try something different than some soups or pies!" +
             " Will you bring me what I will ask?",
             null
         );
