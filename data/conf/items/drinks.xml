@@ -2,6 +2,52 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../items.xsd ">
 
+  <item name="olive oil">
+    <type class="drink" subclass="olive_oil" tileid="-1"/>
+    <description>You see a bottle of olive oil. Do not drink it pure, will make you feel sick!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="-1"/>
+      <frequency value="90"/>
+      <quantity value="1"/>
+      <regen value="-1"/>
+      <menu value="Look|Drink"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="vinegar">
+    <type class="drink" subclass="vinegar" tileid="-1"/>
+    <description>You see a bottle of vinegar. Do not drink it pure, will make you feel sick!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="-1"/>
+      <frequency value="90"/>
+      <quantity value="1"/>
+      <regen value="-1"/>
+      <menu value="Look|Drink"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="fierywater">
     <type class="drink" subclass="fierywater" tileid="-1"/>
     <description>You see a bottle of fierywater. Do not drink it pure, you would evaporate!</description>
@@ -11,7 +57,7 @@
       <frequency value="90"/>
       <quantity value="1"/>
       <regen value="-1"/>
-      <menu value="Drink|Use"/>
+      <menu value="Look|Drink"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

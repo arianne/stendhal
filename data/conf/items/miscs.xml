@@ -2,11 +2,31 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
+  <item name="decent meal">
+    <type class="misc" subclass="decent_meal" tileid="-1" />
+    <description>You see a decent meal for Groongo Rahnnt.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="1.0" />
+    <value value="1" />
+    <equipable>
+	  <slot name="ground" />
+	  <slot name="content" />
+	  <slot name="lhand" />
+	  <slot name="rhand" />
+	  <slot name="bag" />
+	  <slot name="trade" />
+    </equipable>
+  </item>
+
   <item name="bulb">
     <type class="misc" subclass="bulb" tileid="-1"/>
     <description>You see a bulb. It can be planted anywhere, but it will only thrive on fertile ground.</description>
     <implementation class-name="games.stendhal.server.entity.item.Seed"/>
-	 <attributes>
+	<attributes>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>

@@ -66,8 +66,14 @@ import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 
 /**
- * NOTE: quest slot templates for testing
- * ---------------------------
+ * NOTEs:
+ * quest slot templates for testing
+ * QUEST_SLOT = "meal_for_groongo"
+ * 
+ * alterquest <player> meal_for_groongo
+ * summonat orxunoa bag 
+ * 
+ * 
  * fetch_dessert;inprogress;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
  * deliver_decentmeal;inprogress;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207289602
  * done;incomplete;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
@@ -110,14 +116,12 @@ import marauroa.common.Pair;
  * REPETITIONS:
  * <ul>
  *  <li>unlimited
- *  <li>once or twice a day?
  * </ul>
  *
  * @author omero
  */
 
-//TODO: it requires food items that have been reverted from miscs.xml because food needs to be eatable.
-
+//TODO: requires ALL food items to be edible
 
 public class MealForGroongo extends AbstractQuest {
 
@@ -187,8 +191,9 @@ public class MealForGroongo extends AbstractQuest {
 
     //How long it takes Chef Stefan to prepare a decent meal (main dish and dessert)
     // FIXME omero: for testing only
-    private static final int MEALREADY_DELAY = 1;
     //private static final int MEALREADY_DELAY = 15;
+    private static final int MEALREADY_DELAY = 2;
+
 
     //How much time the player has to get a better reward
     // FIXME omero: for testing only
@@ -196,7 +201,7 @@ public class MealForGroongo extends AbstractQuest {
 
     //Every when the quest can be repeated
     // FIXME omero: for testing only
-    private static final int REPEATQUEST_DELAY = 1;
+    private static final int REPEATQUEST_DELAY = 10;
     //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
 
     // how much XP is given as the reward
@@ -612,7 +617,7 @@ public class MealForGroongo extends AbstractQuest {
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_tarte = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_tarte.put("flour", new Pair<Integer, Integer>(1,2));
         requiredIngredients_tarte.put("sugar", new Pair<Integer, Integer>(1,4));
-        requiredIngredients_tarte.put("chocolate", new Pair<Integer, Integer>(1,6));
+        requiredIngredients_tarte.put("chocolate shake", new Pair<Integer, Integer>(1,6));
         requiredIngredients_tarte.put("milk", new Pair<Integer, Integer>(2,4));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_kirschtorte = new HashMap<String, Pair<Integer, Integer>>();
@@ -1617,7 +1622,7 @@ public class MealForGroongo extends AbstractQuest {
                 new QuestActiveCondition(QUEST_SLOT),
                 new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal")),
             ConversationStates.QUESTION_1,
-            "Oh, you're back! Do you finally have my #meal?",
+            "Oh, you're back! Do you finally have the decent #meal I ordered a while ago?",
             null
         );
 
