@@ -86,7 +86,7 @@ import marauroa.common.Pair;
  * <p>
  * PARTICIPANTS:
  * <ul>
- *  <li> Groongo Rahnnt, The Troublesome Customer
+ *  <li> Groongo Rahnnt, The Fado's Hotel Restaurant Troublesome Customer
  *  <li> Stefan, The Fado's Hotel Restaurant Chef
  * </ul>
  *
@@ -110,18 +110,17 @@ import marauroa.common.Pair;
  *
  * REWARD:
  * <ul>
- * <li> both 'normal' and 'better' rewards are for testing purpouses only.
+ * <li> A 'normal' reward from Groongo,
+ * <li> A 'better' reward from Stefan (possibly)
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- *  <li>unlimited
+ *  <li>unlimited, with a delay between attempts
  * </ul>
  *
  * @author omero
  */
-
-//TODO: requires ALL food items to be edible
 
 public class MealForGroongo extends AbstractQuest {
 
@@ -132,14 +131,14 @@ public class MealForGroongo extends AbstractQuest {
      * Each sub slot will only always serve one purpose as stated below.
      *
      * QUEST_SLOT sub slot 0
-     * will hold the main states, which can be:
+     * used to hold the main states, which can be:
      * - rejected, the player has refused to undertake the quest
-     * - fetch_maindish, the player is collecting ingredients for that
-     * - check_dessert, the player needs to ask Groongo which dessert he wants
-     * - tell_dessert, the player has to tell Stefan about Groongo's choice
-     * - fetch_dessert, the player is collecting the ingredients for that
-     * - prepare_decentmeal, the player has to wait a little before the meal is ready
-     * - deliver_decentmeal, meal for Groongo is ready
+     * - fetch_maindish, the player is collecting ingredients for main dish
+     * - check_dessert, the player needs to ask Groongo which dessert he wants along main dish
+     * - tell_dessert, the player has to tell Stefan about Groongo's choice for dessert
+     * - fetch_dessert, the player is collecting the ingredients for dessert
+     * - prepare_decentmeal, the player has to wait a little before the decent meal is ready
+     * - deliver_decentmeal, decent meal for Groongo is ready for delivery
      * - done, the player has completed the quest
      *
      * QUEST_SLOT sub slot 1
@@ -152,8 +151,9 @@ public class MealForGroongo extends AbstractQuest {
      * say the trigger word 'thanks' before BRINGTHANKS_DELAY has elapsed.
      *
      * Since we don't want to reuse any of the QUEST_SLOT sub slots,
-     * when BRINGTHANKS_DELAY hasn't expired yet, checking QUEST_SLOT sub slot 0 (done)
-     * and QUEST_SLOT sub slot 6 (timestamp) or any other combination of sub slots
+     * when BRINGTHANKS_DELAY hasn't expired yet,
+     * checking QUEST_SLOT sub slot 0 (done) and QUEST_SLOT sub slot 6 (timestamp)
+     * or checking any other combination of the quest's sub slots
      * would allow the player to say 'thanks' repeatedly
      * and get 'better reward' multiple times.
      *
@@ -169,13 +169,13 @@ public class MealForGroongo extends AbstractQuest {
      * the 'better reward' from Stefan is lost.
      *
      * QUEST_SLOT sub slot 2
-     * - a main dish short name
+     * - holds main dish short name
      *
      * QUEST_SLOT sub slot 3
      * - holds the ingredients to fetch for the main dish
      *
      * QUEST_SLOT sub slot 4
-     * - a dessert short name
+     * - holds dessert short name
      *
      * QUEST_SLOT sub slot 5
      * - holds the ingredients to fetch for the dessert
@@ -190,22 +190,21 @@ public class MealForGroongo extends AbstractQuest {
     public static final String QUEST_SLOT = "meal_for_groongo";
 
     //How long it takes Chef Stefan to prepare a decent meal (main dish and dessert)
-    // FIXME omero: for testing only
-    //private static final int MEALREADY_DELAY = 15;
+    //private static final int MEALREADY_DELAY = 30;
+    //FIXME omero: for testing only
     private static final int MEALREADY_DELAY = 2;
 
-
     //How much time the player has to get a better reward
-    // FIXME omero: for testing only
+    //private static final int BRINGTHANKS_DELAY = 1;
+    //FIXME omero: for testing only
     private static final int BRINGTHANKS_DELAY = 10;
 
     //Every when the quest can be repeated
-    // FIXME omero: for testing only
-    private static final int REPEATQUEST_DELAY = 10;
     //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
+    //FIXME omero: for testing only
+    private static final int REPEATQUEST_DELAY = 10;
 
     // how much XP is given as the reward
-    // FIXME omero: for testing only
     private static final int XP_REWARD = 1000;
 
     // which main dishes Groongo will ask for the quest
@@ -246,7 +245,6 @@ public class MealForGroongo extends AbstractQuest {
         stageCollectIngredientsForDessert();
         stageWaitForMeal();
         stageDeliverMeal();
-
     }
 
     @Override
@@ -257,6 +255,7 @@ public class MealForGroongo extends AbstractQuest {
         if (!player.hasQuest(QUEST_SLOT)) {
             return res;
         }
+
         final String questState = player.getQuest(QUEST_SLOT, 0);
         //logger.warn("Quest state: <" + player.getQuest(QUEST_SLOT) + ">");
 
@@ -409,7 +408,6 @@ public class MealForGroongo extends AbstractQuest {
     }
 
     // Groongo uses this to select a random main dish for the quest
-    // All main dishes are temporary for developing purposes, subject to change
     private String getRequiredMainDish() {
 
         return REQUIRED_MAIN_DISHES.get(Rand.rand(REQUIRED_MAIN_DISHES.size()));
@@ -417,7 +415,6 @@ public class MealForGroongo extends AbstractQuest {
     }
 
     // Groongo uses this to select a random dessert for the quest
-    // All desserts are temporary for developing purposes, subject to change
     private String getRequiredDessert() {
 
         return REQUIRED_DESSERTS.get(Rand.rand(REQUIRED_DESSERTS.size()));
@@ -425,11 +422,10 @@ public class MealForGroongo extends AbstractQuest {
     }
 
     // used by both Groongo and Stefan to build sentences
-    // this avoids requiring the player to type long and complicated fancy dish names
+    // avoids requiring player to type long and complicated fancy main dish names
     private String getRequiredMainDishFancyName(final String requiredMainDish) {
 
         final Map<String, String> requiredMainDishFancyName = new HashMap<String, String>();
-
         requiredMainDishFancyName.put("paella", "paella de pescado");
         requiredMainDishFancyName.put("ciorba", "ciorba de burta cu smantena");
         requiredMainDishFancyName.put("lasagne", "lasagne alla bolognese");
@@ -444,7 +440,7 @@ public class MealForGroongo extends AbstractQuest {
     }
 
     // used by both Groongo and Stefan to build sentences
-    // this avoids requiring the player to type long and complicated fancy dessert names
+    // avoids requiring the player to type long and complicated fancy dessert names
     private String getRequiredDessertFancyName(final String requiredDessert) {
 
         final Map<String, String> requiredDessertFancyName = new HashMap<String, String>();
@@ -484,7 +480,7 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_paella.put("butter", new Pair<Integer, Integer>(1,2));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_ciorba = new HashMap<String, Pair<Integer, Integer>>();
-        requiredIngredients_ciorba.put("tripe", new Pair<Integer, Integer>(1,3));
+        requiredIngredients_ciorba.put("meat", new Pair<Integer, Integer>(1,3));
         requiredIngredients_ciorba.put("pinto beans", new Pair<Integer, Integer>(1,3));
         requiredIngredients_ciorba.put("onion", new Pair<Integer, Integer>(2,4));
         requiredIngredients_ciorba.put("garlic", new Pair<Integer, Integer>(1,3));
@@ -530,12 +526,12 @@ public class MealForGroongo extends AbstractQuest {
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_kushari = new HashMap<String, Pair<Integer, Integer>>();
         //requiredIngredients_kushari.put("rice", new Pair<Integer, Integer>(1,6));
-        //requiredIngredients_kushari.put("lentils", new Pair<Integer, Integer>(1,6));
+        requiredIngredients_kushari.put("pinto beans", new Pair<Integer, Integer>(1,6));
         requiredIngredients_kushari.put("onion", new Pair<Integer, Integer>(1,2));
         requiredIngredients_kushari.put("garlic", new Pair<Integer, Integer>(1,2));
         requiredIngredients_kushari.put("tomato", new Pair<Integer, Integer>(1,4));
-        //requiredIngredients_kushari.put("jalapeno", new Pair<Integer, Integer>(1,4));
         requiredIngredients_kushari.put("olive oil", new Pair<Integer, Integer>(1,2));
+        //requiredIngredients_kushari.put("jalapeno", new Pair<Integer, Integer>(1,4));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_couscous = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_couscous.put("flour", new Pair<Integer, Integer>(1,2));
@@ -567,6 +563,7 @@ public class MealForGroongo extends AbstractQuest {
         }
 
         //logger.warn(" ingredients <" + ingredients + ">");
+        
         // strip the last comma from the returned string
         return ingredients.substring(0, ingredients.length()-1);
 
@@ -588,7 +585,7 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_brigadeiro.put("milk", new Pair<Integer, Integer>(1,4));
         requiredIngredients_brigadeiro.put("sugar", new Pair<Integer, Integer>(2,4));
         requiredIngredients_brigadeiro.put("butter", new Pair<Integer, Integer>(2,4));
-        //requiredIngredients_brigadeiro.put("coconut", new Pair<Integer, Integer>(1,2)); // will be cacao pod... monkeys?
+        requiredIngredients_brigadeiro.put("coconut", new Pair<Integer, Integer>(1,2));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_macedonia = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_macedonia.put("banana", new Pair<Integer, Integer>(1,6));
@@ -600,7 +597,7 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_slagroomtart.put("milk", new Pair<Integer, Integer>(1,4));
         requiredIngredients_slagroomtart.put("sugar", new Pair<Integer, Integer>(1,2));
         requiredIngredients_slagroomtart.put("egg", new Pair<Integer, Integer>(2,4));
-        //requiredIngredients_slagroomtart.put("pineapple", new Pair<Integer, Integer>(1,4));
+        requiredIngredients_slagroomtart.put("pineapple", new Pair<Integer, Integer>(1,4));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_vatrushka = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_vatrushka.put("flour", new Pair<Integer, Integer>(1,2));
@@ -618,7 +615,7 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_tarte.put("flour", new Pair<Integer, Integer>(1,2));
         requiredIngredients_tarte.put("sugar", new Pair<Integer, Integer>(1,4));
         requiredIngredients_tarte.put("chocolate shake", new Pair<Integer, Integer>(1,6));
-        requiredIngredients_tarte.put("milk", new Pair<Integer, Integer>(2,4));
+        requiredIngredients_tarte.put("mandragora", new Pair<Integer, Integer>(2,4));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_kirschtorte = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_kirschtorte.put("flour", new Pair<Integer, Integer>(1,2));
@@ -1037,7 +1034,7 @@ public class MealForGroongo extends AbstractQuest {
                 new NotCondition(
                     new QuestCompletedCondition(QUEST_SLOT))),
             ConversationStates.QUEST_OFFERED,
-            "It was about time! [insults player]" +
+            "It was about time!" +
             " I've been waiting here for so long that I've now got cobwebs under my armpits..." +
             " Are you going to bring me a decent #meal now?",
             null
@@ -1065,7 +1062,8 @@ public class MealForGroongo extends AbstractQuest {
                 new QuestNotStartedCondition(QUEST_SLOT),
                 new QuestCompletedCondition(QUEST_SLOT)),
             ConversationStates.IDLE,
-            "I've just told you what I want! Now go, and tell Chef Stefan to prepare it at once!",
+            "I've just told you what I want!" +
+            " Now buzz off, and tell Chef Stefan to prepare my decent meal at once!",
             null
         );
 
@@ -1078,7 +1076,8 @@ public class MealForGroongo extends AbstractQuest {
                 i.next(),
                 new QuestInStateCondition(QUEST_SLOT, 0, "fetch_maindish"),
                 ConversationStates.IDLE,
-                "I'm sure Chef Stefan knows how to prepare that, you'll find him in the kitchen. Now go!",
+                "I'm sure Chef Stefan knows how to prepare that, you'll find him in the kitchen." +
+                " Now be gone and do not come back without my decent meal!",
                 null
             );
         }
@@ -1136,7 +1135,7 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.ATTENDING,
             "Hello!" +
             " I'm so busy that I never get to leave this kitchen..." +
-            " Don't tell me I now have to prepare another #meal!",
+            " Don't tell me I now have to prepare another decent #meal!",
             null
         );
 
@@ -1173,7 +1172,8 @@ public class MealForGroongo extends AbstractQuest {
             ConversationPhrases.NO_MESSAGES,
             new QuestInStateCondition(QUEST_SLOT, 0, "fetch_maindish"),
             ConversationStates.ATTENDING,
-            "Too bad! Be sure to bring me those ingredients all at once!",
+            "Too bad!" +
+            " Please, bring me those ingredients all at once!",
             null
         );
 
@@ -1205,7 +1205,7 @@ public class MealForGroongo extends AbstractQuest {
                 new GreetingMatchesNameCondition(npc_chef.getName()),
                 new QuestInStateCondition(QUEST_SLOT, 0, "check_dessert")),
             ConversationStates.ATTENDING,
-            "Oh, you're back so soon..." +
+            "Oh, you're back..." +
             " And you haven't checked which #dessert" +
             " our troublesome customer would like to have!",
             null
@@ -1218,7 +1218,8 @@ public class MealForGroongo extends AbstractQuest {
             new QuestInStateCondition(QUEST_SLOT, 0, "check_dessert"),
             ConversationStates.IDLE,
             "I know how to prepare several kind of desserts..." +
-            " You better check with our troublesome customer to know which one he prefers!",
+            " You better check back with our troublesome customer..." +
+            " And let me know which one he prefers!",
             null
         );
 
@@ -1231,8 +1232,8 @@ public class MealForGroongo extends AbstractQuest {
                 new QuestInStateCondition(QUEST_SLOT, 0, "check_dessert"),
                 ConversationStates.ATTENDING,
                 "I'm preparing that already..." +
-                " You should now check with our troublesome castomer" +
-                " what #dessert he'd like to have with that.",
+                " You should now check back with our troublesome castomer" +
+                " and ask what #dessert he'd like to have along with that.",
                 null
             );
         }
@@ -1334,7 +1335,8 @@ public class MealForGroongo extends AbstractQuest {
                 new GreetingMatchesNameCondition(npc.getName()),
                 new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert")),
             ConversationStates.ATTENDING,
-            "Ah, you're back! I'm afraid that I'm still missing some ingredients for preparing a good #dessert...",
+            "Ah, you're back!" +
+            " I'm afraid that I'm still missing some ingredients for preparing a good #dessert...",
             null
         );
 
@@ -1385,7 +1387,9 @@ public class MealForGroongo extends AbstractQuest {
             ConversationPhrases.NO_MESSAGES,
             new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert"),
             ConversationStates.IDLE,
-            "Oh, fetch them quickly then! And be sure to bring them to me all at the same time!",
+            "Oh, fetch them quickly then!" +
+            " Please, be sure to bring me all the ingredients " +
+            " All at the same time, of course!",
             null
         );
 
@@ -1517,7 +1521,7 @@ public class MealForGroongo extends AbstractQuest {
             ConversationPhrases.NO_MESSAGES,
             new QuestNotCompletedCondition(QUEST_SLOT),
             ConversationStates.IDLE,
-            "GAH! [insults player] Why did you come back then!",
+            "GAHHH! Only come back with the decent meal I ordered earlier, you lazy one!",
             null
         );
 
@@ -1529,7 +1533,7 @@ public class MealForGroongo extends AbstractQuest {
                 new QuestNotCompletedCondition(QUEST_SLOT),
                 new NotCondition(new PlayerHasItemWithHimCondition("decent meal"))),
             ConversationStates.IDLE,
-            "GAAAH! [instults player] Who are you trying to fool?! Go in that kitchen and come back with my meal, NOOOOOW!",
+            "GAAAH! Who are you trying to fool?! Go in that kitchen and come back with my meal, NOOOOOW!",
             null
         );
     }
@@ -1554,8 +1558,8 @@ public class MealForGroongo extends AbstractQuest {
             new ChatAction() {
                 @Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                    final int amountOfMoneys = Rand.randUniform(2000, 4000);
-                    final int amountOfSandwiches = Rand.randUniform(6, 12);
+                    final int amountOfMoneys = Rand.randUniform(1200, 4800);
+                    final int amountOfSandwiches = Rand.randUniform(12, 48);
                     final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
                     final StackableItem sandwich = (StackableItem) SingletonRepository.getEntityManager().getItem("sandwich");
 
@@ -1568,7 +1572,8 @@ public class MealForGroongo extends AbstractQuest {
                     sandwich.put("regen", 50);
                     sandwich.put("persistent", 1);
 
-                    npc.say("Very well! Your help has been precious to me." +
+                    npc.say(
+                    	"Very well! Since you have been so helpful..." +
                         " Please, accept " +
                         Grammar.thisthese(amountOfSandwiches) + " experimental " +
                         Grammar.quantityNumberStrNoun(amountOfSandwiches, "sandwich") +
@@ -1609,7 +1614,9 @@ public class MealForGroongo extends AbstractQuest {
                         new TimePassedCondition(QUEST_SLOT, 6, BRINGTHANKS_DELAY))
                 ),
                 ConversationStates.QUESTION_1,
-                " FIXME omero: player gets better reward.",
+                //the player gets better reward for his troubles
+                "Ahah! Good to hear that..." +
+                " Thank you for helping me out with that troublesome customer...",
                 new MultipleActions(betterEndQuestActions)
             );
 
