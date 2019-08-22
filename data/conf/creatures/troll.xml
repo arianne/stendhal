@@ -66,6 +66,7 @@
       <item value="chain armor" quantity="[1,1]" probability="10.0"/>
       <item value="scale armor" quantity="[1,1]" probability="0.9"/>
       <item value="enhanced mace" quantity="[1,1]" probability="0.9"/>
+      <item value="pinto beans" quantity="[1,5]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
@@ -99,6 +100,7 @@
       <item value="scale armor" quantity="[1,1]" probability="4.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="1.0"/>
       <item value="skull staff" quantity="[1,1]" probability="1.0"/>
+      <item value="pinto beans" quantity="[5,10]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
@@ -130,6 +132,7 @@
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
       <item value="battle axe" quantity="[1,1]" probability="2.0"/>
+      <item value="pinto beans" quantity="[5,10]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
@@ -160,6 +163,8 @@
     <corpse name="humanoid"/>
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
+      <item value="pinto beans" quantity="[5,10]" probability="50.0"/>
+      <item value="tripe" quantity="[5,10]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
@@ -226,7 +231,7 @@
       <item value="scale armor" quantity="[1,1]" probability="3.0"/>
       <item value="chain legs" quantity="[1,1]" probability="4.0"/>
       <item value="flail" quantity="[1,1]" probability="30.0"/>
-      <item value="ugmash" quantity="[1,1]" probability="0.0001"/>
+      <item value="ugmash" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -254,7 +259,7 @@
     <drops>
       <item value="money" quantity="[1,30]" probability="100.0"/>
       <item value="meat" quantity="[1,5]" probability="10.5"/>
-      <item value="ugmash" quantity="[1,1]" probability="0.0001"/>
+      <item value="ugmash" quantity="[1,1]" probability="1.0"/>
       <item value="barbarian armor" quantity="[1,1]" probability="5.5"/>
       <item value="stone boots" quantity="[1,1]" probability="2.5"/>
     </drops>

@@ -4,11 +4,11 @@
 
   <item name="decent meal">
     <type class="misc" subclass="decent_meal" tileid="-1" />
-    <description>You see a decent meal for Groongo Rahnnt.</description>
+    <description>You see a decent meal for Groongo Rahnnt. Deliver it to him quickly!</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
       <quantity value="1" />
-      <menu value="Use|Use"/>
+      <menu value="Look|Use"/>
     </attributes>
     <weight value="1.0" />
     <value value="1" />
