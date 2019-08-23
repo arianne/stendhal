@@ -4,16 +4,41 @@
 
     <!-- try to sort by affinity first, alphabetical order next -->
 
-	<item name="tripe">
-		<type class="food" subclass="tripe" tileid="-1" />
-		<description>You see tripe.</description>
+    <!--
+	<item name="jalapeno pepper">
+		<type class="food" subclass="jalapeno_pepper" tileid="-1" />
+		<description>You see a jalapeno pepper. It could be an ingredient for a chef...</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+    -->
+
+	<item name="tripe">
+		<type class="food" subclass="tripe" tileid="-1" />
+		<description>You see tripe. A chef could consider it an ingredient... Some pet will like it alot!</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="20" />
+			<frequency value="12" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -27,6 +52,29 @@
 		</equipable>
 	</item>
 
+	<item name="habanero pepper">
+		<type class="food" subclass="habanero_pepper" tileid="-1" />
+		<description>You see a habanero pepper. Could be a very HOT ingredient...</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="20" />
+			<frequency value="12" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+    
 	<item name="pinto beans">
 		<type class="food" subclass="pinto_beans" tileid="-1" />
 		<description>You see a bunch of pinto beans. An ingredient a chef will surely appreciate...</description>
@@ -36,7 +84,7 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Look|Eat"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -59,7 +107,7 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -82,7 +130,7 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -105,7 +153,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="1" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -128,7 +176,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -151,7 +199,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -174,7 +222,7 @@
 			<frequency value="5" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -222,7 +270,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -245,7 +293,7 @@
 			<frequency value="1" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value=".01" />
 		<value value="1" />
@@ -268,7 +316,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -291,7 +339,7 @@
 			<frequency value="7" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -314,7 +362,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -337,7 +385,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -360,7 +408,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
-			<menu value="Look|Use"/>
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
