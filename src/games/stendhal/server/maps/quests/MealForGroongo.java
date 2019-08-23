@@ -82,7 +82,7 @@ import marauroa.common.Pair;
  */
 
 /**
- * QUEST: Meal for Groongo, The Troublesome Customer
+ * QUEST: Meal for Groongo
  * <p>
  * PARTICIPANTS:
  * <ul>
@@ -103,15 +103,15 @@ import marauroa.common.Pair;
  *  <li> The player goes fetching the ingredients for the dessert and brings them to Stefan,
  *  <li> Stefan tells the player how much time (10-15mins) he requires to prepare Groongo's decent meal,
  *  <li> After enough time has elapsed, the player gets the decent meal from Stefan,
- *  <li> The player may deliver the decent meal to Grongo
- *  <li> Groongo is finaly happy and gives the player a reward of some kind, hints player to say 'thanks' to Stefan
- *  <li> The player then has a limited time to get a better reward
+ *  <li> The player has to deliver the decent meal to Grongo
+ *  <li> Groongo is finally happy and gives the player a reward of some kind, hints player to say 'thanks' to Stefan
+ *  <li> The player has a limited time to get a better reward by talking to Stefan and say 'thanks'
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li> A 'normal' reward from Groongo,
- * <li> A 'better' reward from Stefan (possibly)
+ * <li> A 'normal' reward from Groongo, plus some karma
+ * <li> A 'better' reward from Stefan (possibly), plus some karma
  * </ul>
  *
  * REPETITIONS:
@@ -467,8 +467,18 @@ public class MealForGroongo extends AbstractQuest {
      */
     private String getRequiredIngredientsForMainDish(final String requiredMainDish) {
 
-        // All not-yet-existing ingredients commented out for testing purposes
         // All ingredients are temporary for developing purposes, subject to change
+    	// Missing ingredients: NONE
+    	//
+    	// Some of the ingredients are 'many words'.
+    	// see button mushroom,
+    	//
+    	// fix spelling:
+    	//     (bunch of)          pinto beans,
+    	//     (bottle/bottles of) olive oil,
+    	//     (flask/flasks of)   vinegar,
+    	//                         habanero pepper,
+    	//
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_paella = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_paella.put("onion", new Pair<Integer, Integer>(1,3));
@@ -531,7 +541,7 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_kushari.put("garlic", new Pair<Integer, Integer>(1,2));
         requiredIngredients_kushari.put("tomato", new Pair<Integer, Integer>(1,4));
         requiredIngredients_kushari.put("olive oil", new Pair<Integer, Integer>(1,2));
-        //requiredIngredients_kushari.put("jalapeno", new Pair<Integer, Integer>(1,4));
+        requiredIngredients_kushari.put("habanero pepper", new Pair<Integer, Integer>(1,4));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_couscous = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_couscous.put("flour", new Pair<Integer, Integer>(1,2));
@@ -540,7 +550,7 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_couscous.put("onion", new Pair<Integer, Integer>(2,4));
         requiredIngredients_couscous.put("garlic", new Pair<Integer, Integer>(2,3));
         requiredIngredients_couscous.put("vinegar", new Pair<Integer, Integer>(1,2));
-        //requiredIngredients_couscous.put("jalapeno", new Pair<Integer, Integer>(1,2));
+        requiredIngredients_couscous.put("habanero pepper", new Pair<Integer, Integer>(1,2));
 
         //final HashMap<String, HashMap<String, Integer>> requiredIngredientsForMainDish = new HashMap<String, HashMap<String, Integer>>();
         final HashMap<String, HashMap<String, Pair<Integer, Integer>>> requiredIngredientsForMainDish =
