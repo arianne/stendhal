@@ -1,13 +1,3 @@
-/**
- * logic for the area of Deniran city.
- */
-package games.stendhal.server.maps.deniran;
-
-
-
-import java.util.LinkedList;
-
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
@@ -20,6 +10,9 @@ import java.util.LinkedList;
  *                                                                         *
  ***************************************************************************/
 
+package games.stendhal.server.maps.deniran.river;
+
+import java.util.LinkedList;
 import java.util.Map;
 
 import games.stendhal.common.Direction;

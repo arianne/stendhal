@@ -1,7 +1,7 @@
 /**
- * logic for the area of Deniran area.
+ * logic for the area south of Deniran.
  */
-package games.stendhal.server.maps.deniran;
+package games.stendhal.server.maps.deniran.river;
 
 
 

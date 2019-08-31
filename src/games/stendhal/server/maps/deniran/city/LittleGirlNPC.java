@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,11 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/***************************************************************************
- * Work In Progress
- */
-
-package games.stendhal.server.maps.deniran;
+package games.stendhal.server.maps.deniran.city;
 
 import java.util.Map;
 
@@ -43,7 +38,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			public void createDialog() {
 				addGreeting("Hello stranger!");
 				addHelp("Maybe I cannot help you, but you... can help me!");
-				addJob("Need eggs");
+				addJob("I help my Mum.");
 				addOffer("Need some eggs");
 				addGoodbye("Fare thee well, stranger!");
 				// All further behaviours are defined in appropriate quest class.
@@ -56,7 +51,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 		};
 		npc.setPosition(89, 54);
 		npc.setEntityClass("kid5npc");
-		npc.setDescription("You see a little girl, perhaps she needs some help...");
+		npc.setDescription("You see a little girl.");
 		npc.setDirection(Direction.LEFT);
 		zone.add(npc);
 	}
