@@ -676,6 +676,10 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ShopAssistantNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ChefNPC" />
+
 	</zone>
 
 
