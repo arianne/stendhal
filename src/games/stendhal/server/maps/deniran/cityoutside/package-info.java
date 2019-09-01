@@ -1,7 +1,7 @@
 /**
- * logic for the area of Deniran area.
+ * logic for the outside area of Deniran City area.
  */
-package games.stendhal.server.maps.deniran.city;
+package games.stendhal.server.maps.deniran.cityoutside;
 
 
 

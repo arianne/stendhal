@@ -138,8 +138,8 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
-    <!-- NPCs -->
-        <configurator class-name="games.stendhal.server.maps.deniran.city.LittleGirlNPC" />
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC" />
 
 	</zone>
 

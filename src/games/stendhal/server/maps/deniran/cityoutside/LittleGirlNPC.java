@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.maps.deniran.city;
+package games.stendhal.server.maps.deniran.cityoutside;
 
 import java.util.Map;
 
