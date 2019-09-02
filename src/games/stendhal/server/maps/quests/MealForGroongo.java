@@ -66,22 +66,6 @@ import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 
 /**
- * NOTEs:
- * quest slot templates for testing
- * QUEST_SLOT = "meal_for_groongo"
- * 
- * alterquest <player> meal_for_groongo
- * summonat orxunoa bag 
- * 
- * 
- * fetch_dessert;inprogress;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
- * deliver_decentmeal;inprogress;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207289602
- * done;incomplete;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
- * done;complete;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
- * ---------------------------
- */
-
-/**
  * QUEST: Meal for Groongo
  * <p>
  * PARTICIPANTS:
@@ -125,13 +109,38 @@ import marauroa.common.Pair;
 public class MealForGroongo extends AbstractQuest {
 
     private static Logger logger = Logger.getLogger(MealForGroongo.class);
+    
+    /**
+     * QUEST_SLOT = "meal_for_groongo"
+     * 
+     * NOTES for testing:
+     * to reset quest to sane staus, when/if something goes wrong,
+     *  reset QUEST_SLOT = "meal_for_groongo" with a <null> value to revert to a 'sane' status
+     * 	use /alterquest <playername> meal_for_groongo <null>
+     * to test ingrediends availability,
+     *  use /summonat <playername> bag <qty> <item>
+     *
+     * Useful templates with /alterquest,
+     * subslot0           subslot1   subslot2   subslot3                                            subslot4  subslot5                              subslot6      subslot7
+     * quest phse         quest ste  maindish   maindish ingredients                                dessert   dessert ingredients                   timestamp     count
+     *                               short nme                                                      shrt nme 
+     * ------------------+----------+----------+---------------------------------------------------+---------+--------------------------------------+-------------+
+     * fetch_maindish;    inprogress;paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
+     * fetch_dessert;     inprogress;macedonia;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
+     * ------------------+----------+----------+---------------------------------------------------+---------+--------------------------------------+-------------+
+     * deliver_decentmeal;inprogress;paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207289602
+     * ------------------+----------+----------+---------------------------------------------------+---------+--------------------------------------+-------------+
+     * done;              incomplete;paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
+     * done;              complete;  paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
+     */
 
     /**
-     * QUEST_SLOT will be used to hold the different states of the quest.
-     * Each sub slot will only always serve one purpose as stated below.
+     * QUEST_SLOT = "meal_for_groongo" will hold all progress made in the quest.
+     * QUEST_SLOT = "meal_for_groongo" will use several sub slots, to hold different states of the quest
+     * QUEST_SLOT = "meal_for_groongo" sub slot will only always serve one and only one purpose.
      *
      * QUEST_SLOT sub slot 0
-     * used to hold the main states, which can be:
+     * used to hold the main states of the quest, which can be:
      * - rejected, the player has refused to undertake the quest
      * - fetch_maindish, the player is collecting ingredients for main dish
      * - check_dessert, the player needs to ask Groongo which dessert he wants along main dish
@@ -191,17 +200,14 @@ public class MealForGroongo extends AbstractQuest {
 
     //How long it takes Chef Stefan to prepare a decent meal (main dish and dessert)
     //private static final int MEALREADY_DELAY = 30;
-    //FIXME omero: for testing only
     private static final int MEALREADY_DELAY = 2;
 
     //How much time the player has to get a better reward
     //private static final int BRINGTHANKS_DELAY = 1;
-    //FIXME omero: for testing only
     private static final int BRINGTHANKS_DELAY = 10;
 
     //Every when the quest can be repeated
     //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
-    //FIXME omero: for testing only
     private static final int REPEATQUEST_DELAY = 10;
 
     // how much XP is given as the reward
@@ -474,11 +480,48 @@ public class MealForGroongo extends AbstractQuest {
     	// see button mushroom,
     	//
     	// fix spelling:
-    	//     (bunch of)          pinto beans,
+    	//     (bunch of)          pinto beans, see rainbow beans
     	//     (bottle/bottles of) olive oil,
     	//     (flask/flasks of)   vinegar,
-    	//                         habanero pepper,
-    	//
+    	// 
+    	//                         habanero pepper/peppers?
+    	//                         porcini?! one porcino, several porcini
+
+        //Potentially used by Stefan,
+    	//All ingredients for main dish should be trigger words
+        //Ingredients for preparing main dish for the troublesome customer
+    	//No idea where this replies could be added for properly trigger
+    	
+    	//player has quest meal_for_groongo & quest state fetch maindish, add trigger for maindish ingredients?
+    	//player has quest meal_for_groongo & quest state fetch dessert, add trigger for dessert ingredients?
+    	
+    	/** 
+        addReply(
+        	Arrays.asList(
+            "chicken", "egg", "milk", "butter", "vinegar", "olive oil"),
+            "Easy... Check farming areas near Semos...");
+        addReply(
+            Arrays.asList(
+            "porcini", "button mushroom", "sclaria", "kekik"),
+            "Easy... Check in forest near Semos...");
+        addReply(
+            Arrays.asList(
+            "garlic", "onion", "carrot", "courgette"),
+            "Very Easy! Check in Fado surroundings...");
+        addReply(
+            Arrays.asList(
+            "lemon",
+            "potato", "tomato", "pinto beans", "habanero pepper"),
+            "Mmm... Good question! A serra, maybe?");
+        addReply(
+            Arrays.asList(
+            "beer", "flour", "ham", "meat", "cheese"),
+            "Ooohh... You cannot be that lame!");
+        addReply(
+            Arrays.asList(
+            "perch", "trout"),
+            "Ahahah... Nice Try! I will not tell you about my favorite fishing spots...");
+        */
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_paella = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_paella.put("onion", new Pair<Integer, Integer>(1,3));
@@ -535,8 +578,8 @@ public class MealForGroongo extends AbstractQuest {
         requiredIngredients_paidakia.put("lemon", new Pair<Integer, Integer>(1,2));
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_kushari = new HashMap<String, Pair<Integer, Integer>>();
-        //requiredIngredients_kushari.put("rice", new Pair<Integer, Integer>(1,6));
-        requiredIngredients_kushari.put("pinto beans", new Pair<Integer, Integer>(1,6));
+        requiredIngredients_kushari.put("potato", new Pair<Integer, Integer>(1,4));
+        requiredIngredients_kushari.put("pinto beans", new Pair<Integer, Integer>(5,10));
         requiredIngredients_kushari.put("onion", new Pair<Integer, Integer>(1,2));
         requiredIngredients_kushari.put("garlic", new Pair<Integer, Integer>(1,2));
         requiredIngredients_kushari.put("tomato", new Pair<Integer, Integer>(1,4));
@@ -545,7 +588,7 @@ public class MealForGroongo extends AbstractQuest {
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_couscous = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_couscous.put("flour", new Pair<Integer, Integer>(1,2));
-        requiredIngredients_couscous.put("water", new Pair<Integer, Integer>(1,4));
+        requiredIngredients_couscous.put("beer", new Pair<Integer, Integer>(1,4));
         requiredIngredients_couscous.put("courgette", new Pair<Integer, Integer>(1,6));
         requiredIngredients_couscous.put("onion", new Pair<Integer, Integer>(2,4));
         requiredIngredients_couscous.put("garlic", new Pair<Integer, Integer>(2,3));
@@ -587,9 +630,17 @@ public class MealForGroongo extends AbstractQuest {
      * @return A string composed of semicolon separated key=value token pairs.
      */
     private String getRequiredIngredientsForDessert(final String requiredDessert) {
+        //Potentially used by Stefan,
+    	//All ingredients for main dish should be trigger words
+        //Ingredients for preparing main dish for the troublesome customer
+    	//No idea where this replies could be added for properly trigger
+    	/** 
+        addReply(
+        	Arrays.asList(
+            "egg", "milk", "butter"),
+            "Easy... Check farming areas near Semos...");
+        */
 
-        // All ingredients are temporary for developing purposes, subject to change
-        // All not-yet-existing ingredients commented out for testing purposes
 
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_brigadeiro = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_brigadeiro.put("milk", new Pair<Integer, Integer>(1,4));
