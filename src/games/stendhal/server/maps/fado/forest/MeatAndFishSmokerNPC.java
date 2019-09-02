@@ -76,11 +76,11 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 addHelp("Ask me to #smoke for you any #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, that's what I'm good at when you bring me all that is needed.");
 
                 addReply(Arrays.asList("smoked", "smoked meat", "smoked ham", "smoked trout", "smoked cod"),
-                    "The true secret are which herbs for the aroma along with enough wood for the perfect #smoke.");
+                    "The true secret are which herbs for the aroma along with enough wood for the perfect #smoke. Care to hear what I have to #offer?");
                 addReply(Arrays.asList("sclaria", "kekik"),
-                    "It grows in many places, at the edges or well in the depths of a forest.");
+                    "It grows in many places, at the edges or in the depths of a forest.");
                 addReply(Arrays.asList("trout", "cod"),
-                    "I wouldn't reveal you where my favorite fishing spots are but I would suggest you go find some books on the subject, like in one of those scholarly places not many are familiar with anymore...");
+                    "I will not reveal my favorite fishing spots... Go find some books on the subject in one of those scholarly places not many are familiar with anymore...");
                 addReply(Arrays.asList("meat","ham"),
                     "I don't care if that comes from a lion, a bear or even an elephant... I can #smoke that for you!");
                 addGoodbye("S' vegum...");
