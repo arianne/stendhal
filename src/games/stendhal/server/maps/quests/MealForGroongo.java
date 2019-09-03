@@ -112,29 +112,8 @@ public class MealForGroongo extends AbstractQuest {
     
     /**
      * QUEST_SLOT = "meal_for_groongo"
-     * 
-     * NOTES for testing:
-     * to reset quest to sane staus, when/if something goes wrong,
-     *  reset QUEST_SLOT = "meal_for_groongo" with a <null> value to revert to a 'sane' status
-     * 	use /alterquest <playername> meal_for_groongo <null>
-     * to test ingrediends availability,
-     *  use /summonat <playername> bag <qty> <item>
+     * Detais about the QUEST_SLOT = "meal_for_groongo"
      *
-     * Useful templates with /alterquest,
-     * subslot0           subslot1   subslot2   subslot3                                            subslot4  subslot5                              subslot6      subslot7
-     * quest phse         quest ste  maindish   maindish ingredients                                dessert   dessert ingredients                   timestamp     count
-     *                               short nme                                                      shrt nme 
-     * ------------------+----------+----------+---------------------------------------------------+---------+--------------------------------------+-------------+
-     * fetch_maindish;    inprogress;paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
-     * fetch_dessert;     inprogress;macedonia;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
-     * ------------------+----------+----------+---------------------------------------------------+---------+--------------------------------------+-------------+
-     * deliver_decentmeal;inprogress;paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207289602
-     * ------------------+----------+----------+---------------------------------------------------+---------+--------------------------------------+-------------+
-     * done;              incomplete;paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
-     * done;              complete;  paella;   chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;    flour=2,fierywater=2,honey=2,sugar=4,;1337207484330;1
-     */
-
-    /**
      * QUEST_SLOT = "meal_for_groongo" will hold all progress made in the quest.
      * QUEST_SLOT = "meal_for_groongo" will use several sub slots, to hold different states of the quest
      * QUEST_SLOT = "meal_for_groongo" sub slot will only always serve one and only one purpose.
@@ -196,6 +175,51 @@ public class MealForGroongo extends AbstractQuest {
      * QUEST_SLOT sub slot 7
      * - counts how many times a decent meal has been delivered
      */
+
+    /**
+     * NOTES: for testing/understanding
+     * QUEST_SLOT = "meal_for_groongo"
+     *
+     * to reset QUEST_SLOT = "meal_for_groongo" with a <null> value to revert to a 'sane' status
+     * 	use /alterquest <playername> meal_for_groongo <null>
+     *
+     * to test ingrediends availability,
+     *  use /summonat <playername> bag <qty> <item>
+     *
+     * Useful templates with /alterquest,
+     * ------------------+-----------+----------+----------------------------------------------------+---------+---------------------------------------+--------------+----------+
+     * subslot0          |subslot1   |subslot2  |subslot3                                            | subslot4| subslot5                              | subslot6     | subslot7 |
+     * quest phase       |quest      |          |                                                    | dessert | dessert ingredients                   | timestamp    | count    |
+     *                   |           |          |                                                    |         |                                       |              |          |
+     *                   |           |maindish  |maindish ingredients                                |         | dessert ingredients                   |              |          |
+     *                   |           |dessert   |                                                    |         |                                       |              |          |
+     * ------------------+-----------+----------+----------------------------------------------------+---------+---------------------------------------+--------------+----------+
+     * ------------------+-----------+----------+----------------------------------------------------+---------+---------------------------------------+--------------+----------+
+     * ------------------+-----------+----------+----------------------------------------------------+---------+---------------------------------------+--------------+----------+
+     * ------------------+-----------+----------+----------------------------------------------------+---------+---------------------------------------+--------------+----------+
+     *                   |status     |short nme |                                                    | shrt nme|                                       |              |          |
+     * ------------------+-----------+----------+----------------------------------------------------+---------+---------------------------------------+--------------+----------+
+     * fetch_maindish;   |inprogress; paella;   |chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207220454 | 0        |
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * fetch_maindish;   |inprogress; ciorba;   |garlic=3,pinto beans=1,onion=3,vinegar=1,meat=1,milk=2,carrot=1
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * 
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * fetch_dessert;    |inprogress; macedonia;|chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207220454 | 0        |
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * deliver_decentmeal;inprogress; paella;   |chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207289602 | 0        |
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     * done;             |incomplete; paella;   |chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207484330;| 1        |
+     * done;             |complete;   paella;   |chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207484330;| 1        |
+     * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
+     */
+    
+    //MealForGroongo (meal_for_groongo):
+
+
     public static final String QUEST_SLOT = "meal_for_groongo";
 
     //How long it takes Chef Stefan to prepare a decent meal (main dish and dessert)
@@ -451,7 +475,7 @@ public class MealForGroongo extends AbstractQuest {
 
         final Map<String, String> requiredDessertFancyName = new HashMap<String, String>();
 
-        requiredDessertFancyName.put("brigadeiro", "brigadeiro a la amparo");
+        requiredDessertFancyName.put("brigadeiro", "brigadeiro de amparo");
         requiredDessertFancyName.put("macedonia", "macedonia di frutta");
         requiredDessertFancyName.put("vatrushka", "old-fashioned vatrushka with cottage cheese");
         requiredDessertFancyName.put("cake", "classic carrot cake with fluffy cream cheese frosting");
@@ -473,56 +497,10 @@ public class MealForGroongo extends AbstractQuest {
      */
     private String getRequiredIngredientsForMainDish(final String requiredMainDish) {
 
-        // All ingredients are temporary for developing purposes, subject to change
-    	// Missing ingredients: NONE
-    	//
-    	// Some of the ingredients are 'many words'.
-    	// see button mushroom,
-    	//
-    	// fix spelling:
-    	//     (bunch of)          pinto beans, see rainbow beans
-    	//     (bottle/bottles of) olive oil,
-    	//     (flask/flasks of)   vinegar,
-    	// 
-    	//                         habanero pepper/peppers?
-    	//                         porcini?! one porcino, several porcini
 
-        //Potentially used by Stefan,
-    	//All ingredients for main dish should be trigger words
         //Ingredients for preparing main dish for the troublesome customer
-    	//No idea where this replies could be added for properly trigger
-    	
-    	//player has quest meal_for_groongo & quest state fetch maindish, add trigger for maindish ingredients?
-    	//player has quest meal_for_groongo & quest state fetch dessert, add trigger for dessert ingredients?
-    	
-    	/** 
-        addReply(
-        	Arrays.asList(
-            "chicken", "egg", "milk", "butter", "vinegar", "olive oil"),
-            "Easy... Check farming areas near Semos...");
-        addReply(
-            Arrays.asList(
-            "porcini", "button mushroom", "sclaria", "kekik"),
-            "Easy... Check in forest near Semos...");
-        addReply(
-            Arrays.asList(
-            "garlic", "onion", "carrot", "courgette"),
-            "Very Easy! Check in Fado surroundings...");
-        addReply(
-            Arrays.asList(
-            "lemon",
-            "potato", "tomato", "pinto beans", "habanero pepper"),
-            "Mmm... Good question! A serra, maybe?");
-        addReply(
-            Arrays.asList(
-            "beer", "flour", "ham", "meat", "cheese"),
-            "Ooohh... You cannot be that lame!");
-        addReply(
-            Arrays.asList(
-            "perch", "trout"),
-            "Ahahah... Nice Try! I will not tell you about my favorite fishing spots...");
-        */
-
+        //All ingredients should trigger a reply from Stefan, the chef in Fado's Hotel Restaurant:
+        //check Stefan, add missing replies if necessary (trigger words)
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_paella = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_paella.put("onion", new Pair<Integer, Integer>(1,3));
         requiredIngredients_paella.put("garlic", new Pair<Integer, Integer>(2,3));
@@ -630,18 +608,6 @@ public class MealForGroongo extends AbstractQuest {
      * @return A string composed of semicolon separated key=value token pairs.
      */
     private String getRequiredIngredientsForDessert(final String requiredDessert) {
-        //Potentially used by Stefan,
-    	//All ingredients for main dish should be trigger words
-        //Ingredients for preparing main dish for the troublesome customer
-    	//No idea where this replies could be added for properly trigger
-    	/** 
-        addReply(
-        	Arrays.asList(
-            "egg", "milk", "butter"),
-            "Easy... Check farming areas near Semos...");
-        */
-
-
         final HashMap<String, Pair<Integer, Integer>> requiredIngredients_brigadeiro = new HashMap<String, Pair<Integer, Integer>>();
         requiredIngredients_brigadeiro.put("milk", new Pair<Integer, Integer>(1,4));
         requiredIngredients_brigadeiro.put("sugar", new Pair<Integer, Integer>(2,4));
@@ -923,7 +889,7 @@ public class MealForGroongo extends AbstractQuest {
                     Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 2))) +
                     " this time. For that I'll need some ingredients that at the moment I'm missing: " +
                     Grammar.enumerateCollection(missingIngredients.toStringListWithHash()) +
-                    ". Do you happen to have them all with you already?"
+                    ". Do you happen to have them all of the required ingredients with you already?"
             );
 
             logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
@@ -946,7 +912,7 @@ public class MealForGroongo extends AbstractQuest {
                     Grammar.a_noun(getRequiredDessertFancyName(player.getQuest(QUEST_SLOT, 4))) +
                     " for dessert. For that I'll need some other ingredients that I'm missing: " +
                     Grammar.enumerateCollection(missingIngredients.toStringListWithHash()) +
-                    ". Do you happen to have any of those already with you?"
+                    ". Do you happen to have all of those ingredients already with you?"
             );
 
             logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
