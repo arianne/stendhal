@@ -90,14 +90,20 @@ public class HotelChefNPC implements ZoneConfigurator {
 				
 				addReply("cook",
                          "Being a cook is awesome! But I'm a chef! " + 
-                         "I love all kind of food! Did I tell you I'm a chef, already... Yes I did..." +
-                         "Experimenting around with different dishes is just fun for me. I'm a chef, not a cook!" +
+                         "I love all kind of food! Did I tell you I'm a chef, already... Yes I did... " +
+                         "Experimenting around with different dishes is just fun for me. I'm a chef, not a cook! " +
                          "Big difference between a cook and a chef, indeed!");
 				
+				addReply("chef",
+                        "Any cook can prepare a soup... But I'm a chef! " + 
+                        "I love all kind of food! The elaborate recipes for those troublesome customers... " +
+                        "Experimenting around with different dishes is just fun for me. I'm a chef, not a cook! " +
+                        "Big difference between a cook and a chef, indeed!");
+				
 				addHelp("I'm really #stressed in this kitchen here... " +
-				        "I am the only *cough* #cook *cough* Chef *cough* around here... " + 
+				        "I am the only *cough* #cook *cough* #chef *cough* around here... " + 
                         "If I only could tell you about all the ingredients that are missing in this place..." + 
-                        "That troublesome customer down there... Keeps ranting and... go ask him what he wants now!");
+                        "That #troublesome #customer down there... Keeps ranting and... go ask him what he wants now!");
 				
 				addReply("stressed",
                          "It's high season at the moment!" +
@@ -108,8 +114,13 @@ public class HotelChefNPC implements ZoneConfigurator {
 				         "I can understand why choosing Fado for getting married. " +
 					     "Fado is indeed a beautiful and tranquil, a very romantic city... " + 
                          "Except for that troublesome customer down there... " +
-					     "That troublesome customer keeps ranting... " +
+					     "That #troublesome #customer keeps ranting... " +
                          "Please, go ask him what he wants now!");
+				
+				addReply("troublesome customer",
+						 "Most of the guests visit Fado for #getting #married. " + 
+					     "That troublesome customer instead keeps ranting... " +
+                         "Please, go ask him what he wants now, before I go nut!");
 				
 				addReply("getting married",
 						 "Didn't you know that Fado is the most known wedding town in whole Faiumoni? " +
@@ -120,24 +131,21 @@ public class HotelChefNPC implements ZoneConfigurator {
 				addReply("somewhere",
 						 "Yes, somewhere..." +
 				         "I doubt that the problem can be solved in my kitchen alone... It's tiny! " +
-                         "Hearing that troublesome customer down there? He keeps ranting. " + 
-				         "Quick! Go ask that troublesome customer what he wants now!");
+                         "Hearing that #troublesome #customer down there? He keeps ranting. " + 
+				         "Quick! Go ask that troublesome customer what he wants, before I go nut...");
 				
 				addOffer("The kitchen isn't open at the moment and before it can be opened..." +
                          "I have to think about a solution for my #problem in here..." +
 						 "I am a really #stressed #cook now!" );
 				
-				addReply("problem", "Being the only #cook... ahem... a chef! "+
+				addReply("problem", "Being the only #cook... ahem... The only #chef! "+
 						 "All alone... In a tiny hotel restaurant kitchen... "+
-						 "It can't work at all!");
+						 "It will never going to work at all!");
+				
 				addGoodbye("Goodbye! Have a nice stay in Fado!");
 
                 /** NOTE:
-                * All ingredients are will be temporary for developing purposes,
-				* subject to changes untill missing ingredients == none
-				*/
-				
-				/** NOTE:
+                * All ingredients are subject to changes until missing ingredients == none
                 * Missing ingredients: NONE
                 */
 
