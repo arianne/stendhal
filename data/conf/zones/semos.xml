@@ -1667,6 +1667,19 @@ Mature sheep wanted: please speak to Sato.
     <configurator class-name="games.stendhal.server.maps.semos.city.RudolphNPC"
       condition="stendhal.christmas" />
     <configurator class-name="games.stendhal.server.maps.semos.city.DragonKeeperNPC" condition="stendhal.petleveling" />
+    
+    <!--start friendly TestNPC1, omero -->
+    <!-- 
+	//.................................
+	// TestNPC1 is normally disabled
+	//.................................
+	// TestNPC1 is useful for:
+	//   test a new sprite,
+	//   test behaviour/logic
+	//   test walking patterns
+	-->
+    <configurator class-name="games.stendhal.server.maps.semos.city.TestNPC1" />
+    <!-- end of friendly TestNPC1, omero -->
 
     <!-- START: Mine Town Weeks Boutique -->
 
