@@ -23,7 +23,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-public class DeniranMarketSellerGroceryNPC implements ZoneConfigurator {
+public class DeniranMarketSellerNPC1Grocery implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(StendhalRPZone zone,
@@ -32,6 +32,7 @@ public class DeniranMarketSellerGroceryNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(StendhalRPZone zone) {
+		//Ambrogio is a temporary name
 		final SpeakerNPC npc = new SpeakerNPC("Ambrogio") {
 
 			@Override
@@ -57,7 +58,7 @@ public class DeniranMarketSellerGroceryNPC implements ZoneConfigurator {
 		};
 		
 		//npc.setEntityClass("fatsellernpc");
-		npc.setEntityClass("deniranmarketsellernpc1grocery");
+		npc.setEntityClass("deniran_marketsellernpc1grocery");
 		npc.setPosition(26, 122);
 		npc.setCollisionAction(CollisionAction.REROUTE);
 		npc.setDescription("You see a busy marketplace seller...");

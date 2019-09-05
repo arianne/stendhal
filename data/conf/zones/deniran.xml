@@ -187,10 +187,9 @@
 		</attributes>
 
 		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketSellerGroceryNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketSellerNPC1Grocery" />
 
 	</zone>
-
 
 	<zone name="0_deniran_se" level="0" x="499360" y="500128"
 		file="Level 0/deniran/deniran_se.tmx">
