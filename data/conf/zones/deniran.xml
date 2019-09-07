@@ -42,6 +42,11 @@
 			<destination zone="int_deniran_tiny_house" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		
+		<portal x="50" y="102" ref="deniran_weapons_shop_entrance">
+			<destination zone="int_deniran_weapons_shop" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
@@ -571,6 +576,14 @@
 			<destination zone="0_deniran_w" ref="deniran_tiny_house_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		
+		<zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">
+		
+		<portal x="24" y="18" ref="entrance">
+	<destination zone="0_deniran_w" ref="deniran_weapons_shop_entrance" />
+	<attribute name="move.continuous" />
+	</portal>
+
 
 	</zone>
 
@@ -677,6 +690,13 @@
 			<destination zone="0_deniran" ref="deniran_bakery_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		
+		<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
+		
+		<portal x=13" y="18" ref="entrance">
+	<destination zone="0_deniran_e" ref="deniran_dress_shop_entrance" />
+	<attribute name="move.continuous" />
+	</portal>
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ShopAssistantNPC" />
