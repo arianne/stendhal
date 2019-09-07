@@ -22,9 +22,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
 /**
- * Provides Groongo Rahnnt, The Troublesome Customer in Fado's Hotel.
+ * Provides Groongo Rahnnt, The Troublesome Customer in Fado's Hotel Restaurant.
  *
- * Groongo offers a quest to bring him the meal he's been awaiting to order.
+ * Groongo Rahnnt offers a quest to bring him a decent meal he's been awaiting to order.
+ * Groongo Rahnnt offered quest will involve Stefan, the chef of Fado's Hotel Restaurant
  *
  * @author omero
  *
@@ -42,12 +43,6 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			"... Mah! I counted all the tiles on the floor already... Twice...",
 			"... Meh! I'll start notching the table legs for every minute I'm spending waiting at this table here...",
 			"... Ugh! I should start counting ALL the bugs infesting this place..."
-			/**
-			"... Duh! I should start counting ALL the bugs infesting this place...",
-			"... Wah! I should start counting ALL the bugs infesting this place...",
-			"... Woh! I should start counting ALL the bugs infesting this place...",
-			*/
-			
 		};
 		new MonologueBehaviour(buildNPC(zone), rants, 1);
 	}
@@ -81,7 +76,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 		};
 
-		// Finalize Groongo details
+		// Finalize Groongo Rahnnt, the Fado's Hotel Restaurant Troublesome Customer
 		npc.setEntityClass("troublesomecustomernpc");
 		npc.setDescription("You see Groongo Rahnnt. He seems impatient to get the attention of someone!");
 		npc.setPosition(71, 33);
