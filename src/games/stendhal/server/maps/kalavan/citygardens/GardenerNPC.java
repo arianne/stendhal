@@ -193,10 +193,15 @@ public class GardenerNPC implements ZoneConfigurator {
 				addReply(ConversationPhrases.NO_MESSAGES, "It's better than rain!");
 				addJob("I am the gardener. I hope you like the flowerbeds.");
 				addHelp("If you bring me some #lunch I'll #swap you for a magic scroll.");
-				addOffer("My tomatoes and garlic are doing well, I have enough that I am selling some.");
+				addOffer(
+						"My tomatoes and garlic are doing well, I have enough that I am selling some... " +
+						"I could also *cough* spare some habanero peppers and pinto beans... " +
+						"If you were interested to #buy some special ingredients for a decent meal!");
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("tomato", 30);
                 offerings.put("garlic", 50);
+                offerings.put("pinto beans", 55);
+                offerings.put("habanero pepper", 60);
                 new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addReply("lunch", "Tea and a sandwich, please!");
 				addReply("sandwich", "Mmm.. I'd like a ham and cheese one.");
