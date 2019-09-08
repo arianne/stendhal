@@ -38,7 +38,8 @@ public class BridgePostNPC implements ZoneConfigurator {
 				addGreeting("Hey! You stay away! You'd get yourself killed.");
 				addJob("I guard the bridge. Making sure that no thoughless civilians pass and get killed on the battle field.");
 				addHelp("The capital city of Deniran is to the north.");
-				addGoodbye("/me shakes his head and mutters to himself: Thoughtless civilians.");
+//				addGoodbye("/me shakes his head and mutters to himself: Thoughtless civilians.");
+				addGoodbye("Thoughtless civilians.");
 			}
 			@Override
 			protected void onGoodbye(RPEntity player) {
