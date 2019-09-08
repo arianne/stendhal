@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.1" tiledversion="1.1.3413" orientation="orthogonal" renderorder="right-down" width="35" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="33" nextobjectid="1">
+ <tileset firstgid="1" name="wallpapers" tilewidth="32" tileheight="32" tilecount="25" columns="5">
+  <image source="../../tileset/building/wall/wallpapers.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="26" name="wood_trim" tilewidth="32" tileheight="32" tilecount="50" columns="10">
+  <image source="../../tileset/building/wall/wood_trim.png" width="320" height="160"/>
+ </tileset>
+ <tileset firstgid="76" name="int_windows_wood_centered" tilewidth="32" tileheight="32" tilecount="30" columns="10">
+  <image source="../../tileset/building/window/int_windows_wood_centered.png" width="320" height="96"/>
+ </tileset>
+ <tileset firstgid="106" name="dark_blue" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/furniture/carpet/dark_blue.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="115" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="116" name="white_counter_top" tilewidth="32" tileheight="32" tilecount="10" columns="5">
+  <image source="../../tileset/furniture/table/white_counter_top.png" width="160" height="64"/>
+ </tileset>
+ <tileset firstgid="126" name="table_with_beer" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../tileset/furniture/table/table_with_beer.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="134" name="table_wooden_brown" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="../../tileset/furniture/table/table_wooden_brown.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="143" name="beers_and_flasks" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+  <image source="../../tileset/item/drink/beers_and_flasks.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="155" name="bottles_and_cups" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="../../tileset/item/drink/bottles_and_cups.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="171" name="bread" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/item/food/bread.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="175" name="fruit_basket" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/item/food/fruit_basket.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="176" name="pies" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/item/food/pies.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="179" name="smoked_meatandfish" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/item/food/smoked_meatandfish.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="183" name="steak" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/item/food/steak.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="185" name="piglet" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/item/food/piglet.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="187" name="torte" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/item/food/torte.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="188" name="fish_crates" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="../../tileset/item/food/fish_crates.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="196" name="food_preparation" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="../../tileset/item/household/food_preparation.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="212" name="food_preparation_2" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/household/food_preparation_2.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="216" name="bazaar_produce" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/bazaar_produce.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="220" name="boxes" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/boxes.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="224" name="sacks" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/item/sacks.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="226" name="books" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/documents/books.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="230" name="note_board" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../tileset/item/documents/note_board.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="238" name="empty_bottles" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+  <image source="../../tileset/item/chemistry/empty_bottles.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="250" name="lights_candle" tilewidth="32" tileheight="32" tilecount="36" columns="6">
+  <image source="../../tileset/furniture/light/lights_candle.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="286" name="small_lamp" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/furniture/light/small_lamp.png" width="128" height="32"/>
+ </tileset>
+ <layer id="25" name="0_floor" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2XOw6AIBBE6Uy8gZekRoULcGqxIDFkl4+7gBKK105edqaAVQixEtkYMjwLgacLNcdnKMdegEJcSnMM4HI6ZAEacaHk/MXlCOjlYoFu7QAd6Ug+t0sqp5VLSA8XaE/hplq5lN5wutRxwTJi2di2oB31cEndbLq8d8F6jvVfy6UF02W63IRvQuyNWNtFf+guI7mYjI5jvedsBAL6q1GQDBlc/3HJlHMBO3w95mgQAAA=
+  </data>
+ </layer>
+ <layer id="26" name="1_terrain" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACsWWWy8DQRSAx18QERFR5cntifBE6j+V/gC8+wNS9eAFdXmjIby4J1pKRdBSXiUkbm/OpGfidJ3Z7tnupif5srM7s6ff7pzZTkQp1QVEfdAN9KhKRALI0wv0Af0+GAAG0SWIPDrHMOZLAilggZAk11M4Th8XgRGHi85zhudFgo4LwhqicLzJQ11mBDhdTDsrzJNlXK6VLOYtLnfCPLceXOJAHtGxBEyS/lSILgXHmCnGJUH6CxaXe+b34o7noHHqwWVa/Z/bWdKfV9W1ZvI9ML+3D+xaXM4ZF2nkMceoqnwjhjCP1OWEcWlukrvEgAlV+UaMAeNAzuKyI3BpE7roejoADpEckrCMt7kEMUdcPTlrykTRxYV7Ly3C9yKJoksft47aGRfbWnRbo1xsAduWvkvGpZVxeQV+mPvnBB46dG3Z6ohz6WBcPoC3AFx0bXF1pKMEf8Feavcd+GauHwHHQh9bPDIuUea9fAGfIbvo8OJim2e3+ZfGFeMSYVxs8+w2/0G4dIb4fZG6bDRGhV1HjXLh1tF6gPnjpP2Ex2c8lvFIv9thuuiotec2tV9i3stmQA43wItgPDdHQbqUa46qDu4/IAOkgWVEn6/gtVVsZ7CdRsy80xoxAc+8VwJom15zutA9q19UnfebvXJM/e1Z/aLqvN/slX8BEv6aFWgQAAA=
+  </data>
+ </layer>
+ <layer id="27" name="2_object" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgwA9iCMiTCigxL41MfbeB+CYe825C1YyCUTCYwVYg3jbQjhgFVAXCjLQzeweJ6iVp6JahDESxhMtHIH5Pd5cwMEjTMI42A/EWEtRjC5eBArQMl+EGPgPxh4F2xCgYFOAVEL9GogcSvAHit0j0KBgFwwFEkiAnA6XlSDAHn/noIJkEOTUorUGCObjEATvN6PFoEAAA
+  </data>
+ </layer>
+ <layer id="28" name="3_roof" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3MMQEAAAwCINvYv6El9g0CkAAAAADf9egZgDr34WgQAAA=
+  </data>
+ </layer>
+ <layer id="29" name="4_roof_add" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQlPoAAAAAA+BjO3YgZoEAAA
+  </data>
+ </layer>
+ <layer id="30" name="objects" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQlPoAAAAAA+BjO3YgZoEAAA
+  </data>
+ </layer>
+ <layer id="31" name="collision" width="35" height="30" visible="0" opacity="0.46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3VQQoAIAhEUe/s/aF9C0NRMfkDswt71EIVEaXf1JPqOVMtrzO/Wixj9x9hweLJNkvkzbHkBMseS0ewYLH25n1fh8VztsoS3Q+TLdFWzNxgyeoBL8MbOGgQAAA=
+  </data>
+ </layer>
+ <layer id="32" name="protection" width="35" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQlPoAAAAAA+BjO3YgZoEAAA
+  </data>
+ </layer>
+</map>
