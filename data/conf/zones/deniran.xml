@@ -151,6 +151,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+        <configurator class-name="games.stendhal.server.maps.deniran.river.BridgePostNPC" />
         <configurator class-name="games.stendhal.server.maps.deniran.river.PortManagerNPC" />
 <!--
         <configurator class-name="games.stendhal.server.maps.deniran.river.AdosArmy" />
