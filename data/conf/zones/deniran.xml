@@ -153,6 +153,15 @@
 		</attributes>
         <configurator class-name="games.stendhal.server.maps.deniran.river.BridgePostNPC" />
         <configurator class-name="games.stendhal.server.maps.deniran.river.PortManagerNPC" />
+
+		<entity x="63" y="26">
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see an improvised barrier blocking access to the bridge.</attribute>
+			<attribute name="width">5</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+
+
 <!--
         <configurator class-name="games.stendhal.server.maps.deniran.river.AdosArmy" />
         <configurator class-name="games.stendhal.server.maps.deniran.river.DeniranArmy" />
