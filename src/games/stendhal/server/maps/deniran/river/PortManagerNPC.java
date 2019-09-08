@@ -42,7 +42,7 @@ public class PortManagerNPC implements ZoneConfigurator {
 				addJob("Me port manager. Busy job. Very important! But ships from Ados delayed, so taking #break");
 				addReply(Arrays.asList("delayed", "break"),
 						"Me works hard. Very hard. So break fine, when no ships.");
-				addHelp("The capital city of Deniran is to the north west.");
+				addHelp("The capital city of Deniran is to the north.");
 				addQuest("Lots of work, when ships come. But now, no ships, no work. Return later.");
 				addGoodbye("Return later. Lot's of work, when ships come.");
 			}
