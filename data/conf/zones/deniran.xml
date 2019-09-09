@@ -43,6 +43,11 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+
+<portal x="50" y="102" ref="deniran_weapon_shop_entrance">
+			<destination zone="int_deniran_weapon_shop" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 	</zone>
 
 
@@ -126,7 +131,10 @@
 			<attribute name="move.continuous" />
 		</portal>
 
-		
+		<portal x="52" y="50" ref="deniran_bakery_entrance">
+			<destination zone="int_deniran_bakery" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 			</zone>
 
 
@@ -198,6 +206,12 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+
+
+    <portal x="101" y="61" ref="deniran_dress_shop_entrance">
+     <destination zone="int_deniran_dress_shop" ref="entrance" />
+     <attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
@@ -583,6 +597,13 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+
+	<zone name="int_deniran_weapon_shop" file="interiors/deniran/weapon_shop.tmx">
+
+		<portal x="17" y="18" ref="entrance">
+			<destination zone="0_deniran_w" ref="deniran_weapon_shop_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 	</zone>
 
 
@@ -691,6 +712,7 @@
 
 	</zone>
 
+
     <zone name="int_deniran_grocery_store" file="interiors/deniran/grocery_store.tmx">
 
 		<portal x="17" y="28" ref="entrance">
@@ -698,6 +720,15 @@
 			<attribute name="move.continuous" />
 		</portal>
 		
+	</zone>
+	
+		
+			<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
+
+		<portal x="13" y="18" ref="entrance">
+			<destination zone="0_deniran_w" ref="deniran_dress_shop_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 		
 	</zone>
 
