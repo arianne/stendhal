@@ -44,10 +44,11 @@
 		</portal>
 
 
-<portal x="50" y="102" ref="deniran_weapon_shop_entrance">
-			<destination zone="int_deniran_weapon_shop" ref="entrance" />
+		<portal x="50" y="102" ref="deniran_weapons_shop_entrance">
+			<destination zone="int_deniran_weapons_shop" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+
 	</zone>
 
 
@@ -146,8 +147,8 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
-    <!-- NPCs -->
-        <configurator class-name="games.stendhal.server.maps.deniran.LittleGirlNPC" />
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.LittleGirlNPC" />
 
 	</zone>
 
@@ -208,10 +209,13 @@
 		</attributes>
 
 
-    <portal x="101" y="61" ref="deniran_dress_shop_entrance">
-     <destination zone="int_deniran_dress_shop" ref="entrance" />
-     <attribute name="move.continuous" />
+		<portal x="101" y="61" ref="deniran_dress_shop_entrance">
+			<destination zone="int_deniran_dress_shop" ref="entrance" />
+			<attribute name="move.continuous" />
 		</portal>
+
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketSellerNPC1Grocery" />
 
 	</zone>
 
@@ -234,6 +238,9 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.river.BoatNPC" />
 
 	</zone>
 	
@@ -597,13 +604,16 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+	</zone>
 
-	<zone name="int_deniran_weapon_shop" file="interiors/deniran/weapon_shop.tmx">
+
+	<zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">
 
 		<portal x="17" y="18" ref="entrance">
-			<destination zone="0_deniran_w" ref="deniran_weapon_shop_entrance" />
+			<destination zone="0_deniran_w" ref="deniran_weapons_shop_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+
 	</zone>
 
 
@@ -710,6 +720,9 @@
 			<attribute name="move.continuous" />
 		</portal>
 
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ChefNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.bakery.ShopAssistantNPC" />
+
 	</zone>
 
 
@@ -723,10 +736,10 @@
 	</zone>
 	
 		
-			<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
+	<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
 
 		<portal x="13" y="18" ref="entrance">
-			<destination zone="0_deniran_w" ref="deniran_dress_shop_entrance" />
+			<destination zone="0_deniran_e" ref="deniran_dress_shop_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 		
