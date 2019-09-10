@@ -22,55 +22,67 @@ To create the labeled world map:
   * Edit http://stendhalgame.org/wiki/Template:SmallWorldMap
     and add a link to your uploaded image.
 """
-#!/usr/bin/env python
+#!/usr/bin/env python3
+#Tue Sep 10 23:32:58 CEST 2019, slightly tweaked -- omero
 
 import sys
 import glob
 import operator
 import os
 
-from PIL import Image, ImageFont
-from PIL.ImageDraw import ImageDraw
+#from PIL.ImageDraw import ImageDraw
+from PIL import Image, ImageFont, ImageDraw
 
 def do_label(fname):
-    print "Processing %s" % fname
+    print ("Processing %s" % fname)
     # remove directory and file extension
     label = fname.split('/')[-1].replace(".png", "")
+    #print ("Processing LABEL: %s" % label)
+    print ("Processing FNAME: %s" % fname)
 
     img = Image.open(fname)
     img = img.convert("RGBA")
 
+    
     # label
-    draw = ImageDraw(img, "RGBA")
-    font = ImageFont.truetype("arial.ttf", 12)
-    draw.setfont(font)
-    draw.text((6, 6), label, (0, 0, 0, 255))
-    draw.text((5, 5), label, (255, 255, 255, 255))
+    draw = ImageDraw.Draw(img, "RGBA")
+    #font = ImageFont.truetype("anonymous.ttf", 12)
+    fontPath = "/usr/share/fonts/default/TrueType/arial.ttf"
+    font = ImageFont.truetype(fontPath, 12)
+    #draw.setfont(font)
+    #print(fontPath)
+    draw.text((7, 7), label, (  0,   0,   0, 255),font=font)
+    draw.text((5, 5), label, (255, 255, 255, 255),font=font)
 
     # border
     img2 = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    draw = ImageDraw(img2, "RGBA")
+    draw = ImageDraw.Draw(img2, "RGBA")
     draw.rectangle((0, 0, img.size[0] - 1, img.size[1] - 1), None, (255, 255, 192, 48))
     img.paste(img2, img2)
 
     img.save(fname)
 
 if len(sys.argv) < 2:
-    print "Usage: %s [image-filenames...]" % sys.argv[0]
+    print ("Usage: %s [image-filenames...]" % sys.argv[0])
+    print ("  This will label each PNG file passed as argument.")
+    print ("  E.g: ./world/int_*.png will label all interiors, etc. etc.")
     print
-    print "Alternatively, you can run: %s -world" % sys.argv[0]
-    print "This will label each PNG file in the world subdirectory."
+    print ("Alternatively, you can run: %s -world" % sys.argv[0])
+    print ("  This will label each PNG file in the world subdirectory.")
     sys.exit(0)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
     for fname in os.listdir('world'):
         if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
-            do_label('world/' + fname)
+            do_label('./world/' + fname)
 else:
     # This doesn't work for me. --mort
-    for fname in reduce(operator.add, map(glob.glob, sys.argv[1:])):
-        print "Labeling %s..." % fname
-        do_label(fname)
+    #for fname in reduce(operator.add, map(glob.glob, sys.argv[1:])):
 
+    # This works for me. --omero
+    for fname in list(sys.argv[1:]):
+        if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
+            print ( "Labeling %s..." % fname )
+            do_label(fname)
 
-print "Done."
+print ("All Done.")
 
