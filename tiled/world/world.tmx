@@ -627,65 +627,65 @@
  <tileset firstgid="3326" name="0_semos_mountain_n2_w3" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="0_semos_mountain_n2_w3.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3342" name="0_deniran_deniran" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran.png" width="256" height="256"/>
+ <tileset firstgid="3342" name="0_deniran_city" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3358" name="0_deniran_deniran_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_e.png" width="256" height="256"/>
+ <tileset firstgid="3358" name="0_deniran_city_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_e.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3374" name="0_deniran_deniran_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_n.png" width="256" height="256"/>
+ <tileset firstgid="3374" name="0_deniran_forest_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_n.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3390" name="0_deniran_deniran_n_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_n_e2.png" width="256" height="256"/>
+ <tileset firstgid="3390" name="0_deniran_forest_n2_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_n2_e.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3406" name="0_deniran_deniran_n_w2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_n_w2.png" width="256" height="256"/>
+ <tileset firstgid="3406" name="0_deniran_forest_n2_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_n2_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3422" name="0_deniran_deniran_n2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_n2.png" width="256" height="256"/>
+ <tileset firstgid="3422" name="0_deniran_forest_n2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_n2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3438" name="0_deniran_deniran_ne" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_ne.png" width="256" height="256"/>
+ <tileset firstgid="3438" name="0_deniran_forest_ne" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_ne.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3454" name="0_deniran_deniran_nw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_nw.png" width="256" height="256"/>
+ <tileset firstgid="3454" name="0_deniran_forest_nw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_nw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3470" name="0_deniran_deniran_river_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_river_e.png" width="256" height="256"/>
+ <tileset firstgid="3470" name="0_deniran_river_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_river_se.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3486" name="0_deniran_deniran_river_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_river_e2.png" width="256" height="256"/>
+ <tileset firstgid="3486" name="0_deniran_river_s_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_river_s_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3502" name="0_deniran_deniran_river_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_river_s.png" width="256" height="256"/>
+ <tileset firstgid="3502" name="0_deniran_river_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_river_s.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3518" name="0_deniran_deniran_river_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_river_w.png" width="256" height="256"/>
+ <tileset firstgid="3518" name="0_deniran_river_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_river_sw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3534" name="0_deniran_deniran_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_s.png" width="256" height="256"/>
+ <tileset firstgid="3534" name="0_deniran_city_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_s.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3550" name="0_deniran_deniran_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_se.png" width="256" height="256"/>
+ <tileset firstgid="3550" name="0_deniran_city_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_se.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3566" name="0_deniran_deniran_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_sw.png" width="256" height="256"/>
+ <tileset firstgid="3566" name="0_deniran_city_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_sw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3582" name="0_deniran_deniran_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_w.png" width="256" height="256"/>
+ <tileset firstgid="3582" name="0_deniran_city_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3598" name="0_deniran_deniran_wall" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_wall.png" width="256" height="256"/>
+ <tileset firstgid="3598" name="0_deniran_city_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3614" name="0_deniran_deniran_wall_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_wall_n.png" width="256" height="256"/>
+ <tileset firstgid="3614" name="0_deniran_forest_n_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_n_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3630" name="0_deniran_deniran_wall_n2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_wall_n2.png" width="256" height="256"/>
+ <tileset firstgid="3630" name="0_deniran_forest_n2_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_forest_n2_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3646" name="0_deniran_deniran_wall_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="0_deniran_deniran_wall_s.png" width="256" height="256"/>
+ <tileset firstgid="3646" name="0_deniran_city_s_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="0_deniran_city_s_e2.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="3662" name="sub_1_deniran_lost_caves_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_1_deniran_lost_caves_n.png" width="256" height="256"/>
@@ -696,68 +696,68 @@
  <tileset firstgid="3694" name="sub_1_deniran_lost_caves_ne" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_1_deniran_lost_caves_ne.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3710" name="sub_1_deniran_lost_caves_ne2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_lost_caves_ne2.png" width="256" height="256"/>
+ <tileset firstgid="3710" name="sub_1_deniran_lost_caves_n2_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_lost_caves_n2_e.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="3726" name="sub_1_deniran_lost_caves_nw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_1_deniran_lost_caves_nw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3742" name="sub_1_deniran_lost_caves_nw2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_lost_caves_nw2.png" width="256" height="256"/>
+ <tileset firstgid="3742" name="sub_1_deniran_lost_caves_n2_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_lost_caves_n2_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3758" name="sub_1_deniran_lost_caves_wall_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_lost_caves_wall_n.png" width="256" height="256"/>
+ <tileset firstgid="3758" name="sub_1_deniran_lost_caves_n_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_lost_caves_n_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3774" name="sub_1_deniran_lost_caves_wall_n2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_lost_caves_wall_n2.png" width="256" height="256"/>
+ <tileset firstgid="3774" name="sub_1_deniran_lost_caves_n2_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_lost_caves_n2_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3790" name="sub_1_deniran_deniran_caves_deniran" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_deniran.png" width="256" height="256"/>
+ <tileset firstgid="3790" name="sub_1_deniran_caves" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3806" name="sub_1_deniran_deniran_caves_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_e.png" width="256" height="256"/>
+ <tileset firstgid="3806" name="sub_1_deniran_caves_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_e.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3822" name="sub_1_deniran_deniran_caves_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_s.png" width="256" height="256"/>
+ <tileset firstgid="3822" name="sub_1_deniran_caves_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_s.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3838" name="sub_1_deniran_deniran_caves_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_se.png" width="256" height="256"/>
+ <tileset firstgid="3838" name="sub_1_deniran_caves_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_se.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3854" name="sub_1_deniran_deniran_caves_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_sw.png" width="256" height="256"/>
+ <tileset firstgid="3854" name="sub_1_deniran_caves_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_sw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3870" name="sub_1_deniran_deniran_caves_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_w.png" width="256" height="256"/>
+ <tileset firstgid="3870" name="sub_1_deniran_caves_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3886" name="sub_1_deniran_deniran_caves_wall" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_wall.png" width="256" height="256"/>
+ <tileset firstgid="3886" name="sub_1_deniran_caves_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3902" name="sub_1_deniran_deniran_caves_wall_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_1_deniran_deniran_caves_wall_s.png" width="256" height="256"/>
+ <tileset firstgid="3902" name="sub_1_deniran_caves_s_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_1_deniran_caves_s_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3918" name="sub_2_deniran_deniran_caves_deniran" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_deniran.png" width="256" height="256"/>
+ <tileset firstgid="3918" name="sub_2_deniran_caves" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3934" name="sub_2_deniran_deniran_caves_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_e.png" width="256" height="256"/>
+ <tileset firstgid="3934" name="sub_2_deniran_caves_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_e.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3950" name="sub_2_deniran_deniran_caves_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_s.png" width="256" height="256"/>
+ <tileset firstgid="3950" name="sub_2_deniran_caves_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_s.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3966" name="sub_2_deniran_deniran_caves_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_se.png" width="256" height="256"/>
+ <tileset firstgid="3966" name="sub_2_deniran_caves_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_se.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3982" name="sub_2_deniran_deniran_caves_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_sw.png" width="256" height="256"/>
+ <tileset firstgid="3982" name="sub_2_deniran_caves_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_sw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="3998" name="sub_2_deniran_deniran_caves_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_w.png" width="256" height="256"/>
+ <tileset firstgid="3998" name="sub_2_deniran_caves_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4014" name="sub_2_deniran_deniran_caves_wall" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_wall.png" width="256" height="256"/>
+ <tileset firstgid="4014" name="sub_2_deniran_caves_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4030" name="sub_2_deniran_deniran_caves_wall_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_deniran_caves_wall_s.png" width="256" height="256"/>
+ <tileset firstgid="4030" name="sub_2_deniran_caves_s_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_caves_s_e2.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="4046" name="sub_2_deniran_lost_caves_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_2_deniran_lost_caves_n.png" width="256" height="256"/>
@@ -768,44 +768,44 @@
  <tileset firstgid="4078" name="sub_2_deniran_lost_caves_ne" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_2_deniran_lost_caves_ne.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4094" name="sub_2_deniran_lost_caves_ne2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_lost_caves_ne2.png" width="256" height="256"/>
+ <tileset firstgid="4094" name="sub_2_deniran_lost_caves_n2_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_lost_caves_n2_e.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="4110" name="sub_2_deniran_lost_caves_nw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_2_deniran_lost_caves_nw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4126" name="sub_2_deniran_lost_caves_nw2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_lost_caves_nw2.png" width="256" height="256"/>
+ <tileset firstgid="4126" name="sub_2_deniran_lost_caves_n2_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_lost_caves_n2_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4142" name="sub_2_deniran_lost_caves_wall_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_lost_caves_wall_n.png" width="256" height="256"/>
+ <tileset firstgid="4142" name="sub_2_deniran_lost_caves_n_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_lost_caves_n_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4158" name="sub_2_deniran_lost_caves_wall_n2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_2_deniran_lost_caves_wall_n2.png" width="256" height="256"/>
+ <tileset firstgid="4158" name="sub_2_deniran_lost_caves_n2_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_2_deniran_lost_caves_n2_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4174" name="sub_3_deniran_deniran_caves_deniran" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_deniran.png" width="256" height="256"/>
+ <tileset firstgid="4174" name="sub_3_deniran_caves" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4190" name="sub_3_deniran_deniran_caves_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_e.png" width="256" height="256"/>
+ <tileset firstgid="4190" name="sub_3_deniran_caves_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_e.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4206" name="sub_3_deniran_deniran_caves_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_s.png" width="256" height="256"/>
+ <tileset firstgid="4206" name="sub_3_deniran_caves_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_s.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4222" name="sub_3_deniran_deniran_caves_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_se.png" width="256" height="256"/>
+ <tileset firstgid="4222" name="sub_3_denirancaves_se" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_se.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4238" name="sub_3_deniran_deniran_caves_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_sw.png" width="256" height="256"/>
+ <tileset firstgid="4238" name="sub_3_deniran_caves_sw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_sw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4254" name="sub_3_deniran_deniran_caves_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_w.png" width="256" height="256"/>
+ <tileset firstgid="4254" name="sub_3_deniran_caves_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4270" name="sub_3_deniran_deniran_caves_wall" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_wall.png" width="256" height="256"/>
+ <tileset firstgid="4270" name="sub_3_deniran_caves_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4286" name="sub_3_deniran_deniran_caves_wall_s" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_deniran_caves_wall_s.png" width="256" height="256"/>
+ <tileset firstgid="4286" name="sub_3_deniran_caves_s_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_caves_s_e2.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="4302" name="sub_3_deniran_lost_caves_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_3_deniran_lost_caves_n.png" width="256" height="256"/>
@@ -816,20 +816,20 @@
  <tileset firstgid="4334" name="sub_3_deniran_lost_caves_ne" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_3_deniran_lost_caves_ne.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4350" name="sub_3_deniran_lost_caves_ne2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_lost_caves_ne2.png" width="256" height="256"/>
+ <tileset firstgid="4350" name="sub_3_deniran_lost_caves_n2_e" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_lost_caves_n2_e.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="4366" name="sub_3_deniran_lost_caves_nw" tilewidth="64" tileheight="64" tilecount="16" columns="4">
   <image source="sub_3_deniran_lost_caves_nw.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4382" name="sub_3_deniran_lost_caves_nw2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_lost_caves_nw2.png" width="256" height="256"/>
+ <tileset firstgid="4382" name="sub_3_deniran_lost_caves_n2_w" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_lost_caves_n2_w.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4398" name="sub_3_deniran_lost_caves_wall_n" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_lost_caves_wall_n.png" width="256" height="256"/>
+ <tileset firstgid="4398" name="sub_3_deniran_lost_caves_n_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_lost_caves_n_e2.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="4414" name="sub_3_deniran_lost_caves_wall_n2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="sub_3_deniran_lost_caves_wall_n2.png" width="256" height="256"/>
+ <tileset firstgid="4414" name="sub_3_deniran_lost_caves_n2_e2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="sub_3_deniran_lost_caves_n2_e2.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="4430" name="0_sikhw_placeholder" tilewidth="64" tileheight="64" tilecount="256" columns="16">
   <image source="0_sikhw_placeholder.png" width="1024" height="1024"/>
