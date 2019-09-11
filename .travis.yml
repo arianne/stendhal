@@ -1,6 +1,7 @@
 language: java
 before_install:
   - pip install --user codecov
+dist: bionic
 service:
   - xvfb
 notifications:
