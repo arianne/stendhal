@@ -2,6 +2,10 @@ language: java
 before_install:
   - pip install --user codecov
 dist: bionic
+addons:
+  apt:
+    packages:
+      - ant-optional
 service:
   - xvfb
 notifications:
