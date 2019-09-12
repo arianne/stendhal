@@ -8,6 +8,7 @@ addons:
       - ant-optional
 service:
   - xvfb
+script: xvfb-run ant test
 notifications:
   irc:
     channels:
