@@ -986,7 +986,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 	<target name="run_tests" description="Run tests">
 		<mkdir dir="${build_tests_report}"/>
 		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-			<classpath path="libs/jacoco/jacocoant.jar"/>
+			<classpath path="buildtools/jacoco/jacocoant.jar"/>
 		</taskdef>
 		<jacoco:coverage destfile="${build_tests_report}/jacoco.exec" append="false" includes="games.stendhal.*">
 			<junit fork="yes" forkmode="once" errorproperty="test.error" failureproperty="test.failure">
