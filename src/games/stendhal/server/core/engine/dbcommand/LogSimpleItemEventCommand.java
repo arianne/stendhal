@@ -13,7 +13,7 @@ package games.stendhal.server.core.engine.dbcommand;
 
 import java.sql.SQLException;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.entity.RPEntity;
@@ -77,6 +77,6 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 	 */
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).add("player", player).add("event", event).toString();
+		return MoreObjects.toStringHelper(this).add("player", player).add("event", event).toString();
 	}
 }
