@@ -1,7 +1,8 @@
 package games.stendhal.server.core.rp.pvp;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.MoreObjects.ToStringHelper;
 import com.google.common.base.Objects;
-import com.google.common.base.Objects.ToStringHelper;
 
 import games.stendhal.server.entity.player.Player;
 
@@ -44,7 +45,7 @@ public class PlayerVsPlayerChallenge {
 
 	@Override
 	public String toString() {
-		ToStringHelper helper = Objects.toStringHelper(this)
+		ToStringHelper helper = MoreObjects.toStringHelper(this)
 				.add("challenger", this.challenger.getName())
 				.add("challenged", this.challenged.getName())
 				.add("accepted", this.isAccepted());

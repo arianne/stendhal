@@ -619,7 +619,7 @@
 	<zone name="int_deniran_tiny_house" file="interiors/deniran/tiny_house.tmx">
 
 		<portal x="3" y="6" ref="entrance">
-			<destination zone="0_deniran_w" ref="deniran_tiny_house_entrance" />
+			<destination zone="0_deniran_city_w" ref="deniran_tiny_house_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -629,7 +629,7 @@
 	<zone name="int_deniran_weapons_shop" file="interiors/deniran/weapons_shop.tmx">
 
 		<portal x="17" y="18" ref="entrance">
-			<destination zone="0_deniran_w" ref="deniran_weapons_shop_entrance" />
+			<destination zone="0_deniran_city_w" ref="deniran_weapons_shop_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -639,7 +639,7 @@
 	<zone name="int_deniran_bank_blue_roof" file="interiors/deniran/bank_blue_roof.tmx">
 
 		<portal x="15" y="14" ref="entrance">
-			<destination zone="0_deniran" ref="deniran_bank_blue_roof_entrance" />
+			<destination zone="0_deniran_city" ref="deniran_bank_blue_roof_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -720,12 +720,12 @@
 	<zone name="int_deniran_castle" file="interiors/deniran/castle.tmx">
 
 		<portal x="15" y="22" ref="entrance_left">
-			<destination zone="0_deniran" ref="deniran_castle_entrance_left" />
+			<destination zone="0_deniran_city" ref="deniran_castle_entrance_left" />
 			<attribute name="move.continuous" />
 		</portal>
 
 		<portal x="16" y="22" ref="entrance_right">
-			<destination zone="0_deniran" ref="deniran_castle_entrance_right" />
+			<destination zone="0_deniran_city" ref="deniran_castle_entrance_right" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -735,7 +735,7 @@
     <zone name="int_deniran_bakery" file="interiors/deniran/bakery.tmx">
 
 		<portal x="15" y="12" ref="entrance">
-			<destination zone="0_deniran" ref="deniran_bakery_entrance" />
+			<destination zone="0_deniran_city" ref="deniran_bakery_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -748,7 +748,7 @@
     <zone name="int_deniran_grocery_store" file="interiors/deniran/grocery_store.tmx">
 
 		<portal x="17" y="28" ref="entrance">
-			<destination zone="0_deniran" ref="deniran_grocery_store_entrance" />
+			<destination zone="0_deniran_city" ref="deniran_grocery_store_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 		
@@ -758,7 +758,7 @@
 	<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
 
 		<portal x="13" y="18" ref="entrance">
-			<destination zone="0_deniran_e" ref="deniran_dress_shop_entrance" />
+			<destination zone="0_deniran_city_e" ref="deniran_dress_shop_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 		
