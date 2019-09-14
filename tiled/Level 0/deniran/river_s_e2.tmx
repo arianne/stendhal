@@ -88,7 +88,7 @@
   <image source="../../tileset/plant/stump/small_stump.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="1415" name="earth_dark" tilewidth="32" tileheight="32">
-  <image source="C:/Users/bleutailfly/git/stendhal/tiled/tileset/ground/ridge/earth_dark.png" width="384" height="256"/>
+  <image source="../../tileset/ground/ridge/earth_dark.png" width="384" height="256"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

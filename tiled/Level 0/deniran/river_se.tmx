@@ -31,7 +31,7 @@
   <image source="../../tileset/ground/cobbled_paving.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="526" name="earth_pale" tilewidth="32" tileheight="32">
-  <image source="C:/Users/bleutailfly/git/stendhal/tiled/tileset/ground/ridge/earth_pale.png" width="384" height="256"/>
+  <image source="../../tileset/ground/ridge/earth_pale.png" width="384" height="256"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
