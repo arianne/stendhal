@@ -65,6 +65,80 @@ public abstract class UpdateConverter {
 			"elder duergar", "black duergar", "elder giant",
 			"chaos sorcerer"
 	);
+
+	private static final HashMap<String, String> ZONE_MAPPING = new HashMap<>();
+	static {
+		ZONE_MAPPING.put("0_deniran_n_w2", "0_deniran_forest_n2_w");
+		ZONE_MAPPING.put("0_deniran_nw", "0_deniran_forest_nw");
+		ZONE_MAPPING.put("0_deniran_w", "0_deniran_city_w");
+		ZONE_MAPPING.put("0_deniran_sw", "0_deniran_city_sw");
+		ZONE_MAPPING.put("0_deniran_river_w", "0_deniran_river_sw");
+		ZONE_MAPPING.put("0_deniran_n2", "0_deniran_forest_n2");
+		ZONE_MAPPING.put("0_deniran_n", "0_deniran_forest_n");
+		ZONE_MAPPING.put("0_deniran", "0_deniran_city");
+		ZONE_MAPPING.put("0_deniran_s", "0_deniran_city_s");
+		ZONE_MAPPING.put("0_deniran_river_s", "0_deniran_river_s");
+		ZONE_MAPPING.put("0_deniran_n_e2", "0_deniran_forest_n2_e");
+		ZONE_MAPPING.put("0_deniran_ne", "0_deniran_forest_ne");
+		ZONE_MAPPING.put("0_deniran_e", "0_deniran_city_e");
+		ZONE_MAPPING.put("0_deniran_se", "0_deniran_city_se");
+		ZONE_MAPPING.put("0_deniran_river_e", "0_deniran_river_se");
+		ZONE_MAPPING.put("0_deniran_wall_n2", "0_deniran_forest_n2_e2");
+		ZONE_MAPPING.put("0_deniran_wall_n", "0_deniran_forest_n_e2");
+		ZONE_MAPPING.put("0_deniran_wall", "0_deniran_city_e2");
+		ZONE_MAPPING.put("0_deniran_wall_s", "0_deniran_city_s_e2");
+		ZONE_MAPPING.put("0_deniran_river_e2", "0_deniran_river_s_e2");
+		ZONE_MAPPING.put("-1_deniran_lost_caves_nw2", "-1_deniran_lost_caves_n2_w");
+		ZONE_MAPPING.put("-1_deniran_lost_caves_nw", "-1_deniran_lost_caves_nw");
+		ZONE_MAPPING.put("-1_deniran_caves_w", "-1_deniran_caves_w");
+		ZONE_MAPPING.put("-1_deniran_caves_sw", "-1_deniran_caves_sw");
+		ZONE_MAPPING.put("-1_deniran_lost_caves_n2", "-1_deniran_lost_caves_n2");
+		ZONE_MAPPING.put("-1_deniran_lost_caves_n", "-1_deniran_lost_caves_n");
+		ZONE_MAPPING.put("-1_deniran_caves_deniran", "-1_deniran_caves");
+		ZONE_MAPPING.put("-1_deniran_caves_s", "-1_deniran_caves_s");
+		ZONE_MAPPING.put("-1_deniran_lost_caves_ne2", "-1_deniran_lost_caves_n2_e");
+		ZONE_MAPPING.put("-1_deniran_lost_caves_ne", "-1_deniran_lost_caves_ne");
+		ZONE_MAPPING.put("-1_deniran_caves_e", "-1_deniran_caves_e");
+		ZONE_MAPPING.put("-1_deniran_caves_se", "-1_deniran_caves_se");
+		ZONE_MAPPING.put("-1_lost_caves_wall_n2", "-1_deniran_lost_caves_n2_e2");
+		ZONE_MAPPING.put("-1_lost_caves_wall_n", "-1_deniran_lost_caves_n_e2");
+		ZONE_MAPPING.put("-1_deniran_caves_wall", "-1_deniran_caves_e2");
+		ZONE_MAPPING.put("-1_deniran_caves_wall_s", "-1_deniran_caves_s_e2");
+		ZONE_MAPPING.put("-2_deniran_lost_caves_nw2", "-2_deniran_lost_caves_n2_w");
+		ZONE_MAPPING.put("-2_deniran_lost_caves_nw", "-2_deniran_lost_caves_n2");
+		ZONE_MAPPING.put("-2_deniran_caves_w", "-2_deniran_caves_w");
+		ZONE_MAPPING.put("-2_deniran_caves_sw", "-2_deniran_caves_sw");
+		ZONE_MAPPING.put("-2_deniran_lost_caves_n2", "-2_deniran_lost_caves_n2");
+		ZONE_MAPPING.put("-2_deniran_lost_caves_n", "-2_deniran_lost_caves");
+		ZONE_MAPPING.put("-2_deniran_caves_deniran", "-2_deniran_caves");
+		ZONE_MAPPING.put("-2_deniran_caves_s", "-2_deniran_caves_s");
+		ZONE_MAPPING.put("-2_deniran_lost_caves_ne2", "-2_deniran_lost_caves_n2_e");
+		ZONE_MAPPING.put("-2_deniran_lost_caves_ne", "-2_deniran_lost_caves_ne");
+		ZONE_MAPPING.put("-2_deniran_caves_e", "-2_deniran_caves_e");
+		ZONE_MAPPING.put("-2_deniran_caves_se", "-2_deniran_caves_se");
+		ZONE_MAPPING.put("-2_lost_caves_wall_n2", "-2_deniran_lost_caves_n2_e2");
+		ZONE_MAPPING.put("-2_lost_caves_wall_n", "-2_deniran_lost_caves_n_e2");
+		ZONE_MAPPING.put("-2_deniran_caves_wall", "-2_deniran_caves_e2");
+		ZONE_MAPPING.put("-2_deniran_caves_wall_s", "-2_deniran_caves_s_e2");
+		ZONE_MAPPING.put("-3_deniran_lost_caves_nw2", "-3_deniran_lost_caves_n2_w");
+		ZONE_MAPPING.put("-3_deniran_lost_caves_nw", "-3_deniran_lost_caves_nw");
+		ZONE_MAPPING.put("-3_deniran_caves_w", "-3_deniran_caves_w");
+		ZONE_MAPPING.put("-3_deniran_caves_sw", "-3_deniran_caves_sw");
+		ZONE_MAPPING.put("-3_deniran_lost_caves_n2", "-3_deniran_lost_caves_n2");
+		ZONE_MAPPING.put("-3_deniran_lost_caves_n", "-3_deniran_lost_caves_n");
+		ZONE_MAPPING.put("-3_deniran_caves_deniran", "-3_deniran_caves");
+		ZONE_MAPPING.put("-3_deniran_caves_s", "-3_deniran_caves_s");
+		ZONE_MAPPING.put("-3_deniran_lost_caves_ne2", "-3_deniran_lost_caves_n2_e");
+		ZONE_MAPPING.put("-3_deniran_lost_caves_ne", "-3_deniran_lost_caves_ne");
+		ZONE_MAPPING.put("-3_deniran_caves_e", "-3_deniran_caves_e");
+		ZONE_MAPPING.put("-3_deniran_caves_se", "-3_deniran_caves_se");
+		ZONE_MAPPING.put("-3_lost_caves_wall_n2", "-3_deniran_lost_caves_n2_e2");
+		ZONE_MAPPING.put("-3_lost_caves_wall_n", "-3_deniran_lost_caves_n_e2");
+		ZONE_MAPPING.put("-3_deniran_caves_wall", "-3_deniran_caves_e2");
+		ZONE_MAPPING.put("-3_deniran_caves_wall_s", "-3_deniran_caves_s_e2");
+
+	}
+
 	/**
 	 * quest name, quest index, creatures to kill.
 	 */
@@ -322,7 +396,11 @@ public abstract class UpdateConverter {
 		if (object.has("outfit_org") && !object.has("outfit_expire_age")) {
 			object.put("outfit_expire_age", 0);
 		}
+
+		// port to 1.31: zone zones
+		transformVisitedSlot(object);
 	}
+
 
 	/**
 	 * Transform kill slot content to the new kill recording system.
@@ -354,6 +432,30 @@ public abstract class UpdateConverter {
     		slot.remove(kills.getID());
     		slot.add(newKills);
 		}
+	}
+
+
+	private static void transformVisitedSlot(RPObject object) {
+		final RPObject visited = KeyedSlotUtil.getKeyedSlotObject(object, "!visited");
+		
+		if (visited != null) {
+    		final RPObject newVisited = new RPObject();
+    		for (final String attr : visited) {
+    			if (!attr.equals("id")) {
+        			String value = visited.get(attr);
+        			String newName = ZONE_MAPPING.get(attr);
+        			if (newName == null) {
+        				newName = attr;
+        			}
+        			newVisited.put(newName, value);
+    			}
+    		}
+
+    		final RPSlot slot = object.getSlot("!visited");
+    		slot.remove(visited.getID());
+    		slot.add(newVisited);
+		}
+		
 	}
 
 	/**
