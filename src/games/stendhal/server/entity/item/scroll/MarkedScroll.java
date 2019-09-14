@@ -71,7 +71,7 @@ public class MarkedScroll extends TeleportScroll {
 
 		/*
 		 * Marked scrolls have a destination which is stored in the infostring,
-		 * existing of a zone name and x and y coordinates
+		 * consisting of a zone name and x and y coordinates
 		 */
 		final String infostring = getInfoString();
 

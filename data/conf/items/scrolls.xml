@@ -316,7 +316,7 @@
     <description>You see a deniran city scroll, it will take you back to deniran city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
     <attributes>
-    <infostring value="0_deniran 32 74"/>
+      <infostring value="0_deniran_city 32 74"/>
       <quantity value="1"/>
       <menu value="Use|Use"/>
     </attributes>

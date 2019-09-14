@@ -455,8 +455,24 @@ public abstract class UpdateConverter {
     		slot.remove(visited.getID());
     		slot.add(newVisited);
 		}
-		
 	}
+
+
+	public static void updateItemAttributes(Item item) {
+		String name = item.getName();
+		if (!name.equals("marked scroll") && !name.equals("deniran city scroll")) {
+			return;
+		}
+
+		String infostring = item.getInfoString();
+		String[] location = infostring.split(" ");
+		String zone = ZONE_MAPPING.get(location[0]);
+		if (zone != null) {
+			infostring = zone + " " + location[1] + " " + location[2];
+			item.setInfoString(infostring);
+		}
+	}
+
 
 	/**
 	 * Update the quest slot to the current version.
