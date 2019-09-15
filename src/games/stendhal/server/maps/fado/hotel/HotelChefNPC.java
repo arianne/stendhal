@@ -106,7 +106,7 @@ public class HotelChefNPC implements ZoneConfigurator {
                         "That #troublesome #customer down there... Keeps ranting and... go ask him what he wants now!");
 				
 				addReply("stressed",
-                         "It's high season at the moment!" +
+                         "It's high season at the moment! " +
 				         "We get lots of reservations which means more #guests and more work for everyone.");
 				
 				addReply("guest",
@@ -134,8 +134,8 @@ public class HotelChefNPC implements ZoneConfigurator {
                          "Hearing that #troublesome #customer down there? He keeps ranting. " + 
 				         "Quick! Go ask that troublesome customer what he wants, before I go nut...");
 				
-				addOffer("The kitchen isn't open at the moment and before it can be opened..." +
-                         "I have to think about a solution for my #problem in here..." +
+				addOffer("The kitchen isn't open at the moment and before it can be opened... " +
+                         "I have to think about a solution for my #problem in here... " +
 						 "I am a really #stressed #cook now!" );
 				
 				addReply("problem", "Being the only #cook... ahem... The only #chef! "+

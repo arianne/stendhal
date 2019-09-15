@@ -90,17 +90,17 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Welcome in the Fado hotel kitchen, stranger!", getReply(npc));
 		en.step(player, "offer");
-		assertEquals("The kitchen isn't open at the moment and before it can be opened, I have to think about a solution for my #problem in here...", getReply(npc));
+		assertEquals("The kitchen isn't open at the moment and before it can be opened... I have to think about a solution for my #problem in here... I am a really #stressed #cook now!", getReply(npc));
 		en.step(player, "problem");
-		assertEquals("Being alone in a hotel kitchen can't work at all!", getReply(npc));
+		assertEquals("Being the only #cook... ahem... The only #chef! All alone... In a tiny hotel restaurant kitchen... It will never going to work at all!", getReply(npc));
 		en.step(player, "help");
-		assertEquals("I'm really #stressed up here with my work. Sorry, but I can't give you any advice at the moment.", getReply(npc));
+		assertEquals("I'm really #stressed in this kitchen here... I am the only *cough* #cook *cough* #chef *cough* around here... If I only could tell you about all the ingredients that are missing in this place...That #troublesome #customer down there... Keeps ranting and... go ask him what he wants now!", getReply(npc));
 		en.step(player, "stressed");
 		assertEquals("It's high season at the moment! We get lots of reservations which means more #guests and more work for everyone.", getReply(npc));
 		en.step(player, "guests");
-		assertEquals("Most of them visit Fado for #getting #married. I can understand their choice of Fado. It's a beautiful city.", getReply(npc));
+		assertEquals("Most of the guests visit Fado for #getting #married. I can understand why choosing Fado for getting married. Fado is indeed a beautiful and tranquil, a very romantic city... Except for that troublesome customer down there... That #troublesome #customer keeps ranting... Please, go ask him what he wants now!", getReply(npc));
 		en.step(player, "getting married");
-		assertEquals("Didn't you know, that Fado is the most known wedding town in whole Faiumoni? You have to visit our church, it's so lovely!", getReply(npc));
+		assertEquals("Didn't you know that Fado is the most known wedding town in whole Faiumoni? You have to visit our church, it's so lovely!", getReply(npc));
 		en.step(player, "bottle of water");
 		assertEquals("You can gather water from natural mountain springs or bigger springs like next to waterfalls. If you bring it to me I can check the purity for you.", getReply(npc));
 
