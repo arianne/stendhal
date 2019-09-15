@@ -465,6 +465,12 @@ public abstract class UpdateConverter {
 		}
 
 		String infostring = item.getInfoString();
+
+		// infostring is null in tests
+		if (infostring == null) {
+			return;
+		}
+
 		String[] location = infostring.split(" ");
 		String zone = ZONE_MAPPING.get(location[0]);
 		if (zone != null) {
