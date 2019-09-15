@@ -58,7 +58,8 @@ stone_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere
 studded_armor.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 water_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wind_robe.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_armor.png                bleutailfly; CC BY-SA 3.0; Stendhal
+xeno_armor.png                https://github.com/crawl/tiles
+
 
 data/sprites/items/axe/
 
@@ -111,7 +112,7 @@ shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            ???; ???; ???
 studded_boots.png          Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ )
-xeno_boots.png             bleutailfly; CC BY-SA 3.0; Stendhal
+xeno_boots.png             https://github.com/crawl/tiles
 
 data/sprites/items/box/
 
@@ -145,7 +146,8 @@ rift_cloak.png          ???; ???; ???
 shadow_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_cloak.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_cloak.png          David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+xeno_cloak.png           https://github.com/crawl/tiles
+
 
 data/sprites/items/club/
 
@@ -394,7 +396,7 @@ red_helmet.png              kymara?; ???; ???
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           ???; ???; ???
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-xeno_helmet.*               kymara?, Jordan Irwin (AntumDeluge); ???; ???
+xeno_helmet.*                https://github.com/crawl/tiles
 
 data/sprites/items/herb/
 
@@ -467,7 +469,7 @@ red_legs.png              bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_legs.png           ???; ???; ???
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.png          ???; ???; ???
-xeno_legs.png             bleutailfly; CC BY-SA 3.0; Stendhal
+xeno_legs.png              https://github.com/crawl/tiles
 
 data/sprites/items/misc/
 
@@ -647,7 +649,7 @@ skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 unicorn_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 wooden_shield.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-xeno_shield.png               bleutailfly; CC BY-SA 3.0; Stendhal
+xeno_shield.png                https://github.com/crawl/tiles
 
 data/sprites/items/special/
 
@@ -704,8 +706,7 @@ short_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 soul_dagger.png              ???; ???; ???
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_sword.png            herodot?, athana?; ???; ???
-xeno_sword.png               bleutailfly; CC BY-SA 3.0; Stendhal
-
+xeno_sword.png               https://github.com/crawl/tiles
 data/sprites/items/token/
 
 blue_x_token.png            ???; ???; ???
