@@ -35,9 +35,8 @@ from PIL import Image, ImageFont, ImageDraw
 
 # get absolute path where script is located
 dir_root = os.path.dirname(__file__)
-if dir_root == '':
-	dir_root = './'
-os.chdir(dir_root)
+if dir_root:
+	os.chdir(dir_root)
 dir_root = os.getcwd()
 dir_world = os.path.join(dir_root, 'world')
 script_name = os.path.basename(__file__)
