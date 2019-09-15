@@ -42,7 +42,7 @@ public class ChefNPC implements ZoneConfigurator  {
 
 			@Override
 			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();				
+				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(13, 3));
 				nodes.add(new Node(26, 3));
 				nodes.add(new Node(26, 4));

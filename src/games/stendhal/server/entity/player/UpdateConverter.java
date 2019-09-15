@@ -437,7 +437,7 @@ public abstract class UpdateConverter {
 
 	private static void transformVisitedSlot(RPObject object) {
 		final RPObject visited = KeyedSlotUtil.getKeyedSlotObject(object, "!visited");
-		
+
 		if (visited != null) {
     		final RPObject newVisited = new RPObject();
     		for (final String attr : visited) {

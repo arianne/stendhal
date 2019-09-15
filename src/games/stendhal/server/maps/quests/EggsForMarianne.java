@@ -126,7 +126,7 @@ public class EggsForMarianne extends AbstractQuest {
 		}
 		return res;
 	}
-	
+
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Marianne");
 
@@ -151,7 +151,7 @@ public class EggsForMarianne extends AbstractQuest {
 							new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS))),
 			ConversationStates.ATTENDING,
 			"You're back already? " +
-			"You promised to collect a score of eggs for me ... " + 
+			"You promised to collect a score of eggs for me ... " +
 			"But it does not seem that you carry enough eggs with you!",
 			null);
 

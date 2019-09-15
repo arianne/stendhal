@@ -109,7 +109,7 @@ import marauroa.common.Pair;
 public class MealForGroongo extends AbstractQuest {
 
     private static Logger logger = Logger.getLogger(MealForGroongo.class);
-    
+
     /**
      * QUEST_SLOT = "meal_for_groongo"
      * Detais about the QUEST_SLOT = "meal_for_groongo"
@@ -203,7 +203,7 @@ public class MealForGroongo extends AbstractQuest {
      * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
      * fetch_maindish;   |inprogress; ciorba;   |garlic=3,pinto beans=1,onion=3,vinegar=1,meat=1,milk=2,carrot=1
      * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
-     * 
+     *
      * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
      * fetch_dessert;    |inprogress; macedonia;|chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207220454 | 0        |
      * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
@@ -216,7 +216,7 @@ public class MealForGroongo extends AbstractQuest {
      * done;             |complete;   paella;   |chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,; gulab;  | flour=2,fierywater=2,honey=2,sugar=4,;|1337207484330;| 1        |
      * ------------------+----------+-----------+---------------------------------------------------+----------+---------------------------------------+--------------+----------+
      */
-    
+
     //MealForGroongo (meal_for_groongo):
 
 
@@ -594,7 +594,7 @@ public class MealForGroongo extends AbstractQuest {
         }
 
         //logger.warn(" ingredients <" + ingredients + ">");
-        
+
         // strip the last comma from the returned string
         return ingredients.substring(0, ingredients.length()-1);
 

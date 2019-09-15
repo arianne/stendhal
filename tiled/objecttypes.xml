@@ -20,7 +20,7 @@ Note: an objecttype may support both shape based and tile based objects.
      values:  comma-separated list of allowed values for type=enum
 
 
-Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, easter, minetown). 
+Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, easter, minetown).
       We can use distinct object layers for them, so there is no condition-property defined here.
 -->
 

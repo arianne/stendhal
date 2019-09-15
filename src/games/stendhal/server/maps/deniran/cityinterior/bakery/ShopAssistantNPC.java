@@ -65,8 +65,8 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 
 				addOffer("Psss. I am not allowed to sell you any §bread officially because it is all needed by the army."); // TODO
 				*/
-				
-				
+
+
 			}};
 			npc.setPosition(24, 4);
 			npc.setDirection(Direction.DOWN);

@@ -73,7 +73,7 @@ public class TestNPC1 implements ZoneConfigurator {
 		npc.setEntityClass("fatsellernpc");
 		npc.setPosition(25, 45);
 		npc.setCollisionAction(CollisionAction.STOP);
-		
+
 		npc.setDescription("testnpc1");
 		zone.add(npc);
 	}

@@ -74,7 +74,7 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
-    
+
 	<item name="pinto beans">
 		<type class="food" subclass="pinto_beans" tileid="-1" />
 		<description>You see a bunch of pinto beans. An ingredient a chef will surely appreciate...</description>

@@ -141,7 +141,7 @@ public class Campfire extends AbstractQuest {
 		        ConversationStates.ATTENDING,
 		       "I don't have much wood left to keep my campfire burning", null);
 		*/
-		
+
 		// player returns with the promised wood
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -193,9 +193,9 @@ public class Campfire extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"I need wood to keep my campfire running " + 
+				"I need wood to keep my campfire running " +
 				"but I can't leave the campfire unattended to go in search of pieces of wood ! " +
-				"Oh yes, ten pieces of wood would do. " + 
+				"Oh yes, ten pieces of wood would do. " +
 				"Could you please get wood pieces for me? Please say yes... ",
 				null);
 
@@ -221,7 +221,7 @@ public class Campfire extends AbstractQuest {
 						new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES, 
+				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,
 						"Thanks but I think those pieces of wood you brought me last time will be enough another... uhm... "));
 
 		// player is willing to help

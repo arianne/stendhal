@@ -3,21 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../zones.xsd ">
 
-	<!-- ** Load zones. Written from left to right and from top to bottom. ** 
+	<!-- ** Load zones. Written from left to right and from top to bottom. **
 		Please respect it! -->
 
 	<!-- Ground level -->
-	
+
 	<zone name="0_deniran_forest_n2_w" level="0" x="499104" y="499744"
 	    file="Level 0/deniran/forest_n2_w.tmx">
-	    
+
 	    <attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
 	</zone>
-	
+
 
 	<zone name="0_deniran_forest_nw" level="0" x="499104" y="499872"
 		file="Level 0/deniran/forest_nw.tmx">
@@ -59,7 +59,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 
 
@@ -72,16 +72,16 @@
 		</attributes>
 
 	</zone>
-	
-	
+
+
 	<zone name="0_deniran_forest_n2" level="0" x="499232" y="499744"
 	    file="Level 0/deniran/forest_n2.tmx">
-	    
+
 	    <attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 
 
@@ -125,7 +125,7 @@
 		<portal x="96" y="115" ref="deniran_castle_entrance_right">
 			<destination zone="int_deniran_castle" ref="entrance_right" />
 			<attribute name="move.continuous" />
-		</portal> 
+		</portal>
    
 		<portal x="28" y="19" ref="deniran_grocery_store_entrance">
 			<destination zone="int_deniran_grocery_store" ref="entrance" />
@@ -177,8 +177,8 @@
         <configurator class-name="games.stendhal.server.maps.deniran.river.DeniranArmy" />
  -->
 	</zone>
-	
-	
+
+
 	<zone name="0_deniran_forest_n2_e" level="0" x="499360" y="499744"
 		file="Level 0/deniran/forest_n2_e.tmx">
 
@@ -186,7 +186,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
-		
+
 	</zone>
 
 
@@ -244,8 +244,8 @@
 		<configurator class-name="games.stendhal.server.maps.deniran.river.BoatNPC" />
 
 	</zone>
-	
-	
+
+
 	<zone name="0_deniran_forest_n2_e2" level="0" x="499488" y="499744"
 		file="Level 0/deniran/forest_n2_e2.tmx">
 
@@ -306,7 +306,7 @@
 		file="Level -1/deniran/lost_caves_n2_w.tmx">
 
 	</zone>
-	
+
 
 	<zone name="-1_deniran_lost_caves_nw" level="-1" x="499104" y="499872"
 		file="Level -1/deniran/lost_caves_nw.tmx">
@@ -343,14 +343,14 @@
 		file="Level -1/deniran/caves.tmx">
 
 	</zone>
-	
-	
+
+
 	<zone name="-1_deniran_caves_s" level="-1" x="499232" y="500128"
 		file="Level -1/deniran/caves_s.tmx">
 
 	</zone>
-	
-	
+
+
 
 
 	<zone name="-1_deniran_lost_caves_n2_e" level="-1" x="499360" y="499744"
@@ -369,14 +369,14 @@
 		file="Level -1/deniran/caves_e.tmx">
 
 	</zone>
-	
-	
+
+
 	<zone name="-1_deniran_caves_se" level="-1" x="499360" y="500128"
 		file="Level -1/deniran/caves_se.tmx">
 
 	</zone>
-	
-	
+
+
 
 
 	<zone name="-1_denrian_lost_caves_n2_e2" level="-1" x="499488" y="499744"
@@ -406,12 +406,12 @@
 
 
 	<!--  Level -2 -->
-	
+
 	<zone name="-2_deniran_lost_caves_n2_w" level="-2" x="499104" y="499744"
 		file="Level -2/deniran/lost_caves_n2_w.tmx">
 
 	</zone>
-	
+
 
 	<zone name="-2_deniran_lost_caves_nw" level="-2" x="499104" y="499872"
 		file="Level -2/deniran/lost_caves_nw.tmx">
@@ -448,14 +448,14 @@
 		file="Level -2/deniran/caves.tmx">
 
 	</zone>
-	
-	
+
+
 	<zone name="-2_deniran_caves_s" level="-2" x="499232" y="500128"
 		file="Level -2/deniran/caves_s.tmx">
 
 	</zone>
-	
-	
+
+
 
 
 	<zone name="-2_deniran_lost_caves_n2_e" level="-2" x="499360" y="499744"
@@ -474,14 +474,14 @@
 		file="Level -2/deniran/caves_e.tmx">
 
 	</zone>
-	
-	
+
+
 	<zone name="-2_deniran_caves_se" level="-2" x="499360" y="500128"
 		file="Level -2/deniran/caves_se.tmx">
 
 	</zone>
-	
-	
+
+
 
 
 	<zone name="-2_denrian_lost_caves_n2_e2" level="-2" x="499488" y="499744"
@@ -511,12 +511,12 @@
 
 
 	<!--  Level -3 -->
-	
+
 	<zone name="-3_deniran_lost_caves_n2_w" level="-3" x="499104" y="499744"
 		file="Level -3/deniran/lost_caves_n2_w.tmx">
 
 	</zone>
-	
+
 
 	<zone name="-3_deniran_lost_caves_nw" level="-3" x="499104" y="499872"
 		file="Level -3/deniran/lost_caves_nw.tmx">
@@ -553,14 +553,14 @@
 		file="Level -3/deniran/caves.tmx">
 
 	</zone>
-	
-	
+
+
 	<zone name="-3_deniran_caves_s" level="-3" x="499232" y="500128"
 		file="Level -3/deniran/caves_s.tmx">
 
 	</zone>
-	
-	
+
+
 
 
 	<zone name="-3_deniran_lost_caves_n2_e" level="-3" x="499360" y="499744"
@@ -579,14 +579,14 @@
 		file="Level -3/deniran/caves_e.tmx">
 
 	</zone>
-	
-	
+
+
 	<zone name="-3_deniran_caves_se" level="-3" x="499360" y="500128"
 		file="Level -3/deniran/caves_se.tmx">
 
 	</zone>
-	
-	
+
+
 
 
 	<zone name="-3_denrian_lost_caves_n2_e2" level="-3" x="499488" y="499744"
@@ -612,7 +612,7 @@
 
 	</zone>
 
-	
+
 
 	<!-- interiors -->
 
@@ -761,7 +761,7 @@
 			<destination zone="0_deniran_city_e" ref="deniran_dress_shop_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
-		
+
 	</zone>
 
 

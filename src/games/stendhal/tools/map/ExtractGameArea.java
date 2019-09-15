@@ -31,24 +31,24 @@ public class ExtractGameArea {
 	 * @throws IOException in case of an input output error
 	 */
 	public static void main(String[] args) throws IOException {
-		
+
 		for (File file : new File("/tmp/stendhal/").listFiles()) {
 			new ExtractGameArea().extract("/tmp/stendhal/" + file.getName(), "/tmp/out/" + file.getName());
 		}
-		
+
 	}
 
 	private void extract(String input, String output) throws IOException {
 		BufferedImage image = ImageIO.read(new File(input));
-		
+
 		int x = 140;
 		int y = 22;
 		int width=640;
 		int height=480;
-		
+
 		BufferedImage target = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
 		target.createGraphics().drawImage(image, 0, 0, width, height, x, y, x+width, y+height, null);
-		
+
 		ImageIO.write(target, "png", new File(output));
 	}
 }
