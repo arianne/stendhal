@@ -240,7 +240,7 @@ public class Campfire extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Oh dear, how Am I going to cook all this meat? Perhaps I'll just have to feed it to the animals...",
+			"Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 

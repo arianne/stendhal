@@ -263,7 +263,7 @@ public class CampfireTest {
 
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
-			assertEquals("My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.", getReply(npc));
+			assertEquals("My campfire needs wood again, ten pieces of #wood will be enough. Could you please get those #wood pieces from the forest for me? Please say yes!", getReply(npc));
 			assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
 		}
@@ -280,7 +280,7 @@ public class CampfireTest {
 
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
-			assertEquals("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.", getReply(npc));
+			assertEquals("I need wood to keep my campfire running but I can't leave the campfire unattended to go in search of pieces of wood ! Oh yes, ten pieces of wood would do. Could you please get wood pieces for me? Please say yes... ", getReply(npc));
 			assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 			assertEquals("quest state unchanged", "rejected", player.getQuest(CAMPFIRE));
 		}
