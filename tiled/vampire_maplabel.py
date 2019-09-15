@@ -31,15 +31,18 @@ import glob
 import operator
 import os
 
-#from PIL.ImageDraw import ImageDraw
 from PIL import Image, ImageFont, ImageDraw
+
+# get absolute path where script is located
+dir_root = os.path.dirname(__file__)
+os.chdir(dir_root)
+dir_root = os.getcwd()
 
 def do_label(fname):
     print ("Processing %s" % fname)
     # remove directory and file extension
-    label = fname.split('/')[-1].replace(".png", "")
-    #print ("Processing LABEL: %s" % label)
-    print ("Processing FNAME: %s" % fname)
+    label = os.path.basename(fname).split('/')[-1].replace(".png", "")
+    print ("Processing LABEL: %s" % label)
 
     img = Image.open(fname)
     img = img.convert("RGBA")
@@ -47,10 +50,7 @@ def do_label(fname):
 
     # label
     draw = ImageDraw.Draw(img, "RGBA")
-    #font = ImageFont.truetype("anonymous.ttf", 12)
     font = ImageFont.truetype("Carlito-Regular", 12)
-    #draw.setfont(font)
-    #print(fontPath)
     draw.text((7, 7), label, (  0,   0,   0, 255),font=font)
     draw.text((5, 5), label, (255, 255, 255, 255),font=font)
 
@@ -71,9 +71,11 @@ if len(sys.argv) < 2:
     print ("  This will label each PNG file in the world subdirectory.")
     sys.exit(0)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
-    for fname in os.listdir('world'):
+    dir_world = os.path.join(dir_root, 'world')
+    for fname in os.listdir(dir_world):
+        absolute_fname = os.path.join(dir_world, fname)
         if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
-            do_label('./world/' + fname)
+            do_label(absolute_fname)
 else:
     # This doesn't work for me. --mort
     #for fname in reduce(operator.add, map(glob.glob, sys.argv[1:])):
