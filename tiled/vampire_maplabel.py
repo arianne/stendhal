@@ -37,6 +37,7 @@ from PIL import Image, ImageFont, ImageDraw
 dir_root = os.path.dirname(__file__)
 os.chdir(dir_root)
 dir_root = os.getcwd()
+dir_world = os.path.join(dir_root, 'world')
 
 def do_label(fname):
     print ("Processing %s" % fname)
@@ -71,7 +72,6 @@ if len(sys.argv) < 2:
     print ("  This will label each PNG file in the world subdirectory.")
     sys.exit(0)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
-    dir_world = os.path.join(dir_root, 'world')
     for fname in os.listdir(dir_world):
         absolute_fname = os.path.join(dir_world, fname)
         if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
@@ -84,7 +84,7 @@ else:
     for fname in list(sys.argv[1:]):
         if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
             print ( "Labeling %s..." % fname )
-            do_label(fname)
+            absolute_fname = os.path.join(dir_world, fname)
+            do_label(absolute_fname)
 
-print ("All Done.")
-
+print ('All Done.')
