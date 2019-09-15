@@ -68,11 +68,11 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		en = npc.getEngine();
 
 		en.step(player, "hi");
-		assertEquals("Hello my fine fellow. Welcome to our humble dwelling.", getReply(npc));
+		assertEquals("Hello my fine fellow. Welcome to Ados Abandoned Keep, our humble dwelling!", getReply(npc));
 		en.step(player, "task");
 		assertEquals("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Ok, I will await someone with enough backbone to do the job.", getReply(npc));
+		assertEquals("Ok, I will await someone having the guts to have the job done.", getReply(npc));
 		assertEquals("rejected", player.getQuest(questSlot));
 		en.step(player, "bye");
 		assertEquals("I wish you well on your journeys.", getReply(npc));
@@ -80,11 +80,11 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Hello my fine fellow. Welcome to our humble dwelling.", getReply(npc));
+		assertEquals("Hello my fine fellow. Welcome to Ados Abandoned Keep, our humble dwelling!", getReply(npc));
 		en.step(player, "task");
 		assertEquals("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Great! Please find them somewhere in this level of the keep and make them pay for their tresspassing!", getReply(npc));
+		assertEquals("Great! Please find all wandering #dwarves somewhere in this level of the keep and make them pay for their tresspassing!", getReply(npc));
 		assertEquals("start", player.getQuest(questSlot, 0));
 		en.step(player, "bye");
 		assertEquals("I wish you well on your journeys.", getReply(npc));
@@ -148,7 +148,7 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("killed", player.getQuest(questSlot, 0));
 
 		en.step(player, "task");
-		assertEquals("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in 2 weeks.", getReply(npc));
+		assertEquals("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try coming back in 2 weeks.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("I wish you well on your journeys.", getReply(npc));
 	}
