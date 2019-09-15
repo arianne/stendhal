@@ -43,12 +43,11 @@ def do_label(fname):
     img = Image.open(fname)
     img = img.convert("RGBA")
 
-    
+
     # label
     draw = ImageDraw.Draw(img, "RGBA")
     #font = ImageFont.truetype("anonymous.ttf", 12)
-    fontPath = "/usr/share/fonts/default/TrueType/arial.ttf"
-    font = ImageFont.truetype(fontPath, 12)
+    font = ImageFont.truetype("Carlito-Regular", 12)
     #draw.setfont(font)
     #print(fontPath)
     draw.text((7, 7), label, (  0,   0,   0, 255),font=font)
