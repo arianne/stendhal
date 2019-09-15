@@ -38,6 +38,15 @@ dir_root = os.path.dirname(__file__)
 os.chdir(dir_root)
 dir_root = os.getcwd()
 dir_world = os.path.join(dir_root, 'world')
+script_name = os.path.basename(__file__)
+
+def showUsage():
+    print ('Usage: {} [image-filenames...]'.format(script_name))
+    print ('  This will label each PNG file passed as argument.')
+    print ('  E.g: ./world/int_*.png will label all interiors, etc. etc.')
+    print
+    print ('Alternatively, you can run: {} -world'.format(script_name))
+    print ('  This will label each PNG file in the world subdirectory.')
 
 def do_label(fname):
     print ('Processing {}'.format(fname))
@@ -64,12 +73,8 @@ def do_label(fname):
     img.save(fname)
 
 if len(sys.argv) < 2:
-    print ('Usage: {} [image-filenames...]'.format(sys.argv[0]))
-    print ('  This will label each PNG file passed as argument.')
-    print ('  E.g: ./world/int_*.png will label all interiors, etc. etc.')
-    print
-    print ('Alternatively, you can run: {} -world'.format(sys.argv[0]))
-    print ('  This will label each PNG file in the world subdirectory.')
+    print('\nERROR: Not enough arguments\n')
+    showUsage()
     sys.exit(0)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
     for fname in os.listdir(dir_world):
