@@ -87,9 +87,15 @@ else:
 
 	# This works for me. --omero
 	for fname in list(sys.argv[1:]):
-		if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
-			print ( 'Labeling {}...'.format(fname ))
+		if not fname.endswith('.png'):
+			fname = '{}.png'.format(fname)
+		if fname != 'empty.png' and fname != 'world.png':
 			absolute_fname = os.path.join(dir_world, fname)
+			# exit with error if file doesn't exist
+			if not os.path.isfile(absolute_fname):
+				print('\nERROR: Cannot process {}\n       File does not exist.'.format(absolute_fname))
+				sys.exit(1)
+			print ( 'Labeling {}...'.format(fname ))
 			do_label(absolute_fname)
 
 print ('All Done.')
