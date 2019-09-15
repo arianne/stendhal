@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+#Tue Sep 10 23:32:58 CEST 2019, slightly tweaked -- omero
+
 """
 This script is used to create the world map with labeled zone names.
 It adds labels and borders around the small zone images.
@@ -22,8 +25,6 @@ To create the labeled world map:
   * Edit http://stendhalgame.org/wiki/Template:SmallWorldMap
     and add a link to your uploaded image.
 """
-#!/usr/bin/env python3
-#Tue Sep 10 23:32:58 CEST 2019, slightly tweaked -- omero
 
 import sys
 import glob
