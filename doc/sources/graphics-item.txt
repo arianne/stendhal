@@ -139,6 +139,7 @@ green_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lion_clan_cloak.png     ???; ???; ???
 mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+magic_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/bleutailfly
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal
 red_cloak.png           David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
 red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -396,7 +397,7 @@ red_helmet.png              kymara?; ???; ???
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           ???; ???; ???
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-xeno_helmet.*                https://github.com/crawl/tiles
+xeno_helmet.*               https://github.com/crawl/tiles
 
 data/sprites/items/herb/
 
@@ -619,7 +620,7 @@ yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 data/sprites/items/shield/
 
 beech.png                     ???; ???; ???
-black_shield.png              ???; ???; ???
+black_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 bluetowershield.png           ???; ???; ???
 blue_shield.png               bleutailfly; CC BY-SA 3.0; Stendhal
 buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -671,7 +672,7 @@ assassin_dagger.png          ???; ???; ???
 biting_sword.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_dagger.png             Hades_the_Emperor?; ???; ???
 black_sword.png              ???; ???; ???
-blooddrinker.png             bleutailfly; CC BY-SA 3.0; Stendhal
+blooddrinker.png             https://github.com/crawl/tiles
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 broadsword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 buster.png                   ???; ???; ???

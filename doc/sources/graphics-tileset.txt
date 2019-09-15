@@ -1,4 +1,4 @@
-
+﻿
 tiled/tileset/building/
 
 barnyard.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -547,6 +547,8 @@ red_paving.png               ???; ???; ???
 sand.png                     ???; ???; ???
 sand_1.*                     Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
 sand_2.*                     Rayane Félix (RayaneFLX), Hyptosis, bluecarrot16, Leonard Pabin, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/70104, https://opengameart.org/node/80156, https://opengameart.org/node/47566, https://opengameart.org/node/5712
+sand_edges.png               Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104  bleutailfly
+
 sand_red.png                 ???; ???; ???
 scratches.png                ???; ???; ???
 scratches2_edges.png         ???; ???; ???
@@ -1235,20 +1237,20 @@ oak_tree.png             ???; ???; ???
 palm_tree.png            ???; ???; ???
 palm_trees.*             bluecarrot16, Alex Smith (cynicmusic); CC BY-SA 3.0; https://opengameart.org/node/80156, https://opengameart.org/node/55328
 palm_trees2.png          ???; ???; ???
-pine_snowy.png           ???; ???; ???
+pine_snowy.png           megajack64
 pine_tree*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 snow_on_pine.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spruce.png               ???; ???; ???
-spruce_xmas.png          ???; ???; ???
-spruce_xmas2.png         ???; ???; ???
-spruce_xmas3.png         ???; ???; ???
-spruce_xmas4.png         ???; ???; ???
-spruce_xmas5.png         ???; ???; ???
-spruce_xmas6.png         ???; ???; ???
+spruce.png               bleutailfly; CC BY-SA 3.0; Stendhal
+spruce_xmas.png          bleutailfly; CC BY-SA 3.0; Stendhal
+spruce_xmas2.png         bleutailfly; CC BY-SA 3.0; Stendhal
+spruce_xmas3.png         bleutailfly; CC BY-SA 3.0; Stendhal
+spruce_xmas4.png         bleutailfly; CC BY-SA 3.0; Stendhal
+spruce_xmas5.png         bleutailfly; CC BY-SA 3.0; Stendhal
+spruce_xmas6.png         bleutailfly; CC BY-SA 3.0; Stendhal
 taller_trees.png         ???; ???; ???
 tree_blue.png            ???; ???; ???
 tree_darkgreen.png       ???; ???; ???
-tree_fluffy.png          ???; ???; ???
+tree_fluffy.png          megajack64
 tree_golden_large.*      ???; ???; ???
 tree_golden_small.png    ???; ???; ???
 tree_green.png           ???; ???; ???
