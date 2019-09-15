@@ -40,6 +40,8 @@ dir_root = os.getcwd()
 dir_world = os.path.join(dir_root, 'world')
 script_name = os.path.basename(__file__)
 
+protected = ('empty', 'world')
+
 def showUsage():
 	print ('Usage: {} [image-filenames...]'.format(script_name))
 	print ('  This will label each PNG file passed as argument.')
@@ -78,8 +80,11 @@ if len(sys.argv) < 2:
 	sys.exit(0)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
 	for fname in os.listdir(dir_world):
-		absolute_fname = os.path.join(dir_world, fname)
-		if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
+		if fname.endswith('.png'):
+			absolute_fname = os.path.join(dir_world, fname)
+			if fname.rstrip('.png') in protected:
+				print('NOTE: skipping protected file: {}'.format(absolute_fname))
+				continue
 			do_label(absolute_fname)
 else:
 	# This doesn't work for me. --mort
@@ -89,13 +94,15 @@ else:
 	for fname in list(sys.argv[1:]):
 		if not fname.endswith('.png'):
 			fname = '{}.png'.format(fname)
-		if fname != 'empty.png' and fname != 'world.png':
-			absolute_fname = os.path.join(dir_world, fname)
-			# exit with error if file doesn't exist
-			if not os.path.isfile(absolute_fname):
-				print('\nERROR: Cannot process {}\n       File does not exist.'.format(absolute_fname))
-				sys.exit(1)
-			print ( 'Labeling {}...'.format(fname ))
-			do_label(absolute_fname)
+		absolute_fname = os.path.join(dir_world, fname)
+		if fname.rstrip('.png') in protected:
+			print('NOTE: skipping protected file: {}'.format(absolute_fname))
+			continue
+		# exit with error if file doesn't exist
+		if not os.path.isfile(absolute_fname):
+			print('\nERROR: Cannot process {}\n       File does not exist.'.format(absolute_fname))
+			sys.exit(1)
+		print ( 'Labeling {}...'.format(fname ))
+		do_label(absolute_fname)
 
 print ('All Done.')
