@@ -40,36 +40,36 @@ dir_root = os.getcwd()
 dir_world = os.path.join(dir_root, 'world')
 
 def do_label(fname):
-    print ("Processing %s" % fname)
+    print ('Processing {}'.format(fname))
     # remove directory and file extension
-    label = os.path.basename(fname).split('/')[-1].replace(".png", "")
-    print ("Processing LABEL: %s" % label)
+    label = os.path.basename(fname).split('/')[-1].replace('.png', '')
+    print ('Processing LABEL: {}'.format(label))
 
     img = Image.open(fname)
-    img = img.convert("RGBA")
+    img = img.convert('RGBA')
 
 
     # label
-    draw = ImageDraw.Draw(img, "RGBA")
-    font = ImageFont.truetype("Carlito-Regular", 12)
+    draw = ImageDraw.Draw(img, 'RGBA')
+    font = ImageFont.truetype('Carlito-Regular', 12)
     draw.text((7, 7), label, (  0,   0,   0, 255),font=font)
     draw.text((5, 5), label, (255, 255, 255, 255),font=font)
 
     # border
-    img2 = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img2, "RGBA")
+    img2 = Image.new('RGBA', img.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img2, 'RGBA')
     draw.rectangle((0, 0, img.size[0] - 1, img.size[1] - 1), None, (255, 255, 192, 48))
     img.paste(img2, img2)
 
     img.save(fname)
 
 if len(sys.argv) < 2:
-    print ("Usage: %s [image-filenames...]" % sys.argv[0])
-    print ("  This will label each PNG file passed as argument.")
-    print ("  E.g: ./world/int_*.png will label all interiors, etc. etc.")
+    print ('Usage: {} [image-filenames...]'.format(sys.argv[0]))
+    print ('  This will label each PNG file passed as argument.')
+    print ('  E.g: ./world/int_*.png will label all interiors, etc. etc.')
     print
-    print ("Alternatively, you can run: %s -world" % sys.argv[0])
-    print ("  This will label each PNG file in the world subdirectory.")
+    print ('Alternatively, you can run: {} -world'.format(sys.argv[0]))
+    print ('  This will label each PNG file in the world subdirectory.')
     sys.exit(0)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
     for fname in os.listdir(dir_world):
@@ -83,7 +83,7 @@ else:
     # This works for me. --omero
     for fname in list(sys.argv[1:]):
         if fname.endswith('.png') and fname != 'empty.png' and fname != 'world.png':
-            print ( "Labeling %s..." % fname )
+            print ( 'Labeling {}...'.format(fname ))
             absolute_fname = os.path.join(dir_world, fname)
             do_label(absolute_fname)
 
