@@ -1,61 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="8" height="8" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png"/>
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="wood_trim" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/wood_trim.png"/>
+  <image source="../../tileset/building/wall/wood_trim.png" width="320" height="160"/>
  </tileset>
  <tileset firstgid="52" name="wallpapers" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/wallpapers.png"/>
+  <image source="../../tileset/building/wall/wallpapers.png" width="160" height="160"/>
  </tileset>
  <tileset firstgid="77" name="wooden" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/wooden.png"/>
+  <image source="../../tileset/furniture/table/wooden.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="78" name="wooden" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/chair/wooden.png"/>
+  <image source="../../tileset/furniture/chair/wooden.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="83" name="pot_on_stone" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/pot/pot_on_stone.png"/>
+  <image source="../../tileset/item/pot/pot_on_stone.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="84" name="floors_4" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/indoor/floors_4.png"/>
+  <image source="../../tileset/ground/indoor/floors_4.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="86" name="notes" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/notes.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="90" name="rack" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/rack.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="98" name="small_shelf" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/shelve/small_shelf.png" width="64" height="128"/>
  </tileset>
  <layer name="0_floor" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALNlYGCwJYAtcGBk+VA0TG95CyRxdPfBcCgWMQDVL+kjAAEAAA==
+   H4sIAAAAAAAAC7NlYGCwJYAtcGBk+VA0TG95CyRxdPfBcCgWMQDVL+kjAAEAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNnYGDgAGJONMwFxNxALAjEQkAsjIZFgFgUKi8DxMEMEOAPpeXQ5EEgCIh98cgj
-A2LlQbQ81M0MSO6XhurTAGJNqJsZkNyvCsRqQAwAYeBr0wABAAA=
+   H4sIAAAAAAAAC2NnYGDgAGJONMwFxNxALAjEQkAsjIZFgFgUKi8DxMEMEOAPpeXQ5EEgCIh98cgjA2LlQbQ81M0MSO6XhurTAGJNqJsZkNyvCsRqQAwAYeBr0wABAAA=
   </data>
  </layer>
  <layer name="2_object" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGB6ABUqz4ZDng9ICaOIAvPBxcgABAAA=
+   H4sIAAAAAAAAC2NgYGAIA+IUBgiIZMAEEWj8cCR2FBb1MBANxHF45OPxyJEKWKA0GxAnY5Hng9ICaOIAs/WPOAABAAA=
   </data>
  </layer>
  <layer name="3_roof" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDmAH4sYAHn1CXEAAQAA
+   H4sIAAAAAAAAC2NgGDmAH4sYAHn1CXEAAQAA
   </data>
  </layer>
  <layer name="objects" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
+   H4sIAAAAAAAAC2NgGNkAAFiFlg0AAQAA
   </data>
  </layer>
- <layer name="collision" width="8" height="8" opacity="0.43">
+ <layer name="collision" width="8" height="8" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgpBJGBrjkGAnIE9KPSx6XuYQwAN+uygsAAQAA
+   H4sIAAAAAAAAC2NkYGBgpBJGBrjkGAnIE9KPSx6XuYQwAN+uygsAAQAA
   </data>
  </layer>
  <layer name="protection" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
+   H4sIAAAAAAAAC2NgGNkAAFiFlg0AAQAA
   </data>
  </layer>
 </map>
