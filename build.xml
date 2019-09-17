@@ -8,6 +8,19 @@
 	-->
 	<property environment="env"/>
 
+	<condition property="os.win">
+		<os family="windows"/>
+	</condition>
+
+	<condition property="exe.ext" value=".exe" else="">
+		<equals arg1="${os.win}" arg2="true"/>
+	</condition>
+
+	<!-- check for some executables -->
+	<available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
+	<available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
+	<available property="git.present" file="git${exe.ext}" filepath="${env.PATH}"/>
+
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
 
@@ -822,6 +835,51 @@
 				<exclude name="**/memory/**" />
 			</fileset>
 		</maprenderer>
+	</target>
+
+	<!-- FIXME: should this depend on "rendermaps" to make sure we are using updated maps? -->
+	<target name="renderworldmap" description="Exports the world.tmx file to .png" depends="compile_stendhaltools">
+		<property name="pycmd" value="python3" if:true="${python3.present}"/>
+		<property name="pycmd" value="python" unless:true="${python3.present}" if:true="${python.present}"/>
+
+		<!-- embed area images with area name -->
+		<!-- FIXME: need to detect the Python "PIL" module to ensure script can run or
+				write Java class that can do this -->
+		<exec executable="${pycmd}" if:set="pycmd">
+			<arg value="./tiled/vampire_maplabel.py"/>
+			<arg value="-world"/>
+		</exec>
+
+		<!-- render world map after images have been embedded with map names -->
+		<!-- FIXME: this should be skipped if previous Python script was not run -->
+		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
+			<classpath>
+				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${tiled_jar}"/>
+			</classpath>
+		</taskdef>
+		<maprenderer imagePath="${tiled}/world/" zoom="1.0">
+			<fileset dir="tiled/world">
+				<include name="world.tmx"/>
+			</fileset>
+		</maprenderer>
+
+		<!-- reset individual area images -->
+		<exec executable="git" if:true="${git.present}">
+			<arg value="add"/>
+			<arg value="--"/>
+			<arg value="./tiled/world/world.png"/>
+		</exec>
+		<exec executable="git" if:true="${git.present}">
+			<arg value="checkout"/>
+			<arg value="--"/>
+			<arg value="./tiled/world/"/>
+		</exec>
+		<exec executable="git" if:true="${git.present}">
+			<arg value="reset"/>
+			<arg value="--"/>
+			<arg value="./tiled/world/"/>
+		</exec>
 	</target>
 
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
