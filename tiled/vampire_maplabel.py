@@ -41,7 +41,7 @@ dir_root = os.getcwd()
 dir_world = os.path.join(dir_root, 'world')
 script_name = os.path.basename(__file__)
 
-protected = ('empty', 'world', 'logo', 'reserved')
+protected = ('world', 'logo', 'reserved', 'empty', 'empty-white')
 
 def showUsage():
 	print ('Usage: {} [image-filenames...]'.format(script_name))
