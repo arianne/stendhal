@@ -136,6 +136,12 @@
 			<destination zone="int_deniran_bakery" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		
+			<portal x="97" y="20" ref="deniran_library_entrance">
+			<destination zone="int_deniran_library" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+	
 	</zone>
 
 
@@ -274,7 +280,12 @@
 		<attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
-		</attributes>
+		</attributes> 
+		
+		<portal x="78" y="23" ref="deniran_potions_shop_entrance">
+			<destination zone="int_deniran_potions_shop" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
 
 	</zone>
 
@@ -762,6 +773,24 @@
 
 		<portal x="13" y="18" ref="entrance">
 			<destination zone="0_deniran_city_e" ref="deniran_dress_shop_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+	
+	<zone name="int_deniran_potions_shop" file="interiors/deniran/potions_shop.tmx">
+
+		<portal x="6" y="14" ref="entrance">
+			<destination zone="0_deniran_city_e" ref="deniran_potions_shop_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+	</zone>
+	
+	<zone name="int_deniran_library" file="interiors/deniran/library.tmx">
+
+		<portal x="10" y="28" ref="entrance">
+			<destination zone="0_deniran_city_e" ref="deniran_library_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
