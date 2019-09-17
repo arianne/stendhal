@@ -836,8 +836,7 @@
 		</maprenderer>
 	</target>
 
-	<!-- FIXME: should this depend on "rendermaps" to make sure we are using updated maps? -->
-	<target name="renderworldmap" description="Exports the world.tmx file to .png" depends="compile_stendhaltools">
+	<target name="renderworldmap" description="Exports the world.tmx file to .png" depends="rendermaps">
 		<property name="pycmd" value="python3" if:true="${python3.present}"/>
 		<property name="pycmd" value="python" unless:true="${python3.present}" if:true="${python.present}"/>
 
@@ -862,6 +861,8 @@
 				<include name="world.tmx"/>
 			</fileset>
 		</maprenderer>
+
+		<!-- FIXME: should 'rendermaps' be called again to remove labels from individual images? -->
 	</target>
 
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
