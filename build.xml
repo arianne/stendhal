@@ -19,7 +19,6 @@
 	<!-- check for some executables -->
 	<available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
 	<available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
-	<available property="git.present" file="git${exe.ext}" filepath="${env.PATH}"/>
 
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
@@ -863,23 +862,6 @@
 				<include name="world.tmx"/>
 			</fileset>
 		</maprenderer>
-
-		<!-- reset individual area images -->
-		<exec executable="git" if:true="${git.present}">
-			<arg value="add"/>
-			<arg value="--"/>
-			<arg value="./tiled/world/world.png"/>
-		</exec>
-		<exec executable="git" if:true="${git.present}">
-			<arg value="checkout"/>
-			<arg value="--"/>
-			<arg value="./tiled/world/"/>
-		</exec>
-		<exec executable="git" if:true="${git.present}">
-			<arg value="reset"/>
-			<arg value="--"/>
-			<arg value="./tiled/world/"/>
-		</exec>
 	</target>
 
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
