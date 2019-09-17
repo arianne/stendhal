@@ -74,27 +74,35 @@ public class MapRenderer extends Task {
 	private void saveImageMap(final Map map, final String tmxFile) {
 		final File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
+		Boolean isworld = file.getName().equals("world.tmx");
+
 		for (final MapLayer layer : map) {
-			layer.setVisible(visibleLayers.contains(layer.getName()));
+			if (isworld) {
+				layer.setVisible(layer.getName().equals("Floor"));
+			} else {
+				layer.setVisible(visibleLayers.contains(layer.getName()));
+			}
 		}
 
 		final String area = file.getParentFile().getName();
-		String level;
+		String level = "int";
 		final String fileContainer = file.getParentFile().getParent();
 
-		if (fileContainer.contains("Level ")) {
-			level = fileContainer.split("Level ")[1];
+		if (isworld) {
+			filename = filename.replaceAll("\\.tmx", ".png");
 		} else {
-			level = "int";
-		}
+			if (fileContainer.contains("Level ")) {
+				level = fileContainer.split("Level ")[1];
+			}
 
-		if (level.equals("int") && area.equals("abstract")) {
-			filename = imagePath + File.separator + level.replace("-", "sub_")
-					+ "_" + file.getName().replaceAll("\\.tmx", ".png");
-		} else {
-			filename = imagePath + File.separator + level.replace("-", "sub_")
-					+ "_" + area + "_"
-					+ file.getName().replaceAll("\\.tmx", ".png");
+			if (level.equals("int") && area.equals("abstract")) {
+				filename = imagePath + File.separator + level.replace("-", "sub_")
+						+ "_" + file.getName().replaceAll("\\.tmx", ".png");
+			} else {
+				filename = imagePath + File.separator + level.replace("-", "sub_")
+						+ "_" + area + "_"
+						+ file.getName().replaceAll("\\.tmx", ".png");
+			}
 		}
 
 		final OrthogonalRenderer myView = new OrthogonalRenderer(map);
