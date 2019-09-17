@@ -6,6 +6,8 @@
 		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
 		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
 	-->
+	<property environment="env"/>
+
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
 
@@ -910,7 +912,6 @@
 
 
 	<target name="test" description="Compile and run tests" depends="compile_tests,prepare_serverini_for_tests,run_tests,report_test">
-		<property environment="env"/>
 		<exec executable="curl">
 		    <arg value="-q" />
 			<arg value="-F" />
