@@ -78,7 +78,7 @@ def do_label(fname):
 if len(sys.argv) < 2:
 	print('\nERROR: Not enough arguments\n')
 	showUsage()
-	sys.exit(0)
+	sys.exit(1)
 elif len(sys.argv) == 2 and sys.argv[1] == '-world':
 	for fname in os.listdir(dir_world):
 		if fname.endswith('.png'):
