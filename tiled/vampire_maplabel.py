@@ -63,7 +63,8 @@ def do_label(fname):
 
 	# label
 	draw = ImageDraw.Draw(img, 'RGBA')
-	font = ImageFont.truetype('Carlito-Regular', 12)
+	draw.fontmode = "0" # set to "1" to disable anti-aliasing (not documented in PIL module)
+	font = ImageFont.truetype('Carlito-Bold', 12)
 	draw.text((6, 6), label, (  0,   0,   0, 255),font=font)
 	draw.text((5, 5), label, (255, 255, 255, 255),font=font)
 
