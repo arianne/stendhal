@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 
-<project name="stendhal" default="compile" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+<project name="stendhal" default="compile" basedir="." xmlns:jacoco="antlib:org.jacoco.ant"
+		xmlns:if="ant:if" xmlns:unless="ant:unless">
 	<!--
 		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
 		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
