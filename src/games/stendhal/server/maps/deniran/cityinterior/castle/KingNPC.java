@@ -9,52 +9,43 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.deniran.cityinterior.tinyhouse;
+package games.stendhal.server.maps.deniran.cityinterior.castle;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-/**
- * A trapped wizard
- *
- * @author hendrik
- */
-public class WizardNPC implements ZoneConfigurator  {
-
+public class KingNPC implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Byron Mcgalister") {
-
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("King Edward of Deniran") {
 			@Override
-			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				setPath(new FixedPath(nodes, true));
+			public void createDialog() {
+				addGreeting("Hello, and welcome to deniran castle.");
+				addJob("We are the king!");
+				addOffer("I don't have anything for you at the moment. But... There has been rumors of blordroughs digging caves under the city. I will probobly need your help in the future.");
+				addGoodbye("Fare thee well, stranger!");
 			}
 
 			@Override
-			public void createDialog() {
-				addGreeting("Hello.");
-				addJob("I am doing research right now. Please don't interrupt me. I need to concentrate");
-				addGoodbye();
-				
-			}};
-			npc.setPosition(4, 2);
-			npc.setDirection(Direction.DOWN);
-			npc.setEntityClass("wizardpc");
-			npc.setDescription("You see Byron Mcgalister. He looks like a wizard.");
-			zone.add(npc);
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
+			}
+		};
+		npc.setPosition(14,7);
+		npc.setEntityClass("deniran_king");
+		npc.setDescription("You see the King of Denrian.");
+		npc.setDirection(Direction.DOWN);
+		zone.add(npc);
 	}
+
 }
