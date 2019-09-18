@@ -781,7 +781,7 @@
 	<zone name="int_deniran_potions_shop" file="interiors/deniran/potions_shop.tmx">
 
 		<portal x="6" y="14" ref="entrance">
-			<destination zone="0_deniran_city_e" ref="deniran_potions_shop_entrance" />
+			<destination zone="0_deniran_city_e2" ref="deniran_potions_shop_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
@@ -790,7 +790,7 @@
 	<zone name="int_deniran_library" file="interiors/deniran/library.tmx">
 
 		<portal x="10" y="28" ref="entrance">
-			<destination zone="0_deniran_city_e" ref="deniran_library_entrance" />
+			<destination zone="0_deniran_city" ref="deniran_library_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
