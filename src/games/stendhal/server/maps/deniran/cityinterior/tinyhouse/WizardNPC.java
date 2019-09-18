@@ -47,6 +47,7 @@ public class WizardNPC implements ZoneConfigurator  {
 			@Override
 			public void createDialog() {
 				addGreeting("Hello.");
+				addJob("I am doing research right now. Please don't interrupt me. I need to concentrate");
 				addGoodbye();
 				
 			}};
