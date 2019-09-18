@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/ground/ground.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="34" name="../../tileset/building/castle.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="castle.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/castle.png"/>
  </tileset>
- <tileset firstgid="354" name="../../tileset/furniture/carpet/carpets_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="354" name="carpets_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="366" name="../../tileset/ground/indoor/tiles.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="366" name="tiles.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="374" name="../../tileset/ground/water/pool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="374" name="pool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="446" name="../../tileset/ground/ridge/earth_dark.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="446" name="ridge/earth_dark.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_dark.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="542" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="542" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="543" name="../../tileset/building/wall/stone_grey.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="543" name="stone_grey.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/stone_grey.png"/>
  </tileset>
- <tileset firstgid="555" name="../../tileset/building/roof/green.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="555" name="roof/green.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/roof/green.png"/>
  </tileset>
- <tileset firstgid="575" name="../../tileset/ground/ladder/horizontal_dark.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="575" name="horizontal_dark.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/horizontal_dark.png"/>
  </tileset>
  <tileset firstgid="578" name="house pink blue" tilewidth="32" tileheight="32">
@@ -70,7 +70,7 @@
  <tileset firstgid="754" name="fence" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/wooden_brown_fence.png"/>
  </tileset>
- <tileset firstgid="796" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="796" name="green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset firstgid="814" name="stone_ruins" tilewidth="32" tileheight="32">

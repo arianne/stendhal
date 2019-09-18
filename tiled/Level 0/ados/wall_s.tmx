@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="../../tileset/ground/ground.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="34" name="../../tileset/building/castle.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="castle.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/castle.png"/>
  </tileset>
- <tileset firstgid="354" name="../../tileset/furniture/carpet/carpets_2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="354" name="carpets_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="366" name="../../tileset/ground/indoor/tiles.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="366" name="tiles.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="374" name="../../tileset/building/entrance/int_iron_bars.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="374" name="int_iron_bars.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/int_iron_bars.png" trans="ff00ff"/>
  </tileset>
- <tileset firstgid="386" name="../../tileset/plant/bush/hedge.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="386" name="hedge.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="421" name="../../tileset/building/church.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="421" name="church.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/church.png"/>
  </tileset>
- <tileset firstgid="477" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="477" name="collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="478" name="../../tileset/logic/item/vegetable.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="478" name="vegetable.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <tileset firstgid="491" name="rocks" tilewidth="32" tileheight="32">
@@ -49,28 +49,28 @@
  <tileset firstgid="569" name="house" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/house_3.png"/>
  </tileset>
- <tileset firstgid="617" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="617" name="scarecrow" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/scarecrow.png"/>
  </tileset>
- <tileset firstgid="619" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="619" name="fall_trees" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/fall_trees.png"/>
  </tileset>
- <tileset firstgid="659" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="659" name="undead_fallen" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead_fallen.png"/>
  </tileset>
- <tileset firstgid="668" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="668" name="orbpedestal" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/orbpedestal.png"/>
  </tileset>
- <tileset firstgid="670" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="670" name="rocks_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_3.png"/>
  </tileset>
- <tileset firstgid="686" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="686" name="chestnut_tree" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/chestnut_tree.png"/>
  </tileset>
- <tileset firstgid="706" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="706" name="hollow_logs" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/hollow_logs.png"/>
  </tileset>
- <tileset firstgid="712" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="712" name="golem" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
  <tileset firstgid="715" name="grass edges" tilewidth="32" tileheight="32">
@@ -97,10 +97,10 @@
  <tileset firstgid="886" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs_down.png"/>
  </tileset>
- <tileset firstgid="892" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="892" name="green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
- <tileset firstgid="910" name="..\tileset\plant\tree\tree_darkgreen.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="910" name="tree_darkgreen.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png"/>
  </tileset>
  <tileset firstgid="998" name="dim light 7x5" tilewidth="32" tileheight="32">

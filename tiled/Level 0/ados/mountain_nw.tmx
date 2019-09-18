@@ -1,55 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="34" name="../../tileset/ground/ridge/earth_dark.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="earth_dark.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_dark.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="130" name="../../tileset/plant/grasses.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="130" name="grasses.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grasses.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="136" name="../../tileset/ground/grass_edges.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="136" name="grass_edges.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="172" name="../../tileset/ground/rock/pebbles.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="172" name="pebbles.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="175" name="../../tileset/plant/flower/daisy_blue.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="175" name="daisy_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="183" name="../../tileset/plant/flower/daisy_white.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="183" name="daisy_white.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="191" name="../../tileset/ground/cobbled_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="191" name="cobbled_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/cobbled_paving.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="192" name="../../tileset/item/pot/dark_barrel.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="192" name="dark_barrel.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png" trans="ffffff"/>
  </tileset>
  <tileset firstgid="194" name="green_stone" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="206" name="../../tileset/logic/creature/orc.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="206" name="creature/orc.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>
  </tileset>
- <tileset firstgid="211" name="../../tileset/logic/creature/gnome.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="211" name="creature/gnome.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/gnome.png"/>
  </tileset>
- <tileset firstgid="213" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="213" name="creature/animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="243" name="../../tileset/logic/item/sign.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="243" name="sign.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sign.png"/>
  </tileset>
  <tileset firstgid="244" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="245" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="245" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="261" name="Sin nombre" tilewidth="32" tileheight="32">
+ <tileset firstgid="261" name="pothole" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/pothole.png"/>
  </tileset>
  <tileset firstgid="265" name="suspension bridge" tilewidth="32" tileheight="32">
@@ -58,7 +58,7 @@
  <tileset firstgid="289" name="animal corpse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
- <tileset firstgid="305" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="305" name="green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset firstgid="323" name="protection" tilewidth="32" tileheight="32">
