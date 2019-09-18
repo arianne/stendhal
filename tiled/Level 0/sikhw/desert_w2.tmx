@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.1" tiledversion="1.1.3413" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="2" name="ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+ <tileset firstgid="2" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" width="96" height="352"/>
  </tileset>
- <tileset firstgid="35" name="earth_pale" tilewidth="32" tileheight="32" tilecount="96" columns="12">
+ <tileset firstgid="35" name="earth_pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_pale.png" width="384" height="256"/>
  </tileset>
- <tileset firstgid="131" name="earth_dark" tilewidth="32" tileheight="32" tilecount="96" columns="12">
+ <tileset firstgid="131" name="earth_dark" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_dark.png" width="384" height="256"/>
  </tileset>
- <tileset firstgid="227" name="desert" tilewidth="32" tileheight="32" tilecount="88" columns="8">
+ <tileset firstgid="227" name="desert" tilewidth="32" tileheight="32">
   <image source="../../tileset/terrain/desert.png" width="256" height="352"/>
  </tileset>
- <layer id="1" name="0_floor" width="128" height="128">
+ <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3DAQ0AAAzDoPrXOhEXckhYNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVd8/dbGtcAAAAQA=
+   H4sIAAAAAAAAC+3aMQEAIQwEQSr8C30R7wCos1OMgr0qsNda+8HHSC/t9Z9L/zb92/Rv079N/zb92/Rv075N/zb92/Rv079N/zbt2/Rv075N/zb92/Rv079N+zb92/Rv079N+zb92/Rv079N/zb92/Rv07/N/adN/zb927z/t+nfpn+b/m2n/jYwn/5t+rfd+tvAbPq36d+mf9tLfxuYS/82/dv0b9O/Tf82/dv0b9O/Tf82/dv0b9O/Tf827dv0b9O/Tf82/dv0b9O+Tf82/dv0b9O+Tf82/dv0b9O/Tfs2/dv0b9O/Tf827dv0b9O/Tf82/dv0b9O/Tf82/dv0b9O/zf2/Tf82/dv0b9O/zf/fNv3b9G/Tv+3U3wbm079N/7ZbfxuYTf82/dv0b3vpbwNz6d+mf5v+bfq36d+mf5v+bfq36d+mf5v+bfq36d+mf5v+bfq36d+mf9sPrjJaqwAAAQA=
   </data>
  </layer>
- <layer id="2" name="1_terrain" width="128" height="128">
+ <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3cIQ7CQBBA0Z6JevDUg+QC3F+znADcJP3vJesqmvx0dlS37bfrOrc/nuOc9G/Tv03/Nv3b9G/Tv03/rtc693WO6RdhxPfbf6zznH4RRpj9bfq36d+mf5fdv83u3+Xbb/Ptt9n72vRv07/L7tdm92sz+9v073L3t7n728z+Nv3b9G/Tv03/Nv3b9G97r3NZZ59+EcaYAW36t7kDMAPa9G/Tv80OgBnQpn+bOwAzoE3/Nv3b7ACYAW36t+nfpn+b/m36t+nfpn+b/m36t+nfpn+X/wG1+R9Qm9nfpn+b/m36d9n92+z+bWZ/m/5d7v42d3+b2d+mf5v+XXa/Nrtfm9nfpn+b/l12vza7X5vZ36Z/m/5t+rfp36Z/m/5t+rfp36Z/m/89Ywa06d+mf5v+bXZAzIA2/dv0b7MDYAa06d/mDsAMaNO/Tf82OwBmQJv+bfq36d+mf5v+bfq36d+mf5v+bfq36d+mf5v+bfq36d+mf5v+5/UBXPz8/wAAAQA=
   </data>
  </layer>
- <layer id="3" name="2_object" width="128" height="128">
+ <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="4" name="3_roof" width="128" height="128">
+ <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="5" name="4_roof_add" width="128" height="128">
+ <layer name="4_roof_add" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="6" name="objects" width="128" height="128">
+ <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="7" name="collision" width="128" height="128">
+ <layer name="collision" width="128" height="128" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3ZwQ0AIQwEMei/6evgyDtjS1Qw+wHuOecOD/tM2+u/k/5t+rfp36Z/m/5t+rfp36Z/m/Zt+rfp36Z/m/5t+rdp36Z/m/Zt+rfp36Z/m/5t2rfp36Z/m/5t2rfp36Z/m/5t+rfp36Z/m/t/m/5t+rf5/23Tv03/Nv3bXv1tYDf92/Rvm/S3gb30b9O/Tf+2aX8b2En/Nv3b9G/Tv03/Nv3b9G/Tv03/Nv3b9G/Tv03/Nv3btG/Tv03/Nv3b9G/Tv037Nv3b9G/Tv037Nv3b9G/Tv03/Nu3b9G/Tv03/Nv3btG/Tv03/Nv3b9G/Tv03/Nv3b9G/Tv837b5v+bfq36d+mf9tffxvYT/82/dv0b3v1t4Hd9G/Tv23S3wb20r9N/zb926b9bWAn/dv0b9O/Tf82/dv0b9O/Tf82/dv0b9O/Tf82/dv0b9O/Tf82/dv0b/sA/c3TAAAAAQA=
   </data>
  </layer>
- <layer id="8" name="protection" width="128" height="128">
+ <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
 </map>
