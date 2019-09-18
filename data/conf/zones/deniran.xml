@@ -635,7 +635,7 @@
 		</portal>
 
 		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.tinyhouse.WizardNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.tinyhouse.WizardNPC" />
 
 	</zone>
 
@@ -744,7 +744,7 @@
 		</portal>
 
 		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.castle.KingNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.castle.KingNPC" />
 
 	</zone>
 
@@ -796,6 +796,9 @@
 			<destination zone="0_deniran_city" ref="deniran_library_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.library.LibrarianNPC" />
 
 	</zone>
 
