@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                    (C) Copyright 2003-2019 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,15 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.deniran.cityoutside;
 
-//import java.util.LinkedList;
-//import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-//import games.stendhal.server.core.pathfinder.FixedPath;
-//import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
 /**
@@ -47,9 +43,8 @@ public class DeniranOldWitchHealerNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("Hello");
-				addJob("I can heal you");
-				addHelp("I can heal you");
-				addOffer("I can heal you");
+				addJob("Oh, don't mind me, I am just an elderly lady.");
+				addOffer("I can #heal you.");
 				addGoodbye("Goodbye");
 			}
 		};
@@ -67,7 +62,8 @@ public class DeniranOldWitchHealerNPC implements ZoneConfigurator {
 		// Finalize Ermenegilda
 		npc.setEntityClass("oldwitchnpc");
 		npc.setDescription("You see Ermenegilda... Maybe");
-		npc.setPosition(18,105);
+		npc.setPosition(18, 105);
+		new HealerAdder().addHealer(npc, 2000);
 		npc.initHP(100);
 		zone.add(npc);
 		return npc;	
