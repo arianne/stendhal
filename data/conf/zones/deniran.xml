@@ -223,6 +223,7 @@
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketSellerNPC1Grocery" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranOldWitchHealerNPC" />
 
 	</zone>
 
