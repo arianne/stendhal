@@ -75,8 +75,8 @@ public class LibrarianNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 
-
-
+			
+			
 		};
 		npc.setPosition(17, 14);
 		npc.setEntityClass("librarian2npc");
@@ -86,3 +86,4 @@ public class LibrarianNPC implements ZoneConfigurator {
 	}
 
 }
+
