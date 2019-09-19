@@ -378,15 +378,15 @@ royal_mummy.png  ???; ???; ???
 
 data/sprites/monsters/mutant/
 
-armed_naga.png           ???; ???; ???
+armed_naga.png           bleutailfly; CC BY 3.0; https://opengameart.org/node/99050
 blacky.png               Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), onu/olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/72
 cat_woman.png            ???; ???; ???
 glow_monster.png         Charles Sanchez (CharlesGabriel, Antifarea); CC BY 3.0; https://opengameart.org/node/4125
-high_naga.png            ???; ???; ???
+high_naga.png            bleutailfly; CC BY 3.0; https://opengameart.org/node/99050
 imperial_experiment.png  artisticdude, Tuomo Untinen (Reemax), onu/olonu; CC0; https://github.com/arianne/stendhal/issues/74
 imperial_mutant.*        Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), William.Thompsonj, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20926
 lamia.*                  ???; ???; ???
-naga.png                 ???; ???; ???
+naga.png                 bleutailfly; CC BY 3.0; https://opengameart.org/node/99050
 werewolf.png             yolkati, Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/125
 
 
