@@ -96,7 +96,7 @@ data/sprites/items/boots/
 
 black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 blue_boots.png             bleutailfly; CC BY-SA 3.0; Stendhal
-chain_boots.png            Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ ) (re-work of studded_boots.png)
+chain_boots.*              Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347
 chaos_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_boots.png  Krakow Mobile?; ???; ???
 elvish_boots.png           Groundhug McHampster (h4mt4r0); ???; Stendhal, https://sourceforge.net/p/arianne/patches/271/
@@ -111,7 +111,7 @@ red_boots.png              bleutailfly; CC BY-SA 3.0; Stendhal
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            ???; ???; ???
-studded_boots.png          Anders Asplund (Danter); ???; Ragnarok Online ( http://ro.gnjoy.com/ )
+studded_boots.png          Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347; re-color of chain_boots
 xeno_boots.png             https://github.com/crawl/tiles
 
 data/sprites/items/box/
