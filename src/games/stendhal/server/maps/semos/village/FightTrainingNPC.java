@@ -34,8 +34,8 @@ public class FightTrainingNPC implements ZoneConfigurator {
 				addReply("train", "During #combat, you and your opponent keep attacking each other until one dies.");
 				addReply("combat", "In combat, 2 basic stats apply, #rate and #damage.");
 				addReply("damage",
-						"The higher the DAMAGE of your weapon, the more HP your opponent will lose with every hit.");
-				addReply("rate", "The higher the RATE of your weapon, the faster you will attack.");
+						"The higher the ATK of your weapon, the more HP your opponent will lose with every hit.");
+				addReply("rate", "The lower the RATE of your weapon, the faster you will attack.");
 				addGoodbye("Until we meet again!");
 			}
 		};
