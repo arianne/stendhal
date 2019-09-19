@@ -939,6 +939,20 @@
 		</updatesigner>
 	</target>
 
+	<target name="cleanwhitespace" description="cleans whitespace in source and other specified file types" depends="compile_stendhaltools">
+		<java classname="games.stendhal.tools.CleanWhitespace">
+			<classpath>
+				<pathelement path="${build_stendhaltools}"/>
+			</classpath>
+			<arg value="src/"/>
+			<arg value="tests/"/>
+			<arg value="srcjs/"/>
+			<arg value="data/"/>
+			<arg value="tiled/"/>
+			<arg value="java,xml,js,xsd,lua,py"/>
+		</java>
+	</target>
+
 
 
 
