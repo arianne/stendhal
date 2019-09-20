@@ -27,7 +27,7 @@ bluesorceressnpc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 bossmannpc.*                  Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 boyguardnpc.png               Svetlana Kushnariova (Cabbit), diamonddmgirl, Cobra Hubbard (BlueVortexGames), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/27202
 boynpc.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-brownwizardnpc.png            ???; ???; ???
+brownwizardnpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 buyernpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 cafesellernpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 chaos_sorcerornpc.png         Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
