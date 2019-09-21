@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -113,7 +112,7 @@ public class StendhalQuestSystem {
 		/* Disabled, incomplete
 		loadQuest(new HerbsForJynath()); */
 		
-		loadQuest(new AdMemoriaInPortfolio());
+//		loadQuest(new AdMemoriaInPortfolio());
 		loadQuest(new HouseBuying());
 		loadQuest(new HungryJoshua());
 		loadQuest(new IcecreamForAnnie());
