@@ -174,7 +174,7 @@ recruiter2npc.png             Svetlana Kushnariova (Cabbit), Stephen Challener (
 recruiter3npc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 reddarkwizardnpc.*            Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83728
 reddemonnpc.png               Stephen Challener (Redshrike), William.Thompsonj; OGA BY 3.0; https://opengameart.org/node/20926
-retiredteachernpc.png         ???; ???; ???
+retiredteachernpc.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 richardstallmannpc.*          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 ringsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 royalguardnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
