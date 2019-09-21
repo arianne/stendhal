@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,7 +20,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
 /**
  * Provides A man hoeing the farm ground near the Mill north of Semos
@@ -39,6 +37,9 @@ public class HoeingManNPC implements ZoneConfigurator {
 	public void configureZone(
 			final StendhalRPZone zone,
 			final Map<String, String> attributes) {
+
+		// TODO: NPC Hazen does not exist, and should probably not be named so similar to Haizen.
+		/*
 		final String[] rambles = {
 			"... This is so relaxing... Hoeing and seeding... Hoeing and seeding... ",
 			"... This is so relaxing... #Hazen... #Kirdneh... Ohh my poor #memory... ",
@@ -49,7 +50,9 @@ public class HoeingManNPC implements ZoneConfigurator {
             "... This is so relaxing... Hoeing and seeding... If only I could remember... What happened to #Hazen... Where is #Kirdneh... Ah my poor #memory..."
 		};
 		//1,2,3,4,5 minutes
+		
 		new MonologueBehaviour(buildNPC(zone),rambles, 1);
+		*/
 	}
 
 	private SpeakerNPC buildNPC(
@@ -67,7 +70,11 @@ public class HoeingManNPC implements ZoneConfigurator {
 
 			@Override
 			public void createDialog() {
-				addGreeting("Well met... Names... Names are important... Do you have a #name? I have a #hoe... ");
+				
+				addGreeting("Well met, wayfarer!");
+				// TODO: NPC Hazen does not exist, and should probably not be named so similar to Haizen.
+				// addGreeting("Well met... Names... Names are important... Do you have a #name? I have a #hoe... ");
+
 				addJob("You see? I keep freeing the soil from weeds with my #hoe but those grow back every time...");
 				addHelp("Take your time and check the area around... There's a mill somewhat north and a really nice farm to the east... Nice and rich country, you could go hunting for food!");
 				addReply("hoe",
@@ -75,13 +82,16 @@ public class HoeingManNPC implements ZoneConfigurator {
                     "If you need some good farming tools like a #scythe, it might help visiting the nearby Semos city blacksmith shop!");
 				addReply("scythe",
 	                    "Ah well... If you need some good farming tools like a scythe, it might help visiting the nearby Semos city blacksmith shop!");
-				addReply("hazen",
-                    "I... I have a sister... I remember the name... Kirdneh");
-				addReply("kirdneh",
-                    "I... I remember the name... Kirdneh... I have a sister... Hazen!");
-				addReply("name",
-	                    "I... I do not remember... What was it... A name... A name for a #quest...");
-				addOffer("Will you do a #task for me?");
+				
+				
+				// TODO: NPC Hazen does not exist, and should probably not be named so similar to Haizen.
+				/*
+					addReply("hazen", "I... I have a sister... I remember the name... Kirdneh");
+					addReply("kirdneh", "I... I remember the name... Kirdneh... I have a sister... Hazen!");
+					addReply("name",
+		                    "I... I do not remember... What was it... A name... A name for a #quest...");
+					addOffer("Will you do a #task for me?");
+				*/
 				addGoodbye("Goodbye and may your path be clear of weeds!");
 				
 				/**
