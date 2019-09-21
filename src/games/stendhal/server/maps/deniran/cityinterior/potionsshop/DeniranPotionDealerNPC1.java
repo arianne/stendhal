@@ -42,11 +42,11 @@ public class DeniranPotionDealerNPC1 implements ZoneConfigurator {
 
 			@Override
 			public void createDialog() {
-				addGreeting();
-				addJob("My name is Lucretia. Pleased to meet you... I Sell potions...");
+				addGreeting("My name is Lucretia. If you are interested in potions, you are in the right place...");
 				addHelp("My name is Lucretia... If you are interested in potions, you are in the right place...");
-				addGoodbye("My name is Lucretia... Never forget it and come back... Goodbye for now");
-				addOffer("I can offer you my name... Lucretia. Pleased to meet you...");
+				addJob("My name is Lucretia. If you are interested in potions, you are in the right place...");
+				addOffer("My name is Lucretia. If you are interested in potions, you are in the right place...");
+				addGoodbye("My name is Lucretia... Goodbye for now");
 			}
 
 			@Override
@@ -58,11 +58,11 @@ public class DeniranPotionDealerNPC1 implements ZoneConfigurator {
 			}
 
 		};
-		npc.setEntityClass("deniranpotiondealernpc1");
+		
+		npc.setEntityClass("deniran_potiondealernpc3");
 		npc.setPosition(9, 12);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-
-		npc.setDescription("Lucretia Borgia");
+		npc.setDescription("You see Lucretia Borgia");
 		zone.add(npc);
 	}
 }
