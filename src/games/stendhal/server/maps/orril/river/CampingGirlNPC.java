@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.orril.river;
 
-import java.util.Map;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+
+import java.util.Map;
 
 /**
  * Configure Orril River South Campfire (Outside/Level 0).
@@ -45,14 +45,11 @@ public class CampingGirlNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello wanderer... Please sit down and relax! I would ask a #favor but you probably on your own #task or #job already... ");
-				addJob("I have no jobs for you dear wanderer. I'm just a little scout girl with a #favor or a #task to ask...");
-				addOffer("I could offer you to perform a #favor or a #task for me... If you were interested, of course!");
-				addHelp("Help?! Oh WOW ... You asking me?! Hear me then: " +
-				        "You can find lots of useful stuff in a forest, like wood and mushrooms, for example. " +
-						"But beware, some mushrooms are poisonous! Now, if you only cold do a little #favor, a #task...");
+				//addGreeting();
+				addJob("Work? I'm just a little girl! I'm a scout, you know.");
+				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
 				addGoodbye();
-				// Sally remaining behavior defined in maps.quests.Campfire.
+				// remaining behaviour is defined in maps.quests.Campfire.				
 			}
 		};
 
@@ -60,7 +57,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 		sally.setPosition(40, 61);
 		sally.setDirection(Direction.RIGHT);
 		sally.initHP(100);
-		sally.setDescription("You see Sally, the little scout girl. She is the daughter of Leander, the Semos baker and currently camping near the river.");
+		sally.setDescription("You see Sally. She is the daughter of Leander, the Semos baker and currently camping near the river.");
 		zone.add(sally);
 	}
 }
