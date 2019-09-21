@@ -1,6 +1,15 @@
 Changelog
 ---------
 ---------
+1.35
+*world*
+- added Deniran; interiors potions shop, weapons shop, dress shop, grocery store, tiny house, bakery, library.
+-started work on Sikhw desert.
+-new npcs; little girl, market seller, witch healer, potions dealer, wizard, weapons dealer, deniran king, shop assistant, chef, librarian.
+-quest; littlegirlnpc
+        troublesomecustomer?
+-graphics, potions, replaced xeno armor,cauldron icon, magic cloak, sand edges...
+
 1.30
 *world*
 - added Deniran Caves
