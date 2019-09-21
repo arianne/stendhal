@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +28,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-public class DeniranPotionDealerNPC1 implements ZoneConfigurator {
+public class DeniranPotionSellerNPC implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(StendhalRPZone zone,

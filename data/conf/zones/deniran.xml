@@ -222,7 +222,7 @@
 		</portal>
 
 		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketSellerNPC1Grocery" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranMarketGrocerySellerNPC" />
 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranOldWitchHealerNPC" />
 		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.DeniranPotionDealerNPC" />
 
@@ -797,7 +797,7 @@
 		</portal>
 
 		<!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.DeniranPotionDealerNPC1" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.DeniranPotionSellerNPC" />
 
 	</zone>
 	

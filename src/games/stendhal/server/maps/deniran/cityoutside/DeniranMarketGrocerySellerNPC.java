@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,7 +32,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
  * @author omero
  *
  */
-public class DeniranMarketSellerNPC1Grocery implements ZoneConfigurator {
+public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
