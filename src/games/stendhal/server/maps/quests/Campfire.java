@@ -183,7 +183,7 @@ public class Campfire extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED, 
-				"My campfire needs wood again! Could you please get some from the forest for me? I need ten pieces.",
+				"My campfire needs wood again, ten pieces of #wood will be enough. Could you please get those #wood pieces from the forest for me? Please say yes!",
 				null);
 
 		// player returns - enough time has passed
@@ -231,7 +231,7 @@ public class Campfire extends AbstractQuest {
 				}
 				npc.say("Thank you! Here, take some " + rewardClass + "!");
 				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
-				reward.setQuantity(REQUIRED_WOOD);
+				reward.setQuantity(50);
 				player.equipOrPutOnGround(reward);
 				player.notifyWorldAboutChanges();
 			}
