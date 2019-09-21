@@ -249,7 +249,9 @@
 		</attributes>
 
 		<!-- NPCs -->
+		<!--
 		<configurator class-name="games.stendhal.server.maps.deniran.river.BoatNPC" />
+ 		-->
 
 	</zone>
 
