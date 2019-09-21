@@ -96,6 +96,8 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 				nodes.add(new Node(29, 116));
 				nodes.add(new Node(29, 120));
 				nodes.add(new Node(20, 120));
+				nodes.add(new Node(20, 118));
+				nodes.add(new Node(23, 118));
 				setPath(new FixedPath(nodes, true));
 			}
 		};
