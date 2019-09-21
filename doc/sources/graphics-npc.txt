@@ -171,7 +171,7 @@ ratchildboy1npc.png           Svetlana Kushnariova (Cabbit), Stephen Challener (
 ratchildboy2npc.png           Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/82451
 recruiter1npc.*               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 recruiter2npc.png             Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152, https://opengameart.org/node/83728
-recruiter3npc.png             ???; ???; ???
+recruiter3npc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 reddarkwizardnpc.*            Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83728
 reddemonnpc.png               Stephen Challener (Redshrike), William.Thompsonj; OGA BY 3.0; https://opengameart.org/node/20926
 retiredteachernpc.png         ???; ???; ???
