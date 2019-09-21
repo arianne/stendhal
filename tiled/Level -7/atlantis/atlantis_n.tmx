@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.1" tiledversion="1.1.3413" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="2" name="grassland" tilewidth="32" tileheight="32" tilecount="88" columns="8">
+ <tileset firstgid="2" name="grassland" tilewidth="32" tileheight="32">
   <image source="../../tileset/terrain/grassland.png" width="256" height="352"/>
  </tileset>
- <tileset firstgid="90" name="dead_tree_7" tilewidth="32" tileheight="32" tilecount="20" columns="4">
+ <tileset firstgid="90" name="dead_tree_7" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/dead_tree_7.png" width="128" height="160"/>
  </tileset>
- <tileset firstgid="110" name="dead_tree_6" tilewidth="32" tileheight="32" tilecount="20" columns="4">
+ <tileset firstgid="110" name="dead_tree_6" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/dead_tree_6.png" width="128" height="160"/>
  </tileset>
- <tileset firstgid="130" name="ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+ <tileset firstgid="130" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" width="96" height="352"/>
  </tileset>
- <tileset firstgid="163" name="grass_edges" tilewidth="32" tileheight="32" tilecount="36" columns="12">
+ <tileset firstgid="163" name="grass_edges" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png" width="384" height="96"/>
  </tileset>
- <tileset firstgid="199" name="grass_corners" tilewidth="32" tileheight="32" tilecount="24" columns="6">
+ <tileset firstgid="199" name="grass_corners" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_corners.png" width="192" height="128"/>
  </tileset>
- <layer id="1" name="0_floor" width="128" height="128">
+ <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3Yu1IbQRAF0M0JHNoODPhjCajioxEFG1gPykjM3J6ZE5xISXffi1jt87Ztz4U9NZDY48fBXUHpfOUvf/nLv1f+qT3kn80/vYf8M/mn59/9PPhTIO/V8q/SgYftvQO/zkj2In2XlXrw1oHHM/ZeJHqQvslqHfisF4n/EendEx2o3IPeHUjvnMq/ag/eOtDzt0J6Xx04Jf+18+/5PJjeVf6n9ufBHt8D6V0rdCC9yyXH7wtafB+kd6zQgfQelxy/L2jx/ii9Y4U+pOe+tg+7W34zpneq0IP0vN/Ri2s7kJ493Y30POkOpOembQfut887kZ6ZNh3Ynw1/b+c7sX+enpc2HXj88Hc734n98/Ss/KvVM+pxJ9J78rX8Z31u5br8dWBOq7274Lb8dWAus7/Dpl0H9GAuesCtXUjPTbYL6VnJdiA9J7kepGcDAICkl/+QnpFM7joxp1uzbyV9lxWkM9YD2euC7HVA9nogex2Qvw7IXg/krwuy792BGbuUvml65lF2rnrHGXYYef+Vs6/QhfTOiTul56/UgfS+vW+T3qFaD9J7yl7+Pe6Q3qNqB9I79tg1vVvVu6Rvs1K/q95oxp3S+410r5l2Se824t1Gn7/CbiP3YLR5K+2WVvFGybxXyv67spgha9lfn9vIOcu+X09GkL7XTNJZyl7Wspe93OUvd/nLXv7pW82oR14yr8vf6tpkvzaZr03ua5P32o6zlTsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHzdK/3LXO8AAAEA
+   H4sIAAAAAAAAC+3Yu1IbQRAF0M0JHNoODPhbKWd8NKJgA+tBgcTM7Zk5wYmUdPe9iNU+bdv2VNi/BhJ7/Di4Kyidr/zlL3/598o/tYf8s/mn95B/Jv/0/LufB38K5L1a/lU68LC9deDXGclepO+yUg9eO/B4xt6LRA/SN1mtAx/1IvE/Ir17ogOVe9C7A+mdU/lX7cFrB3r+VkjvqwOn5L92/j2fB9O7yv/U/jzY43sgvWuFDqR3ueT4fUGL74P0jhU6kN7jkuP3BS3eH6V3rNCH9NzX9mF3y2/G9E4VepCe9zt6cW0H0rOnu5GeJ92B9Ny07cD99nEn0jPTpgP7s+Hv7Xwn9s/T89KmA4/v/m7nO7F/np6V/7V6Rj3uRHpPvpb/rM+tXJe/DsxptXcX3Ja/Dsxl9nfYtOuAHsxFD7i1C+m5yXYhPSvZDqTnJNeD9GwAAJD0/AnpGcnkrhNzujX7VtJ3WUE6Yz2QvS7IXgdkrwey1wH564Ds9UD+uiD73h2YsUvpm6ZnHmXnqnecYYeR9185+wpdSO+cuFN6/kodSO/b+zbpHar1IL2n7OXf4w7pPap2IL1jj13Tu1W9S/o2K/W76o1m3Cm930j3mmmX9G4j3m30+SvsNnIPRpu30m5pFW+UzHul7L8rixmylv31uY2cs+z79WQE6XvNJJ2l7GUte9nLXf5yl7/s5Z++1Yx65CXzuvytrk32a5P52uS+Nnmv7ThbuQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwNe9AGUZhlwAAAEA
   </data>
  </layer>
- <layer id="2" name="1_terrain" width="128" height="128">
+ <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3YSwrCMBRA0exG3bs6FsfqGpzoWmwGhRICpv5Sk3PgTUQkkAt9NgQAAADgU1a1D0B1sYF1Zujb2AV984xAAwD9sg8C6fsC+ub9ETn+M6IBNIAG/tt2mF0y+5m/Md0TNyHfhN1xmQ6Zz67hvR6itAmWKXf/qdjDKw2wfCX3H2mgTaX3H2mgPadhbjO+r4H2xAbOobyDcT/UQVvGDkpb0EG75rSgg7aV7gjHbx+Eap7tCPdhLr87DpVMnwvTcfcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/KMHiGgoFwAAAQA=
+   H4sIAAAAAAAAC+3dzW7VMBCG4dwN9N6BNWJduAXYwLXQ6MjSyHISxzNJZsbvI2XXnlb6xv9uuiy+fTf+vB/Gn4drkf/cLPP/9/H8Mvw8XM8i/zX3nwvZR6TJn9zj0+TPWB/f+/Jqw38HvvfPx/PN9tfBQ9Y6GK2Br8vzdfDp4Z+fwWgNrDz0BWsNfG486KeZD3jpC2qlLnBM0wcUnusAx6z2hDyMCTVq4JjlniBrxHgsxoCC/GOyqgGP+TMf7FP2hsozUg8e88eYkb1Cz/nX+wXoU/cLW31EtPNg9o/0ZG1Eyn4Pa0ZQA6AGQA3E9mV5nU3I5+wetZwnvi3tmmDu6FNrb7ucV43Ww6quCfjUc7bh8dwKNnrPtqiBnM6cbVID+Zw916IG8jl7juH1PhN05F51Ty1QB3mdqQXqILfeOYLns23oHM0Rop1tY8zWXQeyBwAAwOxadyu05+rwr+T+++Dr6nsW1ER8a/ZHue9p1YT2oabuoc3+KuzPX89r9pLsW6gFOxGyr3GPw0bE7AvGBZ3I2Uv0BWOs3xX+JGrgnCxtX2I86Jep7ddYJ+yzaPvlXeF3PJr3FmnGhdb+d3Sa7GXmd96XOXuvtza6J5ltfNRm7+GOlLYWZjWavef/CWH5XsPMNNl7zF3S/L+D7HrPcVsiZC9lXs+MyDDWn8FY8KJp86uI2Rcz1cDW3SzNmiVy9kXmcUBmfsXaNMPfv2XsA7R9eo8Mbb/IVAN3ndNkaPtS9HXhHW1eypZ/EW2/8O7cV5n6/j177zl/qj7qefzdZw6zZN9jqz6s6qK1ZnvyjIns+8i66HHF2twa2dt7YuweQfb2otynI3s9b+N4D8/n+JFEyFoi93nR18+L7GORd2tH9xueup8LnbqtHu1Tbj1kHg/99Hzop+fEWmwu9d/IkXseJdutuTp551S35dZcndwBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANj3H3/StuIAAAEA
   </data>
  </layer>
- <layer id="3" name="2_object" width="128" height="128">
+ <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="4" name="3_roof" width="128" height="128">
+ <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="5" name="4_roof_add" width="128" height="128">
+ <layer name="4_roof_add" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="6" name="objects" width="128" height="128">
+ <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="7" name="collision" width="128" height="128">
+ <layer name="collision" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer id="8" name="protection" width="128" height="128">
+ <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAC+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
 </map>
