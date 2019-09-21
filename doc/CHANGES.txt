@@ -1,14 +1,61 @@
 Changelog
 ---------
 ---------
-1.35
+1.31
 *world*
-- added Deniran; interiors potions shop, weapons shop, dress shop, grocery store, tiny house, bakery, library.
--started work on Sikhw desert.
--new npcs; little girl, market seller, witch healer, potions dealer, wizard, weapons dealer, deniran king, shop assistant, chef, librarian.
--quest; littlegirlnpc
-        troublesomecustomer?
--graphics, potions, replaced xeno armor,cauldron icon, magic cloak, sand edges...
+- added Deniran interior maps:
+  - potions shop
+  - weapons shop
+  - dress shop
+  - grocery store
+  - tiny house
+  - bakery
+  - library
+- started work on Sikhw desert.
+- new Deniran NPCs:
+  - Ambrogio (market seller)
+  - Byron Mcgalister (wizard)
+  - Christina (shop assistant)
+  - D J Smith (weapons dealer)
+  - Ermenegilda (witch healer)
+  - Fiete (port manager)
+  - Julia (librarian)
+  - King Edward of Deniran
+  - Lucretia Borgia (potions dealer) (disabled?)
+  - Patrick (chef)
+  - Marianne (little girl)
+- new Fado NPCs:
+  - Groongo Rahnnt
+  - Olmo (meat & fish smoker)
+- new quests:
+  - Eggs for Marianne
+  - Meal for Groongo
+- new graphics: potions, cauldron icon, magic cloak, sand edges...
+- reworked NPC sprites:
+  - brownwizardnpc (Javier X)
+  - man_005_npc (Terry)
+  - recruiter3npc (Diehelm Brui)
+  - reddemonnpc (Xaruhwaiyz)
+  - retiredteachernpc (Ortiv Milquetoast)
+  - richardstallmannpc (Stichard Rallman)
+  - sickleinghalfelfnpc (Eheneumniranin)
+  - womanonstoolnpc (Katerina)
+- reworked enemy sprites:
+  - cavalryman gnome
+  - lamia
+  - madaram hero
+  - piglet
+- reworked items sprites:
+  - chain boots
+  - drow sword
+  - studded boots
+  - xeno equipment (all)
+- new items:
+  - habanero pepper
+  - magic cloak
+  - pinto beans
+  - tripe
+- Sue now sells pinto beans & habanero pepper
 
 1.30
 *world*
@@ -16,9 +63,9 @@ Changelog
 - continued on Deniran city and region
 - lots of map improvements like fixed fences, interior decorations and furniture, tower chalet
 - moving wind mill blades
-- new NPC sprites for bandit, scarletarmynpc, Erodel Bmud, librarianconstantinenpc, man_001_npc, woman_005_npc, woman_007_npc, woman_008_npc, 
+- new NPC sprites for bandit, scarletarmynpc, Erodel Bmud, librarianconstantinenpc, man_001_npc, woman_005_npc, woman_007_npc, woman_008_npc,
                       elfybuyernpc, elfmayornpc, gamesupervisornpc
-- new creatures sprites for fallen_high_priest, madaram_healer, soldier_elite_archer, beaver, deniran_stormtrooper, armored soldiers or various ranks 
+- new creatures sprites for fallen_high_priest, madaram_healer, soldier_elite_archer, beaver, deniran_stormtrooper, armored soldiers or various ranks
 - Ados army batallion protects trade route to Denrian
 
 *fixes*
@@ -29,7 +76,7 @@ Changelog
 1.29
 
 *world*
-- started to work on Deniran city 
+- started to work on Deniran city
 
 *web client*
 - implemented outfit selector
@@ -39,7 +86,7 @@ Changelog
 *classic client*
 - stendhal-1.29.zip now contains a stendhal-starter.exe file to make it more convenient for MS Windows user
   It will prompt the user to install Java, if it is missing. Then it invokes stendhal-starter.jar as usual
-  
+
 *server*
 - continue movement through portals
 - dedicated Archaeologist achievement
