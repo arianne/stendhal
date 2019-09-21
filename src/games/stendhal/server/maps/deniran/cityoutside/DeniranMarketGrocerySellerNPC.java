@@ -105,7 +105,7 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 		npc.setEntityClass("deniran_marketsellernpc1grocery");
 		npc.setPosition(26, 122);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see a busy marketplace seller...");
+		npc.setDescription("You see Ambrogio, a busy marketplace seller...");
 		zone.add(npc);
 
 		return npc;
