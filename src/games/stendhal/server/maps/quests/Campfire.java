@@ -231,7 +231,7 @@ public class Campfire extends AbstractQuest {
 				}
 				npc.say("Thank you! Here, take some " + rewardClass + "!");
 				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
-				reward.setQuantity(50);
+				reward.setQuantity(REQUIRED_WOOD);
 				player.equipOrPutOnGround(reward);
 				player.notifyWorldAboutChanges();
 			}
