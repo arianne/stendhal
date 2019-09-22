@@ -28,7 +28,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-public class DeniranPotionSellerNPC implements ZoneConfigurator {
+public class DeniranPotionDealerNPC implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(StendhalRPZone zone,
@@ -37,14 +37,14 @@ public class DeniranPotionSellerNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Lucretia Borgia") {
+		final SpeakerNPC npc = new SpeakerNPC("Lucretia") {
 
 			@Override
 			public void createDialog() {
-				addGreeting("My name is Lucretia. If you are interested in potions, you are in the right place...");
+				addGreeting("My name is Lucretia... If you are interested in potions, you are in the right place...");
 				addHelp("My name is Lucretia... If you are interested in potions, you are in the right place...");
-				addJob("My name is Lucretia. If you are interested in potions, you are in the right place...");
-				addOffer("My name is Lucretia. If you are interested in potions, you are in the right place...");
+				addJob("My name is Lucretia... If you are interested in potions, you are in the right place...");
+				addOffer("My name is Lucretia... If you are interested in potions, you are in the right place...");
 				addGoodbye("My name is Lucretia... Goodbye for now");
 			}
 
@@ -58,10 +58,14 @@ public class DeniranPotionSellerNPC implements ZoneConfigurator {
 
 		};
 		
+		//lucretia runs the potions shop in deniran,
+		//uses deniran_potiondealernpc3 a duplicate of slim_woman_npc
+		//rework target sprite to be unique, based on slim_woman_npc
+		//possibly recolor of hairs/dress
 		npc.setEntityClass("deniran_potiondealernpc3");
 		npc.setPosition(9, 12);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see Lucretia Borgia");
+		npc.setDescription("You see Lucretia");
 		zone.add(npc);
 	}
 }
