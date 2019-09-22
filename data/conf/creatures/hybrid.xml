@@ -207,6 +207,7 @@
       <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="buckler" quantity="[1,1]" probability="0.5"/>
       <item value="knife" quantity="[1,1]" probability="0.5"/>
+      <item value="slim bottle" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -244,6 +245,7 @@
       <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="leather helmet" quantity="[1,1]" probability="1.0"/>
       <item value="wooden shield" quantity="[1,1]" probability="1.3"/>
+      <item value="slim bottle" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -278,6 +280,7 @@
       <item value="wooden arrow" quantity="[3,12]" probability="6.0"/>
       <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="wooden bow" quantity="[1,1]" probability="0.5"/>
+      <item value="slim bottle" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden arrow" quantity="10000" />
@@ -319,6 +322,7 @@
       <item value="studded boots" quantity="[1,1]" probability="0.5"/>
       <item value="leather helmet" quantity="[1,1]" probability="1.5"/>
       <item value="short sword" quantity="[1,1]" probability="1.0"/>
+      <item value="eared bottle" quantity="[1,1]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
@@ -355,6 +359,7 @@
       <item value="minor potion" quantity="[1,2]" probability="1.5"/>
       <item value="chain helmet" quantity="[1,1]" probability="3.0"/>
       <item value="plate shield" quantity="[1,1]" probability="0.5"/>
+      <item value="eared bottle" quantity="[1,1]" probability="70.0"/>
     </drops>
     <equips>
     </equips>
