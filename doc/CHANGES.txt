@@ -11,17 +11,17 @@ Changelog
   - tiny house
   - bakery
   - library
-- started work on Sikhw desert.
+- update world map: https://stendhalgame.org/world/atlas.html
+- renamed zones in the Deniran region to fit schema
 - new Deniran NPCs:
   - Ambrogio (market seller)
   - Byron Mcgalister (wizard)
   - Christina (shop assistant)
   - D J Smith (weapons dealer)
-  - Ermenegilda (witch healer)
+  - Ermenegilda (witch, healer)
   - Fiete (port manager)
   - Julia (librarian)
   - King Edward of Deniran
-  - Lucretia Borgia (potions dealer) (disabled?)
   - Patrick (chef)
   - Marianne (little girl)
 - new Fado NPCs:
@@ -30,6 +30,14 @@ Changelog
 - new quests:
   - Eggs for Marianne
   - Meal for Groongo
+- new items:
+  - habanero pepper
+  - magic cloak
+  - pinto beans
+  - tripe
+- Sue now sells pinto beans & habanero pepper
+  
+*graphics*
 - new graphics: potions, cauldron icon, magic cloak, sand edges...
 - reworked NPC sprites:
   - brownwizardnpc (Javier X)
@@ -49,13 +57,8 @@ Changelog
   - chain boots
   - drow sword
   - studded boots
-  - xeno equipment (all)
-- new items:
-  - habanero pepper
-  - magic cloak
-  - pinto beans
-  - tripe
-- Sue now sells pinto beans & habanero pepper
+  - xeno equipment
+
 
 1.30
 *world*
