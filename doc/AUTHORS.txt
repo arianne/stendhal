@@ -194,7 +194,7 @@ Notable contributors:
 - Hades the Emperor
   · Artist (creatures images using charas, e.g. imperial army)
   · Artist (some player outfits)
-- Omero (Davide Manzella)
+- omero (nylon0700)
   · Coder (trivial patch to the client GUI for deleting local profiles, some NPCs and their quests...)
   · Artist (new NPCs, pies, tools, food and liquors, crops, trees, nests for chickens and their eggs!)
   · Misc (see commits history in current VCS in use)  
