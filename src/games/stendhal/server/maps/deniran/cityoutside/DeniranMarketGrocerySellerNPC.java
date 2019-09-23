@@ -92,12 +92,12 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(23, 116));
-				nodes.add(new Node(29, 116));
 				nodes.add(new Node(29, 120));
-				nodes.add(new Node(20, 120));
+				nodes.add(new Node(20, 121));
 				nodes.add(new Node(20, 118));
 				nodes.add(new Node(23, 118));
+				nodes.add(new Node(23, 116));
+				nodes.add(new Node(29, 116));
 				setPath(new FixedPath(nodes, true));
 			}
 		};
@@ -106,7 +106,7 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 		//npc.setEntityClass("fatsellernpc");
 		npc.setEntityClass("deniran_marketsellernpc1grocery");
 		npc.setPosition(26, 122);
-		npc.setCollisionAction(CollisionAction.REROUTE);
+		npc.setCollisionAction(CollisionAction.REVERSE);
 		npc.setDescription("You see Ambrogio, a busy marketplace seller...");
 		zone.add(npc);
 
