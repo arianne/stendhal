@@ -627,6 +627,107 @@
 	</zone>
 
 
+<!--  Level -4 -->
+
+	<zone name="-4_deniran_lost_caves_n2_w" level="-4" x="499104" y="499744"
+		file="Level -4/deniran/lost_caves_n2_w.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_lost_caves_nw" level="-4" x="499104" y="499872"
+		file="Level -4/deniran/lost_caves_nw.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_w" level="-4" x="499104" y="500000"
+		file="Level -4/deniran/caves_w.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_sw" level="-4" x="499104" y="500128"
+		file="Level -4/deniran/caves_sw.tmx">
+
+	</zone>
+
+
+
+	<zone name="-4_deniran_lost_caves_n2" level="-4" x="499232" y="499744"
+		file="Level -4/deniran/lost_caves_n2.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_lost_caves_n" level="-4" x="499232" y="499872"
+		file="Level -4/deniran/lost_caves_n.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves" level="-4" x="499232" y="500000"
+		file="Level -4/deniran/caves.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_s" level="-4" x="499232" y="500128"
+		file="Level -4/deniran/caves_s.tmx">
+
+	</zone>
+
+
+
+	<zone name="-4_deniran_lost_caves_n2_e" level="-4" x="499360" y="499744"
+		file="Level -4/deniran/lost_caves_n2_e.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_lost_caves_ne" level="-4" x="499360" y="499872"
+		file="Level -4/deniran/lost_caves_ne.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_e" level="-4" x="499360" y="500000"
+		file="Level -4/deniran/caves_e.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_se" level="-4" x="499360" y="500128"
+		file="Level -4/deniran/caves_se.tmx">
+
+	</zone>
+
+
+
+	<zone name="-4_denrian_lost_caves_n2_e2" level="-4" x="499488" y="499744"
+		file="Level -4/deniran/lost_caves_n2_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-4_denrian_lost_caves_n_e2" level="-4" x="499488" y="499872"
+		file="Level -4/deniran/lost_caves_n_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_e2" level="-4" x="499488" y="500000"
+		file="Level -4/deniran/caves_e2.tmx">
+
+	</zone>
+
+
+	<zone name="-4_deniran_caves_s_e2" level="-4" x="499488" y="500128"
+		file="Level -4/deniran/caves_s_e2.tmx">
+
+	</zone>
+
+
 
 	<!-- interiors -->
 
