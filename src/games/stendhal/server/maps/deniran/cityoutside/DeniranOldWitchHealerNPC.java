@@ -49,19 +49,9 @@ public class DeniranOldWitchHealerNPC implements ZoneConfigurator {
 			}
 		};
 
-		/**
-		@Override
-		protected void createPath() {
-			final List<Node> nodes = new LinkedList<Node>();
-			nodes.add(new Node(18, 116));
-			nodes.add(new Node(18, 119));
-			setPath(new FixedPath(nodes, true));
-		}
-		*/
-
 		// Finalize Ermenegilda
 		npc.setEntityClass("oldwitchnpc");
-		npc.setDescription("You see Ermenegilda... Maybe");
+		npc.setDescription("You see Ermenegilda... Maybe she can heal you!");
 		npc.setPosition(18, 105);
 		new HealerAdder().addHealer(npc, 2000);
 		npc.initHP(100);
