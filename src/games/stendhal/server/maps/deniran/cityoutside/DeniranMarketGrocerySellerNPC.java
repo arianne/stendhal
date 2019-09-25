@@ -70,10 +70,10 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 				);
 				//Offered items:
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-                offerings.put("egg", 35);
-                offerings.put("potato", 40);
-                offerings.put("pinto beans", 45);
-                offerings.put("habanero pepper", 50);
+                offerings.put("egg", 5);
+                offerings.put("potato", 5);
+                offerings.put("pinto bean", 5);
+                offerings.put("habanero pepper", 25);
                 offerings.put("olive oil", 130);
                 offerings.put("vinegar", 135);
                 offerings.put("sugar", 140);
