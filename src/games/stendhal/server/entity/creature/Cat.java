@@ -113,8 +113,21 @@ public class Cat extends Pet {
 
 	@Override
 	protected List<String> getFoodNames() {
-		return Arrays.asList("chicken", "trout", "cod", "mackerel", "char",
-				"perch", "roach", "surgeonfish", "clownfish", "milk");
+		return Arrays.asList(
+				//"meat",
+				//"ham",
+				"tripe",
+				"milk",
+				"chicken",
+				"trout",
+				"cod",
+				"mackerel",
+				"char",
+				"perch",
+				"roach",
+				"surgeonfish",
+				"clownfish"
+				);
 	}
 
 	/**
@@ -126,6 +139,5 @@ public class Cat extends Pet {
 	protected boolean takesPartInCombat() {
 		return false;
 	}
-
 
 }
