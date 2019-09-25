@@ -57,9 +57,9 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Gah! It was about time that someone showed up eventually! Are you ready to do your #task now?!");
-				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!");
-				addJob("Ah! Finally... Want a #task?");
+				addGreeting("Gah! About time someone showed up for a #task eventually...");
+				addHelp("You should be asking me for a #task instead!");
+				addJob("Ah! Finally someone wanting a #task...");
 				addOffer("Do a #task for me and you get a generous tip!");
 				addGoodbye("You... You... Buzz off now!");
 
