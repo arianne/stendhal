@@ -6,7 +6,7 @@
 
 	<item name="tripe">
 		<type class="food" subclass="tripe" tileid="-1" />
-		<description>You see tripe. A chef could consider it an ingredient... Some pet will like it alot!</description>
+		<description>You see tripe. A chef could consider it an ingredient... Some pet will like it too!</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
@@ -29,7 +29,7 @@
 
 	<item name="habanero pepper">
 		<type class="food" subclass="habanero_pepper" tileid="-1" />
-		<description>You see a habanero pepper. Could be a very HOT ingredient...</description>
+		<description>You see a habanero pepper. Could be a very HOT ingredient for a decent meal...</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
