@@ -56,6 +56,13 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 						"Oh, I should really set up one of those blackboards where offers are listed!"
 				);
 				
+				/**
+				 * NOTE:
+				 * The following items are spelled plural,
+				 * since they are what the NPC is telling, not expecting
+				 * the actual items offered are listed further down
+				 * in the offered items list
+				 */
 				addOffer(
 						"I sell grocery stuff... " +
 								"eggs, " +
@@ -69,10 +76,14 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 						"Oh, I should really set up one of those blackboards where offers are listed!"
 				);
 				//Offered items:
+				/**
+				 * NOTE: the offered items are listed here
+				 * singular/plural DO matter
+				 */
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("egg", 5);
                 offerings.put("potato", 5);
-                offerings.put("pinto bean", 5);
+                offerings.put("pinto beans", 5);
                 offerings.put("habanero pepper", 25);
                 offerings.put("olive oil", 130);
                 offerings.put("vinegar", 135);
