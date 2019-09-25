@@ -135,7 +135,6 @@ public class StendhalQuestSystem {
 		loadQuest(new Marriage());
 		loadQuest(new Maze());
 		loadQuest(new McPeglegIOU());
-		loadQuest(new MealForGroongo());
 		loadQuest(new MeetBunny());
 		loadQuest(new MedicineForTad());
 		loadQuest(new MeetHackim());
