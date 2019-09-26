@@ -1,4 +1,4 @@
-﻿
+
 tiled/tileset/building/
 
 barnyard.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
