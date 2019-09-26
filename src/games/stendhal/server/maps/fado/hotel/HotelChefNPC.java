@@ -145,30 +145,23 @@ public class HotelChefNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye! Have a nice stay in Fado!");
 
                 /** NOTE:
-                * All ingredients are subject to changes until missing ingredients == none
-                * Missing ingredients: NONE
-                */
-
+                 * See MealForGroongo quest for additional informations
+                 * src/games/stendhal/server/maps/quests/MealForGroongo.java
+                 * Ingredients for preparing main_dish for the troublesome customer
+				 */
                 /** NOTE:
-                // Some of the ingredients are 'many words'.
-                // see "button mushroom" for comparison
-                // fix spelling:
-                //     (bunch of)          pinto beans, see rainbow beans
-                //     (bottle/bottles of) olive oil,
-                //     (flask/flasks of)   vinegar,
-                //     (bunch of)          habanero pepper/peppers?
-                //     (an old issue)      porcini?! one porcino, several porcini
-                */
-
-                //All ingredients should trigger a reply from Stefan, the chef in Fado's Hotel Restaurant:
-                //All replies (trigger words) for the ingredients needed during MealForGroongo quest are added here
-                //All trigger words that give hints about all ingredients needed during MealForGroongo quest
-                //See MealForGroongo quest for additional informations
-                // src/games/stendhal/server/maps/quests/MealForGroongo.java
-                //
-                //Ingredients for preparing main_dish for the troublesome customer
-                //All ingredients for main_dish  should be trigger words
-                //dairy products, a farm?
+				 * All ingredients for main_dish  should be trigger words
+                 * All ingredients should trigger a reply from Stefan, the chef in Fado's Hotel Restaurant:
+                 * All trigger words that give hints about all ingredients needed during MealForGroongo quest
+                 * All trigger words for the ingredients needed during MealForGroongo quest are added here
+                 */
+                /** NOTE:
+                 * Some of the ingredients are 'many words'.
+                 *     (bunch of)          habanero pepper/peppers?
+                 *     (bunch of)          pinto beans
+                 *     (bottle/bottles of) olive oil,
+                 *     (flask/flasks of)   vinegar,
+                 */
                 addReply(
                     Arrays.asList(
                     "chicken", "egg", "milk", "butter" ),
@@ -192,8 +185,9 @@ public class HotelChefNPC implements ZoneConfigurator {
                 addReply(
                     Arrays.asList(
                     "lemon",
-                    "potato", "tomato", "pinto beans", "habanero pepper"),
-                    "Mmm... Good question! A serra, maybe?");
+                    "potato", "tomato", "pinto beans",
+                    "habanero pepper", "habanero peppers"),
+                    "Not sure. Maybe near Kalavan gardens...");
                 addReply(
                     Arrays.asList(
                     "meat", "cheese", "ham"),
