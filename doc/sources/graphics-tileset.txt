@@ -827,7 +827,7 @@ beehive2.png            bleutailfly; CC BY-SA 3.0; Stendhal
 bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cookies.*               ???; ???; ???
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fruit_basket.png        ???; ???; ???
+fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meals_1.png             ???; ???; ???
 meals_2.png             ???; ???; ???
 meals_3.png             bleutailfly; CC BY-SA 3.0; Stendhal
