@@ -11,7 +11,7 @@ thunder-04.*  sphion; CC0; http://freesound.org/people/sphion/sounds/158525/
 thunder-05.*  Dave Welsh; CC0; http://freesound.org/people/Dave%20Welsh/sounds/194364/
 thunder-06.*  Dave Welsh; CC0; http://freesound.org/people/Dave%20Welsh/sounds/194364/
 thunder-07.*  Xythe; CC0; http://freesound.org/people/Xythe/sounds/37299/
-thunder-08.*  Yoyodaman234; CC0; http://freesound.org/people/Yoyodaman234/sounds/253953/        
+thunder-08.*  Yoyodaman234; CC0; http://freesound.org/people/Yoyodaman234/sounds/253953/
 wind_heavy.*  stewdio2003; CC0; http://freesound.org/people/stewdio2003/sounds/238374/
 wind_light.*  MrAuralization; CC0; http://freesound.org/people/MrAuralization/sounds/243617/
 wind.*        felix.blume; CC0; http://freesound.org/people/felix.blume/sounds/146436/

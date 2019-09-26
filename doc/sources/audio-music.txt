@@ -19,7 +19,7 @@ new_hope.ogg                 Storyteller; GPL
 ohhowjoyfully.*              Markus Keunecke; public domain; based on score republished by Johann Gottfried Herders (1744–1803) in Sammlung Stimmen der Völker in Liedern
 sacred_moments.ogg           Storyteller; GPL
 sewers.ogg                   Norien; GPL
-snowflakelittlewhiteskirt.*  Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902) 
+snowflakelittlewhiteskirt.*  Markus Keunecke; public domain; based on score by Hedwig Haberkern (1837–1902)
 the_forsaken_mine.ogg        Storyteller; GPL
 the_magical_tower.ogg        Storyteller; GPL
 the_old_tavern.ogg           Storyteller; GPL
