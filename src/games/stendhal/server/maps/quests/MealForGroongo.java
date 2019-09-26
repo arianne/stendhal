@@ -402,7 +402,6 @@ public class MealForGroongo extends AbstractQuest {
 
     @Override
     public int getMinLevel() {
-        // TODO omero: minlevel needs to be adjusted
         return 30;
 
     }
@@ -825,7 +824,7 @@ public class MealForGroongo extends AbstractQuest {
                     " I will try " +
                     Grammar.a_noun(getRequiredDessertFancyName(requiredDessert)) +
                     ". Now go ask Chef Stefan to prepare my #" + requiredDessert +
-                    " for #dessert, at once!"
+                    " for dessert, at once!"
             );
 
             //logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
@@ -888,8 +887,9 @@ public class MealForGroongo extends AbstractQuest {
             SpeakerNPC.say(
                     "Ah! Our troublesome customer has asked for " +
                     Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 2))) +
-                    " this time. For that I'll need *AT ONCE* some ingredients that at the moment I'm missing: " +
-                    Grammar.enumerateCollection(missingIngredients.toStringListWithHash()) +
+                    " this time. For that I'll need some ingredients that at the moment I'm missing: " +
+                    //Grammar.enumerateCollection(missingIngredients.toStringListWithHash()) +
+                    Grammar.enumerateCollection(missingIngredients.toStringList()) +
                     ". Do you happen to have them all of the required ingredients with you already?"
             );
 
@@ -1021,9 +1021,9 @@ public class MealForGroongo extends AbstractQuest {
                 new GreetingMatchesNameCondition(npc.getName()),
                 new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
             ConversationStates.QUEST_OFFERED,
-            "Gah! Here I stand... Covered in cobwebs... Waiting to order a decent meal... " +
-            "Let me tell you! The service in this restaurant is... is... " +
-            "Are you going to bring me a decent #meal now?",
+            "Gah! Here I stand, covered in cobwebs... " +
+            "Waiting to order a decent meal... For eons! " +
+            "Let me ask you ... Can you bring me a decent meal NOW?",
             null
         );
 
@@ -1053,8 +1053,9 @@ public class MealForGroongo extends AbstractQuest {
                 "I'm not so hungry now... I will be fine for at least")
         );
 
-        // Player asks Groongo for a quest, 1st time!
-        // quest is not running
+        // Player greets Groongo, quest is not running
+        // Groongo confronts player with a question
+        // Player has YES/NO option
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
             new AndCondition(
@@ -1064,7 +1065,7 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.QUEST_OFFERED,
             "It was about time!" +
             " I've been waiting here for so long that I've now got cobwebs under my armpits..." +
-            " Are you going to bring me a decent #meal now?",
+            " Will you bring me a decent meal now?",
             null
         );
 
