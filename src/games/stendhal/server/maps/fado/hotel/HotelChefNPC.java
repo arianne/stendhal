@@ -10,13 +10,13 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
 package games.stendhal.server.maps.fado.hotel;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -24,33 +24,27 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-// ORIGINAL WORK comment: Vanessa Julius
-/**
- * Builds a NPC in a house on Ados market (name:Stefan) who is the daughter of fisherman Fritz
- *
- * @author Vanessa Julius
- *
- */
 
-// UPDATED COMMENT: (omero)
-// Stefan NPC has relocated to Fado's Hotel Restaurant kitchen since some time now.
-// Informations about Stefan are desumed from his dialogues
 /**
-// UPDATED information about Stefan: (omero)
- * Provides Stefan, the Fado's Hotel Restaurant NPC
- * He seems to have moved from Ados market since his original appearence
- * He's now busy in his kitchen, the Fado's Hotel Restaurant
- *
- * original author: Vanessa Julius
- * Stefan has been reworked several times, by various authors
- * Stefan has been relocated from Ados to Fado? It's unclear which authors did what
- *
- * Stefan final known location: Fado's Hotel Restaurant
- * Stefan is currently being involved in quest: Meal For Groongo (MealForGroongo),
- * - relates to TroublesomeCustomerNPC (Groongo)
- * - relates to MealForGroongo (Groongo's quest)
- */
+  * Builds a NPC in a house on Ados market (name:Stefan) who is the daughter of fisherman Fritz
+  *
+  * @author Vanessa Julius
+  *
+  */
 
+/**
+ * NOTES (omero):
+ * Provides Stefan in Fado's Hotel Restaurant kitchen
+ * Informations about Stefan desumed from his dialogues and code:
+ * 	Stefan has been reworked several times, by various authors
+ * 	Stefan was relocated/moved from an undescribed Ados market house since his original appearence
+ * 	Stefan was relocated to Fado's Hotel Restaurant kitchen since some time now 
+ * 	Stefan final known location: Fado's Hotel Restaurant kitchen
+ *  
+ * 	Stefan is involved in quest: Water for Xiphin Zohos
+ * 	Stefan is involved in quest: Meal For Groongo
+ */
+ 
 public class HotelChefNPC implements ZoneConfigurator {
 
 	@Override
@@ -145,82 +139,106 @@ public class HotelChefNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye! Have a nice stay in Fado!");
 
                 /** NOTE:
+                 *
                  * See MealForGroongo quest for additional informations
                  * src/games/stendhal/server/maps/quests/MealForGroongo.java
-                 * Ingredients for preparing main_dish for the troublesome customer
-				 */
-                /** NOTE:
-				 * All ingredients for main_dish  should be trigger words
-                 * All ingredients should trigger a reply from Stefan, the chef in Fado's Hotel Restaurant:
-                 * All trigger words that give hints about all ingredients needed during MealForGroongo quest
-                 * All trigger words for the ingredients needed during MealForGroongo quest are added here
-                 */
-                /** NOTE:
+                 * 
+                 * All trigger words giving hints about ingredients needed during MealForGroongo quest
                  * Some of the ingredients are 'many words'.
                  *     (bunch of)          habanero pepper/peppers?
                  *     (bunch of)          pinto beans
                  *     (bottle/bottles of) olive oil,
                  *     (flask/flasks of)   vinegar,
                  */
+				
+                /** NOTE
+				 * Ingredients for preparing main dish for the troublesome customer
+                 * All ingredients for main dish should be trigger words 
+                 */
+				//farm areas, easy to find
                 addReply(
                     Arrays.asList(
                     "chicken", "egg", "milk", "butter" ),
                     "Easy... I always check the farming areas near Semos...");
-                //dropped by easy critters, goblins, orcs, kalavan housewives, cannibal ladies?
-                addReply(
-                    Arrays.asList(
-                    "vinegar", "olive oil"),
-                    "When you're brave enogh, fight! Else go for a grocery store or a market place somewhere not that far... ");
+                
                 //in nearby forests, plenty of the stuff
                 addReply(
                     Arrays.asList(
                     "porcini", "button mushroom", "sclaria", "kekik"),
                     "Check in some forest, near Semos...");
+
                 //around fado, plenty of the stuff
                 addReply(
                     Arrays.asList(
                     "garlic", "onion", "carrot", "courgette"),
                     "Very Easy! Check in Fado surroundings...");
-                //the serra near fado gardens?
+                
+                //dropped by easy critters, goblins, orcs, kalavan housewives, cannibals
+                //also found in grocery stores and market places
                 addReply(
                     Arrays.asList(
-                    "lemon",
+                    "vinegar", "olive oil"),
+                    "When you're brave enogh, fight!" +
+                    "Else seek a grocery store or a market place... " +
+                    "Somewhere not that far");                
+                
+                //the serra near Kalavan
+                addReply(
+                    Arrays.asList(
                     "potato", "tomato", "pinto beans",
                     "habanero pepper", "habanero peppers"),
                     "Not sure. Maybe near Kalavan gardens...");
+                                
+                //lame
                 addReply(
                     Arrays.asList(
                     "meat", "cheese", "ham"),
                     "Ehhhrhg... You cannot be that lame!");
+                //lame
                 addReply(
                     Arrays.asList(
                     "beer", "flour"),
                     "Ooohrhg... You cannot be that lame!");
+
+                //fish? nice try!
                 addReply(
                     Arrays.asList(
                     "perch", "trout"),
-                    "Ahahah... Nice Try! I will not tell you about my favorite fishing spots...");
+                    "Ahahah... Nice Try! " + 
+                    "I will NEVER reveal you my favorite fishing spots... " +
+                    "You could explore more!");
 
-                //All ingredients for dessert should be trigger words
-                //Ingredients for preparing dessert for the troublesome customer
-
+                /** NOTE
+                 *Ingredients for preparing dessert for the troublesome customer
+                 *All ingredients for dessert should be trigger words 
+                 */
+                // exotic areas, market, grocery store...
                 addReply(
                     Arrays.asList(
                     "banana", "coconut", "pineapple"),
                     "Exotic fruit... Maybe in a grocery store or market somewhere... " +
                     "You could explore more!");
 
+                // market, grocery store...
                 addReply(
                     Arrays.asList(
-                    "apple", "pear", "lemon", "watermelon"),
-                    "Hmm... not such an exotic fruit... Maybe in a grocery store or a market somewhere... " +
+                    "apple", "pear", "watermelon"),
+                    "Hmm... not such an exotic fruit... " +
+                    "Maybe in a grocery store or a market somewhere... " +
                     "You could explore more!");
+
+                //the serra near Kalavan
+                addReply(
+                    Arrays.asList(
+                    "lemon"),
+                    "Not sure. Maybe near Kalavan gardens...");
 
                 addReply(
                     Arrays.asList(
                     "sugar"),
-                    "Not so easy to get some in war times! You should either grind some yourself... " +
-                    "Or find someone that sells some of it!");
+                    "Not so easy to get some in war times! "+
+                    "You should either grind some yourself... " +
+                    "Or find someone that sells some!");
 			}
 		};
 
