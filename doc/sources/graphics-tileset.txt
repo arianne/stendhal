@@ -1,4 +1,4 @@
-﻿
+
 tiled/tileset/building/
 
 barnyard.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -46,7 +46,6 @@ tiled/tileset/building/decoration/
 arrows.png                ???; ???; ???
 balcony.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 banner.png                https://github.com/crawl/tiles
-File(s): dress and meat
 banner_long.png           ???; ???; ???
 banner_rotated_gm.png     ???; ???; ???
 block.png                 ???; ???; ???
@@ -55,7 +54,6 @@ blue_circle2.png          ???; ???; ???
 blue_green.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blue_green_2.png          ???; ???; ???
 caldron_sign.png           https://github.com/crawl/tiles
-File(s): 
 chests_banner.png         ???; ???; ???
 chimney.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_big.png           ???; ???; ???
@@ -312,7 +310,7 @@ strawberry.png     durkham (bug); CC BY-SA 3.0; Stendhal
 tiled/tileset/furniture/chair/
 
 armchair.png               kymara
-armchair_cream.png         kymara 
+armchair_cream.png         kymara
 armchair_pink.png          ???; ???; ???
 armchair_red.png           ???; ???; ???
 bench_iron.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -768,7 +766,6 @@ copper_still.png   ???; ???; ???
 empty_bottles.png  ???; ???; ???
 flask.png          ???; ???; ???
 potions.png         https://github.com/crawl/tiles
-File(s): 
 
 tiled/tileset/item/chest/
 
@@ -799,7 +796,6 @@ books.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 books2.png    ???; ???; ???
 books3.png    ???; ???; ???
 books4.png     https://github.com/crawl/tiles
-File(s): 
 kids_art.png  bleutailfly
 kids_art_2.png bleutailfly
 letter.png    ???; ???; ???
@@ -827,7 +823,7 @@ beehive2.png            bleutailfly; CC BY-SA 3.0; Stendhal
 bread.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cookies.*               ???; ???; ???
 fish_crates.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fruit_basket.png        ???; ???; ???
+fruit_basket.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meals_1.png             ???; ???; ???
 meals_2.png             ???; ???; ???
 meals_3.png             bleutailfly; CC BY-SA 3.0; Stendhal
