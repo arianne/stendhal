@@ -1,16 +1,42 @@
 
 data/sprites/corpse/
 
-bag*.png          rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
-cloaked*          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81954
-feathered.png     beakman; CC0; http://openclipart.org/detail/23073
-gnome*            rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207, https://opengameart.org/node/78045
-halo*             freedo; CC0; https://openclipart.org/detail/20950
-leafy*            Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
-puddle_*.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
-rock.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-rodent_small.png  rg1024, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://openclipart.org/detail/31207
-rodent_large.png  rg1024, lumocra?, bleutailfly, Jordan Irwin (AntumDeluge); ???; https://openclipart.org/detail/31207, ???
-spiderweb*        j4p4n; CC0; https://openclipart.org/detail/274095
-winged_bat.png    Machovka; CC0; http://openclipart.org/detail/2699
-wooden.png        Farmeral; CC0; https://openclipart.org/detail/20280
+animal.png             ???; ???; ???
+animal_2x2.png         ???; ???; ???
+animal_4x4.png         ???; ???; ???
+bag*.png               rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
+bone.*                 ???; ???; ???
+bone_4x3.png           ???; ???; ???
+bone_red.png           ???; ???; ???
+cloaked*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81954
+dragon_3x2.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+dragon_3x3.png         ???; ???; ???
+dragon_6x6.png         ???; ???; ???
+enormous_humanoid.png  ???; ???; ???
+feathered.png          beakman; CC0; http://openclipart.org/detail/23073
+gnome*                 rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207, https://opengameart.org/node/78045
+halo*                  freedo; CC0; https://openclipart.org/detail/20950
+harmless_player.png    Jordan Irwin (AntumDeluge); CC0; Stendhal
+humanoid.*             ???; ???; ???
+humanoid_2x2.png       ???; ???; ???
+humanoid_3x2.png       ???; ???; ???
+leafy*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
+leprechaun_*.png       johnnnny; ???; Stendhal
+mythical_animal.png    ???; ???; ???
+player.png             ???; ???; ???
+puddle_*.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
+rock.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+rodent_large.png       rg1024, lumocra?, bleutailfly, Jordan Irwin (AntumDeluge); ???; https://openclipart.org/detail/31207, ???
+rodent_small.png       rg1024, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://openclipart.org/detail/31207
+shark_2x2.png          ???; ???; ???
+small_animal.png       ???; ???; ???
+small_boneless.png     ???; ???; ???
+small_winged.png       ???; ???; ???
+snake*                 ???; ???; ???
+spiderweb*             j4p4n; CC0; https://openclipart.org/detail/274095
+tail_rodent*           ???; ???; ???
+tiny_bone.*            ???; ???; ???
+tiny_humanoid.png      ???; ???; ???
+winged_bat.png         Machovka; CC0; http://openclipart.org/detail/2699
+wooden.png             Farmeral; CC0; https://openclipart.org/detail/20280
+wooden_2x2*            ???; ???; ???
