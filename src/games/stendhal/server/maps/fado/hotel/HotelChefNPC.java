@@ -38,13 +38,13 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * Informations about Stefan desumed from his dialogues and code:
  * 	Stefan has been reworked several times, by various authors
  * 	Stefan was relocated/moved from an undescribed Ados market house since his original appearence
- * 	Stefan was relocated to Fado's Hotel Restaurant kitchen since some time now 
+ * 	Stefan was relocated to Fado's Hotel Restaurant kitchen since some time now
  * 	Stefan final known location: Fado's Hotel Restaurant kitchen
- *  
+ *
  * 	Stefan is involved in quest: Water for Xiphin Zohos
  * 	Stefan is involved in quest: Meal For Groongo
  */
- 
+
 public class HotelChefNPC implements ZoneConfigurator {
 
 	@Override
@@ -142,7 +142,7 @@ public class HotelChefNPC implements ZoneConfigurator {
                  *
                  * See MealForGroongo quest for additional informations
                  * src/games/stendhal/server/maps/quests/MealForGroongo.java
-                 * 
+                 *
                  * All trigger words giving hints about ingredients needed during MealForGroongo quest
                  * Some of the ingredients are 'many words'.
                  *     (bunch of)          habanero pepper/peppers?
@@ -150,17 +150,17 @@ public class HotelChefNPC implements ZoneConfigurator {
                  *     (bottle/bottles of) olive oil,
                  *     (flask/flasks of)   vinegar,
                  */
-				
+
                 /** NOTE
 				 * Ingredients for preparing main dish for the troublesome customer
-                 * All ingredients for main dish should be trigger words 
+                 * All ingredients for main dish should be trigger words
                  */
 				//farm areas, easy to find
                 addReply(
                     Arrays.asList(
                     "chicken", "egg", "milk", "butter" ),
                     "Easy... I always check the farming areas near Semos...");
-                
+
                 //in nearby forests, plenty of the stuff
                 addReply(
                     Arrays.asList(
@@ -172,7 +172,7 @@ public class HotelChefNPC implements ZoneConfigurator {
                     Arrays.asList(
                     "garlic", "onion", "carrot", "courgette"),
                     "Very Easy! Check in Fado surroundings...");
-                
+
                 //dropped by easy critters, goblins, orcs, kalavan housewives, cannibals
                 //also found in grocery stores and market places
                 addReply(
@@ -180,15 +180,15 @@ public class HotelChefNPC implements ZoneConfigurator {
                     "vinegar", "olive oil"),
                     "When you're brave enogh, fight!" +
                     "Else seek a grocery store or a market place... " +
-                    "Somewhere not that far");                
-                
+                    "Somewhere not that far");
+
                 //the serra near Kalavan
                 addReply(
                     Arrays.asList(
                     "potato", "tomato", "pinto beans",
                     "habanero pepper", "habanero peppers"),
                     "Not sure. Maybe near Kalavan gardens...");
-                                
+
                 //lame
                 addReply(
                     Arrays.asList(
@@ -204,13 +204,13 @@ public class HotelChefNPC implements ZoneConfigurator {
                 addReply(
                     Arrays.asList(
                     "perch", "trout"),
-                    "Ahahah... Nice Try! " + 
+                    "Ahahah... Nice Try! " +
                     "I will NEVER reveal you my favorite fishing spots... " +
                     "You could explore more!");
 
                 /** NOTE
                  *Ingredients for preparing dessert for the troublesome customer
-                 *All ingredients for dessert should be trigger words 
+                 *All ingredients for dessert should be trigger words
                  */
                 // exotic areas, market, grocery store...
                 addReply(

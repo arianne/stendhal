@@ -57,7 +57,7 @@ public class DeniranPotionDealerNPC implements ZoneConfigurator {
 			}
 
 		};
-		
+
 		//lucretia runs the potions shop in deniran,
 		//uses deniran_potiondealernpc3 a duplicate of slim_woman_npc
 		//rework target sprite to be unique, based on slim_woman_npc

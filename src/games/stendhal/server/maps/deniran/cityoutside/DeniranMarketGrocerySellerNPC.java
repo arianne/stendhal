@@ -55,7 +55,7 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 						"If you came looking for grocery stuff, I #offer grocery stuff... " +
 						"Oh, I should really set up one of those blackboards where offers are listed!"
 				);
-				
+
 				/**
 				 * NOTE:
 				 * The following items are spelled plural,
@@ -71,7 +71,7 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 								"habanero peppers, " +
 								"olive oil, " +
 								"vinegar, " +
-								"sugar... " +						
+								"sugar... " +
 						"If you want to #buy some stuff, tell me... " +
 						"Oh, I should really set up one of those blackboards where offers are listed!"
 				);

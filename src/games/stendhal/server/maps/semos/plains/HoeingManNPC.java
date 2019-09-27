@@ -29,7 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * Involves Hazen in Kirdneh
  *
  * @author omero
- * 
+ *
  */
 public class HoeingManNPC implements ZoneConfigurator {
 
@@ -50,7 +50,7 @@ public class HoeingManNPC implements ZoneConfigurator {
             "... This is so relaxing... Hoeing and seeding... If only I could remember... What happened to #Hazen... Where is #Kirdneh... Ah my poor #memory..."
 		};
 		//1,2,3,4,5 minutes
-		
+
 		new MonologueBehaviour(buildNPC(zone),rambles, 1);
 		*/
 	}
@@ -70,7 +70,7 @@ public class HoeingManNPC implements ZoneConfigurator {
 
 			@Override
 			public void createDialog() {
-				
+
 				addGreeting("Well met, wayfarer!");
 				// TODO: NPC Hazen does not exist, and should probably not be named so similar to Haizen.
 				// addGreeting("Well met... Names... Names are important... Do you have a #name? I have a #hoe... ");
@@ -82,8 +82,8 @@ public class HoeingManNPC implements ZoneConfigurator {
                     "If you need some good farming tools like a #scythe, it might help visiting the nearby Semos city blacksmith shop!");
 				addReply("scythe",
 	                    "Ah well... If you need some good farming tools like a scythe, it might help visiting the nearby Semos city blacksmith shop!");
-				
-				
+
+
 				// TODO: NPC Hazen does not exist, and should probably not be named so similar to Haizen.
 				/*
 					addReply("hazen", "I... I have a sister... I remember the name... Kirdneh");
@@ -93,7 +93,7 @@ public class HoeingManNPC implements ZoneConfigurator {
 					addOffer("Will you do a #task for me?");
 				*/
 				addGoodbye("Goodbye and may your path be clear of weeds!");
-				
+
 				/**
                  * Additional behavior code is in games.stendhal.server.maps.quests.AdMemoriaInPortfolio
                  */
@@ -107,6 +107,6 @@ public class HoeingManNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 		return npc;
-		
+
 	}
 }

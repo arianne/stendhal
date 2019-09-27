@@ -49,7 +49,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 				addJob("Work? I'm just a little girl! I'm a scout, you know.");
 				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
 				addGoodbye();
-				// remaining behaviour is defined in maps.quests.Campfire.				
+				// remaining behaviour is defined in maps.quests.Campfire.
 			}
 		};
 

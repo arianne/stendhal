@@ -675,7 +675,7 @@ public class MealForGroongo extends AbstractQuest {
         }
 
         //logger.warn(" ingredients <" + ingredients + ">");
-        
+
         // strip the last comma from the returned string
         return ingredients.substring(0, ingredients.length()-1);
 
@@ -771,7 +771,7 @@ public class MealForGroongo extends AbstractQuest {
             }
 
             //logger.warn("Attempts for new main dish <" + attempts + ">");
-            
+
             player.setQuest(QUEST_SLOT, 0, "fetch_maindish");
             player.setQuest(QUEST_SLOT, 1, "inprogress");
             player.setQuest(QUEST_SLOT, 2, requiredMainDish);
@@ -782,7 +782,7 @@ public class MealForGroongo extends AbstractQuest {
                     Grammar.a_noun(getRequiredMainDishFancyName(requiredMainDish)) +
                     ". Now go ask Chef Stefan to prepare my #" + requiredMainDish + ", at once!"
             );
-            
+
             //logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
 
         }
@@ -813,7 +813,7 @@ public class MealForGroongo extends AbstractQuest {
             }
 
             //logger.warn("Attempts for new dessert <" + attempts + ">");
-            
+
             player.setQuest(QUEST_SLOT, 0, "tell_dessert");
             player.setQuest(QUEST_SLOT, 4, requiredDessert);
             player.setQuest(QUEST_SLOT, 5, requiredIngredientsForDessert);

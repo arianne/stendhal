@@ -49,7 +49,7 @@ public class WizardNPC implements ZoneConfigurator  {
 				addGreeting("Hello.");
 				addJob("I am doing research right now. Please don't interrupt me. I need to concentrate");
 				addGoodbye();
-				
+
 			}};
 			npc.setPosition(4, 2);
 			npc.setDirection(Direction.DOWN);

@@ -47,14 +47,14 @@ import games.stendhal.server.maps.Region;
 //import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 //import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 //import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
- * 
+ *
  */
 /**
  *  jingo radish,
  *  + lost his memories in a magical duel
  *  + still remembers his sister Hazel
  *  + still remembers about Kirdneh
- *  
+ *
  *  hazen
  *  + sister of jingo radish lives in kirdneh
  *  + accomplished magician that can compile a magic memory log
@@ -93,7 +93,7 @@ import games.stendhal.server.maps.Region;
 public class AdMemoriaInPortfolio extends AbstractQuest {
 	private static final int SCROLL_AMOUNT = 5;
 	private static final String QUEST_SLOT = "portfolio";
-	
+
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -145,7 +145,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED,
 			"Can you help? say yes/no",
 			null);
-		
+
 		//YES
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -201,13 +201,13 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				"Talk Jingo, Find Hazel (have scrolls), return Jingo",
 				"Jingo Radish, Hazel, Kirdneh",
 				false);
-		
+
 		portfolio_step_1();
 		//portfolio_step_2();
 		//portfolio_step_3();
-		
+
 	}
-	
+
 	@Override
 	public String getName() {
 		return "AdMemoriaInPortfolio";
