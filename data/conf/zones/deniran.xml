@@ -926,7 +926,7 @@
 <zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
 
 		<portal x="14" y="18" ref="entrance">
-			<destination zone="0_deniran_city_sw" ref="deniran_library_entrance" />
+			<destination zone="0_deniran_city_sw" ref="deniran_inn_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 
