@@ -60,6 +60,12 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+	
+	<portal x="55" y="9" ref="deniran_inn_entrance">
+			<destination zone="int_deniran_inn" ref="entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
 	</zone>
 
 
@@ -915,6 +921,16 @@
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.library.LibrarianNPC" />
 
 	</zone>
+	
+
+<zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
+
+		<portal x="14" y="18" ref="entrance">
+			<destination zone="0_deniran_city_sw" ref="deniran_library_entrance" />
+			<attribute name="move.continuous" />
+		</portal>
+
+  </zone>
 
 
 </zones>
