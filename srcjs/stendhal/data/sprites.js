@@ -94,6 +94,40 @@ stendhal.data.sprites = {
 	 * @param {number=} param
 	 */
 	getFiltered: function(fileName, filter, param) {
+		const img = this.get(fileName);
+		if (!img) {
+			return null;
+		}
+		let filterFn;
+		if (typeof(filter) === "undefined"
+			|| !(filterFn = stendhal.data.sprites.filter[filter])
+			|| img.width === 0 || img.height === 0) {
+			return img;
+		}
+		const filteredName = fileName + " " + filter + " " + param;
+		let filtered = this[filteredName];
+		if (typeof(filtered) === "undefined") {
+			const canvas = document.createElement("canvas");
+			canvas.width  = img.width;
+			canvas.height = img.height;
+			const ctx = canvas.getContext("2d");
+			ctx.drawImage(img, 0, 0);
+			const imgData = ctx.getImageData(0, 0, img.width, img.height);
+			const data = imgData.data;
+			filterFn(data, param);
+			ctx.putImageData(imgData, 0, 0);
+			this[filteredName] = filtered = canvas;
+		}
+
+		return filtered;
+	},
+
+	/**
+	 * @param {string} fileName
+	 * @param {string} filter
+	 * @param {number=} param
+	 */
+	getFilteredWithPromise: function(fileName, filter, param) {
 		const imgPromise = this.getWithPromise(fileName);
 		return imgPromise.then(function (img) {
 			let filterFn;
@@ -120,6 +154,7 @@ stendhal.data.sprites = {
 			return filtered;
 		});
 	},
+
 
 	/** Image filters */
 	filter: {
