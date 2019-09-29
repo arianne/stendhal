@@ -39,12 +39,12 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			"... Boh! From time to time I'd like to have a decent meal...",
 			"... Doh! No wonder this place is almost deserted... One waits forever before enjoying a decent meal...",
 			"... Gah! This place must be run by invisible waiters and lazy chefs...",
-			"... Hgh! HellooO?! I am wondering... Is there anyone ArOoUunNDd in HheReEeee?!",
 			"... Mah! I counted all the tiles on the floor already... Twice...",
 			"... Meh! I'll start notching the table legs for every minute I'm spending waiting at this table here...",
 			"... Ugh! I should start counting ALL the bugs infesting this place..."
 		};
-		new MonologueBehaviour(buildNPC(zone), rants, 1);
+		//minutes between rants, 5
+		new MonologueBehaviour(buildNPC(zone), rants, 5);
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
