@@ -94,12 +94,48 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 		e.preventDefault();
 	}
 
+	function onContextMenu(e) {
+		e.preventDefault();
+	}
+
+	function isRightClick(e) {
+		if (+new Date() - timestampMouseDown > 300) {
+			return true;
+		}
+		if (e.which) {
+			return (e.which === 3);
+		} else {
+			return (e.button === 2);
+		}
+	}
+
+	function onMouseDown(e) {
+		timestampMouseDown = +new Date();
+	}
+
+	function onMouseUp(e) {
+		if (e.target.dataItem) {
+			if (isRightClick(e)) {
+				new stendhal.ui.Menu(e.target.dataItem, e.pageX - 50, e.pageY - 5);
+			} else {
+				marauroa.clientFramework.sendAction({
+					type: "use",
+					"target_path": e.target.dataItem.getIdPath(),
+					"zone": marauroa.currentZoneName
+				});
+			}
+		}
+	}
+
 	for (var i = 0; i < size; i++) {
 		var e = document.getElementById(slot + suffix + i);
 		e.setAttribute("draggable", true);
 		e.addEventListener("dragstart", onDragStart);
 		e.addEventListener("dragover", onDragOver);
 		e.addEventListener("drop", onDrop);
+		e.addEventListener("mousedown", onMouseDown);
+		e.addEventListener("mouseup", onMouseUp);
+		e.addEventListener("contextmenu", onContextMenu);
 	}
 };
 
