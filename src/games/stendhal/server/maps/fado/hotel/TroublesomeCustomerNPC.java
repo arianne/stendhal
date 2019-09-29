@@ -43,7 +43,8 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			"... Meh! I'll start notching the table legs for every minute I'm spending waiting at this table here...",
 			"... Ugh! I should start counting ALL the bugs infesting this place..."
 		};
-		new MonologueBehaviour(buildNPC(zone), rants, 1);
+		//minutes between rants, 5
+		new MonologueBehaviour(buildNPC(zone), rants, 5);
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
