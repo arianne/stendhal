@@ -75,7 +75,7 @@ stendhal.ui.OutfitDialog = function() {
 		_getPartSprite(part, index, color = null) {
 			const fname = "/data/sprites/outfit/" + part + "/" + part + "_0" + indexString(index) + ".png";
 			if (color != null) {
-				return stendhal.data.sprites.getFiltered(fname, "trueColor", color);
+				return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
 			}
 			return stendhal.data.sprites.getWithPromise(fname);
 		}

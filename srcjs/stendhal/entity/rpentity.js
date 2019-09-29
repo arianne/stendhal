@@ -170,11 +170,12 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		const head = this.getOutfitPart("head", (Math.floor(this["outfit"]/10000) % 100));
 		const hair = this.getOutfitPart("hair", (Math.floor(this["outfit"]/1000000) % 100));
 		const detail = this.getOutfitPart("detail", (Math.floor(this["outfit"]/100000000) % 100));
-		Promise.all([body, dress, head, hair, detail]).then((images) => {
-			for (const img of images) {
+		const images = [body, dress, head, hair, detail];
+		for (const img of images) {
+			if (img) {
 				this.drawSprite(ctx, img);
 			}
-		});
+		}
 	},
 
 	/**
