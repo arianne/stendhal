@@ -53,7 +53,8 @@ public class DeniranOldWitchHealerNPC implements ZoneConfigurator {
 		npc.setEntityClass("oldwitchnpc");
 		npc.setDescription("You see Ermenegilda... Maybe she can heal you!");
 		npc.setPosition(18, 105);
-		new HealerAdder().addHealer(npc, 2000);
+		//heal according to player level (cost -1)
+		new HealerAdder().addHealer(npc, -1);
 		npc.initHP(100);
 		zone.add(npc);
 		return npc;
