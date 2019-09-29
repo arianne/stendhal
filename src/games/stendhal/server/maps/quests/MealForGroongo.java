@@ -1720,8 +1720,9 @@ public class MealForGroongo extends AbstractQuest {
                         " and " +
                         Grammar.thisthese(amountOfMoneys) + " " +
                         Grammar.quantityNumberStrNoun(amountOfMoneys, "money") +
-                        " as my reward! Please bring my very deserved #thanks to" +
-                        " Chef Stefan for preparing such a decent meal!"
+                        " as my reward! " +
+                        " Please be sure to forward to Chef Stefan my special and very deserved THANKS " +
+                        " for preparing me such a decent meal! I am sure he will appreciate..."
                     );
 
                     player.equipOrPutOnGround(money);
