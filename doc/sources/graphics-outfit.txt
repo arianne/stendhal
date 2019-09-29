@@ -107,11 +107,11 @@ dress_091.png (swimsuit)         ???; ???; ???
 dress_092.png (swimsuit)         ???; ???; ???
 dress_093.png (swimsuit)         ???; ???; ???
 dress_094.png (swimsuit)         ???; ???; ???
-dress_095.png (swim trunks)      ???; ???; ???
-dress_096.png (swim trunks)      ???; ???; ???
-dress_097.png (swim trunks)      ???; ???; ???
-dress_098.png (swim trunks)      ???; ???; ???
-dress_099.png                    Jordan Irwin; OGA BY 3.0; Stendhal
+dress_095.png (swim trunks)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+dress_096.png (swim trunks)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+dress_097.png (swim trunks)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+dress_098.png (swim trunks)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+dress_099.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 data/sprites/outfit/hair/
 
