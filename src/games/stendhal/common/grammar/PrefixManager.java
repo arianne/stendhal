@@ -55,6 +55,10 @@ final class PrefixManager
 	 * Initialise the map of nouns and prefix expressions.
 	 */
 	public PrefixManager() {
+		/**
+		 * NOTE
+		 * register, registerEnd, registerPrefix
+		 */
 		register("piece of ", "pieces of ", "meat");
 		register("piece of ", "pieces of ", "ham");
 		register("piece of ", "pieces of ", "cheese");
@@ -71,33 +75,41 @@ final class PrefixManager
 		register("sheaf of ", "sheaves of ", "grain");
 		register("loaf of ", "loaves of ", "bread");
 		register("stick of ", "sticks of ", "butter");
-		register("bulb of ", "bulbs of ", "garlic");
 		register("jar of ", "jars of ", "honey");
 		register("glass of ", "glasses of ", "wine");
 		register("cup of ", "cups of ", "tea");
+
 		register("sprig of ", "sprigs of ", "arandula");
 		register("root of ", "roots of ", "mandragora");
+		register("bulb of ", "bulbs of ", "garlic");
+
 		register("bunch of ", "bunches of ", "daisies");
 		register("bunch of ", "bunches of ", "grapes");
+		register("bunch of ", "bunches of ", "pinto beans");
+
 		register("can of ", "cans of ", "oil");
 
 		register("bottle of ", "bottles of ", "beer");
 		register("bottle of ", "bottles of ", "water");
-		register("bottle of ", "bottles of ", "fierywater");
 		register("bottle of ", "bottles of ", "milk");
 		register("bottle of ", "bottles of ", "holy water");
+		register("bottle of ", "bottles of ", "fierywater");
+		register("bottle of ", "bottles of ", "olive oil");
+		register("bottle of ", "bottles of ", "vinegar");
 
 		registerEnd("bottle of ", "bottles of ", "potion");
 		registerEnd("bottle of ", "bottles of ", "poison");
 		registerEnd("bottle of ", "bottles of ", "antidote");
+
 		registerEnd("nugget of ", "nuggets of ", " ore");
+
+		registerEnd("spool of ", "spools of ", " thread");
 
 		registerEnd("pair of ", "pairs of ", " legs");
 		registerEnd("pair of ", "pairs of ", " boots");
 
-		registerEnd("spool of ", "spools of ", " thread");
-
 		registerPrefix("suit of ", "suits of "); // "armor"
+
 	}
 
 
