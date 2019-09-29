@@ -700,7 +700,7 @@ public class MealForGroongo extends AbstractQuest {
                             getRequiredMainDishFancyName(
                                     player.getQuest(QUEST_SLOT, 2)), true) + " immediately." +
                     " Meanwhile, please go ask our troublesome customer" +
-                    " which #dessert he'd like to have along with it!");
+                    " which dessert he'd like to have along with it!");
             } else if ("tell_dessert".equals(player.getQuest(QUEST_SLOT, 0))) {
                 player.setQuest(QUEST_SLOT, 0, "fetch_dessert");
                 SpeakerNPC.say("A delicious choice indeed!");
