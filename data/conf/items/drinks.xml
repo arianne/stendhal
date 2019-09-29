@@ -11,7 +11,7 @@
       <frequency value="90"/>
       <quantity value="1"/>
       <regen value="-1"/>
-      <menu value="Look|Drink"/>
+      <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -34,7 +34,7 @@
       <frequency value="90"/>
       <quantity value="1"/>
       <regen value="-1"/>
-      <menu value="Look|Drink"/>
+      <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -57,7 +57,7 @@
       <frequency value="90"/>
       <quantity value="1"/>
       <regen value="-1"/>
-      <menu value="Look|Drink"/>
+      <menu value="Drink|Use"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
