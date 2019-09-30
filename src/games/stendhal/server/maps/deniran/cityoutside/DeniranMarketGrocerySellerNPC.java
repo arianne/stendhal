@@ -51,35 +51,29 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting(
-						"Hello visitor! " +
+						"Hello visitor! You do not look familiar... " +
 						"If you came looking for grocery stuff, I #offer grocery stuff... " +
 						"Oh, I should really set up one of those blackboards where offers are listed!"
 				);
 
 				/**
 				 * NOTE:
-				 * The following items are spelled plural,
-				 * since they are what the NPC is telling, not expecting
-				 * the actual items offered are listed further down
-				 * in the offered items list
+				 * actual items offered are listed further down
+				 * in the offered items list,
 				 */
 				addOffer(
-						"I sell grocery stuff... " +
-								"eggs, " +
-								"potatoes, " +
-								"pinto beans, " +
-								"habanero peppers, " +
-								"olive oil, " +
-								"vinegar, " +
-								"sugar... " +
-						"If you want to #buy some stuff, tell me... " +
+						"Oh, I mostly sell grocery stuff... " +
+								"Eggs, potatos, good pinto beans, " +
+								"Real habanero pepper (real HOT stuff), " +
+								"some olive oil or vinegar... " +
+								"And sugar of course... Got plenty of that! " +
+						"If you want to #buy some stuff, tell me what you need... " +
 						"Oh, I should really set up one of those blackboards where offers are listed!"
 				);
-				//Offered items:
 				/**
 				 * NOTE: the offered items are listed here
-				 * singular/plural DO matter
 				 */
+				//Offered items:
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
                 offerings.put("egg", 5);
                 offerings.put("potato", 5);
