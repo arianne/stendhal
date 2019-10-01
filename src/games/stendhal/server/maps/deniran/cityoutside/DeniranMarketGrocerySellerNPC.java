@@ -41,7 +41,7 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 			"HOYEH! I have all the stuff to prepare a decent meal and more!",
 			"HAYAH! Is this a market or a cemetery?!... It seems so quiet around here..."
 		};
-		new MonologueBehaviour(buildNPC(zone), yells, 1);
+		new MonologueBehaviour(buildNPC(zone), yells, 3);
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
@@ -51,42 +51,40 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting(
-						"Hello visitor! You do not look familiar... " +
-						"If you came looking for grocery stuff, I #offer grocery stuff... " +
-						"Oh, I should really set up one of those blackboards where offers are listed!"
-				);
+					"Hello visitor! You do not look familiar... " +
+					"If you came looking for grocery stuff, I #offer grocery stuff... " +
+					"Oh, I should really set up one of those blackboards where offers are listed!");
 
-				/**
-				 * NOTE:
-				 * actual items offered are listed further down
-				 * in the offered items list,
-				 */
 				addOffer(
-						"Oh, I mostly sell grocery stuff... " +
-								"Eggs, potatos, good pinto beans, " +
-								"Real habanero pepper (real HOT stuff), " +
-								"some olive oil or vinegar... " +
-								"And sugar of course... Got plenty of that! " +
-						"If you want to #buy some stuff, tell me what you need... " +
-						"Oh, I should really set up one of those blackboards where offers are listed!"
-				);
-				/**
-				 * NOTE: the offered items are listed here
-				 */
-				//Offered items:
-				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-                offerings.put("egg", 5);
-                offerings.put("potato", 5);
-                offerings.put("pinto beans", 5);
-                offerings.put("habanero pepper", 25);
-                offerings.put("olive oil", 130);
-                offerings.put("vinegar", 135);
-                offerings.put("sugar", 140);
-                new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
+					"Oh, I mostly sell grocery stuff... " +
+					"Eggs, potatos, onions, garlic, good pinto beans, " +
+					"real hot habanero pepper, " +
+					"some olive oil or vinegar... " +
+					"herbs like sclaria or kekik..." +
+					"I have sugar of course... Got plenty of that! " +
+					"And honey too if you really need it..." +
+					"If you want to #buy some stuff, tell me what you need... " +
+					"Oh, I should really set up one of those blackboards where offers are listed!");
+					//Offered items:
+					final Map<String, Integer> offerings = new HashMap<String, Integer>();
+					offerings.put("egg", 50);
+					offerings.put("onion", 50);
+					offerings.put("garlic", 50);
+					offerings.put("potato", 50);
+					offerings.put("pinto beans", 50);
+					offerings.put("habanero pepper", 135);
+					offerings.put("olive oil", 135);
+					offerings.put("vinegar", 135);
+					offerings.put("kekik", 135);
+					offerings.put("sclaria", 135);
+					offerings.put("sugar", 250);
+					offerings.put("honey", 350);
+					new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 
-				addJob("I am here to #offer grocery stuff to travelers like you... " +
-					   "If you want to #buy, tell me... " +
-					   "Oh, I should really set up one of those blackboards where offers are listed!");
+				addJob(
+					"I am here to #offer grocery stuff to travelers like you... " +
+					"If you want to #buy, tell me... " +
+					"Oh, I should really set up one of those blackboards where offers are listed!");
 
 				addHelp(
 						"If you need some grocery stuff, I do #offer some grocery stuff... " +
