@@ -1,41 +1,41 @@
 
 data/sprites/corpse/
 
-animal.png             ???; ???; ???
-animal_2x2.png         ???; ???; ???
-animal_4x4.png         ???; ???; ???
+animal.png             Groundhug McHampster (h4mt4r0); ???; Stendhal
+animal_2x2.png         Groundhug McHampster (h4mt4r0); ???; Stendhal
+animal_4x4.png         Groundhug McHampster (h4mt4r0); ???; Stendhal
 bag*.png               rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
-bone.*                 ???; ???; ???
-bone_4x3.png           ???; ???; ???
-bone_red.png           ???; ???; ???
+bone.*                 Groundhug McHampster (h4mt4r0); ???; Stendhal
+bone_4x3.png           Groundhug McHampster (h4mt4r0); ???; Stendhal
+bone_red.png           Groundhug McHampster (h4mt4r0); ???; Stendhal
 cloaked*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81954
 dragon_3x2.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dragon_3x3.png         ???; ???; ???
-dragon_6x6.png         ???; ???; ???
-enormous_humanoid.png  ???; ???; ???
+dragon_3x3.png         Groundhug McHampster (h4mt4r0); ???; Stendhal
+dragon_6x6.png         Groundhug McHampster (h4mt4r0); ???; Stendhal
+enormous_humanoid.png  Groundhug McHampster (h4mt4r0); ???; Stendhal
 feathered.png          beakman; CC0; http://openclipart.org/detail/23073
 gnome*                 rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207, https://opengameart.org/node/78045
 halo*                  freedo; CC0; https://openclipart.org/detail/20950
 harmless_player.png    Jordan Irwin (AntumDeluge); CC0; Stendhal
-humanoid.*             ???; ???; ???
-humanoid_2x2.png       ???; ???; ???
-humanoid_3x2.png       ???; ???; ???
+humanoid.*             Groundhug McHampster (h4mt4r0); ???; Stendhal
+humanoid_2x2.png       Groundhug McHampster (h4mt4r0); ???; Stendhal
+humanoid_3x2.png       Groundhug McHampster (h4mt4r0); ???; Stendhal
 leafy*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; ???
 leprechaun_*.png       johnnnny; ???; Stendhal
-mythical_animal.png    ???; ???; ???
-player.png             ???; ???; ???
+mythical_animal.png    Groundhug McHampster (h4mt4r0); ???; Stendhal
+player.png             Groundhug McHampster (h4mt4r0); ???; Stendhal
 puddle_*.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/81953
 rock.png               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 rodent_large.png       rg1024, lumocra?, bleutailfly, Jordan Irwin (AntumDeluge); ???; https://openclipart.org/detail/31207, ???
 rodent_small.png       rg1024, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://openclipart.org/detail/31207
 shark_2x2.png          soniccuz; ???; ???
-small_animal.png       ???; ???; ???
-small_boneless.png     ???; ???; ???
+small_animal.png       Groundhug McHampster (h4mt4r0); ???; Stendhal
+small_boneless.png     Groundhug McHampster (h4mt4r0); ???; Stendhal
 small_winged.png       ???; ???; ???
 snake*                 ???; ???; ???
 spiderweb*             j4p4n; CC0; https://openclipart.org/detail/274095
 tail_rodent*           ???; CC0; http://www.clker.com/clipart-185713.html
-tiny_bone.*            ???; ???; ???
-tiny_humanoid.png      ???; ???; ???
+tiny_bone.*            Groundhug McHampster (h4mt4r0), Jordan Irwin (AntumDeluge); ???; Stendhal; based on tiny_humanoid
+tiny_humanoid.png      Groundhug McHampster (h4mt4r0); ???; Stendhal
 winged_bat.png         Machovka; CC0; http://openclipart.org/detail/2699
 wooden*                Farmeral; CC0; https://openclipart.org/detail/20280
