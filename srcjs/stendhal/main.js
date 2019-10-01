@@ -118,6 +118,8 @@ stendhal.main = {
 		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
 		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
+		document.addEventListener("keydown", stendhal.ui.gamewindow.onKeyDown);
+		document.addEventListener("keyup", stendhal.ui.gamewindow.onKeyUp);
 
 		var minimap = document.getElementById("minimap");
 		minimap.addEventListener("click", stendhal.ui.minimap.onClick);
@@ -131,7 +133,6 @@ stendhal.main = {
 
 		var chatinput = document.getElementById("chatinput");
 		chatinput.addEventListener("keydown", stendhal.ui.chatinput.onKeyDown);
-		chatinput.addEventListener("keyup", stendhal.ui.chatinput.onKeyUp);
 		chatinput.addEventListener("keypress", stendhal.ui.chatinput.onKeyPress);
 	},
 
