@@ -441,7 +441,7 @@ stendhal.ui.OutfitDialog = function() {
 		let divider;
 		switch (part) {
 			case "hair": divider = 1000000;
-				maxindex = 46;
+				maxindex = 49;
 				break;
 			case "head" : divider = 10000;
 				maxindex = 22;
