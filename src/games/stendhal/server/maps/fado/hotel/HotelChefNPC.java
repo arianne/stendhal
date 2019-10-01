@@ -24,26 +24,27 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-
 /**
-  * Builds a NPC in a house on Ados market (name:Stefan) who is the daughter of fisherman Fritz
+  * Provides Stefan in Fado's Hotel Restaurant kitchen
   *
   * @author Vanessa Julius
+
+  * NOTES (omero):
+  * Provides Stefan in Fado's Hotel Restaurant kitchen
+  * Informations about Stefan desumed from his dialogues and code:
+  *     Builds a NPC in a house on Ados market (name:Stefan) who is the daughter of fisherman Fritz
+  *     @author Vanessa Julius
+  *
+  * 	Stefan has been reworked several times, by various authors
+  * 	Stefan was relocated/moved
+  *         from undescribed Ados market house 
+  *         to Fado's Hotel Restaurant kitchen
+  * 	Stefan final known location: Fado's Hotel Restaurant kitchen
+  *
+  * 	Stefan is involved in quest: Water for Xiphin Zohos
+  * 	Stefan is involved in quest: Meal For Groongo
   *
   */
-
-/**
- * NOTES (omero):
- * Provides Stefan in Fado's Hotel Restaurant kitchen
- * Informations about Stefan desumed from his dialogues and code:
- * 	Stefan has been reworked several times, by various authors
- * 	Stefan was relocated/moved from an undescribed Ados market house since his original appearence
- * 	Stefan was relocated to Fado's Hotel Restaurant kitchen since some time now
- * 	Stefan final known location: Fado's Hotel Restaurant kitchen
- *
- * 	Stefan is involved in quest: Water for Xiphin Zohos
- * 	Stefan is involved in quest: Meal For Groongo
- */
 
 public class HotelChefNPC implements ZoneConfigurator {
 
@@ -138,23 +139,20 @@ public class HotelChefNPC implements ZoneConfigurator {
 
 				addGoodbye("Goodbye! Have a nice stay in Fado!");
 
-                /** NOTE:
-                 *
-                 * See MealForGroongo quest for additional informations
-                 * src/games/stendhal/server/maps/quests/MealForGroongo.java
-                 *
-                 * All trigger words giving hints about ingredients needed during MealForGroongo quest
-                 * Some of the ingredients are 'many words'.
-                 *     (bunch of)          habanero pepper/peppers?
-                 *     (bunch of)          pinto beans
-                 *     (bottle/bottles of) olive oil,
-                 *     (flask/flasks of)   vinegar,
-                 */
 
+                // All trigger words giving hints about ingredients needed during MealForGroongo quest
                 /** NOTE
-				 * Ingredients for preparing main dish for the troublesome customer
-                 * All ingredients for main dish should be trigger words
-                 */
+                  *
+                  * Ingredients for preparing main dish for MealForGroongo
+                  *
+                  * See MealForGroongo quest for additional informations
+                  * src/games/stendhal/server/maps/quests/MealForGroongo.java
+                  *
+                  * Some of the ingredients are 'many words'
+                  *     habanero pepper
+                  *     olive oil
+                  *     pinto beans
+                  */
 				//farm areas, easy to find
                 addReply(
                     Arrays.asList(
