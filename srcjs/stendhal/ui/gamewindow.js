@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2017 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -255,7 +255,6 @@ stendhal.ui.gamewindow = {
 			entity = null;
 			e.target.removeEventListener("mouseup", onMouseUp);
 			e.target.removeEventListener("mousemove", onDrag);
-			document.getElementById("chatinput").focus();
 		}
 
 		return _onMouseDown;

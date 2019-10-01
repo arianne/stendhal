@@ -171,6 +171,5 @@ stendhal.ui.minimap = {
 			};
 			marauroa.clientFramework.sendAction(action);
 		}
-		document.getElementById("chatinput").focus();
 	}
 };
