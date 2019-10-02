@@ -1,6 +1,10 @@
 Changelog
 ---------
 ---------
+1.32
+*graphics*
+- New corpses for cobras
+
 1.31
 *world*
 - added Deniran interior maps:
@@ -36,7 +40,7 @@ Changelog
   - pinto beans
   - tripe
 - Sue now sells pinto beans & habanero pepper
-  
+
 *graphics*
 - new graphics: potions, cauldron icon, magic cloak, sand edges...
 - reworked NPC sprites:
