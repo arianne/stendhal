@@ -31,7 +31,7 @@ rodent_small.png       rg1024, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA
 shark_2x2.png          soniccuz; ???; ???
 small_animal.png       Groundhug McHampster (h4mt4r0); ???; Stendhal
 small_boneless.png     Groundhug McHampster (h4mt4r0); ???; Stendhal
-small_winged.png       ???; ???; ???
+small_winged.png       ???; ???; ???; (Note: committed by Bluelads4)
 snake*                 Jordan Irwin (AntumDeluge); CC0; https://www.wpclipart.com/animals/snake/snakes_3/Snake_skeleton.png.html
 spiderweb*             j4p4n; CC0; https://openclipart.org/detail/274095
 tail_rodent*           ???; CC0; http://www.clker.com/clipart-185713.html
