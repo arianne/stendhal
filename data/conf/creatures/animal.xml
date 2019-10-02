@@ -1590,7 +1590,7 @@
     <level value="96"/>
     <experience value="9630"/>
     <respawn value="3900"/>
-    <corpse name="snake_2x2" harmless="bag_2x2" width="2" height="2" />
+    <corpse name="snake_2x2" harmless="snake_2x2-safe" width="2" height="2" />
     <drops>
     </drops>
     <equips>
@@ -1620,7 +1620,7 @@
     <level value="120"/>
     <experience value="18850"/>
     <respawn value="5400"/>
-    <corpse name="snake_3x2" harmless="bag_2x2" width="3" height="2"/>
+    <corpse name="snake_3x2" harmless="snake_3x2-safe" width="3" height="2"/>
     <drops>
       <item value="disease poison" quantity="[1,1]" probability="5.0"/>
     </drops>
