@@ -111,6 +111,9 @@ stendhal.main = {
 	 * registers global browser event handlers.
 	 */
 	registerBrowserEventHandlers: function() {
+		document.addEventListener("keydown", stendhal.ui.keyhandler.onKeyDown);
+		document.addEventListener("keyup", stendhal.ui.keyhandler.onKeyUp);
+
 		var gamewindow = document.getElementById("gamewindow");
 		gamewindow.setAttribute("draggable", true);
 		gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
@@ -118,8 +121,6 @@ stendhal.main = {
 		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
 		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
-		document.addEventListener("keydown", stendhal.ui.gamewindow.onKeyDown);
-		document.addEventListener("keyup", stendhal.ui.gamewindow.onKeyUp);
 
 		var minimap = document.getElementById("minimap");
 		minimap.addEventListener("click", stendhal.ui.minimap.onClick);

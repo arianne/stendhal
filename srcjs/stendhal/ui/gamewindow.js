@@ -23,7 +23,6 @@ stendhal.ui.gamewindow = {
 	offsetX: 0,
 	offsetY: 0,
 	timeStamp: Date.now(),
-	pressedKeys: {},
 	textSprites: [],
 
 	draw: function() {
@@ -320,53 +319,6 @@ stendhal.ui.gamewindow = {
 
 	onContentMenu: function(e) {
 		e.preventDefault();
-	},
-
-
-	onKeyDown: function(e) {
-		var event = e;
-		if (!event) {
-			event = window.event;
-		}
-		var code = stendhal.ui.html.extractKeyCode(event);
-
-		// if this is a repeated event, stop further processing
-		if (stendhal.ui.gamewindow.pressedKeys[code]) {
-			return;
-		}
-		stendhal.ui.gamewindow.pressedKeys[code] = true;
-
-		// Face and Movement
-		var type = "move";
-		if (event.shiftKey) {
-			type = "face";
-		}
-		if (code >= 37 && code <= 40) {
-			var dir = code - 37;
-			if (dir === 0) {
-				dir = 4;
-			}
-			var action = {"type": type, "dir": ""+dir};
-			marauroa.clientFramework.sendAction(action);
-		}
-	},
-
-	onKeyUp: function(e) {
-		var event = e
-		if (!event) {
-			event = window.event;
-		}
-		var code = stendhal.ui.html.extractKeyCode(event);
-		delete stendhal.ui.gamewindow.pressedKeys[code];
-
-		// Movement
-		if (code >= 37 && code <= 40) {
-			var dir = code - 37;
-			if (dir === 0) {
-				dir = 4;
-			}
-			var action = {"type": "stop"};
-			marauroa.clientFramework.sendAction(action);
-		}
 	}
+
 };
