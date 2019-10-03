@@ -20,8 +20,22 @@ stendhal.ui = stendhal.ui || {};
  * handling of key presses and releases
  */
 stendhal.ui.keyhandler = {
-	pressedKeys: {},
+	pressedKeys: [],
 
+	extractMoveOrFaceActionFromEvent: function(event) {
+		if (event.shiftKey) {
+			return "face";
+		}
+		return "move";
+	},
+
+	extractDirectionFromKeyCode: function(code) {
+		var dir = code - 37;
+		if (dir === 0) {
+			dir = 4;
+		}
+		return dir;
+	},
 
 
 	onKeyDown: function(e) {
@@ -31,22 +45,15 @@ stendhal.ui.keyhandler = {
 		}
 		var code = stendhal.ui.html.extractKeyCode(event);
 
-		// if this is a repeated event, stop further processing
-		if (stendhal.ui.keyhandler.pressedKeys[code]) {
-			return;
-		}
-		stendhal.ui.keyhandler.pressedKeys[code] = true;
-
-		// Face and Movement
-		var type = "move";
-		if (event.shiftKey) {
-			type = "face";
-		}
 		if (code >= 37 && code <= 40) {
-			var dir = code - 37;
-			if (dir === 0) {
-				dir = 4;
+			// if this is a repeated event, stop further processing
+			if (stendhal.ui.keyhandler.pressedKeys.indexOf(code) > -1) {
+				return;
 			}
+			stendhal.ui.keyhandler.pressedKeys.push(code);
+	
+			var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
+			var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
 			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
 		}
@@ -58,16 +65,24 @@ stendhal.ui.keyhandler = {
 			event = window.event;
 		}
 		var code = stendhal.ui.html.extractKeyCode(event);
-		delete stendhal.ui.keyhandler.pressedKeys[code];
 
-		// Movement
 		if (code >= 37 && code <= 40) {
-			var dir = code - 37;
-			if (dir === 0) {
-				dir = 4;
+			var code = stendhal.ui.html.extractKeyCode(event);
+			var i = stendhal.ui.keyhandler.pressedKeys.indexOf(code);
+			if (i > -1) {
+				stendhal.ui.keyhandler.pressedKeys.splice(i, 1);
 			}
+
 			var action = {"type": "stop"};
 			marauroa.clientFramework.sendAction(action);
+
+			if (stendhal.ui.keyhandler.pressedKeys.length > 0) {
+				code = stendhal.ui.keyhandler.pressedKeys[0];
+				var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
+				var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
+				var action = {"type": type, "dir": ""+dir};
+				marauroa.clientFramework.sendAction(action);
+			}
 		}
 	}
 }
