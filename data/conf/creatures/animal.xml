@@ -263,6 +263,8 @@
       <says>
         <noise state="idle follow fight" value="cluck cluck cluck"/>
         <noise state="idle follow fight" value="cluck cluck"/>
+        <sound value="chicken-01"/>
+        <sound value="chicken-02"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -325,6 +327,8 @@
       <says>
         <noise state="idle follow fight" value="peep peep"/>
         <noise state="idle follow fight" value="peep peep peep"/>
+        <sound value="chicken-01"/>
+        <sound value="chicken-02"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>

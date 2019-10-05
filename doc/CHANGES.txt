@@ -1,6 +1,8 @@
 Changelog
 ---------
 ---------
+
+
 1.32
 *graphics*
 - New corpses for cobras
@@ -9,6 +11,8 @@ Changelog
 - New melee/attack sound effects
 - Added enemy sound effects:
   - bear & black bear
+  - chicken & mother hen
+
 
 1.31
 *world*
