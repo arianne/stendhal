@@ -414,7 +414,7 @@ public class StendhalQuestSystem {
 				return questInfo.getDescription();
 			}
 		}
-		return null;
+		return "";
 	}
 
 	/**
