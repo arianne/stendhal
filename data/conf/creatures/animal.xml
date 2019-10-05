@@ -1098,6 +1098,7 @@
         <noise state="idle follow fight" value="Roar!"/>
         <sound value="bear-01"/>
         <sound value="bear-02"/>
+        <sound value="bear-03"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1287,6 +1288,7 @@
         <noise state="idle follow fight" value="ROOOOAAAAR!"/>
         <sound value="bear-01"/>
         <sound value="bear-02"/>
+        <sound value="bear-03"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
