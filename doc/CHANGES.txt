@@ -5,6 +5,9 @@ Changelog
 *graphics*
 - New corpses for cobras
 
+*audio*
+- New melee/attack sound effects
+
 1.31
 *world*
 - added Deniran interior maps:
