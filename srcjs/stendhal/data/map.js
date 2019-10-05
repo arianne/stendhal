@@ -142,6 +142,33 @@ stendhal.data.map = {
 		this.httpRequest.open('GET', url, true);
 		this.httpRequest.send(null);
 	},
+	
+	onTransfer: function(content) {
+		// tilesets, 0_floor, 1_terrain, 2_object, 3_roof, 4_roof_add,	blend_ground, blend_roof, protection, collision, data_map
+		stendhal.data.map.decodeMapLayer(content, "0_floor");
+		stendhal.data.map.decodeMapLayer(content, "1_terrain");
+		stendhal.data.map.decodeMapLayer(content, "2_object");
+		stendhal.data.map.decodeMapLayer(content, "3_roof");
+		stendhal.data.map.decodeMapLayer(content, "4_roof_add");
+		/*
+		for (var i in items) {
+			console.log(items[i]["name"], items[i]["data"]);
+			
+
+		}
+*/
+	},
+
+	decodeMapLayer: function(content, name) {
+		var layerData = content[name];
+		var data = {};
+		var deserializer = marauroa.Deserializer.fromDeflatedBase64(layerData);
+		data["name"] = deserializer.readString();
+		data["width"] = deserializer.readInt();
+		data["height"] = deserializer.readInt();
+		data["raw"] = deserializer.readByteArray();
+		console.log(data);
+	},
 
 
 	/**
@@ -228,6 +255,7 @@ stendhal.data.map = {
 				+ (data.charCodeAt(i + 3) << 24);
 			layer.push(tileId);
 		}
+		console.log(name, layer);
 		this.layerNames.push(name);
 		this.layers.push(layer);
 	},

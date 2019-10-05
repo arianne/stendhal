@@ -78,19 +78,22 @@ stendhal.main = {
 				if (typeof(items[i]["name"]) == "undefined") {
 					continue;
 				}
-				if (items[i]["name"].match(".collision$")
-					|| items[i]["name"].match(".data_map$")) {
-					items[i]["ack"] = true;
-				}
+				items[i]["ack"] = true;
 			}
 		};
 
 		marauroa.clientFramework.onTransfer = function(items) {
+			var data = {};
 			for (var i in items) {
-				if (items[i]["name"].match(".data_map$")) {
+				var name = items[i]["name"];
+				name = name.substring(name.indexOf(".") + 1);
+				console.log(name);
+				data[name] = items[i]["data"];
+				if (name === "data_map") {
 					stendhal.main.onDataMap(items[i]["data"]);
 				}
 			}
+			stendhal.data.map.onTransfer(data);
 		};
 
 		// update user interface on perceptions
