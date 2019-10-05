@@ -100,6 +100,7 @@ scream-fem-2.ogg          NeoPhyTe; public domain: http://soundbible.com/1627-Fe
 shake-leaves-1.*          vibe_crc; CC0; http://www.freesound.org/people/vibe_crc/sounds/59315/
 sheep-5.*                 cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
 sleep-1.ogg               Storyteller; GPL
+snake-[01-05].*           7h3_lark; CC0; https://freesound.org/people/7h3_lark/sounds/268580/
 snake-cobra-1.ogg         unnamed; public domain; https://archive.org/details/unknowncobracobrabitewmv
 snake-cobra-2.ogg         unnamed; public domain; https://archive.org/details/unknowncobracobrabitewmv
 snap-branch-1.*           mrjingles; CC0; http://www.freesound.org/people/mrjingles/sounds/17184/

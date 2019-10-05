@@ -12,6 +12,7 @@ Changelog
 - Added enemy sound effects:
   - bear & black bear
   - chicken & mother hen
+  - snake & grass snake
 
 
 1.31

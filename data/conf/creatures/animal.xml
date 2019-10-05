@@ -1510,7 +1510,11 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="sssSSSsssss..."/>
-        <sound value="snake-cobra-2"/>
+        <sound value="snake-01"/>
+        <sound value="snake-02"/>
+        <sound value="snake-03"/>
+        <sound value="snake-04"/>
+        <sound value="snake-05"/>
       </says>
       <profile name="poisonous" params="5,poison"/>
       <profile name="animal"/>
@@ -1542,7 +1546,11 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="SsSssSsssssss!"/>
-        <sound value="snake-cobra-2"/>
+        <sound value="snake-01"/>
+        <sound value="snake-02"/>
+        <sound value="snake-03"/>
+        <sound value="snake-04"/>
+        <sound value="snake-05"/>
       </says>
       <profile name="poisonous" params="5,poison"/>
       <profile name="animal"/>
