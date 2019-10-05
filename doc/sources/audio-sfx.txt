@@ -12,6 +12,7 @@ baby_croc-*               Félix Blume; CC0; https://freesound.org/people/felix.
 bat-1.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
 bat-2.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
 bat-3.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
+bear-*                    U.S. Fish & Wildlife Service; public domain: https://www.fws.gov/video/sound.htm
 bee-1.ogg                 nps.gov; public domain; http://soundbible.com/971-Bee.html
 bell-1.ogg                Storyteller; GPL
 bird-pigeon-1.*           winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/

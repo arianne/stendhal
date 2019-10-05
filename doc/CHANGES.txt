@@ -7,6 +7,8 @@ Changelog
 
 *audio*
 - New melee/attack sound effects
+- Added enemy sound effects:
+  - bear & black bear
 
 1.31
 *world*
