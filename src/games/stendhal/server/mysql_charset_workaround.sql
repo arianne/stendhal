@@ -145,8 +145,8 @@ change message message TEXT character set utf8mb4 collate utf8mb4_unicode_ci,
 change deleted deleted CHAR (1) character set utf8mb4 collate utf8mb4_unicode_ci DEFAULT 'N';
 
 alter table buddy character set utf8mb4,
-change buddy buddy varchar(64) character set utf8mb4,
-change charname charname varchar(64) character set utf8mb4,
+change buddy buddy varchar(64) character set utf8mb4 collate utf8mb4_unicode_ci,
+change charname charname varchar(64) character set utf8mb4 collate utf8mb4_unicode_ci,
 change relationtype relationtype varchar(64) character set utf8mb4 default 'buddy';
 
 alter table openid_associations character set utf8mb4 collate utf8mb4_unicode_ci,
