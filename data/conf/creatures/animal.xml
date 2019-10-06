@@ -737,6 +737,7 @@
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
         <sound value="wolf-howl-01"/>
         <sound value="wolf-howl-02"/>
+        <sound value="wolf-growl-01"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1070,6 +1071,7 @@
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
         <sound value="wolf-howl-01"/>
         <sound value="wolf-howl-02"/>
+        <sound value="wolf-growl-01"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
