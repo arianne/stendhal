@@ -67,7 +67,7 @@ stendhal.ui.gamewindow = {
 
 		for (let y = tileOffsetY; y < yMax; y++) {
 			for (let x = tileOffsetX; x < xMax; x++) {
-				let gid = layer[y * stendhal.data.map.numberOfXTiles + x];
+				let gid = layer[y * stendhal.data.map.zoneSizeX + x];
 				const flip = gid & 0xE0000000;
 				gid &= 0x1FFFFFFF;
 

@@ -103,8 +103,6 @@ stendhal.data.map = {
 	layerNames : -1,
 	layers : -1,
 	firstgids : -1,
-	numberOfXTiles : -1,
-	numberOfYTiles : -1,
 
 	drawingError : false,
 	targetTileWidth : 0,
@@ -121,179 +119,92 @@ stendhal.data.map = {
 			return this.gidsindex[this.gidsindex.length - 1] + 1;
 		}
 	},
-
-	httpRequest: -1,
-	requestMap: function(url) {
-		if (window.XMLHttpRequest) {
-			this.httpRequest = new XMLHttpRequest();
-		} else if (window.ActiveXObject) {
-			try {
-				this.httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch (e) {
-				this.httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-		}
-		if (this.httpRequest.overrideMimeType) {
-			this.httpRequest.overrideMimeType('text/xml');
-		}
-		this.httpRequest.onreadystatechange = function() {
-			stendhal.data.map.parseMap.apply(stendhal.data.map, arguments);
-		};
-		this.httpRequest.open('GET', url, true);
-		this.httpRequest.send(null);
-	},
 	
 	onTransfer: function(content) {
+		stendhal.data.map.firstgids = [];
+		stendhal.data.map.layers = [];
+		stendhal.data.map.layerNames = [];
+		
+		var body = document.getElementById("body");
+		body.style.cursor = "wait";
+		console.log("load map");
+
+
 		// tilesets, 0_floor, 1_terrain, 2_object, 3_roof, 4_roof_add,	blend_ground, blend_roof, protection, collision, data_map
+		stendhal.data.map.decodeTileset(content, "tilesets");
 		stendhal.data.map.decodeMapLayer(content, "0_floor");
 		stendhal.data.map.decodeMapLayer(content, "1_terrain");
 		stendhal.data.map.decodeMapLayer(content, "2_object");
 		stendhal.data.map.decodeMapLayer(content, "3_roof");
 		stendhal.data.map.decodeMapLayer(content, "4_roof_add");
-		/*
-		for (var i in items) {
-			console.log(items[i]["name"], items[i]["data"]);
-			
-
-		}
-*/
+		stendhal.data.map.protection = stendhal.data.map.decodeMapLayer(content, "protection");
+		stendhal.data.map.collisionData = stendhal.data.map.decodeMapLayer(content, "collision");
+		
 	},
 
-	decodeMapLayer: function(content, name) {
+	decodeTileset: function(content, name) {
 		var layerData = content[name];
-		var data = {};
-		var deserializer = marauroa.Deserializer.fromDeflatedBase64(layerData);
-		data["name"] = deserializer.readString();
-		data["width"] = deserializer.readInt();
-		data["height"] = deserializer.readInt();
-		data["raw"] = deserializer.readByteArray();
-		console.log(data);
-	},
+		var deserializer = marauroa.Deserializer.fromBase64(layerData);
+		var amount = deserializer.readInt();
 
+		var images = [];
+		for (var i = 0; i < amount; i++) {
+			var name = deserializer.readString();
+			var source = deserializer.readString();
+			var firstgid = deserializer.readInt()
 
-	/**
-	 * parses the map file, loads the tileset and resizes the canvas.
-	 */
-	parseMap: function() {
-		if (this.httpRequest.readyState != 4) {
-			return;
+			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
+			images.push(filename);
+			stendhal.data.map.firstgids.push(firstgid);
 		}
-		if (this.httpRequest.status != 200) {
-			console.error("Error: Could not find map file.");
-			return;
-		}
-		var xmldoc = this.httpRequest.responseXML;
-		var root = xmldoc.getElementsByTagName('map').item(0);
-		var images = new Array;
-		this.firstgids = new Array;
-		this.layers = new Array;
-		this.layerNames = new Array;
 
-		this.tileWidth = +root.getAttribute("tilewidth");
-		this.tileHeight = +root.getAttribute("tileheight");
-		this.zoneSizeX = +root.getAttribute("width");
-		this.zoneSizeY = +root.getAttribute("height");
-
-		for (var iNode = 0; iNode < root.childNodes.length; iNode++) {
-			var node = root.childNodes.item(iNode);
-			if (node.nodeName == "tileset") {
-				var filename = this.getTilesetFilename(node);
-				images.push(filename);
-				this.firstgids.push(node.getAttribute("firstgid"));
-			} else if (node.nodeName == "layer") {
-				var layerName = node.getAttribute("name");
-				var data = node.getElementsByTagName("data")[0];
-				var mapData = data.firstChild.nodeValue.trim();
-				var decoder = new JXG.Util.Unzip(JXG.Util.Base64.decodeAsArray(mapData));
-				var data = decoder.unzip()[0][0];
-				this.readLayer(layerName, data);
-				if (layerName == "collision") {
-					this.collisionData = this.layers[this.layers.length - 1];
-				} else if (layerName === "protection") {
-					this.protection = this.layers[this.layers.length - 1];
-				}
+		// create a lookup table from gid to tileset index for a significant performance reasons
+		stendhal.data.map.gidsindex = [];
+		var pos, lastStart = 0, i;
+		for (pos = 0; pos < parseInt(stendhal.data.map.firstgids.length, 10); pos++) {
+			for (i=lastStart; i<stendhal.data.map.firstgids[pos]; i++) {
+				stendhal.data.map.gidsindex.push(pos - 1);
 			}
+			lastStart = stendhal.data.map.firstgids[pos];
 		}
+
 		new ImagePreloader(images, function() {
 			var body = document.getElementById("body");
 			body.style.cursor = "auto";
 		});
-
-		this.numberOfXTiles = root.getAttribute("width");
-		this.numberOfYTiles = root.getAttribute("height");
-
-		// create a lookup table from gid to tileset index for a significant performance reasons
-		this.gidsindex = new Array;
-		var pos, lastStart = 0, i;
-		for (pos = 0; pos < parseInt(this.firstgids.length, 10); pos++) {
-			for (i=lastStart; i<this.firstgids[pos]; i++) {
-				this.gidsindex.push(pos - 1);
-			}
-			lastStart = parseInt(this.firstgids[pos], 10);
-		}
 	},
 
-	getTilesetFilename: function(node) {
-		var image = node.getElementsByTagName("image");
-		var name = node.getAttribute("name");
-		if (image.length > 0) {
-			name = image[0].getAttribute("source");
+	decodeMapLayer: function(content, name) {
+		var layerData = content[name];
+		if (!layerData) {
+			return;
 		}
-		return "/" + name.replace(/\.\.\/\.\.\//g, "");
-	},
-
-	/**
-	 * reads the tile information for a layer
-	 */
-	readLayer: function(name, dataString) {
-		var layer = new Array;
-		var data = dataString;
-		for (var i = 0; i < data.length - 3; i=i+4) {
-			var tileId = (data.charCodeAt(i) >>> 0)
-				+ (data.charCodeAt(i + 1) << 8)
-				+ (data.charCodeAt(i + 2) << 16)
-				+ (data.charCodeAt(i + 3) << 24);
+		var deserializer = marauroa.Deserializer.fromDeflatedBase64(layerData);
+		deserializer.readString(); // zone name
+		stendhal.data.map.zoneSizeX = deserializer.readInt();
+		stendhal.data.map.zoneSizeY = deserializer.readInt();
+		var layerRaw = deserializer.readByteArray();
+		
+		var layer = [];
+		for (var i = 0; i < stendhal.data.map.zoneSizeX * stendhal.data.map.zoneSizeY * 4 - 3; i=i+4) {
+			var tileId = (layerRaw.getUint8(i) >>> 0)
+				+ (layerRaw.getUint8(i + 1) << 8)
+				+ (layerRaw.getUint8(i + 2) << 16)
+				+ (layerRaw.getUint8(i + 3) << 24);
 			layer.push(tileId);
 		}
-		console.log(name, layer);
-		this.layerNames.push(name);
-		this.layers.push(layer);
-	},
 
-	load: function(location, filenameOverride) {
-		var filename = "";
-		if (filenameOverride) {
-			filename = "/tiled/" + escape(filenameOverride);
-		} else {
-			var temp = /([^_]*)_([^_]*)_(.*)/.exec(location);
-			if (temp) {
-				if (temp[1] == "int") {
-					temp[1] = "interiors";
-				} else {
-					temp[1] = "Level " + temp[1];
-				}
-				filename = "/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx";
-			} else {
-				var temp = /[^_]*_(.*)/.exec(location);
-				filename = "/tiled/interiors/abstract/" + escape(temp[1]) + ".tmx";
-			}
-		}
+		stendhal.data.map.layerNames.push(name);
+		stendhal.data.map.layers.push(layer);
 
-		if (this.lastMapFilename != filename) {
-			this.lastMapFilename = filename;
-			var body = document.getElementById("body");
-			body.style.cursor = "wait";
-			console.log("load map", location, filename);
-
-			this.requestMap(filename);
-		}
+		return layer;
 	},
 
 	collision: function(x, y) {
-		return this.collisionData[y * stendhal.data.map.numberOfXTiles + x] != 0;
+		return this.collisionData[y * stendhal.data.map.zoneSizeX + x] != 0;
 	},
 
 	isProtected: function(x, y) {
-		return this.protection[y * stendhal.data.map.numberOfXTiles + x] != 0;
+		return this.protection[y * stendhal.data.map.zoneSizeX + x] != 0;
 	}
 };

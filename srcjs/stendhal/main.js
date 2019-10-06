@@ -104,7 +104,6 @@ stendhal.main = {
 				stendhal.ui.buddyList.update();
 				stendhal.ui.equip.update();
 				stendhal.ui.stats.update();
-				stendhal.data.map.load(marauroa.currentZoneName, stendhal.main.zoneFile);
 			}
 		}
 	},
