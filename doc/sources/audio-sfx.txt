@@ -92,6 +92,7 @@ pick-metallic-1.*         qubodup; CC0; http://freesound.org/people/qubodup/soun
 pig-3.ogg                 unnamed; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/pig/
 pout-1.ogg                Jordan Irwin (AntumDeluge); CC0; Stendhal
 puppy-bark-1.*            moffet; CC0; http://www.freesound.org/people/moffet/sounds/72579/
+rat-squeak-01.*           toefur; CC0; https://freesound.org/people/toefur/sounds/288941/
 rattlesnake-1.*           fws.gov; public domain; http://soundbible.com/237-Rattlesnake-Rattle.html
 roar-dragon-1.*           JoelAudio; CC0; http://freesound.org/people/JoelAudio/sounds/85568/
 roar-dragon-2.*           frasbr; CC0; http://freesound.org/people/frasbr/sounds/145729/
