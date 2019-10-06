@@ -98,6 +98,7 @@ roar-dragon-1.*           JoelAudio; CC0; http://freesound.org/people/JoelAudio/
 roar-dragon-2.*           frasbr; CC0; http://freesound.org/people/frasbr/sounds/145729/
 roar-large-1.*            ibm5155; CC0; http://freesound.org/people/ibm5155/sounds/174913/
 robot-1.ogg               Jordan Irwin (AntumDeluge); BSD; Stendhal
+robot-3.ogg               Loge the 60th; Public Domain; http://soundbible.com/1758-Door-Entry-Notification.html
 rocks-1.*                 ALLANZ10D; CC0; http://freesound.org/people/ALLANZ10D/sounds/155934/
 scrape-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
 scrape-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
