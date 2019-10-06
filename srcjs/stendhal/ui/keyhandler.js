@@ -57,8 +57,12 @@ stendhal.ui.keyhandler = {
 			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
 		} else {
-			if (document.activeElement.localName !== "input") {
-				document.getElementById("chatinput").focus();
+			// move focus to chat-input on keydown
+			// but don't do that for Ctrl+C, etc.
+			if (!event.altKey && !event.metaKey && !event.ctrlKey && event.key !== "Control") {
+				if (document.activeElement.localName !== "input") {
+					document.getElementById("chatinput").focus();
+				}
 			}
 		}
 	},
