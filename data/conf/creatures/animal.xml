@@ -917,6 +917,7 @@
         <noise state="idle follow fight" value="neigghhh neigghhh"/>
         <sound value="horse-whinny-01"/>
         <sound value="horse-whinny-02"/>
+        <sound value="horse-snort-01"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -1043,6 +1044,7 @@
         <noise state="idle follow fight" value="naayyy"/>
         <sound value="horse-whinny-01"/>
         <sound value="horse-whinny-02"/>
+        <sound value="horse-snort-01"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>

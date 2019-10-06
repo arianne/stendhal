@@ -57,6 +57,7 @@ grunt-large-2.*           SmallQuadruped; CC0; http://www.freesound.org/people/S
 guitar-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16326
 ho-ho-ho-1.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110641/
 ho-ho-ho-2.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110642/
+horse-snort-01.*          Andune; CC BY 3.0; https://freesound.org/people/Andune/sounds/61605/
 horse-whinny-01.*         foxen10; CC0; https://freesound.org/people/foxen10/sounds/149024/
 horse-whinny-02.*         InspectorJ; CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/419231/
 keys-1.ogg                Storyteller; GPL
