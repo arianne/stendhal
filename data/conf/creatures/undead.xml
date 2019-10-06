@@ -42,20 +42,17 @@
     <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
     <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>
     <attributes>
-      <atk value="320"/>
-      <def value="110"/>
-      <hp value="110"/>
+      <atk value="100"/>
+      <def value="100"/>
+      <hp value="200"/>
       <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
     <level value="45"/>
-    <experience value="1250"/>
+    <experience value="2000"/>
 
     <!-- respawn time: once in 6 weeks -->
     <respawn value="12096000"/>
-
-    <!-- respawn time: test -->
-    <!-- <respawn value="600"/> -->
 
     <corpse name="animal"/>
     <drops>
@@ -77,7 +74,7 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="lifesteal" params="0.05"/>
-      <profile name="rare"/>
+      <!--<profile name="rare"/>-->
     </ai>
   </creature>
 
