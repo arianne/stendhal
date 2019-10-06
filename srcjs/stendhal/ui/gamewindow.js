@@ -37,6 +37,8 @@ stendhal.ui.gamewindow = {
 			this.ctx = canvas.getContext("2d");
 			this.ctx.globalAlpha = 1.0;
 			this.adjustView(canvas);
+			this.ctx.fillStyle = "black";
+			this.ctx.fillRect(0, 0, 10000, 10000);
 
 			var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
 			var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);

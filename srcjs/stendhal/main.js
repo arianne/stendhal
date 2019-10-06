@@ -23,7 +23,6 @@ stendhal.main = {
 		var deserializer = marauroa.Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
 		document.getElementById("zoneinfo").textContent = zoneinfo["readable_name"];
-		console.log("zoneinfo", zoneinfo);
 		stendhal.main.zoneFile = zoneinfo["file"];
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 	},
@@ -87,7 +86,6 @@ stendhal.main = {
 			for (var i in items) {
 				var name = items[i]["name"];
 				name = name.substring(name.indexOf(".") + 1);
-				console.log(name);
 				data[name] = items[i]["data"];
 				if (name === "data_map") {
 					stendhal.main.onDataMap(items[i]["data"]);
