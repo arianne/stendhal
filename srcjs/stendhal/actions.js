@@ -251,6 +251,36 @@ stendhal.slashActionRepository = {
 		getMaxParams: 0
 	},
 
+	"progressstatus": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": type
+			}
+
+			if (remainder.length > 0) {
+				if (remainder.indexOf("Open Quests") > -1) {
+					action["progress_type"] = "Open Quests";
+					remainder = remainder.substring(12);
+				} else if (remainder.indexOf("Completed Quests") > -1) {
+					action["progress_type"] = "Completed Quests";
+					remainder = remainder.substring(17);
+				} else if (remainder.indexOf("Production") > -1) {
+					action["progress_type"] = "Production";
+					remainder = remainder.substring(11);
+				} else {
+					
+				}
+				if (remainder) {
+					action["item"] = remainder;
+				}
+			}
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"summon": {
 		execute: function(type, params, remainder) {
 			var action = {

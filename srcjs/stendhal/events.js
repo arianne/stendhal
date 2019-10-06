@@ -99,7 +99,24 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 
 marauroa.rpeventFactory["progress_status_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		// TODO: new ProgressStatusEvent();
+		var progressType = "";
+		if (this["progress_type"]) {
+			progressType = this["progress_type"] + " ";
+		}
+
+		var items = this["data"].substring(1, this["data"].length - 1).split(/\t/);
+		if (!this["item"]) {
+			stendhal.ui.chatLog.addLine("normal", "Please use one of these commands:");
+			for (var i = 0; i < items.length; i++) {
+				stendhal.ui.chatLog.addLine("normal", "   /progressstatus " + progressType + items[i]);
+			}
+		} else {
+			stendhal.ui.chatLog.addLine("normal", this["item"]);
+			stendhal.ui.chatLog.addLine("normal", this["description"]);
+			for (var i = 0; i < items.length; i++) {
+				stendhal.ui.chatLog.addLine("normal", "* " + items[i]);
+			}
+		} 
 	}
 });
 
