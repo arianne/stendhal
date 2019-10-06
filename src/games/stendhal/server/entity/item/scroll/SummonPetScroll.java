@@ -92,10 +92,13 @@ public class SummonPetScroll extends Scroll {
 			return false;
 		}
 
-		String type = getInfoString().replaceAll("_", " ");
+		
+		String type = getInfoString();
 		if (type == null) {
 			// default to cat, if no other type is specified
 			type = "cat";
+		} else {
+			type = type.replaceAll("_", " ");
 		}
 
 		// create it
