@@ -178,6 +178,7 @@ stendhal.ui.DropNumberDialog = function(action, x, y) {
 		this.popup.close();
 		stendhal.ui.globalpopup = null;
 	}
+	document.getElementById("dropnumberdialogvalue").focus();
 	stendhal.ui.globalpopup = this;
 }
 

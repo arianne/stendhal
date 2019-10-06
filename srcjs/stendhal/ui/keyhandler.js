@@ -56,6 +56,10 @@ stendhal.ui.keyhandler = {
 			var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
 			var action = {"type": type, "dir": ""+dir};
 			marauroa.clientFramework.sendAction(action);
+		} else {
+			if (document.activeElement.localName !== "input") {
+				document.getElementById("chatinput").focus();
+			}
 		}
 	},
 
