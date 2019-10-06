@@ -162,18 +162,19 @@ public class PassiveEntityRespawnPointFactory {
 			passiveEntityrespawnPoint
 					.setDescription("You see a place where a banana looks likely to fall.");
 			break;
-        /**
+        
 		case 5:
 			passiveEntityrespawnPoint = new VegetableGrower("grapes", "There are no grapes on this vine yet.");
 			passiveEntityrespawnPoint
 					.setDescription("You see a grape vine.");
 			break;
-           **/
+		/**
 		case 5:
-			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("grapes", 1200);
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("grapes", 120);
 			passiveEntityrespawnPoint
 					.setDescription("You see a grape vine.");
 			break;
+			**/
 		case 6:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("pear", 500);
 			passiveEntityrespawnPoint
