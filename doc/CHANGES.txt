@@ -13,6 +13,7 @@ Changelog
   - bear & black bear
   - chicken & mother hen
   - snake & grass snake
+  - wolf & big bad wolf
 
 
 1.31

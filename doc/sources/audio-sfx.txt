@@ -117,5 +117,6 @@ undead-5.*                ArriGD; CC0; http://www.freesound.org/people/ArriGD/so
 water-faucet-1.*          unnamed; public domain; http://www.pdsounds.org/sounds/faucet_water_into_sink
 wings-flap-large-1.*      dave.des; CC0; http://freesound.org/people/dave.des/sounds/127197/
 witch-cackle-1.ogg        Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81248
+wolf-howl-01.*            y89312; CC BY 3.0; https://freesound.org/people/y89312/sounds/139901/
 xylophone-1.*             Storyteller; GPL
 yay-1.ogg                 Katie Russell (kymara); GPL

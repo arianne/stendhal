@@ -735,6 +735,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
+        <sound value="wolf-howl-01"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1066,6 +1067,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
+        <sound value="wolf-howl-01"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
