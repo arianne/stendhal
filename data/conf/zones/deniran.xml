@@ -929,6 +929,10 @@
 			<destination zone="0_deniran_city_sw" ref="deniran_inn_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		
+		<portal x="14" y="9" ref="upstairs">
+      <destination zone="int_deniran_inn_1" ref="downstairs" />
+    </portal>
 
   </zone>
 
