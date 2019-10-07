@@ -1346,6 +1346,7 @@
         <sound value="rat-squeak-01"/>
         <sound value="rat-squeak-02"/>
         <sound value="rat-squeak-03"/>
+        <sound value="rat-angry-01"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
