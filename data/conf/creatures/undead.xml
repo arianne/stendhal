@@ -31,6 +31,7 @@
         <noise state="idle follow fight" value="SHAAAAAAA!!"/>
         <sound value="rat-squeak-01"/>
         <sound value="rat-squeak-02"/>
+        <sound value="rat-squeak-03"/>
       </says>
       <profile name="poisonous" params="5,deadly poison"/>
       <profile name="brave"/>
