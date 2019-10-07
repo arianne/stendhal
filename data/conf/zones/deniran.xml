@@ -931,10 +931,14 @@
 		</portal>
 		
 		<portal x="14" y="9" ref="upstairs">
-      <destination zone="int_deniran_inn_1" ref="downstairs" />
-    </portal>
+                        <destination zone="int_deniran_inn_1" ref="downstairs" />
+                </portal>
+	
+	        <portal x="14" y="9" ref="upstairs">
+                        <destination zone="int_deniran_inn" ref="downstairs" />
+                </portal>
 
-  </zone>
+       </zone>
 
 
 </zones>
