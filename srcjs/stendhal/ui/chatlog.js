@@ -46,6 +46,9 @@ stendhal.ui.chatLog = {
 	},
 
 	formatLogEntry: function(message) {
+		if (!message) {
+			return "";
+		}
 		var res = "";
 		var delims = [" ", ",", ".", "!", "?", ":", ";"];
 		var length = message.length;

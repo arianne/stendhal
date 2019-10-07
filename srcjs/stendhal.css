@@ -184,3 +184,18 @@ span.logi {text-decoration: underline}
 	align-items: center;
 	flex-direction: column;
 }
+
+#travellogitems {
+	float: left;
+	width: 15em;
+	margin-right: 2em;
+}
+
+#travellogdetails {
+	color: #000;
+	width: 40em;
+}
+
+#travellogdescription {
+	 font-style: italic
+}
