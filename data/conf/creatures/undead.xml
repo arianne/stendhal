@@ -42,17 +42,21 @@
     <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
     <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>
     <attributes>
-      <atk value="100"/>
-      <def value="100"/>
-      <hp value="200"/>
+      <atk value="120"/>
+      <def value="120"/>
+      <hp value="360"/>
       <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
-    <level value="45"/>
-    <experience value="2000"/>
+    <level value="46"/>
+    <experience value="1800"/>
 
-    <!-- respawn time: once in 6 weeks -->
-    <respawn value="12096000"/>
+    <!-- terra day 86400 seconds -->
+    <!-- luna  day 28 terra days-->
+    <!-- average respawn time once every 1 luna day -->    
+    <respawn value="2368800"/>
+    <!-- average respawn time once every 5 luna days -->
+    <!-- <respawn value="12096000"/> -->
 
     <corpse name="animal"/>
     <drops>
