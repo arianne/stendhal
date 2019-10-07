@@ -30,6 +30,7 @@
         <noise state="idle follow fight" value="SHREEAK!!"/>
         <noise state="idle follow fight" value="SHAAAAAAA!!"/>
         <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
       </says>
       <profile name="poisonous" params="5,deadly poison"/>
       <profile name="brave"/>
@@ -53,7 +54,7 @@
 
     <!-- terra day 86400 seconds -->
     <!-- luna  day 28 terra days-->
-    <!-- average respawn time once every 1 luna day -->    
+    <!-- average respawn time once every 1 luna day -->
     <respawn value="2368800"/>
     <!-- average respawn time once every 5 luna days -->
     <!-- <respawn value="12096000"/> -->

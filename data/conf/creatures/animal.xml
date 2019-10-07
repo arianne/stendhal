@@ -557,6 +557,7 @@
       <says>
         <noise state="idle follow fight" value="Squeak! Squeak!"/>
         <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -619,6 +620,7 @@
     <ai>
       <says>
         <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -1241,6 +1243,7 @@
     <ai>
       <says>
         <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -1338,6 +1341,7 @@
     <ai>
       <says>
         <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
