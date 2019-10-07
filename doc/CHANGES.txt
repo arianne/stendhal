@@ -16,6 +16,7 @@ Changelog
   - wolf & big bad wolf
   - horse & white horse
   - rat, caverat, venomrat, razorrat, & zombie rat
+  - giantrat
 
 
 1.31
