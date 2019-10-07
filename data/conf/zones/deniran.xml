@@ -61,7 +61,7 @@
 		</attributes>
 
 	
-	<portal x="55" y="9" ref="deniran_inn_entrance">
+		<portal x="55" y="9" ref="deniran_inn_entrance">
 			<destination zone="int_deniran_inn" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
@@ -923,22 +923,24 @@
 	</zone>
 	
 
-<zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
+	<zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
 
 		<portal x="14" y="18" ref="entrance">
 			<destination zone="0_deniran_city_sw" ref="deniran_inn_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
 		
-		<portal x="14" y="9" ref="upstairs">
-                        <destination zone="int_deniran_inn_1" ref="downstairs" />
-                </portal>
+		<portal x="14" y="9" ref="downstairs">
+			<destination zone="int_deniran_inn_1" ref="upstairs" />
+		</portal>
+	</zone>
+
+	<zone name="int_deniran_inn_1" file="interiors/deniran/inn_1.tmx">
 	
-	        <portal x="14" y="9" ref="upstairs">
-                        <destination zone="int_deniran_inn" ref="downstairs" />
-                </portal>
+		<portal x="14" y="9" ref="upstairs">
+			<destination zone="int_deniran_inn" ref="downstairs" />
+		</portal>
 
-       </zone>
-
+	</zone>
 
 </zones>
