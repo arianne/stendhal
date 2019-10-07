@@ -48,6 +48,7 @@ elephant-1.*              vataaa; CC0; http://www.freesound.org/people/vataaa/so
 elephant-2.*              vataaa; CC0; http://www.freesound.org/people/vataaa/sounds/148873/
 fire-1.*                  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16327
 fishing-1.*               be_crc + j1987; CC0; http://www.freesound.org/people/vibe_crc/sounds/50623/, http://www.freesound.org/people/j1987/sounds/95564/
+giantrat-growl-01.*       Zabuhailo; CC0; https://freesound.org/people/Zabuhailo/sounds/146968/
 glass-break-2.*           martinimeniscus; CC0; http://www.freesound.org/people/martinimeniscus/sounds/164462/
 goat-1.*                  stephan; public domain; http://soundbible.com/1662-Farm.html
 goat-2.*                  stephan; public domain; http://soundbible.com/1632-On-The-Farm.html
