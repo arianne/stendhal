@@ -731,6 +731,9 @@ public abstract class RPEntity extends AudibleEntity {
 							+ " of damage from " + attacker.getTitle(),
 					NotificationType.NEGATIVE));
 		}
+
+		// play a sound to indicate successful hit
+		playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "attack");
 	}
 
 	/**

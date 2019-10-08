@@ -16,7 +16,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 public class Creature extends RPEntity {
@@ -100,12 +99,6 @@ public class Creature extends RPEntity {
 		} else {
 			metamorphosis = null;
 		}
-	}
-
-	@Override
-	public void onDamaged(Entity attacker, int damage) {
-		super.onDamaged(attacker, damage);
-		playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "attack");
 	}
 
 
