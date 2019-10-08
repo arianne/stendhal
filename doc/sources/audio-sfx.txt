@@ -53,6 +53,7 @@ giantrat-growl-01.*       Zabuhailo; CC0; https://freesound.org/people/Zabuhailo
 glass-break-2.*           martinimeniscus; CC0; http://www.freesound.org/people/martinimeniscus/sounds/164462/
 goat-1.*                  stephan; public domain; http://soundbible.com/1662-Farm.html
 goat-2.*                  stephan; public domain; http://soundbible.com/1632-On-The-Farm.html
+goblin-01.*               spookymodem; CC0; https://freesound.org/people/spookymodem/sounds/249813/
 goblin-burp-01.*          ohnobones; CC0; https://freesound.org/people/ohnobones/sounds/416968/
 growl-large-3.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
 grunt-large-1.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/

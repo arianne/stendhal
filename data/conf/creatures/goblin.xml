@@ -34,6 +34,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Umm! Tasty meat." />
+        <sound value="goblin-01" />
         <sound value="goblin-burp-01" />
       </says>
       <profile name="offensive"/>
@@ -72,6 +73,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Breakfast time!" />
+        <sound value="goblin-01" />
         <sound value="goblin-burp-01" />
       </says>
       <profile name="offensive"/>
@@ -111,6 +113,7 @@
     </equips>
     <ai>
       <says>
+        <sound value="goblin-01" />
         <sound value="goblin-burp-01" />
       </says>
       <profile name="offensive"/>
