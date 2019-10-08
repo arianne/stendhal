@@ -697,7 +697,7 @@
       <says>
         <noise state="idle follow fight" value="Judgement is coming!"/>
         <noise state="idle follow fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
-        <sound value="laugh-evil-01"/>
+        <sound value="laugh-evil-02"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
