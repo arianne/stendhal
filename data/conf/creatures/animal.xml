@@ -1392,6 +1392,7 @@
       <says>
         <sound value="rat-angry-02"/>
         <sound value="giantrat-growl-01"/>
+        <sound value="giantrat-growl-02"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
