@@ -86,7 +86,7 @@ stendhal.data = stendhal.data || {};
 
 stendhal.data.map = {
 
-	lastMapFilename : "",
+	currentZoneName: "",
 
 	offsetX : 0,
 	offsetY : 0,
@@ -120,7 +120,8 @@ stendhal.data.map = {
 		}
 	},
 	
-	onTransfer: function(content) {
+	onTransfer: function(zoneName, content) {
+		stendhal.data.map.currentZoneName = zoneName;
 		stendhal.data.map.firstgids = [];
 		stendhal.data.map.layers = [];
 		stendhal.data.map.layerNames = [];

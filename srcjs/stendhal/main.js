@@ -83,15 +83,17 @@ stendhal.main = {
 
 		marauroa.clientFramework.onTransfer = function(items) {
 			var data = {};
+			var zoneName = ""
 			for (var i in items) {
 				var name = items[i]["name"];
+				zoneName = name.substring(0, name.indexOf("."));
 				name = name.substring(name.indexOf(".") + 1);
 				data[name] = items[i]["data"];
 				if (name === "data_map") {
 					stendhal.main.onDataMap(items[i]["data"]);
 				}
 			}
-			stendhal.data.map.onTransfer(data);
+			stendhal.data.map.onTransfer(zoneName, data);
 		};
 
 		// update user interface on perceptions
