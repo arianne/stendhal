@@ -265,6 +265,9 @@
       <says>
         <noise state="idle follow fight" value="Hug?"/>
         <sound value="kobold-snort-01"/>
+        <sound value="kobold-groan-01"/>
+        <sound value="kobold-groan-02"/>
+        <sound value="kobold-groan-03"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
