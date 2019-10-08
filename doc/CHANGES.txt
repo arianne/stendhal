@@ -22,6 +22,7 @@ Changelog
   - lion
   - all orcs & mountain orcs
   - tiger
+  - gargoyle, dark gargoyle, & venom gargoyle
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds
