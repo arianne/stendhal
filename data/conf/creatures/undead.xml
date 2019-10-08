@@ -665,6 +665,8 @@
       <says>
         <noise state="idle follow fight" value="Ooooouuuuuh!"/>
         <sound value="ghost-01"/>
+        <sound value="ghost-02"/>
+        <sound value="ghost-03"/>
       </says>
       <profile name="offensive"/>
       <profile name="coward"/>
