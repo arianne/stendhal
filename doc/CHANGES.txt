@@ -28,6 +28,7 @@ Changelog
   - death
   - ghost
   - imp & winged blue imp
+  - all kobolds
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds
