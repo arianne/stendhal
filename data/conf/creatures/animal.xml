@@ -779,6 +779,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Oink!!"/>
+        <sound value="pig-snort-01"/>
         <sound value="pig-squeal-01"/>
       </says>
       <profile name="animal"/>

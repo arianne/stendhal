@@ -91,6 +91,7 @@ penguin-1.*               Bidone; CC0; http://www.freesound.org/people/Bidone/so
 penguin-2.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
 piano-1.*                 public domain
 pick-metallic-1.*         qubodup; CC0; http://freesound.org/people/qubodup/sounds/182821/
+pig-snort-01.*            yottasounds; CC BY 3.0; https://freesound.org/people/yottasounds/sounds/174615/
 pig-squeal-01.ogg         unnamed; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/pig/
 pout-1.ogg                Jordan Irwin (AntumDeluge); CC0; Stendhal
 puppy-bark-1.*            moffet; CC0; http://www.freesound.org/people/moffet/sounds/72579/
