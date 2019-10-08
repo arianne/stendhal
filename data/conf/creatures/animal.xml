@@ -1223,6 +1223,9 @@
         <sound value="tiger-roar-01" />
         <sound value="tiger-roar-02" />
         <sound value="tiger-snarl-01" />
+        <sound value="tiger-snarl-02" />
+        <sound value="tiger-snarl-03" />
+        <sound value="tiger-snarl-04" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
