@@ -657,7 +657,7 @@
         <noise state="idle follow fight" value="oink"/>
         <noise state="idle follow fight" value="oink oink"/>
         <noise state="idle follow fight" value="shnuffle"/>
-        <sound value="pig-3" />
+        <sound value="pig-squeal-01" />
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
@@ -779,7 +779,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Oink!!"/>
-        <sound value="pig-3"/>
+        <sound value="pig-squeal-01"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>

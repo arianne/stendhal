@@ -135,7 +135,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Ready! Aim! Runnnnnnnnnnn"/>
-        <sound value="pig-3" />
+        <sound value="pig-squeal-01" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
