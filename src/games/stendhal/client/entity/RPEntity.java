@@ -1066,8 +1066,7 @@ public abstract class RPEntity extends AudibleEntity {
 				"attack-melee-07");
 
 		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
-		        "clang-metallic-1");
-
+				"clang-metallic-1",	"clang-dull-1");
 	}
 
 	/**

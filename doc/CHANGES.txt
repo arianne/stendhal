@@ -17,6 +17,7 @@ Changelog
   - horse & white horse
   - rat, caverat, venomrat, razorrat, & zombie rat
   - giantrat
+- Added clang-dull-1 to combat "block" sounds
 
 
 1.31
