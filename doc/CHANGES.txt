@@ -27,6 +27,7 @@ Changelog
   - skeleton, warrior skeleton, elder skeleton, & demon skeleton
   - death
   - ghost
+  - imp & winged blue imp
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds

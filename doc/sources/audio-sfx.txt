@@ -67,6 +67,7 @@ ho-ho-ho-2.*              canucklovingbrit; CC0; http://freesound.org/people/can
 horse-snort-01.*          Andune; CC BY 3.0; https://freesound.org/people/Andune/sounds/61605/
 horse-whinny-01.*         foxen10; CC0; https://freesound.org/people/foxen10/sounds/149024/
 horse-whinny-02.*         InspectorJ; CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/419231/
+imp-laugh-01.*            scorpion67890; CC0; https://freesound.org/people/scorpion67890/sounds/205751/
 keys-1.ogg                Storyteller; GPL
 kitten-meow-1.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
 kitten-meow-2.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
