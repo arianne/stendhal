@@ -47,8 +47,8 @@ public class Sheep extends DomesticAnimal {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Sheep.class);
-	private static final List<String> largeSheepSounds = Arrays.asList("sheep-01");
-	private static final List<String> smallSheepSounds = Arrays.asList("sheep-01");
+	private static final List<String> largeSheepSounds = Arrays.asList("sheep-01", "sheep-02", "sheep-03", "sheep-04");
+	private static final List<String> smallSheepSounds = Arrays.asList("sheep-01", "sheep-02", "sheep-03", "sheep-04");
 
 	/**
 	 * The amount of hunger that indicates hungry.

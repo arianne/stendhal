@@ -110,7 +110,7 @@ scrape-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 scrape-2.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81247
 scream-fem-2.ogg          NeoPhyTe; public domain: http://soundbible.com/1627-Female-Scream-Horror.html
 shake-leaves-1.*          vibe_crc; CC0; http://www.freesound.org/people/vibe_crc/sounds/59315/
-sheep-01.*                cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
+sheep-[01-04].*           cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
 sleep-1.ogg               Storyteller; GPL
 snake-[01-05].*           7h3_lark; CC0; https://freesound.org/people/7h3_lark/sounds/268580/
 snake-cobra-1.ogg         unnamed; public domain; https://archive.org/details/unknowncobracobrabitewmv
