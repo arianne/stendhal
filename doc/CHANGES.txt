@@ -26,6 +26,7 @@ Changelog
   - all goblins
   - skeleton, warrior skeleton, elder skeleton, & demon skeleton
   - death
+  - ghost
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds

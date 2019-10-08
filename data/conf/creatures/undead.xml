@@ -664,6 +664,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Ooooouuuuuh!"/>
+        <sound value="ghost-01"/>
       </says>
       <profile name="offensive"/>
       <profile name="coward"/>
