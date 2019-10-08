@@ -706,7 +706,7 @@ public abstract class RPEntity extends AudibleEntity {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.BLOCKED;
 		combatIconTime = System.currentTimeMillis();
-	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
+	    playRandomSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
 	}
 
 	/**
