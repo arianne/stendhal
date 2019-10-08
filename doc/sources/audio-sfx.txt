@@ -71,6 +71,7 @@ kitten-purr-1.*           Belhene; CC0; http://freesound.org/people/Belhene/soun
 lamb-[01-02].*            cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
 laugh-evil-1.ogg          Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81237
 lion-roar-01.ogg          Info-farmer; public domain; http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
+lion-roar-02.*            Bidone; CC0; https://freesound.org/people/Bidone/sounds/69570/
 loop-drag-slimy-1.*       altfuture; CC0; http://www.freesound.org/people/altfuture/sounds/174634/
 loop-grind-stone-1.*      j1987; CC0; http://www.freesound.org/people/j1987/sounds/95007/
 minimare-die.*            Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50710
