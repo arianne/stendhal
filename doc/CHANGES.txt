@@ -22,7 +22,7 @@ Changelog
   - lion
   - all orcs & mountain orcs
   - tiger
-  - gargoyle, dark gargoyle, & venom gargoyle
+  - all gargoyles
   - all goblins
   - skeleton, warrior skeleton, elder skeleton, & demon skeleton
   - death

@@ -49,6 +49,7 @@ elephant-1.*              vataaa; CC0; http://www.freesound.org/people/vataaa/so
 elephant-2.*              vataaa; CC0; http://www.freesound.org/people/vataaa/sounds/148873/
 fire-1.*                  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16327
 fishing-1.*               be_crc + j1987; CC0; http://www.freesound.org/people/vibe_crc/sounds/50623/, http://www.freesound.org/people/j1987/sounds/95564/
+gargoyle-01.*             lazr2012; CC BY 3.0; https://freesound.org/people/lazr2012/sounds/169298/
 ghost-01.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431979/
 ghost-02.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431980/
 ghost-03.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431981/
