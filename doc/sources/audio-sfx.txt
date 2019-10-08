@@ -123,6 +123,7 @@ sneeze-baby-1.ogg         Stephan; public domain; http://soundbible.com/23-Baby-
 tadaa-1.ogg               Katie Russell (kymara); GPL
 tiger-roar-01.ogg         unnamed; public domain; http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
 tiger-roar-02.*           videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
+tiger-snarl-01.*          videog; CC BY 3.0; https://freesound.org/people/videog/sounds/149190/
 toilet-flush-1.*          KevanGC; public domain; http://soundbible.com/1657-Toilet-Flushing.html
 undead-1.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-2.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246

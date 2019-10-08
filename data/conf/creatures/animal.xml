@@ -1222,6 +1222,7 @@
         <noise state="idle follow fight" value="Miiiiaaauuu!"/>
         <sound value="tiger-roar-01" />
         <sound value="tiger-roar-02" />
+        <sound value="tiger-snarl-01" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
