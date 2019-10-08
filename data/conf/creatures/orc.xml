@@ -30,6 +30,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -62,6 +64,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -97,6 +101,8 @@
     <ai>
     <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
     </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -130,6 +136,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -166,6 +174,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -205,6 +215,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -237,6 +249,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -271,6 +285,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -305,6 +321,8 @@
     <ai>
       <says>
       	<sound value="orc-snarl-01" />
+      	<sound value="tiger-snarl-02" />
+      	<sound value="tiger-snarl-04" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
