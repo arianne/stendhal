@@ -1155,7 +1155,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Grooooaaaarrrr!"/>
-        <sound value="lion-1"/>
+        <sound value="lion-roar-01"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
