@@ -40,6 +40,7 @@ creak-tree-2.*            Department64; CC0; http://www.freesound.org/people/Dep
 creaky-door-close-1.ogg   Storyteller; GPL
 creaky-door-open-1.ogg    Storyteller; GPL
 creaky-door-open-2.ogg    Storyteller; GPL
+cyclops-grunt-01.*        dersuperanton; CC BY 3.0; https://freesound.org/people/dersuperanton/sounds/434462/
 cyclops-laugh-01.*        AP3850; CC0; https://freesound.org/people/AP3850/sounds/221798/
 cyclops-laugh-02.*        thanvannispen; CC BY 3.0; https://freesound.org/people/thanvannispen/sounds/9552/
 cyclops-scream-01.*       pandaplague; CC0; https://freesound.org/people/pandaplague/sounds/89359/

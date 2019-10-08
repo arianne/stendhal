@@ -35,8 +35,7 @@
         <sound value="cyclops-yell-01"/>
       	<sound value="cyclops-laugh-01"/>
       	<sound value="cyclops-laugh-02"/>
-      	<sound value="grunt-large-1"/>
-      	<sound value="grunt-large-2"/>
+      	<sound value="cyclops-grunt-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
