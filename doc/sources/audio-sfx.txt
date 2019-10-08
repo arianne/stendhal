@@ -41,6 +41,7 @@ creaky-door-close-1.ogg   Storyteller; GPL
 creaky-door-open-1.ogg    Storyteller; GPL
 creaky-door-open-2.ogg    Storyteller; GPL
 cyclops-scream-01.*       pandaplague; CC0; https://freesound.org/people/pandaplague/sounds/89359/
+cyclops-yell-01.*         UncleSigmund; CC0; https://freesound.org/people/UncleSigmund/sounds/30989/
 dog-angry-low-1.ogg       Lisa Redfern; public domain; http://soundbible.com/2034-Growling-Snarling-Dogs.html
 dog-small-bark-1.*        nfrae; CC0; http://freesound.org/people/nfrae/sounds/100032/
 dog-small-bark-2.*        nfrae; CC0; http://freesound.org/people/nfrae/sounds/100032/
