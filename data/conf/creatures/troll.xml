@@ -31,7 +31,7 @@
     </equips>
     <ai>
       <says>
-      	<sound value="laugh-evil-1"/>
+      	<sound value="laugh-evil-01"/>
       	<sound value="grunt-large-1"/>
       	<sound value="grunt-large-2"/>
       </says>

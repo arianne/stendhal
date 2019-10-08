@@ -697,7 +697,7 @@
       <says>
         <noise state="idle follow fight" value="Judgement is coming!"/>
         <noise state="idle follow fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
-        <sound value="laugh-evil-1"/>
+        <sound value="laugh-evil-01"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -828,7 +828,7 @@
       <says>
         <noise state="idle follow fight" value="Your time to die has come!"/>
         <noise state="idle follow fight" value="Say goodbye to this world!"/>
-        <sound value="laugh-evil-1"/>
+        <sound value="laugh-evil-01"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -872,7 +872,7 @@
       <says>
         <noise state="idle follow fight" value="You will dream of me tonight..."/>
         <noise state="idle follow fight" value="You will pay for your greed!"/>
-        <sound value="laugh-evil-1"/>
+        <sound value="laugh-evil-01"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
