@@ -459,7 +459,7 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not pass!"/>
         <sound value="bones-2" />
-        <sound value="laugh-evil-1" />
+        <sound value="skeleton-laugh-01" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -530,7 +530,7 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not kill!"/>
         <sound value="bones-2" />
-        <sound value="laugh-evil-1" />
+        <sound value="skeleton-laugh-01" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -566,7 +566,7 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not survive!"/>
         <sound value="bones-2" />
-        <sound value="laugh-evil-1" />
+        <sound value="skeleton-laugh-01" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -600,7 +600,7 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not rob!"/>
         <sound value="bones-2" />
-        <sound value="laugh-evil-1" />
+        <sound value="skeleton-laugh-01" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
