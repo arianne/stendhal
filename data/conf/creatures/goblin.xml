@@ -36,6 +36,7 @@
         <noise state="idle follow fight" value="Umm! Tasty meat." />
         <sound value="goblin-01" />
         <sound value="goblin-burp-01" />
+        <sound value="goblin-laugh-01" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -75,6 +76,7 @@
         <noise state="idle follow fight" value="Breakfast time!" />
         <sound value="goblin-01" />
         <sound value="goblin-burp-01" />
+        <sound value="goblin-laugh-01" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -115,6 +117,7 @@
       <says>
         <sound value="goblin-01" />
         <sound value="goblin-burp-01" />
+        <sound value="goblin-laugh-01" />
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
