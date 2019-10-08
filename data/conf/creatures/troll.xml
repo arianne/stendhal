@@ -31,6 +31,7 @@
     </equips>
     <ai>
       <says>
+        <sound value="cyclops-scream-01"/>
       	<sound value="laugh-evil-01"/>
       	<sound value="grunt-large-1"/>
       	<sound value="grunt-large-2"/>

@@ -29,6 +29,7 @@ Changelog
   - ghost
   - imp & winged blue imp
   - all kobolds
+  - cyclops
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds
