@@ -18,8 +18,16 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 
 /**
- * Creates a slim and an eared bottle on the counter in front of the small hut.
+ * Creates spawn point for:
+ *  slim bottle,
+ *  eared bottle
+ *  
+ *  Imorgen's hut, Fado's forest (~50,30)
+ *  
+ *  NOTE:
+ *	  slim/eared bottle will spawn among fixed map items
  */
+
 public class ItemsOnTable implements ZoneConfigurator {
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
@@ -33,7 +41,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 		bottleGrower1.setPosition(48, 28);
 		bottleGrower1.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower1);
-
 		bottleGrower1.setToFullGrowth();
 
         // grower for an eared bottle (1h)
@@ -41,7 +48,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 		bottleGrower2.setPosition(49, 31);
 		bottleGrower2.setDescription("This seems a likely spot where a bottle could be found.");
 		zone.add(bottleGrower2);
-
 		bottleGrower2.setToFullGrowth();
 
 	}
