@@ -76,7 +76,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="grunt-large-1"/>
+        <sound value="ogre-groan-01"/>
+        <sound value="ogre-groan-02"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
@@ -115,7 +116,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="grunt-large-1"/>
+        <sound value="ogre-groan-01"/>
+        <sound value="ogre-groan-02"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
@@ -152,7 +154,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="grunt-large-1"/>
+        <sound value="ogre-groan-01"/>
+        <sound value="ogre-groan-02"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
@@ -188,7 +191,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="grunt-large-1"/>
+        <sound value="ogre-groan-01"/>
+        <sound value="ogre-groan-02"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
