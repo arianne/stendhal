@@ -78,6 +78,7 @@
       <says>
         <sound value="ogre-groan-01"/>
         <sound value="ogre-groan-02"/>
+        <sound value="ogre-yell-01"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
@@ -118,6 +119,7 @@
       <says>
         <sound value="ogre-groan-01"/>
         <sound value="ogre-groan-02"/>
+        <sound value="ogre-yell-01"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
@@ -156,6 +158,7 @@
       <says>
         <sound value="ogre-groan-01"/>
         <sound value="ogre-groan-02"/>
+        <sound value="ogre-yell-01"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
@@ -193,6 +196,7 @@
       <says>
         <sound value="ogre-groan-01"/>
         <sound value="ogre-groan-02"/>
+        <sound value="ogre-yell-01"/>
         <sound value="ogre-fart-01"/>
         <sound value="ogre-fart-02"/>
         <sound value="ogre-fart-03"/>
