@@ -91,26 +91,31 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 productsNames.add("smoked trout");
                 productsNames.add("smoked cod");
 
+                //meat, ham: kekik+arandula
                 final Map<String, Integer> reqRes_smokedMeat = new TreeMap<String, Integer>();
-                reqRes_smokedMeat.put("wood", 2);
+                reqRes_smokedMeat.put("wood", 1);
                 reqRes_smokedMeat.put("meat", 1);
                 reqRes_smokedMeat.put("kekik", 1);
+                reqRes_smokedMeat.put("arandula", 1);
 
                 final Map<String, Integer> reqRes_smokedHam = new TreeMap<String, Integer>();
-                reqRes_smokedHam.put("wood", 3);
+                reqRes_smokedHam.put("wood", 1);
                 reqRes_smokedHam.put("ham", 1);
-                reqRes_smokedHam.put("kekik", 2);
+                reqRes_smokedHam.put("kekik", 1);
+                reqRes_smokedHam.put("arandula", 1);
 
+                //trout, cod: sclaria+arandula
                 final Map<String, Integer> reqRes_smokedTrout = new TreeMap<String, Integer>();
                 reqRes_smokedTrout.put("wood", 1);
                 reqRes_smokedTrout.put("trout", 1);
                 reqRes_smokedTrout.put("sclaria", 1);
+                reqRes_smokedTrout.put("arandula", 1);
 
                 final Map<String, Integer> reqRes_smokedCod = new TreeMap<String, Integer>();
                 reqRes_smokedCod.put("wood", 1);
                 reqRes_smokedCod.put("cod", 1);
-                reqRes_smokedCod.put("sclaria", 2);
-
+                reqRes_smokedCod.put("sclaria", 1);
+                reqRes_smokedCod.put("arandula", 1);
 
                 final HashMap<String, Map<String, Integer>> requiredResourcesPerProduct = new HashMap<String, Map<String, Integer>>();
                 requiredResourcesPerProduct.put("smoked meat", reqRes_smokedMeat);
@@ -119,16 +124,16 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 requiredResourcesPerProduct.put("smoked cod", reqRes_smokedCod);
 
                 final HashMap<String, Integer> productionTimesPerProduct = new HashMap<String, Integer>();
-                productionTimesPerProduct.put("smoked meat", 5 * 60);
-                productionTimesPerProduct.put("smoked ham", 8 * 60);
-                productionTimesPerProduct.put("smoked trout", 4 * 60);
-                productionTimesPerProduct.put("smoked cod", 6 * 60);
+                productionTimesPerProduct.put("smoked meat",  5 * 60);
+                productionTimesPerProduct.put("smoked ham",   6 * 60);
+                productionTimesPerProduct.put("smoked trout", 7 * 60);
+                productionTimesPerProduct.put("smoked cod",   8 * 60);
 
                 final HashMap<String, Boolean> productsBound = new HashMap<String, Boolean>();
-                productsBound.put("smoked meat", false);
-                productsBound.put("smoked ham", true);
-                productsBound.put("smoked trout", true);
-                productsBound.put("smoked cod", false);
+                productsBound.put("smoked meat",  false);
+                productsBound.put("smoked ham",   false);
+                productsBound.put("smoked trout", false);
+                productsBound.put("smoked cod",   false);
 
                 final MultiProducerBehaviour behaviour = new MultiProducerBehaviour(
                     "olmo_smoke_meatandfish",
