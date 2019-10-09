@@ -49,7 +49,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	/**
 	 * Sound effects
 	 */
-	private final String startSound = "click-1";
+	private final String startSound = "liquid-fill-01";
 	private final String successSound = "cork-pop-1";
 	private final String failSound = "glass-break-2";
 	private final int SOUND_RADIUS = 20;

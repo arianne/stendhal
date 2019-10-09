@@ -5,24 +5,24 @@ Changelog
 
 1.32
 *graphics*
-- New corpses for cobras
-- New/Reworked outfits:
+- new corpses for cobras
+- new/reworked outfits:
   - dress 75-76
   - dress 91-98
   - hair 47-48
-- New/Reworked NPCs:
+- new/reworked NPCs:
   - Marla (womanexoticdressnpc)
   - Easter Bunny (easterbunnynpc)
   - Jane (swimmer6npc)
-- New/Reworked items:
+- new/reworked items:
   - barbarian, black, dwarvish, leather, & plate armors
   - bardiche
   - small & hand axes
   - chain & studded boots
 
 *audio*
-- New melee/attack sound effects
-- Added enemy sound effects:
+- new melee/attack sound effects
+- added enemy sound effects:
   - bear & black bear
   - chicken & mother hen
   - snake & grass snake
@@ -45,12 +45,13 @@ Changelog
   - cyclops
   - all ogres
   - troll & red troll
-- Added pet sound effects:
+- added pet sound effects:
   - sheep
-- Added clang-dull-1 to combat "block" sounds
-- Added new wind ambiance to Ados Mountain/Rock & Kikareukin maps
-- New eat sound for pets
-- New coins sound for buyer/seller NPCs
+- added clang-dull-1 to combat "block" sounds
+- new wind ambiance to Ados Mountain/Rock & Kikareukin maps
+- new eat sound for pets
+- new coins sound for buyer/seller NPCs
+- new liquid fill sound for water spring source
 
 
 1.31
