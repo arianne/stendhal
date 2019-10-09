@@ -107,6 +107,7 @@ mutant-frog-1.ogg         Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 mutant-frog-2.*           Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81249
 ogre-fart-01.*            m160; CC0; https://freesound.org/people/m160/sounds/435243/
 ogre-fart-02.*            dleigh; CC0; https://freesound.org/people/dleigh/sounds/346143/
+ogre-fart-03.*            peridactyloptrix; CC0; https://freesound.org/people/peridactyloptrix/sounds/202528/
 orc-snarl-01.*            qubodup; CC BY 3.0; https://freesound.org/people/qubodup/sounds/212764/
 penguin-1.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
 penguin-2.*               Bidone; CC0; http://www.freesound.org/people/Bidone/sounds/66150/
