@@ -67,12 +67,13 @@ public class WeatherSoundManager implements ZoneChangeListener {
 				currentSound = null;
 			}
 			soundName = sound;
-			if (sound != null) {
+			final String soundPath = SOUND_LOCATION + sound + ".ogg";
+			if (sound != null && this.getClass().getResource("/data/sounds/" + soundPath) != null) {
 				// Start a new one
 				SoundGroup group = ClientSingletonRepository.getSound().getGroup(SoundLayer.AMBIENT_SOUND.groupName);
 				// Should we cache the failed loads so that the sound manager
 				// would not print a warning every time?
-				if (group.loadSound(sound, SOUND_LOCATION + sound + ".ogg", SoundFileType.OGG, true)) {
+				if (group.loadSound(sound, soundPath, SoundFileType.OGG, true)) {
 					AudibleArea area = new InfiniteAudibleArea();
 					currentSound = group.play(sound, 0, area, fadeInDuration, true, false);
 				}
