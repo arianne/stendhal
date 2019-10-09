@@ -49,6 +49,7 @@ Changelog
   - sheep
 - Added clang-dull-1 to combat "block" sounds
 - Added new wind ambiance to Ados Mountain/Rock & Kikareukin maps
+- New eat sound for pets
 
 
 1.31

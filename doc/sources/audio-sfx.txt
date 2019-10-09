@@ -50,6 +50,7 @@ dog-small-bark-1.*        nfrae; CC0; http://freesound.org/people/nfrae/sounds/1
 dog-small-bark-2.*        nfrae; CC0; http://freesound.org/people/nfrae/sounds/100032/
 dog-snarl-1.ogg           Lisa Redfern; public domain; http://soundbible.com/2034-Growling-Snarling-Dogs.html
 dog-snarl-2.ogg           Lisa Redfern; public domain; http://soundbible.com/2034-Growling-Snarling-Dogs.html
+eat-01.*                  Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/412068/
 elephant-1.*              vataaa; CC0; http://www.freesound.org/people/vataaa/sounds/148873/
 elephant-2.*              vataaa; CC0; http://www.freesound.org/people/vataaa/sounds/148873/
 fire-1.*                  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16327
