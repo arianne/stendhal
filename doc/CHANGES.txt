@@ -48,6 +48,7 @@ Changelog
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds
+- Added new wind ambiance to Ados Mountain/Rock & Kikareukin maps
 
 
 1.31
