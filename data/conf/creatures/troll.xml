@@ -78,6 +78,7 @@
       <says>
         <sound value="grunt-large-1"/>
         <sound value="ogre-fart-01"/>
+        <sound value="ogre-fart-02"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -114,6 +115,7 @@
       <says>
         <sound value="grunt-large-1"/>
         <sound value="ogre-fart-01"/>
+        <sound value="ogre-fart-02"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -148,6 +150,7 @@
       <says>
         <sound value="grunt-large-1"/>
         <sound value="ogre-fart-01"/>
+        <sound value="ogre-fart-02"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -181,6 +184,7 @@
       <says>
         <sound value="grunt-large-1"/>
         <sound value="ogre-fart-01"/>
+        <sound value="ogre-fart-02"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
