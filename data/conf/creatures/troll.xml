@@ -236,6 +236,12 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="troll-growl-01"/>
+        <sound value="troll-growl-02"/>
+        <sound value="troll-growl-03"/>
+        <sound value="troll-growl-04"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -266,6 +272,12 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="troll-growl-01"/>
+        <sound value="troll-growl-02"/>
+        <sound value="troll-growl-03"/>
+        <sound value="troll-growl-04"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>

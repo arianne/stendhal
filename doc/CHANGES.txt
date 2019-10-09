@@ -44,6 +44,7 @@ Changelog
   - all kobolds
   - cyclops
   - all ogres
+  - troll & red troll
 - Added pet sound effects:
   - sheep
 - Added clang-dull-1 to combat "block" sounds
