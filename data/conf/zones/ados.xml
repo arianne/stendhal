@@ -545,6 +545,16 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
+    <entity x="124" y="122">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">70</parameter>
+        <parameter name="volume">60</parameter>
+      </implementation>
+    </entity>
+
     <point-of-interest x="40" y="48">
       <name>Ados Caves Northwest Entrance</name>
       <title>Ados Caves</title>
@@ -579,6 +589,16 @@
 		  <parameter name="color_method">time</parameter>
 		  <parameter name="weather">varying</parameter>
 	  </attributes>
+
+    <entity x="5" y="124">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">80</parameter>
+        <parameter name="volume">60</parameter>
+      </implementation>
+    </entity>
 
     <entity x="126" y="107">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -4361,6 +4381,17 @@ My fee:
       <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
+    <!-- Music/Ambiance -->
+    <entity x="123" y="43">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">120</parameter>
+        <parameter name="volume">60</parameter>
+      </implementation>
+    </entity>
+
     <entity x="14" y="50">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">
@@ -4397,6 +4428,17 @@ Southeast: Docks
 
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC" />
+
+    <!-- Music ambiance -->
+    <entity x="3" y="35">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">90</parameter>
+        <parameter name="volume">60</parameter>
+      </implementation>
+    </entity>
 
     <entity x="61" y="36">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">

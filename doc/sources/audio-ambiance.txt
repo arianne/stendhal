@@ -3,3 +3,4 @@ data/sounds/ambiance/
 
 river-1.*           Adam_N; CC0; http://freesound.org/people/Adam_N/sounds/166310/
 water-sloshing-1.*  pawsound; CC0; http://freesound.org/people/pawsound/sounds/154879/
+wind-01.*           InspectorJ; CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/376415/
