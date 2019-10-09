@@ -77,6 +77,7 @@
     <ai>
       <says>
         <sound value="grunt-large-1"/>
+        <sound value="ogre-fart-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -112,6 +113,7 @@
     <ai>
       <says>
         <sound value="grunt-large-1"/>
+        <sound value="ogre-fart-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -145,6 +147,7 @@
     <ai>
       <says>
         <sound value="grunt-large-1"/>
+        <sound value="ogre-fart-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -177,6 +180,7 @@
     <ai>
       <says>
         <sound value="grunt-large-1"/>
+        <sound value="ogre-fart-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
