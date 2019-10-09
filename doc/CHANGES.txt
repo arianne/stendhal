@@ -6,6 +6,19 @@ Changelog
 1.32
 *graphics*
 - New corpses for cobras
+- New/Reworked outfits:
+  - dress 75-76
+  - dress 91-98
+  - hair 47-48
+- New/Reworked NPCs:
+  - Marla (womanexoticdressnpc)
+  - Easter Bunny (easterbunnynpc)
+  - Jane (swimmer6npc)
+- New/Reworked items:
+  - barbarian, black, dwarvish, leather, & plate armors
+  - bardiche
+  - small & hand axes
+  - chain & studded boots
 
 *audio*
 - New melee/attack sound effects
