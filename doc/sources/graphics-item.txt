@@ -98,7 +98,7 @@ black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 blue_boots.png             bleutailfly; CC BY-SA 3.0; Stendhal
 chain_boots.*              Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347
 chaos_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-darkangels_clan_boots.png  Krakow Mobile?; ???; ???
+darkangels_clan_boots.png  Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal (re-color of elvish_boots)
 elvish_boots.png           Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/271/
 golden_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_boots.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
