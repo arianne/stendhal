@@ -133,7 +133,7 @@ chaos_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 cloak.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dwarf_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elf_cloak.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-elvish_cloak.png        ???; ???; ???
+elvish_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 golden_cloak.png        David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/

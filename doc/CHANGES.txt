@@ -23,6 +23,7 @@ Changelog
   - enhanced mace
   - dress
   - tea
+  - elvish cloak
 
 *audio*
 - new melee/attack sound effects
