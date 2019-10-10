@@ -155,7 +155,7 @@ data/sprites/items/club/
 chaos_hammer.png         ???; ???; ???
 club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 club_of_thorns.png       ???; ???; ???
-enhanced_mace.png        ???; ???; ???
+enhanced_mace.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 flail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_flail.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_hammer.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/

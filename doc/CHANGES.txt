@@ -19,6 +19,8 @@ Changelog
   - bardiche
   - small & hand axes
   - chain & studded boots
+  - club
+  - enhanced mace
 
 *audio*
 - new melee/attack sound effects
