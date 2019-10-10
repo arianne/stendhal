@@ -338,18 +338,6 @@ leader_kobold.png   Svetlana Kushnariova, yokati, Michael Williams (BizmasterStu
 soldier_kobold.png  Svetlana Kushnariova, yokati, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
 veteran_kobold.png  Svetlana Kushnariova, yokati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
 
-data/sprites/monsters/lutin/
-
-lutin_bandit.png    ???; ???; ???
-lutin_bowman.png    ???; ???; ???
-lutin_chieftan.png  ???; ???; ???
-lutin_girl.png      ???; ???; ???
-lutin_guard.png     ???; ???; ???
-lutin_king.png      ???; ???; ???
-lutin_outlaw.png    ???; ???; ???
-lutin_queen.png     ???; ???; ???
-lutin_wench.png     ???; ???; ???
-
 data/sprites/monsters/madaram/
 
 kasarkutominubat.png     Svetlana Kushnariova (Cabbit), onu/olonu, NicholasJudy456; OGA BY 3.0; https://github.com/arianne/stendhal/issues/109
