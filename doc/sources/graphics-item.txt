@@ -46,7 +46,7 @@ leather_armor.png             Dungeon Crawl Stone Soup; CC0; https://opengameart
 leather_cuirass.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 light_armor.png               Phillip Lenssen?, Katie Russell (kymara); ???; ???
-magic_plate_armor.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+magic_plate_armor.*           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mainio_armor.png              vesper?; ???; ???
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal
 plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
@@ -137,7 +137,7 @@ elvish_cloak.png        ???; ???; ???
 golden_cloak.png        David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-lion_clan_cloak.png     ???; ???; ???
+lion_clan_cloak.*       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/bleutailfly
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal
