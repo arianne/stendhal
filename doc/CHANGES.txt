@@ -22,6 +22,7 @@ Changelog
   - club
   - enhanced mace
   - dress
+  - tea
 
 *audio*
 - new melee/attack sound effects
