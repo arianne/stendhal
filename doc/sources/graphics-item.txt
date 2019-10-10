@@ -178,7 +178,7 @@ bottle.png                   Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal,
 bottle_eared.png             omero; CC BY-SA 3.0; Stendhal
 bottle_fat.png               omero; CC BY-SA 3.0; Stendhal
 bottle_large.png             omero; CC BY-SA 3.0; Stendhal
-bottle_medium.png            Anders Asplund (Danter); GPL 2.0; Stendhal
+bottle_medium.png            Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 bottle_short_rounded.png     omero; CC BY-SA 3.0; Stendhal
 bottle_short_triangular.png  omero; CC BY-SA 3.0; Stendhal
 bottle_slim.png              omero; CC BY-SA 3.0; Stendhal
@@ -245,7 +245,7 @@ red_juice.png                  ???; ???; ???
 sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tea.png                        ???; ???; ???
-twilight_elixir.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+twilight_elixir.png            Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 waterbottle.png                Bluelads4?; ???; ???
 wine.png                       Anders Asplund (Danter); GPL 2.0; Stendhal (Zelda 3, replaced???)
 
