@@ -46,13 +46,13 @@ monkey.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pandabear.png         danielmahon; CC BY-SA 3.0; https://opengameart.org/node/21008, Twitter: @danielmahon
 penguin.png           Kelvin Shadewing, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; https://opengameart.org/node/83751; http://kyrodianlegends.com/
 pigeon.*              Onno Timmerman (Enquest), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84675
-poisonous_spider.png  Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
+poisonous_spider.png  Groundhug McHamster (h4mt4ro); GPL 2.0+; https://sourceforge.net/p/arianne/patches/2804501
 reindeer.*            Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
 snake.png             Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
-spider.png            Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
+spider.png            Groundhug McHamster (h4mt4ro); GPL 2.0+; https://sourceforge.net/p/arianne/patches/2804501
 tiger.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 twilight_slime.*      meriharakka; ???; Stendhal
-wolf.png              Groundhug McHamster (h4mt4ro); ???; Stendhal
+wolf.png              Groundhug McHamster (h4mt4ro); GPL 2.0+; Stendhal
 
 data/sprites/monsters/beholder/
 
@@ -233,7 +233,7 @@ bone_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chaos_*_dragonrider.*     Kimmo Rundelin (kiheru), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/77901
 flying_golden_dragon.png  ZaPaper; CC BY 3.0; https://opengameart.org/node/79018; Credits to http://www.buko-studios.com/ Commissioned by PlayCraft: https://www.playcraftapp.com/
 giant_kobold.png          Svetlana Kushnariova, yokati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
-giant_spider.png          Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2804501
+giant_spider.png          Groundhug McHamster (h4mt4ro); GPL 2.0+; https://sourceforge.net/p/arianne/patches/2804501
 golden_death.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_dragon.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 king_cobra.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
@@ -393,7 +393,7 @@ werewolf.png             yolkati, Svetlana Kushnariova (Cabbit), onu/olonu, Jord
 data/sprites/monsters/mythical_animal/
 
 balrog.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-black_dragon.png  Groundhug McHamster (h4mt4ro); ???; https://sourceforge.net/p/arianne/patches/2799742
+black_dragon.png  Groundhug McHamster (h4mt4ro); GPL 2.0+; https://sourceforge.net/p/arianne/patches/2799742
 gashadokuro.png   artisticdude, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/83067
 
 data/sprites/monsters/mythical_being/
