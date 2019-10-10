@@ -21,6 +21,7 @@ Changelog
   - chain & studded boots
   - club
   - enhanced mace
+  - dress
 
 *audio*
 - new melee/attack sound effects

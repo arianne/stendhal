@@ -29,7 +29,7 @@ black_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart
 blue_armor.png                bleutailfly; CC BY-SA 3.0; Stendhal
 chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 chaos_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-dress.png                     ???; ???; ???
+dress.png                     Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
 dust_robe.png                 Krakow Mobile?; ???; ???
 dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
