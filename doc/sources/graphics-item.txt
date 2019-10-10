@@ -153,7 +153,7 @@ xeno_cloak.png           https://github.com/crawl/tiles
 data/sprites/items/club/
 
 chaos_hammer.png         ???; ???; ???
-club.png                 ???; ???; ???
+club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 club_of_thorns.png       ???; ???; ???
 enhanced_mace.png        ???; ???; ???
 flail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
