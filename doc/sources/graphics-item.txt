@@ -24,14 +24,14 @@ wooden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 
 data/sprites/items/armor/
 
-barbarian_armor.png           ???; ???; ???
-black_armor.png               ???; ???; ???
+barbarian_armor.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
+black_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 blue_armor.png                bleutailfly; CC BY-SA 3.0; Stendhal
 chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 chaos_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dress.png                     ???; ???; ???
 dust_robe.png                 Krakow Mobile?; ???; ???
-dwarvish_armor.png            ???; ???; ???
+dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_armor.png              Groundhug McHampster (h4mt4r0)?; ???; https://sourceforge.net/p/arianne/patches/270/
 enhanced_chainmail.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -42,14 +42,14 @@ golden_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere
 golden_chainmail.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 ice_armor.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 iron_scale_armor.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-leather_armor.png             ???; ???; ???
+leather_armor.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 leather_cuirass.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 light_armor.png               Phillip Lenssen?, Katie Russell (kymara); ???; ???
 magic_plate_armor.png         ???; ???; ???
 mainio_armor.png              vesper?; ???; ???
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal
-plate_armor.png               ???; ???; ???
+plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 red_armor.png                 bleutailfly; CC BY-SA 3.0; Stendhal
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scuba_gear.png                Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
@@ -64,7 +64,7 @@ xeno_armor.png                https://github.com/crawl/tiles
 data/sprites/items/axe/
 
 axe.png                      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-bardiche.png                 ???; ???; ???
+bardiche.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 battle_axe.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_halberd.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 black_scythe.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -72,12 +72,12 @@ chaos_axe.png                ???; ???; ???
 durin_axe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-color of battle_axe
 golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 halberd.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-hand_axe.png                 ???; ???; ???
+hand_axe.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 magic_twosided_poleaxe.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked twosided_poleaxe
 oldscythe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scythe.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 sickle.png                   omero; CC BY-SA 3.0; Stendhal
-small_axe.png                ???; ???; ???
+small_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/book/
@@ -218,7 +218,7 @@ unsealed_envelope.png  Fernando Miranda Muro (barbanegra)?; ???; ???
 
 data/sprites/items/drink/
 
-antidote.png                   Anders Asplund (Danter); GPL 2.0; Stendhal
+antidote.png                   Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 beer.png                       Katie Russell (kymara)?; ???; ???
 deadly_poison.png              Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 disease_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
@@ -231,14 +231,14 @@ holy_water.*                   Groundhug McHampster (h4mt4r0), Jordan Irwin (Ant
 koboldish_torcibud_mild.png    omero; CC BY-SA 3.0; Stendhal
 koboldish_torcibud_strong.png  omero; CC BY-SA 3.0; Stendhal
 koboldish_torcibud_vsop.png    omero; CC BY-SA 3.0; Stendhal
-love_potion.png                Katie Russell (kymara)?; ???; ???
-mana.png                       Red Queen?; ???; ???
+love_potion.png                Groundhug McHampster (h4mt4r0), Katie Russell (kymara); GPL 2.0+; Stendhal
+mana.png                       Groundhug McHampster (h4mt4r0), Red Queen; GPL 2.0+; Stendhal
 mega_poison.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 mega_potion.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 milk.png                       Katie Russell (kymara)?; ???; ???
 minor_potion.png               Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-pina_colada.png                nicubunu, Katie Russell (kymara); ???; https://openclipart.org/detail/12995
-pina_colada2.png               ???; ???; ???
+pina_colada.png                Katie Russell (kymara)?
+pina_colada2.png               nicubunu, Bluelads4; GPL 2.0+; Based on CC0 image: https://openclipart.org/detail/12995
 poison.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 potion.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 red_juice.png                  ???; ???; ???
@@ -246,8 +246,8 @@ sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tea.png                        ???; ???; ???
 twilight_elixir.png            Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-waterbottle.png                Bluelads4?; ???; ???
-wine.png                       Anders Asplund (Danter); GPL 2.0; Stendhal (Zelda 3, replaced???)
+waterbottle.png                Groundhug McHampster (h4mt4r0), Bluelads4; GPL 2.0+; Stendhal
+wine.png                       kiheru?
 
 data/sprites/items/flower/
 
