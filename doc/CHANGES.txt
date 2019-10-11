@@ -13,6 +13,7 @@ Changelog
 - new/reworked NPCs:
   - Marla (womanexoticdressnpc)
   - Easter Bunny (easterbunnynpc)
+  - Hiro (sokobannpc)
   - Jane (swimmer6npc)
 - new/reworked items:
   - barbarian, black, dwarvish, leather, & plate armors
