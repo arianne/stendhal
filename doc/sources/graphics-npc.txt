@@ -152,7 +152,7 @@ orcbuyernpc.png               Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge)
 orcsalesmannpc.png            Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsamannpc.png               Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orientalwizardnpc.*           bleutailfly, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/79237, https://opengameart.org/node/82929
-paulnpc.png                   ???; ???; ???
+paulnpc.*                     Svetlana Kushnariova (Cabbit), Fabzy, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/23314
 photographernpc.*             Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 pinkgirlnpc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/140
 pirate_sailornpc.png          Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83642
@@ -188,7 +188,7 @@ sickleinghalfelfnpc.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, Fabz
 sickvampirenpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83035
 signguynpc.png                Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); ???; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/81952
 slim_woman_npc.*              Svetlana Kushnariova (Cabbit), Yamilian, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11445
-sokobannpc.png                Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal & https://opengameart.org/node/24944
+sokobannpc.*                  Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal & https://opengameart.org/node/24944
 stormtroopernpc.png           Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
 supertrainedguynpc.png        Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 swimmer1npc.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/143

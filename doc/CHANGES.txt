@@ -15,6 +15,7 @@ Changelog
   - Easter Bunny (easterbunnynpc)
   - Hiro (sokobannpc)
   - Jane (swimmer6npc)
+  - Paul Sheriff (paulnpc)
 - new/reworked items:
   - barbarian, black, dwarvish, leather, & plate armors
   - bardiche
