@@ -56,9 +56,9 @@ wolf.png              Groundhug McHamster (h4mt4ro); GPL 2.0+; Stendhal
 
 data/sprites/monsters/beholder/
 
-beholder.png        ???; ???; ???
+beholder.png        Stephen Challener (Redshrik); OGA BY 3.0; https://opengameart.org/node/5215
 elder_beholder.png  ???; ???; ???
-young_beholder.png  ???; ???; ???
+young_beholder.png  Stephen Challener (Redshrik); OGA BY 3.0; https://opengameart.org/node/5215
 
 data/sprites/monsters/chaos/
 
