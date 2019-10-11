@@ -18,7 +18,7 @@ Changelog
   - Marie-Henri (writernpc)
   - Paul Sheriff (paulnpc)
 - new/reworked enemies:
-  - beholder & young beholder
+  - all beholders
 - new/reworked items:
   - barbarian, black, dwarvish, leather, & plate armors
   - bardiche
