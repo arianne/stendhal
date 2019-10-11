@@ -19,7 +19,7 @@ Changelog
   - Paul Sheriff (paulnpc)
 - new/reworked enemies:
   - all beholders
-  - goblin
+  - all goblins
 - new/reworked items:
   - barbarian, black, dwarvish, leather, & plate armors
   - bardiche
