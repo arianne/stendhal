@@ -361,8 +361,8 @@ minotaur.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/n
 
 data/sprites/monsters/mummy/
 
-mummy.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/101157
-royal_mummy.png  ???; ???; ???
+mummy.png      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/101157
+royal_mummy.*  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/101157, https://opengameart.org/node/72969
 
 data/sprites/monsters/mutant/
 
