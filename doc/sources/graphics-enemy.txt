@@ -215,7 +215,7 @@ woman_gnome.png  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart
 
 data/sprites/monsters/goblin/
 
-goblin.png          ???; ???; ???
+goblin.png          Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 soldier_goblin.png  ???; ???; ???
 veteran_goblin.png  ???; ???; ???
 
