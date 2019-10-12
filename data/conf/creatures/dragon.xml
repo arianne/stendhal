@@ -243,7 +243,7 @@
   </creature>
 
   <creature name="black dragon">
-    <type class="dragon" subclass="black_dragon" tileid="mythical_animal.png:0"/>
+    <type class="dragon" subclass="black_dragon" tileid="dragon.png:4"/>
     <description>You see a black dragon. As you see this huge black creature you almost faint! If you concentrate you can feel the deep growling of it in your bones.</description>
     <attributes>
       <atk value="1227"/>

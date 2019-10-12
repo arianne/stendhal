@@ -1,90 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="ground.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/ground.png" trans="ffffff"/>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" name="ground/ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+  <image source="../../tileset/ground/ground.png" trans="ffffff" width="96" height="352"/>
  </tileset>
- <tileset firstgid="34" name="dwarf.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/dwarf.png"/>
+ <tileset firstgid="34" name="logic/creature/dwarf" tilewidth="32" tileheight="32" tilecount="8" columns="8">
+  <image source="../../tileset/logic/creature/dwarf.png" width="256" height="32"/>
  </tileset>
- <tileset firstgid="42" name="animal.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/animal.png"/>
+ <tileset firstgid="42" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="30" columns="30">
+  <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
  </tileset>
- <tileset firstgid="72" name="gargoyle.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/gargoyle.png"/>
+ <tileset firstgid="72" name="logic/creature/gargoyle" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/logic/creature/gargoyle.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="76" name="elf.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/elf.png"/>
+ <tileset firstgid="76" name="logic/creature/elf" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+  <image source="../../tileset/logic/creature/elf.png" width="320" height="32"/>
  </tileset>
- <tileset firstgid="86" name="undead.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/undead.png"/>
+ <tileset firstgid="86" name="logic/creature/undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
+  <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
  </tileset>
- <tileset firstgid="101" name="ratfolk.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/ratfolk.png"/>
+ <tileset firstgid="101" name="logic/creature/ratfolk" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/logic/creature/ratfolk.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="104" name="troll.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/troll.png"/>
+ <tileset firstgid="104" name="logic/creature/troll" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/logic/creature/troll.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="107" name="orc.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/orc.png"/>
+ <tileset firstgid="107" name="logic/creature/orc" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/logic/creature/orc.png" width="160" height="32"/>
  </tileset>
- <tileset firstgid="112" name="mummy.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/mummy.png"/>
+ <tileset firstgid="112" name="logic/creature/mummy" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="../../tileset/logic/creature/mummy.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="114" name="giant_animal.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/giant_animal.png"/>
+ <tileset firstgid="114" name="logic/creature/giant_animal" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/logic/creature/giant_animal.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="117" name="beholder.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/beholder.png"/>
+ <tileset firstgid="118" name="logic/creature/beholder" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/logic/creature/beholder.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="120" name="huge_animal.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/huge_animal.png"/>
+ <tileset firstgid="121" name="logic/creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
+  <image source="../../tileset/logic/creature/huge_animal.png" width="448" height="32"/>
  </tileset>
- <tileset firstgid="134" name="mythical_animal.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/mythical_animal.png"/>
+ <tileset firstgid="135" name="building/fence/fence_chunky" tilewidth="32" tileheight="32" tilecount="21" columns="3">
+  <image source="../../tileset/building/fence/fence_chunky.png" width="96" height="224"/>
  </tileset>
- <tileset firstgid="136" name="fence_chunky" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/fence/fence_chunky.png"/>
+ <tileset firstgid="156" name="plant/bush/bushes" tilewidth="32" tileheight="32" tilecount="10" columns="5">
+  <image source="../../tileset/plant/bush/bushes.png" trans="ffffff" width="160" height="64"/>
  </tileset>
- <tileset firstgid="157" name="bushes.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
+ <tileset firstgid="166" name="plant/grasses" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="../../tileset/plant/grasses.png" trans="ffffff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="167" name="grasses.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/grasses.png" trans="ffffff"/>
+ <tileset firstgid="172" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+  <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
- <layer name="0_floor" width="64" height="64">
+ <layer id="1" name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqvr6AFA+aDAAQAAA
+   H4sIAAAAAAAACu3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqvr6AFA+aDAAQAAA
   </data>
  </layer>
- <layer name="1_terrain" width="64" height="64">
+ <layer id="2" name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WsQ0AMAgDQYqsj7JyhggIirve0peO4H5ss6wC2OZMBwDAQv4vAAAAAAAAAAAA
-AAAA9HkkNEYlAEAAAA==
+   H4sIAAAAAAAACu3WsQ0AMAgDQYqMjzJzhggIirve0peO4H5ss6wC2OZMBwDAQv4vAAAAAAAAAAAAAAAA9HkqTl3PAEAAAA==
   </data>
  </layer>
- <layer name="2_object" width="64" height="64">
+ <layer id="3" name="2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WsQqDMBQF0Hy+hQ4u7ZjBqZ9pi4oQBG0t+ojnwBvEXPAKIUmJ5j33H6c54Xv/
-rT0pG8VSh9dKZnpfa/8jslHo/528IxvRp0NeXTWrsX9p6/+otf8R2Si2dOh2ZKMr93959i/thTxO
-Df1vabjLPsfnR7rW/RcAAAAAAAAAAAAAAACi6gFcdXuEAEAAAA==
+   H4sIAAAAAAAACu3WsQqDMBQF0Py9hQ4u7ZjBqb9pi4oQBG0t+ojnwBvEXPAKIUmJ5j33H6c54Xv/rT0pG8VSh9dKZnpfa/8jslHo/528IxvRp0NeXTWrsX9p6/+otf8R2Si2dOh2ZKMr93959i/thTxODf1vabjLPsfnR7rW/RcAAAAAAAAAAAAAAACi6gEXrevMAEAAAA==
   </data>
  </layer>
- <layer name="objects" width="64" height="64">
+ <layer id="4" name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQrCQBgF4T1MsJI0YucBNKBHsJQUNiKKxN5zewXJ7s9k1/n695iUJEmSpHYM
-dICkdKMDFKqnAyRJmJEOkFS1Ox0gVWCiAwLs6ABJ0iJ1dEDj1kG/l6Bf/W6TsT0Xq5Ckdl3pgD/y
-ogOCvekAVetDB0jK9qQDZtjTAUEOdMBMJzqgoAcdoGYdM/erIhWKtKUDpAX5AshrfkoAQAAA
+   H4sIAAAAAAAACu3OMQrCQBgF4T1MsJI0YucBNKBHsJQUNiIoEg/lEb2CZPdnsut8/XtMSpIkSVI7BjpAUrrRAQrV0wGSJMxIB0iq2p0OkCow0QEBdnSAJGmROjqgceug30vQr363ydiei1VIUruudMAfedEBwd50gKr1oQMkZXvSATPs6YAgBzpgphMdUNCDDlCzjpn7VZEKRdrSAdKCfAFCwzDPAEAAAA==
   </data>
  </layer>
- <layer name="collision" width="64" height="64" opacity="0.37">
+ <layer id="5" name="collision" width="64" height="64" visible="0" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
- <layer name="protection" width="64" height="64">
+ <layer id="6" name="protection" width="64" height="64" visible="0" opacity="0.33">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
 </map>

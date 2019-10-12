@@ -105,22 +105,19 @@
  <tileset firstgid="535" name="bed/double_peach" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/furniture/bed/double_peach.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="543" name="creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
+ <tileset firstgid="543" name="logic/creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
   <image source="../../tileset/logic/creature/huge_animal.png" width="448" height="32"/>
  </tileset>
- <tileset firstgid="557" name="creature/mythical_animal" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="../../tileset/logic/creature/mythical_animal.png" width="64" height="32"/>
- </tileset>
- <tileset firstgid="559" name="creature/human_armored" tilewidth="32" tileheight="32" tilecount="8" columns="8">
+ <tileset firstgid="557" name="logic/creature/human_armored" tilewidth="32" tileheight="32" tilecount="8" columns="8">
   <image source="../../tileset/logic/creature/human_armored.png" width="256" height="32"/>
  </tileset>
- <tileset firstgid="567" name="creature/human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+ <tileset firstgid="565" name="logic/creature/human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/human_evil.png" width="320" height="32"/>
  </tileset>
- <tileset firstgid="577" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+ <tileset firstgid="575" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="593" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+ <tileset firstgid="591" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
@@ -145,7 +142,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dTUoDQRAG0CEXUQMKCqKuAoLYG6/g/Y8i7hIYY3eSTvXPe6tANh90VU13JswsCwAAQLm7TXQCoBfP5gV0ZatngX88mRMAAABdepz4PLeNDkDz1Miy3E88I/6iLjhGfbBGXbBGXazbTbz3UBPsUw/t+pxwTn1t1j/TttuCtXqwrnTiIzpAoHd9Ck2ZeR614ObId62fpdTOeY6t/UjUCRzK6f1UOwQhrH257yueHWueU639vGbZ73G6FB2AKvT+vHLXPtUMQQh9P6+StU+1QhBC38+rdO1TjRB0IUUHAEKk6ABAiBQdAAiRogMAIVJ0ACBEig4AhEjRAQCAq0rRATgw43OQAHK9mZFwthQdgKG8mMsABHp1HWqSc9s89CCM61qz3DWDXH5/gDKtP8eb+tQAjCn3+fZmAL/UwXi84wLmZgZwqRpwb6dfI88B9wryjFwD5FEDAMAl+P9FmZrvcgQAiOA+Aefymz4A++wtoD/2czCG1nq5tTxclj0fAL3wPH8AAADoy85ZHgAAAIbyA9u2wq0AAAEA
+   H4sIAAAAAAAACu3dTUoDQRAG0CEXUQMGFNRVwE2gwSPo/c8i7hIYY7dJp/rnvVUgmw+6qqY7E2aWBQAAoNzDJjoB0ItP8wK6stWzwB+ezQkAAIAuPU18nttGB6B5amRZHieeEb9RF5yjPlijLlijLtbtJ957qAmOqYd2HSacUx+b9c+07b5grXbWlU4cogMEeten0JSZ51EL7s581/pZSu1c5tzaj0SdwKmc3k+1QxDC2pf7uuHZseY51drPa5b9Hv+XogNQhd6fV+7ap5ohCKHv51Wy9qlWCELo+3mVrn2qEYIupOgAQIgUHQAIkaIDACFSdAAgRIoOAIRI0QGAECk6AABwUyk6ACdmfA4SQK43MxIulqIDMJQXcxmAQK+uQ01ybpuHHoRx3WqWu2aQy+8PUKb153hTnxqAMeU+394M4Ic6GI93XMDczACuVQPu7fRr5DngXkGekWuAPGoAALgG/78oU/NdjgAAEdwn4FJ+0wfgmL0F9Md+DsbQWi+3lofrsucDoBee5w8AAAB92TvLAwAAwFC+AV0utCkAAAEA
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.49">
