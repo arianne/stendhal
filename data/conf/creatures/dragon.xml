@@ -288,7 +288,7 @@
   <!-- START: flying -->
 
   <creature name="flying golden dragon">
-    <type class="dragon" subclass="flying_golden_dragon" tileid="huger_animal.png:0"/>
+    <type class="dragon" subclass="flying_golden_dragon" tileid="dragon.png:5"/>
     <description>You see a flying golden dragon. As it spreads its mighty wings you shiver... this mystical creature seems to have much power in it!</description>
     <attributes>
       <atk value="837"/>
