@@ -90,7 +90,7 @@
   <!-- START: dragon -->
 
   <creature name="green dragon">
-    <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
+    <type class="dragon" subclass="green_dragon" tileid="huge_animal.png:6"/>
     <description>You see a green dragon. He looks very tall and strong.</description>
     <attributes>
       <atk value="403"/>
@@ -127,7 +127,7 @@
   </creature>
 
   <creature name="bone dragon">
-    <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
+    <type class="dragon" subclass="bone_dragon" tileid="huge_animal.png:2"/>
     <description>You see a bone dragon. It's been said that there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
     <attributes>
       <atk value="435"/>
@@ -164,7 +164,7 @@
   </creature>
 
   <creature name="blue dragon">
-    <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
+    <type class="dragon" subclass="blue_dragon" tileid="huge_animal.png:1"/>
     <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don't forget that it also has claws and teeth!</description>
     <attributes>
       <atk value="511"/>
@@ -205,7 +205,7 @@
   </creature>
 
   <creature name="red dragon">
-    <type class="huge_animal" subclass="red_dragon" tileid="huge_animal.png:7"/>
+    <type class="dragon" subclass="red_dragon" tileid="huge_animal.png:7"/>
     <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. It's red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
     <attributes>
       <atk value="777"/>
@@ -243,7 +243,7 @@
   </creature>
 
   <creature name="black dragon">
-    <type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
+    <type class="dragon" subclass="black_dragon" tileid="mythical_animal.png:0"/>
     <description>You see a black dragon. As you see this huge black creature you almost faint! If you concentrate you can feel the deep growling of it in your bones.</description>
     <attributes>
       <atk value="1227"/>
@@ -288,7 +288,7 @@
   <!-- START: flying -->
 
   <creature name="flying golden dragon">
-    <type class="huge_animal" subclass="flying_golden_dragon" tileid="huger_animal.png:0"/>
+    <type class="dragon" subclass="flying_golden_dragon" tileid="huger_animal.png:0"/>
     <description>You see a flying golden dragon. As it spreads its mighty wings you shiver... this mystical creature seems to have much power in it!</description>
     <attributes>
       <atk value="837"/>
@@ -329,7 +329,7 @@
   </creature>
 
   <creature name="twin headed dragon">
-    <type class="huge_animal" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
+    <type class="dragon" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
     <description>You see a twin headed dragon. The two heads are staring at you with their four eyes!</description>
     <attributes>
       <atk value="836"/>
