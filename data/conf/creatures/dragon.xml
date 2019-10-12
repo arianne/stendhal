@@ -90,7 +90,7 @@
   <!-- START: dragon -->
 
   <creature name="green dragon">
-    <type class="dragon" subclass="green_dragon" tileid="huge_animal.png:6"/>
+    <type class="dragon" subclass="green_dragon" tileid="dragon.png:0"/>
     <description>You see a green dragon. He looks very tall and strong.</description>
     <attributes>
       <atk value="403"/>
