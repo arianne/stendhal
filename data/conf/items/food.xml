@@ -4,75 +4,7 @@
 
     <!-- try to sort by affinity first, alphabetical order next -->
 
-	<item name="tripe">
-		<type class="food" subclass="tripe" tileid="-1" />
-		<description>You see tripe. A chef could consider it an ingredient... Some pet will like it too!</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="20" />
-			<frequency value="12" />
-			<quantity value="1" />
-			<regen value="3" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
-	<item name="habanero pepper">
-		<type class="food" subclass="habanero_pepper" tileid="-1" />
-		<description>You see a habanero pepper. Could be a very HOT ingredient for a decent meal...</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="20" />
-			<frequency value="12" />
-			<quantity value="1" />
-			<regen value="3" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
-	<item name="pinto beans">
-		<type class="food" subclass="pinto_beans" tileid="-1" />
-		<description>You see a bunch of pinto beans. An ingredient a chef will surely appreciate...</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="20" />
-			<frequency value="12" />
-			<quantity value="1" />
-			<regen value="3" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
+    <!-- fruits -->
 	<item name="lemon">
 		<type class="food" subclass="lemon" tileid="-1" />
 		<description>You see a lemon. Could be an ingredient for the right chef...</description>
@@ -105,29 +37,6 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="3" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
-	<item name="black apple">
-		<type class="food" subclass="blackapple" tileid="-1" />
-		<description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="4" />
-			<frequency value="10" />
-			<quantity value="1" />
-			<regen value="1" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
@@ -211,6 +120,30 @@
 		</equipable>
 	</item>
 
+    <!-- black apple is a special kind of fruit -->
+	<item name="black apple">
+		<type class="food" subclass="blackapple" tileid="-1" />
+		<description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="4" />
+			<frequency value="10" />
+			<quantity value="1" />
+			<regen value="1" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
 	<!-- Removing crab meat
 	<item name="crab meat">
 		<type class="food" subclass="crab_meat" tileid="-1" />
@@ -236,6 +169,7 @@
 	</item>
 	Removing crab meat -->
 
+    <!-- from spawners -->
 	<item name="grapes">
 		<type class="food" subclass="grapes" tileid="-1" />
 		<description>You see a bunch of grapes. They look quite juicy and tasty.</description>
@@ -561,29 +495,6 @@
 	<item name="onion">
 		<type class="food" subclass="onion" tileid="-1" />
 		<description>You see an onion.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="40" />
-			<frequency value="20" />
-			<quantity value="1" />
-			<regen value="3" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
-	<item name="potato">
-		<type class="food" subclass="potato" tileid="-1" />
-		<description>You see a potato.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
@@ -997,19 +908,19 @@
 		</equipable>
 	</item>
 
-	<item name="crepes suzette">
-		<type class="food" subclass="crepesuzette" tileid="-1" />
-		<description>You see a crepes suzette topped with hot chocolate sauce.</description>
+	<item name="pie">
+		<type class="food" subclass="piesmall" tileid="-1" />
+		<description>You see a meat and vegetable pie.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<amount value="100" />
-			<frequency value="5" />
+			<amount value="150" />
+			<frequency value="25" />
 			<quantity value="1" />
-			<regen value="5" />
+			<regen value="12" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
-		<value value="5" />
+		<value value="12" />
 		<equipable>
 			<slot name="ground" />
 			<slot name="content" />
@@ -1066,29 +977,6 @@
 		</equipable>
 	</item>
 
-	<item name="pie">
-		<type class="food" subclass="piesmall" tileid="-1" />
-		<description>You see a meat and vegetable pie.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="150" />
-			<frequency value="25" />
-			<quantity value="1" />
-			<regen value="12" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="12" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
 	<item name="fish pie">
 		<type class="food" subclass="fishpie" tileid="-1" />
 		<description>You see a fish and leek pie. It's not too stodgy so you can eat it faster than a meat pie.</description>
@@ -1102,6 +990,29 @@
 		</attributes>
 		<weight value="1.0" />
 		<value value="13" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
+	<item name="crepes suzette">
+		<type class="food" subclass="crepesuzette" tileid="-1" />
+		<description>You see a crepes suzette topped with hot chocolate sauce.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="100" />
+			<frequency value="5" />
+			<quantity value="1" />
+			<regen value="5" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="5" />
 		<equipable>
 			<slot name="ground" />
 			<slot name="content" />
@@ -1135,19 +1046,19 @@
 		</equipable>
 	</item>
 
-	<item name="smoked ham">
-		<type class="food" subclass="ham_smoked" tileid="-1" />
-		<description>You see a smoked ham.</description>
+	<item name="smoked meat">
+		<type class="food" subclass="meat_smoked" tileid="-1" />
+		<description>You see a piece of smoked meat.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<amount value="160" />
-			<frequency value="10" />
+			<amount value="180" />
+			<frequency value="18" />
 			<quantity value="1" />
-			<regen value="12" />
+			<regen value="18" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
-		<value value="3" />
+		<value value="2" />
 		<equipable>
 			<slot name="ground" />
 			<slot name="content" />
@@ -1158,19 +1069,19 @@
 		</equipable>
 	</item>
 
-	<item name="smoked meat">
-		<type class="food" subclass="meat_smoked" tileid="-1" />
-		<description>You see a piece of smoked meat.</description>
+	<item name="smoked ham">
+		<type class="food" subclass="ham_smoked" tileid="-1" />
+		<description>You see a smoked ham.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<amount value="120" />
-			<frequency value="10" />
+			<amount value="240" />
+			<frequency value="24" />
 			<quantity value="1" />
-			<regen value="10" />
+			<regen value="24" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
-		<value value="2" />
+		<value value="3" />
 		<equipable>
 			<slot name="ground" />
 			<slot name="content" />
@@ -1186,10 +1097,10 @@
 		<description>You see a smoked cod.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<amount value="80" />
-			<frequency value="10" />
+			<amount value="180" />
+			<frequency value="18" />
 			<quantity value="1" />
-			<regen value="8" />
+			<regen value="18" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
@@ -1209,10 +1120,10 @@
 		<description>You see a smoked trout.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
-			<amount value="90" />
-			<frequency value="10" />
+			<amount value="240" />
+			<frequency value="24" />
 			<quantity value="1" />
-			<regen value="8" />
+			<regen value="24" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
@@ -1505,6 +1416,99 @@
 	</item>
 
     <!-- dropped -->
+	<item name="potato">
+		<type class="food" subclass="potato" tileid="-1" />
+		<description>You see a potato.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="40" />
+			<frequency value="20" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
+	<item name="habanero pepper">
+		<type class="food" subclass="habanero_pepper" tileid="-1" />
+		<description>You see a habanero pepper. Could be a very HOT ingredient for a decent meal...</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="20" />
+			<frequency value="12" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
+	<item name="pinto beans">
+		<type class="food" subclass="pinto_beans" tileid="-1" />
+		<description>You see a bunch of pinto beans. An ingredient a chef will surely appreciate...</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="20" />
+			<frequency value="12" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
+    <!-- dropped -->
+	<item name="tripe">
+		<type class="food" subclass="tripe" tileid="-1" />
+		<description>You see tripe. A chef could consider it an ingredient... Some pet will like it too!</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="20" />
+			<frequency value="12" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
 	<item name="cheese">
 		<type class="food" subclass="cheese" tileid="-1" />
 		<description>You see some cheese. Eat it and see what happens.</description>
@@ -1642,7 +1646,6 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
-
 
     <!-- quest -->
 	<item name="easter egg">
