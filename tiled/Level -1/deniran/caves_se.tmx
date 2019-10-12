@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="dark_caves" tilewidth="32" tileheight="32" tilecount="88" columns="8">
@@ -33,7 +33,7 @@
  <tileset firstgid="168" name="box" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/item/pot/box.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="169" name="human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+ <tileset firstgid="169" name="logic/creature/human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/human_evil.png" width="320" height="32"/>
  </tileset>
  <tileset firstgid="179" name="logic/creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
@@ -64,7 +64,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dsQ2DMBRFUe+/SSAgIaWgZbNUROlACvDscM4Et7KQ7W9KAQAAAGhXnw4AAD6GdAAAUKVHOgAAANj0TAfAQexTAwAAsMeYDgCAm1rvEXXRCoB9rFUAQOvMcgBwtVc6AOAHZiqAWkzpALjYnA6gLOkAAAAAoDrOTYB/4MwFAADa45+0cC/ecwBzwMBxrCeczbcbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADf3uMHcSMAAAEA
+   H4sIAAAAAAAACu3dsQ2DMBRFUe+/SSAg0aWFyVIRpQMpwLPDORPcykK2vykFAAAAoF19OgAA+BjSAQBAlR7pAAAAYNMzHQAHsU8NAADAHmM6AABuar1H1EUrAPaxVgEArTPLAcDVlnQAwA/MVAC1mNIBcLFXOoAypwMAAACA6jg3Af6BMxcAAGiPf9LCvXjPAcwBA8exnnA2324AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHx7AzLMKf8AAAEA
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.44">
@@ -72,7 +72,7 @@
    H4sIAAAAAAAACu2Wi4rzOgyE0/d/6cPPYcGEOvFF0ie5MzC03bbx3FL2c13X5wDOgNYqqn9R/YvqX1T/YuwGaJ0iuwFao6j+Rab7P9BaxecO29ef29/uXc92fz9DjO/36vztDfdN7ILO41d4NY+ZcNcn2nYeCYtz6cxOYGXQ2VWnJ96ub3E+nV9VngQ6y2o8DXSelXg1j5mws1M60yrMjF3ddLaVOJPjaM47sNotnWt2RuY3Cup6v0gqO4szZkDnnJlVc1vBp3kUa/e/uoHWWxWf6t++/57fCr6j8qP1RfT/dh3aI50frXHVw85G7t+lPRLZVfLuCdpbhuxojdoAnx2tMcNGaP10NrRGegu05gx5ROm4P//2mtgB3RO9Ac+zqR3OoNV6IkczIM711LCD+zXoDiP6t/S5iiz9R2nMtAFLb6ugfM9q9NBKdp8p90xaCL2k9yyZZ8iC1hvp99M8ZsnaKxMv7XTfWTxYwXqT3l5onbvZ09uL0ObpKau2kc9FZzWDdt8033Rm0TKLjJo8dVr6o/b5pGUGWTc5CjpzQodV1tn0rOLpHvz2WS9/RPer+Vfv/A2txm/PK/e/m/3OmXTvVuf/Wv/05rJh5vdg9HrZus/ye5MBPQ9Z8860xezY0WmZQ4b73/L6Fbq3QMZ7juj/V1HlvvfQ0n7vV5HhN9fyHtX9Pg76N5fawHWNX+tUWOaepf+2W/Xfh0fudP/39y1+R7JjJ6fT+p/VVBE7eXnnnql/6y1RiLyvTunfY0/RoLuu2v2qlt3rWoLuOnP/b3qo61qB7jl7/1l0eGyA7rhC5pm0WPTveXbvc7PXffOWKeMK/UecO5NVTxPhpfIGojXdr72D1e9nyzmrNioDTxD5rvjPoGvmO+3fM/b+D2T3q/1HeHjT0Pvs0/fV/f4Gej6sPT2dZaWd3ALdufUG7t52fI5eP9O9PAO664gN9NA7K1LDGzzyobvNtIHMsMyJ7lIbmINlVnSH1C6iN2S5XzrfqoyGlzY6x+r0hrc2Or/TaIFILXRep3IWlA46J9GXb6D1iepfVP+i+hfVv6j+RfUvqn/Rt/srgUaR6/4PtFaR7f9KoFfkur+CdbTv01mdxh1YapjVQ+d2Ai1g0Tt1/i/SAt/68z776Rp0phV4NY8RiD6bzjczCeycu/JdOuOszIwRjTMe6Kx7+d8fI/WuosJ+voHuezazz+15hu6ro0Lvnh6E2t33vDy992leC//jlP7/vLTPozZX/TdlpLPs3Ueiks8ZTSM+rLrPmNUofnHzf/jma9Z/5Wysfv9O208l3TsaI/9fqpRpdYzmrP7PwEqmVPfawDoss6P71wZY0N1H9a+tfQfd/am9VPFN954lBytUy4DunfA+evab3uo5XAZ6M/tePZ/OopdH772RDT+9l4WroHVnzGQEtLee11HvtN7KG6A9WXiltWbO5gm0DwuPtM4KGVXM601/NT/UDmhtXr6qe/PMi9ah/kXvDdC6RG4DtB5RFEVRFEWxJv8DpWgoNAAAAQA=
   </data>
  </layer>
- <layer id="7" name="protection" width="128" height="128">
+ <layer id="7" name="protection" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>

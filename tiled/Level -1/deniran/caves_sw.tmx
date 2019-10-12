@@ -73,7 +73,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3duwqDMACGUd//HWvTQejQ1d1OBRGlFJs/mHMg+zcEkiGXYQAAAAAA4CyPdADNMje2ynuM6QgAALplLwoAAAAAcD2tnM94pgMAAODCSjoA+HilAwAAgJUpHQAAX3CvDwAA6mnlbDUAAADQpls6AAAAACoo6QAAAAAAYNc9HQAA/J31/ndzOgAAqMJbsgDAkZIOAAAAuuEtIgDog7/DAAAAAAAAAAAAAAAAAICzLPK3yR8AAAEA
+   H4sIAAAAAAAACu3duwqDMACGUd//HWvTwa1rne1UEFFKsfmDOQeyf0MgGXIZBgAAAAAAzvJIB9Asc2OrvMeYjgAAoFv2ogAAAAAA19PK+Yw5HQAAABdW0gHAxzMdAAAArEzpAAD4gnt9AABQTytnqwEAAIA23dIBAAAAUEFJBwAAAAAAu+7pAADg76z3v3ulAwCAKrwlCwAcKekAAACgG94iAoA++DsMAAAAAAAAAAAAAAAAADjLAsgwoWEAAAEA
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.39">
@@ -81,7 +81,7 @@
    H4sIAAAAAAAACu2T7WrrMBBE5fd/6fvjUjCuk8rSrs6sPAMHpwRH86EerbXDYPSI9mi8v/H+xvubtdv/iPZqYnd/uv/POzuzc+5285wRnSerm9HMqh31ZhsRnS2qnyztnOv6d1VG8/e+q54lSvSOCn3d/WbFHL26nk/vqdpbdf9PRG+q2l11/72id1XtLtu70p2g9/3WXdX//Uqid77uTfcXuX1Enuz7prC7ipSyrPLh7f9LJQ/RbdX9K3ee6eOpn6r7j0otD+1n1/3Vsyh52mV7hbvck0+t3wr7f3uX2n0kj5KXVZ6ifCr4Vtx/VuqdqXhW3D9Kyp2RPiOz0OcT3iI90zsr7h8l1c4Ib2/cP8ufYme7ZImWWmf0rt6/9varcvVKff8Mj1RXrf0+j8yTcX6UVv2vPPWUdc7KPNf7qLj/nV9y/5WdrOxeaf9Pv1F5/7vfGdFxekZ1TndKenzqU6GLaCnvnuVx9f6qd4Duk/JI7K92BxT6JH0S+/eel91rdqdRftV8Zp+Z0emKDqPvgKrHjHOzPJO7j3qn/Sj6q9JjVZ6K9tvjnfZViaei/fb4pz1VYkS0Z+/P7t8EfHt/dv8m4P2bf9pXFWal6p3utRJ/9fjX98fls4JnE9PlqLx/LTLl7euQKe9fg2xleKM725FMjXjx/nvdh6gz6V7eyKiOy2dvX5NIefu6UKJzG25/OrNh7gCdUwmlTlaIzqhAtV4iRGegaZfP1foZFe1bpafe79XpEe1RsZO7jqp21pPtDbTTc1Z0lqj9aW/Vdv8Rncn7z+WeFZ0tqgPaX8Xtm0A+779+dzrbkw56u6C9qu5O51nVA+03KnPEHaBzEPtXzh0pOotCJ7R3767TDZ0jOt/du3QWpX7OfSh2007PKNGZ1PZX7CZLdC71vugc3v69+2eL3qhCdztkOOdQyVatt8oZlHIR3c30qZIhUvQ+lbpT8R+Vi97G+6/zT+/g/df5pztXI0rK3umO1YmQqm+62wpESck33Wk1oqTgl+6yKlGivdI9ViZCpE+6v12Ylfffg1F5+/14ouP09P77MCLvvx9P5e33pFfZZ9E9mPuNjtPT+7+DT/vM7PRNdF7Tv1f09qO/afTvQI/ojGZsv9nde37H8PRoZPfze0abDNGZDHsH6Dwm/w58eo/OYdbdgato/4a7B7Rnw9wD2qMxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGPeyT9m9P1SAAABAA==
   </data>
  </layer>
- <layer id="7" name="protection" width="128" height="128">
+ <layer id="7" name="protection" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>

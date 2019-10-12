@@ -88,7 +88,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dSw6CMBAAUNizcKuoieH+dzQcoIIRO+3w3gkg/UxnWsowAAAAAABA265j9BMAAAAA5PNScwEOMptPOBl9vp6e94istQD+T0zO46YtwxhHAACwn5pfffLFMv2xTK5LtJ73t4BcWlhL7YnLYjcAxBCD8+Vv92TvAwAAAABAnGw19OzsEeQ0aVfgS+uZwRbODQIA/EqeCwDAFnUwyMHdOQCsHuIBAABAVfIwIIK5B6DMudn+LNoM6IQ7IyDG5cCxZ634mXkOIC/fjEAcezoAnJ07QGFb6d+X6nXxntoAAAAAAAAAAAAAAACAIG+qrU6AAAABAA==
+   H4sIAAAAAAAACu3d7Q2CMBAAUNiAvyqaGNl/RsMAFYzYa4/3JoD043rXUoYBAAAAAADadhmjnwAAAAAgn6eaC3CQm/mEk9Hn6+l5j8haC+D/xOQ8rtoyjHEEAAD7qfnVJ18s0x/L5LpE63l/C8ilhbXUnrgsdgNADDE4X/42J3sfAAAAAADiZKuhZ2ePIKdFuwJfWs8MtnBuEADgV/JcAAC2qINBDu7OAWB1Fw8AAACqkocBEcw9AGXOzfbnpc2ATrgzAmJMB449a8XPzHMAeflmBOLY0wHg7NwBCttK/75Ur4v30AYAAAAAAAAAAAAAAAAEeQM0SJ/ZAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.35">

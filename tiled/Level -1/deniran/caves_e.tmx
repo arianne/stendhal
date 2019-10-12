@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="dark_caves" tilewidth="32" tileheight="32" tilecount="88" columns="8">
@@ -33,7 +33,7 @@
  <tileset firstgid="168" name="box" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/item/pot/box.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="169" name="human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+ <tileset firstgid="169" name="logic/creature/human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/human_evil.png" width="320" height="32"/>
  </tileset>
  <tileset firstgid="179" name="logic/creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
@@ -64,7 +64,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dSwrCQBBF0d7/TvxCwIFTd6ZTQYga8RVd56zgQkggoboyBgAAAPCJXToAgHaWdAAAAAAAm1zSAQAADdzSAQAA8LBPBwDwtlM6ACjpmA6YmDN5AAAAAAAAAADwzExNXa4NwLyc//qOMxi84n4C+D3PVqCLQzqAVed0AAAAANCCnV8AAEBn5nMBAMa4pgOAv/D+AwAAwOzMQwIA9mjQjd3NAD0t6QAAAIDCfDMDAKAS/z+qzdwpsJXnfG32aAAAAAAA3dwB8ymc1AAAAQA=
+   H4sIAAAAAAAACu3dSwrCQBBF0d7/TvxCZk51ZToVhKgRX9F1zgouhAQSqitjAAAAAJ/YpQMAaGdJBwAAAACwyS0dAADQwDUdAAAAD/t0AABvO6UDgJKO6YCJOZMHAAAAAAAAAADPzNTU5doAzMv5r+84g8Er7ieA3/NsBbo4pANYdU4HAAAAAC3Y+QUAAHRmPhcAYIxLOgD4C+8/AAAAzM48JABgjwbd2N0M0NOSDgAAACjMNzMAACrx/6PazJ0CW3nO12aPBgAAAADQzR1VuBaxAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.33">

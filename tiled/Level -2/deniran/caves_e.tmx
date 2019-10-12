@@ -36,7 +36,7 @@
  <tileset firstgid="153" name="chaos" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/chaos.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="160" name="huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
+ <tileset firstgid="160" name="logic/creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
   <image source="../../tileset/logic/creature/huge_animal.png" width="448" height="32"/>
  </tileset>
  <tileset firstgid="174" name="giant_human" tilewidth="32" tileheight="32" tilecount="13" columns="13">
@@ -67,7 +67,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dMQ7CMBAEQBr+XwMCKoREAV/gaRQUtAji7Nme6SOtlCL2+XLebAAAAAAAAAAAAIAWtukAwOJO6QAAAEB37COgf8d0AAAYQKXvaaUsACPZpQMAAAAAw9qnAwBAh87pAAAArOKaDjAY62io55IOAABAKc90AKALj3SAP6hPAQAAs+l5D2fOKABAO7d0AACAxsxRAWZzTwdgKO6ZAABmpl8FYFnu2oLvpNYg6kDM5vDDMz3349Oe8xkAgDe1dQAAAABYn76PeVV49xUyAAAAAFlV57z5p5EUvZTLU4cEAACAjxfWsn+cAAABAA==
+   H4sIAAAAAAAACu3dMQ7CMBAEQBr+XwMCKlp4ARL8jIKCFkGcPdszfaSVUsQ+X86bDQAAAAAAAAAAANDCNh0AWNwpHQAAAOiOfQT075gOAAADqPQ9rZQFYCS7dAAAAABgWPt0AADo0DkdAACAVdzTAQZjHQ31XNIBAAAo5ZEOAHThlg7wB/UpAABgNj3v4cwZBQBo55kOAADQmDkqwGyu6QAMxT0TAMDM9KsALMtdW/Cd1BpEHYjZHH54pud+fNpzPgMA8Ka2DgAAAADr0/cxrwrvvkIGAAAAIKvqnDf/NJKil3J56pAAAADw8QLnHfOcAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.4">

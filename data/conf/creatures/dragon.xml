@@ -127,7 +127,7 @@
   </creature>
 
   <creature name="bone dragon">
-    <type class="dragon" subclass="bone_dragon" tileid="huge_animal.png:2"/>
+    <type class="dragon" subclass="bone_dragon" tileid="dragon.png:3"/>
     <description>You see a bone dragon. It's been said that there are creatures with enough will to live that their souls still cling to life even as their flesh and blood has failed them. This is living proof.</description>
     <attributes>
       <atk value="435"/>
@@ -164,7 +164,7 @@
   </creature>
 
   <creature name="blue dragon">
-    <type class="dragon" subclass="blue_dragon" tileid="huge_animal.png:1"/>
+    <type class="dragon" subclass="blue_dragon" tileid="dragon.png:1"/>
     <description>You see a blue dragon. It has a very beautiful blue skin which shimmers mysteriously in the light. But don't forget that it also has claws and teeth!</description>
     <attributes>
       <atk value="511"/>
@@ -205,7 +205,7 @@
   </creature>
 
   <creature name="red dragon">
-    <type class="dragon" subclass="red_dragon" tileid="huge_animal.png:7"/>
+    <type class="dragon" subclass="red_dragon" tileid="dragon.png:2"/>
     <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. It's red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
     <attributes>
       <atk value="777"/>
@@ -329,7 +329,7 @@
   </creature>
 
   <creature name="twin headed dragon">
-    <type class="dragon" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
+    <type class="dragon" subclass="twin_head_dragon" tileid="dragon.png:6"/>
     <description>You see a twin headed dragon. The two heads are staring at you with their four eyes!</description>
     <attributes>
       <atk value="836"/>
