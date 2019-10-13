@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
@@ -30,13 +30,10 @@
  <tileset firstgid="181" name="human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/human_evil.png" width="320" height="32"/>
  </tileset>
- <tileset firstgid="191" name="huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
-  <image source="../../tileset/logic/creature/huge_animal.png" width="448" height="32"/>
- </tileset>
- <tileset firstgid="205" name="small" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="191" name="small" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/ground/ladder/small.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="206" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+ <tileset firstgid="192" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
@@ -51,7 +48,7 @@
  </layer>
  <layer id="3" name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="3_roof" width="128" height="128">
@@ -61,7 +58,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dyw2DMBAFQNdPP/kdqIGWUkAkhEm0zzgzVy7vYmztmqU1AAAAAIBPSzoAAAAAJe5fPodRPdMBAIBu9m9gVN5PAK090gEAAAAAAIrpEcE8bukAAMCuVzoAl+SMBwAAddwlh2uxZgFgXls6AAAAAAAAMb55BQAAADhuTQcAAABO0xutY47XXMzzA6ilBgkAAADsOVuD1ycBUtQ8Afro0QMAAAC/1vM/GjVdAAAAGIvZDQAAAAAAwD97A7EpSgkAAAEA
+   H4sIAAAAAAAACu3dOw6DMBAFQJ+f++RXUHCzHCASwiTaZ5yZluY1xtauWVoDAAAAAPi0pAMAAABQ4v7lcxjVMx0AAOhm/wZG5f0E0NojHQAAAAAAoJgeEczjlg4AAOx6pQNwSc54AABQx11yuBZrFgDmtaUDAAAAAAAQ45tXAAAAgOPWdAAAAOA0vdE65njNxTw/gFpqkAAAAMCeszV4fRIgRc0ToI8ePQAAAPBrPf+jUdMFAACAsZjdAAAAAAAA/LM3jjfHUQAAAQA=
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.45">

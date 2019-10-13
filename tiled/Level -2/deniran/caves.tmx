@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
@@ -27,13 +27,10 @@
  <tileset firstgid="131" name="chaos" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/chaos.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="138" name="logic/creature/huge_animal" tilewidth="32" tileheight="32" tilecount="14" columns="14">
-  <image source="../../tileset/logic/creature/huge_animal.png" width="448" height="32"/>
- </tileset>
- <tileset firstgid="152" name="giant_human" tilewidth="32" tileheight="32" tilecount="13" columns="13">
+ <tileset firstgid="138" name="giant_human" tilewidth="32" tileheight="32" tilecount="13" columns="13">
   <image source="../../tileset/logic/creature/giant_human.png" width="416" height="32"/>
  </tileset>
- <tileset firstgid="165" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+ <tileset firstgid="151" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
@@ -58,7 +55,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3cUQqCUBQEUPceUe2gVtA2o78CIZFkHN85G3DAj8e7jneaAAAAAACgwzUdAAAAAAAA+ItLOgAAABCnCwQAAAAAAABwfDqjAABAg0c6AMAK98Azm2c9t3QAAGa1/GPWfAayD6d0AL54HwDAnMS87ZNvFbA9c2IAAAAAAIB9aemRAgAAwJt7LAAAMCL7GRiF/ULAL85EANrZbQMAcFzPdIAB6ZKNwT2Kduk9u6xzTgcAYDFdE6CJ3gsAAAAAAAAAW3kBHUlSRAAAAQA=
+   H4sIAAAAAAAACu3cSwqDQBAEUO8eQn4nyG1DdgkIEYmU5bx3AQtcDNOWPU0AAAAAANDhmg4AAAAAAAD8xSUdAAAAiNMFAgAAAAAAADg+nVEAAKDBIx0AYIV74JnNs55bOgAAs1r+MWs+A9mHUzoAX7wPAGBOYt72ybcK2J45MQAAAAAAwL609EgBAADgzT0WAAAYkf0MjMJ+IeAXZyIA7ey2AQA4rmc6wIB0ycbgHkW79J5d1jmnAwCwmK4J0ETvBQAAAAAAAICtvAAWuwuLAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.44">

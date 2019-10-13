@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="../../tileset/ground/brown.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
   <image source="../../tileset/ground/brown.png" trans="ff00ff" width="160" height="32"/>
  </tileset>
@@ -51,7 +51,7 @@
  <tileset firstgid="178" name="giant_animal" tilewidth="32" tileheight="32" tilecount="4" columns="4">
   <image source="../../tileset/logic/creature/giant_animal.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="182" name="animal" tilewidth="32" tileheight="32" tilecount="30" columns="30">
+ <tileset firstgid="182" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="30" columns="30">
   <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
  </tileset>
  <tileset firstgid="212" name="albino" tilewidth="32" tileheight="32" tilecount="5" columns="5">
@@ -78,6 +78,9 @@
  <tileset firstgid="444" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
+ <tileset firstgid="451" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
+ </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3cSWoDMRBAUYF9ypy+dr5GaLDBMfLQwerS8BaP7JxS/UpWIadSygkAAGBA56vsOchr/yh7rtGd7772vk830H6XI+x1pFl79En7EXY62rzZPu0+2j5HmnWU9nY6F/3Xpv+6tF+b9ui/Nu3RntodZM8DAAAAAADfElfZc3B8n3iQ/VaOa3//+Zerlt+L//Vp/fmbS3EDK4ryt/2tf3QwG/qjP237b2o3kD0bx7Tf6L+WKK/bRwcz0r79ptY+OpiT9v2f/exHB3PSrvvmsb3f/3OKimft9Z9LVHzSPjqYne90f9X7Wfvo4A0c1z8qst9ATvvs+TmufxTtZ3Tf9F33n6L9jGKH7FnJ6Z89Izk3kD0XAAAAAAAAAAAAAAAAAAAAAAAAtBDF/9xaWRQ30MK5gxn2dL/JnmsW54rsmd61jw5mm02vdxAV2TPNqNf+9zeQPccKer4D9OeYG3i8heyZerHaPtyAXaz2Xv3Rnlp7/dejPQAAAAAAAAAA0Dt/57a2WbvP+q5We9qzr+hg7hbvWtHMe5r5bd/ejR2tZU//X5Sb8FcAAAEA
@@ -100,7 +103,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3csU7DMBAG4PAstIVSCg+PxMrQAR6gQ6Ev06lSB0SrEOd89veNmX7FTuw7JR4GAAAgs+/oADP4iQ5woaYs5GHeAACM10PNw22m2FebTwAAANepnQAAIJdjdACG+7voBMAUXjzL3Xg21gBQpUdrNFAhtSJ/WZkfxb26x83YGEsqoj8IQG2cSUMr9Hhzeyowfhnq+m2CjAAAABEe1EsADLetB//pA+rPAQD0Y4p/M/QroF7qOwB64Kw/KGdpPwkAAM1Z2OeTmH//ifAZHWBm+kH1Wxuj0Xp7ngEAevIeHYAUvqIDACSjVwgAAFwqcU4+QG/Gvkt9L0TvdtEBgEn5lhMgh7foAI3QUwMAMviwZ4EinO3SHmMKtEovEKAeanQAzqwJQBaHX65tZ08BAECEfXQAAEY5AbtpJEUAAAEA
+   H4sIAAAAAAAACu3cO1LDMBAGYOcsvB+Bw2eGliIcgSIJl6FiJgUDwVhZrfb7Slf/WLKl3bE1TQAAQGb76ABncIgOcKSnLORh3gAAzFeh5uE0S+yrzScAAIDfqZ0AACCXj+gATBer6ATAEp48y2U8GmsA6NKtNRrokFqRn1ybH809u8fDeDCWdER/EIDeOJOGUejx5nbfYPwy1PXrBBkBAAAi3KiXAJhOWw/+0wfUnwMAqGOJfzP0K6Bf6jsAKnDWH7RzZT8JAADDubTPJzH//hPhrdh7Uz+of3fGaLZqzzMAQCUv0QFIYasmAPgTvUIAAOBYi3PyAaqZ+y71vRDVbaMDAIvyLSdADpvoAIPQUwMAMni1Z4EmnO0yHmMKjEovEKAfanQAvlgTgCx231xbnz0FAAAR3qMDADDLJwbv1toAAAEA
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.37">

@@ -3,7 +3,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="spider">
-    <type class="spider" subclass="spider" tileid="animal.png:18"/>
+    <type class="spider" subclass="spider" tileid="spider.png:0"/>
     <description>You see a spider. It makes a giant spider web to trap you!</description>
     <attributes>
       <atk value="213"/>
@@ -28,7 +28,7 @@
   </creature>
 
   <creature name="poisonous spider">
-    <type class="spider" subclass="poisonous_spider" tileid="animal.png:17"/>
+    <type class="spider" subclass="poisonous_spider" tileid="spider.png:1"/>
     <description>You see a poisonous spider. Be careful! Its poison is very strong! It will make you very weak and can probably kill you!</description>
     <attributes>
       <atk value="244"/>
@@ -58,7 +58,7 @@
   </creature>
 
   <creature name="giant spider">
-    <type class="spider" subclass="giant_spider" tileid="huge_animal.png:5"/>
+    <type class="spider" subclass="giant_spider" tileid="spider.png:3"/>
     <description>You see a giant spider. It has very long legs which are quite dangerous.</description>
     <attributes>
       <atk value="709"/>

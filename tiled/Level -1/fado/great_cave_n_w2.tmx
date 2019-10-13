@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="ground/brown" tilewidth="32" tileheight="32" tilecount="5" columns="5">
   <image source="../../tileset/ground/brown.png" trans="ff00ff" width="160" height="32"/>
  </tileset>
@@ -57,6 +57,9 @@
  <tileset firstgid="301" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
+ <tileset firstgid="308" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
+ </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3cy26DQBBFQUvO/39ztlFkbB7D3B53LWoLDachSFHyfDweTwAAAIAv8HNQel72N93T+8px7UR9/3t9avvp2fc+WMtWt1HS18e+HXjVSvsePPu82omzu5GenXE7oH1f2qN9b9r3pX1f2vemf2/aoz0AAAAAAAAAAAAAAAAAAACj+Bv2nt61HrkLdqmeWf+z1vukpiv9j/bUv5YR7Y80rfgOqDTLqu33dK30Tek7d37/Cjsw6ltmZXd1P9N/5n3v3n1W/yM/A/T/vvYr9V/h2PrXbnPmPug/5x7N6LJ1fP2z/Wc+k9Wf+79zztiDZP+zs406V7px5f5337Ors109X7rv3nlTOzD7PezZ35797h1I7vesmSpde9f+6blW7H/l/lXbgeRcqzaftQ9V5x59znQzO7D/Gu46T7pZ1R1IXwfZPUjPT3YP0nOT3YH0zOT6p+cl1z89K7kdSM/I/P7pubAD2AHsANkdSM/E97NrPXnfYAd60x/9e9O/N/370r437Xvy3d+X3zX0pn9v+qN7b7oDAAAAAAAAAAAAAADAeL9Q8BE3AAABAA==
@@ -79,7 +82,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dMU7EMBRF0WFJrAdEAw0IwSAQG5gCVgDbpaSKRAY5z//nnHoU3WYix3acwwEAAAAAAAAAoK7rQde9GnRdoJ+bdACrndIBrPaRDgCgBWMAlrynA4BS3DOgLuNBqMncIMxv1Jp9WrU9A7fpAACYjHk8AIB6us4zAcBf3aUDJlZt3aa7z3QAMA3Pcec7pgMA2CVj+bqe0wEATOExHQAAANDEdzoAJmLtALblPwfjXV6kCwCArpzxNo+vQb+dnXNZAaAHe0EB1rPPAwAAoLdK3xSxbrytbnMC9+kAhnlNBwBwlqd0ALBrvkcB7FWluUAAlr2lAyZnvF+Ps2AAAJad0gEAAACwkYd0AABM5CUdMIB3AOGX/V/9WeOD/3GuCOzPMR0AANDID4YR9kIAAAEA
+   H4sIAAAAAAAACu3dQUoEMRAF0PFIgp5GcaMbRXQGxQvMHfS6bgRXA/ZI+qeq31s34W/SpKvSyW4HAAAAAAAAAFDX7aBxbwaNC/Rzlw7AYsd0ABa7vkgnAKADawBO+UgHAErxzoC6rAehJrVBmN+onn1atT0D9+kAADAZdTwAgHq61pkA4K8e0gEmVq1v092VPj7ww3fc+fbpAABskrV8Xa/pAABM4TkdAAAAoImvdACYiN4BrMucg/EuzTMAYBBnvM3jc9Czs3MuKwD0YC8owHL2eQAAAPRW6U4RfeN1dasJPKYDMMxbOgAAZ3lJBwA2zX0UwFZVqgUCcNp7OsDkrPfrcRYMAMBpx3QAAAAAWMlTOgAATOSQDjCAfwDhl/1f/enxwf84VwS2Z58OAADQyDd+eBkqAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.28">
