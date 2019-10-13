@@ -77,7 +77,7 @@
   <!-- START: militant -->
 
   <creature name="infantry gnome">
-    <type class="gnome" subclass="infantryman" tileid="gnome_patrol.png:0"/>
+    <type class="gnome" subclass="infantryman" tileid="gnome.png:2"/>
     <description>You see an infantry gnome who will protect his little town against the humans!</description>
     <attributes>
       <atk value="58"/>
@@ -111,7 +111,7 @@
   </creature>
 
   <creature name="cavalryman gnome">
-    <type class="gnome" subclass="cavalryman" tileid="gnome_patrol.png:1"/>
+    <type class="gnome" subclass="cavalryman" tileid="gnome.png:3"/>
     <description>You see a cavalryman gnome who does long travels to search for gold.</description>
     <attributes>
       <atk value="90"/>
