@@ -58,7 +58,7 @@
   </creature>
 
   <creature name="giant spider">
-    <type class="spider" subclass="giant_spider" tileid="spider.png:3"/>
+    <type class="spider" subclass="giant_spider" tileid="spider.png:2"/>
     <description>You see a giant spider. It has very long legs which are quite dangerous.</description>
     <attributes>
       <atk value="709"/>
