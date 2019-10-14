@@ -17,6 +17,7 @@
 	<group uri="creatures/hybrid.xml" />
     <group uri="creatures/oni.xml" />
     <group uri="creatures/orc.xml" />
+    <group uri="creatures/reptile.xml" />
     <group uri="creatures/spider.xml" />
 	<group uri="creatures/troll.xml" />
 	<group uri="creatures/undead.xml" />
