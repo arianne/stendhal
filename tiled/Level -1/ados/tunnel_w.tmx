@@ -18,16 +18,16 @@
  <tileset firstgid="21" name="crystal" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../../tileset/ground/rock/pink_crystal.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="30" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="30" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="31" name="crystal 2" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../../tileset/ground/rock/green_crystal.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="40" name="undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
+ <tileset firstgid="40" name="logic/creature/undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
   <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
  </tileset>
- <tileset firstgid="55" name="barbarian" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+ <tileset firstgid="55" name="logic/creature/human_barbarian" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/human_barbarian.png" width="224" height="32"/>
  </tileset>
  <tileset firstgid="62" name="wall/int_rock" tilewidth="32" tileheight="32" tilecount="140" columns="10">
@@ -41,6 +41,9 @@
  </tileset>
  <tileset firstgid="215" name="logic/creature/undead_specter" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/undead_specter.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="221" name="logic/creature/undead_zombie" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/logic/creature/undead_zombie.png" width="160" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -64,7 +67,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3YsQmEQBRFUcvRDhTtPzCTRQSr0QocWBbeznhO/IMbveB3HQAAAAAAAAAAAAAAAAAAfG9OBwAAAFCVPh0AvNKWDqAZezoAAF7i86Mb4NmSDqicHQIAAACAsiMdAJWa0gEABWc64I+M6QAAqIQfAQBAu4Z0wG1NBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANOwCeXE01AAAAQA=
+   H4sIAAAAAAAACu3YsQmEQBRFUduxA0X7D8xEFkGwF63AgWXh7YznxD+40Qt+1wEAAAAAAAAAAAAAAAAAwPemdAAAAABVOdMBwCut6QCa8UkHAMBLbD+6AZ7N6YDK2SEAAAAAKNvTAVCpMR0AUHCkA/7IkA4AgEr4EQAAtKtPB9yWdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMMuIahBiQAAAQA=
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.36">

@@ -72,14 +72,14 @@
  <tileset firstgid="206" name="wall/int_rock" tilewidth="32" tileheight="32" tilecount="140" columns="10">
   <image source="../../tileset/building/wall/int_rock.png" width="320" height="448"/>
  </tileset>
- <tileset firstgid="346" name="logic/creature/undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
-  <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
- </tileset>
- <tileset firstgid="361" name="dim light 5x5" tilewidth="32" tileheight="32" tilecount="25" columns="5">
+ <tileset firstgid="346" name="dim light 5x5" tilewidth="32" tileheight="32" tilecount="25" columns="5">
   <image source="../../tileset/light/dim_light_5x5.png" width="160" height="160"/>
  </tileset>
- <tileset firstgid="386" name="logic/creature/undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="371" name="logic/creature/undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/undead_skeleton.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="377" name="logic/creature/undead_zombie" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/logic/creature/undead_zombie.png" width="160" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
@@ -108,7 +108,7 @@
  </layer>
  <layer id="6" name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3ZxxGDMBAAQNwmL49n6ITCaQGZoAu7b32ULkjLAmSxfc6P/Q2Mhez2Auf9yTmMxI6uvtboFGcphwj71LEOqZCLmKfjnelKzcEVEXJ8BWIuo6LWeSM5RfwAgP+sk3No1DoEuFeVPlXfkZv9u4f3X+jhqdwtFgMQnXq3lyrvFRm4W3SmD7pm9j8WAO84AGB2rYYAQAAA
+   H4sIAAAAAAAACu3ZtwGDMBAAQDw0hQ3DswIyQR/uajVKH6RlAbL4fc6P3QfGQnZrgfP+5BxGYkdXmzU6xVnKIcI+daxDKuQi5ul4Z7pSc3BFhBxfgZjLqKh13khOET8A4D/fyTk0ah0C3KtKn6rvyM3+3cP7L/TwVO4WiwGITr3bS5X3igzcLTrTB10z+x8LgHccXvkcdQBAAAA=
   </data>
  </layer>
  <layer id="7" name="collision" width="64" height="64" visible="0" opacity="0.3">
@@ -123,12 +123,12 @@
  </layer>
  <layer id="9" name="blend_ground" width="64" height="64" visible="0" opacity="0.4">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3aSQ7CMBBEUfu4zPMUhnAHDsIpgGtRLFoyVlhBZBP/J9WiF5Hc2Vgl2TkAAACYa+oDAAAAoFiP1AcAALzpe+cGytA3z7lo4/4Ya8eJMlVmyiia55n9g19baL+lslLWSi+aNx3ff6v9dkql7JVjNB86vv/LSTvWytk3zwAAAJfUBwASsF5sya0ftynsyZYS+rEJe7KlhH5swp5cFdaPjfXimn4MAAAAoAU35f7F97z//2+8mQOAz57Mh6kPAEAAAA==
+   H4sIAAAAAAAACu3aSQ7CMBBEUfuazPMUhnAWDsIpgGtRLFoyVlhBZBP/J9WiF5Hc2Vgl2TkAAACYa+oDAAAAoFiP1AcAALzpe+cGytA3z7lo4/4Ya8eJMlVmyiia55n9g19baL+lslLWSi+aNx3ff6v9dkql7JVjNB86vv/LSTvWytk3zwAAAJfUBwASsF5sya0ftynsyZYS+rEJe7KlhH5swp5cFdaPjfXimn4MAAAAoAU35f7F97z//2+8mQOAz55ATUOaAEAAAA==
   </data>
  </layer>
  <layer id="10" name="blend_roof" width="64" height="64" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3aOQ7CQBBFwfF1AbHvIOBWhGwXo8kmQUTQQlMlvcBZfydOXAoAAAAA5LtlHwDAX/L9+J7zh2cAAICW9LpS+lWDLvui3xnG1lE0rppE00bewSx2zqNF1TJaNbJ/HTs30bZqF+0b2f9yiK3HqlND2wEA4Bcu0TX7iET36JF9BGn88wDAO0/9sK/zAEAAAA==
+   H4sIAAAAAAAACu3aOQ7CQBBFwfE5AbHvIOB0hGwXo8kmQUTQQlMlvcBZfydOXAoAAAAA5LtlHwDAX/L9+J7zh2cAAICW9LpS+lWDLvui3xnG1lE0rppE00bewSx2zqNF1TJaNbJ/HTs30bZqF+0b2f9yiK3HqlND2wEA4Bcu0TX7iET36JF9BGn88wDAO0/lbpKlAEAAAA==
   </data>
  </layer>
 </map>

@@ -954,7 +954,7 @@
   <!-- START: zombie -->
 
   <creature name="bloody zombie">
-    <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
+    <type class="undead" subclass="bloody_zombie" tileid="undead_zombie.png:0"/>
     <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
     <attributes>
       <atk value="182"/>
@@ -991,7 +991,7 @@
   </creature>
 
   <creature name="zombie">
-    <type class="undead" subclass="zombie" tileid="undead.png:11"/>
+    <type class="undead" subclass="zombie" tileid="undead_zombie.png:1"/>
     <description>You see a zombie. It woke up just to take revenge, be silent.</description>
     <attributes>
       <atk value="202"/>
@@ -1026,7 +1026,7 @@
   </creature>
 
   <creature name="headless monster">
-    <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
+    <type class="undead" subclass="headless_monster" tileid="undead_zombie.png:2"/>
     <description>You see a headless monster, how can he hear that we come to him?</description>
     <attributes>
       <atk value="221"/>
@@ -1056,7 +1056,7 @@
   </creature>
 
   <creature name="rotten zombie">
-    <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
+    <type class="undead" subclass="rotten_zombie" tileid="undead_zombie.png:3"/>
     <description>You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.</description>
     <attributes>
       <atk value="256"/>
@@ -1094,7 +1094,7 @@
 
   <!-- Disabled until future review
   <creature name="myling">
-    <type class="undead" subclass="myling" tileid="undead.png:14"/>
+    <type class="undead" subclass="myling" tileid="undead_zombie.png:4"/>
     <description>You see a myling which roams in search of someone to give it a proper burial.</description>
     <attributes>
       <atk value="1153"/>
