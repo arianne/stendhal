@@ -1693,7 +1693,7 @@
   </creature>
 
   <creature name="imperial veteran">
-    <type class="human" subclass="imperial_veteran" tileid="human_kalavan.png:0"/>
+    <type class="human" subclass="imperial_veteran" tileid="human_imperial.png:14"/>
     <description>You see an imperial veteran. He fought in many battles and wars. Now he is old, but over the years he always looked for a new enemy to fight against.</description>
     <attributes>
       <atk value="330"/>
