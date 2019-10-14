@@ -243,7 +243,7 @@
   </creature>
 
   <creature name="beaver">
-    <type class="rodent" subclass="beaver" tileid="farm_animal.png:0"/>
+    <type class="rodent" subclass="beaver" tileid="rodent.png:7"/>
     <description>You see a beaver. It likes to build dams in the river.</description>
     <attributes>
       <atk value="53"/>
