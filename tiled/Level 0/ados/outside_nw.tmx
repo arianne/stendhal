@@ -104,7 +104,7 @@
   <image source="../../tileset/logic/creature/gnome.png"/>
  </tileset>
  <tileset firstgid="581" name="small_animal.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/small_animal.png"/>
+  <image source="../../tileset/logic/creature/rodent.png"/>
  </tileset>
  <tileset firstgid="586" name="animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>

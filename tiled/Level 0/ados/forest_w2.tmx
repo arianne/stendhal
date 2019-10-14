@@ -118,7 +118,7 @@
   <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
  </tileset>
  <tileset firstgid="769" name="logic/creature/small_animal" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/logic/creature/small_animal.png" width="160" height="32"/>
+  <image source="../../tileset/logic/creature/rodent.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="774" name="farm animal" tilewidth="32" tileheight="32" tilecount="12" columns="12">
   <image source="../../tileset/logic/creature/farm_animal.png" width="384" height="32"/>

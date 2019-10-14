@@ -8,7 +8,7 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset firstgid="18" name="logic/creature/small_animal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/small_animal.png"/>
+  <image source="../../tileset/logic/creature/rodent.png"/>
  </tileset>
  <tileset firstgid="23" name="logic/creature/giant_animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_animal.png"/>

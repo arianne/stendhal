@@ -76,7 +76,7 @@
   <image source="../../tileset/building/decoration/webs.png" width="64" height="96"/>
  </tileset>
  <tileset firstgid="260" name="small_animal.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/logic/creature/small_animal.png" width="160" height="32"/>
+  <image source="../../tileset/logic/creature/rodent.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="265" name="undead.png" tilewidth="32" tileheight="32" tilecount="15" columns="15">
   <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>

@@ -32,7 +32,7 @@
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
  <tileset firstgid="66" name="Untitled" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/small_animal.png"/>
+  <image source="../../tileset/logic/creature/rodent.png"/>
  </tileset>
  <tileset firstgid="71" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>

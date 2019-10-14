@@ -111,8 +111,8 @@
  <tileset firstgid="326" name="../../tileset/furniture/other/tools_rack.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/furniture/other/tools_rack.png" trans="ff00ff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="332" name="../../tileset/logic/creature/small_animal.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/logic/creature/small_animal.png" width="160" height="32"/>
+ <tileset firstgid="332" name="logic/creature/rodent" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/logic/creature/rodent.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="337" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>

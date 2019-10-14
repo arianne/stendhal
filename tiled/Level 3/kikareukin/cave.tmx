@@ -21,8 +21,8 @@
  <tileset firstgid="48" name="logic/creature/naga" tilewidth="32" tileheight="32" tilecount="4" columns="4">
   <image source="../../tileset/logic/creature/naga.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="52" name="logic/creature/small_animal" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/logic/creature/small_animal.png" width="160" height="32"/>
+ <tileset firstgid="52" name="logic/creature/rodent" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/logic/creature/rodent.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="57" name="item/blooc/floor_stain" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/item/blood/floor_stain.png" width="32" height="32"/>

@@ -98,7 +98,7 @@
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <tileset firstgid="475" name="../../tileset/logic/creature/small_animal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/small_animal.png"/>
+  <image source="../../tileset/logic/creature/rodent.png"/>
  </tileset>
  <tileset firstgid="480" name="bench" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/bench_iron.png"/>

@@ -35,7 +35,7 @@
   </creature>
 
   <creature name="rat">
-    <type class="rodent" subclass="rat" tileid="small_animal.png:1"/>
+    <type class="rodent" subclass="rat" tileid="rodent.png:1"/>
     <description>You see a small rat that seems to be extremely hungry.</description>
     <attributes>
       <atk value="8"/>
@@ -70,7 +70,7 @@
   </creature>
 
   <creature name="caverat">
-    <type class="rodent" subclass="caverat" tileid="small_animal.png:0"/>
+    <type class="rodent" subclass="caverat" tileid="rodent.png:0"/>
     <description>You see a caverat which is dirty and loves the dungeons.</description>
     <attributes>
       <atk value="34"/>
@@ -103,7 +103,7 @@
   </creature>
 
   <creature name="venomrat">
-    <type class="rodent" subclass="venomrat" tileid="small_animal.png:3"/>
+    <type class="rodent" subclass="venomrat" tileid="rodent.png:3"/>
     <description>You see a venomrat, extremely poisonous.</description>
     <attributes>
       <atk value="89"/>
@@ -138,7 +138,7 @@
   </creature>
 
   <creature name="zombie rat">
-    <type class="rodent" subclass="zombierat" tileid="small_animal.png:4"/>
+    <type class="rodent" subclass="zombierat" tileid="rodent.png:4"/>
     <description>You see a hungry zombie rat and it doesn't like to see you.</description>
     <attributes>
       <atk value="105"/>
@@ -174,7 +174,7 @@
   </creature>
 
   <creature name="razorrat">
-    <type class="rodent" subclass="razorrat" tileid="small_animal.png:2"/>
+    <type class="rodent" subclass="razorrat" tileid="rodent.png:2"/>
     <description>You see a razorrat, its noise will make you crazy!</description>
     <attributes>
       <atk value="119"/>
