@@ -50,16 +50,25 @@ public class HoeingManNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("Well met, wayfarer!");
-				addJob("You see? I keep freeing the soil from weeds with my #hoe but those grow back every time...");
-				addHelp("Take your time and check the area around... There's a mill somewhat north and a really nice farm to the east... Nice and rich country, you could go hunting for food!");
+				addJob(	"You see? I keep freeing the soil from weeds with my #hoe but... " +
+				        "Weeds keep growing back... Of course...");
+				addHelp("Take your time and check the area around... " +
+						"There's a mill somewhat north and a really nice farm to the east... " +
+						"Nice and rich country, you could go hunting for food!");
 				addReply("hoe",
-	                "Oh well, there's nothing special about my hoe... " +
-	                "If you need some good farming tools like a #scythe, it might help visiting the nearby Semos city blacksmith shop!");
+	                "Ah well, there's nothing special about my hoe... " +
+	                "If you need some good farming tools like a #scythe or a #sickle... " +
+	                "Visiting the nearby Semos city blacksmith shop would be a good idea!");
 				addReply("scythe",
-	                "Ah well... If you need some good farming tools like a scythe, it might help visiting the nearby Semos city blacksmith shop!");
+	                "Oh well... If you need some good farming tools like a scythe, " +
+					"it might help visiting the nearby Semos city blacksmith shop!");
+				addReply("sickle",
+		             "Oh well... If you need some good farming tools like a sickle, " +
+				     "it might help visiting the nearby Semos city blacksmith shop!");
 				addGoodbye("Goodbye and may your path be clear of weeds!");
 			}
 		};
+		
 		// Finalize Jingo Radish, the hoeing man near the Mill north of Semos
 		npc.setEntityClass("hoeingmannpc");
 		npc.setDescription("You see a man with a hoe, he's busy weeding the soil...");
