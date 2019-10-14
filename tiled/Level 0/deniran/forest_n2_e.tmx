@@ -60,8 +60,11 @@
  <tileset firstgid="678" name="tall_grass" tilewidth="32" tileheight="32" tilecount="15" columns="5">
   <image source="../../tileset/ground/tall_grass.png" width="160" height="96"/>
  </tileset>
- <tileset firstgid="693" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
-  <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
+ <tileset firstgid="693" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="699" name="logic/creature/fowl" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/fowl.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -90,7 +93,7 @@
  </layer>
  <layer id="6" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3c4QmAIBAGUGv/efqf/xqiXVpAo0DUw/cmEBHuO09MCQAAAICacxu9AgAAAKBEzw4AAAAAAFCWzVEAXpk3A5HIdgAAAAAAAAAAAAAAAABrO/bRK4jL3gEAwDf+5AEAoEZWZAaXcwgAU7rVaBYmo7ZhH2EuajtAO3IOABCRvhAAAACAVZjnAQAAAH94V0NE2bkFgKZkQgAgAvcBAAAAAABAbw9HcM1tAAABAA==
+   H4sIAAAAAAAACu3cUQqAIBAFQOv+5+kzyL9u1QU0CkRdnDmBLIJvXTElAAAAAGqubfQKAAAAgBI9OwAAAAAAQFk2RwF4Zd4MRCLbAQAAAAAAAAAAAAAAAKzt2EevIC61AwCAb/zJAwBAjazIDG77EACmdJrJszAZtQ11hLk42wHakXMAgIj0hQAAAACswjwPAAAA+MO7GiLK7sAAoCmZEACIwH0AAAAAAADQ2wMKCKR9AAABAA==
   </data>
  </layer>
  <layer id="7" name="collision" width="128" height="128" visible="0" opacity="0.42">

@@ -99,8 +99,11 @@
  <tileset firstgid="798" name="barnyard" tilewidth="32" tileheight="32" tilecount="200" columns="8">
   <image source="../../tileset/building/barnyard.png" width="256" height="800"/>
  </tileset>
- <tileset firstgid="998" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
-  <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
+ <tileset firstgid="998" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="1004" name="logic/creature/fowl" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/fowl.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -124,7 +127,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3bOQ7CMBAAQBRK/v8rSgoegIRogIIHoAghcRjEYSd2dkZKkc7H7uKDzGYAAABADZbd2C14rea25RKhj7VZGfMnNcVhTW0Zwlj9jTbOtEV8AgAAAAAAua3dPwAAAAAJm4BnBqfu8gB5+Q80cKUeUJoYi8NcA7fUBAAgxXk/AEBsv64HF/P79511ZRjXuX+MAehNpRY4T//MVOb7HbEAsch5oKcWAAAAAACQw955MwCNc3cKcch3KKeVvaE6QAnbP787OohLAAAGckysPV/t51rZ5wHlqQcAAONxt8Ut8VAXeyVKk/NAKX7DANRC0sQFABCJ80dAHSCaf78BbZ2cBwAAgHLsu+F7qbyRS7RAnOY1hfGcQh8AAAAAiOkMLALZxwAAAQA=
+   H4sIAAAAAAAACu3bOQ7CMBAAQAQl//8VJQUPQKLiKHgAihASh0EcNrG9MxJFJAofu5vYTiYTAAAAoAaL6dgteK7mtuUSoY+1WRrzBzXFYU1t+Yex+httnGmL+AQAAAAAAHJbOX8AAAAAEtYB9wyO0/MPyMs70MCFekBpYiwOcw1cUxMAgBT7/QAAsX37PDif3V5vZ+n/0Z/L3N/HAAx6qQX209/Ty3y/IhYgFjkPDNQCAAAAAABy2NlvBqBxzk4hDvkO5bSyNlQHKGHz4/cGe3EJAMCfHBLPns/Wc62s84Dy1AMAgPE42+KaeKiLtRKlyXmgFPcwALWQNHEBAERi/xFQB4jm129AWyfnAQAAoBzrbvhcKm/kEi0Qp3n1MJ499AEAAACAmE4trDfAAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.34">

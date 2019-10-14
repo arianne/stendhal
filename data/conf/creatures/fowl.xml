@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="chick">
-    <type class="fowl" subclass="chick" tileid="farm_animal.png:2"/>
+    <type class="fowl" subclass="chick" tileid="fowl.png:0"/>
     <description>You see a little chick, it doesn't like to be away from its mother.</description>
     <attributes>
       <atk value="32"/>
@@ -37,7 +37,7 @@
   </creature>
 
   <creature name="chicken">
-    <type class="fowl" subclass="chicken" tileid="animal.png:25"/>
+    <type class="fowl" subclass="chicken" tileid="fowl.png:1"/>
     <description>You see a chicken, isn't it nice?</description>
     <attributes>
       <atk value="32"/>
@@ -71,7 +71,7 @@
   </creature>
 
     <creature name="dodo">
-    <type class="fowl" subclass="dodo_bird" tileid="animal.png:29"/>
+    <type class="fowl" subclass="dodo_bird" tileid="fowl.png:3"/>
     <description>You see a dodo bird, aren't they supposed to be extinct?</description>
     <attributes>
       <atk value="57"/>
@@ -102,7 +102,7 @@
   </creature>
 
   <creature name="mother hen">
-    <type class="fowl" subclass="hen" tileid="farm_animal.png:6"/>
+    <type class="fowl" subclass="hen" tileid="fowl.png:2"/>
     <description>You see a mother hen, she will probably hurt you if you touch her sons.</description>
     <attributes>
       <atk value="29"/>
@@ -135,7 +135,7 @@
   </creature>
 
   <creature name="penguin">
-    <type class="fowl" subclass="penguin" tileid="animal.png:16"/>
+    <type class="fowl" subclass="penguin" tileid="fowl.png:5"/>
     <description>You see a penguin, smart and silly.</description>
     <attributes>
       <atk value="36"/>
@@ -168,7 +168,7 @@
   </creature>
 
   <creature name="pigeon">
-    <type class="fowl" subclass="pigeon" tileid="animal.png:23"/>
+    <type class="fowl" subclass="pigeon" tileid="fowl.png:4"/>
     <description>You see a pigeon, it loves the little seeds.</description>
     <attributes>
       <atk value="36"/>

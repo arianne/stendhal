@@ -54,8 +54,11 @@
  <tileset firstgid="321" name="animal" tilewidth="32" tileheight="32" tilecount="30" columns="30">
   <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
  </tileset>
- <tileset firstgid="351" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
-  <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
+ <tileset firstgid="351" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="357" name="logic/creature/fowl" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/fowl.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -79,7 +82,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3cMQqAMAwAwPo13cQPuIj/f4WjIAi12mL0bi+UENIkQ1MCAAAA/mjorp/pC860Nga4IwDAG5X0hwDkMas+RyyJTg4DrUXY6wMA8a16DgAAABpbzKIAAEAyG5yZxQWAl/J2A0fqAkA+8z4AAAAAwH2TXSsAQEj6OP7AX24AAAAA1GbXSg3yCgBg508AgO9T6wHK2SUC1KfWcpccAgAAAAAAAAAAAAAAAAAAAAAAAABybdxLcVYAAAEA
+   H4sIAAAAAAAACu3cMQqAMAwAwPo13cQPuDn6/xc4CoJQqy1G7/ZCCSFNMjQlAAAA4I+G7vqZvuBMa2OAOwIAvFFJfwhAHrPqc8SS6OQw0FqEvT4AEN+i5wAAAKCx1SwKAAAks8GZWVwAeClvN3CkLgDkM+8DAAAAANw32bUCAISkj+MP/OUGAAAAQG12rdQgrwAAdv4EAPg+tR6gnF0iQH1qLXfJIQAAAAAAAAAAAAAAAAAAAAAAAAAg1wY0wYaOAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.43">
