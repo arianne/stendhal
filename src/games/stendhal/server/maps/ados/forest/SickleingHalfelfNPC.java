@@ -24,20 +24,12 @@ import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
- * Provides Eheneumniranin, the sickle wielding NPC.
- * A Halfelf who lost his memory and now works in the grain fields at the farm
- * He will possibly offer a quest to help him find his past.
+ * Provides Eheneumniranin
  *
  * @author omero
  */
 public class SickleingHalfelfNPC implements ZoneConfigurator {
 
-	/**
-	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
-	 */
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
@@ -64,20 +56,24 @@ public class SickleingHalfelfNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("Salve straniero...");
-				addJob("To gather the sheaves of grain with my #sickle before taking them to the mill I must... How did I get here?... If I only could remember...");
-				addHelp("Ha! Asking for such only reveals how unworthy and undeserving one is... Who am I?... A fog obfuscates my thoughts...");
-				addOffer("Oh?! Given I had anything valuable I would offer it willingly for a glimpse of truth...");
-				addReply("sickle","A usefull farming tool indeed, like a scythe also is. To some blacksmith you should ask to if he offers any such sharp utensil.");
+				addJob( "To gather the sheaves of grain... With a #sickle... Maybe I should use a #scythe!");
+				addReply(
+						"sickle",
+						"A usefull farming tool indeed."+
+						" To some blacksmith one should ask to if he offers any such sharp utensil.");
+				addReply(
+						"scythe",
+						"A usefull farming tool indeed."+
+						" To some blacksmith one should ask to if he offers any such sharp utensil.");
 				addGoodbye("In bocca al lupo...");
 			}
-
 		};
 
 		npc.setEntityClass("sickleinghalfelfnpc");
 		npc.setPosition(76,97);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REVERSE); // So does not block straw carts
-		npc.setDescription("You see Eheneumniranin, the Half Elf... He has lost his memory and always looks confused.");
+		npc.setDescription("You see Eheneumniranin");
 		zone.add(npc);
 	}
 }
