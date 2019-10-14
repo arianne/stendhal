@@ -24,13 +24,13 @@
  <tileset firstgid="129" name="skull_pale.png" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/item/corpse/skull_pale.png" trans="ff00ff" width="64" height="32"/>
  </tileset>
- <tileset firstgid="131" name="undead.png" tilewidth="32" tileheight="32" tilecount="15" columns="15">
+ <tileset firstgid="131" name="logic/creature/undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
   <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
  </tileset>
  <tileset firstgid="146" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="147" name="undead_fallen.png" tilewidth="32" tileheight="32" tilecount="9" columns="9">
+ <tileset firstgid="147" name="logic/creature/undead_fallen" tilewidth="32" tileheight="32" tilecount="9" columns="9">
   <image source="../../tileset/logic/creature/undead_fallen.png" width="288" height="32"/>
  </tileset>
  <tileset firstgid="156" name="swamp_water.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
@@ -81,11 +81,14 @@
  <tileset firstgid="771" name="slate_tiles.png" tilewidth="32" tileheight="32" tilecount="15" columns="5">
   <image source="../../tileset/ground/slate_tiles.png" width="160" height="96"/>
  </tileset>
- <tileset firstgid="786" name="portal.png" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+ <tileset firstgid="786" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>
  </tileset>
  <tileset firstgid="802" name="logic/creature/undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/undead_skeleton.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="808" name="logic/creature/undead_specter" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/undead_specter.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -114,7 +117,7 @@
  </layer>
  <layer id="6" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dQU7EMAwAwEr8gQcg4KVw5cSi3d+u9sIFIco2jWt75gWumjR2kibLAszy9BAdAcT4iA4AaKfimFvxmWCmZ30IAGAzdck+5KoAAEAFahsAGMdcLFDFq+8ZwL/JBWEfj/rWt47fGe8fYL1LdACJrJ33eDEOwfIWHQA00rHmu7EeAQAAdOG/DQA4ptlnLluDBCCb9+gA2M1XdACkpv0AAEBOn9EBTNR1bzaMcIoOAPhT1/k5e/CYLXNOaTyH+kbV+PYEsEbX/BNGcJYCAJHkcfA7881wHJnn4gEAoCv3YQD0ZQ0cAADqsFZLNtos9zpHBwCwgbuk4XislVCFGgsAAOKtvTtT/g4/OSsA6pp9tzR9jc6xMrXdSuOoXBmOTz8FAAAAAAAAyOUK3daKIAAAAQA=
+   H4sIAAAAAAAACu3dS05DMQwAwCf1DhwAARL0mqxZ0Z63YsMGIdKSxs/2zAncNh8nTpNtA1Z5PERHADE+ogMA2qk451b8TLDSkz4EAPBv1iX3IVcFAAAqsLYBgHnsxQJVvBjPAK4mF4T7eNC3vnUcZ/z+AONejZnDRvc9nn2nsL1HBwCNdFzzfVGPAAAAuvC/DQDYp9V3LqtBApDN0dxV1jk6AFLTfgAAIKfP6AAW6no2G2Y4RQcA/Knr/pwzeKyWOac0n0N9s9b4zgQwomv+CTO4SwGASPI4+J39ZtiPzHvxAADQlfcwAPpSAwcAgDrUaslGm+VWb9oOkJi3pGF/1EqowhoLAADijb6dKX+Hn9wVAHWtfluavmbnWJnabqV5VK4M+6efAgAAAAAAAORyAblKd3kAAAEA
   </data>
  </layer>
  <layer id="7" name="collision" width="128" height="128" visible="0" opacity="0.37">

@@ -21,7 +21,7 @@
  <tileset firstgid="421" name="church.png" tilewidth="32" tileheight="32" tilecount="56" columns="8">
   <image source="../../tileset/building/church.png" width="256" height="224"/>
  </tileset>
- <tileset firstgid="477" name="collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="477" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="478" name="vegetable.png" tilewidth="32" tileheight="32" tilecount="13" columns="13">
@@ -36,7 +36,7 @@
  <tileset firstgid="511" name="tree" tilewidth="32" tileheight="32" tilecount="20" columns="4">
   <image source="../../tileset/plant/tree/dead_tree_4.png" width="128" height="160"/>
  </tileset>
- <tileset firstgid="531" name="death" tilewidth="32" tileheight="32" tilecount="15" columns="15">
+ <tileset firstgid="531" name="logic/creature/undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
   <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
  </tileset>
  <tileset firstgid="546" name="TREE" tilewidth="32" tileheight="32" tilecount="20" columns="4">
@@ -54,7 +54,7 @@
  <tileset firstgid="619" name="fall_trees" tilewidth="32" tileheight="32" tilecount="40" columns="8">
   <image source="../../tileset/plant/tree/fall_trees.png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="659" name="undead_fallen" tilewidth="32" tileheight="32" tilecount="9" columns="9">
+ <tileset firstgid="659" name="logic/creature/undead_fallen" tilewidth="32" tileheight="32" tilecount="9" columns="9">
   <image source="../../tileset/logic/creature/undead_fallen.png" width="288" height="32"/>
  </tileset>
  <tileset firstgid="668" name="orbpedestal" tilewidth="32" tileheight="32" tilecount="2" columns="1">
@@ -69,7 +69,7 @@
  <tileset firstgid="706" name="hollow_logs" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/plant/stump/hollow_logs.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="712" name="golem" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+ <tileset firstgid="712" name="logic/creature/golem" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/golem.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="715" name="grass edges" tilewidth="32" tileheight="32" tilecount="36" columns="12">
@@ -84,7 +84,7 @@
  <tileset firstgid="847" name="earth edges" tilewidth="32" tileheight="32" tilecount="18" columns="6">
   <image source="../../tileset/ground/earth_edges.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="865" name="ents" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+ <tileset firstgid="865" name="logic/creature/ent" tilewidth="32" tileheight="32" tilecount="4" columns="4">
   <image source="../../tileset/logic/creature/ent.png" width="128" height="32"/>
  </tileset>
  <tileset firstgid="869" name="leaves" tilewidth="32" tileheight="32" tilecount="8" columns="4">
@@ -108,7 +108,7 @@
  <tileset firstgid="1033" name="lamp" tilewidth="32" tileheight="32" tilecount="3" columns="1">
   <image source="../../tileset/furniture/light/lamp_bronze.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="1036" name="light5x5" tilewidth="32" tileheight="32" tilecount="25" columns="5">
+ <tileset firstgid="1036" name="light/light_5x5" tilewidth="32" tileheight="32" tilecount="25" columns="5">
   <image source="../../tileset/light/light_5x5.png" width="160" height="160"/>
  </tileset>
  <tileset firstgid="1061" name="pine_tree" tilewidth="32" tileheight="32" tilecount="20" columns="4">
@@ -147,6 +147,9 @@
  <tileset firstgid="1218" name="logic/creature/undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/undead_skeleton.png" width="192" height="32"/>
  </tileset>
+ <tileset firstgid="1224" name="logic/creature/undead_specter" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/undead_specter.png" width="192" height="32"/>
+ </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3bTY7TMACG4XY60/J3CBYsELfgOOwQJ2DFuanEFJWSxE5ix3b8LJ4NqKXJ+7VJpfJ0OByeWOzXq2/Hf93+/OepbqXPX+v075v+fdO/b/q36RxB/32KaR+7gVD/2ndQukXN7WM2oH9bturfynVgyTk8LVS6/dL+UxvQv63+qTegv/76t9V/yQbGnufxPq/3/i8Dauwfu4PQ42P717qD3vtPbWDOc+jfbv8UWr0P0L/N/j+Oaei/bf9UO9C/LvrrP/U9IPV1oNb+U0o32nP/pc+jf54d5L4O6F+nHvoT7p/7OjDW33tSf/3L0z+foe+Yj0q/Rv3Lta9hA7nvA3vsP6e9/vvpP7d7DVvIfR/YS/81LfVvu3/ovTx1foYeX+IYcl0Heu8fOj9jj9d///2nHl+qf+rrQO/9lzyuxAb0z7OBm3cjatrA/Q70T9d/rH3MBvRvo//YBm6NL9eDeHPn06nt/rE76Kn/0Ab+vs+vB/H16v2rD/p31f/z9SA+3vlymr4GrHkNzwEx/VNdB3rrP7WBOfcAqfp/P/6hf539c3zer+n/uINc/ecq3TTFDra6zq/5/Ncf/Un1PaDk//9Af9b1X3sd0L9N+nO/g9S/C3L/1wb9+5b798H6103/vuX+fbD+ddOf+x3EXgdS7yHVcZwHlD63LdhD/6H2NjCvf2gHufaQs71N7Lf/ku76h3cQ6p96DyX624D+NjDcf+71IHYPY/so2d8G9C993muVag+hfax9nfrrr3+7e9C/DbX2X7uB0ue1VbH3eVv0X7OB0uexVfqTYh8p/03961Fz/9LnBgCAfTptqPSxoj9x/V8S9H6rf/X071vKz/dL4O9LHyv6E9f/EtEz5Kx/9Za2PSx4TOljZbp/ins+/duSq/Xz4f97gtLHiv5s09/nfxv0BwAAAAAAAAAAAAAAAAAAAAAAAABq8ButAmqRAAABAA==
@@ -174,7 +177,7 @@
  </layer>
  <layer id="6" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3cSwrCMBAAUKseQcHzeSdFryMIegp1pcdwVRStxQ81k/S9TSjdhHaaTCahgwEAAMBrm3HqHgAAUc2GqXsAN5/krXLc//K8y3Cq2q8hqql85Wt1rnesmtucTcQFvLWeO1TNLXRlbXwO41w1t5RLna8/1Gl4pW39LG6ACLbGIsiW9QYAXbBWhdjua02P+/POcUA5zMe0eWe8VzOITU32Py7OYzzpy/mh+t2LAQBylCKXX/YkR4hiFfx5Lxr6J0bSUysCiGk+St0DAAAAAOBXO3th0Bu+dwAe7c0NUBTfNABtc8G39wBqzg1D3uwRlM87BgAAAHLg//Fl8y9ofiF+8mVsBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAC6cgXFu24WAAABAA==
+   H4sIAAAAAAAACu3cSw6CMBAAUFCP4Am9kx7IxMTPIdSVHsMViVEkioFOy3ubhrhpYGin00pVAQAAfLZdpO4BABDVXp5AIL/krXLccbnfZbjW3dcQ1ckY1FuT613q9jZny1nqHkB636znznV7C0M5mLfDuNXtLeVS55sOdRo+6Vo/ixsggp2xCLJlvQHAEKxVIbbnWtPr/rxzHFAO8zFdvhnv1QxiU5Mdx915jDdTOT/UPHsxAECOUuTyG/8BGdUxeE62bokHMZKeWhFATKt56h4AAAAAAP/a2wuDyfC+A/DqYG6AoninAeiaC/r+BtBwbhjyZo+gfJ4xAAAAkAPfjy+bb0HzD/GTL2M7AAAAAAAAAAAAAAAAAAAAAAAAAAAAADCUB/LsY9MAAAEA
   </data>
  </layer>
  <layer id="7" name="collision" width="128" height="128" visible="0" opacity="0.43">

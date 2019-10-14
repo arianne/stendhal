@@ -39,6 +39,9 @@
  <tileset firstgid="209" name="logic/creature/undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/undead_skeleton.png" width="192" height="32"/>
  </tileset>
+ <tileset firstgid="215" name="logic/creature/undead_specter" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/undead_specter.png" width="192" height="32"/>
+ </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3VQXIDIQxFQVfloL7/LbL3xp4ZQF/Qi94lRujh5P16vd4AAAAAAAAAAAAAAABc8vehep6uuuzxc85fVc/dYUepu9vlHp12lbK7Xe7RcVfVu9vhDt33pX8fp/Uf9Tu7uHvvxDfwZIaE+Tv1T9zfrP47vwH9z+0/8s7V+3t6dvX8af0TPm/12frrf9Ib0P/c/rPuWrG/kWd+28sub0H/s9/ArHtVfBdXv+Md3kBF/2+fPaK3/nMbjdrbKqvuUt1U/zlNdnwDM+9Q3Xxmi+5vIPE7k9786p2qG6fMv0PzXfonzX7l7KQdp7/Pp7NXz5jcv8Pfp7vzV8+W3r/L/6e781fPd2ffSbOkzHp37vTWqf1//dnqOVN2OXLmhL1W7U37+v7VzTu3179mj51mTblT2i6TdlPdfsf+nXZT3b6yQ8r9T+8/6p4zzz25fYf+s889uX16/xVnJ913x/5PdrLi7BMad+u/8uxTOle+gYRZqnecbPf23oD+3kDN7hNm0L9m/wkz6F/XQP+e9Kdyz/pnqNqx/nlW7lR/9D+b9mfTHt3RnjtvoXpW1r+F6pkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOBU/1aUOFIAAAEA
@@ -61,7 +64,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3YMQqEQBBEUY+jgrmi9w82E/E+egIHloXaGd+LO/hRBd11AAAAAAAAAAAAAAAAAADwvTUdAAAAQFX6dADwSns6gGac6QAAeInjRzfAsy0dUDk7BAAAAABlUzoAKrWkAwAKxnTAH5nTAQBQCT8CAIB2DemA2ycdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQsAt5uLpQAAABAA==
+   H4sIAAAAAAAACu3YsQmEQBRFUcvRDhTtPzCTRQSr0QocWBbeznhO/IMbveB3HQAAAAAAAAAAAAAAAAAAfG9OBwAAAFCVPh0AvNKWDqAZezoAAF7i86Mb4NmSDqicHQIAAACAsiMdAJWa0gEABWc64I+M6QAAqIQfAQBAu4Z0wG1NBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANOwCeXE01AAAAQA=
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.36">

@@ -607,7 +607,7 @@
   <!-- START: specter -->
 
   <creature name="ghost">
-    <type class="undead" subclass="ghost" tileid="undead.png:5"/>
+    <type class="undead" subclass="ghost" tileid="undead_specter.png:0"/>
     <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
     <attributes>
       <atk value="171"/>
@@ -640,7 +640,7 @@
   </creature>
 
   <creature name="death">
-    <type class="undead" subclass="death" tileid="undead.png:2"/>
+    <type class="undead" subclass="death" tileid="undead_specter.png:3"/>
     <description>You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.</description>
     <attributes>
       <atk value="283"/>
@@ -673,7 +673,7 @@
   </creature>
 
   <creature name="invisible man">
-    <type class="undead" subclass="invisible_man" tileid="undead_fallen.png:6"/>
+    <type class="undead" subclass="invisible_man" tileid="undead_specter.png:1"/>
     <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
     <attributes>
       <atk value="367"/>
@@ -732,7 +732,7 @@
   </creature>
 
   <creature name="incorporeal armor">
-    <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
+    <type class="undead" subclass="incorporeal_armor" tileid="undead_specter.png:2"/>
     <description>You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.</description>
     <attributes>
       <atk value="565"/>
@@ -762,7 +762,7 @@
   </creature>
 
   <creature name="black death">
-    <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
+    <type class="huge_animal" subclass="black_death" tileid="undead_specter.png:4"/>
     <description>You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.</description>
     <attributes>
       <atk value="1451"/>
@@ -808,7 +808,7 @@
   </creature>
 
   <creature name="golden death">
-    <type class="huge_animal" subclass="golden_death" tileid="huge_animal.png:12"/>
+    <type class="huge_animal" subclass="golden_death" tileid="undead_specter.png:5"/>
     <description>You see the golden death. He came to take your soul away to pay for all your sins.</description>
     <attributes>
       <atk value="1968"/>

@@ -51,8 +51,11 @@
  <tileset firstgid="173" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="176" name="logic/creature/rodent" tilewidth="32" tileheight="32" tilecount="7" columns="7">
-  <image source="../../tileset/logic/creature/rodent.png" width="224" height="32"/>
+ <tileset firstgid="176" name="logic/creature/rodent" tilewidth="32" tileheight="32" tilecount="8" columns="8">
+  <image source="../../tileset/logic/creature/rodent.png" width="256" height="32"/>
+ </tileset>
+ <tileset firstgid="184" name="logic/creature/undead_specter" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/undead_specter.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
@@ -71,7 +74,7 @@
  </layer>
  <layer id="4" name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQrCQBgF4T1MsJI04hVUiEewFIs0KoJ3MmDr+byCZPdnsut8/XtMSpIkSVI7DnSApHSlAxSqpwMkSZgLHSCpah86QKrAiw4I8KYDJEmL1NEBjVsH/Z6DfvW7Tcb2VKxCkto10gF/5EEHBHvSAarWRAdIynanA2bY0QFB9nTATEc6oKAbHaBmDZn7VZEKRdrSAdKCfAHXffVRAEAAAA==
+   H4sIAAAAAAAACu3OsQ3CMBgFYQ8TUaE0iBUAKYxAiSjSAA07gZSWiuFYAcX+dbG5r39Pl5IkSZLUjgMdICld6QCF6ukASRLmQgdIqtqbDpAq8KQDAkx0gCRpkTo6oHHroN9z0K9+t8nYnopVSFK7Rjrgj3zogGAPOkDVetEBkrLd6YAZdnRAkD0dMNORDijoRgeoWUPmflWkQpG2dIC0IF/2ZvErAEAAAA==
   </data>
  </layer>
  <layer id="5" name="collision" width="64" height="64" visible="0" opacity="0.29">

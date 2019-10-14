@@ -27,19 +27,19 @@
  <tileset firstgid="40" name="../../tileset/ground/rock/rock_cluster.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/ground/rock/rock_cluster.png" trans="ff00ff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="46" name="../../tileset/logic/creature/undead.png" tilewidth="32" tileheight="32" tilecount="15" columns="15">
+ <tileset firstgid="46" name="logic/creature/undead" tilewidth="32" tileheight="32" tilecount="15" columns="15">
   <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
  </tileset>
- <tileset firstgid="61" name="../../tileset/logic/creature/kobold.png" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="61" name="logic/creature/kobold" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/kobold.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="67" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+ <tileset firstgid="67" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="83" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="83" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="84" name="assassins" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+ <tileset firstgid="84" name="logic/creature/human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/human_evil.png" width="320" height="32"/>
  </tileset>
  <tileset firstgid="94" name="../../tileset/building/wall/int_clay.png" tilewidth="32" tileheight="32" tilecount="100" columns="10">
@@ -60,8 +60,8 @@
  <tileset firstgid="365" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="372" name="logic/creature/kobold" tilewidth="32" tileheight="32" tilecount="6" columns="6">
-  <image source="../../tileset/logic/creature/kobold.png" width="192" height="32"/>
+ <tileset firstgid="372" name="logic/creature/undead_specter" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/undead_specter.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -85,7 +85,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3bwQnCQBCG0aQihZw1exFLSBUWYPdWkIjg8O+S9yr4DnMYBmaaAAAAAAAAAACgL0s6AHa85nQBAByr2KPsZgAAAAAAAAAAAAAAAAAAAPyD/3UAgIx7OoDhmBmAOpd0AKf0SAcAAAAAAAAAAAAAAAAAAAAQ1dIBHbilAwDoSksHQLE1HQB0oaUDgHItHQCDcSOEGu85XcAInukAAAAAAAAAAOAnWzoAOK1rOgD46gP9YY3lAAABAA==
+   H4sIAAAAAAAACu3bwQkCUQxF0ZmKrMDxI4glTBXuBNu3AUEEw8tnzqngLrIIgSwLAAAAAAAAAAD08lzTBfDZw2wC0FzFHmU3AwAAAAAAAAAAAAAAAAAA4B/8rwMAZGzpAKZjZgDqnNIBHNItHQAAAAAAAAAAAAAAAAAAAEDUSAc0cE4HANDKSAdAsUs6AGhhpAOAciMdAJNxI4Qa13QAU7inAwAAAAAAAACAn+zpAOCwXmu6APjmDdNvwxgAAAEA
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.37">
