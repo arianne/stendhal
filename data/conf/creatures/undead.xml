@@ -4,42 +4,6 @@
 
   <!-- START: animal -->
 
-  <creature name="zombie rat">
-    <type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
-    <description>You see a hungry zombie rat and it doesn't like to see you.</description>
-    <attributes>
-      <atk value="105"/>
-      <def value="19"/>
-      <hp value="70"/>
-      <speed value="0.6"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="7"/>
-    <experience value="70"/>
-    <respawn value="1200"/>
-    <corpse name="small_animal" harmless="rodent_small" />
-    <drops>
-      <item value="money" quantity="[3,10]" probability="100.0"/>
-      <item value="cheese" quantity="[2,5]" probability="50.0"/>
-      <item value="deadly poison" quantity="[1,1]" probability="8.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="SHREEAK!!"/>
-        <noise state="idle follow fight" value="SHAAAAAAA!!"/>
-        <sound value="rat-squeak-01"/>
-        <sound value="rat-squeak-02"/>
-        <sound value="rat-squeak-03"/>
-      </says>
-      <profile name="poisonous" params="5,deadly poison"/>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-    </ai>
-  </creature>
-
   <creature name="ghost hound">
     <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
     <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="mouse">
+    <type class="rodent" subclass="mouse" tileid="farm_animal.png:8"/>
+    <description>You see a small mouse that seems to be very hungry.</description>
+    <attributes>
+      <atk value="8"/>
+      <def value="3"/>
+      <hp value="20"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="0"/>
+    <experience value="5"/>
+    <respawn value="900"/>
+    <corpse name="small_animal" harmless="rodent_small" />
+    <drops>
+      <item value="cheese" quantity="[1,2]" probability="100.0"/>
+     </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="squeak ... squeak!"/>
+        <sound value="mouse-2"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="non offensive"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="rat">
+    <type class="rodent" subclass="rat" tileid="small_animal.png:1"/>
+    <description>You see a small rat that seems to be extremely hungry.</description>
+    <attributes>
+      <atk value="8"/>
+      <def value="3"/>
+      <hp value="20"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="0"/>
+    <experience value="5"/>
+    <respawn value="900"/>
+    <corpse name="small_animal" harmless="rodent_small"/>
+    <drops>
+      <item value="cheese" quantity="[1,1]" probability="50.0"/>
+      <item value="money" quantity="[1,3]" probability="70.0"/>
+      <item value="club" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Squeak! Squeak!"/>
+        <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
+        <sound value="rat-squeak-03"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="stupid coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="caverat">
+    <type class="rodent" subclass="caverat" tileid="small_animal.png:0"/>
+    <description>You see a caverat which is dirty and loves the dungeons.</description>
+    <attributes>
+      <atk value="34"/>
+      <def value="6"/>
+      <hp value="30"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="10"/>
+    <respawn value="900"/>
+    <corpse name="small_animal" harmless="rodent_small" />
+    <drops>
+      <item value="money" quantity="[1,6]" probability="90.0"/>
+      <item value="cheese" quantity="[1,2]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
+        <sound value="rat-squeak-03"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="venomrat">
+    <type class="rodent" subclass="venomrat" tileid="small_animal.png:3"/>
+    <description>You see a venomrat, extremely poisonous.</description>
+    <attributes>
+      <atk value="89"/>
+      <def value="14"/>
+      <hp value="70"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="5"/>
+    <experience value="50"/>
+    <respawn value="1200"/>
+    <corpse name="small_animal" harmless="rodent_small" />
+    <drops>
+      <item value="money" quantity="[3,7]" probability="100.0"/>
+      <item value="cheese" quantity="[1,3]" probability="50.0"/>
+      <item value="greater poison" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
+        <sound value="rat-squeak-03"/>
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="zombie rat">
+    <type class="rodent" subclass="zombierat" tileid="small_animal.png:4"/>
+    <description>You see a hungry zombie rat and it doesn't like to see you.</description>
+    <attributes>
+      <atk value="105"/>
+      <def value="19"/>
+      <hp value="70"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="7"/>
+    <experience value="70"/>
+    <respawn value="1200"/>
+    <corpse name="small_animal" harmless="rodent_small" />
+    <drops>
+      <item value="money" quantity="[3,10]" probability="100.0"/>
+      <item value="cheese" quantity="[2,5]" probability="50.0"/>
+      <item value="deadly poison" quantity="[1,1]" probability="8.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="SHREEAK!!"/>
+        <noise state="idle follow fight" value="SHAAAAAAA!!"/>
+        <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
+        <sound value="rat-squeak-03"/>
+      </says>
+      <profile name="poisonous" params="5,deadly poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+    </ai>
+  </creature>
+
+  <creature name="razorrat">
+    <type class="rodent" subclass="razorrat" tileid="small_animal.png:2"/>
+    <description>You see a razorrat, its noise will make you crazy!</description>
+    <attributes>
+      <atk value="119"/>
+      <def value="28"/>
+      <hp value="45"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="8"/>
+    <experience value="80"/>
+    <respawn value="1200"/>
+    <corpse name="small_animal" harmless="rodent_small" />
+    <drops>
+      <item value="money" quantity="[5,10]" probability="100.0"/>
+      <item value="cheese" quantity="[1,3]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="rat-squeak-01"/>
+        <sound value="rat-squeak-02"/>
+        <sound value="rat-squeak-03"/>
+        <sound value="rat-angry-01"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="giantrat">
+    <type class="rodent" subclass="giantrat" tileid="giant_animal.png:1"/>
+    <description>You see a giant rat. It seems like it survived from an experiment which went wrong.</description>
+    <attributes>
+      <atk value="173"/>
+      <def value="30"/>
+      <hp value="110"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="animal_2x2" harmless="rodent_large" width="2" height="2" />
+    <drops>
+      <item value="money" quantity="[7,20]" probability="100.0"/>
+      <item value="cheese" quantity="[3,7]" probability="80.0"/>
+      <item value="rodent trap" quantity="[1,1]" probability="15.0" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="rat-angry-02"/>
+        <sound value="giantrat-growl-01"/>
+        <sound value="giantrat-growl-02"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>

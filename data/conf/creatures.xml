@@ -21,6 +21,7 @@
     <group uri="creatures/oni.xml" />
     <group uri="creatures/orc.xml" />
     <group uri="creatures/reptile.xml" />
+    <group uri="creatures/rodent.xml" />
     <group uri="creatures/slime.xml" />
     <group uri="creatures/spider.xml" />
 	<group uri="creatures/troll.xml" />
