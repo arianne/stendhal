@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="black slime">
-    <type class="slime" subclass="black_slime" tileid="animal.png:3"/>
+    <type class="slime" subclass="black_slime" tileid="slime.png:2"/>
     <description>You see a black slime, with a sticky trail behind it.</description>
     <attributes>
       <atk value="250"/>
@@ -34,7 +34,7 @@
   </creature>
 
   <creature name="brown slime">
-    <type class="slime" subclass="brown_slime" tileid="animal.png:5"/>
+    <type class="slime" subclass="brown_slime" tileid="slime.png:1"/>
     <description>You see a brown slime, sticky and hungry.</description>
     <attributes>
       <atk value="184"/>
@@ -64,7 +64,7 @@
   </creature>
 
   <creature name="green slime">
-    <type class="slime" subclass="green_slime" tileid="animal.png:12"/>
+    <type class="slime" subclass="green_slime" tileid="slime.png:0"/>
     <description>You see a green slime, sticky and shiny.</description>
     <attributes>
       <atk value="114"/>
