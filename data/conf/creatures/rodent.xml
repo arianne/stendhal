@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="mouse">
-    <type class="rodent" subclass="mouse" tileid="farm_animal.png:8"/>
+    <type class="rodent" subclass="mouse" tileid="rodent.png:5"/>
     <description>You see a small mouse that seems to be very hungry.</description>
     <attributes>
       <atk value="8"/>
@@ -208,7 +208,7 @@
   </creature>
 
   <creature name="giantrat">
-    <type class="rodent" subclass="giantrat" tileid="giant_animal.png:1"/>
+    <type class="rodent" subclass="giantrat" tileid="rodent.png:6"/>
     <description>You see a giant rat. It seems like it survived from an experiment which went wrong.</description>
     <attributes>
       <atk value="173"/>

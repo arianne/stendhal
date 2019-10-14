@@ -30,17 +30,17 @@
  <tileset firstgid="206" name="bush/various_small" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../../tileset/plant/bush/various_small.png" trans="ffffff" width="96" height="96"/>
  </tileset>
- <tileset firstgid="215" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="30" columns="30">
-  <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
+ <tileset firstgid="215" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="28" columns="28">
+  <image source="../../tileset/logic/creature/animal.png" width="896" height="32"/>
  </tileset>
- <tileset firstgid="245" name="logic/creature/giant_animal" tilewidth="32" tileheight="32" tilecount="4" columns="4">
-  <image source="../../tileset/logic/creature/giant_animal.png" width="128" height="32"/>
- </tileset>
- <tileset firstgid="249" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+ <tileset firstgid="243" name="logic/creature/dragon" tilewidth="32" tileheight="32" tilecount="7" columns="7">
   <image source="../../tileset/logic/creature/dragon.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="256" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+ <tileset firstgid="250" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="253" name="logic/creature/rodent" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+  <image source="../../tileset/logic/creature/rodent.png" width="224" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -69,7 +69,7 @@
  </layer>
  <layer id="6" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3bwQmAMAwF0Nb993MBZ/DkoSB492BIWt+b4EMhJfDTGgAAAAAAAAAAAAAAAHyr9+wEzOTMDgAAANw2u1wou8989uwAlRSZD94EAAAAiHBlBwAAAMIc2QEAAChD/wwAgNeK3FAAAAAAsDb9NuDhvg0AAADWZe8HAAAAgP/QCwSAWP5aAAAAAAAAAAAAAAAAAAAAAADINwDaF362AAABAA==
+   H4sIAAAAAAAACu3bsQmAMBCG0Yj7z+cCzmChFiJob2H4Y3xvgg9ShIO7UgAAAAAAAAAAAAAAAOBdWzqATxmHdAEAAHDa0wGdM/t8z5QOaMiaDrh4EwAAAKCGJR0AAABUM6cDAABohv0zAACeauWGAgAAAIC+2W8Dbu7bAAAAoF/mfgAAAAD4D3uBAFCXvxYAAAAAAAAAAAAAAAAAAAAAAPIOrRgemwAAAQA=
   </data>
  </layer>
  <layer id="7" name="collision" width="128" height="128" visible="0" opacity="0.37">

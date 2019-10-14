@@ -114,13 +114,13 @@
  <tileset firstgid="651" name="tree dark green" tilewidth="32" tileheight="32" tilecount="88" columns="8">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" width="256" height="352"/>
  </tileset>
- <tileset firstgid="739" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="30" columns="30">
-  <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
+ <tileset firstgid="739" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="28" columns="28">
+  <image source="../../tileset/logic/creature/animal.png" width="896" height="32"/>
  </tileset>
- <tileset firstgid="769" name="logic/creature/small_animal" tilewidth="32" tileheight="32" tilecount="5" columns="5">
-  <image source="../../tileset/logic/creature/rodent.png" width="160" height="32"/>
+ <tileset firstgid="767" name="logic/creature/rodent" tilewidth="32" tileheight="32" tilecount="7" columns="7">
+  <image source="../../tileset/logic/creature/rodent.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="774" name="farm animal" tilewidth="32" tileheight="32" tilecount="12" columns="12">
+ <tileset firstgid="774" name="logic/creature/farm_animal" tilewidth="32" tileheight="32" tilecount="12" columns="12">
   <image source="../../tileset/logic/creature/farm_animal.png" width="384" height="32"/>
  </tileset>
  <tileset firstgid="786" name="ground/green_paving" tilewidth="32" tileheight="32" tilecount="18" columns="3">
@@ -177,7 +177,7 @@
  </layer>
  <layer id="6" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3cwW6CQBAAUIOHRpOifkX/xk/oifb/7714oMbWpoXV6roz7yUkBDhAZnZ3diEsFgAAAABQrlvWvgOIodeWAADgVy/L00Yew2e838Q9reEs9u9ygSSsuQL8j+fC/rT0eoAMstamu6TP3RpjN8Dotat9B7RCrpxkriPWgZ79rziq6alpK/8AAIAbsb4DXELfAUS2mliPnTofSaR3QABwb0/GURpinv9TprofgDLGCAAAgJjM9wAAAACgjg/fMDJD1n9ZAwDwWNSlPLKN/ExPDgBAu8w1AAAAAAAAAABo1b4bt+P+1+PAd32wb8XO2/+c/aiixRamXNP+I/cFkIHxHwAAAAAAAADK+dccAADA9Q4AkNgOAAABAA==
+   H4sIAAAAAAAACu3azQ7BQBAAYEEiJIKn8DYewQnvf3dxQPyFaovame9LmjRtD93M7M52u70eAAAAADQw6PoFIIahvgQAAE8tB5eDPDaneG/FPa3NXex3coEs5DrAR0xrjqd1nwdIIenYuEja7tKo3QBH637Xb0Ap5MpF5nnEJFDbX8XRnJ4uzeUfAADwJdZ3gCaMHUBk44r12Kr7kUT6BwQAvzZSRymI7/xHmeb9ANSjRgAAAMTkew8AAAAAurG3h5F3WMMFAOAfmJfyx2byMz05AAAFU8cBAAAAAAAAACjUqn88zufX14Fbw2B7xe77/zvnUUWLLVRp0/8jjwWQgfoPAAAAAAAAAA3YYwYAANDaAcZMn+gAAAEA
   </data>
  </layer>
  <layer id="7" name="collision" width="128" height="128" visible="0" opacity="0.31">
