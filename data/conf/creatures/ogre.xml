@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="ogre">
-    <type class="ogre" subclass="ogre" tileid="giant.png:2"/>
+    <type class="ogre" subclass="ogre" tileid="ogre.png:0"/>
     <description>You see an ogre, it is nude and rude!</description>
     <attributes>
       <atk value="151"/>
@@ -47,7 +47,7 @@
   </creature>
 
   <creature name="elder ogre">
-    <type class="ogre" subclass="elder_ogre" tileid="giant.png:1"/>
+    <type class="ogre" subclass="elder_ogre" tileid="ogre.png:1"/>
      <description>You see an elder ogre, he's in the last moments of his life, take pity on him.</description>
     <attributes>
       <atk value="195"/>
@@ -88,7 +88,7 @@
   </creature>
 
   <creature name="ogre soldier">
-    <type class="ogre" subclass="ogre_soldier" tileid="giant.png:3"/>
+    <type class="ogre" subclass="ogre_soldier" tileid="ogre.png:2"/>
     <description>You see an ogre soldier, smelling like it didn't have had a bath for years. Ewww.</description>
     <attributes>
       <atk value="222"/>
@@ -127,7 +127,7 @@
   </creature>
 
   <creature name="superogre">
-    <type class="ogre" subclass="superogre" tileid="giant.png:4"/>
+    <type class="ogre" subclass="superogre" tileid="ogre.png:3"/>
     <description>You see a superogre which belongs to the family of very material creatures, the Ogres. Ever since this one happened upon a peculiar helmet and has been revered among its peers. Take care, it throws a mean punch!</description>
     <attributes>
       <atk value="296"/>
