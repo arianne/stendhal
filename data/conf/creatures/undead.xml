@@ -469,7 +469,7 @@
   </creature>
 
   <creature name="tiny skelly">
-    <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
+    <type class="undead" subclass="tiny_skelly" tileid="hybrid.png:9"/>
     <description>You see a tiny skelly. It is silly, little and evil, be careful with its poison...</description>
     <attributes>
       <atk value="173"/>
@@ -610,7 +610,7 @@
   </creature>
 
   <creature name="gashadokuro">
-    <type class="mythical_animal" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
+    <type class="undead" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
     <description>A giant figure made of bone, known only as gashadokuro, towers before you. He is created from the bones of starving humans.</description>
     <attributes>
       <atk value="2000"/>
