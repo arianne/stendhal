@@ -138,7 +138,7 @@
   </creature>
 
   <creature name="caiman">
-    <type class="reptile" subclass="caiman" tileid="animal.png:6"/>
+    <type class="reptile" subclass="caiman" tileid="reptile.png:4"/>
     <description>You see a caiman, which is hidden in the water.</description>
     <attributes>
       <atk value="49"/>
@@ -172,7 +172,7 @@
   </creature>
 
   <creature name="crocodile">
-    <type class="reptile" subclass="crocodile" tileid="giant_animal.png:0"/>
+    <type class="reptile" subclass="crocodile" tileid="reptile.png:5"/>
     <description>You see a crocodile, it arises from the deep waters in the rivers.</description>
     <attributes>
       <atk value="172"/>
