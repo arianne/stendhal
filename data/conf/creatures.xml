@@ -9,6 +9,7 @@
 	<group uri="creatures/dwarf.xml" />
 	<group uri="creatures/elemental.xml" />
 	<group uri="creatures/elf.xml" />
+	<group uri="creatures/fowl.xml" />
 	<group uri="creatures/giant.xml" />
     <group uri="creatures/gnome.xml" />
 	<group uri="creatures/goblin.xml" />
