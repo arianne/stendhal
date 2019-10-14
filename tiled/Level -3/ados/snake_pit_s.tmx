@@ -30,6 +30,9 @@
  <tileset firstgid="236" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
  </tileset>
+ <tileset firstgid="239" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
+ </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3YQU4DYQyD0UociPvfjj0qojOT5LPze5Ed6sR+mYL4fr1e35ny+WocOtuJc8Wm0z53MevpNnSv6kP75AZinxuIffz17DfdGd250lA9xV9jyI7izw/ZT/z5IXuKPz90X7HX9//dXVfXsde/gSmLuO/2n7oBulu3UbuBO7vRHbqP8g1k9t4CnTXD3xG9p8Jsfn+25KA7cu5uQwY1d7cO3fdXtnfq8Onu7vnjf333bf102KtlrPLf2FP8P9u7syeyr42Znuam/Im+tuXpsJ/0n+5sU5aKvPH3zdLlP2kf/7PtpzrblKXLfpv/pixVmdQ6U+tHLU9lLsX+lPrpzENbKPc4bd6Z8+leHbupv0cT7ipZFfpz9q/8XNpNyZ3spXov5azK7sr+XZ3QlirmZEdPdlDKRxo538GT5yplo31c74C2r8hFm7jewN3nqGSjHegh/OnMmWdWT/zpjCqj+Psp/qwxfQPx17Wn/m568nOn+XeZx197JtwnOpzw33QD0+7dHV59zsn+pL2KP/WZ06aK/h09Tvkr3QBtuN2/83NPtnf3J2+AdjvNv/uzq21dbiT+9VZO3yXu/n99vluX8a+5AecOHXee9t/S09Zciv7kror+0xmorkhL1Rsg9qc7dZpt9vHX8Cd3pzt1G0f7+OveAb0v3aPzOPn/tS/d4ZZR96eff8Iousdfo2e6c6VdNo9iv7E/1z/28Y//mf5qf4OcMEo9x57vXME79nX9/ddhV99X/68U/5l+//uM2HtMVcfVJpPPOnUo+3cm8dbwV7kP2vaEW7rSL+1O2G/0n+zXzf3dzrTXpMMpe1zZj7ab6Ns9Z2dP9G7d7s45J3qid+z2p3dNP/PZ6B3V+3HsaVse0p7eszoXvZ/CbHSPfzrammuiJ3qnTn96L7XZ2k/sz/XPux//jbnif89+Q674x9/Vf9Ij9hpdffJ/pY53Nf7PfGj7p7vEn/Ovco+/n3+1/d194r/HPv591srf+/Gfc9/k35HNbabeMzX/rmxOM+2u4j+VU3kmvaf8q59LG5H29PMrb2DiO8VhVLJ2+t/13X4LStlo73eZt34fqGZSca/aicjt6E7fgOpelbkc7Lt6dtiRHtrdyX/jDdDund267HlnX5euTs/k2NuWd4t2URm321DaZeOo+1fuSHetPNv96X63jOvvAbq3bePyXUD3dMJQFrHXmbyPmU/ugN4vw97A75/9ATkp758AAAEA
@@ -57,7 +60,7 @@
  </layer>
  <layer id="6" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3c2w2EIBAFUPtvcDswro8e7MBdP8YLck4B5H4QmEwGpgkAAEia0wEAaIp7AQAA6h3pAAAAAAAAnfqmAwAA0JQlHQCgEVs6AF3wXgTojX7wfc56oJpzBgAAAAAA6JWZU/5hnwCQtBev7w9MoJr5MlpiFp1f7BEAAAAAoMonHQAAACin7gcAAAAAAAAAAIB3WNMBAAAAeD1/d49DnwEAxnBV36n9AHAXAAAAAAAAAMCzTpfEdfwAAAEA
+   H4sIAAAAAAAACu3cwRGEIBAEQPNP8FLQUx9mYAbe+VgHpDsAah4UbG0tTBMAAJB0pAMA0BT3AgAA1NvTAQAAAAAAOrWkAwAA0JQ5HQCgEWs6AF3wXgTojX7wfc56oJpzBgAAAAAA6JWZU/5hnwCQtBWv7w9MoJr5MlpiFp1f7BEAAAAAoMonHQAAACin7gcAAAAAAAAAAIB3+KYDAAAA8Hr+7h6HPgMAjOGqvlP7AeAuAAAAAAAAAIBnnUkUT5QAAAEA
   </data>
  </layer>
  <layer id="7" name="collision" width="128" height="128" visible="0" opacity="0.41">

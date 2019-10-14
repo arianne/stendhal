@@ -237,49 +237,6 @@
 
   <!-- END: imperial -->
 
-  <!-- START: kobold -->
-
-  <creature name="giant kobold">
-    <type class="huge_animal" subclass="giant_kobold" tileid="huge_animal.png:4"/>
-    <description>You see a giant kobold. Though generally playful it doesn't quite know it's own strength. When it asks for a hug, it's best to decline that offer.</description>
-    <attributes>
-      <atk value="440"/>
-      <def value="57"/>
-      <hp value="400"/>
-      <speed value="1.0"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="55"/>
-    <experience value="2210"/>
-    <respawn value="1650"/>
-    <corpse name="humanoid_2x2" harmless="bag_2x2" width="2" height="2"/>
-    <drops>
-      <item value="money" quantity="[10,60]" probability="100.0"/>
-      <item value="greater potion" quantity="[1,4]" probability="50.0"/>
-      <item value="golden armor" quantity="[1,1]" probability="1.0"/>
-      <item value="ugmash" quantity="[1,1]" probability="1.00"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Hug?"/>
-        <sound value="kobold-snort-01"/>
-        <sound value="kobold-groan-01"/>
-        <sound value="kobold-groan-02"/>
-        <sound value="kobold-groan-03"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="lifesteal" params="0.3"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <!-- END: kobold -->
-
   <!-- START: madaram -->
 
   <creature name="kasarkutominubat">
