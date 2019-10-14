@@ -66,6 +66,9 @@
  <tileset firstgid="470" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
  </tileset>
+ <tileset firstgid="473" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+  <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
+ </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3dXW4TMRSAUUvJYkgEqiBr6v76xPpKREY1jkPTduKfuefhiFQCyZrv2jNUA92llHYAAAAAAMCq9he914EZoG9/MxCXGSCfhd5rAO7j3I5nn9yzI9sXvxKL7q4PML/fhZ5rcW727997HsyA/r2vyb3rnGWtn22vf735o9rvb3zu1b/39R5Jix49vq+m+VhG/t7qaOvZmlrz0a75qLNJ+/5mICYzsN517L2GtWah9zoAAAAAAAAAAACAcXnfEHOA988xA+g/hpeKlv2dBWO1b9U/n4Fd0j9ae8br33tN3Kf8/2Y+e3ZqP6/a85N7aCz6x3Frv2u/fdrHpHFc2sele2z6w/o8N8fl71AxaR2X9rFpzuy+FXqvh7aOfzxd2h8uX5uHOMr9v3hObWeg9c844q3v4eL8+Sn9OwfHAdbZQsT3RJezPt/rZfst3gNq77dFfZY/ZsruW34GyPd71Pa7ovchXd8Ptti/dfOR5yrf53nzrZ79LfvPcK7UnvnyWei9vkd2f1SXGbov7f+n97P/mtcv+nPerf7LPn9O1/eA3utbm/7XIjzr05Z9Fpfucdn3MXkPJi7dY9Mf7QEAAAAAAACAmfws1H6P9yG269z8V7qeg9o8mIHtOTf+kf7OwCm9zcMyE7X+ZmAbbu35ZRZOlT+j/fxq5/2p+Fxrz/zyvu/d79me/IzPz/qZ+3sm+Xj/pfn3Sdv7Nxpfm4Hy/O+9Jv3RnXvb914LAACM6hVinsSnAAABAA==
@@ -88,7 +91,7 @@
  </layer>
  <layer id="5" name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3dzQ3CMAwG0DI9SNw4sQIsUy78jMMCKYjS2E3z3gDokxA0jp1mGAAAgAzX7AAAsHGvXXYCaM+YHYDqDtkBIMjTOgAIcMkOAABMeqgJAAAAqrqru9Lp/QIAxDIjAAAAAABt8n4fAACgxBwmAADAd+fsAACkO2YHALqx1P0IZoVgOdH9NOd4Y1jfTfMMAQBgTl1iFhHYMvs1zOW+IOAf7iEGgDz7yp+vJwsAv9GHKrN3wJpF/25rr+Hpo192878KAAB80ENdBAAAQJmaEAAA2mHuGAAA6N0pOwCwOs5ftsn3BvRmdM4bAAAAAADYkDewEulTAAABAA==
+   H4sIAAAAAAAACu3dXQ6CMAwAYDy9Jl7AK+hl8MWfeBrfzdCIrHXs+w5AmhCgXTs2DAAAQIZTdgAAsHL3TXYE0J4xOwCq22UHAEFu8gAgwDE7AABg0lVNAAAAUNVF3ZVO7xcAIJYZAQAAAABok//7AAAAJeYwAQAAPjtkBwBAun12AEA3ljofwawQLCe6n2Yfbwz53TTfEAAA5tQlZhGBNbNew1zOCwJ+4RxiAMizrXx9PVkA+I4+VJm1A/5Z9HNbO4enj37Z2XsVAAB4o4e6CAAAgDI1IQAAtMPcMQAA0LuH/THAC/sv2+S+Ab0Z5bEAAAAAAMCKPAF5c3nmAAABAA==
   </data>
  </layer>
  <layer id="6" name="collision" width="128" height="128" visible="0" opacity="0.37">

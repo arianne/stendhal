@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="grass snake">
-    <type class="reptile" subclass="grass_snake" tileid="farm_animal.png:5"/>
+    <type class="reptile" subclass="grass_snake" tileid="reptile.png:0"/>
     <description>You see a grass snake which is quite dangerous.</description>
     <attributes>
       <atk value="68"/>
@@ -40,7 +40,7 @@
   </creature>
 
   <creature name="snake">
-    <type class="reptile" subclass="snake" tileid="animal.png:7"/>
+    <type class="reptile" subclass="snake" tileid="reptile.png:1"/>
     <description>You see a snake, it came from the forest to poison you!</description>
     <attributes>
       <atk value="67"/>
@@ -76,7 +76,7 @@
   </creature>
 
   <creature name="cobra">
-    <type class="reptile" subclass="cobra" tileid="animal.png:28"/>
+    <type class="reptile" subclass="cobra" tileid="reptile.png:2"/>
     <description></description>
     <attributes>
       <atk value="631"/>
@@ -106,7 +106,7 @@
   </creature>
 
   <creature name="king cobra">
-    <type class="reptile" subclass="king_cobra" tileid="huge_animal.png:9"/>
+    <type class="reptile" subclass="king_cobra" tileid="reptile.png:3"/>
     <description>You see a king cobra. It is extremely venomous.</description>
     <attributes>
       <atk value="750"/>
