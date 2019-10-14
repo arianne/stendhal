@@ -242,4 +242,31 @@
     </ai>
   </creature>
 
+  <creature name="beaver">
+    <type class="rodent" subclass="beaver" tileid="farm_animal.png:0"/>
+    <description>You see a beaver. It likes to build dams in the river.</description>
+    <attributes>
+      <atk value="53"/>
+      <def value="8"/>
+      <hp value="35"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="80.0"/>
+      <item value="wood" quantity="[1,2]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
