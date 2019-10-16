@@ -56,8 +56,8 @@ wolf.png              Groundhug McHamster (h4mt4ro); GPL 2.0+; Stendhal
 
 data/sprites/monsters/beholder/
 
-beholder.png        Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/5215
-elder_beholder.png  Code Inferno Games, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/66464, http://codeinferno.com/
+beholder.png        Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/101251, https://opengameart.org/node/5215
+elder_beholder.png  Code Inferno Games, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/101251, https://opengameart.org/node/66464, http://codeinferno.com/
 young_beholder.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 
 data/sprites/monsters/chaos/
