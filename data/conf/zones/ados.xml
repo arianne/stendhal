@@ -447,10 +447,10 @@
       <attribute name="class">book_red</attribute>
     </entity>
 
-    <!-- Sound/Music/Ambient
+    <!-- Sound/Music/Ambient -->
     <entity x="85" y="14">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -460,7 +460,7 @@
 
     <entity x="84" y="30">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -470,7 +470,7 @@
 
     <entity x="85" y="47">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -480,7 +480,7 @@
 
     <entity x="78" y="76">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -490,7 +490,7 @@
 
     <entity x="78" y="90">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -500,7 +500,7 @@
 
     <entity x="78" y="106">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -510,13 +510,13 @@
 
     <entity x="77" y="121">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
-    </entity> -->
+    </entity>
 
     <!-- Portals -->
     <portal x="67" y="78" ref="carolines_house_entrance">
@@ -960,10 +960,9 @@ West: Semos
     <configurator class-name="games.stendhal.server.maps.ados.city.KidGhostNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.city.HolidayingWomanNPC" />
 
-<!--
     <entity x="83" y="9">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -973,7 +972,7 @@ West: Semos
 
     <entity x="83" y="20">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -983,7 +982,7 @@ West: Semos
 
     <entity x="69" y="32">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -993,7 +992,7 @@ West: Semos
 
     <entity x="75" y="51">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -1003,7 +1002,7 @@ West: Semos
 
     <entity x="77" y="67">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -1013,7 +1012,7 @@ West: Semos
 
     <entity x="81" y="89">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -1023,14 +1022,13 @@ West: Semos
 
     <entity x="81" y="116">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
-  -->
 
     <entity x="25" y="120">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -4613,10 +4611,10 @@ Southeast: Docks
     <configurator class-name="games.stendhal.server.maps.ados.city.ForeignWomanNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.city.FishesNPC" />
 
-    <!-- Music/Ambiance
+    <!-- Music/Ambiance -->
     <entity x="80" y="12">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -4626,7 +4624,7 @@ Southeast: Docks
 
     <entity x="88" y="35">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -4636,7 +4634,7 @@ Southeast: Docks
 
     <entity x="88" y="59">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -4646,7 +4644,7 @@ Southeast: Docks
 
     <entity x="82" y="84">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -4656,7 +4654,7 @@ Southeast: Docks
 
     <entity x="82" y="104">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -4666,7 +4664,7 @@ Southeast: Docks
 
     <entity x="82" y="124">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -4676,14 +4674,13 @@ Southeast: Docks
 
     <entity x="114" y="116">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
- -->
 
     <!-- Signs -->
     <entity x="55" y="109">
@@ -4990,10 +4987,10 @@ Southeast: Docks
     <configurator class-name="games.stendhal.server.maps.ados.city.WallSoldier3NPC"/>
 
 
-    <!-- Music/Ambiance
+    <!-- Music/Ambiance -->
     <entity x="85" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -5003,7 +5000,7 @@ Southeast: Docks
 
     <entity x="93" y="33">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -5013,7 +5010,7 @@ Southeast: Docks
 
     <entity x="103" y="55">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -5023,7 +5020,7 @@ Southeast: Docks
 
     <entity x="109" y="78">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -5033,7 +5030,7 @@ Southeast: Docks
 
     <entity x="120" y="95">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -5050,7 +5047,6 @@ Southeast: Docks
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
- -->
 
     <!-- Interactive sounds -->
     <entity x="53" y="24">
@@ -5329,17 +5325,16 @@ Southeast: Docks
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC" />
 
-    <!-- Music/Ambiance
+    <!-- Music/Ambiance -->
     <entity x="96" y="105">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-02, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">22</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
- -->
   </zone>
 
   <zone name="0_ados_coast_sw" level="0" x="500768" y="500256" file="Level 0/ados/coast_sw.tmx">

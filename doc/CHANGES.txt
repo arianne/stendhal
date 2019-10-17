@@ -65,6 +65,8 @@ Changelog
   - Margaret
   - Nishiya
   - Sato
+- added map ambiance sounds:
+  - water sloshing in Ados City
 - added clang-dull-1 to combat "block" sounds
 - new wind ambiance to Ados Mountain/Rock & Kikareukin maps
 - new eat sound for pets
