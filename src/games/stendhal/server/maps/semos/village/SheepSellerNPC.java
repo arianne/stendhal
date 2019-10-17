@@ -113,7 +113,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 		npc.setDescription("Nishiya patrols the paths, watching his sheep. You can buy one from him.");
 		npc.setPosition(33, 44);
 		npc.initHP(100);
-		npc.setSounds(Arrays.asList("cough-male-01", "cough-male-02"));
+		npc.setSounds(Arrays.asList("cough-male-01", "cough-male-02", "cough-male-03"));
 		zone.add(npc);
 	}
 }
