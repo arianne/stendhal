@@ -143,6 +143,17 @@
       </implementation>
     </entity>
 
+    <entity x="14" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">bird-woodpecker-01, bird-crow-01, bird-crow-02, bird-raven-01</parameter>
+        <parameter name="min">3</parameter>
+        <parameter name="max">30</parameter>
+        <parameter name="radius">40</parameter>
+        <parameter name="volume">65</parameter>
+      </implementation>
+    </entity>
+
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.semos.mountain.StrandedWizardNPC" />
 
