@@ -16,8 +16,9 @@ bear-[01-02].*            U.S. Fish & Wildlife Service; public domain: https://w
 bear-03.*                 tylerandbergsd; CC BY 3.0; https://freesound.org/people/tylerandbergsd/sounds/416859/
 bee-1.ogg                 nps.gov; public domain; http://soundbible.com/971-Bee.html
 bell-1.ogg                Storyteller; GPL
+bird-blackbird-[01-03].*  Samuel Strågefors (straget); CC BY 3.0; https://freesound.org/people/straget/sounds/475697/
 bird-crow-01.*            Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/418262/
-bird-crow-02.*            straget; CC0; https://freesound.org/people/straget/sounds/404687/
+bird-crow-02.*            Samuel Strågefors (straget); CC0; https://freesound.org/people/straget/sounds/404687/
 bird-pigeon-1.*           winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
 bird-pigeon-flap-1.*      winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
 bird-raven-01.*           dauser; CC0; https://freesound.org/people/dauser/sounds/328846/
