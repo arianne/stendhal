@@ -59,6 +59,8 @@ Changelog
   - troll & red troll
 - added pet sound effects:
   - sheep
+- added NPC sound effects:
+  - Carmen
 - added clang-dull-1 to combat "block" sounds
 - new wind ambiance to Ados Mountain/Rock & Kikareukin maps
 - new eat sound for pets

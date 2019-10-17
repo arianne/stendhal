@@ -62,6 +62,7 @@ ghost-02.*                HorrorAudio; CC0; https://freesound.org/people/HorrorA
 ghost-03.*                HorrorAudio; CC0; https://freesound.org/people/HorrorAudio/sounds/431981/
 giantrat-growl-01.*       Zabuhailo; CC0; https://freesound.org/people/Zabuhailo/sounds/146968/
 giantrat-growl-02.*       Deganoth; CC BY 3.0; https://freesound.org/people/Deganoth/sounds/348700/
+giggle-female-*           Ch0cchi; CC BY 3.0; https://freesound.org/people/Ch0cchi/sounds/15288/
 glass-break-2.*           martinimeniscus; CC0; http://www.freesound.org/people/martinimeniscus/sounds/164462/
 goat-1.*                  stephan; public domain; http://soundbible.com/1662-Farm.html
 goat-2.*                  stephan; public domain; http://soundbible.com/1632-On-The-Farm.html
