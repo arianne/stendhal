@@ -745,10 +745,9 @@ areas.
       </implementation>
 	</entity>
 
-<!--
     <entity x="56" y="30">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">5</parameter>
         <parameter name="radius">10</parameter>
@@ -758,14 +757,13 @@ areas.
 
     <entity x="40" y="36">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">5</parameter>
         <parameter name="radius">10</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
--->
 
     <!-- Crackling fire -->
     <entity x="19" y="124">
@@ -848,17 +846,15 @@ West: Semos
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.wall.GreeterSoldierNPC"/>
 
-<!--
     <entity x="95" y="49">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">20</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
--->
 
     <entity x="88" y="78">
       <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
@@ -5038,15 +5034,17 @@ Southeast: Docks
       </implementation>
     </entity>
 
+<!-- strange spot for water sounds
     <entity x="74" y="64">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">water-2</parameter>
+        <parameter name="sound">water-slosh-01, water-slosh-03</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
+-->
 
     <!-- Interactive sounds -->
     <entity x="53" y="24">
