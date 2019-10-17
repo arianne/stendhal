@@ -89,6 +89,7 @@ kobold-groan-[01-03].*    shadeslayer99; CC0; https://freesound.org/people/shade
 kobold-snort-01.*         Bob H; CC BY 3.0; https://www.youtube.com/watch?v=gmFFv-rXLeU
 lamb-[01-02].*            cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
 laugh-evil-[01-02].ogg    Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81237
+laugh-old-man-[01-02].*   Jordan Irwin (AntumDeluge); CC0; Stendhal
 lion-roar-01.ogg          Info-farmer; public domain; http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
 lion-roar-02.*            Bidone; CC0; https://freesound.org/people/Bidone/sounds/69570/
 liquid-fill-01.*          ericlichtenberg; CC0; https://freesound.org/people/ericlichtenberg/sounds/432350/

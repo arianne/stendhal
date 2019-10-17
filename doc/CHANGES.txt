@@ -61,6 +61,7 @@ Changelog
   - sheep
 - added NPC sound effects:
   - Carmen
+  - Diogenes
 - added clang-dull-1 to combat "block" sounds
 - new wind ambiance to Ados Mountain/Rock & Kikareukin maps
 - new eat sound for pets
