@@ -132,6 +132,9 @@
       </implementation>
     </entity>
 
+  <!-- NPCs -->
+  <configurator class-name="games.stendhal.server.maps.semos.mountain.StrandedWizardNPC" />
+
   </zone>
 
   <!-- Interiors in 0_semos_mountain_n2_w -->
