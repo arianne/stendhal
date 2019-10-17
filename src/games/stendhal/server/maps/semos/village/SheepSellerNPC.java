@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.village;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -112,6 +113,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 		npc.setDescription("Nishiya patrols the paths, watching his sheep. You can buy one from him.");
 		npc.setPosition(33, 44);
 		npc.initHP(100);
+		npc.setSounds(Arrays.asList("cough-male-01"));
 		zone.add(npc);
 	}
 }

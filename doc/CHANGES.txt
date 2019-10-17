@@ -63,6 +63,7 @@ Changelog
   - Carmen
   - Diogenes
   - Margaret
+  - Nishiya
   - Sato
 - added clang-dull-1 to combat "block" sounds
 - new wind ambiance to Ados Mountain/Rock & Kikareukin maps
