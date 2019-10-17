@@ -34,6 +34,7 @@ clock-1.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 coins-01.*                monotraum; CC0; https://freesound.org/people/monotraum/sounds/162192/
 cork-pop-1.*              fryzu82; CC0; http://www.freesound.org/people/fryzu82/sounds/142325/
 cough-male-01.*           Joe DeShon; CC BY 3.0; https://freesound.org/people/joedeshon/sounds/266019/
+cough-male-02.*           FrostyFrost; CC0; https://freesound.org/people/FrostyFrost/sounds/348364/
 cow-1.ogg                 unnamed; public domain; http://soundbible.com/1143-Cow-And-Bell.html
 cow-2.*                   FunnyMan374; CC0; http://freesound.org/people/FunnyMan374/sounds/112068/
 cowbell-1.*               cloudyeyetavern; CC0; http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
