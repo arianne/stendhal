@@ -1944,6 +1944,26 @@ Mature sheep wanted: please speak to Sato.
       </implementation>
     </entity>
 
+    <entity x="8" y="30">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">chicken-01</parameter>
+        <parameter name="min">10</parameter>
+        <parameter name="max">45</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="47" y="25">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">chicken-01</parameter>
+        <parameter name="min">10</parameter>
+        <parameter name="max">45</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+
     <!-- sounds from houses -->
     <entity x="44" y="39">
       <implementation
