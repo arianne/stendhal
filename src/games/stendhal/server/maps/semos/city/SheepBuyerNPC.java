@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.city;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -181,6 +182,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("buyernpc");
 		npc.setDescription("You see Sato. He loves sheep.");
+		npc.setSounds(Arrays.asList("sneeze-male-01"));
 		zone.add(npc);
 	}
 
