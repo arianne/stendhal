@@ -182,7 +182,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("buyernpc");
 		npc.setDescription("You see Sato. He loves sheep.");
-		npc.setSounds(Arrays.asList("sneeze-male-01"));
+		npc.setSounds(Arrays.asList("hiccup-01", "sneeze-male-01"));
 		zone.add(npc);
 	}
 
