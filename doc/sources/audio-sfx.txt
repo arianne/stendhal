@@ -17,6 +17,7 @@ bear-03.*                 tylerandbergsd; CC BY 3.0; https://freesound.org/peopl
 bee-1.ogg                 nps.gov; public domain; http://soundbible.com/971-Bee.html
 bell-1.ogg                Storyteller; GPL
 bird-crow-01.*            Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/418262/
+bird-crow-02.*            straget; CC0; https://freesound.org/people/straget/sounds/404687/
 bird-pigeon-1.*           winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
 bird-pigeon-flap-1.*      winsx87; CC0; http://freesound.org/people/winsx87/sounds/152024/
 bones-2.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16324
