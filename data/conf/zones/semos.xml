@@ -132,8 +132,19 @@
       </implementation>
     </entity>
 
-  <!-- NPCs -->
-  <configurator class-name="games.stendhal.server.maps.semos.mountain.StrandedWizardNPC" />
+    <entity x="62" y="127">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">bird-woodpecker-01</parameter>
+        <parameter name="min">3</parameter>
+        <parameter name="max">15</parameter>
+        <parameter name="radius">14</parameter>
+        <parameter name="volume">65</parameter>
+      </implementation>
+    </entity>
+
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.semos.mountain.StrandedWizardNPC" />
 
   </zone>
 
@@ -576,6 +587,16 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       </implementation>
     </entity>
 
+    <entity x="65" y="6">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">bird-woodpecker-01</parameter>
+        <parameter name="min">3</parameter>
+        <parameter name="max">15</parameter>
+        <parameter name="radius">24</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
   </zone>
 
   <!-- Interiors of the wizards tower -->
