@@ -67,6 +67,7 @@ Changelog
   - Sato
 - added map ambiance sounds:
   - water sloshing in Ados City, Athor Island, Athor Ship, & Fado City
+  - river in Nalwor Forest, Ados Snake Pit, Semos Mountain, & Semos Road
 - added clang-dull-1 to combat "block" sounds
 - new wind ambiance to Ados Mountain/Rock & Kikareukin maps
 - new eat sound for pets

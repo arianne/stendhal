@@ -5698,16 +5698,14 @@ East Tunnel: Uncharted</attribute>
       </implementation>
     </entity>
 
-<!--
     <entity x="21" y="21">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">water-5</parameter>
+        <parameter name="sound">ambiance/river-1</parameter>
         <parameter name="radius">20</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
 
     </entity>
- -->
 
     <entity x="21" y="24">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
@@ -5792,15 +5790,13 @@ East Tunnel: Uncharted</attribute>
       </implementation>
     </entity>
 
-<!--
     <entity x="112" y="16">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">water-5</parameter>
+        <parameter name="sound">ambiance/river-02</parameter>
         <parameter name="radius">20</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
     </entity>
- -->
 
     <!-- Signs -->
     <entity x="120" y="19">
