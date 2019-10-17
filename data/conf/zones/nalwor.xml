@@ -1041,7 +1041,7 @@ below average.
     <!-- Ambiance on fishing dock -->
     <entity x="56" y="60">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">ambiance/water-sloshing-1</parameter>
+        <parameter name="sound">ambiance/water-sloshing-01</parameter>
         <parameter name="radius">6</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
