@@ -547,7 +547,7 @@
 
     <entity x="124" y="122">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="sound">loop/wind-01</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">70</parameter>
@@ -592,7 +592,7 @@
 
     <entity x="5" y="124">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="sound">loop/wind-01</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">80</parameter>
@@ -4378,7 +4378,7 @@ My fee:
     <!-- Music/Ambiance -->
     <entity x="123" y="43">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="sound">loop/wind-01</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">120</parameter>
@@ -4426,7 +4426,7 @@ Southeast: Docks
     <!-- Music ambiance -->
     <entity x="3" y="35">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="sound">loop/wind-01</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">90</parameter>
@@ -5700,7 +5700,7 @@ East Tunnel: Uncharted</attribute>
 
     <entity x="21" y="21">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">ambiance/river-01</parameter>
+        <parameter name="sound">loop/river-01</parameter>
         <parameter name="radius">20</parameter>
         <parameter name="volume">80</parameter>
       </implementation>
@@ -5792,7 +5792,7 @@ East Tunnel: Uncharted</attribute>
 
     <entity x="112" y="16">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">ambiance/river-02</parameter>
+        <parameter name="sound">loop/river-02</parameter>
         <parameter name="radius">20</parameter>
         <parameter name="volume">80</parameter>
       </implementation>

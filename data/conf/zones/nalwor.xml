@@ -978,7 +978,7 @@ below average.
     <entity x="87" y="83">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">ambiance/river-02</parameter>
+        <parameter name="sound">loop/river-02</parameter>
         <parameter name="min">1</parameter>
         <parameter name="max">1</parameter>
         <parameter name="radius">25</parameter>
@@ -1041,7 +1041,7 @@ below average.
     <!-- Ambiance on fishing dock -->
     <entity x="56" y="60">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">ambiance/water-sloshing-01</parameter>
+        <parameter name="sound">loop/water-sloshing-01</parameter>
         <parameter name="radius">6</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
