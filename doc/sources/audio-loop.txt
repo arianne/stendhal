@@ -1,0 +1,7 @@
+
+data/sounds/loop/
+
+river-01.*           Adam_N; CC0; http://freesound.org/people/Adam_N/sounds/166310/
+river-02.*           Çağan Çelik; CC0; https://freesound.org/people/CaganCelik/sounds/415267/
+water-sloshing-01.*  pawsound; CC0; http://freesound.org/people/pawsound/sounds/154879/
+wind-01.*            Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/376415/

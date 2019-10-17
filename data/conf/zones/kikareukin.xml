@@ -18,7 +18,7 @@
     <entity x="1" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="sound">loop/wind-01</parameter>
         <parameter name="volume">40</parameter>
       </implementation>
     </entity>
@@ -56,7 +56,7 @@
     <entity x="1" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">ambiance/wind-01</parameter>
+        <parameter name="sound">loop/wind-01</parameter>
         <parameter name="volume">40</parameter>
       </implementation>
     </entity>
