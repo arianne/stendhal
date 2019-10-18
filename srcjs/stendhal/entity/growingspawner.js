@@ -55,7 +55,7 @@ marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(mar
 	draw: function(ctx) {
 		var localX = this["x"] * 32;
 		var localY = this["y"] * 32;
-		var image = stendhal.data.sprites.get("data/sprites/" + this["class"] + ".png");
+		var image = stendhal.data.sprites.get("/data/sprites/" + this["class"] + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;
 			var drawHeight = image.height / count;

@@ -18,7 +18,6 @@ stendhal.ui = stendhal.ui || {};
 stendhal.ui.chatinput = {
 	history: [],
 	historyIndex: 0,
-	pressedKeys: {},
 
 	clear: function() {
 		document.getElementById("chatinput").value = "";
@@ -48,12 +47,7 @@ stendhal.ui.chatinput = {
 		if (!event) {
 			event = window.event;
 		}
-		var code;
-		if (event.which) {
-			code = event.which;
-		} else {
-			code = e.keyCode;
-		}
+		var code = stendhal.ui.html.extractKeyCode(event);
 
 		// chat history
 		if (event.shiftKey) {
@@ -62,50 +56,6 @@ stendhal.ui.chatinput = {
 			} else if (code === 40){
 				stendhal.ui.chatinput.fromHistory(1);
 			}
-		}
-
-		// if this is a repeated event, stop further processing
-		if (stendhal.ui.chatinput.pressedKeys[code]) {
-			return;
-		}
-		stendhal.ui.chatinput.pressedKeys[code] = true;
-
-		// Face and Movement
-		var type = "move";
-		if (event.shiftKey) {
-			type = "face";
-		}
-		if (code >= 37 && code <= 40) {
-			var dir = code - 37;
-			if (dir === 0) {
-				dir = 4;
-			}
-			var action = {"type": type, "dir": ""+dir};
-			marauroa.clientFramework.sendAction(action);
-		}
-	},
-
-	onKeyUp: function(e) {
-		var event = e
-		if (!event) {
-			event = window.event;
-		}
-		var code;
-		if (event.which) {
-			code = event.which;
-		} else {
-			code = e.keyCode;
-		}
-		delete stendhal.ui.chatinput.pressedKeys[code];
-
-		// Movement
-		if (code >= 37 && code <= 40) {
-			var dir = code - 37;
-			if (dir === 0) {
-				dir = 4;
-			}
-			var action = {"type": "stop"};
-			marauroa.clientFramework.sendAction(action);
 		}
 	},
 

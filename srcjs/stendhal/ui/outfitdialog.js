@@ -75,7 +75,7 @@ stendhal.ui.OutfitDialog = function() {
 		_getPartSprite(part, index, color = null) {
 			const fname = "/data/sprites/outfit/" + part + "/" + part + "_0" + indexString(index) + ".png";
 			if (color != null) {
-				return stendhal.data.sprites.getFiltered(fname, "trueColor", color);
+				return stendhal.data.sprites.getFilteredWithPromise(fname, "trueColor", color);
 			}
 			return stendhal.data.sprites.getWithPromise(fname);
 		}
@@ -437,24 +437,28 @@ stendhal.ui.OutfitDialog = function() {
 
 	function makeSelector(part, partChanged) {
 		const outfit = marauroa.me["outfit"];
-		let maxindex;
+		let outfitCount;
 		let divider;
 		switch (part) {
-			case "hair": divider = 1000000;
-				maxindex = 46;
+			case "hair":
+				divider = 1000000;
+				outfitCount = 49;
 				break;
-			case "head" : divider = 10000;
-				maxindex = 22;
+			case "head":
+				divider = 10000;
+				outfitCount = 22;
 				break;
-			case "dress" : divider = 100;
-				maxindex = 63;
+			case "dress":
+				divider = 100;
+				outfitCount = 63;
 				break;
-			case "body": divider = 1;
-				maxindex = 15;
+			case "body":
+				divider = 1;
+				outfitCount = 15;
 				break;
 		}
 		const index = Math.floor(outfit/divider) % 100;
-		const selector = new PartSelector(part, index, maxindex, partChanged);
+		const selector = new PartSelector(part, index, outfitCount - 1, partChanged);
 
 		document.getElementById("setoutfitprev" + part).addEventListener("click", function(e) {
 			selector.previous();

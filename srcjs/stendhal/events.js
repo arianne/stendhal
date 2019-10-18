@@ -99,7 +99,16 @@ marauroa.rpeventFactory["private_text"] = marauroa.util.fromProto(marauroa.rpeve
 
 marauroa.rpeventFactory["progress_status_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		// TODO: new ProgressStatusEvent();
+		var progressType = this["progress_type"];
+		var dataItems = this["data"].substring(1, this["data"].length - 1).split(/\t/);
+
+		if (!this["progress_type"]) {
+			stendhal.ui.travellog.open(dataItems);
+		} else if (!this["item"]) {
+			stendhal.ui.travellog.progressTypeData(progressType, dataItems);
+		} else {
+			stendhal.ui.travellog.itemData(progressType, this["item"], this["description"], dataItems);
+		}
 	}
 });
 

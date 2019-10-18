@@ -132,9 +132,13 @@ stendhal.ui.Menu = function(entity, x, y) {
 			} else {
 				var action = {
 					"type": actions[i].type,
-					"target": "#" + entity.id,
+					"target_path": entity.getIdPath(),
 					"zone": marauroa.currentZoneName
 				};
+				// for top level entities, include "target", which is required for example on attack-action
+				if ('[' + entity.id + ']' === entity.getIdPath()) {
+					action['target'] = '#' + entity.id;
+				}
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
@@ -174,6 +178,7 @@ stendhal.ui.DropNumberDialog = function(action, x, y) {
 		this.popup.close();
 		stendhal.ui.globalpopup = null;
 	}
+	document.getElementById("dropnumberdialogvalue").focus();
 	stendhal.ui.globalpopup = this;
 }
 

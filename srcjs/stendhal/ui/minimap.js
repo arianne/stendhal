@@ -64,23 +64,25 @@ stendhal.ui.minimap = {
 	},
 
 	draw: function() {
-		stendhal.ui.minimap.scale = 10;
-
-		stendhal.ui.minimap.zoneChange();
-		stendhal.ui.minimap.updateBasePosition();
-		var canvas = document.getElementById("minimap");
-
-		var ctx = canvas.getContext("2d");
-		// IE does not support ctx.resetTransform(), so use the following workaround:
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-		// The area outside of the map
-		ctx.fillStyle = "#606060";
-		ctx.fillRect(0, 0, stendhal.ui.minimap.width, stendhal.ui.minimap.height);
-
-		ctx.translate(Math.round(-stendhal.ui.minimap.xOffset), Math.round(-stendhal.ui.minimap.yOffset));
-		stendhal.ui.minimap.drawBackground(ctx);
-		stendhal.ui.minimap.drawEntities(ctx);
+		if (marauroa.currentZoneName === stendhal.data.map.currentZoneName) {
+			stendhal.ui.minimap.scale = 10;
+	
+			stendhal.ui.minimap.zoneChange();
+			stendhal.ui.minimap.updateBasePosition();
+			var canvas = document.getElementById("minimap");
+	
+			var ctx = canvas.getContext("2d");
+			// IE does not support ctx.resetTransform(), so use the following workaround:
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+	
+			// The area outside of the map
+			ctx.fillStyle = "#606060";
+			ctx.fillRect(0, 0, stendhal.ui.minimap.width, stendhal.ui.minimap.height);
+	
+			ctx.translate(Math.round(-stendhal.ui.minimap.xOffset), Math.round(-stendhal.ui.minimap.yOffset));
+			stendhal.ui.minimap.drawBackground(ctx);
+			stendhal.ui.minimap.drawEntities(ctx);
+		}
 	},
 
 	drawBackground: function(ctx) {
@@ -171,6 +173,5 @@ stendhal.ui.minimap = {
 			};
 			marauroa.clientFramework.sendAction(action);
 		}
-		document.getElementById("chatinput").focus();
 	}
 };

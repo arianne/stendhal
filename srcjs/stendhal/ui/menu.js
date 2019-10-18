@@ -75,7 +75,7 @@ stendhal.ui.menu = {
 					},
 					{
 						title: "Travel Log",
-						action: "travellog",
+						action: "progressstatus",
 					}
 				]
 			},
