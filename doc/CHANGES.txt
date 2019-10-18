@@ -63,6 +63,7 @@ Changelog
   - gashadokuro
   - balrog
   - high lich
+  - vampire lord
 - added pet sound effects:
   - sheep
 - added NPC sound effects:

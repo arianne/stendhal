@@ -947,6 +947,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="laugh-evil-04"/>
+      </says>
       <profile name="offensive"/>
       <profile name="lifesteal" params="1"/>
       <profile name="human"/>

@@ -102,6 +102,7 @@ kobold-snort-01.*         Bob H; CC BY 3.0; https://www.youtube.com/watch?v=gmFF
 lamb-[01-02].*            cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
 laugh-evil-[01-02].ogg    Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81237
 laugh-evil-03.*           klankbeeld; CC BY 3.0; https://freesound.org/people/klankbeeld/sounds/126113/
+laugh-evil-04.*           ShadowFlayer; CC0; https://freesound.org/people/ShadowFlayer/sounds/401605/
 laugh-old-man-[01-02].*   Jordan Irwin (AntumDeluge); CC0; Stendhal
 lion-roar-01.ogg          Info-farmer; public domain; http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
 lion-roar-02.*            Bidone; CC0; https://freesound.org/people/Bidone/sounds/69570/
