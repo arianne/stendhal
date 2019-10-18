@@ -20,6 +20,7 @@ Changelog
 - new/reworked enemies:
   - all beholders
   - all goblins
+  - caiman & crocodile
   - dodo
   - mummy & royal mummy
 - new/reworked items:

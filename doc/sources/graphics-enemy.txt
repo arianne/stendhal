@@ -433,9 +433,9 @@ ratwoman.png  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jord
 
 data/sprites/monsters/reptile/
 
-caiman.png       ???; ???; ???
+caiman.png       bleutailfly; OGA BY 3.0; https://opengameart.org/node/101290
 cobra.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
-crocodile.png    ???; ???; ???
+crocodile.png    bleutailfly; OGA BY 3.0; https://opengameart.org/node/101290
 grass_snake.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 king_cobra.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
 snake.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
