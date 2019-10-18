@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="mermaid">
-    <type class="mythical_being" subclass="mermaid" tileid="hybrid.png:15"/>
+    <type class="mythical_being" subclass="mermaid" tileid="mythical_being.png:7"/>
      <description>You see a mermaid. They perfer their own company and are not too happy to see you here.</description>
     <attributes>
       <atk value="547"/>
