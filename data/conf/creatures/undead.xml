@@ -239,6 +239,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="laugh-evil-03"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>

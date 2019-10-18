@@ -62,6 +62,7 @@ Changelog
   - troll & red troll
   - gashadokuro
   - balrog
+  - high lich
 - added pet sound effects:
   - sheep
 - added NPC sound effects:
