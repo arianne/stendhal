@@ -60,6 +60,7 @@ Changelog
   - cyclops
   - all ogres
   - troll & red troll
+  - gashadokuro
 - added pet sound effects:
   - sheep
 - added NPC sound effects:
