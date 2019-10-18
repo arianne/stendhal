@@ -309,7 +309,6 @@ brain_ahouga.png     Tuomo Untinen (Reemax); CC BY 3.0; https://opengameart.org/
 dark_aruthon.png     Kevin Smith (TKZ Productions); CC BY 3.0; https://opengameart.org/node/50703
 googon.*             Tracy, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/13716
 grobble_monster.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
-mermaid.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 mimic.*              Diligent Dodo/soniccuz; GPL 2.0; Stendhal
 mimic_idle.png       Diligent Dodo / soniccuz; GPL 2.0; Stendhal
 necrosophia.*        Wolf W. (Ouren), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/45981
@@ -378,6 +377,7 @@ data/sprites/monsters/mythical_being/
 amethyst_mermaid.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 centaur.png           bluecarrot16, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79289
 emerald_mermaid.png   Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+mermaid.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 pegasus.png           bluecarrot16, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/77472
 ruby_mermaid.png      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 sapphire_mermaid.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
