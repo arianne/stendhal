@@ -64,6 +64,7 @@ Changelog
   - balrog
   - high lich
   - vampire lord
+  - mummies
 - added pet sound effects:
   - sheep
 - added NPC sound effects:

@@ -175,6 +175,7 @@ undead-2.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 undead-3.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-4.ogg              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81246
 undead-5.*                ArriGD; CC0; http://www.freesound.org/people/ArriGD/sounds/144005/
+undead-06.*               Dorothy Jean Thompson (pyro13djt); CC BY 3.0; https://freesound.org/people/pyro13djt/sounds/256032/, http://djtvoiceovers.com/
 water-faucet-1.*          unnamed; public domain; http://www.pdsounds.org/sounds/faucet_water_into_sink
 water-slosh-[01-03].*     pawsound; CC0; https://freesound.org/people/pawsound/sounds/154881/
 wings-flap-large-1.*      dave.des; CC0; http://freesound.org/people/dave.des/sounds/127197/

@@ -352,6 +352,7 @@
     <ai>
       <says>
         <sound value="undead-5" />
+        <sound value="undead-06" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -385,6 +386,7 @@
     <ai>
       <says>
         <sound value="undead-5" />
+        <sound value="undead-06" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
