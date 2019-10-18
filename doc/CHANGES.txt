@@ -20,6 +20,7 @@ Changelog
 - new/reworked enemies:
   - all beholders
   - all goblins
+  - dodo
   - mummy & royal mummy
 - new/reworked items:
   - barbarian, black, dwarvish, leather, & plate armors
