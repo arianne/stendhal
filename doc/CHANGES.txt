@@ -39,6 +39,7 @@ Changelog
 - added enemy sound effects:
   - bear & black bear
   - chicken & mother hen
+  - dodo
   - snake & grass snake
   - wolf & big bad wolf
   - horse & white horse

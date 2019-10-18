@@ -94,6 +94,7 @@
       <says>
         <noise state="idle follow fight" value="Bawk Bawk"/>
         <noise state="idle follow fight" value="Bawwwk"/>
+        <sound value="bird-dodo-01"/>
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
