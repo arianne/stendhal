@@ -93,7 +93,7 @@ public class TicTacToeGame implements LoadableContent {
 						new PlayAction(board));
 			}
 		};
-		paul.setEntityClass("paulnpc");
+		paul.setEntityClass("gamesupervisornpc");
 		paul.setPosition(84, 112);
 		paul.setDirection(Direction.DOWN);
 		zone.add(paul);
