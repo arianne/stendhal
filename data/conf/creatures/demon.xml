@@ -193,6 +193,7 @@
       <says>
         <noise state="idle follow fight" value="Growwwwwwwrrrrrrr!"/>
         <noise state="idle follow fight" value="Arrrrllllggggghhhh"/>
+        <sound value="balrog-growl-01"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

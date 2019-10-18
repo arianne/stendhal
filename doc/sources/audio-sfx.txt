@@ -9,6 +9,7 @@ attack-fire-3.*           Nic3_one; CC0; http://freesound.org/people/Nic3_one/so
 attack-melee-[01-02].ogg  CGEffex; CC BY 3.0; https://freesound.org/people/CGEffex/sounds/98341/
 attack-melee-[03-07].ogg  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/100746
 baby_croc-*               Félix Blume; CC0; https://freesound.org/people/felix.blume/sounds/403373/
+balrog-growl.ogg          cylon8472; CC BY 3.0; https://freesound.org/people/cylon8472/sounds/249686/
 bat-1.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
 bat-2.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/
 bat-3.*                   polymorpheva; CC0; http://www.freesound.org/people/polymorpheva/sounds/104205/

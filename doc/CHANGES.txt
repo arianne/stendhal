@@ -61,6 +61,7 @@ Changelog
   - all ogres
   - troll & red troll
   - gashadokuro
+  - balrog
 - added pet sound effects:
   - sheep
 - added NPC sound effects:
