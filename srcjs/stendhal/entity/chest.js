@@ -81,6 +81,10 @@ marauroa.rpobjectFactory["chest"] = marauroa.util.fromProto(marauroa.rpobjectFac
 		if (!this.inventory || !this.inventory.popupdiv.parentNode) {
 			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 5, 6, this, "Chest");
 		}
+	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/bag.png) 1 3, auto";
 	}
 
 });

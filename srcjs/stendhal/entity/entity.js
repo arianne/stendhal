@@ -162,6 +162,15 @@ marauroa.rpobjectFactory["entity"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		}
 	},
 
+	getCursor: function(x, y) {
+		var cursor = "unknown";
+		if (this["cursor"]) {
+			cursor = this["cursor"];
+		}
+
+		return "url(/data/sprites/cursor/" + cursor.toLowerCase().replace("_", "") + ".png) 1 3, auto";
+	},
+
 	/**
 	 * Create the default action for this entity. If the entity specifies a
 	 * default action description, interpret it as an action command.

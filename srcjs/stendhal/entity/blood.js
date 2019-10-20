@@ -36,5 +36,9 @@ marauroa.rpobjectFactory["blood"] = marauroa.util.fromProto(marauroa.rpobjectFac
 		} else if (key === "class") {
 			this.sprite.filename = "/data/sprites/combat/blood_" + value + ".png";
 		}
+	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	}
 });

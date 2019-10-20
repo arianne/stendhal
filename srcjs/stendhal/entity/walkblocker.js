@@ -22,5 +22,10 @@ marauroa.rpobjectFactory["walkblocker"] = marauroa.util.fromProto(marauroa.rpobj
 
 	isVisibleToAction: function(filter) {
 		return true;
+	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/stop.png) 1 3, auto";
 	}
+
 });

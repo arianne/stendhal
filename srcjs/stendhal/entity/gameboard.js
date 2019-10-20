@@ -38,6 +38,10 @@ marauroa.rpobjectFactory["game_board"] = marauroa.util.fromProto(marauroa.rpobje
 		return false;
 	},
 
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
+	}
+
 });
 
 }());
