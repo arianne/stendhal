@@ -56,14 +56,26 @@ marauroa.rpeventFactory["global_visual_effect"] = marauroa.util.fromProto(maraur
 
 marauroa.rpeventFactory["group_change_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		// TODO: new GroupChangeEvent();
+		if (rpobject !== marauroa.me) {
+			return;
+		}
+		stendhal.data.group.updateGroupStatus(this["members"], this["leader"], this["lootmode"]);
 	}
 });
 
 
 marauroa.rpeventFactory["group_invite_event"] = marauroa.util.fromProto(marauroa.rpeventFactory["_default"], {
 	execute: function(rpobject) {
-		// TODO: new GroupInviteEvent();
+		if (rpobject !== marauroa.me) {
+			return;
+		}
+		if (this["expire"]) {
+			stendhal.ui.chatLog.addLine("normal", "Your group invite by " + this["leader"] + " has expired.");
+		} else {
+			stendhal.ui.chatLog.addLine("normal", "Your have been invited by " + this["leader"] + " to join a group.");
+			stendhal.ui.chatLog.addLine("normal", "To join, type: /group join " + this["leader"]);
+			stendhal.ui.chatLog.addLine("normal", "To leave the group at any time, type: /group part " + this["leader"]);
+		}
 	}
 });
 
