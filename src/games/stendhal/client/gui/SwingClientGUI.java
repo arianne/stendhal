@@ -243,10 +243,12 @@ class SwingClientGUI implements J2DClientGUI {
 		containerPanel.addRepaintable(keyring);
 		userContext.addFeatureChangeListener(keyring);
 		
+		/**
 		portfolio = new Portfolio();
 		portfolio.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		containerPanel.addRepaintable(portfolio);
 		userContext.addFeatureChangeListener(portfolio);
+		*/
 
 		spells = new Spells();
 		spells.setAcceptedTypes(EntityMap.getClass("spell", null, null));
