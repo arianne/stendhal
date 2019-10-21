@@ -51,20 +51,23 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 			public void createDialog() {
 				addGreeting(
 						"Ave");
-				addHelp(
-						"I am stranded, I can not help you... I lost #memory");
-				addOffer(
-						"I am stranded, I can not offer you anything... I lost #memory");
-				addJob(
-                        "I am stranded, I do not have any job... I lost #memory");
 				addGoodbye(
-						"Fortvna!");
-				addReply(
-						"memory",
-						"Laaah lah lah laaah... Laaah lah laah laaaaah... " +
-						"Fencing in a mist... Dancing in the fog... Catch those memories... Catch them all! " + 
-                        "I vanished... Still here... I am stranded, not lost..." +
-                        "Stranded yet not lost");
+						"Fortvna");
+				
+				addJob(
+                        "I am stranded, I do not have any job..." + " " +
+                        "I lost #memory");
+				addHelp(
+						"I am stranded, I can not help you with anything..." + " " +
+						"I lost #memory");
+				addOffer(
+						"I am stranded, I can not offer you anything..." + " " +
+						"I lost #memory");
+				
+				/**
+				 * additional behavior defined in AdMemoriaInPortfolio quest
+				 */
+				
 			}
 		};
 		
