@@ -50,10 +50,7 @@
 /**
  * testing:
  * /alterquest <player> admemoriainportfolio
- * 
  *  
- *  
- * 
  */
 
 package games.stendhal.server.maps.quests;
@@ -280,7 +277,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 				// title of the quest:
-				"strandedwizard, strandedwitch, Kirdneh",
+				"AdMemoriaInPortfolio",
 				// description of the quest:
 				"Talk strandedwizard           step_1" + "\n" +
 				"Find strandedwitch in Kirdneh step_2" + "\n" +
