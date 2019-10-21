@@ -172,13 +172,6 @@ public abstract class DressedEntity extends RPEntity {
 		put("outfit_mask", newOutfit.getMask());
 		put("outfit_hat", newOutfit.getHat());
 		notifyWorldAboutChanges();
-
-		// DEBUG:
-		System.out.println("\nOutfit set to:"
-				+ "\n  Hat: " + Integer.toString(getInt("outfit_hat"))
-				+ "\n  Mask: " + Integer.toString(getInt("outfit_mask"))
-				+ "\n  Eyes: " + Integer.toString(getInt("outfit_eyes"))
-				+ "\n  Mouth: " + Integer.toString(getInt("outfit_mouth")));
 	}
 
 	// Hack to preserve detail layer
@@ -191,16 +184,6 @@ public abstract class DressedEntity extends RPEntity {
 		// preserve detail layer
 		final int detailCode = getOutfit().getCode() / 100000000;
 
-		// DEBUG:
-		final int hatCode = outfit.getHat();
-		final int maskCode = outfit.getMask();
-		final int eyesCode = outfit.getEyes();
-		final int mouthCode = outfit.getMouth();
-		System.out.println("New hat: " + Integer.toString(hatCode)
-				+ "\nNew mask: " + Integer.toString(maskCode)
-				+ "\nNew eyes: " + Integer.toString(eyesCode)
-				+ "\nNew mouth: " + Integer.toString(mouthCode));
-
 		// set the new outfit
 		setOutfit(outfit, temporary);
 
@@ -210,10 +193,10 @@ public abstract class DressedEntity extends RPEntity {
 
 			// re-add detail
 			put("outfit", outfitCode);
-			put("outfit_mouth", mouthCode);
-			put("outfit_eyes", eyesCode);
-			put("outfit_mask", maskCode);
-			put("outfit_hat", hatCode);
+			put("outfit_mouth", outfit.getMouth());
+			put("outfit_eyes", outfit.getEyes());
+			put("outfit_mask", outfit.getMask());
+			put("outfit_hat", outfit.getHat());
 			notifyWorldAboutChanges();
 		}
 	}
