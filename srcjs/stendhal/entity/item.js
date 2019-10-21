@@ -65,5 +65,13 @@ marauroa.rpobjectFactory["item"] = marauroa.util.fromProto(marauroa.rpobjectFact
 			return Math.floor(this["quantity"] / 1000) + "k";
 		}
 		return this["quantity"];
+	},
+
+	getCursor: function(x, y) {
+		if (this["menu"]) {
+			return "url(/data/sprites/cursor/activity.png) 1 3, auto";
+		}
+		return "url(/data/sprites/cursor/normal.png) 1 3, auto";
 	}
+
 });

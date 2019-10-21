@@ -63,5 +63,10 @@ marauroa.rpobjectFactory["growing_entity_spawner"] = marauroa.util.fromProto(mar
 			ctx.drawImage(image, 0, yRow * drawHeight, image.width, drawHeight,
 					localX, localY - drawHeight + 32, image.width, drawHeight);
 		}
+	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/harvest.png) 1 3, auto";
 	}
+
 });

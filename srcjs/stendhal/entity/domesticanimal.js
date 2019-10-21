@@ -39,6 +39,11 @@ marauroa.rpobjectFactory["domesticanimal"] = marauroa.util.fromProto(marauroa.rp
 			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
 		}
 	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/look.png) 1 3, auto";
+	}
+
 });
 
 marauroa.rpobjectFactory["sheep"] = marauroa.util.fromProto(marauroa.rpobjectFactory["domesticanimal"], {

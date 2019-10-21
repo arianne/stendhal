@@ -24,26 +24,27 @@ import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
- * Provides StrandedWizard
+ * Provides StrandedWitch
  *
  * @author omero
  */
-public class StrandedWizardNPC implements ZoneConfigurator {
+public class StrandedWitchNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("StrandedWizard") {
+		final SpeakerNPC npc = new SpeakerNPC("StrandedWitch") {
 
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(72, 123));
-				nodes.add(new Node(74, 124));
-				nodes.add(new Node(77, 124));
-				nodes.add(new Node(82, 124));
+				nodes.add(new Node(81, 115));
+				nodes.add(new Node(88, 115));
+				nodes.add(new Node(88, 115));
+				nodes.add(new Node(88, 111));
+				nodes.add(new Node(84, 105));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -53,16 +54,10 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 						"Ave");
 				addGoodbye(
 						"Fortvna");
-				
-				addJob(
-                        "I am stranded, I do not have any job..." + " " +
-                        "I lost #memory");
-				addHelp(
-						"I am stranded, I can not help you with anything..." + " " +
-						"I lost #memory");
-				addOffer(
-						"I am stranded, I can not offer you anything..." + " " +
-						"I lost #memory");
+
+				addHelp("I am awaiting news from strandedwizard...");
+				addOffer("I am awaiting news from strandedwizard...");
+				addJob("I am awaiting news from strandedwizard...");
 				
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest
@@ -71,12 +66,12 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 			}
 		};
 		
-		// Finalize StrandedWizard
-		npc.setEntityClass("brownwizardnpc");
-		npc.setPosition(65,120);
+		// Finalize StrandedWitch
+		npc.setEntityClass("bluesorceressnpc");
+		npc.setPosition(84,116);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see StrandedWizard");
+		npc.setDescription("You see StrandedWitch");
 		zone.add(npc);
 		return npc;
 	}

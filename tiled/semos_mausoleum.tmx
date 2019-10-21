@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="14" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="../../tileset/building/castle.png" tilewidth="32" tileheight="32">
+  <image source="tileset/building/castle.png" width="640" height="512"/>
+ </tileset>
+ <tileset firstgid="321" name="../../tileset/ground/water/dungeon_water.png" tilewidth="32" tileheight="32">
+  <image source="tileset/ground/water/dungeon_water.png" trans="ff00ff" width="96" height="320"/>
+ </tileset>
+ <tileset firstgid="351" name="../../tileset/furniture/table/table_with_beer.png" tilewidth="32" tileheight="32">
+  <image source="tileset/furniture/table/table_with_beer.png" trans="ff00ff" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="359" name="../../tileset/furniture/light/dark_torch.png" tilewidth="32" tileheight="32">
+  <image source="tileset/furniture/light/dark_torch.png" trans="ff00ff" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="367" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+  <image source="tileset/logic/portal.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="383" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+  <image source="tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="384" name="../../tileset/logic/protection.png" tilewidth="32" tileheight="32">
+  <image source="tileset/logic/protection.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="386" name="menorah" tilewidth="32" tileheight="32">
+  <image source="tileset/furniture/light/menorah.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="394" name="marble" tilewidth="32" tileheight="32">
+  <image source="tileset/ground/marble.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="395" name="church" tilewidth="32" tileheight="32">
+  <image source="tileset/building/church.png" width="256" height="224"/>
+ </tileset>
+ <tileset firstgid="451" name="imperial" tilewidth="32" tileheight="32">
+  <image source="tileset/logic/creature/human_imperial.png" width="256" height="64"/>
+ </tileset>
+ <layer name="0_floor" width="14" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgYGC4BsQqjMThSwwI8AqILRiJw8+Q9P0D4i5G4vCvUX2j+uisz48RgQnpi2CE6AEADd9LYkgDAAA=
+  </data>
+ </layer>
+ <layer name="1_terrain" width="14" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA0tlIB2kQjEp4BmZ+rDZt5URQscD6WQoTmJElcPnzhSgmlQoTmPElKeWOynVl8uInU0r+0jVtxWLm7DJDbQ7SdV3Gg0fhMrvxyJ3GqoHAMPi5dFIAwAA
+  </data>
+ </layer>
+ <layer name="2_object" width="14" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAytiIB0UAnHRINHXxsjA0M5IP/tG9Q1/fVeB+AoSRgZX0PBlqD4Ab1N+20gDAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="14" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgoC7oYGRgaGYkTu1SJHUtQHYrI3a5oQ4ykfySPQj9hS+sh1M80BIAAKZ5nspIAwAA
+  </data>
+ </layer>
+ <layer name="objects" width="14" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAXEgPOMA+0CCDgzSNxBLTBYwpUQKCbgTgA4mxrySAMAAA==
+  </data>
+ </layer>
+ <layer name="collision" width="14" height="15" opacity="0.47">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA6tnZGCoHwBMLMCmD5kmRY5c+wZKHzIfm9xAuxOf/qEeD7j8iwsDAMDyXSZIAwAA
+  </data>
+ </layer>
+ <layer name="protection" width="14" height="15" opacity="0.43">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgYGBoYCQNw8CovlF9o/ogegC+qae2SAMAAA==
+  </data>
+ </layer>
+</map>

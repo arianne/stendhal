@@ -9,217 +9,347 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.quests;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.Region;
-
-//import org.apache.log4j.Logger;
-
-/**
-//import java.util.Arrays;
-//import java.util.LinkedList;
-//import com.google.common.collect.ImmutableList;
-//import games.stendhal.server.entity.npc.ChatAction;
-//import games.stendhal.server.entity.npc.ConversationPhrases;
-//import games.stendhal.server.entity.npc.ConversationStates;
-//import games.stendhal.server.entity.npc.action.CreateSlotAction;
-//import games.stendhal.server.entity.npc.action.DropItemAction;
-//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-//import games.stendhal.server.entity.npc.action.EquipItemAction;
-//import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
-//import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
-//import games.stendhal.server.entity.npc.action.MultipleActions;
-//import games.stendhal.server.entity.npc.action.SetQuestAction;
-//import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-//import games.stendhal.server.entity.npc.condition.AndCondition;
-//import games.stendhal.server.entity.npc.condition.NotCondition;
-//import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-//import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-//import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-//import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
- *
- */
-/**
- *  jingo radish,
- *  + lost his memories in a magical duel
- *  + still remembers his sister Hazel
- *  + still remembers about Kirdneh
- *
- *  hazen
- *  + sister of jingo radish lives in kirdneh
- *  + accomplished magician that can compile a magic memory log
- *  + needs blank scrolls to restore jingo radish memory log
- */
 
 /**
  * QUEST: Ad Memoria In Portfolio
- *
+ * <p>
  * PARTICIPANTS:
  * <ul>
- * <li> Jingo Radish, the man with a hoe, in semos plains NE
- * <li> Hazel,  in Kirdneh Museum</li>
+ *  <li> strandedwizard, somewhere in semos mountains, near the wizard tower
+ *   + lost his memories in a magical duel
+ *   + still remembers his sister strandedwitch
+ *   + still remembers about Kirdneh</li>
+ *  <li> strandedwitch,  somewhere in Kirdneh
+ *   + sister of strandedwizard lives in kirdneh
+ *   + accomplished magician that can compile a magic memory log
+ *   + needs blank scrolls to restore strandedwizard memory log</li>
  * </ul>
  *
  * STEPS:
  * <ul>
- * <li> Talk with Jingo Radish to activate the quest.</li>
- * <li> Collect blank scrolls</li>
- * <li> Talk with Hazel in Kirdneh.</li>
- * <li> Return to Jingo Radish with a message from Hazel.</li>
+ *  <li> Talk with strandedwizard to activate the quest.</li>
+ *  <li> Collect blank scrolls</li>
+ *  <li> Talk with strandedwitch in Kirdneh.</li>
+ *  <li> Return to strandedwizard with a message from strandedwitch.</li>
+ *  <li> strandedwizard will unlock portfolio</li>
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li> 10 XP</li>
- * <li> 10 Karma</li>
- * <li> ability to use portfolio</li>
+ *  <li> 1000 XP</li>
+ *  <li> 1000 Karma</li>
+ *  <li> ability to use portfolio</li>
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- * <li> None.</li>
+ *  <li> None.</li>
  * </ul>
  */
+
+/**
+ * testing:
+ * /alterquest <player> admemoriainportfolio
+ *  
+ */
+
+package games.stendhal.server.maps.quests;
+
+//import com.google.common.collect.ImmutableList;
+//import games.stendhal.common.grammar.Grammar;
+//import games.stendhal.server.entity.npc.action.DropItemAction;
+//import games.stendhal.server.entity.npc.condition.NotCondition;
+//import games.stendhal.server.entity.npc.action.SetQuestAction;
+//import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+//import java.util.LinkedList;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+//import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+//import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
+//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+
 public class AdMemoriaInPortfolio extends AbstractQuest {
-	private static final int SCROLL_AMOUNT = 5;
-	private static final String QUEST_SLOT = "portfolio";
+	private static final int SCROLL_AMOUNT = 1;
+	private static final String QUEST_SLOT = "admemoriainportfolio";
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+	
+	/** admemoriainportfolio_step_1 */
+	private void admemoriainportfolio_step_1() {
+		final SpeakerNPC npc = npcs.get("strandedwizard");
 
-	@Override
-	public List<String> getHistory(final Player player) {
-		final List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("I have asked Jingo Radish if he has a quest for me.");
-		final String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
-			res.add("I do not want to help Jingo Radish");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "hazel", "done")) {
-			res.add("I agreed to take scrolls to Hazel and tell her that I have some");
-		}
-		if (
-			questState.equals("start")
-			&& player.isEquipped("apple", SCROLL_AMOUNT) || questState.equals("done")) {
-			res.add("I got scolls for Hazel.");
-		}
-		if (
-			questState.equals("hazel") || questState.equals("done")) {
-			res.add("I took scrolls to Hazel and she asked me to tell his brother Jingo Radish that she is ok, by saying 'Hazel'.");
-		}
-		if (questState.equals("done")) {
-			res.add("I passed the message to Jingo Radish and he has fixed my portfolio for me.");
-		}
-		return res;
-	}
-
-	private void portfolio_step_1() {
-		final SpeakerNPC npc = npcs.get("Jingo Radish");
-
-		/** If quest is not started yet, start it. */
+		/** quest is not started yet, quest asked */
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "I need recover #memory",
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+                "I stranded out somewhere..." + " " + "\n" +
+                "I remember #strandedwitch..." + " " + "\n" +
+                "I remember #kirdneh..." + " " + "\n" +
+                "I should recover #memory",
 				null);
 
-		/** quest not started, try start */
+		/** quest is not started yet, ask about strandedwitch */
+		npc.add(
+			ConversationStates.ATTENDING,
+			"strandedwitch",
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"strandedwitch is my stepsister... Lives in #Kirdneh",
+			null);
+
+		/** quest is not started yet, ask about kirdneh */
+		npc.add(
+			ConversationStates.ATTENDING,
+			"kirdneh",
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Kirdneh is the place where #strandedwitch lives",
+			null);
+
+		/** quest not started, quest offered */
 		npc.add(
 			ConversationStates.ATTENDING,
 			"memory",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"Can you help? say yes/no",
+			"\n" +
+			"A duel..." + "Mages duel..."  + " " + "\n" +
+			"A mist..." + "Mages mist..."  + " " + "\n" +
+			"Stranded and yet not lost..." + " " + "\n" +
+			"Catch those memories..."      + " " + "\n" +
+			"Laaah lah lah laaah..."       + " " + "\n" +
+			"Laaah lah laah laaaaah..."    + " " + "\n" +
+            "Will you help recovery..."    + " " + "\n" +
+			"The lost mage memory? (yes/no)",
 			null);
 
-		//YES
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Said YES > step2, karma+2",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 2.0));
-		//NO
+		//on offered quest
+		//NO MESSAGE, reject quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES,
 			null,
-			ConversationStates.ATTENDING,
-			"Said NO > hope someone else is more charitable. karma-5",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+			ConversationStates.IDLE,
+			"\n" +
+			"-------------------------------------------------" + "\n" +
+			"Player say NO on offered quest"                    + "\n" +
+			"Player looses some karma"                          + "\n" +
+			"-------------------------------------------------" + "\n" +
+			"Maybe someone else will be more charitable..."     + "\n" +
+			"loose karma"                                       + "\n",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
 
+		//on offered quest
+		//YES MESSAGE, start quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			"Hazen",
+			ConversationPhrases.YES_MESSAGES,
 			null,
-			ConversationStates.QUEST_OFFERED,
-			"Hazen lives in Kirdneh",
-			null);
+			ConversationStates.IDLE,
+			//give player item to bring to strandedwitch
+			//a normal something
+			//a special something
+			"\n" +
+			"-------------------------------------------------" + "\n" +
+			"Player say YES on offered quest"                   + "\n" +
+			"Player gains some karma"                           + "\n" +
+			"Player transitions to start/step2"                 + "\n" +
+			"-------------------------------------------------" + "\n" +
+			"find  strandedwitch this stone"                    + "\n" +
+			"bring strandedwitch this stone"                    + "\n" +
+			"tell  strandedwitch this stone"                    + "\n" +
+			"strandedwitch use   this stone"                    + "\n" +
+			"-------------------------------------------------" + "\n",
+			//new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 15.0));			
+	        new MultipleActions(
+		       new ChatAction() {
+			   @Override
+			   public void fire(final Player player,
+			   final Sentence sentence,
+			   final EventRaiser npc) {
+					npc.say(
+						"Thank you!" + " " +
+						"Here you go... Please take" + 
+						"this apple from me!");
+						new EquipItemAction("apple", 1, true).fire(player, sentence, npc);
+						new SetQuestAndModifyKarmaAction(
+								getSlotName(), "start", 15.0).fire(player, sentence, npc);
+			    }},
+                new InflictStatusOnNPCAction("apple"))
+		    );
+		}
 
+	/** admemoriainportfolio_step_2 */
+	/** find strandedwitch in Kirdneh. step_2 */
+    // Player has AdMemoriaInPortfolio quest
+	// Player has AdMemoriaInPortfolio required items with him
+	private void admemoriainportfolio_step_2() {
+		final SpeakerNPC npc = npcs.get("strandedwitch");
 		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			"Kirdneh",
-			null,
-			ConversationStates.QUEST_OFFERED,
-			"Kirdneh is where Hazen lives",
-			null);
+	        ConversationStates.ATTENDING, Arrays.asList("apple"),
+	        new AndCondition(
+	        	new QuestInStateCondition(QUEST_SLOT, "start"),
+	        	new PlayerHasItemWithHimCondition("apple", SCROLL_AMOUNT)),
+	        ConversationStates.ATTENDING,
+	        null, //say something with multiple actions
+	        new MultipleActions(
+	        	new DropItemAction("apple"),
+	        	new ChatAction() {
+					@Override
+					public void fire(
+							final Player player,
+							final Sentence sentence,
+							final EventRaiser npc) {
+								/**
+								 * final List<ChatAction> reward = new LinkedList<ChatAction>();
+								 * reward.add(new IncreaseXPAction(150));
+								 * reward.add(new IncreaseKarmaAction(15));
+								 */
+								npc.say(
+									"Thank you!" + " " +
+									"Here you go... Please take" + " " + 
+									"this kiss from me!");
+								new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
+								//switch to step3
+								new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
+							}
+	        	},
+	        	new InflictStatusOnNPCAction("purple apple")
+	        ));
 	}
 
-	/**
-	private void portfolio_step_2() {
-		final SpeakerNPC npc = npcs.get("Hazel");
-		//Hazen. step2
-	}
-	*/
+	/** admemoriainportfolio_step_3 */
+	/** return to strandedwizard, step_3 */ 
+	private void admemoriainportfolio_step_3() {
+		final SpeakerNPC npc = npcs.get("strandedwizard");
+		npc.add(
+		        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
+		        new AndCondition(
+		        	new QuestInStateCondition(QUEST_SLOT, "start"),
+		        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
+		        ConversationStates.ATTENDING,
+		        null, //say something with multiple actions
+		        new MultipleActions(
+		        	new DropItemAction("purple apple"),
+		        	new ChatAction() {
+						@Override
+						public void fire(final Player player,
+								final Sentence sentence,
+								final EventRaiser npc) {
+                                    npc.say(
+                                        "Thank you!" + " " +
+                                        "Here you go... Please take " + 
+                                        "this portfolio from me!");
 
-	/**
-	private void portfolio_step_3() {
-		final SpeakerNPC npc = npcs.get("Jingo Radish");
-		//Jingo. step3
-
+                                    new EquipItemAction("portfolio", 1, true).fire(player, sentence, npc);
+                                    new SetQuestAndModifyKarmaAction(
+                                                    getSlotName(), "done", 15.0).fire(player, sentence, npc);
+						        }
+		        	},
+		        	new InflictStatusOnNPCAction("portfolio"))
+		    );
 	}
-	*/
 
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Talk Jingo, Find Hazel (have scrolls), return Jingo",
-				"Jingo Radish, Hazel, Kirdneh",
+				// title of the quest:
+				"AdMemoriaInPortfolio",
+				// description of the quest:
+				"Talk strandedwizard           step_1" + "\n" +
+				"Find strandedwitch in Kirdneh step_2" + "\n" +
+				"Return back to strandedwizard step_3" + "\n" ,
+				// repeat is false
 				false);
 
-		portfolio_step_1();
-		//portfolio_step_2();
-		//portfolio_step_3();
+		// steps:
+		admemoriainportfolio_step_1();
+		admemoriainportfolio_step_2();
+		admemoriainportfolio_step_3();
 
 	}
 
 	@Override
 	public String getName() {
+		//return a valid quest
 		return "AdMemoriaInPortfolio";
 	}
 
 	@Override
 	public String getRegion() {
-		return Region.SEMOS_CITY;
+		//return a valid zone
+		return Region.SEMOS_SURROUNDS;
 	}
 
 	@Override
 	public String getNPCName() {
-		return "Jingo Radish";
+		//origin of the quest
+		return "strandedwizard";
 	}
+
+	/** travel log */
+	public List<String> getHistory(final Player player) {
+        
+		//initialize
+        final List<String> res = new ArrayList<String>();
+        
+        if (!player.hasQuest(QUEST_SLOT)) {
+        	//eject/bail out with something useful to understand
+        	//we should use QUEST_SLOT name
+        	res.add(" ... Dont have quest ... " + "AdMemoriaInPortfolio" );
+            return res;
+        }
+        
+        //have quest_slot, 
+        //initialize travellog/history
+        res.add("I have asked strandedwizard if he has a quest for me.");            
+
+        final String questState = player.getQuest(QUEST_SLOT);
+        if (questState.equals("rejected")) {
+            res.add("I do not want to help strandedwizard recover his memories");
+        }
+        
+        /**
+        if (player.isQuestInState(QUEST_SLOT, "start", "inprogress" )) {
+            res.add("I agreed to take scrolls to strandedwitch");
+        }
+        */
+        
+        /**
+        if (questState.equals("strandedwitch"))  {
+            res.add("I took scrolls to strandedwitch and she asked me to tell strandedwizard 'strandedwitch'.");
+        }
+        */
+        
+        /**
+        if (questState.equals("done")) {
+            res.add("I returned to strandedwizard and he has fixed my portfolio for me.");
+        }
+        */
+        
+        return res;
+    }
 }

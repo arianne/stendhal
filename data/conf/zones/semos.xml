@@ -156,6 +156,7 @@
 
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.semos.mountain.StrandedWizardNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.mountain.StrandedWitchNPC" />
 
   </zone>
 

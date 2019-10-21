@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Stendhal                    *
+ *                   (C) Copyright 2017 - Faiumoni e. V.                   *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,37 +11,28 @@
 
 "use strict";
 
-var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
+stendhal.data = stendhal.data || {};
 
-(function() {
+stendhal.data.group = {
+	members: [],
+	lootmode: "",
+	leader: "",
 
-marauroa.rpobjectFactory["game_board"] = marauroa.util.fromProto(marauroa.rpobjectFactory["entity"], {
-	zIndex: 100,
-
-	init: function() {
-		this.sprite = {
-			height: 32 * 3,
-			width: 32 * 3
-		};
-	},
-
-	set: function(key, value) {
-		marauroa.rpobjectFactory["entity"].set.apply(this, arguments);
-		if (key === "class") {
-			this.sprite.filename = "data/sprites/gameboard/"
-				+ this["class"] + ".png";
+	updateGroupStatus: function(members, leader, lootmode) {
+		if (members) {
+			var memberArray = members.substring(1, members.length - 1).split("\t");
+			stendhal.data.group.members = {};
+			for (var i = 0; i < memberArray.length; i++) {
+				stendhal.data.group.members[memberArray[i]] = true;
+			}
+			stendhal.data.group.leader = leader;
+			stendhal.data.group.lootmode = lootmode;
+		} else {
+			stendhal.data.group.members = [];
+			stendhal.data.group.leader = "";
+			stendhal.data.group.lootmode = "";
 		}
-	},
-
-	isVisibleToAction: function(filter) {
-		return false;
-	},
-
-	getCursor: function(x, y) {
-		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	}
 
-});
-
-}());
+}
