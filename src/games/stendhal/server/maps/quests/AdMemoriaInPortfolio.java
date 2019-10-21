@@ -56,7 +56,6 @@
  * 
  */
 
-
 package games.stendhal.server.maps.quests;
 
 //import com.google.common.collect.ImmutableList;
@@ -69,7 +68,7 @@ package games.stendhal.server.maps.quests;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.common.parser.Sentence;
@@ -83,8 +82,8 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
-import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+//import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+//import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 //import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -223,25 +222,26 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	        	new DropItemAction("apple"),
 	        	new ChatAction() {
 					@Override
-					public void fire(final Player player,
+					public void fire(
+							final Player player,
 							final Sentence sentence,
 							final EventRaiser npc) {
-								final List<ChatAction> reward = new LinkedList<ChatAction>();
-								reward.add(new IncreaseXPAction(150));
-								reward.add(new IncreaseKarmaAction(15));
+								/**
+								 * final List<ChatAction> reward = new LinkedList<ChatAction>();
+								 * reward.add(new IncreaseXPAction(150));
+								 * reward.add(new IncreaseKarmaAction(15));
+								 */
 								npc.say(
 									"Thank you!" + " " +
-									"Here you go... Please take " + 
-									//Grammar.thisthese(SCROLL_AMOUNT) + " " +
-									//Grammar.quantityplnoun(SCROLL_AMOUNT, "scroll", "") +
-									" this kiss from me!");
-								new EquipItemAction("apple", 1, true).fire(player, sentence, npc);
+									"Here you go... Please take" + " " + 
+									"this kiss from me!");
+								new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
 								//switch to step3
-								new SetQuestAndModifyKarmaAction(
-										getSlotName(), "inprogress;", 15.0).fire(player, sentence, npc);
-				}},
-	        	new InflictStatusOnNPCAction("apple"))
-	    );
+								new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
+							}
+	        	},
+	        	new InflictStatusOnNPCAction("purple apple")
+	        ));
 	}
 
 	/** admemoriainportfolio_step_3 */
@@ -249,35 +249,30 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("strandedwizard");
 		npc.add(
-		        ConversationStates.ATTENDING, Arrays.asList("apple"),
+		        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
 		        new AndCondition(
 		        	new QuestInStateCondition(QUEST_SLOT, "start"),
-		        	new PlayerHasItemWithHimCondition("apple", SCROLL_AMOUNT)),
+		        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
 		        ConversationStates.ATTENDING,
 		        null, //say something with multiple actions
 		        new MultipleActions(
-		        	new DropItemAction("apple"),
+		        	new DropItemAction("purple apple"),
 		        	new ChatAction() {
 						@Override
 						public void fire(final Player player,
 								final Sentence sentence,
 								final EventRaiser npc) {
-									final List<ChatAction> reward = new LinkedList<ChatAction>();
-									reward.add(new IncreaseXPAction(150));
-									reward.add(new IncreaseKarmaAction(15));
-									npc.say(
-										"Thank you!" + " " +
-										"Here you go... Please take " + 
-										//Grammar.thisthese(SCROLL_AMOUNT) + " " +
-										//Grammar.quantityplnoun(SCROLL_AMOUNT, "scroll", "") +
-										" this kiss from me!");
-									new EquipItemAction("apple", 1, true).fire(player, sentence, npc);
-									//switch to step3
-									new SetQuestAndModifyKarmaAction(
-											getSlotName(), "inprogress;", 15.0).fire(player, sentence, npc);
-						}
+                                    npc.say(
+                                        "Thank you!" + " " +
+                                        "Here you go... Please take " + 
+                                        "this portfolio from me!");
+
+                                    new EquipItemAction("portfolio", 1, true).fire(player, sentence, npc);
+                                    new SetQuestAndModifyKarmaAction(
+                                                    getSlotName(), "done", 15.0).fire(player, sentence, npc);
+						        }
 		        	},
-		        	new InflictStatusOnNPCAction("apple"))
+		        	new InflictStatusOnNPCAction("portfolio"))
 		    );
 	}
 
@@ -290,10 +285,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				"Talk strandedwizard           step_1" + "\n" +
 				"Find strandedwitch in Kirdneh step_2" + "\n" +
 				"Return back to strandedwizard step_3" + "\n" ,
-				// repeat is false or true
+				// repeat is false
 				false);
 
-		// this is how is done, via steps:
+		// steps:
 		admemoriainportfolio_step_1();
 		admemoriainportfolio_step_2();
 		admemoriainportfolio_step_3();
