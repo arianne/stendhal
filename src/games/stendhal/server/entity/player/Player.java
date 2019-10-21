@@ -186,7 +186,8 @@ public class Player extends DressedEntity implements UseListener {
 		// define outfit
 		Outfit outfit = null;
 		if (template != null && template.has("outfit")) {
-			outfit = new Outfit(template.getInt("outfit"));
+			outfit = new Outfit(template.getInt("outfit"), template.getInt("outfit_mouth"), template.getInt("outfit_eyes"),
+					template.getInt("outfit_mask"), template.getInt("outfit_hat"));
 		}
 
 		if (outfit == null || !outfit.isChoosableByPlayers()) {

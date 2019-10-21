@@ -40,6 +40,11 @@ public class Outfit {
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(Outfit.class);
 
+	private Integer hat;
+	private Integer mask;
+	private Integer eyes;
+	private Integer mouth;
+
 	/** The detail index, as a value between 0 and 99, or null. */
 	private Integer detail;
 
@@ -59,7 +64,7 @@ public class Outfit {
 	 * Creates a new default outfit (naked person).
 	 */
 	public Outfit() {
-		this(0, 0, 0, 0, 0);
+		this(0, 0, 0, 0, 0, 0, 0, 0 ,0);
 	}
 
 	/**
@@ -78,8 +83,13 @@ public class Outfit {
 	 * @param body
 	 *            The index of the body style, or null
 	 */
-	public Outfit(final Integer detail, final Integer hair, final Integer head,
-			final Integer dress, final Integer body) {
+	public Outfit(final Integer hat, final Integer mask, final Integer eyes, final Integer mouth,
+			final Integer detail, final Integer hair, final Integer head, final Integer dress,
+			final Integer body) {
+		this.hat = hat;
+		this.mask = mask;
+		this.eyes = eyes;
+		this.mouth = mouth;
 		this.detail = detail;
 		this.hair = hair;
 		this.head = head;
@@ -95,7 +105,7 @@ public class Outfit {
 	 *            stands for body, the next for dress, then head, then hair,
 	 *            then detail.
 	 */
-	public Outfit(final int code) {
+	public Outfit(final int code, final int mouth, final int eyes, final int mask, final int hat) {
 
 		this.body = (code % 100);
 
@@ -106,6 +116,11 @@ public class Outfit {
 		this.hair = (int) (code / Math.pow(100, 3) % 100);
 
 		this.detail = (int) (code / Math.pow(100, 4) % 100);
+
+		this.mouth = mouth;
+		this.eyes = eyes;
+		this.mask = mask;
+		this.hat = hat;
 	}
 
 	/**
@@ -153,6 +168,22 @@ public class Outfit {
 		return detail;
 	}
 
+	public Integer getMouth() {
+		return mouth;
+	}
+
+	public Integer getEyes() {
+		return eyes;
+	}
+
+	public Integer getMask() {
+		return mask;
+	}
+
+	public Integer getHat() {
+		return hat;
+	}
+
 	/**
 	 * Represents this outfit in a numeric code.
 	 *
@@ -196,6 +227,10 @@ public class Outfit {
 	 * @return the combined outfit
 	 */
 	public Outfit putOver(final Outfit other) {
+		int newHat;
+		int newMask;
+		int newEyes;
+		int newMouth;
 		int newDetail;
 		int newHair;
 		int newHead;
@@ -203,6 +238,26 @@ public class Outfit {
 		int newBody;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
+		if (this.hat == null) {
+			newHat = other.hat;
+		} else {
+			newHat = this.hat;
+		}
+		if (this.mask == null) {
+			newMask = other.mask;
+		} else {
+			newMask = this.mask;
+		}
+		if (this.eyes == null) {
+			newEyes = other.eyes;
+		} else {
+			newEyes = this.eyes;
+		}
+		if (this.mouth == null) {
+			newMouth = other.mouth;
+		} else {
+			newMouth = this.mouth;
+		}
 		if (this.detail == null) {
 			newDetail = other.detail;
 		} else {
@@ -229,7 +284,7 @@ public class Outfit {
 			newBody = this.body;
 		}
 
-		return new Outfit(newDetail, newHair, newHead, newDress, newBody);
+		return new Outfit(newHat, newMask, newEyes, newMouth, newDetail, newHair, newHead, newDress, newBody);
 	}
 
 	/**
@@ -242,6 +297,10 @@ public class Outfit {
 	 * @return the new outfit, with the parameter-outfit removed
 	 */
 	public Outfit removeOutfit(final Outfit other) {
+		int newHat;
+		int newMask;
+		int newEyes;
+		int newMouth;
 		int newDetail;
 		int newHair;
 		int newHead;
@@ -249,6 +308,26 @@ public class Outfit {
 		int newBody;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
+		if ((hat == null) || hat.equals(other.hat)) {
+			newHat = 0;
+		} else {
+			newHat = hat;
+		}
+		if ((mask == null) || mask.equals(other.mask)) {
+			newMask = 0;
+		} else {
+			newMask = mask;
+		}
+		if ((eyes == null) || eyes.equals(other.eyes)) {
+			newEyes = 0;
+		} else {
+			newEyes = eyes;
+		}
+		if ((mouth == null) || mouth.equals(other.mouth)) {
+			newMouth = 0;
+		} else {
+			newMouth = mouth;
+		}
 		if ((detail == null) || detail.equals(other.detail)) {
 			newDetail = 0;
 		} else {
@@ -275,7 +354,7 @@ public class Outfit {
 			newBody = body;
 		}
 
-		return new Outfit(newDetail, newHair, newHead, newDress, newBody);
+		return new Outfit(newHat, newMask, newEyes, newMouth, newDetail, newHair, newHead, newDress, newBody);
 	}
 
 	/**
@@ -294,7 +373,11 @@ public class Outfit {
 	 */
 	public boolean isPartOf(final Outfit other) {
 		boolean partOf;
-		partOf = ((detail == null) || detail.equals(other.detail))
+		partOf = ((hat == null) || hat.equals(other.hat))
+				&& ((mask == null) || mask.equals(other.mask))
+				&& ((eyes == null) || eyes.equals(other.eyes))
+				&& ((mouth == null) || mouth.equals(other.mouth))
+				&& ((detail == null) || detail.equals(other.detail))
 				&& ((hair == null) || hair.equals(other.hair))
 				&& ((head == null) || head.equals(other.head))
 				&& ((dress == null) || dress.equals(other.dress))
@@ -311,9 +394,13 @@ public class Outfit {
 	 */
 	public boolean isChoosableByPlayers() {
 		boolean choosable;
-		choosable = (detail == null || detail == 0)
+		choosable = (hat < Outfits.HAT_OUTFITS) && (hat >= 0)
+			&& (mask < Outfits.MASK_OUTFITS) && (mask >= 0)
+			&& (eyes < Outfits.EYES_OUTFITS) && (eyes >= 0)
+			&& (mouth < Outfits.MOUTH_OUTFITS) && (mouth >= 0)
+			&& (detail == null || detail == 0)
 			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
-		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
+		    && (head < Outfits.HEAD_OUTFITS_TESTING) && (head >= 0)
 			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
 			&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
 
@@ -346,6 +433,10 @@ public class Outfit {
 	 * @return the new random outfit
 	 */
 	public static Outfit getRandomOutfit() {
+		final int newHat = Rand.randUniform(1, Outfits.HAT_OUTFITS);
+		final int newMask = Rand.randUniform(1, Outfits.MASK_OUTFITS);
+		final int newEyes = Rand.randUniform(1, Outfits.EYES_OUTFITS);
+		final int newMouth = Rand.randUniform(1, Outfits.MOUTH_OUTFITS);
 		final int newHair = Rand.randUniform(1, 26);
 		final int newHead;// = Rand.randUniform(1, 15);
 		final int newDress = Rand.randUniform(1, 16);
@@ -353,9 +444,10 @@ public class Outfit {
 
 		newHead = Rand.randUniform(1, 15);
 		newBody = Rand.randUniform(1, 5);
-		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead
-				+ " " + newDress + " " + newBody);
-		return new Outfit(0, newHair, newHead, newDress, newBody);
+		LOGGER.debug("chose random outfit: " + newHat + " " + newMask
+				+ " " + newEyes + " " + newMouth + " " + newHair
+				+ " " + newHead + " " + newDress + " " + newBody);
+		return new Outfit(newHat, newMask, newEyes, newMouth, 0, newHair, newHead, newDress, newBody);
 	}
 
 	/**

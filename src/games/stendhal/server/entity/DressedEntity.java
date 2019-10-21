@@ -57,14 +57,30 @@ public abstract class DressedEntity extends RPEntity {
 	 */
 	public Outfit getOutfit() {
 		if (has("outfit")) {
-			return new Outfit(getInt("outfit"));
+			int mouth = 0;
+			int eyes = 0;
+			int mask = 0;
+			int hat = 0;
+			if (has("outfit_mouth")) mouth = getInt("outfit_mouth");
+			if (has("outfit_eyes")) eyes = getInt("outfit_eyes");
+			if (has("outfit_mask")) mask = getInt("outfit_mask");
+			if (has("outfit_hat")) hat = getInt("outfit_hat");
+			return new Outfit(getInt("outfit"), mouth, eyes, mask, hat);
 		}
 		return null;
 	}
 
 	public Outfit getOriginalOutfit() {
 		if (has("outfit_org")) {
-			return new Outfit(getInt("outfit_org"));
+			int mouth = 0;
+			int eyes = 0;
+			int mask = 0;
+			int hat = 0;
+			if (has("outfit_mouth_org")) mouth = getInt("outfit_mouth_org");
+			if (has("outfit_eyes_org")) eyes = getInt("outfit_eyes_org");
+			if (has("outfit_mask_org")) mask = getInt("outfit_mask_org");
+			if (has("outfit_hat_org")) hat = getInt("outfit_hat_org");
+			return new Outfit(getInt("outfit_org"), mouth, eyes, mask, hat);
 		}
 
 		return null;
@@ -110,6 +126,10 @@ public abstract class DressedEntity extends RPEntity {
 		// second slot so that we can return to it later.
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
+			put("outfit_mouth_org", get("outfit_mouth"));
+			put("outfit_eyes_org", get("outfit_eyes"));
+			put("outfit_mask_org", get("outfit_mask"));
+			put("outfit_hat_org", get("outfit_hat"));
 
 			// remember the old color selections.
 			for (String part : RECOLORABLE_OUTFIT_PARTS) {
@@ -130,6 +150,10 @@ public abstract class DressedEntity extends RPEntity {
 		// if the new outfit is not temporary, remove the backup
 		if (!temporary && has("outfit_org")) {
 			remove("outfit_org");
+			remove("outfit_mouth_org");
+			remove("outfit_eyes_org");
+			remove("outfit_mask_org");
+			remove("outfit_hat_org");
 
 			// clear colors
 			for (String part : RECOLORABLE_OUTFIT_PARTS) {
@@ -143,7 +167,18 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
+		put("outfit_mouth", newOutfit.getMouth());
+		put("outfit_eyes", newOutfit.getEyes());
+		put("outfit_mask", newOutfit.getMask());
+		put("outfit_hat", newOutfit.getHat());
 		notifyWorldAboutChanges();
+
+		// DEBUG:
+		System.out.println("\nOutfit set to:"
+				+ "\n  Hat: " + Integer.toString(getInt("outfit_hat"))
+				+ "\n  Mask: " + Integer.toString(getInt("outfit_mask"))
+				+ "\n  Eyes: " + Integer.toString(getInt("outfit_eyes"))
+				+ "\n  Mouth: " + Integer.toString(getInt("outfit_mouth")));
 	}
 
 	// Hack to preserve detail layer
@@ -156,6 +191,16 @@ public abstract class DressedEntity extends RPEntity {
 		// preserve detail layer
 		final int detailCode = getOutfit().getCode() / 100000000;
 
+		// DEBUG:
+		final int hatCode = outfit.getHat();
+		final int maskCode = outfit.getMask();
+		final int eyesCode = outfit.getEyes();
+		final int mouthCode = outfit.getMouth();
+		System.out.println("New hat: " + Integer.toString(hatCode)
+				+ "\nNew mask: " + Integer.toString(maskCode)
+				+ "\nNew eyes: " + Integer.toString(eyesCode)
+				+ "\nNew mouth: " + Integer.toString(mouthCode));
+
 		// set the new outfit
 		setOutfit(outfit, temporary);
 
@@ -165,6 +210,10 @@ public abstract class DressedEntity extends RPEntity {
 
 			// re-add detail
 			put("outfit", outfitCode);
+			put("outfit_mouth", mouthCode);
+			put("outfit_eyes", eyesCode);
+			put("outfit_mask", maskCode);
+			put("outfit_hat", hatCode);
 			notifyWorldAboutChanges();
 		}
 	}

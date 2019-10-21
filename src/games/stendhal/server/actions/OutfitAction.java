@@ -40,7 +40,16 @@ public class OutfitAction implements ActionListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
-			final Outfit outfit = new Outfit(action.getInt(VALUE));
+			int mouth = 0;
+			int eyes = 0;
+			int mask = 0;
+			int hat = 0;
+			if (action.has("outfit_mouth")) mouth = action.getInt("outfit_mouth");
+			if (action.has("outfit_eyes")) eyes = action.getInt("outfit_eyes");
+			if (action.has("outfit_mask")) mask = action.getInt("outfit_mask");
+			if (action.has("outfit_hat")) hat = action.getInt("outfit_hat");
+
+			final Outfit outfit = new Outfit(action.getInt(VALUE), mouth, eyes, mask, hat);
 			if (outfit.isChoosableByPlayers()) {
 				new GameEvent(player.getName(), OUTFIT,
 						action.get(VALUE)).raise();
@@ -54,6 +63,14 @@ public class OutfitAction implements ActionListener {
 					player.put(COLOR_MAP, "hair", color);
 				} else {
 					player.remove(COLOR_MAP, "hair");
+				}
+
+				// Players may change eyes color
+				color = action.get("eyes");
+				if (color != null) {
+					player.put(COLOR_MAP, "eyes", color);
+				} else {
+					player.remove(COLOR_MAP, "eyes");
 				}
 
 				// Players may change dress color
