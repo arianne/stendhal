@@ -47,5 +47,5 @@ public class Outfits {
 	public static final int MOUTH_OUTFITS = 4;
 
 	public static final int MASK_OUTFITS = 2;
-	public static final int HAT_OUTFITS = 4;
+	public static final int HAT_OUTFITS = 5;
 }
