@@ -210,6 +210,10 @@ hair_095.*    Svetlana Kushnariova (Cabbit), Silveira Neto; CC BY-SA 4.0; https:
 hair_096.*    Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
 hair_099.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
+data/sprites/outfit/hat/
+
+hat_005.png (goggles)  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+
 data/sprites/outfit/head/
 
 head_021.*    Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://postimg.cc/LJNNSqff
