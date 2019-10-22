@@ -50,7 +50,6 @@
 /**
  * testing:
  * /alterquest <player> admemoriainportfolio
- *  
  */
 
 package games.stendhal.server.maps.quests;
@@ -61,11 +60,16 @@ package games.stendhal.server.maps.quests;
 //import games.stendhal.server.entity.npc.condition.NotCondition;
 //import games.stendhal.server.entity.npc.action.SetQuestAction;
 //import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+//import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+//import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 
 import java.util.List;
+//import java.util.LinkedList;
+
 import java.util.Arrays;
 import java.util.ArrayList;
-//import java.util.LinkedList;
+
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.common.parser.Sentence;
@@ -79,10 +83,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
-//import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
-//import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
-//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -136,14 +137,15 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
 			"\n" +
-			"A duel..." + "Mages duel..."  + " " + "\n" +
-			"A mist..." + "Mages mist..."  + " " + "\n" +
-			"Stranded and yet not lost..." + " " + "\n" +
-			"Catch those memories..."      + " " + "\n" +
-			"Laaah lah lah laaah..."       + " " + "\n" +
-			"Laaah lah laah laaaaah..."    + " " + "\n" +
-            "Will you help recovery..."    + " " + "\n" +
-			"The lost mage memory? (yes/no)",
+			"A duel..." + "Mages duel..."                       + " " + "\n" +
+			"A mist..." + "Mages mist..."                       + " " + "\n" +
+			"Stranded and yet not lost..."                      + " " + "\n" +
+			"Catch those memories..."                           + " " + "\n" +
+			"Laaah lah lah laaah..."                            + " " + "\n" +
+			"Laaah lah laah laaaaah..."                         + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n" +
+            "Will you help recovery strandedwizard memory?"     + " " + "\n" +
+            "It is a question answered with: (yes/no)",
 			null);
 
 		//on offered quest
@@ -154,12 +156,12 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			null,
 			ConversationStates.IDLE,
 			"\n" +
-			"-------------------------------------------------" + "\n" +
-			"Player say NO on offered quest"                    + "\n" +
-			"Player looses some karma"                          + "\n" +
-			"-------------------------------------------------" + "\n" +
-			"Maybe someone else will be more charitable..."     + "\n" +
-			"loose karma"                                       + "\n",
+			"-------------------------------------------------" + " " + "\n" +
+			"Player say NO on offered quest"                    + " " + "\n" +
+			"Player looses some karma"                          + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Maybe someone else will be more charitable..."     + " " + "\n" +
+			"loose karma"                                       + " " + "\n",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
 
 		//on offered quest
@@ -173,16 +175,16 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			//a normal something
 			//a special something
 			"\n" +
-			"-------------------------------------------------" + "\n" +
-			"Player say YES on offered quest"                   + "\n" +
-			"Player gains some karma"                           + "\n" +
-			"Player transitions to start/step2"                 + "\n" +
-			"-------------------------------------------------" + "\n" +
-			"find  strandedwitch this stone"                    + "\n" +
-			"bring strandedwitch this stone"                    + "\n" +
-			"tell  strandedwitch this stone"                    + "\n" +
-			"strandedwitch use   this stone"                    + "\n" +
-			"-------------------------------------------------" + "\n",
+			"-------------------------------------------------" + " " + "\n" +
+			"Player say YES on offered quest"                   + " " + "\n" +
+			"Player gains some karma"                           + " " + "\n" +
+			"Player transitions to start/step2"                 + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"find  strandedwitch this stone"                    + " " + "\n" +
+			"bring strandedwitch this stone"                    + " " + "\n" +
+			"tell  strandedwitch this stone"                    + " " + "\n" +
+			"strandedwitch use   this stone"                    + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n",
 			//new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 15.0));			
 	        new MultipleActions(
 		       new ChatAction() {
@@ -193,12 +195,13 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 					npc.say(
 						"Thank you!" + " " +
 						"Here you go... Please take" + 
-						"this apple from me!");
-						new EquipItemAction("apple", 1, true).fire(player, sentence, npc);
+						"this purple apple from me!");
+						new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
 						new SetQuestAndModifyKarmaAction(
 								getSlotName(), "start", 15.0).fire(player, sentence, npc);
 			    }},
-                new InflictStatusOnNPCAction("apple"))
+                //mark status not necessary
+                new InflictStatusOnNPCAction("purple apple"))
 		    );
 		}
 
@@ -212,32 +215,29 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	        ConversationStates.ATTENDING, Arrays.asList("apple"),
 	        new AndCondition(
 	        	new QuestInStateCondition(QUEST_SLOT, "start"),
-	        	new PlayerHasItemWithHimCondition("apple", SCROLL_AMOUNT)),
+	        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
 	        ConversationStates.ATTENDING,
 	        null, //say something with multiple actions
 	        new MultipleActions(
-	        	new DropItemAction("apple"),
+	        	new DropItemAction("purple apple"),
 	        	new ChatAction() {
 					@Override
 					public void fire(
 							final Player player,
 							final Sentence sentence,
 							final EventRaiser npc) {
-								/**
-								 * final List<ChatAction> reward = new LinkedList<ChatAction>();
-								 * reward.add(new IncreaseXPAction(150));
-								 * reward.add(new IncreaseKarmaAction(15));
-								 */
 								npc.say(
 									"Thank you!" + " " +
 									"Here you go... Please take" + " " + 
-									"this kiss from me!");
-								new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
+									"this black apple from me!");
+								new EquipItemAction("black apple", 1, true).fire(player, sentence, npc);
 								//switch to step3
-								new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
+								new SetQuestAndModifyKarmaAction(
+									getSlotName(), "inprogres1", 15.0).fire(player, sentence, npc);
 							}
 	        	},
-	        	new InflictStatusOnNPCAction("purple apple")
+                //mark status not necessary
+	        	new InflictStatusOnNPCAction("black apple")
 	        ));
 	}
 
@@ -253,7 +253,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		        ConversationStates.ATTENDING,
 		        null, //say something with multiple actions
 		        new MultipleActions(
-		        	new DropItemAction("purple apple"),
+		        	new DropItemAction("black apple"),
 		        	new ChatAction() {
 						@Override
 						public void fire(final Player player,
@@ -261,12 +261,13 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 								final EventRaiser npc) {
                                     npc.say(
                                         "Thank you!" + " " +
-                                        "Here you go... Please take " + 
-                                        "this portfolio from me!");
-
-                                    new EquipItemAction("portfolio", 1, true).fire(player, sentence, npc);
+                                        "Here you go..." +
+                                        "Please take this portfolio from me!");
+                                    new EquipItemAction(
+                                    		"portfolio", 1, true).fire(player, sentence, npc);
+                                    
                                     new SetQuestAndModifyKarmaAction(
-                                                    getSlotName(), "done", 15.0).fire(player, sentence, npc);
+                                    		getSlotName(), "done", 15.0).fire(player, sentence, npc);
 						        }
 		        	},
 		        	new InflictStatusOnNPCAction("portfolio"))
@@ -280,8 +281,8 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				"AdMemoriaInPortfolio",
 				// description of the quest:
 				"Talk strandedwizard           step_1" + "\n" +
-				"Find strandedwitch in Kirdneh step_2" + "\n" +
-				"Return back to strandedwizard step_3" + "\n" ,
+				"Find strandedwitch            step_2" + "\n" +
+				"Retr strandedwizard           step_3" + "\n" ,
 				// repeat is false
 				false);
 
@@ -311,45 +312,40 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	}
 
 	/** travel log */
-	public List<String> getHistory(final Player player) {
-        
-		//initialize
+	public List<String> getHistory(final Player player) {        
+		//initialize res
         final List<String> res = new ArrayList<String>();
         
         if (!player.hasQuest(QUEST_SLOT)) {
         	//eject/bail out with something useful to understand
-        	//we should use QUEST_SLOT name
         	res.add(" ... Dont have quest ... " + "AdMemoriaInPortfolio" );
             return res;
         }
         
-        //have quest_slot, 
-        //initialize travellog/history
-        res.add("I have asked strandedwizard if he has a quest for me.");            
-
         final String questState = player.getQuest(QUEST_SLOT);
         if (questState.equals("rejected")) {
+        	//eject/bail out with something useful to understand
+        	res.add("I have asked strandedwizard if he has a quest for me.");
             res.add("I do not want to help strandedwizard recover his memories");
+            return res;
         }
         
-        /**
-        if (player.isQuestInState(QUEST_SLOT, "start", "inprogress" )) {
-            res.add("I agreed to take scrolls to strandedwitch");
+        if (questState.equals("start")) {
+        	res.add("I have asked strandedwizard if he has a quest for me.");
+            res.add("I agreed to help strandedwizard");
         }
-        */
         
         /**
         if (questState.equals("strandedwitch"))  {
             res.add("I took scrolls to strandedwitch and she asked me to tell strandedwizard 'strandedwitch'.");
         }
-        */
-        
-        /**
+        */        
+
         if (questState.equals("done")) {
             res.add("I returned to strandedwizard and he has fixed my portfolio for me.");
         }
-        */
         
+
         return res;
     }
 }
