@@ -61,13 +61,13 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testOutfitInt() {
-		Outfit ou = new Outfit(0);
+		Outfit ou = new Outfit(0, 0, 0, 0, 0);
 		assertEquals(Integer.valueOf(0), ou.getDetail());
 		assertEquals(Integer.valueOf(0), ou.getHair());
 		assertEquals(Integer.valueOf(0), ou.getHead());
 		assertEquals(Integer.valueOf(0), ou.getDress());
 		assertEquals(Integer.valueOf(0), ou.getBody());
-		ou = new Outfit(501020304);
+		ou = new Outfit(501020304, 0, 0, 0 ,0);
 		assertEquals(Integer.valueOf(5), ou.getDetail());
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
@@ -75,7 +75,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(4), ou.getBody());
 
 		final String outfitnumber = "0501020304";
-		ou = new Outfit(Integer.parseInt(outfitnumber));
+		ou = new Outfit(Integer.parseInt(outfitnumber), 0, 0, 0, 0);
 		assertEquals(Integer.valueOf(5), ou.getDetail());
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
@@ -89,7 +89,7 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testGetCode() {
-		assertEquals(12345678, new Outfit(12345678).getCode());
+		assertEquals(12345678, new Outfit(12345678, 0, 0, 0, 0).getCode());
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testPutOver() {
-		Outfit orig = new Outfit(12345678);
+		Outfit orig = new Outfit(12345678, 0, 0, 0, 0);
 		final Outfit pullover = new Outfit();
 		assertEquals(12345678, orig.getCode());
 
@@ -105,25 +105,25 @@ public class OutfitTest {
 		assertEquals(12345678, result.getCode());
 
 
-		orig = new Outfit(null, 12, 34, 56, null);
+		orig = new Outfit(null, null, null, null, null, 12, 34, 56, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(56), result.getDress());
 		assertEquals(Integer.valueOf(0), result.getBody());
-		orig = new Outfit(null, 12, 34, null, null);
+		orig = new Outfit(null, null, null, null, null, 12, 34, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
 		assertEquals(Integer.valueOf(0), result.getBody());
-		orig = new Outfit(null, 12, null, null, null);
+		orig = new Outfit(null, null, null, null, null, 12, null, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(0), result.getHead());
 		assertEquals(Integer.valueOf(0), result.getDress());
 		assertEquals(Integer.valueOf(0), result.getBody());
-		orig = new Outfit(null, null, null, null, null);
+		orig = new Outfit(null, null, null, null, null, null, null, null, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(0), result.getHair());
 		assertEquals(Integer.valueOf(0), result.getHead());
@@ -139,21 +139,21 @@ public class OutfitTest {
 	public void testIsPartOf() {
 		final Outfit of = new Outfit();
 		assertTrue(of.isPartOf(of));
-		Outfit part = new Outfit(null, null, null, null, null);
+		Outfit part = new Outfit(null, null, null, null, null, null, null, null, null);
 		assertTrue(part.isPartOf(of));
-		part = new Outfit(null, 0, null, null, null);
+		part = new Outfit(null, null, null, null, null, 0, null, null, null);
 		assertTrue(part.isPartOf(of));
-		part = new Outfit(null, null, 0, null, null);
+		part = new Outfit(null, null, null, null, null, null, 0, null, null);
 		assertTrue(part.isPartOf(of));
-		part = new Outfit(null, null, null, 0, null);
+		part = new Outfit(null, null, null, null, null, null, null, 0, null);
 		assertTrue(part.isPartOf(of));
-		part = new Outfit(null, null, null, null, 0);
+		part = new Outfit(null, null, null, null, null, null, null, null, 0);
 		assertTrue(part.isPartOf(of));
-		part = new Outfit(null, 0, null, null, 0);
+		part = new Outfit(null, null, null, null, null, 0, null, null, 0);
 		assertTrue(part.isPartOf(of));
-		part = new Outfit(null, 1, null, null, 0);
+		part = new Outfit(null, null, null, null, null, 1, null, null, 0);
 		assertFalse(part.isPartOf(of));
-		part = new Outfit(null, 1, 5, 5, 0);
+		part = new Outfit(null, null, null, null, null, 1, 5, 5, 0);
 		assertFalse(part.isPartOf(of));
 
 	}
@@ -165,15 +165,15 @@ public class OutfitTest {
 	public void testIsChoosableByPlayers() {
 		Outfit of = new Outfit();
 		assertTrue(of.isChoosableByPlayers());
-		of = new Outfit(null, Outfits.HAIR_OUTFITS, 0, 0, 0);
+		of = new Outfit(null, null, null, null, null, Outfits.HAIR_OUTFITS, 0, 0, 0);
 		assertFalse(of.isChoosableByPlayers());
-		of = new Outfit(null, 0, Outfits.HEAD_OUTFITS, 0, 0);
+		of = new Outfit(null, null, null, null, null, 0, Outfits.HEAD_OUTFITS, 0, 0);
 
 		assertFalse(of.isChoosableByPlayers());
-		of = new Outfit(null, 0, 0, Outfits.CLOTHES_OUTFITS, 0);
+		of = new Outfit(null, null, null, null, null, 0, 0, Outfits.CLOTHES_OUTFITS, 0);
 
 		assertFalse(of.isChoosableByPlayers());
-		of = new Outfit(null, 0, 0, 0, Outfits.BODY_OUTFITS);
+		of = new Outfit(null, null, null, null, null, 0, 0, 0, Outfits.BODY_OUTFITS);
 		assertFalse(of.isChoosableByPlayers());
 		// fail("wont work for any part of outfit == null");
 
@@ -186,9 +186,9 @@ public class OutfitTest {
 	public void testIsNaked() {
 		Outfit of = new Outfit();
 		assertTrue(of.isNaked());
-		 of = new Outfit(null, 0, 0, null, 0);
+		 of = new Outfit(null, null, null, null, null, 0, 0, null, 0);
 		assertTrue(of.isNaked());
-		 of = new Outfit(null, 0, 0, 1, 0);
+		 of = new Outfit(null, null, null, null, null, 0, 0, 1, 0);
 		assertFalse(of.isNaked());
 	}
 
@@ -197,20 +197,20 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testRemoveOutfit() {
-		Outfit orig = new Outfit(12345678);
-		Outfit result = orig.removeOutfit(new Outfit(12, null, null, null, null));
+		Outfit orig = new Outfit(12345678, 0, 0, 0, 0);
+		Outfit result = orig.removeOutfit(new Outfit(null, null, null, null, 12, null, null, null, null));
 		assertEquals(Integer.valueOf(0), result.getDetail());
 		assertEquals(Integer.valueOf(12), result.getHair());
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(56), result.getDress());
 		assertEquals(Integer.valueOf(78), result.getBody());
 
-		orig = new Outfit(null, 12, 34, 56, null);
-		result = orig.removeOutfit(new Outfit(1, null, null, null, null));
+		orig = new Outfit(null, null, null, null, null, 12, 34, 56, null);
+		result = orig.removeOutfit(new Outfit(null, null, null, null, 1, null, null, null, null));
 		assertEquals(12345600, result.getCode());
 
-		orig = new Outfit(12345678);
-		result = orig.removeOutfit(new Outfit(12345678));
+		orig = new Outfit(12345678, 0, 0, 0, 0);
+		result = orig.removeOutfit(new Outfit(12345678, 0, 0, 0 ,0));
 		assertEquals(0, result.getCode());
 	}
 }

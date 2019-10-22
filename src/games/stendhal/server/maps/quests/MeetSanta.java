@@ -154,7 +154,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 			final int hatnumber = oldoutfit.getHair() + 50;
 			// the new outfit only changes the hair, rest is null
 			final Outfit newOutfit;
-			newOutfit = new Outfit(null, hatnumber, null, null, null);
+			newOutfit = new Outfit(null, null, null, null, null, hatnumber, null, null, null);
 			//put it on, and store old outfit.
 			player.setOutfit(newOutfit.putOver(oldoutfit), true);
 			player.registerOutfitExpireTime(43200);
@@ -171,7 +171,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 			if (!isChristmasTime(new GregorianCalendar())) {
 				final int newhair = hairnumber - 50;
 				final Outfit newOutfit;
-				newOutfit = new Outfit(null, newhair, null, null, null);
+				newOutfit = new Outfit(null, null, null, null, null, newhair, null, null, null);
 				player.setOutfit(newOutfit.putOver(outfit), false);
 			}
 		}

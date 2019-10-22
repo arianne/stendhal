@@ -89,7 +89,7 @@ public class BalloonForBobby extends AbstractQuest {
 	// Load the different outfits into the list
 	public void prepareBalloonList() {
 		for (int i = 0; i < 4; i++) {
-			balloonList[i] = new Outfit(i+1, null, null, null, null);
+			balloonList[i] = new Outfit(null, null, null, null, i+1, null, null, null, null);
 		}
 	}
 
