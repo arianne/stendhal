@@ -22,15 +22,15 @@
  *  <li> strandedwitch,  somewhere in Kirdneh
  *   + sister of strandedwizard lives in kirdneh
  *   + accomplished magician that can compile a magic memory log
- *   + needs blank scrolls to restore strandedwizard memory log</li>
+ *   + needs 1 black apple to restore strandedwizard memory log</li>
  * </ul>
  *
  * STEPS:
  * <ul>
  *  <li> Talk with strandedwizard to activate the quest.</li>
- *  <li> Collect blank scrolls</li>
- *  <li> Talk with strandedwitch in Kirdneh.</li>
- *  <li> Return to strandedwizard with a message from strandedwitch.</li>
+ *  <li> Collect 1 black apple</li>
+ *  <li> Talk with strandedwitch in Kirdneh. have 1 black apple</li>
+ *  <li> Return to strandedwizard with 1 purple apple</li>
  *  <li> strandedwizard will unlock portfolio</li>
  * </ul>
  *
@@ -163,7 +163,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Maybe someone else will be more charitable..."     + " " + "\n" +
 			"loose karma"                                       + " " + "\n",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
-
 		//on offered quest
 		//YES MESSAGE, start quest
 		npc.add(
@@ -201,9 +200,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 								getSlotName(), "start", 15.0).fire(player, sentence, npc);
 			    }},
                 //mark status not necessary
-                new InflictStatusOnNPCAction("purple apple"))
-		    );
-		}
+                new InflictStatusOnNPCAction("purple apple")
+            ));
+    }
 
 	/** admemoriainportfolio_step_2 */
 	/** find strandedwitch in Kirdneh. step_2 */
@@ -212,7 +211,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	private void admemoriainportfolio_step_2() {
 		final SpeakerNPC npc = npcs.get("strandedwitch");
 		npc.add(
-	        ConversationStates.ATTENDING, Arrays.asList("apple"),
+	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
 	        new AndCondition(
 	        	new QuestInStateCondition(QUEST_SLOT, "start"),
 	        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
@@ -223,18 +222,18 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	        	new ChatAction() {
 					@Override
 					public void fire(
-							final Player player,
-							final Sentence sentence,
-							final EventRaiser npc) {
+                        final Player player,
+                        final Sentence sentence,
+                        final EventRaiser npc) {
 								npc.say(
 									"Thank you!" + " " +
 									"Here you go... Please take" + " " + 
 									"this black apple from me!");
 								new EquipItemAction("black apple", 1, true).fire(player, sentence, npc);
-								//switch to step3
+								//switch to inprogres1/step3
 								new SetQuestAndModifyKarmaAction(
-									getSlotName(), "inprogres1", 15.0).fire(player, sentence, npc);
-							}
+									getSlotName(), "start", 15.0).fire(player, sentence, npc);
+                        }
 	        	},
                 //mark status not necessary
 	        	new InflictStatusOnNPCAction("black apple")
@@ -246,32 +245,33 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("strandedwizard");
 		npc.add(
-		        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
-		        new AndCondition(
-		        	new QuestInStateCondition(QUEST_SLOT, "start"),
-		        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
-		        ConversationStates.ATTENDING,
-		        null, //say something with multiple actions
-		        new MultipleActions(
-		        	new DropItemAction("black apple"),
-		        	new ChatAction() {
-						@Override
-						public void fire(final Player player,
-								final Sentence sentence,
-								final EventRaiser npc) {
-                                    npc.say(
-                                        "Thank you!" + " " +
-                                        "Here you go..." +
-                                        "Please take this portfolio from me!");
-                                    new EquipItemAction(
-                                    		"portfolio", 1, true).fire(player, sentence, npc);
-                                    
-                                    new SetQuestAndModifyKarmaAction(
-                                    		getSlotName(), "done", 15.0).fire(player, sentence, npc);
-						        }
-		        	},
-		        	new InflictStatusOnNPCAction("portfolio"))
-		    );
+            ConversationStates.ATTENDING, Arrays.asList("black apple"),
+            new AndCondition(
+                new QuestInStateCondition(QUEST_SLOT, "start"),
+                new PlayerHasItemWithHimCondition("black apple", SCROLL_AMOUNT)),
+            ConversationStates.ATTENDING,
+            null, //say something with multiple actions
+            new MultipleActions(
+                new DropItemAction("black apple"),
+                new ChatAction() {
+                    @Override
+                    public void fire(
+                        final Player player,
+                        final Sentence sentence,
+                        final EventRaiser npc) {
+                            npc.say(
+                                "Thank you!" + " " +
+                                "Here you go... Please take" + " " +
+                                "this portfolio from me!");
+                                new EquipItemAction( "portfolio", 1, true).fire(player, sentence, npc);
+                                //switch done
+                                new SetQuestAndModifyKarmaAction(
+                                    getSlotName(), "done", 15.0).fire(player, sentence, npc);
+                        }
+                },
+                //mark status not necessary
+                new InflictStatusOnNPCAction("portfolio")
+            ));
 	}
 
 	@Override
