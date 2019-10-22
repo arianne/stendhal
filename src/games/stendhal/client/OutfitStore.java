@@ -38,8 +38,7 @@ public class OutfitStore {
 	/** dress directory */
 	private static final String DRESSES = OUTFITS + "/dress";
 	/** head directory */
-	//private static final String HEADS = OUTFITS + "/head";
-	private static final String HEADS = OUTFITS + "/head-testing";
+	private static final String HEADS = OUTFITS + "/head";
 	/** mouth directory */
 	private static final String MOUTHS = OUTFITS + "/mouth";
 	/** eyes directory */

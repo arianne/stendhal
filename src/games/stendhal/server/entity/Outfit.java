@@ -400,7 +400,7 @@ public class Outfit {
 			&& (mouth < Outfits.MOUTH_OUTFITS) && (mouth >= 0)
 			&& (detail == null || detail == 0)
 			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
-		    && (head < Outfits.HEAD_OUTFITS_TESTING) && (head >= 0)
+		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
 			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
 			&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
 

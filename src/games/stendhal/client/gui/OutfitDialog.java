@@ -63,7 +63,7 @@ class OutfitDialog extends JDialog {
 	private static final int SLIDER_WIDTH = 80;
 
 	private final SelectorModel hair = new SelectorModel(Outfits.HAIR_OUTFITS);
-	private final SelectorModel head = new SelectorModel(Outfits.HEAD_OUTFITS_TESTING);
+	private final SelectorModel head = new SelectorModel(Outfits.HEAD_OUTFITS);
 	private final SelectorModel body = new SelectorModel(Outfits.BODY_OUTFITS);
 	private final SelectorModel dress = new SelectorModel(Outfits.CLOTHES_OUTFITS);
 
