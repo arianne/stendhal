@@ -212,7 +212,8 @@ hair_099.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org
 
 data/sprites/outfit/hat/
 
-hat_005.png (goggles)  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+hat_005.png (goggles)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+hat_998.png (prison hat)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83639
 
 data/sprites/outfit/head/
 
