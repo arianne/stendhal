@@ -111,6 +111,8 @@ dress_099.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha
 
 data/sprites/outfit/eyes/
 
+eyes_022.png  Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+
 data/sprites/outfit/hair/
 
 hair_001.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
