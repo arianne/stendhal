@@ -111,7 +111,8 @@ dress_099.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha
 
 data/sprites/outfit/eyes/
 
-eyes_022.png  Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+eyes_022.png (wide eyed)    Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+eyes_017.png (simple dots)  Jordan Irwin (AntumDeluge); CC0; Stendhal
 
 data/sprites/outfit/hair/
 
