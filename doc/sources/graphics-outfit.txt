@@ -217,6 +217,7 @@ hat_002.png (backward cap)  bleutailfly; CC BY-SA 3.0; Stendhal (taken from hair
 hat_003.png (helmet)        Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
 hat_004.png (helmet)        Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
 hat_005.png (goggles)       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+hat_006.png (fedora)        Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hat_998.png (prison hat)    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83639
 hat_999.png (Santa hat)     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
