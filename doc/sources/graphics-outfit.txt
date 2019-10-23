@@ -12,11 +12,7 @@ body_097.png (horse mount)  bluecarrot16; OGA BY 3.0; https://opengameart.org/no
 
 data/sprites/outfit/detail/
 
-balloon.xcf.bz2              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-detail_001.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-detail_002.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-detail_003.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-detail_004.png (balloon)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+detail_00[1-4].png (balloon)  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/101299
 detail_005.*   (flag)        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 detail_006.*   (bride veil)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
 detail_007.*   (umbrella)    Diligent Dodo (soniccuz); CC BY-SA 3.0; https://sourceforge.net/p/arianne/patches/687/
@@ -45,13 +41,13 @@ dress_019.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha
 dress_020.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_021.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_022.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_023.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_023.png (armor)            bleutailfly; OGA BY 3.0; Stendhal
 dress_024.png                    ???; ???; ???
 dress_025.png (dress / skirt)    diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 dress_026.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_027.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_028.*   (armor)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
-dress_029.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_029.png (tunic)            bleutailfly; OGA BY 3.0; Stendhal
 dress_030.png (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_031.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_032.png (dress / skirt)    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
@@ -68,7 +64,7 @@ dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_043.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_044.*   (overalls)         bleutailfly; CC BY-SA 3.0; Stendhal
 dress_045.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
-dress_046.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+dress_046.png                    bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_047.png (tunic)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_048.*   (stick horse)      bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
 dress_049.*   (yo-yo)            bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
@@ -113,6 +109,11 @@ dress_097.png (swim trunks)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha
 dress_098.png (swim trunks)      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_099.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
+data/sprites/outfit/eyes/
+
+eyes_022.png (wide eyed)    Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+eyes_017.png (simple dots)  Jordan Irwin (AntumDeluge); CC0; Stendhal
+
 data/sprites/outfit/hair/
 
 hair_001.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
@@ -121,7 +122,7 @@ hair_003.png  Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
 hair_004.png  Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
 hair_005.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
 hair_006.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_007.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_007.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hair_008.png  Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 hair_009.*    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 hair_010.png  Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
@@ -210,6 +211,17 @@ hair_095.*    Svetlana Kushnariova (Cabbit), Silveira Neto; CC BY-SA 4.0; https:
 hair_096.*    Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
 hair_099.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
+data/sprites/outfit/hat/
+
+hat_001.png (baseball cap)  ???; ???; ??? (taken from hair_033)
+hat_002.png (backward cap)  bleutailfly; CC BY-SA 3.0; Stendhal (taken from hair_039)
+hat_003.png (helmet)        Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
+hat_004.png (helmet)        Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
+hat_005.png (goggles)       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+hat_006.png (fedora)        Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+hat_998.png (prison hat)    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83639
+hat_999.png (Santa hat)     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+
 data/sprites/outfit/head/
 
 head_021.*    Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://postimg.cc/LJNNSqff
@@ -217,3 +229,19 @@ head_081.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 head_083.*    Crisisworks, Jordan Irwin (AntumDeluge); CC BY 4.0; https://opengameart.org/node/83903, https://evilartbunny.itch.io/spirit-of-the-wind
 head_084.*    yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
 head_085.png  yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
+
+data/sprites/outfit/mask/
+
+mask_001.png     (glasses)     ???; ???; ??? (taken from head_009)
+mask_002.png     (sunglasses)  ???; ???; ??? (taken from head_079)
+mask_003.png     (sunglasses)  ???; ???; ??? (taken from head_086)
+mask_00[4-5].png (eye patch)   bleutailfly; OGA BY 3.0; Stendhal
+mask_006.png     (sunglasses)  Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+mask_007.png     (kitsune)     practicing01; CC0; https://opengameart.org/node/23856
+
+data/sprites/outfit/mouth/
+
+mouth_001.png  ???; ???; ???
+mouth_002.png  ???; ???; ???
+mouth_003.png  ???; ???; ???
+mouth_004.png  bleutailfly; OGA BY 3.0; Stendhal
