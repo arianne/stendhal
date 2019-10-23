@@ -29,7 +29,7 @@
 	</item>
 
 	<item name="apple">
-		<type class="food" subclass="apple" tileid="-1" />
+		<type class="food" subclass="apple_red" tileid="-1" />
 		<description>You see a nice shiny apple.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
