@@ -10,7 +10,9 @@
  *                                                                         *
  ***************************************************************************/
 
-/**
+package games.stendhal.server.maps.quests;
+
+/***************************************************************************
  * QUEST: Ad Memoria In Portfolio
  * <p>
  * PARTICIPANTS:
@@ -52,27 +54,20 @@
  * /alterquest <player> admemoriainportfolio
  */
 
-package games.stendhal.server.maps.quests;
 
-//import com.google.common.collect.ImmutableList;
-//import games.stendhal.common.grammar.Grammar;
-//import games.stendhal.server.entity.npc.action.DropItemAction;
-//import games.stendhal.server.entity.npc.condition.NotCondition;
-//import games.stendhal.server.entity.npc.action.SetQuestAction;
-//import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-//import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
-//import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 
 import java.util.List;
-//import java.util.LinkedList;
+
+import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
+//import java.util.LinkedList;
 import java.util.ArrayList;
 
+//import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -81,10 +76,16 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CreateSlotAction;
+//import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
-import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+//import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
@@ -137,32 +138,17 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
 			"\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Laaah lah lah laaah..."                            + " " + "\n" +
 			"A duel..." + "Mages duel..."                       + " " + "\n" +
 			"A mist..." + "Mages mist..."                       + " " + "\n" +
 			"Stranded and yet not lost..."                      + " " + "\n" +
 			"Catch those memories..."                           + " " + "\n" +
-			"Laaah lah lah laaah..."                            + " " + "\n" +
-			"Laaah lah laah laaaaah..."                         + " " + "\n" +
 			"-------------------------------------------------" + " " + "\n" +
-            "Will you help recovery strandedwizard memory?"     + " " + "\n" +
+            "Help recovery strandedwizard memory?"              + " " + "\n" +
             "It is a question answered with: (yes/no)",
 			null);
 
-		//on offered quest
-		//NO MESSAGE, reject quest
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.IDLE,
-			"\n" +
-			"-------------------------------------------------" + " " + "\n" +
-			"Player say NO on offered quest"                    + " " + "\n" +
-			"Player looses some karma"                          + " " + "\n" +
-			"-------------------------------------------------" + " " + "\n" +
-			"Maybe someone else will be more charitable..."     + " " + "\n" +
-			"loose karma"                                       + " " + "\n",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
 		//on offered quest
 		//YES MESSAGE, start quest
 		npc.add(
@@ -187,21 +173,36 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			//new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 15.0));			
 	        new MultipleActions(
 		       new ChatAction() {
-			   @Override
-			   public void fire(final Player player,
-			   final Sentence sentence,
-			   final EventRaiser npc) {
-					npc.say(
-						"Thank you!" + " " +
-						"Here you go... Please take" + 
-						"this purple apple from me!");
-						new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
-						new SetQuestAndModifyKarmaAction(
-								getSlotName(), "start", 15.0).fire(player, sentence, npc);
-			    }},
-                //mark status not necessary
-                new InflictStatusOnNPCAction("purple apple")
-            ));
+                   @Override
+                   public void fire(final Player player,
+                   final Sentence sentence,
+                   final EventRaiser npc) {
+                        npc.say(
+                            "Thank you!" + " " +
+                            "Here you go... Please take" + " " +
+                            "this purple apple from me!");
+                            new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
+                            new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
+                   }
+               }
+            )
+        );
+
+		//on offered quest
+		//NO MESSAGE, reject quest
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.IDLE,
+			"\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Player say NO on offered quest"                    + " " + "\n" +
+			"Player looses some karma"                          + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Maybe someone else will be more charitable..."     + " " + "\n" +
+			"loose karma"                                       + " " + "\n",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
     }
 
 	/** admemoriainportfolio_step_2 */
@@ -218,7 +219,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	        ConversationStates.ATTENDING,
 	        null, //say something with multiple actions
 	        new MultipleActions(
-	        	new DropItemAction("purple apple"),
 	        	new ChatAction() {
 					@Override
 					public void fire(
@@ -228,50 +228,87 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 								npc.say(
 									"Thank you!" + " " +
 									"Here you go... Please take" + " " + 
-									"this black apple from me!");
-								new EquipItemAction("black apple", 1, true).fire(player, sentence, npc);
-								//switch to inprogres1/step3
-								new SetQuestAndModifyKarmaAction(
-									getSlotName(), "start", 15.0).fire(player, sentence, npc);
+									"this mauve apple from me!");
+                                new IncreaseXPAction(1);
+								new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
+								new SetQuestAndModifyKarmaAction( getSlotName(), "start", 15.0).fire(player, sentence, npc);
                         }
 	        	},
-                //mark status not necessary
-	        	new InflictStatusOnNPCAction("black apple")
-	        ));
+	        	new DropItemAction("purple apple")
+	        )
+        );
 	}
 
+
+    // this step being done means you get portfolio 
 	/** admemoriainportfolio_step_3 */
 	/** return to strandedwizard, step_3 */ 
+    /**
+    * final List<ChatAction> reward = new LinkedList<ChatAction>();
+    * if (System.getProperty("stendhal.container") != null) {
+    *     reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
+    *     reward.add(new EquipItemAction("portfolio", 1, true));
+    *     reward.add(new IncreaseXPAction(1));
+    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+    * } else {
+    *     reward.add(new EnableFeatureAction("portfolio"));
+    * }
+    */
+
+    /**
+    * 
+    * final List<ChatAction> reward = new LinkedList<ChatAction>();
+    * if (System.getProperty("stendhal.container") != null) {
+    *     reward.add(new CreateSlotAction(ImmutableList.of("portfolio")));
+    *     reward.add(new EquipItemAction("portfolio", 1, true));
+    *     reward.add(new EnableFeatureAction("portfolio"));
+    *     reward.add(new DropItemAction("black apple"));
+    *     reward.add(new IncreaseXPAction(50));
+    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+    * }
+    */
+
+    /**
+    * new EquipItemAction("portfolio", 1, true).fire(player, sentence, npc);
+    * new CreateSlotAction(ImmutableList.of("portfolio")).fire(player, sentence, npc);
+    * new EnableFeatureAction("portfolio"),
+    * new DropItemAction("black apple"),
+    * new IncreaseXPAction(50),
+    * new SetQuestAction(QUEST_SLOT, "done"),
+    * mark status not necessary	        	
+    * new InflictStatusOnNPCAction("black apple")
+    */
+		
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("strandedwizard");
 		npc.add(
-            ConversationStates.ATTENDING, Arrays.asList("black apple"),
+            ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
             new AndCondition(
                 new QuestInStateCondition(QUEST_SLOT, "start"),
-                new PlayerHasItemWithHimCondition("black apple", SCROLL_AMOUNT)),
+                new PlayerHasItemWithHimCondition("mauve apple", SCROLL_AMOUNT)),
             ConversationStates.ATTENDING,
-            null, //say something with multiple actions
+	        null, //say something with multiple actions
             new MultipleActions(
-                new DropItemAction("black apple"),
-                new ChatAction() {
-                    @Override
-                    public void fire(
+	        	new ChatAction() {
+					@Override
+					public void fire(
                         final Player player,
                         final Sentence sentence,
                         final EventRaiser npc) {
-                            npc.say(
-                                "Thank you!" + " " +
-                                "Here you go... Please take" + " " +
-                                "this portfolio from me!");
-                                new EquipItemAction( "portfolio", 1, true).fire(player, sentence, npc);
-                                //switch done
-                                new SetQuestAndModifyKarmaAction(
-                                    getSlotName(), "done", 15.0).fire(player, sentence, npc);
+								npc.say(
+                                    "Thank you" + " " +
+                                    "Ad Memoria In Portfolio Quest is Done" + " " +
+									"Portfolio will now work!");
                         }
-                },
-                //mark status not necessary
-                new InflictStatusOnNPCAction("portfolio")
-            ));
+	        	},
+	        	new EnableFeatureAction("portfolio"),
+    			new CreateSlotAction(ImmutableList.of("belt", "back")),
+				new SetQuestAndModifyKarmaAction(getSlotName(), "done", 15.0),
+	        	new DropItemAction("mauve apple"),
+				new EquipItemAction("apple", 1000, true),
+                new EquipItemAction("portfolio", 1000, true)
+            )
+        );
 	}
 
 	@Override
@@ -285,12 +322,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				"Retr strandedwizard           step_3" + "\n" ,
 				// repeat is false
 				false);
-
-		// steps:
+		// admemoriainportfolio steps:
 		admemoriainportfolio_step_1();
 		admemoriainportfolio_step_2();
 		admemoriainportfolio_step_3();
-
 	}
 
 	@Override
@@ -345,7 +380,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             res.add("I returned to strandedwizard and he has fixed my portfolio for me.");
         }
         
-
         return res;
     }
 }
