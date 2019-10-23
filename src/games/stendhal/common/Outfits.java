@@ -42,7 +42,7 @@ public class Outfits {
 	public static final int EYES_OUTFITS = 23;
 
 	/** number of player selectable mouths */
-	public static final int MOUTH_OUTFITS = 4;
+	public static final int MOUTH_OUTFITS = 5;
 
 	public static final int MASK_OUTFITS = 6;
 	public static final int HAT_OUTFITS = 7;
