@@ -83,7 +83,7 @@ public class MrsYetiNPC implements ZoneConfigurator {
 				new SellerAdder().addSeller(this, new QuestCompletedSellerBehaviour(QUEST_SLOT, "I have a #task for you before I will sell you anything.", items));
 				// for quest see games.stendhal.server.maps.quest.HelpMrsYeti
 				addGreeting("Greetings, strange foreigner!");
-				addJob("I go out to hunt for food while Mr Yeti makes his snow sculptures.");
+				addJob("I go out to hunt for food while Mr. Yeti makes his snow sculptures.");
 				addHelp("Be careful of the creatures lurking in these caves!");
 				addGoodbye();
 			}
