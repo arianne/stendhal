@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -45,14 +47,73 @@ public class Outfit {
 
 	private final Map<String, Integer> layers = new HashMap<>();
 
+	// number of supported layers
+	private final int layerCount = 9;
+
 	/**
-	 * Creates a new default outfit (naked person).
+	 * Creates a new outfit. Set some of the parameters to null if you want an
+	 * entity that put on this outfit to keep on the corresponding parts of its
+	 * current outfit.
+	 *
+	 * @param layers
+	 * 		Integer indexes of each outfit layer or null.
 	 */
-	public Outfit() {
-		this(0, 0, 0, 0, 0, 0, 0, 0 ,0);
+	public Outfit(final Integer... layers) {
+		// TODO: re-order layer args on draw priority
+
+		final List<Integer> layer_list = new ArrayList<>();
+	    for (int idx = 0; idx < layerCount; idx++) {
+			if (idx >= layers.length) {
+				layer_list.add(null);
+			} else {
+				layer_list.add(layers[idx]);
+			}
+	    }
+
+	    // set values of layers not specified to 0
+		if (layers.length > layerCount) {
+			int missing = layerCount - layers.length;
+			for (int x = 0; x < missing; x++) {
+				layer_list.add(null);
+			}
+		}
+
+		if (layers.length > 5) {
+			this.layers.put("body", layer_list.get(8));
+			this.layers.put("dress", layer_list.get(7));
+			this.layers.put("head", layer_list.get(6));
+			this.layers.put("mouth", layer_list.get(3));
+			this.layers.put("eyes", layer_list.get(2));
+			this.layers.put("mask", layer_list.get(1));
+			this.layers.put("hair", layer_list.get(5));
+			this.layers.put("hat", layer_list.get(0));
+			this.layers.put("detail", layer_list.get(4));
+		} else {
+			// using the outfit "code" format
+			Integer code = layer_list.get(0);
+			// code should never by null
+			if (code == null) {
+				code = 0;
+			}
+
+			this.layers.put("body", code % 100);
+			this.layers.put("dress", code / 100 % 100);
+			this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
+			this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
+			this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
+
+			// extended layers
+			this.layers.put("mouth", layer_list.get(1));
+			this.layers.put("eyes", layer_list.get(2));
+			this.layers.put("mask", layer_list.get(3));
+			this.layers.put("hat", layer_list.get(4));
+		}
 	}
 
 	/**
+	 * This method is added for backwards compatibility. Anything using this should be updated
+	 * for new method.
+	 *
 	 * Creates a new outfit. Set some of the parameters to null if you want an
 	 * entity that put on this outfit to keep on the corresponding parts of its
 	 * current outfit.
@@ -68,38 +129,20 @@ public class Outfit {
 	 * @param body
 	 *            The index of the body style, or null
 	 */
-	public Outfit(final Integer hat, final Integer mask, final Integer eyes, final Integer mouth,
-			final Integer detail, final Integer hair, final Integer head, final Integer dress,
-			final Integer body) {
+	@Deprecated
+	public Outfit(final Integer detail, final Integer hair, final Integer head,
+			final Integer dress, final Integer body) {
 		layers.put("body", body);
 		layers.put("dress", dress);
 		layers.put("head", head);
-		layers.put("mouth", mouth);
-		layers.put("eyes", eyes);
-		layers.put("mask", mask);
 		layers.put("hair", hair);
-		layers.put("hat", hat);
 		layers.put("detail", detail);
-	}
 
-	/**
-	 * Creates a new outfit based on a numeric code.
-	 *
-	 * @param code
-	 *            A 10-digit decimal number where the last part (from the right)
-	 *            stands for body, the next for dress, then head, then hair,
-	 *            then detail.
-	 */
-	public Outfit(final int code, final int mouth, final int eyes, final int mask, final int hat) {
-		layers.put("body", code % 100);
-		layers.put("dress", code / 100 % 100);
-		layers.put("head", (int) (code / Math.pow(100, 2) % 100));
-		layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
-		layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
-		layers.put("mouth", mouth);
-		layers.put("eyes", eyes);
-		layers.put("mask", mask);
-		layers.put("hat", hat);
+		// extended layers
+		layers.put("mouth", 0);
+		layers.put("eyes", 0);
+		layers.put("mask", 0);
+		layers.put("hat", 0);
 	}
 
 	public Integer getLayer(final String layerName) {
