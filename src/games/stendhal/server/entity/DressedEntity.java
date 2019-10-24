@@ -167,10 +167,10 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
-		put("outfit_mouth", newOutfit.getMouth());
-		put("outfit_eyes", newOutfit.getEyes());
-		put("outfit_mask", newOutfit.getMask());
-		put("outfit_hat", newOutfit.getHat());
+		put("outfit_mouth", newOutfit.getLayer("mouth"));
+		put("outfit_eyes", newOutfit.getLayer("eyes"));
+		put("outfit_mask", newOutfit.getLayer("mask"));
+		put("outfit_hat", newOutfit.getLayer("hat"));
 		notifyWorldAboutChanges();
 	}
 
@@ -193,10 +193,10 @@ public abstract class DressedEntity extends RPEntity {
 
 			// re-add detail
 			put("outfit", outfitCode);
-			put("outfit_mouth", outfit.getMouth());
-			put("outfit_eyes", outfit.getEyes());
-			put("outfit_mask", outfit.getMask());
-			put("outfit_hat", outfit.getHat());
+			put("outfit_mouth", outfit.getLayer("mouth"));
+			put("outfit_eyes", outfit.getLayer("eyes"));
+			put("outfit_mask", outfit.getLayer("mask"));
+			put("outfit_hat", outfit.getLayer("hat"));
 			notifyWorldAboutChanges();
 		}
 	}

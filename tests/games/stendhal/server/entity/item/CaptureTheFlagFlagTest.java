@@ -92,16 +92,16 @@ public class CaptureTheFlagFlagTest {
 		// in the game, there are restrictions - can only equip to hands
 		//
 
-		int    origDetail     = player.getOutfit().getDetail();
+		int    origDetail     = player.getOutfit().getLayer("detail");
 
-		assertEquals(origDetail, (int) player.getOutfit().getDetail());
+		assertEquals(origDetail, (int) player.getOutfit().getLayer("detail"));
 
 		result = flag.onEquipped(player, "lhand");
 
 		assertEquals(true, result);
 
 		// confirm change to outfit
-		assertEquals(flag.getDetailValue(),  (int)player.getOutfit().getDetail());
+		assertEquals(flag.getDetailValue(),  (int)player.getOutfit().getLayer("detail"));
 		assertEquals(flag.getColorValue(),   player.get("outfit_colors", "detail"));
 	}
 
@@ -124,7 +124,7 @@ public class CaptureTheFlagFlagTest {
 		// in the game, there are restrictions - can only equip to hands
 		//
 
-		int    origDetail     = player.getOutfit().getDetail();
+		int    origDetail     = player.getOutfit().getLayer("detail");
 
 		// System.out.println("  slot: " + player.getSlot(slot));
 		// RPSlot rpslot = ((EntitySlot) player.getSlot(slot)).getWriteableSlot();
@@ -139,7 +139,7 @@ public class CaptureTheFlagFlagTest {
 		assertEquals(true, result);
 
 		// confirm change to outfit
-		assertEquals(flag.getDetailValue(), (int)player.getOutfit().getDetail());
+		assertEquals(flag.getDetailValue(), (int)player.getOutfit().getLayer("detail"));
 		assertEquals(flag.getColorValue(),  player.get("outfit_colors", "detail"));
 
 		// flag.removeFromWorld();
@@ -151,7 +151,7 @@ public class CaptureTheFlagFlagTest {
 		//     properly transfer to container
 
 		// confirm back to original value
-		assertEquals(origDetail, (int) player.getOutfit().getDetail());
+		assertEquals(origDetail, (int) player.getOutfit().getLayer("detail"));
 
 	}
 
@@ -180,20 +180,20 @@ public class CaptureTheFlagFlagTest {
 		// in the game, there are restrictions - can only equip to hands
 		//
 
-		int origDetail     = player1.getOutfit().getDetail();
+		int origDetail     = player1.getOutfit().getLayer("detail");
 
 		result = flag.onEquipped(player1, slot);
 		assertEquals(true, result);
 
 		// confirm change to outfit
-		assertEquals(flag.getDetailValue(), (int)player1.getOutfit().getDetail());
+		assertEquals(flag.getDetailValue(), (int)player1.getOutfit().getLayer("detail"));
 		assertEquals(flag.getColorValue(),  player1.get("outfit_colors", "detail"));
 
 		// flag.removeFromWorld();
 		flag.onUnequipped();
 
 		// confirm player1 back to original value
-		assertEquals(origDetail, (int) player1.getOutfit().getDetail());
+		assertEquals(origDetail, (int) player1.getOutfit().getLayer("detail"));
 
 		// TODO: confirm player2 outfit changed
 		// TODO: confirm player2 outfit back to default
@@ -202,13 +202,13 @@ public class CaptureTheFlagFlagTest {
 		assertEquals(true, result);
 
 		// confirm change to outfit
-		assertEquals(flag.getDetailValue(), (int)player2.getOutfit().getDetail());
+		assertEquals(flag.getDetailValue(), (int)player2.getOutfit().getLayer("detail"));
 		assertEquals(flag.getColorValue(),  player2.get("outfit_colors", "detail"));
 
 		// flag.removeFromWorld();
 		flag.onUnequipped();
 
 		// confirm player2 back to original value
-		assertEquals(origDetail, (int) player2.getOutfit().getDetail());
+		assertEquals(origDetail, (int) player2.getOutfit().getLayer("detail"));
 	}
 }
