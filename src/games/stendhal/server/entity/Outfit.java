@@ -78,36 +78,15 @@ public class Outfit {
 			}
 		}
 
-		if (layers.length > 5) {
-			this.layers.put("body", layer_list.get(8));
-			this.layers.put("dress", layer_list.get(7));
-			this.layers.put("head", layer_list.get(6));
-			this.layers.put("mouth", layer_list.get(3));
-			this.layers.put("eyes", layer_list.get(2));
-			this.layers.put("mask", layer_list.get(1));
-			this.layers.put("hair", layer_list.get(5));
-			this.layers.put("hat", layer_list.get(0));
-			this.layers.put("detail", layer_list.get(4));
-		} else {
-			// using the outfit "code" format
-			Integer code = layer_list.get(0);
-			// code should never by null
-			if (code == null) {
-				code = 0;
-			}
-
-			this.layers.put("body", code % 100);
-			this.layers.put("dress", code / 100 % 100);
-			this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
-			this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
-			this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
-
-			// extended layers
-			this.layers.put("mouth", layer_list.get(1));
-			this.layers.put("eyes", layer_list.get(2));
-			this.layers.put("mask", layer_list.get(3));
-			this.layers.put("hat", layer_list.get(4));
-		}
+		this.layers.put("body", layer_list.get(8));
+		this.layers.put("dress", layer_list.get(7));
+		this.layers.put("head", layer_list.get(6));
+		this.layers.put("mouth", layer_list.get(3));
+		this.layers.put("eyes", layer_list.get(2));
+		this.layers.put("mask", layer_list.get(1));
+		this.layers.put("hair", layer_list.get(5));
+		this.layers.put("hat", layer_list.get(0));
+		this.layers.put("detail", layer_list.get(4));
 	}
 
 	/**
@@ -139,10 +118,25 @@ public class Outfit {
 		layers.put("detail", detail);
 
 		// extended layers
-		layers.put("mouth", 0);
-		layers.put("eyes", 0);
-		layers.put("mask", 0);
-		layers.put("hat", 0);
+		layers.put("mouth", null);
+		layers.put("eyes", null);
+		layers.put("mask", null);
+		layers.put("hat", null);
+	}
+
+	@Deprecated
+	public Outfit(final Integer code) {
+		this.layers.put("body", code % 100);
+		this.layers.put("dress", code / 100 % 100);
+		this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
+		this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
+		this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
+
+		// extended layers
+		layers.put("mouth", null);
+		layers.put("eyes", null);
+		layers.put("mask", null);
+		layers.put("hat", null);
 	}
 
 	public Integer getLayer(final String layerName) {
