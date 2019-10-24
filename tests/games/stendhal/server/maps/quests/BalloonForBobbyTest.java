@@ -79,8 +79,8 @@ public class BalloonForBobbyTest {
 
 		npc = SingletonRepository.getNPCList().get("Bobby");
 		en = npc.getEngine();
-		Outfit outfitNoBalloon = new Outfit(0,1,2,3,4);
-		Outfit outfitWithBalloon = new Outfit(1,2,3,4,5);
+		Outfit outfitNoBalloon = new Outfit(4, 3, 2, 1, 0, 1, 2, 3, 4);
+		Outfit outfitWithBalloon = new Outfit(4, 3, 2, 1, 1, 2, 3, 4, 5);
 
 		// -----------------------------------------------
 
