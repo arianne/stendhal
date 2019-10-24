@@ -18,6 +18,7 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 
 	minimapShow: false,
 	zIndex: 5500,
+	autoOpenedAlready: false,
 
 	set: function(key, value) {
 		marauroa.rpobjectFactory["corpse"].proto.set.apply(this, arguments);
@@ -30,20 +31,64 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		}
 	},
 
+	createSlot: function(name) {
+		var slot = marauroa.util.fromProto(marauroa.rpslotFactory["_default"], {
+			add: function(object) {
+				marauroa.rpslotFactory["_default"].add.apply(this, arguments);
+				if (this._objects.length > 0) {
+					this._parent.autoOpenIfDesired();
+				}
+			},
+
+			del: function(key) {
+				marauroa.rpslotFactory["_default"].del.apply(this, arguments);
+				if (this._objects.length == 0) {
+					this._parent.closeCorpseInventory();
+				}
+			}
+		});
+		slot._name = name;
+		slot._objects = [];
+		slot._parent = this;
+		return slot;
+	},
+
 	isVisibleToAction: function(filter) {
 		return true;
 	},
 
-	destroy: function() {
+	closeCorpseInventory: function() {
 		if (this.inventory) {
 			this.inventory.close();
 		}
 	},
 
-	onclick: function(x, y) {
+	openCorpseInventory: function() {
 		if (!this.inventory || !this.inventory.popupdiv.parentNode) {
 			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 2, 2, this, "Corpse");
 		}
+	},
+	
+	autoOpenIfDesired: function() {
+		if (!this.autoOpenedAlready) {
+			this.autoOpenedAlready = true;
+			if (marauroa.me && (this["corpse_owner"] == marauroa.me["_name"])) {
+
+				// TODO: for unknown reason, /data/sprites/items/undefined/undefined.png is requires without this delay
+				var that = this;
+				window.setTimeout(function() {
+					that.openCorpseInventory();
+				}, 1);
+			}
+		}
+	},
+
+	destroy: function() {
+		this.closeCorpseInventory();
+	},
+
+	onclick: function(x, y) {
+		this.openCorpseInventory();
 	},
 
 	getCursor: function(x, y) {
