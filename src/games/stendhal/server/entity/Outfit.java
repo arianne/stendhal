@@ -355,13 +355,11 @@ public class Outfit {
 	public static Outfit getRandomOutfit() {
 		final int newEyes = Rand.randUniform(1, Outfits.EYES_OUTFITS);
 		final int newMouth = Rand.randUniform(1, Outfits.MOUTH_OUTFITS);
-		final int newHair = Rand.randUniform(1, 26);
-		final int newHead;// = Rand.randUniform(1, 15);
-		final int newDress = Rand.randUniform(1, 16);
-		final int newBody;// = Rand.randUniform(1, 5);
+		final int newHair = Rand.randUniform(1, Outfits.HAIR_OUTFITS);
+		final int newHead = Rand.randUniform(1, Outfits.HEAD_OUTFITS);
+		final int newDress = Rand.randUniform(1, Outfits.CLOTHES_OUTFITS);
+		final int newBody = Rand.randUniform(1, Outfits.BODY_OUTFITS);
 
-		newHead = Rand.randUniform(1, 15);
-		newBody = Rand.randUniform(1, 5);
 		LOGGER.debug("chose random outfit: "
 				+ " " + newEyes + " " + newMouth + " " + newHair
 				+ " " + newHead + " " + newDress + " " + newBody);
