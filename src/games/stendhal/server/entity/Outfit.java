@@ -298,6 +298,22 @@ public class Outfit {
 	}
 
 	/**
+	 * Gets the result that you get when you remove (parts of) an outfit.
+	 * Removes the parts in the parameter, from the current outfit.
+	 * NOTE: If a part does not match, the current outfit part will remain the same.
+	 *
+	 * Currently supported layers should be in this order:
+	 * 		body, dress, head, mouth, eyes, mask, hair, hat, detail
+	 *
+	 * @param layers
+	 * 		Integer indexes of each outfit layer that should be removed.
+	 * @return the new outfit, with the layers removed.
+	 */
+	public Outfit removeOutfit(final Integer... layers) {
+		return removeOutfit(new Outfit(layers));
+	}
+
+	/**
 	 * removes the details
 	 */
 	public void removeDetail() {

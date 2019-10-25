@@ -313,7 +313,7 @@ public class OutfitTest {
 	@Test
 	public void testRemoveOutfit() {
 		Outfit orig = new Outfit(12345678, 9, 10, 11, 12);
-		Outfit result = orig.removeOutfit(new Outfit(null, null, null, null, null, null, null, null, 12));
+		Outfit result = orig.removeOutfit(null, null, null, null, null, null, null, null, 12);
 		assertEquals(Integer.valueOf(0), result.getLayer("detail"));
 		assertEquals(Integer.valueOf(12), result.getLayer("hair"));
 		assertEquals(Integer.valueOf(34), result.getLayer("head"));
@@ -327,11 +327,11 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(12), result.getLayer("hat"));
 
 		orig = new Outfit(null, 56, 34, null, null, null, 12, null, null);
-		result = orig.removeOutfit(new Outfit(null, null, null, null, null, null, null, null, 1));
+		result = orig.removeOutfit(null, null, null, null, null, null, null, null, 1);
 		assertEquals(12345600, result.getCode());
 
 		orig = new Outfit(12345678, 9, 10, 11, 12);
-		result = orig.removeOutfit(new Outfit(12345678, 9, 10, 11, 12));
+		result = orig.removeOutfit(12345678, 9, 10, 11, 12);
 		assertEquals(0, result.getCode());
 	}
 }
