@@ -236,7 +236,7 @@ public abstract class DressedEntity extends RPEntity {
 	// Hack to preserve detail layer
 	public void setOutfitWithDetail(final Outfit outfit, final boolean temporary) {
 		// preserve detail layer
-		final int detailCode = getOutfit().getCode() / 100000000;
+		final int detailCode = getOutfit().getLayer("detail");
 
 		// set the new outfit
 		setOutfit(outfit, temporary);
