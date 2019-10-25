@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
@@ -13,6 +12,7 @@
 package games.stendhal.server.entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.Outfits;
 import games.stendhal.common.Rand;
+
 /**
  * A data structure that represents the outfit of an RPEntity. This RPEntity can
  * either be an NPC which uses the outfit sprite system, or of a player.
@@ -47,8 +48,12 @@ public class Outfit {
 
 	private final Map<String, Integer> layers = new HashMap<>();
 
+	final List<String> layer_names = Arrays.asList(
+			"body", "dress", "head", "mouth", "eyes", "mask",
+			"hair", "hat", "detail");
+
 	// number of supported layers
-	private final int layerCount = 9;
+	private final int layerCount = layer_names.size();
 
 	/**
 	 * Creates a new outfit. Set some of the parameters to null if you want an
@@ -62,8 +67,6 @@ public class Outfit {
 	 * 		Integer indexes of each outfit layer or null.
 	 */
 	public Outfit(final Integer... layers) {
-		// TODO: re-order layer args on draw priority
-
 		final List<Integer> layer_list = new ArrayList<>();
 	    for (int idx = 0; idx < layerCount; idx++) {
 			if (idx >= layers.length) {
@@ -90,6 +93,49 @@ public class Outfit {
 		this.layers.put("hair", layer_list.get(6));
 		this.layers.put("hat", layer_list.get(7));
 		this.layers.put("detail", layer_list.get(8));
+	}
+
+	/**
+	 * Construct an outfit using a string.
+	 *
+	 * @param strcode
+	 * 		Can be a comma separated key=value list or a 10-digit integer
+	 * 		for backward compatibility.
+	 */
+	public Outfit(final String strcode) {
+		if (strcode.contains(",")) {
+			final String[] layers = strcode.split(",");
+
+			// initialize all layers to "0"
+			for (String n: layer_names) {
+				this.layers.put(n, 0);
+			}
+
+			//for (String layer: layer_list) {
+		    for (int idx = 0; idx < layers.length; idx++) {
+		    	final String layer = layers[idx];
+				if (layer.contains("=")) {
+					final String[] key = layer.split("=");
+					if (layer_names.contains(key[0])) {
+						this.layers.put(key[0], Integer.parseInt(key[1]));
+					}
+				}
+			}
+		} else {
+			final int code = Integer.parseInt(strcode);
+
+			this.layers.put("body", code % 100);
+			this.layers.put("dress", code / 100 % 100);
+			this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
+			this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
+			this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
+
+			// extended layers
+			layers.put("mouth", null);
+			layers.put("eyes", null);
+			layers.put("mask", null);
+			layers.put("hat", null);
+		}
 	}
 
 	/**

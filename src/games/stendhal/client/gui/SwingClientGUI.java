@@ -242,7 +242,7 @@ class SwingClientGUI implements J2DClientGUI {
 		keyring.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		containerPanel.addRepaintable(keyring);
 		userContext.addFeatureChangeListener(keyring);
-		
+
 		/**
 		portfolio = new Portfolio();
 		portfolio.setAcceptedTypes(EntityMap.getClass("item", null, null));
@@ -612,38 +612,64 @@ class SwingClientGUI implements J2DClientGUI {
 	public void chooseOutfit() {
 		final RPObject player = userContext.getPlayer();
 
-		final int outfit;
-		int mouth = 0;
-		int eyes = 0;
-		int mask = 0;
-		int hat = 0;
+		if (!player.has("outfit_ext")) {
+			final int outfit;
+			int mouth = 0;
+			int eyes = 0;
+			int mask = 0;
+			int hat = 0;
 
-		if (player.has("outfit_org")) {
-			outfit = player.getInt("outfit_org");
-			if (player.has("outfit_mouth_org")) mouth = player.getInt("outfit_mouth_org");
-			if (player.has("outfit_eyes_org")) eyes = player.getInt("outfit_eyes_org");
-			if (player.has("outfit_mask_org")) mask = player.getInt("outfit_mask_org");
-			if (player.has("outfit_hat_org")) hat = player.getInt("outfit_hat_org");
+			if (player.has("outfit_org")) {
+				outfit = player.getInt("outfit_org");
+				/*
+				if (player.has("outfit_mouth_org")) mouth = player.getInt("outfit_mouth_org");
+				if (player.has("outfit_eyes_org")) eyes = player.getInt("outfit_eyes_org");
+				if (player.has("outfit_mask_org")) mask = player.getInt("outfit_mask_org");
+				if (player.has("outfit_hat_org")) hat = player.getInt("outfit_hat_org");
+				*/
+			} else {
+				outfit = player.getInt("outfit");
+				/*
+				if (player.has("outfit_mouth")) mouth = player.getInt("outfit_mouth");
+				if (player.has("outfit_eyes")) eyes = player.getInt("outfit_eyes");
+				if (player.has("outfit_mask")) mask = player.getInt("outfit_mask");
+				if (player.has("outfit_hat")) hat = player.getInt("outfit_hat");
+				*/
+			}
+
+			if (outfitDialog == null) {
+				// Here we actually want to call new OutfitColor(). Modifying
+				// OutfitColor.PLAIN would be a bad thing.
+				outfitDialog = new OutfitDialog(frame, "Set outfit", outfit, mouth, eyes,
+						mask, hat, new OutfitColor(player));
+
+				outfitDialog.setVisible(true);
+			} else {
+				outfitDialog.setState(outfit, mouth, eyes, mask, hat, OutfitColor.get(player));
+
+				outfitDialog.setVisible(true);
+				outfitDialog.toFront();
+			}
 		} else {
-			outfit = player.getInt("outfit");
-			if (player.has("outfit_mouth")) mouth = player.getInt("outfit_mouth");
-			if (player.has("outfit_eyes")) eyes = player.getInt("outfit_eyes");
-			if (player.has("outfit_mask")) mask = player.getInt("outfit_mask");
-			if (player.has("outfit_hat")) hat = player.getInt("outfit_hat");
-		}
+			final String stroutfit;
 
-		if (outfitDialog == null) {
-			// Here we actually want to call new OutfitColor(). Modifying
-			// OutfitColor.PLAIN would be a bad thing.
-			outfitDialog = new OutfitDialog(frame, "Set outfit", outfit, mouth, eyes,
-					mask, hat, new OutfitColor(player));
+			if (player.has("outfit_ext_orig")) {
+				stroutfit = player.get("outfit_ext_orig");
+			} else {
+				stroutfit = player.get("outfit_ext");
+			}
 
-			outfitDialog.setVisible(true);
-		} else {
-			outfitDialog.setState(outfit, mouth, eyes, mask, hat, OutfitColor.get(player));
+			if (outfitDialog == null) {
+				// Here we actually want to call new OutfitColor(). Modifying
+				// OutfitColor.PLAIN would be a bad thing.
+				outfitDialog = new OutfitDialog(frame, "Set outfit", stroutfit, new OutfitColor(player));
+				outfitDialog.setVisible(true);
+			} else {
+				outfitDialog.setState(stroutfit, OutfitColor.get(player));
 
-			outfitDialog.setVisible(true);
-			outfitDialog.toFront();
+				outfitDialog.setVisible(true);
+				outfitDialog.toFront();
+			}
 		}
 	}
 

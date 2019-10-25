@@ -1647,6 +1647,7 @@ public class Player extends DressedEntity implements UseListener {
 				}
 			}
 
+			remove("outfit_ext_orig");
 			remove("outfit_org");
 			setOutfit(originalOutfit, false);
 

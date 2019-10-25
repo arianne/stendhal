@@ -40,24 +40,7 @@ public class OutfitAction implements ActionListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
-			final int code = action.getInt(VALUE);
-			final int body = code % 100;
-			final int dress = code / 100 % 100;
-			final int head = (int) (code / Math.pow(100, 2) % 100);
-			final int hair = (int) (code / Math.pow(100, 3) % 100);
-			final int detail = (int) (code / Math.pow(100, 4) % 100);
-
-			// extended layers
-			int mouth = 0;
-			int eyes = 0;
-			int mask = 0;
-			int hat = 0;
-			if (action.has("outfit_mouth")) mouth = action.getInt("outfit_mouth");
-			if (action.has("outfit_eyes")) eyes = action.getInt("outfit_eyes");
-			if (action.has("outfit_mask")) mask = action.getInt("outfit_mask");
-			if (action.has("outfit_hat")) hat = action.getInt("outfit_hat");
-
-			final Outfit outfit = new Outfit(body, dress, head, mouth, eyes, mask, hair, hat, detail);
+			final Outfit outfit = new Outfit(action.get(VALUE));
 
 			if (outfit.isChoosableByPlayers()) {
 				new GameEvent(player.getName(), OUTFIT,

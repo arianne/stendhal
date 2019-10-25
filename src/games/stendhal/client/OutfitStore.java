@@ -16,6 +16,8 @@ package games.stendhal.client;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -80,6 +82,69 @@ public class OutfitStore {
 	/**
 	 * Build an outfit sprite.
 	 *
+	 * @param strcode
+	 * @param color
+	 * 		coloring data
+	 * @return A walking state tileset.
+	 */
+	private Sprite buildOutfit(final String strcode, final OutfitColor color) {
+		final Map<String, Integer> layer_map = new HashMap<>();
+
+		for (String layer: strcode.split(",")) {
+			if (layer.contains("=")) {
+				final String[] key = layer.split("=");
+				layer_map.put(key[0], Integer.parseInt(key[1]));
+			}
+		}
+
+		// Body layer
+		Sprite layer = getBodySprite(layer_map.get("body"), color);
+		if (layer == null) {
+			throw new IllegalArgumentException(
+					"No body image found for outfit: " + layer_map.get("body"));
+		}
+
+		final ImageSprite sprite = new ImageSprite(layer);
+		final Graphics g = sprite.getGraphics();
+
+		// Dress layer
+		layer = getDressSprite(layer_map.get("dress"), color);
+		layer.draw(g, 0, 0);
+
+		// Head layer
+		layer = getHeadSprite(layer_map.get("head"), color);
+		layer.draw(g, 0, 0);
+
+		// mouth layer
+		layer = getMouthSprite(layer_map.get("mouth"));
+		layer.draw(g, 0, 0);
+
+		// eyes layer
+		layer = getEyesSprite(layer_map.get("eyes"), color);
+		layer.draw(g, 0, 0);
+
+		// mask layer
+		layer = getMaskSprite(layer_map.get("mask"));
+		layer.draw(g, 0, 0);
+
+		// Hair layer
+		layer = getHairSprite(layer_map.get("hair"), color);
+		layer.draw(g, 0, 0);
+
+		// hat layer
+		layer = getHatSprite(layer_map.get("hat"));
+		layer.draw(g, 0, 0);
+
+		// Item layer (draw on last)
+		layer = getDetailSprite(layer_map.get("detail"), color);
+		layer.draw(g, 0, 0);
+
+		return sprite;
+	}
+
+	/**
+	 * Build an outfit sprite.
+	 *
 	 * The outfit is described by an "outfit code". It is an 8-digit integer of
 	 * the form TTRRHHDDBB where TT is the number of the detail graphics (optional)
 	 * RR is the number of the hair graphics (optional), HH for the
@@ -91,6 +156,7 @@ public class OutfitStore {
 	 *
 	 * @return A walking state tileset.
 	 */
+	@Deprecated
 	private Sprite buildOutfit(int code, final int mouth, final int eyes, final int mask, final int hat,
 			final OutfitColor color) {
 		final int bodycode = (code % 100);
@@ -245,7 +311,8 @@ public class OutfitStore {
 	 */
 	public Sprite getFailsafeOutfit() {
 		try {
-			return getOutfit(0, 0, 0, 0, 0, OutfitColor.PLAIN);
+			final String failsafe_str = "body=0,dress=0,head=0,mouth=0,eyes=0,mask=0,hair=0,hat=0,detail=0";
+			return getOutfit(failsafe_str, OutfitColor.PLAIN);
 		} catch (RuntimeException e) {
 			logger.warn("Cannot build failsafe outfit. Trying to use standard failsafe sprite.", e);
 			return store.getFailsafe();
@@ -392,48 +459,43 @@ public class OutfitStore {
 	/**
 	 * Get an outfit sprite.
 	 *
-	 * The outfit is described by an "outfit code". It is an 10-digit integer of
-	 * the form TTRRHHDDBB where where TT is the number of the detail graphics (optional)
-	 * RR is the number of the hair graphics, HH for the
-	 * head, DD for the dress, and BB for the body.
-	 *
-	 * @param code
-	 *            The outfit code.
-	 * @param color Colors for coloring some outfit parts
-	 *
-	 * @return An walking state tileset.
+	 * @param strcode
+	 * @param color
+	 * 		Colors for coloring some outfit parts.
+	 * @return outfit
 	 */
-	/*
-	private Sprite getOutfit(final int code, final OutfitColor color) {
+	private Sprite getOutfit(final String strcode, final OutfitColor color) {
 		// Use the normalized string for the reference
-		final String reference = buildReference(code, color.toString());
-		return getOutfit(code, color, reference);
+		final String reference = buildReference(strcode, color.toString());
+		return getOutfit(strcode, color, reference);
 	}
-	*/
 
 	/**
 	 * Get outfit for a known outfit reference.
 	 *
-	 * @param code outfit code
-	 * @param color Color information for outfit parts
-	 * @param reference outfit reference
+	 * @param strcode
+	 * @param color
+	 * 		Colors for coloring some outfit parts.
+	 * @param reference
+	 * 		Outfit reference.
 	 * @return outfit
 	 */
-	/*
-	private Sprite getOutfit(final int code, final OutfitColor color,
-			final String reference) {
+	private Sprite getOutfit(final String strcode, final OutfitColor color, final String reference) {
 		final SpriteCache cache = SpriteCache.get();
-		Sprite sprite = cache.get(reference);
+
+		// FIXME: set sprite to null until reference for extended outfit is fixed
+		//Sprite sprite = cache.get(reference);
+		Sprite sprite = null;
 
 		if (sprite == null) {
-			sprite = buildOutfit(code, color);
+			sprite = buildOutfit(strcode, color);
 			cache.add(reference, sprite);
 		}
 
 		return sprite;
 	}
-	*/
 
+	@Deprecated
 	private Sprite getOutfit(final int code, final int mouth, final int eyes, final int mask, final int hat,
 			final OutfitColor color) {
 		// Use the normalized string for the reference
@@ -441,6 +503,7 @@ public class OutfitStore {
 		return getOutfit(code, mouth, eyes, mask, hat, color, reference);
 	}
 
+	@Deprecated
 	private Sprite getOutfit(final int code, final int mouth, final int eyes, final int mask, final int hat,
 			final OutfitColor color, final String reference) {
 		final SpriteCache cache = SpriteCache.get();
@@ -457,6 +520,29 @@ public class OutfitStore {
 		return sprite;
 	}
 
+
+	/**
+	 * Get an outfit with color adjustment, such as a player in colored light.
+	 */
+	public Sprite getAdjustedOutfit(final String strcode, final OutfitColor color, final Color adjColor, final Composite blend) {
+		if (adjColor == null || blend == null) {
+			return getOutfit(strcode, color);
+		} else {
+			final String reference = buildReference(strcode, color.toString());
+			String fullRef = reference + ":" + adjColor.getRGB() + blend.toString();
+
+			// FIXME: set sprite to null until reference for extended outfit is fixed
+			//Sprite sprite = cache.get(fullRef);
+			Sprite sprite = null;
+
+			if (sprite == null) {
+				Sprite plain = getOutfit(strcode, color);
+				sprite = store.modifySprite(plain, adjColor, blend, fullRef);
+			}
+
+			return sprite;
+		}
+	}
 
 	/**
 	 * Get an outfit with color adjustment, such as a player in colored light.
@@ -488,6 +574,7 @@ public class OutfitStore {
 	}
 	*/
 
+	@Deprecated
 	public Sprite getAdjustedOutfit(final int code, final int mouth, final int eyes, final int mask, final int hat,
 			final OutfitColor color, final Color adjColor, final Composite blend) {
 		if ((adjColor == null) || (blend == null)) {
@@ -518,10 +605,13 @@ public class OutfitStore {
 	 * @param colorCode color information for outfit parts
 	 * @return outfit reference
 	 */
+	private String buildReference(final String strcode, final String colorCode) {
+		return "OUTFIT:" + strcode + "@" + colorCode;
+	}
+
+	@Deprecated
 	private String buildReference(final int code, final int mouth, final int eyes, final int mask, final int hat,
 			final String colorCode) {
-		// FIXME: how to build reference for extended parts
-		//Long code_ext = Long.toLong(code) + mouth + eyes + mask + hat;
 		return "OUTFIT:" + code + "@" + colorCode;
 	}
 }

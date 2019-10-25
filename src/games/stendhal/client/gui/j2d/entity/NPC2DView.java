@@ -68,8 +68,11 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 		try {
 			final RPEntity npc = entity;
 			final int code = npc.getOutfit();
+			final String strcode = npc.getExtOutfit();
 
-			if (code != RPEntity.OUTFIT_UNSET) {
+			if (strcode != null) {
+				return OutfitStore.get().getAdjustedOutfit(strcode, OutfitColor.PLAIN, info.getZoneColor(), info.getColorMethod());
+			} else if (code != RPEntity.OUTFIT_UNSET) {
 				return OutfitStore.get().getAdjustedOutfit(code, npc.getOutfitMouth(), npc.getOutfitEyes(), npc.getOutfitMask(),
 						npc.getOutfitHat(), OutfitColor.PLAIN, info.getZoneColor(), info.getColorMethod());
 			} else {

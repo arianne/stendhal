@@ -56,50 +56,19 @@ public abstract class DressedEntity extends RPEntity {
 	 *         sprite rather than an outfit combination.
 	 */
 	public Outfit getOutfit() {
-		if (has("outfit")) {
-			final int code = getInt("outfit");
-
-			final int body = code % 100;
-			final int dress = code / 100 % 100;
-			final int head = (int) (code / Math.pow(100, 2) % 100);
-			final int hair = (int) (code / Math.pow(100, 3) % 100);
-			final int detail = (int) (code / Math.pow(100, 4) % 100);
-
-			// extended layers
-			Integer mouth = null;
-			Integer eyes = null;
-			Integer mask = null;
-			Integer hat = null;
-			if (has("outfit_mouth")) mouth = getInt("outfit_mouth");
-			if (has("outfit_eyes")) eyes = getInt("outfit_eyes");
-			if (has("outfit_mask")) mask = getInt("outfit_mask");
-			if (has("outfit_hat")) hat = getInt("outfit_hat");
-
-			return new Outfit(body, dress, head, mouth, eyes, mask, hair, hat, detail);
+		if (has("outfit_ext")) {
+			return new Outfit(get("outfit_ext"));
+		} else if (has("outfit")) {
+			return new Outfit(Integer.toString(getInt("outfit")));
 		}
 		return null;
 	}
 
 	public Outfit getOriginalOutfit() {
-		if (has("outfit_org")) {
-			final int code = getInt("outfit_org");
-			final int body = code % 100;
-			final int dress = code / 100 % 100;
-			final int head = (int) (code / Math.pow(100, 2) % 100);
-			final int hair = (int) (code / Math.pow(100, 3) % 100);
-			final int detail = (int) (code / Math.pow(100, 4) % 100);
-
-			// extended layers
-			int mouth = 0;
-			int eyes = 0;
-			int mask = 0;
-			int hat = 0;
-			if (has("outfit_mouth_org")) mouth = getInt("outfit_mouth_org");
-			if (has("outfit_eyes_org")) eyes = getInt("outfit_eyes_org");
-			if (has("outfit_mask_org")) mask = getInt("outfit_mask_org");
-			if (has("outfit_hat_org")) hat = getInt("outfit_hat_org");
-
-			return new Outfit(body, dress, head, mouth, eyes, mask, hair, hat, detail);
+		if (has("outfit_ext_orig")) {
+			return new Outfit(get("outfit_ext_orig"));
+		} else if (has("outfit_org")) {
+			return new Outfit(Integer.toString(getInt("outfit_org")));
 		}
 
 		return null;
@@ -143,41 +112,44 @@ public abstract class DressedEntity extends RPEntity {
 		// if the new outfit is temporary and the player is not wearing
 		// a temporary outfit already, store the current outfit in a
 		// second slot so that we can return to it later.
-		if (temporary && !has("outfit_org")) {
-			put("outfit_org", get("outfit"));
-			put("outfit_mouth_org", get("outfit_mouth"));
-			put("outfit_eyes_org", get("outfit_eyes"));
-			put("outfit_mask_org", get("outfit_mask"));
-			put("outfit_hat_org", get("outfit_hat"));
+		if (temporary) {
+			if (has("outfit_ext") && !has("outfit_ext_orig")) {
+				put("outfit_ext_orig", get("outfit_ext"));
+			}
+			if (has("outfit") && !has("outfit_org")) {
+				put("outfit_org", get("outfit"));
+			}
 
-			// remember the old color selections.
-			for (String part : RECOLORABLE_OUTFIT_PARTS) {
-				String tmp = part + "_orig";
-				String color = get("outfit_colors", part);
-				if (color != null) {
-					put("outfit_colors", tmp, color);
-					if (!"hair".equals(part)) {
-						remove("outfit_colors", part);
+			if (has("outfit_ext") || has("outfit")) {
+				// remember the old color selections.
+				for (String part : RECOLORABLE_OUTFIT_PARTS) {
+					String tmp = part + "_orig";
+					String color = get("outfit_colors", part);
+					if (color != null) {
+						put("outfit_colors", tmp, color);
+						if (!"hair".equals(part)) {
+							remove("outfit_colors", part);
+						}
+					} else if (has("outfit_colors", tmp)) {
+						// old saved colors need to be cleared in any case
+						remove("outfit_colors", tmp);
 					}
-				} else if (has("outfit_colors", tmp)) {
-					// old saved colors need to be cleared in any case
-					remove("outfit_colors", tmp);
 				}
 			}
-		}
+		} else {
+			if (has("outfit_ext_orig")) {
+				remove("outfit_ext_orig");
+			}
+			if (has("outfit_org")) {
+				remove("outfit_org");
+			}
 
-		// if the new outfit is not temporary, remove the backup
-		if (!temporary && has("outfit_org")) {
-			remove("outfit_org");
-			remove("outfit_mouth_org");
-			remove("outfit_eyes_org");
-			remove("outfit_mask_org");
-			remove("outfit_hat_org");
-
-			// clear colors
-			for (String part : RECOLORABLE_OUTFIT_PARTS) {
-				if (has("outfit_colors", part)) {
-					remove("outfit_colors", part);
+			if (has("outfit_ext_orig") || has("outfit_org")) {
+				// clear colors
+				for (String part : RECOLORABLE_OUTFIT_PARTS) {
+					if (has("outfit_colors", part)) {
+						remove("outfit_colors", part);
+					}
 				}
 			}
 		}
@@ -185,11 +157,20 @@ public abstract class DressedEntity extends RPEntity {
 		// combine the old outfit with the new one, as the new one might
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
+
+		StringBuilder str = new StringBuilder();
+		str.append("body=" + newOutfit.getLayer("body") + ",");
+		str.append("dress=" + newOutfit.getLayer("dress") + ",");
+		str.append("head=" + newOutfit.getLayer("head") + ",");
+		str.append("mouth=" + newOutfit.getLayer("mouth") + ",");
+		str.append("eyes=" + newOutfit.getLayer("eyes") + ",");
+		str.append("mask=" + newOutfit.getLayer("mask") + ",");
+		str.append("hair=" + newOutfit.getLayer("hair") + ",");
+		str.append("hat=" + newOutfit.getLayer("hat") + ",");
+		str.append("detail=" + newOutfit.getLayer("detail"));
+
+		put("outfit_ext", str.toString());
 		put("outfit", newOutfit.getCode());
-		put("outfit_mouth", newOutfit.getLayer("mouth"));
-		put("outfit_eyes", newOutfit.getLayer("eyes"));
-		put("outfit_mask", newOutfit.getLayer("mask"));
-		put("outfit_hat", newOutfit.getLayer("hat"));
 		notifyWorldAboutChanges();
 	}
 

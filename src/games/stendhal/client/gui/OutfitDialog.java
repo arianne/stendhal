@@ -22,7 +22,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -106,6 +108,61 @@ class OutfitDialog extends JDialog {
 	/** Selector for the sprite direction. */
 	private JSlider directionSlider;
 
+
+	/**
+	 * Create a new OutfitDialog.
+	 */
+	OutfitDialog(final Frame parent, final String title, final String strcode, final OutfitColor outfitColor) {
+		super(parent, false);
+
+		this.outfitColor = outfitColor;
+
+		// Needs to be after initializing the models
+		initComponents();
+		applyStyle();
+		setTitle(title);
+
+		// Follow the model changes; the whole outfit follows them all
+		hair.addListener(hairLabel);
+		hair.addListener(outfitLabel);
+		eyes.addListener(eyesLabel);
+		eyes.addListener(outfitLabel);
+		mouth.addListener(mouthLabel);
+		mouth.addListener(outfitLabel);
+		head.addListener(headLabel);
+		head.addListener(outfitLabel);
+		body.addListener(bodyLabel);
+		body.addListener(outfitLabel);
+		dress.addListener(dressLabel);
+		dress.addListener(outfitLabel);
+		hat.addListener(outfitLabel);
+		hat.addListener(hatLabel);
+		mask.addListener(maskLabel);
+		mask.addListener(outfitLabel);
+
+		final Map<String, Integer> layer_map = new HashMap<>();
+		for (String layer: strcode.split(",")) {
+			if (layer.contains("=")) {
+				final String[] key = layer.split("=");
+				layer_map.put(key[0], Integer.parseInt(key[1]));
+			}
+		}
+
+		// analyse & set current outfit; this will update labels as well
+		body.setIndex(checkIndex(layer_map.get("body"), body));
+		dress.setIndex(checkIndex(layer_map.get("dress"), dress));
+		head.setIndex(checkIndex(layer_map.get("head"), head));
+		mouth.setIndex(checkIndex(layer_map.get("mouth"), mouth));
+		eyes.setIndex(checkIndex(layer_map.get("eyes"), eyes));
+		mask.setIndex(checkIndex(layer_map.get("mask"), mask));
+		hair.setIndex(checkIndex(layer_map.get("hair"), hair));
+		hat.setIndex(checkIndex(layer_map.get("hat"), hat));
+
+		pack();
+		WindowUtils.closeOnEscape(this);
+		WindowUtils.trackLocation(this, "outfit", false);
+	}
+
 	/**
 	 * Create a new OutfitDialog.
 	 *
@@ -115,6 +172,7 @@ class OutfitDialog extends JDialog {
 	 * @param outfitColor coloring information. <b>Note that outfitColor
 	 *	can be modified by the dialog.</b>
 	 */
+	@Deprecated
 	OutfitDialog(final Frame parent, final String title, int outfit, final int mouthsIndex,
 			final int eyesIndex, final int masksIndex, final int hatsIndex,
 			final OutfitColor outfitColor) {
@@ -634,11 +692,18 @@ class OutfitDialog extends JDialog {
 
 		RPAction rpOutfitAction = new RPAction();
 
+		final StringBuilder sb = new StringBuilder();
+		sb.append("body=" + Integer.toString(body.getIndex()) + ",");
+		sb.append("dress=" + Integer.toString(dress.getIndex()) + ",");
+		sb.append("head=" + Integer.toString(head.getIndex()) + ",");
+		sb.append("mouth=" + Integer.toString(mouth.getIndex()) + ",");
+		sb.append("eyes=" + Integer.toString(eyes.getIndex()) + ",");
+		sb.append("mask=" + Integer.toString(mask.getIndex()) + ",");
+		sb.append("hair=" + Integer.toString(hair.getIndex()) + ",");
+		sb.append("hat=" + Integer.toString(hat.getIndex()) + ",");
+
 		rpOutfitAction.put(Actions.TYPE, "outfit");
-		rpOutfitAction.put(Actions.VALUE, body.getIndex()
-				+ (dress.getIndex() * 100)
-				+ (head.getIndex() * 100 * 100)
-				+ (hair.getIndex() * 100 * 100 * 100));
+		rpOutfitAction.put(Actions.VALUE, sb.toString());
 
 		/* hair color */
 		color = outfitColor.getColor(OutfitColor.HAIR);
@@ -664,11 +729,6 @@ class OutfitDialog extends JDialog {
 			rpOutfitAction.put(OutfitColor.EYES, color.getRGB());
 		}
 
-		rpOutfitAction.put("outfit_mouth", mouth.getIndex());
-		rpOutfitAction.put("outfit_eyes", eyes.getIndex());
-		rpOutfitAction.put("outfit_mask", mask.getIndex());
-		rpOutfitAction.put("outfit_hat", hat.getIndex());
-
 		client.send(rpOutfitAction);
 	}
 
@@ -693,11 +753,46 @@ class OutfitDialog extends JDialog {
 
 	/**
 	 * Set the state of the selector.
+	 */
+	void setState(final String strcode, final OutfitColor colors) {
+		// Copy the original colors
+		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
+		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
+		outfitColor.setColor(OutfitColor.EYES, colors.getColor(OutfitColor.EYES));
+		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
+
+		final Map<String, Integer> layer_map = new HashMap<>();
+		for (String layer: strcode.split(",")) {
+			if (layer.contains("=")) {
+				final String[] key = layer.split("=");
+				layer_map.put(key[0], Integer.parseInt(key[1]));
+			}
+		}
+
+		// analyse & set current outfit; this will update labels as well
+		body.setIndex(layer_map.get("body"));
+		dress.setIndex(layer_map.get("dress"));
+		head.setIndex(layer_map.get("head"));
+		mouth.setIndex(layer_map.get("mouth"));
+		eyes.setIndex(layer_map.get("eyes"));
+		mask.setIndex(layer_map.get("mask"));
+		hair.setIndex(layer_map.get("hair"));
+		hat.setIndex(layer_map.get("hat"));
+
+		// Color selectors, and their toggles
+		for (ResetListener l : resetListeners) {
+			l.reset();
+		}
+	}
+
+	/**
+	 * Set the state of the selector.
 	 *
 	 * @param outfit outfit code
 	 * @param colors color state. Unlike the one passed to the constructor, this
 	 * 	will not be modified
 	 */
+	@Deprecated
 	void setState(int outfit, final int mouthsIndex, final int eyesIndex, final int masksIndex,
 			final int hatsIndex, OutfitColor colors) {
 		// Copy the original colors

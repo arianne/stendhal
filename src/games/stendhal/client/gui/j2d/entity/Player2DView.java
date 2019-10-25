@@ -146,9 +146,17 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
 			ZoneInfo info = ZoneInfo.get();
 
+			final String strcode = entity.getExtOutfit();
+			final int code = entity.getOutfit();
+
 			Sprite outfit;
-			outfit = store.getAdjustedOutfit(entity.getOutfit(), entity.getOutfitMouth(), entity.getOutfitEyes(),
-					entity.getOutfitMask(), entity.getOutfitHat(), color, info.getZoneColor(), info.getColorMethod());
+
+			if (strcode == null) {
+				outfit = store.getAdjustedOutfit(code, entity.getOutfitMouth(), entity.getOutfitEyes(),
+						entity.getOutfitMask(), entity.getOutfitHat(), color, info.getZoneColor(), info.getColorMethod());
+			} else {
+				outfit = store.getAdjustedOutfit(strcode, color, info.getZoneColor(), info.getColorMethod());
+			}
 
 			if (entity.hasStatus(StatusID.ZOMBIE)) {
 				outfit = SpriteStore.get().modifySprite(outfit, ZOMBIE_COLOR, Blend.TrueColor, null);

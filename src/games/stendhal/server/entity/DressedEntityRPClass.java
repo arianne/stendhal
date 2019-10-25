@@ -24,18 +24,21 @@ public class DressedEntityRPClass {
 		final RPClass entity = new RPClass("dressed_entity");
 
 		entity.isA("rpentity");
+		entity.addAttribute("outfit_ext", Type.STRING);
+		entity.addAttribute("outfit_ext_orig", Type.STRING, Definition.PRIVATE);
 		entity.addAttribute("outfit", Type.INT);
 		entity.addAttribute("outfit_org", Type.INT, Definition.PRIVATE);
 		entity.addAttribute("outfit_colors", Type.MAP);
 		entity.addAttribute("outfit_expire_age", Type.INT, Definition.HIDDEN);
 
-		entity.addAttribute("outfit_mouth", Type.INT);
-		entity.addAttribute("outfit_mouth_org", Type.INT, Definition.PRIVATE);
-		entity.addAttribute("outfit_eyes", Type.INT);
-		entity.addAttribute("outfit_eyes_org", Type.INT, Definition.PRIVATE);
-		entity.addAttribute("outfit_mask", Type.INT);
-		entity.addAttribute("outfit_mask_org", Type.INT, Definition.PRIVATE);
-		entity.addAttribute("outfit_hat", Type.INT);
-		entity.addAttribute("outfit_hat_org", Type.INT, Definition.PRIVATE);
+		/* unused */
+		entity.addAttribute("outfit_mouth", Type.INT, Definition.VOLATILE);
+		entity.addAttribute("outfit_mouth_org", Type.INT, (byte) (Definition.PRIVATE|Definition.VOLATILE));
+		entity.addAttribute("outfit_eyes", Type.INT, Definition.VOLATILE);
+		entity.addAttribute("outfit_eyes_org", Type.INT, (byte) (Definition.PRIVATE|Definition.VOLATILE));
+		entity.addAttribute("outfit_mask", Type.INT, Definition.VOLATILE);
+		entity.addAttribute("outfit_mask_org", Type.INT, (byte) (Definition.PRIVATE|Definition.VOLATILE));
+		entity.addAttribute("outfit_hat", Type.INT, Definition.VOLATILE);
+		entity.addAttribute("outfit_hat_org", Type.INT, (byte) (Definition.PRIVATE|Definition.VOLATILE));
 	}
 }

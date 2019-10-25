@@ -103,7 +103,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(0), ou.getLayer("hat"));
 
 		final String outfitnumber = "0501020304";
-		ou = new Outfit(Integer.parseInt(outfitnumber));
+		ou = new Outfit(outfitnumber);
 		assertEquals(Integer.valueOf(5), ou.getLayer("detail"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("hair"));
 		assertEquals(Integer.valueOf(2), ou.getLayer("head"));
