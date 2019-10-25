@@ -383,15 +383,15 @@ public class Outfit {
 		Integer dress = layers.get("dress");
 		Integer body = layers.get("body");
 
-		return (hat < Outfits.HAT_OUTFITS) && (hat >= 0)
-			&& (mask < Outfits.MASK_OUTFITS) && (mask >= 0)
-			&& (eyes < Outfits.EYES_OUTFITS) && (eyes >= 0)
-			&& (mouth < Outfits.MOUTH_OUTFITS) && (mouth >= 0)
+		return (hat == null || (hat < Outfits.HAT_OUTFITS) && (hat >= 0))
+			&& (mask == null || (mask < Outfits.MASK_OUTFITS) && (mask >= 0))
+			&& (eyes == null || (eyes < Outfits.EYES_OUTFITS) && (eyes >= 0))
+			&& (mouth == null || (mouth < Outfits.MOUTH_OUTFITS) && (mouth >= 0))
 			&& (detail == null || detail == 0)
-			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
-		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
-			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
-			&& (body < Outfits.BODY_OUTFITS) && (body >= 0);
+			&& (hair == null || (hair < Outfits.HAIR_OUTFITS) && (hair >= 0))
+		    && (head == null || (head < Outfits.HEAD_OUTFITS) && (head >= 0))
+			&& (dress == null || (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0))
+			&& (body == null || (body < Outfits.BODY_OUTFITS) && (body >= 0));
 	}
 
 	/**
