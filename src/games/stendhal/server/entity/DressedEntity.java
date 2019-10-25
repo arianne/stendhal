@@ -75,13 +75,21 @@ public abstract class DressedEntity extends RPEntity {
 			if (has("outfit_mask")) mask = getInt("outfit_mask");
 			if (has("outfit_hat")) hat = getInt("outfit_hat");
 
-			return new Outfit(hat, mask, eyes, mouth, detail, hair, head, dress, body);
+			return new Outfit(body, dress, head, mouth, eyes, mask, hair, hat, detail);
 		}
 		return null;
 	}
 
 	public Outfit getOriginalOutfit() {
 		if (has("outfit_org")) {
+			final int code = getInt("outfit_org");
+			final int body = code % 100;
+			final int dress = code / 100 % 100;
+			final int head = (int) (code / Math.pow(100, 2) % 100);
+			final int hair = (int) (code / Math.pow(100, 3) % 100);
+			final int detail = (int) (code / Math.pow(100, 4) % 100);
+
+			// extended layers
 			int mouth = 0;
 			int eyes = 0;
 			int mask = 0;
@@ -90,7 +98,8 @@ public abstract class DressedEntity extends RPEntity {
 			if (has("outfit_eyes_org")) eyes = getInt("outfit_eyes_org");
 			if (has("outfit_mask_org")) mask = getInt("outfit_mask_org");
 			if (has("outfit_hat_org")) hat = getInt("outfit_hat_org");
-			return new Outfit(getInt("outfit_org"), mouth, eyes, mask, hat);
+
+			return new Outfit(body, dress, head, mouth, eyes, mask, hair, hat, detail);
 		}
 
 		return null;
@@ -182,6 +191,41 @@ public abstract class DressedEntity extends RPEntity {
 		put("outfit_mask", newOutfit.getLayer("mask"));
 		put("outfit_hat", newOutfit.getLayer("hat"));
 		notifyWorldAboutChanges();
+	}
+
+	/**
+	 * Makes this player wear the given outfit. If the given outfit contains
+	 * null parts, the current outfit will be kept for these parts. If the
+	 * outfit change includes any colors, they should be changed <b>after</b>
+	 * calling this.
+	 *
+	 * Currently supported layers should be in this order:
+	 * 		body, dress, head, mouth, eyes, mask, hair, hat, detail
+	 *
+	 * @param layers
+	 *            Integer indexes of each outfit layer or null.
+	 */
+	public void setOutfit(final Integer... layers) {
+		setOutfit(new Outfit(layers), false);
+	}
+
+	/**
+	 * Makes this player wear the given outfit. If the given outfit contains
+	 * null parts, the current outfit will be kept for these parts. If the
+	 * outfit change includes any colors, they should be changed <b>after</b>
+	 * calling this.
+	 *
+	 * Currently supported layers should be in this order:
+	 * 		body, dress, head, mouth, eyes, mask, hair, hat, detail
+	 *
+	 * @param temporary
+	 *            If true, the original outfit will be stored so that it can be
+	 *            restored later.
+	 * @param layers
+	 *            Integer indexes of each outfit layer or null.
+	 */
+	public void setOutfit(final boolean temporary, final Integer... layers) {
+		setOutfit(new Outfit(layers), temporary);
 	}
 
 	// Hack to preserve detail layer

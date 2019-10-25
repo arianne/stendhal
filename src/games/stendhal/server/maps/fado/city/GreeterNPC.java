@@ -21,7 +21,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -81,7 +80,7 @@ public class GreeterNPC implements ZoneConfigurator {
 			}
 		};
 
-		greeterNPC.setOutfit(new Outfit(0, 5, 1, 6, 1));
+		greeterNPC.setOutfit(1, 6, 1, null, 0, null, 5, null, 0);
 		greeterNPC.setPosition(39, 29);
 		greeterNPC.initHP(1000);
 		greeterNPC.setDescription("You see Xhiphin Zohos. He is a helpful citizen of Fado.");

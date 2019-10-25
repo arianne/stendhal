@@ -22,7 +22,6 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -85,7 +84,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
+		npc.setOutfit(13, 32, 7, null, 0, null, 4, null, 0);
 		npc.setPosition(3, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
