@@ -200,7 +200,12 @@ public class Outfit {
 	 *            the outfit that should be worn 'under' the current one
 	 * @return the combined outfit
 	 */
-	public Outfit putOver(final Outfit other) {
+	public Outfit putOver(Outfit old) {
+		// make sure old outfit is not null
+		if (old == null) {
+			old = new Outfit();
+		}
+
 		Integer newBody = layers.get("body");
 		Integer newDress = layers.get("dress");
 		Integer newHead = layers.get("head");
