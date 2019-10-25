@@ -415,7 +415,7 @@ public class Outfit {
 	 */
 	public boolean isCompatibleWithClothes() {
 		final Integer body = layers.get("body");
-		return !(body > 80 && body < 99);
+		return body == null || !(body > 80 && body < 99);
 	}
 
 	@Override
