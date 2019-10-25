@@ -225,7 +225,7 @@ public class PizzaDeliveryTest {
 		npc1 = SingletonRepository.getNPCList().get("Leander");
 		en = npc1.getEngine();
 
-		final Outfit SLIME = new Outfit(Integer.valueOf(00), Integer.valueOf(00), Integer.valueOf(00), Integer.valueOf(00), null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(91));
+		final Outfit SLIME = new Outfit(91, 0, 98);
 		player.setOutfit(SLIME);
 
 		en.step(player, "hi");

@@ -79,8 +79,8 @@ public class BalloonForBobbyTest {
 
 		npc = SingletonRepository.getNPCList().get("Bobby");
 		en = npc.getEngine();
-		Outfit outfitNoBalloon = new Outfit(4, 3, 2, 1, 0, 1, 2, 3, 4);
-		Outfit outfitWithBalloon = new Outfit(4, 3, 2, 1, 1, 2, 3, 4, 5);
+		Outfit outfitNoBalloon = new Outfit(8, 7, 6, 5, 4, 3, 2, 1, 0);
+		Outfit outfitWithBalloon = new Outfit(9, 8, 7, 6, 5, 4, 3, 2, 1);
 
 		// -----------------------------------------------
 
@@ -167,8 +167,8 @@ public class BalloonForBobbyTest {
 
 		npc = SingletonRepository.getNPCList().get("Bobby");
 		en = npc.getEngine();
-		Outfit outfitNoBalloon = new Outfit(0,1,2,3,4);
-		Outfit outfitWithBalloon = new Outfit(1,2,3,4,5);
+		Outfit outfitNoBalloon = new Outfit(4, 3, 2, null, 0, null, 1, null, 0);
+		Outfit outfitWithBalloon = new Outfit(5, 4, 3, null, 0, null, 2, null, 1);
 
 		// Mine Town weeks are on: it should not matter if player has a balloon or not
 		StendhalQuestSystem.get().loadQuest(new MineTownRevivalWeeks());

@@ -42,10 +42,10 @@ public class NakedConditionTest {
 	@Test
 	public final void testFire() {
 		final Player bob = PlayerTestHelper.createPlayer("player");
-		bob.setOutfit(0, 0, 0, 0, 0);
+		bob.setOutfit(0, 0, 0, null, 0, null, 0, null, 0);
 		assertTrue(bob.getOutfit().isNaked());
 		assertTrue(new NakedCondition().fire(bob, null, null));
-		bob.setOutfit(100, 0, 0, 0, 0);
+		bob.setOutfit(0, 1, 0, null, 0, null, 0, null, 100);
 		assertFalse("finally dressed", bob.getOutfit().isNaked());
 		assertFalse("should be false when dressed", new NakedCondition().fire(
 				bob, null, null));

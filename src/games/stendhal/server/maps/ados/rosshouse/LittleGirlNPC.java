@@ -84,7 +84,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setOutfit(0, 4, 7, 32, 13);
+		npc.setOutfit(13, 32, 7, null, 0, null, 4, null, 0);
 		npc.setPosition(3, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
