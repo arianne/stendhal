@@ -21,7 +21,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -83,7 +82,7 @@ public class FoundGirl implements LoadableContent {
 		};
 
 		//	npcs.add(npc);
-		npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
+		npc.setOutfit(0, 4, 7, 32, 13);
 		npc.setPosition(4, 17);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

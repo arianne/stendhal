@@ -25,7 +25,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.transformer.PlayerTransformer;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -107,7 +106,7 @@ public abstract class PlayerTestHelper {
 	public static Player createPlayerWithOutFit(final String name) {
 		final Player player = createPlayer(name);
 
-		player.setOutfit(new Outfit(0, 1, 1, 1, 1));
+		player.setOutfit(0, 1, 1, 1, 1);
 
 		return player;
 	}

@@ -21,7 +21,6 @@ import java.util.Map;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -77,7 +76,7 @@ public class SmallBoyNPC implements ZoneConfigurator {
 
 		};
 
-		boynpc.setOutfit(new Outfit(0, 33, 18, 3, 0));
+		boynpc.setOutfit(0, 33, 18, 3, 0);
 		boynpc.setPosition(42, 30);
 		boynpc.setDirection(Direction.RIGHT);
 		boynpc.initHP(100);

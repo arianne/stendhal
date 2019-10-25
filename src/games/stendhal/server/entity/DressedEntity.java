@@ -184,6 +184,41 @@ public abstract class DressedEntity extends RPEntity {
 		notifyWorldAboutChanges();
 	}
 
+	/**
+	 * Makes this player wear the given outfit. If the given outfit contains
+	 * null parts, the current outfit will be kept for these parts. If the
+	 * outfit change includes any colors, they should be changed <b>after</b>
+	 * calling this.
+	 *
+	 * Currently supported layers should be in this order:
+	 * 		body, dress, head, mouth, eyes, mask, hair, hat, detail
+	 *
+	 * @param layers
+	 *            Integer indexes of each outfit layer or null.
+	 */
+	public void setOutfit(final Integer... layers) {
+		setOutfit(new Outfit(layers), false);
+	}
+
+	/**
+	 * Makes this player wear the given outfit. If the given outfit contains
+	 * null parts, the current outfit will be kept for these parts. If the
+	 * outfit change includes any colors, they should be changed <b>after</b>
+	 * calling this.
+	 *
+	 * Currently supported layers should be in this order:
+	 * 		body, dress, head, mouth, eyes, mask, hair, hat, detail
+	 *
+	 * @param temporary
+	 *            If true, the original outfit will be stored so that it can be
+	 *            restored later.
+	 * @param layers
+	 *            Integer indexes of each outfit layer or null.
+	 */
+	public void setOutfit(final boolean temporary, final Integer... layers) {
+		setOutfit(new Outfit(layers), temporary);
+	}
+
 	// Hack to preserve detail layer
 	public void setOutfitWithDetail(final Outfit outfit) {
 		setOutfitWithDetail(outfit, false);
