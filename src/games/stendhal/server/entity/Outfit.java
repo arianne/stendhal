@@ -140,7 +140,12 @@ public class Outfit {
 	}
 
 	public Integer getLayer(final String layerName) {
-		return layers.get(layerName);
+		Integer layer = layers.get(layerName);
+		if (layer == null) {
+			layer = 0;
+		}
+
+		return layer;
 	}
 
 	/**
