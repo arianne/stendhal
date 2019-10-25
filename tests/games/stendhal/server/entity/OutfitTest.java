@@ -89,7 +89,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(0), ou.getLayer("mask"));
 		assertEquals(Integer.valueOf(0), ou.getLayer("hat"));
 
-		ou = new Outfit(501020304, 4, 3, 2, 1);
+		ou = new Outfit(501020304);
 		assertEquals(Integer.valueOf(5), ou.getLayer("detail"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("hair"));
 		assertEquals(Integer.valueOf(2), ou.getLayer("head"));
@@ -97,24 +97,24 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(4), ou.getLayer("body"));
 
 		// extended layers
-		assertEquals(Integer.valueOf(4), ou.getLayer("mouth"));
-		assertEquals(Integer.valueOf(3), ou.getLayer("eyes"));
-		assertEquals(Integer.valueOf(2), ou.getLayer("mask"));
-		assertEquals(Integer.valueOf(1), ou.getLayer("hat"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("mouth"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("eyes"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("mask"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("hat"));
 
 		final String outfitnumber = "0501020304";
-		ou = new Outfit(Integer.parseInt(outfitnumber), 4, 3, 2, 1);
+		ou = new Outfit(Integer.parseInt(outfitnumber));
 		assertEquals(Integer.valueOf(5), ou.getLayer("detail"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("hair"));
 		assertEquals(Integer.valueOf(2), ou.getLayer("head"));
 		assertEquals(Integer.valueOf(3), ou.getLayer("dress"));
 		assertEquals(Integer.valueOf(4), ou.getLayer("body"));
 
-		// new layers
-		assertEquals(Integer.valueOf(4), ou.getLayer("mouth"));
-		assertEquals(Integer.valueOf(3), ou.getLayer("eyes"));
-		assertEquals(Integer.valueOf(2), ou.getLayer("mask"));
-		assertEquals(Integer.valueOf(1), ou.getLayer("hat"));
+		// extended layers
+		assertEquals(Integer.valueOf(0), ou.getLayer("mouth"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("eyes"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("mask"));
+		assertEquals(Integer.valueOf(0), ou.getLayer("hat"));
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testPutOver() {
-		Outfit orig = new Outfit(12345678, 4, 3, 2, 1);
+		Outfit orig = new Outfit(12345678);
 		final Outfit pullover = new Outfit();
 		assertEquals(12345678, orig.getCode());
 
@@ -309,29 +309,29 @@ public class OutfitTest {
 
 	/**
 	 * Tests for removeOutfit
+	 *
+	 * TODO: make tests more extensive for extended layers
 	 */
 	@Test
 	public void testRemoveOutfit() {
-		Outfit orig = new Outfit(12345678, 9, 10, 11, 12);
+		Outfit orig = new Outfit(12345678);
 		Outfit result = orig.removeOutfit(null, null, null, null, null, null, null, null, 12);
-		assertEquals(Integer.valueOf(0), result.getLayer("detail"));
-		assertEquals(Integer.valueOf(12), result.getLayer("hair"));
-		assertEquals(Integer.valueOf(34), result.getLayer("head"));
-		assertEquals(Integer.valueOf(56), result.getLayer("dress"));
 		assertEquals(Integer.valueOf(78), result.getLayer("body"));
-
-		// new layers
-		assertEquals(Integer.valueOf(9), result.getLayer("mouth"));
-		assertEquals(Integer.valueOf(10), result.getLayer("eyes"));
-		assertEquals(Integer.valueOf(11), result.getLayer("mask"));
-		assertEquals(Integer.valueOf(12), result.getLayer("hat"));
+		assertEquals(Integer.valueOf(56), result.getLayer("dress"));
+		assertEquals(Integer.valueOf(34), result.getLayer("head"));
+		assertEquals(Integer.valueOf(0), result.getLayer("mouth"));
+		assertEquals(Integer.valueOf(0), result.getLayer("eyes"));
+		assertEquals(Integer.valueOf(0), result.getLayer("mask"));
+		assertEquals(Integer.valueOf(12), result.getLayer("hair"));
+		assertEquals(Integer.valueOf(0), result.getLayer("hat"));
+		assertEquals(Integer.valueOf(0), result.getLayer("detail"));
 
 		orig = new Outfit(null, 56, 34, null, null, null, 12, null, null);
 		result = orig.removeOutfit(null, null, null, null, null, null, null, null, 1);
 		assertEquals(12345600, result.getCode());
 
-		orig = new Outfit(12345678, 9, 10, 11, 12);
-		result = orig.removeOutfit(12345678, 9, 10, 11, 12);
+		orig = new Outfit(12345678);
+		result = orig.removeOutfit(new Outfit(12345678));
 		assertEquals(0, result.getCode());
 	}
 }
