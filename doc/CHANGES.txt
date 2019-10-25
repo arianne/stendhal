@@ -11,6 +11,7 @@ Changelog
   - dress 91-98
   - hair 47-48
 - new/reworked NPCs:
+  - Conual now wears a prison jumpsuit
   - Marla (womanexoticdressnpc)
   - Easter Bunny (easterbunnynpc)
   - Hiro (sokobannpc)

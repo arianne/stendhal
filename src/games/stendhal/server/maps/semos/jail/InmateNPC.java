@@ -46,7 +46,7 @@ public class InmateNPC implements ZoneConfigurator  {
 				addGoodbye();
 			}};
 			npc.setPosition(13, 3);
-			npc.setEntityClass("militiaelfnpc");
+			npc.setOutfit(0, 89, 89, 0, 22, 0, 7, 998);
 			npc.setDirection(Direction.DOWN);
 			npc.setDescription("You see Conual. He is jailed for ages now. Seems like he really did something badly wrong!");
 			zone.add(npc);
