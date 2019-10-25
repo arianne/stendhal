@@ -57,15 +57,25 @@ public abstract class DressedEntity extends RPEntity {
 	 */
 	public Outfit getOutfit() {
 		if (has("outfit")) {
-			int mouth = 0;
-			int eyes = 0;
-			int mask = 0;
-			int hat = 0;
+			final int code = getInt("outfit");
+
+			final int body = code % 100;
+			final int dress = code / 100 % 100;
+			final int head = (int) (code / Math.pow(100, 2) % 100);
+			final int hair = (int) (code / Math.pow(100, 3) % 100);
+			final int detail = (int) (code / Math.pow(100, 4) % 100);
+
+			// extended layers
+			Integer mouth = null;
+			Integer eyes = null;
+			Integer mask = null;
+			Integer hat = null;
 			if (has("outfit_mouth")) mouth = getInt("outfit_mouth");
 			if (has("outfit_eyes")) eyes = getInt("outfit_eyes");
 			if (has("outfit_mask")) mask = getInt("outfit_mask");
 			if (has("outfit_hat")) hat = getInt("outfit_hat");
-			return new Outfit(getInt("outfit"), mouth, eyes, mask, hat);
+
+			return new Outfit(hat, mask, eyes, mouth, detail, hair, head, dress, body);
 		}
 		return null;
 	}
@@ -167,10 +177,10 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
-		put("outfit_mouth", newOutfit.getMouth());
-		put("outfit_eyes", newOutfit.getEyes());
-		put("outfit_mask", newOutfit.getMask());
-		put("outfit_hat", newOutfit.getHat());
+		put("outfit_mouth", newOutfit.getLayer("mouth"));
+		put("outfit_eyes", newOutfit.getLayer("eyes"));
+		put("outfit_mask", newOutfit.getLayer("mask"));
+		put("outfit_hat", newOutfit.getLayer("hat"));
 		notifyWorldAboutChanges();
 	}
 
@@ -193,10 +203,10 @@ public abstract class DressedEntity extends RPEntity {
 
 			// re-add detail
 			put("outfit", outfitCode);
-			put("outfit_mouth", outfit.getMouth());
-			put("outfit_eyes", outfit.getEyes());
-			put("outfit_mask", outfit.getMask());
-			put("outfit_hat", outfit.getHat());
+			put("outfit_mouth", outfit.getLayer("mouth"));
+			put("outfit_eyes", outfit.getLayer("eyes"));
+			put("outfit_mask", outfit.getLayer("mask"));
+			put("outfit_hat", outfit.getLayer("hat"));
 			notifyWorldAboutChanges();
 		}
 	}

@@ -48,11 +48,11 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 /**
- * QUEST: Mrs Yeti Needs Help
+ * QUEST: Mrs. Yeti Needs Help
  *
  * PARTICIPANTS:
  * <ul>
- * <li>Mrs Yeti, who lives in a snowy dungeon</li>
+ * <li>Mrs. Yeti, who lives in a snowy dungeon</li>
  * <li>Salva Mattori, Healer at magic city</li>
  * <li>Hackim Easso, Blacksmith assistant semos</li>
  * </ul>
@@ -102,14 +102,14 @@ import games.stendhal.server.maps.Region;
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"I am mournful, because Mr Yeti turns away from me. I need a special potion to make him happy and some present to please him. Will you help?",
+				"I am mournful, because Mr. Yeti turns away from me. I need a special potion to make him happy and some present to please him. Will you help?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"Thank you for your help! Now Mr Yeti and I are very happy again.",
+				"Thank you for your help! Now Mr. Yeti and I are very happy again.",
 				null);
 
 
@@ -137,7 +137,7 @@ import games.stendhal.server.maps.Region;
 
     	npc.add(ConversationStates.ATTENDING, "potion",
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-			    ConversationStates.ATTENDING, "I will help you make this potion, Mrs Yeti is an old friend of mine. But the blade on "
+			    ConversationStates.ATTENDING, "I will help you make this potion, Mrs. Yeti is an old friend of mine. But the blade on "
 				+ "my magic knife has snapped yet again. I need another. I get mine from Hackim Easso of Semos City, will you go to him and "
 				+ "ask him to make another knife? Just say my name: #salva",
 				new SetQuestAction(QUEST_SLOT, "hackim"));
@@ -177,7 +177,7 @@ import games.stendhal.server.maps.Region;
 								 new PlayerHasItemWithHimCondition("kokuda"),
 								 new PlayerHasItemWithHimCondition("wine"),
 								 new PlayerHasItemWithHimCondition("black pearl")),
-				ConversationStates.ATTENDING, "I see you have all the items for the potion. *mutters magic words* And now, ta da! You have the love potion. Wish Mrs Yeti good luck from me!",
+				ConversationStates.ATTENDING, "I see you have all the items for the potion. *mutters magic words* And now, ta da! You have the love potion. Wish Mrs. Yeti good luck from me!",
 				new MultipleActions(potionactions));
 
 		npc.add(ConversationStates.ATTENDING,  Arrays.asList("salva","potion"),
@@ -284,21 +284,21 @@ import games.stendhal.server.maps.Region;
 				public void fire(final Player player, final Sentence sentence,
 								 final EventRaiser npc) {
 					if(!player.hasPet()){
-						npc.say("That's a cute sheep you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");
+						npc.say("That's a cute sheep you have there, but I need a baby dragon for Mr. Yeti. Try Morgrin at the magic school.");
 						return;
 					}
 					Pet pet = player.getPet();
 					String petType = pet.get("type");
 					if("baby_dragon".equals(petType)) {
 						player.removePet(pet);
-						npc.say("Ah you brought the baby dragon! It will make such a wonderful stew. Baby dragon stew is my speciality and Mr Yeti loves it! You've made us both very happy! Come back in a day to see me for a #reward.");
+						npc.say("Ah you brought the baby dragon! It will make such a wonderful stew. Baby dragon stew is my speciality and Mr. Yeti loves it! You've made us both very happy! Come back in a day to see me for a #reward.");
 						player.addKarma(5.0);
 						player.addXP(500);
 						pet.delayedDamage(pet.getHP(), "Mrs. Yeti");
 						player.setQuest(QUEST_SLOT,"reward;"+System.currentTimeMillis());
 						player.notifyWorldAboutChanges();
 					} else {
-						npc.say("That's a cute pet you have there, but I need a baby dragon for Mr Yeti. Try Morgrin at the magic school.");
+						npc.say("That's a cute pet you have there, but I need a baby dragon for Mr. Yeti. Try Morgrin at the magic school.");
 					}
 				}
 			});
@@ -321,7 +321,7 @@ import games.stendhal.server.maps.Region;
 							 new NotCondition(new TimePassedCondition(QUEST_SLOT,1,DELAY_IN_MINUTES))),
 			ConversationStates.ATTENDING,
 			null,
-			new SayTimeRemainingAction(QUEST_SLOT,1,DELAY_IN_MINUTES,"Hello I am still busy with that baby dragon stew for Mr Yeti. You can get your reward in"));
+			new SayTimeRemainingAction(QUEST_SLOT,1,DELAY_IN_MINUTES,"Hello I am still busy with that baby dragon stew for Mr. Yeti. You can get your reward in"));
 
 
 		npc.add(
@@ -339,8 +339,8 @@ import games.stendhal.server.maps.Region;
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
-				"Help Mrs Yeti",
-				"Mrs Yeti is really unhappy with her current lovelife because her husband turned away from her. Now the couple is in deep trouble. Just a special love potion can help Mrs Yeti to get her husband back.",
+				"Help Mrs. Yeti",
+				"Mrs. Yeti is really unhappy with her current lovelife because her husband turned away from her. Now the couple is in deep trouble. Just a special love potion can help Mrs. Yeti to get her husband back.",
 				true);
 		startQuest();
 		makePotion();

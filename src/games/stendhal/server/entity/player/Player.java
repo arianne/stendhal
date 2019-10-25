@@ -1631,10 +1631,10 @@ public class Player extends DressedEntity implements UseListener {
 		if (originalOutfit != null) {
 
 			// do not restore details layer, unless the detail is still present
-			if (originalOutfit.getDetail() > 0) {
+			if (originalOutfit.getLayer("detail") > 0) {
 				final Outfit currentOutfit = getOutfit();
-				if (!currentOutfit.getDetail().equals(
-						originalOutfit.getDetail())) {
+				if (!currentOutfit.getLayer("detail").equals(
+						originalOutfit.getLayer("detail"))) {
 					originalOutfit.removeDetail();
 				}
 			}
