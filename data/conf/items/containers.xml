@@ -15,12 +15,32 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
+<!--  <slot name="content"/>  -->
+<!--  <slot name="bag"/> -->
+<!--  <slot name="trade"/> -->
       <slot name="ground"/>
-<!--       <slot name="content"/>  -->
       <slot name="back"/>
-<!--      <slot name="bag"/>
-      <slot name="trade"/>
- -->
+    </equipable>
+  </item>
+
+  <item name="keyring">
+    <type class="container" subclass="keyring" tileid="-1"/>
+    <description>You see a keyring.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Container"/>
+    <attributes>
+      <slot_name value="keyring"/>
+      <undroppableondeath value="1"/>
+      <autobind value="1"/>
+      <slot_size value="9"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+<!-- <slot name="content"/>  -->
+<!-- <slot name="bag"/> -->
+<!-- <slot name="trade"/> -->
+      <slot name="ground"/>
+      <slot name="belt"/>
     </equipable>
   </item>
 
@@ -31,14 +51,17 @@
     <attributes>
       <slot_name value="bag"/>
       <undroppableondeath value="1" />
-      <autobind value="1" />
-      <slot_size value="15"/>
+      <autobind value="1"/>
+      <slot_size value="9"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
       <slot name="back"/>
+<!-- <slot name="content"/>  -->
+<!-- <slot name="bag"/> -->
+<!-- <slot name="trade"/> -->
     </equipable>
   </item>
 
@@ -313,25 +336,6 @@
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="keyring">
-    <type class="container" subclass="keyring" tileid="-1"/>
-    <description>You see a keyring.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Container"/>
-    <attributes>
-      <slot_name value="keyring"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-<!--       <slot name="content"/>  -->
-      <slot name="belt"/>
-<!--      <slot name="bag"/>
-      <slot name="trade"/>
- -->
     </equipable>
   </item>
 
