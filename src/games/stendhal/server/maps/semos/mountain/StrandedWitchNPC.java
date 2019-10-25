@@ -54,10 +54,18 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 						"Ave");
 				addGoodbye(
 						"Fortvna");
-
-				addHelp("I am awaiting news from strandedwizard...");
-				addOffer("I am awaiting news from strandedwizard...");
-				addJob("I am awaiting news from strandedwizard...");
+				addHelp(
+						"I am awaiting news from strandedwizard..." + " " +
+						"If you had a purple apple with you..."  
+				);
+				addOffer(
+						"I am awaiting news from strandedwizard..." + " " +
+						"If you had a purple apple with you..."
+				);
+				addJob(
+						"I am awaiting news from strandedwizard..." + " " +
+						"If you had a purple apple with you..." 
+				);
 				
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest
