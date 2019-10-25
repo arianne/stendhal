@@ -17,6 +17,7 @@ import java.util.Map;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -44,7 +45,14 @@ public class InmateNPC implements ZoneConfigurator  {
 			public void createDialog() {
 				addGreeting("Let me out!");
 				addGoodbye();
-			}};
+			}
+
+			@Override
+			protected void onGoodbye(final RPEntity player) {
+				setDirection(Direction.DOWN);
+			}
+		};
+
 			npc.setPosition(13, 3);
 			npc.setOutfit(0, 89, 89, 0, 22, 0, 7, 998);
 			npc.setDirection(Direction.DOWN);
