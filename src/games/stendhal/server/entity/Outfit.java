@@ -399,7 +399,7 @@ public class Outfit {
 		final int newMouth = Rand.randUniform(0, Outfits.MOUTH_OUTFITS - 1);
 		final int newHair = Rand.randUniform(0, Outfits.HAIR_OUTFITS - 1);
 		final int newHead = Rand.randUniform(0, Outfits.HEAD_OUTFITS - 1);
-		final int newDress = Rand.randUniform(0, Outfits.CLOTHES_OUTFITS - 1);
+		final int newDress = Rand.randUniform(1, Outfits.CLOTHES_OUTFITS - 1);
 		final int newBody = Rand.randUniform(0, Outfits.BODY_OUTFITS - 1);
 
 		LOGGER.debug("chose random outfit: "
