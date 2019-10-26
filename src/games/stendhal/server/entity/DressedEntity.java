@@ -47,6 +47,29 @@ public abstract class DressedEntity extends RPEntity {
 	}
 
 	/**
+	 * This is simply for backwards compatibility to update a user's outfit
+	 * with the "outfit" attribute.
+	 */
+	@Override
+	public void put(final String attr, final String value) {
+		if (attr.equals("outfit")) {
+			final StringBuilder sb = new StringBuilder();
+			final int code = Integer.parseInt(value);
+
+			sb.append("body=" + code % 100);
+			sb.append(",dress=" + code / 100 % 100);
+			sb.append(",head=" + (int) (code / Math.pow(100, 2) % 100));
+			sb.append(",hair=" + (int) (code / Math.pow(100, 3) % 100));
+			sb.append(",detail=" + (int) (code / Math.pow(100, 4) % 100));
+
+			// "outfit_ext" actually manages the entity's outfit
+			super.put("outfit_ext", sb.toString());
+		}
+
+		super.put(attr, value);
+	}
+
+	/**
 	 * Gets this entity's outfit.
 	 *
 	 * Note: some entities (e.g. sheep, many NPC's, all monsters) don't use
