@@ -21,6 +21,10 @@ from subprocess import Popen
 script = os.path.basename(__file__)
 version = 1.0
 
+dir_tilesets = os.path.dirname(__file__)
+if not dir_tilesets:
+    dir_tilesets = os.getcwd()
+
 argv = tuple(sys.argv[1:])
 argc = len(argv)
 
@@ -34,11 +38,9 @@ def showDescr():
 
 ## Prints out instructions for using this script.
 def showUsage():
-	desc_overlay = 'Image to be used for replacing pixels.'
 	desc_infile = 'Image to be read.'
-	desc_outfile = 'Image to be written matching <infile> with opaque pixels replaced.'
 	print('\nUsage:\n\t{} <overlay> <infile> <outfile>'.format(script))
-	print('\nArguments:\n\toverlay: {}\n\tinfile:  {}\n\toutfile: {}\n'.format(desc_overlay, desc_infile, desc_outfile))
+	print('\nArguments:\n\tinfile:  {}\n'.format(desc_infile))
 
 
 if '--help' in argv or '-h' in argv:
@@ -112,10 +114,14 @@ def getExecutable(exename, include=None, exclude=None, checkExtensions=True):
 		path_ext = tuple(os.environ['PATHEXT'].split(delim));
 
 	if include:
+	    # TODO:
+
 		# DEBUG:
 		print('Including extra paths: {}'.format(include))
 
 	if exclude:
+	    # TODO:
+
 		# DEBUG:
 		print('Excluding paths: {}'.format(exclude))
 
@@ -149,18 +155,18 @@ if not cmd_convert:
 	print('\nERROR: "{}" command not found'.format(convert_name))
 	sys.exit(errno.ENOENT)
 
-if argc < 3:
+if argc < 1:
 	print('\nERROR: not enough arguments')
 	showUsage()
 	sys.exit(1)
-elif argc > 3:
+elif argc > 1:
 	print('\nERROR: too many arguments')
 	showUsage()
 	sys.exit(errno.E2BIG)
 
-overlay = normalizePath(argv[0])
-infile = normalizePath(argv[1])
-outfile = normalizePath(argv[2])
+overlay = os.path.join(dir_tilesets, 'placeholder_tile.png')
+infile = normalizePath(argv[0])
+outfile = infile
 
 for input in (overlay, infile,):
 	if not os.path.isfile(input):
