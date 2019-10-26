@@ -12,7 +12,6 @@
 package games.stendhal.server.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,13 +47,6 @@ public class Outfit {
 
 	private final Map<String, Integer> layers = new HashMap<>();
 
-	final List<String> layer_names = Arrays.asList(
-			"body", "dress", "head", "mouth", "eyes", "mask",
-			"hair", "hat", "detail");
-
-	// number of supported layers
-	private final int layerCount = layer_names.size();
-
 	/**
 	 * Creates a new outfit. Set some of the parameters to null if you want an
 	 * entity that put on this outfit to keep on the corresponding parts of its
@@ -68,19 +60,19 @@ public class Outfit {
 	 */
 	public Outfit(final Integer... layers) {
 		final List<Integer> layer_list = new ArrayList<>();
-	    for (int idx = 0; idx < layerCount; idx++) {
+	    for (int idx = 0; idx < Outfits.LAYERS_COUNT; idx++) {
 			if (idx >= layers.length) {
-				layer_list.add(null);
+				layer_list.add(0);
 			} else {
 				layer_list.add(layers[idx]);
 			}
 	    }
 
 	    // set values of layers not specified to 0
-		if (layers.length > layerCount) {
-			int missing = layerCount - layers.length;
+		if (layers.length > Outfits.LAYERS_COUNT) {
+			int missing = Outfits.LAYERS_COUNT - layers.length;
 			for (int x = 0; x < missing; x++) {
-				layer_list.add(null);
+				layer_list.add(0);
 			}
 		}
 
@@ -103,38 +95,40 @@ public class Outfit {
 	 * 		for backward compatibility.
 	 */
 	public Outfit(final String strcode) {
-		if (strcode.contains(",")) {
-			final String[] layers = strcode.split(",");
+		// initialize all layers to "0"
+		for (String n: Outfits.LAYER_NAMES) {
+			this.layers.put(n, 0);
+		}
 
-			// initialize all layers to "0"
-			for (String n: layer_names) {
-				this.layers.put(n, 0);
+		if (strcode.contains("=")) {
+			final String[] layers;
+			if (strcode.contains(",")) {
+				layers = strcode.split(",");
+			} else {
+				layers = new String[] {strcode};
 			}
 
-			//for (String layer: layer_list) {
 		    for (int idx = 0; idx < layers.length; idx++) {
 		    	final String layer = layers[idx];
 				if (layer.contains("=")) {
 					final String[] key = layer.split("=");
-					if (layer_names.contains(key[0])) {
+					if (Outfits.LAYER_NAMES.contains(key[0])) {
 						this.layers.put(key[0], Integer.parseInt(key[1]));
 					}
 				}
 			}
 		} else {
-			final int code = Integer.parseInt(strcode);
+			try {
+				final int code = Integer.parseInt(strcode);
 
-			this.layers.put("body", code % 100);
-			this.layers.put("dress", code / 100 % 100);
-			this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
-			this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
-			this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
-
-			// extended layers
-			layers.put("mouth", null);
-			layers.put("eyes", null);
-			layers.put("mask", null);
-			layers.put("hat", null);
+				this.layers.put("body", code % 100);
+				this.layers.put("dress", code / 100 % 100);
+				this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
+				this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
+				this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
+			} catch (NumberFormatException e) {
+				LOGGER.warn("Can't parse outfit code, setting failsafe outfit.");
+			}
 		}
 	}
 
@@ -160,32 +154,30 @@ public class Outfit {
 	@Deprecated
 	public Outfit(final Integer detail, final Integer hair, final Integer head,
 			final Integer dress, final Integer body) {
+		// initialize all layers to "0"
+		for (String n: Outfits.LAYER_NAMES) {
+			this.layers.put(n, 0);
+		}
+
 		layers.put("body", body);
 		layers.put("dress", dress);
 		layers.put("head", head);
 		layers.put("hair", hair);
 		layers.put("detail", detail);
-
-		// extended layers
-		layers.put("mouth", null);
-		layers.put("eyes", null);
-		layers.put("mask", null);
-		layers.put("hat", null);
 	}
 
 	@Deprecated
 	public Outfit(final Integer code) {
+		// initialize all layers to "0"
+		for (String n: Outfits.LAYER_NAMES) {
+			this.layers.put(n, 0);
+		}
+
 		this.layers.put("body", code % 100);
 		this.layers.put("dress", code / 100 % 100);
 		this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
 		this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
 		this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
-
-		// extended layers
-		layers.put("mouth", null);
-		layers.put("eyes", null);
-		layers.put("mask", null);
-		layers.put("hat", null);
 	}
 
 	public Integer getLayer(final String layerName) {
