@@ -90,7 +90,7 @@ public class InspectAction extends AdministrationAction {
 			if (inspected.has("outfit")) {
 				st.append("\nOutfit: " + inspected.get("outfit"));
 			} else if (inspected.has("class")) {
-				st.append("\nOutfit: " + inspected.get("class"));
+				st.append("\nOutfit (class): " + inspected.get("class"));
 			}
 			st.append("\nequips");
 
