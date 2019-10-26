@@ -14,6 +14,7 @@
 # TODO:
 # - require minimum Python version 3.6
 # - use ImageMagick module for Python if available
+# - add parameters for setting include/exclude search paths for executables
 
 import errno, os, sys
 from subprocess import Popen
@@ -23,7 +24,7 @@ version = 1.0
 
 dir_tilesets = os.path.dirname(__file__)
 if not dir_tilesets:
-    dir_tilesets = os.getcwd()
+	dir_tilesets = os.getcwd()
 
 argv = tuple(sys.argv[1:])
 argc = len(argv)
@@ -113,17 +114,31 @@ def getExecutable(exename, include=None, exclude=None, checkExtensions=True):
 	if os_win32:
 		path_ext = tuple(os.environ['PATHEXT'].split(delim));
 
-	if include:
-	    # TODO:
+	# normalize paths so comparisons for "include/exclude" are accurate
+	for idx in range(len(path)):
+		path[idx] = normalizePath(path[idx])
 
-		# DEBUG:
-		print('Including extra paths: {}'.format(include))
+	if include:
+		if type(include) == str:
+			include = normalizePath(include)
+			if include not in path:
+				path.append(include)
+		elif type(include) in (list, tuple):
+			for toadd in include:
+				toadd = normalizePath(toadd)
+				if toadd not in path:
+					included_paths.append(toadd)
 
 	if exclude:
-	    # TODO:
-
-		# DEBUG:
-		print('Excluding paths: {}'.format(exclude))
+		if type(exclude) == str:
+			exclude = normalizePath(exclude)
+			while exclude in path:
+				path.remove(exclude)
+		elif type(include) in (list, tuple):
+			for torm in exclude:
+				torm = normalizePath(torm)
+				while torm in path:
+					path.remove(torm)
 
 	for dir in path:
 		to_check = os.path.join(dir, exename)
@@ -149,7 +164,11 @@ def getExecutable(exename, include=None, exclude=None, checkExtensions=True):
 
 
 convert_name = 'convert'
-cmd_convert = getExecutable(convert_name)
+if os_win32:
+	# Windows has a built-in "convert" command in System32 directory
+	cmd_convert = getExecutable(convert_name, exclude='C:\\Windows\\System32')
+else:
+	cmd_convert = getExecutable(convert_name)
 
 if not cmd_convert:
 	print('\nERROR: "{}" command not found'.format(convert_name))
