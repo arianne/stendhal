@@ -57,6 +57,8 @@ package games.stendhal.server.maps.quests;
  * /alterquest <player> admemoriainportfolio
  */
 
+
+
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -152,7 +154,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             "And surely I lost my memory... Again..."           + " " +
             "I stand here stranded but all is not lost yet..."  + " " +
             "Could You help recover strandedwizard memory?"     + " " +
-            "A #YES or #NO answer will do...",
+            "A yes or no answer will do...",
 			null);
 
 		//on offered quest
@@ -173,7 +175,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         npc.say(
                         //give player item to bring to strandedwitch
                         //a normal something
-                        //a special something/
+                        //a special something
                         "Here you go... Take this purple apple from me!" + " " +
                         "Find strandedwitch and bring this purple apple along with you." + " " +
                         "Say purple apple to strandedwitch and she will know it is from me!" + " " +
@@ -209,7 +211,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	        new AndCondition(
 	        	new QuestInStateCondition(QUEST_SLOT, "start"),
 	        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
-	        ConversationStates.IDLE,
+	        ConversationStates.ATTENDING,
 	        null, //say something with multiple actions
 	        new MultipleActions(
 	        	new ChatAction() {
@@ -218,28 +220,55 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Player player,
                         final Sentence sentence,
                         final EventRaiser npc) {
-							npc.say(
-								"Oh that purple apple is coming from strandedwizard." + " " +
-								"Surely strandedwizard lost another magical duel..." + " " +
-								"Here you go... Please take" + " " + 
-								"this mauve apple from me!" + " " +
-								"Bring mauve apple back to strandedwizard" + " " +
-								"Tell strandedwizard mauve apple..." + " " +
-								"A mauve apple will restore strandedwizard memory!" + " " +
-								"Once again *sigh*"
-                            );
-                            new IncreaseXPAction(1000);
-							new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
-							new SetQuestAndModifyKarmaAction( getSlotName(), "start", 15.0).fire(player, sentence, npc);
+								npc.say(
+									"Oh that purple apple is coming from strandedwizard." + " " +
+									"Surely strandedwizard lost another magical duel..." + " " +
+									"Here you go... Please take" + " " + 
+									"this mauve apple from me!" + " " +
+									"Bring mauve apple back to strandedwizard" + " " +
+									"Tell strandedwizard mauve apple..." + " " +
+									"A mauve apple will restore strandedwizard memory!" + " " +
+									"Once again *sigh*");
+                                new IncreaseXPAction(1);
+								new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
+								new SetQuestAndModifyKarmaAction( getSlotName(), "start", 15.0).fire(player, sentence, npc);
                         }
 	        	},
 	        	new DropItemAction("purple apple")
 	        )
         );
 	}
- 
+
+
+    // this step being done means you get portfolio 
 	/** admemoriainportfolio_step_3 */
 	/** return to strandedwizard, step_3 */ 
+    /**
+    * final List<ChatAction> reward = new LinkedList<ChatAction>();
+    * if (System.getProperty("stendhal.container") != null) {
+    *     reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
+    *     reward.add(new EquipItemAction("portfolio", 1, true));
+    *     reward.add(new IncreaseXPAction(1));
+    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+    * } else {
+    *     reward.add(new EnableFeatureAction("portfolio"));
+    * }
+    */
+
+	//completing admemoriainportfolio_step_3
+	//activates portfolio slot for player
+    /**
+    * 
+    * final List<ChatAction> reward = new LinkedList<ChatAction>();
+    * if (System.getProperty("stendhal.container") != null) {
+    *     reward.add(new CreateSlotAction(ImmutableList.of("portfolio")));
+    *     reward.add(new EquipItemAction("portfolio", 1, true));
+    *     reward.add(new EnableFeatureAction("portfolio"));
+    *     reward.add(new DropItemAction("black apple"));
+    *     reward.add(new IncreaseXPAction(50));
+    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+    * }
+    */
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("strandedwizard");
 		npc.add(
@@ -256,12 +285,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Player player,
                         final Sentence sentence,
                         final EventRaiser npc) {
-							npc.say(
-                                "Thank you indeed!" + " " +
-                                "Ad Memoria In Portfolio Quest is Done" + " " +
-								"I will now grant a special gift for your efforts..." + " " +
-                                "Here... Take this Portfolio..." + " " + 
-								"A portfolio will help you carry around many scrolls!");
+								npc.say(
+                                    "Thank you indeed!" + " " +
+                                    "Ad Memoria In Portfolio Quest is Done" + " " +
+									"Portfolio will now work!");
                         }
 	        	},
     			new CreateSlotAction(ImmutableList.of("belt", "back")),
@@ -269,10 +296,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	        	new DropItemAction("mauve apple"),
                 new EquipItemAction("portfolio", 1, true),
 				new SetQuestAndModifyKarmaAction(getSlotName(), "done", 15.0),
-                //additional rewards here
-				new EquipItemAction("home scroll", 1000, true),
-				new EquipItemAction("kirdneh city scroll", 1000, true),
-				new EquipItemAction("empty scroll", 1000, true),
 				new EquipItemAction("apple", 1000, true)
             )
         );
