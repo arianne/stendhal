@@ -181,19 +181,20 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 
-		StringBuilder str = new StringBuilder();
-		str.append("body=" + newOutfit.getLayer("body") + ",");
-		str.append("dress=" + newOutfit.getLayer("dress") + ",");
-		str.append("head=" + newOutfit.getLayer("head") + ",");
-		str.append("mouth=" + newOutfit.getLayer("mouth") + ",");
-		str.append("eyes=" + newOutfit.getLayer("eyes") + ",");
-		str.append("mask=" + newOutfit.getLayer("mask") + ",");
-		str.append("hair=" + newOutfit.getLayer("hair") + ",");
-		str.append("hat=" + newOutfit.getLayer("hat") + ",");
-		str.append("detail=" + newOutfit.getLayer("detail"));
+		StringBuilder sb = new StringBuilder();
+		sb.append("body=" + newOutfit.getLayer("body") + ",");
+		sb.append("dress=" + newOutfit.getLayer("dress") + ",");
+		sb.append("head=" + newOutfit.getLayer("head") + ",");
+		sb.append("mouth=" + newOutfit.getLayer("mouth") + ",");
+		sb.append("eyes=" + newOutfit.getLayer("eyes") + ",");
+		sb.append("mask=" + newOutfit.getLayer("mask") + ",");
+		sb.append("hair=" + newOutfit.getLayer("hair") + ",");
+		sb.append("hat=" + newOutfit.getLayer("hat") + ",");
+		sb.append("detail=" + newOutfit.getLayer("detail"));
 
-		put("outfit_ext", str.toString());
-		put("outfit", newOutfit.getCode());
+		put("outfit_ext", sb.toString());
+		// FIXME: can't update "outfit" attribute without affecting "outfit_ext" (see: overridden method DressedEntity.put)
+		//put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
 
