@@ -24,18 +24,15 @@ package games.stendhal.server.maps.quests;
  *  <li> strandedwitch,  somewhere in Kirdneh
  *   + sister of strandedwizard lives in kirdneh
  *   + accomplished magician that can compile a magic memory log
- *   + needs 1x purple apple to restore strandedwizard memory log</li>
+ *   + needs 1 black apple to restore strandedwizard memory log</li>
  * </ul>
  *
  * STEPS:
  * <ul>
- *  <li> admemoriainportfolio_step1</li>
  *  <li> Talk with strandedwizard to activate the quest.</li>
- *  <li> Collect 1x purple apple</li>
- *  <li> admemoriainportfolio_step2</li>
- *  <li> Talk with strandedwitch in Kirdneh. have 1x purple apple</li>
- *  <li> admemoriainportfolio_step2</li>
- *  <li> Return to strandedwizard with 1x mauve apple</li>
+ *  <li> Collect 1 black apple</li>
+ *  <li> Talk with strandedwitch in Kirdneh. have 1 black apple</li>
+ *  <li> Return to strandedwizard with 1 purple apple</li>
  *  <li> strandedwizard will unlock portfolio</li>
  * </ul>
  *
@@ -110,9 +107,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-                "I am stranded out somewhere..." + " " +
-                "I remember #strandedwitch..."   + " " +
-                "I remember #kirdneh..."         + " " +
+                "I stranded out somewhere..." + " " + "\n" +
+                "I remember #strandedwitch..." + " " + "\n" +
+                "I remember #kirdneh..." + " " + "\n" +
                 "I should recover #memory",
 				null);
 
@@ -150,11 +147,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Catch those memories..."                           + " " + "\n" +
 			"-------------------------------------------------" + " " + "\n" +
 			*/
-			"Laaah lah lah laaah... A duel in magical mist..."  + " " +
-            "And surely I lost my memory... Again..."           + " " +
-            "I stand here stranded but all is not lost yet..."  + " " +
-            "Could You help recover strandedwizard memory?"     + " " +
-            "A yes or no answer will do...",
+			"Laaah lah lah laaah..."                            + " " +
+            "Help recovery strandedwizard memory?"              + " " +
+            "It is a question answered with: (yes/no)",
 			null);
 
 		//on offered quest
@@ -176,10 +171,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         //give player item to bring to strandedwitch
                         //a normal something
                         //a special something
-                        "Here you go... Take this purple apple from me!" + " " +
-                        "Find strandedwitch and bring this purple apple along with you." + " " +
-                        "Say purple apple to strandedwitch and she will know it is from me!" + " " +
-                        "Once you return back here to me, I will reward your efforts!");
+                        /**
+                        "\n" +
+                        "-------------------------------------------------" + " " + "\n" +
+                        "Player say YES on offered quest"                   + " " + "\n" +
+                        "Player gains some karma"                           + " " + "\n" +
+                        "Player transitions to start/step2"                 + " " + "\n" +
+                        "-------------------------------------------------" + " " + "\n" +
+                        "find  strandedwitch this stone"                    + " " + "\n" +
+                        "bring strandedwitch this stone"                    + " " + "\n" +
+                        "tell  strandedwitch this stone"                    + " " + "\n" +
+                        "strandedwitch swaps this stone"                    + " " + "\n" +
+                        "-------------------------------------------------" + " " + "\n",
+                        */
+                        "Here you go... Please take" + " " +
+                        "this purple apple from me!" + " " +
+                        "Bring purple apple to strandedwitch." + " " +
+                        "Say purple apple to strandedwitch." + " " +
+                        "Come back here soon!");
                         new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
                         new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
                    }
@@ -192,11 +201,15 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES,
-            //Player say NO on offered quest
 			null,
 			ConversationStates.IDLE,
-			"That is understandable..." + " " +
-            "Maybe someone else will be more charitable...",
+			"\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Player say NO on offered quest"                    + " " + "\n" +
+			"Player looses some karma"                          + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Maybe someone else will be more charitable..."     + " " + "\n" +
+			"loose karma"                                       + " " + "\n",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
     }
 
@@ -255,8 +268,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     * }
     */
 
-	//completing admemoriainportfolio_step_3
-	//activates portfolio slot for player
     /**
     * 
     * final List<ChatAction> reward = new LinkedList<ChatAction>();
@@ -269,6 +280,18 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
     * }
     */
+
+    /**
+    * new EquipItemAction("portfolio", 1, true).fire(player, sentence, npc);
+    * new CreateSlotAction(ImmutableList.of("portfolio")).fire(player, sentence, npc);
+    * new EnableFeatureAction("portfolio"),
+    * new DropItemAction("black apple"),
+    * new IncreaseXPAction(50),
+    * new SetQuestAction(QUEST_SLOT, "done"),
+    * mark status not necessary	        	
+    * new InflictStatusOnNPCAction("black apple")
+    */
+		
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("strandedwizard");
 		npc.add(
@@ -277,7 +300,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                 new QuestInStateCondition(QUEST_SLOT, "start"),
                 new PlayerHasItemWithHimCondition("mauve apple", SCROLL_AMOUNT)),
             ConversationStates.ATTENDING,
-	        null, // say nothing here but say something in MultipleActions below
+	        null, //say something with multiple actions
             new MultipleActions(
 	        	new ChatAction() {
 					@Override
@@ -286,17 +309,17 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
 								npc.say(
-                                    "Thank you indeed!" + " " +
+                                    "Thank you" + " " +
                                     "Ad Memoria In Portfolio Quest is Done" + " " +
 									"Portfolio will now work!");
                         }
 	        	},
-    			new CreateSlotAction(ImmutableList.of("belt", "back")),
 	        	new EnableFeatureAction("portfolio"),
-	        	new DropItemAction("mauve apple"),
-                new EquipItemAction("portfolio", 1, true),
+    			new CreateSlotAction(ImmutableList.of("belt", "back")),
 				new SetQuestAndModifyKarmaAction(getSlotName(), "done", 15.0),
-				new EquipItemAction("apple", 1000, true)
+	        	new DropItemAction("mauve apple"),
+				new EquipItemAction("apple", 1000, true),
+                new EquipItemAction("portfolio", 1000, true)
             )
         );
 	}
