@@ -24,7 +24,7 @@ stendhal.ui.sound = {
 
 		// Further adjustments if the sound has a radius
 		if (radius) {
-			if (!marauroa.me) {
+			if (!marauroa.me || !x) {
 				// Can't calculate the distance yet. Ignore the sound.
 				return;
 			}
