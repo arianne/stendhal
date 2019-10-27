@@ -185,16 +185,12 @@ public class Player extends DressedEntity implements UseListener {
 
 		// define outfit
 		Outfit outfit = null;
-		if (template != null && template.has("outfit")) {
-			final int code = template.getInt("outfit");
-			final int body = code % 100;
-			final int dress = code / 100 % 100;
-			final int head = (int) (code / Math.pow(100, 2) % 100);
-			final int hair = (int) (code / Math.pow(100, 3) % 100);
-			final int detail = (int) (code / Math.pow(100, 4) % 100);
-
-			outfit = new Outfit(body, dress, head, template.getInt("outfit_mouth"), template.getInt("outfit_eyes"),
-					template.getInt("outfit_mask"), hair, template.getInt("outfit_hat"), detail);
+		if (template != null) {
+			if (template.has("outfit_ext")) {
+				outfit = new Outfit(template.get("outfit_ext"));
+			} else if (template.has("outfit")) {
+				outfit = new Outfit(template.getInt("outfit"));
+			}
 		}
 
 		if (outfit == null || !outfit.isChoosableByPlayers()) {
