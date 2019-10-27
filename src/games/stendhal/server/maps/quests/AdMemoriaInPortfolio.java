@@ -137,7 +137,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"memory",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			/**
 			"\n" +
 			"-------------------------------------------------" + " " + "\n" +
 			"Laaah lah lah laaah..."                            + " " + "\n" +
@@ -146,9 +145,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Stranded and yet not lost..."                      + " " + "\n" +
 			"Catch those memories..."                           + " " + "\n" +
 			"-------------------------------------------------" + " " + "\n" +
-			*/
-			"Laaah lah lah laaah..."                            + " " +
-            "Help recovery strandedwizard memory?"              + " " +
+            "Help recovery strandedwizard memory?"              + " " + "\n" +
             "It is a question answered with: (yes/no)",
 			null);
 
@@ -159,7 +156,20 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.IDLE,
-			"Excellent!",
+			//give player item to bring to strandedwitch
+			//a normal something
+			//a special something
+			"\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"Player say YES on offered quest"                   + " " + "\n" +
+			"Player gains some karma"                           + " " + "\n" +
+			"Player transitions to start/step2"                 + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n" +
+			"find  strandedwitch this stone"                    + " " + "\n" +
+			"bring strandedwitch this stone"                    + " " + "\n" +
+			"tell  strandedwitch this stone"                    + " " + "\n" +
+			"strandedwitch use   this stone"                    + " " + "\n" +
+			"-------------------------------------------------" + " " + "\n",
 			//new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 15.0));			
 	        new MultipleActions(
 		       new ChatAction() {
@@ -168,29 +178,11 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                    final Sentence sentence,
                    final EventRaiser npc) {
                         npc.say(
-                        //give player item to bring to strandedwitch
-                        //a normal something
-                        //a special something
-                        /**
-                        "\n" +
-                        "-------------------------------------------------" + " " + "\n" +
-                        "Player say YES on offered quest"                   + " " + "\n" +
-                        "Player gains some karma"                           + " " + "\n" +
-                        "Player transitions to start/step2"                 + " " + "\n" +
-                        "-------------------------------------------------" + " " + "\n" +
-                        "find  strandedwitch this stone"                    + " " + "\n" +
-                        "bring strandedwitch this stone"                    + " " + "\n" +
-                        "tell  strandedwitch this stone"                    + " " + "\n" +
-                        "strandedwitch swaps this stone"                    + " " + "\n" +
-                        "-------------------------------------------------" + " " + "\n",
-                        */
-                        "Here you go... Please take" + " " +
-                        "this purple apple from me!" + " " +
-                        "Bring purple apple to strandedwitch." + " " +
-                        "Say purple apple to strandedwitch." + " " +
-                        "Come back here soon!");
-                        new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
-                        new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
+                            "Thank you!" + " " +
+                            "Here you go... Please take" + " " +
+                            "this purple apple from me!");
+                            new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
+                            new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
                    }
                }
             )
@@ -234,14 +226,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
 								npc.say(
-									"Oh that purple apple is coming from strandedwizard." + " " +
-									"Surely strandedwizard lost another magical duel..." + " " +
+									"Thank you!" + " " +
 									"Here you go... Please take" + " " + 
-									"this mauve apple from me!" + " " +
-									"Bring mauve apple back to strandedwizard" + " " +
-									"Tell strandedwizard mauve apple..." + " " +
-									"A mauve apple will restore strandedwizard memory!" + " " +
-									"Once again *sigh*");
+									"this mauve apple from me!");
                                 new IncreaseXPAction(1);
 								new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
 								new SetQuestAndModifyKarmaAction( getSlotName(), "start", 15.0).fire(player, sentence, npc);
