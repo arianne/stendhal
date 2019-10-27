@@ -39,6 +39,10 @@ div.itemSlot {
 	font-size:10px;
 	text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
+div.quickPickup div.itemSlot {
+	cursor: url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto;
+}
+
 .equipment {position:relative; height:160px; border: 1px solid black}
 #head0 {position:absolute; top:0px; left:40px}
 #lhand0 {position:absolute; top:50px; left:80px}

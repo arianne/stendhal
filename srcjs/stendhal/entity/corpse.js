@@ -65,7 +65,7 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 
 	openCorpseInventory: function() {
 		if (!this.inventory || !this.inventory.popupdiv.parentNode) {
-			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 2, 2, this, "Corpse");
+			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 2, 2, this, "Corpse", true);
 		}
 	},
 	
@@ -74,7 +74,7 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			this.autoOpenedAlready = true;
 			if (marauroa.me && (this["corpse_owner"] == marauroa.me["_name"])) {
 
-				// TODO: for unknown reason, /data/sprites/items/undefined/undefined.png is requires without this delay
+				// TODO: for unknown reason, /data/sprites/items/undefined/undefined.png is requested without this delay
 				var that = this;
 				window.setTimeout(function() {
 					that.openCorpseInventory();
