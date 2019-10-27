@@ -737,7 +737,7 @@ class OutfitDialog extends JDialog {
 		sb.append("hair=" + Integer.toString(hair.getIndex()) + ",");
 		sb.append("hat=" + Integer.toString(hat.getIndex()) + ",");
 
-		rpOutfitAction.put(Actions.TYPE, "outfit");
+		rpOutfitAction.put(Actions.TYPE, Actions.OUTFIT);
 		rpOutfitAction.put(Actions.VALUE, sb.toString());
 
 		/* hair color */
