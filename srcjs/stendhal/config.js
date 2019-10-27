@@ -15,7 +15,7 @@ var stendhal = window.stendhal = window.stendhal || {};
 
 stendhal.config = {
 	sound: {
-		play: false
+		play: true
 	},
 
 	gamescreen: {
