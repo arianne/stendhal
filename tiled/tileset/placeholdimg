@@ -1,0 +1,226 @@
+#!/usr/bin/env python
+
+# This script replaces pixel data of a source image with that of another image by
+# tiling its data over the source image.
+#
+# Appreciation goes out to GeeMack & Fred Weinhaus (fmw42) for helping me with
+# using the ImageMagick `convert` command:
+#   https://stackoverflow.com/a/49397413/4677917
+
+# Licensing: Creative Commons Zero (CC0)
+#
+# The author waives all rights to this work.
+
+# TODO:
+# - require minimum Python version 3.6
+# - use ImageMagick module for Python if available
+# - add parameters for setting include/exclude search paths for executables
+
+import errno, os, sys
+from subprocess import Popen
+
+script = os.path.basename(__file__)
+version = 1.0
+
+dir_tilesets = os.path.dirname(__file__)
+if not dir_tilesets:
+	dir_tilesets = os.getcwd()
+
+argv = tuple(sys.argv[1:])
+argc = len(argv)
+
+os_win32 = os.name == 'nt'
+
+
+## Simply prints a description about the script.
+def showDescr():
+	print('\nA script for replacing the opaque pixels of an image with an "overlay".')
+
+
+## Prints out instructions for using this script.
+def showUsage():
+	desc_infile = 'Image to be read.'
+	print('\nUsage:\n\t{} <overlay> <infile> <outfile>'.format(script))
+	print('\nArguments:\n\tinfile:  {}\n'.format(desc_infile))
+
+
+if '--help' in argv or '-h' in argv:
+	showDescr()
+	showUsage()
+	sys.exit(0)
+
+if '--version' in argv or '-v' in argv:
+	print(version)
+	sys.exit(0)
+
+
+## Converts node delimeters for the current system.
+#
+# On Windows systems, converts forward slashes ("/") to double backslashes ("\\") &
+# vice-versa for *nix systems.
+#
+# @tparam str path
+#		Path to be normalized.
+# @treturn str
+#		Normalized path string.
+def normalizePath(path):
+	nodes = ('\\', '/')
+	if os_win32:
+		nodes = ('/', '\\')
+
+	path = path.replace(nodes[0], nodes[1]).rstrip(nodes[1])
+
+	if os_win32:
+		# replace single backslashes with double
+		path = path.replace('\\', '\\\\')
+		# remove extra backslashes
+		while '\\\\\\' in path:
+			path = path.replace('\\\\\\', '\\\\')
+	else:
+		# remove extra forward slashes
+		while '//' in path:
+			path = path.replace('//', '/')
+
+	return path
+
+
+## Function to retrieve path of an executable.
+#
+# @tparam str exename
+#		Base filename of executable to search for.
+# @param include
+#		String or list of directories to include in search (this takes priority over PATH).
+#		Case-sensitive.
+#		- Optional
+#		- Default: `None`
+# @param exclude
+#		String or list of directory paths to exclude from search. Case-sensitive.
+#		- Optional
+#		- Default: `None`
+# @tparam boolean checkExtensions
+#		If `True`, will additionaly check file paths with system PATH extensions appended.
+#		Win32 only.
+#		- Optional
+#		- Default: `False`
+# @treturn
+#		Absolute file path to executable (`str`) or `None`.
+def getExecutable(exename, include=None, exclude=None, checkExtensions=True):
+	delim = ':'
+	if os_win32:
+		delim = ';'
+
+	path = os.environ['PATH'].split(delim)
+	path_ext = ()
+	if os_win32:
+		path_ext = tuple(os.environ['PATHEXT'].split(delim));
+
+	# normalize paths so comparisons for "include/exclude" are accurate
+	for idx in range(len(path)):
+		path[idx] = normalizePath(path[idx])
+
+	if include:
+		if type(include) == str:
+			include = normalizePath(include)
+			if include not in path:
+				path.append(include)
+		elif type(include) in (list, tuple):
+			for toadd in include:
+				toadd = normalizePath(toadd)
+				if toadd not in path:
+					included_paths.append(toadd)
+
+	if exclude:
+		if type(exclude) == str:
+			exclude = normalizePath(exclude)
+			while exclude in path:
+				path.remove(exclude)
+		elif type(include) in (list, tuple):
+			for torm in exclude:
+				torm = normalizePath(torm)
+				while torm in path:
+					path.remove(torm)
+
+	for dir in path:
+		to_check = os.path.join(dir, exename)
+
+		if not os_win32:
+			if os.access(to_check, os.X_OK):
+				return to_check
+		else:
+			if os.path.isfile(to_check):
+				return to_check
+
+			# check extensions
+			for ext in path_ext:
+				# lowercase first
+				with_ext = '{}{}'.format(to_check, ext.lower())
+				if os.path.isfile(with_ext):
+					return with_ext
+
+				# uppercase
+				with_ext = '{}{}'.format(to_check, ext.upper())
+				if os.path.isfile(with_ext):
+					return with_ext
+
+
+convert_name = 'convert'
+if os_win32:
+	# Windows has a built-in "convert" command in System32 directory
+	cmd_convert = getExecutable(convert_name, exclude='C:\\Windows\\System32')
+else:
+	cmd_convert = getExecutable(convert_name)
+
+if not cmd_convert:
+	print('\nERROR: "{}" command not found'.format(convert_name))
+	sys.exit(errno.ENOENT)
+
+if argc < 1:
+	print('\nERROR: not enough arguments')
+	showUsage()
+	sys.exit(1)
+elif argc > 1:
+	print('\nERROR: too many arguments')
+	showUsage()
+	sys.exit(errno.E2BIG)
+
+overlay = os.path.join(dir_tilesets, 'placeholder_tile.png')
+infile = normalizePath(argv[0])
+outfile = infile
+
+for input in (overlay, infile,):
+	if not os.path.isfile(input):
+		print('\nERROR: file does not exist: {}'.format(input))
+		sys.exit(errno.ENOENT)
+
+dir_target = os.path.dirname(outfile)
+if not dir_target:
+	dir_target = os.getcwd()
+
+if not os.path.exists(dir_target):
+	print('\nERROR: directory does not exist: {}'.format(dir_target))
+	sys.exit(errno.ENOENT)
+elif not os.path.isdir(dir_target):
+	print('\nERROR: file exists: {}'.format(dir_target))
+	sys.exit(errno.EEXIST)
+
+# TODO: ask for user to confirm overwriting existing file &
+#       implement parameter argument to override for
+#       scripting
+
+command = (
+	cmd_convert, infile, overlay, '-background', 'none', '-virtual-pixel', 'tile',
+	'-set', 'option:distort:viewport', '%[fx:u.w]x%[fx:u.h]', '-distort', 'SRT',
+	'0', '+swap', '-compose', 'copyopacity', '-composite', outfile,
+)
+
+proc = Popen(command)
+pout, perr = proc.communicate()
+
+if perr:
+	print('Some errors occurred:\n\t{}\n\t{}'.format(pout, perr))
+
+if not os.path.isfile(outfile):
+	print('An unknown error occured: Output file was not created: {}'.format(outfile))
+	sys.exit(errno.ENOENT)
+
+print('\nOutput to: {}'.format(outfile))

@@ -12,7 +12,8 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * class to store the max outfit numbers for player available outfits.
@@ -46,4 +47,10 @@ public class Outfits {
 
 	public static final int MASK_OUTFITS = 8;
 	public static final int HAT_OUTFITS = 7;
+
+	// layers used for building outfits
+	public static final List<String> LAYER_NAMES = Arrays.asList(
+			"body", "dress", "head", "mouth", "eyes", "mask",
+			"hair", "hat", "detail");
+	public static final int LAYERS_COUNT = LAYER_NAMES.size();
 }

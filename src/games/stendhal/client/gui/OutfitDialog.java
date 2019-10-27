@@ -148,15 +148,50 @@ class OutfitDialog extends JDialog {
 			}
 		}
 
-		// analyse & set current outfit; this will update labels as well
-		body.setIndex(checkIndex(layer_map.get("body"), body));
-		dress.setIndex(checkIndex(layer_map.get("dress"), dress));
-		head.setIndex(checkIndex(layer_map.get("head"), head));
-		mouth.setIndex(checkIndex(layer_map.get("mouth"), mouth));
-		eyes.setIndex(checkIndex(layer_map.get("eyes"), eyes));
-		mask.setIndex(checkIndex(layer_map.get("mask"), mask));
-		hair.setIndex(checkIndex(layer_map.get("hair"), hair));
-		hat.setIndex(checkIndex(layer_map.get("hat"), hat));
+		Integer bodiesIndex = layer_map.get("body");
+		Integer clothesIndex = layer_map.get("dress");
+		Integer headsIndex = layer_map.get("head");
+		Integer mouthsIndex = layer_map.get("mouth");
+		Integer eyesIndex = layer_map.get("eyes");
+		Integer masksIndex = layer_map.get("mask");
+		Integer hairsIndex = layer_map.get("hair");
+		Integer hatsIndex = layer_map.get("hat");
+
+		// failsafes
+		if (bodiesIndex == null) {
+			bodiesIndex = 0;
+		}
+		if (clothesIndex == null) {
+			clothesIndex = 0;
+		}
+		if (headsIndex == null) {
+			headsIndex = 0;
+		}
+		if (mouthsIndex == null) {
+			mouthsIndex = 0;
+		}
+		if (eyesIndex == null) {
+			eyesIndex = 0;
+		}
+		if (masksIndex == null) {
+			masksIndex = 0;
+		}
+		if (hairsIndex == null) {
+			hairsIndex = 0;
+		}
+		if (hatsIndex == null) {
+			hatsIndex = 0;
+		}
+
+		// set current outfit; this will update labels as well
+		body.setIndex(checkIndex(bodiesIndex, body));
+		dress.setIndex(checkIndex(clothesIndex, dress));
+		head.setIndex(checkIndex(headsIndex, head));
+		mouth.setIndex(checkIndex(mouthsIndex, mouth));
+		eyes.setIndex(checkIndex(eyesIndex, eyes));
+		mask.setIndex(checkIndex(masksIndex, mask));
+		hair.setIndex(checkIndex(hairsIndex, hair));
+		hat.setIndex(checkIndex(hatsIndex, hat));
 
 		pack();
 		WindowUtils.closeOnEscape(this);
@@ -702,7 +737,7 @@ class OutfitDialog extends JDialog {
 		sb.append("hair=" + Integer.toString(hair.getIndex()) + ",");
 		sb.append("hat=" + Integer.toString(hat.getIndex()) + ",");
 
-		rpOutfitAction.put(Actions.TYPE, "outfit");
+		rpOutfitAction.put(Actions.TYPE, Actions.OUTFIT);
 		rpOutfitAction.put(Actions.VALUE, sb.toString());
 
 		/* hair color */
@@ -769,15 +804,50 @@ class OutfitDialog extends JDialog {
 			}
 		}
 
-		// analyse & set current outfit; this will update labels as well
-		body.setIndex(layer_map.get("body"));
-		dress.setIndex(layer_map.get("dress"));
-		head.setIndex(layer_map.get("head"));
-		mouth.setIndex(layer_map.get("mouth"));
-		eyes.setIndex(layer_map.get("eyes"));
-		mask.setIndex(layer_map.get("mask"));
-		hair.setIndex(layer_map.get("hair"));
-		hat.setIndex(layer_map.get("hat"));
+		Integer bodiesIndex = layer_map.get("body");
+		Integer clothesIndex = layer_map.get("dress");
+		Integer headsIndex = layer_map.get("head");
+		Integer mouthsIndex = layer_map.get("mouth");
+		Integer eyesIndex = layer_map.get("eyes");
+		Integer masksIndex = layer_map.get("mask");
+		Integer hairsIndex = layer_map.get("hair");
+		Integer hatsIndex = layer_map.get("hat");
+
+		// failsafes
+		if (bodiesIndex == null) {
+			bodiesIndex = 0;
+		}
+		if (clothesIndex == null) {
+			clothesIndex = 0;
+		}
+		if (headsIndex == null) {
+			headsIndex = 0;
+		}
+		if (mouthsIndex == null) {
+			mouthsIndex = 0;
+		}
+		if (eyesIndex == null) {
+			eyesIndex = 0;
+		}
+		if (masksIndex == null) {
+			masksIndex = 0;
+		}
+		if (hairsIndex == null) {
+			hairsIndex = 0;
+		}
+		if (hatsIndex == null) {
+			hatsIndex = 0;
+		}
+
+		// set current outfit; this will update labels as well
+		body.setIndex(bodiesIndex);
+		dress.setIndex(clothesIndex);
+		head.setIndex(headsIndex);
+		mouth.setIndex(mouthsIndex);
+		eyes.setIndex(eyesIndex);
+		mask.setIndex(masksIndex);
+		hair.setIndex(hairsIndex);
+		hat.setIndex(hatsIndex);
 
 		// Color selectors, and their toggles
 		for (ResetListener l : resetListeners) {

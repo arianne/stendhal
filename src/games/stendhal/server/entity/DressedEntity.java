@@ -47,6 +47,29 @@ public abstract class DressedEntity extends RPEntity {
 	}
 
 	/**
+	 * This is simply for backwards compatibility to update a user's outfit
+	 * with the "outfit" attribute.
+	 */
+	@Override
+	public void put(final String attr, final String value) {
+		if (attr.equals("outfit")) {
+			final StringBuilder sb = new StringBuilder();
+			final int code = Integer.parseInt(value);
+
+			sb.append("body=" + code % 100);
+			sb.append(",dress=" + code / 100 % 100);
+			sb.append(",head=" + (int) (code / Math.pow(100, 2) % 100));
+			sb.append(",hair=" + (int) (code / Math.pow(100, 3) % 100));
+			sb.append(",detail=" + (int) (code / Math.pow(100, 4) % 100));
+
+			// "outfit_ext" actually manages the entity's outfit
+			super.put("outfit_ext", sb.toString());
+		}
+
+		super.put(attr, value);
+	}
+
+	/**
 	 * Gets this entity's outfit.
 	 *
 	 * Note: some entities (e.g. sheep, many NPC's, all monsters) don't use
@@ -158,19 +181,20 @@ public abstract class DressedEntity extends RPEntity {
 		// contain null parts.
 		final Outfit newOutfit = outfit.putOver(getOutfit());
 
-		StringBuilder str = new StringBuilder();
-		str.append("body=" + newOutfit.getLayer("body") + ",");
-		str.append("dress=" + newOutfit.getLayer("dress") + ",");
-		str.append("head=" + newOutfit.getLayer("head") + ",");
-		str.append("mouth=" + newOutfit.getLayer("mouth") + ",");
-		str.append("eyes=" + newOutfit.getLayer("eyes") + ",");
-		str.append("mask=" + newOutfit.getLayer("mask") + ",");
-		str.append("hair=" + newOutfit.getLayer("hair") + ",");
-		str.append("hat=" + newOutfit.getLayer("hat") + ",");
-		str.append("detail=" + newOutfit.getLayer("detail"));
+		StringBuilder sb = new StringBuilder();
+		sb.append("body=" + newOutfit.getLayer("body") + ",");
+		sb.append("dress=" + newOutfit.getLayer("dress") + ",");
+		sb.append("head=" + newOutfit.getLayer("head") + ",");
+		sb.append("mouth=" + newOutfit.getLayer("mouth") + ",");
+		sb.append("eyes=" + newOutfit.getLayer("eyes") + ",");
+		sb.append("mask=" + newOutfit.getLayer("mask") + ",");
+		sb.append("hair=" + newOutfit.getLayer("hair") + ",");
+		sb.append("hat=" + newOutfit.getLayer("hat") + ",");
+		sb.append("detail=" + newOutfit.getLayer("detail"));
 
-		put("outfit_ext", str.toString());
-		put("outfit", newOutfit.getCode());
+		put("outfit_ext", sb.toString());
+		// FIXME: can't update "outfit" attribute without affecting "outfit_ext" (see: overridden method DressedEntity.put)
+		//put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
 

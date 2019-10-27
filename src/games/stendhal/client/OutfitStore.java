@@ -26,6 +26,7 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Outfits;
 
 /**
  * An outfit store.
@@ -90,6 +91,11 @@ public class OutfitStore {
 	private Sprite buildOutfit(final String strcode, final OutfitColor color) {
 		final Map<String, Integer> layer_map = new HashMap<>();
 
+	    // initialize outfit parts to 0 in case some haven't been specified
+		for (String n: Outfits.LAYER_NAMES) {
+			layer_map.put(n, 0);
+		}
+
 		for (String layer: strcode.split(",")) {
 			if (layer.contains("=")) {
 				final String[] key = layer.split("=");
@@ -97,47 +103,54 @@ public class OutfitStore {
 			}
 		}
 
-		// Body layer
-		Sprite layer = getBodySprite(layer_map.get("body"), color);
-		if (layer == null) {
-			throw new IllegalArgumentException(
-					"No body image found for outfit: " + layer_map.get("body"));
+		ImageSprite sprite;
+
+		try {
+			// Body layer
+			Sprite layer = getBodySprite(layer_map.get("body"), color);
+			if (layer == null) {
+				throw new IllegalArgumentException(
+						"No body image found for outfit: " + layer_map.get("body"));
+			}
+
+			sprite = new ImageSprite(layer);
+			final Graphics g = sprite.getGraphics();
+
+			// Dress layer
+			layer = getDressSprite(layer_map.get("dress"), color);
+			layer.draw(g, 0, 0);
+
+			// Head layer
+			layer = getHeadSprite(layer_map.get("head"), color);
+			layer.draw(g, 0, 0);
+
+			// mouth layer
+			layer = getMouthSprite(layer_map.get("mouth"));
+			layer.draw(g, 0, 0);
+
+			// eyes layer
+			layer = getEyesSprite(layer_map.get("eyes"), color);
+			layer.draw(g, 0, 0);
+
+			// mask layer
+			layer = getMaskSprite(layer_map.get("mask"));
+			layer.draw(g, 0, 0);
+
+			// Hair layer
+			layer = getHairSprite(layer_map.get("hair"), color);
+			layer.draw(g, 0, 0);
+
+			// hat layer
+			layer = getHatSprite(layer_map.get("hat"));
+			layer.draw(g, 0, 0);
+
+			// Item layer (draw on last)
+			layer = getDetailSprite(layer_map.get("detail"), color);
+			layer.draw(g, 0, 0);
+		} catch (NullPointerException e) {
+			logger.warn("Building failsafe outfit");
+			sprite = (ImageSprite) getFailsafeOutfit();
 		}
-
-		final ImageSprite sprite = new ImageSprite(layer);
-		final Graphics g = sprite.getGraphics();
-
-		// Dress layer
-		layer = getDressSprite(layer_map.get("dress"), color);
-		layer.draw(g, 0, 0);
-
-		// Head layer
-		layer = getHeadSprite(layer_map.get("head"), color);
-		layer.draw(g, 0, 0);
-
-		// mouth layer
-		layer = getMouthSprite(layer_map.get("mouth"));
-		layer.draw(g, 0, 0);
-
-		// eyes layer
-		layer = getEyesSprite(layer_map.get("eyes"), color);
-		layer.draw(g, 0, 0);
-
-		// mask layer
-		layer = getMaskSprite(layer_map.get("mask"));
-		layer.draw(g, 0, 0);
-
-		// Hair layer
-		layer = getHairSprite(layer_map.get("hair"), color);
-		layer.draw(g, 0, 0);
-
-		// hat layer
-		layer = getHatSprite(layer_map.get("hat"));
-		layer.draw(g, 0, 0);
-
-		// Item layer (draw on last)
-		layer = getDetailSprite(layer_map.get("detail"), color);
-		layer.draw(g, 0, 0);
 
 		return sprite;
 	}

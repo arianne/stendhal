@@ -89,7 +89,29 @@ public class AlterAction extends AdministrationAction {
 					return;
 				}
 
-				if (isParsableByInteger(type)) {
+				if (stat.equals("features") && changed instanceof Player) {
+					if (!mode.equalsIgnoreCase(ADD) && !mode.equalsIgnoreCase(SUB)) {
+						player.sendPrivateText("Please issue mode 'add' or 'sub'.");
+						return;
+					}
+
+					if (mode.equalsIgnoreCase(ADD)) {
+						String f_key;
+						String f_value;
+
+						if (value.contains(" ")) {
+							f_key = value.split(" ")[0];
+							f_value = value.replace(f_key, "").trim();
+						} else {
+							f_key = value;
+							f_value = "";
+						}
+
+						((Player) changed).setFeature(f_key, f_value);
+					} else if (mode.equalsIgnoreCase(SUB)) {
+						((Player) changed).unsetFeature(value);
+					}
+				} else if (isParsableByInteger(type)) {
 					int numberValue;
 
 					try {

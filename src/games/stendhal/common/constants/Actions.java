@@ -50,7 +50,7 @@ public final class Actions {
 	public static final String SUPPORTANSWER = "supportanswer";
 
 	//outfit
-	public static final String OUTFIT = "outfit";
+	public static final String OUTFIT = "outfit_ext";
 
 	public static final String MOVETO = "moveto";
 
