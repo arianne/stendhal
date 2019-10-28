@@ -232,6 +232,14 @@ public abstract class DressedEntity extends RPEntity {
 		setOutfit(new Outfit(layers), temporary);
 	}
 
+	public void setOutfit(final String strcode, final boolean temporary) {
+		setOutfit(new Outfit(strcode), temporary);
+	}
+
+	public void setOutfit(final String strcode) {
+		setOutfit(strcode, false);
+	}
+
 	// Hack to preserve detail layer
 	public void setOutfitWithDetail(final Outfit outfit) {
 		setOutfitWithDetail(outfit, false);
