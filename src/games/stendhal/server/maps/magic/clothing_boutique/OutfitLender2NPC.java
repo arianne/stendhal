@@ -61,21 +61,20 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		// these outfits must be put on over existing outfit
 		// (what's null doesn't change that part of the outfit)
 		// so true means we put on over
-		// FIXME: Use new outfit system
 		// FIXME: eyes layer interferes with some outfits
-		final Pair<Outfit, Boolean> GLASSES = new Pair<Outfit, Boolean>(new Outfit(null, null, 86, null, null, null, null, null, null), true);
-		final Pair<Outfit, Boolean> GOBLIN_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 88, null, null, null, null, null, null), true);
-		final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 87, null, null, null, null, null, null), true);
+		final Pair<Outfit, Boolean> GLASSES = new Pair<Outfit, Boolean>(new Outfit(null, null, 986, null, null, null, null, null, null), true);
+		final Pair<Outfit, Boolean> GOBLIN_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 988, null, null, null, null, null, null), true);
+		final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 987, null, null, null, null, null, null), true);
 		final Pair<Outfit, Boolean> Umbrella = new Pair<Outfit, Boolean>(new Outfit(null, null, null, null, null, null, null, null, 7), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
-		final Pair<Outfit, Boolean> PURPLE_SLIME = new Pair<Outfit, Boolean>(new Outfit(93, 0, 98, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> GREEN_SLIME = new Pair<Outfit, Boolean>(new Outfit(89, 0, 98, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> RED_SLIME = new Pair<Outfit, Boolean>(new Outfit(88, 0, 98, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> BLUE_SLIME = new Pair<Outfit, Boolean>(new Outfit(91, 0, 98, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> GINGERBREAD_MAN = new Pair<Outfit, Boolean>(new Outfit(92, 0, 98, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> WHITE_CAT = new Pair<Outfit, Boolean>(new Outfit(78, 0, 98, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> BLACK_CAT = new Pair<Outfit, Boolean>(new Outfit(79, 0, 98, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> PURPLE_SLIME = new Pair<Outfit, Boolean>(new Outfit(993, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> GREEN_SLIME = new Pair<Outfit, Boolean>(new Outfit(989, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> RED_SLIME = new Pair<Outfit, Boolean>(new Outfit(988, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> BLUE_SLIME = new Pair<Outfit, Boolean>(new Outfit(991, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> GINGERBREAD_MAN = new Pair<Outfit, Boolean>(new Outfit(992, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> WHITE_CAT = new Pair<Outfit, Boolean>(new Outfit(978, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> BLACK_CAT = new Pair<Outfit, Boolean>(new Outfit(979, 0, 998, null, null, null, 0, null, null), false);
 
 		outfitTypes.put("glasses", GLASSES);
 		outfitTypes.put("goblin face", GOBLIN_FACE);
