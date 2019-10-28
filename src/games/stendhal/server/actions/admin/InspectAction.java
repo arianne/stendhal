@@ -142,7 +142,7 @@ public class InspectAction extends AdministrationAction {
 				}
 			}
 			if (inspected instanceof SpeakerNPC) {
-				st.append("\nCurrent state: " + ((SpeakerNPC) inspected).getEngine().getCurrentState());
+				st.append("\nConversation state: " + ((SpeakerNPC) inspected).getEngine().getCurrentState());
 			}
 		} else {
 			st.append("Inspected entity has id " + action.get("target")
