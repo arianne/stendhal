@@ -80,7 +80,7 @@ public class PizzaDelivery extends AbstractQuest {
 	private static Outfit UNIFORM;
 
 	public PizzaDelivery() {
-		UNIFORM = new Outfit(null, null, null, null, null, null, null, Integer.valueOf(90), null);
+		UNIFORM = new Outfit(null, Integer.valueOf(90), null, null, null, null, null, null, null);
 	}
 
 	/**
