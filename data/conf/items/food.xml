@@ -75,30 +75,6 @@
 		</equipable>
 	</item>
 
-    <!-- mauve apple is a special kind of fruit -->
-	<item name="mauve apple">
-		<type class="food" subclass="apple_mauve" tileid="-1" />
-		<description>You see a mauve apple.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="4" />
-			<frequency value="10" />
-			<quantity value="1" />
-			<regen value="1" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
     <!-- black apple is a special kind of fruit -->
 	<item name="black apple">
 		<type class="food" subclass="apple_black" tileid="-1" />
