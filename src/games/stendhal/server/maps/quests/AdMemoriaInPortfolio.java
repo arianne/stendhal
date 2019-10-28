@@ -90,7 +90,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
  * /alterquest <player> admemoriainportfolio
  */
 
-public class AdMemoriaInPortfolio1y extends AbstractQuest {
+public class AdMemoriaInPortfolio extends AbstractQuest {
 	private static final int SCROLL_AMOUNT = 1;
 	private static final String QUEST_SLOT = "admemoriainportfolio";
 
