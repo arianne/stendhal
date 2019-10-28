@@ -452,9 +452,8 @@ class OutfitDialog extends JDialog {
 	 * @return hat sprite
 	 */
 	private Sprite getHatSprite() {
-		return store.getTile(ostore.getHatSprite(hat.getIndex()),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("hat", hat.getIndex()),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -463,9 +462,8 @@ class OutfitDialog extends JDialog {
 	 * @return hair sprite
 	 */
 	private Sprite getHairSprite() {
-		return store.getTile(ostore.getHairSprite(hair.getIndex(), outfitColor),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("hair", hair.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -474,9 +472,8 @@ class OutfitDialog extends JDialog {
 	 * @return mask sprite
 	 */
 	private Sprite getMaskSprite() {
-		return store.getTile(ostore.getMaskSprite(mask.getIndex()),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("mask", mask.getIndex()),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -485,9 +482,8 @@ class OutfitDialog extends JDialog {
 	 * @return eyes sprite
 	 */
 	private Sprite getEyesSprite() {
-		return store.getTile(ostore.getEyesSprite(eyes.getIndex(), outfitColor),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("eyes", eyes.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -496,9 +492,8 @@ class OutfitDialog extends JDialog {
 	 * @return mouth sprite
 	 */
 	private Sprite getMouthSprite() {
-		return store.getTile(ostore.getMouthSprite(mouth.getIndex()),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("mouth", mouth.getIndex()),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -507,9 +502,8 @@ class OutfitDialog extends JDialog {
 	 * @return head sprite
 	 */
 	private Sprite getHeadSprite() {
-		return store.getTile(ostore.getHeadSprite(head.getIndex(), outfitColor),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("head", head.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -518,9 +512,8 @@ class OutfitDialog extends JDialog {
 	 * @return body sprite
 	 */
 	private Sprite getBodySprite() {
-		return store.getTile(ostore.getBodySprite(body.getIndex(), outfitColor),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("body", body.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
@@ -529,8 +522,8 @@ class OutfitDialog extends JDialog {
 	 * @return dress sprite
 	 */
 	private Sprite getDressSprite() {
-		return store.getTile(ostore.getDressSprite(dress.getIndex(), outfitColor), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+		return store.getTile(ostore.getLayerSprite("dress", dress.getIndex(), outfitColor),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	/**
