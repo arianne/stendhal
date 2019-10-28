@@ -229,6 +229,10 @@ public class Outfit {
 	 * outfit. Note that this new outfit can contain parts that are marked as
 	 * NONE; in this case, the parts from the other outfit will be used.
 	 *
+	 * FIXME: the Java client cannot render outfit correctly when this is called
+	 *        using an outfit created with Outfit(String) constructor. Not sure
+	 *        if problem is in server or client. (AntumDeluge)
+	 *
 	 * @param other
 	 *            the outfit that should be worn 'under' the current one
 	 * @return the combined outfit

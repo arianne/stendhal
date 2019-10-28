@@ -94,6 +94,8 @@ public class OutfitStore {
 
 		ImageSprite sprite;
 
+		// TODO: draw transparent sprite for negative body indexes
+
 		// Body layer
 		Sprite layer = getLayerSprite("body", layer_map.get("body"), color);
 		if (layer == null) {
