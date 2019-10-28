@@ -192,6 +192,8 @@ public class Outfit {
 	/**
 	 * Represents this outfit in a numeric code.
 	 *
+	 * This is for backward-compatibility with old outfit system.
+	 *
 	 * @return A 10-digit decimal number where the first pair of digits stand for
 	 *         detail, the second pair for hair, the third pair for head, the
 	 *         fourth pair for dress, and the fifth pair for body
