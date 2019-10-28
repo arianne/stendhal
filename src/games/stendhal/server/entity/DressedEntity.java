@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
+
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -26,9 +28,6 @@ public abstract class DressedEntity extends RPEntity {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DressedEntity.class);
-
-	protected static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail",
-			"dress", "hair", "body", "head", "eyes" };
 
 	public DressedEntity() {
 		super();
