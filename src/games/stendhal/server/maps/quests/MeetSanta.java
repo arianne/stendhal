@@ -149,9 +149,10 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	private void addHat(final Player player) {
 		// fetch old outfit as we want to know the current hair
 		final Outfit oldoutfit = player.getOutfit();
-		// all santa hat sprites are at 50 + current hair
-		if (oldoutfit.getLayer("hair") < 50) {
-			final int hatnumber = oldoutfit.getLayer("hair") + 50;
+		// FIXME: this will not work for hairs higher than 99, need to change to use "hat" layer
+		// all santa hat sprites are at 950 + current hair
+		if (oldoutfit.getLayer("hair") < 950) {
+			final int hatnumber = oldoutfit.getLayer("hair") + 950;
 			// the new outfit only changes the hair, rest is null
 			final Outfit newOutfit;
 			newOutfit = new Outfit(null, null, null, null, null, null, hatnumber, null, null);
@@ -167,9 +168,9 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		// is it Christmas?
 		final Outfit outfit = player.getOutfit();
 		final int hairnumber = outfit.getLayer("hair");
-		if (hairnumber >= 50 && hairnumber < 94) {
+		if (hairnumber >= 950 && hairnumber < 994) {
 			if (!isChristmasTime(new GregorianCalendar())) {
-				final int newhair = hairnumber - 50;
+				final int newhair = hairnumber - 950;
 				final Outfit newOutfit;
 				newOutfit = new Outfit(null, null, null, null, null, null, newhair, null, null);
 				player.setOutfit(newOutfit.putOver(outfit), false);
