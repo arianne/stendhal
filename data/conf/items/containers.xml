@@ -43,7 +43,7 @@
       <slot name="belt"/>
     </equipable>
   </item>
-
+  				 
     <item name="portfolio">
     <type class="container" subclass="portfolio" tileid="-1"/>
     <description>You see a portfolio.</description>
