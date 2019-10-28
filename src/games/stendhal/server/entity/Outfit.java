@@ -160,17 +160,6 @@ public class Outfit {
 		layers.put("detail", detail);
 	}
 
-	@Deprecated
-	public Outfit(final Integer code) {
-		initLayers();
-
-		this.layers.put("body", code % 100);
-		this.layers.put("dress", code / 100 % 100);
-		this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
-		this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
-		this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
-	}
-
 	/**
 	 * Initializes all layers with value "0".
 	 */
