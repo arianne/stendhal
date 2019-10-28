@@ -251,7 +251,7 @@ public class OutfitStore {
 	 * FIXME:	Probably not necessary since there are no more than 100
 	 * 			sprites for each group.
 	 */
-	public String getSpriteSuffix(final int index) {
+	private String getSpriteSuffix(final int index) {
 		String suffix;
 
 		/** Get the value of the index using xxx naming convention */
