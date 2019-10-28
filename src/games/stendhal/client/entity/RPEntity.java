@@ -397,26 +397,6 @@ public abstract class RPEntity extends AudibleEntity {
 		return outfit;
 	}
 
-	@Deprecated
-	public int getOutfitMouth() {
-		return outfitMouth;
-	}
-
-	@Deprecated
-	public int getOutfitEyes() {
-		return outfitEyes;
-	}
-
-	@Deprecated
-	public int getOutfitMask() {
-		return outfitMask;
-	}
-
-	@Deprecated
-	public int getOutfitHat() {
-		return outfitHat;
-	}
-
 	/**
 	 * The result of previous attack against this entity.
 	 *

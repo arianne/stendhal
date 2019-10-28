@@ -199,76 +199,6 @@ class OutfitDialog extends JDialog {
 	}
 
 	/**
-	 * Create a new OutfitDialog.
-	 *
-	 * @param parent parent window
-	 * @param title title of the dialog
-	 * @param outfit number of the outfit
-	 * @param outfitColor coloring information. <b>Note that outfitColor
-	 *	can be modified by the dialog.</b>
-	 */
-	@Deprecated
-	OutfitDialog(final Frame parent, final String title, int outfit, final int mouthsIndex,
-			final int eyesIndex, final int masksIndex, final int hatsIndex,
-			final OutfitColor outfitColor) {
-		super(parent, false);
-
-		this.outfitColor = outfitColor;
-
-		// Needs to be after initializing the models
-		initComponents();
-		applyStyle();
-		setTitle(title);
-
-		// Follow the model changes; the whole outfit follows them all
-		hair.addListener(hairLabel);
-		hair.addListener(outfitLabel);
-		eyes.addListener(eyesLabel);
-		eyes.addListener(outfitLabel);
-		mouth.addListener(mouthLabel);
-		mouth.addListener(outfitLabel);
-		head.addListener(headLabel);
-		head.addListener(outfitLabel);
-		body.addListener(bodyLabel);
-		body.addListener(outfitLabel);
-		dress.addListener(dressLabel);
-		dress.addListener(outfitLabel);
-		hat.addListener(outfitLabel);
-		hat.addListener(hatLabel);
-		mask.addListener(maskLabel);
-		mask.addListener(outfitLabel);
-
-		// analyse current outfit
-		int bodiesIndex = outfit % 100;
-		outfit = outfit / 100;
-		int clothesIndex = outfit % 100;
-		outfit = outfit / 100;
-		int headsIndex = outfit % 100;
-		outfit = outfit / 100;
-		int hairsIndex = outfit % 100;
-
-		// reset special outfits
-		hairsIndex = checkIndex(hairsIndex, hair);
-		headsIndex = checkIndex(headsIndex, head);
-		clothesIndex = checkIndex(clothesIndex, dress);
-		bodiesIndex = checkIndex(bodiesIndex, body);
-
-		// Set the current outfit indices; this will update the labels as well
-		hair.setIndex(hairsIndex);
-		eyes.setIndex(eyesIndex);
-		mouth.setIndex(mouthsIndex);
-		head.setIndex(headsIndex);
-		body.setIndex(bodiesIndex);
-		dress.setIndex(clothesIndex);
-		hat.setIndex(hatsIndex);
-		mask.setIndex(masksIndex);
-
-		pack();
-		WindowUtils.closeOnEscape(this);
-		WindowUtils.trackLocation(this, "outfit", false);
-	}
-
-	/**
 	 * Check an index is within player accessible limits.
 	 *
 	 * @param index current index
@@ -848,46 +778,6 @@ class OutfitDialog extends JDialog {
 		mask.setIndex(masksIndex);
 		hair.setIndex(hairsIndex);
 		hat.setIndex(hatsIndex);
-
-		// Color selectors, and their toggles
-		for (ResetListener l : resetListeners) {
-			l.reset();
-		}
-	}
-
-	/**
-	 * Set the state of the selector.
-	 *
-	 * @param outfit outfit code
-	 * @param colors color state. Unlike the one passed to the constructor, this
-	 * 	will not be modified
-	 */
-	@Deprecated
-	void setState(int outfit, final int mouthsIndex, final int eyesIndex, final int masksIndex,
-			final int hatsIndex, OutfitColor colors) {
-		// Copy the original colors
-		outfitColor.setColor(OutfitColor.SKIN, colors.getColor(OutfitColor.SKIN));
-		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
-		outfitColor.setColor(OutfitColor.EYES, colors.getColor(OutfitColor.EYES));
-		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
-
-		// analyze the outfit code
-		int bodiesIndex = outfit % 100;
-		outfit = outfit / 100;
-		int clothesIndex = outfit % 100;
-		outfit = outfit / 100;
-		int headsIndex = outfit % 100;
-		outfit = outfit / 100;
-		int hairsIndex = outfit % 100;
-
-		body.setIndex(bodiesIndex);
-		dress.setIndex(clothesIndex);
-		head.setIndex(headsIndex);
-		mouth.setIndex(mouthsIndex);
-		eyes.setIndex(eyesIndex);
-		hair.setIndex(hairsIndex);
-		hat.setIndex(hatsIndex);
-		mask.setIndex(masksIndex);
 
 		// Color selectors, and their toggles
 		for (ResetListener l : resetListeners) {

@@ -508,32 +508,6 @@ public class OutfitStore {
 		return sprite;
 	}
 
-	@Deprecated
-	private Sprite getOutfit(final int code, final int mouth, final int eyes, final int mask, final int hat,
-			final OutfitColor color) {
-		// Use the normalized string for the reference
-		final String reference = buildReference(code, mouth, eyes, mask, hat, color.toString());
-		return getOutfit(code, mouth, eyes, mask, hat, color, reference);
-	}
-
-	@Deprecated
-	private Sprite getOutfit(final int code, final int mouth, final int eyes, final int mask, final int hat,
-			final OutfitColor color, final String reference) {
-		final SpriteCache cache = SpriteCache.get();
-
-		// FIXME: set sprite to null until reference for extended outfit is fixed
-		//Sprite sprite = cache.get(reference);
-		Sprite sprite = null;
-
-		if (sprite == null) {
-			sprite = buildOutfit(code, mouth, eyes, mask, hat, color);
-			cache.add(reference, sprite);
-		}
-
-		return sprite;
-	}
-
-
 	/**
 	 * Get an outfit with color adjustment, such as a player in colored light.
 	 */
@@ -558,60 +532,6 @@ public class OutfitStore {
 	}
 
 	/**
-	 * Get an outfit with color adjustment, such as a player in colored light.
-	 *
-	 * @param code outfit code
-	 * @param color Color information for outfit parts
-	 * @param adjColor adjustment color for the entire outfit
-	 * @param blend blend mode for applying the adjustment color
-	 * @return color adjusted outfit
-	 */
-	/*
-	public Sprite getAdjustedOutfit(final int code, OutfitColor color,
-			Color adjColor, Composite blend) {
-		if ((adjColor == null) || (blend == null)) {
-			return getOutfit(code, color);
-		} else {
-			final SpriteCache cache = SpriteCache.get();
-			// Use the normalized string for the reference
-			final String reference = buildReference(code, color.toString());
-			String fullRef = reference + ":" + adjColor.getRGB() + blend.toString();
-			Sprite sprite = cache.get(fullRef);
-			if (sprite == null) {
-				Sprite plain = getOutfit(code, color);
-				sprite = store.modifySprite(plain, adjColor, blend, fullRef);
-
-			}
-			return sprite;
-		}
-	}
-	*/
-
-	@Deprecated
-	public Sprite getAdjustedOutfit(final int code, final int mouth, final int eyes, final int mask, final int hat,
-			final OutfitColor color, final Color adjColor, final Composite blend) {
-		if ((adjColor == null) || (blend == null)) {
-			return getOutfit(code, mouth, eyes, mask, hat, color);
-		} else {
-			//final SpriteCache cache = SpriteCache.get();
-			// Use the normalized string for the reference
-			final String reference = buildReference(code, mouth, eyes, mask, hat, color.toString());
-			String fullRef = reference + ":" + adjColor.getRGB() + blend.toString();
-
-			// FIXME: set sprite to null until reference for extended outfit is fixed
-			//Sprite sprite = cache.get(fullRef);
-			Sprite sprite = null;
-
-			if (sprite == null) {
-				Sprite plain = getOutfit(code, mouth, eyes, mask, hat, color);
-				sprite = store.modifySprite(plain, adjColor, blend, fullRef);
-			}
-
-			return sprite;
-		}
-	}
-
-	/**
 	 * Create an unique reference for an outfit.
 	 *
 	 * @param code outfit code
@@ -622,9 +542,11 @@ public class OutfitStore {
 		return "OUTFIT:" + strcode + "@" + colorCode;
 	}
 
+	/*
 	@Deprecated
 	private String buildReference(final int code, final int mouth, final int eyes, final int mask, final int hat,
 			final String colorCode) {
 		return "OUTFIT:" + code + "@" + colorCode;
 	}
+	*/
 }
