@@ -87,11 +87,17 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nKarma:  " + inspected.getKarma());
 			st.append("\nMana:  " + inspected.getMana() + " / "
 					+ inspected.getBaseMana());
+
+			if (inspected.has("outfit_ext")) {
+				st.append("\nOutfit: " + inspected.get("outfit_ext"));
+			}
 			if (inspected.has("outfit")) {
-				st.append("\nOutfit: " + inspected.get("outfit"));
-			} else if (inspected.has("class")) {
+				st.append("\nOutfit (code): " + inspected.get("outfit"));
+			}
+			if (inspected.has("class")) {
 				st.append("\nOutfit (class): " + inspected.get("class"));
 			}
+
 			st.append("\nequips");
 
 			for (final RPSlot slot : inspected.slots()) {
