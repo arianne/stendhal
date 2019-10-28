@@ -66,8 +66,6 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 
 	private TeleporterBehaviour teleporterBehaviour;
 
-	private static final Outfit santaHat = new Outfit(null, null, null, null, null, null, null, 999, null);
-
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
@@ -149,8 +147,17 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	}
 
 	private void addHat(final Player player) {
-		final Outfit oldoutfit = player.getOutfit();
-		player.setOutfit(santaHat.putOver(oldoutfit), true);
+		final Outfit origOutfit = player.getOutfit();
+		final int currentHat = origOutfit.getLayer("hat");
+		int santaHat = 999;
+		// unique Santa hats
+		if (currentHat == 3) {
+			santaHat = 996;
+		} else if (currentHat == 4) {
+			santaHat = 997;
+		}
+
+		player.setOutfit(new Outfit(null, null, null, null, null, null, null, santaHat, null).putOver(origOutfit), true);
 		player.registerOutfitExpireTime(43200);
 	}
 
@@ -160,7 +167,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	 */
 	@Override
 	public void onLoggedIn(final Player player) {
-		final boolean wearingSantaHat = player.getOutfit().getLayer("hat") == 999;
+		final int currentHat = player.getOutfit().getLayer("hat");
+		final boolean wearingSantaHat = currentHat == 999 || currentHat == 996 || currentHat == 997;
 
 		// is it Christmas?
 		if (!isChristmasTime(new GregorianCalendar()) && wearingSantaHat) {
