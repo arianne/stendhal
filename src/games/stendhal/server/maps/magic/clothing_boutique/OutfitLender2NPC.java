@@ -62,7 +62,6 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		// (what's null doesn't change that part of the outfit)
 		// so true means we put on over
 		// NOTE: use negative numbers for layers that should not be drawn (use 998 for body layer)
-		final Pair<Outfit, Boolean> GLASSES = new Pair<Outfit, Boolean>(new Outfit(null, null, 986, null, null, null, null, null, null), true);
 		final Pair<Outfit, Boolean> GOBLIN_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 988, -1, -1, -1, -1, -1, null), true);
 		final Pair<Outfit, Boolean> THING_FACE = new Pair<Outfit, Boolean>(new Outfit(null, null, 987, -1, -1, -1, -1, -1, null), true);
 		final Pair<Outfit, Boolean> Umbrella = new Pair<Outfit, Boolean>(new Outfit(null, null, null, null, null, null, null, null, 7), true);
@@ -76,7 +75,6 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 		final Pair<Outfit, Boolean> WHITE_CAT = new Pair<Outfit, Boolean>(new Outfit(978, -1, -1, -1, -1, -1, -1, -1, null), false);
 		final Pair<Outfit, Boolean> BLACK_CAT = new Pair<Outfit, Boolean>(new Outfit(979, -1, -1, -1, -1, -1, -1, -1, null), false);
 
-		outfitTypes.put("glasses", GLASSES);
 		outfitTypes.put("goblin face", GOBLIN_FACE);
 		outfitTypes.put("thing face", THING_FACE);
 		outfitTypes.put("umbrella", Umbrella);
@@ -163,7 +161,6 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					}
 				}
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("glasses", (int) (N * 400));
 				priceList.put("goblin face", (int) (N * 500));
 				priceList.put("thing face", (int) (N * 500));
 				priceList.put("purple slime", (int) (N * 3000));
