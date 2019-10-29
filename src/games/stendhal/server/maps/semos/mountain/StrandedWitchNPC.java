@@ -24,7 +24,7 @@ import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
- * Provides StrandedWitch
+ * Provides StrandedWitchNPC
  *
  * @author omero
  */
@@ -35,7 +35,7 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("StrandedWitch") {
+		final SpeakerNPC npc = new SpeakerNPC("Blasyklela") {
 
 			@Override
 			protected void createPath() {
@@ -55,23 +55,26 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 				addGoodbye(
 						"Fortvna");
 
-				addHelp("I am awaiting news from strandedwizard...");
-				addOffer("I am awaiting news from strandedwizard...");
-				addJob("I am awaiting news from strandedwizard...");
+                /**
+                 * for now, only pourpose is to convert a purple apple into a mauve apple 
+                 */
+
+				addHelp("I am worried about my stepbrother Brosoklelo... He likes dueling in magical duels!");
+				addOffer("I could turn a purple apple into a mauve apple... Oh... If only any news from my stepbrother Brosoklelo...");
+				addJob("I am awaiting news from my stepbrother Brosoklelo... That is my job!");
 				
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest
 				 */
-				
 			}
 		};
 		
-		// Finalize StrandedWitch
+		// Finalize Blasyklela
 		npc.setEntityClass("bluesorceressnpc");
 		npc.setPosition(84,116);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see StrandedWitch");
+		npc.setDescription("You see Blasyklela");
 		zone.add(npc);
 		return npc;
 	}
