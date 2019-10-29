@@ -92,7 +92,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		outfitTypes.put("green dress", GREEN_DRESS);
 		outfitTypes.put("gown", GOWN);
 		outfitTypes.put("orange", NOOB);
-		outfitTypes.put("bunny suit", BUNNY);
+		outfitTypes.put("bunny", BUNNY);
 		outfitTypes.put("glasses", GLASSES);
 		outfitTypes.put("other glasses", GLASSES_2);
 		outfitTypes.put("hat", HAT);
@@ -180,7 +180,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				priceList.put("green dress", (int) (N * 500));
 				priceList.put("gown", (int) (N * 750));
 				priceList.put("orange", (int) (N * 500));
-				priceList.put("bunny suit", (int) (N * 800));
+				priceList.put("bunny", (int) (N * 800));
 				priceList.put("glasses", (int) (N * 400));
 				priceList.put("other glasses", (int) (N * 400));
 				priceList.put("hat", (int) (N * 400));
