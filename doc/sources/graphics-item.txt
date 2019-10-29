@@ -7,26 +7,26 @@ data/sprites/items/ammunition/
 
 dark_arrow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 fire_arrow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-fumble_arrow.png    bleutailfly; CC BY-SA 3.0; Stendhal
+fumble_arrow.png    bleutailfly; OGA BY 3.0; Stendhal
 golden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 ice_arrow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 light_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-poison_arrow.png    bleutailfly; CC BY-SA 3.0; Stendhal
+poison_arrow.png    bleutailfly; OGA BY 3.0; Stendhal
 power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-slowdown_arrow.png  bleutailfly; CC BY-SA 3.0; Stendhal
-speedup_arrow.png   bleutailfly; CC BY-SA 3.0; Stendhal
+slowdown_arrow.png  bleutailfly; OGA BY 3.0; Stendhal
+speedup_arrow.png   bleutailfly; OGA BY 3.0; Stendhal
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_bolt.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-wooden_arrow.png    bleutailfly; CC BY-SA 3.0; Stendhal
+wooden_arrow.png    bleutailfly; OGA BY 3.0; Stendhal
 wooden_bolt.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/armor/
 
 barbarian_armor.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 black_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blue_armor.png                bleutailfly; CC BY-SA 3.0; Stendhal
+blue_armor.png                bleutailfly; OGA BY 3.0; Stendhal
 chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 chaos_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dress.png                     Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
@@ -50,7 +50,7 @@ magic_plate_armor.*           Dungeon Crawl Stone Soup; CC0; https://opengameart
 mainio_armor.png              vesper?; ???; ???
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal
 plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-red_armor.png                 bleutailfly; CC BY-SA 3.0; Stendhal
+red_armor.png                 bleutailfly; OGA BY 3.0; Stendhal
 scale_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scuba_gear.png                Diligent Dodo (soniccuz); CC BY-SA 3.0/4.0; Stendhal
 shadow_armor.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -82,20 +82,20 @@ twosided_poleaxe.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 
 data/sprites/items/book/
 
-book_black.png      bleutailfly; CC BY-SA 3.0; Stendhal
-book_blue.png       bleutailfly; CC BY-SA 3.0; Stendhal
-book_gray.png       bleutailfly; CC BY-SA 3.0; Stendhal
-book_green.png      bleutailfly; CC BY-SA 3.0; Stendhal
-book_purple.png     bleutailfly; CC BY-SA 3.0; Stendhal
-book_red.png        bleutailfly; CC BY-SA 3.0; Stendhal
-book_turquoise.png  bleutailfly; CC BY-SA 3.0; Stendhal
-book_white.png      bleutailfly; CC BY-SA 3.0; Stendhal
-book_yellow.png     bleutailfly; CC BY-SA 3.0; Stendhal
+book_black.png      bleutailfly; OGA BY 3.0; Stendhal
+book_blue.png       bleutailfly; OGA BY 3.0; Stendhal
+book_gray.png       bleutailfly; OGA BY 3.0; Stendhal
+book_green.png      bleutailfly; OGA BY 3.0; Stendhal
+book_purple.png     bleutailfly; OGA BY 3.0; Stendhal
+book_red.png        bleutailfly; OGA BY 3.0; Stendhal
+book_turquoise.png  bleutailfly; OGA BY 3.0; Stendhal
+book_white.png      bleutailfly; OGA BY 3.0; Stendhal
+book_yellow.png     bleutailfly; OGA BY 3.0; Stendhal
 
 data/sprites/items/boots/
 
 black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-blue_boots.png             bleutailfly; CC BY-SA 3.0; Stendhal
+blue_boots.png             bleutailfly; OGA BY 3.0; Stendhal
 chain_boots.*              Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347
 chaos_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 darkangels_clan_boots.png  Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal (re-color of elvish_boots)
@@ -107,7 +107,7 @@ leather_boots.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.fr
 lion_clan_boots.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mainio_boots.png           David E. Gervais, vesper; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_boots.png          janay; CC BY-SA 3.0; Stendhal
-red_boots.png              bleutailfly; CC BY-SA 3.0; Stendhal
+red_boots.png              bleutailfly; OGA BY 3.0; Stendhal
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_boots.png            ???; ???; ???
@@ -118,7 +118,7 @@ data/sprites/items/box/
 
 basket.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 present.png   Katie Russell (kymara); GPL 2.0; Stendhal
-stocking.png  bleutailfly; CC BY-SA 3.0; Stendhal
+stocking.png  bleutailfly; OGA BY 3.0; Stendhal
 
 data/sprites/items/cloak/
 
@@ -126,7 +126,7 @@ black_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 black_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 blue_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 blue_elf_cloak.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-blue_striped_cloak.png  David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
+blue_striped_cloak.png  David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 bone_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 brightgreen_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -134,14 +134,14 @@ cloak.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 dwarf_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elf_cloak.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_cloak.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-golden_cloak.png        David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
+golden_cloak.png        David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_cloak.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lich_cloak.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 lion_clan_cloak.*       Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mainio_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-magic_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/bleutailfly
+magic_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal
-red_cloak.png           David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
+red_cloak.png           David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 rift_cloak.png          ???; ???; ???
 shadow_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -252,7 +252,7 @@ wine.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 data/sprites/items/flower/
 
 daisies.png        kymara?; ???; ???
-exotic_flower.png  bleutailfly; CC BY-SA 3.0; Stendhal
+exotic_flower.png  bleutailfly; OGA BY 3.0; Stendhal
 lilia.png          omero?; ???; ???
 pansy.png          omero; CC BY-SA 3.0; Stendhal
 rose.png           ???; ???; ???
@@ -303,7 +303,7 @@ grilled_steak.png          Bluelads4?; ???; ???
 ham.png                    ???; ???; Committed by Miguel Angel
 hamsausage.png             barbanegra?; ???; ???
 ham_smoked.png             ???; ???; ???; Based on ham.png
-honey.png                  bleutailfly; CC BY-SA 3.0; Stendhal
+honey.png                  bleutailfly; OGA BY 3.0; Stendhal
 icecream.png               kymara?; ???; ???
 leek.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 licorice.png               tigertoes?; ???; ???
@@ -455,22 +455,22 @@ yellow.png     ???; ???; ???
 data/sprites/items/legs/
 
 black_legs.png            ???; ???; ???
-blue_legs.png             bleutailfly; CC BY-SA 3.0; Stendhal
+blue_legs.png             bleutailfly; OGA BY 3.0; Stendhal
 chain_legs.png            ???; ???; ???
 chaos_legs.png            ???; ???; ???
 darkangels_clan_legs.png  ???; ???; ???
 dwarvish_legs.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 elvish_legs.png           ???; ???; ???
-golden_legs.png           bleutailfly; CC BY-SA 3.0; Stendhal
+golden_legs.png           bleutailfly; OGA BY 3.0; Stendhal
 jewelled_legs.png         ???; ???; ???
 leather_legs.png          ???; ???; ???
 mainio_legs.png           ???; ???; ???
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal
-red_legs.png              bleutailfly; CC BY-SA 3.0; Stendhal
+red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
 shadow_legs.png           ???; ???; ???
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.png          ???; ???; ???
-xeno_legs.png              https://github.com/crawl/tiles
+xeno_legs.png             ???; ???; ???
 
 data/sprites/items/misc/
 
@@ -622,7 +622,7 @@ data/sprites/items/shield/
 beech.png                     ???; ???; ???
 black_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 bluetowershield.png           ???; ???; ???
-blue_shield.png               bleutailfly; CC BY-SA 3.0; Stendhal
+blue_shield.png               bleutailfly; OGA BY 3.0; Stendhal
 buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_shield.png              ???; ???; ???
 crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -632,7 +632,7 @@ edragons_clan_shield.png      ???; ???; ???
 elvish_shield.png             ???; ???; ???
 enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 goldentowershield.png         ???; ???; ???
-golden_shield.png             David E. Gervais, bleutailfly; CC BY-SA 3.0; http://pousse.rapiere.free.fr/tome/
+golden_shield.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_shield.png       ???; ???; ???
 lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 light_shield.png              ???; ???; ???
@@ -643,7 +643,7 @@ mithril_shield.png            tigertoes - gonna redo; ???; ???
 pine.png                      ???; ???; ???
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 redwood.png                   ???; ???; ???
-red_shield.png                bleutailfly; CC BY-SA 3.0; Stendhal
+red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
 shadow_shield.png             ???; ???; ???
 silvertowershield.png         ???; ???; ???
 skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
