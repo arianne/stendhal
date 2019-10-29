@@ -70,7 +70,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		// these outfits must be put on over existing outfit
 		// (what's null doesn't change that part of the outfit)
 		// so true means we put on over
-		// FIXME: eyes layer interferes with some outfits
+		// NOTE: use negative numbers for layers that should not be drawn (use 998 for body layer)
 		final Pair<Outfit, Boolean> JUMPSUIT = new Pair<Outfit, Boolean>(new Outfit(null, 983, null, null, null, null, null, null, null), true);
 		final Pair<Outfit, Boolean> DUNGAREES = new Pair<Outfit, Boolean>(new Outfit(null, 984, null, null, null, null, null, null, null), true);
 		final Pair<Outfit, Boolean> GREEN_DRESS = new Pair<Outfit, Boolean>(new Outfit(null, 978, null, null, null, null, null, null, null), true);
@@ -82,10 +82,10 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		final Pair<Outfit, Boolean> HAT = new Pair<Outfit, Boolean>(new Outfit(null, null, null, null, null, null, 999, null, null), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
-		final Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(998, 981, 998, null, null, null, 0, null, null), false);
-		final Pair<Outfit, Boolean> HORSE = new Pair<Outfit, Boolean>(new Outfit(997, 0, 998, null, null, null, 0, null, 0), false);
-		final Pair<Outfit, Boolean> GIRL_HORSE = new Pair<Outfit, Boolean>(new Outfit(996, 0, 998, null, null, null, 0, null, 0), false);
-		final Pair<Outfit, Boolean> ALIEN = new Pair<Outfit, Boolean>(new Outfit(995, 0, 998, null, null, null, 0, null, null), false);
+		final Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(998, 981, -1, -1, -1, -1, -1, -1, null), false);
+		final Pair<Outfit, Boolean> HORSE = new Pair<Outfit, Boolean>(new Outfit(997, -1, -1, -1, -1, -1, -1, -1, null), false);
+		final Pair<Outfit, Boolean> GIRL_HORSE = new Pair<Outfit, Boolean>(new Outfit(996, -1, -1, -1, -1, -1, -1, -1, null), false);
+		final Pair<Outfit, Boolean> ALIEN = new Pair<Outfit, Boolean>(new Outfit(995, -1, -1, -1, -1, -1, -1, -1, null), false);
 
 		outfitTypes.put("jumpsuit", JUMPSUIT);
 		outfitTypes.put("dungarees", DUNGAREES);
