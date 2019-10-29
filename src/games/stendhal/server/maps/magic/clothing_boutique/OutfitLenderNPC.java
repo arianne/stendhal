@@ -77,7 +77,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 		final Pair<Outfit, Boolean> GOWN = new Pair<Outfit, Boolean>(new Outfit(null, 982, null, null, null, null, null, null, null), true);
 		final Pair<Outfit, Boolean> NOOB = new Pair<Outfit, Boolean>(new Outfit(null, 980, null, null, null, null, null, null, null), true);
-		final Pair<Outfit, Boolean> HAT = new Pair<Outfit, Boolean>(new Outfit(null, null, null, null, null, null, 999, null, null), true);
+		final Pair<Outfit, Boolean> JESTER = new Pair<Outfit, Boolean>(new Outfit(null, 976, null, null, null, null, -1, 995, null), true);
 
 		// these outfits must replace the current outfit (what's null simply isn't there)
 		final Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(998, 981, -1, -1, -1, -1, -1, -1, null), false);
@@ -91,7 +91,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 		outfitTypes.put("gown", GOWN);
 		outfitTypes.put("orange", NOOB);
 		outfitTypes.put("bunny", BUNNY);
-		outfitTypes.put("hat", HAT);
+		outfitTypes.put("jester", JESTER);
 		outfitTypes.put("horse", HORSE);
 		outfitTypes.put("girl horse", GIRL_HORSE);
 		outfitTypes.put("alien", ALIEN);
@@ -177,7 +177,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				priceList.put("gown", (int) (N * 750));
 				priceList.put("orange", (int) (N * 500));
 				priceList.put("bunny", (int) (N * 800));
-				priceList.put("hat", (int) (N * 400));
+				priceList.put("jester", (int) (N * 400));
 				priceList.put("horse", (int) (N * 1200));
 				priceList.put("girl horse", (int) (N * 1200));
 				priceList.put("alien", (int) (N * 1200));
