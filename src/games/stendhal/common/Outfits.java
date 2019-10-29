@@ -45,7 +45,7 @@ public class Outfits {
 	/** number of player selectable mouths */
 	public static final int MOUTH_OUTFITS = 5;
 
-	public static final int MASK_OUTFITS = 8;
+	public static final int MASK_OUTFITS = 9;
 	public static final int HAT_OUTFITS = 8;
 
 	// layers used for building outfits
