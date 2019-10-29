@@ -179,7 +179,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					null,
 					ConversationStates.ATTENDING,
 					"Please tell me which outfit you would like,"
-					+ " ask to #hire #glasses, #hire a #goblin #face,"
+					+ " ask to #hire a #goblin #face,"
 					+ " #hire a #thing #face, #hire a #umbrella,"
 					+ " #hire a #purple #slime outfit, #hire a #green #slime,"
 					+ " #hire a #red #slime, #hire a #blue #slime,"
