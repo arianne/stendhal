@@ -116,53 +116,52 @@ eyes_017.png (simple dots)  Jordan Irwin (AntumDeluge); CC0; Stendhal
 
 data/sprites/outfit/hair/
 
-hair_001.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_002.png  diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
-hair_003.png  Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
-hair_004.png  Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
-hair_005.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
-hair_006.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_007.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-hair_008.png  Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
-hair_009.*    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
-hair_010.png  Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
-hair_011.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_012.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_013.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
-hair_014.png  Alex Chapman; ???; Stendhal
-hair_015.png  Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
-hair_016.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_017.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_018.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-hair_019.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-hair_020.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
-hair_021.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_022.png  Svetlana Kushnariova (Cabbit), Tracy; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
-hair_023.png  Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
-hair_024.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_025.*    Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
-hair_026.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
-hair_027.png  Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
-hair_028.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_029.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_030.png  Nila122; CC BY-SA 3.0; https://opengameart.org/node/25629
-hair_031.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_032.png  Jordan Irwin (AntumDeluge); CC0; Stendhal
-hair_033.png  ???; ???; ???
-hair_034.png  ???; ???; ???
-hair_035.png  Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
-hair_036.png  ???; ???; ???
-hair_037.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-hair_038.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_039.png  bleutailfly; CC BY-SA 3.0; Stendhal
-hair_040.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_041.png  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
-hair_042.png  Cobra Hubbard (BlueVortexGames); CC BY 3.0; https://opengameart.org/node/27202
-hair_043.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-hair_044.*    Jordan Irwin (AntumDeluge); CC0; Stendhal
-hair_045.png  Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
-hair_046.png  Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
-hair_099.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_001.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_002.png     diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
+hair_003.png     Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
+hair_004.png     Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
+hair_005.png     Jordan Irwin (AntumDeluge); CC0; Stendhal
+hair_006.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
+hair_007.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hair_008.png     Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
+hair_009.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
+hair_010.png     Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
+hair_011.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
+hair_012.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
+hair_0[13-44].*  Joe White; CC BY-SA 3.0; https://opengameart.org/node/14991
+hair_015.png     Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
+hair_016.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_017.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_018.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hair_019.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hair_020.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
+hair_021.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_022.png     Svetlana Kushnariova (Cabbit), Tracy; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
+hair_023.png     Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
+hair_024.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_025.*       Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
+hair_026.png     Jordan Irwin (AntumDeluge); CC0; Stendhal
+hair_027.png     Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
+hair_028.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_029.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
+hair_030.png     Nila122; CC BY-SA 3.0; https://opengameart.org/node/25629
+hair_031.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
+hair_032.png     Jordan Irwin (AntumDeluge); CC0; Stendhal
+hair_033.png     ???; ???; ???
+hair_034.png     ???; ???; ???
+hair_035.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
+hair_036.png     ???; ???; ???
+hair_037.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hair_038.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_039.png     bleutailfly; CC BY-SA 3.0; Stendhal
+hair_040.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_041.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
+hair_042.png     Cobra Hubbard (BlueVortexGames); CC BY 3.0; https://opengameart.org/node/27202
+hair_043.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_044.*       Jordan Irwin (AntumDeluge); CC0; Stendhal
+hair_045.png     Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
+hair_046.png     Svetlana Kushnariova (Cabbit), bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/72969, https://postimg.cc/4YC9jXmG
+hair_099.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
 data/sprites/outfit/hat/
 
