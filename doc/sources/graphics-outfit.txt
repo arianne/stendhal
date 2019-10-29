@@ -116,7 +116,7 @@ eyes_017.png (simple dots)  Jordan Irwin (AntumDeluge); CC0; Stendhal
 
 data/sprites/outfit/hair/
 
-hair_001.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+hair_001.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hair_002.png     diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 hair_003.png     Yamilian; CC BY-SA 3.0; https://opengameart.org/node/11480
 hair_004.png     Nila122; CC BY-SA 3.0; https://opengameart.org/node/29293
@@ -142,7 +142,7 @@ hair_024.png     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA 
 hair_025.*       Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
 hair_026.png     Jordan Irwin (AntumDeluge); CC0; Stendhal
 hair_027.png     Svetlana Kushnariova (Cabbit), diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
-hair_028.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+hair_028.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 hair_029.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
 hair_030.png     Nila122; CC BY-SA 3.0; https://opengameart.org/node/25629
 hair_031.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
