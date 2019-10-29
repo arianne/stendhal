@@ -24,7 +24,7 @@ import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
- * Provides StrandedWizard
+ * Provides StrandedWizardNPC
  *
  * @author omero
  */
@@ -35,7 +35,7 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("StrandedWizard") {
+		final SpeakerNPC npc = new SpeakerNPC("Brosoklelo") {
 
 			@Override
 			protected void createPath() {
@@ -52,17 +52,15 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 				addGreeting(
 						"Ave");
 				addGoodbye(
-						"Fortvna");
-				
+						"Fortvna");				
 				addJob(
-                        "I am stranded, I do not have any job..." + " " +
-                        "I lost #memory");
+                        "I like dueling in magical duels... I have probably lost #memory" + " " + "*sigh*");
 				addHelp(
-						"I am stranded, I can not help you with anything..." + " " +
-						"I lost #memory");
+						"I am stranded here, I can not help you with anything..." + " " +
+						"I lost #memory but I still remember my stepsister... Blasyklela!");
 				addOffer(
 						"I am stranded, I can not offer you anything..." + " " +
-						"I lost #memory");
+						"I lost #memory but I remember some place... Kirdneh!");
 				
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest
@@ -71,12 +69,12 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 			}
 		};
 		
-		// Finalize StrandedWizard
+		// Finalize Brosoklelo
 		npc.setEntityClass("brownwizardnpc");
 		npc.setPosition(65,120);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see StrandedWizard");
+		npc.setDescription("You see Brosoklelo... He seems somewhat confused like he had lost his memory!");
 		zone.add(npc);
 		return npc;
 	}
