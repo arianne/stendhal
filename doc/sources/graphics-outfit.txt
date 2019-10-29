@@ -185,7 +185,7 @@ head_085.png  yolkati, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengam
 
 data/sprites/outfit/mask/
 
-mask_001.png     (glasses)     ???; ???; ??? (taken from head_009)
+mask_001.png     (glasses)     bleutailfly; OGA BY 3.0; Stendhal
 mask_002.png     (sunglasses)  ???; ???; ??? (taken from head_079)
 mask_003.png     (sunglasses)  ???; ???; ??? (taken from head_086)
 mask_00[4-5].png (eye patch)   bleutailfly; OGA BY 3.0; Stendhal
