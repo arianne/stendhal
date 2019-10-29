@@ -286,9 +286,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				// title of the quest:
 				"AdMemoriaInPortfolio",
 				// description of quest step:
-				"Talk Brosoklelo           step_1" + " " +
-				"Find Blasyklela           step_2" + " " +
-				"Rtrn Brosoklelo           step_3" + " " ,
+				"Talk Brosoklelo..." + " " +
+				"Find Blasyklela..." + " " +
+				"Rtrn Brosoklelo" + " " ,
 				// repeat is false
 				false);
 		// admemoriainportfolio steps:
