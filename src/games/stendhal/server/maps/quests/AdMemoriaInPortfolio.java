@@ -48,28 +48,31 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 /**
  * QUEST: Ad Memoria In Portfolio
  * 
+ * @author omero
+ * 
  * PARTICIPANTS:
  * <ul>
- *  <li> strandedwizard, somewhere in semos mountains, near the wizard tower
- *   + lost his memories in a magical duel
- *   + still remembers his sister strandedwitch
- *   + still remembers about Kirdneh</li>
- *  <li> strandedwitch,  somewhere in Kirdneh
- *   + sister of strandedwizard lives in kirdneh
- *   + accomplished magician that can compile a magic memory log
- *   + needs 1x mauve apple to restore strandedwizard memory log</li>
+ *  <li> Brosoklelo, somewhere in semos mountains, near the wizard tower
+ *   + Brosoklelo lost his memories in a magical duel
+ *   + Brosoklelo still remembers his sister Blasyklela
+ *   + Brosoklelo still remembers about Kirdneh</li>
+ *  <li> Blasyklela,  somewhere in Kirdneh
+ *   + Blasyklela is the stepsister of Brosoklelo
+ *   + Blasyklela is currently living in Kirdneh
+ *   + Blasyklela is an accomplished magician that can compile a magic memory log
+ *   + Blasyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log</li>
  * </ul>
  *
  * STEPS:
  * <ul>
  *  <li> admemoriainportfolio_step1</li>
- *  <li> Talk with strandedwizard to activate the quest.</li>
+ *  <li> Talk with Brosoklelo to activate the quest.</li>
  *  <li> Collect 1x purple apple</li>
  *  <li> admemoriainportfolio_step2</li>
- *  <li> Talk with strandedwitch in Kirdneh. have 1x purple apple</li>
+ *  <li> Talk with Blasyklela in Kirdneh. have 1x purple apple</li>
  *  <li> admemoriainportfolio_step2</li>
- *  <li> Return to strandedwizard with 1x mauve apple</li>
- *  <li> strandedwizard will unlock portfolio</li>
+ *  <li> Return to Brosoklelo with 1x mauve apple</li>
+ *  <li> Brosoklelo will unlock portfolio</li>
  * </ul>
  *
  * REWARD:
@@ -83,6 +86,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
  * <ul>
  *  <li> None.</li>
  * </ul>
+ * 
  */
 
 /**
@@ -101,35 +105,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	
 	/** admemoriainportfolio_step_1 */
 	private void admemoriainportfolio_step_1() {
-		final SpeakerNPC npc = npcs.get("strandedwizard");
+		final SpeakerNPC npc = npcs.get("Brosoklelo");
 
-		/** quest is not started yet, quest asked */
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-                "I am stranded out somewhere..." + " " +
-                "I remember #strandedwitch..."   + " " +
-                "I remember #kirdneh..."         + " " +
-                "I should recover #memory",
-				null);
-
-		/** quest is not started yet, ask about strandedwitch */
+		/** quest is not started yet, ask about Blasyklela */
 		npc.add(
 			ConversationStates.ATTENDING,
-			"strandedwitch",
+			"Blasyklela",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"strandedwitch is my stepsister... Lives in #Kirdneh",
+			"Blasyklela is my stepsister... Lives in #Kirdneh",
 			null);
 
-		/** quest is not started yet, ask about kirdneh */
+		/** quest is not started yet, ask about Kirdneh */
 		npc.add(
 			ConversationStates.ATTENDING,
-			"kirdneh",
+			"Kirdneh",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Kirdneh is the place where #strandedwitch lives",
+			"Kirdneh is the place where #Blasyklela lives",
 			null);
 
 		/** quest not started, quest offered */
@@ -138,20 +131,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"memory",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			/**
-			"\n" +
-			"-------------------------------------------------" + " " + "\n" +
-			"Laaah lah lah laaah..."                            + " " + "\n" +
-			"A duel..." + "Mages duel..."                       + " " + "\n" +
-			"A mist..." + "Mages mist..."                       + " " + "\n" +
-			"Stranded and yet not lost..."                      + " " + "\n" +
-			"Catch those memories..."                           + " " + "\n" +
-			"-------------------------------------------------" + " " + "\n" +
-			*/
 			"Laaah lah lah laaah... A duel in magical mist..."  + " " +
             "And surely I lost my memory... Again..."           + " " +
             "I stand here stranded but all is not lost yet..."  + " " +
-            "Could You help recover strandedwizard memory?"     + " " +
+            "Could You help recover Brosoklelo memory?"     + " " +
             "A yes or no answer will do...",
 			null);
 
@@ -171,12 +154,12 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                    final Sentence sentence,
                    final EventRaiser npc) {
                         npc.say(
-                        //give player item to bring to strandedwitch
+                        //give player item to bring to Blasyklela
                         //a normal something
                         //a special something
                         "Here you go... Take this purple apple from me!" + " " +
-                        "Find strandedwitch and bring this purple apple along with you." + " " +
-                        "Say purple apple to strandedwitch and she will know it is from me!" + " " +
+                        "Find Blasyklela and bring this purple apple along with you." + " " +
+                        "Say purple apple to Blasyklela and she will know it is from me!" + " " +
                         "Once you return back here to me, I will reward your efforts!");
                         new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
                         new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
@@ -199,11 +182,11 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     }
 
 	/** admemoriainportfolio_step_2 */
-	/** find strandedwitch in Kirdneh. step_2 */
+	/** find Blasyklela in Kirdneh. step_2 */
     // Player has AdMemoriaInPortfolio quest
 	// Player has AdMemoriaInPortfolio required items with him
 	private void admemoriainportfolio_step_2() {
-		final SpeakerNPC npc = npcs.get("strandedwitch");
+		final SpeakerNPC npc = npcs.get("Blasyklela");
 		npc.add(
 	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
 	        new AndCondition(
@@ -219,13 +202,13 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
 								npc.say(
-									"Oh that purple apple is coming from strandedwizard." + " " +
-									"Surely strandedwizard lost another magical duel..." + " " +
+									"Oh that purple apple is coming from Brosoklelo." + " " +
+									"Surely Brosoklelo lost another magical duel..." + " " +
 									"Here you go... Please take" + " " + 
 									"this mauve apple from me!" + " " +
-									"Bring mauve apple back to strandedwizard" + " " +
-									"Tell strandedwizard mauve apple..." + " " +
-									"A mauve apple will restore strandedwizard memory!" + " " +
+									"Bring mauve apple back to Brosoklelo" + " " +
+									"Tell Brosoklelo mauve apple..." + " " +
+									"A mauve apple will restore Brosoklelo memory!" + " " +
 									"Once again *sigh*");
                                 new IncreaseXPAction(1);
 								new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
@@ -239,7 +222,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 
 	/** admemoriainportfolio_step_3
 	 */
-	/** return to strandedwizard, step_3
+	/** return to Brosoklelo, step_3
 	 */
 	/** completing admemoriainportfolio_step_3 activates portfolio slot for player
 	 */
@@ -254,8 +237,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     *     reward.add(new EnableFeatureAction("portfolio"));
     * }
     */
-    /**
-    * 
+    /** 
     * final List<ChatAction> reward = new LinkedList<ChatAction>();
     * if (System.getProperty("stendhal.container") != null) {
     *     reward.add(new CreateSlotAction(ImmutableList.of("portfolio")));
@@ -267,7 +249,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     * }
     */
 	private void admemoriainportfolio_step_3() {
-		final SpeakerNPC npc = npcs.get("strandedwizard");
+		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		npc.add(
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
             new AndCondition(
@@ -303,10 +285,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		fillQuestInfo(
 				// title of the quest:
 				"AdMemoriaInPortfolio",
-				// description of the quest:
-				"Talk strandedwizard           step_1" + "\n" +
-				"Find strandedwitch            step_2" + "\n" +
-				"Retr strandedwizard           step_3" + "\n" ,
+				// description of quest step:
+				"Talk Brosoklelo           step_1" + " " +
+				"Find Blasyklela           step_2" + " " +
+				"Rtrn Brosoklelo           step_3" + " " ,
 				// repeat is false
 				false);
 		// admemoriainportfolio steps:
@@ -330,7 +312,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		//origin of the quest
-		return "strandedwizard";
+		return "Brosoklelo";
 	}
 
 	/** travel log */
@@ -347,24 +329,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         final String questState = player.getQuest(QUEST_SLOT);
         if (questState.equals("rejected")) {
         	//eject/bail out with something useful to understand
-        	res.add("I have asked strandedwizard if he has a quest for me.");
-            res.add("I do not want to help strandedwizard recover his memories");
+        	res.add("I have asked Brosoklelo if he has a quest for me.");
+            res.add("I do not want to help Brosoklelo recover his memories");
             return res;
         }
         
         if (questState.equals("start")) {
-        	res.add("I have asked strandedwizard if he has a quest for me.");
-            res.add("I agreed to help strandedwizard");
+        	res.add("I have asked Brosoklelo if he has a quest for me.");
+            res.add("I agreed to help Brosoklelo");
         }
         
         /**
-        if (questState.equals("strandedwitch"))  {
-            res.add("I took scrolls to strandedwitch and she asked me to tell strandedwizard 'strandedwitch'.");
+        if (questState.equals("Blasyklela"))  {
+            res.add("I took scrolls to Blasyklela and she asked me to tell Brosoklelo 'strandedwitch'.");
         }
         */        
 
         if (questState.equals("done")) {
-            res.add("I returned to strandedwizard and he has fixed my portfolio for me.");
+            res.add("I returned to Brosoklelo and he has fixed my portfolio for me.");
         }
         
         return res;
