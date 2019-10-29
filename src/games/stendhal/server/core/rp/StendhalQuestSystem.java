@@ -65,7 +65,8 @@ public class StendhalQuestSystem {
 	 * Initializes the QuestSystem.
 	 */
 	public void init() {
-
+		loadQuest(new AdMemoriaInPortfolio());
+		
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
 		//loadQuest(new AntivenomRing());

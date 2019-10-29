@@ -37,6 +37,8 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Blasyklela") {
 
+			//Blasyklela position is temporary, will relocate in Kirdneh
+			//Blasyklela position orbits around 0_semos_mountain_n2_w at (84,111)
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -70,11 +72,13 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 		};
 		
 		// Finalize Blasyklela
+		//Blasyklela position is temporary, will relocate in Kirdneh
+		//Blasyklela position orbits around 0_semos_mountain_n2_w at (84,111)
 		npc.setEntityClass("bluesorceressnpc");
 		npc.setPosition(84,116);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see Blasyklela");
+		npc.setDescription("You see Blasyklela... She seems anxiously awaiting news!");
 		zone.add(npc);
 		return npc;
 	}

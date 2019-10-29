@@ -54,16 +54,18 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 				addGoodbye(
 						"Fortvna");				
 				addJob(
-                        "I like dueling in magical duels... I have probably lost #memory" + " " + "*sigh*");
+                        "I like dueling in magical duels..." + " " +
+                        "That's my job and I have probably lost my #memory..." + " " +
+                        "Again...");
 				addHelp(
 						"I am stranded here, I can not help you with anything..." + " " +
-						"I lost #memory but I still remember my stepsister... Blasyklela!");
+						"My #memory is nagging me with a name... Blasyklela!");
 				addOffer(
 						"I am stranded, I can not offer you anything..." + " " +
-						"I lost #memory but I remember some place... Kirdneh!");
+						"My #memory seems in disarray but I remember a place... Kirdneh!");
 				
 				/**
-				 * additional behavior defined in AdMemoriaInPortfolio quest
+				 * additional behavior defined in AdMemoriaInPortfolio quest 
 				 */
 				
 			}
