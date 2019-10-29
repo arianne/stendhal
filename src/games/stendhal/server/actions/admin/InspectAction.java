@@ -87,11 +87,25 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nKarma:  " + inspected.getKarma());
 			st.append("\nMana:  " + inspected.getMana() + " / "
 					+ inspected.getBaseMana());
+
+			if (inspected.has("outfit_ext")) {
+				st.append("\nOutfit: ");
+				if (inspected.has("outfit_ext_orig")) {
+					st.append(inspected.get("outfit_ext_orig") + "\nOutfit (temp): ");
+				}
+				st.append(inspected.get("outfit_ext"));
+			}
 			if (inspected.has("outfit")) {
-				st.append("\nOutfit: " + inspected.get("outfit"));
-			} else if (inspected.has("class")) {
+				st.append("\nOutfit code: ");
+				if (inspected.has("outfit_org")) {
+					st.append(inspected.get("outfit_org") + "\nOutfit code (temp): ");
+				}
+				st.append(inspected.get("outfit"));
+			}
+			if (inspected.has("class")) {
 				st.append("\nOutfit (class): " + inspected.get("class"));
 			}
+
 			st.append("\nequips");
 
 			for (final RPSlot slot : inspected.slots()) {
@@ -136,7 +150,7 @@ public class InspectAction extends AdministrationAction {
 				}
 			}
 			if (inspected instanceof SpeakerNPC) {
-				st.append("\nCurrent state: " + ((SpeakerNPC) inspected).getEngine().getCurrentState());
+				st.append("\nConversation state: " + ((SpeakerNPC) inspected).getEngine().getCurrentState());
 			}
 		} else {
 			st.append("Inspected entity has id " + action.get("target")

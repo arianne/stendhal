@@ -147,33 +147,32 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	}
 
 	private void addHat(final Player player) {
-		// fetch old outfit as we want to know the current hair
-		final Outfit oldoutfit = player.getOutfit();
-		// all santa hat sprites are at 50 + current hair
-		if (oldoutfit.getLayer("hair") < 50) {
-			final int hatnumber = oldoutfit.getLayer("hair") + 50;
-			// the new outfit only changes the hair, rest is null
-			final Outfit newOutfit;
-			newOutfit = new Outfit(null, null, null, null, null, hatnumber, null, null, null);
-			//put it on, and store old outfit.
-			player.setOutfit(newOutfit.putOver(oldoutfit), true);
-			player.registerOutfitExpireTime(43200);
+		final Outfit origOutfit = player.getOutfit();
+		final int currentHat = origOutfit.getLayer("hat");
+		int santaHat = 999;
+		// unique Santa hats
+		if (currentHat == 3) {
+			santaHat = 996;
+		} else if (currentHat == 4) {
+			santaHat = 997;
 		}
+
+		player.setOutfit(new Outfit(null, null, null, null, null, null, null, santaHat, null).putOver(origOutfit), true);
+		player.registerOutfitExpireTime(43200);
 	}
 
 
+	/**
+	 * Removes Santa hat if not Christmas.
+	 */
 	@Override
 	public void onLoggedIn(final Player player) {
+		final int currentHat = player.getOutfit().getLayer("hat");
+		final boolean wearingSantaHat = currentHat == 999 || currentHat == 996 || currentHat == 997;
+
 		// is it Christmas?
-		final Outfit outfit = player.getOutfit();
-		final int hairnumber = outfit.getLayer("hair");
-		if (hairnumber >= 50 && hairnumber < 94) {
-			if (!isChristmasTime(new GregorianCalendar())) {
-				final int newhair = hairnumber - 50;
-				final Outfit newOutfit;
-				newOutfit = new Outfit(null, null, null, null, null, newhair, null, null, null);
-				player.setOutfit(newOutfit.putOver(outfit), false);
-			}
+		if (!isChristmasTime(new GregorianCalendar()) && wearingSantaHat) {
+			player.returnToOriginalOutfit();
 		}
 	}
 

@@ -76,12 +76,7 @@ import games.stendhal.server.maps.Region;
  */
 public class PizzaDelivery extends AbstractQuest {
 	private static final Logger logger = Logger.getLogger(PizzaDelivery.class);
-	// FIXME: return to "final" after outfit testing is finished
-	private static Outfit UNIFORM;
-
-	public PizzaDelivery() {
-		UNIFORM = new Outfit(null, null, null, null, null, null, null, Integer.valueOf(90), null);
-	}
+	private final static Outfit UNIFORM = new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null);
 
 	/**
 	 * A customer data object.

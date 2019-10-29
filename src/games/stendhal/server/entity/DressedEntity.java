@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
+
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -26,9 +28,6 @@ public abstract class DressedEntity extends RPEntity {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DressedEntity.class);
-
-	protected static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail",
-			"dress", "hair", "body", "head", "eyes" };
 
 	public DressedEntity() {
 		super();
@@ -231,6 +230,14 @@ public abstract class DressedEntity extends RPEntity {
 	 */
 	public void setOutfit(final boolean temporary, final Integer... layers) {
 		setOutfit(new Outfit(layers), temporary);
+	}
+
+	public void setOutfit(final String strcode, final boolean temporary) {
+		setOutfit(new Outfit(strcode), temporary);
+	}
+
+	public void setOutfit(final String strcode) {
+		setOutfit(strcode, false);
 	}
 
 	// Hack to preserve detail layer

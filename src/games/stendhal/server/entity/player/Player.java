@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.player;
 
 import static games.stendhal.common.NotificationType.getServerNotificationType;
+import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.AUTOWALK;
 import static games.stendhal.common.constants.Actions.AWAY;
@@ -189,7 +190,7 @@ public class Player extends DressedEntity implements UseListener {
 			if (template.has("outfit_ext")) {
 				outfit = new Outfit(template.get("outfit_ext"));
 			} else if (template.has("outfit")) {
-				outfit = new Outfit(template.getInt("outfit"));
+				outfit = new Outfit(Integer.toString(template.getInt("outfit")));
 			}
 		}
 

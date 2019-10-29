@@ -89,7 +89,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(0), ou.getLayer("mask"));
 		assertEquals(Integer.valueOf(0), ou.getLayer("hat"));
 
-		ou = new Outfit(501020304);
+		ou = new Outfit("501020304");
 		assertEquals(Integer.valueOf(5), ou.getLayer("detail"));
 		assertEquals(Integer.valueOf(1), ou.getLayer("hair"));
 		assertEquals(Integer.valueOf(2), ou.getLayer("head"));
@@ -122,7 +122,7 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testGetCode() {
-		assertEquals(12345678, new Outfit(12345678).getCode());
+		assertEquals(12345678, new Outfit("12345678").getCode());
 		assertEquals(907030201, new Outfit(1, 2, 3, 4, 5, 6, 7, 8, 9).getCode());
 	}
 
@@ -131,7 +131,7 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testPutOver() {
-		Outfit orig = new Outfit(12345678);
+		Outfit orig = new Outfit("12345678");
 		final Outfit pullover = new Outfit();
 		assertEquals(12345678, orig.getCode());
 
@@ -314,7 +314,7 @@ public class OutfitTest {
 	 */
 	@Test
 	public void testRemoveOutfit() {
-		Outfit orig = new Outfit(12345678);
+		Outfit orig = new Outfit("12345678");
 		Outfit result = orig.removeOutfit(null, null, null, null, null, null, null, null, 12);
 		assertEquals(Integer.valueOf(78), result.getLayer("body"));
 		assertEquals(Integer.valueOf(56), result.getLayer("dress"));
@@ -330,8 +330,8 @@ public class OutfitTest {
 		result = orig.removeOutfit(null, null, null, null, null, null, null, null, 1);
 		assertEquals(12345600, result.getCode());
 
-		orig = new Outfit(12345678);
-		result = orig.removeOutfit(new Outfit(12345678));
+		orig = new Outfit("12345678");
+		result = orig.removeOutfit(new Outfit("12345678"));
 		assertEquals(0, result.getCode());
 	}
 }

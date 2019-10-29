@@ -95,10 +95,7 @@ public class Outfit {
 	 * 		for backward compatibility.
 	 */
 	public Outfit(final String strcode) {
-		// initialize all layers to "0"
-		for (String n: Outfits.LAYER_NAMES) {
-			this.layers.put(n, 0);
-		}
+		initLayers();
 
 		if (strcode.contains("=")) {
 			final String[] layers;
@@ -154,10 +151,7 @@ public class Outfit {
 	@Deprecated
 	public Outfit(final Integer detail, final Integer hair, final Integer head,
 			final Integer dress, final Integer body) {
-		// initialize all layers to "0"
-		for (String n: Outfits.LAYER_NAMES) {
-			this.layers.put(n, 0);
-		}
+		initLayers();
 
 		layers.put("body", body);
 		layers.put("dress", dress);
@@ -166,18 +160,17 @@ public class Outfit {
 		layers.put("detail", detail);
 	}
 
-	@Deprecated
-	public Outfit(final Integer code) {
-		// initialize all layers to "0"
-		for (String n: Outfits.LAYER_NAMES) {
-			this.layers.put(n, 0);
-		}
+	/**
+	 * Initializes all layers with value "0".
+	 */
+	private void initLayers() {
+		// make sure layer map is empty
+		layers.clear();
 
-		this.layers.put("body", code % 100);
-		this.layers.put("dress", code / 100 % 100);
-		this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
-		this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
-		this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
+		// set all layer values to "0"
+		for (final String n: Outfits.LAYER_NAMES) {
+			layers.put(n, 0);
+		}
 	}
 
 	public Integer getLayer(final String layerName) {
@@ -191,6 +184,8 @@ public class Outfit {
 
 	/**
 	 * Represents this outfit in a numeric code.
+	 *
+	 * This is for backward-compatibility with old outfit system.
 	 *
 	 * @return A 10-digit decimal number where the first pair of digits stand for
 	 *         detail, the second pair for hair, the third pair for head, the
@@ -233,6 +228,10 @@ public class Outfit {
 	 * Gets the result that you get when you wear this outfit over another
 	 * outfit. Note that this new outfit can contain parts that are marked as
 	 * NONE; in this case, the parts from the other outfit will be used.
+	 *
+	 * FIXME: the Java client cannot render outfit correctly when this is called
+	 *        using an outfit created with Outfit(String) constructor. Not sure
+	 *        if problem is in server or client. (AntumDeluge)
 	 *
 	 * @param other
 	 *            the outfit that should be worn 'under' the current one

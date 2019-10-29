@@ -454,12 +454,12 @@ public class PlayerTest {
 		assertThat(player.returnToOriginalOutfit(), is(false));
 
 		// plain outfit change
-		player.setOutfit(new Outfit(0xfeedbeef));
+		player.setOutfit(new Outfit(Integer.toString(0xfeedbeef)));
 		assertThat(player.getOutfit().getCode(), is(0xfeedbeef));
 		player.put("outfit_colors", "dress", 42);
 		assertThat(player.getInt("outfit_colors", "dress"), is(42));
 		// A temporary outfit should stash the colors
-		player.setOutfit(new Outfit(0xf00f), true);
+		player.setOutfit(new Outfit(Integer.toString(0xf00f)), true);
 		assertThat(player.getOutfit().getCode(), is(0xf00f));
 		// cleared the old...
 		assertThat(player.get("outfit_colors", "dress"), is(nullValue()));
@@ -471,7 +471,7 @@ public class PlayerTest {
 		assertThat(player.getInt("outfit_colors", "dress"), is(42));
 		assertThat(player.get("outfit_colors", "dress_orig"), is(nullValue()));
 
-		player.setOutfit(new Outfit(0xf00f), true);
+		player.setOutfit(new Outfit(Integer.toString(0xf00f)), true);
 		assertThat(player.getInt("outfit_colors", "dress_orig"), is(42));
 		player.setOutfit(new Outfit());
 		// regular outfit change should not use stored colors
