@@ -188,7 +188,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					ConversationPhrases.OFFER_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"Just tell me if you want to #hire a #gown, #hire a #green #dress, #hire #glasses, #hire #other #glasses, #hire a #hat, #hire an #alien suit, #hire a #horse outfit, #hire a #girl #horse outfit, #hire a #jumpsuit, #hire #dungarees, #hire a #bunny #suit or #hire an #orange outfit.",
+					"Just tell me if you want to #hire a #gown, #hire a #green #dress, #hire a #jester suit, #hire an #alien suit, #hire a #horse outfit, #hire a #girl #horse outfit, #hire a #jumpsuit, #hire #dungarees, #hire a #bunny suit or #hire an #orange outfit.",
 					new ExamineChatAction("outfits1.png", "Outfits", "Price varies"));
 				addJob(jobReply);
 				// addJob("I normally work in a clothes boutique, we use magic to put our clients into fantastic outfits. I'm here for Mine Town Revival Weeks, where we #offer our outfits at greatly reduced prices, but they last for less time!");
