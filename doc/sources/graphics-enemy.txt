@@ -43,7 +43,6 @@ dog.png               ???; ???; ???
 elephant.*            lawnjelly, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/84509
 fox.png               patvanmackelberg, bleutailfly; OGA BY 3.0; https://opengameart.org/node/48199, https://postimg.cc/BXsC1Jx0
 killer_bat.png        bagzie; OGA BY 3.0; https://opengameart.org/node/26447
-killer_bee.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 lion.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 monkey.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pandabear.png         danielmahon; CC BY-SA 3.0; https://opengameart.org/node/21008, Twitter: @danielmahon
@@ -321,6 +320,8 @@ xenocium.*           Rexi Andriansyah (Rexes), Jordan Irwin (AntumDeluge); OGA B
 
 data/sprites/monsters/insect/
 
+killer_bee.png   Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
+scarab.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
 tiny_scarab.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
 
 data/sprites/monsters/kobold/
