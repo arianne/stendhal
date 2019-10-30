@@ -319,6 +319,10 @@ violet_avenger.*     Svetlana Kushnariova (Cabbit), johnny_automatic, Jordan Irw
 winged_blurble.png   Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/20221
 xenocium.*           Rexi Andriansyah (Rexes), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/86934, https://opengameart.org/node/75162
 
+data/sprites/monsters/insect/
+
+beetle.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
+
 data/sprites/monsters/kobold/
 
 archer_kobold.png   Svetlana Kushnariova, yokati, Michael Williams (BizmasterStudios), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
