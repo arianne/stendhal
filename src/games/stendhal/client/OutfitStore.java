@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 
+import static games.stendhal.common.Outfits.LAYER_NAMES;
 import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
 
 import java.awt.Color;
@@ -30,7 +31,6 @@ import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Outfits;
 
 /**
  * An outfit store.
@@ -81,7 +81,7 @@ public class OutfitStore {
 		final Map<String, Integer> layer_map = new HashMap<>();
 
 	    // initialize outfit parts to 0 in case some haven't been specified
-		for (String n: Outfits.LAYER_NAMES) {
+		for (String n: LAYER_NAMES) {
 			layer_map.put(n, 0);
 		}
 
@@ -106,8 +106,7 @@ public class OutfitStore {
 		sprite = new ImageSprite(layer);
 		final Graphics g = sprite.getGraphics();
 
-		final List<String> layer_names = Arrays.asList("dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail");
-		for (String lname: layer_names) {
+		for (String lname: LAYER_NAMES) {
 			if (RECOLORABLE_OUTFIT_PARTS.contains(lname)) {
 				layer = getLayerSprite(lname, layer_map.get(lname), color);
 			} else {
