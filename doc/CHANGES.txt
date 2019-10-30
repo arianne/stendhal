@@ -84,6 +84,9 @@ Changelog
 - new coins sound for buyer/seller NPCs
 - new liquid fill sound for water spring source
 
+*classic client*
+- option to draw shadows under certain entities
+
 
 1.31
 *world*

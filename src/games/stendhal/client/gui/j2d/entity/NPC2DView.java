@@ -65,13 +65,15 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 		final SpriteStore store = SpriteStore.get();
 		ZoneInfo info = ZoneInfo.get();
 
+		Sprite sprite;
+
 		try {
 			final RPEntity npc = entity;
 			final int code = npc.getOutfit();
 			final String strcode = npc.getExtOutfit();
 
 			if (strcode != null) {
-				return OutfitStore.get().getAdjustedOutfit(strcode, OutfitColor.PLAIN, info.getZoneColor(), info.getColorMethod());
+				sprite = OutfitStore.get().getAdjustedOutfit(strcode, OutfitColor.PLAIN, info.getZoneColor(), info.getColorMethod());
 			} else if (code != RPEntity.OUTFIT_UNSET) {
 				final int body = code % 100;
 				final int dress = code / 100 % 100;
@@ -86,19 +88,21 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 				sb.append(",hair=" + hair);
 				sb.append(",detail=" + detail);
 
-				return OutfitStore.get().getAdjustedOutfit(sb.toString(), OutfitColor.PLAIN, info.getZoneColor(),
+				sprite = OutfitStore.get().getAdjustedOutfit(sb.toString(), OutfitColor.PLAIN, info.getZoneColor(),
 						info.getColorMethod());
 			} else {
 				// This NPC's outfit is read from a single file.
-				return store.getModifiedSprite(translate("npc/"
+				sprite = store.getModifiedSprite(translate("npc/"
 						+ entity.getEntityClass()), info.getZoneColor(),
 						info.getColorMethod());
 			}
 		} catch (final Exception e) {
 			logger.error("Cannot build animations", e);
-			return store.getModifiedSprite(translate(entity.getEntityClass()),
+			sprite = store.getModifiedSprite(translate(entity.getEntityClass()),
 					info.getZoneColor(), info.getColorMethod());
 		}
+
+		return addShadow(sprite);
 	}
 
 	@Override

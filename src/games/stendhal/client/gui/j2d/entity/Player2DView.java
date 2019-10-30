@@ -141,6 +141,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	@Override
 	protected Sprite getAnimationSprite() {
 		final OutfitStore store = OutfitStore.get();
+		Sprite outfit;
 
 		try {
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
@@ -148,8 +149,6 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 			final String strcode = entity.getExtOutfit();
 			final int code = entity.getOutfit();
-
-			Sprite outfit;
 
 			if (strcode == null) {
 				final int body = code % 100;
@@ -173,12 +172,12 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 			if (entity.hasStatus(StatusID.ZOMBIE)) {
 				outfit = SpriteStore.get().modifySprite(outfit, ZOMBIE_COLOR, Blend.TrueColor, null);
 			}
-
-			return outfit;
 		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
-			return store.getFailsafeOutfit();
+			outfit = store.getFailsafeOutfit();
 		}
+
+		return addShadow(outfit);
 	}
 
 	@Override

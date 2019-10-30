@@ -119,6 +119,19 @@ class VisualSettings {
 				"Draw weather", "Draw weather effects.");
 		page.add(weather);
 
+		// shadows
+		JCheckBox shadows = SettingsComponentFactory.createSettingsToggle("gamescreen.shadows", false,
+				"Draw shadows (experimental)", "Draw shadows underneath entities.");
+		page.add(shadows);
+		shadows.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				final String msg = "Some changes will not take effect until you change maps.";
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
+			}
+
+		});
+
 		// blood
 		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, true,
 				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");

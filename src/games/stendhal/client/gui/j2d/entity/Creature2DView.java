@@ -64,7 +64,7 @@ class Creature2DView extends RPEntity2DView<Creature> {
 
 		ZoneInfo info = ZoneInfo.get();
 
-		return SpriteStore.get().getModifiedSprite(translate(resource), info.getZoneColor(), info.getColorMethod());
+		return addShadow(SpriteStore.get().getModifiedSprite(translate(resource), info.getZoneColor(), info.getColorMethod()));
 	}
 
 	//

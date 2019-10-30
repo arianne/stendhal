@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -35,7 +36,9 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.helpers.AttackPainter;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.AnimatedSprite;
+import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.TextSprite;
@@ -634,6 +637,38 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @return A tile sprite containing all animation images.
 	 */
 	protected abstract Sprite getAnimationSprite();
+
+	/**
+	 * Draws a shadow under image if shadows are enabled in the client.
+	 *
+	 * @param sprite
+	 * 		The sprite to manipulate.
+	 * @return
+	 * 		Sprite
+	 */
+	protected Sprite addShadow(final Sprite sprite) {
+		final boolean draw_shadows = WtWindowManager.getInstance().getProperty("gamescreen.shadows", "false").equals("true");
+
+		if (draw_shadows) {
+			// draw a shadow under the image
+			final ImageSprite shadowed = new ImageSprite(SpriteStore.get().getSprite("data/sprites/shadow.png"));
+			final Graphics g = shadowed.getGraphics();
+
+			// check if we need to scale shadow image
+			final int w_orig = sprite.getWidth();
+			final int h_orig = sprite.getHeight();
+			final int w_shadow = shadowed.getWidth();
+			final int h_shadow = shadowed.getHeight();
+
+			// FIXME: need to scale shadow for sprites that are not 48x64
+			if (w_orig == w_shadow && h_orig == h_shadow) {
+				sprite.draw(g, 0, 0);
+				return shadowed;
+			}
+		}
+
+		return sprite;
+	}
 
 	/**
 	 * Get the number of tiles in the X axis of the base sprite.
