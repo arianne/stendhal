@@ -116,10 +116,28 @@ public class Outfit {
 			try {
 				final int code = Integer.parseInt(strcode);
 
-				this.layers.put("body", code % 100);
-				this.layers.put("dress", code / 100 % 100);
-				this.layers.put("head", (int) (code / Math.pow(100, 2) % 100));
-				this.layers.put("hair", (int) (code / Math.pow(100, 3) % 100));
+				// compatibility for special outfits from old outfit system
+				int body = code % 100;
+				if (body >= 78) { // old special bodies started at index 78
+					body += 900;
+				}
+				int dress = code / 100 % 100;
+				if (dress >= 72) { // old special dresses started at index 72
+					dress += 900;
+				}
+				int head = (int) (code / Math.pow(100, 2) % 100);
+				if (head >= 78) { // old special heads started at index 78
+					head += 900;
+				}
+				int hair = (int) (code / Math.pow(100, 3) % 100);
+				if (hair == 99) { // jester hat
+					hair = 999;
+				}
+
+				this.layers.put("body", body);
+				this.layers.put("dress", dress);
+				this.layers.put("head", head);
+				this.layers.put("hair", hair);
 				this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
 			} catch (NumberFormatException e) {
 				LOGGER.warn("Can't parse outfit code, setting failsafe outfit.");
@@ -147,8 +165,22 @@ public class Outfit {
 	 *            The index of the body style, or null
 	 */
 	@Deprecated
-	public Outfit(final Integer detail, final Integer hair, final Integer head,
-			final Integer dress, final Integer body) {
+	public Outfit(final Integer detail, Integer hair, Integer head,
+			Integer dress, Integer body) {
+		// compatibility for special outfits from old outfit system
+		if (body >= 78) { // old special bodies started at index 78
+			body += 900;
+		}
+		if (dress >= 72) { // old special dresses started at index 72
+			dress += 900;
+		}
+		if (head >= 78) { // old special heads started at index 78
+			head += 900;
+		}
+		if (hair == 99) { // jester hat
+			hair = 999;
+		}
+
 		layers.put("body", body);
 		layers.put("dress", dress);
 		layers.put("head", head);
