@@ -369,6 +369,7 @@ imperial_experiment.png  artisticdude, Tuomo Untinen (Reemax), onu/olonu; CC0; h
 imperial_mutant.*        Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), William.Thompsonj, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20926
 lamia.*                  Svetlana Kushnariova (Cabbit), Yamilian, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/11480, https://opengameart.org/node/99050
 mushroom.png             Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
+mushroom_small.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 naga.png                 bleutailfly; OGA BY 3.0; https://opengameart.org/node/99050
 werewolf.png             yolkati, Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/125
 
