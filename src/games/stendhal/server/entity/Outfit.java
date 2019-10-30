@@ -62,17 +62,17 @@ public class Outfit {
 		final List<Integer> layer_list = new ArrayList<>();
 	    for (int idx = 0; idx < Outfits.LAYERS_COUNT; idx++) {
 			if (idx >= layers.length) {
-				layer_list.add(0);
+				layer_list.add(null);
 			} else {
 				layer_list.add(layers[idx]);
 			}
 	    }
 
-	    // set values of layers not specified to 0
+	    // set values of layers not specified to null
 		if (layers.length > Outfits.LAYERS_COUNT) {
 			int missing = Outfits.LAYERS_COUNT - layers.length;
 			for (int x = 0; x < missing; x++) {
-				layer_list.add(0);
+				layer_list.add(null);
 			}
 		}
 
@@ -95,8 +95,6 @@ public class Outfit {
 	 * 		for backward compatibility.
 	 */
 	public Outfit(final String strcode) {
-		initLayers();
-
 		if (strcode.contains("=")) {
 			final String[] layers;
 			if (strcode.contains(",")) {
@@ -151,26 +149,11 @@ public class Outfit {
 	@Deprecated
 	public Outfit(final Integer detail, final Integer hair, final Integer head,
 			final Integer dress, final Integer body) {
-		initLayers();
-
 		layers.put("body", body);
 		layers.put("dress", dress);
 		layers.put("head", head);
 		layers.put("hair", hair);
 		layers.put("detail", detail);
-	}
-
-	/**
-	 * Initializes all layers with value "0".
-	 */
-	private void initLayers() {
-		// make sure layer map is empty
-		layers.clear();
-
-		// set all layer values to "0"
-		for (final String n: Outfits.LAYER_NAMES) {
-			layers.put(n, 0);
-		}
 	}
 
 	public Integer getLayer(final String layerName) {
