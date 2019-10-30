@@ -62,6 +62,11 @@ data/sprites/examine/
 
 parchment_background.svgz  Arvin61r48; CC0; https://openclipart.org/detail/233273
 
+data/sprites/furniture/
+
+chair.png  bleutailfly; OGA BY 3.0; Stendhal (copied from tiled/tileset/furniture/chair/wooden_pale.png)
+stool.png  bleutailfly; OGA BY 3.0; Stendhal (copied from tiled/tileset/furniture/chair/stool.png)
+
 data/sprites/ideas/
 
 admin.png  ???; ???; ???
