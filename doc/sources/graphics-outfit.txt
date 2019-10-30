@@ -147,7 +147,7 @@ hair_029.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
 hair_030.png     Nila122; CC BY-SA 3.0; https://opengameart.org/node/25629
 hair_031.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
 hair_032.png     Jordan Irwin (AntumDeluge); CC0; Stendhal
-hair_033.png     ???; ???; ???
+hair_033.png     Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_034.png     Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hair_035.png     Fabzy; CC BY-SA 3.0; https://opengameart.org/node/23314
 hair_036.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
