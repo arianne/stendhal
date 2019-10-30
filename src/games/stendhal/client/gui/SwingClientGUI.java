@@ -629,14 +629,10 @@ class SwingClientGUI implements J2DClientGUI {
 
 			final StringBuilder sb = new StringBuilder();
 			sb.append("body=" + body);
-			sb.append("dress=" + dress);
-			sb.append("head=" + head);
-			sb.append("mouth=0");
-			sb.append("eyes=0");
-			sb.append("mask=0");
-			sb.append("hair=" + hair);
-			sb.append("hat=0");
-			sb.append("detail=" + detail);
+			sb.append(",dress=" + dress);
+			sb.append(",head=" + head);
+			sb.append(",hair=" + hair);
+			sb.append(",detail=" + detail);
 
 			if (outfitDialog == null) {
 				// Here we actually want to call new OutfitColor(). Modifying

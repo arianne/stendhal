@@ -160,14 +160,10 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 				final StringBuilder sb = new StringBuilder();
 				sb.append("body=" + body);
-				sb.append("dress=" + dress);
-				sb.append("head=" + head);
-				//sb.append("mouth=0");
-				//sb.append("eyes=0");
-				//sb.append("mask=0");
-				sb.append("hair=" + hair);
-				//sb.append("hat=0");
-				sb.append("detail=" + detail);
+				sb.append(",dress=" + dress);
+				sb.append(",head=" + head);
+				sb.append(",hair=" + hair);
+				sb.append(",detail=" + detail);
 
 				outfit = store.getAdjustedOutfit(sb.toString(), color, info.getZoneColor(), info.getColorMethod());
 			} else {
