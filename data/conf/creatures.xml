@@ -18,6 +18,7 @@
 	<group uri="creatures/hybrid.xml" />
 	<group uri="creatures/insect.xml" />
 	<group uri="creatures/kobold.xml" />
+	<group uri="creatures/mutant.xml" />
 	<group uri="creatures/mythical_being.xml" />
 	<group uri="creatures/ogre.xml" />
     <group uri="creatures/oni.xml" />
