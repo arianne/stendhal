@@ -191,7 +191,15 @@ public class OutfitStore {
 		if (color == null) {
 			return store.getSprite(ref);
 		} else {
-			return store.getColoredSprite(ref, color.getColor(layer));
+			final String layer_color;
+			final List<String> skin_layers = Arrays.asList("body", "head");
+			if (skin_layers.contains(layer)) {
+				layer_color = "skin";
+			} else {
+				layer_color = layer;
+			}
+
+			return store.getColoredSprite(ref, color.getColor(layer_color));
 		}
 	}
 
