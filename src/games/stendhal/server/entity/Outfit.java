@@ -235,6 +235,20 @@ public class Outfit {
 			bo = body.intValue();
 		}
 
+		// compatibility for special outfits from old outfit system
+		if (ha == 999) {
+			ha = 99;
+		}
+		if (he >= 978) {
+			he -= 900;
+		}
+		if (dr >= 972) {
+			dr -= 900;
+		}
+		if (bo >= 978) {
+			bo -= 900;
+		}
+
 		return (de * 100000000) + (ha * 1000000) + (he * 10000) + (dr * 100)
 				+ bo;
 	}

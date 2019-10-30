@@ -316,7 +316,7 @@ public class OutfitTest {
 	public void testRemoveOutfit() {
 		Outfit orig = new Outfit("12345678");
 		Outfit result = orig.removeOutfit(null, null, null, null, null, null, null, null, 12);
-		assertEquals(Integer.valueOf(78), result.getLayer("body"));
+		assertEquals(Integer.valueOf(978), result.getLayer("body")); // old special body sprite indexes started at 78 & have been incremented by 900, so 78 + 900
 		assertEquals(Integer.valueOf(56), result.getLayer("dress"));
 		assertEquals(Integer.valueOf(34), result.getLayer("head"));
 		assertEquals(Integer.valueOf(0), result.getLayer("mouth"));
