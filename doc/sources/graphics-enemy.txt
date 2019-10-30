@@ -320,9 +320,8 @@ xenocium.*           Rexi Andriansyah (Rexes), Jordan Irwin (AntumDeluge); OGA B
 
 data/sprites/monsters/insect/
 
-killer_bee.png   Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
-scarab.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
-tiny_scarab.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
+killer_bee.png  Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
+scarab*.png     Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/11248
 
 data/sprites/monsters/kobold/
 

@@ -39,7 +39,7 @@
   </creature>
 
   <creature name="tiny scarab">
-    <type class="insect" subclass="tiny_scarab" tileid="insect.png:1"/>
+    <type class="insect" subclass="scarab_tiny" tileid="insect.png:1"/>
     <description></description>
     <attributes>
       <atk value="1"/>
