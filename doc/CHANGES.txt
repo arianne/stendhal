@@ -4,6 +4,9 @@ Changelog
 
 
 1.32
+*world*
+- turtles have appeared on Athor Island
+
 *graphics*
 - new corpses for cobras
 - new/reworked outfits:
