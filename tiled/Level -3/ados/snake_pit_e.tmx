@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="1" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="2" name="ground_4" tilewidth="32" tileheight="32" tilecount="40" columns="4">
+ <tileset firstgid="2" name="ground/ground_4" tilewidth="32" tileheight="32" tilecount="40" columns="4">
   <image source="../../tileset/ground/ground_4.png" width="128" height="320"/>
  </tileset>
- <tileset firstgid="42" name="int_rock_blue" tilewidth="32" tileheight="32" tilecount="140" columns="10">
-  <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="448"/>
- </tileset>
- <tileset firstgid="182" name="skull_pale" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+ <tileset firstgid="42" name="item/corpse/skull_pale" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/item/corpse/skull_pale.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="184" name="snake_skeleton" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+ <tileset firstgid="44" name="item/corpse/snake_skeleton" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/item/corpse/snake_skeleton.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="200" name="rocks_3" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+ <tileset firstgid="60" name="ground/rock/rocks_3" tilewidth="32" tileheight="32" tilecount="16" columns="4">
   <image source="../../tileset/ground/rock/rocks_3.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="216" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
-  <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
+ <tileset firstgid="76" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="82" name="terrain/cave_blue" tilewidth="32" tileheight="32" tilecount="112" columns="8">
+  <image source="../../tileset/terrain/cave_blue.png" width="256" height="448"/>
  </tileset>
  <layer id="1" name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XwQ2AMBADwUgURP/dUQSXrA378P9mJaRwr7Vu51zlrpdrvXtqjTc755xzzjluxPvx9Ds84c1P/Yck/PcQ/2FU7wQ/0Zvyn1zi968/293eYMre5J80N/l3udP9u93JLQh7SgfaTnWgrXQH2kg2oG1kA9pEN6A9dAPaQjegHaSfNtAN6PvpBvTt+tkG9N362Qb0zfrZBvS9+vXr10/Yv9ZAv/4/N/iz/439Cw0m/K0NpuyNDabtTQ122Rs6nLAndjjtTmlBm4kmtMn17gEtsqHxAEAAAA==
+   H4sIAAAAAAAACu3QwQ3EMAgFUUsp3Y1vByslxgzYc/hneDPHGNM513LP4rr+HbWOPzvnnHPOOW7zxYibET9l3sowv/kp+16m/d8/VO8KfqI35c/cF/tJDW71r7i7N4iyd/JHmjv5d7mr+3e7K7cg7FU60HaqA22lO9BGsgFtIxvQJroB7aEb0Ba6Ae0g/bSBbkD/Tzegf9fPNqD/1s82oH/Wzzag/9WvX79+wn5aA/36b25ws3/FfkKDCH/XBlH2jg2i7Z0a7LJ36JBhr9gh212lBW0mmtAm13c/T1bY+ABAAAA=
   </data>
  </layer>
  <layer id="2" name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2ZTU4DMQyFfSrUpfnZ0DUSN2UFZQNUILGD+5AIVWqlMMWxncSZ90leddr4JS9uxiECAESFU1wpohe8kFMprv/4zu3AOS/FnXDsTYoLrYACTP/P2WP83rT0z8x89U4AAIB9CAAAg7IVPHtJv+89MyHRn7l3yaIfa9bPJH+HzO+9s+wB6dofiO4BJl3/4IbieoDJpm8SyQNM9v25CPqZ/PpkI+tnkut+EI6xodNe8Cgwte+L5no4wjww9e2fHjzReh6YyrXt3Wm8xxRPKXYpnguft/ZD7TmmlpcUryneUuwXnmtxVmQa+x7Ecw6YYtyXeJ0XW/v+HEv1xmMORtN/Dus5iKY/Y3VuZJLXPa//QwlW9bDF2nvd3Vjsg4jeP0a7D0r6I921aT0Qff0zGg/MoF9TC2fQn6n1wCz6az1gpf/T6Hc01HhglvXPaPV/WCUCzBhhX0Vg7WeAke8RWrB2/dH47p0AAAAAAAAAE/EDVTvSlgBAAAA=
+   H4sIAAAAAAAACu2ZSQ7CMAxFex5WDBsGgcQOroVYIU4AHJZkUamg0mLHjuP0P8kr0tbf/S4ZmgYA4JV7iGdCWEHN+/bjmlfBOQ8FNe8H45p/oGjKWetc1KjJgpN1AgAA9CEAABTKlTA2zvkvWokYQdEfqU3/nTj+ppKFDfHdc9a9tXiA+u5bvHug3WPgrrU9eyBql9hj8KS/u6cktb/iQX+qz4co+RvA0T0jPuPRfO4Fl4JUf1Noa2FdBwvtXazqcG36/b5Xet48xCLEMsSq5/fcdeDOY7isQ2xCbEPsBsbFOmjXwNrzY2jWgDN/t0CrBtS1qzZD3xuNGpSmfwzpdUPu754EUh7g9L7W/yEFqT7I4X2tsxuJPvDW+9+keqBPv6eztlQPeH//kRQP1KA/xQM16I9wPVCLfq4HpPQfhe6TgqX+EkjVf5BKBIhRQl95YOpzIA/nKJpMXb83ztYJAAAAAAAAUBFvO1zlPwBAAAA=
   </data>
  </layer>
  <layer id="3" name="2_object" width="64" height="64">
@@ -38,12 +38,12 @@
  </layer>
  <layer id="4" name="3_roof" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3aTQ4CIQyG4bmRP8fwAt7/JuqiSUNkSKEViu+TsFNrOzAbvuMAAAAAALTc3utuWNcJNVtrpN7FuB4OPVtrtlar7sj3S5/PW/aA9D1Ss0dZ14t1DzwD/kNL+cx3VzvT/2L0TAMAAAAAAAAAAACYR+53rax396uSO3WrkfwG9rDLGeiV/Qz0vvu0zHug992nSUYk2ww8nr3INgOd6fKSZQYRvQv5Xa9sq7fI3oXOja0yh6j85plyDjNm8S0v+2tlljAiA67VstErqGWmPfPr2bKb3vn1DD1jXS9lUTYAAEAAAA==
+   H4sIAAAAAAAACu3aQQ/CIAyGYX63elJP/mq3QxNCRNJShOL7JNymXTvYZV9KAAAAAICWy7GuinWbULO1euo9lOvp0LO2Zmu16vb8vnRer9kD0ndPTYuyrhftHngNuIeW8pnvrnam/0XvmQYAAAAAAAAAAAAwj3zf1dJ+u1/VPdn7t+Y3sIddzoBV9DNgffflIu8B67svJxmRaDPwePYi2gzyTJeXKDMY0buQ//XKtnob2bvIc2OrzGFUfvObcg4zZvEpL/trZZZwRAY8V8tGr6CWmfbMr0fLbnrn1yP0jHW9AQJjor0AQAAA
   </data>
  </layer>
  <layer id="5" name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3PAQkAAAgEMftXtIwlHhTZEtxVAQAAAAAAAAAAAJDU2wFBn14AAAAAAK4bgOSZogBAAAA=
+   H4sIAAAAAAAACu3PAQkAAAgEMRvav40lHhTZEtxVAQAAAAAAAAAAAJDU2wFBn14AAAAAAK4bmVzfvwBAAAA=
   </data>
  </layer>
  <layer id="6" name="collision" width="64" height="64" visible="0" opacity="0.39">
