@@ -368,7 +368,7 @@ leek_grower.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
 mandragora_grower.png       omero; CC BY-SA 3.0; Stendhal
 onion_grower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-pansy_grower.png            ???; ???; ???
+pansy_grower.png            omero; CC BY-SA 3.0; Stendhal
 porcini_grower.png          ???; ???; ???
 reindeer_moss_grower.png    ???; ???; ???
 salad_grower.png            ???; ???; ???
