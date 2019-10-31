@@ -267,7 +267,13 @@ arctic_char.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png              omero; CC BY-SA 3.0; Stendhal
 baguette.png               Katie Russell (kymara); GPL 2.0; Stendhal
 banana.png                 Red Queen?; ???; ???
-blackapple.png             tigertoes?; ???; ???
+
+blackapple.png             tigertoes; CC BY-SA 3.0; Stendhal
+apple_black.png            tigertoes; CC BY-SA 3.0; Stendhal
+apple_red.png              tigertoes; CC BY-SA 3.0; Stendhal
+apple_purple.png           tigertoes; CC BY-SA 3.0; Stendhal
+apple_mauve.png            tigertoes; CC BY-SA 3.0; Stendhal
+
 broccoli.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png                 omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png        Daniel Herding (mort); GPL 2.0; Stendhal
