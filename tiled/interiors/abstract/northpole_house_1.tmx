@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="30" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset firstgid="2" name="floors_3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floors_3.png"/>
+ </tileset>
+ <tileset firstgid="14" name="int_wall_dark_red" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
+ </tileset>
+ <tileset firstgid="30" name="int_wall_dark_red_corners" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
+ </tileset>
+ <tileset firstgid="46" name="int_wall_dark_red_corners_2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
+ </tileset>
+ <tileset firstgid="54" name="floor" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor.png"/>
+ </tileset>
+ <tileset firstgid="57" name="side_on_bluer" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/side_on_bluer.png"/>
+ </tileset>
+ <tileset firstgid="59" name="drawer_without_runner" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/drawer_without_runner.png"/>
+ </tileset>
+ <tileset firstgid="65" name="wooden" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden.png"/>
+ </tileset>
+ <tileset firstgid="66" name="stool" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/stool.png"/>
+ </tileset>
+ <tileset firstgid="67" name="sofa_chair_blue" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/sofa_chair_blue.png"/>
+ </tileset>
+ <tileset firstgid="79" name="portal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
+ </tileset>
+ <tileset firstgid="95" name="small" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/picture/small.png"/>
+ </tileset>
+ <tileset firstgid="98" name="bb_dk_blue" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/bb_dk_blue.png"/>
+ </tileset>
+ <layer name="0_floor" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3UzQqCQBSG4bNxH2QmLcwyrazsR8Xu/8r6hAaHAfXMTAiDLZ7NwOsn+BMR0RYW
+PTyJfB7DDqKRXiW6PSTg95B35fMDpIxeJboAlsr1OUJYGfSm3VD/HvHfdWu3gnri3Qd138bTcrdh
+0L0/zvNxYbeA9dd9wt22f0FJ9v8r3d1f/Sfntmv7Xrqwm8GRum+C6wRng150OVxgo+kKN4NedB/s
+4qLtYAkAAA==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgQIBEJHY8A3ZgDcQ2OOSwySfgMJ9UYAvEdhTI4wJOBOTtgdiBAnlcdjoSYTex
+IAmIk0mwm1xADfeSY4YjGj8NiNNJtJOc8B4o/w41YAnEVgPtCDoCSv3rCqWdgdgFC5tWwANKuwGx
+OwMkT8DY+MBo/JIG/KC0DxD7MkDCGcYeBSMLAABvTKjfYAkAAA==
+  </data>
+ </layer>
+ <layer name="2_object" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQlPoAAAeBoqs0udYAkAAA==
+  </data>
+ </layer>
+ <layer name="3_roof" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjgDyQAsSpA+2IUTAKRsEowAK8obQnEHthYY+CUUBrAADCqk4RYAkAAA==
+  </data>
+ </layer>
+ <layer name="objects" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXoIHigHTAKRsEoGAWjYBSMgiENACjeZlZgCQAA
+  </data>
+ </layer>
+ <layer name="collision" width="30" height="20" opacity="0.45">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAOVUQQoAIAjT/3+6D6htalQ4kA4xt4mlIqIDy4MaZ8RH+nk8BIhv6w7NW9Ht5EV8
+Lxuju/PyUt7fdNndzKCat1OXyRvtc9Tz5DtC/rPOvFm/DG7tc+ecGfw+5ym1ABzJnydgCQAA
+  </data>
+ </layer>
+ <layer name="protection" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQlPoAAAeBoqs0udYAkAAA==
+  </data>
+ </layer>
+</map>
