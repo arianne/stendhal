@@ -21,6 +21,10 @@ marauroa.rpobjectFactory["invisible_entity"] = marauroa.util.fromProto(marauroa.
 
 	isVisibleToAction: function(filter) {
 		return false;
+	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	}
 
 });

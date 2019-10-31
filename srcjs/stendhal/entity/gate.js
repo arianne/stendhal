@@ -69,5 +69,10 @@ marauroa.rpobjectFactory["gate"] = marauroa.util.fromProto(marauroa.rpobjectFact
 			"zone": marauroa.currentZoneName
 		};
 		marauroa.clientFramework.sendAction(action);
+	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/activity.png) 1 3, auto";
 	}
+
 });

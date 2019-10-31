@@ -264,6 +264,13 @@ stendhal.ui.gamewindow = {
 		return _onMouseDown;
 	})(),
 
+	onMouseMove: function(e) {
+		var x = e.offsetX + stendhal.ui.gamewindow.offsetX;
+		var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
+		var entity = stendhal.zone.entityAt(x, y);
+		document.getElementById("gamewindow").style.cursor = entity.getCursor(x, y);
+	},
+
 	// ***************** Drag and drop ******************
 	onDragStart: function(e) {
 		var draggedEntity = stendhal.zone.entityAt(e.offsetX + stendhal.ui.gamewindow.offsetX,

@@ -22,7 +22,7 @@ stendhal.ui = stendhal.ui || {};
  *
  * @constructor
  */
-stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
+stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix, quickPickup) {
 	this.update = function() {
 		render();
 	};
@@ -115,6 +115,16 @@ stendhal.ui.ItemContainerWindow = function(slot, size, object, suffix) {
 
 	function onMouseUp(e) {
 		if (e.target.dataItem) {
+			if (quickPickup) {
+				marauroa.clientFramework.sendAction({
+					type: "equip",
+					"source_path": e.target.dataItem.getIdPath(),
+					"target_path": "[" + marauroa.me["id"] + "\tbag]", 
+					"zone": marauroa.currentZoneName
+				});
+				return;
+			}
+
 			if (isRightClick(e)) {
 				new stendhal.ui.Menu(e.target.dataItem, e.pageX - 50, e.pageY - 5);
 			} else {
@@ -150,7 +160,7 @@ stendhal.ui.equip = {
 		for (var i in this.slotNames) {
 			stendhal.ui.equip.inventory.push(
 				new stendhal.ui.ItemContainerWindow(
-					this.slotNames[i], this.slotSizes[i], null, ""));
+					this.slotNames[i], this.slotSizes[i], null, "", false));
 		}
 	},
 
@@ -160,17 +170,21 @@ stendhal.ui.equip = {
 		}
 	},
 
-	createInventoryWindow: function(slot, sizeX, sizeY, object, title) {
+	createInventoryWindow: function(slot, sizeX, sizeY, object, title, quickPickup) {
 		stendhal.ui.equip.counter++;
 		var suffix = "." + stendhal.ui.equip.counter + ".";
-		var html = "<div class=\"inventorypopup inventorypopup_" + sizeX + "\">";
+		var html = "<div class=\"inventorypopup inventorypopup_" + sizeX;
+		if (quickPickup) {
+			html += " quickPickup";
+		}
+		html += "\">";
 		for (var i = 0; i < sizeX * sizeY; i++) {
 			html += "<div id='" + slot + suffix + i + "' class='itemSlot'></div>";
 		}
 		html += "</div>";
 
 		var popup = new stendhal.ui.Popup(title, html, 160, 370);
-		var itemContainer = new stendhal.ui.ItemContainerWindow(slot, sizeX * sizeY, object, suffix);
+		var itemContainer = new stendhal.ui.ItemContainerWindow(slot, sizeX * sizeY, object, suffix, quickPickup);
 		stendhal.ui.equip.inventory.push(itemContainer);
 		itemContainer.update();
 		popup.onClose = function() {

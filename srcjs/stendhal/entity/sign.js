@@ -33,4 +33,8 @@ marauroa.rpobjectFactory["sign"] = marauroa.util.fromProto(marauroa.rpobjectFact
 	isVisibleToAction: function(filter) {
 		return true;
 	},
+
+	getCursor: function(x, y) {
+		return "url(/data/sprites/cursor/look.png) 1 3, auto";
+	}
 });
