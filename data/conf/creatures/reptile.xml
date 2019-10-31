@@ -205,4 +205,28 @@
     </ai>
   </creature>
 
+  <creature name="turtle">
+    <type class="reptile" subclass="turtle" tileid="reptile.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="99"/>
+      <def value="35"/>
+      <hp value="129"/>
+      <speed value="0.2"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="11"/>
+    <experience value="145"/>
+    <respawn value="2000"/>
+    <corpse name="animal"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
