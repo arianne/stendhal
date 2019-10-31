@@ -261,12 +261,15 @@ zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 data/sprites/items/food/
 
 angel_cake.png             geomac?; ???; ???; Committed by kymara
-apple.png                  ???; ???; ???; Committed by Miguel Angel
+apple.png                  tigertoes; ???; ???; Committed by tigertoes
+apple_black.png            tigertoes; ???; ???; Committed by tigertoes
+apple_purple.png           tigertoes; ???; ???; Committed by tigertoes
 applepie.png               omero; CC BY-SA 3.0; Stendhal
 arctic_char.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png              omero; CC BY-SA 3.0; Stendhal
 baguette.png               Katie Russell (kymara); GPL 2.0; Stendhal
 banana.png                 Red Queen?; ???; ???
+<<<<<<< Upstream, based on branch 'master' of https://github.com/arianne/stendhal.git
 
 blackapple.png             tigertoes; CC BY-SA 3.0; Stendhal
 apple_black.png            tigertoes; CC BY-SA 3.0; Stendhal
@@ -274,6 +277,8 @@ apple_red.png              tigertoes; CC BY-SA 3.0; Stendhal
 apple_purple.png           tigertoes; CC BY-SA 3.0; Stendhal
 apple_mauve.png            tigertoes; CC BY-SA 3.0; Stendhal
 
+=======
+>>>>>>> 908c05a some goodies, some explanations, lotsa fun
 broccoli.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png                 omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png        Daniel Herding (mort); GPL 2.0; Stendhal
@@ -312,11 +317,11 @@ ham_smoked.png             ???; ???; ???; Based on ham.png
 honey.png                  bleutailfly; OGA BY 3.0; Stendhal
 icecream.png               kymara?; ???; ???
 leek.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-licorice.png               tigertoes?; ???; ???
+licorice.png               tigertoes; CC BY-SA 3.0; Stendhal; Based on rope by Xenodora from OGA, Modded and Committed by tigertoes
 mackerel.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meat.png                   ???; ???; ???; Committed by Miguel Angel
 meat_smoked.png            omero; CC BY-SA 3.0; Stendhal; Based on meat.png
-olive.png                  tigertoes?; ???; ???
+olive.png                  tigertoes; CC BY-SA 3.0; Stendhal 
 onion.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pear.png                   Red Queen?; ???; ???
 perch.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -333,7 +338,7 @@ rotten_egg.png             kymara?; ???; ???
 salad.png                  Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs verified
 sandwich.png               Katie Russell (kymara); GPL 2.0; Stendhal
 sausage.png                barbanegra?; ???; ???; Committed by kymara
-sausage_on_bun.png         tigertoes?; ???; ???
+sausage_on_bun.png         tigertoes; ???; ???
 small_easter_egg.png       kymara?; ???; ???; Based on items/food/egg.png?
 spinach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spotted_egg.png            ???; ???; ???
