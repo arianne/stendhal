@@ -89,4 +89,33 @@
     </ai>
   </creature>
 
+  <creature name="werewolf">
+    <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
+    <description>You see a werewolf. Normally he is a human but at fullmoon nights he turns into a dangerous beast! His poison seems to last forever.</description>
+    <attributes>
+      <atk value="584"/>
+      <def value="79"/>
+      <hp value="722"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="80"/>
+    <experience value="5920"/>
+    <respawn value="2820"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[30,50]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="5,disease poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
