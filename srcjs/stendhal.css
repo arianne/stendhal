@@ -21,7 +21,12 @@ li.offline {color: #AAA}
 }
 
 #menubutton {
-	width: 100%
+	width: 75%;
+}
+
+#soundbutton {
+	width: 20%;
+	padding: 0;
 }
 
 div.itemSlot {

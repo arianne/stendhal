@@ -108,6 +108,17 @@ stendhal.main = {
 		}
 	},
 
+	toggleSound: function() {
+		var soundbutton = document.getElementById("soundbutton");
+		if (stendhal.config.sound.play) {
+			soundbutton.textContent = "🔇";
+			stendhal.config.sound.play = false;
+		} else {
+			soundbutton.textContent = "🔊";
+			stendhal.config.sound.play = true;
+		}
+	},
+
 
 	/**
 	 * registers global browser event handlers.
@@ -134,6 +145,9 @@ stendhal.main = {
 
 		var menubutton = document.getElementById("menubutton");
 		menubutton.addEventListener("click", stendhal.ui.menu.onOpenAppMenu);
+
+		var soundbutton = document.getElementById("soundbutton");
+		soundbutton.addEventListener("click", stendhal.main.toggleSound);
 
 		var chatinput = document.getElementById("chatinput");
 		chatinput.addEventListener("keydown", stendhal.ui.chatinput.onKeyDown);
