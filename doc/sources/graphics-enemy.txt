@@ -391,7 +391,7 @@ unicorn.png           bluecarrot16; OGA BY 3.0; https://opengameart.org/node/693
 
 data/sprites/monsters/northpole/
 
-northpole_elf_*.png  ???; ???; ???
+northpole_elf_*.png  bleutailfly; ???; ???
 
 data/sprites/monsters/ogre/
 

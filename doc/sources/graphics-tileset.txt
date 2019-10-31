@@ -10,7 +10,6 @@ desert_house_exterior.png     Richard Kettering (Jetrel), Tyler Olsen (Roots), C
 fire_tower.png                ???; ???; ???
 gazebo.*                      ???; ???; ???
 gnome_homes.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20713
-gnome_home.pspimage           ???; ???; ???
 greenhouse.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_3.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_blue_white.png          ???; ???; ???
@@ -294,7 +293,7 @@ carpets_2.png      ???; ???; ???
 dark_blue.png      ???; ???; ???
 dark_red.png       ???; ???; ???
 green.png          ???; ???; ???
-lilac.png          ???; ???; ???
+lilac.png          juan; ???; Stendhal
 nain_rug.png       ???; ???; ???
 orange.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pink_rug.png       bleutailfly; OGA BY 3.0; Stendhal
@@ -418,12 +417,12 @@ tools_rack.png             ???; ???; ???
 
 tiled/tileset/furniture/picture/
 
-blackdragon.png       ???; ???; ???
+blackdragon.png       bleutailfly; ???; Stendhal special image for tigertoes
 cats.*                ???; ???; ???
 city_picture.*        ???; ???; ???
-gnome_sweet_gome.png  ???; ???; ???
+gnome_sweet_gome.png  tigertoes; CC BY-SA 3.0; Stendhal made for future internal gnome home
 large_island.*        ???; ???; ???
-oil_paintings.png     ???; ???; ???
+oil_paintings.png     tigertoes; CC BY-SA 3.0; Stendhal mostly from my own photos of europe
 project_leader.png    ???; ???; ???
 sheep_picture.png     ???; ???; ???
 small.png             ???; ???; ???
@@ -479,7 +478,7 @@ grey_fancy_horizontal.png  ???; ???; ???
 grey_long.png              ???; ???; ???
 grey_pale.*                ???; ???; ???
 grey_plain.*               ???; ???; ???
-hotdog_stand.png           ???; ???; ???
+hotdog_stand.png           tigertoes; CC BY-SA 3.0; Stendhal
 long_front_on.png          bleutailfly; OGA BY 3.0; Stendhal
 long_front_on_pale.png     bleutailfly; OGA BY 3.0; Stendhal
 long_side_on_pale.png      bleutailfly; OGA BY 3.0; Stendhal
@@ -577,7 +576,7 @@ tiled/tileset/ground/ice/
 edges.png    ???; ???; ???
 glacier.png  ???; ???; ???
 ice.png      ???; ???; ???
-icehole.png  ???; ???; ???
+icehole.png  tigertoes; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/ground/indoor/
 
@@ -689,18 +688,18 @@ black_board.png           ???; ???; ???
 boxes.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broom.png                 ???; ???; ???
 brush.png                 bleutailfly; OGA BY 3.0; Stendhal
-bulletin_board.png        ???; ???; ???
-bulletin_board_items.png  ???; ???; ???
+bulletin_board.png        tigertoes; ???; working on replacement
+bulletin_board_items.png  tigertoes; ???; working on replacement
 bullseye.png              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 button.png                ???; ???; ???
 button_gold.png           ???; ???; ???
 button_grey.png           ???; ???; ???
-buzzing_bees.png          ???; ???; ???
+buzzing_bees.png          tigertoes; ???; ??? not sure whether needs replaced
 campfires.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 campfire_snow.png         ???; ???; ???
 caution_ns.png            bleutailfly; OGA BY 3.0; Stendhal
 caution_sign.png          bleutailfly; OGA BY 3.0; Stendhal
-chapter.png               ???; ???; ???
+chapter.png               tigertoes; CC BY-SA 3.0; Stendhal
 firewood.*                Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 fishing_nets.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fishrods.png              ???; ???; ???
@@ -742,8 +741,8 @@ tiled/tileset/item/banners/
 banner.png                    Lanea Zimmerman (Sharm), bluecarrot16, Curt, Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/node/81707#comment-66775, https://opengameart.org/node/20039, https://opengameart.org/content/lpc-cnilsson
 banners.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flag.png                      ???; ???; ???
-superhumans_banner_on_post.*  ???; ???; ???
-superhumans_wall_hanging.*    ???; ???; ???
+superhumans_banner_on_post.*  tigertoes; CC BY-SA 3.0; Stendhal  
+superhumans_wall_hanging.*    tigertoes; CC BY-SA 3.0; Stendhal
 wall_hanging_brown.png        ???; ???; ???
 wall_hanging_dkgreen.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
@@ -801,7 +800,7 @@ letter.png      ???; ???; ???
 note_board.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 notes.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 notes2.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-worldmap.png    ???; ???; ???
+worldmap.png    gummipferd; ???; Stendhal
 
 tiled/tileset/item/drink/
 
@@ -900,11 +899,11 @@ tiled/tileset/item/statue/
 
 archway-wide-red.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 archway.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-big_blue_crystal.png     ???; ???; ???
+big_blue_crystal.png     tigertoes; ???; ??? will probably replace
 bird.png                 ???; ???; ???
 blackened_column.png     ???; ???; ???
 blobcreature.png         ???; ???; ???
-blue_crystal.png         ???; ???; ???
+blue_crystal.png         tigertoes; ???; ??? will probably replace
 broken_green_column.png  ???; ???; ???
 broken_lion.png          ???; ???; ???
 buddha.png               ???; ???; ???
@@ -998,7 +997,7 @@ boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                ???; ???; ???
 creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
-ents.png                ???; ???; ???
+ents.png                tigertoes; ???; Stendhal made for ent quests
 giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/291622
 hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
 letters.png             Juan; ???; Stendhal
@@ -1017,7 +1016,7 @@ stone_well.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 suspension_bridge.*     Xenodora; CC BY-SA 3.0; https://opengameart.org/node/15135
 tan_tent.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 tent.png                sshk5; ???; ???
-testgrid.png            tigertoes; ???; ???
+testgrid.png            tigertoes; CC BY-SA 3.0; Stendhal made for testing creature spacing
 trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                ???; ???; ???
 well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
@@ -1192,9 +1191,9 @@ view_wizards_tower.*  ???; ???; ???
 tiled/tileset/sky/cloud/
 
 clouds.png         ???; ???; ???
-cloudtile.png      ???; ???; ???
-friendlycloud.png  ???; ???; ???
-white_clouds.png   ???; ???; ???
+cloudtile.png      janay; ???; Stendhal
+friendlycloud.png  janay; ???; Stendhal
+white_clouds.png   janay; ???; Stendhal
 
 tiled/tileset/terrain/
 
