@@ -81,10 +81,10 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3dSxLCIAwA0HorP+Pn/qdy4cqO7UAFSsl7F9BRYwMkYZoAyHU57f0OoE93sQEwFDkPtPdciLureDyUs+8LuvUQn198HgBt2T8Fjso6FwAYidwGABiJehL4eIkFAAAAAACAosyaAAAAiCW132ZpRloq9X6w3U38ABCY5yAAAMC61P13MyoAgBbkHPtzFxGMzb03RCGnAKhPLzEAANRlf4OS/u3vZUyt+m1yXscdkVCGM0GgBDkkMGf2U1lqNUlhnQxADc6gAPjFOhWIRE4MQG9q9empISISv3cAeqDuEmAbd0oBc9Hq1kv8D6o5JgIz7wD6Zm8MAIA19q8gj54HAHrj2QTbRKt/mDvy/ALn0wD7eQNLFjs0AAABAA==
+   H4sIAAAAAAAAC+3dbQ6DIAwAUHerfWS6+59qv2ecUYJQ4L0LaBRDgdZOEwBAHu9b7TsAAGjb8ieeeoqzmnL3viCs2ff5w/MAAOAI61wAoCdiGwAA6M9HnA8AAAAAAAAAAADJStXbyPeDdC/fDwADMw8CAADss/8OAESiz1p9ehFB3/QNBwByeYgrAADgUs5MyGkxnthQqt7mzHX0iIQ8nAkCOYghgTW1J3nJ1eQI62QAAKAU61RgJPKyAIjmqjo9OUSMxHgHIAJ5lwBp9JQC1uStA1v88w4gNntjAADsUTMP56h5ACAacxOkGT3/oeX/FzifBqjnC3FhKEMAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.5">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3UQW4jMQxE0WST+x950AvDhsftllqiflGsD3g1k4TkU/Lzw/X3q/HJWvbdaXeFG4y0w+60/fsNlG5zlf1r+x/ZP/f+792Zi9h/1u2y2Su+maPRG1B7ZfNXL9MNSHt698iy3MD+Manc4Or72z8m9RvQ7pG7K7yryBvc/VraWuXtr0jNn3au9gbU9qeN6f1Xp7Y/baxwg5ldza62O+0btb/CPVvnsv/83VX/lthfZ3citRvQzvTuK1O7AW1M+69M8Qa0cWb/nhkjbvDt/7fMRvtmfgMtM0bs/248ei/aN6P/TvvTvvT+ve22P+2rcIPWdtydtlW4QUu77k7bKtygpWy7f/va6NmU7tDT2c/J9vYVZoiYhSqLP/3zV8xEpODfsrvqrRV+N9RmV/9kumNktMMO9ivvmWlWxc/KFPeh71/FvqWoHek7q34yZP+69o/sb3/71/U/sn9d+0f2r+1/ZP+a7u/ZP6/5t/l6ZrZ/LvdHM+e0fy772dm/pvtr9mf9Vd6e/V1Vf9cX7WV/PtrM/my0mf35aDf7a0T72V8j2nGVv9/Q52jHVW/A/ufRjqv+BrjzaMsof7+TtmjLCn8DlOelHSv4q0db+g2w0Y7V/GfvMuPrs34yprYHbVjNXy3a0P5stOFqf7+b/6Md/TeAj3a0Pxvt6DfARzvan4129Btgow0j/F//Ldt7IeakHSN//7P5E9GOkf7uOtrR/my04+7+6rPSjjvbZ4i2tD0XbVnJf9UOPd+ftqxif6S4B+1ZyV8x2tP2TLSl/duauT/tZ//2Ru9AW9n+fvStFT9Vou8cZWT/tmhD+7PRhlE2le17d6A97c9Ge1bxV35btOkO/sq+V9GmKv5Vo01nO9m/L9rT/hqper7OFrlH9ZT9V+xRvR3sR/bYoZF97J+/TP6je87eo3pZ7M9md2MR9hFvY9abrPam7M81Og95N7UbK8/WMzP986v502+ATMF+1v3t39dOv/uj+1Rrlb39mVb6qtw1y5zR7e581g47jFbV/minXe5U2f5ox53O+jSn/ffcqyXCXu1Ou+7Vkv333u2q6vZHq/ZTvYH97W//ffe7SsWeup2y/4qb0O50lXb9VCX7T/PsvG9LFdy/VXHn19Tte77fnVlU944u6veevIP924q0/3YHxVsp+0fdyf7PlP2jovwVq7i3/Z9V3N3+z/4BTYHtGQAAAQA=
   </data>

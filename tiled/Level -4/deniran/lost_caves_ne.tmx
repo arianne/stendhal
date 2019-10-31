@@ -69,10 +69,10 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3dWxKDIAwAQHuTPqaP+5+w42+no6AiEHZPUKsETAJOE/Drc6n9C4Be3MWLU/ifAYBeXK1boEsvYxea9cwcnzfjGVhgzu9b7pwAUIJegrbJzQEAAP/IKwEAQJ6HNTQN0Q9Gqq3v//YtAgAAAKPTgw20RlxqU6SaTaRrieDovd9v9xdgMz1DQFTOiAAoSx9mDKXO5zMPAwClqQ0BkEoOAwD20VcC1KL3GwAA+mW/MAAAtKnUHpIa9ASNzf0HiGP+1ozvzQItEIuITj8wAKSxLgToU6Q6KIxODzJrxHzWzHFELKnDvnAAYImaNQC1eF8FsB6nP0c/s9YDwBI1aACAcekzAwBYl5NjV5PiDJHPIZWvBlLtzWnkxFJnsAC5viyDOAoAAAEA
+   H4sIAAAAAAAAC+3dbQ6CMAwAULyJH/Hj/ic0/tQYcYRC1713ApJtHWxtmSbg0+Ow9xMAvTiLFwAAAN27+baDtK6N6/NkPQOU1bonAESQS5Db0fgAAABfOFcCAIA2F+/QQIeWfv+rDwUAAABGJwcbyEZcykkNP1HW7vdyN1cBFpMzBFSlRwRALHmYNUT15LUPAwDR3A0BAAAA1CaPHQAA+qVeGAAAcoqqIdmDuqaxGX+AOl7/mvG/WSADsYjq9JkDgP94LwToU6V7UBidHGTmiPnMEUcAAAAAAN7JIaU3a89ZfU2BX9xBAwCMS64ZAMA8Z+ywHefVwFZaejrrwQK0egJnJemKAAABAA==
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.44">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3WYW7bMBAFYd//sDlDURRFkNa2ZJHceSvOAPqXpOR+K6Ffj8fjK/ix19E2+vPRPtqz0Ub6s9FG2p9vxb1opw72d90v2qmD/WPiv5O2N7RVF/9PSjjD2Wiru9l3iXbSvibaJM1/tz2hTZLsd4m20J+LdtCfizbQno120J+NdtCfizbQn4ueP/10bvQe9Ozpp3sjd6Fnn/DsGj33hGfn6NnTzw4d3ZM20J6NdtCej/bQ/XVV56Zt0vy7781ItFPCe7+z/99oN9K/WyvvTfvpf1zFvWlH/XOiTfXPifbVn4821n9OI/OinfXno61n+6/cn7vuJ+3tN4CP9tafjzbXn40232EH0u9Hm6fPZ7T0+9HmO+xAerS5/my0uTvARnu7A+s7mint7Q6w0dbVO+B+/Yx29jvARhvrz0YbuwNstK87wJZoumIHKvao4+4m+r87V3Ldzvu7VP93Z7N5Uf7uQEZd/d2BOaX7H53RxiL9K78B7s7zOvgfnfPq7xvvP+Mb0NEy4cy0+8xvQMI8u0W7689Fm1916+yfck7ae9U3wI6jnXd+/+loZ/3ZaOdZbvp/Hm2sPxftO9v/1Z3s/2jbFfbv7jb6d+4Ubas/E23azb9ztB/p/+7+3aNdOu3B6h2rLmW+XfzPnLdLabPttgPvzn3lb1SXNtdK/4o9SC5xloT/TKfV+zWzLvPrtAcV35gZ0XNadS5iD/79+Q47kOY+ei7C/9XPkfM7W6L91XPR7/+nd0gozf3KuVJ3IGmer6r2P/t3aPMZd097p57V5f0f/f3qPUic6bNS/UejvxcV35cZdTjjlWhP/flo0/QdoM7X4a53908/3+poa3rGyWerjjavnnPquRKi7VfOOv1Mqd1hB9LO8+xc6XXdg4Qz3CHKP+Ex3kD7tR3dlXbQn4120J6NttCfi3bQn4s20J+NNtCeizbQn4uev/ZstIH2bLSDXny0re7nWzUT2jnFf/edo72r7e/ufXWeO9jPKP2sozPV3/TfuyR/d6O+JH9b27PZ6/9dp7POSvvvKs6bNhPta0ucC+mecH/7k++76b53q+3dk3NR81n9zuufnd/8vdO/rrS5+X++PfP//Ps2w17/vum/pl84xeZkAAABAA==
   </data>

@@ -84,10 +84,10 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3dWxKCMAwAQL3/j4/xcVxPwAC20KTZPQFC0SZN4uUCAAAAAADxfa6jrwD6eljTAAAAACRzD5TTugW6Fup6WoewauR78vaOTs8zBmAUMSkAAMxFr0K7r3sYQuZ4NdJZNFSn3wkA4lO31o9YZNnLvQFgA/uS2jz//Oz5YJlcOT1ZTwDjiFuADOwX+5kt16G+GSAnc1CAVnq0atmTv2qpd8zccwZbWON1bPmdPDNHZP8PAH3o7wKAfdSaUFW1WppqnxcAsnNmCQAAAAAAAGOpS4fzOCPPy3clsMYcXwAAAICcjp7BaM7FccyiBgD+Mdv/tMGszLAHlqjDBACA2NbOR2eM+c1Dj0FPB9BC/ygQwQ95SSBqAAABAA==
+   H4sIAAAAAAAAC+3dWxKDIAwAQHv/nz6mj+P2BBY60BqS3ROgoCIkYdsAAAAAACC+5+noFgAAAAAA1HYJtE57DtQW6roZhxDawzOanj4GAAAAYAa5CuNe7mEI9lCBGa7eJQBAIZHiYqO5uzcAdBBPX5v+X585H+yzVs5MxhMAAJ+YL86Tba1DfDPAmtRBAUbJ0arlm333kXhHOWdkZ4zX0fOd/Ocakfk/AMwhvwsAgB7VYmmqXS8ArM6eJQAAAAAAABxLXDpAm3cl0OL8EQAAAIA1/boGozNVAABiyXZOG2Slhj2wR60iAACIrbU/mvGfXz30GOR0AACrewPYHEK5AAABAA==
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.41">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2UW27jQAwEk4vm/sdYBIaBhRBZL5LV5HQB/LMldteMfr6/vn48Ho/H4/F4PB6Px+PxlMxV6H0zs9L7KXUxravobN27iYDOkJ036ll09iz/qtkis0b3RncR6V4pU2bWSZ1lQDuuzhvJlD5ozx3d/0/3TmjXnd2/6d4J7fxJVpWzo9SJ0u6r+N/ukt3H1byfnk07V/F3lr1dlTs5evZq7rPe2bWTVbxX0LEbRc9dz4f9z7/jR6j3tn2+3cfSrTv7j6Vbd1X+6Zzmb+w/lsz7H91Zlvupbs/QqTv7j6dTb/YfT5feMt3bv35vdv8ien+V7o6eZf8vIvfv1J3932cvY5f+Mt2f2X/qGbH/mp0V6dJj1r72X/8NfdJHN//q2P+9PSbQ8S5F7rSy+19W8G/+Jsu9O9cn073vvzbZ7u0/h6hMK/unzkXE+yJ2r3Bv/7p0d38ng3kxwf2dHKszwfmTTMRuKqi4j+5E2b8SKv7JXKuS7X6v24rO7f8zFe59/zWpcm//5/ai32//7F7Ue+1/ne//FP9nn72i/70slHvKP72jGpP8Z+TtTuRdyPZf/Y3I8N/lzNDuCf9dvlHZ0N6pftX3q4J2XtHv9tlq+1HQvql+1fergvZNdKy8GwHt2/5ZaN/2z0M7r+xZdS8S2rf989DO7Z+Fdm7/PLR3+2fPG+3d/s+9L3MX2v3q/mns3v4nuo/ItgKq7iP6t/9jFN2r5JrAUZ6J7qNyRe1BouK/moydaZcZTPGdkWkFJnl/MylLNnRX0X1PO8vZ0D118T/1XEy6I5HuV/BP3/1oMv1348z+nfv5dD/t/5hp3azo/+7OFd1U92f/df4VqfTfpZMtU+9Fhnv7z/cf9axq/093raRLL3fJcq+W8w7Te8l0r5TzDtN7yXavkvMOU3upcK6Q8wlTe6l2fzYnfU5Ue+mekfa6B9XFandf0T/tnuxkpaxbaOcKfayWl8qs2MObqbnt9xzTerHz60zqyO7vodjT1f9NuPvkmVLr6cr/SPdT/G/fr9xT1b5Epmiu7kx0dbVL2vlk/3v/yerqyu9p1x39P4H232Gmk9UV7c3uz0P3rDorQXetOKtB9600Gd12gO5dZVQckO9ecRSw/zW9K0B7sPd7RGWhfdg9B+3D7nloL3bPQruxexbaj/2z0H66uJ96tmhH9r//vgpoR138T4T2Y/8ctBv7Z4no9x+AbX/wAAABAA==
   </data>
