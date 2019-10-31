@@ -261,8 +261,9 @@ zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 data/sprites/items/food/
 
 angel_cake.png             geomac?; ???; ???; Committed by kymara
-apple.png                  tigertoes; CC0; ???; Committed by tigertoes
+apple_red.png              tigertoes; CC0; ???; Committed by tigertoes
 apple_black.png            tigertoes; CC0; ???; Committed by tigertoes
+apple_mauve.png            tigertoes; CC0; ???; Committed by tigertoes
 apple_purple.png           tigertoes; CC0; ???; Committed by tigertoes
 applepie.png               omero; CC BY-SA 3.0; Stendhal
 arctic_char.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
