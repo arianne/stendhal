@@ -35,6 +35,37 @@
     </ai>
   </creature>
 
+  <creature name="glow monster">
+    <type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="242"/>
+      <def value="53"/>
+      <hp value="120"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,30]" probability="100.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="5.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="0.5"/>
+      <item value="steel boots" quantity="[1,1]" probability="2.5"/>
+      <item value="dwarf cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="morning star" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+
   <creature name="poison shroom">
     <type class="mutant" subclass="poison_shroom_small" tileid="mutant.png:6"/>
     <description></description>
