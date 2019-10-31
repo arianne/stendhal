@@ -3,6 +3,38 @@
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
+  <creature name="dark mutant">
+    <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="325"/>
+      <def value="88"/>
+      <hp value="125"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="35"/>
+    <experience value="770"/>
+    <respawn value="1420"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[8,35]" probability="100.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="7.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.0025"/>
+      <item value="black sword" quantity="[1,1]" probability="0.0025"/>
+      <item value="black shield" quantity="[1,1]" probability="0.0025"/>
+      <item value="viking helmet" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="poison shroom">
     <type class="mutant" subclass="poison_shroom_small" tileid="mutant.png:6"/>
     <description></description>

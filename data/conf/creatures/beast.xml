@@ -321,38 +321,6 @@
     </ai>
   </creature>
 
-  <creature name="dark mutant">
-    <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
-    <description></description>
-    <attributes>
-      <atk value="325"/>
-      <def value="88"/>
-      <hp value="125"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="35"/>
-    <experience value="770"/>
-    <respawn value="1420"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[8,35]" probability="100.0"/>
-      <item value="plate armor" quantity="[1,1]" probability="7.0"/>
-      <item value="shadow armor" quantity="[1,1]" probability="0.0025"/>
-      <item value="black sword" quantity="[1,1]" probability="0.0025"/>
-      <item value="black shield" quantity="[1,1]" probability="0.0025"/>
-      <item value="viking helmet" quantity="[1,1]" probability="5.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
   <creature name="googon">
     <type class="hybrid" subclass="googon" tileid="hybrid.png:10"/>
     <description>You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.</description>
