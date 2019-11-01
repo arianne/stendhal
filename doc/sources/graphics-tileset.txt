@@ -481,7 +481,7 @@ hotdog_stand.png           ???; ???; ???
 long_front_on.png          bleutailfly; OGA BY 3.0; Stendhal
 long_front_on_pale.png     bleutailfly; OGA BY 3.0; Stendhal
 long_side_on_pale.png      bleutailfly; OGA BY 3.0; Stendhal
-orb_table.*                ???; ???; ???
+orb_table.*                ???, ETTiNGRiNDER; ???; https://opengameart.org/node/10660 (CC0) (table is taken from square_pale.png)
 oriental_table.png         bleutailfly; OGA BY 3.0; Stendhal
 rectangular_with_meals.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square.png                 bleutailfly; OGA BY 3.0; Stendhal
