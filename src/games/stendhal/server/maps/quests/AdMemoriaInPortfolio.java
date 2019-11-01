@@ -71,6 +71,8 @@ package games.stendhal.server.maps.quests;
 
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 //import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
@@ -97,6 +99,7 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -266,28 +269,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	 */
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
-	    /**
-	    * final List<ChatAction> reward = new LinkedList<ChatAction>();
-	    * if (System.getProperty("stendhal.container") != null) {
-	    *     reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
-	    *     reward.add(new EquipItemAction("portfolio", 1, true));
-	    *     reward.add(new IncreaseXPAction(1));
-	    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-	    * } else {
-	    *     reward.add(new EnableFeatureAction("portfolio"));
-	    * }
-	    */
-	    /** 
-	    * final List<ChatAction> reward = new LinkedList<ChatAction>();
-	    * if (System.getProperty("stendhal.container") != null) {
-	    *     reward.add(new CreateSlotAction(ImmutableList.of("portfolio")));
-	    *     reward.add(new EquipItemAction("portfolio", 1, true));
-	    *     reward.add(new EnableFeatureAction("portfolio"));
-	    *     reward.add(new DropItemAction("black apple"));
-	    *     reward.add(new IncreaseXPAction(50));
-	    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-	    * }
-	    */	
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
 		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
@@ -295,22 +276,29 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
 		reward_brosoklelo.add(new EquipItemAction("apple", 3, false));
 		reward_brosoklelo.add(new EquipItemAction("pear", 2, false));
-    	//
-    	//REWARD: activate portfolio slot 
-    	//
-		//new CreateSlotAction(ImmutableList.of("belt", "back")),
-		//new CreateSlotAction(ImmutableList.of("portfolio")),
-    	//new EnableFeatureAction("portfolio"),
-    	//new EquipItemAction("portfolio", 1, false),
-    	//
+		
+    	/**
+    	 * REWARD: activate portfolio 
+    	 */
+		if (System.getProperty("stendhal.container") != null) {
+			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
+			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
+		} else {
+	    	reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
+		}
+		
+    	/**
+    	 * REWARD: final 
+    	 */
 		reward_brosoklelo.add(new IncreaseXPAction(1000));
 		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
+		
 		npc.add(
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
             new AndCondition(
                 new QuestInStateCondition(QUEST_SLOT, "start"),
                 new PlayerHasItemWithHimCondition("mauve apple", SCROLL_AMOUNT)),
-            ConversationStates.ATTENDING,
+            ConversationStates.IDLE,
 	        null, // say nothing here but say something in MultipleActions below
             new MultipleActions(
 	        	new ChatAction() {
@@ -320,7 +308,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
                             npc.say(
-                                "Thank you indeed!" + " " +
+                                "Oh a mauve apple! Thank you indeed!" + " " +
                                 //"I will now grant you a special gift for your efforts..." + " " +
                                 //"Here... Take this Portfolio..." + " " + 
                                 //"A portfolio will help you carry around many scrolls!");
