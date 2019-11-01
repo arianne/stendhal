@@ -10,11 +10,68 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
 package games.stendhal.server.maps.quests;
+
+/**
+ * QUEST: Ad Memoria In Portfolio
+ * 
+ * @author omero
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ *  <li> Brosoklelo, somewhere in semos mountains, near the wizard tower
+ *  <li> Blasyklela, somewhere in Kirdneh
+ * </ul>
+ *
+ * STEPS:
+ * <ul>
+ *  <li> admemoriainportfolio_step1</li>
+ *  <li> Talk with Brosoklelo to activate the quest.</li>
+ *  <li> Collect 1x purple apple</li>
+ *  <li> admemoriainportfolio_step2</li>
+ *  <li> Talk with Blasyklela in Kirdneh. have 1x purple apple</li>
+ *  <li> Collect 1x mauve apple</li>
+ *  <li> admemoriainportfolio_step3</li>
+ *  <li> Return to Brosoklelo with 1x mauve apple</li>
+ *  <li> Brosoklelo will unlock portfolio</li>
+ * </ul>
+ *
+ * REWARD:
+ * <ul>
+ *  <li> 1000 XP</li>
+ *  <li> 1000 Karma</li>
+ *  <li> ability to use portfolio</li>
+ * </ul>
+ *
+ * REPETITIONS:
+ * <ul>
+ *  <li> None</li>
+ * </ul> 
+ */
+
+/**
+ * QUEST NOTES: Ad Memoria In Portfolio
+ *   + Brosoklelo stepbrother of Blasyklela
+ *   + Brosoklelo lost his memories in a magical duel
+ *   + Brosoklelo still remembers his sister Blasyklela
+ *   + Brosoklelo still remembers about Kirdneh
+ *
+ *   + Blasyklela is the stepsister of Brosoklelo
+ *   + Blasyklela is living in Kirdneh
+ *   + Blasyklela is an accomplished magician that can compile a magic memory log
+ *   + Blasyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log
+ */
+
+/**
+ * QUEST TEST: Ad Memoria In Portfolio
+ * /alterquest <player> admemoriainportfolio <null>
+ */
+
 
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
+//import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
 //import java.util.LinkedList;
@@ -32,67 +89,19 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.CreateSlotAction;
+
 //import games.stendhal.server.entity.npc.action.CreateSlotAction;
-import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+
+import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+import games.stendhal.server.entity.npc.action.DisableFeatureAction;
+
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-//import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-//import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-
-/**
- * QUEST: Ad Memoria In Portfolio
- * 
- * @author omero
- * 
- * PARTICIPANTS:
- * <ul>
- *  <li> Brosoklelo, somewhere in semos mountains, near the wizard tower
- *   + Brosoklelo lost his memories in a magical duel
- *   + Brosoklelo still remembers his sister Blasyklela
- *   + Brosoklelo still remembers about Kirdneh</li>
- *  <li> Blasyklela,  somewhere in Kirdneh
- *   + Blasyklela is the stepsister of Brosoklelo
- *   + Blasyklela is currently living in Kirdneh
- *   + Blasyklela is an accomplished magician that can compile a magic memory log
- *   + Blasyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log</li>
- * </ul>
- *
- * STEPS:
- * <ul>
- *  <li> admemoriainportfolio_step1</li>
- *  <li> Talk with Brosoklelo to activate the quest.</li>
- *  <li> Collect 1x purple apple</li>
- *  <li> admemoriainportfolio_step2</li>
- *  <li> Talk with Blasyklela in Kirdneh. have 1x purple apple</li>
- *  <li> admemoriainportfolio_step2</li>
- *  <li> Return to Brosoklelo with 1x mauve apple</li>
- *  <li> Brosoklelo will unlock portfolio</li>
- * </ul>
- *
- * REWARD:
- * <ul>
- *  <li> 1000 XP</li>
- *  <li> 1000 Karma</li>
- *  <li> ability to use portfolio</li>
- * </ul>
- *
- * REPETITIONS:
- * <ul>
- *  <li> None.</li>
- * </ul>
- * 
- */
-
-/**
- * testing:
- * /alterquest <player> admemoriainportfolio
- */
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
 	private static final int SCROLL_AMOUNT = 1;
@@ -107,13 +116,40 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	private void admemoriainportfolio_step_1() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 
+		/** RESET */
+		npc.add(
+            ConversationStates.ATTENDING,
+			"reset", //reset request
+			null,
+			ConversationStates.IDLE,
+			"reset complete",
+	        new MultipleActions(
+               new DisableFeatureAction("back"),
+               new DisableFeatureAction("belt"),
+               new DisableFeatureAction("portfolio"),
+               new EnableFeatureAction("portfolio")
+            ),
+            null
+		);
+		
+		/** quest is not started yet, quest asked */
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+                "I am stranded ..." + " " +
+                "I remember a name... #Blasyklela..."   + " " +
+                "I remember a place... #Kirdneh..."         + " " +
+                "I should recover my #memory...",
+				null);
+
 		/** quest is not started yet, ask about Blasyklela */
 		npc.add(
 			ConversationStates.ATTENDING,
 			"Blasyklela",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Blasyklela is my stepsister... Lives in #Kirdneh",
+			"Blasyklela is my stepsister... I remember... Blasyklela lives in #Kirdneh",
 			null);
 
 		/** quest is not started yet, ask about Kirdneh */
@@ -122,7 +158,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Kirdneh",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Kirdneh is the place where #Blasyklela lives",
+			"Kirdneh... I remember that place... It is the place where my stepsister #Blasyklela lives",
 			null);
 
 		/** quest not started, quest offered */
@@ -131,10 +167,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"memory",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"Laaah lah lah laaah... A duel in magical mist..."  + " " +
-            "And surely I lost my memory... Again..."           + " " +
-            "I stand here stranded but all is not lost yet..."  + " " +
-            "Could You help recover Brosoklelo memory?"     + " " +
+			"Laaah lah lah laaah... Duel in magical mist..." + " " +
+            "My memory lost again... Dih.. Dah.. Duh.. Dah!" + " " +
+            "Here stranded I stand. Yet not lost at all..."  + " " +
+            "Oh please... Could you help recover my memory?" + " " +
             "A yes or no answer will do...",
 			null);
 
@@ -187,12 +223,13 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	// Player has AdMemoriaInPortfolio required items with him
 	private void admemoriainportfolio_step_2() {
 		final SpeakerNPC npc = npcs.get("Blasyklela");
+		
 		npc.add(
 	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
 	        new AndCondition(
 	        	new QuestInStateCondition(QUEST_SLOT, "start"),
 	        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
-	        ConversationStates.ATTENDING,
+	        ConversationStates.IDLE,
 	        null, //say something with multiple actions
 	        new MultipleActions(
 	        	new ChatAction() {
@@ -210,7 +247,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 									"Tell Brosoklelo mauve apple..." + " " +
 									"A mauve apple will restore Brosoklelo memory!" + " " +
 									"Once again *sigh*");
-                                new IncreaseXPAction(1);
+                                new IncreaseXPAction(1000);
 								new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
 								new SetQuestAndModifyKarmaAction( getSlotName(), "start", 15.0).fire(player, sentence, npc);
                         }
@@ -266,16 +303,33 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final EventRaiser npc) {
 								npc.say(
                                     "Thank you indeed!" + " " +
-                                    "Ad Memoria In Portfolio Quest is Done" + " " +
-									"Portfolio will now work!");
+        							"I will now grant you a special gift for your efforts..." + " " +
+                                    //
+                                    //"Here... Take this Portfolio..." + " " + 
+                                    //"A portfolio will help you carry around many scrolls!");
+                                    //
+                                    "Farewell!");
                         }
 	        	},
-    			new CreateSlotAction(ImmutableList.of("belt", "back")),
-	        	new EnableFeatureAction("portfolio"),
+	        	//
+	        	//REWARD:
+	        	//
 	        	new DropItemAction("mauve apple"),
-                new EquipItemAction("portfolio", 1, true),
 				new SetQuestAndModifyKarmaAction(getSlotName(), "done", 15.0),
-				new EquipItemAction("apple", 1000, true)
+	        	//
+	        	//REWARD: activate portfolio slot 
+	        	//
+    			//new CreateSlotAction(ImmutableList.of("belt", "back")),
+    			//new CreateSlotAction(ImmutableList.of("portfolio")),
+	        	//new EnableFeatureAction("portfolio"),
+	        	//new EquipItemAction("portfolio", 1, false),
+	        	//
+				//REWARD: after portfolio eventually works
+				new EquipItemAction("empty scroll", 3, false),
+				new EquipItemAction("home scroll", 2, false),
+				new EquipItemAction("kirdneh city scroll", 1, false),
+				new EquipItemAction("apple", 1, true)
+
             )
         );
 	}
