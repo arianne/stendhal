@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  *
  * @author omero
  */
+
 public class StrandedWitchNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
@@ -56,18 +57,18 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 						"Ave");
 				addGoodbye(
 						"Fortvna");
-
                 /**
-                 * for now, only pourpose is to convert a purple apple into a mauve apple 
-                 */
-
-				addHelp("I am worried about my stepbrother Brosoklelo... He likes dueling in magical duels!");
-				addOffer("I could turn a purple apple into a mauve apple... Oh... If only any news from my stepbrother Brosoklelo...");
-				addJob("I am awaiting news from my stepbrother Brosoklelo... That is my job!");
+                 * Will Convert 1x purple apple into 1x mauve apple 
+                 * Only when one has Ad Memoria In Portfolio quest
+                 */				
+				addHelp("I am worried about my stepbrother Brosoklelo... He likes dueling magical duels! Tell me you got a purple apple... ");
+				addOffer("I could turn a purple apple into a mauve apple... When you bring me a purple apple I will know...");
+				addJob("I am awaiting a purple apple from my stepbrother Brosoklelo... That is my job!");
 				
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest
 				 */
+				
 			}
 		};
 		
