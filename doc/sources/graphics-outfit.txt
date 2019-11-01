@@ -42,7 +42,7 @@ dress_020.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha
 dress_021.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_022.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_023.png (armor)            bleutailfly; OGA BY 3.0; Stendhal
-dress_024.png                    ???; ???; ???
+dress_024.png (red dress)        bleutailfly; OGA BY 3.0; Stendhal
 dress_025.png (dress / skirt)    diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
 dress_026.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_027.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
