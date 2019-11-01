@@ -106,7 +106,7 @@ koboldbarmaidnpc.png          Svetlana Kushnariova, yokati, diamonddmgirl, Jorda
 koboldbarregularnpc.png       Svetlana Kushnariova, yokati, GrumpyDiamond, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81952
 largeblackwizardnpc.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
 librarianconstantinenpc.png   Svetlana Kushnariova (Cabbit), Fabzy, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/23314
-lifeguardfemalenpc.png        ???, Svetlana Kushnariova (Cabbit), olonu, ???; https://opengameart.org/node/72969; Outfit author is not confirmed
+lifeguardfemalenpc.*          Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 lifeguardmalenpc.*            Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 liljohnnnnynpc.png            Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlegirlnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944
