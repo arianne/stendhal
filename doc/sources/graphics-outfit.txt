@@ -22,7 +22,7 @@ data/sprites/outfit/dress/
 dress_001.png (jumpsuit)         Jordan Irwin (AntumDeluge); CC0; Stendhal
 dress_002.png (kilt+tartan)      bleutailfly; OGA BY 3.0; Stendhal
 dress_003.png (kilt)             bleutailfly; OGA BY 3.0; Stendhal
-dress_004.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+dress_004.*                      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_005.png (denim)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_006.png (denim)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_007.png (gi)               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80841
