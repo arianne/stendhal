@@ -74,6 +74,7 @@ import java.util.List;
 //import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 //import java.util.LinkedList;
 import java.util.ArrayList;
 
@@ -263,30 +264,47 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	 */
 	/** completing admemoriainportfolio_step_3 activates portfolio slot for player
 	 */
-    /**
-    * final List<ChatAction> reward = new LinkedList<ChatAction>();
-    * if (System.getProperty("stendhal.container") != null) {
-    *     reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
-    *     reward.add(new EquipItemAction("portfolio", 1, true));
-    *     reward.add(new IncreaseXPAction(1));
-    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-    * } else {
-    *     reward.add(new EnableFeatureAction("portfolio"));
-    * }
-    */
-    /** 
-    * final List<ChatAction> reward = new LinkedList<ChatAction>();
-    * if (System.getProperty("stendhal.container") != null) {
-    *     reward.add(new CreateSlotAction(ImmutableList.of("portfolio")));
-    *     reward.add(new EquipItemAction("portfolio", 1, true));
-    *     reward.add(new EnableFeatureAction("portfolio"));
-    *     reward.add(new DropItemAction("black apple"));
-    *     reward.add(new IncreaseXPAction(50));
-    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-    * }
-    */
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
+	    /**
+	    * final List<ChatAction> reward = new LinkedList<ChatAction>();
+	    * if (System.getProperty("stendhal.container") != null) {
+	    *     reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
+	    *     reward.add(new EquipItemAction("portfolio", 1, true));
+	    *     reward.add(new IncreaseXPAction(1));
+	    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+	    * } else {
+	    *     reward.add(new EnableFeatureAction("portfolio"));
+	    * }
+	    */
+	    /** 
+	    * final List<ChatAction> reward = new LinkedList<ChatAction>();
+	    * if (System.getProperty("stendhal.container") != null) {
+	    *     reward.add(new CreateSlotAction(ImmutableList.of("portfolio")));
+	    *     reward.add(new EquipItemAction("portfolio", 1, true));
+	    *     reward.add(new EnableFeatureAction("portfolio"));
+	    *     reward.add(new DropItemAction("black apple"));
+	    *     reward.add(new IncreaseXPAction(50));
+	    *     reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+	    * }
+	    */	
+		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
+		reward_brosoklelo.add(new DropItemAction("mauve apple"));
+		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
+		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
+		reward_brosoklelo.add(new EquipItemAction("apple", 3, false));
+		reward_brosoklelo.add(new EquipItemAction("pear", 2, false));
+    	//
+    	//REWARD: activate portfolio slot 
+    	//
+		//new CreateSlotAction(ImmutableList.of("belt", "back")),
+		//new CreateSlotAction(ImmutableList.of("portfolio")),
+    	//new EnableFeatureAction("portfolio"),
+    	//new EquipItemAction("portfolio", 1, false),
+    	//
+		reward_brosoklelo.add(new IncreaseXPAction(1000));
+		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
 		npc.add(
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
             new AndCondition(
@@ -301,37 +319,18 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Player player,
                         final Sentence sentence,
                         final EventRaiser npc) {
-								npc.say(
-                                    "Thank you indeed!" + " " +
-        							"I will now grant you a special gift for your efforts..." + " " +
-                                    //
-                                    //"Here... Take this Portfolio..." + " " + 
-                                    //"A portfolio will help you carry around many scrolls!");
-                                    //
-                                    "Farewell!");
+                            npc.say(
+                                "Thank you indeed!" + " " +
+                                //"I will now grant you a special gift for your efforts..." + " " +
+                                //"Here... Take this Portfolio..." + " " + 
+                                //"A portfolio will help you carry around many scrolls!");
+                                //
+                                "Farewell!");
                         }
 	        	},
-	        	//
-	        	//REWARD:
-	        	//
-	        	new DropItemAction("mauve apple"),
-				new SetQuestAndModifyKarmaAction(getSlotName(), "done", 15.0),
-	        	//
-	        	//REWARD: activate portfolio slot 
-	        	//
-    			//new CreateSlotAction(ImmutableList.of("belt", "back")),
-    			//new CreateSlotAction(ImmutableList.of("portfolio")),
-	        	//new EnableFeatureAction("portfolio"),
-	        	//new EquipItemAction("portfolio", 1, false),
-	        	//
-				//REWARD: after portfolio eventually works
-				new EquipItemAction("empty scroll", 3, false),
-				new EquipItemAction("home scroll", 2, false),
-				new EquipItemAction("kirdneh city scroll", 1, false),
-				new EquipItemAction("apple", 1, true)
-
-            )
-        );
+	        	new MultipleActions(reward_brosoklelo)
+	        )
+         );
 	}
 
 	@Override
