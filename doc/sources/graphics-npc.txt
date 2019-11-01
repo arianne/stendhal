@@ -193,7 +193,7 @@ stormtroopernpc.png           Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irw
 supertrainedguynpc.png        Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/23314
 swimmer1npc.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 swimmer2npc.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/143
-swimmer3npc.*                 Svetlana Kushnariova (Cabbit), Fabzy, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/23314, https://github.com/arianne/stendhal/issues/145
+swimmer3npc.*                 Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/23314
 swimmer4npc.png               ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/92; Outfit author is not confirmed
 swimmer5npc.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/145
 swimmer6npc.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu, bleutailfly; OGA BY 3.0; https://github.com/arianne/stendhal/issues/144
