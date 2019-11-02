@@ -2,6 +2,18 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
+    <!--template
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+    -->
+
   <item name="summon scroll">
     <type class="scroll" subclass="summon" tileid="-1"/>
     <description/>
@@ -14,11 +26,12 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
+      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
+      <slot name="portfolio"/>
     </equipable>
   </item>
 
@@ -34,11 +47,12 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
+      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
+      <slot name="portfolio"/>
     </equipable>
   </item>
 
@@ -54,156 +68,12 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
       <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="nalwor city scroll">
-    <type class="scroll" subclass="nalwor" tileid="-1"/>
-    <description>You see a nalwor city scroll, it will take you back to nalwor city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <infostring value="0_nalwor_city 40 60"/>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
       <slot name="content"/>
-      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="ados city scroll">
-    <type class="scroll" subclass="ados" tileid="-1"/>
-    <description>You see a ados city scroll, it will take you back to ados city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <infostring value="0_ados_city_n 50 50"/>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="fado city scroll">
-    <type class="scroll" subclass="fado" tileid="-1"/>
-    <description>You see a fado city scroll, it will take you back to fado city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <infostring value="0_fado_city 40 30"/>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="kirdneh city scroll">
-    <type class="scroll" subclass="kirdneh" tileid="-1"/>
-    <description>You see a kirdneh city scroll, it will take you back to kirdneh city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <infostring value="0_kirdneh_city 63 85"/>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="kalavan city scroll">
-    <type class="scroll" subclass="kalavan" tileid="-1"/>
-    <description>You see a kalavan city scroll, it will take you back to kalavan city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <infostring value="0_kalavan_city 64 17"/>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
-  <item name="marked scroll">
-    <type class="scroll" subclass="marked" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="invitation scroll">
-    <type class="scroll" subclass="invitation" tileid="-1"/>
-    <description/>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.InvitationScroll"/>
-    <attributes>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
+      <slot name="portfolio"/>
     </equipable>
   </item>
 
@@ -220,11 +90,185 @@
     <value value="100"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="content"/>
       <slot name="bag"/>
+      <slot name="content"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="nalwor city scroll">
+    <type class="scroll" subclass="nalwor" tileid="-1"/>
+    <description>You see a nalwor city scroll, it will take you back to nalwor city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <infostring value="0_nalwor_city 40 60"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="ados city scroll">
+    <type class="scroll" subclass="ados" tileid="-1"/>
+    <description>You see a ados city scroll, it will take you back to ados city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <infostring value="0_ados_city_n 50 50"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="fado city scroll">
+    <type class="scroll" subclass="fado" tileid="-1"/>
+    <description>You see a fado city scroll, it will take you back to fado city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <infostring value="0_fado_city 40 30"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="kirdneh city scroll">
+    <type class="scroll" subclass="kirdneh" tileid="-1"/>
+    <description>You see a kirdneh city scroll, it will take you back to kirdneh city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <infostring value="0_kirdneh_city 63 85"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="kalavan city scroll">
+    <type class="scroll" subclass="kalavan" tileid="-1"/>
+    <description>You see a kalavan city scroll, it will take you back to kalavan city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <infostring value="0_kalavan_city 64 17"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="deniran city scroll">
+    <type class="scroll" subclass="deniran" tileid="-1"/>
+    <description>You see a deniran city scroll, it will take you back to deniran city.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <infostring value="0_deniran_city 32 74"/>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="marked scroll">
+    <type class="scroll" subclass="marked" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
+    </equipable>
+  </item>
+
+  <item name="invitation scroll">
+    <type class="scroll" subclass="invitation" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.InvitationScroll"/>
+    <attributes>
+      <quantity value="1"/>
+      <menu value="Use|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="bag"/>
+      <slot name="content"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="portfolio"/>
     </equipable>
   </item>
 
@@ -240,11 +284,12 @@
     <value value="4000"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="content"/>
       <slot name="bag"/>
+      <slot name="content"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
+      <slot name="portfolio"/>
     </equipable>
   </item>
 
@@ -261,11 +306,12 @@
     <value value="1000"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="content"/>
       <slot name="bag"/>
+      <slot name="content"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
+      <slot name="portfolio"/>
     </equipable>
   </item>
 
@@ -311,24 +357,4 @@
     </equipable>
   </item>
 
-    <item name="deniran city scroll">
-    <type class="scroll" subclass="deniran" tileid="-1"/>
-    <description>You see a deniran city scroll, it will take you back to deniran city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-    <attributes>
-      <infostring value="0_deniran_city 32 74"/>
-      <quantity value="1"/>
-      <menu value="Use|Use"/>
-    </attributes>
-    <weight value="0.01"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
 </items>
