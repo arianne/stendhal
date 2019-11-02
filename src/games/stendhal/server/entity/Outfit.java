@@ -11,9 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -59,32 +57,15 @@ public class Outfit {
 	 * 		Integer indexes of each outfit layer or null.
 	 */
 	public Outfit(final Integer... layers) {
-		final List<Integer> layer_list = new ArrayList<>();
-	    for (int idx = 0; idx < Outfits.LAYERS_COUNT; idx++) {
+		int idx = 0;
+		for (final String lname: Outfits.LAYER_NAMES) {
 			if (idx >= layers.length) {
-				layer_list.add(null);
-			} else {
-				layer_list.add(layers[idx]);
+				break;
 			}
-	    }
 
-	    // set values of layers not specified to null
-		if (layers.length > Outfits.LAYERS_COUNT) {
-			int missing = Outfits.LAYERS_COUNT - layers.length;
-			for (int x = 0; x < missing; x++) {
-				layer_list.add(null);
-			}
+			this.layers.put(lname, layers[idx]);
+			idx++;
 		}
-
-		this.layers.put("body", layer_list.get(0));
-		this.layers.put("dress", layer_list.get(1));
-		this.layers.put("head", layer_list.get(2));
-		this.layers.put("mouth", layer_list.get(3));
-		this.layers.put("eyes", layer_list.get(4));
-		this.layers.put("mask", layer_list.get(5));
-		this.layers.put("hair", layer_list.get(6));
-		this.layers.put("hat", layer_list.get(7));
-		this.layers.put("detail", layer_list.get(8));
 	}
 
 	/**
