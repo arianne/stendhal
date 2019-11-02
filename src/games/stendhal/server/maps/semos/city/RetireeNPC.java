@@ -50,43 +50,73 @@ public class RetireeNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting();
-				addJob("Ha ha! Job? I retired from my job as the #postman decades ago! Ha ha!");
-				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit https://stendhalgame.org and see how you can help!");
 				addGoodbye();
-				addReply("postman", "I used to deliver messages. But now there's a new kid doing it. Tell you what, I'll send him a message now, to give you.", new StoreMessageAction("Diogenes", "Hello it was nice chatting to you earlier in Semos. If you want to use postman to send messages to others who aren't here right now, just /msg postman"));
-				addOffer("Well well... I could still carry your letters around, but I'm retired and someone else got my job. You can visit that guy, new #postman is in Semos plains in the north of here.");
-				add(ConversationStates.ATTENDING,
-						ConversationPhrases.QUEST_MESSAGES,
-						null,
-				        ConversationStates.ATTENDING,
-				        null,
-				        new ChatAction() {
-					        @Override
-							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						        if (Rand.throwCoin() == 1) {
-							        npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
-						        } else {
-						        	npc.say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
-						        }
-					        }
-				        });
+
+				addJob(
+                    "Ha ha! Job? I retired from my job as the #postman decades ago! Ha ha!"
+                );
+
+				addHelp(
+                    "I can't help you, but you can help Stendhal!" + " " + 
+                    "Tell all your friends and help out with development!" + " " +
+                    "Visit https://stendhalgame.org and see how you can help!"
+                );
+
+				addReply(
+                    "postman",
+                    "I used to deliver messages. But now there's a new kid doing it." + " " +
+                    "Tell you what, I'll send him a message now, to give you.",
+                        new StoreMessageAction("Diogenes",
+                            "Hello it was nice chatting to you earlier in Semos." + " " +
+                            "If you want to use postman to send messages to others who aren't here right now, just /msg postman")
+                );
+
+				addOffer(
+                    "Well... Well..." + " " +
+                    "I could still carry your letters around, but I'm retired and someone else got my job..." + " " +
+                    "You can visit that guy, new #postman is in Semos plains in the north of here."
+                );
+
+				add(
+                    ConversationStates.ATTENDING,
+                    ConversationPhrases.QUEST_MESSAGES,
+                    null,
+                    ConversationStates.ATTENDING,
+                    null,
+                    new ChatAction() {
+                        @Override
+                        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                            if (Rand.throwCoin() == 1) {
+                                npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
+                            } else {
+                                npc.say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
+                            }
+                        }
+                    }
+				);
 
 				// A convenience function to make it easier for admins to test quests.
-				add(ConversationStates.ATTENDING, "cleanme!", null, ConversationStates.ATTENDING, "What?",
-				        new ChatAction() {
-					        @Override
-							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-						        if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
-							        for (final String quest : player.getQuests()) {
-								        player.removeQuest(quest);
-							        }
-						        } else {
-							        npc.say("What? No; you clean me! Begin with my back, thanks.");
-							        player.damage(5, npc.getEntity());
-							        player.notifyWorldAboutChanges();
-						        }
-					        }
-				        });
+				add(
+                    ConversationStates.ATTENDING,
+                    "cleanme!",
+                    null,
+                    ConversationStates.IDLE,
+                    "What?!",
+                    new ChatAction() {
+                        @Override
+                        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                            if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
+                                for (final String quest : player.getQuests()) {
+                                    player.removeQuest(quest);
+                                }
+                            } else {
+                                npc.say("What?! No... You clean me! Begin with my back, thanks.");
+                                player.damage(5, npc.getEntity());
+                                player.notifyWorldAboutChanges();
+                            }
+                        }
+                    }
+				);
 			}
 
 			@Override

@@ -22,6 +22,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+//import games.stendhal.server.entity.npc.action.StoreMessageAction;
 
 /**
  * Provides StrandedWitchNPC
@@ -61,9 +62,21 @@ public class StrandedWitchNPC implements ZoneConfigurator {
                  * Will Convert 1x purple apple into 1x mauve apple 
                  * Only when one has Ad Memoria In Portfolio quest
                  */				
-				addHelp("I am worried about my stepbrother Brosoklelo... He likes dueling magical duels! Tell me you got a purple apple... ");
-				addOffer("I could turn a purple apple into a mauve apple... When you bring me a purple apple I will know...");
-				addJob("I am awaiting a purple apple from my stepbrother Brosoklelo... That is my job!");
+				addHelp(
+					"I am worried about my stepbrother Brosoklelo... He likes dueling magical duels! Tell me you got a purple apple... "
+				);
+				addOffer(
+					"I could turn a purple apple into a mauve apple... When you bring me a purple apple I will know..."
+				);
+				addJob(
+					"I am awaiting a purple apple from my stepbrother Brosoklelo... That is my job!"
+				);
+				addReply(
+                    "apple", //trigger
+                    "You would not think about an #apple unless you are bestowed with a special one!" + " " +
+                    "A special #apple may come in different colors!",
+                    null
+	            );
 				
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest

@@ -22,6 +22,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+//import games.stendhal.server.entity.npc.action.StoreMessageAction;
 
 /**
  * Provides StrandedWizardNPC
@@ -59,11 +60,32 @@ public class StrandedWizardNPC implements ZoneConfigurator {
                         "Again...");
 				addHelp(
 						"I am stranded here, I can not help you with anything..." + " " +
-						"My #memory is nagging me with a name... Blasyklela!");
+						"My #memory is nagging me with a name... Blasyklela!"
+				);
 				addOffer(
-						"I am stranded, I can not offer you anything..." + " " +
-						"My #memory seems in disarray but I remember a place... Kirdneh!");
-				
+						"I am stranded here, I can not offer you anything..." + " " +
+						"My #memory seems in disarray but I remember a place... Kirdneh!"
+				);
+				addReply(
+	                    "apple",
+	                    "You would not think about an apple..." + " " +
+	                    "Unless you are bestowed a special apple!" + " " +
+	                    "Blasyklela! Kirdneh! My #memory...",
+	                    null
+	            );
+				addReply(
+	                    "Kirdneh",
+	                    "Kirdneh... A lovely place indeed..." + " " +
+	                    "My #memory... A special #apple... #Kirdneh... A lovely place!",
+	                    null
+	            );
+				addReply(
+	                    "Blasyklela",
+	                    "Blasyklela my beloved stepsister..." + " " +
+	                    "My #memory... A special #apple... #Blasyklela... My beloved stepsister!",
+	                    null
+	            );
+
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest 
 				 */

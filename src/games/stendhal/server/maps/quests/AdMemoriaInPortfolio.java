@@ -26,13 +26,8 @@ package games.stendhal.server.maps.quests;
  *
  * STEPS:
  * <ul>
- *  <li> admemoriainportfolio_step1</li>
  *  <li> Talk with Brosoklelo to activate the quest.</li>
- *  <li> Collect 1x purple apple</li>
- *  <li> admemoriainportfolio_step2</li>
  *  <li> Talk with Blasyklela in Kirdneh. have 1x purple apple</li>
- *  <li> Collect 1x mauve apple</li>
- *  <li> admemoriainportfolio_step3</li>
  *  <li> Return to Brosoklelo with 1x mauve apple</li>
  *  <li> Brosoklelo will unlock portfolio</li>
  * </ul>
@@ -68,7 +63,6 @@ package games.stendhal.server.maps.quests;
  * /alterquest <player> admemoriainportfolio <null>
  */
 
-
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -84,6 +78,7 @@ import java.util.ArrayList;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -108,33 +103,96 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
-	private static final int SCROLL_AMOUNT = 1;
+	private static final int APPLE_AMOUNT = 1;
 	private static final String QUEST_SLOT = "admemoriainportfolio";
 
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
+	// RESET Quest, testing pourposes only
+	/** admemoriainportfolio_step_0 */
+	private void admemoriainportfolio_step_0() {
+		final SpeakerNPC npc = npcs.get("Brosoklelo");
+		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
+		reset_brosoklelo.add(new DropItemAction("purple apple"));
+		reset_brosoklelo.add(new DropItemAction("mauve apple"));
+		reset_brosoklelo.add(new DropItemAction("keyring"));
+		reset_brosoklelo.add(new DropItemAction("portfolio"));
+        reset_brosoklelo.add(new DisableFeatureAction("back"));
+        reset_brosoklelo.add(new DisableFeatureAction("belt"));
+        reset_brosoklelo.add(new DisableFeatureAction("keyring"));
+        reset_brosoklelo.add(new DisableFeatureAction("portfolio"));
+        //
+        npc.add(
+            ConversationStates.ATTENDING,
+            "reset", //reset request
+            null,
+            ConversationStates.IDLE,
+            "reset complete",
+            new MultipleActions(reset_brosoklelo),
+            null
+        );
+        
+		// A convenience function to make it easier for admins to test quests.
+		npc.add(
+            ConversationStates.ATTENDING,
+            "cleanme!",
+            null,
+            ConversationStates.IDLE,
+            "What?!",
+            new ChatAction() {
+                @Override
+                public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                    if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
+                        for (final String quest : player.getQuests()) {
+                            player.removeQuest(quest);
+                        }
+                    } else {
+                        npc.say("What? No; you clean me! Begin with my back, thanks.");
+                        player.damage(5, npc.getEntity());
+                        player.notifyWorldAboutChanges();
+                    }
+                }
+            }
+		);
+
+		/**
+		// A convenience function to make it easier for admins to test quests.
+		npc.add(
+            ConversationStates.ATTENDING,
+            "reset",
+            null,
+            ConversationStates.IDLE,
+            "What?!",
+            new ChatAction() {
+                @Override
+                public void fire(
+                	final Player player,
+                	final Sentence sentence,
+                	final EventRaiser npc) {
+                    	if (
+                    		AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)
+                       	){
+                        	for (final String quest : player.getQuests()) {
+                            	player.removeQuest(quest);
+                            }
+                            
+                    	} else {
+                        	npc.say("What? No; you clean me! Begin with my back, thanks.");
+                        	player.damage(5, npc.getEntity());
+                        	player.notifyWorldAboutChanges();
+                    	}
+               		}
+             	}
+			);
+		*/
+	}
+
 	/** admemoriainportfolio_step_1 */
 	private void admemoriainportfolio_step_1() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
-
-		/** RESET */
-		npc.add(
-            ConversationStates.ATTENDING,
-			"reset", //reset request
-			null,
-			ConversationStates.IDLE,
-			"reset complete",
-	        new MultipleActions(
-               new DisableFeatureAction("back"),
-               new DisableFeatureAction("belt"),
-               new DisableFeatureAction("portfolio"),
-               new EnableFeatureAction("portfolio")
-            ),
-            null
-		);
 		
 		/** quest is not started yet, quest asked */
 		npc.add(ConversationStates.ATTENDING,
@@ -153,7 +211,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Blasyklela",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Blasyklela is my stepsister... I remember... Blasyklela lives in #Kirdneh",
+			"Blasyklela, my stepsister... As far as I can remeber...  Blasyklela lives in #Kirdneh...",
 			null);
 
 		/** quest is not started yet, ask about Kirdneh */
@@ -162,7 +220,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Kirdneh",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Kirdneh... I remember that place... It is the place where my stepsister #Blasyklela lives",
+			"Kirdneh... As far as I can remember, the place where my stepsister #Blasyklela lives",
 			null);
 
 		/** quest not started, quest offered */
@@ -175,7 +233,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             "My memory lost again... Dih.. Dah.. Duh.. Dah!" + " " +
             "Here stranded I stand. Yet not lost at all..."  + " " +
             "Oh please... Could you help recover my memory?" + " " +
-            "A yes or no answer will do...",
+            "A #YES or #NO answer will do...",
 			null);
 
 		//on offered quest
@@ -185,8 +243,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.IDLE,
-			"Excellent!",
-			//new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 15.0));			
+			"Excellent! Now, listen to me with great attention...", 			
 	        new MultipleActions(
 		       new ChatAction() {
                    @Override
@@ -194,13 +251,11 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                    final Sentence sentence,
                    final EventRaiser npc) {
                         npc.say(
-                        //give player item to bring to Blasyklela
-                        //a normal something
-                        //a special something
-                        "Here you go... Take this purple apple from me!" + " " +
-                        "Find Blasyklela and bring this purple apple along with you." + " " +
+                        "Take this purple apple from me!" + " " +
+                        "Bring this purple apple along with you and find my stepsister, Blasyklela..." + " " +
                         "Say purple apple to Blasyklela and she will know it is from me!" + " " +
-                        "Once you return back here to me, I will reward your efforts!");
+                        "My stepsister Blasyklela will give you something that I need to recover my memory..." + " " +
+                        "Once you return back to me, here... I will reward your efforts!");
                         new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
                         new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
                    }
@@ -223,16 +278,16 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 
 	/** admemoriainportfolio_step_2 */
 	/** find Blasyklela in Kirdneh. step_2 */
-    // Player has AdMemoriaInPortfolio quest
-	// Player has AdMemoriaInPortfolio required items with him
 	private void admemoriainportfolio_step_2() {
+	    // Player has AdMemoriaInPortfolio quest
+		// Player has AdMemoriaInPortfolio required items with him
 		final SpeakerNPC npc = npcs.get("Blasyklela");
 		
 		npc.add(
 	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
 	        new AndCondition(
 	        	new QuestInStateCondition(QUEST_SLOT, "start"),
-	        	new PlayerHasItemWithHimCondition("purple apple", SCROLL_AMOUNT)),
+	        	new PlayerHasItemWithHimCondition("purple apple", APPLE_AMOUNT)),
 	        ConversationStates.IDLE,
 	        null, //say something with multiple actions
 	        new MultipleActions(
@@ -261,12 +316,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         );
 	}
 
-	/** admemoriainportfolio_step_3
-	 */
-	/** return to Brosoklelo, step_3
-	 */
-	/** completing admemoriainportfolio_step_3 activates portfolio slot for player
-	 */
+	/** admemoriainportfolio_step_3	 */
+	/** return to Brosoklelo, step_3 */
+	/** completing admemoriainportfolio_step_3 activates portfolio slot for player */
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
@@ -276,6 +328,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
 		reward_brosoklelo.add(new EquipItemAction("apple", 3, false));
 		reward_brosoklelo.add(new EquipItemAction("pear", 2, false));
+		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		
     	/**
     	 * REWARD: activate portfolio 
@@ -297,7 +350,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
             new AndCondition(
                 new QuestInStateCondition(QUEST_SLOT, "start"),
-                new PlayerHasItemWithHimCondition("mauve apple", SCROLL_AMOUNT)),
+                new PlayerHasItemWithHimCondition("mauve apple", APPLE_AMOUNT)),
             ConversationStates.IDLE,
 	        null, // say nothing here but say something in MultipleActions below
             new MultipleActions(
@@ -333,6 +386,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				// repeat is false
 				false);
 		// admemoriainportfolio steps:
+		admemoriainportfolio_step_0();
 		admemoriainportfolio_step_1();
 		admemoriainportfolio_step_2();
 		admemoriainportfolio_step_3();
