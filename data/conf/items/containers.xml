@@ -2,7 +2,7 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
-    <item name="backpack">
+  <item name="backpack">
     <type class="container" subclass="backpack" tileid="-1"/>
     <description>You see a backpack.</description>
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
@@ -44,7 +44,7 @@
     </equipable>
   </item>
   				 
-    <item name="portfolio">
+  <item name="portfolio">
     <type class="container" subclass="portfolio" tileid="-1"/>
     <description>You see a portfolio. It can hold some of your scrolls!</description>
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
