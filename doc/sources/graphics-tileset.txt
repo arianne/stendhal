@@ -6,6 +6,7 @@ castle.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_smoke.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79111
 church.png                    ???; ???; ???
 death_tower.png               ???; ???; ???
+desert_house_exterior.png     Richard Kettering (Jetrel), Tyler Olsen (Roots), Casper Nilsson, Hyptosis, Zachariah Husiar (Zabin), Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/80149, https://opengameart.org/content/lpc-cnilsson
 fire_tower.png                ???; ???; ???
 gazebo.*                      ???; ???; ???
 gnome_homes.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20713
@@ -213,6 +214,7 @@ ornamental_border.png            ???; ???; ???
 stone.png                        Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 stone2.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 stone_grey.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+stone_house_interior.png         Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 wallpapers.png                   bleutailfly; OGA BY 3.0; Stendhal
 walls_siding.png                 bleutailfly; OGA BY 3.0; Stendhal
 wall_brown.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
