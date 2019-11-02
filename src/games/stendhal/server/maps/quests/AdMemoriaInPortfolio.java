@@ -60,14 +60,12 @@ package games.stendhal.server.maps.quests;
 
 /**
  * QUEST TEST: Ad Memoria In Portfolio
- * /alterquest <player> admemoriainportfolio <null>
+ * +make sure <player> QUEST_SLOT is clean:
+ * /alterquest <player> admemoriainportfolio <null> 
  */
 
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-
-//import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -75,10 +73,15 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 //import games.stendhal.common.grammar.Grammar;
+//import com.google.common.collect.ImmutableList;
+//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+//import games.stendhal.server.entity.npc.action.CreateSlotAction;
+//import games.stendhal.server.actions.admin.AdministrationAction;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
-import games.stendhal.server.actions.admin.AdministrationAction;
+
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -88,13 +91,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-//import games.stendhal.server.entity.npc.action.CreateSlotAction;
-
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 
-import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -111,8 +110,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
-	// RESET Quest, testing pourposes only
-	/** admemoriainportfolio_step_0 */
+    /** admemoriainportfolio_step_0 */
+    // RESET Quest, testing pourposes only
+    // A convenience function to make it easier for admins to test quests.
 	private void admemoriainportfolio_step_0() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
@@ -124,7 +124,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         reset_brosoklelo.add(new DisableFeatureAction("belt"));
         reset_brosoklelo.add(new DisableFeatureAction("keyring"));
         reset_brosoklelo.add(new DisableFeatureAction("portfolio"));
-        //
+        
         npc.add(
             ConversationStates.ATTENDING,
             "reset", //reset request
@@ -134,33 +134,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             new MultipleActions(reset_brosoklelo),
             null
         );
-        
-		// A convenience function to make it easier for admins to test quests.
-		npc.add(
-            ConversationStates.ATTENDING,
-            "cleanme!",
-            null,
-            ConversationStates.IDLE,
-            "What?!",
-            new ChatAction() {
-                @Override
-                public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                    if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
-                        for (final String quest : player.getQuests()) {
-                            player.removeQuest(quest);
-                        }
-                    } else {
-                        npc.say("What? No; you clean me! Begin with my back, thanks.");
-                        player.damage(5, npc.getEntity());
-                        player.notifyWorldAboutChanges();
-                    }
-                }
-            }
-		);
 
-		/**
-		// A convenience function to make it easier for admins to test quests.
-		npc.add(
+        /**
+        npc.add(
             ConversationStates.ATTENDING,
             "reset",
             null,
@@ -169,26 +145,23 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             new ChatAction() {
                 @Override
                 public void fire(
-                	final Player player,
-                	final Sentence sentence,
-                	final EventRaiser npc) {
-                    	if (
-                    		AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)
-                       	){
-                        	for (final String quest : player.getQuests()) {
-                            	player.removeQuest(quest);
+                    final Player player,
+                    final Sentence sentence,
+                    final EventRaiser npc) {
+                        if ( AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
+                            for (final String quest : player.getQuests()) {
+                                player.removeQuest(quest);
                             }
-                            
-                    	} else {
-                        	npc.say("What? No; you clean me! Begin with my back, thanks.");
-                        	player.damage(5, npc.getEntity());
-                        	player.notifyWorldAboutChanges();
-                    	}
-               		}
-             	}
-			);
-		*/
-	}
+                        } else {
+                            npc.say("What? No; you clean me! Begin with my back, thanks.");
+                            player.damage(5, npc.getEntity());
+                            player.notifyWorldAboutChanges();
+                        }
+                }
+            }
+        );
+        */
+    }
 
 	/** admemoriainportfolio_step_1 */
 	private void admemoriainportfolio_step_1() {
@@ -323,22 +296,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
+		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
 		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
 		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
 		reward_brosoklelo.add(new EquipItemAction("apple", 3, false));
 		reward_brosoklelo.add(new EquipItemAction("pear", 2, false));
-		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		
-    	/**
-    	 * REWARD: activate portfolio 
-    	 */
-		if (System.getProperty("stendhal.container") != null) {
+		/**
+		 * REWARD: activate portfolio
+		 */
+		/**
+		 if (System.getProperty("stendhal.container") != null) {
 			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
 			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
-		} else {
+		 } else {
 	    	reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
-		}
+		 }
+		 */
 		
     	/**
     	 * REWARD: final 
