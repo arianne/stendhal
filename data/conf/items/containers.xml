@@ -46,7 +46,7 @@
   				 
     <item name="portfolio">
     <type class="container" subclass="portfolio" tileid="-1"/>
-    <description>You see a portfolio.</description>
+    <description>You see a portfolio. It can hold some of your scrolls!</description>
      <implementation class-name="games.stendhal.server.entity.item.Container"/>
     <attributes>
       <slot_name value="portfolio"/>
@@ -57,12 +57,8 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="belt"/>
-      <slot name="trade"/>
       <slot name="ground"/>
-      <slot name="portfolio"/>
+      <slot name="bag"/>
     </equipable>
   </item>
 
