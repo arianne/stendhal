@@ -354,8 +354,6 @@ apple=manzana
 You see a nice shiny apple.=Ves una bonita y brillante manzana.
 black apple=manzana negra
 You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.=Ves una manzana negra. Debe de ser un regalo del pequeño Johnnny
-purple apple=manzana púrpura
-You see a bubble apple.
 bread=pan
 You see a loaf of bread.  It is freshly baked and ready to eat.=Ves una barra de pan. Está recién horneada y lista para comer.
 button mushroom=champiñón común

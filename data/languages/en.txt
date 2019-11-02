@@ -337,8 +337,8 @@ You see a nice shiny apple.=You see a nice shiny apple.
 black apple=black apple
 You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.=You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.
 purple apple=purple apple
-You see a bubble apple.
-banana=banana
+You see a purple apple. It is loaded with memories
+banana=banana 
 You see a banana. Take care of monkeys when you have them in your bag!=You see a banana. Take care of monkeys when you have them in your bag!
 cherry=cherry
 You see a cherry. Its tangy taste revives you a little.=You see a cherry. Its tangy taste revives you a little.

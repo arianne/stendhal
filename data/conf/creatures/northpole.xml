@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <!-- START: northpole-->
+
+  <creature name="elf builder1">
+    <type class="northpole" subclass="elf_builder1" tileid="northpole.png:0"></type>
+    <description>You see a poor elf builder who can hardly keep it together with all the nasty little brats running around and making such a racket. Please help him out by getting rid of all those pesky little things.</description>
+    <attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.0" />
+      <size value="1,1" />
+    </attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+    <corpse name="humanoid" ></corpse>
+    <drops>
+      <item value="lemondrop" quantity="[1,1]" probability="100.0"/>
+      <item value="gumdrops" quantity="[1,1]" probability="100.0" />
+      <item value="lollipop" quantity="[1,1]" probability="100.0"/>
+      <item value="greenmint" quantity="[1,1]" probability="100.0" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+    </ai>
+  </creature>
+
+  <creature name="elf builder2">
+    <type class="northpole" subclass="elf_builder2" tileid="northpole.png:1"></type>
+    <description>You see another poor elf builder who is having a hard time keeping it together with all the nasty little brats running around and making suck a racket. Please help him out by getting rid of all those pesky little things.</description>
+    <attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.5" />
+      <size value="1,1" />
+    </attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="lemondrop" quantity="[1,1]" probability="100.0"/>
+      <item value="gumdrops" quantity="[1,1]" probability="100.0" />
+      <item value="lollipop" quantity="[1,1]" probability="100.0"/>
+      <item value="greenmint" quantity="[1,1]" probability="100.0" />    </drops>
+    <equips>
+
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="elf guy">
+    <type class="northpole" subclass="elf_guy" tileid="northpole.png:2"/>
+    <description>You see a bright, cheery holday elf who is trying to remember that all kids are angels and can do no wrong.</description>
+    <attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.0" />
+      <size value="1,1" />
+    </attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="lemondrop" quantity="[1,1]" probability="100.0"/>
+      <item value="gumdrops" quantity="[1,1]" probability="100.0" />
+      <item value="lollipop" quantity="[1,1]" probability="100.0"/>
+      <item value="greenmint" quantity="[1,1]" probability="100.0" />     </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+    </ai>
+  </creature>
+
+  <creature name="elf kid1">
+    <type class="northpole" subclass="elf_kid1" tileid="northpole.png:3"/>
+    <description>You see a little sugar-fueled demon that is wrecking havoc wherever he goes, because he helped steal all of Kris Kringle's candy for his stockings, and has spent hours eating it.</description>
+    <attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.7" />
+      <size value="1,1" />
+    </attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+    <corpse name="tiny_humanoid"/>
+    <drops>
+      <item value="lemondrop" quantity="[1,1]" probability="100.0"/>
+      <item value="gumdrops" quantity="[1,1]" probability="100.0" />
+      <item value="lollipop" quantity="[1,1]" probability="100.0"/>
+      <item value="greenmint" quantity="[1,1]" probability="100.0" />    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Kringle is a wuss!!!"/>
+        <noise state="idle follow fight" value="Put up or shut up!!!"/>
+      </says>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+    </ai>
+  </creature>
+  <creature name="elf kid2">
+    <type class="northpole" subclass="elf_kid2" tileid="northpole.png:4"/>
+  	<description>You see someone who is close to having a sugar coma from all the candy he has eaten.</description>
+  	<attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.6" />
+      <size value="1,1" />
+  	</attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+  	<corpse name="tiny_humanoid" />
+  	<drops>
+      <item value="lemondrop" quantity="[1,1]" probability="100.0"/>
+      <item value="gumdrops" quantity="[1,1]" probability="100.0" />
+      <item value="lollipop" quantity="[1,1]" probability="100.0"/>
+      <item value="greenmint" quantity="[1,1]" probability="100.0" />
+  	</drops>
+  	<equips>
+  	</equips>
+  	<ai>
+  	  <says>
+        <noise state="idle follow fight" value="Bite me!!!"/>
+        <noise state="idle follow fight" value="We need more candy!!!"/>
+      </says>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+  	</ai>
+  </creature>
+  <creature name="elf kid3">
+    <type class="northpole" subclass="elf_kid3" tileid="northpole.png:5"/>
+  	<description>You see someone who wants you to help him steal MORE candy.</description>
+  	<attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.5" />
+      <size value="1,1" />
+  	</attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+  	<corpse name="tiny_humanoid" />
+  	<drops>
+      <item value="peppermint" quantity="[1,1]" probability="100.0"/>
+      <item value="candycane" quantity="[1,1]" probability="100.0"/>
+      <item value="taffy" quantity="[1,1]" probability="100.0"/>
+      <item value="fairy cake" quantity="[1,1]" probability="100.0"/>
+  	</drops>
+  	<equips>
+  	</equips>
+  	<ai>
+      <says>
+        <noise state="idle follow fight" value="You guys are just crybabies!!!"/>
+        <noise state="idle follow fight" value="Waaaaaa, you broke my train!!!"/>
+      </says>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+  	</ai>
+  </creature>
+  <creature name="elf kid4">
+    <type class="northpole" subclass="elf_kid4" tileid="northpole.png:6"/>
+    <description>You see a little bully. Be careful, he is coming for you.</description>    
+  	<attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.6" />
+      <size value="1,1" />
+  	</attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+  	<corpse name="tiny_humanoid" />
+  	<drops>
+      <item value="peppermint" quantity="[1,1]" probability="100.0"/>
+      <item value="candycane" quantity="[1,1]" probability="100.0"/>
+      <item value="taffy" quantity="[1,1]" probability="100.0"/>
+      <item value="fairy cake" quantity="[1,1]" probability="100.0"/>
+  	</drops>
+  	<equips>
+  	</equips>
+  	<ai>
+      <says>
+        <noise state="idle follow fight" value="Jingle bells.  Shotgun shells!!!"/>
+        <noise state="idle follow fight" value="Kringle laid an egg!!!"/>
+      </says>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+  	</ai>
+  </creature>
+  <creature name="elf kid5">
+    <type class="northpole" subclass="elf_kid5" tileid="northpole.png:7"/>
+    <description>You see a rather obnoxious little kid who has had way too much candy.</description>    
+  	<attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.7" />
+      <size value="1,1" />
+  	</attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+  	<corpse name="tiny_humanoid" />
+  	<drops>
+      <item value="peppermint" quantity="[1,1]" probability="100.0"/>
+      <item value="candycane" quantity="[1,1]" probability="100.0"/>
+      <item value="taffy" quantity="[1,1]" probability="100.0"/>
+      <item value="fairy cake" quantity="[1,1]" probability="100.0"/>
+  	</drops>
+  	<equips>
+  	</equips>
+  	<ai>
+      <says>
+        <noise state="idle follow fight" value="Stop it!!!"/>
+        <noise state="idle follow fight" value="I want chocolate bar!!!"/>
+      </says>
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+  	</ai>
+  </creature>
+  <creature name="elf skater1">
+  	<type class="northpole" subclass="elf_skater1" tileid="northpole.png:8" />
+  	<description>You see a skater that is barely able too stay on his feet.  Nothing fancy.</description>
+  	<attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.5" />
+      <size value="1,1" />
+  	</attributes>
+    <level value="1" />
+    <experience value="200"></experience>
+    <respawn value="300" />
+  	<corpse name="humanoid" />
+  	<drops>
+      <item value="peppermint" quantity="[1,1]" probability="100.0"/>
+      <item value="candycane" quantity="[1,1]" probability="100.0"/>
+      <item value="taffy" quantity="[1,1]" probability="100.0"/>
+      <item value="fairy cake" quantity="[1,1]" probability="100.0"/>
+  	</drops>
+  	<equips>
+  	</equips>
+  	<ai>
+      <says>
+        <noise state="idle follow fight" value="I have a code in my nodze"/>
+      </says>  	
+      <profile name="brave" />
+      <profile name="offensive" />
+      <profile name="patrolling" />
+  	</ai>
+  </creature>
+
+  <creature name="elf skater2">
+    <type class="northpole" subclass="elf_skater2" tileid="northpole.png:9"/>
+    <description>You see a graceful skater.</description>
+    <attributes>
+      <atk value="40" />
+      <def value="20" />
+      <hp value="20" />
+      <speed value="1.5" />
+      <size value="1,1" />
+    </attributes>
+    <level value="1"/>
+    <experience value="200"/>
+    <respawn value="300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="peppermint" quantity="[1,1]" probability="100.0"/>
+      <item value="candycane" quantity="[1,1]" probability="100.0"/>
+      <item value="taffy" quantity="[1,1]" probability="100.0"/>
+      <item value="fairy cake" quantity="[1,1]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <!-- END: northpole -->
+
+</creatures>
