@@ -96,7 +96,7 @@ dress_084.png (overalls)         bleutailfly, Jordan Irwin (AntumDeluge); OGA BY
 dress_085.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_086.png                    bleutailfly; OGA BY 3.0; Stendhal
 dress_087.png (tuxedo)           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
-dress_088.png (wedding dress)    Svetlana Kushnariova (Cabbit), JOrdan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
+dress_088.png (wedding dress)    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
 dress_089.png (prison jumpsuit)  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83639
 dress_090.png (pizza uniform)    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_091.png (swimsuit)         bleutailfly; OGA BY 3.0; Stendhal
