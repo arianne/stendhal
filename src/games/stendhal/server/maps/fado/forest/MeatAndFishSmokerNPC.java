@@ -74,10 +74,9 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 addJob("I can #smoke you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod. Just ask me to!");
                 addOffer("I will #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, but you'll have to bring me what is needed.");
                 addHelp("Ask me to #smoke for you any #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, that's what I'm good at when you bring me all that is needed.");
-
                 addReply(Arrays.asList("smoked", "smoked meat", "smoked ham", "smoked trout", "smoked cod"),
                     "The true secret are which herbs for the aroma along with enough wood for the perfect #smoke. Care to hear what I have to #offer?");
-                addReply(Arrays.asList("sclaria", "kekik"),
+                addReply(Arrays.asList("arandula","sclaria", "kekik"),
                     "It grows in many places, at the edges or in the depths of a forest.");
                 addReply(Arrays.asList("trout", "cod"),
                     "I will not reveal my favorite fishing spots... Go find some books on the subject in one of those scholarly places not many are familiar with anymore...");
@@ -91,18 +90,17 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 productsNames.add("smoked trout");
                 productsNames.add("smoked cod");
 
-                //meat, ham: kekik+arandula
+                //meat: wood+arandula
                 final Map<String, Integer> reqRes_smokedMeat = new TreeMap<String, Integer>();
                 reqRes_smokedMeat.put("wood", 1);
                 reqRes_smokedMeat.put("meat", 1);
-                reqRes_smokedMeat.put("kekik", 1);
                 reqRes_smokedMeat.put("arandula", 1);
 
+                //ham: wood+kekik
                 final Map<String, Integer> reqRes_smokedHam = new TreeMap<String, Integer>();
                 reqRes_smokedHam.put("wood", 1);
                 reqRes_smokedHam.put("ham", 1);
                 reqRes_smokedHam.put("kekik", 1);
-                reqRes_smokedHam.put("arandula", 1);
 
                 //trout, cod: sclaria+arandula
                 final Map<String, Integer> reqRes_smokedTrout = new TreeMap<String, Integer>();
@@ -147,7 +145,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                         "Hi there! Sure you were attracted here by the aroma emanating from my tasty #smoked products!");
             }
         };
-
+        
         npc.setEntityClass("meatandfishsmokernpc");
         npc.setDirection(Direction.DOWN);
         npc.setPosition(26, 53);
