@@ -259,10 +259,6 @@ public abstract class DressedEntity extends RPEntity {
 
 			// re-add detail
 			put("outfit", outfitCode);
-			put("outfit_mouth", outfit.getLayer("mouth"));
-			put("outfit_eyes", outfit.getLayer("eyes"));
-			put("outfit_mask", outfit.getLayer("mask"));
-			put("outfit_hat", outfit.getLayer("hat"));
 			notifyWorldAboutChanges();
 		}
 	}
