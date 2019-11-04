@@ -103,7 +103,7 @@
   <image source="../../tileset/logic/item/herb.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="1145" name="resources" tilewidth="32" tileheight="32" tilecount="0" columns="0">
-  <image source="../../../../../../90_ECLIPSE/stendhal/tiled/tileset/logic/item/resources.png" width="192" height="32"/>
+  <image source="../../tileset/logic/item/resources.png" width="192" height="32"/>
  </tileset>
  <tileset firstgid="1145" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
