@@ -27,6 +27,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="ribbbbbbbit!"/>
+        <noise state="idle follow fight" value="ribbbbbbbbbbbbit!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
