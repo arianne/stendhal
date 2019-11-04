@@ -83,6 +83,7 @@ goblin-laugh-01.*         spookymodem; CC0; https://freesound.org/people/spookym
 growl-large-3.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
 grunt-large-1.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
 grunt-large-2.*           SmallQuadruped; CC0; http://www.freesound.org/people/SmallQuadruped/sounds/42201/
+gui-window-fold.*         Nicole Marie T; CC BY 4.0; https://opengameart.org/node/92701
 guitar-1.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/16326
 hiccup-01.*               ceoux; CC0; https://freesound.org/people/ceoux/sounds/338196/
 ho-ho-ho-1.*              canucklovingbrit; CC0; http://freesound.org/people/canucklovingbrit/sounds/110641/
