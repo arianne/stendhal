@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="frog">
+    <type class="amphibian" subclass="frog" tileid="amphibian.png:0"/>
+    <description>You see a cute little hoppy frog which only wants to love you.</description>
+    <attributes>
+      <atk value="170"/>
+      <def value="25"/>
+      <hp value="100"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="200"/>
+    <respawn value="1000"/>
+    <corpse name="small_boneless"/>
+    <drops>
+      <item value="poison" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="steel arrow" quantity="10000"/>
+      <slot name="rhand" item="dummy_ranged" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="ribbbbbbbit!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ </creatures>
