@@ -321,7 +321,7 @@
   </creature>
 
   <creature name="dwarf golem">
-    <type class="giant_animal" subclass="dwarf_golem" tileid="giant_human.png:5"/>
+    <type class="golem" subclass="dwarf_golem" tileid="giant_human.png:5"/>
     <description>You see a dwarf golem. A long time ago a dwarf got turned into a big rock by some mystical forces. To save their friend the other dwarves created a golem out of this rock! From this day the dwarf golem lives together with them.</description>
     <attributes>
       <atk value="939"/>
