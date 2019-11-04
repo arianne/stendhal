@@ -770,7 +770,7 @@
   </creature>
 
   <creature name="black death">
-    <type class="huge_animal" subclass="black_death" tileid="undead_specter.png:4"/>
+    <type class="undead" subclass="black_death" tileid="undead_specter.png:4"/>
     <description>You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.</description>
     <attributes>
       <atk value="1451"/>
@@ -816,7 +816,7 @@
   </creature>
 
   <creature name="golden death">
-    <type class="huge_animal" subclass="golden_death" tileid="undead_specter.png:5"/>
+    <type class="undead" subclass="golden_death" tileid="undead_specter.png:5"/>
     <description>You see the golden death. He came to take your soul away to pay for all your sins.</description>
     <attributes>
       <atk value="1968"/>
