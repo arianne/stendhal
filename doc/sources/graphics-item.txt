@@ -720,7 +720,7 @@ fishing_rod.png       Nadine Schlonies (dine); GPL 2.0; Stendhal
 foodmill.png          Durkham?; ???; ??? (committed by Astrid Sawatzky: c96dfcd)
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
-magical_scissors.png  Kimmo Rundelin (kiheru); ???; ???
+magical_scissors.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pestleandmortar.png   omero; CC BY-SA 3.0; Stendhal
 pick.png              Nadine Schlonies (dine)?; ???; ??? (committed by dine: 48b6266)
 scrolleraser.png      ???; ???; ??? (committed by kymara: e660779)
