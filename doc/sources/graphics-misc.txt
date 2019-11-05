@@ -267,7 +267,7 @@ confuse.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 healer.png    rejon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/35905
 heavy.*       migranerp, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/190320
 merchant.png  gnokii, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/171507
-poison.*      ???; ???; ???
+poison.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 shock.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 zombie.png    ???; ???; ???
 
