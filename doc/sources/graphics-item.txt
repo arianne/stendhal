@@ -30,7 +30,7 @@ blue_armor.png                bleutailfly; OGA BY 3.0; Stendhal
 chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 chaos_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dress.png                     Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
-dust_robe.png                 Krakow Mobile?; ???; ???
+dust_robe.png                 ???; ???; ??? (from Krakow Mobile, committed by Miguel)
 dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 earth_robe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_armor.png              Groundhug McHampster (h4mt4r0); GPL 2.0+; https://sourceforge.net/p/arianne/patches/270/
@@ -45,9 +45,9 @@ iron_scale_armor.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere
 leather_armor.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 leather_cuirass.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-light_armor.png               Phillip Lenssen?, Katie Russell (kymara); ???; ???
+light_armor.png               Phillip Lenssen, Katie Russell (kymara); ???; ??? (committed by kymara)
 magic_plate_armor.*           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-mainio_armor.png              vesper?; ???; ???
+mainio_armor.png              vesper?; ???; ??? (committed by kymara)
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 red_armor.png                 bleutailfly; OGA BY 3.0; Stendhal
@@ -67,7 +67,7 @@ bardiche.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.
 battle_axe.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_halberd.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 black_scythe.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-chaos_axe.png                ???; ???; ???
+chaos_axe.png                ???; ???; ??? (committed by kymara)
 durin_axe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-color of battle_axe
 golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 halberd.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -109,7 +109,7 @@ mithril_boots.png          janay; CC BY-SA 3.0; Stendhal  was submitted by tiger
 red_boots.png              bleutailfly; OGA BY 3.0; Stendhal
 shadow_boots.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 steel_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-stone_boots.png            ???; ???; ???
+stone_boots.png            ???; ???; ??? (committed by kymara)
 studded_boots.png          Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347; re-color of chain_boots
 xeno_boots.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
@@ -142,7 +142,7 @@ magic_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 red_cloak.png           David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-rift_cloak.png          ???; ???; ???
+rift_cloak.png          ???; ???; ??? (committed by laguz)
 shadow_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_cloak.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -151,9 +151,9 @@ xeno_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 
 data/sprites/items/club/
 
-chaos_hammer.png         ???; ???; ???
+chaos_hammer.png         ???; ???; ??? (committed by kymara)
 club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-club_of_thorns.png       ???; ???; ???
+club_of_thorns.png       ???; ???; ??? (committed by kymara)
 enhanced_mace.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 flail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_flail.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -168,7 +168,7 @@ skull_staff.*            Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://o
 staff.png                Anders Asplund (Danter); GPL 2.0; Stendhal
 ugmash.png               Katie Russell (kymara); ???; ???
 vulcano_hammer.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
-wizard_staff.png         ???; ???; ???
+wizard_staff.png         gummipferd?; ???; https://sourceforge.net/p/arianne/patches/236/
 
 data/sprites/items/container/
 
@@ -197,18 +197,18 @@ crystal*  Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 
 data/sprites/items/documents/
 
-closed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ???
-coupon.png             ???; ???; ???
-ice_scroll.png         laguz?; ???; ???
+closed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+coupon.png             ???; ???; ??? (committed by hendrik)
+ice_scroll.png         ???; ???; ??? (committed by laguz)
 license.png            tigertoes; CC BY-SA 3.0; Stendhal
 map.png                Katie Russell (kymara); GPL 2.0; Stendhal
 mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
-opened_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ???
-paper.png              ???; ???; ???
-recipe.png             Bluelads4?; ???; ???
-scroll.png             laguz?; ???; ???
-sealed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ???
-unsealed_envelope.png  Fernando Miranda Muro (barbanegra)?; ???; ???
+opened_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+paper.png              ???; ???; ??? (committed by Miguel)
+recipe.png             ???; ???; ??? (committed by Bluelads4)
+scroll.png             ???; ???; ??? (committed by laguz)
+sealed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+unsealed_envelope.png  Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 
 data/sprites/items/drink/
 
@@ -235,7 +235,7 @@ pina_colada.png                Katie Russell (kymara)?
 pina_colada2.png               nicubunu, Bluelads4; GPL 2.0+; Based on CC0 image: https://openclipart.org/detail/12995
 poison.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 potion.png                     Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-red_juice.png                  ???; ???; ???
+red_juice.png                  ???; ???; ??? (committed by Astrid Sawatzky)
 sedative.*                     Jordan Irwin (AntumDeluge); CC0; Stendhal
 soup.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tea.png                        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -245,33 +245,33 @@ wine.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/items/flower/
 
-daisies.png        kymara?; ???; ???
+daisies.png        kymara?; ???; ??? (committed by kymara: 7185046)
 exotic_flower.png  bleutailfly; OGA BY 3.0; Stendhal
-lilia.png          omero?; ???; ???
+lilia.png          omero?; ???; ??? (committed by kymara: d78af05)
 pansy.png          omero; CC BY-SA 3.0; Stendhal
-rose.png           ???; ???; ???
+rose.png           ???; ???; ??? (committed by kymara: 0fe8b59)
 zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/
 
-angel_cake.png             geomac?; ???; ???; Committed by kymara
+angel_cake.png             geomac?; ???; ??? (committed by kymara: d36cebb)
 apple_mauve.png            tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798
 apple_red.png              tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798 (duplicate: ./apple_special/apple_red.png)
 applepie.png               omero; CC BY-SA 3.0; Stendhal
 arctic_char.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 artichoke.png              omero; CC BY-SA 3.0; Stendhal
 baguette.png               Katie Russell (kymara); GPL 2.0; Stendhal
-banana.png                 Red Queen?; ???; ???
+banana.png                 Red Queen?; ???; ??? (committed by Red Queen: f807cc9)
 broccoli.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 butter.png                 omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png        Daniel Herding (mort); GPL 2.0; Stendhal
-carrot.png                 ???; ???; ???; Committed by Miguel Angel
-carrotpie.png              Chad F?; ???; ???
+carrot.png                 ???; ???; ??? (committed by Miguel: d9791e5)
+carrotpie.png              Chad F?; ???; ??? (committed by Chad F: 8e1da8b)
 cauliflower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-cheese.png                 lumocra?; ???; ???
-cheesecake.png             barbanegra?; ???; ???; Committed by kymara
-cheesesausage.png          barbanegra?; ???; ???; Committed by kymara
+cheese.png                 lumocra?; ???; ??? (committed by lumocra: 078e198)
 cheese_sausage_on_bun.png  tigertoes; ???; ??? artwork done by kiheru using cheesesausage .png submitted by tigertoes
+cheesecake.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
+cheesesausage.png          barbanegra?; ???; ??? (committed by kymara: 156d8af)
 cherry.png                 ???; ???; ???; Committed by Miguel Angel
 cherrypie.png              omero; CC BY-SA 3.0; Stendhal
 chicken.png                kymara?; ???; ???
@@ -286,16 +286,16 @@ collard.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
 crepesuzette.png           omero; CC BY-SA 3.0; Stendhal
-devil_cake.png             geomac?; ???; ???; Committed by kymara
+devil_cake.png             geomac?; ???; ??? (committed by kymara: d36cebb)
 easter_egg.png             Katie Russell (kymara); GPL 2.0; Stendhal
-egg.png                    ???; ???; ???
+egg.png                    barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
 fairy_cake.png             Katie Russell (kymara); ???; Stendhal
 fishpie.png                kymara?; ???; ???
 garlic.png                 Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
-grapes.png                 Red Queen?; ???; ???
+grapes.png                 Red Queen?; ???; ??? (committed by Red Queen: f807cc9)
 grilled_steak.png          Bluelads4?; ???; ???
 ham.png                    ???; ???; Committed by Miguel Angel
-hamsausage.png             barbanegra?; ???; ???
+hamsausage.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
 ham_smoked.png             ???; ???; ???; Based on ham.png
 honey.png                  bleutailfly; OGA BY 3.0; Stendhal
 icecream.png               kymara?; ???; ???
@@ -306,35 +306,35 @@ meat.png                   ???; ???; ???; Committed by Miguel Angel
 meat_smoked.png            omero; CC BY-SA 3.0; Stendhal; Based on meat.png
 olive.png                  tigertoes; CC BY-SA 3.0; Stendhal
 onion.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-pear.png                   Red Queen?; ???; ???
+pear.png                   Red Queen?; ???; ??? (committed by Red Queen: f807cc9)
 perch.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 piesmall.png               Katie Russell (kymara); GPL 2.0; Stendhal
 pineapple.png              nicubunu; CC0; https://openclipart.org/detail/12995
 pizza.png                  ???; ???; ???
 pomegranate.png            Bluelads4?; ???; ???
 porcini.png                Daniel Herding (mort); GPL 2.0; Stendhal; Needs verified
-pumpkin.png                sshk5?; ???; ???; Committed by Migule Angel
-real_corn.png              sshk5?; ???; ???; Committed by Miguel Angel
+pumpkin.png                sshk5?; ???; ??? (committed by Miguel: 2872d65)
+real_corn.png              tigertoes?; ???; ???
 red-lionfish.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rotten_egg.png             kymara?; ???; ???
 salad.png                  Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs verified
 sandwich.png               Katie Russell (kymara); GPL 2.0; Stendhal
-sausage.png                barbanegra?; ???; ???; Committed by kymara
+sausage.png                barbanegra?; ???; ??? (committed by kymara: 156d8af)
 sausage_on_bun.png         tigertoes; ???; ??? artwork done by kiheru using the sausage.png Committed by tigertoes
 small_easter_egg.png       kymara?; ???; ???; Based on items/food/egg.png?
 spinach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spotted_egg.png            ???; ???; ???
-sugar.png                  geomac?; ???; ???; Committed by kymara
+spotted_egg.png            barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
+sugar.png                  geomac?; ???; ???; (committed by kymara: d36cebb)
 surgeonfish.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool.png              Daniel Herding (mort); GPL 2.0; Stendhal
-tomato.png                 sshk5?; ???; ???; Committed by Miguel Angel
+tomato.png                 sshk5?; ???; ??? (committed by Miguel: 2872d65)
 trout.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 trout_smoked.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tuna_sandwich.png          Katie Russell (kymara); GPL 2.0; Stendhal
 unknown_fish.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png           tigertoes; ???; ??? will replace shortly
-watermelon.png             Red Queen?; ???; ???
+watermelon.png             Red Queen?; ???; ??? (committed by Red Queen: 6b40947)
 
 data/sprites/items/food/apple_special/
 
@@ -342,85 +342,85 @@ apple_*  tigertoes; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/99798
 
 data/sprites/items/grower/
 
-arandula_grower.png         ???; ???; ???
+arandula_grower.png         ???; ???; ??? (based on arandula.png, committed by kiheru: c058ed6)
 artichoke_grower.png        omero; CC BY-SA 3.0; Stendhal
-broccoli_grower.png         ???; ???; ???
-button_mushroom_grower.png  ???; ???; ???
+broccoli_grower.png         kiheru?; ???; ??? (committed by kiheru: 5e49ba2)
+button_mushroom_grower.png  kiheru?; ???; ??? (committed by kiheru: 2ba9458)
 carrot_grower.png           Katie Russell (kymara); GPL 2.0; Stendhal
 cauliflower_grower.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-chinese_cabbage_grower.png  ???; ???; ???
-collard_grower.png          ???; ???; ???
+chinese_cabbage_grower.png  kiheru?; ???; ??? (committed by kiheru: 5e49ba2)
+collard_grower.png          kiheru?; ???; ??? (committed by kiheru: 8630d60)
 courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-daisies_grower.png          ???; ???; ???
+daisies_grower.png          ???; ???; ??? (committed by Astrid Sawatzky: d6e7155)
 egg_grower.png              omero; CC BY-SA 3.0; Stendhal
 garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
-grapes_grower.png           ???; ???; ???
-kekik_grower.png            ???; ???; ???
+grapes_grower.png           Red Queen?; ???; ??? (committed by Red Queen: e8fc857)
+kekik_grower.png            ???; ???; ??? (based on kekik.png, committed by kiheru: c058ed6)
 leek_grower.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
 mandragora_grower.png       omero; CC BY-SA 3.0; Stendhal
 onion_grower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pansy_grower.png            omero; CC BY-SA 3.0; Stendhal
-porcini_grower.png          ???; ???; ???
-reindeer_moss_grower.png    ???; ???; ???
+porcini_grower.png          kiheru?; ???; ??? (committed by kiheru: c058ed6)
+reindeer_moss_grower.png    tigertoes?; ???; ??? (committed by tigertoes: e7b3dfb)
 salad_grower.png            Nadine Schlonies (dine); GPL 2.0; Stendhal (based on food/salad.png, committed by kiheru: 6c0e114)
-sclaria_grower.png          ???; ???; ???
+sclaria_grower.png          ???; ???; ??? (committed by kiheru: c058ed6)
 spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-toadstool_grower.png        ???; ???; ???
-tomato_grower.png           ???; ???; ???
-watermelon_grower.png       ???; ???; ???
+toadstool_grower.png        kiheru?; ???; ??? (committed by kiheru: 2ba9458)
+tomato_grower.png           ???; ???; ??? (committed by kiheru: bd8d626)
+watermelon_grower.png       Red Queen?; ???; ??? (based on food/watermelon.png, committed by Red Queen: a243290)
 wood_grower.png             Katie Russell (kymara); GPL 2.0; Stendhal
 zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/helmet/
 
 aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-black_helmet.png            ???; ???; ???
-blue_helmet.png             kymara?; ???; ???
+black_helmet.png            ???; ???; ??? (committed by kymara: 775c4eb)
+blue_helmet.png             kymara?; ???; ??? (committed by kymara: 6ea3692)
 chain_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-darkangels_clan_helmet.png  ???; ???; ???
+darkangels_clan_helmet.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
 enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 golden_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_horned_barbute.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-holy_forest_helmet.png      ???; ???; ???
+holy_forest_helmet.png      ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 horned_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-liberty_helmet.png          ???; ???; ???
-lion_clan_helmet.png        ???; ???; ???
+liberty_helmet.png          ???; ???; ??? (committed by Kymara: 6d98377)
+lion_clan_helmet.png        ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
-red_helmet.png              kymara?; ???; ???
+red_helmet.png              ???; ???; ??? (committed by Kymara: a799898)
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-shadow_helmet.png           ???; ???; ???
+shadow_helmet.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 xeno_helmet.*               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://github.com/crawl/tiles
 
 data/sprites/items/herb/
 
-arandula.png       ???; ???; Charas???
-kekik.png          ???; ???; ???
-kokuda.png         ???; ???; ???
+arandula.png       ???; ???; ??? (committed by Miguel: 63f8a11)
+kekik.png          ???; ???; ??? (committed by danter: 83339fc)
+kokuda.png         ???; ???; ??? (committed by danter: 83339fc)
 mandragora.png     omero; CC BY-SA 3.0; Stendhal
 reindeer_moss.png  tigertoes; CC BY-SA 3.0; Stendhal
-sclaria.png        ???; ???; ???
+sclaria.png        ???; ???; ??? (committed by danter: 83339fc)
 
 data/sprites/items/jewellery/
 
 blackpearl.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-blackpearlnecklace.png  barbanegra?; ???; ???; Committed by kymara
+blackpearlnecklace.png  barbanegra?; ???; ??? (based on pearlnecklace.png, committed by tigertoes: 19c9981)
 carbuncle.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 carbuncle_crystal.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 emerald.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 emerald_crystal.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-greater_brilliant.*     ???; ???; ???
+greater_brilliant.*     ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 greater_carbuncle.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_emerald.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_sapphire.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 obsidian.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-pearl.png               barbanegra?; ???; ???; Committed by kymara
-pearlnecklace.png       barbanegra?; ???; ???; Committed by kymara
+pearl.png               barbanegra?; ???; ??? (committed by kymara: 156d8af)
+pearlnecklace.png       barbanegra?; ???; ??? (committed by kymara: 156d8af)
 sapphire.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 sapphire_crystal.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
@@ -452,37 +452,37 @@ yellow.png     Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on
 
 data/sprites/items/legs/
 
-black_legs.png            ???; ???; ???
+black_legs.png            ???; ???; ??? (committed by kymara: 775c4eb)
 blue_legs.png             bleutailfly; OGA BY 3.0; Stendhal
-chain_legs.png            ???; ???; ???
-chaos_legs.png            ???; ???; ???
-darkangels_clan_legs.png  ???; ???; ???
+chain_legs.png            ???; ???; ??? (committed by Miguel: d9791e5)
+chaos_legs.png            ???; ???; ??? (committed by kymara: 775c4eb)
+darkangels_clan_legs.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 dwarvish_legs.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-elvish_legs.png           ???; ???; ???
+elvish_legs.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 golden_legs.png           bleutailfly; OGA BY 3.0; Stendhal
-jewelled_legs.png         ???; ???; ???
-leather_legs.png          ???; ???; ???
-mainio_legs.png           ???; ???; ???
+jewelled_legs.png         ???; ???; ??? (committed by kymara: 69cbfee)
+leather_legs.png          ???; ???; ??? (committed by Miguel: d9791e5)
+mainio_legs.png           vesper?; ???; ??? (committed by johnnnny: ca6f851)
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
-shadow_legs.png           ???; ???; ???
+shadow_legs.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-studded_legs.png          ???; ???; ???
+studded_legs.png          ???; ???; ??? (committed by Miguel)
 xeno_legs.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
 data/sprites/items/misc/
 
-ankh.png                 ???; ???; ???
+ankh.png                 ???; ???; ??? (committed by Miguel: 1f2c66e)
 bat_entrails.png         Katie Russell (kymara); GPL 2.0; Stendhal
 bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
 bulb.png                 omero; CC BY-SA 3.0; Stendhal
 canotuna.png             tigertoes; CC BY-SA 3.0; Stendhal
 cards.png                Daniel Herding (mort); GPL 2.0; Stendhal
-creditcard.png           ???; ???; ???
+creditcard.png           ???; ???; ??? (committed by Miguel: 1c64c92)
 decent_meal.png          omero; CC BY-SA 3.0; Stendhal
 dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
-ent_twig.png             gummipferd; ???; ???; Stendhal
-giant_heart.png          ???; ???; ???
+ent_twig.png             gummipferd; ???; ???; Stendhal (committed by tigertoes: 4e63ee6)
+giant_heart.png          ???; ???; ??? (committed by Miguel: b03a1c0)
 lemon.png                omero; CC BY-SA 3.0; Stendhal
 marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
@@ -491,7 +491,7 @@ olive_oil.png            omero; CC BY-SA 3.0; Stendhal
 pinto_beans.png          omero; CC BY-SA 3.0; Stendhal
 potato.png               omero; CC BY-SA 3.0; Stendhal
 rodent_trap.png          Jordan Irwin (AntumDeluge); CC0; from CC0 vector image on openclipart.org
-seed.png                 ???; ???; ???
+seed.png                 kymara?, kiheru?; ???; ??? (committed by kiheru)
 snowglobe.png            tigertoes; CC BY-SA 3.0; Stendhal
 suntan_cream.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 teddy.png                Daniel Herding (mort); GPL 2.0; Stendhal
@@ -508,8 +508,8 @@ fire_shuriken.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/to
 poison_dart.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_dart.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shuriken.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-snowballs.png      ???; ???; ???
-vomit.png          gummipferd; ???; ???
+snowballs.png      ???; ???; ??? (committed by Teiv: 97b6528)
+vomit.png          gummipferd; ???; ??? (committed by kymara: 10035a5)
 wooden_spear.png   Nadine Schlonies (dine); GPL 2.0; Stendhal
 
 data/sprites/items/money/
@@ -522,7 +522,7 @@ silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 data/sprites/items/ranged/
 
 composite_bow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-crossbow.png         ???; ???; ???
+crossbow.png         ???; ???; ??? (committed by oslsachem: 5e849eb)
 hunter_crossbow.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 longbow.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mithril_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-work of longbow by lovepuppet
@@ -531,24 +531,24 @@ wooden_bow.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/
 
 data/sprites/items/relic/
 
-amulet.png          juan?; ???; ???
-angel_figurine.png  ???; ???; ???
-ankh.png            ???; ???; ???
+amulet.png          juan?; ???; ??? (committed by bleutailfly: d390669)
+angel_figurine.png  ???; ???; ??? (committed by laguz: 8584f80)
+ankh.png            ???; ???; ??? (duplicate of misc/ankh.png)
 skull_ring.png      Katie Russell (kymara); GPL 2.0; Stendhal
 
 data/sprites/items/resource/
 
-beeswax.png         ???; ???; ???
-candle.png          ???; ???; ???
+beeswax.png         laguz?; ???; https://sourceforge.net/p/arianne/patches/327/
+candle.png          laguz?; ???; https://sourceforge.net/p/arianne/patches/327/
 cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
-coal.png            ???; ???; ???
-egg.png             ???; ???; ??? (duplicate of items/food/egg.png???)
+coal.png            ???; ???; ??? (committed by Storyteller: cbd54f0)
+egg.png             barbanegra?; ???; ??? (duplicate of items/food/egg.png, committed by Miguel: 2a54cb4)
 flour.png           Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal
-golden_egg.png      ???; ???; ??? (based on items/food/egg.png???)
+golden_egg.png      barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
 gold_bar.png        Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal (based on iron.png)
 gold_ore.png        Nadine Schlonies (dine); GPL 2.0; Stendhal
 grain.png           Daniel Herding (mort); GPL 2.0; Stendhal
-green_egg.png       ???; ???; ??? (based on items/food/egg.png???)
+green_egg.png       barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
 horsehair.png       tigertoes; CC BY-SA 3.0; Stendhal; am claiming this because i was going to use in quest and nobody else has claimed it
 iron.png            Daniel Herding (mort); GPL 2.0; Stendhal
 iron_ore.png        Daniel Herding (mort); GPL 2.0; Stendhal
@@ -559,7 +559,7 @@ mithril_thread.png  tigertoes; CC BY-SA 3.0; Stendhal
 oil.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 silkgland.png       tigertoes; CC BY-SA 3.0; Stendhal
 silkthread.png      tigertoes; CC BY-SA 3.0; Stendhal
-sugarcane.png       wmbec7718; ???; ???
+sugarcane.png       wmbec7718; ???; ??? (committed by kiheru: 3edcf3d)
 wood.png            Daniel Herding (mort); GPL 2.0; Stendhal
 wool.png            Nadine Schlonies (dine); GPL 2.0; Stendhal
 yarn.png            tiborius; GPL 2.0; Stendhal
@@ -569,13 +569,13 @@ data/sprites/items/ring/
 antipoison_rings.xcf.bz2  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 antitoxin_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 antivenom_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
-aquamarine-ring.png       ???; ???; ??? (based on silver-ring.png???)
-emerald-ring.png          ???; ???; ??? (based on gold-ring.png/aquamarine-ring.png???)
+aquamarine-ring.png       ???; ???; ??? (based on silver-ring.png? committed by kiheru: e1a2ad7)
+emerald-ring.png          kymara?, kiheru?; ???; ??? (based on gold-ring.png/aquamarine-ring.png? combined from e1a2ad7 & 942df05)
 engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (based on wedding.png???)
-gold-ring.png             ???; ???; ??? (based on silver-ring.png???)
+gold-ring.png             ???; ???; ??? (based on silver-ring.png? committed by kiheru: e1a2ad7)
 insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
-silver-ring.png           ???; ???; ???
+silver-ring.png           ???; ???; ??? (committed by kiheru: e1a2ad7)
 wedding.png               Katie Russell (kymara); GPL 2.0; Stendhal
 
 data/sprites/items/scent/
@@ -590,7 +590,7 @@ red_scent.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tom
 data/sprites/items/scroll/
 
 ados.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-balloon.png           ???; ???; ???
+balloon.png           ???; ???; ??? (committed by bleutailfly: c523f95)
 black.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 blank_pet_scroll.png  Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 blue.png              Anders Asplund (Danter); GPL 2.0; Stendhal
@@ -617,33 +617,33 @@ yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/shield/
 
-beech.png                     ???; ???; ???
+beech.png                     ???; ???; ??? (drawn by WorldOfOurs team, committed by kymara: 0bde94c)
 black_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-bluetowershield.png           ???; ???; ???
+bluetowershield.png           barbanegra?; ???; ??? (committed by kymara: 156d8af)
 blue_shield.png               bleutailfly; OGA BY 3.0; Stendhal
 buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-chaos_shield.png              ???; ???; ???
+chaos_shield.png              ???; ???; ??? (committed by kymara: c3d7fec)
 crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-darkangels_clan_shield.png    ???; ???; ???
-devilknights_clan_shield.png  ???; ???; ???
-edragons_clan_shield.png      ???; ???; ???
-elvish_shield.png             ???; ???; ???
+darkangels_clan_shield.png    ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+devilknights_clan_shield.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+edragons_clan_shield.png      ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+elvish_shield.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-goldentowershield.png         ???; ???; ???
+goldentowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 golden_shield.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-green_dragon_shield.png       ???; ???; ???
+green_dragon_shield.png       ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-light_shield.png              ???; ???; ???
-lion_clan_shield.png          ???; ???; ???
+light_shield.png              ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+lion_clan_shield.png          ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-mainio_shield.png             ???; ???; ???
+mainio_shield.png             vesper?; ???; ??? (committed by johnnnny: ca6f851)
 mithril_shield.png            tigertoes - gonna redo; ???; ???
-pine.png                      ???; ???; ???
+pine.png                      ???; ???; ??? (drawn by WorldOfOurs team, committed by kymara: 0bde94c)
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-redwood.png                   ???; ???; ???
+redwood.png                   ???; ???; ??? (drawn by WorldOfOurs team, committed by kymara: 0bde94c)
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
-shadow_shield.png             ???; ???; ???
-silvertowershield.png         ???; ???; ???
+shadow_shield.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+silvertowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 unicorn_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -660,71 +660,70 @@ GM_tokend_old_bronze.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_old_gold.png    Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_old_silver.png  Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_silver.png      Anders Asplund (Danter); GPL 2.0; Stendhal
-lucky_charm.png           ???; ???; ???
+lucky_charm.png           ???; ???; ??? (committed by kymara: fe2f785)
 mithril_clasp.png         tigertoes; CC BY-SA 3.0; Stendhal
-mythical_egg.png          ???; ???; ???
+mythical_egg.png          ???; ???; ??? (committed by Teiv: df2655d)
 
 data/sprites/items/sword/
 
-assassin_dagger.png          ???; ???; ???
+assassin_dagger.png          ???; ???; ??? (committed by Miguel: 8c1bd33)
 biting_sword.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-black_dagger.png             Hades_the_Emperor?; ???; ???
-black_sword.png              ???; ???; ???
+black_dagger.png             Hades_the_Emperor?; ???; ??? (committed by kymara: da26c4f)
+black_sword.png              ???; ???; ??? (committed by kymara: dce8da3)
 blooddrinker.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 broadsword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-buster.png                   ???; ???; ???
+buster.png                   ???; ???; ??? (committed by danter: e98d86f)
 chaos_dagger.png             lint35, Katie Russell (kymara); ???; ???
 chaos_sword.png              bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-dagger.png                   ???; ???; ???
-dark_dagger.png              ???; ???; ???
-demon_fire_sword.png         ???; ???; ???
-devilknights_clan_sword.png  ???; ???; ???
-elvish_sword.png             ???; ???; ???
+dagger.png                   ???; ???; ??? (committed by danter: e98d86f)
+dark_dagger.png              ???; ???; ??? (committed by Miguel: 8c1bd33)
+demon_fire_sword.png         ???; ???; ??? (committed by kymara: dce8da3)
+devilknights_clan_sword.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+elvish_sword.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-golden_orc_sword.png         Fernando Miranda Muro (barbanegra)?; ???; ???
+golden_orc_sword.png         Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 great_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 hell_dagger.png              Hades_the_Emperor?; ???; ???
 ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
-imperial_dagger.png          Hades_the_Emperor?; ???; ???
-katana.png                   ???; ???; ???
+imperial_dagger.png          Hades_the_Emperor?; ???; ??? (committed by kymara: da26c4f)
+katana.png                   ???; ???; ??? (committed by danter: 5c087df)
 kilij.png                    durkham; GPL 2.0; Stendhal
-knife.png                    ???; ???; ???
-l_hand_sword.png             ???; ???; ???
+knife.png                    ???; ???; ??? (committed by danter: e98d86f)
+[l|r]_hand_sword.png         ???; ???; ??? (committed by oslsachem: 5e849eb)
 magic_dagger.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nihonto.png                  johnnnny?; ???; https://sourceforge.net/p/arianne/patches/109/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-orc_sword.png                Fernando Miranda Muro (barbanegra)?; ???; ???
+orc_sword.png                Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 orcish_sword.png             bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
-r_hand_sword.png             ???; ???; ???
 scimitar.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 short_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-soul_dagger.png              ???; ???; ???
+soul_dagger.png              ???; ???; ??? (committed by Miguel: 8c1bd33)
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-vampire_sword.png            herodot?, athana?; ???; ???
+vampire_sword.png            herodot?, athana?; ???; ??? (committed by kymara: dc0af9e)
 xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
 data/sprites/items/token/
 
-blue_x_token.png            ???; ???; ???
+blue_x_token.png            ???; ???; ??? (committed by hendrik, edited by kymara: 55929d1)
 darkyellow_round_token.png  Daniel Herding (mort); GPL 2.0; Stendhal
-flag.png                    ???; ???; ???
-red_o_token.png             ???; ???; ???
+flag.png                    ???; ???; ??? (committed by sjtsp2008: f6bb8c6)
+red_o_token.png             ???; ???; ??? (committed by hendrik, edited by kymara: 55929d1)
 
 data/sprites/items/tool/
 
-cake_pan.png          ???; ???; ???
+cake_pan.png          geomac?; ???; ??? (committed by kymara: d36cebb)
 fishing_rod.png       Nadine Schlonies (dine); GPL 2.0; Stendhal
-foodmill.png          Durkham?; ???; ???
+foodmill.png          Durkham?; ???; ??? (committed by Astrid Sawatzky: c96dfcd)
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
 magical_scissors.png  Kimmo Rundelin (kiheru); ???; ???
 pestleandmortar.png   ???; ???; ???
-pick.png              ???; ???; ???
-scrolleraser.png      ???; ???; ???
+pick.png              Nadine Schlonies (dine)?; ???; ??? (committed by dine: 48b6266)
+scrolleraser.png      ???; ???; ??? (committed by kymara: e660779)
 shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/116893
 shovel_old.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-sugarmill.png         ???; ???; ???
+sugarmill.png         geomac?; ???; ??? (committed by kymara: d36cebb)
