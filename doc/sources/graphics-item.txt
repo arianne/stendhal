@@ -721,7 +721,7 @@ foodmill.png          Durkham?; ???; ??? (committed by Astrid Sawatzky: c96dfcd)
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 magical_needle.png    tigertoes; CC BY-SA 3.0; Stendhal
 magical_scissors.png  Kimmo Rundelin (kiheru); ???; ???
-pestleandmortar.png   ???; ???; ???
+pestleandmortar.png   omero; CC BY-SA 3.0; Stendhal
 pick.png              Nadine Schlonies (dine)?; ???; ??? (committed by dine: 48b6266)
 scrolleraser.png      ???; ???; ??? (committed by kymara: e660779)
 shovel.png            laabadon, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/detail/116893
