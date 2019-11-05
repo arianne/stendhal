@@ -151,7 +151,8 @@ wooden_door_h.png  ???; ???; ??? (committed by laguz: d523852)
 
 data/sprites/effects/
 
-fire_explosion_2x2.png  StumpyStrust; CC0; http://opengameart.org/node/15394
+fire_explosion_2x2.*  StumpyStrust; CC0; http://opengameart.org/node/15394
+water_splash.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/examine/
 
