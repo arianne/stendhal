@@ -141,8 +141,8 @@ eyes_011.png                CC0; Stendhal
 eyes_012.png                CC0; Stendhal
 eyes_013.png                ???; ???; ???
 eyes_014.png                CC0; Stendhal
-eyes_015.png                ???; ???; ???
-eyes_016.png                ???; ???; ???
+eyes_015.png                CC0; Stendhal
+eyes_016.png                CC0; Stendhal
 eyes_017.png (simple dots)  CC0; Stendhal
 eyes_018.png                ???; ???; ???
 eyes_019.png                CC0; Stendhal
@@ -150,6 +150,7 @@ eyes_020.png                CC0; Stendhal
 eyes_021.png                CC0; Stendhal
 eyes_022.png (wide eyed)    Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 eyes_023.png                ???; ???; ???
+eyes_024.png                ???; ???; ???
 
 data/sprites/outfit/hair/
 
