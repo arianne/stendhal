@@ -278,3 +278,7 @@ heavy.png    migranerp, Jordan Irwin (AntumDeluge); CC0; http://openclipart.org/
 poison.png   Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 shock.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 zombie.png   ???; ???; ???
+
+data/sprites/switch/
+
+arrow_switch.png  ???; ???; ???
