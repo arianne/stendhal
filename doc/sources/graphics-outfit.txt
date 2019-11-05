@@ -201,7 +201,7 @@ mask_008.png     (earrings)    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 data/sprites/outfit/mouth/
 
-mouth_001.png  ???; ???; ???
-mouth_002.png  ???; ???; ???
-mouth_003.png  ???; ???; ???
-mouth_004.png  bleutailfly; OGA BY 3.0; Stendhal
+mouth_001.png (plain)  CC0; Stendhal
+mouth_002.png (lips)   CC0; Stendhal
+mouth_003.png (grin)   Jordan Irwin (AntumDeluge); CC0; Stendhal
+mouth_004.png          bleutailfly; OGA BY 3.0; Stendhal
