@@ -1,0 +1,14 @@
+The following outfit images can be removed after version 1.32:
+
+body/
+- 003-098
+
+dress/
+- 072-099
+
+hair/
+- 050-099
+- 950-999
+
+head/
+- 004-098
