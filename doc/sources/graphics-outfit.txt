@@ -166,7 +166,7 @@ hair_099.png     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.
 
 data/sprites/outfit/hat/
 
-hat_001.png (baseball cap)     ???; ???; ??? (taken from hair_033)
+hat_001.png (baseball cap)     Sebastian Riedel (Baŝto); CC BY-SA 3.0; https://opengameart.org/node/90784
 hat_002.png (backward cap)     bleutailfly; OGA BY 3.0; Stendhal (taken from hair_039)
 hat_003.png (helmet)           Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
 hat_004.png (helmet)           Dungeon Crawl Stone Soup, bleutailfly; OGA BY 3.0; https://opengameart.org/node/12210
