@@ -54,6 +54,7 @@ musicnots.png         ???; ???; ???
 placeholder-NPC.png   Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/24944
 plant_grower.png      ???; ???; ???
 purple_dragon.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+shadow.png            Jordan Irwin (AntumDeluge); CC0; Stendhal
 sugar_cane_field.png  ???; ???; ???
 watersplash.png       ???; ???; ???
 
