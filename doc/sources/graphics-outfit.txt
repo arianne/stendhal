@@ -174,6 +174,7 @@ hat_005.png (goggles)          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 hat_006.png (fedora)           Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hat_007.png (helmet)           Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 hat_008.png (peaked cap)       Sebastian Riedel (Baŝto); CC BY-SA 3.0; https://opengameart.org/node/90784
+hat_992.png (superstendhal)    bleutailfly; OGA BY 3.0; Stendhal
 hat_993.png (blue bear suit)   bleutailfly; OGA BY 3.0; Stendhal
 hat_994.png (brown bear suit)  bleutailfly; OGA BY 3.0; Stendhal
 hat_995.png (jester hat)       Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
