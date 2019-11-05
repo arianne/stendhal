@@ -18,10 +18,9 @@
     <respawn value="900"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="potion" quantity="[1,1]" probability="15.0"/>
+      <item value="potion" quantity="[1,1]" probability="60.0"/>
     </drops>
     <equips>
-      <slot name="lhand" item="steel arrow" quantity="10000"/>
       <slot name="rhand" item="dummy_ranged" quantity="1"/>
     </equips>
     <ai>
@@ -31,7 +30,7 @@
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="archer"/>
+      <profile name="animal"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
