@@ -54,6 +54,12 @@ plant_grower.png      ???; ???; ???
 sugar_cane_field.png  ???; ???; ???
 watersplash.png       ???; ???; ???
 
+data/sprites/doors/
+
+fence_gate_h.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fence_gate_v.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+housedoor.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+
 data/sprites/effects/
 
 fire_explosion_2x2.png  StumpyStrust; CC0; http://opengameart.org/node/15394
