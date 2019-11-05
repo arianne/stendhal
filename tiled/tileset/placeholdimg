@@ -22,10 +22,6 @@ from subprocess import Popen
 script = os.path.basename(__file__)
 version = 1.0
 
-dir_tilesets = os.path.dirname(__file__)
-if not dir_tilesets:
-	dir_tilesets = os.getcwd()
-
 argv = tuple(sys.argv[1:])
 argc = len(argv)
 
@@ -163,6 +159,18 @@ def getExecutable(exename, include=None, exclude=None, checkExtensions=True):
 					return with_ext
 
 
+dir_here = os.getcwd()
+dir_tilesets = os.path.dirname(__file__)
+if not dir_tilesets:
+	dir_tilesets = os.getcwd()
+else:
+	os.chdir(dir_tilesets)
+	dir_tilesets = os.getcwd()
+	os.chdir(dir_here) # go back to directory where script was run from
+
+dir_root = normalizePath(os.path.join(dir_tilesets, '../../'))
+
+
 convert_name = 'convert'
 if os_win32:
 	# Windows has a built-in "convert" command in System32 directory
@@ -183,7 +191,7 @@ elif argc > 1:
 	showUsage()
 	sys.exit(errno.E2BIG)
 
-overlay = os.path.join(dir_tilesets, 'placeholder_tile.png')
+overlay = normalizePath(os.path.join(dir_root, 'data/sprites/failsafe.png'))
 infile = normalizePath(argv[0])
 outfile = infile
 
