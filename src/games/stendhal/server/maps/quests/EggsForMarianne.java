@@ -55,8 +55,8 @@ import games.stendhal.server.maps.Region;
  * STEPS:
  * <ul>
  * <li> Marianne asks you for eggs for her pancakes</li>
- * <li> You collect a score of eggs from chickens</li>
- * <li> You give a score of eggs to Marianne.</li>
+ * <li> You collect a dozen of eggs from chickens</li>
+ * <li> You give a dozen of eggs to Marianne.</li>
  * <li> Marianne gives you some flowers in return.<li>
  * </ul>
  *
@@ -74,7 +74,7 @@ import games.stendhal.server.maps.Region;
  */
 public class EggsForMarianne extends AbstractQuest {
 
-	//a score of eggs
+	//a dozen of eggs
 	private static final int REQUIRED_EGGS = 12;
 
 	//60 minutes before quest can be repeated
@@ -151,7 +151,7 @@ public class EggsForMarianne extends AbstractQuest {
 							new PlayerHasItemWithHimCondition("egg", REQUIRED_EGGS))),
 			ConversationStates.ATTENDING,
 			"You're back already? " +
-			"You promised to collect a score of eggs for me ... " +
+			"You promised to collect a dozen of eggs for me ... " +
 			"But it does not seem that you carry enough eggs with you!",
 			null);
 
@@ -187,11 +187,11 @@ public class EggsForMarianne extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"I need a score of eggs. " +
+				"I need a dozen of eggs. " +
 				"My mom asked me to collect eggs and she is going to make me pancakes! " +
 				"I'm afraid getting close to those chickens! " +
 				"Could you please get eggs for me? " +
-				"Remember .. I need a score of eggs ...",
+				"Remember .. I need a dozen of eggs ...",
 				null);
 
 		// player returns - enough time has passed
@@ -204,7 +204,7 @@ public class EggsForMarianne extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"My mom needs eggs again! " +
 				"Could you please get more eggs for me? "+
-				"A score of eggs will do ...",
+				"A dozen of eggs will do ...",
 				null);
 
 		// player returns - enough time has passed
