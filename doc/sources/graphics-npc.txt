@@ -65,7 +65,7 @@ fireelementalnpc.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https:/
 fishermannpc.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 fishermansdaughternpc.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 fishsoupmakernpc.png          ???, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); ???; https://opengameart.org/node/72969; Chef hat author is not confirmed
-floattingladynpc.*            Svetlana Kushnariova (Cabbit), Nila122, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
+floattingladynpc.png          Svetlana Kushnariova (Cabbit), Nila122, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/83626, https://opengameart.org/node/29293
 friendlywizardnpc.*           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 gamesupervisornpc.png         Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969
 gardenernpc.png               Svetlana Kushnariova (Cabbit), bleutailfly, olonu, Jordan Irwin (AntumDeluge); OGA BY; https://opengameart.org/node/72969, Stendhal
@@ -147,7 +147,7 @@ oldratwomannpc.png            Svetlana Kushnariova (Cabbit), Stephen Challener (
 oldwitchnpc.*                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 oldwizardnpc.*                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/158
 oldwomannpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-oracle*npc.*                  Svetlana Kushnariova (Cabbit), Nila122, olonu, leangoro, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293
+oracle*npc.png                Svetlana Kushnariova (Cabbit), Nila122, olonu, leangoro, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/83626, https://opengameart.org/node/29293
 orcbuyernpc.png               Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsalesmannpc.png            Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
 orcsamannpc.png               Tuomo Untinen (Reemax), Angry Amish, & Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/77703
