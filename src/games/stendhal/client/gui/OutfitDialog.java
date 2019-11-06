@@ -650,18 +650,29 @@ class OutfitDialog extends JDialog {
 
 		RPAction rpOutfitAction = new RPAction();
 
-		final StringBuilder sb = new StringBuilder();
-		sb.append("body=" + Integer.toString(body.getIndex()) + ",");
-		sb.append("dress=" + Integer.toString(dress.getIndex()) + ",");
-		sb.append("head=" + Integer.toString(head.getIndex()) + ",");
-		sb.append("mouth=" + Integer.toString(mouth.getIndex()) + ",");
-		sb.append("eyes=" + Integer.toString(eyes.getIndex()) + ",");
-		sb.append("mask=" + Integer.toString(mask.getIndex()) + ",");
-		sb.append("hair=" + Integer.toString(hair.getIndex()) + ",");
-		sb.append("hat=" + Integer.toString(hat.getIndex()) + ",");
+		// server version compatibility
+		if (StendhalClient.serverVersionAtLeast("1.31.5")) {
+			final StringBuilder sb = new StringBuilder();
+			sb.append("body=" + Integer.toString(body.getIndex()) + ",");
+			sb.append("dress=" + Integer.toString(dress.getIndex()) + ",");
+			sb.append("head=" + Integer.toString(head.getIndex()) + ",");
+			sb.append("mouth=" + Integer.toString(mouth.getIndex()) + ",");
+			sb.append("eyes=" + Integer.toString(eyes.getIndex()) + ",");
+			sb.append("mask=" + Integer.toString(mask.getIndex()) + ",");
+			sb.append("hair=" + Integer.toString(hair.getIndex()) + ",");
+			sb.append("hat=" + Integer.toString(hat.getIndex()) + ",");
 
-		rpOutfitAction.put(Actions.TYPE, Actions.OUTFIT);
-		rpOutfitAction.put(Actions.VALUE, sb.toString());
+			rpOutfitAction.put(Actions.TYPE, Actions.OUTFIT);
+			rpOutfitAction.put(Actions.VALUE, sb.toString());
+		} else {
+			int code = body.getIndex();
+			code += dress.getIndex() * 100;
+			code += head.getIndex() * 10000;
+			code += hair.getIndex() * 1000000;
+
+			rpOutfitAction.put(Actions.TYPE, "outfit");
+			rpOutfitAction.put(Actions.VALUE, code);
+		}
 
 		/* hair color */
 		color = outfitColor.getColor(OutfitColor.HAIR);
