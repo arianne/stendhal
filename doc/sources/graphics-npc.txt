@@ -112,7 +112,7 @@ liljohnnnnynpc.png            Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY
 littlegirlnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944
 littlegirl2npc.png            Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/139
 madscientistnpc.png           Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/141
-mageelfnpc.png                Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
+mageelfnpc.png                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
 magic_jesternpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 magicianhousegreeternpc.*     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 maidnpc.*                     Svetlana Kushnariova (Cabbit), Vesa Vanhatupa (Master484), isaiah658, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20467, https://opengameart.org/node/71384
