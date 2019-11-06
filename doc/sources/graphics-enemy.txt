@@ -138,7 +138,7 @@ elf.png              Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https
 elf_bodyguard.png    Svetlana Kushnariova (Cabbit), onu/olonu, Shaun Williams; CC BY 3.0; https://github.com/arianne/stendhal/issues/88
 elf_sacerdotist.png  Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/77, https://sourceforge.net/p/arianne/patches/715/
 elf_wizard.png       Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/69
-mage_elf.png         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
+mage_elf.*           Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
 militia_elf.png      Svetlana Kushnariova (Cabbit), onu/olonu, Chris Hamons; OGA BY 3.0; https://github.com/arianne/stendhal/issues/100
 soldier_elf.png      Svetlana Kushnariova (Cabbit), onu/olonu, kanaya2529; OGA BY 3.0; https://github.com/arianne/stendhal/issues/101
 
@@ -370,7 +370,7 @@ cat_woman.png            Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwi
 glow_monster.png         Charles Sanchez (CharlesGabriel, Antifarea); CC BY 3.0; https://opengameart.org/node/4125
 high_naga.png            bleutailfly; OGA BY 3.0; https://opengameart.org/node/99050
 imperial_experiment.png  artisticdude, Tuomo Untinen (Reemax), onu/olonu; CC0; https://github.com/arianne/stendhal/issues/74
-imperial_mutant.*        Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), William.Thompsonj, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20926
+imperial_mutant*         Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), William.Thompsonj, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20926
 lamia.*                  Svetlana Kushnariova (Cabbit), Yamilian, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/11480, https://opengameart.org/node/99050
 poison_shroom.png        Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 poison_shroom_small.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262

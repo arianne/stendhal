@@ -59,10 +59,9 @@ public class DeniranPotionDealerNPC implements ZoneConfigurator {
 		};
 
 		//lucretia runs the potions shop in deniran,
-		//uses deniran_potiondealernpc3 a duplicate of slim_woman_npc
-		//rework target sprite to be unique, based on slim_woman_npc
+		//rework target sprite to be unique
 		//possibly recolor of hairs/dress
-		npc.setEntityClass("deniran_potiondealernpc3");
+		npc.setEntityClass("slim_woman_npc");
 		npc.setPosition(9, 12);
 		npc.setCollisionAction(CollisionAction.REROUTE);
 		npc.setDescription("You see Lucretia");
