@@ -87,7 +87,7 @@ hoeingmannpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jord
 holidaymakernpc.*             ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969; Hat author is not comfirmed
 hotelchefnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/69527
 hotelguestnpc.*               Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
-hotelreceptionistnpc.png      Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
+hotelreceptionistnpc.*        Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79804
 housewifenpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 icecreamsellernpc.*           ???, Svetlana Kushnariova (Cabbit), olonu; ???; https://opengameart.org/node/72969
 investigatornpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/103
