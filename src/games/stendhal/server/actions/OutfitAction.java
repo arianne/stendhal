@@ -30,6 +30,8 @@ public class OutfitAction implements ActionListener {
 
 	public static void register() {
 		CommandCenter.register(OUTFIT, new OutfitAction());
+		// backward compatibility
+		CommandCenter.register("outfit", new OutfitAction());
 	}
 
 	/**
