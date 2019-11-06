@@ -55,7 +55,7 @@ dress_018.png (lavender dress)   bleutailfly; OGA BY 3.0; Stendhal
 dress_019.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_020.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_021.*   (priest robes)     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-dress_022.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_022.png (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_023.png (armor)            bleutailfly; OGA BY 3.0; Stendhal
 dress_024.png (red dress)        bleutailfly; OGA BY 3.0; Stendhal
 dress_025.png (dress / skirt)    diamonddmgirl; OGA BY 3.0; https://opengameart.org/node/72198
@@ -68,14 +68,14 @@ dress_031.png                    Svetlana Kushnariova (Cabbit); OGA BY 3.0; http
 dress_032.png (dress / skirt)    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_033.png (overalls)         bleutailfly; OGA BY 3.0; Stendhal
 dress_034.png (overalls)         bleutailfly; OGA BY 3.0; Stendhal
-dress_035.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_035.png (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_036.*   (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_037.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/80916
 dress_038.*   (soldier uniform)  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_039.png (cloak)            Sollision, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76967
 dress_040.*                      Charles Gabriel, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83035
 dress_041.png (cleric robes)     Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
-dress_042.png (cloak)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+dress_042.*   (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_043.*   (soldier uniform)  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_044.*   (overalls)         bleutailfly; OGA BY 3.0; Stendhal
 dress_045.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
@@ -102,7 +102,7 @@ dress_974.*   (armor)            Jordan Irwin (AntumDeluge); OGA BY 3.0; https:/
 dress_075_976.xcf                bleutailfly; OGA BY 3.0; Stendhal
 dress_076.png (jester suit)      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_978.png (dress)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83523
-dress_979.png (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+dress_979.*   (cloak)            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_980.png ("S" suit)         Jordan Irwin (AntumDeluge); CC0; Stendhal
 dress_981.*   (bunny suit)       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/14851
 dress_982.png (dress)            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
