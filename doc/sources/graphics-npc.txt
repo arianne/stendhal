@@ -119,7 +119,7 @@ maidnpc.*                     Svetlana Kushnariova (Cabbit), Vesa Vanhatupa (Mas
 man_000_npc.png               Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/91
 man_001_npc.png               Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/83523
 man_002_npc.png               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
-man_004_npc.*                 Svetlana Kushnariova (Cabbit), user_share, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/18071
+man_004_npc.*                 Svetlana Kushnariova (Cabbit), user_share, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/18071
 man_005_npc.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/99193, https://opengameart.org/node/87473
 man_008_npc.png               Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/80841
 manwithhatnpc.*               Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198
