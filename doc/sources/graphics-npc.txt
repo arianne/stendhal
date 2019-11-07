@@ -239,7 +239,7 @@ writernpc.*                   Svetlana Kushnariova (Cabbit), bleutailfly, Jordan
 xpphunternpc.*                Fabzy, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/23314, https://opengameart.org/node/24944, https://opengameart.org/node/80916
 yetifemalenpc.png             Teiv; ???; Stendhal
 yetimalenpc.png               Teiv; ???; Stendhal
-youngnpc.png                  Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/87
+youngnpc.*                    Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/87
 youngsoldiernpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 youngwitchnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 youngwomannpc.png             Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/24823
