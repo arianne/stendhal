@@ -961,14 +961,14 @@ assassindagger.png  ???; ???; ???
 box_of_weapons.png  Lanea Zimmerman (Sharm), Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/32386
 cannon.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79098
 composite_bow.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-golden_arrow.png    ???; ???; ???
+golden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 hanging_bows.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 longbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-power_arrow.png     ???; ???; ???
+power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 skull_spear.png     ???; ???; ???
 spear.png           ???; ???; ???
 spears.png          Jordan Irwin (AntumDeluge); CC0; Stendhal
-steel_arrow.png     ???; ???; ???
+steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 swords.png          ???; ???; ???
 wooden_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
