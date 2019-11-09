@@ -23,6 +23,7 @@ import games.stendhal.common.constants.Occasion;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
+import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 
 /**
  * Loads and manages all quests.
@@ -69,7 +70,7 @@ public class StendhalQuestSystem {
 		
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
-		//loadQuest(new AntivenomRing());
+		loadQuest(new AntivenomRing());
 		loadQuest(new ArmorForDagobert());
 		loadQuest(new BalloonForBobby());
 		loadQuest(new BeerForHayunn());
