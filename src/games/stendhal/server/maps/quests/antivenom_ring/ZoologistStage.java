@@ -59,8 +59,11 @@ public class ZoologistStage extends AVRQuestStage {
 		final SpeakerNPC zoologist = npcs.get(npcName);
 
 		// prepare helpful info
-		zoologist.addJob("I am a zoologist and work full-time here at the animal sanctuary.");
-		zoologist.addHelp("I specialize in #venomous animals.");
+		final String jobInfo = "I am a zoologist and work full-time here at the animal sanctuary. I specialize in #venomous animals.";
+		zoologist.addJob(jobInfo);
+		zoologist.addHelp(jobInfo);
+		zoologist.addOffer(jobInfo);
+		zoologist.addReply("venomous", "I can use my equipment to #extract the poisons from venomous animals.");
 		zoologist.addQuest("There is nothing that I need right now. But maybe you could help me #milk some #snakes ones of these days.");
 
 		// player speaks to Zoey after starting antivenom ring quest
@@ -77,7 +80,9 @@ public class ZoologistStage extends AVRQuestStage {
 
 		// player asks for venom
 		zoologist.add(ConversationStates.ATTENDING,
-				Arrays.asList("jameson", "antivenom", "extract", "cobra", "venom", "snake", "poison"),
+				Arrays.asList(
+						"jameson", "apothecary", "antivenom", "extract", "cobra", "venom", "snake",
+						"snakes", "poison", "milk"),
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				"What's that, you need some venom to create an antivemon? I can extract the venom from a "
