@@ -833,6 +833,8 @@ West: Semos
       <attribute name="move.continuous" />
     </portal>
 
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC" />
   </zone>
 
   <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="Level 0/ados/wall_n.tmx">

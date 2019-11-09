@@ -185,4 +185,5 @@ wolf-growl-01.*           newagesoup; CC BY 3.0; https://freesound.org/people/ne
 wolf-howl-01.*            y89312; CC BY 3.0; https://freesound.org/people/y89312/sounds/139901/
 wolf-howl-02.*            killyourpepe; CC0; https://freesound.org/people/killyourpepe/sounds/395192/
 xylophone-1.*             Storyteller; GPL
+yawn-female-1.ogg         LittleRainySeasons; CC BY 3.0; https://freesound.org/people/LittleRainySeasons/sounds/334053/
 yay-1.ogg                 Katie Russell (kymara); GPL
