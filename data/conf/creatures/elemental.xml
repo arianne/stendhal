@@ -172,6 +172,41 @@
 
   <!-- START: ice -->
 
+  <creature name="legendary ice elemental">
+    <type class="elemental_legendary" subclass="elemental_legendary_ice" tileid="elemental_legendary.png:0"/>
+    <description>You see a Legendary Elemental of Ice... </description>
+    <attributes>
+      <atk value="400"/>
+      <def value="61"/>
+      <hp value="350"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1750"/>
+    <respawn value="60"/>
+    <corpse name="puddle_light_blue" harmless="puddle_light_blue" />
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="greater potion" quantity="[1,3]" probability="10.0"/>
+      <item value="ice sword" quantity="[1,1]" probability="100.0"/>
+      <item value="ice armor" quantity="[1,1]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="ice"/>
+      <susceptibility type="ice" value="0.2"/>
+      <susceptibility type="fire" value="2.0"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="ice elemental">
     <type class="elemental" subclass="ice_elemental" tileid="elemental.png:5"/>
     <description>You see an ice elemental and sense a shiver on your spine.</description>
