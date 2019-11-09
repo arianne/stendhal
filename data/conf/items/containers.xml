@@ -346,7 +346,6 @@
   </item>
   -->
 
-  <!-- Not used yet
   <item name="vial">
     <type class="container" subclass="vial" tileid="-1"/>
     <description>You see a vial used in chemestry.</description>
@@ -364,6 +363,5 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  -->
 
 </items>
