@@ -30,13 +30,6 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private final String questName = "antivenom_ring";
 	private final String subquestName = questName + "_extract";
 
-	public AntivenomRingTest() {
-		setZoneForPlayer(ZONE_NAME);
-		setNpcNames("Jameson", "Zoey");
-		addZoneConfigurator(new ApothecaryNPC(), ZONE_NAME);
-		addZoneConfigurator(new ZoologistNPC(), ZONE_NAME);
-	}
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -46,6 +39,15 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	@Override
 	@Before
 	public void setUp() throws Exception {
+		setZoneForPlayer(ZONE_NAME);
+		setNpcNames("Jameson", "Zoey", "Valo", "Haizen", "Ortiv Milquetoast");
+
+		addZoneConfigurator(new ApothecaryNPC(), ZONE_NAME);
+		addZoneConfigurator(new ZoologistNPC(), ZONE_NAME);
+		addZoneConfigurator(new HealerNPC(), ZONE_NAME);
+		addZoneConfigurator(new WizardNPC(), ZONE_NAME);
+		addZoneConfigurator(new RetiredTeacherNPC(), ZONE_NAME);
+
 		super.setUp();
 
 		apothecary = getNPC("Jameson");
