@@ -721,20 +721,4 @@
     </equipable>
   </item>-->
 
-  <item name="cobra venom">
-    <type class="drink" subclass="cobra_venom" />
-    <description>You see a vial filled with cobra venom.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem" />
-    <attributes>
-    </attributes>
-    <equipable>
-      <slot name="ground" />
-      <slot name="content" />
-      <slot name="lhand" />
-      <slot name="rhand" />
-      <slot name="bag" />
-      <slot name="trade" />
-    </equipable>
-  </item>
-
 </items>

@@ -214,7 +214,6 @@ data/sprites/items/drink/
 
 antidote.png                   Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 beer.png                       Katie Russell (kymara)?; ???; ???
-cobra_venom.*                  Jordan Irwin (AntumDeluge); CC0; Stendhal
 deadly_poison.png              Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 disease_poison.png             Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 fierywater.png                 omero; CC BY-SA 3.0; Stendhal
