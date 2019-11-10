@@ -11,14 +11,18 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
 import games.stendhal.server.maps.ados.church.HealerNPC;
 import games.stendhal.server.maps.ados.magician_house.WizardNPC;
@@ -79,5 +83,12 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private void testQuestNotActive() {
 		assertNull(player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
+
+		Engine en = zoologist.getEngine();
+
+		// Zoey ignores players when quest is not active
+		en.step(player, "hi");
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		assertEquals("!me yawns", getReply(zoologist));
 	}
 }
