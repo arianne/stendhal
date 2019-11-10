@@ -17,6 +17,9 @@ import org.junit.Test;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
+import games.stendhal.server.maps.ados.church.HealerNPC;
+import games.stendhal.server.maps.ados.magician_house.WizardNPC;
+import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
 import utilities.QuestHelper;
