@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -76,5 +77,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	private void testQuestNotActive() {
+		assertNull(player.getQuest(questName));
+		assertNull(player.getQuest(subquestName));
 	}
 }
