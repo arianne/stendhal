@@ -28,7 +28,7 @@ class Portfolio extends SlotWindow implements FeatureChangeListener {
 	public Portfolio() {
 		// Remember if you change these numbers change also a number in
 		// src/games/stendhal/server/entity/RPEntity.java
-		super("portfolio", 3, 3);
+		super("portfolio", 2, 4);
 		// A panel window; forbid closing
 		setCloseable(false);
 	}
@@ -42,9 +42,9 @@ class Portfolio extends SlotWindow implements FeatureChangeListener {
 	 */
 	private void disablePortfolio() {
 		/*
-		 * You can not really lose a portfolio for now, but
+		 * You can not really lose a keyring for now, but
 		 * a disable message is received at every map change.
-		 * Just ignore it. (And after portfolio are made to
+		 * Just ignore it. (And after keyrings are made to
 		 * real items, this whole file will be obsolete anyway).
 		 */
 	}
