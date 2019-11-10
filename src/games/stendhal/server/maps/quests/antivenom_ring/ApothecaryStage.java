@@ -62,6 +62,10 @@ public class ApothecaryStage extends AVRStage {
 		apothecary = SingletonRepository.getNPCList().get(npcName);
 	}
 
+	public static String getMixItems() {
+		return MIX_ITEMS;
+	}
+
 	@Override
 	public void addToWorld() {
 		addRequestQuestDialogue();
