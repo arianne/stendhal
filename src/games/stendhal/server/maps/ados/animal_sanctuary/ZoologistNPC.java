@@ -27,7 +27,9 @@ import games.stendhal.server.entity.npc.action.NPCSetDirection;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SendPrivateMessageAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 
 /**
  * NPC used in the Antivenom Ring quest that can extract <code>cobra venom</code>
@@ -54,7 +56,9 @@ public class ZoologistNPC implements ZoneConfigurator {
 				// Too busy to interact.
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new NotCondition(new QuestActiveCondition("antivenom_ring")),
+					new OrCondition(
+							new NotCondition(new QuestActiveCondition("antivenom_ring")),
+							new QuestStateStartsWithCondition("antivenom_ring", "enhancing")),
 					ConversationStates.IDLE,
 					null,
 					new MultipleActions(
