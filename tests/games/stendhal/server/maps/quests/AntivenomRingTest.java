@@ -82,6 +82,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		testEntities();
 		testQuestNotActive();
 		testQuestActive();
+		testQuestDone();
 	}
 
 	private void testEntities() {
@@ -360,5 +361,30 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped("antivenom ring"));
 		assertEquals("done", player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
+	}
+
+	private void testQuestDone() {
+		Engine en = zoologist.getEngine();
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("!me yawns", getReply(zoologist));
+
+		en = apothecary.getEngine();
+
+		en.step(player, "hi");
+		assertEquals("Hello, welcome to my lab.", getReply(apothecary));
+
+		en.step(player, "quest");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals("Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
+				getReply(apothecary));
+		en.step(player, "yes");
+		assertEquals("Wonderful!", getReply(apothecary));
+		en.step(player, "quest");
+		en.step(player, "no");
+		assertEquals("Oh, that's too bad.", getReply(apothecary));
+
+		en.setCurrentState(ConversationStates.IDLE);
 	}
 }
