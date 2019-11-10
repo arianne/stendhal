@@ -12,14 +12,17 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -28,15 +31,19 @@ import games.stendhal.server.maps.ados.church.HealerNPC;
 import games.stendhal.server.maps.ados.magician_house.WizardNPC;
 import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
+import games.stendhal.server.maps.quests.antivenom_ring.ApothecaryStage;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
+import utilities.RPClass.ItemTestHelper;
 
 public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private static final String ZONE_NAME = "testzone";
 
 	private SpeakerNPC apothecary;
 	private SpeakerNPC zoologist;
+	private Item note;
+	private final String infostring = "note to apothecary";
 
 	private final String questName = "antivenom_ring";
 	private final String subquestName = questName + "_extract";
@@ -63,6 +70,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 		apothecary = getNPC("Jameson");
 		zoologist = getNPC("Zoey");
+		note = ItemTestHelper.createItem("note");
 
 		// initialize quest
 		new AntivenomRing().addToWorld();
@@ -72,12 +80,15 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	public void testQuest() {
 		testEntities();
 		testQuestNotActive();
+		testQuestActive();
 	}
 
 	private void testEntities() {
 		assertNotNull(player);
 		assertNotNull(apothecary);
 		assertNotNull(zoologist);
+		assertNotNull(note);
+		assertNull(note.getInfoString());
 	}
 
 	private void testQuestNotActive() {
@@ -102,6 +113,164 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.", getReply(apothecary));
 
 		en.step(player, "bye");
-		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		player.equip("bag", note);
+
+		// player is carrying note without appropriate info string
+		en.step(player, "hi");
+		en.step(player, "quest");
+		assertEquals("I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.", getReply(apothecary));
+
+		// add appropriate info string to note
+		note.setInfoString(infostring);
+
+		// request quest with note from Klaas
+		en.step(player, "quest");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
+
+		en.step(player, "bye");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals("That is not a \"yes\" or \"no\" answer. I said, Is that note you are carrying for me?", getReply(apothecary));
+
+		en.setCurrentState(ConversationStates.IDLE);
+
+		// player begins conversation with note equipped
+		en.step(player, "hi");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
+
+		// player drops note before accepting quest
+		player.drop(note);
+		en.step(player, "yes");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Okay then, I will need you too... wait, where did that note go?", getReply(apothecary));
+
+		player.equip("bag", note);
+		en.step(player, "quest");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
+
+		double karma = player.getKarma();
+
+		// player rejects quest
+		en.step(player, "no");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Oh, well, carry on then.", getReply(apothecary));
+		// player loses some karma
+		assertEquals(karma - 5.0, player.getKarma(), 0);
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
+
+		final String items_string = "a #'cobra venom', 20 #'fairy cakes', 2 #'roots of mandragora', and a #'medicinal ring'";
+
+		karma = player.getKarma();
+
+		// player accepts quest
+		en.step(player, "yes");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(karma + 5.0, player.getKarma(), 0);
+		assertEquals(ApothecaryStage.getMixItems(), player.getQuest(questName));
+		assertEquals("Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me "
+				+ items_string + ".  Do you have any of those with you?",
+				getReply(apothecary));
+		en.step(player, "no");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Okay. I still need " + items_string, getReply(apothecary));
+
+		// make sure note was dropped
+		assertFalse(player.isEquippedWithInfostring("note", infostring));
+	}
+
+	private void testQuestActive() {
+		Engine en = zoologist.getEngine();
+
+		// Zoey will now respond to player
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Oh! You startled me. I didn't see you there. I'm very busy, so if there is something you need please tell me quickly.",
+				getReply(zoologist));
+
+		en.step(player, "quest");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("There is nothing that I need right now. But maybe you could help me #milk some #snakes ones of these days.",
+				getReply(zoologist));
+		en.step(player, "help");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("I am a zoologist and work full-time here at the animal sanctuary. I specialize in #venomous animals.",
+				getReply(zoologist));
+		en.step(player, "venomous");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("I can use my equipment to #extract the poisons from venomous animals.", getReply(zoologist));
+
+		// player asks about venom
+		en.step(player, "extract");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals("What's that, you need some venom to create an antivemon? I can extract the venom from a "
+				+ "cobra's venom gland, but I will need a vial to hold it in. Do you have those items?",
+				getReply(zoologist));
+
+		// player does not have items
+		en.step(player, "no");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Oh? Okay then. Come back when you do", getReply(zoologist));
+
+		// player claims to have items but does not
+		en.step(player, "hi");
+		en.step(player, "extract");
+		en.step(player, "yes");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Oh? Then where are they?", getReply(zoologist));
+
+		final Item vial = ItemTestHelper.createItem("vial");
+		final Item gland = ItemTestHelper.createItem("venom gland");
+
+		assertNotNull(vial);
+		assertNotNull(gland);
+
+		// player only has vial
+		player.equip("bag", vial);
+		en.step(player, "hi");
+		en.step(player, "extract");
+		en.step(player, "yes");
+		assertEquals("Oh? Then where are they?", getReply(zoologist));
+
+		// player only have venom gland
+		player.drop(vial);
+		player.equip("bag", gland);
+		en.step(player, "hi");
+		en.step(player, "extract");
+		en.step(player, "yes");
+		assertEquals("Oh? Then where are they?", getReply(zoologist));
+
+		assertNull(player.getQuest(subquestName));
+
+		// player has required items
+		player.equip("bag", vial);
+		en.step(player, "hi");
+		en.step(player, "extract");
+		en.step(player, "yes");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Okay, I will have your venom ready in about 20 minutes.", getReply(zoologist));
+
+		assertFalse(player.isEquipped("vial"));
+		assertFalse(player.isEquipped("venom gland"));
+		assertNotNull(player.getQuest(subquestName));
+
+		// player returns before venom is ready
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertTrue(getReply(zoologist).startsWith("The venom is not ready yet. Please come back in"));
+
+		// player returns after venom is ready
+		player.setQuest(subquestName, "0");
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Your cobra venom is ready.", getReply(zoologist));
+		assertTrue(player.isEquipped("cobra venom"));
+		assertEquals("done", player.getQuest(subquestName));
 	}
 }
