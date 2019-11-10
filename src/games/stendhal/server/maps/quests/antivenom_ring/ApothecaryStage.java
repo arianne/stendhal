@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
@@ -293,8 +294,8 @@ public class ApothecaryStage extends AVRStage {
 				new SayTimeRemainingAction(questName, 1, FUSE_TIME, "I have not finished with the ring. Please check back in "));
 
 		final List<ChatAction> mixReward = new LinkedList<ChatAction>();
-		//reward.add(new IncreaseXPAction(2000));
-		//reward.add(new IncreaseKarmaAction(25.0));
+		mixReward.add(new IncreaseXPAction(2000));
+		mixReward.add(new IncreaseKarmaAction(25.0));
 		mixReward.add(new EquipItemAction("antivenom ring", 1, true));
 		mixReward.add(new SetQuestAction(questName, "done"));
 		mixReward.add(new SetQuestAction(questName + "_extract", null)); // clear sub-quest slot
