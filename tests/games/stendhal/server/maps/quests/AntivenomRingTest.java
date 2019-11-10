@@ -33,6 +33,7 @@ import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.quests.antivenom_ring.ApothecaryStage;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
+import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.ItemTestHelper;
@@ -272,5 +273,92 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Your cobra venom is ready.", getReply(zoologist));
 		assertTrue(player.isEquipped("cobra venom"));
 		assertEquals("done", player.getQuest(subquestName));
+
+		en = apothecary.getEngine();
+
+		// player returns to apothecary
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hello again! Did you bring me the #items I requested?", getReply(apothecary));
+
+		String current_reply;
+
+		// player asks for quest while quest is active
+		en.step(player, "quest");
+		current_reply = getReply(apothecary);
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertTrue(current_reply.startsWith("I am still waiting for you to bring me") && current_reply.endsWith("Do you have any of those with you?"));
+
+		// player wants to know which items are requested
+		en.step(player, "items");
+		current_reply = getReply(apothecary);
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertTrue(current_reply.startsWith("I need") && current_reply.endsWith("Did you bring something?"));
+
+		// says does not have the items
+		en.step(player, "no");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertTrue(getReply(apothecary).startsWith("Okay. I still need"));
+
+		PlayerTestHelper.equipWithItem(player, "medicinal ring");
+		PlayerTestHelper.equipWithStackableItem(player, "mandragora", 2);
+		PlayerTestHelper.equipWithStackableItem(player, "fairy cake", 20);
+
+		assertTrue(player.isEquipped("cobra venom"));
+		assertTrue(player.isEquipped("medicinal ring"));
+		assertTrue(player.isEquipped("mandragora", 2));
+		assertTrue(player.isEquipped("fairy cake", 20));
+
+		// says has the items
+		en.step(player, "hi");
+		en.step(player, "yes");
+		assertEquals(ConversationStates.QUESTION_2, en.getCurrentState());
+		assertEquals("What did you bring?", getReply(apothecary));
+
+		en.step(player, "medicinal ring");
+		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
+		assertFalse(player.isEquipped("medicinal ring"));
+		en.step(player, "mandragora");
+		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
+		assertFalse(player.isEquipped("mandragora"));
+		en.step(player, "fairy cake");
+		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
+		assertFalse(player.isEquipped("fairy cake"));
+		en.step(player, "cobra venom");
+		assertFalse(player.isEquipped("cobra venom"));
+
+		assertEquals("Thank you. I'll get to work on infusing your ring right after I enjoy a few of these fairy cakes. Please come back in 3 days.",
+				getReply(apothecary));
+		assertTrue(player.getQuest(questName).startsWith("enhancing"));
+
+		// zoologist back to ignoring player
+		en = zoologist.getEngine();
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("!me yawns", getReply(zoologist));
+
+		en = apothecary.getEngine();
+
+		// player returns before ring is ready
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertTrue(getReply(apothecary).startsWith("I have not finished with the ring. Please check back in"));
+
+		player.setQuest(questName, "enhancing;0");
+		int xp = player.getXP();
+		double karma = player.getKarma();
+
+		// player returns after ring is ready
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("I have finished infusing your ring. Now I'll finish the rest of my fairy cakes if you dont mind.",
+				getReply(apothecary));
+
+		assertEquals(xp + 2000, player.getXP());
+		assertEquals(karma + 25.0, player.getKarma(), 0);
+		assertTrue(player.isEquipped("antivenom ring"));
+		assertEquals("done", player.getQuest(questName));
+		assertNull(player.getQuest(subquestName));
 	}
 }
