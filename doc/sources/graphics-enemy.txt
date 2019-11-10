@@ -446,7 +446,7 @@ data/sprites/monsters/reptile/
 caiman.png       bleutailfly; OGA BY 3.0; https://opengameart.org/node/101290
 cobra.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
 crocodile.png    bleutailfly; OGA BY 3.0; https://opengameart.org/node/101290
-grass_snake.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
+grass_snake.png  yolkati, Sebastian Riedel (Baŝto); CC BY-SA 4.0; https://opengameart.org/node/97610
 king_cobra.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20678
 snake.png        Charles Sanchez (CharlesGabriel, Antifarea); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#creatures
 turtle.png       Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
