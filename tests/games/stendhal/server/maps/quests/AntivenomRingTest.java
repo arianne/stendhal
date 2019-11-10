@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
+import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -54,8 +55,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		zoologist = getNPC("Zoey");
 
 		// initialize quest
-		// FIXME: SpeakerNPC instances related to quest are null
-		//new AntivenomRing().addToWorld();
+		new AntivenomRing().addToWorld();
 	}
 
 	@Test
