@@ -90,5 +90,18 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		assertEquals("!me yawns", getReply(zoologist));
+
+		en = apothecary.getEngine();
+
+		en.step(player, "hi");
+		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
+		assertEquals("Hello, welcome to my lab.", getReply(apothecary));
+
+		// request quest without note from Klaas
+		en.step(player, "quest");
+		assertEquals("I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.", getReply(apothecary));
+
+		en.step(player, "bye");
+		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 	}
 }
