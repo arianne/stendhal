@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2018 - Stendhal                         *
+ *                   (C) Copyright 2019 - Stendhal                         *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -43,7 +44,8 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 
-public class ApothecaryStage extends AVRQuestStage {
+public class ApothecaryStage extends AVRStage {
+	private final SpeakerNPC apothecary;
 
 	/* infostring that identifies note item */
 	private static final String NOTE_INFOSTRING = "note to apothecary";
@@ -54,12 +56,14 @@ public class ApothecaryStage extends AVRQuestStage {
 
 	private static final int FUSE_TIME = MathHelper.MINUTES_IN_ONE_DAY * 3;
 
-	public ApothecaryStage(final String npc, final String questSlot) {
-		super(npc, questSlot);
+	public ApothecaryStage(final String npcName, final String questName) {
+		super(questName);
+
+		apothecary = SingletonRepository.getNPCList().get(npcName);
 	}
 
 	@Override
-	protected void addDialogue() {
+	public void addToWorld() {
 		addRequestQuestDialogue();
 		addGatheringItemsDialogue();
 		addBusyEnhancingDialogue();
@@ -72,14 +76,12 @@ public class ApothecaryStage extends AVRQuestStage {
 	 * Conversation states for NPC before quest is active.
 	 */
 	private void addRequestQuestDialogue() {
-		final SpeakerNPC apothecary = npcs.get(npcName);
-
 		// Player asks for quest without having Klass's note
 		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(
 						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING)),
-						new QuestNotStartedCondition(QUEST_SLOT)),
+						new QuestNotStartedCondition(questName)),
 				ConversationStates.ATTENDING,
 				"I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.",
 				null);
@@ -90,7 +92,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
 						new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING),
-						new QuestNotStartedCondition(QUEST_SLOT)),
+						new QuestNotStartedCondition(questName)),
 				ConversationStates.QUEST_OFFERED,
 				"Oh, a message from Klaas. Is that for me?",
 				null);
@@ -101,7 +103,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
 						new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING),
-						new QuestNotStartedCondition(QUEST_SLOT)),
+						new QuestNotStartedCondition(questName)),
 				ConversationStates.QUEST_OFFERED,
 				"Oh, a message from Klaas. Is that for me?",
 				null);
@@ -113,10 +115,10 @@ public class ApothecaryStage extends AVRQuestStage {
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-						new SetQuestAction(QUEST_SLOT, MIX_ITEMS),
+						new SetQuestAction(questName, MIX_ITEMS),
 						new IncreaseKarmaAction(5.0),
 						new DropInfostringItemAction("note", NOTE_INFOSTRING),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT,
+						new SayRequiredItemsFromCollectionAction(questName,
 								"Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?",
 								false)
 				)
@@ -146,7 +148,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				// NPC walks away
 				ConversationStates.IDLE,
 				"Oh, well, carry on then.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				new SetQuestAndModifyKarmaAction(questName, "rejected", -5.0));
 	}
 
 
@@ -154,11 +156,9 @@ public class ApothecaryStage extends AVRQuestStage {
 	 * Conversation states for NPC while quest is active.
 	 */
 	private void addGatheringItemsDialogue() {
-		final SpeakerNPC apothecary = npcs.get(npcName);
-
 		final ChatCondition gatheringStateCondition = new AndCondition(
-				new QuestActiveCondition(QUEST_SLOT),
-				new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;")));
+				new QuestActiveCondition(questName),
+				new NotCondition(new QuestStateStartsWithCondition(questName, "enhancing;")));
 
 		// Player asks for quest after it is started
 		apothecary.add(ConversationStates.ATTENDING,
@@ -166,7 +166,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				gatheringStateCondition,
 				ConversationStates.ATTENDING,
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]. Do you have any of those with you?"));
+				new SayRequiredItemsFromCollectionAction(questName, "I am still waiting for you to bring me [items]. Do you have any of those with you?"));
 
 		// Jameson is waiting for items
 		apothecary.add(ConversationStates.IDLE,
@@ -182,7 +182,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				gatheringStateCondition,
 				ConversationStates.ATTENDING,
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?", false));
+				new SayRequiredItemsFromCollectionAction(questName, "I need [items]. Did you bring something?", false));
 
 		// player says has a required item with him (says "yes")
 		apothecary.add(ConversationStates.ATTENDING,
@@ -206,7 +206,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				gatheringStateCondition,
 				ConversationStates.IDLE,
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]", false));
+				new SayRequiredItemsFromCollectionAction(questName, "Okay. I still need [items]", false));
 
 		// Players says does not have required items (alternate conversation state)
 		apothecary.add(ConversationStates.QUESTION_1,
@@ -214,7 +214,7 @@ public class ApothecaryStage extends AVRQuestStage {
 				gatheringStateCondition,
 				ConversationStates.IDLE,
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
+				new SayRequiredItemsFromCollectionAction(questName, "Okay. I still need [items]"));
 
 		List<String> GOODBYE_NO_MESSAGES = new LinkedList<>(ConversationPhrases.GOODBYE_MESSAGES);
 		GOODBYE_NO_MESSAGES.addAll(ConversationPhrases.NO_MESSAGES);
@@ -225,12 +225,12 @@ public class ApothecaryStage extends AVRQuestStage {
 				gatheringStateCondition,
 				ConversationStates.IDLE,
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]", false));
+				new SayRequiredItemsFromCollectionAction(questName, "Okay. I still need [items]", false));
 
 /*		// player says he didn't bring any items (says no)
 		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new QuestActiveCondition(questName),
 				ConversationStates.IDLE,
 				"Ok. Let me know when you have found something.",
 				null);
@@ -238,7 +238,7 @@ public class ApothecaryStage extends AVRQuestStage {
 		// player says he didn't bring any items to different question
 		apothecary.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new QuestActiveCondition(questName),
 				ConversationStates.IDLE,
 				"Ok. Let me know when you have found something.",
 				null);
@@ -253,7 +253,7 @@ public class ApothecaryStage extends AVRQuestStage {
 			"I don't believe I asked for that.", null);
 
 		ChatAction mixAction = new MultipleActions (
-		new SetQuestAction(QUEST_SLOT, "enhancing;" + Long.toString(System.currentTimeMillis())),
+		new SetQuestAction(questName, "enhancing;" + Long.toString(System.currentTimeMillis())),
 		new SayTextAction("Thank you. I'll get to work on infusing your ring right after I enjoy a few of these fairy cakes. Please come back in "
 				+ Integer.toString(FUSE_TIME / MathHelper.MINUTES_IN_ONE_DAY) + " days.")
 		);
@@ -267,7 +267,7 @@ public class ApothecaryStage extends AVRQuestStage {
 					null,
 					new CollectRequestedItemsAction(
 							iName,
-							QUEST_SLOT,
+							questName,
 							"Excellent! Do you have anything else with you?",
 							"You brought me that already.",
 							mixAction,
@@ -277,31 +277,29 @@ public class ApothecaryStage extends AVRQuestStage {
 
 
 	private void addBusyEnhancingDialogue() {
-		final SpeakerNPC apothecary = npcs.get(npcName);
-
 		// Returned too early; still working
 		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
-						new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;"),
-						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, FUSE_TIME))),
+						new QuestStateStartsWithCondition(questName, "enhancing;"),
+						new NotCondition(new TimePassedCondition(questName, 1, FUSE_TIME))),
 				ConversationStates.IDLE,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, FUSE_TIME, "I have not finished with the ring. Please check back in "));
+				new SayTimeRemainingAction(questName, 1, FUSE_TIME, "I have not finished with the ring. Please check back in "));
 
 		final List<ChatAction> mixReward = new LinkedList<ChatAction>();
 		//reward.add(new IncreaseXPAction(2000));
 		//reward.add(new IncreaseKarmaAction(25.0));
 		mixReward.add(new EquipItemAction("antivenom ring", 1, true));
-		mixReward.add(new SetQuestAction(QUEST_SLOT, "done"));
-		mixReward.add(new SetQuestAction(QUEST_SLOT + "_extract", null)); // clear sub-quest slot
+		mixReward.add(new SetQuestAction(questName, "done"));
+		mixReward.add(new SetQuestAction(questName + "_extract", null)); // clear sub-quest slot
 
 		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
-						new QuestInStateCondition(QUEST_SLOT, 0, "enhancing"),
-						new TimePassedCondition(QUEST_SLOT, 1, FUSE_TIME)
+						new QuestInStateCondition(questName, 0, "enhancing"),
+						new TimePassedCondition(questName, 1, FUSE_TIME)
 				),
 			ConversationStates.IDLE,
 			"I have finished infusing your ring. Now I'll finish the rest of my fairy cakes if you dont mind.",
@@ -313,12 +311,10 @@ public class ApothecaryStage extends AVRQuestStage {
 	 * Conversation states for NPC after quest is completed.
 	 */
 	private void addQuestDoneDialogue() {
-		final SpeakerNPC apothecary = npcs.get(npcName);
-
 		// Quest has previously been completed.
 		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new QuestCompletedCondition(questName),
 				ConversationStates.QUESTION_1,
 				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
 				null);
@@ -326,7 +322,7 @@ public class ApothecaryStage extends AVRQuestStage {
 		// Player is enjoying the ring
 		apothecary.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new QuestCompletedCondition(questName),
 				ConversationStates.ATTENDING,
 				"Wonderful!",
 				null);
@@ -334,15 +330,13 @@ public class ApothecaryStage extends AVRQuestStage {
 		// Player is not enjoying the ring
 		apothecary.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new QuestCompletedCondition(questName),
 				ConversationStates.ATTENDING,
 				"Oh, that's too bad.",
 				null);
 	}
 
 	private void addGeneralResponsesDialogue() {
-		final SpeakerNPC apothecary = npcs.get(npcName);
-
 		/*
         // Player asks about required items
 		apothecary.add(ConversationStates.QUESTION_1,

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -150,9 +150,10 @@ public class AntivenomRing extends AbstractQuest {
 				"Antivenom Ring",
 				"As a favor to an old friend, Jameson the apothecary will strengthen the medicinal ring.",
 				false);
+
 		prepareHintNPCs();
-		new ApothecaryStage(apothecary, QUEST_SLOT);
-		new ZoologistStage(zoologist, QUEST_SLOT);
+		new ApothecaryStage(apothecary, QUEST_SLOT).addToWorld();
+		new ZoologistStage(zoologist, QUEST_SLOT).addToWorld();
 	}
 
 	@Override

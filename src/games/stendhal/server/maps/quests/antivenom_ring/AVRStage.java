@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2018 - Stendhal                         *
+ *                   (C) Copyright 2019 - Stendhal                         *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,34 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.antivenom_ring;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.NPCList;
+public abstract class AVRStage {
+	protected final String questName;
 
-public abstract class AVRQuestStage {
-
-	/* NPC list */
-	protected NPCList npcs = SingletonRepository.getNPCList();
-
-	protected final String QUEST_SLOT;
-	protected final String subquestName;
-
-	protected final String npcName;
-
-	public AVRQuestStage(final String npc, final String questSlot, final String subquest) {
-		this.npcName = npc;
-		this.QUEST_SLOT = questSlot;
-		this.subquestName = subquest;
-
-		addDialogue();
+	public AVRStage(final String questName) {
+		this.questName = questName;
 	}
 
-	public AVRQuestStage(final String npc, final String questSlot) {
-		this.npcName = npc;
-		this.QUEST_SLOT = questSlot;
-		this.subquestName = null;
-
-		addDialogue();
-	}
-
-	protected abstract void addDialogue();
+	public abstract void addToWorld();
 }
