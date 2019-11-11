@@ -375,8 +375,7 @@ lamia.*                  Svetlana Kushnariova (Cabbit), Yamilian, bleutailfly; C
 poison_shroom.png        Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/5215
 poison_shroom_small.png  Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/6262
 naga.png                 bleutailfly; OGA BY 3.0; https://opengameart.org/node/99050
-werewolf.png             yolkati, Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/125
-
+werewolf.*               Stephen Challener (Redshrike), William.Thompsonj, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#characters-and-base, https://opengameart.org/node/20830
 
 data/sprites/monsters/mythical_animal/
 
