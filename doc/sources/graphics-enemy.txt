@@ -129,6 +129,9 @@ ice_elemental.png    Wolfgang Wozniak (Ouren); CC BY 3.0; https://opengameart.or
 nymph.png            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 water_elemental.png  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 
+data/sprites/monsters/elemental_legendary/
+elemental_legendary_ice.png Megajack64 (Megajack64); CC BY 3.0/4.0; https://github.com/arianne/stendhal/issues/234
+
 data/sprites/monsters/elf/
 
 archer_elf.*         Svetlana Kushnariova (Cabbit), onu/olonu, SoCay; CC BY 3.0/4.0; https://github.com/arianne/stendhal/issues/142
