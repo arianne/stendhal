@@ -269,7 +269,7 @@ imperial_elite_guardian.*  Svetlana Kushnariova (Cabbit), LordNeo, olonu; OGA BY
 imperial_general.*         Svetlana Kushnariova (Cabbit), Nila122, Dan Štefka (sufan02), olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/25629, https://opengameart.org/node/68435
 imperial_high_priest.*     Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/157
 imperial_knight.*          Stephen Challener (Redshrike), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/165
-imperial_leader.png        Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/722/
+imperial_leader.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/722/
 imperial_priest.png        Svetlana Kushnariova (Cabbit), olonu; LordNeo; https://github.com/arianne/stendhal/issues/89
 imperial_scientist.*       Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/70
 imperial_veteran.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
