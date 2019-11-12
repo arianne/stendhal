@@ -53,7 +53,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 			}
 		};
 
-		sally.setEntityClass("littlegirlnpc");
+		sally.setEntityClass("girlnpc");
 		sally.setPosition(40, 61);
 		sally.setDirection(Direction.RIGHT);
 		sally.initHP(100);
