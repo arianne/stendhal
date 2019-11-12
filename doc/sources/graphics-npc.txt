@@ -69,7 +69,7 @@ floattingladynpc.png          Svetlana Kushnariova (Cabbit), Nila122, Jordan Irw
 friendlywizardnpc.*           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 gamesupervisornpc.png         Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969
 gardenernpc.*                 Svetlana Kushnariova (Cabbit), bleutailfly, olonu, Jordan Irwin (AntumDeluge); OGA BY; Stendhal, https://opengameart.org/node/72969
-girlnpc.png                   Svetlana Kushnariova (Cabbit), Tracy, olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
+girlnpc.*                     Svetlana Kushnariova (Cabbit), Tracy, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/13927
 gnomenpc.png                  isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78045
 goldsmithnpc.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82370
 grandadnpc.*                  Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
