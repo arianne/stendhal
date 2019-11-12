@@ -280,7 +280,7 @@ kalavan_citizen.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; htt
 kalavan_housewife.png      Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 kalavan_peasant.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_wisewoman.png      Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
-little_assassin.png        Svetlana Kushnariova (Cabbit), Fabzy, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
+little_assassin.*          Svetlana Kushnariova (Cabbit), Fabzy, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlewitch.*              Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/127
 littlewizard.*             Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/126
 masked_ninja.*             Svetlana Kushnariova (Cabbit), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
