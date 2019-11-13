@@ -262,14 +262,14 @@ deniran_stormtrooper.*     Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly; 
 elder_cannibal.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 emperor_dalmung.*          Svetlana Kushnariova (Cabbit), wulax, DkuCook, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11165, https://opengameart.org/node/82451
 hunter.*                   ???, Svetlana Kushnariova, olonu; ???; https://opengameart.org/node/72969, https://opengameart.org/node/66349
-imperial_archer.*          Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
-imperial_archer_leader.*   Svetlana Kushnariova (Cabbit), olonu, SoCay; OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
+imperial_archer.*          Svetlana Kushnariova (Cabbit), olonu, SoCay, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
+imperial_archer_leader.*   Svetlana Kushnariova (Cabbit), olonu, SoCay, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
 imperial_chief.*           Svetlana Kushnariova (Cabbit), Gwes, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10653
-imperial_commander.*       Svetlana Kushnariova (Cabbit); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72575
+imperial_commander.*       Svetlana Kushnariova (Cabbit), Vollrat, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72575
 imperial_defender.*        Svetlana Kushnariova (Cabbit), Spring, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/68650
-imperial_elite_archer.*    Svetlana Kushnariova (Cabbit), olonu, Fabzy, SoCay; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/151
+imperial_elite_archer.*    Svetlana Kushnariova (Cabbit), olonu, Fabzy, SoCay, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_elite_guardian.*  Svetlana Kushnariova (Cabbit), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10878
-imperial_general.*         Svetlana Kushnariova (Cabbit), Nila122, Dan Štefka (sufan02), olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/25629, https://opengameart.org/node/68435
+imperial_general.*         Svetlana Kushnariova (Cabbit), Nila122, Dan Štefka (sufan02), olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/25629, https://opengameart.org/node/68435
 imperial_high_priest.*     Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/157
 imperial_knight.*          Stephen Challener (Redshrike), LordNeo, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/165
 imperial_leader.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/722/
