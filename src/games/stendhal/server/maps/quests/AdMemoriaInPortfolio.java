@@ -66,6 +66,7 @@ package games.stendhal.server.maps.quests;
 
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -93,7 +94,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
-
+import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -135,32 +137,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             null
         );
 
-        /**
-        npc.add(
-            ConversationStates.ATTENDING,
-            "reset",
-            null,
-            ConversationStates.IDLE,
-            "What?!",
-            new ChatAction() {
-                @Override
-                public void fire(
-                    final Player player,
-                    final Sentence sentence,
-                    final EventRaiser npc) {
-                        if ( AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
-                            for (final String quest : player.getQuests()) {
-                                player.removeQuest(quest);
-                            }
-                        } else {
-                            npc.say("What? No; you clean me! Begin with my back, thanks.");
-                            player.damage(5, npc.getEntity());
-                            player.notifyWorldAboutChanges();
-                        }
-                }
-            }
-        );
-        */
     }
 
 	/** admemoriainportfolio_step_1 */
@@ -296,14 +272,21 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
-		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
+		//reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
 		reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
 		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
 		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
 		reward_brosoklelo.add(new IncreaseXPAction(1000));
 		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
+		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		
+		if (System.getProperty("stendhal.container") != null) {
+			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
+		} else {
+			reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
+		}
+
 		npc.add(
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
             new AndCondition(
