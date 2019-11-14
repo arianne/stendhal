@@ -7,21 +7,20 @@
     <type class="amphibian" subclass="frog" tileid="amphibian.png:0"/>
     <description>You see a cute little hoppy frog which only wants to love you.</description>
     <attributes>
-      <atk value="170"/>
-      <def value="25"/>
-      <hp value="100"/>
+      <atk value="51"/>
+      <def value="7"/>
+      <hp value="50"/>
       <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
-    <level value="15"/>
-    <experience value="200"/>
-    <respawn value="1000"/>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="poison" quantity="[1,1]" probability="15.0"/>
+      <item value="potion" quantity="[1,1]" probability="60.0"/>
     </drops>
     <equips>
-      <slot name="lhand" item="steel arrow" quantity="10000"/>
       <slot name="rhand" item="dummy_ranged" quantity="1"/>
     </equips>
     <ai>
@@ -31,7 +30,7 @@
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="archer"/>
+      <profile name="animal"/>
       <profile name="patrolling"/>
     </ai>
   </creature>

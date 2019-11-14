@@ -151,7 +151,7 @@ xeno_cloak.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/n
 
 data/sprites/items/club/
 
-chaos_hammer.png         ???; ???; ??? (committed by kymara)
+chaos_hammer.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara)
 club.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 club_of_thorns.png       ???; ???; ??? (committed by kymara)
 enhanced_mace.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
@@ -315,7 +315,7 @@ pizza.png                  ???; ???; ???
 pomegranate.png            Bluelads4?; ???; ???
 porcini.png                Daniel Herding (mort); GPL 2.0; Stendhal; Needs verified
 pumpkin.png                sshk5?; ???; ??? (committed by Miguel: 2872d65)
-real_corn.png              tigertoes?; ???; ???
+real_corn.png              ???; ???; ???
 red-lionfish.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rotten_egg.png             kymara?; ???; ???
@@ -394,7 +394,7 @@ magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.f
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
 red_helmet.png              ???; ???; ??? (committed by Kymara: a799898)
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-shadow_helmet.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+shadow_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ committed by Miguel: 3e5e746)
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 xeno_helmet.*               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://github.com/crawl/tiles
 
@@ -453,20 +453,20 @@ yellow.png     Katie Russell (kymara); GPL 2.0; Stendhal (appears to be based on
 
 data/sprites/items/legs/
 
-black_legs.png            ???; ???; ??? (committed by kymara: 775c4eb)
+black_legs.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara: 775c4eb)
 blue_legs.png             bleutailfly; OGA BY 3.0; Stendhal
-chain_legs.png            ???; ???; ??? (committed by Miguel: d9791e5)
-chaos_legs.png            ???; ???; ??? (committed by kymara: 775c4eb)
+chain_legs.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by Miguel: d9791e5)
+chaos_legs.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara: 775c4eb)
 darkangels_clan_legs.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 dwarvish_legs.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 elvish_legs.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 golden_legs.png           bleutailfly; OGA BY 3.0; Stendhal
-jewelled_legs.png         ???; ???; ??? (committed by kymara: 69cbfee)
+jewelled_legs.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ modded (committed by kymara: 69cbfee)
 leather_legs.png          ???; ???; ??? (committed by Miguel: d9791e5)
 mainio_legs.png           vesper?; ???; ??? (committed by johnnnny: ca6f851)
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
-shadow_legs.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+shadow_legs.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (from Krakow Mobile, committed by Miguel: 3e5e746)
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.png          ???; ???; ??? (committed by Miguel)
 xeno_legs.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
@@ -653,7 +653,7 @@ xeno_shield.png               Dungeon Crawl Stone Soup; CC0; https://opengameart
 
 data/sprites/items/special/
 
-eggshells.png             tigertoes; CC BY-SA 3.0; Stendhal; based on the big colored egg, chopped up
+eggshells.png             tigertoes; CC BY-SA 3.0; Stendhal; based on the mythical egg, chopped up
 GM_tokend_bronze.png      Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_gold1.png       Anders Asplund (Danter); GPL 2.0; Stendhal
 GM_tokend_gold2.png       Anders Asplund (Danter); GPL 2.0; Stendhal
