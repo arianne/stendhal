@@ -71,17 +71,50 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
 
             @Override
             protected void createDialog() {
-                addJob("I can #smoke you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod. Just ask me to!");
-                addOffer("I will #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, but you'll have to bring me what is needed.");
-                addHelp("Ask me to #smoke for you any #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, that's what I'm good at when you bring me all that is needed.");
-                addReply(Arrays.asList("smoked", "smoked meat", "smoked ham", "smoked trout", "smoked cod"),
-                    "The true secret are which herbs for the aroma along with enough wood for the perfect #smoke. Care to hear what I have to #offer?");
+                addJob(
+                    "I can #smoke some " + 
+                    "#smoked #meat," + " " +
+                    "#smoked #ham," + " " +
+                    "#smoked #trout," + " " +
+                    "#smoked #cod." + " " +
+                    "To #smoke is my job."
+                );
+
+                addOffer(
+                    "I will #smoke " +
+                    "#smoked #meat," + " " +
+                    "#smoked #ham," + " " +
+                    "#smoked #trout," + " " +
+                    "#smoked #cod." +  " " +
+                    "You'll have to bring me what is needed." 
+                );
+
+                addHelp(
+                    "Ask me to #smoke for you any" + " " +
+                    "#smoked #meat,"               + " " +
+                    "#smoked #ham,"                + " " +
+                    "#smoked #trout,"              + " " +
+                    "#smoked #cod,"                + " " +
+                    "that's what I'm good at when you bring me all that is needed."
+                );
+
+                addReply(
+                    Arrays.asList("smoked", "smoked meat", "smoked ham", "smoked trout", "smoked cod"),
+                    "The true secret are which herbs for the aroma along with enough wood for the perfect #smoke." + " " +
+                    "Maybe you care to hear what I have to #offer."
+                );
+
                 addReply(Arrays.asList("arandula","sclaria", "kekik"),
                     "It grows in many places, at the edges or in the depths of a forest.");
-                addReply(Arrays.asList("trout", "cod"),
-                    "I will not reveal my favorite fishing spots... Go find some books on the subject in one of those scholarly places not many are familiar with anymore...");
+
                 addReply(Arrays.asList("meat","ham"),
                     "I don't care if that comes from a lion, a bear or even an elephant... I can #smoke that for you!");
+
+                addReply(Arrays.asList("trout", "cod"),
+                    "I will not reveal my favorite fishing spots..." + " " +
+                    "Go find some books on the subject in one of those scholarly places not many are familiar with anymore..."
+                );
+
                 addGoodbye("S' vegum...");
 
                 final HashSet<String> productsNames = new HashSet<String>();
@@ -90,33 +123,29 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 productsNames.add("smoked trout");
                 productsNames.add("smoked cod");
 
-                //meat: wood+arandula+sclaria
+                //smoked meat: wood+arandula
                 final Map<String, Integer> reqRes_smokedMeat = new TreeMap<String, Integer>();
-                reqRes_smokedMeat.put("wood", 1);
-                reqRes_smokedMeat.put("meat", 1);
-                reqRes_smokedMeat.put("arandula", 1);
-                reqRes_smokedMeat.put("sclaria", 1);
+                reqRes_smokedMeat.put("wood",      2);
+                reqRes_smokedMeat.put("meat",      2);
+                reqRes_smokedMeat.put("arandula",  2);
 
-                //ham: wood+arandula+kekik
+                //smoked ham: wood+kekik
                 final Map<String, Integer> reqRes_smokedHam = new TreeMap<String, Integer>();
-                reqRes_smokedHam.put("wood", 2);
-                reqRes_smokedHam.put("ham", 1);
-                reqRes_smokedHam.put("arandula", 2);
-                reqRes_smokedHam.put("kekik", 1);
+                reqRes_smokedHam.put("wood",       2);
+                reqRes_smokedHam.put("ham",        1);
+                reqRes_smokedHam.put("kekik",      1);
 
-                //trout: wood+arandula+sclaria
+                //smoked trout: wood+arandula
                 final Map<String, Integer> reqRes_smokedTrout = new TreeMap<String, Integer>();
-                reqRes_smokedTrout.put("wood", 1);
-                reqRes_smokedTrout.put("trout", 1);
+                reqRes_smokedTrout.put("wood",     1);
+                reqRes_smokedTrout.put("trout",    1);
                 reqRes_smokedTrout.put("arandula", 1);
-                reqRes_smokedTrout.put("sclaria", 1);
 
-                //cod: wood+arandula+kekik
+                //smoked cod: wood+arandula
                 final Map<String, Integer> reqRes_smokedCod = new TreeMap<String, Integer>();
-                reqRes_smokedCod.put("wood", 2);
-                reqRes_smokedCod.put("cod", 1);
-                reqRes_smokedCod.put("arandula", 2);
-                reqRes_smokedCod.put("kekik", 1);
+                reqRes_smokedCod.put("wood",       1);
+                reqRes_smokedCod.put("cod",        1);
+                reqRes_smokedCod.put("arandula",   1);
 
                 final HashMap<String, Map<String, Integer>> requiredResourcesPerProduct = new HashMap<String, Map<String, Integer>>();
                 requiredResourcesPerProduct.put("smoked meat", reqRes_smokedMeat);
@@ -125,10 +154,10 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 requiredResourcesPerProduct.put("smoked cod", reqRes_smokedCod);
 
                 final HashMap<String, Integer> productionTimesPerProduct = new HashMap<String, Integer>();
-                productionTimesPerProduct.put("smoked meat",  5 * 15);
-                productionTimesPerProduct.put("smoked ham",   6 * 25);
-                productionTimesPerProduct.put("smoked trout", 7 * 15);
-                productionTimesPerProduct.put("smoked cod",   8 * 25);
+                productionTimesPerProduct.put("smoked meat",  6 * 10);
+                productionTimesPerProduct.put("smoked ham",   6 * 10);
+                productionTimesPerProduct.put("smoked trout", 6 * 10);
+                productionTimesPerProduct.put("smoked cod",   6 * 10);
 
                 final HashMap<String, Boolean> productsBound = new HashMap<String, Boolean>();
                 productsBound.put("smoked meat",  false);
