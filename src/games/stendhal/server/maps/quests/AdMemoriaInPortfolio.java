@@ -298,26 +298,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
 		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
 		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
 		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
-		reward_brosoklelo.add(new EquipItemAction("apple", 3, false));
-		reward_brosoklelo.add(new EquipItemAction("pear", 2, false));
-		
-		/**
-		 * REWARD: activate portfolio
-		 */
-		/**
-		 if (System.getProperty("stendhal.container") != null) {
-			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
-			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
-		 } else {
-	    	reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
-		 }
-		 */
-		
-    	/**
-    	 * REWARD: final 
-    	 */
 		reward_brosoklelo.add(new IncreaseXPAction(1000));
 		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
 		
@@ -336,12 +319,12 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
                             npc.say(
-                                "Oh a mauve apple! Thank you indeed!" + " " +
-                                //"I will now grant you a special gift for your efforts..." + " " +
-                                //"Here... Take this Portfolio..." + " " + 
-                                //"A portfolio will help you carry around many scrolls!");
-                                //
-                                "Farewell!");
+                                "Oh a mauve apple... That surely comes from my beloved stepsister..." + " " +
+                                "Thank you indeed!" + " " +
+                                "I will now grant you a special gift for your efforts..." + " " +
+                                "Here... Take this Portfolio..." + " " + 
+                                "A portfolio will help you carry around many scrolls!" + " " +
+                                "Fare thee well!");
                         }
 	        	},
 	        	new MultipleActions(reward_brosoklelo)

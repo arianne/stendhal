@@ -125,9 +125,9 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
 
                 //smoked meat: wood+arandula
                 final Map<String, Integer> reqRes_smokedMeat = new TreeMap<String, Integer>();
-                reqRes_smokedMeat.put("wood",      2);
-                reqRes_smokedMeat.put("meat",      2);
-                reqRes_smokedMeat.put("arandula",  2);
+                reqRes_smokedMeat.put("wood",      1);
+                reqRes_smokedMeat.put("meat",      1);
+                reqRes_smokedMeat.put("arandula",  1);
 
                 //smoked ham: wood+kekik
                 final Map<String, Integer> reqRes_smokedHam = new TreeMap<String, Integer>();
@@ -143,9 +143,9 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
 
                 //smoked cod: wood+arandula
                 final Map<String, Integer> reqRes_smokedCod = new TreeMap<String, Integer>();
-                reqRes_smokedCod.put("wood",       1);
+                reqRes_smokedCod.put("wood",       2);
                 reqRes_smokedCod.put("cod",        1);
-                reqRes_smokedCod.put("arandula",   1);
+                reqRes_smokedCod.put("sclaria",    1);
 
                 final HashMap<String, Map<String, Integer>> requiredResourcesPerProduct = new HashMap<String, Map<String, Integer>>();
                 requiredResourcesPerProduct.put("smoked meat", reqRes_smokedMeat);
@@ -154,10 +154,10 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 requiredResourcesPerProduct.put("smoked cod", reqRes_smokedCod);
 
                 final HashMap<String, Integer> productionTimesPerProduct = new HashMap<String, Integer>();
-                productionTimesPerProduct.put("smoked meat",  6 * 10);
-                productionTimesPerProduct.put("smoked ham",   6 * 10);
-                productionTimesPerProduct.put("smoked trout", 6 * 10);
-                productionTimesPerProduct.put("smoked cod",   6 * 10);
+                productionTimesPerProduct.put("smoked meat",  1 * 120);
+                productionTimesPerProduct.put("smoked ham",   1 * 140);
+                productionTimesPerProduct.put("smoked trout", 1 * 180);
+                productionTimesPerProduct.put("smoked cod",   1 * 240);
 
                 final HashMap<String, Boolean> productsBound = new HashMap<String, Boolean>();
                 productsBound.put("smoked meat",  false);

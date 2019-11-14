@@ -5,29 +5,6 @@
     <!-- try to sort by affinity first, alphabetical order next -->
 
     <!-- fruits -->
-	<item name="lemon">
-		<type class="food" subclass="lemon" tileid="-1" />
-		<description>You see a lemon. Could be an ingredient for the right chef...</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="20" />
-			<frequency value="12" />
-			<quantity value="1" />
-			<regen value="3" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
     <!-- apple -->
 	<item name="apple">
 		<type class="food" subclass="apple" tileid="-1" />
@@ -124,6 +101,29 @@
 		</equipable>
 	</item>
 	
+	<item name="lemon">
+		<type class="food" subclass="lemon" tileid="-1" />
+		<description>You see a lemon. Could be an ingredient for the right chef...</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="20" />
+			<frequency value="12" />
+			<quantity value="1" />
+			<regen value="3" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
 	<item name="banana">
 		<type class="food" subclass="banana" tileid="-1" />
 		<description>You see a banana. Take care of monkeys when you have them in your bag!</description>
@@ -770,6 +770,29 @@
 		</equipable>
 	</item>
 
+	<item name="smoked cod">
+		<type class="food" subclass="cod_smoked" tileid="-1" />
+		<description>You see a smoked cod.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="240" />
+			<frequency value="18" />
+			<quantity value="1" />
+			<regen value="18" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="2" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
 	<item name="mackerel">
 		<type class="food" subclass="mackerel" tileid="-1" />
 		<description>You see a mackerel.</description>
@@ -917,6 +940,29 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="4" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="2" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
+	<item name="smoked trout">
+		<type class="food" subclass="trout_smoked" tileid="-1" />
+		<description>You see a smoked trout.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="180" />
+			<frequency value="24" />
+			<quantity value="1" />
+			<regen value="24" />
 			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
@@ -1118,29 +1164,6 @@
 		</equipable>
 	</item>
 
-	<item name="smoked meat">
-		<type class="food" subclass="meat_smoked" tileid="-1" />
-		<description>You see a piece of smoked meat.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="180" />
-			<frequency value="18" />
-			<quantity value="1" />
-			<regen value="18" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="2" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
 	<item name="smoked ham">
 		<type class="food" subclass="ham_smoked" tileid="-1" />
 		<description>You see a smoked ham.</description>
@@ -1154,52 +1177,6 @@
 		</attributes>
 		<weight value="1.0" />
 		<value value="3" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
-	<item name="smoked cod">
-		<type class="food" subclass="cod_smoked" tileid="-1" />
-		<description>You see a smoked cod.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="180" />
-			<frequency value="18" />
-			<quantity value="1" />
-			<regen value="18" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="2" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-
-	<item name="smoked trout">
-		<type class="food" subclass="trout_smoked" tileid="-1" />
-		<description>You see a smoked trout.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="240" />
-			<frequency value="24" />
-			<quantity value="1" />
-			<regen value="24" />
-			<menu value="Eat|Use"/>
-		</attributes>
-		<weight value="1.0" />
-		<value value="2" />
 		<equipable>
 			<slot name="ground" />
 			<slot name="content" />
@@ -1881,6 +1858,30 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
+
+	<item name="smoked meat">
+		<type class="food" subclass="meat_smoked" tileid="-1" />
+		<description>You see a piece of smoked meat.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="120" />
+			<frequency value="18" />
+			<quantity value="1" />
+			<regen value="18" />
+			<menu value="Eat|Use"/>
+		</attributes>
+		<weight value="1.0" />
+		<value value="2" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
 
     <!-- quest -->
 	<item name="easter egg">

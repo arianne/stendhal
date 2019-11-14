@@ -24,14 +24,16 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying</parameter>
     </attributes>
+
+	<!-- NPCs Level 0 -->
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC" />
-    <configurator
-      class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC" />
-    <configurator
-      class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC" />
-    <configurator
-      class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehFishyMarketNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehMemorySorceressNPC" />
+
     <entity x="65" y="94">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -42,8 +44,6 @@
       <attribute name="class">blackboard</attribute>
     </entity>
 
-    <configurator
-      class-name="games.stendhal.server.maps.kirdneh.city.KirdnehFishyMarketNPC" />
     <entity x="65" y="85">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -53,6 +53,7 @@
       </implementation>
       <attribute name="class">blackboard</attribute>
     </entity>
+
     <portal x="50" y="7" ref="diving_board">
       <destination zone="0_kirdneh_city" ref="pool" />
       <attribute name="hidden" />
