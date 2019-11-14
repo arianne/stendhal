@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.maps.semos.mountain;
+package games.stendhal.server.maps.kirdneh.city;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,12 +25,12 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 //import games.stendhal.server.entity.npc.action.StoreMessageAction;
 
 /**
- * Provides StrandedWitchNPC
+ * Provides MemorySorceressNPC
  *
  * @author omero
  */
 
-public class StrandedWitchNPC implements ZoneConfigurator {
+public class KirdnehMemorySorceressNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
@@ -39,16 +39,13 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Blasyklela") {
 
-			//Blasyklela position is temporary, will relocate in Kirdneh
-			//Blasyklela position orbits around 0_semos_mountain_n2_w at (84,111)
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(81, 115));
-				nodes.add(new Node(88, 115));
-				nodes.add(new Node(88, 115));
-				nodes.add(new Node(88, 111));
-				nodes.add(new Node(84, 105));
+				nodes.add(new Node(113, 95));
+				nodes.add(new Node(117, 89));
+				nodes.add(new Node(119, 93));
+				nodes.add(new Node(121, 90));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -63,18 +60,21 @@ public class StrandedWitchNPC implements ZoneConfigurator {
                  * Only when one has Ad Memoria In Portfolio quest
                  */				
 				addHelp(
-					"I am worried about my stepbrother Brosoklelo... He likes dueling magical duels! Tell me you got a purple apple... "
+					"My stepbrother Brosoklelo... He must be stranded somewhere..." + " " +
+					"Brosoklelo likes dueling magical duels... " + " " +
+					"Tell me you got a purple #apple for me!"
 				);
 				addOffer(
-					"I could turn a purple apple into a mauve apple... When you bring me a purple apple I will know..."
+					"I could turn a purple #apple into a mauve #apple..." + " " +
+					"When you bring me the right #apple... I will know what to do!"
 				);
 				addJob(
 					"I am awaiting a purple apple from my stepbrother Brosoklelo... That is my job!"
 				);
 				addReply(
                     "apple", //trigger
-                    "You would not think about an #apple unless you are bestowed with a special one!" + " " +
-                    "A special #apple may come in different colors!",
+                    "You would not think about an apple unless you are bestowed with a special one!" + " " +
+                    "Special apples may come in different colors!",
                     null
 	            );
 				
@@ -86,13 +86,11 @@ public class StrandedWitchNPC implements ZoneConfigurator {
 		};
 		
 		// Finalize Blasyklela
-		//Blasyklela position is temporary, will relocate in Kirdneh
-		//Blasyklela position orbits around 0_semos_mountain_n2_w at (84,111)
 		npc.setEntityClass("bluesorceressnpc");
-		npc.setPosition(84,116);
 		npc.initHP(100);
+		npc.setPosition(113,99);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see Blasyklela... She seems anxiously awaiting news!");
+		npc.setDescription("You see Blasyklela... She seems to be anxiously awaiting news!");
 		zone.add(npc);
 		return npc;
 	}
