@@ -62,11 +62,11 @@ public class KirdnehMemorySorceressNPC implements ZoneConfigurator {
 				addHelp(
 					"My stepbrother Brosoklelo... He must be stranded somewhere..." + " " +
 					"Brosoklelo likes dueling magical duels... " + " " +
-					"Tell me you got a purple #apple for me!"
+					"Tell me you got a purple apple for me!"
 				);
 				addOffer(
-					"I could turn a purple #apple into a mauve #apple..." + " " +
-					"When you bring me the right #apple... I will know what to do!"
+					"I could turn a purple apple into a mauve apple..." + " " +
+					"When you bring me the right apple... I will know what to do!"
 				);
 				addJob(
 					"I am awaiting a purple apple from my stepbrother Brosoklelo... That is my job!"
