@@ -56,7 +56,7 @@ elfbuyernpc.*                 Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY
 elfflowergrowernpc.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 elfmayornpc.*                 Svetlana Kushnariova (Cabbit), Fabzy, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/23314
 elfprincessnpc.*              Svetlana Kushnariova (Cabbit), diamonddmgirl, Rawdanitsu, olonu; CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/18068
-estateagentnpc.png            Svetlana Kushnariova (Cabbit), diamonddmgirl, onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/131
+estateagentnpc.*              Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://github.com/arianne/stendhal/issues/131
 estateagent2npc.png           Svetlana Kushnariova (Cabbit), onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/132
 executivenpc.*                Svetlana Kushnariova (Cabbit), olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://github.com/arianne/stendhal/issues/131
 experiencedwarriornpc.*       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
