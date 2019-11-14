@@ -28,8 +28,9 @@
 		</equipable>
 	</item>
 
+    <!-- apple -->
 	<item name="apple">
-		<type class="food" subclass="apple_red" tileid="-1" />
+		<type class="food" subclass="apple" tileid="-1" />
 		<description>You see a nice shiny apple.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
@@ -100,9 +101,8 @@
 	</item>
 
     <!-- black apple is a special kind of apple -->
-    <!-- will be using apple_special/apple_black -->
 	<item name="black apple">
-		<type class="food" subclass="apple_black" tileid="-1" />
+		<type class="food" subclass="apple_special/apple_black" tileid="-1" />
 		<description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
