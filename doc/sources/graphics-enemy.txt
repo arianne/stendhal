@@ -261,7 +261,7 @@ darkmonk.png               Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (A
 deniran_stormtrooper.*     Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/50932
 elder_cannibal.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 emperor_dalmung.*          Svetlana Kushnariova (Cabbit), wulax, DkuCook, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11165, https://opengameart.org/node/82451
-hunter.*                   ???, Svetlana Kushnariova, olonu; ???; https://opengameart.org/node/72969, https://opengameart.org/node/66349
+hunter.*                   Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), olonu; Jordan Irwin (AntumDeluge); https://opengameart.org/node/72969, https://opengameart.org/node/66349
 imperial_archer.*          Svetlana Kushnariova (Cabbit), olonu, SoCay, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_archer_leader.*   Svetlana Kushnariova (Cabbit), olonu, SoCay, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
 imperial_chief.*           Svetlana Kushnariova (Cabbit), Gwes, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/10653
