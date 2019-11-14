@@ -5,8 +5,8 @@
     <!--template
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -26,8 +26,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -47,8 +47,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -68,8 +68,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -90,8 +90,8 @@
     <value value="100"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -112,8 +112,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -134,8 +134,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -156,8 +156,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -178,8 +178,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -200,8 +200,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -222,8 +222,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="trade"/>
@@ -243,8 +243,8 @@
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -285,8 +285,8 @@
     <value value="4000"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -307,8 +307,8 @@
     <value value="1000"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -328,8 +328,8 @@
     <value value="10000"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -349,8 +349,8 @@
     <value value="10000"/>
     <equipable>
       <slot name="ground"/>
-      <slot name="bag"/>
       <slot name="content"/>
+      <slot name="bag"/>
       <slot name="trade"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
