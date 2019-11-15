@@ -46,7 +46,7 @@ public class Outfits {
 	public static final int MOUTH_OUTFITS = 5;
 
 	public static final int MASK_OUTFITS = 9;
-	public static final int HAT_OUTFITS = 10;
+	public static final int HAT_OUTFITS = 11;
 
 	// layers used for building outfits
 	public static final List<String> LAYER_NAMES = Arrays.asList(
