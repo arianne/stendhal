@@ -86,7 +86,7 @@ dress_049.*   (yo-yo)            bleutailfly, Jordan Irwin (AntumDeluge); OGA BY
 dress_050.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_051.png (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
 dress_052.*   (denim)            Katie Russell (kymara), Jordan Irwin (AntumDeluge); ???; Stendhal
-dress_053.png (business suit)    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+dress_053.*   (formal vest)      Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_054.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_055.png (tank top)         bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_056.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84542
