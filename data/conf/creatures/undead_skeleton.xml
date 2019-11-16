@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="skeleton">
+    <type class="undead" subclass="skeleton" tileid="undead_skeleton.png:0"/>
+    <description>You see a skeleton which survives to get revenge.</description>
+    <attributes>
+      <atk value="98"/>
+      <def value="13"/>
+      <hp value="95"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="6"/>
+    <experience value="60"/>
+    <respawn value="1200"/>
+    <corpse name="bone" harmless="bone" />
+    <drops>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="mace" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="0.5"/>
+      <item value="studded legs" quantity="[1,1]" probability="1.0"/>
+      <item value="dagger" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not pass!"/>
+        <sound value="bones-2" />
+        <sound value="skeleton-laugh-01" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="tiny skelly">
+    <type class="undead" subclass="tiny_skelly" tileid="undead_skeleton.png:1"/>
+    <description>You see a tiny skelly. It is silly, little and evil, be careful with its poison...</description>
+    <attributes>
+      <atk value="173"/>
+      <def value="28"/>
+      <hp value="125"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1200"/>
+    <corpse name="tiny_bone" harmless="tiny_bone" />
+    <drops>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
+      <item value="buckler" quantity="[1,1]" probability="15.5"/>
+      <item value="dagger" quantity="[1,1]" probability="10.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not maim!"/>
+        <sound value="bones-2" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="poisonous" params="5,poison"/>
+    </ai>
+  </creature>
+
+  <creature name="warrior skeleton">
+    <type class="undead" subclass="warrior_skeleton" tileid="undead_skeleton.png:2"/>
+    <description>You see a warrior skeleton, it's just a normal skeleton with a shield!</description>
+    <attributes>
+      <atk value="233"/>
+      <def value="65"/>
+      <hp value="90"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="23"/>
+    <experience value="350"/>
+    <respawn value="1280"/>
+    <corpse name="bone" harmless="bone" />
+    <drops>
+      <item value="money" quantity="[5,29]" probability="100.0"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="4.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="1.5"/>
+      <item value="hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="skull shield" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not kill!"/>
+        <sound value="bones-2" />
+        <sound value="skeleton-laugh-01" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="elder skeleton">
+    <type class="undead" subclass="elder_skeleton" tileid="undead_skeleton.png:3"/>
+    <description>You see the bones of an old man. He lived to a ripe old age, and is sure to know a thing or two that separates him from all the vengeful skeletons that died young.</description>
+    <attributes>
+      <atk value="253"/>
+      <def value="49"/>
+      <hp value="156"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="26"/>
+    <experience value="430"/>
+    <respawn value="1310"/>
+    <corpse name="bone" harmless="bone" />
+    <drops>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="mace" quantity="[1,1]" probability="5.0"/>
+      <item value="skull shield" quantity="[1,1]" probability="3.0"/>
+      <item value="studded legs" quantity="[1,1]" probability="10.0"/>
+      <item value="dagger" quantity="[1,1]" probability="5.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not survive!"/>
+        <sound value="bones-2" />
+        <sound value="skeleton-laugh-01" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="demon skeleton">
+    <type class="undead" subclass="demon_skeleton" tileid="undead_skeleton.png:4"/>
+    <description>You see a demon skeleton. Demon skeletons have ascended from the underworld and they are going to take over this world. You really should slay them before it is too late!</description>
+    <attributes>
+      <atk value="316"/>
+      <def value="102"/>
+      <hp value="100"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="42"/>
+    <experience value="1160"/>
+    <respawn value="1660"/>
+    <corpse name="bone_red" harmless="bone_red" />
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="demon sword" quantity="[1,1]" probability="1.0"/>
+      <item value="hell dagger" quantity="[1,1]" probability="0.03"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not rob!"/>
+        <sound value="bones-2" />
+        <sound value="skeleton-laugh-01" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="gashadokuro">
+    <type class="undead" subclass="gashadokuro" tileid="undead_skeleton.png:5"/>
+    <description>A giant figure made of bone, known only as gashadokuro, towers before you. He is created from the bones of starving humans.</description>
+    <attributes>
+      <atk value="2000"/>
+      <def value="171"/>
+      <hp value="18000"/>
+      <speed value="0.7"/>
+      <size value="4,3"/>
+    </attributes>
+    <level value="500"/>
+    <experience value="750000"/>
+    <respawn value="300000"/>
+    <corpse name="bone_4x3" harmless="bone_4x3" width="4" height="3"/>
+    <drops>
+      <item value="money" quantity="[5000,30000]" probability="100.0"/>
+      <item value="skull staff" quantity="[1,1]" probability="3.0"/>
+      <item value="insulated ring" quantity="1" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="gasha-yell-01"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="50,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>

@@ -43,4 +43,5 @@
     <group uri="creatures/spider.xml" />
 	<group uri="creatures/troll.xml" />
 	<group uri="creatures/undead.xml" />
+	<group uri="creatures/undead_skeleton.xml" />
 </groups>
