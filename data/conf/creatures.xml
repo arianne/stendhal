@@ -16,13 +16,14 @@
 	<group uri="creatures/goblin.xml" />
 	<group uri="creatures/golem.xml" />
 	<group uri="creatures/human.xml" />
+	<group uri="creatures/human_cannibal.xml" />
 	<group uri="creatures/humanoid.xml" />
 	<group uri="creatures/hybrid.xml" />
 	<group uri="creatures/insect.xml" />
 	<group uri="creatures/kobold.xml" />
 	<group uri="creatures/mutant.xml" />
 	<group uri="creatures/mythical_being.xml" />
-	<group uri="creatures/northpole.xml" />	
+	<group uri="creatures/northpole.xml" />
 	<group uri="creatures/ogre.xml" />
     <group uri="creatures/oni.xml" />
     <group uri="creatures/orc.xml" />
