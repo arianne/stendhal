@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="ghost">
+    <type class="undead" subclass="ghost" tileid="undead_specter.png:0"/>
+    <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
+    <attributes>
+      <atk value="171"/>
+      <def value="25"/>
+      <hp value="140"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="cloaked_white" harmless="cloaked_white" />
+    <drops>
+      <item value="money" quantity="[4,23]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Ooooouuuuuh!"/>
+        <sound value="ghost-01"/>
+        <sound value="ghost-02"/>
+        <sound value="ghost-03"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="coward"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="death">
+    <type class="undead" subclass="death" tileid="undead_specter.png:3"/>
+    <description>You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.</description>
+    <attributes>
+      <atk value="283"/>
+      <def value="69"/>
+      <hp value="120"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="30"/>
+    <experience value="570"/>
+    <respawn value="1350"/>
+    <corpse name="cloaked_darkbrown" harmless="cloaked_darkbrown" />
+    <drops>
+      <item value="money" quantity="[4,20]" probability="100.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="2.5"/>
+      <item value="scythe" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Judgement is coming!"/>
+        <noise state="idle follow fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
+        <sound value="laugh-evil-02"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="black death">
+    <type class="undead" subclass="black_death" tileid="undead_specter.png:4"/>
+    <description>You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.</description>
+    <attributes>
+      <atk value="1451"/>
+      <def value="154"/>
+      <hp value="5900"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="300"/>
+    <experience value="270000"/>
+    <respawn value="70000"/>
+    <corpse name="humanoid_3x2" width="3" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[2,4]" probability="50.0"/>
+      <item value="money" quantity="[3000,10000]" probability="100.0"/>
+      <item value="black armor" quantity="[1,1]" probability="1.0"/>
+      <item value="black legs" quantity="[1,1]" probability="2.0"/>
+      <item value="black boots" quantity="[1,1]" probability="1.0"/>
+      <item value="black shield" quantity="[1,1]" probability="1.0"/>
+      <item value="black scythe" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.6"/>
+      <susceptibility type="light" value="1.3"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Your time to die has come!"/>
+        <noise state="idle follow fight" value="Say goodbye to this world!"/>
+        <sound value="laugh-evil-01"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.05"/>
+      <profile name="heal" params="35,50"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+
+  <creature name="golden death">
+    <type class="undead" subclass="golden_death" tileid="undead_specter.png:5"/>
+    <description>You see the golden death. He came to take your soul away to pay for all your sins.</description>
+    <attributes>
+      <atk value="1968"/>
+      <def value="171"/>
+      <hp value="14000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="450"/>
+    <experience value="700000"/>
+    <respawn value="240000"/>
+    <corpse name="humanoid_3x2" width="3" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[5,20]" probability="80.0"/>
+      <item value="gold bar" quantity="[2,10]" probability="30.0"/>
+      <item value="money" quantity="[8000,40000]" probability="100.0"/>
+      <item value="emerald ring" quantity="[1,1]" probability="2.0"/>
+      <item value="golden blade" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.1"/>
+      <susceptibility type="light" value="0.8"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You will dream of me tonight..."/>
+        <noise state="idle follow fight" value="You will pay for your greed!"/>
+        <sound value="laugh-evil-01"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="20,50"/>
+      <profile name="lifesteal" params="0.1"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+
+  <creature name="invisible man">
+    <type class="undead" subclass="invisible_man" tileid="undead_specter.png:1"/>
+    <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
+    <attributes>
+      <atk value="367"/>
+      <def value="59"/>
+      <hp value="275"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="42"/>
+    <experience value="1160"/>
+    <respawn value="1660"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="My unnatural state should evoke fear in you ..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="incorporeal armor">
+    <type class="undead" subclass="incorporeal_armor" tileid="undead_specter.png:2"/>
+    <description>You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.</description>
+    <attributes>
+      <atk value="565"/>
+      <def value="78"/>
+      <hp value="707"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="79"/>
+    <experience value="5720"/>
+    <respawn value="2750"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not pillage!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>

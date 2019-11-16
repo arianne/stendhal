@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="risecia thug">
+    <type class="human" subclass="risecia_thug" tileid="human.png:8"/>
+    <description>You see a risecia thug, stay away from him!</description>
+    <attributes>
+      <atk value="152"/>
+      <def value="38"/>
+      <hp value="60"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="12"/>
+    <experience value="130"/>
+    <respawn value="1210"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,20]" probability="90.0"/>
+      <item value="chain armor" quantity="[1,1]" probability="8.0"/>
+      <item value="chain legs" quantity="[1,1]" probability="12.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="1.3"/>
+      <item value="sandwich" quantity="[1,1]" probability="1.5"/>
+      <item value="chain boots" quantity="[1,1]" probability="1.0"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="studded helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="short sword" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="risecia archer">
+    <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
+    <description>You see a risecia archer, just one of the warriors who wants to protect his chief.</description>
+    <attributes>
+      <atk value="159"/>
+      <def value="38"/>
+      <hp value="70"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="14"/>
+    <experience value="160"/>
+    <respawn value="1220"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[2,15]" probability="100.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden arrow" quantity="[4,12]" probability="10.0"/>
+      <item value="chain boots" quantity="[1,1]" probability="5.0"/>
+      <item value="wooden bow" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+      <slot name="rhand" item="wooden bow" quantity="1"/>
+      <slot name="lhand" item="wooden arrow" quantity="10000"/>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="risecia swordsman">
+    <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
+    <description>You see a risecia swordsman, the blade of his sword will cut your head!</description>
+    <attributes>
+      <atk value="194"/>
+      <def value="27"/>
+      <hp value="150"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="17"/>
+    <experience value="210"/>
+    <respawn value="1240"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,25]" probability="100.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="5.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="1.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.05"/>
+      <item value="steel boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chain helmet" quantity="[1,1]" probability="5.0"/>
+      <item value="sword" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="Chief Falatheen of the Risecia">
+    <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
+    <description>You see the Chief Falatheen of the Risecia, he doesn't want to die! His little warriors protect him against invaders.</description>
+    <attributes>
+      <atk value="209"/>
+      <def value="22"/>
+      <hp value="150"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="20"/>
+    <experience value="280"/>
+    <respawn value="1260"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,40]" probability="70.0"/>
+      <item value="pie" quantity="[1,1]" probability="5.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="7.0"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="2.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.5"/>
+      <item value="chain boots" quantity="[1,1]" probability="6.0"/>
+      <item value="cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="aventail" quantity="[1,1]" probability="1.0"/>
+      <item value="scimitar" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.5"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+
+</creatures>

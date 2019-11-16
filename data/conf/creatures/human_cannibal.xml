@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="cannibal woman">
+    <type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
+    <description>You see a cannibal woman. She wants to make a soup out of your bones!</description>
+    <attributes>
+      <atk value="244"/>
+      <def value="75"/>
+      <hp value="80"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="24"/>
+    <experience value="370"/>
+    <respawn value="1290"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,37]" probability="100.0"/>
+      <item value="onion" quantity="[1,1]" probability="18.0"/>
+      <item value="leek" quantity="[1,1]" probability="15.0"/>
+      <item value="tomato" quantity="[1,2]" probability="20.0"/>
+      <item value="potato" quantity="[1,2]" probability="20.0"/>
+      <item value="carrot" quantity="[1,2]" probability="20.0"/>
+      <item value="leather helmet" quantity="[1,1]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Zag-Zag!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="cannibal">
+    <type class="human" subclass="cannibal" tileid="human.png:0"/>
+    <description>You see a cannibal. He hunts you for cooking and eating your fresh meat! It's useless to tell him that your flesh is not good, better fight him or run away!</description>
+    <attributes>
+      <atk value="281"/>
+      <def value="91"/>
+      <hp value="70"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="30"/>
+    <experience value="570"/>
+    <respawn value="1350"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,39]" probability="100.0"/>
+      <item value="wooden spear" quantity="[10,20]" probability="40.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Ou-Garrrr!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="elder cannibal">
+    <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
+    <description/>
+    <attributes>
+      <atk value="315"/>
+      <def value="111"/>
+      <hp value="83"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="35"/>
+    <experience value="770"/>
+    <respawn value="1420"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[7,48]" probability="100.0"/>
+      <item value="potion" quantity="[1,3]" probability="20.0"/>
+      <item value="tomato" quantity="[1,2]" probability="30.0"/>
+      <item value="potato" quantity="[1,2]" probability="20.0"/>
+      <item value="carrot" quantity="[1,2]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Yummie!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>

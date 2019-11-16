@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="bloody zombie">
+    <type class="undead" subclass="bloody_zombie" tileid="undead_zombie.png:0"/>
+    <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
+    <attributes>
+      <atk value="182"/>
+      <def value="34"/>
+      <hp value="100"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="16"/>
+    <experience value="200"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,25]" probability="100.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.3"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="brrraaaaaaaaaains"/>
+        <sound value="undead-1"/>
+        <sound value="undead-2"/>
+        <sound value="undead-3"/>
+        <sound value="undead-4"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="zombie">
+    <type class="undead" subclass="zombie" tileid="undead_zombie.png:1"/>
+    <description>You see a zombie. It woke up just to take revenge, be silent.</description>
+    <attributes>
+      <atk value="202"/>
+      <def value="49"/>
+      <hp value="80"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="19"/>
+    <experience value="250"/>
+    <respawn value="1250"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="4.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="undead-1"/>
+        <sound value="undead-2"/>
+        <sound value="undead-3"/>
+        <sound value="undead-4"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="headless monster">
+    <type class="undead" subclass="headless_monster" tileid="undead_zombie.png:2"/>
+    <description>You see a headless monster, how can he hear that we come to him?</description>
+    <attributes>
+      <atk value="221"/>
+      <def value="54"/>
+      <hp value="100"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="21"/>
+    <experience value="300"/>
+    <respawn value="1260"/>
+    <!-- a corpse with a skull is somewhat inapropriate for a headless monster,
+        but we don't have anything better -->
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="rotten zombie">
+    <type class="undead" subclass="rotten_zombie" tileid="undead_zombie.png:3"/>
+    <description>You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.</description>
+    <attributes>
+      <atk value="256"/>
+      <def value="70"/>
+      <hp value="100"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="27"/>
+    <experience value="460"/>
+    <respawn value="1320"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,35]" probability="100.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="15.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="2.0"/>
+      <item value="hammer" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="bluuergghhhoooorrghhhhh"/>
+        <sound value="undead-1"/>
+        <sound value="undead-2"/>
+        <sound value="undead-3"/>
+        <sound value="undead-4"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <!-- Disabled until future review
+  <creature name="myling">
+    <type class="undead" subclass="myling" tileid="undead_zombie.png:4"/>
+    <description>You see a myling which roams in search of someone to give it a proper burial.</description>
+    <attributes>
+      <atk value="1153"/>
+      <def value="96"/>
+      <hp value="3801"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="201"/>
+    <experience value="83700"/>
+    <respawn value="24500"/>
+    <corpse name="humanoid"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Take me to the grave!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.05"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  -->
+
+</creatures>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="vampire bride">
+    <type class="vampire" subclass="vampire_lord_bride" tileid="vampire.png:0"/>
+    <description>You see a vampire bride. She was resurrected from the dead by a wicked vampire lord.</description>
+    <attributes>
+      <atk value="186"/>
+      <def value="4"/>
+      <hp value="800"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="20"/>
+    <experience value="280"/>
+    <respawn value="1260"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,30]" probability="75.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="greater antidote" quantity="[1,2]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.5"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;vampire_lord_bride;vampire_lord_bride_evil),"/>
+    </ai>
+  </creature>
+
+  <creature name="vampirette">
+    <type class="vampire" subclass="vampirette" tileid="vampire.png:4"/>
+    <description>You see a Vampirette. Beware of its sharp teeth! She wants to drink your blood and turn you into a vampire!</description>
+    <attributes>
+      <atk value="353"/>
+      <def value="43"/>
+      <hp value="140"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="40"/>
+    <experience value="1040"/>
+    <respawn value="1520"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="vampirette entrails" quantity="[1,1]" probability="100.0"/>
+      <item value="vampire cloak" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.8"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;vampirette;vampirette_evil),"/>
+    </ai>
+  </creature>
+
+  <creature name="vampire lord">
+    <type class="vampire" subclass="vampire_lord" tileid="vampire.png:2"/>
+    <description>You see a vampire lord. Be careful, he is after your blood!</description>
+    <attributes>
+      <atk value="497"/>
+      <def value="35"/>
+      <hp value="750"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="65"/>
+    <experience value="3390"/>
+    <respawn value="2000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[15,100]" probability="100.0"/>
+      <item value="mega potion" quantity="[1,2]" probability="55.0"/>
+      <item value="vampire cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="vampire sword" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="laugh-evil-04"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="1"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="strategy" params=",outfit_changer(attack_weakest;vampire_lord;vampire_lord_evil),"/>
+    </ai>
+  </creature>
+
+</creatures>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="chaos soldier">
+    <type class="chaos" subclass="chaos_soldier" tileid="chaos.png:4"/>
+    <description>You see a chaos soldier. Chaos soldiers are servants of the evil. Killing you is one of their evil plans.</description>
+    <attributes>
+      <atk value="543"/>
+      <def value="81"/>
+      <hp value="650"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="75"/>
+    <experience value="4960"/>
+    <respawn value="2510"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="0.7"/>
+      <item value="chaos helmet" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos shield" quantity="[1,1]" probability="0.3"/>
+      <item value="chaos sword" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos warrior">
+    <type class="chaos" subclass="chaos_warrior" tileid="chaos.png:5"/>
+    <description>You see a chaos warrior. This chaotic creature is fighting with a big blade to slay his enemies.</description>
+    <attributes>
+      <atk value="604"/>
+      <def value="81"/>
+      <hp value="798"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="85"/>
+    <experience value="6990"/>
+    <respawn value="3150"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,60]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="chaos legs" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos boots" quantity="[1,1]" probability="1.5"/>
+      <item value="chaos helmet" quantity="[1,1]" probability="0.2"/>
+      <item value="chaos shield" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Defy order! Seek chaos!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos commander">
+    <type class="chaos" subclass="chaos_commander" tileid="chaos.png:0"/>
+    <description>You see a chaos commander who is working on an evil plan. You should take care of him before he fulfills his duty.</description>
+    <attributes>
+      <atk value="654"/>
+      <def value="91"/>
+      <hp value="996"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="97"/>
+    <experience value="10090"/>
+    <respawn value="4120"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="chaos armor" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos boots" quantity="[1,1]" probability="2.0"/>
+      <item value="shadow cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="0.1"/>
+      <item value="liberty helmet" quantity="[1,1]" probability="0.05"/>
+      <item value="chaos shield" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Chaos in the wrath!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos sorcerer">
+    <type class="chaos" subclass="chaos_sorceror" tileid="chaos.png:6"/>
+    <description>You see a chaos sorcerer. Chaos sorcerers will cast some evil spells on you if you don't obey them.</description>
+    <attributes>
+      <atk value="670"/>
+      <def value="123"/>
+      <hp value="708"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="103"/>
+    <experience value="12500"/>
+    <respawn value="3000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="chaos shield" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos dagger" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="empty scroll" quantity="[1,1]" probability="1.0"/>
+      <item value="fire sword" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+     <says>
+        <noise state="idle follow fight" value="I will summon chaos and fury upon you!"/>
+      </says>
+      <profile name="status_attackers" params="ConfuseStatus,20;ShockStatus,20;"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos dragonrider">
+    <type class="chaos" subclass="chaos_dragonrider" tileid="chaos.png:1"/>
+    <description>You see a chaos dragonrider. He is very well trained in dragon riding, but he can also fight well on the ground.</description>
+    <attributes>
+      <atk value="706"/>
+      <def value="89"/>
+      <hp value="1218"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="109"/>
+    <experience value="14000"/>
+    <respawn value="5300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="chaos legs" quantity="[1,1]" probability="2.0"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="black helmet" quantity="[1,1]" probability="0.01"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos lord">
+    <type class="chaos" subclass="chaos_lord" tileid="chaos.png:2"/>
+    <description>You see a chaos lord who is one of the strongest chaos creatures in Faiumoni. You should prepare well before attacking him.</description>
+    <attributes>
+      <atk value="807"/>
+      <def value="92"/>
+      <hp value="1662"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="130"/>
+    <experience value="21000"/>
+    <respawn value="8300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[80,200]" probability="100.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="2.0"/>
+      <item value="chaos armor" quantity="[1,1]" probability="0.1"/>
+      <item value="black boots" quantity="[1,1]" probability="0.05"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="black helmet" quantity="[1,1]" probability="0.025"/>
+      <item value="black shield" quantity="[1,1]" probability="0.05"/>
+      <item value="chaos axe" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Chaos will rule!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos overlord">
+    <type class="chaos" subclass="chaos_overlord" tileid="chaos.png:3"/>
+    <description>You see a chaos overlord. It is him who directs the creation of evil plans and gives orders to all chaotic creatures which exist.</description>
+    <attributes>
+      <atk value="1042"/>
+      <def value="113"/>
+      <hp value="3318"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="190"/>
+    <experience value="70400"/>
+    <respawn value="21600"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[100,600]" probability="100.0"/>
+      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+      <item value="mega potion" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos armor" quantity="[1,1]" probability="2.5"/>
+      <item value="chaos boots" quantity="[1,1]" probability="2.5"/>
+      <item value="black boots" quantity="[1,1]" probability="0.1"/>
+      <item value="black cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos shield" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos axe" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="I am become death, destroyer of worlds."/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+
+</creatures>

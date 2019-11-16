@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="lich">
+    <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
+    <description>You see a lich, a dark desolate creature which has been doomed to wander in endless turmoil, feeding on the souls of the righteous.</description>
+    <attributes>
+      <atk value="468"/>
+      <def value="53"/>
+      <hp value="650"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="60"/>
+    <experience value="2760"/>
+    <respawn value="1800"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="greater potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+
+  <creature name="dead lich">
+    <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
+    <description>You see a dead lich with his huge green and heavy cloak. Although he is dead and bony, he'll seek revenge for his too early passing and will always return fast and ruthless!</description>
+    <attributes>
+      <atk value="582"/>
+      <def value="80"/>
+      <hp value="751"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="82"/>
+    <experience value="6330"/>
+    <respawn value="2950"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="greater potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="golden shield" quantity="[1,1]" probability="1.5"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.0080"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="high lich">
+    <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
+    <description>The terrible grinning skull of a high lich leers at you as it prepares to slaughter you in a myriad of magical ways.</description>
+    <attributes>
+      <atk value="693"/>
+      <def value="123"/>
+      <hp value="751"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="104"/>
+    <experience value="12800"/>
+    <respawn value="5950"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="mega potion" quantity="[1,1]" probability="20.0"/>
+      <item value="money" quantity="[40,100]" probability="100.0"/>
+      <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
+      <item value="lich cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="black shield" quantity="[1,1]" probability="0.0010"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.020"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="laugh-evil-03"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>
