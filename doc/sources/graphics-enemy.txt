@@ -277,7 +277,7 @@ imperial_leader.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (A
 imperial_priest.*          Svetlana Kushnariova (Cabbit), olonu; LordNeo, Jordan Irwin (AntumDeluge); https://github.com/arianne/stendhal/issues/89
 imperial_scientist.*       Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/70
 imperial_veteran.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-kalavan_citizen.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
+kalavan_citizen.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_housewife.png      Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 kalavan_peasant.*          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_wisewoman.png      Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
