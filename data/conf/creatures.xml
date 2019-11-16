@@ -23,6 +23,7 @@
 	<group uri="creatures/human_blordrough.xml" />
 	<group uri="creatures/human_cannibal.xml" />
 	<group uri="creatures/human_chaos.xml" />
+	<group uri="creatures/human_imperial.xml" />
 	<group uri="creatures/humanoid.xml" />
 	<group uri="creatures/hybrid.xml" />
 	<group uri="creatures/insect.xml" />
