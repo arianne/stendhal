@@ -26,6 +26,7 @@
 	<group uri="creatures/human_imperial.xml" />
 	<group uri="creatures/human_madaram.xml" />
 	<group uri="creatures/human_mithrilbourgh.xml" />
+	<group uri="creatures/human_risecia.xml" />
 	<group uri="creatures/humanoid.xml" />
 	<group uri="creatures/hybrid.xml" />
 	<group uri="creatures/insect.xml" />
