@@ -159,4 +159,64 @@
     </ai>
   </creature>
 
+  <creature name="invisible man">
+    <type class="undead" subclass="invisible_man" tileid="undead_specter.png:1"/>
+    <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
+    <attributes>
+      <atk value="367"/>
+      <def value="59"/>
+      <hp value="275"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="42"/>
+    <experience value="1160"/>
+    <respawn value="1660"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="My unnatural state should evoke fear in you ..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="incorporeal armor">
+    <type class="undead" subclass="incorporeal_armor" tileid="undead_specter.png:2"/>
+    <description>You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.</description>
+    <attributes>
+      <atk value="565"/>
+      <def value="78"/>
+      <hp value="707"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="79"/>
+    <experience value="5720"/>
+    <respawn value="2750"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not pillage!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
