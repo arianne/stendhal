@@ -41,10 +41,10 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(72, 123));
-				nodes.add(new Node(74, 124));
-				nodes.add(new Node(77, 124));
-				nodes.add(new Node(82, 124));
+				nodes.add(new Node(75, 124));
+				nodes.add(new Node(79, 124));
+				nodes.add(new Node(79, 122));
+				nodes.add(new Node(75, 122));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -56,33 +56,32 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 						"Fortvna");				
 				addJob(
                         "I like dueling in magical duels..." + " " +
-                        "That's my job and I have probably lost my #memory..." + " " +
+                        "I have probably lost my #memory..." + " " +
                         "Again...");
 				addHelp(
-						"I am stranded here, I can not help you with anything..." + " " +
-						"My #memory is nagging me with a name... Blasyklela!"
-				);
+						"I can not help you with anything..." + " " +
+						"My #memory is nagging me..." + " " +
+						"Again...");
 				addOffer(
 						"I am stranded here, I can not offer you anything..." + " " +
-						"My #memory seems in disarray but I remember a place... Kirdneh!"
-				);
-				addReply(
-	                    "apple",
-	                    "You would not think about an apple..." + " " +
-	                    "Unless you are bestowed a special apple!" + " " +
-	                    "Blasyklela! Kirdneh! My #memory...",
-	                    null
-	            );
+						"My #memory seems in disarray..." + " " +
+						"Again...");
+
 				addReply(
 	                    "Kirdneh",
-	                    "Kirdneh... A lovely place indeed..." + " " +
 	                    "My #memory... A special #apple... #Kirdneh... A lovely place!",
 	                    null
 	            );
 				addReply(
 	                    "Blasyklela",
-	                    "Blasyklela my beloved stepsister..." + " " +
 	                    "My #memory... A special #apple... #Blasyklela... My beloved stepsister!",
+	                    null
+	            );
+				addReply(
+	                    "apple",
+	                    "You would not think about an apple..." + " " +
+	                    "Unless you are bestowed a special kind of an apple!" + " " +
+	                    "My #memory... Blasyklela... Kirdneh...",
 	                    null
 	            );
 
@@ -95,7 +94,7 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 		
 		// Finalize Brosoklelo
 		npc.setEntityClass("brownwizardnpc");
-		npc.setPosition(65,120);
+		npc.setPosition(77,127);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REROUTE);
 		npc.setDescription("You see Brosoklelo... He seems somewhat confused like he had lost his memory!");

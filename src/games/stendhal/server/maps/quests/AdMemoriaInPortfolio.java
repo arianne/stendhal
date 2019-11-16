@@ -13,6 +13,42 @@
 
 package games.stendhal.server.maps.quests;
 
+import org.apache.log4j.Logger;
+
+import com.google.common.collect.ImmutableList;
+
+import java.util.List;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ArrayList;
+
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
+
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+import games.stendhal.server.entity.npc.action.DisableFeatureAction;
+import games.stendhal.server.entity.npc.action.CreateSlotAction;
+
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+
+//import games.stendhal.common.grammar.Grammar;
+//import games.stendhal.server.actions.admin.AdministrationAction;
+
 /**
  * QUEST: Ad Memoria In Portfolio
  * 
@@ -64,46 +100,10 @@ package games.stendhal.server.maps.quests;
  * /alterquest <player> admemoriainportfolio <null> 
  */
 
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-//import java.util.LinkedList;
-import java.util.ArrayList;
-
-//import games.stendhal.common.grammar.Grammar;
-//import com.google.common.collect.ImmutableList;
-//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-//import games.stendhal.server.entity.npc.action.CreateSlotAction;
-//import games.stendhal.server.actions.admin.AdministrationAction;
-
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.Region;
-
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import games.stendhal.server.entity.npc.action.EquipItemAction;
-import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-import games.stendhal.server.entity.npc.action.CreateSlotAction;
-import games.stendhal.server.entity.npc.action.DisableFeatureAction;
-
-import games.stendhal.server.entity.npc.action.IncreaseXPAction;
-import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-
 public class AdMemoriaInPortfolio extends AbstractQuest {
+	
+	private static Logger logger = Logger.getLogger(AdMemoriaInPortfolio.class);
+	
 	private static final int APPLE_AMOUNT = 1;
 	private static final String QUEST_SLOT = "admemoriainportfolio";
 
@@ -112,12 +112,14 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
+	
+	/** A convenience function to make it easier to test quest */
     /** admemoriainportfolio_step_0 */
-    // RESET Quest, testing pourposes only
-    // A convenience function to make it easier for admins to test quests.
 	private void admemoriainportfolio_step_0() {
+		
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
-		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
+		
+		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();	
 		reset_brosoklelo.add(new DropItemAction("purple apple"));
 		reset_brosoklelo.add(new DropItemAction("mauve apple"));
 		reset_brosoklelo.add(new DropItemAction("keyring"));
@@ -128,12 +130,12 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         reset_brosoklelo.add(new DisableFeatureAction("portfolio"));
         
         npc.add(
-            ConversationStates.ATTENDING,
-            "reset", //reset request
-            null,
-            ConversationStates.IDLE,
-            "reset complete",
-            new MultipleActions(reset_brosoklelo),
+            ConversationStates.ATTENDING, //initial state
+            "reset", //trigger word
+            null, //chat condition
+            ConversationStates.IDLE, //state after reset
+            "reset complete", //reply to trigger word
+            new MultipleActions(reset_brosoklelo), //reset actions
             null
         );
 
@@ -160,7 +162,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Blasyklela",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Blasyklela, my stepsister... As far as I can remeber...  Blasyklela lives in #Kirdneh...",
+			"Blasyklela! My beloved stepsister... I remember... #Kirdneh...",
 			null);
 
 		/** quest is not started yet, ask about Kirdneh */
@@ -169,20 +171,20 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Kirdneh",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Kirdneh... As far as I can remember, the place where my stepsister #Blasyklela lives",
+			"Kirdneh! My stepsister #Blasyklela lives in Kirdneh! A place far from here...",
 			null);
 
-		/** quest not started, quest offered */
+		/** quest not started, offer quest */
 		npc.add(
 			ConversationStates.ATTENDING,
 			"memory",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"Laaah lah lah laaah... Duel in magical mist..." + " " +
-            "My memory lost again... Dih.. Dah.. Duh.. Dah!" + " " +
+			"Laaah lah lah laaah... Dueling in magical mist..." + " " +
+            "Memory lost again... Dih.. Dah.. Duh.. Dah!" + " " +
             "Here stranded I stand. Yet not lost at all..."  + " " +
-            "Oh please... Could you help recover my memory?" + " " +
-            "A #YES or #NO answer will do...",
+            "My memory... Are you here to help?" + " " +
+            "Please... A #YES or #NO answer will do...",
 			null);
 
 		//on offered quest
@@ -228,10 +230,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** admemoriainportfolio_step_2 */
 	/** find Blasyklela in Kirdneh. step_2 */
 	private void admemoriainportfolio_step_2() {
-	    // Player has AdMemoriaInPortfolio quest
-		// Player has AdMemoriaInPortfolio required items with him
 		final SpeakerNPC npc = npcs.get("Blasyklela");
 		
+	    // Player has AdMemoriaInPortfolio quest
+		// Player has AdMemoriaInPortfolio required items with him
 		npc.add(
 	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
 	        new AndCondition(
@@ -270,22 +272,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** completing admemoriainportfolio_step_3 activates portfolio slot for player */
 	private void admemoriainportfolio_step_3() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
+
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
+		
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
-		//reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
-		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
-		reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
-		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
-		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
-		reward_brosoklelo.add(new IncreaseXPAction(1000));
-		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
-		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		
 		if (System.getProperty("stendhal.container") != null) {
 			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
 		} else {
 			reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
+            reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		}
+
+        reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
+        reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
+        reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
+        reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
+		reward_brosoklelo.add(new IncreaseXPAction(1000));
+		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
 
 		npc.add(
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
@@ -302,7 +306,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
                             npc.say(
-                                "Oh a mauve apple... That surely comes from my beloved stepsister..." + " " +
+                                "Oh a mauve apple... That surely comes from Blasyklela..." + " " +
                                 "Thank you indeed!" + " " +
                                 "I will now grant you a special gift for your efforts..." + " " +
                                 "Here... Take this Portfolio..." + " " + 
@@ -375,12 +379,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             res.add("I agreed to help Brosoklelo");
         }
         
-        /**
-        if (questState.equals("Blasyklela"))  {
-            res.add("I took scrolls to Blasyklela and she asked me to tell Brosoklelo 'strandedwitch'.");
-        }
-        */        
-
         if (questState.equals("done")) {
             res.add("I returned to Brosoklelo and he has fixed my portfolio for me.");
         }
