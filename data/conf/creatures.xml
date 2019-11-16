@@ -46,4 +46,5 @@
 	<group uri="creatures/undead_lich.xml" />
 	<group uri="creatures/undead_mummy.xml" />
 	<group uri="creatures/undead_skeleton.xml" />
+	<group uri="creatures/undead_specter.xml" />
 </groups>
