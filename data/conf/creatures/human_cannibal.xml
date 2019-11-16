@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="cannibal woman">
-    <type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
+    <type class="human" subclass="cannibalwoman" tileid="human_cannibal.png:1"/>
     <description>You see a cannibal woman. She wants to make a soup out of your bones!</description>
     <attributes>
       <atk value="244"/>
@@ -40,7 +40,7 @@
   </creature>
 
   <creature name="cannibal">
-    <type class="human" subclass="cannibal" tileid="human.png:0"/>
+    <type class="human" subclass="cannibal" tileid="human_cannibal.png:0"/>
     <description>You see a cannibal. He hunts you for cooking and eating your fresh meat! It's useless to tell him that your flesh is not good, better fight him or run away!</description>
     <attributes>
       <atk value="281"/>
@@ -71,7 +71,7 @@
   </creature>
 
   <creature name="elder cannibal">
-    <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
+    <type class="human" subclass="elder_cannibal" tileid="human_cannibal.png:2"/>
     <description/>
     <attributes>
       <atk value="315"/>
