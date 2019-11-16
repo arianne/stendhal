@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+
+  <creature name="mummy">
+    <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
+    <description>You see a mummy which usually sleeps in a coffin.</description>
+    <attributes>
+      <atk value="154"/>
+      <def value="42"/>
+      <hp value="55"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="12"/>
+    <experience value="130"/>
+    <respawn value="1210"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,20]" probability="90.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="10.0"/>
+      <item value="short sword" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="undead-5" />
+        <sound value="undead-06" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="royal mummy">
+    <type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
+    <description>You see a royal mummy. You wonder what keeps this king's soul from finding peace.</description>
+    <attributes>
+      <atk value="250"/>
+      <def value="71"/>
+      <hp value="80"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="24"/>
+    <experience value="370"/>
+    <respawn value="1290"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="3.0"/>
+      <item value="aventail" quantity="[1,1]" probability="1.0"/>
+      <item value="skull shield" quantity="[1,1]" probability="5.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="undead-5" />
+        <sound value="undead-06" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>
