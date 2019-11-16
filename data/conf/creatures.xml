@@ -5,6 +5,7 @@
 	<group uri="creatures/angel.xml" />
 	<group uri="creatures/animal.xml" />
 	<group uri="creatures/beast.xml" />
+	<group uri="creatures/chess.xml" />
     <group uri="creatures/demon.xml" />
     <group uri="creatures/dragon.xml" />
 	<group uri="creatures/dwarf.xml" />
