@@ -48,4 +48,5 @@
 	<group uri="creatures/undead_skeleton.xml" />
 	<group uri="creatures/undead_specter.xml" />
 	<group uri="creatures/undead_vampire.xml" />
+	<group uri="creatures/undead_zombie.xml" />
 </groups>
