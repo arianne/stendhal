@@ -4,7 +4,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
 
   <creature name="risecia thug">
-    <type class="human" subclass="risecia_thug" tileid="human.png:8"/>
+    <type class="human" subclass="risecia_thug" tileid="human_risecia.png:1"/>
     <description>You see a risecia thug, stay away from him!</description>
     <attributes>
       <atk value="152"/>
@@ -39,7 +39,7 @@
   </creature>
 
   <creature name="risecia archer">
-    <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
+    <type class="human" subclass="risecia_archer" tileid="human_risecia.png:0"/>
     <description>You see a risecia archer, just one of the warriors who wants to protect his chief.</description>
     <attributes>
       <atk value="159"/>
@@ -73,7 +73,7 @@
   </creature>
 
   <creature name="risecia swordsman">
-    <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
+    <type class="human" subclass="risecia_swordsman" tileid="human_risecia.png:2"/>
     <description>You see a risecia swordsman, the blade of his sword will cut your head!</description>
     <attributes>
       <atk value="194"/>
@@ -106,7 +106,7 @@
   </creature>
 
   <creature name="Chief Falatheen of the Risecia">
-    <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
+    <type class="human" subclass="risecia_leader" tileid="human_risecia.png:3"/>
     <description>You see the Chief Falatheen of the Risecia, he doesn't want to die! His little warriors protect him against invaders.</description>
     <attributes>
       <atk value="209"/>
