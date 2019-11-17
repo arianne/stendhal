@@ -280,7 +280,7 @@ imperial_veteran.*         Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDel
 kalavan_citizen.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 kalavan_housewife.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 kalavan_peasant.*          Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-kalavan_wisewoman.png      Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
+kalavan_wisewoman.*        Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/136
 little_assassin.*          Svetlana Kushnariova (Cabbit), Fabzy, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/147
 littlewitch.*              Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/127
 littlewizard.*             Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/126
