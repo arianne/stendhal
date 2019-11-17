@@ -56,59 +56,15 @@ div.quickPickup div.itemSlot {
   cursor: url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto;
 }
 
-.equipment {
-  position: relative;
-  height: 160px;
-  border: 1px solid black
-}
-
-#head0 {
-  position: absolute;
-  top: 0px;
-  left: 40px
-}
-
-#lhand0 {
-  position: absolute;
-  top: 50px;
-  left: 80px
-}
-
-#rhand0 {
-  position: absolute;
-  top: 50px;
-  left: 0px
-}
-
-#finger0 {
-  position: absolute;
-  top: 90px;
-  left: 0px
-}
-
-#armor0 {
-  position: absolute;
-  top: 40px;
-  left: 40px
-}
-
-#cloak0 {
-  position: absolute;
-  top: 90px;
-  left: 80px
-}
-
-#legs0 {
-  position: absolute;
-  top: 80px;
-  left: 40px
-}
-
-#feet0 {
-  position: absolute;
-  top: 120px;
-  left: 40px
-}
+.equipment { position: relative; height: 160px; border: 1px solid black }
+#head0 { position: absolute; top: 0px; left: 40px }
+#lhand0 { position: absolute; top: 50px; left: 80px }
+#rhand0 { position: absolute; top: 50px; left: 0px }
+#finger0 { position: absolute; top: 90px; left: 0px }
+#armor0 { position: absolute; top: 40px; left: 40px }
+#cloak0 { position: absolute; top: 90px; left: 80px }
+#legs0 { position: absolute; top: 80px; left: 40px }
+#feet0 { position: absolute; top: 120px; left: 40px }
 
 #chat {
   height: 190px;
@@ -136,69 +92,22 @@ div.quickPickup div.itemSlot {
   padding: 0.1em;
 }
 
-div.logerror {
-  color: #F00
-}
-
-div.logprivmsg {
-  color: #444
-}
-
-div.logclient {
-  color: #888
-}
-
-div.logerror {
-  color: #F00
-}
-
-div.loginformation {
-  color: #ffc800
-}
-
-div.lognegative {
-  color: #f00
-}
-
-div.lognormal {
-  color: #000
-}
-
-div.logpositive {
-  color: #0f0
-}
-
-div.loggroup {
-  color: #633d8b
-}
-
-div.logemote {
-  color: #633d8b
-}
-
-div.logresponse {
-  color: #006400
-}
-
-div.logscene_setting {
-  color: #572002
-}
-
-div.logsignificant_negative {
-  color: #ff8f8f
-}
-
-div.logsignificant_positive {
-  color: #4169e1
-}
-
-div.logtutorial {
-  color: #ac00ac
-}
-
-div.logsupport {
-  color: #ff7200
-}
+div.logerror { color: #F00 }
+div.logprivmsg { color: #444 }
+div.logclient { color: #888}
+div.logerror { color: #F00 }
+div.loginformation { color: #ffc800}
+div.lognegative { color: #f00}
+div.lognormal { color: #000}
+div.logpositive { color: #0f0}
+div.loggroup { color: #633d8b }
+div.logemote { color: #633d8b }
+div.logresponse { color: #006400 }
+div.logscene_setting { color: #572002 }
+div.logsignificant_negative { color: #ff8f8f }
+div.logsignificant_positive { color: #4169e1 }
+div.logtutorial { color: #ac00ac }
+div.logsupport { color: #ff7200 }
 
 span.logh {
   color: #00F
@@ -242,26 +151,9 @@ span.logi {
   width: 130px
 }
 
-#bag {
-  border: 1px solid black;
-  width: 120px;
-  padding: 2px;
-  float: left
-}
-
-#keyring {
-  border: 1px solid black;
-  width: 80px;
-  padding: 2px;
-  float: left
-}
-
-#portfolio {
-  border: 1px solid black;
-  width: 80px;
-  padding: 2px;
-  float: left
-}
+#bag { border: 1px solid black; width: 120px; padding: 2px; float: left }
+#keyring { border: 1px solid black; width: 80px; padding: 2px; float: left }
+#portfolio { border: 1px solid black; width: 80px; padding: 2px; float: left }
 
 #chatinput {
   width: 98%
