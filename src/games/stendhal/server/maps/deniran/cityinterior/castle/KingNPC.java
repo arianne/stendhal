@@ -30,9 +30,9 @@ public class KingNPC implements ZoneConfigurator {
 		final SpeakerNPC npc = new SpeakerNPC("King Edward of Deniran") {
 			@Override
 			public void createDialog() {
-				addGreeting("Hello, and welcome to deniran castle.");
+				addGreeting("Hello, and welcome to Deniran castle.");
 				addJob("We are the king!");
-				addOffer("I don't have anything for you at the moment. But... There has been rumors of blordroughs digging caves under the city. I will probobly need your help in the future.");
+				addOffer("I don't have anything for you at the moment. But... There have been rumors of blordroughs digging caves under the city. I will probobly need your help in the future.");
 				addGoodbye("Fare thee well, stranger!");
 			}
 
