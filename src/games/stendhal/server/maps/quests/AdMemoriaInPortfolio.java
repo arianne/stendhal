@@ -278,7 +278,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
 		
 		if (System.getProperty("stendhal.container") != null) {
+			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
 			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
+			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		} else {
 			reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
             reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
@@ -356,6 +358,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	}
 
 	/** travel log */
+	@Override
 	public List<String> getHistory(final Player player) {        
 		//initialize res
         final List<String> res = new ArrayList<String>();
