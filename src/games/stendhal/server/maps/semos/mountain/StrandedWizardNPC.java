@@ -73,15 +73,15 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 	                    null
 	            );
 				addReply(
-	                    "Blasyklela",
-	                    "My #memory... A special #apple... #Blasyklela... My beloved stepsister!",
+	                    "Vlamyklela",
+	                    "My #memory... A special #apple... #Vlamyklela... My beloved stepsister!",
 	                    null
 	            );
 				addReply(
 	                    "apple",
 	                    "You would not think about an apple..." + " " +
 	                    "Unless you are bestowed a special kind of an apple!" + " " +
-	                    "My #memory... Blasyklela... Kirdneh...",
+	                    "My #memory... Vlamyklela... Kirdneh...",
 	                    null
 	            );
 

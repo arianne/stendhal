@@ -30,14 +30,14 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * @author omero
  */
 
-public class KirdnehMemorySorceressNPC implements ZoneConfigurator {
+public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Blasyklela") {
+		final SpeakerNPC npc = new SpeakerNPC("Vlamyklela") {
 
 			@Override
 			protected void createPath() {
@@ -85,12 +85,12 @@ public class KirdnehMemorySorceressNPC implements ZoneConfigurator {
 			}
 		};
 		
-		// Finalize Blasyklela
+		// Finalize Vlamyklela
 		npc.setEntityClass("bluesorceressnpc");
 		npc.initHP(100);
 		npc.setPosition(113,99);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see Blasyklela... She seems to be anxiously awaiting news!");
+		npc.setDescription("You see Vlamyklela... She seems to be anxiously awaiting news!");
 		zone.add(npc);
 		return npc;
 	}
