@@ -25,7 +25,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 //import games.stendhal.server.entity.npc.action.StoreMessageAction;
 
 /**
- * Provides StrandedWizardNPC
+ * Provides Brosoklelo
  *
  * @author omero
  */
@@ -56,25 +56,28 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 						"Fortvna");				
 				addJob(
                         "I like dueling in magical duels..." + " " +
-                        "I have probably lost my #memory..." + " " +
-                        "Again...");
+                        "Oh... My poor #memory..." + " " +
+                        "I am confused... Look, I have a purple apple!");
 				addHelp(
 						"I can not help you with anything..." + " " +
-						"My #memory is nagging me..." + " " +
-						"Again...");
+						"My #memory is nagging at me..." + " " +
+						"All I have is a purple apple!");
 				addOffer(
-						"I am stranded here, I can not offer you anything..." + " " +
+						"I can not offer you anything..." + " " +
 						"My #memory seems in disarray..." + " " +
-						"Again...");
-
+						"I can offer you a purple apple!");
 				addReply(
 	                    "Kirdneh",
-	                    "My #memory... A special #apple... #Kirdneh... A lovely place!",
+	                    "My #memory... A purple #apple... #Kirdneh... Ah, that is place!",
 	                    null
 	            );
 				addReply(
 	                    "Vlamyklela",
+<<<<<<< Updated upstream
 	                    "My #memory... A special #apple... #Vlamyklela... My beloved stepsister!",
+=======
+	                    "My #memory... A purple #apple... #Vlamyklela... Ah, beloved stepsister!",
+>>>>>>> Stashed changes
 	                    null
 	            );
 				addReply(
@@ -97,7 +100,7 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 		npc.setPosition(77,127);
 		npc.initHP(100);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see Brosoklelo... He seems somewhat confused like he had lost his memory!");
+		npc.setDescription("You see Brosoklelo... He seems somewhat confused!");
 		zone.add(npc);
 		return npc;
 	}

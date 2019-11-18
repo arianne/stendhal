@@ -25,7 +25,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 //import games.stendhal.server.entity.npc.action.StoreMessageAction;
 
 /**
- * Provides MemorySorceressNPC
+ * Provides Vlamyklela
  *
  * @author omero
  */
@@ -56,8 +56,8 @@ public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 				addGoodbye(
 						"Fortvna");
                 /**
+                 * When one has Ad Memoria In Portfolio quest active
                  * Will Convert 1x purple apple into 1x mauve apple 
-                 * Only when one has Ad Memoria In Portfolio quest
                  */				
 				addHelp(
 					"My stepbrother Brosoklelo... He must be stranded somewhere..." + " " +
@@ -66,15 +66,16 @@ public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 				);
 				addOffer(
 					"I could turn a purple apple into a mauve apple..." + " " +
-					"When you bring me the right apple... I will know what to do!"
+					"When you bring me a purple apple, I will know what to do!"
 				);
 				addJob(
-					"I am awaiting a purple apple from my stepbrother Brosoklelo... That is my job!"
+					"I can turn a purple apple into a mauve apple. That is my job!"
 				);
 				addReply(
                     "apple", //trigger
-                    "You would not think about an apple unless you are bestowed with a special one!" + " " +
-                    "Special apples may come in different colors!",
+                    "Apples may come in different colors!" + " " +
+                    "You would not think an apple can restore lost memory..." + " " +
+                    "Say you are were bestowed with a purple apple...",
                     null
 	            );
 				
