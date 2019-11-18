@@ -136,7 +136,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** A convenience function to make it easier to test quest */
     /** admemoriainportfolio_step_0 */
 	private void admemoriainportfolio_step_0() {
-<<<<<<< HEAD
 		
 		/** procedure:
 		 * 
@@ -157,12 +156,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();	
-=======
-
-		final SpeakerNPC npc = npcs.get("Brosoklelo");
-
-		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
->>>>>>> e4ebc3570944be849c274c25e0d67e3ba49c17f5
 		reset_brosoklelo.add(new DropItemAction("purple apple"));
 		reset_brosoklelo.add(new DropItemAction("mauve apple"));
 		reset_brosoklelo.add(new DropItemAction("keyring"));
@@ -273,13 +266,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** admemoriainportfolio_step_2 */
 	/** find Vlamyklela in Kirdneh. step_2 */
 	private void admemoriainportfolio_step_2() {
-<<<<<<< HEAD
 		final SpeakerNPC npc = npcs.get("Vlamyklela");
-		
-=======
-		final SpeakerNPC npc = npcs.get("Blasyklela");
-
->>>>>>> e4ebc3570944be849c274c25e0d67e3ba49c17f5
 	    // Player has AdMemoriaInPortfolio quest
 		// Player has AdMemoriaInPortfolio required items with him
 		npc.add(
