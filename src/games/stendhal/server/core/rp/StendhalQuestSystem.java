@@ -66,11 +66,15 @@ public class StendhalQuestSystem {
 	 * Initializes the QuestSystem.
 	 */
 	public void init() {
+<<<<<<< HEAD
 		
         //AdMemoriaInPortfolio
 		/** enable/disable */
 		loadQuest(new AdMemoriaInPortfolio());
 		
+=======
+		loadQuest(new AdMemoriaInPortfolio());
+>>>>>>> e4ebc3570944be849c274c25e0d67e3ba49c17f5
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
 		loadQuest(new AntivenomRing());

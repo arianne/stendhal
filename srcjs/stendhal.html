@@ -1,87 +1,99 @@
 <!doctype html>
 <html>
-<!-- 
+<!--
 /***************************************************************************
  *                   (C) Copyright 2014-2017 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Affero General Public License as        *
- *   published by the Free Software Foundation; either version 3 of the    * 
+ *   published by the Free Software Foundation; either version 3 of the    *
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
 -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Stendhal Alpha Client</title>
-<link rel="stylesheet" type="text/css" href="stendhal.css">
-</head>
-<body id="body" class="background">
 
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Stendhal Alpha Client</title>
+		<link rel="stylesheet" type="text/css" href="stendhal.css">
+	</head>
 
-<div id="leftColumn" class="unselectable">
-	<canvas id="minimap" width="128" height="128"></canvas>
-	<div id="zoneinfo"></div>
-	<div id="stats"></div>
-	<div id="buddyList">
-		<ul id="buddyListUL"></ul>
-	</div>
-</div>
+	<body id="body" class="background">
+		<div id="leftColumn" class="unselectable">
+			<canvas id="minimap" width="128" height="128"></canvas>
+			<div id="zoneinfo"></div>
+			<div id="stats"></div>
+			<div id="buddyList">
+				<ul id="buddyListUL"></ul>
+			</div>
+		</div>
 
-<canvas id="gamewindow" width="640" height="480">Sorry, this pages only works in modern web browsers.</canvas>
+		<canvas id="gamewindow" width="640" height="480">Sorry, this pages only works in modern web browsers.</canvas>
 
+		<div id="rightColumn">
+			<button id="menubutton">▼&nbsp;&nbsp;Menu</button>
+			<button id="soundbutton">🔇</button>
 
-<div id="rightColumn">
+			<div id="equipmentborder">
+				<div id="equipment" class="equipment">
+					<div id="head0" class="itemSlot"></div>
+					<div id="lhand0" class="itemSlot"></div>
+					<div id="rhand0" class="itemSlot"></div>
+					<div id="finger0" class="itemSlot"></div>
+					<div id="armor0" class="itemSlot"></div>
+					<div id="cloak0" class="itemSlot"></div>
+					<div id="legs0" class="itemSlot"></div>
+					<div id="feet0" class="itemSlot"></div>
+				</div>
+			</div>
 
-<button id="menubutton">▼&nbsp;&nbsp;Menu</button>
-<button id="soundbutton">🔇</button>
+			<div id="bag">
+				<div id="bag0" class="itemSlot"></div>
+				<div id="bag1" class="itemSlot"></div>
+				<div id="bag2" class="itemSlot"></div>
+				<div id="bag3" class="itemSlot"></div>
+				<div id="bag4" class="itemSlot"></div>
+				<div id="bag5" class="itemSlot"></div>
+				<div id="bag6" class="itemSlot"></div>
+				<div id="bag7" class="itemSlot"></div>
+				<div id="bag8" class="itemSlot"></div>
+				<div id="bag9" class="itemSlot"></div>
+				<div id="bag10" class="itemSlot"></div>
+				<div id="bag11" class="itemSlot"></div>
+			</div>
 
-<div id="equipmentborder">
-<div id="equipment" class="equipment">
-<div id="head0" class="itemSlot"></div>
-<div id="lhand0" class="itemSlot"></div>
-<div id="rhand0" class="itemSlot"></div>
-<div id="finger0" class="itemSlot"></div>
-<div id="armor0" class="itemSlot"></div>
-<div id="cloak0" class="itemSlot"></div>
-<div id="legs0" class="itemSlot"></div>
-<div id="feet0" class="itemSlot"></div>
-</div>
-</div>
+			<div id="keyring">
+				<div id="keyring0" class="itemSlot"></div>
+				<div id="keyring1" class="itemSlot"></div>
+				<div id="keyring2" class="itemSlot"></div>
+				<div id="keyring3" class="itemSlot"></div>
+				<div id="keyring4" class="itemSlot"></div>
+				<div id="keyring5" class="itemSlot"></div>
+				<div id="keyring6" class="itemSlot"></div>
+				<div id="keyring7" class="itemSlot"></div>
+			</div>
 
-<div id="bag">
-<div id="bag0" class="itemSlot"></div>
-<div id="bag1" class="itemSlot"></div>
-<div id="bag2" class="itemSlot"></div>
-<div id="bag3" class="itemSlot"></div>
-<div id="bag4" class="itemSlot"></div>
-<div id="bag5" class="itemSlot"></div>
-<div id="bag6" class="itemSlot"></div>
-<div id="bag7" class="itemSlot"></div>
-<div id="bag8" class="itemSlot"></div>
-<div id="bag9" class="itemSlot"></div>
-<div id="bag10" class="itemSlot"></div>
-<div id="bag11" class="itemSlot"></div>
-</div>
+			<!-- If you want to add more slots or remove some, you must just add/remove div blocks, like that.
+				Do not forget change number of slots in /stendhal/ui/itemcontainer.js! -->
+			<div id="portfolio">
+				<div id="portfolio0" class="itemSlot"></div>
+				<div id="portfolio1" class="itemSlot"></div>
+				<div id="portfolio2" class="itemSlot"></div>
+				<div id="portfolio3" class="itemSlot"></div>
+				<div id="portfolio4" class="itemSlot"></div>
+				<div id="portfolio5" class="itemSlot"></div>
+				<div id="portfolio6" class="itemSlot"></div>
+				<div id="portfolio7" class="itemSlot"></div>
+			</div>
+		</div>
 
-<div id="keyring">
-<div id="keyring0" class="itemSlot"></div>
-<div id="keyring1" class="itemSlot"></div>
-<div id="keyring2" class="itemSlot"></div>
-<div id="keyring3" class="itemSlot"></div>
-<div id="keyring4" class="itemSlot"></div>
-<div id="keyring5" class="itemSlot"></div>
-<div id="keyring6" class="itemSlot"></div>
-<div id="keyring7" class="itemSlot"></div>
-</div>
-</div>
+		<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
+		<div id="chat"></div>
 
-<input id="chatinput" type="text" name="chatinput" autocomplete="off" autofocus>
-<div id="chat"></div>
+		<div id="popupcontainer"></div>
 
-<div id="popupcontainer"></div>
+		<script type="text/javascript" src="stendhal-compiled.js"></script>
+	</body>
 
-<script type="text/javascript" src="stendhal-compiled.js"></script>
-</body>
 </html>
