@@ -56,35 +56,15 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
  *
  * PARTICIPANTS:
  * <ul>
-<<<<<<< HEAD
  *  <li> Brosoklelo, a befuddled sorceror 
  *  <li> Vlamyklela, a concerned sorceress
-=======
-<<<<<<< Updated upstream
- *  <li> Brosoklelo, somewhere in semos mountains, near the wizard tower
- *  <li> Vlamyklela, somewhere in Kirdneh
-=======
- *  <li> Brosoklelo, a stranded sorceror 
- *  <li> Vlamyklela, a concerned sorceress
->>>>>>> Stashed changes
->>>>>>> refs/heads/AdMemoriaInPortfolio
  * </ul>
  *
  * STEPS:
  * <ul>
  *  <li> Talk with Brosoklelo to activate the quest.</li>
-<<<<<<< HEAD
  *  <li> Talk with Vlamyklela have 1x purple apple</li>
  *  <li> Return to Brosoklelo have 1x mauve apple</li>
-=======
-<<<<<<< Updated upstream
- *  <li> Talk with Vlamyklela in Kirdneh. have 1x purple apple</li>
- *  <li> Return to Brosoklelo with 1x mauve apple</li>
-=======
- *  <li> Talk with Vlamyklela have 1x purple apple</li>
- *  <li> Return to Brosoklelo have 1x mauve apple</li>
->>>>>>> Stashed changes
->>>>>>> refs/heads/AdMemoriaInPortfolio
  *  <li> Brosoklelo will unlock portfolio</li>
  * </ul>
  *
