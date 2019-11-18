@@ -57,7 +57,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
  * PARTICIPANTS:
  * <ul>
  *  <li> Brosoklelo, a befuddled sorceror 
- *  <li> Vlamyklela, a concerned sorceres
+ *  <li> Vlamyklela, a concerned sorceress
  * </ul>
  *
  * STEPS:
@@ -144,10 +144,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		reset_brosoklelo.add(new DropItemAction("mauve apple"));
 		reset_brosoklelo.add(new DropItemAction("keyring"));
 		reset_brosoklelo.add(new DropItemAction("portfolio"));
-    reset_brosoklelo.add(new DisableFeatureAction("back"));
-    reset_brosoklelo.add(new DisableFeatureAction("belt"));
-    reset_brosoklelo.add(new DisableFeatureAction("keyring"));
-    reset_brosoklelo.add(new DisableFeatureAction("portfolio"));
+        reset_brosoklelo.add(new DisableFeatureAction("back"));
+        reset_brosoklelo.add(new DisableFeatureAction("belt"));
+        reset_brosoklelo.add(new DisableFeatureAction("keyring"));
+        reset_brosoklelo.add(new DisableFeatureAction("portfolio"));
 
         npc.add(
             ConversationStates.ATTENDING, //initial state
@@ -251,6 +251,8 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** find Vlamyklela in Kirdneh. step_2 */
 	private void admemoriainportfolio_step_2() {
 		final SpeakerNPC npc = npcs.get("Vlamyklela");
+
+	  // Player has AdMemoriaInPortfolio quest
 		// Player has AdMemoriaInPortfolio required items with him
 		npc.add(
 	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
