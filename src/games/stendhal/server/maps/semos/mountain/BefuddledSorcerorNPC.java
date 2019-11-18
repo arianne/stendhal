@@ -29,7 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  *
  * @author omero
  */
-public class StrandedWizardNPC implements ZoneConfigurator {
+public class BefuddledSorcerorNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);

@@ -67,8 +67,9 @@ public class StendhalQuestSystem {
 	 */
 	public void init() {
 		
-		//deactivated AdMemoriaInPortfolio
-		//loadQuest(new AdMemoriaInPortfolio());
+        //AdMemoriaInPortfolio
+		/** enable/disable */
+		loadQuest(new AdMemoriaInPortfolio());
 		
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());

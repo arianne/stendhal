@@ -117,8 +117,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     /** admemoriainportfolio_step_0 */
 	private void admemoriainportfolio_step_0() {
 		
-		final SpeakerNPC npc = npcs.get("Brosoklelo");
+		/** procedure:
+		 * 
+		 * a) tell reset
+		 *		this will remove all relevant items from player/character
+		 *		related to keyring   (xoderos/joshua and keyring)
+		 *		related to portfolio (brosoklelo/vlamyklela and portfolio)
+		 *
+		 * b) /alterquest admemoriainportfolio <enter>
+		 * 		will remove all admemoriainportfolio quest item
+		 * c) /alterquest hungry_joshua <enter>
+		 * 		will remove the keyring
+		 * 
+		 * d) exit and restart client
+		 * e) exit and restart local server
+		 *  
+		 */
 		
+		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();	
 		reset_brosoklelo.add(new DropItemAction("purple apple"));
 		reset_brosoklelo.add(new DropItemAction("mauve apple"));
