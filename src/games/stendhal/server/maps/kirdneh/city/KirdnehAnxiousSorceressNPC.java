@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.maps.semos.mountain;
+package games.stendhal.server.maps.kirdneh.city;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,26 +25,27 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 //import games.stendhal.server.entity.npc.action.StoreMessageAction;
 
 /**
- * Provides StrandedWizardNPC
+ * Provides Vlamyklela
  *
  * @author omero
  */
-public class StrandedWizardNPC implements ZoneConfigurator {
+
+public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Brosoklelo") {
+		final SpeakerNPC npc = new SpeakerNPC("Vlamyklela") {
 
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(75, 124));
-				nodes.add(new Node(79, 124));
-				nodes.add(new Node(79, 122));
-				nodes.add(new Node(75, 122));
+				nodes.add(new Node(113, 95));
+				nodes.add(new Node(117, 89));
+				nodes.add(new Node(119, 93));
+				nodes.add(new Node(121, 90));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -53,51 +54,44 @@ public class StrandedWizardNPC implements ZoneConfigurator {
 				addGreeting(
 						"Ave");
 				addGoodbye(
-						"Fortvna");				
-				addJob(
-                        "I like dueling in magical duels..." + " " +
-                        "I have probably lost my #memory..." + " " +
-                        "Again...");
+						"Fortvna");
+                /**
+                 * When one has Ad Memoria In Portfolio quest active
+                 * Will Convert 1x purple apple into 1x mauve apple 
+                 */				
 				addHelp(
-						"I can not help you with anything..." + " " +
-						"My #memory is nagging me..." + " " +
-						"Again...");
+					"My stepbrother Brosoklelo... He must be stranded somewhere..." + " " +
+					"Brosoklelo likes dueling magical duels... " + " " +
+					"Tell me you got a purple apple for me!"
+				);
 				addOffer(
-						"I am stranded here, I can not offer you anything..." + " " +
-						"My #memory seems in disarray..." + " " +
-						"Again...");
-
+					"I could turn a purple apple into a mauve apple..." + " " +
+					"When you bring me a purple apple, I will know what to do!"
+				);
+				addJob(
+					"I can turn a purple apple into a mauve apple. That is my job!"
+				);
 				addReply(
-	                    "Kirdneh",
-	                    "My #memory... A special #apple... #Kirdneh... A lovely place!",
-	                    null
+                    "apple", //trigger
+                    "Apples may come in different colors!" + " " +
+                    "You would not think an apple can restore lost memory..." + " " +
+                    "Say you are were bestowed with a purple apple...",
+                    null
 	            );
-				addReply(
-	                    "Blasyklela",
-	                    "My #memory... A special #apple... #Blasyklela... My beloved stepsister!",
-	                    null
-	            );
-				addReply(
-	                    "apple",
-	                    "You would not think about an apple..." + " " +
-	                    "Unless you are bestowed a special kind of an apple!" + " " +
-	                    "My #memory... Blasyklela... Kirdneh...",
-	                    null
-	            );
-
+				
 				/**
-				 * additional behavior defined in AdMemoriaInPortfolio quest 
+				 * additional behavior defined in AdMemoriaInPortfolio quest
 				 */
 				
 			}
 		};
 		
-		// Finalize Brosoklelo
-		npc.setEntityClass("brownwizardnpc");
-		npc.setPosition(77,127);
+		// Finalize Vlamyklela
+		npc.setEntityClass("bluesorceressnpc");
 		npc.initHP(100);
+		npc.setPosition(113,99);
 		npc.setCollisionAction(CollisionAction.REROUTE);
-		npc.setDescription("You see Brosoklelo... He seems somewhat confused like he had lost his memory!");
+		npc.setDescription("You see Vlamyklela... She seems to be anxiously awaiting news!");
 		zone.add(npc);
 		return npc;
 	}
