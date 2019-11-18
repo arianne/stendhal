@@ -555,4 +555,7 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
+
+
+
 }
