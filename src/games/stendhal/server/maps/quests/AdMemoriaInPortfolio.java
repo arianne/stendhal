@@ -117,10 +117,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
 
-		final SpeakerNPC npc = npcs.get("Brosoklelo");
-
-		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
-
 		reset_brosoklelo.add(new DropItemAction("purple apple"));
 		reset_brosoklelo.add(new DropItemAction("mauve apple"));
 		reset_brosoklelo.add(new DropItemAction("keyring"));
