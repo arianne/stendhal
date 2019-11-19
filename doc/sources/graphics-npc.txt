@@ -60,7 +60,7 @@ estateagentnpc.*              Svetlana Kushnariova (Cabbit), diamonddmgirl, olon
 estateagent2npc.*             Svetlana Kushnariova (Cabbit), olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://github.com/arianne/stendhal/issues/132
 executivenpc.*                Svetlana Kushnariova (Cabbit), olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://github.com/arianne/stendhal/issues/131
 experiencedwarriornpc.*       Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11152
-fierywaterdistillernpc.png    Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
+fierywaterdistillernpc.*      Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 fireelementalnpc.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 fishermannpc.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 fishermansdaughternpc.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
