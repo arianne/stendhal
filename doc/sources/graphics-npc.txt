@@ -77,7 +77,7 @@ granmanpc.png                 Svetlana Kushnariova (Cabbit); OGA BY 3.0; https:/
 greendwarfnpc.*               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83728
 greenelfwizardnpc.png         Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/114
 grim_reaper*_npc.*            Stephen Challener (Redshirke), oksmith, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/6262, https://openclipart.org/detail/284272
-groundskeepernpc.png          Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969
+groundskeepernpc.*            Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 gypsywomannpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82377
 halfelfnpc.*                  Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, Stendhal
 hanknpc.*                     Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
