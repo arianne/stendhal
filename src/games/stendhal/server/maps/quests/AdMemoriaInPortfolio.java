@@ -13,38 +13,35 @@
 
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.google.common.collect.ImmutableList;
 
-import java.util.List;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.ArrayList;
-
 import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.Region;
-
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.CreateSlotAction;
+import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-import games.stendhal.server.entity.npc.action.DisableFeatureAction;
-import games.stendhal.server.entity.npc.action.CreateSlotAction;
-
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 //import games.stendhal.common.grammar.Grammar;
 //import games.stendhal.server.actions.admin.AdministrationAction;
@@ -117,9 +114,6 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     /** admemoriainportfolio_step_0 */
 	private void admemoriainportfolio_step_0() {
 
-		final SpeakerNPC npc = npcs.get("Brosoklelo");
-		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
-		
 		/** procedure:
 		 * 
 		 * a) tell reset
