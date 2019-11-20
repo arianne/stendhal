@@ -485,6 +485,7 @@
 				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
+				<exclude name="templates/" />
 			</fileset>
 		</copy>
 
