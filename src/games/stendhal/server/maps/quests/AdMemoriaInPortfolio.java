@@ -53,7 +53,7 @@ import games.stendhal.server.maps.Region;
  *
  * PARTICIPANTS:
  * <ul>
- *  <li> Brosoklelo, a befuddled sorceror 
+ *  <li> Brosoklelo, a befuddled sorceror
  *  <li> Vlamyklela, a concerned sorceress
  * </ul>
  *
@@ -115,7 +115,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	private void admemoriainportfolio_step_0() {
 
 		/** procedure:
-		 * 
+		 *
 		 * a) tell reset
 		 *		this will remove all relevant items from player/character
 		 *		related to keyring   (xoderos/joshua and keyring)
@@ -125,14 +125,14 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		 * 		will remove all admemoriainportfolio quest item
 		 * c) /alterquest hungry_joshua <enter>
 		 * 		will remove the keyring
-		 * 
+		 *
 		 * d) exit and restart client
 		 * e) exit and restart local server
-		 *  
+		 *
 		 */
-		
+
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
-		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();	
+		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
 
 		reset_brosoklelo.add(new DropItemAction("purple apple"));
 		reset_brosoklelo.add(new DropItemAction("mauve apple"));

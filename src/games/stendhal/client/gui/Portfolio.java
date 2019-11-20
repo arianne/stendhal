@@ -33,7 +33,7 @@ class Portfolio extends SlotWindow implements FeatureChangeListener {
 		// A panel window; forbid closing
 		setCloseable(false);
 	}
-	
+
 	//
 	// Portfolio
 	//
