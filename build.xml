@@ -486,6 +486,7 @@
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
 				<exclude name="templates/" />
+				<exclude name="placeholder-*.png" />
 			</fileset>
 		</copy>
 
