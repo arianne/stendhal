@@ -64,7 +64,10 @@ stendhal.ui.minimap = {
 	},
 
 	draw: function() {
-		if (marauroa.currentZoneName === stendhal.data.map.currentZoneName) {
+		if (marauroa.currentZoneName === stendhal.data.map.currentZoneName
+			|| stendhal.data.map.currentZoneName === "int_vault"
+			|| stendhal.data.map.currentZoneName === "int_adventure_island") {
+
 			stendhal.ui.minimap.scale = 10;
 	
 			stendhal.ui.minimap.zoneChange();

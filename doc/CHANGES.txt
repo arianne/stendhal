@@ -104,7 +104,6 @@ Changelog
 - update world map: https://stendhalgame.org/world/atlas.html
 - renamed zones in the Deniran region to fit schema
 - new Deniran NPCs:
-  - Ambrogio (market seller)
   - Byron Mcgalister (wizard)
   - Christina (shop assistant)
   - D J Smith (weapons dealer)

@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.deniran.cityoutside;
+package games.stendhal.server.maps.ados.market;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -27,12 +27,12 @@ import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 /**
- * Provides Ambrogio, a grocery seller in Deniran Marketplace
+ * Provides Ambrogita, a grocery seller in Ados Market
  *
  * @author omero
  *
  */
-public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
+public class GrocerySellerNPC implements ZoneConfigurator {
 
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
@@ -45,8 +45,7 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 	}
 
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
-		//Ambrogio is a temporary name
-		final SpeakerNPC npc = new SpeakerNPC("Ambrogio") {
+		final SpeakerNPC npc = new SpeakerNPC("Ambrogita") {
 
 			@Override
 			public void createDialog() {
@@ -87,33 +86,31 @@ public class DeniranMarketGrocerySellerNPC implements ZoneConfigurator {
 					"Oh, I should really set up one of those blackboards where offers are listed!");
 
 				addHelp(
-						"If you need some grocery stuff, I do #offer some grocery stuff... " +
-						"When you want to #buy something, tell me... " +
-						"Oh, I should really set up one of those blackboards where offers are listed");
+					"If you need some grocery stuff, I do #offer some grocery stuff... " +
+					"When you want to #buy something, tell me... " +
+					"Oh, I should really set up one of those blackboards where offers are listed");
 
 				addGoodbye(
-						"So long... " +
-						"Oh, I should really set up one of those blackboards where offers are listed");
+					"So long... " +
+					"Oh, I should really set up one of those blackboards where offers are listed");
 			}
 
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(29, 120));
-				nodes.add(new Node(20, 121));
-				nodes.add(new Node(20, 118));
-				nodes.add(new Node(23, 118));
-				nodes.add(new Node(23, 116));
-				nodes.add(new Node(29, 116));
+				nodes.add(new Node(20, 30));
+				nodes.add(new Node(20, 35));
+				nodes.add(new Node(14, 35));
+				nodes.add(new Node(13, 31));
 				setPath(new FixedPath(nodes, true));
 			}
 		};
 
-		// Finalize Ambrogio, Deniran Market Seller NPC (Grocery)
-		npc.setEntityClass("deniran_marketsellernpc1grocery");
-		npc.setPosition(26, 122);
+		// Finalize Ambrogita, Ados Market Grocery Seller NPC
+		npc.setEntityClass("adosmarketgrocerysellernpc");
+		npc.setPosition(16, 33);
 		npc.setCollisionAction(CollisionAction.REVERSE);
-		npc.setDescription("You see Ambrogio, a busy marketplace seller...");
+		npc.setDescription("You see Ambrogita, a busy marketplace seller...");
 		zone.add(npc);
 		return npc;
 
