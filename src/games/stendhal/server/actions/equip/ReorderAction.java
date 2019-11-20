@@ -34,7 +34,7 @@ import marauroa.common.game.SlotOwner;
 public class ReorderAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(ReorderAction.class);
 	private static final List<String> reorderableSlots = Arrays.asList("bag",
-			"content", "keyring", "spells");
+			"content", "keyring", "portfolio", "spells");
 
 	/**
 	 * registers "equip" action processor.

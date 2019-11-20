@@ -51,20 +51,20 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 
 /**
  * QUEST: Ad Memoria In Portfolio
- * 
+ *
  * @author omero
- * 
+ *
  * PARTICIPANTS:
  * <ul>
- *  <li> Brosoklelo, somewhere in semos mountains, near the wizard tower
- *  <li> Blasyklela, somewhere in Kirdneh
+ *  <li> Brosoklelo, a befuddled sorceror 
+ *  <li> Vlamyklela, a concerned sorceress
  * </ul>
  *
  * STEPS:
  * <ul>
  *  <li> Talk with Brosoklelo to activate the quest.</li>
- *  <li> Talk with Blasyklela in Kirdneh. have 1x purple apple</li>
- *  <li> Return to Brosoklelo with 1x mauve apple</li>
+ *  <li> Talk with Vlamyklela have 1x purple apple</li>
+ *  <li> Return to Brosoklelo have 1x mauve apple</li>
  *  <li> Brosoklelo will unlock portfolio</li>
  * </ul>
  *
@@ -78,32 +78,32 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
  * REPETITIONS:
  * <ul>
  *  <li> None</li>
- * </ul> 
+ * </ul>
  */
 
 /**
  * QUEST NOTES: Ad Memoria In Portfolio
- *   + Brosoklelo stepbrother of Blasyklela
+ *   + Brosoklelo stepbrother of Vlamyklela
  *   + Brosoklelo lost his memories in a magical duel
- *   + Brosoklelo still remembers his sister Blasyklela
+ *   + Brosoklelo still remembers his sister Vlamyklela
  *   + Brosoklelo still remembers about Kirdneh
  *
- *   + Blasyklela is the stepsister of Brosoklelo
- *   + Blasyklela is living in Kirdneh
- *   + Blasyklela is an accomplished magician that can compile a magic memory log
- *   + Blasyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log
+ *   + Vlamyklela is the stepsister of Brosoklelo
+ *   + Vlamyklela is living in Kirdneh
+ *   + Vlamyklela is an accomplished magician that can compile a magic memory log
+ *   + Vlamyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log
  */
 
 /**
  * QUEST TEST: Ad Memoria In Portfolio
  * +make sure <player> QUEST_SLOT is clean:
- * /alterquest <player> admemoriainportfolio <null> 
+ * /alterquest <player> admemoriainportfolio <null>
  */
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
-	
+
 	private static Logger logger = Logger.getLogger(AdMemoriaInPortfolio.class);
-	
+
 	private static final int APPLE_AMOUNT = 1;
 	private static final String QUEST_SLOT = "admemoriainportfolio";
 
@@ -112,7 +112,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
-	
+
 	/** A convenience function to make it easier to test quest */
     /** admemoriainportfolio_step_0 */
 	private void admemoriainportfolio_step_0() {
@@ -120,8 +120,24 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();
 		
-		final SpeakerNPC npc = npcs.get("Brosoklelo");
+		/** procedure:
+		 * 
+		 * a) tell reset
+		 *		this will remove all relevant items from player/character
+		 *		related to keyring   (xoderos/joshua and keyring)
+		 *		related to portfolio (brosoklelo/vlamyklela and portfolio)
+		 *
+		 * b) /alterquest admemoriainportfolio <enter>
+		 * 		will remove all admemoriainportfolio quest item
+		 * c) /alterquest hungry_joshua <enter>
+		 * 		will remove the keyring
+		 * 
+		 * d) exit and restart client
+		 * e) exit and restart local server
+		 *  
+		 */
 		
+		final SpeakerNPC npc = npcs.get("Brosoklelo");
 		final List<ChatAction> reset_brosoklelo = new LinkedList<ChatAction>();	
 
 		reset_brosoklelo.add(new DropItemAction("purple apple"));
@@ -132,7 +148,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         reset_brosoklelo.add(new DisableFeatureAction("belt"));
         reset_brosoklelo.add(new DisableFeatureAction("keyring"));
         reset_brosoklelo.add(new DisableFeatureAction("portfolio"));
-        
+
         npc.add(
             ConversationStates.ATTENDING, //initial state
             "reset", //trigger word
@@ -148,25 +164,25 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** admemoriainportfolio_step_1 */
 	private void admemoriainportfolio_step_1() {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
-		
+
 		/** quest is not started yet, quest asked */
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
                 "I am stranded ..." + " " +
-                "I remember a name... #Blasyklela..."   + " " +
+                "I remember a name... #Vlamyklela..."   + " " +
                 "I remember a place... #Kirdneh..."         + " " +
                 "I should recover my #memory...",
 				null);
 
-		/** quest is not started yet, ask about Blasyklela */
+		/** quest is not started yet, ask about Vlamyklela */
 		npc.add(
 			ConversationStates.ATTENDING,
-			"Blasyklela",
+			"Vlamyklela",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Blasyklela! My beloved stepsister... I remember... #Kirdneh...",
+			"Vlamyklela! My beloved stepsister... I remember... #Kirdneh...",
 			null);
 
 		/** quest is not started yet, ask about Kirdneh */
@@ -175,7 +191,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"Kirdneh",
 			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Kirdneh! My stepsister #Blasyklela lives in Kirdneh! A place far from here...",
+			"Kirdneh! My stepsister #Vlamyklela lives in Kirdneh! A place far from here...",
 			null);
 
 		/** quest not started, offer quest */
@@ -198,7 +214,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.IDLE,
-			"Excellent! Now, listen to me with great attention...", 			
+			"Excellent! Now, listen to me with great attention...",
 	        new MultipleActions(
 		       new ChatAction() {
                    @Override
@@ -207,9 +223,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                    final EventRaiser npc) {
                         npc.say(
                         "Take this purple apple from me!" + " " +
-                        "Bring this purple apple along with you and find my stepsister, Blasyklela..." + " " +
-                        "Say purple apple to Blasyklela and she will know it is from me!" + " " +
-                        "My stepsister Blasyklela will give you something that I need to recover my memory..." + " " +
+                        "Bring this purple apple along with you and find my stepsister, Vlamyklela..." + " " +
+                        "Say purple apple to Vlamyklela and she will know it is from me!" + " " +
+                        "My stepsister Vlamyklela will give you something that I need to recover my memory..." + " " +
                         "Once you return back to me, here... I will reward your efforts!");
                         new EquipItemAction("purple apple", 1, true).fire(player, sentence, npc);
                         new SetQuestAndModifyKarmaAction(getSlotName(), "start", 15.0).fire(player, sentence, npc);
@@ -232,7 +248,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
     }
 
 	/** admemoriainportfolio_step_2 */
-	/** find Blasyklela in Kirdneh. step_2 */
+	/** find Vlamyklela in Kirdneh. step_2 */
 	private void admemoriainportfolio_step_2() {
 		final SpeakerNPC npc = npcs.get("Vlamyklela");
 
@@ -255,7 +271,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 								npc.say(
 									"Oh that purple apple is coming from Brosoklelo." + " " +
 									"Surely Brosoklelo lost another magical duel..." + " " +
-									"Here you go... Please take" + " " + 
+									"Here you go... Please take" + " " +
 									"this mauve apple from me!" + " " +
 									"Bring mauve apple back to Brosoklelo" + " " +
 									"Tell Brosoklelo mauve apple..." + " " +
@@ -278,22 +294,21 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
-		
+
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
-		
+
 		if (System.getProperty("stendhal.container") != null) {
 			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
-			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
 			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		} else {
 			reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
-            reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		}
 
-        reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
-        reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
-        reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
-        reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
+		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
+		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
+
 		reward_brosoklelo.add(new IncreaseXPAction(1000));
 		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
 
@@ -312,10 +327,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Sentence sentence,
                         final EventRaiser npc) {
                             npc.say(
-                                "Oh a mauve apple... That surely comes from Blasyklela..." + " " +
+                                "Oh a mauve apple... That surely comes from Vlamyklela..." + " " +
                                 "Thank you indeed!" + " " +
                                 "I will now grant you a special gift for your efforts..." + " " +
-                                "Here... Take this Portfolio..." + " " + 
+                                "Here... Take this Portfolio..." + " " +
                                 "A portfolio will help you carry around many scrolls!" + " " +
                                 "Fare thee well!");
                         }
@@ -332,7 +347,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 				"AdMemoriaInPortfolio",
 				// description of quest step:
 				"Talk Brosoklelo..." + " " +
-				"Find Blasyklela..." + " " +
+				"Find Vlamyklela..." + " " +
 				"Rtrn Brosoklelo" + " " ,
 				// repeat is false
 				false);
@@ -363,16 +378,16 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 
 	/** travel log */
 	@Override
-	public List<String> getHistory(final Player player) {        
+	public List<String> getHistory(final Player player) {
 		//initialize res
         final List<String> res = new ArrayList<String>();
-        
+
         if (!player.hasQuest(QUEST_SLOT)) {
         	//eject/bail out with something useful to understand
         	res.add(" ... Dont have quest ... " + "AdMemoriaInPortfolio" );
             return res;
         }
-        
+
         final String questState = player.getQuest(QUEST_SLOT);
         if (questState.equals("rejected")) {
         	//eject/bail out with something useful to understand
@@ -380,16 +395,16 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             res.add("I do not want to help Brosoklelo recover his memories");
             return res;
         }
-        
+
         if (questState.equals("start")) {
         	res.add("I have asked Brosoklelo if he has a quest for me.");
             res.add("I agreed to help Brosoklelo");
         }
-        
+
         if (questState.equals("done")) {
             res.add("I returned to Brosoklelo and he has fixed my portfolio for me.");
         }
-        
+
         return res;
     }
 }
