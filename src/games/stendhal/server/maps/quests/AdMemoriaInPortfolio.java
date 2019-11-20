@@ -276,11 +276,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 
 		if (System.getProperty("stendhal.container") != null) {
 			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
-			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("portfolio")));
 			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		} else {
 			reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
-            reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 		}
 
         reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));

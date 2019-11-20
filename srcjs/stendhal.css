@@ -1,350 +1,223 @@
 body {
-  font-family: "Arial";
-  padding: 0;
-  margin: 0;
+	font-family: "Arial";
+	padding: 0;
+	margin: 0;
 }
 
-li.online {
-  color: #0A0
-}
-
-li.offline {
-  color: #AAA
-}
-
+li.online {color: #0A0}
+li.offline {color: #AAA}
 #buddyList {
-  border: 1px solid black;
-  width: 128px;
-  height: 250px;
-  float: left;
-  overflow: scroll
+	border: 1px solid black;
+	width: 128px;
+	height: 250px;
+	float: left;
+	overflow:scroll
 }
-
 #buddyList ul {
-  cursor: default;
-  list-style-type: none;
-  margin: 0;
-  padding: 0.1em;
+	cursor: default;
+	list-style-type: none;
+	margin:0;
+	padding:0.1em;
 }
 
 #menubutton {
-  width: 75%;
+	width: 75%;
 }
 
 #soundbutton {
-  width: 20%;
-  padding: 0;
+	width: 20%;
+	padding: 0;
 }
 
 div.itemSlot {
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
-  border: 1px solid black;
-  background-color: #CCC;
-  float: left;
-  padding: 1px;
-  margin: 2px;
-  text-align: right;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 10px;
-  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	width:32px;
+	height:32px;
+	background-repeat: no-repeat;
+	border: 1px solid black;
+	background-color:#CCC;
+	float: left;
+	padding: 1px;
+	margin: 2px;
+	text-align: right;
+	color:#FFF;
+	font-weight: bold;
+	font-size:10px;
+	text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
-
 div.quickPickup div.itemSlot {
-  cursor: url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto;
+	cursor: url(/data/sprites/cursor/itempickupfromslot.png) 1 3, auto;
 }
 
-.equipment {
-  position: relative;
-  height: 160px;
-  border: 1px solid black
-}
+.equipment {position:relative; height:160px; border: 1px solid black}
+#head0 {position:absolute; top:0px; left:40px}
+#lhand0 {position:absolute; top:50px; left:80px}
+#rhand0 {position:absolute; top:50px; left:0px}
+#finger0 {position:absolute; top:90px; left:0px}
+#armor0 {position:absolute; top:40px; left:40px}
+#cloak0 {position:absolute; top:90px; left:80px}
+#legs0 {position:absolute; top:80px; left:40px}
+#feet0 {position:absolute; top:120px; left:40px}
 
-#head0 {
-  position: absolute;
-  top: 0px;
-  left: 40px
-}
-
-#lhand0 {
-  position: absolute;
-  top: 50px;
-  left: 80px
-}
-
-#rhand0 {
-  position: absolute;
-  top: 50px;
-  left: 0px
-}
-
-#finger0 {
-  position: absolute;
-  top: 90px;
-  left: 0px
-}
-
-#armor0 {
-  position: absolute;
-  top: 40px;
-  left: 40px
-}
-
-#cloak0 {
-  position: absolute;
-  top: 90px;
-  left: 80px
-}
-
-#legs0 {
-  position: absolute;
-  top: 80px;
-  left: 40px
-}
-
-#feet0 {
-  position: absolute;
-  top: 120px;
-  left: 40px
-}
 
 #chat {
-  height: 190px;
-  border: 1px solid #000;
-  padding: 0.5em;
-  overflow-y: scroll;
-  word-wrap: break-word;
-  display: block;
-  color: #000;
-  background-color: #FFF;
+	height:190px; border: 1px solid #000; padding:0.5em; 
+	overflow-y: scroll; word-wrap:break-word; display: block;
+	color: #000; background-color: #FFF;
 }
 
 #zoneinfo {
-  color: #FFF;
-  background-color: #000;
+	 color: #FFF; 
+	 background-color: #000;
 }
 
 #stats {
-  border: 1px solid black;
-  cursor: default;
-  width: 128px;
-  float: left;
-  font-size: 0.8em;
-  white-space: pre;
-  padding: 0.1em;
+	border: 1px solid black;
+	cursor: default;
+	width: 128px;
+	float: left; 
+	font-size: 0.8em;
+	white-space: pre;
+	padding: 0.1em;
 }
 
-div.logerror {
-  color: #F00
-}
 
-div.logprivmsg {
-  color: #444
-}
-
-div.logclient {
-  color: #888
-}
-
-div.logerror {
-  color: #F00
-}
-
-div.loginformation {
-  color: #ffc800
-}
-
-div.lognegative {
-  color: #f00
-}
-
-div.lognormal {
-  color: #000
-}
-
-div.logpositive {
-  color: #0f0
-}
-
-div.loggroup {
-  color: #633d8b
-}
-
-div.logemote {
-  color: #633d8b
-}
-
-div.logresponse {
-  color: #006400
-}
-
-div.logscene_setting {
-  color: #572002
-}
-
-div.logsignificant_negative {
-  color: #ff8f8f
-}
-
-div.logsignificant_positive {
-  color: #4169e1
-}
-
-div.logtutorial {
-  color: #ac00ac
-}
-
-div.logsupport {
-  color: #ff7200
-}
-
-span.logh {
-  color: #00F
-}
-
-span.logi {
-  text-decoration: underline
-}
+div.logerror {color: #F00}
+div.logprivmsg {color: #444}
+div.logclient {color: #888}
+div.logerror {color: #F00}
+div.loginformation {color: #ffc800}
+div.lognegative {color: #f00}
+div.lognormal {color: #000}
+div.logpositive {color: #0f0}
+div.loggroup {color: #633d8b}
+div.logemote {color: #633d8b}
+div.logresponse {color: #006400}
+div.logscene_setting {color: #572002}
+div.logsignificant_negative {color: #ff8f8f}
+div.logsignificant_positive {color: #4169e1}
+div.logtutorial {color: #ac00ac}
+div.logsupport {color: #ff7200}
+span.logh {color: #00F}
+span.logi {text-decoration: underline}
 
 .actionmenu {
-  border: 1px solid #000;
-  background-color: #FFF
+	border: 1px solid #000; background-color:#FFF
 }
-
 .actionmenu button {
-  min-width: 5em;
-  width: 100%
+	min-width: 5em;
+	width: 100%
 }
 
 #leftColumn {
-  float: left;
-  width: 130px
+	float:left; width:130px
 }
 
 #minimap {
-  border: 1px solid black;
-  float: left
+	border: 1px solid black; float: left
 }
 
 #gamewindow {
-  float: left
+	float:left
 }
 
 #rightColumn {
-  float: left;
-  width: 130px
+	float:left; width:130px
 }
 
 #equipmentborder {
-  float: left;
-  width: 130px
+	float: left; width:130px
 }
 
 #bag {
-  border: 1px solid black;
-  width: 120px;
-  padding: 2px;
-  float: left
+	border: 1px solid black; width: 120px; padding: 2px; float: left
 }
 
 #keyring {
-  border: 1px solid black;
-  width: 80px;
-  padding: 2px;
-  float: left
-}
-
-#portfolio {
-  border: 1px solid black;
-  width: 80px;
-  padding: 2px;
-  float: left
+	border: 1px solid black; width: 80px; padding: 2px; float: left
 }
 
 #chatinput {
-  width: 98%
+	width:98%
 }
 
 .inventorypopup {
-  border: 1px solid black;
-  background-color: #FFF;
-  padding: 2px;
-  float: left
+	border: 1px solid black; 
+	background-color: #FFF;
+	padding: 2px; 
+	float: left
 }
 
 .inventorypopup_2 {
-  width: 80px;
+	width: 80px; 
 }
 
 .inventorypopup_5 {
-  width: 200px;
+	width: 200px; 
 }
 
 .popupdiv {
-  border: 1px solid #000;
-  background-color: #FFF;
+	border: 1px solid #000;
+	background-color: #FFF;
 }
 
 .popuptitle {
-  cursor: default;
-  padding: 3px;
+	cursor: default;
+	padding: 3px;
 }
 
 .popuptitleclose {
-  float: right
+	float:right
 }
 
 #dropnumberdialogvalue {
-  width: 4em;
+	width: 4em;
 }
 
 .unselectable {
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .background {
-  background: url(/data/gui/panelwood003.jpg);
-  color: #FFF;
+	background: url(/data/gui/panelwood003.jpg);
+	color: #FFF;
 }
 
 .inlineblock {
-  display: inline-block;
-  vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .menugroup {
-  color: #000;
-  background: #FFF;
-  text-align: center;
+	color: #000;
+	background: #FFF;
+	text-align: center;
 }
 
 .horizontalgroup {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .verticalgroup {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
 
 #travellogitems {
-  float: left;
-  width: 15em;
-  margin-right: 2em;
+	float: left;
+	width: 15em;
+	margin-right: 2em;
 }
 
 #travellogdetails {
-  color: #000;
-  width: 40em;
+	color: #000;
+	width: 40em;
 }
 
 #travellogdescription {
-  font-style: italic
+	 font-style: italic
 }
