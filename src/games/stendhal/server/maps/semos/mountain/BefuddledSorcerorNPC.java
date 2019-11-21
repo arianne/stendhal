@@ -53,7 +53,7 @@ public class BefuddledSorcerorNPC implements ZoneConfigurator {
 				addGreeting(
 						"Ave");
 				addGoodbye(
-						"Fortvna");				
+						"Fortvna");
 				addJob(
                         "I like dueling in magical duels..." + " " +
                         "Oh... My poor #memory..." + " " +
@@ -85,12 +85,11 @@ public class BefuddledSorcerorNPC implements ZoneConfigurator {
 	            );
 
 				/**
-				 * additional behavior defined in AdMemoriaInPortfolio quest 
+				 * additional behavior defined in AdMemoriaInPortfolio quest
 				 */
-				
 			}
 		};
-		
+
 		// Finalize Brosoklelo
 		npc.setEntityClass("brownwizardnpc");
 		npc.setPosition(77,127);

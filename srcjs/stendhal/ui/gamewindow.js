@@ -45,7 +45,7 @@ stendhal.ui.gamewindow = {
 
 				var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
 				var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
-	
+
 				for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 					var name = stendhal.data.map.layerNames[drawingLayer];
 					if (name !== "protection" && name !== "collision" && name !== "objects"

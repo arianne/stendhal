@@ -57,7 +57,7 @@ public class RetireeNPC implements ZoneConfigurator {
                 );
 
 				addHelp(
-                    "I can't help you, but you can help Stendhal!" + " " + 
+                    "I can't help you, but you can help Stendhal!" + " " +
                     "Tell all your friends and help out with development!" + " " +
                     "Visit https://stendhalgame.org and see how you can help!"
                 );

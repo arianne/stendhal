@@ -104,7 +104,7 @@ stendhal.ui.travellog = {
 			}
 			marauroa.clientFramework.sendAction(action);
 		});
-		
+
 		return popup;
 	}
 }

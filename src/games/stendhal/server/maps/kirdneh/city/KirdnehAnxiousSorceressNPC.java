@@ -57,8 +57,8 @@ public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
 						"Fortvna");
                 /**
                  * When one has Ad Memoria In Portfolio quest active
-                 * Will Convert 1x purple apple into 1x mauve apple 
-                 */				
+                 * Will Convert 1x purple apple into 1x mauve apple
+                 */
 				addHelp(
 					"My stepbrother Brosoklelo... He must be stranded somewhere..." + " " +
 					"Brosoklelo likes dueling magical duels... " + " " +
@@ -78,14 +78,14 @@ public class KirdnehAnxiousSorceressNPC implements ZoneConfigurator {
                     "Say you are were bestowed with a purple apple...",
                     null
 	            );
-				
+
 				/**
 				 * additional behavior defined in AdMemoriaInPortfolio quest
 				 */
-				
+
 			}
 		};
-		
+
 		// Finalize Vlamyklela
 		npc.setEntityClass("bluesorceressnpc");
 		npc.initHP(100);

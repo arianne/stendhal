@@ -826,7 +826,7 @@ public class MealForGroongo extends AbstractQuest {
             player.setQuest(QUEST_SLOT, 5, requiredIngredientsForDessert);
 
             SpeakerNPC.say(
-                    "Indeed I shouldn't have forgot to ask for a dessert! " + 
+                    "Indeed I shouldn't have forgot to ask for a dessert! " +
                     "With " + Grammar.article_noun(getRequiredMainDishFancyName(requiredMainDish), true) +
                     " I want to try " + Grammar.a_noun(getRequiredDessertFancyName(requiredDessert)) +
                     " Now go ask Chef Stefan to prepare my " + requiredDessert + " for dessert!"

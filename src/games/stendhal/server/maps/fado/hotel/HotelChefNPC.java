@@ -37,7 +37,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
   *
   * 	Stefan has been reworked several times, by various authors
   * 	Stefan was relocated/moved
-  *         from undescribed Ados market house 
+  *         from undescribed Ados market house
   *         to Fado's Hotel Restaurant kitchen
   * 	Stefan final known location: Fado's Hotel Restaurant kitchen
   *

@@ -68,7 +68,7 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 			this.inventory = stendhal.ui.equip.createInventoryWindow("content", 2, 2, this, "Corpse", true);
 		}
 	},
-	
+
 	autoOpenIfDesired: function() {
 		if (!this.autoOpenedAlready) {
 			this.autoOpenedAlready = true;
@@ -100,7 +100,7 @@ marauroa.rpobjectFactory["corpse"] = marauroa.util.fromProto(marauroa.rpobjectFa
 		if (!this["corpse_owner"] || (this["corpse_owner"] == marauroa.me["_name"])) {
 			return "url(/data/sprites/cursor/bag.png) 1 3, auto";
 		}
-		
+
 		if ((stendhal.data.group.lootmode === "shared") && (stendhal.data.group.members[this["corpse_owner"]])) {
 			return "url(/data/sprites/cursor/bag.png) 1 3, auto";
 		}

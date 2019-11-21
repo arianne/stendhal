@@ -21,7 +21,7 @@ marauroa.rpobjectFactory["portal"] = marauroa.util.fromProto(marauroa.rpobjectFa
 	minimapStyle: "rgb(0,0,0)",
 	zIndex: 5000,
 
-	// TODO: handle interaction 
+	// TODO: handle interaction
 
 	getCursor: function(x, y) {
 		if (this.isVisibleToAction()) {

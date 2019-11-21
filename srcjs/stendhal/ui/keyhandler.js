@@ -51,7 +51,7 @@ stendhal.ui.keyhandler = {
 				return;
 			}
 			stendhal.ui.keyhandler.pressedKeys.push(code);
-	
+
 			var type = stendhal.ui.keyhandler.extractMoveOrFaceActionFromEvent(event);
 			var dir = stendhal.ui.keyhandler.extractDirectionFromKeyCode(code);
 			var action = {"type": type, "dir": ""+dir};

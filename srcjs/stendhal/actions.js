@@ -268,7 +268,7 @@ stendhal.slashActionRepository = {
 					action["progress_type"] = "Production";
 					remainder = remainder.substring(11);
 				} else {
-					
+
 				}
 				if (remainder) {
 					action["item"] = remainder;

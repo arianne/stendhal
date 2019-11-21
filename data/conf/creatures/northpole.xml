@@ -187,7 +187,7 @@
   </creature>
   <creature name="elf kid4">
     <type class="northpole" subclass="elf_kid4" tileid="northpole.png:6"/>
-    <description>You see a little bully. Be careful, he is coming for you.</description>    
+    <description>You see a little bully. Be careful, he is coming for you.</description>
   	<attributes>
       <atk value="40" />
       <def value="20" />
@@ -219,7 +219,7 @@
   </creature>
   <creature name="elf kid5">
     <type class="northpole" subclass="elf_kid5" tileid="northpole.png:7"/>
-    <description>You see a rather obnoxious little kid who has had way too much candy.</description>    
+    <description>You see a rather obnoxious little kid who has had way too much candy.</description>
   	<attributes>
       <atk value="40" />
       <def value="20" />
@@ -274,7 +274,7 @@
   	<ai>
       <says>
         <noise state="idle follow fight" value="I have a code in my nodze"/>
-      </says>  	
+      </says>
       <profile name="brave" />
       <profile name="offensive" />
       <profile name="patrolling" />

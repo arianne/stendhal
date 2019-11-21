@@ -100,7 +100,7 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
-	
+
 	<item name="lemon">
 		<type class="food" subclass="lemon" tileid="-1" />
 		<description>You see a lemon. Could be an ingredient for the right chef...</description>
@@ -216,7 +216,7 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
-    
+
 	<item name="grapes">
 		<type class="food" subclass="grapes" tileid="-1" />
 		<description>You see a bunch of grapes. They look quite juicy and tasty.</description>
@@ -1650,7 +1650,7 @@
 				<slot name="trade"/>
 			</equipable>
 		</item>
-		
+
 	<item name="greenmint">
 		<type class="food" subclass="greenmint" tileid="-1"/>
 		<description>You see a green mint.</description>
@@ -1719,7 +1719,7 @@
 			<slot name="trade"/>
 		</equipable>
 	</item>
-	
+
 	<item name="lolipop">
 		<type class="food" subclass="lolipop" tileid="-1"/>
 		<description>You see a lolipop.</description>

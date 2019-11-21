@@ -43,7 +43,7 @@ public class HoeingManNPC implements ZoneConfigurator {
 				nodes.add(new Node(48, 62));
 				nodes.add(new Node(43, 76));
 				nodes.add(new Node(43, 62));
-				
+
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -68,7 +68,7 @@ public class HoeingManNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye and may your path be clear of weeds!");
 			}
 		};
-		
+
 		// Finalize Jingo Radish, the hoeing man near the Mill north of Semos
 		npc.setEntityClass("hoeingmannpc");
 		npc.setDescription("You see a man with a hoe, he's busy weeding the soil...");

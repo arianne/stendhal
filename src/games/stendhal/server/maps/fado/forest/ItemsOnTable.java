@@ -21,9 +21,9 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
  * Creates spawn point for:
  *  slim bottle,
  *  eared bottle
- *  
+ *
  *  Imorgen's hut, Fado's forest (~50,30)
- *  
+ *
  *  NOTE:
  *	  slim/eared bottle will spawn among fixed map items
  */

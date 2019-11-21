@@ -72,7 +72,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
             @Override
             protected void createDialog() {
                 addJob(
-                    "I can #smoke some " + 
+                    "I can #smoke some " +
                     "#smoked #meat," + " " +
                     "#smoked #ham," + " " +
                     "#smoked #trout," + " " +
@@ -86,7 +86,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                     "#smoked #ham," + " " +
                     "#smoked #trout," + " " +
                     "#smoked #cod." +  " " +
-                    "You'll have to bring me what is needed." 
+                    "You'll have to bring me what is needed."
                 );
 
                 addHelp(
@@ -177,7 +177,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                         "Hi there! Sure you were attracted here by the aroma emanating from my tasty #smoked products!");
             }
         };
-        
+
         npc.setEntityClass("meatandfishsmokernpc");
         npc.setDirection(Direction.DOWN);
         npc.setPosition(26, 53);

@@ -741,7 +741,7 @@ tiled/tileset/item/banners/
 banner.png                    Lanea Zimmerman (Sharm), bluecarrot16, Curt, Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/node/81707#comment-66775, https://opengameart.org/node/20039, https://opengameart.org/content/lpc-cnilsson
 banners.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flag.png                      ???; ???; ???
-superhumans_banner_on_post.*  tigertoes; CC BY-SA 3.0; Stendhal  
+superhumans_banner_on_post.*  tigertoes; CC BY-SA 3.0; Stendhal
 superhumans_wall_hanging.*    tigertoes; CC BY-SA 3.0; Stendhal
 wall_hanging_brown.png        ???; ???; ???
 wall_hanging_dkgreen.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

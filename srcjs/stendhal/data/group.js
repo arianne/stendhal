@@ -34,5 +34,4 @@ stendhal.data.group = {
 			stendhal.data.group.lootmode = "";
 		}
 	}
-
 }
