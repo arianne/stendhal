@@ -64,7 +64,7 @@ fierywaterdistillernpc.*      Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; 
 fireelementalnpc.png          Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 fishermannpc.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 fishermansdaughternpc.*       Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-fishsoupmakernpc.png          ???, Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); ???; https://opengameart.org/node/72969; Chef hat author is not confirmed
+fishsoupmakernpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 floattingladynpc.png          Svetlana Kushnariova (Cabbit), Nila122, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/83626, https://opengameart.org/node/29293
 friendlywizardnpc.*           Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://opengameart.org/node/72969
 gamesupervisornpc.png         Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969
