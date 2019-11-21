@@ -9,15 +9,15 @@ albino_elf_swordsman.png  Svetlana Kushnariova (Cabbit), olonu, Justis; OGA BY 3
 
 data/sprites/monsters/amazon/
 
-amazoness_archer.*               ???, Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), onu/olonu; ???; https://github.com/arianne/stendhal/issues/144
+amazoness_archer.*               Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/144
 amazoness_archer_commander.*     Svetlana Kushnariova (Cabbit), diamonddmgirl, Michael Williams (BizmasterStudios), olonu; CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/66349
 amazoness_bodyguard.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-amazoness_coastguard.png         ???, Svetlana Kushnariova (Cabbit), onu/olonu; ???; https://github.com/arianne/stendhal/issues/108
-amazoness_coastguard_master.png  Svetlana Kushnariova (Cabbit), onu/olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
-amazoness_commander.png          Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
+amazoness_coastguard.png         Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/108
+amazoness_coastguard_master.png  Svetlana Kushnariova (Cabbit), olonu, Spring, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/110
+amazoness_commander.png          Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/121
 amazoness_elite_coastguard.*     Svetlana Kushnariova (Cabbit), olonu, dwtoch; OGA BY 3.0; https://github.com/arianne/stendhal/issues/166
 amazoness_giant.*                Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/84455
-amazoness_hunter.png             Svetlana Kushnariova (Cabbit), onu/olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
+amazoness_hunter.png             Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://sourceforge.net/p/arianne/patches/720/
 amazoness_imperator.png          Svetlana Kushnariova (Cabbit), Nila122, Sollision, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/29293, https://opengameart.org/node/76967
 amazoness_vigilance.*            Svetlana Kushnariova (Cabbit), olonu, LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/161
 
@@ -39,7 +39,6 @@ black_bear.png        ???; ???; ???
 boar.png              Daniel Eddeland (daneeklu), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/83210, https://opengameart.org/node/11629
 crab.png              Dominik Gmiterko (ienze); CC BY 3.0; https://opengameart.org/node/6270
 deer.*                Calciumtrice, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/51561
-dog.png               ???; ???; ???
 elephant.*            lawnjelly, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/84509
 fox.png               patvanmackelberg, bleutailfly; OGA BY 3.0; https://opengameart.org/node/48199, https://postimg.cc/BXsC1Jx0
 killer_bat.png        bagzie; OGA BY 3.0; https://opengameart.org/node/26447
@@ -153,8 +152,8 @@ treant.png   ???; ???; ???
 
 data/sprites/monsters/fairy/
 
-clurichaun.png  johnnnny; ???; Stendhal
-leprechaun.png  johnnnny; ???; Stendhal
+clurichaun.png  johnnnny; GPL 2.0+; Stendhal
+leprechaun.png  johnnnny; GPL 2.0+; Stendhal
 littlefairy.*   Svetlana Kushnariova (Cabbit), Fabzy, leangoro, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/149, https://opengameart.org/node/23314, https://openclipart.org/detail/194497
 
 data/sprites/monsters/farm_animal/
@@ -196,8 +195,8 @@ cyclops.*  Svetlana Kushnariova (Cabbit), Michele Bucelli (Buch), olonu, Jordan 
 data/sprites/monsters/giant_animal/
 
 dwarf_golem.*    Stephen Challener (Redshrike), Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/6262, https://opengameart.org/node/72969
-shark.png        Diligent Dodo?; ???; ???
-water_demon.png  ???; ???; ???
+shark.png        Diligent Dodo (soniccuz); CC BY-SA 3.0; Stendhal
+water_demon.png  Svetlana Kushnariova (Cabbit), ???; ???; ???
 
 data/sprites/monsters/giant_human/
 
@@ -232,7 +231,7 @@ data/sprites/monsters/huge_animal/
 black_death.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chaos_*_dragonrider.*     Kimmo Rundelin (kiheru), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/77901
 golden_death.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-kraken.png                Diligent Dodo?; ???; ???
+kraken.png                Diligent Dodo (soniccuz); CC BY-SA 3.0; Stendhal
 thing*                    IndigoFenix, olonu; CC BY 3.0/4.0; https://opengameart.org/node/84760
 
 data/sprites/monsters/human/
@@ -348,8 +347,8 @@ madaram_hero.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, hernandac
 madaram_peasant.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/83661
 madaram_queen.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 madaram_soldier.*        Svetlana Kushnariova (Cabbit), diamonddmgirl, Nila122, olonu; CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/25629
-madaram_stalker.png      Svetlana Kushnariova (Cabbit), onu/olonu, Eldiran; ???; https://github.com/arianne/stendhal/issues/106
-madaram_trooper.png      Svetlana Kushnariova (Cabbit), onu/olonu, Michele Bucelli (Buch), Shawneth; OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
+madaram_stalker.png      Svetlana Kushnariova (Cabbit), olonu, Eldiran; OGA BY 3.0; https://github.com/arianne/stendhal/issues/106
+madaram_trooper.png      Svetlana Kushnariova (Cabbit), olonu, Michele Bucelli (Buch), Shawneth; OGA BY 3.0; https://github.com/arianne/stendhal/issues/111
 madaram_windwalker.png   Andrew Friend; CC BY-SA 3.0; https://opengameart.org/node/46973
 
 data/sprites/monsters/minotaur/
@@ -474,10 +473,10 @@ sheepman.png          onu/olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https:/
 
 data/sprites/monsters/slime/
 
-black_slime.*     meriharakka; ???; Stendhal
-brown_slime.*     meriharakka; ???; Stendhal
-green_slime.*     meriharakka; ???; Stendhal
-twilight_slime.*  meriharakka; ???; Stendhal
+black_slime.*     meriharakka; GPL 2.0+; Stendhal
+brown_slime.*     meriharakka; GPL 2.0+; Stendhal
+green_slime.*     meriharakka; GPL 2.0+; Stendhal
+twilight_slime.*  meriharakka; GPL 2.0+; Stendhal
 
 data/sprites/monsters/spider/
 
