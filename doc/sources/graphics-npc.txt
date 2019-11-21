@@ -51,7 +51,7 @@ dwarfnpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 easterbunnynpc.*              Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike); OGA BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/14851, https://www.wpclipart.com/food/vegetables/vegetable_basket.png.html
 elegantladynpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 elfbankeroldnpc.*             Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://opengameart.org/node/83523
-elfbankladynpc.png            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
+elfbankladynpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 elfbuyernpc.*                 Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/24944
 elfflowergrowernpc.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 elfmayornpc.*                 Svetlana Kushnariova (Cabbit), Fabzy, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/23314
