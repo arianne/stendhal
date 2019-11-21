@@ -137,7 +137,7 @@ data/sprites/monsters/elf/
 archer_elf.*         Svetlana Kushnariova (Cabbit), olonu, SoCay; CC BY 3.0/4.0; https://github.com/arianne/stendhal/issues/142
 archmage_elf.*       Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/82
 commander_elf.*      Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/102, https://github.com/arianne/stendhal/issues/121
-elf.png              Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/99
+elf.*                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/99
 elf_bodyguard.png    Svetlana Kushnariova (Cabbit), olonu, Shaun Williams; CC BY 3.0; https://github.com/arianne/stendhal/issues/88
 elf_sacerdotist.png  Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/77, https://sourceforge.net/p/arianne/patches/715/
 elf_wizard.png       Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/69
