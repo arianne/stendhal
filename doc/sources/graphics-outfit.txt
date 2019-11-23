@@ -13,12 +13,12 @@ body_978.*        (white cat)     Svetlana Kushnariova (Cabbit), bleutailfly, Jo
 body_979.png      (black cat)     Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84455, https://opengameart.org/node/88413
 body_980*.png     (pink body)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
 body_981*.png     (blue body)     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/84455
-body_988.png      (red slime)     meriharakka; ???; Stendhal
-body_989.png      (green slime)   meriharakka; ???; Stendhal
-body_990.png      (yellow slime)  meriharakka; ???; Stendhal
-body_991.png      (teal slime)    meriharakka; ???; Stendhal
+body_988.png      (red slime)     meriharakka; GPL 2.0+; Stendhal
+body_989.png      (green slime)   meriharakka; GPL 2.0+; Stendhal
+body_990.png      (yellow slime)  meriharakka; GPL 2.0+; Stendhal
+body_991.png      (teal slime)    meriharakka; GPL 2.0+; Stendhal
 body_992.png      (gingerbread)   ???; ???; ???
-body_993.png      (purple slime)  meriharakka; ???; Stendhal
+body_993.png      (purple slime)  meriharakka; GPL 2.0+; Stendhal
 body_994.png                      Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 body_995.png      (alien)         Fabzy; CC BY-SA 3.0; https://opengameart.org/node/88800
 body_996.png      (horse mount)   bluecarrot16; OGA BY 3.0; https://opengameart.org/node/69398
@@ -85,7 +85,7 @@ dress_048.*   (stick horse)      bleutailfly, Jordan Irwin (AntumDeluge); OGA BY
 dress_049.*   (yo-yo)            bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 dress_050.png (soldier uniform)  Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 dress_051.png (Baldric armor)    Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/11152
-dress_052.*   (denim)            Katie Russell (kymara), Jordan Irwin (AntumDeluge); ???; Stendhal
+dress_052.*   (denim)            Katie Russell (kymara), Jordan Irwin (AntumDeluge); GPL 2.0+; Stendhal
 dress_053.*   (formal vest)      Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 dress_054.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 dress_055.png (tank top)         bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
@@ -128,30 +128,30 @@ dress_999.png                    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendha
 data/sprites/outfit/eyes/
 
 eyes_000.png                CC0; Stendhal
-eyes_001.png                ???; ???; ???
-eyes_002.png                ???; ???; ???
-eyes_003.png                ???; ???; ???
+eyes_001.png                CC0; Stendhal
+eyes_002.png                CC0; Stendhal
+eyes_003.png                CC0; Stendhal
 eyes_004.png                CC0; Stendhal
-eyes_005.png                ???; ???; ???
+eyes_005.png                CC0; Stendhal
 eyes_006.png                CC0; Stendhal
-eyes_007.png                ???; ???; ???
+eyes_007.png                CC0; Stendhal
 eyes_008.png                CC0; Stendhal
-eyes_009.png                ???; ???; ???
+eyes_009.png                CC0; Stendhal
 eyes_010.png                CC0; Stendhal
 eyes_011.png                CC0; Stendhal
 eyes_012.png                CC0; Stendhal
-eyes_013.png                ???; ???; ???
+eyes_013.png                CC0; Stendhal
 eyes_014.png                CC0; Stendhal
 eyes_015.png                CC0; Stendhal
 eyes_016.png                CC0; Stendhal
 eyes_017.png (simple dots)  CC0; Stendhal
-eyes_018.png                ???; ???; ???
+eyes_018.png                CC0; Stendhal
 eyes_019.png                CC0; Stendhal
 eyes_020.png                CC0; Stendhal
 eyes_021.png                CC0; Stendhal
 eyes_022.png (wide eyed)    Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
-eyes_023.png                ???; ???; ???
-eyes_024.png                ???; ???; ???
+eyes_023.png                CC0; Stendhal
+eyes_024.png                CC0; Stendhal
 
 data/sprites/outfit/hair/
 
