@@ -84,7 +84,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			return res;
 		}
 
-		res.add("I aggreed to deliver the message.");
+		res.add("I agreed to deliver the message.");
 		if (questState.equals("deliver_to_george")) {
 			return res;
 		}
@@ -94,7 +94,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			return res;
 		}
 
-		res.add("I completed my mission as messenger. Finn Farmer went almost crazy of join when I told him George's answer.");
+		res.add("I completed my mission as messenger. Finn Farmer went almost crazy with joy when I told him George's answer.");
 		return res;
 	}
 
