@@ -577,6 +577,7 @@ gold-ring.png             ???; ???; ??? (based on silver-ring.png? committed by 
 insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 silver-ring.png           ???; ???; ??? (committed by kiheru: e1a2ad7)
+turtle_shell_ring.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 wedding.png               Katie Russell (kymara); GPL 2.0; Stendhal
 
 data/sprites/items/scent/
