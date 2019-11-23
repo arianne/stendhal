@@ -42,13 +42,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 
-		/* FIXME: Resistance should be adjusted for equipping entity if item
-		 * is constructed in active slot.
-		 *
-		 * FIXME: If item is destroyed while in active slot resistance is not
-		 * adjusted.
-		 */
-
 		/* Initialize resistances. */
 		this.resistances = new StatusResistancesList();
 	}
@@ -73,10 +66,6 @@ public class StatusResistantItem extends SlotActivatedItem {
 	 */
 	@Override
 	public void initializeStatusResistancesList(final Map<StatusType, Double> list) {
-		/* FIXME: Here is where constructed item should checked if equipped
-		 * in active slot.
-		 */
-
 		if (this.resistances == null) {
 			this.resistances = new StatusResistancesList();
 		}
