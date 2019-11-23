@@ -106,7 +106,14 @@ public class InspectAction extends AdministrationAction {
 				st.append("\nOutfit (class): " + inspected.get("class"));
 			}
 
-			st.append("\nequips");
+			st.append("\n\nResistances:");
+			for (final String key: target) {
+				if (key.startsWith("resist_")) {
+					st.append("\n  " + key + ": " + target.get(key));
+				}
+			}
+
+			st.append("\n\nequips");
 
 			for (final RPSlot slot : inspected.slots()) {
 				// showing these is either irrelevant, private, or spams too much
