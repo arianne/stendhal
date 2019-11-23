@@ -34,6 +34,7 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
+import games.stendhal.server.entity.item.SlotActivatedItem;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.slot.Slots;
 import marauroa.common.Pair;
@@ -242,6 +243,13 @@ public class PlayerDieer {
 		for (int i = 0; i < maxItemsToDrop; i++) {
 			if (!objects.isEmpty()) {
 				final Pair<RPObject, RPSlot> object = objects.remove(0);
+
+				// deactivate slot activated items
+				if (object.first() instanceof SlotActivatedItem) {
+					SlotActivatedItem slotItem = (SlotActivatedItem) object.first();
+					slotItem.onUnequipped();
+				}
+
 				if (object.first() instanceof StackableItem) {
 					final StackableItem item = (StackableItem) object.first();
 
