@@ -140,4 +140,23 @@
     </equipable>
   </item>
 
+  <item name="turtle shell ring">
+    <type class="ring" subclass="turtle_shell_ring" tileid="-1"/>
+    <description>You see a turtle shell ring.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="1"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="finger"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
 </items>

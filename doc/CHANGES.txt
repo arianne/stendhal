@@ -6,6 +6,7 @@ Changelog
 1.32
 *world*
 - turtles have appeared on Athor Island
+- turtle shell ring gives extra defense
 
 *graphics*
 - new corpses for cobras
