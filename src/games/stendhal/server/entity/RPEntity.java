@@ -90,6 +90,7 @@ public abstract class RPEntity extends GuidedEntity {
 	private static final float CLOAK_DEF_MULTIPLIER = 1.5f;
 	private static final float ARMOR_DEF_MULTIPLIER = 2.0f;
 	private static final float SHIELD_DEF_MULTIPLIER = 4.0f;
+	private static final float RING_DEF_MULTIPLIER = 1.0f;
 	/**
 	 * To prevent players from gaining attack and defense experience by fighting
 	 * against very weak creatures, they only gain atk and def xp for so many
@@ -2598,12 +2599,18 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	public float getItemAtk() {
 		int weapon = 0;
+		int ring = 0;
+
 		final List<Item> weapons = getWeapons();
 		for (final Item weaponItem : weapons) {
 			weapon += weaponItem.getAttack();
 		}
 
-		return weapon;
+		if (hasRing()) {
+			ring = getRing().getAttack();
+		}
+
+		return weapon + ring;
 	}
 
 	public float getItemDef() {
@@ -2614,6 +2621,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		int boots = 0;
 		int cloak = 0;
 		int weapon = 0;
+		int ring = 0;
 
 		Item item;
 
@@ -2647,6 +2655,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			cloak = (int) (item.getDefense() / getItemLevelModifier(item));
 		}
 
+		if (hasRing()) {
+			item = getRing();
+			ring = (int) (item.getDefense() / getItemLevelModifier(item));
+		}
+
 		final List<Item> targetWeapons = getWeapons();
 		for (final Item weaponItem : targetWeapons) {
 			weapon += weaponItem.getDefense() / getItemLevelModifier(weaponItem);
@@ -2655,7 +2668,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return SHIELD_DEF_MULTIPLIER * shield + ARMOR_DEF_MULTIPLIER * armor
 				+ CLOAK_DEF_MULTIPLIER * cloak + HELMET_DEF_MULTIPLIER * helmet
 				+ LEG_DEF_MULTIPLIER * legs + BOOTS_DEF_MULTIPLIER * boots
-				+ WEAPON_DEF_MULTIPLIER * weapon;
+				+ WEAPON_DEF_MULTIPLIER * weapon + RING_DEF_MULTIPLIER * ring;
 	}
 
 	/**
