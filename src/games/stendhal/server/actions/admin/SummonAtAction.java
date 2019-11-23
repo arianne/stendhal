@@ -23,6 +23,7 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.SlotActivatedItem;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -86,6 +87,9 @@ public class SummonAtAction extends AdministrationAction {
 
 				if (!changed.equip(slotName, item)) {
 					player.sendPrivateText("The slot is full.");
+				} else if (item instanceof SlotActivatedItem) {
+					// enable effects of slot activated items
+					((SlotActivatedItem) item).onEquipped(player, slotName);
 				}
 			}
 		}
