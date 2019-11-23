@@ -343,9 +343,9 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             // title of the quest:
             "AdMemoriaInPortfolio",
             // description of quest step:
-            "Brosoklelo wants to recover his memory." + " " +
-            "Talk with Vlamyklela." + " " +
-            "Brosoklelo will give a reward for my efforts." + " " ,
+            "Talk to Brosoklelo and agree to help him recover his memory." + " " +
+            "Find Vlamyklela and talk with her..." + " " +
+            "Return to Brosoklelo for getting a reward!" + " " ,
             // repeat is false
             false
         );
@@ -390,38 +390,37 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         final String questState = player.getQuest(QUEST_SLOT);
         if (questState.equals("rejected")) {
         	//eject/bail out with something useful to understand
-        	res.add("I have found a befuddled sorceror, Brosoklelo");
+        	res.add("I have met a befuddled sorceror, Brosoklelo");
         	res.add("I have asked Brosoklelo if he has a quest for me.");
             res.add("I do not want to help Brosoklelo recover his memories");
             return res;
         }
 
         if (questState.equals("start")) {
-        	res.add("I have found a befuddled sorceror, Brosoklelo");
-        	res.add("I have asked Brosoklelo if he has a quest for me.");
+        	res.add("I have met a befuddled sorceror, Brosoklelo");
+        	res.add("I have asked Brosoklelo for a quest.");
             res.add("I agreed to help Brosoklelo recover his memory ");
             res.add("Brosoklelo gave me a purple apple");
-            res.add("I now have to find Vlamyklela in Kirdneh and tell her I have a purple apple"); 
+            res.add("I have to find Vlamyklela and tell her I have a purple apple"); 
         }
 
         if (questState.equals("inprogress")) {
-        	res.add("I have found a befuddled sorceror, Brosoklelo");
+        	res.add("I have met a befuddled sorceror named Brosoklelo");
         	res.add("I have asked Brosoklelo for a quest");
-            res.add("I agreed to help Brosoklelo recover his memory by finding Vlamyklela in Kirdneh");
+            res.add("I agreed to help Brosoklelo recover his memory and he promised a reward");
         	res.add("I have found Vlamyklela in Kirdneh and gave her a purple apple");
         	res.add("I have received a mauve apple from Vlamyklela in Kirdneh");
-            res.add("I should now return to where I met Brosoklelo and give him the mauve apple");
-            res.add("Brosoklelo promised a reward for my efforts");
+            res.add("I should now return to where I first met Brosoklelo to claim a reward for my efforts");
         }
 
         if (questState.equals("done")) {
-        	res.add("I have found a befuddled sorceror, Brosoklelo");
+        	res.add("I have met a befuddled sorceror, Brosoklelo");
         	res.add("I have asked Brosoklelo for a quest");
             res.add("I agreed to help Brosoklelo recover his memory by finding Vlamyklela in Kirdneh");
         	res.add("I have found Vlamyklela in Kirdneh and gave her a purple apple");
         	res.add("I have received a mauve apple from Vlamyklela in Kirdneh");
-            res.add("I returned to where I met Brosoklelo and gave him the mauve apple");
-            res.add("Brosoklelo gifted me with a precious portfolio");
+            res.add("I returned to where I first met Brosoklelo and gave him a mauve apple");
+            res.add("I received a portfolio from Brosoklelo as a reward for my efforts!");
         }
 
         return res;
