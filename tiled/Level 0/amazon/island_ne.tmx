@@ -18,7 +18,7 @@
  <tileset firstgid="238" name="tree 1" tilewidth="32" tileheight="32" tilecount="6" columns="2">
   <image source="../../tileset/plant/tree/palm_tree.png" width="64" height="96"/>
  </tileset>
- <tileset firstgid="244" name="logic/creature/animal" tilewidth="32" tileheight="32" tilecount="28" columns="28">
+ <tileset firstgid="244" name="animal" tilewidth="32" tileheight="32" tilecount="28" columns="28">
   <image source="../../tileset/logic/creature/animal.png" width="896" height="32"/>
  </tileset>
  <tileset firstgid="272" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
@@ -102,10 +102,10 @@
  <tileset firstgid="599" name="huts" tilewidth="32" tileheight="32" tilecount="338" columns="26">
   <image source="../../tileset/building/huts.png" width="832" height="416"/>
  </tileset>
- <tileset firstgid="937" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+ <tileset firstgid="937" name="spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="940" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="940" name="reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">

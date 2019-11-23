@@ -66,7 +66,7 @@
  <tileset firstgid="532" name="pineapple plant" tilewidth="32" tileheight="32" tilecount="6" columns="2">
   <image source="../../tileset/plant/pineapple_plant.png" width="64" height="96"/>
  </tileset>
- <tileset firstgid="538" name="../../tileset/ground/grass_2.png" tilewidth="32" tileheight="32" tilecount="21" columns="3">
+ <tileset firstgid="538" name="grass_2.png" tilewidth="32" tileheight="32" tilecount="21" columns="3">
   <image source="../../tileset/ground/grass_2.png" width="96" height="224"/>
  </tileset>
  <tileset firstgid="559" name="dim_yellow_light_7x5" tilewidth="32" tileheight="32" tilecount="35" columns="7">
@@ -75,10 +75,10 @@
  <tileset firstgid="594" name="yellow_light_5x5" tilewidth="32" tileheight="32" tilecount="25" columns="5">
   <image source="../../tileset/light/yellow_light_5x5.png" width="160" height="160"/>
  </tileset>
- <tileset firstgid="619" name="logic/creature/spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+ <tileset firstgid="619" name="spider" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/logic/creature/spider.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="622" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="622" name="reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">

@@ -3,37 +3,37 @@
  <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="33" columns="3">
   <image source="../../tileset/ground/ground.png" trans="ffffff" width="96" height="352"/>
  </tileset>
- <tileset firstgid="34" name="../../tileset/ground/water/pool.png" tilewidth="32" tileheight="32" tilecount="72" columns="3">
+ <tileset firstgid="34" name="pool.png" tilewidth="32" tileheight="32" tilecount="72" columns="3">
   <image source="../../tileset/ground/water/pool.png" trans="ffffff" width="96" height="768"/>
  </tileset>
- <tileset firstgid="106" name="../../tileset/ground/ridge/earth_dark.png" tilewidth="32" tileheight="32" tilecount="96" columns="12">
+ <tileset firstgid="106" name="earth_dark.png" tilewidth="32" tileheight="32" tilecount="96" columns="12">
   <image source="../../tileset/ground/ridge/earth_dark.png" trans="ffffff" width="384" height="256"/>
  </tileset>
- <tileset firstgid="202" name="../../tileset/ground/grass_edges.png" tilewidth="32" tileheight="32" tilecount="36" columns="12">
+ <tileset firstgid="202" name="grass_edges.png" tilewidth="32" tileheight="32" tilecount="36" columns="12">
   <image source="../../tileset/ground/grass_edges.png" trans="ffffff" width="384" height="96"/>
  </tileset>
- <tileset firstgid="238" name="../../tileset/ground/grass_corners.png" tilewidth="32" tileheight="32" tilecount="24" columns="6">
+ <tileset firstgid="238" name="grass_corners.png" tilewidth="32" tileheight="32" tilecount="24" columns="6">
   <image source="../../tileset/ground/grass_corners.png" trans="ffffff" width="192" height="128"/>
  </tileset>
- <tileset firstgid="262" name="../../tileset/plant/flower/daisy_blue.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="262" name="daisy_blue.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="270" name="../../tileset/plant/flower/daisy_yellow.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="270" name="daisy_yellow.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_yellow.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="278" name="../../tileset/plant/flower/daisy_red.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="278" name="daisy_red.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_red.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="286" name="../../tileset/plant/flower/daisy_white.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="286" name="daisy_white.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff" width="64" height="128"/>
  </tileset>
  <tileset firstgid="294" name="logic/collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="295" name="../../tileset/plant/tree/tree_green.png" tilewidth="32" tileheight="32" tilecount="80" columns="8">
+ <tileset firstgid="295" name="tree_green.png" tilewidth="32" tileheight="32" tilecount="80" columns="8">
   <image source="../../tileset/plant/tree/tree_green.png" width="256" height="320"/>
  </tileset>
- <tileset firstgid="375" name="../../tileset/plant/stump/stump_brown.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+ <tileset firstgid="375" name="stump_brown.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="../../tileset/plant/stump/stump_brown.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="379" name="cauldron" tilewidth="32" tileheight="32" tilecount="48" columns="8">
@@ -96,7 +96,7 @@
  <tileset firstgid="1088" name="chimney_smoke" tilewidth="32" tileheight="32" tilecount="40" columns="4">
   <image source="../../tileset/building/chimney_smoke.png" width="128" height="320"/>
  </tileset>
- <tileset firstgid="1128" name="item/firewood" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+ <tileset firstgid="1128" name="firewood" tilewidth="32" tileheight="32" tilecount="12" columns="3">
   <image source="../../tileset/item/firewood.png" width="96" height="128"/>
  </tileset>
  <tileset firstgid="1140" name="herb" tilewidth="32" tileheight="32" tilecount="5" columns="5">
@@ -105,10 +105,10 @@
  <tileset firstgid="1145" name="resources" tilewidth="32" tileheight="32" tilecount="0" columns="0">
   <image source="../../tileset/logic/item/resources.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="1145" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="1145" name="reptile" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/reptile.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="1151" name="logic/creature/insect" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+ <tileset firstgid="1151" name="insect" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/logic/creature/insect.png" width="64" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">

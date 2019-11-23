@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" name="../../tileset/ground/ground.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+ <tileset firstgid="1" name="ground.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
   <image source="../../tileset/ground/ground.png" trans="ffffff" width="96" height="352"/>
  </tileset>
- <tileset firstgid="34" name="../../tileset/plant/flower/daisy_white.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="34" name="daisy_white.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="42" name="../../tileset/plant/grasses.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+ <tileset firstgid="42" name="grasses.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/plant/grasses.png" trans="ffffff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="48" name="../../tileset/plant/flower/daisy_yellow.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="48" name="daisy_yellow.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_yellow.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="56" name="../../tileset/plant/flower/daisy_blue.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="56" name="daisy_blue.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="64" name="../../tileset/plant/flower/daisy_red.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="64" name="daisy_red.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_red.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="72" name="../../tileset/plant/tree/tree_darkgreen.png" tilewidth="32" tileheight="32" tilecount="88" columns="8">
+ <tileset firstgid="72" name="tree_darkgreen.png" tilewidth="32" tileheight="32" tilecount="88" columns="8">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff" width="256" height="352"/>
  </tileset>
- <tileset firstgid="160" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32" tilecount="28" columns="28">
+ <tileset firstgid="160" name="animal.png" tilewidth="32" tileheight="32" tilecount="28" columns="28">
   <image source="../../tileset/logic/creature/animal.png" width="896" height="32"/>
  </tileset>
- <tileset firstgid="188" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+ <tileset firstgid="188" name="elf.png" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/elf.png" width="320" height="32"/>
  </tileset>
- <tileset firstgid="198" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="198" name="collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="199" name="logic/creature/human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
+ <tileset firstgid="199" name="human_evil" tilewidth="32" tileheight="32" tilecount="10" columns="10">
   <image source="../../tileset/logic/creature/human_evil.png" width="320" height="32"/>
  </tileset>
- <tileset firstgid="209" name="logic/portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+ <tileset firstgid="209" name="portal" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="225" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+ <tileset firstgid="225" name="green_paving.png" tilewidth="32" tileheight="32" tilecount="18" columns="3">
   <image source="../../tileset/ground/green_paving.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="243" name="..\tileset\ground\water\swamp_water.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+ <tileset firstgid="243" name="swamp_water.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
   <image source="../../tileset/ground/water/swamp_water.png" width="96" height="352"/>
  </tileset>
- <tileset firstgid="276" name="..\tileset\plant\grasses_swamp.png" tilewidth="32" tileheight="32" tilecount="42" columns="6">
+ <tileset firstgid="276" name="grasses_swamp.png" tilewidth="32" tileheight="32" tilecount="42" columns="6">
   <image source="../../tileset/plant/grasses_swamp.png" width="192" height="224"/>
  </tileset>
  <tileset firstgid="318" name="protection" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/logic/protection.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="320" name="logic/creature/ogre" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+ <tileset firstgid="320" name="ogre" tilewidth="32" tileheight="32" tilecount="4" columns="4">
   <image source="../../tileset/logic/creature/ogre.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="324" name="logic/creature/undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="324" name="undead_skeleton" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/undead_skeleton.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">

@@ -60,7 +60,7 @@
  <tileset firstgid="358" name="arch" tilewidth="32" tileheight="32" tilecount="24" columns="6">
   <image source="../../tileset/item/statue/flowered_arch.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="382" name="../../tileset/ground/grass_2.png" tilewidth="32" tileheight="32" tilecount="21" columns="3">
+ <tileset firstgid="382" name="grass_2.png" tilewidth="32" tileheight="32" tilecount="21" columns="3">
   <image source="../../tileset/ground/grass_2.png" width="96" height="224"/>
  </tileset>
  <tileset firstgid="403" name="dim_yellow_light_7x5" tilewidth="32" tileheight="32" tilecount="35" columns="7">

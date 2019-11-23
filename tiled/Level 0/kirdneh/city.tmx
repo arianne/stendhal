@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="1">
- <tileset firstgid="1" name="../../tileset/item/statue/eaglehead.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="1" name="eaglehead.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/item/statue/eaglehead.png" trans="ff00ff" width="64" height="128"/>
  </tileset>
  <tileset firstgid="9" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">

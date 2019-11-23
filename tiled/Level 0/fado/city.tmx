@@ -213,13 +213,13 @@
  <tileset firstgid="1696" name="sheepfood" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/item/sheepfood.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="1697" name="../../tileset/ground/sand_2.png" tilewidth="32" tileheight="32" tilecount="15" columns="5">
+ <tileset firstgid="1697" name="sand_2.png" tilewidth="32" tileheight="32" tilecount="15" columns="5">
   <image source="../../tileset/ground/sand_2.png" width="160" height="96"/>
  </tileset>
- <tileset firstgid="1712" name="../../tileset/ground/sand_1.png" tilewidth="32" tileheight="32" tilecount="10" columns="2">
+ <tileset firstgid="1712" name="sand_1.png" tilewidth="32" tileheight="32" tilecount="10" columns="2">
   <image source="../../tileset/ground/sand_1.png" width="64" height="160"/>
  </tileset>
- <tileset firstgid="1722" name="../../tileset/item/statue/fairypool.png" tilewidth="32" tileheight="32" tilecount="16" columns="2">
+ <tileset firstgid="1722" name="fairypool.png" tilewidth="32" tileheight="32" tilecount="16" columns="2">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff" width="64" height="256"/>
  </tileset>
  <tileset firstgid="1738" name="swing" tilewidth="32" tileheight="32" tilecount="4" columns="2">
@@ -228,7 +228,7 @@
  <tileset firstgid="1742" name="door" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/building/door/door.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="1748" name="logic/creature/fowl" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="1748" name="fowl" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/creature/fowl.png" width="192" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">

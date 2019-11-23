@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" name="../../tileset/ground/ground.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
+ <tileset firstgid="1" name="ground.png" tilewidth="32" tileheight="32" tilecount="33" columns="3">
   <image source="../../tileset/ground/ground.png" trans="ffffff" width="96" height="352"/>
  </tileset>
- <tileset firstgid="34" name="../../tileset/building/decoration/floor_sparkle.png" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+ <tileset firstgid="34" name="floor_sparkle.png" tilewidth="32" tileheight="32" tilecount="18" columns="3">
   <image source="../../tileset/building/decoration/floor_sparkle.png" trans="ff00ff" width="96" height="192"/>
  </tileset>
- <tileset firstgid="52" name="../../tileset/ground/ladder/steps.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+ <tileset firstgid="52" name="steps.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/ground/ladder/steps.png" trans="ffffff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="58" name="../../tileset/plant/flower/daisy_yellow.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="58" name="daisy_yellow.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_yellow.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="66" name="../../tileset/plant/flower/daisy_white.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="66" name="daisy_white.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="74" name="../../tileset/plant/grasses.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+ <tileset firstgid="74" name="grasses.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/plant/grasses.png" trans="ffffff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="80" name="../../tileset/item/statue/green_stone.png" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+ <tileset firstgid="80" name="green_stone.png" tilewidth="32" tileheight="32" tilecount="12" columns="4">
   <image source="../../tileset/item/statue/green_stone.png" trans="ffffff" width="128" height="96"/>
  </tileset>
- <tileset firstgid="92" name="../../tileset/plant/flower/daisy_red.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+ <tileset firstgid="92" name="daisy_red.png" tilewidth="32" tileheight="32" tilecount="8" columns="2">
   <image source="../../tileset/plant/flower/daisy_red.png" trans="ffffff" width="64" height="128"/>
  </tileset>
- <tileset firstgid="100" name="../../tileset/item/statue/skullpedestal.png" tilewidth="32" tileheight="32" tilecount="2" columns="1">
+ <tileset firstgid="100" name="skullpedestal.png" tilewidth="32" tileheight="32" tilecount="2" columns="1">
   <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff" width="32" height="64"/>
  </tileset>
- <tileset firstgid="102" name="../../tileset/plant/tree/tree_darkgreen.png" tilewidth="32" tileheight="32" tilecount="88" columns="8">
+ <tileset firstgid="102" name="tree_darkgreen.png" tilewidth="32" tileheight="32" tilecount="88" columns="8">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff" width="256" height="352"/>
  </tileset>
- <tileset firstgid="190" name="../../tileset/item/corpse/skull_pale.png" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+ <tileset firstgid="190" name="skull_pale.png" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/item/corpse/skull_pale.png" trans="ff00ff" width="64" height="32"/>
  </tileset>
- <tileset firstgid="192" name="../../tileset/plant/leaves.png" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+ <tileset firstgid="192" name="leaves.png" tilewidth="32" tileheight="32" tilecount="8" columns="4">
   <image source="../../tileset/plant/leaves.png" trans="ffffff" width="128" height="64"/>
  </tileset>
- <tileset firstgid="200" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32" tilecount="10" columns="5">
+ <tileset firstgid="200" name="bushes.png" tilewidth="32" tileheight="32" tilecount="10" columns="5">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff" width="160" height="64"/>
  </tileset>
- <tileset firstgid="210" name="../../tileset/building/decoration/rocks_2.png" tilewidth="32" tileheight="32" tilecount="2" columns="1">
+ <tileset firstgid="210" name="rocks_2.png" tilewidth="32" tileheight="32" tilecount="2" columns="1">
   <image source="../../tileset/building/decoration/rocks_2.png" trans="ffffff" width="32" height="64"/>
  </tileset>
- <tileset firstgid="212" name="../../tileset/object/well.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+ <tileset firstgid="212" name="well.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="../../tileset/object/well.png" trans="ffffff" width="64" height="64"/>
  </tileset>
- <tileset firstgid="216" name="../../tileset/plant/stump/stump_green.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+ <tileset firstgid="216" name="stump_green.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="../../tileset/plant/stump/stump_green.png" trans="ffffff" width="64" height="64"/>
  </tileset>
- <tileset firstgid="220" name="../../tileset/item/statue/green_stone_3.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
+ <tileset firstgid="220" name="green_stone_3.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
   <image source="../../tileset/item/statue/green_stone_3.png" trans="ffffff" width="32" height="96"/>
  </tileset>
- <tileset firstgid="223" name="../../tileset/ground/rock/pebbles.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
+ <tileset firstgid="223" name="pebbles.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
   <image source="../../tileset/ground/rock/pebbles.png" trans="ffffff" width="32" height="96"/>
  </tileset>
- <tileset firstgid="226" name="../../tileset/plant/vine.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
+ <tileset firstgid="226" name="vine.png" tilewidth="32" tileheight="32" tilecount="3" columns="1">
   <image source="../../tileset/plant/vine.png" trans="ff00ff" width="32" height="96"/>
  </tileset>
- <tileset firstgid="229" name="../../tileset/plant/tree/tree_green.png" tilewidth="32" tileheight="32" tilecount="80" columns="8">
+ <tileset firstgid="229" name="tree_green.png" tilewidth="32" tileheight="32" tilecount="80" columns="8">
   <image source="../../tileset/plant/tree/tree_green.png" trans="ffffff" width="256" height="320"/>
  </tileset>
- <tileset firstgid="309" name="../../tileset/plant/stump/stump_purple.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+ <tileset firstgid="309" name="stump_purple.png" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="../../tileset/plant/stump/stump_purple.png" trans="ffffff" width="64" height="64"/>
  </tileset>
- <tileset firstgid="313" name="../../tileset/building/decoration/rocks.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+ <tileset firstgid="313" name="rocks.png" tilewidth="32" tileheight="32" tilecount="6" columns="3">
   <image source="../../tileset/building/decoration/rocks.png" trans="ff00ff" width="96" height="64"/>
  </tileset>
- <tileset firstgid="319" name="../../tileset/logic/creature/rodent.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+ <tileset firstgid="319" name="rodent.png" tilewidth="32" tileheight="32" tilecount="5" columns="5">
   <image source="../../tileset/logic/creature/rodent.png" width="160" height="32"/>
  </tileset>
- <tileset firstgid="324" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32" tilecount="16" columns="8">
+ <tileset firstgid="324" name="portal.png" tilewidth="32" tileheight="32" tilecount="16" columns="8">
   <image source="../../tileset/logic/portal.png" width="256" height="64"/>
  </tileset>
- <tileset firstgid="340" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32" tilecount="30" columns="30">
+ <tileset firstgid="340" name="animal.png" tilewidth="32" tileheight="32" tilecount="30" columns="30">
   <image source="../../tileset/logic/creature/animal.png" width="960" height="32"/>
  </tileset>
- <tileset firstgid="370" name="../../tileset/logic/item/sheepfood.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="370" name="sheepfood.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/item/sheepfood.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="371" name="../../tileset/logic/item/resources.png" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+ <tileset firstgid="371" name="resources.png" tilewidth="32" tileheight="32" tilecount="6" columns="6">
   <image source="../../tileset/logic/item/resources.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="377" name="../../tileset/logic/creature/gargoyle.png" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+ <tileset firstgid="377" name="gargoyle.png" tilewidth="32" tileheight="32" tilecount="4" columns="4">
   <image source="../../tileset/logic/creature/gargoyle.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="381" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="381" name="collision.png" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="382" name="protection" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="../../tileset/logic/protection.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="384" name="../../tileset/ground/grass_2.png" tilewidth="32" tileheight="32" tilecount="21" columns="3">
+ <tileset firstgid="384" name="grass_2.png" tilewidth="32" tileheight="32" tilecount="21" columns="3">
   <image source="../../tileset/ground/grass_2.png" width="96" height="224"/>
  </tileset>
- <tileset firstgid="405" name="logic/creature/reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
+ <tileset firstgid="405" name="reptile" tilewidth="32" tileheight="32" tilecount="4" columns="4">
   <image source="../../tileset/logic/creature/reptile.png" width="128" height="32"/>
  </tileset>
  <layer id="1" name="0_floor" width="128" height="128">
