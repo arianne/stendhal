@@ -91,32 +91,27 @@ import games.stendhal.server.maps.Region;
  *   + Vlamyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log
  */
 
-/**
- * QUEST TEST: Ad Memoria In Portfolio
- * +make sure <player> QUEST_SLOT is clean:
- * /alterquest <player> admemoriainportfolio <null>
- * /alterquest <player> hungry_joshua <null>
- */
-
-/** QUEST TEST Method of Procedure:
- *
+/** QUEST TEST Method of Procedure: Ad Memoria In Portfolio
  * a0) Find Brosoklelo, tell reset
  *		this will remove all relevant items from player/character
- *		related to keyring   (xoderos/joshua and keyring)
  *		related to portfolio (brosoklelo/vlamyklela and portfolio)
+ *		related to keyring   (xoderos/joshua and keyring)
  *
+ * +make sure <player> QUEST_SLOT is clean:
  * b1) /alterquest admemoriainportfolio <enter>
  * 		will cleanse admemoriainportfolio quest slot
+ *
+ * +make sure <player> QUEST_SLOT is clean:
  * b2) /alterquest hungry_joshua <enter>
  * 		will cleanse hungry_joshua quest slot
+ *
+ * c1) destroy all remaining items in inventory
  *
  * d) exit client
  * e) exit and restart local server
  * f) restart client
  *
  */
-
-
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
 
@@ -241,6 +236,17 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"That is understandable..." + " " +
             "Maybe someone else will be more charitable...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
+		
+		//on offered quest
+		//try to leave without a proper yes/no answer
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"I asked a simple question! A plain #yes or #no will suffit...",
+				null);
+
     }
 
 	/** admemoriainportfolio_step_2 */
@@ -327,7 +333,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                                 "Thank you indeed!" + " " +
                                 "I will now grant you a special gift for your efforts..." + " " +
                                 "Here... Take this Portfolio..." + " " +
-                                "A portfolio will help you carry around many scrolls!" + " " +
+                                "A portfolio will help you carry around several scrolls!" + " " +
                                 "Fare thee well!");
                         }
 	        	},
@@ -351,10 +357,10 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         );
 		
 		//admemoriainportfolio steps:
-		admemoriainportfolio_step_0();
-		admemoriainportfolio_step_1();
-		admemoriainportfolio_step_2();
-		admemoriainportfolio_step_3();
+		admemoriainportfolio_step_0(); //testing only
+		admemoriainportfolio_step_1(); //activate quest
+		admemoriainportfolio_step_2(); //progress quest
+		admemoriainportfolio_step_3(); //reclaim quest reward
 	}
 
 	@Override
