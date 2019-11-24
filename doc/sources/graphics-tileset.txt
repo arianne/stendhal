@@ -179,10 +179,10 @@ wooden_stairs.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/wall/
 
-bricked_corners.png              ???; ???; ???
-bricked_edges.png                ???; ???; ???
+bricked_corners.png              (placeholder)
+bricked_edges.png                (placeholder)
 dojo_walls.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-earthen_3.png                    ???; ???; ???
+earthen_3.png                    (placeholder)
 glass.png                        ???; ???; ???
 glass_details.png                ???; ???; ???
 int_blue_green.png               ???; ???; ???
