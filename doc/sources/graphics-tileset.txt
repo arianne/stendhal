@@ -250,7 +250,7 @@ tiled/tileset/furniture/bathroom/
 
 basin.png  ???; ???; ???
 bathtub.*  extradave; CC0; https://opengameart.org/node/4726
-toilet.*   ???; ???; ???
+toilet.*   bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/furniture/bed/
 bb_blue.png            bleutailfly; OGA BY 3.0; Stendhal
