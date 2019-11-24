@@ -228,19 +228,20 @@ tiled/tileset/building/window/
 brown_with_cream_shutters.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 classic_window.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_brown.png                  (placeholder)
-int_small_windows_dark_red.png  ???; ???; ???
-int_windows_dark_red.png        ???; ???; ???
-int_windows_purple.png          ???; ???; ???
+int_small_windows_dark_red.png  Katie Russell (kymara); GPL 2.0+; Stendhal
+int_windows_dark_red.png        Katie Russell (kymara); GPL 2.0+; Stendhal
+int_windows_purple.png          Katie Russell (kymara); GPL 2.0+; Stendhal
 int_windows_white_centered.png  bleutailfly; OGA BY 3.0; Stendhal
 int_windows_wood_centered.png   bleutailfly; OGA BY 3.0; Stendhal
 lighted_window.png              (placeholder)
-painted.png                     ???; ???; ???
+painted.png                     Juan; ???; ??? (committed by kymara: 5af1506)
 window_below.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_centered.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_left.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_long.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_long_below.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 window_right.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+windows.png                     ???; CC BY-SA 3.0; https://opengameart.org/node/41378 (need to sort out author names)
 windows_with_flowerboxes.*      Lanea Zimmerman (Sharm), bluecarrot16, Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/node/81885, https://opengameart.org/content/lpc-cnilsson
 
 tiled/tileset/furniture/
