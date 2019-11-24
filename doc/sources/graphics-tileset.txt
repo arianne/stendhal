@@ -4,7 +4,7 @@ tiled/tileset/building/
 barnyard.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 castle.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_smoke.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79111
-church.png                    ???; ???; ???
+church.png                    ???; ???; ??? (originally committed by Miguel: 1f1fba3)
 cottage.png                   Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpectrum), bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/41379, https://opengameart.org/node/13470, https://opengameart.org/content/lpc-cnilsson
 death_tower.png               ???; ???; ??? (committed by laguz: ac039e9)
 fire_tower.png                ???; ???; ??? (committed by laguz: ac039e9)
