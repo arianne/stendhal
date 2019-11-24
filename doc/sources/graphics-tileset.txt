@@ -104,38 +104,38 @@ wooden_doors.png          Laguz; ???; https://sourceforge.net/p/arianne/patches/
 
 tiled/tileset/building/entrance/
 
-blue_green.png                 ???; ???; ???
-blue_green_2.png               ???; ???; ???
-blue_green_big.png             ???; ???; ???
+blue_green.png                 ???; ???; ??? (committed by kymara: 4bc619f)
+blue_green_2.png               ???; ???; ??? (committed by kymara: 4bc619f)
+blue_green_big.png             ???; ???; ??? (committed by kymara: a2aa81f)
 blue_green_face.png            Katie Russell (kymara); GPL 2.0+; Stendhal
 blue_green_face_2.png          Katie Russell (kymara); GPL 2.0+; Stendhal
-blue_green_ns_centered.png     ???; ???; ???
-blue_green_wide.png            ???; ???; ???
-bricks_ew.png                  ???; ???; ???
-bricks_ew_detail.png           ???; ???; ???
-bricks_ns.png                  ???; ???; ???
-dark_red_ew.png                ???; ???; ???
-dark_red_ew_detail.png         ???; ???; ???
-dark_red_ew_fancy.png          ???; ???; ???
-dark_red_ew_wide.png           ???; ???; ???
-dark_red_ew_wide_details.png   ???; ???; ???
-dark_red_ew_wide_special.png   ???; ???; ???
-dark_red_ns.png                ???; ???; ???
-dark_red_ns_detail.png         ???; ???; ???
-dark_red_ns_fancy.png          ???; ???; ???
-detail_ew.png                  ???; ???; ???
-detail_ns.png                  ???; ???; ???
+blue_green_ns_centered.png     ???; ???; ??? (committed by tigertoes: 51fc21f)
+blue_green_wide.png            ???; ???; ??? (committed by tigertoes: d5aa2c7)
+bricks_ew.png                  Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
+bricks_ew_detail.png           Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
+bricks_ns.png                  Katie Russell (kymara); GPL 2.0+; Stendhal
+dark_red_ew.png                Katie Russell (kymara); GPL 2.0+; Stendhal
+dark_red_ew_detail.png         ???; ???; ??? (committed by kymara: d78a37d)
+dark_red_ew_fancy.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+dark_red_ew_wide.png           ???; ???; ??? (committed by tigertoes: 8fb8db3) (appears to be taken from dark_red_ns or similar)
+dark_red_ew_wide_details.png   ???; ???; ??? (committed by tigertoes: 8fb8db3) (appears to be taken from dark_red_ns or similar)
+dark_red_ew_wide_special.png   ???; ???; ??? (committed by tigertoes: 361513a) (appears to be taken from dark_red_ns or similar)
+dark_red_ns.png                Katie Russell (kymara); GPL 2.0+; Stendhal
+dark_red_ns_detail.png         Katie Russell (kymara); GPL 2.0+; Stendhal
+dark_red_ns_fancy.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+detail_ew.png                  Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
+detail_ns.png                  Katie Russell (kymara); GPL 2.0+; Stendhal
 dojo_entrances.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-green_purple_ns_ew.png         ???; ???; ???
+green_purple_ns_ew.png         ???; ???; ??? (committed by kymara: 05e08f6)
 grey.*                         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_centred.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_broken_bars.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_iron_bars.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ochre_brick_set_entrances.png  ???; ???; ???
+ochre_brick_set_entrances.png  ???; ???; ??? (committed by tigertoes: e100a8a)
 pale_red_ew.png                Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
 pale_red_ns.png                Katie Russell (kymara); GPL 2.0+; Stendhal
-pale_red_ns_closed.png         ???; ???; ???
-shadow.png                     ???; ???; ???
+pale_red_ns_closed.png         Katie Russell (kymara); GPL 2.0+; Stendhal
+shadow.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/fence/
 
