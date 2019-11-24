@@ -227,7 +227,6 @@ tiled/tileset/building/window/
 
 brown_with_cream_shutters.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 classic_window.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dark_brown.png                  (placeholder)
 int_small_windows_dark_red.png  Katie Russell (kymara); GPL 2.0+; Stendhal
 int_windows_dark_red.png        Katie Russell (kymara); GPL 2.0+; Stendhal
 int_windows_purple.png          Katie Russell (kymara); GPL 2.0+; Stendhal
