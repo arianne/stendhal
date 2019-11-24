@@ -249,7 +249,7 @@ tiled/tileset/furniture/
 
 tiled/tileset/furniture/bathroom/
 
-basin.png  ???; ???; ???
+basin.png  ???; ???; ??? (committed by kymara: bbd2e01)
 bathtub.*  extradave; CC0; https://opengameart.org/node/4726
 toilet.*   bleutailfly; OGA BY 3.0; Stendhal
 
@@ -339,7 +339,7 @@ wooden_rustic.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tiled/tileset/furniture/clock/
 
 grandfather_clock.png  bleutailfly; OGA BY 3.0; Stendhal
-wooden_clock.*         ???; ???; ???
+wooden_clock.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/crockery/
 
@@ -365,11 +365,11 @@ royal_blue_drapes.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart
 
 tiled/tileset/furniture/kitchen/
 
-cabinets.*    ???; ???; ???
+cabinets.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pie_safe.png  bleutailfly; OGA BY 3.0; Stendhal
 stove.png     bleutailfly; OGA BY 3.0; Stendhal
 warmer.png    bleutailfly; OGA BY 3.0; Stendhal
-warmer_2.*    ???; ???; ???
+warmer_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/light/
 
@@ -564,18 +564,19 @@ tall_grass.png               Saphy.Len Pabin GPL 2.0 https://opengameart.org/con
 
 tiled/tileset/ground/fire/
 
-fire.png        ???; ???; ???
-fire_small.png  ???; ???; ???
-flame.png       XenosNS; CC0; http://opengameart.org/node/17220
-flame_large.*   ???; ???; ???
-flames.png      DkuCook; CC0; https://opengameart.org/node/76781
-lava.*          Jordan Irwin (AntumDeluge), ???; ???; ???
+fire.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fire_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+flame.png         XenosNS; CC0; http://opengameart.org/node/17220
+flame_large.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+flames.png        DkuCook; CC0; https://opengameart.org/node/76781
+lava.*            Jordan Irwin (AntumDeluge), Ogrebane; OGA BY 3.0; https://opengameart.org/node/79141, https://opengameart.org/node/4562
+lava_corners.png  Jordan Irwin (AntumDeluge), Ogrebane; OGA BY 3.0; https://opengameart.org/node/79141, https://opengameart.org/node/4562
 
 tiled/tileset/ground/ice/
 
-edges.png    ???; ???; ???
-glacier.png  ???; ???; ???
-ice.png      ???; ???; ???
+edges.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+glacier.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+ice.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 icehole.png  tigertoes; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/ground/indoor/
@@ -606,20 +607,20 @@ tiles.png                   ???; ???; ???
 
 tiled/tileset/ground/ladder/
 
-horizontal_dark.png  ???; ???; ???
-horizontal_pale.png  ???; ???; ???
+horizontal_dark.png  bleutailfly; OGA BY 3.0; Stendhal
+horizontal_pale.png  bleutailfly; OGA BY 3.0; Stendhal
 rope_ladder.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79116
-small.png            ???; ???; ???
-steps.*              ???; ???; ???
-vertical_dark.png    ???; ???; ???
-vertical_pale.png    ???; ???; ???
+small.png            deusfigendi, durkham; ???; ??? (committed by kymara: f0f6e05)
+steps.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+vertical_dark.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+vertical_pale.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/ground/ridge/
 
-earth_dark.png  ???; ???; ???
-earth_pale.png  ???; ???; ???
-ice.png         ???; ???; ???
-ice_2.png       ???; ???; ???
+earth_dark.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+earth_pale.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+ice.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+ice_2.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/ground/rock/
 
@@ -728,13 +729,13 @@ toys.*                    ???, PrinterKiller, Jordan Irwin (AntumDeluge); ???; h
 
 tiled/tileset/item/armor/
 
-armor.png               ???; ???; ???
-bloodied_small_axe.png  ???; ???; ???
-chains.*                ???; ???; ???
+armor.png               ???; ???; ??? (committed by Miguel: 12d51cd)
+bloodied_small_axe.png  ???; ???; ??? (committed by sshk5: caf64ac)
+chains.*                Katie Russell (kymara); GPL 2.0+; Stendhal
 suit_of_armor2.png      Daniel Cook; CC BY 3.0; https://opengameart.org/node/11758, http://www.lostgarden.com/2006/07/more-free-game-graphics.html
-sword_rack.png          ???; ???; ???
+sword_rack.png          Katie Russell (kymara); GPL 2.0+; Stendhal (some images from other sources)
 weapons_for_walls.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-weapons_rack.png        ???; ???; ???
+weapons_rack.png        Katie Russell (kymara); GPL 2.0+; Stendhal (some images from other sources)
 
 tiled/tileset/item/banners/
 
