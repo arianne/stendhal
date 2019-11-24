@@ -140,7 +140,7 @@ shadow.png                     ???; ???; ???
 tiled/tileset/building/fence/
 
 fence_chunky.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fence_wooden.*        ???; ???; ???
+fence_wooden.*        ???; ???; ??? (committed by lumocra: 502c7de)
 palisade.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stone_fence_white.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wooden_brown_fence.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
