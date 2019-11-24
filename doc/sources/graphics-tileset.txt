@@ -163,14 +163,14 @@ yellow.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tiled/tileset/building/stairs/
 
 blue_stone.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dark_stairs.png           ???; ???; ???
+dark_stairs.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_stone_stairs.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_stone_stairs_down.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-int_ew.png                ???; ???; ???
-int_ns.*                  ???; ???; ???
-int_we.*                  ???; ???; ???
+int_ew.png                Katie Russell (kymara); GPL 2.0+; Stendhal
+int_ns.*                  Katie Russell (kymara); GPL 2.0+; Stendhal
+int_we.*                  Katie Russell (kymara); GPL 2.0+; Stendhal
 stairs.png                (placeholder)
-stairs_grey.png           ???; ???; ???
+stairs_grey.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stairs_orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 winding.png               (placeholder)
 winding_2.png             (placeholder)
