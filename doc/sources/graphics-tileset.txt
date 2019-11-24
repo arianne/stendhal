@@ -107,8 +107,8 @@ tiled/tileset/building/entrance/
 blue_green.png                 ???; ???; ???
 blue_green_2.png               ???; ???; ???
 blue_green_big.png             ???; ???; ???
-blue_green_face.png            ???; ???; ???
-blue_green_face_2.png          ???; ???; ???
+blue_green_face.png            Katie Russell (kymara); GPL 2.0+; Stendhal
+blue_green_face_2.png          Katie Russell (kymara); GPL 2.0+; Stendhal
 blue_green_ns_centered.png     ???; ???; ???
 blue_green_wide.png            ???; ???; ???
 bricks_ew.png                  ???; ???; ???
@@ -132,8 +132,8 @@ grey_centred.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_broken_bars.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_iron_bars.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ochre_brick_set_entrances.png  ???; ???; ???
-pale_red_ew.png                ???; ???; ???
-pale_red_ns.png                ???; ???; ???
+pale_red_ew.png                Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
+pale_red_ns.png                Katie Russell (kymara); GPL 2.0+; Stendhal
 pale_red_ns_closed.png         ???; ???; ???
 shadow.png                     ???; ???; ???
 
