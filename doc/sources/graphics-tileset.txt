@@ -5,22 +5,20 @@ barnyard.*                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 castle.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_smoke.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79111
 church.png                    ???; ???; ???
-death_tower.png               ???; ???; ???
-desert_house_exterior.png     Richard Kettering (Jetrel), Tyler Olsen (Roots), Casper Nilsson, Hyptosis, Zachariah Husiar (Zabin), Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/80149, https://opengameart.org/content/lpc-cnilsson
-fire_tower.png                ???; ???; ???
-gazebo.*                      ???; ???; ???
+cottage.png                   Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpectrum), bluecarrot16; CC BY-SA 3.0; https://opengameart.org/node/41379, https://opengameart.org/node/13470, https://opengameart.org/content/lpc-cnilsson
+death_tower.png               ???; ???; ??? (committed by laguz: ac039e9)
+fire_tower.png                ???; ???; ??? (committed by laguz: ac039e9)
+gazebo.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gnome_homes.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20713
+gnomehome.pspimage            tigertoes; ???; Stendhal
 greenhouse.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_3.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-house_blue_white.png          ???; ???; ???
 house_chalet.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-house_greenish_stone.png      ???; ???; ???
-house_light_brick.png         ???; ???; ???
-house_light_tan.png           ???; ???; ???
 house_pink_blue.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+houses and businesses.png     ???; ???; ??? (committed by tigertoes: 433f3d5)
 huts.*                        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-ice_tower.png                 ???; ???; ???
-life_tower.png                ???; ???; ???
+ice_tower.png                 ???; ???; ??? (committed by laguz: 938f851)
+life_tower.png                ???; ???; ??? (committed by laguz: 938f851)
 mill.png                      bleutailfly; CC BY-SA 3.0; Stendhal
 mill_2.png                    bleutailfly; CC BY-SA 3.0; Stendhal
 museum.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -33,7 +31,7 @@ thatched_roof_cottage*        Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpe
 tower_chalet.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 windmill_blades.png           bleutailfly; OGA BY 3.0; Stendhal
 witch_hut.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-wizards_tower.png             ???; ???; ???
+wizards_tower.png             laguz; ???; ??? (committed by kiheru: 366d68c)
 
 tiled/tileset/character/
 
@@ -43,51 +41,51 @@ zekiel.*          etcgood1, Robert C. (Mumu); CC BY 4.0; https://opengameart.org
 
 tiled/tileset/building/decoration/
 
-arrows.png                ???; ???; ???
+arrows.png                ???; ???; ??? (committed by kymara: 4691de2)
 balcony.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-banner.png                https://github.com/crawl/tiles
-banner_long.png           ???; ???; ???
-banner_rotated_gm.png     ???; ???; ???
-block.png                 ???; ???; ???
-blue_circle.png           ???; ???; ???
-blue_circle2.png          ???; ???; ???
+banner.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/, https://github.com/crawl/tiles
+banner_long.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+banner_rotated_gm.png     ???; ???; ??? (committed by kymara: f0ddc6e)
+block.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+blue_circle.png           Juan?; ???; ??? (committed by kymara: 04f76ce)
+blue_circle2.png          Juan?; ???; ??? (committed by kymara: 7ef5772)
 blue_green.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-blue_green_2.png          ???; ???; ???
-caldron_sign.png           https://github.com/crawl/tiles
-chests_banner.png         ???; ???; ???
+blue_green_2.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+caldron_sign.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/, https://github.com/crawl/tiles
+chests_banner.png         ???; ???; ??? (wizard hat needs replaced)
 chimney.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-chimney_big.png           ???; ???; ???
+chimney_big.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chimney_brown_stacks.png  Lanea Zimmerman (Sharm); CC BY-SA 3.0; http://lpc.opengameart.org/static/lpc-style-guide/assets.html#outdoors
-coal_fire.png             ???; ???; ???
-colours_circle.png        ???; ???; ???
-fancy_gate.png            ???; ???; ???
+coal_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+colours_circle.png        Juan?; ???; ??? (committed by kymara: 7ef5772)
+fancy_gate.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fireplace.png             (placeholder)
-fireplace_2.png           ???; ???; ???
-floor_sparkle.png         ???; ???; ???
+fireplace.xcf.bz2         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fireplace_2.png           ???; ???; ??? (committed by kymara: d57914b)
+floor_sparkle.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 furnace.png               bleutailfly; OGA BY 3.0; Stendhal
 green_block.png           (placeholder)
-holly_garlands.png        kymara
-library_banner.png        ???; ???; ???
+holly_garlands.png        Katie Russell (kymara); GPL 2.0+; Stendhal
+library_banner.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 longhorn_skull.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-magician_banner.png       ???; ???; ???
-mill_sail.png             ???; ???; ???
-numbers.png               ???; ???; ???
-numbers_higher.png        ???; ???; ???
-orbpedestal.png           ???; ???; ???
-platform.png              ???; ???; ???
+magician_banner.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+mill_sail.png             ???; ???; ??? (committed by Astrid Sawatzky: 4d7e047)
+numbers.png               ???; ???; ??? (committed by kymara: f790b0f)
+numbers_higher.png        ???; ???; ??? (committed by kymara: 69aca29)
+orbpedestal.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+platform.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pool.*                    ???, Kimmo Rundelin (kiheru); ???; ???
-realworldcafe.png         ???; ???; ???
+realworldcafe.png         madmetzger; ???; ???
 rocks.png                 (placeholder)
 rocks_2.png               (placeholder)
 squares_2.png             (placeholder)
 stone_details.png         (placeholder)
 swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79120
-toolset.png               ???; ???; ???
-wall_feature.png          ???; ???; ???
-weapon_banner.png         ???; ???; ???
-webs.png                  ???; ???; ???
-wood_fire.png             ???; ???; ???
-wreaths.png               bleutailfly ; OGA BY 3.0; Stendhal
+toolset.png               ???; ???; ??? (committed by kymara: 165842e)
+weapon_banner.png         ???; ???; ??? (committed by kymara: 26fd00c)
+webs.png                  ???; ???; ??? (committed by miguel: 9f10715)
+wood_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+wreaths.png               bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/building/door/
 
@@ -764,7 +762,7 @@ bottle.png         ???; ???; ???
 copper_still.png   ???; ???; ???
 empty_bottles.png  ???; ???; ???
 flask.png          ???; ???; ???
-potions.png         https://github.com/crawl/tiles
+potions.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
 tiled/tileset/item/chest/
 
@@ -794,7 +792,7 @@ book.png        ???; ???; ???
 books.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 books2.png      ???; ???; ???
 books3.png      ???; ???; ???
-books4.png      https://github.com/crawl/tiles
+books4.png      Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 kids_art.png    bleutailfly; OGA BY 3.0; Stendhal
 kids_art_2.png  bleutailfly; OGA BY 3.0; Stendhal
 letter.png      ???; ???; ???
