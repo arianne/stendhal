@@ -183,39 +183,41 @@ bricked_corners.png              (placeholder)
 bricked_edges.png                (placeholder)
 dojo_walls.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earthen_3.png                    (placeholder)
-glass.png                        ???; ???; ???
-glass_details.png                ???; ???; ???
-int_blue_green.png               ???; ???; ???
-int_blue_purple.png              ???; ???; ???
-int_blue_purple_2.png            ???; ???; ???
+glass.png                        Katie Russell (kymara); GPL 2.0+; Stendhal
+glass_details.png                ???; ???; ??? (committed by tigertoes: d6505d9)
+int_blue_green.png               Katie Russell (kymara); GPL 2.0+; Stendhal
+int_blue_purple.png              Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
+int_blue_purple_2.png            Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
 int_clay.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0;
-int_green_blue.png               ???; ???; ???
-int_green_blue_2.png             ???; ???; ???
-int_green_purple.png             ???; ???; ???
+int_green_blue.png               Katie Russell (kymara); GPL 2.0+; Stendhal
+int_green_blue_2.png             Katie Russell (kymara); GPL 2.0+; Stendhal
+int_green_purple.png             ???; ???; ??? (committed by kymara: 05e08f6)
 int_grey.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-int_grey_green_detail.png        ???; ???; ???
-int_purple_blue.png              ???; ???; ???
+int_grey_green_detail.png        ???; ???; ??? (committed by tigertoes: 6c4b196)
+int_purple_blue.png              Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
+int_rock.png                     (placeholder: to be removed for 1.32 release)
+int_rock_blue.png                (placeholder: to be removed for 1.32 release)
 int_sandstone.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-int_wall_bricks.png              ???; ???; ???
-int_wall_bricks_tan.png          ???; ???; ???
-int_wall_brick_wood.png          ???; ???; ???
-int_wall_dark_red.png            ???; ???; ???
-int_wall_dark_red_corners.png    ???; ???; ???
-int_wall_dark_red_corners_2.png  ???; ???; ???
-int_wall_fancy_purple.png        ???; ???; ???
-int_wall_pale.png                ???; ???; ???
-int_wall_purple.png              ???; ???; ???
-int_wall_thin_bricks.png         ???; ???; ???
-ochre_brick_set.png              ???; ???; ???
+int_wall_brick_wood.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_bricks.png              Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_bricks_tan.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_dark_red.png            Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_dark_red_corners.png    Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_dark_red_corners_2.png  Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_fancy_purple.png        Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_pale.png                Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_purple.png              Katie Russell (kymara); GPL 2.0+; Stendhal
+int_wall_thin_bricks.png         Katie Russell (kymara); GPL 2.0+; Stendhal
+ochre_brick_set.png              Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
 old_wood.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0;
-ornamental_border.png            ???; ???; ???
+ornamental_border.png            tigertoes; GPL 2.0+; Stendhal
 stone.png                        Kimmo Rundelin (kiheru); CC BY-SA 3.0;
-stone2.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 stone_grey.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 stone_house_interior.png         Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
+stone2.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0;
+wall_brown.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 wallpapers.png                   bleutailfly; OGA BY 3.0; Stendhal
 walls_siding.png                 bleutailfly; OGA BY 3.0; Stendhal
-wall_brown.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 white_trim.png                   bleutailfly; OGA BY 3.0; Stendhal
 wood.png                         Kimmo Rundelin (kiheru); CC BY-SA 3.0;
 wood_2.png                       Kimmo Rundelin (kiheru); CC BY-SA 3.0;
