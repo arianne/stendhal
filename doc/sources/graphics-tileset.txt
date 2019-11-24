@@ -27,6 +27,7 @@ museum.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 outhouse.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stone_ruins.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stone_tower.png               Remos Turcuman (Bleed); CC BY 3.0; https://opengameart.org/node/61012; Bleed's Game Art - http://remusprites.carbonmade.com
+stone_village.png             Libz0rzz; CC0; https://opengameart.org/node/90266
 tan_building.png              Lanea Zimmerman (Sharm); OGA BY 3.0; https://opengameart.org/node/17502
 thatched_roof_cottage*        Lanea Zimmerman (Sharm), Daniel Armstrong (HughSpectrum), bluecarrot16, Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/41379, https://opengameart.org/node/41378, https://opengameart.org/node/35455
 tower_chalet.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
