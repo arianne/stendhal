@@ -173,7 +173,7 @@ stairs.png                (placeholder)
 stairs_grey.png           ???; ???; ???
 stairs_orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 winding.png               (placeholder)
-winding_2.png             ???; ???; ???
+winding_2.png             (placeholder)
 wooden_ns.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79115
 wooden_stairs.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
