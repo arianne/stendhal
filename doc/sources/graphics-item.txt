@@ -670,7 +670,7 @@ data/sprites/items/sword/
 
 assassin_dagger.png          ???; ???; ??? (committed by Miguel: 8c1bd33)
 biting_sword.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-black_dagger.png             Hades_the_Emperor?; ???; ??? (committed by kymara: da26c4f)
+black_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 black_sword.png              ???; ???; ??? (committed by kymara: dce8da3)
 blooddrinker.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
