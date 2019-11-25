@@ -263,7 +263,7 @@ butter.png                 omero; CC BY-SA 3.0; Stendhal
 button_mushroom.png        Daniel Herding (mort); GPL 2.0; Stendhal
 carrot.png                 ???; ???; ??? (committed by Miguel: d9791e5)
 cauliflower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-cheese.png                 lumocra?; ???; ??? (committed by lumocra: 078e198)
+cheese.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 cheese_sausage_on_bun.png  tigertoes; ???; ??? artwork done by kiheru using cheesesausage .png submitted by tigertoes
 cheesecake.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
 cheesesausage.png          barbanegra?; ???; ??? (committed by kymara: 156d8af)
