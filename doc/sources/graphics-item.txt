@@ -451,7 +451,7 @@ elvish_legs.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel
 golden_legs.png           bleutailfly; OGA BY 3.0; Stendhal
 jewelled_legs.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ modded (committed by kymara: 69cbfee)
 leather_legs.png          ???; ???; ??? (committed by Miguel: d9791e5)
-mainio_legs.png           vesper?; ???; ??? (committed by johnnnny: ca6f851)
+mainio_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
 shadow_legs.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (from Krakow Mobile, committed by Miguel: 3e5e746)
