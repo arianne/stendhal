@@ -140,7 +140,7 @@ magic_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 mithril_cloak.png       janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 red_cloak.png           David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_dragon_cloak.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-rift_cloak.png          ???; ???; ??? (committed by laguz)
+rift_cloak.png          Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 shadow_cloak.png        David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 stone_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_cloak.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
