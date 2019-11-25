@@ -680,7 +680,7 @@ chaos_dagger.png             lint35, Katie Russell (kymara); ???; ???
 chaos_sword.png              bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-dark_dagger.png              ???; ???; ??? (committed by Miguel: 8c1bd33)
+dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 demon_fire_sword.png         ???; ???; ??? (committed by kymara: dce8da3)
 devilknights_clan_sword.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 elvish_sword.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
