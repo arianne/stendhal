@@ -703,7 +703,7 @@ orc_sword.png                Fernando Miranda Muro (barbanegra)?; ???; ??? (comm
 orcish_sword.png             bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 scimitar.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 short_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-soul_dagger.png              ???; ???; ??? (committed by Miguel: 8c1bd33)
+soul_dagger.*                Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 vampire_sword.png            herodot?, athana?; ???; ??? (committed by kymara: dc0af9e)
 xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
