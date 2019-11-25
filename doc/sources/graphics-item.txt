@@ -267,7 +267,7 @@ cheese.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.or
 cheese_sausage_on_bun.png  tigertoes; ???; ??? artwork done by kiheru using cheesesausage .png submitted by tigertoes
 cheesecake.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
 cheesesausage.png          barbanegra?; ???; ??? (committed by kymara: 156d8af)
-cherry.png                 ???; ???; ???; Committed by Miguel Angel
+cherry.png                 Vesa Vanhatupa (Master484); CC0; https://opengameart.org/node/20467
 cherrypie.png              omero; CC BY-SA 3.0; Stendhal
 chicken.png                Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/78777
 chinese-cabbage.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
