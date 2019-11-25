@@ -125,7 +125,6 @@ blue_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 blue_elf_cloak.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 blue_striped_cloak.png  David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 bone_dragon_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-brightgreen_cloak.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 cloak.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dwarf_cloak.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
