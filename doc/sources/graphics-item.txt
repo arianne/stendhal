@@ -687,7 +687,7 @@ elvish_sword.png             ???; ???; ??? (from Krakow Mobile, committed by Mig
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_orc_sword.png         Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 great_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-hell_dagger.png              Hades_the_Emperor?; ???; ???
+hell_dagger.png              Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
 katana.png                   ???; ???; ??? (committed by danter: 5c087df)
