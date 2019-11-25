@@ -307,7 +307,7 @@ pineapple.png              nicubunu; CC0; https://openclipart.org/detail/12995
 pizza.png                  ???; ???; ???
 pomegranate.png            Bluelads4?; ???; ???
 porcini.png                Daniel Herding (mort); GPL 2.0; Stendhal; Needs verified
-real_corn.png              ???; ???; ???
+real_corn.png              ScratchIO; CC0; https://opengameart.org/node/99282
 red-lionfish.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 salad.png                  Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs verified
