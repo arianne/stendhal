@@ -281,7 +281,6 @@ collard.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
 crepesuzette.png           omero; CC BY-SA 3.0; Stendhal
-devil_cake.png             geomac?; ???; ??? (committed by kymara: d36cebb)
 easter_egg.png             Katie Russell (kymara); GPL 2.0; Stendhal
 egg.png                    barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
 fairy_cake.png             Katie Russell (kymara); ???; Stendhal
