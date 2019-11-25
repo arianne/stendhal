@@ -269,7 +269,7 @@ cheesecake.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
 cheesesausage.png          barbanegra?; ???; ??? (committed by kymara: 156d8af)
 cherry.png                 ???; ???; ???; Committed by Miguel Angel
 cherrypie.png              omero; CC BY-SA 3.0; Stendhal
-chicken.png                kymara?; ???; ???
+chicken.png                Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/78777
 chinese-cabbage.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chocolatebar.png           tigertoes; CC BY-SA 3.0; Stendhal
 chocolateshake.png         tigertoes; CC BY-SA 3.0; Stendhal  will replace shortly
