@@ -402,7 +402,7 @@ blackpearl.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blackpearlnecklace.png  barbanegra?; ???; ??? (based on pearlnecklace.png, committed by tigertoes: 19c9981)
 carbuncle.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 carbuncle_crystal.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-diamond.png             MELLE; CC0; https://opengameart.org/node/89286
+diamond.*               David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622 (animation created by AntumDeluge)
 emerald.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 emerald_crystal.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_carbuncle.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
