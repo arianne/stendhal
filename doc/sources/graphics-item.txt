@@ -197,7 +197,7 @@ data/sprites/items/documents/
 
 closed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 coupon.png             ???; ???; ??? (committed by hendrik)
-ice_scroll.png         ???; ???; ??? (committed by laguz)
+ice_scroll.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 license.png            tigertoes; CC BY-SA 3.0; Stendhal
 map.png                Katie Russell (kymara); GPL 2.0; Stendhal
 mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
