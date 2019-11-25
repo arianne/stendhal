@@ -45,7 +45,7 @@ leather_armor.png             Dungeon Crawl Stone Soup; CC0; https://opengameart
 leather_cuirass.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_scale_armor.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_plate_armor.*           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-mainio_armor.png              vesper?; ???; ??? (committed by kymara)
+mainio_armor.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mithril_armor.png             janay; CC BY-SA 3.0; Stendhal  was submitted by tigertoes
 plate_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 red_armor.png                 bleutailfly; OGA BY 3.0; Stendhal
