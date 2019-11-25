@@ -296,7 +296,7 @@ icecream.png               kymara?; ???; ???
 leek.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 licorice.png               tigertoes; CC BY-SA 3.0; Stendhal; Based on rope by Xenodora from OGA, Modded and Committed by tigertoes
 mackerel.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-meat.png                   ???; ???; ???; Committed by Miguel Angel
+meat.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 meat_smoked.png            omero; CC BY-SA 3.0; Stendhal; Based on meat.png
 olive.png                  tigertoes; CC BY-SA 3.0; Stendhal
 onion.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
