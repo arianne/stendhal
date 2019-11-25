@@ -690,7 +690,6 @@ great_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 hell_dagger.png              Hades_the_Emperor?; ???; ???
 ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
-imperial_dagger.png          Hades_the_Emperor?; ???; ??? (committed by kymara: da26c4f)
 katana.png                   ???; ???; ??? (committed by danter: 5c087df)
 kilij.png                    durkham; GPL 2.0; Stendhal
 knife.png                    ???; ???; ??? (committed by danter: e98d86f)
