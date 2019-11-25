@@ -404,7 +404,7 @@ carbuncle.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 carbuncle_crystal.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 emerald.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 emerald_crystal.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-greater_brilliant.*     ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+greater_brilliant.png   MELLE; CC0; https://opengameart.org/node/89286
 greater_carbuncle.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_emerald.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_sapphire.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
