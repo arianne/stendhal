@@ -290,7 +290,7 @@ fishpie.png                kymara?; ???; ???
 garlic.png                 Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
 grapes.png                 Red Queen?; ???; ??? (committed by Red Queen: f807cc9)
 grilled_steak.png          Bluelads4?; ???; ???
-ham.png                    ???; ???; Committed by Miguel Angel
+ham.png                    David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 hamsausage.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
 ham_smoked.png             ???; ???; ???; Based on ham.png
 honey.png                  bleutailfly; OGA BY 3.0; Stendhal
