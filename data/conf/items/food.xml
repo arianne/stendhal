@@ -195,7 +195,7 @@
 
     <!-- from spawners -->
 	<item name="corn">
-		<type class="food" subclass="real_corn" tileid="-1" />
+		<type class="food" subclass="corn" tileid="-1" />
 		<description>You see a pannocchia of real corn. It could be eated raw, grilled or turned into flour... Your choice.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
