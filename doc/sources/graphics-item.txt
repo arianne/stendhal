@@ -378,8 +378,8 @@ golden_horned_barbute.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.f
 horned_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 liberty_helmet.png          ???; ???; ??? (committed by Kymara: 6d98377)
-lion_clan_helmet.png        ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+mainio_helmet.png           ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
 red_helmet.png              ???; ???; ??? (committed by Kymara: a799898)
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
