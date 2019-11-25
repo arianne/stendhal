@@ -317,7 +317,7 @@ sausage_on_bun.png         tigertoes; ???; ??? artwork done by kiheru using the 
 small_easter_egg.png       kymara?; ???; ???; Based on items/food/egg.png?
 spinach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spotted_egg.png            barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
-sugar.png                  geomac?; ???; ???; (committed by kymara: d36cebb)
+sugar.png                  ScratchIO; CC0; https://opengameart.org/node/99798
 surgeonfish.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool.png              Daniel Herding (mort); GPL 2.0; Stendhal
 tomato.png                 ScratchIO; CC0; https://opengameart.org/node/99118
