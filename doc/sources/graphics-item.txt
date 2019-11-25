@@ -203,7 +203,7 @@ map.png                Katie Russell (kymara); GPL 2.0; Stendhal
 mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
 opened_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 paper.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-recipe.png             ???; ???; ??? (committed by Bluelads4)
+recipe.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 sealed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 unsealed_envelope.png  Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 
