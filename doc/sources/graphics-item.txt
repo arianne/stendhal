@@ -367,7 +367,7 @@ zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
 data/sprites/items/helmet/
 
 aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-black_helmet.png            ???; ???; ??? (from Krakow Mobile, based on darkangels_clan_helmet, committed by kymara: 775c4eb)
+black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 blue_helmet.png             kymara?; ???; ??? (committed by kymara: 6ea3692)
 chain_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
