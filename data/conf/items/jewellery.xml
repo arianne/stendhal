@@ -82,7 +82,7 @@
   </item>
 
   <item name="diamond">
-    <type class="jewellery" subclass="greater_brilliant" tileid="-1"/>
+    <type class="jewellery" subclass="diamond" tileid="-1"/>
     <description>You see a diamond, not just a beautiful gem but also the hardest naturally occurring material .</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
