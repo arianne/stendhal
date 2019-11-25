@@ -320,7 +320,7 @@ spotted_egg.png            barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
 sugar.png                  geomac?; ???; ???; (committed by kymara: d36cebb)
 surgeonfish.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool.png              Daniel Herding (mort); GPL 2.0; Stendhal
-tomato.png                 sshk5?; ???; ??? (committed by Miguel: 2872d65)
+tomato.png                 ScratchIO; CC0; https://opengameart.org/node/99118
 trout.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 trout_smoked.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tuna_sandwich.png          Katie Russell (kymara); GPL 2.0; Stendhal
