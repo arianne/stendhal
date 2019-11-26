@@ -656,7 +656,7 @@ data/sprites/items/sword/
 assassin_dagger.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 biting_sword.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-black_sword.png              ???; ???; ??? (committed by kymara: dce8da3)
+black_sword.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 blooddrinker.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 broadsword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -667,7 +667,6 @@ claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 demon_fire_sword.png         ???; ???; ??? (committed by kymara: dce8da3)
-devilknights_clan_sword.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 elvish_sword.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_orc_sword.png         Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
