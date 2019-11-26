@@ -555,13 +555,13 @@ data/sprites/items/ring/
 antipoison_rings.xcf.bz2  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 antitoxin_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 antivenom_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
-aquamarine-ring.png       ???; ???; ??? (based on silver-ring.png? committed by kiheru: e1a2ad7)
+aquamarine-ring.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 emerald-ring.png          kymara?, kiheru?; ???; ??? (based on gold-ring.png/aquamarine-ring.png? combined from e1a2ad7 & 942df05)
 engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (based on wedding.png???)
-gold-ring.png             ???; ???; ??? (based on silver-ring.png? committed by kiheru: e1a2ad7)
+gold-ring.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 medicinal_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
-silver-ring.png           ???; ???; ??? (committed by kiheru: e1a2ad7)
+silver-ring.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 turtle_shell_ring.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 wedding.png               Katie Russell (kymara); GPL 2.0; Stendhal
 
