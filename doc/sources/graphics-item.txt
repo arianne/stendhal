@@ -470,7 +470,7 @@ cards.png                Daniel Herding (mort); GPL 2.0; Stendhal
 decent_meal.png          omero; CC BY-SA 3.0; Stendhal
 dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
 ent_twig.png             gummipferd; ???; ???; Stendhal (committed by tigertoes: 4e63ee6)
-giant_heart.png          ???; ???; ??? (committed by Miguel: b03a1c0)
+giant_heart.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/291622
 lemon.png                omero; CC BY-SA 3.0; Stendhal
 marbles.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 metal_rod.png            tigertoes; CC BY-SA 3.0; Stendhal
