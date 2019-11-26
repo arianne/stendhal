@@ -660,7 +660,7 @@ chaos_sword.png              bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; 
 claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-demon_fire_sword.png         ???; ???; ??? (committed by kymara: dce8da3)
+demon_fire_sword.png         durkham, Katie Russell (kymara); GPL 2.0+; Stendhal
 elvish_sword.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 golden_orc_sword.png         Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
