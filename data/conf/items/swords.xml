@@ -666,6 +666,29 @@
     </equipable>
   </item>
 
+  <item name="royal dagger">
+    <type class="sword" subclass="royal_dagger" tileid="-1"/>
+    <description>You see the rare and precious royal dagger. It can steal life from those you stab with it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <atk value="5"/>
+      <rate value="1"/>
+      <lifesteal value="0.1"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="0.2"/>
+    <value value="1000000"/>
+    <damage type="dark"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="scimitar">
     <type class="sword" subclass="scimitar" tileid="-1"/>
     <description>This scimitar catches the light as you look at it, it will be a powerful weapon.</description>

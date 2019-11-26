@@ -230,6 +230,29 @@
     </equipable>
   </item>
 
+  <item name="royal boots">
+    <type class="boots" subclass="royal_boots" tileid="-1"/>
+    <description>You see a pair of royal boots.  They have magical properties</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="16"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="23625"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
+    <susceptibility type="dark" value="0.95"/>
+    <susceptibility type="light" value="0.95"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
    <item name="shadow boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>
     <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>

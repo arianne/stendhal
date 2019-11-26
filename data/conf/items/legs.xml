@@ -231,6 +231,29 @@
     </equipable>
   </item>
 
+  <item name="royal legs">
+    <type class="legs" subclass="royal_legs" tileid="-1"/>
+    <description>You see a pair of royal legs.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="16"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="25.0"/>
+    <value value="23625"/>
+    <susceptibility type="fire" value="0.98"/>
+    <susceptibility type="ice" value="0.98"/>
+    <susceptibility type="dark" value="0.98"/>
+    <susceptibility type="light" value="0.98"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="legs"/>
+    </equipable>
+  </item>
+
   <item name="shadow legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
     <description>You see a pair of shadow legs. The weight of them is incredible.</description>

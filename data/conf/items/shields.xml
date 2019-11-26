@@ -307,6 +307,30 @@
     </equipable>
   </item>
 
+  <item name="royal shield">
+    <type class="shield" subclass="royal_shield" tileid="-1"/>
+    <description>You see a royal shield. It has a magical quality surrounding it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="41"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="24.0"/>
+    <value value="448000"/>
+    <susceptibility type="light" value="0.97"/>
+    <susceptibility type="dark" value="0.97"/>
+    <susceptibility type="fire" value="0.97"/>
+    <susceptibility type="ice" value="0.97"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="shadow shield">
     <type class="shield" subclass="shadow_shield" tileid="-1"/>
     <description>You see a shadow shield. Rather than reflecting light, it seems to absorb it.</description>

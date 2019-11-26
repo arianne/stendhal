@@ -441,6 +441,29 @@
     </equipable>
   </item>
 
+  <item name="royal armor">
+    <type class="armor" subclass="royal_armor" tileid="-1"/>
+    <description>You see a suit of royal armor. This armor is fit for a king.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="25"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="96768"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
+    <susceptibility type="dark" value="0.95"/>
+    <susceptibility type="light" value="0.95"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="scale armor">
     <type class="armor" subclass="scale_armor" tileid="-1"/>
     <description>You see a suit of scale armor. It is not flexible like chain, but will be a better defense.</description>

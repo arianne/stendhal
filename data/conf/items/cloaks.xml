@@ -384,6 +384,29 @@
     </equipable>
   </item>
 
+  <item name="royal cloak">
+    <type class="cloak" subclass="royal_cloak" tileid="-1"/>
+    <description>You see a royal cloak.  It will protect you against mighty foes.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="24"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="8.0"/>
+    <value value="109375"/>
+    <susceptibility type="light" value="0.95"/>
+    <susceptibility type="dark" value="0.95"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="cloak"/>
+    </equipable>
+  </item>
+
   <item name="shadow cloak">
     <type class="cloak" subclass="shadow_cloak" tileid="-1"/>
     <description>You see a shadow cloak, in colours of the shadow armor.</description>

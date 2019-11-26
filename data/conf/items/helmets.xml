@@ -400,4 +400,27 @@ Possibly add to weekly item quest. -->
     </equipable>
   </item>
 
+  <item name="royal helmet">
+    <type class="helmet" subclass="royal_helmet" tileid="-1"/>
+    <description>You see a royal helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="23"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="74536"/>
+    <susceptibility type="fire" value="0.98"/>
+    <susceptibility type="ice" value="0.98"/>
+    <susceptibility type="dark" value="0.98"/>
+    <susceptibility type="light" value="0.98"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
 </items>
