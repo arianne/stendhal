@@ -461,7 +461,7 @@ xeno_legs.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org
 
 data/sprites/items/misc/
 
-ankh.png                 ???; ???; ??? (committed by Miguel: 1f2c66e)
+ankh.png                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 bat_entrails.png         Katie Russell (kymara); GPL 2.0; Stendhal
 bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
 bulb.png                 omero; CC BY-SA 3.0; Stendhal
