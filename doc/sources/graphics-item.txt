@@ -587,7 +587,7 @@ empty.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 fado.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 green.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 home.png              Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
-invitation.png        Anders Asplund (Danter), ???; GPL 2.0; Stendhal
+invitation.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 kalavan.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 key.png               Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 kirdneh.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
