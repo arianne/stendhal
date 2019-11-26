@@ -611,7 +611,6 @@ buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere
 chaos_shield.png              ???; ???; ??? (committed by kymara: c3d7fec)
 crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 darkangels_clan_shield.png    ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
-devilknights_clan_shield.png  ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 elvish_shield.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 goldentowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
