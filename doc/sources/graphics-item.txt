@@ -676,7 +676,7 @@ ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
 katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 kilij.png                    durkham; GPL 2.0; Stendhal
-knife.png                    ???; ???; ??? (committed by danter: e98d86f)
+knife.png                    7Soul1; CC0; https://opengameart.org/node/39455
 [l|r]_hand_sword.png         ???; ???; ??? (committed by oslsachem: 5e849eb)
 magic_dagger.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
