@@ -661,7 +661,7 @@ blooddrinker.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.
 bread_knife.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 broadsword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 buster.png                   ???; ???; ??? (committed by danter: e98d86f)
-chaos_dagger.png             lint35, Katie Russell (kymara); ???; ???
+chaos_dagger.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 chaos_sword.png              bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 claymore.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 dagger.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
