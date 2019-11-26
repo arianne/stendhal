@@ -577,7 +577,7 @@ red_scent.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tom
 data/sprites/items/scroll/
 
 ados.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-balloon.png           ???; ???; ??? (committed by bleutailfly: c523f95)
+balloon.png           bleutailfly; OGA BY 3.0; Stendhal
 black.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 blank_pet_scroll.png  Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 blue.png              Anders Asplund (Danter); GPL 2.0; Stendhal
