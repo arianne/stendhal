@@ -694,7 +694,6 @@ red_o_token.png             ???; ???; ??? (committed by hendrik, edited by kymar
 
 data/sprites/items/tool/
 
-cake_pan.png          geomac?; ???; ??? (committed by kymara: d36cebb)
 fishing_rod.png       Nadine Schlonies (dine); GPL 2.0; Stendhal
 foodmill.png          Durkham?; ???; ??? (committed by Astrid Sawatzky: c96dfcd)
 gold_pan.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
