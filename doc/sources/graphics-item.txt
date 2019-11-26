@@ -467,7 +467,6 @@ bobbin.png               tigertoes; CC BY-SA 3.0; Stendhal
 bulb.png                 omero; CC BY-SA 3.0; Stendhal
 canotuna.png             tigertoes; CC BY-SA 3.0; Stendhal
 cards.png                Daniel Herding (mort); GPL 2.0; Stendhal
-creditcard.png           ???; ???; ??? (committed by Miguel: 1c64c92)
 decent_meal.png          omero; CC BY-SA 3.0; Stendhal
 dice.png                 Daniel Herding (mort); GPL 2.0; Stendhal
 ent_twig.png             gummipferd; ???; ???; Stendhal (committed by tigertoes: 4e63ee6)
