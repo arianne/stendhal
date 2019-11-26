@@ -682,7 +682,7 @@ scimitar.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 short_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 soul_dagger.*                Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 sword.png                    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-vampire_sword.png            herodot?, athana?; ???; ??? (committed by kymara: dc0af9e)
+vampire_sword.png            Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
 data/sprites/items/token/
