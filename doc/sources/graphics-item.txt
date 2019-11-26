@@ -604,7 +604,6 @@ yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/shield/
 
-beech.png                     ???; ???; ??? (drawn by WorldOfOurs team, committed by kymara: 0bde94c)
 black_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 bluetowershield.png           barbanegra?; ???; ??? (committed by kymara: 156d8af)
 blue_shield.png               bleutailfly; OGA BY 3.0; Stendhal
@@ -625,9 +624,7 @@ lion_clan_shield.png          ???; ???; ??? (from Krakow Mobile, committed by Mi
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 mainio_shield.png             vesper?; ???; ??? (committed by johnnnny: ca6f851)
 mithril_shield.png            tigertoes - gonna redo; ???; ???
-pine.png                      ???; ???; ??? (drawn by WorldOfOurs team, committed by kymara: 0bde94c)
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-redwood.png                   ???; ???; ??? (drawn by WorldOfOurs team, committed by kymara: 0bde94c)
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
 shadow_shield.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 silvertowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
