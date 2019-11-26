@@ -680,7 +680,7 @@ knife.png                    ???; ???; ??? (committed by danter: e98d86f)
 [l|r]_hand_sword.png         ???; ???; ??? (committed by oslsachem: 5e849eb)
 magic_dagger.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-nihonto.png                  johnnnny?; ???; https://sourceforge.net/p/arianne/patches/109/
+nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 orc_sword.png                Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 orcish_sword.png             bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
