@@ -1,4 +1,4 @@
-The following images can be removed after version 1.32:
+The following images can be deleted on or after 1.32 release:
 
 animal/
 - black_slime.png
