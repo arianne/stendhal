@@ -71,7 +71,7 @@ golden_twosided_poleaxe.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 halberd.png                  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 hand_axe.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 magic_twosided_poleaxe.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked twosided_poleaxe
-oldscythe.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+oldscythe.*                  David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 scythe.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 sickle.png                   omero; CC BY-SA 3.0; Stendhal
 small_axe.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
