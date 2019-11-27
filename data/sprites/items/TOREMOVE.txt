@@ -1,3 +1,7 @@
 The following images can be deleted on or after 1.32 release:
 
+helmet/
+- lion_clan_helmet.png
+
+shield/
 - lion_clan_shield.png
