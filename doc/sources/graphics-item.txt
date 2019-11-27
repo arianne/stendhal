@@ -610,7 +610,7 @@ blue_shield.png               bleutailfly; OGA BY 3.0; Stendhal
 buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_shield.png              LordNeo; CC0; https://opengameart.org/node/10916
 crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-elvish_shield.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+elvish_shield.png             Cethiel; CC0; https://opengameart.org/node/95987
 enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 goldentowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 golden_shield.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
