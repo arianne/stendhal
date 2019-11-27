@@ -454,7 +454,7 @@ leather_legs.png          Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDel
 mainio_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
-shadow_legs.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (from Krakow Mobile, committed by Miguel: 3e5e746)
+shadow_legs.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 studded_legs.png          Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 xeno_legs.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
