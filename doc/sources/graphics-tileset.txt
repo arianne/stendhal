@@ -329,9 +329,9 @@ sofa_grey.png              bleutailfly; OGA BY 3.0; Stendhal
 sofa_red.png               bleutailfly; OGA BY 3.0; Stendhal
 sofa_shadow.png            bleutailfly; OGA BY 3.0; Stendhal
 stool.png                  bleutailfly; OGA BY 3.0; Stendhal
-throne.png                 ???; ???; ???
-throne_small.png           ???; ???; ???
-throne_small_gold.png      ???; ???; ???
+throne.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+throne_small.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+throne_small_gold.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wooden.png                 bleutailfly; OGA BY 3.0; Stendhal
 wooden_pale.png            bleutailfly; OGA BY 3.0; Stendhal
 wooden_rustic.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
