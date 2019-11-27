@@ -319,7 +319,7 @@ bench_wooden.*             Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://op
 colorful.png               bleutailfly; OGA BY 3.0; Stendhal
 greenish_grey.png          ???; ???; ???
 sofa.png                   bleutailfly; OGA BY 3.0; Stendhal
-sofa_2.png                 ???; ???; ???
+sofa_2.png                 extradave; CC0; https://opengameart.org/node/4726
 sofa_brown.png             bleutailfly; OGA BY 3.0; Stendhal
 sofa_chair_blue.png*       bleutailfly; OGA BY 3.0; Stendhal
 sofa_chair_grey.png        bleutailfly; OGA BY 3.0; Stendhal
