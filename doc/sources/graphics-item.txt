@@ -614,7 +614,7 @@ elvish_shield.png             Cethiel; CC0; https://opengameart.org/node/95987
 enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 goldentowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 golden_shield.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-green_dragon_shield.png       ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+green_dragon_shield.png       SCay; CC BY 3.0/4.0; https://opengameart.org/node/76129
 lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 lion_clan_shield.png          ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
