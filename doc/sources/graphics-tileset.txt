@@ -169,7 +169,7 @@ grey_stone_stairs_down.*  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_ew.png                Katie Russell (kymara); GPL 2.0+; Stendhal
 int_ns.*                  Katie Russell (kymara); GPL 2.0+; Stendhal
 int_we.*                  Katie Russell (kymara); GPL 2.0+; Stendhal
-stairs.png                (placeholder)
+stairs.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stairs_grey.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stairs_orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 winding.png               (placeholder)
