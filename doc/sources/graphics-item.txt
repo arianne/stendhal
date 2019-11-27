@@ -616,8 +616,8 @@ goldentowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8a
 golden_shield.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_shield.png       SCay; CC BY 3.0/4.0; https://opengameart.org/node/76129
 lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
-lion_clan_shield.png          ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+magic_plate_shield.png        ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
 mainio_shield.png             vesper?; ???; ??? (committed by johnnnny: ca6f851)
 mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; modified goldentowershield
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
