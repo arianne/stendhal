@@ -622,7 +622,7 @@ mainio_shield.png             vesper?; ???; ??? (committed by johnnnny: ca6f851)
 mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; modified goldentowershield
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
-shadow_shield.png             ???; ???; ??? (from Krakow Mobile, committed by Miguel: 3e5e746)
+shadow_shield.png             Hernandack; CC0; https://opengameart.org/node/91222
 silvertowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
