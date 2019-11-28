@@ -307,10 +307,10 @@ strawberry.png     durkham (bug); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/chair/
 
-armchair.png               kymara
-armchair_cream.png         kymara
-armchair_pink.png          ???; ???; ???
-armchair_red.*             ???; ???; ???
+armchair.png               Katie Russell (kymara); GPL 2.0+; Stendhal
+armchair_cream.png         Katie Russell (kymara); GPL 2.0+; Stendhal
+armchair_pink.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+armchair_red.*             Katie Russell (kymara); GPL 2.0+; Stendhal
 bench_iron.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bench_iron_extensible.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bench_iron_reverse.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -583,7 +583,7 @@ tiled/tileset/ground/indoor/
 
 black_hole.png            ???; ???; ???
 blue_green.png            (placeholder) (committed by kymara: 955eaab)
-blue_hole.png             ???; ???; ???
+blue_hole.png             Katie Russell (kymara); GPL 2.0+; Stendhal
 brown.png                 ???; ???; ???
 brown_hole.png            ???; ???; ???
 church_tiles.png          ???; ???; ???
@@ -645,7 +645,7 @@ red_crystal_small.*  Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), Jord
 red_obsidian.png     ???; ???; ???
 rock_cluster.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rock_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-rock_snow.*          ???; ???; ???
+rock_snow.*          Katie Russell; GPL 2.0+; Stendhal
 rocks.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rocks_2.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rocks_3.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -829,7 +829,7 @@ meals_2.png             ???; ???; ???
 meals_3.png             bleutailfly; OGA BY 3.0; Stendhal
 pies.png                ???; ???; ???
 piglet.png              ???; ???; ???
-rustic_meals.png        ???; ???; ???
+rustic_meals.png        Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 smoked_meatandfish.png  omero; OGA BY 3.0; Stendhal
 steak.png               ???; ???; ???
 torte.png               ???; ???; ???
@@ -884,8 +884,8 @@ huge_pot.png            ???; ???; ???
 oriental_jar.png        ???; ???; ???
 pots_elegant.png        bleutailfly; OGA BY 3.0; Stendhal
 pot_burgundy.png        bleutailfly; OGA BY 3.0; Stendhal
-pot_golden.png          ???; ???; ???
-pot_golden_centred.png  ???; ???; ???
+pot_golden.png          Katie Russell (kymara); GPL 2.0+; Stendhal
+pot_golden_centred.png  Katie Russell (kymara); GPL 2.0+; Stendhal
 pot_green.png           bleutailfly; OGA BY 3.0; Stendhal
 pot_grey.png            bleutailfly; OGA BY 3.0; Stendhal
 pot_on_metal.png        ???; ???; ???
