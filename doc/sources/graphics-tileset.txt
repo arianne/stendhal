@@ -940,9 +940,9 @@ wolf_statue.png          Hyptosis, mold; CC0; https://opengameart.org/node/81798
 tiled/tileset/item/textile/
 
 blankets.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bunting.png            ???; ???; ???
+bunting.png            Katie Russell (kymara); GPL 2.0+; Stendhal
 dress.png              ???; ???; ???
-halloween_bunting.png  ???; ???; ???
+halloween_bunting.png  Katie Russell (kymara); GPL 2.0+; Stendhal
 lace.png               bleutailfly; OGA BY 3.0; Stendhal
 large_dress.png        ???; ???; ???
 laundry.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
