@@ -761,10 +761,10 @@ small_stains-safe.png    Firkin, Jordan Irwin (AntumDeluge); CC0; https://opencl
 
 tiled/tileset/item/chemistry/
 
-bottle.png         ???; ???; ???
+bottle.png         Groundhug McHampster (h4mt4r0), omero; GPL 2.0+; Stendhal (based on flask.png)
 copper_still.png   ???; ???; ???
-empty_bottles.png  ???; ???; ???
-flask.png          ???; ???; ???
+empty_bottles.png  Groundhug McHampster (h4mt4r0), omero; GPL 2.0+; Stendhal
+flask.png          Groundhug McHampster (h4mt4r0), omero; GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 potions.png        Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
 tiled/tileset/item/chest/
