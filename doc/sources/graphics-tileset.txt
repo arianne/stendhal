@@ -709,7 +709,7 @@ flagpole.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flat_button.png           ???; ???; ???
 grill_top.png             bleutailfly; OGA BY 3.0; Stendhal
 grill_top_gray.png        bleutailfly; OGA BY 3.0; Stendhal
-hen_nest.png              ???; ???; ???
+hen_nest.png              omero; OGA BY 3.0; Stendhal
 hot_iron_piece.png        ???; ???; ???
 huge_orb.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
