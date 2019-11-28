@@ -139,7 +139,7 @@ commander_elf.*    Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDelu
 elf.*              Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/99
 elf_bodyguard.*    Svetlana Kushnariova (Cabbit), olonu, Shaun Williams, Jordan Irwin (AntumDeluge); CC BY 3.0; https://github.com/arianne/stendhal/issues/88, https://opengameart.org/node/13826
 elf_sacerdotist.*  Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/77, https://sourceforge.net/p/arianne/patches/715/
-elf_wizard.png     Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/69
+elf_wizard.*       Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/69
 mage_elf.*         Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/96
 militia_elf.*      Svetlana Kushnariova (Cabbit), olonu, Chris Hamons, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/100
 soldier_elf.*      Svetlana Kushnariova (Cabbit), olonu, kanaya2529, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/101
