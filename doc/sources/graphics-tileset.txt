@@ -249,7 +249,7 @@ tiled/tileset/furniture/
 
 tiled/tileset/furniture/bathroom/
 
-basin.png  ???; ???; ??? (committed by kymara: bbd2e01)
+basin.png  (placeholder) (committed by kymara: f5ee84c)
 bathtub.*  extradave; CC0; https://opengameart.org/node/4726
 toilet.*   bleutailfly; OGA BY 3.0; Stendhal
 
@@ -285,13 +285,13 @@ black_red.png      ???; ???; ??? (committed by laguz: a49436e)
 blue.png           ???; ???; ???
 border.png         ???; ???; ???
 border2.png        ???; ???; ???
-brown_rug.png      ???; ???; ???
+brown_rug.png      (placeholder) (committed by kiheru: da9ba66)
 brown_rug2.png     bleutailfly; OGA BY 3.0; Stendhal
-brown_rug3.png     ???; ???; ???
+brown_rug3.png     (placeholder) (committed by kiheru: a8aac4b)
 carpets.png        durkham?, juan?; ???; Stendhal; Need to verify all authors
 carpets_2.png      ???; ???; ???
-dark_blue.png      ???; ???; ???
-dark_red.png       ???; ???; ???
+dark_blue.png      (placeholder) (committed by kiheru: a8aac4b)
+dark_red.png       (placeholder) (committed by kiheru: a8aac4b)
 green.png          ???; ???; ???
 lilac.png          juan; ???; Stendhal
 nain_rug.png       ???; ???; ???
@@ -299,8 +299,8 @@ orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pink_rug.png       bleutailfly; OGA BY 3.0; Stendhal
 plain_colours.png  ???; ???; ???
 purple.png         ???; ???; ???
-purple2.png        ???; ???; ??? (committed by kymara: 39dcf7b)
-red_purple.png     ???; ???; ???
+purple2.png        (placeholder) (committed by kymara: 39dcf7b)
+red_purple.png     (placeholder) (committed by bleutailfly: 5df2da1)
 royalblue.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rug_border.png     ???; ???; ???
 strawberry.png     durkham (bug); CC BY-SA 3.0; Stendhal
@@ -317,7 +317,7 @@ bench_iron_reverse.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bench_white.png            Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79117
 bench_wooden.*             Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79117
 colorful.png               bleutailfly; OGA BY 3.0; Stendhal
-greenish_grey.png          ???; ???; ???
+greenish_grey.png          (placeholder) (committed by kymara: 59c94ad)
 sofa.png                   bleutailfly; OGA BY 3.0; Stendhal
 sofa_2.png                 extradave; CC0; https://opengameart.org/node/4726
 sofa_brown.png             bleutailfly; OGA BY 3.0; Stendhal
@@ -353,9 +353,9 @@ curtain_rails.png    bleutailfly; OGA BY 3.0; Stendhal
 curtain_rod.png      bleutailfly; OGA BY 3.0; Stendhal
 dark_red.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 green.png            bleutailfly; OGA BY 3.0; Stendhal
-light_blue.png       ???; ???; ???
+light_blue.png       (placeholder) (committed by kymara: be49cf3) (can be replaced with older versions done by bleutailfly)
 lt_blue_drapes.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
-peach.png            ???; ???; ???
+peach.png            (placeholder) (committed by kymara: be49cf3) (can be replaced with older versions done by bleutailfly)
 peach_drapes.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 purple_drapes.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 red.png              ???; ???; ???
@@ -423,9 +423,9 @@ city_picture.*        Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/d
 gnome_sweet_gome.png  tigertoes; CC BY-SA 3.0; Stendhal made for future internal gnome home
 large_island.*        Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/138349, https://opengameart.org/node/79120
 oil_paintings.png     tigertoes; CC BY-SA 3.0; Stendhal mostly from my own photos of europe
-projectleader.png     ???; ???; ???
-sheep_picture.png     ???; ???; ???
-small.png             ???; ???; ???
+projectleader.png     (placeholder) (committed by kymara: da1ed39)
+sheep_picture.png     (placeholder) (committed by kymara: da1ed39)
+small.png             (placeholder) (committed by kymara: da1ed39)
 small_2.png           bleutailfly; OGA BY 3.0; Stendhal
 small_hills.png       bleutailfly; OGA BY 3.0; Stendhal
 
@@ -469,7 +469,7 @@ bench.png                  bleutailfly; OGA BY 3.0; Stendhal
 brick_base.png             bleutailfly; OGA BY 3.0; Stendhal
 concrete_table.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 desk.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-desk_wooden.png            ???; ???; ???
+desk_wooden.png            (placeholder) (committed by tigertoes: eeb3cf5)
 fancy_blue_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flowers_on_bench2.png      Lanea Zimmerman (Sharm), Jetrel, Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
 flowers_on_benches.*       Lanea Zimmerman (Sharm), bluecarrot16, Kimmo Rundelin (kiheru), Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
@@ -498,7 +498,7 @@ table_wooden_brown.*       ???; ???; ???
 tree_stump_table.png       ???; ???; ???
 vendors_table.*            Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
 white.*                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
-white_counter_top.png      ???; ???; ???
+white_counter_top.png      (placeholder) (committed by kymara: d878ac9)
 wooden.png                 bleutailfly; OGA BY 3.0; Stendhal
 wooden_pale.png            bleutailfly; OGA BY 3.0; Stendhal
 wooden_rectangular.*       bleutailfly; OGA BY 3.0; Stendhal
@@ -581,29 +581,29 @@ icehole.png  tigertoes; CC BY-SA 3.0; Stendhal
 
 tiled/tileset/ground/indoor/
 
-black_hole.png              ???; ???; ???
-blue_green.png              ???; ???; ???
-blue_hole.png               ???; ???; ???
-brown.png                   ???; ???; ???
-brown_hole.png              ???; ???; ???
-church_tiles.png            ???; ???; ???
-floor.png                   ???; ???; ???
-floors_3.png                ???; ???; ???
-floors_4.png                ???; ???; ???
-floor_tan.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-floor_tiles.png             ???; ???; ???
-floor_tiles2.png            ???; ???; ???
-grey_gradients.png          ???; ???; ???
-grey_hole.png               ???; ???; ???
-grey_skull.png              ???; ???; ???
-oriental_tan_tile.png       bleutailfly; OGA BY 3.0; Stendhal
-purple_tile.png             ???; ???; ???
-raised_platform.png         ???; ???; ???
-raised_platform_blue.png    ???; ???; ???
-raised_platform_purple.png  ???; ???; ???
-soft_blue.png               ???; ???; ???
-stonefloor.png              ???; ???; ???
-tiles.png                   ???; ???; ???
+black_hole.png            ???; ???; ???
+blue_green.png            (placeholder) (committed by kymara: 955eaab)
+blue_hole.png             ???; ???; ???
+brown.png                 ???; ???; ???
+brown_hole.png            ???; ???; ???
+church_tiles.png          ???; ???; ???
+floor.png                 ???; ???; ???
+floors_3.*                ???; ???; ???
+floors_4.png              (placeholder) (committed by tigertoes: d964116)
+floor_tan.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+floor_tiles.png           (placeholder) (committed by kymara: b8c869f)
+floor_tiles2.png          (placeholder) (committed by kymara: 1de18c7)
+grey_gradients.png        ???; ???; ???
+grey_hole.png             ???; ???; ???
+grey_skull.png            (placeholder) (committed by kymara: 348a108, can maybe replace with older version)
+oriental_tan_tile.png     bleutailfly; OGA BY 3.0; Stendhal
+purple_tile.png           (placeholder) (committed by tigertoes: eeb3cf5)
+raised_platform.png       ???; ???; ???
+raised_platform_blue.png  ???; ???; ???
+raised_platform_purple.*  ???; ???; ???
+soft_blue.png             ???; ???; ???
+stonefloor.png            (placeholder) (committed by tigertoes: 64421a9)
+tiles.png                 (placeholder) (committed by kymara: dcae348, can maybe replace with older version)
 
 tiled/tileset/ground/ladder/
 
@@ -837,7 +837,7 @@ tiled/tileset/item/gothic/
 
 coffin.png           ???; ???; ???
 grave_marker.png     Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/node/31884
-grave_marker_2.png   ???; ???; ???
+grave_marker_2.png   (placeholder) (committed by bleutailfly: 3c2a1e9)
 grave_statue_girl.*  Casper Nilsson (C.Nilsson), Wolthera van Hövell tot Westerflier (TheraHedwig), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson, https://opengameart.org/node/64532
 headstone.xcf.bz2    ???; ???; ???
 headstone_1.png      Barbara Rivera; CC BY-SA 3.0; https://opengameart.org/content/concept-art-for-lpc-entry
@@ -872,7 +872,7 @@ barrels_2.*             Hyptosis, isaiah658, Jordan Irwin (AntumDeluge); CC0; ht
 barrel_flat.png         ???; ???; ???
 barrel_snow1.*          Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79172
 barrel_tall.png         bleutailfly; OGA BY 3.0; Stendhal
-barrel_with_flower.png  ???; ???; ???
+barrel_with_flower.png  (placeholder) (committed by kymara: dad94bb)
 box.png                 bleutailfly; OGA BY 3.0; Stendhal
 cauldron.png            ???; ???; ???
 clay_pot.png            bleutailfly; OGA BY 3.0; Stendhal
