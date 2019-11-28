@@ -358,7 +358,7 @@ lt_blue_drapes.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart
 peach.png            (placeholder) (committed by kymara: be49cf3) (can be replaced with older versions done by bleutailfly)
 peach_drapes.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 purple_drapes.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
-red.png              ???; ???; ???
+red.png              bleutailfly; OGA BY 3.0; Stendhal
 red_drapes.*         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 red_gold_gathered.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 royal_blue_drapes.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
