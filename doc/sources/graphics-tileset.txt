@@ -417,7 +417,7 @@ tools_rack.png             ???; ???; ???
 
 tiled/tileset/furniture/picture/
 
-blackdragon.png       bleutailfly; ???; Stendhal special image for tigertoes
+blackdragon.png       Groundhug McHamster (h4mt4ro), bleutailfly; GPL 2.0+; Stendhal special image for tigertoes
 cats.*                ???; ???; ???
 city_picture.*        ???; ???; ???
 gnome_sweet_gome.png  tigertoes; CC BY-SA 3.0; Stendhal made for future internal gnome home
