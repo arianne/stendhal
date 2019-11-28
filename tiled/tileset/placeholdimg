@@ -218,7 +218,8 @@ elif not os.path.isdir(dir_target):
 command = (
 	cmd_convert, infile, overlay, '-background', 'none', '-virtual-pixel', 'tile',
 	'-set', 'option:distort:viewport', '%[fx:u.w]x%[fx:u.h]', '-distort', 'SRT',
-	'0', '+swap', '-compose', 'copyopacity', '-composite', outfile,
+	'0', '+swap', '-compose', 'copyopacity', '-composite', '-define',
+	'png:format=png32', outfile,
 )
 
 proc = Popen(command)
