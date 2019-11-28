@@ -698,7 +698,6 @@ button_gold.png           ???; ???; ???
 button_grey.png           ???; ???; ???
 buzzing_bees.png          tigertoes; ???; ??? not sure whether needs replaced
 campfires.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-campfire_snow.png         ???; ???; ???
 caution_ns.png            bleutailfly; OGA BY 3.0; Stendhal
 caution_sign.png          bleutailfly; OGA BY 3.0; Stendhal
 chapter.png               tigertoes; CC BY-SA 3.0; Stendhal
