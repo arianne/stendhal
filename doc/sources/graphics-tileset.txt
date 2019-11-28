@@ -985,7 +985,7 @@ light_1x1.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 light_5x5.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_light_5x5.png               ???; ???; ???
 square_inverse_light_10x10.png  ???; ???; ???
-torchlight_5x4.png              ???; ???; ???
+torchlight_5x4.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 white_1x1.png                   ???; ???; ???
 yellow_light_5x5.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
