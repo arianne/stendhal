@@ -904,33 +904,33 @@ bird.png                 ???; ???; ??? (committed by kiheru: 234f74d)
 blackened_column.png     ???; ???; ??? (committed by kiheru: e075fa1)
 blobcreature.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blue_crystal.png         tigertoes; ???; ??? will probably replace
-broken_green_column.png  ???; ???; ???
-broken_lion.png          ???; ???; ???
+broken_green_column.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+broken_lion.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 buddha.png               ???; ???; ???
 cross.png                (placeholder) (committed by kymara: 986add9)
 crystal_statues.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC BY-SA 3.0; https://opengameart.org/node/64532
 eaglehead.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fairypool.png            ???; ???; ???
+fairypool.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flowered_arch.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gazingball_statue.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-girl_with_bird.png       ???; ???; ???
-goddess_icon.png         ???; ???; ???
-green_stone.png          ???; ???; ???
-green_stone_2.png        ???; ???; ???
+girl_with_bird.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+goddess_icon.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+green_stone.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+green_stone_2.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_stone_3.png        ???; ???; ???
-grey_stone.*             ???, Kimmo Rundelin (kiheru); ???; ???
+grey_stone.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 horned_man.png           ???; ???; ???
 lion_statues.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-metal_and_stone.png      ???; ???; ???
+metal_and_stone.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nymph_aqua.png           ???; ???; ???
 nymph_reddish.png        ???; ???; ???
 plants_potted_stone.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_stone_3.png          ???; ???; ???
 romanic_art1.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-seahorse.png             ???; ???; ???
-skullpedestal.png        ???; ???; ???
-skull_carving.png        ???; ???; ???
+seahorse.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+skull_carving.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+skullpedestal.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stone_dragon.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 swordsman.png            Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70109
 urn_with_flowers.*       Lanea Zimmerman (Sharm), Hyptosis; CC BY-SA 3.0; https://opengameart.org/node/11192, https://opengameart.org/node/17021
@@ -965,7 +965,7 @@ golden_arrow.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 hanging_bows.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 longbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-skull_spear.png     ???; ???; ???
+skull_spear.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spear.png           ???; ???; ???
 spears.png          Jordan Irwin (AntumDeluge); CC0; Stendhal
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
@@ -974,20 +974,20 @@ wooden_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 
 tiled/tileset/light/
 
-dim_light_5x5.png               ???; ???; ???
-dim_light_7x5.png               ???; ???; ???
-dim_yellow_light_5x5.png        ???; ???; ???
-dim_yellow_light_7x5.png        ???; ???; ???
-door_light.png                  ???; ???; ???
-door_light_ew.png               ???; ???; ???
+dim_light_5x5.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+dim_light_7x5.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+dim_yellow_light_5x5.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+dim_yellow_light_7x5.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+door_light.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+door_light_ew.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_light_5x5.png             ???; ???; ???
-light_1x1.png                   ???; ???; ???
-light_5x5.png                   ???; ???; ???
+light_1x1.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+light_5x5.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_light_5x5.png               ???; ???; ???
 square_inverse_light_10x10.png  ???; ???; ???
 torchlight_5x4.png              ???; ???; ???
 white_1x1.png                   ???; ???; ???
-yellow_light_5x5.png            ???; ???; ???
+yellow_light_5x5.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/object/
 
@@ -1032,25 +1032,25 @@ tiled/tileset/plant/
 brown_mushrooms.png      ???; ???; ???
 cactus.png               ???; ???; ???
 cactus_2.*               Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
-grasses.png              ???; ???; ???
+grasses.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grasses_swamp.png        ???; ???; ???
 grasses_wildland.png     ???; ???; ???
-leaves.png               ???; ???; ???
+leaves.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lily_pads.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
-mistletoe.png            ???; ???; ???
-mosses.png               ???; ???; ???
+mistletoe.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+mosses.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mushroom.png             ???; ???; ???
 mushroom2.png            ???; ???; ???
 mushroom3.*              Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
 pineapple_plant.png      ???; ???; ???
-pumpkin_halloween.png    ???; ???; ???
+pumpkin_halloween.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 round_cactuses.png       (placeholder) (committed by kymara: 68ba66f)
 small_berried_plant.png  (placeholder) (committed by kymara: 8413002)
 snowygrass.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 star_shaped_plants.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstools.png           (placeholder) (committed by kymara: cf6bb9a)
 vine.png                 (placeholder) (committed by kiheru: 93ed4f9)
-vine_plait.png           ???; ???; ???
+vine_plait.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/bush/
 
@@ -1059,15 +1059,15 @@ bricked_bushes.png     ???; ???; ???
 bushes.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bush_mult_colored.png  (placeholder) (committed by bleutailfly: 62dadc2)
 bush_pinks.png         ???; ???; ???
-hedge.png              ???; ???; ???
+hedge.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hosta.png              bleutailfly; OGA BY 3.0; Stendhal
-large_brown.png        ???; ???; ???
+large_brown.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 large_coloured.png     (placeholder) (committed by kymara: 22ef09b)
 large_dead.png         ???; ???; ???
-large_green.png        ???; ???; ???
+large_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 large_wide_dead.png    ???; ???; ???
 medium_coloured.png    (placeholder) (committed by kymara: 22ef09b)
-various_small.png      ???; ???; ???
+various_small.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/flower/
 
@@ -1076,9 +1076,9 @@ daisy_blue.png          ???; ???; ???
 daisy_red.png           ???; ???; ???
 daisy_white.png         ???; ???; ???
 daisy_yellow.png        ???; ???; ???
-flowers_mixed.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-flower_bed_1.png        ???; ???; ???
+flower_bed_1.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flower_snow.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+flowers_mixed.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 foxgloves.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hothouse_flowers.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 leafy_daisy_blue.png    ???; ???; ???
@@ -1112,23 +1112,23 @@ pot_plant_sprout.png  ???; ???; ???
 potted_plants1.png    ???; ???; ???
 potted_plants_2.png   ???; ???; ???
 skull_pot.png         megajack64
-small_flowerpots.png  ???; ???; ???
-small_tree.png        ???; ???; ???
+small_flowerpots.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+small_tree.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/stump/
 
 hollow_logs.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-int_small_stump.png    ???; ???; ???
-int_small_stump_2.png  ???; ???; ???
+int_small_stump.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+int_small_stump_2.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 log_vertical.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-rectangular.png        ???; ???; ???
+rectangular.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_stump.png        ???; ???; ???
-stump_blue_green.png   ???; ???; ???
-stump_brown.png        ???; ???; ???
-stump_green.png        ???; ???; ???
-stump_pale_brown.png   ???; ???; ???
-stump_pale_purple.png  ???; ???; ???
-stump_purple.png       ???; ???; ???
+stump_blue_green.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+stump_brown.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+stump_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+stump_pale_brown.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+stump_pale_purple.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+stump_purple.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_rectangular.png  ???; ???; ???
 stump_snow.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stump_snow1.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -1174,8 +1174,8 @@ taller_trees.png         ???; ???; ???
 tree_blue.png            ???; ???; ???
 tree_darkgreen.png       ???; ???; ???
 tree_fluffy.png          megajack64
-tree_golden_large.*      ???; ???; ???
-tree_golden_small.png    ???; ???; ???
+tree_golden_large.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+tree_golden_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_green.png           ???; ???; ???
 tree_realistic.png       ???; ???; ???
 tree_with_plants.png     (placeholder) (committed by bleutailfly: ab66b47)
@@ -1190,7 +1190,7 @@ view_wizards_tower.*  ???; ???; ???
 
 tiled/tileset/sky/cloud/
 
-clouds.png         ???; ???; ???
+clouds.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cloudtile.png      janay; ???; Stendhal
 friendlycloud.png  janay; ???; Stendhal
 white_clouds.png   janay; ???; Stendhal
