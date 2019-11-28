@@ -553,7 +553,7 @@ scratches.png                ???; ???; ???
 scratches2_edges.png         ???; ???; ???
 scratches_corners.png        ???; ???; ???
 scratches_edges.png          ???; ???; ???
-skull.png                    ???; ???; ???
+skull.*                      Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81446
 slate_tiles.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spikes.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 square_patch.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
