@@ -4,3 +4,4 @@ The following audio files can be deleted on or after 1.32 release:
 - lion-1.ogg
 - pig-3.ogg
 - sheep-5.ogg
+- tiger-1.ogg
