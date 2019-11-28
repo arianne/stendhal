@@ -868,12 +868,12 @@ ukulele.*  Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79149
 tiled/tileset/item/pot/
 
 barrel.png              bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-barrels_1.png           ???; ???; ???
-barrels_2.*             Hyptosis, isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79172
 barrel_flat.png         ???; ???; ???
 barrel_snow1.*          Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79172
 barrel_tall.png         bleutailfly; OGA BY 3.0; Stendhal
 barrel_with_flower.png  (placeholder) (committed by kymara: dad94bb)
+barrels_1.png           Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79172
+barrels_2.*             Hyptosis, isaiah658, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79172
 box.png                 bleutailfly; OGA BY 3.0; Stendhal
 cauldron.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 clay_pot.png            bleutailfly; OGA BY 3.0; Stendhal
