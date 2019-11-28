@@ -907,7 +907,7 @@ blue_crystal.png         tigertoes; ???; ??? will probably replace
 broken_green_column.png  ???; ???; ???
 broken_lion.png          ???; ???; ???
 buddha.png               ???; ???; ???
-cross.png                ???; ???; ???
+cross.png                (placeholder) (committed by kymara: 986add9)
 crystal_statues.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC BY-SA 3.0; https://opengameart.org/node/64532
 eaglehead.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -969,7 +969,7 @@ skull_spear.png     ???; ???; ???
 spear.png           ???; ???; ???
 spears.png          Jordan Irwin (AntumDeluge); CC0; Stendhal
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-swords.png          ???; ???; ???
+swords.png          (placeholder) (committed by tigertoes: 64421a9)
 wooden_bow.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 tiled/tileset/light/
@@ -1020,7 +1020,7 @@ testgrid.png            tigertoes; CC BY-SA 3.0; Stendhal made for testing creat
 trellis_small.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 well.png                ???; ???; ???
 well_hoist.*            Xenodora; CC BY 3.0; https://opengameart.org/node/17451
-well_with_rope.png      ???; ???; Mirage tilesets
+well_with_rope.png      (placeholder) (committed by bleutailfly: 62dadc2)
 
 tiled/tileset/object/rock/
 
@@ -1044,12 +1044,12 @@ mushroom2.png            ???; ???; ???
 mushroom3.*              Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
 pineapple_plant.png      ???; ???; ???
 pumpkin_halloween.png    ???; ???; ???
-round_cactuses.png       ???; ???; ???
-small_berried_plant.png  ???; ???; ???
+round_cactuses.png       (placeholder) (committed by kymara: 68ba66f)
+small_berried_plant.png  (placeholder) (committed by kymara: 8413002)
 snowygrass.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 star_shaped_plants.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-toadstools.png           ???; ???; ???
-vine.png                 ???; ???; ???
+toadstools.png           (placeholder) (committed by kymara: cf6bb9a)
+vine.png                 (placeholder) (committed by kiheru: 93ed4f9)
 vine_plait.png           ???; ???; ???
 
 tiled/tileset/plant/bush/
@@ -1057,16 +1057,16 @@ tiled/tileset/plant/bush/
 blue_green.png         ???; ???; ???
 bricked_bushes.png     ???; ???; ???
 bushes.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bush_mult_colored.png  ???; ???; ???
+bush_mult_colored.png  (placeholder) (committed by bleutailfly: 62dadc2)
 bush_pinks.png         ???; ???; ???
 hedge.png              ???; ???; ???
 hosta.png              bleutailfly; OGA BY 3.0; Stendhal
 large_brown.png        ???; ???; ???
-large_coloured.png     ???; ???; ???
+large_coloured.png     (placeholder) (committed by kymara: 22ef09b)
 large_dead.png         ???; ???; ???
 large_green.png        ???; ???; ???
 large_wide_dead.png    ???; ???; ???
-medium_coloured.png    ???; ???; ???
+medium_coloured.png    (placeholder) (committed by kymara: 22ef09b)
 various_small.png      ???; ???; ???
 
 tiled/tileset/plant/flower/
@@ -1089,11 +1089,11 @@ planted_containers.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pointed_yellow.png      NoLogoGames; CC BY 4.0; https://opengameart.org/node/78584
 polyanthus.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 purple.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-red_blue_clusters.png   ???; ???; ???
+red_blue_clusters.png   (placeholder) (committed by kymara: dad94bb)
 red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-small_purple_white.png  ???; ???; ???
+small_purple_white.png  (placeholder) (committed by kymara: 8413002)
 stone_edge_beds.png     ???; ???; ???
 vines_flowered.png      bleutailfly; OGA BY 3.0; Stendhal
 
@@ -1106,11 +1106,11 @@ flower_vase.png       bleutailfly; OGA BY 3.0; Stendhal
 oriental_plant.png    bleutailfly; OGA BY 3.0; Stendhal
 plant_pots.png        ???; ???; ???
 plant_potted_2.png    ???; ???; ???
+pot_plant.png         megajack64
+pot_plant_1.png       (placeholder) (committed by kymara: 60834d6)
+pot_plant_sprout.png  ???; ???; ???
 potted_plants1.png    ???; ???; ???
 potted_plants_2.png   ???; ???; ???
-pot_plant.png         megajack64
-pot_plant_1.png       ???; ???; ???
-pot_plant_sprout.png  ???; ???; ???
 skull_pot.png         megajack64
 small_flowerpots.png  ???; ???; ???
 small_tree.png        ???; ???; ???
@@ -1178,7 +1178,7 @@ tree_golden_large.*      ???; ???; ???
 tree_golden_small.png    ???; ???; ???
 tree_green.png           ???; ???; ???
 tree_realistic.png       ???; ???; ???
-tree_with_plants.png     ???; ???; ???
+tree_with_plants.png     (placeholder) (committed by bleutailfly: ab66b47)
 trees_1.*                Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
 umbrella_thorn.png       Carl Olsson (surt); CC0; http://opengameart.org/node/15082
 
