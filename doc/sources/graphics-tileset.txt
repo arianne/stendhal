@@ -1139,7 +1139,7 @@ tiled/tileset/plant/tree/
 apple_tree.png           ???; ???; ???
 banana_tree.png          ???; ???; ???
 cherry_blossom_tree.png  ???; ???; ???
-chestnut_tree.*          ???; ???; ???
+chestnut_tree.*          Yar; CC BY 3.0; https://opengameart.org/node/3012
 christmas_tree.*         b_o, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/89022
 christmas_tree2.png      b_o, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/89022
 crack_willow.*           Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://opengameart.org/node/13470
