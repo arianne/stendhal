@@ -336,12 +336,12 @@ data/sprites/items/grower/
 
 arandula_grower.png         ???; ???; ??? (based on arandula.png, committed by kiheru: c058ed6)
 artichoke_grower.png        omero; CC BY-SA 3.0; Stendhal
-broccoli_grower.png         kiheru?; ???; ??? (committed by kiheru: 5e49ba2)
-button_mushroom_grower.png  kiheru?; ???; ??? (committed by kiheru: 2ba9458)
+broccoli_grower.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+button_mushroom_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 carrot_grower.png           Katie Russell (kymara); GPL 2.0; Stendhal
 cauliflower_grower.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-chinese_cabbage_grower.png  kiheru?; ???; ??? (committed by kiheru: 5e49ba2)
-collard_grower.png          kiheru?; ???; ??? (committed by kiheru: 8630d60)
+chinese_cabbage_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+collard_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 daisies_grower.png          ???; ???; ??? (committed by Astrid Sawatzky: d6e7155)
 egg_grower.png              omero; CC BY-SA 3.0; Stendhal
@@ -353,12 +353,12 @@ lilia_grower.png            omero; CC BY-SA 3.0; Stendhal
 mandragora_grower.png       omero; CC BY-SA 3.0; Stendhal
 onion_grower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pansy_grower.png            omero; CC BY-SA 3.0; Stendhal
-porcini_grower.png          kiheru?; ???; ??? (committed by kiheru: c058ed6)
+porcini_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 reindeer_moss_grower.png    tigertoes?; ???; ??? (committed by tigertoes: e7b3dfb)
 salad_grower.png            Nadine Schlonies (dine); GPL 2.0; Stendhal (based on food/salad.png, committed by kiheru: 6c0e114)
 sclaria_grower.png          ???; ???; ??? (committed by kiheru: c058ed6)
 spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-toadstool_grower.png        kiheru?; ???; ??? (committed by kiheru: 2ba9458)
+toadstool_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tomato_grower.png           ???; ???; ??? (committed by kiheru: bd8d626)
 watermelon_grower.png       Red Queen?; ???; ??? (based on food/watermelon.png, committed by Red Queen: a243290)
 wood_grower.png             Katie Russell (kymara); GPL 2.0; Stendhal
