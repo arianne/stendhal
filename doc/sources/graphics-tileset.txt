@@ -1143,7 +1143,7 @@ chestnut_tree.*          ???; ???; ???
 christmas_tree.*         b_o, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/89022
 christmas_tree2.png      b_o, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/89022
 crack_willow.*           Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://opengameart.org/node/13470
-dead_tree_1.png          ???; ???; ???
+dead_tree_1.png          Yar, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/3012
 dead_tree_2.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dead_tree_3.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dead_tree_4.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
