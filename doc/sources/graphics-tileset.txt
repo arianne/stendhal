@@ -1001,7 +1001,7 @@ giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); C
 hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
 letters.png             Juan; ???; Stendhal
 mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-mine_rails.png          ???; ???; Mirage tilesets
+mine_rails.png          (placeholder) (committed by kymara: d539436)
 question_marks.png      ???; ???; ???
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 rotating_orbs.png       Robert C. (Mumu), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/78832, https://opengameart.org/node/12771
