@@ -923,8 +923,7 @@ grey_stone.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 horned_man.png           ???; ???; ???
 lion_statues.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 metal_and_stone.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-nymph_aqua.png           ???; ???; ???
-nymph_reddish.png        ???; ???; ???
+nymph_*.png              Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969
 plants_potted_stone.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_stone_3.png          ???; ???; ???
 romanic_art1.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
