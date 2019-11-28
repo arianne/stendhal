@@ -411,7 +411,7 @@ oriental_screen.png        bleutailfly; OGA BY 3.0; Stendhal
 pedestal.png               ???; ???; ???
 piano-baby_grand.*         Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/36189
 piano.png                  bleutailfly; OGA BY 3.0; Stendhal
-spinningwheel.png          ???; ???; ???
+spinningwheel.png          Firkin, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://openclipart.org/detail/232288
 stick.png                  ???; ???; ???
 tools_rack.png             ???; ???; ???
 
