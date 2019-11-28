@@ -957,7 +957,7 @@ trousers.png           ???; ???; ???
 
 tiled/tileset/item/weapon/
 
-assassindagger.png  ???; ???; ???
+assassindagger.png  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 box_of_weapons.png  Lanea Zimmerman (Sharm), Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/32386
 cannon.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79098
 composite_bow.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
