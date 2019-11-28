@@ -302,7 +302,7 @@ purple.png         ???; ???; ???
 purple2.png        (placeholder) (committed by kymara: 39dcf7b)
 red_purple.png     (placeholder) (committed by bleutailfly: 5df2da1)
 royalblue.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-rug_border.png     ???; ???; ???
+rug_border.png     Kimmo Rundelin (kiheru) Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 strawberry.png     durkham (bug); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/furniture/chair/
@@ -374,10 +374,10 @@ warmer_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tiled/tileset/furniture/light/
 
 candelabra.png       bleutailfly; OGA BY 3.0; Stendhal
-dark_torch.*         ???; ???; ???
-flames.*             ???; ???; ???
+dark_torch.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+flames.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floating_candle.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-iron_lamp.*          ???; ???; ???
+iron_lamp.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lamp_blue.png        Curt, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj); CC BY 3.0; https://opengameart.org/node/81455
 lamp_bronze.png      Curt, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj); CC BY 3.0; https://opengameart.org/node/81455
 lights_candle.png    ???; ???; ???
@@ -388,10 +388,10 @@ small_lamp.*         lumocra?; ???; ???
 small_oil_lamp.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sparkle.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sparkle_middle.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tall_lamp.*          ???; ???; ???
-torch.*              ???; ???; ???
+tall_lamp.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+torch.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 torch_2.*            Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20714
-torch_top.png        ???; ???; ???
+torch_top.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 weird_lamp.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 xmas_lights.png      bleutailfly; OGA BY 3.0; Stendhal
 
@@ -473,11 +473,11 @@ desk_wooden.png            (placeholder) (committed by tigertoes: eeb3cf5)
 fancy_blue_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flowers_on_bench2.png      Lanea Zimmerman (Sharm), Jetrel, Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
 flowers_on_benches.*       Lanea Zimmerman (Sharm), bluecarrot16, Kimmo Rundelin (kiheru), Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
-grey_fancy.png             ???; ???; ???
-grey_fancy_horizontal.png  ???; ???; ???
-grey_long.png              ???; ???; ???
-grey_pale.*                ???; ???; ???
-grey_plain.*               ???; ???; ???
+grey_fancy.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+grey_fancy_horizontal.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+grey_long.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+grey_pale.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+grey_plain.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hotdog_stand.png           tigertoes; CC BY-SA 3.0; Stendhal
 long_front_on.png          bleutailfly; OGA BY 3.0; Stendhal
 long_front_on_pale.png     bleutailfly; OGA BY 3.0; Stendhal
@@ -492,9 +492,9 @@ table_copper.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 table_linen.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
 table_with_beer.png        bleutailfly, Katie Russel (kymara); CC BY-SA 3.0; Stendhal
 table_with_beer_dark.png   bleutailfly; OGA BY 3.0; Stendhal
-table_with_hob.*           ???; ???; ???
-table_with_hob_pale.*      ???; ???; ???
-table_wooden_brown.*       ???; ???; ???
+table_with_hob.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+table_with_hob_pale.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+table_wooden_brown.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_stump_table.png       ???; ???; ???
 vendors_table.*            Stephen Challener (Redshrike), Zachariah Husiar (Zabin), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81361, https://opengameart.org/node/14914
 white.*                    Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20715
@@ -516,7 +516,7 @@ brownground2.png             ???; ???; ???
 brown_2.png                  ???; ???; ???
 brown_corners.png            ???; ???; ???
 brown_edges.png              ???; ???; ???
-brown_paving.png             ???; ???; ???
+brown_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cobbled_paving.png           ???; ???; ???
 cobblestones.png             ???; ???; ???
 dirt_mounds.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -524,7 +524,7 @@ drain.png                    ???; ???; ???
 dry_grass.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earth_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earth_edges_yellowgreen.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-eye.png                      ???; ???; ???
+eye.png                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_2.png                  ???; ???; ???
 grass_corners.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -532,7 +532,7 @@ grass_snow.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gravel.png                   ???; ???; ???
 greenGround2.png             ???; ???; ???
 green_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-green_paving_4.png           ???; ???; ???
+green_paving_4.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ground.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ground_2.png                 ???; ???; ???
 ground_3.png                 Rachel J Morris (Moosader); CC0; http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
@@ -540,8 +540,8 @@ ground_4.png                 ???; ???; ???
 hexagramm.png                ???; ???; ???
 marble.png                   ???; ???; ???
 mossy_brick_paving.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-mud_patch.png                ???; ???; ???
-pothole.png                  ???; ???; ???
+mud_patch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pothole.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 red_paving.png               ???; ???; ???
 sand.png                     ???; ???; ???
 sand_1.*                     Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
@@ -555,9 +555,9 @@ scratches_corners.png        ???; ???; ???
 scratches_edges.png          ???; ???; ???
 skull.png                    ???; ???; ???
 slate_tiles.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spikes.png                   ???; ???; ???
-square_patch.png             ???; ???; ???
-square_paving.png            ???; ???; ???
+spikes.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+square_patch.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+square_paving.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stonecircle.png              ???; ???; ???
 stone_floors.png             ???; ???; ???
 tall_grass.png               Saphy.Len Pabin GPL 2.0 https://opengameart.org/content/the-mana-worldforest-tileset
@@ -588,12 +588,12 @@ brown.png                 ???; ???; ???
 brown_hole.png            ???; ???; ???
 church_tiles.png          ???; ???; ???
 floor.png                 ???; ???; ???
-floors_3.*                ???; ???; ???
+floors_3.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floors_4.png              (placeholder) (committed by tigertoes: d964116)
 floor_tan.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floor_tiles.png           (placeholder) (committed by kymara: b8c869f)
 floor_tiles2.png          (placeholder) (committed by kymara: 1de18c7)
-grey_gradients.png        ???; ???; ???
+grey_gradients.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_hole.png             ???; ???; ???
 grey_skull.png            (placeholder) (committed by kymara: 348a108, can maybe replace with older version)
 oriental_tan_tile.png     bleutailfly; OGA BY 3.0; Stendhal
@@ -626,55 +626,56 @@ tiled/tileset/ground/rock/
 
 blue_crystal.*       Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 gold_crystal.*       Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
-green_crystal.png    ???; ???; ???
+green_crystal.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_crystal2.*     Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 green_crystal3.*     Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 huge_boulder.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20716
 icy_crystal.*        Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
-large_boulder.png    ???; ???; ???
-large_pebble.*       ???; ???; ???
+large_boulder.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+large_pebble.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lava_rock.*          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-mossy_boulder.png    ???; ???; ???
-mossy_rubble.png     ???; ???; ???
+mossy_boulder.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+mossy_rubble.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 obsidian.png         ???; ???; ???
-pebbles.png          ???; ???; ???
-pink_crystal.png     ???; ???; ???
+pebbles.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pink_crystal.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 purple_crystal.*     Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 red_crystal.*        Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 red_crystal_small.*  Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 red_obsidian.png     ???; ???; ???
-rock_cluster.png     ???; ???; ???
+rock_cluster.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rock_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rock_snow.*          ???; ???; ???
 rocks.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rocks_2.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rocks_3.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-rubble.png           ???; ???; ???
+rubble.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sandy_rocks.*        ???; ???; ???
 square_crystal.*     Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/54984
 
 tiled/tileset/ground/water/
 
-channels_grassy.png      ???; ???; ???
-dungeon_water.png        ???; ???; ???
+channels_grassy.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+dungeon_water.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 foaming.png              ???; ???; ???
 golden_corners.png       ???; ???; ???
-golden_shimmery.png      ???; ???; ???
-golden_waterfall.png     ???; ???; ???
-golden_whirlpool.png     ???; ???; ???
-pool.png                 ???; ???; ???
-pool_corners.png         ???; ???; ???
-pool_deep.png            ???; ???; ???
-pool_grassy.png          ???; ???; ???
-pool_icy.png             ???; ???; ???
-pool_small.png           ???; ???; ???
-pool_straight_edges.png  ???; ???; ???
+golden_shimmery.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+golden_waterfall.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+golden_whirlpool.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+normal_water.xcf.bz2     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool_corners.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool_deep.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool_grassy.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool_icy.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool_small.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+pool_straight_edges.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 swamp_water.png          ???; ???; ???
-water.png                ???; ???; ???
-waterfall.png            ???; ???; ???
-water_bubbles.png        ???; ???; ???
-water_corners.png        ???; ???; ???
-whirlpool.png            ???; ???; ???
+water.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+water_bubbles.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+water_corners.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+waterfall.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+whirlpool.png            Kimmo Rundelin (original tiles), ???; ???; ??? (tiles from wading_whirlpool.png committed by tigertoes: fbf7ba2)
 
 tiled/tileset/ground/water/waterfall/
 
@@ -687,7 +688,7 @@ awning_2.*                Daniel Eddeland (daneeklu), Zachariah Husiar (Zabin), 
 bazaar_produce.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 black_board.png           ???; ???; ???
 boxes.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-broom.png                 ???; ???; ???
+broom.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 brush.png                 bleutailfly; OGA BY 3.0; Stendhal
 bulletin_board.png        tigertoes; ???; working on replacement
 bulletin_board_items.png  tigertoes; ???; working on replacement
@@ -704,24 +705,24 @@ chapter.png               tigertoes; CC BY-SA 3.0; Stendhal
 firewood.*                Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 fishing_nets.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fishrods.png              ???; ???; ???
-flagpole.png              ???; ???; ???
+flagpole.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flat_button.png           ???; ???; ???
 grill_top.png             bleutailfly; OGA BY 3.0; Stendhal
 grill_top_gray.png        bleutailfly; OGA BY 3.0; Stendhal
 hen_nest.png              ???; ???; ???
 hot_iron_piece.png        ???; ???; ???
-huge_orb.png              ???; ???; ???
+huge_orb.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 logs_snow1.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 native_masks.*            alles, Jordan Irwin (AntumDeluge); CC0; https://pixabay.com/en/masks-africa-african-masks-wooden-1675016/
-postbox.png               ???; ???; ???
-postbox_2.png             ???; ???; ???
+postbox.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+postbox_2.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ropes.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sacks.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-scrying_orb.png           ???; ???; ???
+scrying_orb.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 sewing_machine.png        bleutailfly; OGA BY 3.0; Stendhal
-sign.png                  ???; ???; ???
-sign_large.png            ???; ???; ???
+sign.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+sign_large.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 snowman.*                 ???; ???; ???
 swing.png                 bleutailfly; OGA BY 3.0; Stendhal
 tools.*                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -741,7 +742,7 @@ tiled/tileset/item/banners/
 
 banner.png                    Lanea Zimmerman (Sharm), bluecarrot16, Curt, Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/node/81707#comment-66775, https://opengameart.org/node/20039, https://opengameart.org/content/lpc-cnilsson
 banners.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-flag.png                      ???; ???; ???
+flag.png                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 superhumans_banner_on_post.*  tigertoes; CC BY-SA 3.0; Stendhal
 superhumans_wall_hanging.*    tigertoes; CC BY-SA 3.0; Stendhal
 wall_hanging_brown.png        ???; ???; ???
@@ -749,14 +750,14 @@ wall_hanging_dkgreen.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/blood/
 
-floor_stain-noblood.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
-floor_stain.png             ???; ???; ???
-floor_stains_2-noblood.png  Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
-floor_stains_2.png          ???; ???; ???
-nsew_stains-noblood.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
-nsew_stains.png             ???; ???; ???
-small_stains-noblood.png    Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
-small_stains.png            ???; ???; ???
+floor_stain.png          ???; ???; ???
+floor_stain-safe.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+floor_stains_2.png       ???; ???; ???
+floor_stains_2-safe.png  Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+nsew_stains.png          ???; ???; ???
+nsew_stains-safe.png     Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
+small_stains.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+small_stains-safe.png    Firkin, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/231494
 
 tiled/tileset/item/chemistry/
 
@@ -779,11 +780,11 @@ wooden_pale.png  bleutailfly; OGA BY 3.0; Stendhal
 
 tiled/tileset/item/corpse/
 
-huge_animal.*         ???; ???; ???
-skeleton.png          ???; ???; ???
+huge_animal.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+skeleton.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skeleton-hanging.png  RedVoxel; CC BY 3.0; https://opengameart.org/node/79009, https://red-voxel.itch.io/
-skull_dark.*          ???; ???; ???
-skull_pale.png        ???; ???; ???
+skull_dark.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+skull_pale.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 skulls.png            ???; ???; ???
 snake_skeleton.*      Johann Daniel Meyer, Jordan Irwin (AntumDeluge); CC0; http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
 swamp_sunken.png      ???; ???; ???
@@ -839,12 +840,12 @@ coffin.png           ???; ???; ???
 grave_marker.png     Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/node/31884
 grave_marker_2.png   (placeholder) (committed by bleutailfly: 3c2a1e9)
 grave_statue_girl.*  Casper Nilsson (C.Nilsson), Wolthera van Hövell tot Westerflier (TheraHedwig), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson, https://opengameart.org/node/64532
-headstone.xcf.bz2    ???; ???; ???
+headstone.xcf.bz2    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone_1.png      Barbara Rivera; CC BY-SA 3.0; https://opengameart.org/content/concept-art-for-lpc-entry
-headstone_2.*        ???; ???; ???
+headstone_2.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone_3.png      Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
-headstone_4.png      ???; ???; ???
-headstone_5.png      ???; ???; ???
+headstone_4.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+headstone_5.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone_7.png      Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
 large_gravestone.*   Casper Nilsson, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson
 sarcophagus.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -874,7 +875,7 @@ barrel_snow1.*          Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://openg
 barrel_tall.png         bleutailfly; OGA BY 3.0; Stendhal
 barrel_with_flower.png  (placeholder) (committed by kymara: dad94bb)
 box.png                 bleutailfly; OGA BY 3.0; Stendhal
-cauldron.png            ???; ???; ???
+cauldron.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 clay_pot.png            bleutailfly; OGA BY 3.0; Stendhal
 crates.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dark_barrel.png         bleutailfly, Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -892,7 +893,7 @@ pot_on_stone.png        ???; ???; ???
 pot_purple.png          bleutailfly; OGA BY 3.0; Stendhal
 pot_tall.png            bleutailfly, Katie Russel (kymara); CC BY-SA 3.0; Stendhal
 small_barrel.png        bleutailfly; OGA BY 3.0; Stendhal
-wastebin.png            ???; ???; ???
+wastebin.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wooden_bins.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wooden_crates.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
@@ -903,7 +904,7 @@ archway.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 big_blue_crystal.png     tigertoes; ???; ??? will probably replace
 bird.png                 ???; ???; ???
 blackened_column.png     ???; ???; ???
-blobcreature.png         ???; ???; ???
+blobcreature.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 blue_crystal.png         tigertoes; ???; ??? will probably replace
 broken_green_column.png  ???; ???; ???
 broken_lion.png          ???; ???; ???
