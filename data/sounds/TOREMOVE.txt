@@ -1,5 +1,6 @@
 The following audio files can be deleted on or after 1.32 release:
 
+- laugh-evil-1.ogg
 - lion-1.ogg
 - pig-3.ogg
 - sheep-5.ogg
