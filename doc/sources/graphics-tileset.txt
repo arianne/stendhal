@@ -418,12 +418,12 @@ tools_rack.png             ???; ???; ???
 tiled/tileset/furniture/picture/
 
 blackdragon.png       Groundhug McHamster (h4mt4ro), bleutailfly; GPL 2.0+; Stendhal special image for tigertoes
-cats.*                ???; ???; ???
-city_picture.*        ???; ???; ???
+cats.*                bluecarrot16, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/69399, https://opengameart.org/node/79120
+city_picture.*        Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/280848, https://opengameart.org/node/79120
 gnome_sweet_gome.png  tigertoes; CC BY-SA 3.0; Stendhal made for future internal gnome home
-large_island.*        ???; ???; ???
+large_island.*        Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/138349, https://opengameart.org/node/79120
 oil_paintings.png     tigertoes; CC BY-SA 3.0; Stendhal mostly from my own photos of europe
-project_leader.png    ???; ???; ???
+projectleader.png     ???; ???; ???
 sheep_picture.png     ???; ???; ???
 small.png             ???; ???; ???
 small_2.png           bleutailfly; OGA BY 3.0; Stendhal
