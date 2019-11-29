@@ -401,10 +401,10 @@ northpole_elf_*.png  bleutailfly; ???; ???
 
 data/sprites/monsters/ogre/
 
-elder_ogre.png    Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/68
-ogre.*            Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://github.com/arianne/stendhal/issues/67
-ogre_soldier.png  Svetlana Kushnariova (Cabbit), onu/olonu, Eldiran LordNeo; OGA BY 3.0; https://github.com/arianne/stendhal/issues/86
-superogre.png     Svetlana Kushnariova (Cabbit), onu/olonu, chasergaming; CC0; https://github.com/arianne/stendhal/issues/76
+elder_ogre.png    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/68
+ogre.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/67
+ogre_soldier.png  Svetlana Kushnariova (Cabbit), olonu, Eldiran LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/86
+superogre.png     Svetlana Kushnariova (Cabbit), olonu, chasergaming, Jordan Irwin (AntumDeluge); CC0; https://github.com/arianne/stendhal/issues/76
 
 data/sprites/monsters/oni/
 
