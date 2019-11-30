@@ -1060,6 +1060,7 @@ bushes.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bush_mult_colored.png  (placeholder) (committed by bleutailfly: 62dadc2)
 bush_pinks.png         ???; ???; ??? (committed by bleutailfly: a0bd93e)
 fern.png               rubberduck; CC BY 4.0; https://opengameart.org/node/94403
+flowering.*            Josh Maines (Tap); CC BY-SA 4.0; https://opengameart.org/node/76904
 hedge.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hosta.png              bleutailfly; OGA BY 3.0; Stendhal
 large_brown.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
