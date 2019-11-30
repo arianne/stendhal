@@ -1072,6 +1072,7 @@ large_wide_dead.png    ???; ???; ??? (committed by omero: 94ba573)
 leafy.png              Yar; CC BY 3.0; https://opengameart.org/node/3012
 leafy_2.png            Daniel Cook; CC BY 3.0; https://opengameart.org/node/1003, https://opengameart.org/node/981, https://opengameart.org/node/994
 medium_coloured.png    (placeholder) (committed by kymara: 22ef09b)
+tropical.png           rubberduck; CC0; https://opengameart.org/node/20191
 various_small.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/flower/
