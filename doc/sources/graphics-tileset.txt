@@ -1034,6 +1034,7 @@ cactus_2.*               Johann C; CC BY-SA 3.0; http://opengameart.org/node/110
 grasses.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grasses_swamp.png        ???; ???; ??? (committed by Laguz: 63c64f0)
 grasses_wildland.png     ???; ???; ??? (committed by omero: a5c1ee7)
+hemp.png                 rubberduck; CC0; https://opengameart.org/node/20191
 leaves.png               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 lily_pads.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 mistletoe.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
