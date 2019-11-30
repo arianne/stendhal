@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="stone_house_interior" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../../tileset/building/wall/stone_house_interior.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="258" name="brown" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../tileset/ground/brown.png" width="160" height="32"/>
+ </tileset>
+ <tileset firstgid="263" name="coffin" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../../tileset/item/gothic/coffin.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="267" name="sarcophagus" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+  <image source="../../tileset/item/gothic/sarcophagus.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="279" name="urn_house" tilewidth="32" tileheight="32" tilecount="2" columns="1">
+  <image source="../../tileset/item/gothic/urn_house.png" width="32" height="64"/>
+ </tileset>
+ <tileset firstgid="281" name="webs" tilewidth="32" tileheight="32" tilecount="6" columns="2">
+  <image source="../../tileset/building/decoration/webs.png" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="287" name="torch_top" tilewidth="32" tileheight="32" tilecount="4" columns="1">
+  <image source="../../tileset/furniture/light/torch_top.png" width="32" height="128"/>
+ </tileset>
+ <tileset firstgid="291" name="flames" tilewidth="32" tileheight="32" tilecount="6" columns="6">
+  <image source="../../tileset/furniture/light/flames.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="297" name="floating_candle" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="../../tileset/furniture/light/floating_candle.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="313" name="small_oil_lamp" tilewidth="32" tileheight="32" tilecount="8" columns="2">
+  <image source="../../tileset/furniture/light/small_oil_lamp.png" width="64" height="128"/>
+ </tileset>
+ <layer id="1" name="0_floor" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA+1VywoCMQxcUBEfJx8X9aYiPn7Gxxf4OAurngW/3Ak0Goau7a4IIh6GdpNJpk3a7ipJkjWw+RCWyLsFdsAeOBRESnH4fOQ6Yi7+E3AGLgUhObJir/CJv/UmbI4ScpWBistpNeqwNSLRdPG6NqvRhq8DdB1HNKQfwu0B/UgMXIxq2JE1tB/CmQHzSCxyaNha2bXonGur9lcj7yOkwfxXudXHMbYfyrEj860va84xth++GOb7OGzjmNhaTdBjOfMxmILHZzeNOCMSkxe++8F7lu8hMCLUnF6V7Mwbwy85Qv3w6XK9fRxrC/XDcnX+rRr6Xuk6Q2Peffz78fw/hGobeq988UX6cXN3xZfPZ8ur8Uv34w5ydjTOxAkAAA==
+  </data>
+ </layer>
+ <layer id="2" name="1_terrain" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA+1UvQ6BQRA8ld+EhEIndAiC4FXo6OjoqLR0dDwFngBvZi7ZlbX5zhFfNFyyuZnd2dnPXsKYxzN8pMbH+9APqGekel10qgo+vhT6GfABcUScRF7CZsSYjUhUBa8A28P1MnGe0QLfon5GXBBXRJs0gPfToVyJ7obQ1IE5bxtqxHlGV2jZsBeQiyIXo/wr2HrxDPb13XH4J2jGK9j6jRETn/GH9Tn6Fw6PIn2vLUvskDvTK1TWzmo4hR1s9uFYfcUlT7v13fJjCiG9h/T8FZzE7lK0P4nt79ecd6LzmrOO7zT8MzRDYlvXPKgnSKffPAv/HM2Q2PZqzjN0XnPW/e/3NvDJf+KzSfLNn+n+te9u4AYA3EYexAkAAA==
+  </data>
+ </layer>
+ <layer id="3" name="2_object" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA2NgQAXKjKh8FTS+KhofWbUaHjlkdUOFfQHo0ItDxbGj7hwNASqEgAM0D9tBaRsobQWlYfJUsGrUiNEQGA2B0RAYDQEKQwAAKt4P88QJAAA=
+  </data>
+ </layer>
+ <layer id="4" name="3_roof" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA2NgGAWjITAaAkMhBMQZIa4kRA8Fv4y6cTQERkNgNAQGKgT6gRZPAuLJJGATqGO7iNQzH6iOGVhmk4KLoHbUk6AXAA+gPQnECQAA
+  </data>
+ </layer>
+ <layer id="5" name="4_roof_add" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA2NgGAWjITAaAqMhMBoCoyEwGgKjITAaAkMtBAD5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer id="6" name="objects" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA2NgGAWjITAaAqMhMBoCoyEwGgKjITAaAkMtBAD5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer id="7" name="collision" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA2NgGAWjITAaAqMhMBoCoyEwGgKjITAaAkMtBAD5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer id="8" name="protection" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAEA2NgGAWjITAaAqMhMBoCoyEwGgKjITAaAkMtBAD5i1XpxAkAAA==
+  </data>
+ </layer>
+</map>
