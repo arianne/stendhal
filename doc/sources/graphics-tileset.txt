@@ -1028,6 +1028,7 @@ rocks.*          Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf
 tiled/tileset/plant/
 
 brown_mushrooms.png      (placeholder) (committed by kymara: cf6bb9a)
+bushes_and_trees.png     Jetrel, Zabin, Bertram; CC BY-SA; https://opengameart.org/node/12897
 cactus.png               (placeholder) (committed by kymara: 68ba66f)
 cactus_2.*               Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
 grasses.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
