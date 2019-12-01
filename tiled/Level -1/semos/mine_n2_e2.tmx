@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="brown.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/ground/brown.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png" trans="ff00ff" width="160" height="32"/>
  </tileset>
  <tileset firstgid="6" name="logic/collision" tilewidth="32" tileheight="32">
@@ -9,46 +9,46 @@
  <tileset firstgid="7" name="logic/creature/chaos" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/chaos.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="14" name="ground.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="../../tileset/ground/ground.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png" width="96" height="352"/>
  </tileset>
- <tileset firstgid="47" name="pool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="../../tileset/ground/water/pool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool.png" width="96" height="768"/>
  </tileset>
- <tileset firstgid="119" name="brown_edges.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="119" name="../../tileset/ground/brown_edges.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_edges.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="137" name="brown_corners.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="../../tileset/ground/brown_corners.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_corners.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="145" name="earth_edges.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="../../tileset/ground/earth_edges.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/earth_edges.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="163" name="grass_corners.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="163" name="../../tileset/ground/grass_corners.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_corners.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="187" name="green_crystal2.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="187" name="../../tileset/ground/rock/green_crystal2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal2.png" width="160" height="128"/>
  </tileset>
- <tileset firstgid="207" name="pebbles.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="207" name="../../tileset/ground/rock/pebbles.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="210" name="blue_crystal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="210" name="../../tileset/ground/rock/blue_crystal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/blue_crystal.png" width="160" height="128"/>
  </tileset>
- <tileset firstgid="230" name="rocks_3.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="230" name="../../tileset/ground/rock/rocks_3.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_3.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="246" name="various_small.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="246" name="../../tileset/plant/bush/various_small.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/various_small.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="255" name="winding.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="255" name="../../tileset/building/stairs/winding.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/winding.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="319" name="mosses.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="319" name="../../tileset/plant/mosses.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/mosses.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="335" name="hybrid" tilewidth="32" tileheight="32">
+ <tileset firstgid="335" name="logic/creature/hybrid" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png" trans="ff00ff" width="256" height="64"/>
  </tileset>
  <tileset firstgid="351" name="small_purple_white" tilewidth="32" tileheight="32">
@@ -60,7 +60,7 @@
  <tileset firstgid="384" name="whirlpool" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/whirlpool.png" width="32" height="256"/>
  </tileset>
- <tileset firstgid="392" name="mythical_being" tilewidth="32" tileheight="32">
+ <tileset firstgid="392" name="logic/creature/mythical_being" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mythical_being.png" width="256" height="32"/>
  </tileset>
  <tileset firstgid="400" name="int_sandstone" tilewidth="32" tileheight="32">
