@@ -401,6 +401,13 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
 
+    <zone name="int_semos_mausoleum" file="interiors/semos/mausoleum.tmx">
+    
+            <portal x="13" y="55" ref="mausoleum_entrance">
+	            <destination zone="int_semos_mausoleum" ref="entrance" />
+	            <attribute name="move.continuous" />
+            </portal>
+
   </zone>
 
   <zone name="int_mithrilbourgh_stores" file="interiors/mithrilbourgh/stores.tmx">
@@ -3530,6 +3537,13 @@ Southwest: Or'ril Castle and Fado City
 
   <zone name="-1_semos_mine_n2_e" level="-1" x="500128" y="499616"
     file="Level -1/semos/mine_n2_e.tmx">
+
+      <zone name="int_semos_mausoleum" file="interiors/semos/mausoleum.tmx">
+
+	    <portal x="21" y="2" ref="entrance">
+		    <destination zone="-1_semos_mine_n2_e" ref="-1_semos_mine_n2_e_entrance" />
+		    <attribute name="move.continuous" />
+	    </portal>
   </zone>
 
   <zone name="-1_semos_mine_n2_e2" level="-1" x="500256" y="499616"
@@ -4666,7 +4680,8 @@ Southwest: Or'ril Castle and Fado City
         <parameter name="enterMessage">You start to hallucinate. You think you're in a new land, somewhere unknown, with strange, terrible creatures and fantastic sights.</parameter>
       </implementation>
     </entity>
-  </zone>
+
+    </zone>
 
   <!-- Level 2 -->
 
