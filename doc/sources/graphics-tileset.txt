@@ -195,8 +195,6 @@ int_green_purple.png             ???; ???; ??? (committed by kymara: 05e08f6)
 int_grey.png                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_grey_green_detail.png        ???; ???; ??? (committed by tigertoes: 6c4b196)
 int_purple_blue.png              Katie Russell (kymara), tigertoes; GPL 2.0+; Stendhal
-int_rock.png                     (placeholder: to be removed for 1.32 release)
-int_rock_blue.png                (placeholder: to be removed for 1.32 release)
 int_sandstone.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 int_wall_brick_wood.png          Katie Russell (kymara); GPL 2.0+; Stendhal
 int_wall_bricks.png              Katie Russell (kymara); GPL 2.0+; Stendhal
@@ -1001,7 +999,6 @@ giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); C
 hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
 letters.png             Juan; ???; Stendhal
 mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-mine_rails.png          (placeholder) (committed by kymara: d539436)
 mine_rails_2.png        Xenodora; CC BY-SA 3.0; https://opengameart.org/node/17247
 question_marks.png      ???; ???; ??? (committed by kymara: 2b3fbca)
 rotating_crystal.png    Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
@@ -1072,7 +1069,6 @@ large_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 large_wide_dead.png    ???; ???; ??? (committed by omero: 94ba573)
 leafy.png              Yar; CC BY 3.0; https://opengameart.org/node/3012
 leafy_2.png            Daniel Cook; CC BY 3.0; https://opengameart.org/node/1003, https://opengameart.org/node/981, https://opengameart.org/node/994
-medium_coloured.png    (placeholder) (committed by kymara: 22ef09b)
 tropical.png           rubberduck; CC0; https://opengameart.org/node/20191
 various_small.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
