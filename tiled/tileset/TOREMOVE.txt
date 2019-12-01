@@ -1,4 +1,11 @@
 The following images can be deleted on or after 1.32 release:
 
+building/wall/
+- int_rock.png
+- int_rock_blue.png
+
+object/
+- mine_rails.png
+
 plant/bush/
 - medium_coloured.png
