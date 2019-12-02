@@ -834,7 +834,7 @@ tiled/tileset/item/gothic/
 
 coffin.png           bleutailfly; OGA BY 3.0; Stendhal
 grave_marker.png     Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/node/31884
-grave_marker_2.png   (placeholder) (committed by bleutailfly: 3c2a1e9)
+grave_marker_2.png   Tuomo Untinen (Reemax); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/node/31884
 grave_statue_girl.*  Casper Nilsson (C.Nilsson), Wolthera van Hövell tot Westerflier (TheraHedwig), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81422, https://opengameart.org/content/lpc-cnilsson, https://opengameart.org/node/64532
 headstone.xcf.bz2    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 headstone_1.png      Barbara Rivera; CC BY-SA 3.0; https://opengameart.org/content/concept-art-for-lpc-entry
