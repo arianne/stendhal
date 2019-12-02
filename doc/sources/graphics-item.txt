@@ -272,7 +272,7 @@ cherrypie.png              omero; CC BY-SA 3.0; Stendhal
 chicken.png                Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/78777
 chinese-cabbage.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chocolatebar.png           tigertoes; CC BY-SA 3.0; Stendhal
-chocolateshake.png         tigertoes; CC BY-SA 3.0; Stendhal  will replace shortly
+chocolateshake.png         tigertoes; CC BY-SA 3.0; Stendhal
 clown-fish.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 coconut.png                megajack64?; ???; ???; Committed by kymara
 cod.png                    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -325,7 +325,7 @@ trout.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 trout_smoked.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tuna_sandwich.png          Katie Russell (kymara); GPL 2.0; Stendhal
 unknown_fish.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-vanillashake.png           tigertoes; ???; ??? will replace shortly
+vanillashake.png           tigertoes; CC BY-SA 3.0; Stendhal
 watermelon.png             Red Queen?; ???; ??? (committed by Red Queen: 6b40947)
 
 data/sprites/items/food/apple_special/
@@ -535,7 +535,7 @@ gold_bar.png        Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Ste
 gold_ore.png        Nadine Schlonies (dine); GPL 2.0; Stendhal
 grain.png           Daniel Herding (mort); GPL 2.0; Stendhal
 green_egg.png       barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
-horsehair.png       tigertoes; CC BY-SA 3.0; Stendhal; am claiming this because i was going to use in quest and nobody else has claimed it
+horsehair.png       ???; ???; ??? (committed by kymara)
 iron.png            Daniel Herding (mort); GPL 2.0; Stendhal
 iron_ore.png        Daniel Herding (mort); GPL 2.0; Stendhal
 mithril_bar.png     Daniel Herding (mort); GPL 2.0; Stendhal (based on iron.png)
@@ -619,7 +619,7 @@ lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_plate_shield.*          Hernandack, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/91222
 mainio_shield.png             vesper?; ???; ??? (committed by johnnnny: ca6f851)
-mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; modified goldentowershield
+mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; from OGA Heather Lee Harvey (Emerald) EmeraldActivities.com & http://opengameart.org/users/emerald
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
 shadow_shield.png             Hernandack; CC0; https://opengameart.org/node/91222
