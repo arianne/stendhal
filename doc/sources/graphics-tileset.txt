@@ -592,7 +592,7 @@ floor_tiles.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 floor_tiles2.png          (placeholder) (committed by kymara: 1de18c7)
 grey_gradients.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_hole.png             ???; ???; ??? (committed by kymara: a1362b6)
-grey_skull.png            (placeholder) (committed by kymara: 348a108, can maybe replace with older version)
+grey_skull.*              Angry Amish, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/81446
 oriental_tan_tile.png     bleutailfly; OGA BY 3.0; Stendhal
 purple_tile.png           (placeholder) (committed by tigertoes: eeb3cf5)
 raised_platform.png       ???; ???; ??? (committed by tigertoes: 3898134)
