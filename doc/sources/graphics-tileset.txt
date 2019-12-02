@@ -588,7 +588,7 @@ floor.png                 ???; ???; ??? (committed by kiheru: 2396739)
 floors_3.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 floors_4.png              (placeholder) (committed by tigertoes: d964116)
 floor_tan.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-floor_tiles.png           (placeholder) (committed by kymara: b8c869f)
+floor_tiles.*             Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 floor_tiles2.png          (placeholder) (committed by kymara: 1de18c7)
 grey_gradients.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_hole.png             ???; ???; ??? (committed by kymara: a1362b6)
