@@ -7,6 +7,9 @@ building/wall/
 building/window/
 - lighted_window.png
 
+ground/indoor/
+- stonefloor.png
+
 object/
 - mine_rails.png
 
