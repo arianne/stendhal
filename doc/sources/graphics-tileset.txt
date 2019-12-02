@@ -905,7 +905,7 @@ blue_crystal.png         tigertoes; ???; ??? will probably replace
 broken_green_column.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 broken_lion.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 buddha.png               Tomas Sobek; CC0; http://openclipart.org/detail/79567/golden-buddha-by-tomas-sobek
-cross.png                (placeholder) (committed by kymara: 986add9)
+cross.png                Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 crystal_statues.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 dryad_marble.*           Wolthera van Hövell tot Westerflier (TheraHedwig); CC BY-SA 3.0; https://opengameart.org/node/64532
 eaglehead.*              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
