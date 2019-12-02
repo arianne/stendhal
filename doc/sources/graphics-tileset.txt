@@ -247,7 +247,7 @@ tiled/tileset/furniture/
 
 tiled/tileset/furniture/bathroom/
 
-basin.png  (placeholder) (committed by kymara: f5ee84c)
+basin.png  Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://opengameart.org/node/20850
 bathtub.*  extradave; CC0; https://opengameart.org/node/4726
 toilet.*   bleutailfly; OGA BY 3.0; Stendhal
 
