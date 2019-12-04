@@ -13,6 +13,9 @@ ground/indoor/
 object/
 - mine_rails.png
 
+plant/
+- small_berried_plant.png
+
 plant/bush/
 - medium_coloured.png
 
