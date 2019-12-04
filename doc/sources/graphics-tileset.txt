@@ -1056,7 +1056,7 @@ berried.*              Yar; CC BY 3.0; https://opengameart.org/node/3012
 blue_green.png         (placeholder) (committed by kymara: 61b603d)
 bricked_bushes.png     (placeholder) (committed by bleutailfly: f4632d6)
 bushes.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-bush_mult_colored.png  (placeholder) (committed by bleutailfly: 62dadc2)
+bush_mult_colored.png  Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71770
 bush_pinks.png         ???; ???; ??? (committed by bleutailfly: a0bd93e)
 fern.png               rubberduck; CC BY 4.0; https://opengameart.org/node/94403
 flowering.*            Josh Maines (Tap); CC BY-SA 4.0; https://opengameart.org/node/76904
