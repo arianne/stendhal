@@ -20,7 +20,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.google.common.collect.ImmutableList;
+//import com.google.common.collect.ImmutableList;
+
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -28,10 +31,10 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.CreateSlotAction;
+//import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DisableFeatureAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+//import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -259,8 +262,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 	/** find Vlamyklela in Kirdneh. step_2 */
 	private void admemoriainportfolio_step_2() {
 		final SpeakerNPC npc = npcs.get("Vlamyklela");
-
-	  // Player has AdMemoriaInPortfolio quest
+		// Player has AdMemoriaInPortfolio quest
 		// Player has AdMemoriaInPortfolio required items with him
 		npc.add(
 	        ConversationStates.ATTENDING, Arrays.asList("purple apple"),
@@ -276,19 +278,35 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Player player,
                         final Sentence sentence,
                         final EventRaiser npc) {
+							
+							new SetQuestAndModifyKarmaAction( getSlotName(), "inprogress", 15.0).fire(player, sentence, npc);
+							new IncreaseXPAction(1000);
+							
+							final Item mauveApple = SingletonRepository.getEntityManager().getItem("mauve apple");
+							mauveApple.setInfoString("A special mauve apple for Brosoklelo");
+							mauveApple.setDescription("You see a special mauve apple for Brosoklelo");							
+							mauveApple.setBoundTo("Brosoklelo");
+
+							npc.say(
+								"Oh! That purple apple must be coming from Brosoklelo." + " " +
+								"Surely Brosoklelo lost another magical duel..." + " " +
+								"Once again *sigh*"
+							);
+			
+							if (player.equipOrPutOnGround(mauveApple)){
 								npc.say(
-									"Oh! That purple apple must be coming from Brosoklelo." + " " +
-									"Surely Brosoklelo lost another magical duel..." + " " +
-									"Here you go... Please take" + " " +
-									"this mauve apple from me!" + " " +
-									"Bring this mauve apple back to Brosoklelo" + " " +
-									"Tell Brosoklelo mauve apple and he will know it is from me..." + " " +
-									"This mauve apple will restore Brosoklelo memory for good..." + " " +
-									"Once again *sigh*");
-                                new IncreaseXPAction(1000);
-								new EquipItemAction("mauve apple", 1, true).fire(player, sentence, npc);
-								new SetQuestAndModifyKarmaAction( getSlotName(), "inprogress", 15.0).fire(player, sentence, npc);
-                        }
+									"Here you go... Please take this mauve apple from me!" + " " +
+									"Bring that *mauve apple* back to Brosoklelo..." + " " +
+									"Tell Brosoklelo *mauve apple* and he will know it is from me..." + " " +
+									"That *mauve apple* will restore Brosoklelo memory for good..." + "\n" +
+									"MAUVEAPPLEYES"
+                                );
+							} else {
+								npc.say(
+									"MAUVEAPPLENOT"
+								);
+							};
+                     	}
 	        	},
 	        	new DropItemAction("purple apple")
 	        )
@@ -302,23 +320,44 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
-
+		
+		//remove mauve apple from player inventory first
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
+		
+		
+		/**
+		 * NOTE:
+		 * we want a portable container as reward
+		 * we want a scalable portable container
+		 * portfolio for scrolls only
+		 */
+		
+		/**
+		 * NOTE:
+		 * we do not want to create a new fixed player slot
+		 * we do not want to enable features we know nothing about
+		 * 
+		 * portfolio should be portable container and scalable
+		 * portfolio should NOT work as the keyring  
+		 * if (System.getProperty("stendhal.container") != null) {
+		 *   //reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
+		 *   //reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
+		 * } else {
+		 *   //reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
+		 * }
+		 */
+		
+		//special reward when portfolio works as intended
+		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 
-		if (System.getProperty("stendhal.container") != null) {
-			reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
-			reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
-		} else {
-			reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
-		}
-
-		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
-		reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
-		reward_brosoklelo.add(new EquipItemAction("home scroll", 2, false));
-		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
-
+		//default reward even when portfolio is not available
 		reward_brosoklelo.add(new IncreaseXPAction(1000));
 		reward_brosoklelo.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 100));
+		reward_brosoklelo.add(new EquipItemAction("home scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("ados city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("kirdneh city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("deniran city scroll", 1, false));
+		reward_brosoklelo.add(new EquipItemAction("empty scroll", 3, false));
 
 		npc.add(
             ConversationStates.ATTENDING, Arrays.asList("mauve apple"),
@@ -341,7 +380,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                                 "Here... Take this Portfolio..." + " " +
                                 "A portfolio will help you carry around several scrolls!" + " " +
                                 "Fare thee well!");
-                        }
+						}
 	        	},
 	        	new MultipleActions(reward_brosoklelo)
 	        )
