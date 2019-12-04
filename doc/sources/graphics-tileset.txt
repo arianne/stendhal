@@ -60,7 +60,6 @@ coal_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 colours_circle.png        Juan?; ???; ??? (committed by kymara: 7ef5772)
 fancy_gate.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fireplace.png             (placeholder)
-fireplace.xcf.bz2         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fireplace_2.png           ???; ???; ??? (committed by kymara: d57914b)
 floor_sparkle.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 furnace.png               bleutailfly; OGA BY 3.0; Stendhal
@@ -84,6 +83,7 @@ swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.o
 toolset.png               ???; ???; ??? (committed by kymara: 165842e)
 weapon_banner.png         ???; ???; ??? (committed by kymara: 26fd00c)
 webs.png                  ???; ???; ??? (committed by miguel: 9f10715)
+wood_coal_fire.xcf.bz2    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wood_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 wreaths.png               bleutailfly; OGA BY 3.0; Stendhal
 
