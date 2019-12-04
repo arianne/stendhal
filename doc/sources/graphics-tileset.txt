@@ -79,7 +79,7 @@ realworldcafe.png         madmetzger; ???; ???
 rocks.png                 patvanmackelberg; CC0; https://opengameart.org/node/49850
 rocks_2.png               Daniel Cook, Jetrel, Bertram; CC BY 3.0; https://opengameart.org/node/11758
 squares_2.png             (placeholder)
-stone_details.png         (placeholder)
+stone_details.png         bleutailfly; OGA BY 3.0; Stendhal
 swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79120
 toolset.png               ???; ???; ??? (committed by kymara: 165842e)
 weapon_banner.png         ???; ???; ??? (committed by kymara: 26fd00c)
