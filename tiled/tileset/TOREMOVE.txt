@@ -18,3 +18,6 @@ plant/bush/
 
 plant/flower/
 - small_purple_white.png
+
+plant/tree/
+- tree_with_plants.png
