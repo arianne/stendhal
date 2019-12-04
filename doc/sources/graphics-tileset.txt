@@ -59,7 +59,7 @@ chimney_brown_stacks.png  Lanea Zimmerman (Sharm); CC BY-SA 3.0; http://lpc.open
 coal_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 colours_circle.png        Juan?; ???; ??? (committed by kymara: 7ef5772)
 fancy_gate.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fireplace.png             (placeholder)
+fireplace.png             Johann C; CC BY-SA 3.0; https://opengameart.org/node/11079
 fireplace_2.png           ???; ???; ??? (committed by kymara: d57914b)
 floor_sparkle.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 furnace.png               bleutailfly; OGA BY 3.0; Stendhal
