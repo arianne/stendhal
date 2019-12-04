@@ -1042,7 +1042,7 @@ mushroom2.png            durkham?; ???; ??? (committed by kymara: cf55548)
 mushroom3.*              Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
 pineapple_plant.png      ???; ???; ??? (committed by kymara: 4b7035f)
 pumpkin_halloween.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-round_cactuses.png       (placeholder) (committed by kymara: 68ba66f)
+round_cactuses.png       Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71279
 small_berried_plant.png  (placeholder) (committed by kymara: 8413002)
 snowygrass.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 star_shaped_plants.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
