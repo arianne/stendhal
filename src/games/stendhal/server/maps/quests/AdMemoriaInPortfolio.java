@@ -62,14 +62,14 @@ import games.stendhal.server.maps.Region;
  *  <li> Talk with Brosoklelo to activate the quest.</li>
  *  <li> Talk with Vlamyklela have 1x purple apple</li>
  *  <li> Return to Brosoklelo have 1x mauve apple</li>
- *  <li> Brosoklelo will unlock portfolio</li>
+ *  <li> Brosoklelo will give a portfolio as a reward</li>
  * </ul>
  *
  * REWARD:
  * <ul>
  *  <li> 1000 XP</li>
- *  <li> 1000 Karma</li>
- *  <li> ability to use portfolio</li>
+ *  <li> 100 Karma</li>
+ *  <li> A portfolio</li>
  * </ul>
  *
  * REPETITIONS:
@@ -91,7 +91,7 @@ import games.stendhal.server.maps.Region;
  *   + Vlamyklela will turn 1x purple apple into 1x mauve apple to restore Brosoklelo memory log
  */
 
-/** QUEST TEST Method of Procedure: Ad Memoria In Portfolio
+/** QUEST TEST: Ad Memoria In Portfolio
  * a0) Find Brosoklelo, tell reset
  *		this will remove all relevant items from player/character
  *		related to portfolio (brosoklelo/vlamyklela and portfolio)
@@ -110,7 +110,13 @@ import games.stendhal.server.maps.Region;
  * d) exit client
  * e) exit and restart local server
  * f) restart client
- *
+ */
+
+/** QUEST ADDITIONAL NOTES: Ad Memoria In Portfolio 
+ * portfolio is a portable container
+ * portfolio cannot be lost on player death
+ * portfolio stores takes 1 slot in player bag/inventory
+ * portfolio provides additional slots to store scrolls 
  */
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
