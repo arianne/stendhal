@@ -60,7 +60,7 @@ coal_fire.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 colours_circle.png        Juan?; ???; ??? (committed by kymara: 7ef5772)
 fancy_gate.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fireplace.*               Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/11079
-fireplace_2.png           ???; ???; ??? (committed by kymara: d57914b)
+fireplace_2.*             Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/11079
 floor_sparkle.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 furnace.png               bleutailfly; OGA BY 3.0; Stendhal
 green_block.png           (placeholder)
