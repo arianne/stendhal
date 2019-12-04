@@ -1025,7 +1025,7 @@ rocks.*          Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf
 
 tiled/tileset/plant/
 
-brown_mushrooms.png      (placeholder) (committed by kymara: cf6bb9a)
+brown_mushrooms.png      Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
 bushes_and_trees.png     Jetrel, Zabin, Bertram; CC BY-SA; https://opengameart.org/node/12897
 cactus.png               Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71279
 cactus_2.*               Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
