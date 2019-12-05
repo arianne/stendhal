@@ -1091,7 +1091,7 @@ planted_containers.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pointed_yellow.png      NoLogoGames; CC BY 4.0; https://opengameart.org/node/78584
 polyanthus.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 purple.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-red_blue_clusters.png   (placeholder) (committed by kymara: dad94bb)
+red_blue_clusters.png   Zachariah Husiar (Zabin); CC BY 3.0; https://opengameart.org/node/11758
 red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
