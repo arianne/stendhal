@@ -15,7 +15,6 @@ greenhouse.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_3.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_chalet.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_pink_blue.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-houses and businesses.png     ???; ???; ??? (committed by tigertoes: 433f3d5)
 huts.*                        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ice_tower.png                 ???; ???; ??? (committed by laguz: 938f851)
 life_tower.png                ???; ???; ??? (committed by laguz: 938f851)
