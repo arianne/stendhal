@@ -297,7 +297,6 @@ orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pink_rug.png       bleutailfly; OGA BY 3.0; Stendhal
 plain_colours.png  ???; ???; ??? (committed by kymara: e425abd)
 purple.png         ???; ???; ??? (committed by kymara: c2e5ec6)
-purple2.png        (placeholder) (committed by kymara: 39dcf7b)
 red_purple.png     (placeholder) (committed by bleutailfly: 5df2da1)
 royalblue.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 rug_border.png     Kimmo Rundelin (kiheru) Katie Russell (kymara); CC BY-SA 3.0; Stendhal
