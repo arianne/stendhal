@@ -10,6 +10,7 @@ building/window/
 
 building/stairs/
 - winding.png
+- winding_2.png
 
 ground/indoor/
 - stonefloor.png
