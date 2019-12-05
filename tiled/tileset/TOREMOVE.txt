@@ -8,6 +8,9 @@ building/wall/
 building/window/
 - lighted_window.png
 
+building/stairs/
+- winding.png
+
 ground/indoor/
 - stonefloor.png
 
