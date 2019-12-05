@@ -314,7 +314,7 @@ bench_iron_reverse.*       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bench_white.png            Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79117
 bench_wooden.*             Hyptosis, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79117
 colorful.png               bleutailfly; OGA BY 3.0; Stendhal
-greenish_grey.png          (placeholder) (committed by kymara: 59c94ad)
+greenish_grey.png          Lanea Zimmerman (Sharm); CC BY-SA 3.0; https://opengameart.org/node/13470
 sofa.png                   bleutailfly; OGA BY 3.0; Stendhal
 sofa_2.png                 extradave; CC0; https://opengameart.org/node/4726
 sofa_brown.png             bleutailfly; OGA BY 3.0; Stendhal
