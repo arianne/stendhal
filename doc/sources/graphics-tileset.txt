@@ -174,6 +174,7 @@ stairs_grey.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 stairs_orange.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 winding.png               (placeholder)
 winding_2.png             (placeholder)
+winding_large.*           Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 wooden_ns.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79115
 wooden_stairs.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
