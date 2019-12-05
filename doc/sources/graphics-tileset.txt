@@ -351,9 +351,9 @@ curtain_rails.png    bleutailfly; OGA BY 3.0; Stendhal
 curtain_rod.png      bleutailfly; OGA BY 3.0; Stendhal
 dark_red.png         Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 green.png            bleutailfly; OGA BY 3.0; Stendhal
-light_blue.png       (placeholder) (committed by kymara: be49cf3) (can be replaced with older versions done by bleutailfly)
+light_blue.png       bleutailfly; OGA BY 3.0; Stendhal
 lt_blue_drapes.*     Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
-peach.png            (placeholder) (committed by kymara: be49cf3) (can be replaced with older versions done by bleutailfly)
+peach.png            bleutailfly; OGA BY 3.0; Stendhal
 peach_drapes.*       Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 purple_drapes.*      Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/79123
 red.png              bleutailfly; OGA BY 3.0; Stendhal
