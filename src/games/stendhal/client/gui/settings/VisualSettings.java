@@ -120,8 +120,8 @@ class VisualSettings {
 		page.add(weather);
 
 		// shadows
-		JCheckBox shadows = SettingsComponentFactory.createSettingsToggle("gamescreen.shadows", false,
-				"Draw shadows (experimental)", "Draw shadows underneath entities.");
+		JCheckBox shadows = SettingsComponentFactory.createSettingsToggle("gamescreen.shadows", true,
+				"Draw shadows", "Draw shadows underneath entities.");
 		page.add(shadows);
 		shadows.addItemListener(new ItemListener() {
 			@Override

@@ -648,7 +648,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * 		Sprite
 	 */
 	protected Sprite addShadow(final Sprite sprite) {
-		final boolean draw_shadows = WtWindowManager.getInstance().getProperty("gamescreen.shadows", "false").equals("true");
+		final boolean draw_shadows = WtWindowManager.getInstance().getProperty("gamescreen.shadows", "true").equals("true");
 
 		if (draw_shadows) {
 			/* XXX: would it be better to use a single shadow file & scale it?
