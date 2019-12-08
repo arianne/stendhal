@@ -114,6 +114,7 @@
       <item value="potion" quantity="[1,2]" probability="10.0"/>
       <item value="antidote" quantity="[1,2]" probability="2.0"/>
       <item value="staff" quantity="[1,1]" probability="3.0"/>
+      <item value="sedative" quantity="[2,3]" probability="25.0"/>
     </drops>
     <equips>
     </equips>
@@ -213,6 +214,7 @@
       <item value="greater antidote" quantity="[1,2]" probability="2.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.7"/>
       <item value="dark dagger" quantity="[1,1]" probability="0.1"/>
+      <item value="sedative" quantity="[2,5]" probability="19.0"/>
     </drops>
     <equips>
     </equips>
