@@ -159,6 +159,7 @@ public final class ShopList {
 		shops.add("buyrare", "plate armor", 62);
 		shops.add("buyrare", "plate shield", 40);
 		shops.add("buyrare", "lion shield", 50);
+                shops.add("buyrare", "blue legs",500);
 
 		// rare elf weapons buyer
 		shops.add("elfbuyrare", "battle axe", 70);
