@@ -60,7 +60,7 @@
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
-	
+
 		<portal x="55" y="9" ref="deniran_inn_entrance">
 			<destination zone="int_deniran_inn" ref="entrance" />
 			<attribute name="move.continuous" />
@@ -132,7 +132,7 @@
 			<destination zone="int_deniran_castle" ref="entrance_right" />
 			<attribute name="move.continuous" />
 		</portal>
-   
+
 		<portal x="28" y="19" ref="deniran_grocery_store_entrance">
 			<destination zone="int_deniran_grocery_store" ref="entrance" />
 			<attribute name="move.continuous" />
@@ -142,12 +142,12 @@
 			<destination zone="int_deniran_bakery" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
-		
+
 			<portal x="97" y="20" ref="deniran_library_entrance">
 			<destination zone="int_deniran_library" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
-	
+
 	</zone>
 
 
@@ -291,8 +291,8 @@
 		<attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
-		</attributes> 
-		
+		</attributes>
+
 		<portal x="78" y="23" ref="deniran_potions_shop_entrance">
 			<destination zone="int_deniran_potions_shop" ref="entrance" />
 			<attribute name="move.continuous" />
@@ -884,10 +884,10 @@
 			<destination zone="0_deniran_city" ref="deniran_grocery_store_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
-		
+
 	</zone>
-	
-		
+
+
 	<zone name="int_deniran_dress_shop" file="interiors/deniran/dress_shop.tmx">
 
 		<portal x="13" y="18" ref="entrance">
@@ -896,7 +896,7 @@
 		</portal>
 
 	</zone>
-	
+
 	<zone name="int_deniran_potions_shop" file="interiors/deniran/potions_shop.tmx">
 
 		<portal x="6" y="14" ref="entrance">
@@ -911,7 +911,7 @@
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.DeniranPotionSellerNPC" />
   		-->
 	</zone>
-	
+
 	<zone name="int_deniran_library" file="interiors/deniran/library.tmx">
 
 		<portal x="10" y="28" ref="entrance">
@@ -923,7 +923,7 @@
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.library.LibrarianNPC" />
 
 	</zone>
-	
+
 
 	<zone name="int_deniran_inn" file="interiors/deniran/inn.tmx">
 
@@ -931,14 +931,14 @@
 			<destination zone="0_deniran_city_sw" ref="deniran_inn_entrance" />
 			<attribute name="move.continuous" />
 		</portal>
-		
+
 		<portal x="14" y="9" ref="downstairs">
 			<destination zone="int_deniran_inn_1" ref="upstairs" />
 		</portal>
 	</zone>
 
 	<zone name="int_deniran_inn_1" file="interiors/deniran/inn_1.tmx">
-	
+
 		<portal x="14" y="9" ref="upstairs">
 			<destination zone="int_deniran_inn" ref="downstairs" />
 		</portal>
