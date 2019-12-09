@@ -10,74 +10,15 @@ Changelog
 
 *graphics*
 - new corpses for cobras
-- new/reworked outfits:
-  - dress 75-76
-  - dress 91-98
-  - hair 47-48
-- new/reworked NPCs:
-  - Conual now wears a prison jumpsuit
-  - Marla (womanexoticdressnpc)
-  - Easter Bunny (easterbunnynpc)
-  - Hiro (sokobannpc)
-  - Jane (swimmer6npc)
-  - Marie-Henri (writernpc)
-  - Paul Sheriff (paulnpc)
-- new/reworked enemies:
-  - all beholders
-  - all goblins
-  - caiman & crocodile
-  - dodo
-  - mummy & royal mummy
-- new/reworked items:
-  - barbarian, black, dwarvish, leather, & plate armors
-  - bardiche
-  - small & hand axes
-  - chain & studded boots
-  - club
-  - enhanced mace
-  - dress
-  - tea
-  - elvish cloak
+- Many new or reworked outfit sprites
+- Many new or reworked NPC sprites
+- Many new or reworked sprites
+- Many new or reworked item sprites
 
 *audio*
 - new melee/attack sound effects
-- added enemy sound effects:
-  - bear & black bear
-  - chicken & mother hen
-  - dodo
-  - snake & grass snake
-  - wolf & big bad wolf
-  - horse & white horse
-  - rat, caverat, venomrat, razorrat, & zombie rat
-  - giantrat
-  - boar
-  - ram
-  - lion
-  - all orcs & mountain orcs
-  - tiger
-  - all gargoyles
-  - all goblins
-  - skeleton, warrior skeleton, elder skeleton, & demon skeleton
-  - death
-  - ghost
-  - imp & winged blue imp
-  - all kobolds
-  - cyclops
-  - all ogres
-  - troll & red troll
-  - gashadokuro
-  - balrog
-  - high lich
-  - vampire lord
-  - mummies
-- added pet sound effects:
-  - sheep
-- added NPC sound effects:
-  - Carmen
-  - Diogenes
-  - Margaret
-  - Nishiya
-  - Sato
+- Many new enemy/creature sound effects
+- Many new NPC sound effects
 - added map ambiance sounds:
   - water sloshing in Ados City, Athor Island, Athor Ship, & Fado City
   - river in Nalwor Forest, Ados Snake Pit, Semos Mountain, & Semos Road

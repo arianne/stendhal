@@ -38,6 +38,7 @@ import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.AnimatedSprite;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -647,21 +648,23 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * 		Sprite
 	 */
 	protected Sprite addShadow(final Sprite sprite) {
-		final boolean draw_shadows = WtWindowManager.getInstance().getProperty("gamescreen.shadows", "false").equals("true");
+		final boolean draw_shadows = WtWindowManager.getInstance().getProperty("gamescreen.shadows", "true").equals("true");
 
 		if (draw_shadows) {
-			// draw a shadow under the image
-			final ImageSprite shadowed = new ImageSprite(SpriteStore.get().getSprite("data/sprites/shadow.png"));
-			final Graphics g = shadowed.getGraphics();
+			/* XXX: would it be better to use a single shadow file & scale it?
+			 * XXX: would it be better to use an opaque image & set transparency here?
+			 */
 
-			// check if we need to scale shadow image
-			final int w_orig = sprite.getWidth();
-			final int h_orig = sprite.getHeight();
-			final int w_shadow = shadowed.getWidth();
-			final int h_shadow = shadowed.getHeight();
+			final int w_sprite = sprite.getWidth() / 3;
+			final int h_sprite = sprite.getHeight() / 4;
+			final String shadow_file = "data/sprites/shadow-" + Integer.toString(w_sprite) + "x" + Integer.toString(h_sprite) + ".png";
 
-			// FIXME: need to scale shadow for sprites that are not 48x64
-			if (w_orig == w_shadow && h_orig == h_shadow) {
+			// check if corresponding shadow image exists
+			if (DataLoader.getResource(shadow_file) != null) {
+				// draw a shadow under the image
+				final ImageSprite shadowed = new ImageSprite(SpriteStore.get().getSprite(shadow_file));
+				final Graphics g = shadowed.getGraphics();
+
 				sprite.draw(g, 0, 0);
 				return shadowed;
 			}

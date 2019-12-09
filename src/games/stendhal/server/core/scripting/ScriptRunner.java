@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +17,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
@@ -49,6 +54,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
+	private final String[] supported_ext = {"groovy"};
+
 	/**
 	 * Constructor for ScriptRunner.
 	 */
@@ -63,18 +70,34 @@ public class ScriptRunner extends StendhalServerExtension implements
 		final URL url = getClass().getClassLoader().getResource(scriptDir);
 		if (url != null) {
 			final File dir = new File(url.getFile());
-			final String[] strs = dir.list(new FilenameFilter() {
-				@Override
-				public boolean accept(final File dir, final String name) {
-					return name.endsWith(".groovy");
-				}
-			});
+			List<String> strs = new ArrayList<>();
 
-			for (int i = 0; i < strs.length; i++) {
+			try {
+				final Stream<Path> paths = Files.walk(Paths.get(dir.toString())).filter(Files::isRegularFile);
+				for (String filepath: paths.map(s -> s.toString()).collect(Collectors.toList())) {
+					// trim absolute path prefix
+					filepath = filepath.substring(dir.toString().length() + 1);
+
+					for (String ext: supported_ext) {
+						ext = "." + ext;
+
+						if (filepath.endsWith(ext)) {
+							strs.add(filepath);
+							break;
+						}
+					}
+				}
+			} catch (final IOException e1) {
+				logger.error("Error while recursing scripts");
+				e1.printStackTrace();
+				return;
+			}
+
+			for (int i = 0; i < strs.size(); i++) {
 				try {
-					perform(strs[i]);
+					perform(strs.get(i));
 				} catch (final Exception e) {
-					logger.error("Error while loading " + strs[i] + ":", e);
+					logger.error("Error while loading " + strs.get(i) + ":", e);
 				}
 			}
 		}

@@ -126,6 +126,7 @@ stendhal.main = {
 	registerBrowserEventHandlers: function() {
 		document.addEventListener("keydown", stendhal.ui.keyhandler.onKeyDown);
 		document.addEventListener("keyup", stendhal.ui.keyhandler.onKeyUp);
+		document.addEventListener("contextmenu", stendhal.main.preventContextMenu);
 
 		var gamewindow = document.getElementById("gamewindow");
 		gamewindow.setAttribute("draggable", true);
@@ -196,6 +197,10 @@ stendhal.main = {
 			// ignore
 		}
 		return true;
+	},
+
+	preventContextMenu: function(event) {
+		event.preventDefault();
 	}
 }
 
