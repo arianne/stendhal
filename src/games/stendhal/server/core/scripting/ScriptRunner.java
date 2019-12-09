@@ -231,34 +231,34 @@ public class ScriptRunner extends StendhalServerExtension implements
 	private boolean listScripts(final Player player, List<String> filterTerm) {
 
 		StringBuilder stringBuilder = new StringBuilder("list of available scripts:\n");
-		List<String> allScripts=new LinkedList<String>();
+		List<String> allScripts = new LinkedList<String>();
 
-		// *.groovy scripts is in data/script/
+		// *.groovy scripts in data/script/
 		final File dirGroovy = new File(scriptDir);
 		List<String> scriptsGroovy;
-		final String[] lg=dirGroovy.list(new FilenameFilter() {
+		final String[] lg = dirGroovy.list(new FilenameFilter() {
 				@Override
 				public boolean accept(final File dir, final String name) {
 					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
 				}
 			});
-		if(lg!=null) {
-			scriptsGroovy=Arrays.asList(lg);
+		if(lg != null) {
+			scriptsGroovy = Arrays.asList(lg);
 		} else {
-			scriptsGroovy=new LinkedList<String>();
+			scriptsGroovy = new LinkedList<String>();
 		}
 
 		// *.class scripts could be in data/script/games/stendhal/server/script/
-		final File dirClasses = new File(scriptDir+"games/stendhal/server/script/");
+		final File dirClasses = new File(scriptDir + "games/stendhal/server/script/");
 		List<String> scriptsJava;
-		final String[] lj=dirClasses.list(new FilenameFilter(){
+		final String[] lj = dirClasses.list(new FilenameFilter(){
 				@Override
 				public boolean accept(final File dir, final String name) {
 					// remove filenames with '$' inside because they are inner classes
 					return (name.endsWith(".class") && (name.indexOf('$') == -1));
 				}
 			});
-		if(lj!=null) {
+		if(lj != null) {
 		    scriptsJava = Arrays.asList(lj);
 		} else {
 			scriptsJava = new LinkedList<String>();
@@ -276,7 +276,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 			});
 
 			for (final Class<?> clazz : dir) {
-				    scriptsJava.add(clazz.getSimpleName()+".class");
+				    scriptsJava.add(clazz.getSimpleName() + ".class");
 			}
 
 		} catch (final ClassNotFoundException e) {
@@ -290,8 +290,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 		stringBuilder.append("results for /script ");
 		if (!filterTerm.isEmpty()) {
-			for (int i=0; i<filterTerm.size(); i++) {
-				stringBuilder.append(" "+ filterTerm.get(i));
+			for (int i = 0; i < filterTerm.size(); i++) {
+				stringBuilder.append(" " + filterTerm.get(i));
 			}
 			stringBuilder.append(":\n");
 		}
@@ -302,11 +302,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 				int j = 0;
 				for (j = 0; j < filterTerm.size(); j++) {
 					if (allScripts.get(i).matches(searchTermToRegex(filterTerm.get(j)))) {
-						stringBuilder.append(allScripts.get(i)+"\n");
+						stringBuilder.append(allScripts.get(i) + "\n");
 					}
 				}
 			} else {
-				stringBuilder.append(allScripts.get(i)+"\n");
+				stringBuilder.append(allScripts.get(i) + "\n");
 			}
 		}
 
@@ -387,7 +387,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 				}
 				StringBuilder sb = new StringBuilder(cmd);
 				// concatenating script arguments
-				for (int i = scp+1; i<parts.size(); i++) {
+				for (int i = scp + 1; i < parts.size(); i++) {
 					 sb.append(' ').append(parts.get(i));
 				}
 				cmd = sb.toString();

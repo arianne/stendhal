@@ -245,7 +245,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 			"That is understandable..." + " " +
             "Maybe someone else will be more charitable...",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
-		
+
 		//on offered quest
 		//try to leave without a proper yes/no answer
 		npc.add(
@@ -400,7 +400,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
             // repeat is false
             false
         );
-		
+
 		//admemoriainportfolio steps:
 		admemoriainportfolio_step_0(); //testing only
 		admemoriainportfolio_step_1(); //activate quest
@@ -452,7 +452,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
         	res.add("I have asked Brosoklelo for a quest.");
             res.add("I agreed to help Brosoklelo recover his memory ");
             res.add("Brosoklelo gave me a purple apple");
-            res.add("I have to find Vlamyklela and tell her I have a purple apple"); 
+            res.add("I have to find Vlamyklela and tell her I have a purple apple");
         }
 
         if (questState.equals("inprogress")) {
