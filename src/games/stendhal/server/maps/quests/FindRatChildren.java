@@ -320,6 +320,12 @@ public class FindRatChildren extends AbstractQuest {
 	}
 
 	@Override
+	public boolean isRepeatable(final Player player) {
+		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
+				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player, null, null);
+	}
+
+	@Override
 	public String getRegion() {
 		return Region.ORRIL_DUNGEONS;
 	}
