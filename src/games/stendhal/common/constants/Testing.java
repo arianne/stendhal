@@ -42,6 +42,6 @@ public class Testing {
 			(System.getProperty("testing.movement") != null);
 
 	/** Testing switch for outfit system */
-	public static final boolean OUTFITS =
-			(System.getProperty("testing.outfits") != null);
+	public static final boolean OUTFIT =
+			(System.getProperty("testing.outfit") != null);
 }
