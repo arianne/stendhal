@@ -159,7 +159,7 @@ pirate_sailornpc.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 pirate_sailor2npc.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 piratenpc.png                 Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83642
 plinknpc.*                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-postelfnpc.png                Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/24944
+postelfnpc.*                  Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/24944
 priestnpc.*                   Svetlana Kushnariova (Cabbit), onu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944
 princess2npc.png              Svetlana Kushnariova (Cabbit), Tracy, bleutailfly; CC BY 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/13927
 principalnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
