@@ -116,7 +116,7 @@ mageelfnpc.png                Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin
 magic_jesternpc.png           Svetlana Kushnariova (Cabbit); OGA BY 3.0; https://opengameart.org/node/72969
 magicianhousegreeternpc.*     Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 maidnpc.*                     Svetlana Kushnariova (Cabbit), Vesa Vanhatupa (Master484), isaiah658, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/20467, https://opengameart.org/node/71384
-man_000_npc.png               Svetlana Kushnariova (Cabbit), olonu; OGA BY 3.0; https://github.com/arianne/stendhal/issues/91
+man_000_npc.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/91, https://opengameart.org/node/72969
 man_001_npc.*                 Svetlana Kushnariova (Cabbit), bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/24944, https://opengameart.org/node/83523
 man_002_npc.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 man_004_npc.*                 Svetlana Kushnariova (Cabbit), user_share, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/18071
