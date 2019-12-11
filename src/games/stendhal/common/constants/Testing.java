@@ -44,4 +44,8 @@ public class Testing {
 	/** Testing switch for outfit system */
 	public static final boolean OUTFIT =
 			(System.getProperty("testing.outfit") != null);
+
+	/** Testing switch for quests **/
+	public static final boolean QUEST =
+			(System.getProperty("testing.quest") != null);
 }
