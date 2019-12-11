@@ -17,7 +17,7 @@ package games.stendhal.common.constants;
  * @author AntumDeluge
  */
 public class Testing {
-	/** General testing property */
+	/** Switch for general testing */
 	public static final boolean GENERAL =
 			(System.getProperty("testing") != null);
 
@@ -25,23 +25,23 @@ public class Testing {
 	public static final boolean DEBUG =
 			(System.getProperty("DEBUG") != null);
 
-	/** Testing actions system property */
-	public static final boolean ACTIONS =
-			(System.getProperty("testing.actions") != null);
+	/** Testing switch for player actions */
+	public static final boolean ACTION =
+			(System.getProperty("testing.action") != null);
 
-	/** Testing chat system property */
+	/** Testing switch for chat system */
 	public static final boolean CHAT =
 			(System.getProperty("testing.chat") != null);
 
-	/** Testing combat system property */
+	/** Testing switch for combat system */
 	public static final boolean COMBAT =
 			(System.getProperty("testing.combat") != null);
 
-	/** Testing movement system property */
+	/** Testing switch for entity movement */
 	public static final boolean MOVEMENT =
 			(System.getProperty("testing.movement") != null);
 
-	/** Testing outfit system property */
+	/** Testing switch for outfit system */
 	public static final boolean OUTFITS =
 			(System.getProperty("testing.outfits") != null);
 }
