@@ -24,8 +24,8 @@ local sign = luajava.newInstance("games.stendhal.server.entity.mapstuff.sign.Sig
 
 #### Creating an NPC
 
-- Use the global game `object` to set the current zone: `game:setZone("0_semos_city")`
-- Use the global stendahl `object` to create a new NPC: `local npc = stendhal:createNPC("Lua")`
+- Use the global `game` object to set the current zone: `game:setZone("0_semos_city")`
+- Use the global `stendhal` object to create a new NPC: `local npc = stendhal:createNPC("Lua")`
 
 Example:
 ```
