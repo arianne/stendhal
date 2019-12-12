@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.MinTotalCreaturesKilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
@@ -121,7 +122,9 @@ public class GuessKills extends AbstractQuest {
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return true;
+		return new AndCondition(
+					new QuestCompletedCondition(QUEST_SLOT),
+					new TimePassedCondition(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES)).fire(player, null, null);
 	}
 
 	@Override
