@@ -175,10 +175,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 			for (const part of this["outfit_ext"].split(",")) {
 				if (part.includes("=")) {
 					var tmp = part.split("=");
-					var key = tmp[0];
-					var value = tmp[1];
-
-					outfit[key] = value;
+					outfit[tmp[0]] = tmp[1];
 				}
 			}
 		} else {
