@@ -165,15 +165,38 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 	},
 
 	drawMultipartOutfit: function(ctx) {
-		const body = this.getOutfitPart("body", (this["outfit"] % 100));
-		const dress = this.getOutfitPart("dress", (Math.floor(this["outfit"]/100) % 100));
-		const head = this.getOutfitPart("head", (Math.floor(this["outfit"]/10000) % 100));
-		const hair = this.getOutfitPart("hair", (Math.floor(this["outfit"]/1000000) % 100));
-		const detail = this.getOutfitPart("detail", (Math.floor(this["outfit"]/100000000) % 100));
-		const images = [body, dress, head, hair, detail];
-		for (const img of images) {
-			if (img) {
-				this.drawSprite(ctx, img);
+		// layers in draw order
+		var layers = [];
+
+		var outfit = {};
+		if ("outfit_ext" in this) {
+			layers = ["body", "dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail"];
+
+			for (const part of this["outfit_ext"].split(",")) {
+				if (part.includes("=")) {
+					var tmp = part.split("=");
+					var key = tmp[0];
+					var value = tmp[1];
+
+					outfit[key] = value;
+				}
+			}
+		} else {
+			layers = ["body", "dress", "head", "hair", "detail"];
+
+			outfit["body"] = this["outfit"] % 100;
+			outfit["dress"] = Math.floor(this["outfit"]/100) % 100;
+			outfit["head"] = Math.floor(this["outfit"]/10000) % 100;
+			outfit["hair"] = Math.floor(this["outfit"]/1000000) % 100;
+			outfit["detail"] = Math.floor(this["outfit"]/100000000) % 100;
+		}
+
+		for (const layer of layers) {
+			if (layer in outfit) {
+				const img = this.getOutfitPart(layer, outfit[layer]);
+				if (img) {
+					this.drawSprite(ctx, img);
+				}
 			}
 		}
 	},
