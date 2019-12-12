@@ -105,40 +105,40 @@ public class GuessKills extends AbstractQuest {
 		}
 	}
 
-    @Override
-    public void addToWorld() {
-        fillQuestInfo(
+	@Override
+	public void addToWorld() {
+		fillQuestInfo(
 				"The guessing game",
 				"Crearid plays a game where you guess how many creatures you have killed.",
 				true);
-        prepareQuestStep();
-    }
+		prepareQuestStep();
+	}
 
-    @Override
+	@Override
 	public String getRegion() {
 		return Region.NALWOR_CITY;
 	}
 
-    @Override
-    public boolean isRepeatable(final Player player) {
+	@Override
+	public boolean isRepeatable(final Player player) {
 		return true;
 	}
 
-    @Override
-    public String getSlotName() {
-        return QUEST_SLOT;
-    }
+	@Override
+	public String getSlotName() {
+		return QUEST_SLOT;
+	}
 
-    @Override
-    public String getName() {
-        return "GuessKills";
-    }
+	@Override
+	public String getName() {
+		return "GuessKills";
+	}
 
-    @Override
-    public List<String> getHistory(final Player player) {
-    	final List<String> res = new ArrayList<String>();
+	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
 
-    	if (!player.hasQuest(QUEST_SLOT)) {
+		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
 
@@ -167,62 +167,62 @@ public class GuessKills extends AbstractQuest {
 		}
 
 		return res;
-    }
+	}
 
-    /**
-     * Sets the FSM for the NPC with all required responses and interactions
-     */
-    public void prepareQuestStep() {
-    	final SpeakerNPC npc = npcs.get("Crearid");
+	/**
+	 * Sets the FSM for the NPC with all required responses and interactions
+	 */
+	public void prepareQuestStep() {
+		final SpeakerNPC npc = npcs.get("Crearid");
 
-        final ChatCondition requirement = new MinTotalCreaturesKilledCondition(MIN_KILLS_REQUIRED);
-        final ChatCondition isNumber = new TextHasNumberCondition(Integer.MIN_VALUE, Integer.MAX_VALUE);
-        final ChatCondition enoughTimePassed = new TimePassedCondition(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES);
-        final ChatCondition wrongAndNotBye = new AndCondition(new NotCondition(isNumber), new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)));
-        final ChatCondition questNotDone = new OrCondition(new QuestInStateCondition(QUEST_SLOT, 0, "1"),
+		final ChatCondition requirement = new MinTotalCreaturesKilledCondition(MIN_KILLS_REQUIRED);
+		final ChatCondition isNumber = new TextHasNumberCondition(Integer.MIN_VALUE, Integer.MAX_VALUE);
+		final ChatCondition enoughTimePassed = new TimePassedCondition(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES);
+		final ChatCondition wrongAndNotBye = new AndCondition(new NotCondition(isNumber), new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)));
+		final ChatCondition questNotDone = new OrCondition(new QuestInStateCondition(QUEST_SLOT, 0, "1"),
 													 new QuestInStateCondition(QUEST_SLOT, 0, "2"),
 													 new QuestInStateCondition(QUEST_SLOT, 0, "3"));
 
-        //checks if guess is exact answer
-        final ChatCondition exact = new ChatCondition() {
-            @Override
+		//checks if guess is exact answer
+		final ChatCondition exact = new ChatCondition() {
+			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-                final Expression number = sentence.getNumeral();
-                final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
+				final Expression number = sentence.getNumeral();
+				final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
 
-                if (number != null) {
-                    final int num = number.getAmount();
-                    if (num == kills) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        };
+				if (number != null) {
+					final int num = number.getAmount();
+					if (num == kills) {
+						return true;
+					}
+				}
+				return false;
+			}
+		};
 
-        //checks if guess is close to actual answer
-        final ChatCondition close = new ChatCondition() {
-            @Override
+		//checks if guess is close to actual answer
+		final ChatCondition close = new ChatCondition() {
+			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-                final Expression number = sentence.getNumeral();
-                final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
+				final Expression number = sentence.getNumeral();
+				final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
 
-                if (number != null) {
-                    final int num = number.getAmount();
-                    if (Math.abs(num - kills) <= Math.max(ACCURACY * kills, 1) && kills != num) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        };
+				if (number != null) {
+					final int num = number.getAmount();
+					if (Math.abs(num - kills) <= Math.max(ACCURACY * kills, 1) && kills != num) {
+						return true;
+					}
+				}
+				return false;
+			}
+		};
 
-        final ConversationStates[] tries = {ConversationStates.QUESTION_1,
+		final ConversationStates[] tries = {ConversationStates.QUESTION_1,
 	                                      ConversationStates.QUESTION_2,
 	                                      ConversationStates.QUESTION_3};
 
-        //gets the creature from unfinished quest
-        final ChatAction getSavedCreature = new ChatAction() {
+		//gets the creature from unfinished quest
+		final ChatAction getSavedCreature = new ChatAction() {
 			@Override
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				CREATURE = player.getQuest(QUEST_SLOT, 2);
@@ -233,80 +233,80 @@ public class GuessKills extends AbstractQuest {
 						" left... and if I recall correctly I asked you..." +
 						" how many " + Grammar.pluralCreature(CREATURE) + " do think you have killed?");
 			}
-        };
+		};
 
-        final String[] triggers = {"game", "games", "play", "play game", "play games"};
+		final String[] triggers = {"game", "games", "play", "play game", "play games"};
 
-        //if quest not finished and came back
-        npc.add(ConversationStates.ATTENDING,
-        		Arrays.asList(triggers),
-                new AndCondition(questNotDone, requirement),
-                ConversationStates.QUEST_STARTED,
-                "We did not finish our game last time would you like to continue?",
-                null);
+		//if quest not finished and came back
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList(triggers),
+				new AndCondition(questNotDone, requirement),
+				ConversationStates.QUEST_STARTED,
+				"We did not finish our game last time would you like to continue?",
+				null);
 
-        //if quest not finished and player wants to continue
-        npc.add(ConversationStates.QUEST_STARTED,
-        		ConversationPhrases.YES_MESSAGES,
-        		new QuestInStateCondition(QUEST_SLOT, 0, "1"),
-                ConversationStates.QUESTION_1,
-                null,
-                getSavedCreature);
+		//if quest not finished and player wants to continue
+		npc.add(ConversationStates.QUEST_STARTED,
+				ConversationPhrases.YES_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "1"),
+				ConversationStates.QUESTION_1,
+				null,
+				getSavedCreature);
 
-        npc.add(ConversationStates.QUEST_STARTED,
-        		ConversationPhrases.YES_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, "2"),
-                ConversationStates.QUESTION_2,
-                null,
-                getSavedCreature);
+		npc.add(ConversationStates.QUEST_STARTED,
+				ConversationPhrases.YES_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "2"),
+				ConversationStates.QUESTION_2,
+				null,
+				getSavedCreature);
 
-        npc.add(ConversationStates.QUEST_STARTED,
-        		ConversationPhrases.YES_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, "3"),
-                ConversationStates.QUESTION_3,
-                null,
-                getSavedCreature);
+		npc.add(ConversationStates.QUEST_STARTED,
+				ConversationPhrases.YES_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "3"),
+				ConversationStates.QUESTION_3,
+				null,
+				getSavedCreature);
 
-        //if quest not finished and player does not want to continue
-        npc.add(ConversationStates.QUEST_STARTED,
-        		ConversationPhrases.NO_MESSAGES,
-                null,
-                ConversationStates.ATTENDING,
-                "Oh well. Your loss, now what can I do for you?",
-                null);
+		//if quest not finished and player does not want to continue
+		npc.add(ConversationStates.QUEST_STARTED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Oh well. Your loss, now what can I do for you?",
+				null);
 
-        //if player has not killed enough creatures don't give quest
-        npc.add(ConversationStates.ATTENDING,
-                Arrays.asList(triggers),
-                new NotCondition(requirement),
-                ConversationStates.ATTENDING,
-                "I'd like some entertainment but you don't look like you're up to it just yet." +
-                " Come back when you've gained a bit more experience fighting creatures.",
-                null);
+		//if player has not killed enough creatures don't give quest
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList(triggers),
+				new NotCondition(requirement),
+				ConversationStates.ATTENDING,
+				"I'd like some entertainment but you don't look like you're up to it just yet." +
+				" Come back when you've gained a bit more experience fighting creatures.",
+				null);
 
-        //ask if player would like to take quest if player has killed enough creatures
-        npc.add(ConversationStates.ATTENDING,
-                Arrays.asList(triggers),
-                new AndCondition(requirement, enoughTimePassed, new NotCondition(questNotDone)),
-                ConversationStates.QUEST_OFFERED,
-                "I'm a little bored at the moment. Would you like to play a game?",
-                null);
+		//ask if player would like to take quest if player has killed enough creatures
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList(triggers),
+				new AndCondition(requirement, enoughTimePassed, new NotCondition(questNotDone)),
+				ConversationStates.QUEST_OFFERED,
+				"I'm a little bored at the moment. Would you like to play a game?",
+				null);
 
-        //tell player to come back later if one week has not passed
-        npc.add(ConversationStates.ATTENDING,
-                Arrays.asList(triggers),
-                new AndCondition(requirement, new NotCondition(enoughTimePassed), new NotCondition(questNotDone)),
-                ConversationStates.ATTENDING,
-                null,
-                new SayTimeRemainingAction(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES, "I've had plenty of fun for now, thanks. Come back in, lets say"));
+		//tell player to come back later if one week has not passed
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList(triggers),
+				new AndCondition(requirement, new NotCondition(enoughTimePassed), new NotCondition(questNotDone)),
+				ConversationStates.ATTENDING,
+				null,
+				new SayTimeRemainingAction(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES, "I've had plenty of fun for now, thanks. Come back in, lets say"));
 
-        //ask quest question if quest accepted, also gets the creature type to ask about
-        npc.add(ConversationStates.QUEST_OFFERED,
-                ConversationPhrases.YES_MESSAGES,
-                null,
-                ConversationStates.QUESTION_1,
-                null,
-                new MultipleActions(
+		//ask quest question if quest accepted, also gets the creature type to ask about
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.QUESTION_1,
+				null,
+				new MultipleActions(
 	                new ChatAction() {
 	                    @Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
@@ -324,100 +324,100 @@ public class GuessKills extends AbstractQuest {
 	                },
 	                new SetQuestAction(QUEST_SLOT, 0, "1")));
 
-        //if quest rejected
-        npc.add(ConversationStates.QUEST_OFFERED,
-                ConversationPhrases.NO_MESSAGES,
-                null,
-                ConversationStates.ATTENDING,
-                "Bah, you're no fun at all.",
-                null);
+		//if quest rejected
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Bah, you're no fun at all.",
+				null);
 
-        //if invalid answer
-        npc.add(ConversationStates.QUESTION_1,
-                "",
-                wrongAndNotBye,
-                ConversationStates.QUESTION_1,
-                "How could that possibly be an answer? Give me a proper number.",
-                null);
+		//if invalid answer
+		npc.add(ConversationStates.QUESTION_1,
+				"",
+				wrongAndNotBye,
+				ConversationStates.QUESTION_1,
+				"How could that possibly be an answer? Give me a proper number.",
+				null);
 
-        npc.add(ConversationStates.QUESTION_2,
-                "",
-                wrongAndNotBye,
-                ConversationStates.QUESTION_2,
-                "Is that even possible? Give me a valid answer.",
-                null);
+		npc.add(ConversationStates.QUESTION_2,
+				"",
+				wrongAndNotBye,
+				ConversationStates.QUESTION_2,
+				"Is that even possible? Give me a valid answer.",
+				null);
 
-        npc.add(ConversationStates.QUESTION_3,
-                "",
-                wrongAndNotBye,
-                ConversationStates.QUESTION_3,
-                "I've never heard of that number used to describe killings. Give me an explicable answer.",
-                null);
+		npc.add(ConversationStates.QUESTION_3,
+				"",
+				wrongAndNotBye,
+				ConversationStates.QUESTION_3,
+				"I've never heard of that number used to describe killings. Give me an explicable answer.",
+				null);
 
-        //if goodbye while guessing
-        npc.add(tries,
-                ConversationPhrases.GOODBYE_MESSAGES,
-                null,
-                ConversationStates.IDLE,
-                "Goodbye, come back when you want to continue.",
-                null);
+		//if goodbye while guessing
+		npc.add(tries,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Goodbye, come back when you want to continue.",
+				null);
 
-        //if exact answer
-        npc.add(tries,
-                "",
-                new AndCondition(isNumber, exact, new NotCondition(close)),
-                ConversationStates.ATTENDING,
-                "Stupendous! That is the exact number! Either you're very lucky or you really pay attention.",
-                new MultipleActions(
-                    new SetQuestAction(QUEST_SLOT, 0, "done"),
-                    new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-                    new IncreaseXPAction(EXACT_REWARD)));
+		//if exact answer
+		npc.add(tries,
+				"",
+				new AndCondition(isNumber, exact, new NotCondition(close)),
+				ConversationStates.ATTENDING,
+				"Stupendous! That is the exact number! Either you're very lucky or you really pay attention.",
+				new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "done"),
+					new SetQuestToTimeStampAction(QUEST_SLOT, 1),
+					new IncreaseXPAction(EXACT_REWARD)));
 
-        //if close answer
-        npc.add(tries,
-                "",
-                new AndCondition(isNumber, close, new NotCondition(exact)),
-                ConversationStates.ATTENDING,
-                "Wow, that was pretty close. Well done!",
-                new MultipleActions(
-                    new SetQuestAction(QUEST_SLOT, 0, "done"),
-                    new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-                    new IncreaseXPAction(CLOSE_REWARD)));
+		//if close answer
+		npc.add(tries,
+				"",
+				new AndCondition(isNumber, close, new NotCondition(exact)),
+				ConversationStates.ATTENDING,
+				"Wow, that was pretty close. Well done!",
+				new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "done"),
+					new SetQuestToTimeStampAction(QUEST_SLOT, 1),
+					new IncreaseXPAction(CLOSE_REWARD)));
 
-        //if incorrect answer
-        npc.add(ConversationStates.QUESTION_1,
-                "",
-                new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
-                ConversationStates.QUESTION_2,
-                "Nope, that is not right. Try again.",
-                new SetQuestAction(QUEST_SLOT, 0, "2"));
+		//if incorrect answer
+		npc.add(ConversationStates.QUESTION_1,
+				"",
+				new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
+				ConversationStates.QUESTION_2,
+				"Nope, that is not right. Try again.",
+				new SetQuestAction(QUEST_SLOT, 0, "2"));
 
-        npc.add(ConversationStates.QUESTION_2,
-                "",
-                new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
-                ConversationStates.QUESTION_3,
-                "Wrong again. You have one more try.",
-                new SetQuestAction(QUEST_SLOT, 0, "3"));
+		npc.add(ConversationStates.QUESTION_2,
+				"",
+				new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
+				ConversationStates.QUESTION_3,
+				"Wrong again. You have one more try.",
+				new SetQuestAction(QUEST_SLOT, 0, "3"));
 
-        npc.add(ConversationStates.QUESTION_3,
-                "",
-                new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
-                ConversationStates.ATTENDING,
-                null,
-                new MultipleActions(
-                    new ChatAction() {
-                        @Override
+		npc.add(ConversationStates.QUESTION_3,
+				"",
+				new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
+				ConversationStates.ATTENDING,
+				null,
+				new MultipleActions(
+					new ChatAction() {
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
-                        	int exactNumber = player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE);
-                        	npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
-                        	+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)
-                        	+ " and " + Math.round(exactNumber + Math.max(exactNumber * 0.2, 10) - exactNumber * 0.1 * Rand.rand())
-                        	+ ". Good effort though.");
-                        }
-                    },
-                    new SetQuestAction(QUEST_SLOT, 0, "done"),
-                    new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
-    }
+							int exactNumber = player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE);
+							npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
+							+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)
+							+ " and " + Math.round(exactNumber + Math.max(exactNumber * 0.2, 10) - exactNumber * 0.1 * Rand.rand())
+							+ ". Good effort though.");
+						}
+					},
+					new SetQuestAction(QUEST_SLOT, 0, "done"),
+					new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
+	}
 
 	@Override
 	public String getNPCName() {
