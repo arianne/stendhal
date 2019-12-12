@@ -1,4 +1,6 @@
+-- Example NPC
 
+--[[ Disabled
 logger:info("Loading LuaNPC...")
 
 -- Set zone to Semos City
@@ -29,3 +31,4 @@ if game:setZone("0_semos_city") then
 end
 
 logger:info("LuaNPC loaded!")
+]]
