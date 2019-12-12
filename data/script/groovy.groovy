@@ -1,3 +1,4 @@
+/* Disabled
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.entity.player.*
@@ -36,3 +37,4 @@ else
   }
 
 logger.debug("Finished Stendhal Groovy Script")
+*/
