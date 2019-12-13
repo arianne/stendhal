@@ -69,7 +69,7 @@ data/sprites/monsters/dark_elf/
 
 baby_drow.*                Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/97
 dark_elf.*                 Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/117, https://opengameart.org/node/72969
-dark_elf_admiral.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, kanaya2529, olonu; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/80570
+dark_elf_admiral.*         Svetlana Kushnariova (Cabbit), diamonddmgirl, kanaya2529, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/80570
 dark_elf_archer.*          Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVortexGames), SoCay, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/150
 dark_elf_captain.png       Svetlana Kushnariova (Cabbit), olonu, Muhammad Amiruddin (Amir027); OGA BY 3.0; https://github.com/arianne/stendhal/issues/123
 dark_elf_elite_archer.*    Svetlana Kushnariova (Cabbit), Nila122, SoCay, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/150
