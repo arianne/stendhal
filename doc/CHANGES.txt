@@ -27,6 +27,10 @@ Changelog
 - special outfits
   - jester hat rented from Liliana is now full jester outfit
   - Magic Boutique outfit lenders no longer rent out glasses
+- market
+  - McPegleg now buys blue legs
+- enemy drops
+  - added sedative drops to imperial priest & imperial high priest
 
 *graphics*
 - new corpses for cobras
