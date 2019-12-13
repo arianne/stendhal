@@ -5,25 +5,53 @@ Changelog
 
 1.32
 *world*
-- turtles have appeared on Athor Island
-- turtle shell ring gives extra defense
+- new enemies
+  - poison shroom
+  - tiny scarab, scarab, & red scarab
+  - turtle
+- new NPCs
+  - Ambrogita (Ados Market)
+  - Jameson (Apothecary Lab)
+  - Vlamyklela (Kirdney City)
+  - Zoey (Ados Pet Sanctuary)
+- new items
+  - antivenom ring (resists poison effect)
+  - cobra venom (ingredient for Antivenom Ring quest)
+  - portfolio (enables slots exclusive to scrolls)
+  - turtle shell ring (gives extra defense)
+  - vial (ingredient for Antivenom Ring quest)
+- new quests
+  - Ad Memoria In Portfolio
+  - Antivenom Ring
+  - Meal for Groongo
+- special outfits
+  - jester hat rented from Liliana is now full jester outfit
+  - Magic Boutique outfit lenders no longer rent out glasses
 
 *graphics*
 - new corpses for cobras
-- Many new or reworked outfit sprites
-- Many new or reworked NPC sprites
-- Many new or reworked sprites
-- Many new or reworked item sprites
+- many sprites reworked, replaced, or cleaned scaling artifacts from sprites
+  - outfits
+  - NPCs
+  - enemies
+  - items
+- many replaced or reworked tilesets
+- new outfit layers that players can select
+  - mouth (meant for parts drawn on top of head such as mouth, lips, etc.)
+  - eyes (meant exclusively for eyes drawn on top of head)
+  - mask (meant for parts drawn on top of head but under hair such as glasses, masks, earrings, etc.)
+  - hat (meant for parts drawn on top of hair but behind detail layer; can be used for hats, helmets, masks, full body suits, etc.)
+- significant NPC outfit changes
+  - Conual, in Semos prison, now wears an inmate jumpsuit
 
 *audio*
-- new melee/attack sound effects
-- Many new enemy/creature sound effects
-- Many new NPC sound effects
+- new melee/attack/block sound effects
+- many new enemy/creature sound effects
+- many new NPC sound effects
 - added map ambiance sounds:
   - water sloshing in Ados City, Athor Island, Athor Ship, & Fado City
   - river in Nalwor Forest, Ados Snake Pit, Semos Mountain, & Semos Road
   - birds in Ados Wall, Ados City, Semos Mountain, Semos Village, Semos City, & Semos Road
-- added clang-dull-1 to combat "block" sounds
 - new wind ambiance to Ados Mountain/Rock & Kikareukin maps
 - new eat sound for pets
 - new coins sound for buyer/seller NPCs
@@ -31,6 +59,10 @@ Changelog
 
 *classic client*
 - option to draw shadows under certain entities
+
+*fixes*
+- quests
+  - fix repeatable marker in Guess Kills & Find Rat Children
 
 
 1.31
