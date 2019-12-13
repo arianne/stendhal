@@ -136,7 +136,7 @@ public class StendhalWebsiteDAO {
 	protected int updateCharStats(final DBTransaction transaction, final Player player) throws SQLException {
 		final String query = "UPDATE character_stats SET "
 			+ " admin=[admin], sentence='[sentence]', age=[age], level=[level],"
-			+ " outfit=[outfit], outfit_colors='[outfit_colors]', xp=[xp], money='[money]',"
+			+ " outfit=[outfit], outfit_colors='[outfit_colors]', outfit_layers='[outfit_layers]', xp=[xp], money='[money]',"
 			+ " married='[married]', atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
 			+ " head='[head]', armor='[armor]', lhand='[lhand]', rhand='[rhand]',"
 			+ " legs='[legs]', feet='[feet]', cloak='[cloak]', lastseen='[lastseen]',"
@@ -163,6 +163,7 @@ public class StendhalWebsiteDAO {
 		params.put("level", player.getLevel());
 		params.put("outfit", player.getOutfit().getCode());
 		params.put("outfit_colors", getOutfitColors(player));
+		params.put("outfit_layers", player.getOutfit().getData(player.getOutfitColors()));
 		params.put("xp", player.getXP());
 		params.put("money", player.getTotalNumberOf("money"));
 		params.put("married", extractSpouseOrNull(player));

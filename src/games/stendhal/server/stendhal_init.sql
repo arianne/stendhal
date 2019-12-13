@@ -9,6 +9,7 @@ create table if not exists character_stats
   level integer,
   outfit varchar(32),
   outfit_colors varchar(100),
+  outfit_layers varchar(255),
   xp integer,
   money integer,
 
@@ -129,20 +130,21 @@ CREATE INDEX IF NOT EXISTS i_kills_killer ON kills (killer_type, killer);
 
 
 CREATE TABLE IF NOT EXISTS npcs (
-  id         INTEGER AUTO_INCREMENT NOT NULL,
-  name       VARCHAR(64),
-  title      VARCHAR(64),
-  class      VARCHAR(64),
-  outfit     VARCHAR(32),
-  level      INTEGER,
-  hp         INTEGER,
-  base_hp    INTEGER,
-  image      VARCHAR(255),
-  zone       VARCHAR(64),
-  x          INTEGER,
-  y          INTEGER,
-  description      VARCHAR(1000),
-  job       VARCHAR(1000),
+  id            INTEGER AUTO_INCREMENT NOT NULL,
+  name          VARCHAR(64),
+  title         VARCHAR(64),
+  class         VARCHAR(64),
+  outfit        VARCHAR(32),
+  outfit_layers VARCHAR(255),
+  level         INTEGER,
+  hp            INTEGER,
+  base_hp       INTEGER,
+  image         VARCHAR(255),
+  zone          VARCHAR(64),
+  x             INTEGER,
+  y             INTEGER,
+  description   VARCHAR(1000),
+  job           VARCHAR(1000),
   PRIMARY KEY (id)
 );
 
