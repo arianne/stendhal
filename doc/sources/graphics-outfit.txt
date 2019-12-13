@@ -152,6 +152,7 @@ eyes_021.png                CC0; Stendhal
 eyes_022.png (wide eyed)    Silveira Neto; CC BY-SA 4.0; https://github.com/silveira/openpixels
 eyes_023.png                CC0; Stendhal
 eyes_024.png                CC0; Stendhal
+eyes_024.png                CC0; Stendhal
 
 data/sprites/outfit/hair/
 
