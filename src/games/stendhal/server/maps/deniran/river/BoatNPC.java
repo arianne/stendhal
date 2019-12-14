@@ -9,7 +9,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.npc.SilentNPC;
 
 public class BoatNPC implements ZoneConfigurator  {
 
@@ -21,7 +21,7 @@ public class BoatNPC implements ZoneConfigurator  {
 
 	private void buildNPCs(StendhalRPZone zone) {
 
-		final PassiveNPC npc = new PassiveNPC() {
+		final SilentNPC npc = new SilentNPC() {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();

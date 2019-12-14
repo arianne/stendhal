@@ -18,7 +18,7 @@ import java.util.Map;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.npc.SilentNPC;
 
 
 public class AdosArmy implements ZoneConfigurator  {
@@ -31,10 +31,10 @@ public class AdosArmy implements ZoneConfigurator  {
 	}
 
 	private void buildNPCs(StendhalRPZone zone) {
-		final LinkedList<PassiveNPC> npclist = new LinkedList<PassiveNPC>();
+		final LinkedList<SilentNPC> npclist = new LinkedList<SilentNPC>();
 		for(int i=0; i<20; i++) {
 			for(int j=0; j<5; j++) {
-				final PassiveNPC npc = new PassiveNPC();
+				final SilentNPC npc = new SilentNPC();
 				//npc.setIdea("defence");
 				npc.setEntityClass("youngsoldiernpc");
 				npc.setDescription("you see Ados army soldier.");

@@ -19,7 +19,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.npc.SilentNPC;
 
 /**
  * A playful puppy
@@ -35,7 +35,7 @@ public class PuppyNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final PassiveNPC dog = new Puppy();
+		final SilentNPC dog = new Puppy();
 
 		dog.put("menu", "Pet|Use");
 		// Not visible, but used for the emote action
@@ -53,7 +53,7 @@ public class PuppyNPC implements ZoneConfigurator {
 	/**
 	 * A puppy that can be petted.
 	 */
-	private static class Puppy extends PassiveNPC implements UseListener {
+	private static class Puppy extends SilentNPC implements UseListener {
 		/*@Override
 		protected void createPath() {
 			final List<Node> nodes = new LinkedList<Node>();

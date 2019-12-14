@@ -774,7 +774,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 		final RPObject obj = entity.getRPObject();
 		if (!obj.has("no_attack")) {
-			/* FIXME: PassiveNPC no longer has "Attack" option in menu. Should this
+			/* FIXME: SilentNPC no longer has "Attack" option in menu. Should this
 			 *        code be changed?
 			 *
 			 * Menu is used to provide an alternate action for some entities (like

@@ -16,22 +16,19 @@ import games.stendhal.server.entity.CollisionAction;
 
 /**
  * A stripped down SpeakerNPC that does not interact with players
- *
- * @author AntumDeluge
- *
  */
-public class PassiveNPC extends NPC {
+public class SilentNPC extends NPC {
 	/**
-	 * Creates a new PassiveNPC.
+	 * Creates a new SilentNPC.
 	 */
-	public PassiveNPC() {
+	public SilentNPC() {
 		baseSpeed = 0.2;
 		createPath();
 
 		put("title_type", "npc");
 
 		// Entity name is not drawn because of "unnamed" attribute
-        setName("PassiveNPC");
+        setName("SilentNPC");
 		put("unnamed", "");
 
 		// Health bar drawing is supressed

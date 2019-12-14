@@ -20,7 +20,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.npc.SilentNPC;
 
 /**
  * A bunch of butterflies
@@ -30,7 +30,7 @@ import games.stendhal.server.entity.npc.PassiveNPC;
 public class ButterfliesNPC implements ZoneConfigurator {
 
     // Butterflies
-    List<PassiveNPC> butterflies = new LinkedList<PassiveNPC>();
+    List<SilentNPC> butterflies = new LinkedList<SilentNPC>();
 
 	@Override
 	public void configureZone(final StendhalRPZone zone,
@@ -39,7 +39,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final PassiveNPC b1 = new PassiveNPC() {
+		final SilentNPC b1 = new SilentNPC() {
 		    @Override
 		    protected void createPath() {
 		        final List<Node> nodes = new LinkedList<Node>();
@@ -55,7 +55,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
 
 
         // Butterfly 2
-        final PassiveNPC b2 = new PassiveNPC() {
+        final SilentNPC b2 = new SilentNPC() {
             @Override
             protected void createPath() {
                 final List<Node> nodes = new LinkedList<Node>();
@@ -70,7 +70,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         butterflies.add(b2);
 
         // Butterfly 3
-        final PassiveNPC b3 = new PassiveNPC() {
+        final SilentNPC b3 = new SilentNPC() {
             @Override
             protected void createPath() {
                 final List<Node> nodes = new LinkedList<Node>();
@@ -85,7 +85,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         butterflies.add(b3);
 
         // Butterfly 4
-        final PassiveNPC b4 = new PassiveNPC() {
+        final SilentNPC b4 = new SilentNPC() {
             @Override
             protected void createPath() {
                 final List<Node> nodes = new LinkedList<Node>();
@@ -100,7 +100,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         butterflies.add(b4);
 
         // Butterfly 5
-        final PassiveNPC b5 = new PassiveNPC() {
+        final SilentNPC b5 = new SilentNPC() {
             @Override
             protected void createPath() {
                 List<Node> nodes = new LinkedList<Node>();
@@ -115,7 +115,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
         butterflies.add(b5);
 
         // Butterfly 6
-        final PassiveNPC b6 = new PassiveNPC() {
+        final SilentNPC b6 = new SilentNPC() {
             @Override
             protected void createPath() {
                 List<Node> nodes = new LinkedList<Node>();
@@ -130,35 +130,35 @@ public class ButterfliesNPC implements ZoneConfigurator {
         butterflies.add(b6);
 
         // Butterflies with random paths
-        final List<PassiveNPC> randomButterflies = new LinkedList<PassiveNPC>();
+        final List<SilentNPC> randomButterflies = new LinkedList<SilentNPC>();
 
-        final PassiveNPC br1 = new PassiveNPC();
+        final SilentNPC br1 = new SilentNPC();
         br1.setPosition(69, 55);
         randomButterflies.add(br1);
 
-        final PassiveNPC br2 = new PassiveNPC();
+        final SilentNPC br2 = new SilentNPC();
         br2.setPosition(70, 55);
         randomButterflies.add(br2);
 
-        final PassiveNPC br3 = new PassiveNPC();
+        final SilentNPC br3 = new SilentNPC();
         br3.setPosition(71, 55);
         randomButterflies.add(br3);
 
-        final PassiveNPC br4 = new PassiveNPC();
+        final SilentNPC br4 = new SilentNPC();
         br4.setPosition(14, 36);
         randomButterflies.add(br4);
 
-        final PassiveNPC br5 = new PassiveNPC();
+        final SilentNPC br5 = new SilentNPC();
         br5.setPosition(25, 17);
         randomButterflies.add(br5);
 
-        for (PassiveNPC insect : randomButterflies) {
+        for (SilentNPC insect : randomButterflies) {
             insect.moveRandomly();
             butterflies.add(insect);
         }
 
         // Add butterflies to zone
-		for (PassiveNPC insect : butterflies) {
+		for (SilentNPC insect : butterflies) {
     		insect.setDescription("You see a butterfly.");
     		insect.setEntityClass("animal/butterfly");
     		insect.setBaseSpeed(0.2);

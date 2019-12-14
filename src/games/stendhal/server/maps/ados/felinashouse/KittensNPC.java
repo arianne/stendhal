@@ -23,7 +23,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.npc.SilentNPC;
 
 /**
  * A cat
@@ -41,7 +41,7 @@ public class KittensNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone) {
 
 	    // Kitten walking around room
-		final PassiveNPC k1 = new Kitten();
+		final SilentNPC k1 = new Kitten();
 
 		List<Node> nodes = new LinkedList<Node>();
 		nodes.add(new Node(3, 15));
@@ -60,7 +60,7 @@ public class KittensNPC implements ZoneConfigurator {
 		zone.add(k1);
 
 		// Kitten sitting in chair
-        final PassiveNPC k2 = new Kitten();
+        final SilentNPC k2 = new Kitten();
 
         k2.setPosition(20, 15);
         k2.setDescription("You see a kitten relaxing.");
@@ -70,7 +70,7 @@ public class KittensNPC implements ZoneConfigurator {
         zone.add(k2);
 
         // Active kitten
-        final PassiveNPC k3 = new Kitten();
+        final SilentNPC k3 = new Kitten();
 
         nodes = new LinkedList<Node>();
         nodes.add(new Node(6, 19));
@@ -92,7 +92,7 @@ public class KittensNPC implements ZoneConfigurator {
 	/**
 	 * Kitten NPCs with a helpful message when a player tries to adopt them.
 	 */
-	private static final class Kitten extends PassiveNPC implements UseListener {
+	private static final class Kitten extends SilentNPC implements UseListener {
 		private Kitten() {
 			setMenu("Own|Use");
 		}

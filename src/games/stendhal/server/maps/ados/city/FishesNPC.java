@@ -9,7 +9,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.PassiveNPC;
+import games.stendhal.server.entity.npc.SilentNPC;
 
 /**
  * Builds some fish NPCs.
@@ -36,7 +36,7 @@ public class FishesNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone) {
 
 		// Fish that swims around in the fountain
-		final PassiveNPC f1 = new PassiveNPC() {
+		final SilentNPC f1 = new SilentNPC() {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -56,7 +56,7 @@ public class FishesNPC implements ZoneConfigurator {
 		zone.add(f1);
 
 		// Fish that swims up and down in the coast
-		final PassiveNPC f2 = new PassiveNPC() {
+		final SilentNPC f2 = new SilentNPC() {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
