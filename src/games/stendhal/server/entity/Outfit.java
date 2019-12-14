@@ -538,4 +538,22 @@ public class Outfit {
 		sb.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("detail"), 0)));
 		return sb.toString();
 	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+
+		int idx = 0;
+		for (final String layer: Outfits.LAYER_NAMES) {
+			if (layers.containsKey(layer)) {
+				if (idx > 0) {
+					sb.append(",");
+				}
+				sb.append(layer + "=" + layers.get(layer));
+			}
+			idx++;
+		}
+
+		return sb.toString();
+	}
 }
