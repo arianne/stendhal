@@ -917,30 +917,6 @@ public class SpeakerNPC extends PassiveNPC {
 		return engine;
 	}
 
-	@Override
-	protected void handleObjectCollision() {
-		CollisionAction action = getCollisionAction();
-	    if (action == CollisionAction.REVERSE) {
-	        reversePath();
-	    } else if (action == CollisionAction.REROUTE) {
-	    	reroute();
-	    }
-	    else {
-	        stop();
-	    }
-	}
-
-	@Override
-	protected void handleSimpleCollision(final int nx, final int ny) {
-		CollisionAction action = getCollisionAction();
-	    if (action == CollisionAction.REROUTE) {
-	        reroute();
-	    }
-	    else {
-	        stop();
-	    }
-	}
-
 	/**
 	 * gets an alternative image for example for the website
 	 *

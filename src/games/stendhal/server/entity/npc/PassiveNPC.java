@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.server.entity.CollisionAction;
+
 public class PassiveNPC extends NPC {
 	public PassiveNPC() {
 		put("title_type", "npc");
@@ -26,5 +28,34 @@ public class PassiveNPC extends NPC {
 	 * Create path for the NPC. Sub classes can implement this method.
 	 */
 	protected void createPath() {
+	}
+
+	@Override
+	protected void handleObjectCollision() {
+		CollisionAction action = getCollisionAction();
+
+		if (usesRandomPath()) {
+			setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+		} else if (action == CollisionAction.REVERSE) {
+			reversePath();
+		} else if (action == CollisionAction.REROUTE) {
+			reroute();
+		} else {
+			stop();
+		}
+	}
+
+	@Override
+	protected void handleSimpleCollision(final int nx, final int ny) {
+		CollisionAction action = getCollisionAction();
+		if (!ignoresCollision()) {
+			if (usesRandomPath()) {
+				setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+			} else if (action == CollisionAction.REROUTE) {
+				reroute();
+			} else {
+				stop();
+			}
+		}
 	}
 }
