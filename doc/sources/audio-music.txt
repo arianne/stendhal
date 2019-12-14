@@ -23,4 +23,5 @@ snowflakelittlewhiteskirt.*  Markus Keunecke; public domain; based on score by H
 the_forsaken_mine.ogg        Storyteller; GPL
 the_magical_tower.ogg        Storyteller; GPL
 the_old_tavern.ogg           Storyteller; GPL
+town-01.ogg                  Alex McCulloch (Pro Sensory); CC0; https://opengameart.org/node/77586
 warriors_fight.ogg           Storyteller; GPL
