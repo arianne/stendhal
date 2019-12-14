@@ -71,12 +71,12 @@ public class OutfitActionTest {
 		action.put("value", 1);
 		oa.onAction(player, action);
 		assertTrue(player.has("outfit_ext"));
-		assertEquals(Integer.valueOf(1), player.getOutfit().getLayer("body"));
+		assertEquals(Integer.valueOf(0), player.getOutfit().getLayer("body"));
 
 		action.put("value", 51515151);
 		oa.onAction(player, action);
 		assertTrue(player.has("outfit_ext"));
-		assertEquals("invalid player outfit", Integer.valueOf(1), player.getOutfit().getLayer("body"));
+		assertEquals("invalid player outfit", Integer.valueOf(0), player.getOutfit().getLayer("body"));
 	}
 
 	/**
@@ -97,12 +97,12 @@ public class OutfitActionTest {
 		action.put("detail", 0xbadf00d);
 		oa.onAction(player, action);
 		assertTrue(player.has("outfit_ext"));
-		assertEquals(Integer.valueOf(1), player.getOutfit().getLayer("body"));
+		assertEquals(Integer.valueOf(0), player.getOutfit().getLayer("body"));
 
 		action.put("value", 51515151);
 		oa.onAction(player, action);
 		assertTrue(player.has("outfit_ext"));
-		assertEquals("invalid player outfit", Integer.valueOf(1), player.getOutfit().getLayer("body"));
+		assertEquals("invalid player outfit", Integer.valueOf(0), player.getOutfit().getLayer("body"));
 		assertEquals("invalid hair color", 0xfeed, player.getInt("outfit_colors", "hair"));
 		assertEquals("invalid dress color", 0xf00d, player.getInt("outfit_colors", "dress"));
 		assertFalse("invalid attribute", player.has("outfit_colors", "detail"));

@@ -460,7 +460,7 @@ public class PlayerTest {
 		assertThat(player.getInt("outfit_colors", "dress"), is(42));
 		// A temporary outfit should stash the colors
 		player.setOutfit(new Outfit(Integer.toString(0xf00f)), true);
-		assertThat(player.getOutfit().getCode(), is(0xf00f));
+		assertThat(player.getOutfit().getCode(), is(0x5Af)); // old outfit parts are mapped to new ones, so code changes
 		// cleared the old...
 		assertThat(player.get("outfit_colors", "dress"), is(nullValue()));
 		// ...and put it in store
