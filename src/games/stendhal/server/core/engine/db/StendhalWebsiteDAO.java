@@ -275,7 +275,7 @@ public class StendhalWebsiteDAO {
 		res.append("_");
 		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("dress"), 0)));
 		res.append("_");
-		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("base"), 0)));
+		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("skin"), 0)));
 		return res.toString();
 	}
 }
