@@ -107,8 +107,8 @@ public abstract class DressedEntity extends RPEntity {
 
 	/**
 	 * Uses 'outfit' attribute to get a string formatted for 'outfit_ext' attribute.
-	 * If entity does not have 'outfit' attribute, a random outfit code with be
-	 * generated.
+	 * If entity does not have 'outfit' attribute, either the value of 'outfit_ext'
+	 * attribute will be returned if found or a random outfit string will be generated.
 	 *
 	 * @return outfit_ext
 	 */
