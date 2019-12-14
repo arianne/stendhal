@@ -194,7 +194,6 @@ public class StendhalPlayerDatabase {
 		if (!transaction.doesColumnExist("character_stats", "outfit_layers")) {
 			transaction.execute("ALTER TABLE character_stats ADD COLUMN (outfit_layers VARCHAR(255));", null);
 		}
-		
 	}
 
 

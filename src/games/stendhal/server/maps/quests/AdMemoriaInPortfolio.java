@@ -115,11 +115,11 @@ import games.stendhal.server.maps.Region;
  * f) restart client
  */
 
-/** QUEST ADDITIONAL NOTES: Ad Memoria In Portfolio 
+/** QUEST ADDITIONAL NOTES: Ad Memoria In Portfolio
  * portfolio is a portable container
  * portfolio cannot be lost on player death
  * portfolio stores takes 1 slot in player bag/inventory
- * portfolio provides additional slots to store scrolls 
+ * portfolio provides additional slots to store scrolls
  */
 
 public class AdMemoriaInPortfolio extends AbstractQuest {
@@ -278,13 +278,13 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
                         final Player player,
                         final Sentence sentence,
                         final EventRaiser npc) {
-							
+
 							new SetQuestAndModifyKarmaAction( getSlotName(), "inprogress", 15.0).fire(player, sentence, npc);
 							new IncreaseXPAction(1000);
-							
+
 							final Item mauveApple = SingletonRepository.getEntityManager().getItem("mauve apple");
 							mauveApple.setInfoString("A special mauve apple for Brosoklelo");
-							mauveApple.setDescription("You see a special mauve apple for Brosoklelo");							
+							mauveApple.setDescription("You see a special mauve apple for Brosoklelo");
 							mauveApple.setBoundTo("Brosoklelo");
 
 							npc.say(
@@ -292,7 +292,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 								"Surely Brosoklelo lost another magical duel..." + " " +
 								"Once again *sigh*"
 							);
-			
+
 							if (player.equipOrPutOnGround(mauveApple)){
 								npc.say(
 									"Here you go... Please take this mauve apple from me!" + " " +
@@ -320,25 +320,25 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Brosoklelo");
 
 		final List<ChatAction> reward_brosoklelo = new LinkedList<ChatAction>();
-		
+
 		//remove mauve apple from player inventory first
 		reward_brosoklelo.add(new DropItemAction("mauve apple"));
-		
-		
+
+
 		/**
 		 * NOTE:
 		 * we want a portable container as reward
 		 * we want a scalable portable container
 		 * portfolio for scrolls only
 		 */
-		
+
 		/**
 		 * NOTE:
 		 * we do not want to create a new fixed player slot
 		 * we do not want to enable features we know nothing about
-		 * 
+		 *
 		 * portfolio should be portable container and scalable
-		 * portfolio should NOT work as the keyring  
+		 * portfolio should NOT work as the keyring
 		 * if (System.getProperty("stendhal.container") != null) {
 		 *   //reward_brosoklelo.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
 		 *   //reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
@@ -346,7 +346,7 @@ public class AdMemoriaInPortfolio extends AbstractQuest {
 		 *   //reward_brosoklelo.add(new EnableFeatureAction("portfolio"));
 		 * }
 		 */
-		
+
 		//special reward when portfolio works as intended
 		reward_brosoklelo.add(new EquipItemAction("portfolio", 1, true));
 

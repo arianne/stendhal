@@ -38,5 +38,4 @@ public class PlayerLoggedOnEvent extends RPEvent {
 		super(Events.PLAYER_LOGGED_ON);
 		put(NAME_ATTRIBUTE, name);
 	}
-
 }
