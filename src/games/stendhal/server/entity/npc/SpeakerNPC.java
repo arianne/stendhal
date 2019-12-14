@@ -118,7 +118,7 @@ import games.stendhal.server.entity.player.Player;
  * transition happens, no matter in which state the FSM really is, with the
  * exception of the IDLE state.
  */
-public class SpeakerNPC extends NPC {
+public class SpeakerNPC extends PassiveNPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(SpeakerNPC.class);
 

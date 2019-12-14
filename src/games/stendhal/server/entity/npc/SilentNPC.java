@@ -17,7 +17,7 @@ import games.stendhal.server.entity.CollisionAction;
 /**
  * A stripped down SpeakerNPC that does not interact with players
  */
-public class SilentNPC extends NPC {
+public class SilentNPC extends PassiveNPC {
 	/**
 	 * Creates a new SilentNPC.
 	 */

@@ -29,8 +29,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.SlotActivatedItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
-import games.stendhal.server.entity.npc.SilentNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.PassiveNPC;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -104,14 +103,8 @@ class DestroyAction extends AdministrationAction {
 				return;
 			}
 
-			if (inspected instanceof SpeakerNPC) {
-				final String text = "You can't remove SpeakerNPCs";
-				player.sendPrivateText(text);
-				return;
-			}
-
-			if (inspected instanceof SilentNPC) {
-				final String text = "You can't remove SilentNPCs";
+			if (inspected instanceof PassiveNPC) {
+				final String text = "You can't remove PassiveNPCs";
 				player.sendPrivateText(text);
 				return;
 			}
