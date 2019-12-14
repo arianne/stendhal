@@ -11,8 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.log4j.Logger;
 
@@ -47,6 +51,46 @@ public class Outfit {
 	private static final Map<String, String> EMPTY_MAP = new HashMap<>();
 
 	private final Map<String, Integer> layers = new HashMap<>();
+
+	// for mapping old player outfits to new ones
+	private final Map<String, Map<Integer, List<Integer>>> old_outfit_mapping = new HashMap<String, Map<Integer, List<Integer>>>() {{
+		put("body", new HashMap<Integer, List<Integer>>() {{
+			put(0, Arrays.asList(0, 1, 2, 3, 4, 5, 12, 14)); // male bodies
+			put(1, Arrays.asList(6, 7, 8, 9, 10, 11)); // female bodies 1
+			put(2, Arrays.asList(13)); // female bodies 2
+		}});
+		put("head", new HashMap<Integer, List<Integer>>() {{
+			put(0, Arrays.asList(5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)); // small chin, small ears
+			put(1, Arrays.asList(0, 1, 2, 3, 4)); // small chin, large ears
+			put(2, Arrays.asList(8)); // large chin, small ears
+		}});
+		// eyes are set from old heads
+		put("eyes", new HashMap<Integer, List<Integer>>() {{
+			put(0, Arrays.asList(5, 6, 10)); // plain 1 (dark blue)
+			put(1, Arrays.asList(0, 1, 2, 3, 4, 7, 14, 21)); // plain 2 (red)
+			put(2, Arrays.asList(19)); // plain 3 (brown)
+			put(6, Arrays.asList(13, 18)); // plain 1 (blue)
+			put(13, Arrays.asList(15)); // blinking
+			put(14, Arrays.asList(16)); // thick eyebrows
+			put(15, Arrays.asList(20)); // scar
+			put(18, Arrays.asList(8)); // small 1
+			put(19, Arrays.asList(9, 11)); // plain 1 (green)
+			put(20, Arrays.asList(17)); // plain 1 (pink)
+			put(23, Arrays.asList(12)); // small 2
+		}});
+		// mask is set from old heads
+		put("mask", new HashMap<Integer, List<Integer>> () {{
+			put(1, Arrays.asList(9)); // glasses
+			put(4, Arrays.asList(21)); // eyepatch
+			put(6, Arrays.asList(79, 86, 99)); // sunglasses
+		}});
+		// hat is set from old hair
+		put("hat", new HashMap<Integer, List<Integer>> () {{
+			put(1, Arrays.asList(33, 34)); // baseball cap
+			put(2, Arrays.asList(39)); // reverse baseball cap
+			put(999, IntStream.rangeClosed(50, 96).boxed().collect(Collectors.toList())); // santa hat
+		}});
+	}};
 
 	/**
 	 * Creates a new outfit. Set some of the parameters to null if you want an
@@ -118,10 +162,65 @@ public class Outfit {
 					hair = 999;
 				}
 
+				// mapping old bodies to new system
+				final Map<Integer, List<Integer>> bodies_map = old_outfit_mapping.get("body");
+				for (final Integer idx: bodies_map.keySet()) {
+					if (bodies_map.get(idx).contains(body)) {
+						body = idx;
+						break;
+					}
+				}
+				// mapping old heads to new system
+				final Map<Integer, List<Integer>> heads_map = old_outfit_mapping.get("head");
+				for (final Integer idx: heads_map.keySet()) {
+					if (heads_map.get(idx).contains(head)) {
+						head = idx;
+						break;
+					}
+				}
+				// mapping eyes from old heads
+				int eyes = 0;
+				final Map<Integer, List<Integer>> eyes_map = old_outfit_mapping.get("eyes");
+				for (final Integer idx: eyes_map.keySet()) {
+					if (eyes_map.get(idx).contains(head)) {
+						eyes = idx;
+						break;
+					}
+				}
+				// mapping mouth from old heads
+				int mouth = 0;
+				if (head == 15) {
+					mouth = 1;
+				} else if (head == 18) {
+					mouth = 2;
+				}
+				// mapping mask/glasses from old heads
+				int mask = 0;
+				final Map<Integer, List<Integer>> mask_map = old_outfit_mapping.get("mask");
+				for (final Integer idx: mask_map.keySet()) {
+					if (mask_map.get(idx).contains(head)) {
+						mask = idx;
+						break;
+					}
+				}
+				// mapping hat from old hair
+				int hat = 0;
+				final Map<Integer, List<Integer>> hat_map = old_outfit_mapping.get("hat");
+				for (final Integer idx: hat_map.keySet()) {
+					if (hat_map.get(idx).contains(hair)) {
+						hat = idx;
+						break;
+					}
+				}
+
 				this.layers.put("body", body);
 				this.layers.put("dress", dress);
 				this.layers.put("head", head);
+				this.layers.put("mouth", mouth);
+				this.layers.put("eyes", eyes);
+				this.layers.put("mask", mask);
 				this.layers.put("hair", hair);
+				this.layers.put("hat", hat);
 				this.layers.put("detail", (int) (code / Math.pow(100, 4) % 100));
 			} catch (NumberFormatException e) {
 				LOGGER.warn("Can't parse outfit code, setting failsafe outfit.");

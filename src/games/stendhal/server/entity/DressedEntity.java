@@ -123,17 +123,7 @@ public abstract class DressedEntity extends RPEntity {
 			}
 		}
 
-		final StringBuilder sb = new StringBuilder();
-		final int code = getInt("outfit");
-
-		// TODO: use map to set body, head, & eyes from old outfit
-		sb.append("body=" + code % 100);
-		sb.append(",dress=" + code / 100 % 100);
-		sb.append(",head=" + (int) (code / Math.pow(100, 2) % 100));
-		sb.append(",hair=" + (int) (code / Math.pow(100, 3) % 100));
-		sb.append(",detail=" + (int) (code / Math.pow(100, 4) % 100));
-
-		return sb.toString();
+		return new Outfit(get("outfit")).toString();
 	}
 
 	/**
