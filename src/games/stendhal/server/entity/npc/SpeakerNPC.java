@@ -179,17 +179,13 @@ public class SpeakerNPC extends PassiveNPC {
 	 *            The NPC's name. Please note that names should be unique.
 	 */
 	public SpeakerNPC(final String name) {
-		baseSpeed = 0.2;
-		createPath();
+		super();
 
 		lastMessageTurn = 0;
 
 		setName(name);
 		createDialog();
 		createDefaultReplies();
-		put("title_type", "npc");
-
-		setSize(1, 1);
 
 		// Set default collision action to reverse.
 		setCollisionAction(CollisionAction.REVERSE);
@@ -209,10 +205,6 @@ public class SpeakerNPC extends PassiveNPC {
 
 	public boolean isAllowedToActAlone() {
 		return(actingAlone);
-	}
-
-	protected void createPath() {
-		// sub classes can implement this method
 	}
 
 	protected void createDialog() {

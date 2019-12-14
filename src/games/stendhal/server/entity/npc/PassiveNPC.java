@@ -12,5 +12,19 @@
 package games.stendhal.server.entity.npc;
 
 public class PassiveNPC extends NPC {
+	public PassiveNPC() {
+		put("title_type", "npc");
 
+		baseSpeed = 0.2;
+		createPath();
+		setSize(1, 1);
+
+		// NOTE: sub-classes must call updateModifiedAttributes()
+	}
+
+	/**
+	 * Create path for the NPC. Sub classes can implement this method.
+	 */
+	protected void createPath() {
+	}
 }

@@ -22,10 +22,7 @@ public class SilentNPC extends PassiveNPC {
 	 * Creates a new SilentNPC.
 	 */
 	public SilentNPC() {
-		baseSpeed = 0.2;
-		createPath();
-
-		put("title_type", "npc");
+		super();
 
 		// Entity name is not drawn because of "unnamed" attribute
         setName("SilentNPC");
@@ -37,14 +34,7 @@ public class SilentNPC extends PassiveNPC {
 		// Remove "attack" option from menus
 		put("no_attack", "");
 
-		setSize(1, 1);
 		updateModifiedAttributes();
-	}
-
-	/**
-	 * Create path for the NPC. Sub classes can implement this method.
-	 */
-	protected void createPath() {
 	}
 
     @Override
