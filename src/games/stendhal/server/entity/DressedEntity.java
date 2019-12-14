@@ -106,6 +106,37 @@ public abstract class DressedEntity extends RPEntity {
 	}
 
 	/**
+	 * Uses 'outfit' attribute to get a string formatted for 'outfit_ext' attribute.
+	 * If entity does not have 'outfit' attribute, a random outfit code with be
+	 * generated.
+	 *
+	 * @return outfit_ext
+	 */
+	protected String getOutfitExtFromOutfitCode() {
+		if (!has("outfit")) {
+			if (has("outfit_ext")) {
+				logger.info("DressedEntity.getOutfitExtFromOutfitCode: Returning value of 'outfit_ext' attribute");
+				return get("outfit_ext");
+			} else {
+				logger.info("DressedEntity.getOutfitExtFromOutfitCode: Returning random outfit");
+				return Outfit.getRandomOutfit().toString();
+			}
+		}
+
+		final StringBuilder sb = new StringBuilder();
+		final int code = getInt("outfit");
+
+		// TODO: use map to set body, head, & eyes from old outfit
+		sb.append("body=" + code % 100);
+		sb.append(",dress=" + code / 100 % 100);
+		sb.append(",head=" + (int) (code / Math.pow(100, 2) % 100));
+		sb.append(",hair=" + (int) (code / Math.pow(100, 3) % 100));
+		sb.append(",detail=" + (int) (code / Math.pow(100, 4) % 100));
+
+		return sb.toString();
+	}
+
+	/**
 	 * Sets this entity's outfit.
 	 *
 	 * Note: some entities (e.g. sheep, many NPC's, all monsters) don't use
