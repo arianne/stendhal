@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2019 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -28,6 +31,7 @@ import games.stendhal.server.core.engine.db.StendhalNPCDAO;
 import games.stendhal.server.core.engine.db.StendhalRPZoneDAO;
 import games.stendhal.server.core.engine.db.StendhalSearchIndexDAO;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
+import games.stendhal.server.entity.Outfit;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.JDBCSQLHelper;
 import marauroa.server.db.TransactionPool;
@@ -193,6 +197,38 @@ public class StendhalPlayerDatabase {
 		}
 		if (!transaction.doesColumnExist("character_stats", "outfit_layers")) {
 			transaction.execute("ALTER TABLE character_stats ADD COLUMN (outfit_layers VARCHAR(255));", null);
+		}
+
+		updateCharacterStatsOutfitToOutfitLayer(transaction);
+	}
+
+
+	private void updateCharacterStatsOutfitToOutfitLayer(DBTransaction transaction) throws SQLException {
+		PreparedStatement prepareStatement = transaction.prepareStatement("UPDATE character_stats SET outfit_layers=? WHERE name=?", null);
+		while (true) {
+			ResultSet set = transaction.query("SELECT name, outfit, outfit_colors FROM character_stats WHERE outfit_layers IS NULL LIMIT 10000", null);
+			if (!set.next()) {
+				break;
+			}
+			do {
+				String code = set.getString("outfit");
+				String outfitColors = set.getString("outfit_colors");
+				Map<String, String> colors = null;
+				Outfit outfit = new Outfit(code);
+				if (outfitColors != null && !outfitColors.equals("")) {
+					String[] split = outfitColors.split("_");
+					colors = new HashMap<>();
+					colors.put("detail", split[0]);
+					colors.put("hair", split[1]);
+					colors.put("head", split[2]);
+					colors.put("dress", split[3]);
+					colors.put("skin", split[4]);
+				}
+				prepareStatement.setString(1, outfit.getData(colors));
+				prepareStatement.setString(2, set.getString("name"));
+				prepareStatement.addBatch();
+			} while (set.next());
+			prepareStatement.executeBatch();
 		}
 	}
 
