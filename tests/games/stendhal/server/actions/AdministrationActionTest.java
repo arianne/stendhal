@@ -756,7 +756,7 @@ public class AdministrationActionTest {
 		action.put("target", "#1");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You can't remove SpeakerNPCs", pl.events().get(0).get("text"));
+		assertEquals("You can't remove PassiveNPCs", pl.events().get(0).get("text"));
 	}
 
 	/**
