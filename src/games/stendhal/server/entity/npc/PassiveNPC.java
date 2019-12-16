@@ -11,6 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.util.Collections;
+import java.util.List;
+
+import games.stendhal.server.core.pathfinder.EntityGuide;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 
 public class PassiveNPC extends NPC {
@@ -28,6 +34,38 @@ public class PassiveNPC extends NPC {
 	 * Create path for the NPC. Sub classes can implement this method.
 	 */
 	protected void createPath() {
+	}
+
+	/**
+	 * Changed the entity's path to walk in the opposite direction
+	 */
+	public void reversePath() {
+		final EntityGuide guide = getGuide();
+	    if (!usesRandomPath() && guide.path.isLoop()) {
+	        List<Node> reverseNodes = guide.path.getNodeList();
+
+	        // Sets the position for the reversed path
+	        int reversePosition = (guide.path.getNodeList().size() - 1) - guide.getPreviousPosition();
+
+	        Collections.reverse(reverseNodes);
+	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()), reversePosition);
+	        }
+	    else {
+	    	stop();
+	    }
+	}
+
+	/**
+	 * Plan a new path to the old destination.
+	 */
+	@Override
+	public void reroute() {
+		if (getPath().isLoop()) {
+			// If entity cannot be rerouted use reversePath
+			reversePath();
+		} else {
+			super.reroute();
+		}
 	}
 
 	@Override
