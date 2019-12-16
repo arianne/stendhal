@@ -16,7 +16,10 @@ import static games.stendhal.server.core.engine.Translate.getText;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -27,6 +30,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.SlotNameInList;
 import games.stendhal.server.entity.slot.Slots;
@@ -418,6 +422,29 @@ public abstract class Entity extends RPObject implements Killer {
 				+ 2 * step, area.getHeight() + 2 * step);
 
 		return thisArea.intersects(entity.getArea());
+	}
+
+	/**
+	 * Get horizontal & vertical nodes immediately next to entity.
+	 */
+	public List<Node> getAdjacentNodes() {
+		final StendhalRPZone zone = getZone();
+		List<Node> nodes = new ArrayList<>();
+		final int x = getX();
+		final int y = getY();
+
+		for (final int lat: Arrays.asList(x-1, x+1)) {
+			if (zone.isWithinBounds(lat, y)) {
+				nodes.add(new Node(lat, y));
+			}
+		}
+		for (final int lon: Arrays.asList(y-1, y+1)) {
+			if (zone.isWithinBounds(x, lon)) {
+				nodes.add(new Node(x, lon));
+			}
+		}
+
+		return nodes;
 	}
 
 	/**

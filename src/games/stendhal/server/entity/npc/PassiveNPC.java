@@ -14,12 +14,18 @@ package games.stendhal.server.entity.npc;
 import java.util.Collections;
 import java.util.List;
 
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
+import games.stendhal.server.entity.Entity;
 
 public class PassiveNPC extends NPC {
+
+	// used for entities with fixed path to check if movement is possible
+	private boolean pathBlocked = false;
+
 	public PassiveNPC() {
 		put("title_type", "npc");
 
@@ -56,6 +62,34 @@ public class PassiveNPC extends NPC {
 	}
 
 	/**
+	 * Checks if entity can move.
+	 *
+	 * For entities with fixed path, checks if collision occurred with previous movement.
+	 * For other entities, checks adjacent nodes for collision.
+	 */
+	private boolean pathIsBlocked() {
+		if (!usesRandomPath()) {
+			return pathBlocked;
+		}
+
+		final StendhalRPZone zone = getZone();
+		final List<Node> adjacentNodes = getAdjacentNodes();
+		for (final Node node: adjacentNodes) {
+			if (zone.collides(node.getX(), node.getY())) {
+				continue;
+			}
+
+			for (final Entity entity: zone.getEntitiesAt(node.getX(), node.getY())) {
+				if (entity.getResistance() < 100) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Plan a new path to the old destination.
 	 */
 	@Override
@@ -69,7 +103,22 @@ public class PassiveNPC extends NPC {
 	}
 
 	@Override
+	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
+		super.onMoved(oldX, oldY, newX, newY);
+
+		if (pathBlocked) {
+			// was able to move
+			pathBlocked = false;
+		}
+	}
+
+	@Override
 	protected void handleObjectCollision() {
+		if (pathIsBlocked()) {
+			stop();
+			return;
+		}
+
 		CollisionAction action = getCollisionAction();
 
 		if (usesRandomPath()) {
@@ -81,6 +130,8 @@ public class PassiveNPC extends NPC {
 		} else {
 			stop();
 		}
+
+		pathBlocked = true;
 	}
 
 	@Override
@@ -95,5 +146,7 @@ public class PassiveNPC extends NPC {
 				stop();
 			}
 		}
+
+		pathBlocked = true;
 	}
 }

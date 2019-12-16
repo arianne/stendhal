@@ -781,6 +781,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.getHeight();
 	}
 
+	/**
+	 * Checks if given coordinates are within bounds of zone.
+	 */
+	public boolean isWithinBounds(final int x, final int y) {
+		return getWidth() > x && x >= 0 && getHeight() > y && y >= 0;
+	}
+
 	public List<TransferContent> getContents() {
 		if (attributes != null) {
 			TransferContent attr = attributes.getContents();

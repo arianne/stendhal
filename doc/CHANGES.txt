@@ -68,6 +68,7 @@ Changelog
 *fixes*
 - quests
   - fix repeatable marker in Guess Kills & Find Rat Children
+- NPCs that turn around on collision will now stop if they have nowhere to go
 
 
 1.31
