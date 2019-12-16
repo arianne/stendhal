@@ -44,6 +44,7 @@ public class ScriptInLua extends ScriptingSandbox {
 	final Map<String, String> bind_classes = new HashMap<String, String>() {{
 		put("ConversationStates", "games.stendhal.server.entity.npc.ConversationStates");
 		put("ConversationPhrases", "games.stendhal.server.entity.npc.ConversationPhrases");
+		put("CollisionAction", "games.stendhal.server.entity.CollisionAction");
 	}};
 
 

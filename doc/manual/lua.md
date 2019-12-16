@@ -38,27 +38,33 @@ Example:
 -- Set zone to Semos City
 if game:setZone("0_semos_city") then
 
-  -- Use helper object to create a new NPC
-  local npc = npcHelper:createSpeakerNPC("Lua")
-  npc:setEntityClass("littlegirlnpc")
-  npc:setPosition(10, 55)
-  npc:setSpeed(0.1)
-  nodes = {
-    {10, 55},
-    {11, 55},
-    {11, 56},
-    {10, 56},
-  }
+	-- Use helper object to create a new NPC
+	local npc = npcHelper:createSpeakerNPC("Lua")
+	npc:setEntityClass("littlegirlnpc")
+	npc:setPosition(10, 55)
+	npc:setSpeed(0.1)
+	nodes = {
+		{10, 55},
+		{11, 55},
+		{11, 56},
+		{10, 56},
+	}
 
-  -- Use helper object to create NPC path
-  npcHelper:setPath(npc, nodes)
+	-- Use helper object to create NPC path
+	npcHelper:setPath(npc, nodes)
 
-  -- Dialogue
-  npc:addJob("Actually, I am jobless.")
-  npc:add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, nil, ConversationStates.ATTENDING, "I am sad, because I do not have a job.", nil)
-  npc:addGoodbye();
+	-- Dialogue
+	npc:addJob("Actually, I am jobless.")
+	npc:add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, nil, ConversationStates.ATTENDING, "I am sad, because I do not have a job.", nil)
+	npc:addGoodbye();
+	npc:setCollisionAction(CollisionAction.STOP)
 
-  -- Add the NPC to the world
-  game:add(npc)
+	-- Add the NPC to the world
+	game:add(npc)
 end
 ```
+
+Some enumerations accessible to Lua engine:
+- [ConversationStates](../../src/games/stendhal/server/entity/npc/ConversationStates.java)
+- [ConversationPhrases](../../src/games/stendhal/server/entity/npc/ConversationPhrases.java)
+- [CollisionAction](../../src/games/stendhal/server/entity/CollisionAction.java)

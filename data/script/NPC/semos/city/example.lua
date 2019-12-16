@@ -25,6 +25,7 @@ if game:setZone("0_semos_city") then
 	npc:addJob("Actually, I am jobless.")
 	npc:add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, nil, ConversationStates.ATTENDING, "I am sad, because I do not have a job.", nil)
 	npc:addGoodbye();
+	npc:setCollisionAction(CollisionAction.STOP)
 
 	-- Add the NPC to the world
 	game:add(npc)
