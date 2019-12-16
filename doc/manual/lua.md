@@ -22,18 +22,24 @@ To create a new instance of a class, use the `luajava.newInstance` method:
 local sign = luajava.newInstance("games.stendhal.server.entity.mapstuff.sign.Sign")
 ```
 
-#### Creating an NPC
+#### Creating NPCs
 
 - Use the global `game` object to set the current zone: `game:setZone("0_semos_city")`
-- Use the global `stendhal` object to create a new NPC: `local npc = stendhal:createNPC("Lua")`
+- Use the global `npcHelper` object to create a new NPC: `local npc = npcHelper:createSpeakerNPC("Lua")`
+  - There are two types of NPCs that can be created:
+    1. `createSpeakerNPC(name)`
+    2. `createSilentNPC()`
+- The NPCs path can be set with `npcHelper:setPath(npc, nodes)`.
+  - ***npc*** is the NPC instance.
+  - ***nodes*** is a table of coordinates for the path the NPC should follow.
 
 Example:
-```
+```lua
 -- Set zone to Semos City
 if game:setZone("0_semos_city") then
 
-  -- Create a new NPC
-  local npc = stendhal:createNPC("Lua")
+  -- Use helper object to create a new NPC
+  local npc = npcHelper:createSpeakerNPC("Lua")
   npc:setEntityClass("littlegirlnpc")
   npc:setPosition(10, 55)
   npc:setSpeed(0.1)
@@ -44,8 +50,8 @@ if game:setZone("0_semos_city") then
     {10, 56},
   }
 
-  -- Use helper class to create NPC path
-  stendhal:setEntityPath(npc, nodes)
+  -- Use helper object to create NPC path
+  npcHelper:setPath(npc, nodes)
 
   -- Dialogue
   npc:addJob("Actually, I am jobless.")
