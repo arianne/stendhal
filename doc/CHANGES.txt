@@ -60,7 +60,7 @@ Changelog
 - new eat sound for pets
 - new coins sound for buyer/seller NPCs
 - new liquid fill sound for water spring source
-- added music to Ados City map
+- added music to Fado City map
 
 *classic client*
 - option to draw shadows under certain entities
