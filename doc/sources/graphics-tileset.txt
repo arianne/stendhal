@@ -1045,7 +1045,7 @@ small_berried_plant.png  (placeholder) (committed by kymara: 8413002)
 snowygrass.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 star_shaped_plants.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstools.png           Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
-vine.png                 (placeholder) (committed by kiheru: 93ed4f9)
+vine.png                 bleutailfly; OGA BY 3.0; Stendhal
 vine_plait.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/bush/
