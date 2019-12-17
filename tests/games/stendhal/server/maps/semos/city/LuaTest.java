@@ -37,7 +37,7 @@ public class LuaTest extends ZonePlayerAndNPCTestImpl {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		setupZone("0_semos_city");
-		new ScriptRunner().init();
+		new ScriptRunner().perform("NPC/semos/city/example.lua");
 	}
 
 	@Override
