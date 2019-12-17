@@ -1073,6 +1073,7 @@ d = 9017093486007323270605414717455737376618092805104733236083857811315606869372
 					<pathelement path="${mysqldriver_jar}"/>
 					<pathelement path="${h2_jar}"/>
 					<pathelement path="${jorbis_jar}"/>
+					<pathelement path="${luaj_jar}"/>
 					<pathelement path="."/>
 					<pathelement path="data/conf"/>
 					<pathelement path="data/script"/>
