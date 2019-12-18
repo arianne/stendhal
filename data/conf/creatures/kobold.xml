@@ -24,7 +24,7 @@
       <item value="leather legs" quantity="[1,1]" probability="10.0"/>
       <item value="leather boots" quantity="[1,1]" probability="0.5"/>
       <item value="knife" quantity="[1,1]" probability="0.5"/>
-      <item value="small axe" quantity="[1,1]" probability="0.5"/>
+      <item value="small axe" quantity="[1,1]" probability="1.3"/>
       <item value="buckler" quantity="[1,1]" probability="0.5"/>
       <item value="mild koboldish torcibud" quantity="[1,1]" probability="0.1"/>
       <item value="slim bottle" quantity="[1,1]" probability="1.0"/>
