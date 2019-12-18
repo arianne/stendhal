@@ -59,14 +59,14 @@ public class ButterfliesNPC implements ZoneConfigurator {
             @Override
             protected void createPath() {
                 final List<Node> nodes = new LinkedList<Node>();
-                nodes.add(new Node(17, 74));
-                nodes.add(new Node(33, 74));
+                nodes.add(new Node(10, 71));
+                nodes.add(new Node(33, 71));
                 nodes.add(new Node(33, 82));
-                nodes.add(new Node(17, 82));
+                nodes.add(new Node(10, 82));
                 setPath(new FixedPath(nodes, true));
             }
         };
-        b2.setPosition(17, 74);
+        b2.setPosition(10, 71);
         butterflies.add(b2);
 
         // Butterfly 3

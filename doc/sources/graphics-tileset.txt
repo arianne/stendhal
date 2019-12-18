@@ -1045,14 +1045,14 @@ small_berried_plant.png  (placeholder) (committed by kymara: 8413002)
 snowygrass.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 star_shaped_plants.*     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstools.png           Johann C, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/11079
-vine.png                 (placeholder) (committed by kiheru: 93ed4f9)
+vine.png                 bleutailfly; OGA BY 3.0; Stendhal
 vine_plait.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/plant/bush/
 
 berried.*              Yar; CC BY 3.0; https://opengameart.org/node/3012
 blue_green.png         Zachariah Husiar (Zabin); CC BY 3.0; https://opengameart.org/node/11758
-bricked_bushes.png     (placeholder) (committed by bleutailfly: f4632d6)
+bricked_bushes.*       Daniel Cook, bleutailfly; CC BY 3.0; Stendhal, https://opengameart.org/node/1003
 bushes.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 bush_mult_colored.png  Hansjörg Malthaner (Varkalandar), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/71770
 bush_pinks.png         ???; ???; ??? (committed by bleutailfly: a0bd93e)
