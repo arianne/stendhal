@@ -6,19 +6,48 @@ Changelog
 1.32
 *world*
 - new enemies
+  - amethyst mermaid, emerald mermaid, ruby mermaid, & sapphire mermaid
+  - elf builder1, elf builder2, elf guy, elf kid1, elf kid2, elf kid3,
+    elf kid4, elf kid5, elf skater1, & elf skater2
+  - frog
+  - legendary ice elemental
   - poison shroom
   - tiny scarab, scarab, & red scarab
   - turtle
 - new NPCs
   - Ambrogita (Ados Market)
+  - Brosoklelo (Semos Mountains)
   - Jameson (Apothecary Lab)
   - Vlamyklela (Kirdney City)
   - Zoey (Ados Pet Sanctuary)
-- new items
+- new food items:
+  - candycane
+  - corn
+  - greenmint
+  - gumdrops
+  - habanero pepper
+  - lemondrop
+  - lolipop
+  - mauve apple
+  - peppermint
+  - pinto beans
+  - purple apple
+  - taffy
+  - tripe
+- new def. equipment:
+  - royal armor
+  - royal boots
+  - royal cloak
+  - royal helmet
+  - royal legs
+  - royal shield
+- new weapons:
+  - royal sword
+- other new items
   - antivenom ring (resists poison effect)
   - cobra venom (ingredient for Antivenom Ring quest)
   - portfolio (enables slots exclusive to scrolls)
-  - turtle shell ring (gives extra defense)
+  - turtle shell ring (gives +1 defense)
   - vial (ingredient for Antivenom Ring quest)
 - new quests
   - Ad Memoria In Portfolio
@@ -29,8 +58,29 @@ Changelog
   - Magic Boutique outfit lenders no longer rent out glasses
 - market
   - McPegleg now buys blue legs
-- enemy drops
-  - added sedative drops to imperial priest & imperial high priest
+- new enemy drops
+  - eared bottle: leader kobold & veteran kobold
+  - slim bottle: kobold, archer kobold, & soldier kobold
+  - banan: monkey
+  - carrot: cannibal woman & elder cannibal
+  - lemon: monkey
+  - olive oil: kalavan wisewoman
+  - pinto beans: ogre, elder ogre, ogre soldier, & superogre
+  - potato:
+      boar, cannibal woman, elder cannibal, kalavan housewife,
+      kavalavan peasant, & kalavan wisewoman
+  - tripe: cave troll, ogre, elder ogre, ogre soldier, & superogre
+  - vinegar: kalavan wisewoman
+  - poison: apprentice assassin, ninja, & shadows assassin
+  - greater poison: assassin & master assassin
+  - deadly poison: disciple assassin
+  - potion: assassin, master assassin, ninja, & shadows assassin
+  - sedative: imperial priest & imperial high priest
+  - ugmash:
+      amazoness giant, cave troll, elder giant, giant, giant kobold,
+      & master giant
+- ghost hound stat changes
+- ghost hound no longer rare
 
 *graphics*
 - new corpses for cobras
