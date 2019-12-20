@@ -508,11 +508,11 @@ blueblur.png                 durkham?; ???; ??? (committed by kymara: e04ef43)
 blue_paving.png              ???; ???; ??? (committed by kymara: b392f32 & kiheru: f3fd9bc)
 bricked_paving.png           tigertoes?; ???; ??? (committed by kymara: 89adddb)
 brown.png                    durkham?; ???; ??? (committed by kymara: f0f6e05)
-brownground2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 brown_2.png                  durkham?; ???; ??? (committed by kymara: f0f6e05)
 brown_corners.png            ???; ???; ??? (committed by kymara: 61e8add)
 brown_edges.png              ???; ???; ??? (committed by kymara: 61e8add)
 brown_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+brownground2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 cobbled_paving.png           ???; ???; ??? (committed by kiheru: 234f74d)
 cobblestones.png             tigertoes?; ???; ??? (committed by Martin Fuchs: 06d2b34)
 dirt_mounds.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
@@ -526,9 +526,9 @@ grass_corners.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_snow.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gravel.png                   ???; ???; ??? (committed by kymara: 9655440)
-greenGround2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 green_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_paving_4.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+greenGround2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 ground.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 ground_2.png                 ???; ???; ??? (committed by kymara: 75b5e35)
 ground_3.png                 Rachel J Morris (Moosader); CC0; http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
@@ -598,7 +598,7 @@ raised_platform_blue.png  ???; ???; ??? (committed by tigertoes: 3898134)
 raised_platform_purple.*  ???; ???; ??? (committed by tigertoes: 3898134)
 soft_blue.png             ???; ???; ??? (committed by kiheru: a68087f)
 stonefloor.png            (placeholder) (committed by tigertoes: 64421a9)
-tiles.png                 (placeholder) (committed by kymara: dcae348, can maybe replace with older version)
+tiles.*                   Kimmo Rundelin (kiheru), Viktor Hahn (Viktor.Hahn@web.de), compmend, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://opengameart.org/node/82895, https://opengameart.org/node/100854
 
 tiled/tileset/ground/ladder/
 
