@@ -67,6 +67,7 @@ public class RPEntityRPClass {
         entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
         entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
         entity.addAttribute("no_attack", Type.FLAG, Definition.VOLATILE);
+        entity.addAttribute("no_shadow", Type.FLAG, Definition.VOLATILE); // client will suppress drawing shadow under entity if this is set
 
         // Jobs
         entity.addAttribute("job_merchant", Type.FLAG, Definition.VOLATILE);
