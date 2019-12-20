@@ -83,6 +83,7 @@ public class WomanGhostNPC implements ZoneConfigurator {
 		// She has low HP
 		woman.initHP(30);
 		woman.setBaseHP(100);
+		woman.put("no_shadow", "");
 		zone.add(woman);
 	}
 }
