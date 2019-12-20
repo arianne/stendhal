@@ -653,7 +653,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected Sprite addShadow(final Sprite sprite) {
 		final boolean draw_shadows = WtWindowManager.getInstance().getProperty("gamescreen.shadows", "true").equals("true");
 
-		if (draw_shadows) {
+		if (draw_shadows && entity.castsShadow()) {
 			/* XXX: would it be better to use a single shadow file & scale it?
 			 * XXX: would it be better to use an opaque image & set transparency here?
 			 */

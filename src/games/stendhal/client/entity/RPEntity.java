@@ -244,6 +244,9 @@ public abstract class RPEntity extends AudibleEntity {
 	/** A flag that gets set once the entity has been released. */
 	private boolean released;
 
+	/** entity casts shadow by default */
+	private boolean castShadow = true;
+
 	/** Possible attack results. */
 	public enum Resolution {
 		HIT,
@@ -1073,6 +1076,13 @@ public abstract class RPEntity extends AudibleEntity {
 		showTitle = !object.has("unnamed");
 		showHP = !object.has("no_hpbar");
 
+		/*
+		 * Determine if entity should not cast a shadow
+		 */
+		if (object.has("no_shadow")) {
+			castShadow = false;
+		}
+
 		initializeSounds();
 	}
 
@@ -1505,5 +1515,16 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public boolean showHPBar() {
 		return showHP;
+	}
+
+	/**
+	 * Check if a shadow should be drawn under the entity.
+	 *
+	 * @return
+	 * 		<code>true</code> if a shadow should be drawn,
+	 * 		<code>false</code> if not.
+	 */
+	public boolean castsShadow() {
+		return castShadow;
 	}
 }
