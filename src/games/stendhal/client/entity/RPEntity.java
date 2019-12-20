@@ -1010,12 +1010,6 @@ public abstract class RPEntity extends AudibleEntity {
 		/*
 		 * Outfit
 		 */
-		/*
-		outfitMouth = OUTFIT_UNSET;
-		outfitEyes = OUTFIT_UNSET;
-		outfitMask = OUTFIT_UNSET;
-		outfitHat = OUTFIT_UNSET;
-		*/
 		if (object.has("outfit_ext")) {
 			outfit_ext = object.get("outfit_ext");
 		} else {
