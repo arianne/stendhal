@@ -146,7 +146,7 @@ soldier_elf.*      Svetlana Kushnariova (Cabbit), olonu, kanaya2529, Jordan Irwi
 
 data/sprites/monsters/ent/
 
-ent.xcf      Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
+ent.xcf.bz2  Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 entwife.png  Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 old_ent.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 treant.png   Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
