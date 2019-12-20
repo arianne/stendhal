@@ -189,10 +189,6 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	private String outfit_ext;
 	private int outfit;
-	private int outfitMouth;
-	private int outfitEyes;
-	private int outfitMask;
-	private int outfitHat;
 
 	private int baseHP;
 
