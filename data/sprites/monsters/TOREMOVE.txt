@@ -16,6 +16,9 @@ animal/
 - spider.png
 - twilight_slime.png
 
+ent/
+- treant.png
+
 fairy/
 - baby_angel.png
 
