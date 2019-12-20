@@ -323,7 +323,7 @@
   <!-- START: wood -->
 
   <creature name="ent">
-    <type class="ent" subclass="treant" tileid="ent.png:2"/>
+    <type class="ent" subclass="ent" tileid="ent.png:2"/>
     <description>You see an ent. First you think it is a tree but you will get a surprise when it starts to walk!</description>
     <attributes>
       <atk value="588"/>
