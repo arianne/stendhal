@@ -1,5 +1,8 @@
 The following images can be deleted on or after 1.32 release:
 
+building/decoration/
+- squares_2.png
+
 building/wall/
 - bricked_corners.png
 - int_rock.png
