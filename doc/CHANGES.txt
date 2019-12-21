@@ -110,7 +110,10 @@ Changelog
 - new eat sound for pets
 - new coins sound for buyer/seller NPCs
 - new liquid fill sound for water spring source
-- added music to Fado City map
+- new music added to maps:
+  - Fado City
+  - Kirdneh City
+  - Kalavan Castle interiors
 
 *classic client*
 - option to draw shadows under certain entities
