@@ -25,6 +25,14 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
+    <!-- Music -->
+    <entity x="1" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">town-02</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+
 	<!-- NPCs Level 0 -->
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC" />
