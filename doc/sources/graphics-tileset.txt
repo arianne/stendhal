@@ -465,7 +465,7 @@ bench.png                  bleutailfly; OGA BY 3.0; Stendhal
 brick_base.png             bleutailfly; OGA BY 3.0; Stendhal
 concrete_table.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 desk.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-desk_wooden.png            (placeholder) (committed by tigertoes: eeb3cf5)
+desk_wooden.png            F0x0ne; CC BY 4.0; https://opengameart.org/node/108250
 fancy_blue_red.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flowers_on_bench2.png      Lanea Zimmerman (Sharm), Jetrel, Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
 flowers_on_benches.*       Lanea Zimmerman (Sharm), bluecarrot16, Kimmo Rundelin (kiheru), Hyptosis, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/81665
