@@ -14,6 +14,7 @@ dungeon_entrance.ogg         Storyteller; GPL
 eerie_curious.ogg            Leerie; CC BY 3.0; https://opengameart.org/node/43367
 kings_feast.ogg              RandomMind; CC0; https://opengameart.org/node/88287
 lost_in_the_fog.ogg          Storyteller; GPL
+market_day.ogg               RandomMind; CC0; https://opengameart.org/node/93955
 medieval_harp.ogg            Storyteller; GPL
 mystical_aura.ogg            Storyteller; GPL
 new_hope.ogg                 Storyteller; GPL

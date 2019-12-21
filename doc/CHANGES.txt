@@ -114,6 +114,7 @@ Changelog
   - Fado City
   - Kirdneh City
   - Kalavan Castle interiors
+  - Ados market (0_ados_city_n2)
 
 *classic client*
 - option to draw shadows under certain entities
