@@ -534,7 +534,7 @@ ground_2.png                 ???; ???; ??? (committed by kymara: 75b5e35)
 ground_3.png                 Rachel J Morris (Moosader); CC0; http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 ground_4.png                 durkham?; ???; ??? (committed by AntumDeluge: 394898f & kymara: 500d43a)
 hexagramm.png                Laguz?; ???; https://sourceforge.net/p/arianne/patches/327/ (committed by kymara: 2c9013a)
-marble.png                   ???; ???; ??? (committed by Astrid Sawatzky: bc6ffc0)
+marble.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mossy_brick_paving.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mud_patch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pothole.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
