@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +21,6 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
-import games.stendhal.server.entity.Entity;
 
 public class PassiveNPC extends NPC {
 
@@ -73,24 +74,14 @@ public class PassiveNPC extends NPC {
 		}
 
 		final StendhalRPZone zone = getZone();
-		final List<Node> adjacentNodes = getAdjacentNodes();
-		for (final Node node: adjacentNodes) {
-			if (zone.collides(node.getX(), node.getY())) {
+		final Rectangle2D area = new Rectangle.Double();
+		for (final Node node: getAdjacentNodes()) {
+			area.setRect(node.getX(), node.getY(), getWidth(), getHeight());
+			if (zone.collides(area)) {
 				continue;
-			} else {
-				final List<Entity> entities = zone.getEntitiesAt(node.getX(), node.getY());
-
-				boolean blocked = false;
-				for (final Entity entity: entities) {
-					if (entity.getResistance() >= 100) {
-						blocked = true;
-						break;
-					}
-				}
-
-				if (!blocked) {
-					return false;
-				}
+			}
+			if (!zone.collidesObjects(this, area)) {
+				return false;
 			}
 		}
 

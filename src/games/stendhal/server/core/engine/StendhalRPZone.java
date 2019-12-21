@@ -1057,8 +1057,30 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return false;
 	}
 
+	/**
+	 * Checks a single pair of coordinates for collision.
+	 *
+	 * @param x
+	 * 		X-coordinate
+	 * @param y
+	 * 		Y-coordinate
+	 * @return
+	 * 		<code>true</code> if collision tile located at coordinates.
+	 */
 	public boolean collides(final int x, final int y) {
 		return collisionMap.collides(x, y);
+	}
+
+	/**
+	 * Checks an area for collision.
+	 *
+	 * @param shape
+	 * 		Rectangle area.
+	 * @return
+	 * 		<code>true</code> if any collision tiles are found in the area.
+	 */
+	public boolean collides(final Rectangle2D shape) {
+		return collisionMap.collides(shape);
 	}
 
 	/**

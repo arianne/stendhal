@@ -425,7 +425,12 @@ public abstract class Entity extends RPObject implements Killer {
 	}
 
 	/**
-	 * Get horizontal & vertical nodes immediately next to entity.
+	 * Get horizontal & vertical nodes immediately adjacent to entity's
+	 * current X,Y coordinates.
+	 *
+	 * NOTE: This does not compensate for the entity's width & height,
+	 *       it is only meant to get the positions that the entity
+	 *       could potentially move to.
 	 */
 	public List<Node> getAdjacentNodes() {
 		List<Node> nodes = new ArrayList<>();
