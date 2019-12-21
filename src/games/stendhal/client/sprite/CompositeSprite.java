@@ -201,7 +201,7 @@ public class CompositeSprite implements Sprite {
 					slave.draw(g, 0, 0);
 					g.dispose();
 				} else {
-					floor = (ImageSprite) slave;
+					floor = new ImageSprite(slave);
 					// Stacks with blends will always need a copy
 					if (blend != null) {
 						floor = new ImageSprite(floor);
