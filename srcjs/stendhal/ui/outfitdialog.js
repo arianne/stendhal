@@ -374,6 +374,12 @@ stendhal.ui.OutfitDialog = function() {
 	"</div>" +
 
 	"<div class='horizontalgroup'>" +
+	"<button type='button' id='setoutfitpreveyes'>&lt;</button>" +
+	"<canvas id='setoutfiteyescanvas' width='48' height='64'></canvas>" +
+	"<button type='button' id='setoutfitnexteyes'>&gt;</button><br>" +
+	"</div>" +
+
+	"<div class='horizontalgroup'>" +
 	"<button type='button' id='setoutfitprevhead'>&lt;</button>" +
 	"<canvas id='setoutfitheadcanvas' width='48' height='64'></canvas>" +
 	"<button type='button' id='setoutfitnexthead'>&gt;</button><br>" +
@@ -400,6 +406,15 @@ stendhal.ui.OutfitDialog = function() {
 	"</div>" +
 	"<canvas id='setoutfithaircolorcanvas' width='80' height='52'></canvas>" +
 	"<canvas id='setoutfithaircolorgradient' width='80' height='10'></canvas>" +
+	"</div>" +
+
+	"<div class='verticalgroup'>" +
+	"<div class='horizontalgroup'>" +
+	"<input type='checkbox' id='setoutfiteyescolortoggle'>" +
+	"<label for='setoutfiteyescolortoggle'>Eyes color</label>" +
+	"</div>" +
+	"<canvas id='setoutfiteyescolorcanvas' width='80' height='52'></canvas>" +
+	"<canvas id='setoutfiteyescolorgradient' width='80' height='10'></canvas>" +
 	"</div>" +
 
 	"<div class='verticalgroup'>" +
@@ -441,8 +456,12 @@ stendhal.ui.OutfitDialog = function() {
 		let divider;
 		switch (part) {
 			case "hair":
-				divider = 1000000;
+				divider = 100000000;
 				outfitCount = 49;
+				break;
+			case "eyes":
+				divider = 1000000;
+				outfitCount = 26;
 				break;
 			case "head":
 				divider = 10000;
@@ -481,8 +500,9 @@ stendhal.ui.OutfitDialog = function() {
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 		draw(ctx, bodySelector);
-		draw(ctx, headSelector);
 		draw(ctx, dressSelector);
+		draw(ctx, headSelector);
+		draw(ctx, eyesSelector);
 		draw(ctx, hairSelector);
 	}
 
@@ -497,6 +517,7 @@ stendhal.ui.OutfitDialog = function() {
 	stendhal.ui.OutfitDialog.instance = self;
 
 	const hairSelector = makeSelector("hair", partChanged);
+	const eyesSelector = makeSelector("eyes", partChanged);
 	const headSelector = makeSelector("head", partChanged);
 	const bodySelector = makeSelector("body", partChanged);
 	const dressSelector = makeSelector("dress", partChanged);
@@ -535,6 +556,7 @@ stendhal.ui.OutfitDialog = function() {
 	}
 
 	const hairColorSelector = createColorSelector(ColorSelector, "hair", hairSelector);
+	const eyesColorSelector = createColorSelector(ColorSelector, "eyes", eyesSelector);
 	const dressColorSelector = createColorSelector(ColorSelector, "dress", dressSelector);
 	const skinColorSelector = createColorSelector(PaletteColorSelector, "skin", headSelector, bodySelector);
 
@@ -548,6 +570,7 @@ stendhal.ui.OutfitDialog = function() {
 				"body=" + bodySelector.index.toString() + "," +
 				"dress=" + dressSelector.index.toString() + "," +
 				"head=" + headSelector.index.toString() + "," +
+				"eyes=" + eyesSelector.index.toString() + "," +
 				"hair=" + hairSelector.index.toString();
 
 		const action = {
@@ -559,6 +582,10 @@ stendhal.ui.OutfitDialog = function() {
 		let color = hairColorSelector.color;
 		if (color != null) {
 			action["hair"] = color.toString();
+		}
+		color = eyesColorSelector.color;
+		if (color != null) {
+			action["eyes"] = color.toString();
 		}
 		color = dressColorSelector.color;
 		if (color != null) {
