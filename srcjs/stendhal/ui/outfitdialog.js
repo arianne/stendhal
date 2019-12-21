@@ -544,13 +544,18 @@ stendhal.ui.OutfitDialog = function() {
 		self.popup.close();
 	});
 	document.getElementById("setoutfitapply").addEventListener("click", function(e) {
-		const outfitCode = hairSelector.index + headSelector.index +
-			dressSelector.index + bodySelector.index;
+		const outfitString =
+				"body=" + bodySelector.index.toString() + "," +
+				"dress=" + dressSelector.index.toString() + "," +
+				"head=" + headSelector.index.toString() + "," +
+				"hair=" + hairSelector.index.toString();
+
 		const action = {
-				"type": "outfit",
+				"type": "outfit_ext",
 				"zone": marauroa.currentZoneName,
-				"value": outfitCode
+				"value": outfitString
 		};
+
 		let color = hairColorSelector.color;
 		if (color != null) {
 			action["hair"] = color.toString();
