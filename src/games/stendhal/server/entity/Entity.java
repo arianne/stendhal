@@ -428,20 +428,15 @@ public abstract class Entity extends RPObject implements Killer {
 	 * Get horizontal & vertical nodes immediately next to entity.
 	 */
 	public List<Node> getAdjacentNodes() {
-		final StendhalRPZone zone = getZone();
 		List<Node> nodes = new ArrayList<>();
 		final int x = getX();
 		final int y = getY();
 
 		for (final int lat: Arrays.asList(x-1, x+1)) {
-			if (zone.isWithinBounds(lat, y)) {
-				nodes.add(new Node(lat, y));
-			}
+			nodes.add(new Node(lat, y));
 		}
 		for (final int lon: Arrays.asList(y-1, y+1)) {
-			if (zone.isWithinBounds(x, lon)) {
-				nodes.add(new Node(x, lon));
-			}
+			nodes.add(new Node(x, lon));
 		}
 
 		return nodes;

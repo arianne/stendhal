@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -73,20 +72,13 @@ public class PassiveNPC extends NPC {
 			return pathBlocked;
 		}
 
-		List<Boolean> blockedNodes = new ArrayList<>();
-
 		final StendhalRPZone zone = getZone();
 		final List<Node> adjacentNodes = getAdjacentNodes();
 		for (final Node node: adjacentNodes) {
 			if (zone.collides(node.getX(), node.getY())) {
-				blockedNodes.add(true);
 				continue;
 			} else {
 				final List<Entity> entities = zone.getEntitiesAt(node.getX(), node.getY());
-				if (entities.isEmpty()) {
-					// no entities at node
-					return false;
-				}
 
 				boolean blocked = false;
 				for (final Entity entity: entities) {
@@ -96,13 +88,9 @@ public class PassiveNPC extends NPC {
 					}
 				}
 
-				blockedNodes.add(blocked);
-			}
-		}
-
-		for (final Boolean b: blockedNodes) {
-			if (!b) {
-				return false;
+				if (!blocked) {
+					return false;
+				}
 			}
 		}
 
