@@ -465,15 +465,15 @@ stendhal.ui.OutfitDialog = function() {
 				break;
 			case "head":
 				divider = 10000;
-				outfitCount = 22;
+				outfitCount = 4;
 				break;
 			case "dress":
 				divider = 100;
-				outfitCount = 63;
+				outfitCount = 64;
 				break;
 			case "body":
 				divider = 1;
-				outfitCount = 15;
+				outfitCount = 3;
 				break;
 		}
 		const index = Math.floor(outfit/divider) % 100;
