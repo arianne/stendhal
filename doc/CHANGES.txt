@@ -114,6 +114,7 @@ Changelog
   - Fado City
   - Kirdneh City
   - Kalavan Castle interiors
+  - Kalavan City
   - Ados market (0_ados_city_n2)
 
 *classic client*

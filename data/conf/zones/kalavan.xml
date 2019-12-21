@@ -165,6 +165,14 @@
       <parameter name="weather">varying</parameter>
     </attributes>
 
+    <!-- Music -->
+    <entity x="1" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">town-03</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+
     <!-- Portals -->
     <portal x="80" y="10" ref="house_1_entrance">
       <destination zone="int_kalavan_house_1" ref="entrance" />
