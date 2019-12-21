@@ -436,6 +436,22 @@ stendhal.ui.OutfitDialog = function() {
 	"</div>" +
 	"</div>" + // color selectors
 
+	"<div class='verticalgroup'>" + // hat & mask part selectors
+
+	"<div class='horizontalgroup'>" +
+	"<button type='button' id='setoutfitprevhat'>&lt;</button>"+
+	"<canvas id='setoutfithatcanvas' width='48' height='64'></canvas>" +
+	"<button type='button' id='setoutfitnexthat'>&gt;</button>" +
+	"</div>" +
+
+	"<div class='horizontalgroup'>" +
+	"<button type='button' id='setoutfitprevmask'>&lt;</button>"+
+	"<canvas id='setoutfitmaskcanvas' width='48' height='64'></canvas>" +
+	"<button type='button' id='setoutfitnextmask'>&gt;</button>" +
+	"</div>" +
+
+	"</div>" + // hat & mask part selectors
+
 	"<div><canvas id='setoutfitcompositecanvas' width='48' height='64'></canvas></div>" +
 	"</div>" + // horizontal group
 	"<div align='right'><button type='button' id='setoutfitcancel'>Cancel</button>" +
@@ -475,6 +491,14 @@ stendhal.ui.OutfitDialog = function() {
 				divider = 1;
 				outfitCount = 3;
 				break;
+			case "hat":
+				divider = 100;
+				outfitCount = 13;
+				break;
+			case "mask":
+				divider = 1;
+				outfitCount = 9;
+				break;
 		}
 		const index = Math.floor(outfit/divider) % 100;
 		const selector = new PartSelector(part, index, outfitCount - 1, partChanged);
@@ -503,7 +527,9 @@ stendhal.ui.OutfitDialog = function() {
 		draw(ctx, dressSelector);
 		draw(ctx, headSelector);
 		draw(ctx, eyesSelector);
+		draw(ctx, maskSelector);
 		draw(ctx, hairSelector);
+		draw(ctx, hatSelector);
 	}
 
 	function partChanged() {
@@ -516,7 +542,9 @@ stendhal.ui.OutfitDialog = function() {
 	}
 	stendhal.ui.OutfitDialog.instance = self;
 
+	const hatSelector = makeSelector("hat", partChanged);
 	const hairSelector = makeSelector("hair", partChanged);
+	const maskSelector = makeSelector("mask", partChanged);
 	const eyesSelector = makeSelector("eyes", partChanged);
 	const headSelector = makeSelector("head", partChanged);
 	const bodySelector = makeSelector("body", partChanged);
@@ -571,7 +599,9 @@ stendhal.ui.OutfitDialog = function() {
 				"dress=" + dressSelector.index.toString() + "," +
 				"head=" + headSelector.index.toString() + "," +
 				"eyes=" + eyesSelector.index.toString() + "," +
-				"hair=" + hairSelector.index.toString();
+				"mask=" + maskSelector.index.toString() + "," +
+				"hair=" + hairSelector.index.toString() + "," +
+				"hat=" + hatSelector.index.toString();
 
 		const action = {
 				"type": "outfit_ext",
