@@ -1108,7 +1108,7 @@ oriental_plant.png    bleutailfly; OGA BY 3.0; Stendhal
 plant_pots.*          ???; ???; ??? (committed by AntumDeluge: d2db445, mixture of tiles from different images)
 plant_potted_2.png    Megajack64?; ???; ??? (committed by bleutailfly: 7a73b14)
 pot_plant.png         Megajack64?; ???; ??? (committed by kymara: d1c4350)
-pot_plant_1.png       (placeholder) (committed by kymara: 60834d6)
+pot_plant_1.*         Casper Nilsson; CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson (scaled down from original size)
 pot_plant_sprout.png  ???; ???; ??? (committed by kymara: 76e7ad6)
 potted_plants1.png    ???; ???; ??? (committed by bleutailfly: a0bd93e)
 potted_plants_2.*     ???; ???; ??? (committed by AntumDeluge: d2db445, from free sources but need to remember)
