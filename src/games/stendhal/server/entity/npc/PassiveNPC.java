@@ -94,18 +94,16 @@ public class PassiveNPC extends NPC {
 
 	/**
 	 * Checks if entity can move.
-	 *
-	 * For entities with fixed path, checks for collision at previous position.
-	 * For other entities, checks adjacent nodes for collision.
 	 */
 	private boolean pathIsBlocked() {
 		if (!usesRandomPath()) {
-			/* for entities with fixed path we need to check coordinates in front of
-			 * & behind entity on path.
+			/* for entities with fixed path we check collision of adjacent nodes
+			 * on entity's path only
 			 */
 			return !canMoveTo(getPosFront()) && !canMoveTo(getPosBehind());
 		}
 
+		/* for entities with random path we check collision of all adjacent nodes */
 		for (final Node node: getAdjacentNodes()) {
 			if (canMoveTo(node.getX(), node.getY())) {
 				return false;
