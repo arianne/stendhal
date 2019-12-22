@@ -89,7 +89,7 @@ public class EntityGuide {
 	 *
 	 * @return The next <code>Node</code>, or <code>null</code> if there is no next node.
 	 */
-	private Node nextNode() {
+	public Node nextNode() {
 		final List<Node> nodes = path.getNodeList();
 		int nextPos = pathPosition + 1;
 		Node next = null;
@@ -101,6 +101,15 @@ public class EntityGuide {
 		}
 
 		return next;
+	}
+
+	/**
+	 * Get the previous node on the path.
+	 *
+	 * @return The previous <code>Node</code>.
+	 */
+	public Node prevNode() {
+		return path.getNodeList().get(getPreviousPosition());
 	}
 
 	/**
