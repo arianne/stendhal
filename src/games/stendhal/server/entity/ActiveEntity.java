@@ -533,7 +533,7 @@ public abstract class ActiveEntity extends Entity {
 		final Rectangle2D area = new Rectangle.Double();
 		area.setRect(x, y, getWidth(), getHeight());
 
-		final boolean collidesObjects = zone.collidesObjects(this, area) && getResistance() >= 100;
+		final boolean collidesObjects = zone.collidesObjects(this, area) && getResistance() > 95;
 
 		return !zone.collides(area) && !collidesObjects;
 	}
