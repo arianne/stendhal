@@ -1154,7 +1154,7 @@ dead_tree_7.png          ???; ???; ??? (committed by omero: 4da39f4)
 deadtree_snow.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 evergreen.png            Juan?; ???; ??? (committed by kymara: 2ec61fe)
 fall_trees.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-fir_trees.png            ???; ???; ??? (committed by kiheru: 87a5412)
+fir_trees.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 locust_tree.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 maple_tree.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 oak_tree.png             airockstar; CC0; https://opengameart.org/node/50913
