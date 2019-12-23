@@ -280,6 +280,10 @@ public class Outfit {
 		return layer;
 	}
 
+	public void setLayer(final String layerName, final Integer code) {
+		layers.put(layerName, code);
+	}
+
 	/**
 	 * Represents this outfit in a numeric code.
 	 *

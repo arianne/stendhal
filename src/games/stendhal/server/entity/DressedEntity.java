@@ -231,35 +231,15 @@ public abstract class DressedEntity extends RPEntity {
 		setOutfit(new Outfit(layers), temporary);
 	}
 
-	public void setOutfit(final String strcode, final boolean temporary) {
-		setOutfit(new Outfit(strcode), temporary);
-	}
-
-	public void setOutfit(final String strcode) {
-		setOutfit(strcode, false);
-	}
-
-	// Hack to preserve detail layer
-	public void setOutfitWithDetail(final Outfit outfit) {
-		setOutfitWithDetail(outfit, false);
-	}
-
 	// Hack to preserve detail layer
 	public void setOutfitWithDetail(final Outfit outfit, final boolean temporary) {
 		// preserve detail layer
-		final int detailCode = getOutfit().getLayer("detail");
-
-		// set the new outfit
-		setOutfit(outfit, temporary);
-
-		if (detailCode > 0) {
-			// get current outfit code
-			final int outfitCode = outfit.getCode() + (detailCode * 100000000);
-
-			// re-add detail
-			put("outfit", outfitCode);
-			notifyWorldAboutChanges();
+		int oldDetailCode = getOutfit().getLayer("detail");
+		int newDetailCode = outfit.getLayer("detail");
+		if (oldDetailCode > 0 && newDetailCode == 0) {
+			outfit.setLayer("detail", oldDetailCode);
 		}
+		setOutfit(outfit, temporary);
 	}
 
 	@Override
