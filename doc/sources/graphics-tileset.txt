@@ -724,7 +724,7 @@ toys.*                    ???, PrinterKiller, Jordan Irwin (AntumDeluge); ???; h
 
 tiled/tileset/item/armor/
 
-armor.png             ???; ???; ??? (committed by Miguel: 12d51cd)
+armor.png             David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 bloodied_small_axe.*  Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 chains.*              Katie Russell (kymara); GPL 2.0+; Stendhal
 suit_of_armor2.png    Daniel Cook; CC BY 3.0; https://opengameart.org/node/11758, http://www.lostgarden.com/2006/07/more-free-game-graphics.html
