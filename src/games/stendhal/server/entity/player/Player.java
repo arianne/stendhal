@@ -275,12 +275,6 @@ public class Player extends DressedEntity implements UseListener {
 					new Throwable());
 		}
 
-		// update player with 'outfit_ext' attribute
-		if (!has("outfit_ext")) {
-			logger.info("Updating player with 'outfit_ext' attribute from 'outfit' attribute");
-			put("outfit_ext", getOutfitExtFromOutfitCode());
-		}
-
 		unlockedPortals = new LinkedList<Integer>();
 		updateModifiedAttributes();
 	}

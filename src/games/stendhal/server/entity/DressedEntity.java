@@ -105,26 +105,6 @@ public abstract class DressedEntity extends RPEntity {
 		return getMap("outfit_colors");
 	}
 
-	/**
-	 * Uses 'outfit' attribute to get a string formatted for 'outfit_ext' attribute.
-	 * If entity does not have 'outfit' attribute, either the value of 'outfit_ext'
-	 * attribute will be returned if found or a random outfit string will be generated.
-	 *
-	 * @return outfit_ext
-	 */
-	protected String getOutfitExtFromOutfitCode() {
-		if (!has("outfit")) {
-			if (has("outfit_ext")) {
-				logger.info("DressedEntity.getOutfitExtFromOutfitCode: Returning value of 'outfit_ext' attribute");
-				return get("outfit_ext");
-			} else {
-				logger.info("DressedEntity.getOutfitExtFromOutfitCode: Returning random outfit");
-				return Outfit.getRandomOutfit().toString();
-			}
-		}
-
-		return new Outfit(get("outfit")).toString();
-	}
 
 	/**
 	 * Sets this entity's outfit.
@@ -213,8 +193,6 @@ public abstract class DressedEntity extends RPEntity {
 		sb.append("detail=" + newOutfit.getLayer("detail"));
 
 		put("outfit_ext", sb.toString());
-		// FIXME: can't update "outfit" attribute without affecting "outfit_ext" (see: overridden method DressedEntity.put)
-		//put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
 
