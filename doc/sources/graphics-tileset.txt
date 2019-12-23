@@ -282,7 +282,7 @@ black_red.png      ???; ???; ??? (committed by laguz: a49436e)
 blue.png           ???; ???; ??? (committed by Astrid Sawatzky: 2bbf9db)
 border.png         Juan?; ???; ??? (committed by kymara: 216fd50)
 border2.png        Juan?; ???; ??? (committed by kymara: c8c3eac)
-brown_rug.png      (placeholder) (committed by kiheru: da9ba66)
+brown_rug.png      Daniel Armstrong (HughSpectrum); CC BY-SA 3.0; https://opengameart.org/node/13470
 brown_rug2.png     bleutailfly; OGA BY 3.0; Stendhal
 brown_rug3.png     Tyler Olsen (Roots), Jetrel; CC BY-SA 3.0; https://opengameart.org/node/65642
 carpets.png        durkham?, juan?; ???; Stendhal; Need to verify all authors
