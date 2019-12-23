@@ -30,6 +30,7 @@ create table if not exists character_stats
   legs varchar(32),
   feet varchar(32),
   cloak varchar(32),
+  finger varchar(32),
 
   zone varchar(50),
 
