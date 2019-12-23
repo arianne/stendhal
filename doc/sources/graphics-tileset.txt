@@ -739,7 +739,7 @@ banners.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flag.png                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 superhumans_banner_on_post.*  tigertoes; CC BY-SA 3.0; Stendhal
 superhumans_wall_hanging.*    tigertoes; CC BY-SA 3.0; Stendhal
-wall_hanging_brown.png        ???; ???; ??? (committed by tigertoes: 563e6a9)
+wall_hanging_brown.png        tigertoes; CC BY-SA 3.0; Stendhal
 wall_hanging_dkgreen.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/item/blood/
