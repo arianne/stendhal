@@ -292,8 +292,8 @@ stendhal.slashActionRepository = {
 			marauroa.clientFramework.sendAction(action);
 			return true;
 		},
-		getMinParams: 3,
-		getMaxParams: 3
+		getMinParams: 1,
+		getMaxParams: -1 // XXX: is this the proper way to allow an unlimited number of arguments?
 	},
 
 	"summonat": {
