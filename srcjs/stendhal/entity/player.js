@@ -95,6 +95,16 @@ marauroa.rpobjectFactory["player"] = marauroa.util.fromProto(marauroa.rpobjectFa
 					new stendhal.ui.OutfitDialog();
 				}
 			});
+			list.push({
+				title: "Where",
+				action: function(entity) {
+					var action = {
+						"type": "where",
+						"target": playerName,
+					};
+					marauroa.clientFramework.sendAction(action);
+				}
+			})
 		}
 	/*
 
