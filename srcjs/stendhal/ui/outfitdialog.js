@@ -380,6 +380,12 @@ stendhal.ui.OutfitDialog = function() {
 	"</div>" +
 
 	"<div class='horizontalgroup'>" +
+	"<button type='button' id='setoutfitprevmouth'>&lt;</button>" +
+	"<canvas id='setoutfitmouthcanvas' width='48' height='64'></canvas>" +
+	"<button type='button' id='setoutfitnextmouth'>&gt;</button><br>" +
+	"</div>" +
+
+	"<div class='horizontalgroup'>" +
 	"<button type='button' id='setoutfitprevhead'>&lt;</button>" +
 	"<canvas id='setoutfitheadcanvas' width='48' height='64'></canvas>" +
 	"<button type='button' id='setoutfitnexthead'>&gt;</button><br>" +
@@ -472,12 +478,16 @@ stendhal.ui.OutfitDialog = function() {
 		let divider;
 		switch (part) {
 			case "hair":
-				divider = 100000000;
+				divider = 10000000000;
 				outfitCount = 49;
 				break;
 			case "eyes":
-				divider = 1000000;
+				divider = 100000000;
 				outfitCount = 26;
+				break;
+			case "mouth":
+				divider = 1000000;
+				outfitCount = 5;
 				break;
 			case "head":
 				divider = 10000;
@@ -526,6 +536,7 @@ stendhal.ui.OutfitDialog = function() {
 		draw(ctx, bodySelector);
 		draw(ctx, dressSelector);
 		draw(ctx, headSelector);
+		draw(ctx, mouthSelector);
 		draw(ctx, eyesSelector);
 		draw(ctx, maskSelector);
 		draw(ctx, hairSelector);
@@ -546,6 +557,7 @@ stendhal.ui.OutfitDialog = function() {
 	const hairSelector = makeSelector("hair", partChanged);
 	const maskSelector = makeSelector("mask", partChanged);
 	const eyesSelector = makeSelector("eyes", partChanged);
+	const mouthSelector = makeSelector("mouth", partChanged);
 	const headSelector = makeSelector("head", partChanged);
 	const bodySelector = makeSelector("body", partChanged);
 	const dressSelector = makeSelector("dress", partChanged);
@@ -598,6 +610,7 @@ stendhal.ui.OutfitDialog = function() {
 				"body=" + bodySelector.index.toString() + "," +
 				"dress=" + dressSelector.index.toString() + "," +
 				"head=" + headSelector.index.toString() + "," +
+				"mouth=" + mouthSelector.index.toString() + "," +
 				"eyes=" + eyesSelector.index.toString() + "," +
 				"mask=" + maskSelector.index.toString() + "," +
 				"hair=" + hairSelector.index.toString() + "," +
