@@ -319,11 +319,22 @@ stendhal.slashActionRepository = {
 
 	"summonat": {
 		execute: function(type, params, remainder) {
+			var amount = params[2];
+			// don't require first parameter to be integer amount
+			if (isNaN(amount)) {
+				if (remainder) {
+					remainder = amount + " " + remainder;
+				} else {
+					remainder = amount;
+				}
+				amount = "1";
+			}
+
 			var action = {
 				"type": type,
 				"target": params[0],
 				"slot": params[1],
-				"amount": params[2],
+				"amount": amount,
 				"item": remainder
 			};
 			marauroa.clientFramework.sendAction(action);
