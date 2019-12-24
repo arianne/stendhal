@@ -43,20 +43,19 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		// outfit type, in the order: hair, head, dress, base.
 		// One of these outfit will be chosen randomly.
 
-		// FIXME: Use new outfit system
 		// swimsuits for men
 		outfitTypes.put("trunks", Arrays.asList(
-				new Outfit(null, null, null, null, null, null, null, 95, null),
-				new Outfit(null, null, null, null, null, null, null, 96, null),
-				new Outfit(null, null, null, null, null, null, null, 97, null),
-				new Outfit(null, null, null, null, null, null, null, 98, null)));
+				new Outfit("dress=995"),
+				new Outfit("dress=996"),
+				new Outfit("dress=997"),
+				new Outfit("dress=998")));
 
 		// swimsuits for women
 		outfitTypes.put("swimsuit", Arrays.asList(
-				new Outfit(null, null, null, null, null, null, null, 91, null),
-				new Outfit(null, null, null, null, null, null, null, 92, null),
-				new Outfit(null, null, null, null, null, null, null, 93, null),
-				new Outfit(null, null, null, null, null, null, null, 94, null)));
+				new Outfit("dress=991"),
+				new Outfit("dress=992"),
+				new Outfit("dress=993"),
+				new Outfit("dress=994")));
 
 		outfitTypes.put("mask", Arrays.asList(
 				// hair & hat are set to "-1" so that they are not drawn over the mask
@@ -69,11 +68,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 
 		// wedding dress for brides
 		// it seems this must be an array as list even though it's only one item
-		outfitTypes.put("gown", Arrays.asList(new Outfit(null, null, null, null, 6, null, null, 88, null)));
+		outfitTypes.put("gown", Arrays.asList(new Outfit("dress=988,hat=991")));
 
 		// // wedding suit for grooms
 		// it seems this must be an array as list even though it's only one item
-		outfitTypes.put("suit", Arrays.asList(new Outfit(null, null, null, null, null, null, null, 87, null)));
+		outfitTypes.put("suit", Arrays.asList(new Outfit("dress=987")));
 	}
 
 	/**
