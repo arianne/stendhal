@@ -489,6 +489,13 @@ stendhal.slashActionRepository = {
 
 	execute: function(line) {
 		var array = line.trim().split(" ");
+
+		// clean whitespace
+		for (var i in array) {
+			array[i] = array[i].trim();
+		}
+		array = array.filter(Boolean);
+
 		var name = array[0];
 		if (name[0] != "/") {
 			name = "/chat";
