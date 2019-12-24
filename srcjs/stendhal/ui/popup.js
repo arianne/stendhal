@@ -103,6 +103,17 @@ stendhal.ui.Menu = function(entity, x, y) {
 				console.log(entity);
 			}
 		});
+		// FIXME: cannot destroy items equipped in player's inventory slots
+		actions.push({
+			title: "(*) Destroy",
+			action: function(entity) {
+				var action = {
+					"type": "destroy",
+					"target": "#" + entity["id"],
+				}
+				marauroa.clientFramework.sendAction(action);
+			}
+		});
 		actions.push({
 			title: "(*) Alter",
 			action: function(entity) {
