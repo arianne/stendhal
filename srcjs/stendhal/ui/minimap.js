@@ -174,6 +174,11 @@ stendhal.ui.minimap = {
 					x: x.toString(),
 					y: y.toString()
 			};
+
+			if ("type" in e && e["type"] === "dblclick") {
+				action["double_click"] = "";
+			}
+
 			marauroa.clientFramework.sendAction(action);
 		}
 	}

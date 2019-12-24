@@ -139,6 +139,7 @@ stendhal.main = {
 
 		var minimap = document.getElementById("minimap");
 		minimap.addEventListener("click", stendhal.ui.minimap.onClick);
+		minimap.addEventListener("dblclick", stendhal.ui.minimap.onClick);
 
 		var buddyList = document.getElementById("buddyList");
 		buddyList.addEventListener("mouseup", stendhal.ui.buddyList.onMouseUp);
