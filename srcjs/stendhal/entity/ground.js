@@ -61,7 +61,7 @@ stendhal.zone.ground = {
 		return "url(/data/sprites/cursor/walk.png) 1 3, auto";
 	},
 
-	onclick: function(x, y) {
+	onclick: function(x, y, dblclick) {
 		var gameX = x + stendhal.ui.gamewindow.offsetX;
 		var gameY = y + stendhal.ui.gamewindow.offsetY;
 		var action = {
@@ -69,6 +69,11 @@ stendhal.zone.ground = {
 			"x": "" + Math.floor(gameX / 32),
 			"y": "" + Math.floor(gameY / 32)
 		};
+
+		if (typeof dblclick == "boolean" && dblclick) {
+			action["double_click"] = "";
+		}
+
 		var extend = this.calculateZoneChangeDirection(gameX, gameY);
 		if (extend) {
 			action.extend = extend;

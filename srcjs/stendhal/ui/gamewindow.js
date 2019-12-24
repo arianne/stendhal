@@ -215,8 +215,6 @@ stendhal.ui.gamewindow = {
 				stendhal.ui.globalpopup.close();
 			}
 
-			e.target.addEventListener("mousemove", onDrag);
-			e.target.addEventListener("mouseup", onMouseUp);
 			startX = e.offsetX;
 			startY = e.offsetY;
 
@@ -224,6 +222,13 @@ stendhal.ui.gamewindow = {
 			var y = e.offsetY + stendhal.ui.gamewindow.offsetY;
 			entity = stendhal.zone.entityAt(x, y);
 			timestampMouseDown = +new Date();
+
+			if (e.type !== "dblclick") {
+				e.target.addEventListener("mousemove", onDrag);
+				e.target.addEventListener("mouseup", onMouseUp);
+			} else if (entity == stendhal.zone.ground) {
+				entity.onclick(e.offsetX, e.offsetY, true);
+			}
 		}
 
 		function isRightClick(e) {
