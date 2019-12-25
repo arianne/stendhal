@@ -181,7 +181,7 @@ tiled/tileset/building/wall/
 bricked_corners.png              (placeholder)
 bricked_edges.png                Ivan Voirol; CC BY 3.0; https://opengameart.org/node/28390
 dojo_walls.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-earthen_3.png                    (placeholder)
+earthen_3.png                    bleutailfly; OGA BY 3.0; Stendhal
 glass.png                        Katie Russell (kymara); GPL 2.0+; Stendhal
 glass_details.png                ???; ???; ??? (committed by tigertoes: d6505d9)
 int_blue_green.png               Katie Russell (kymara); GPL 2.0+; Stendhal
