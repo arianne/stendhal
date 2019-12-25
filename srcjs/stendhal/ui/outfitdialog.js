@@ -495,7 +495,7 @@ stendhal.ui.OutfitDialog = function() {
 				break;
 			case "dress":
 				divider = 100;
-				outfitCount = 64;
+				outfitCount = 65;
 				break;
 			case "body":
 				divider = 1;
