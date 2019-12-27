@@ -127,7 +127,7 @@ public class AntivenomRing extends AbstractQuest {
 			query_phrases,
 			null,
 			ConversationStates.ATTENDING,
-			"I had witnessed #Valo meeting with the old apothecary on many occasions.",
+			"I had witnessed #" + hintNPC3.getName() + " meeting with the old apothecary on many occasions.",
 			null);
 
 		hintNPC2.add(
