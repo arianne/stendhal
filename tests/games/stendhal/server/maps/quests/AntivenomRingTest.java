@@ -29,6 +29,8 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
 import games.stendhal.server.maps.ados.church.HealerNPC;
 import games.stendhal.server.maps.ados.magician_house.WizardNPC;
+import games.stendhal.server.maps.ados.wall.GreeterSoldierNPC;
+import games.stendhal.server.maps.athor.ship.CargoWorkerNPC;
 import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.quests.antivenom_ring.ApothecaryStage;
@@ -59,10 +61,12 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		setZoneForPlayer(ZONE_NAME);
-		setNpcNames("Jameson", "Zoey", "Valo", "Haizen", "Ortiv Milquetoast");
+		setNpcNames("Jameson", "Zoey", "Klaas", "Julius", "Valo", "Haizen", "Ortiv Milquetoast");
 
 		addZoneConfigurator(new ApothecaryNPC(), ZONE_NAME);
 		addZoneConfigurator(new ZoologistNPC(), ZONE_NAME);
+		addZoneConfigurator(new CargoWorkerNPC(), ZONE_NAME);
+		addZoneConfigurator(new GreeterSoldierNPC(), ZONE_NAME);
 		addZoneConfigurator(new HealerNPC(), ZONE_NAME);
 		addZoneConfigurator(new WizardNPC(), ZONE_NAME);
 		addZoneConfigurator(new RetiredTeacherNPC(), ZONE_NAME);
