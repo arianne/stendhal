@@ -162,11 +162,18 @@ public class AntivenomRing extends AbstractQuest {
 			);
 
 		hintNPC3.add(ConversationStates.ATTENDING,
-				Arrays.asList("retreat", "retreats", "retreating", "retreated"),
-				null,
-				ConversationStates.ATTENDING,
-				"He's probably hiding. Keep an eye out for hidden entrances.",
-				null);
+			Arrays.asList("retreat", "retreats", "retreating", "retreated"),
+			null,
+			ConversationStates.ATTENDING,
+			"He's probably #hiding. Keep an eye out for #hidden entrances.",
+			null);
+
+		hintNPC3.add(ConversationStates.ATTENDING,
+			Arrays.asList("hide", "hides", "hidden", "hiding"),
+			null,
+			ConversationStates.ATTENDING,
+			"I'm sorry, I don't have any more information. Perhaps " + hintNPC4.getName() + " would know more.",
+			null);
 
 		/* Haizen */
 
@@ -181,7 +188,14 @@ public class AntivenomRing extends AbstractQuest {
 				Arrays.asList("hide", "hides", "hiding", "hidden"),
 				null,
 				ConversationStates.ATTENDING,
-				"If I were hiding I would surely do it in a secret room with a hidden entrance.",
+				"If I were hiding I would surely do it in a #'secret room' with a hidden entrance.",
+				null);
+
+		hintNPC4.add(ConversationStates.ATTENDING,
+				Arrays.asList("secret", "secrets", "secret room", "secret rooms"),
+				null,
+				ConversationStates.ATTENDING,
+				"I'm sorry, I don't have any more information. Perhaps " + hintNPC5.getName() + " would know more.",
 				null);
 
 		/* Ortiv Milquetoast */

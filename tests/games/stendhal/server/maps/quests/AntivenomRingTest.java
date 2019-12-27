@@ -142,7 +142,9 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 			"Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was #retreating into the mountains.",
 			getReply(npc));
 		en.step(player, "retreating");
-		assertEquals("He's probably hiding. Keep an eye out for hidden entrances.", getReply(npc));
+		assertEquals("He's probably #hiding. Keep an eye out for #hidden entrances.", getReply(npc));
+		en.step(player, "hiding");
+		assertEquals("I'm sorry, I don't have any more information. Perhaps Haizen would know more.", getReply(npc));
 
 		npc = getNPC("Haizen");
 		assertNotNull(npc);
@@ -154,7 +156,9 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 			"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
 			getReply(npc));
 		en.step(player, "hiding");
-		assertEquals("If I were hiding I would surely do it in a secret room with a hidden entrance.", getReply(npc));
+		assertEquals("If I were hiding I would surely do it in a #'secret room' with a hidden entrance.", getReply(npc));
+		en.step(player, "secret room");
+		assertEquals("I'm sorry, I don't have any more information. Perhaps Ortiv Milquetoast would know more.", getReply(npc));
 
 		npc = getNPC("Ortiv Milquetoast");
 		assertNotNull(npc);
