@@ -214,8 +214,14 @@ public class AntivenomRing extends AbstractQuest {
 			Arrays.asList("hide", "hides", "hiding", "hidden"),
 			null,
 			ConversationStates.ATTENDING,
-			"He hinted at a secret laboratory that he had built. Something about a hidden doorway.",
-			null);
+			null,
+			new MultipleActions(
+				new SayTextAction(
+					"He hinted at a secret laboratory that he had built. Something about a hidden doorway."
+					+ " Did I mention how delicious the #pears are that he brings?"),
+				new NPCEmoteAction("licks his lips", false)
+				)
+			);
 
 		hintNPC5.add(
 			ConversationStates.ATTENDING,

@@ -18,10 +18,14 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -35,6 +39,7 @@ import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.quests.antivenom_ring.ApothecaryStage;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
+import marauroa.common.game.RPEvent;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -171,7 +176,20 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 			+ " He hasn't told me where, but he does bring the most delicious #pears when he visits.",
 			getReply(npc));
 		en.step(player, "hide");
-		assertEquals("He hinted at a secret laboratory that he had built. Something about a hidden doorway.", getReply(npc));
+
+		final List<String> replies = new ArrayList<>();
+		for (final RPEvent event: npc.events()) {
+			if (event.getName().equals(Events.PUBLIC_TEXT)) {
+				replies.add(event.get("text"));
+			}
+		}
+
+		assertTrue(Integer.valueOf(2) == replies.size());
+		assertEquals(
+			"He hinted at a secret laboratory that he had built. Something about a hidden doorway."
+			+ " Did I mention how delicious the #pears are that he brings?",
+			replies.get(0));
+		assertEquals("!me licks his lips", replies.get(1));
 		en.step(player, "pears");
 		assertEquals("My friends tell me that pears can be found in Semos's mountains.", getReply(npc));
 	}
