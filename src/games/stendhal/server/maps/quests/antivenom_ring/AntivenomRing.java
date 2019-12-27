@@ -18,6 +18,10 @@ import java.util.List;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.NPCEmoteAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.AbstractQuest;
@@ -94,54 +98,117 @@ public class AntivenomRing extends AbstractQuest {
 	}
 
 	private void prepareHintNPCs() {
-		final SpeakerNPC hintNPC1 = npcs.get("Valo");
-		final SpeakerNPC hintNPC2 = npcs.get("Haizen");
-		final SpeakerNPC hintNPC3 = npcs.get("Ortiv Milquetoast");
+		final SpeakerNPC hintNPC1 = npcs.get("Klaas");
+		final SpeakerNPC hintNPC2 = npcs.get("Julius");
+		final SpeakerNPC hintNPC3 = npcs.get("Valo");
+		final SpeakerNPC hintNPC4 = npcs.get("Haizen");
+		final SpeakerNPC hintNPC5 = npcs.get("Ortiv Milquetoast");
 
-		// Valo is asked about an apothecary
-		hintNPC1.add(ConversationStates.ATTENDING,
-				"apothecary",
-				null,
-				ConversationStates.ATTENDING,
-				"Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was #retreating into the mountains.",
-				null);
+		final List<String> query_phrases = Arrays.asList("apothecary", apothecary, "antivenom");
 
-		hintNPC1.add(ConversationStates.ATTENDING,
+		// TODO: Make sure that this doensn't interfere with any other quest
+
+		/* Klaas */
+
+		hintNPC1.add(
+			ConversationStates.ATTENDING,
+			query_phrases,
+			new QuestCompletedCondition("traps_for_klaas"),
+			ConversationStates.ATTENDING,
+			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
+			+ " There are guards that patrol the city. They see a lot of things that others do not. As around about an"
+			+ " #apothecary.",
+			null);
+
+		/* Julius */
+
+		hintNPC2.add(
+			ConversationStates.ATTENDING,
+			query_phrases,
+			null,
+			ConversationStates.ATTENDING,
+			"I had witnessed #Valo meeting with the old apothecary on many occasions.",
+			null);
+
+		hintNPC2.add(
+			ConversationStates.ATTENDING,
+			"Valo",
+			null,
+			ConversationStates.ATTENDING,
+			"Valo is a healer who researched healing potions with the apothecary. He is usually in the #Church.",
+			null);
+
+		hintNPC2.add(
+			ConversationStates.ATTENDING,
+			"Church",
+			null,
+			ConversationStates.ATTENDING,
+			"I have a #map if you have trouble finding it.... Oh, I guess my map isn't updated with that part"
+			+ " of Ados City. Well, it's south of Town Hall.",
+			null);
+
+		/* Valo */
+
+		hintNPC3.add(
+			ConversationStates.ATTENDING,
+			query_phrases,
+			null,
+			ConversationStates.ATTENDING,
+			null,
+			new MultipleActions(
+				new NPCEmoteAction("scratches his chin", false),
+				new SayTextAction("Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was #retreating into the mountains.")
+				)
+			);
+
+		hintNPC3.add(ConversationStates.ATTENDING,
 				Arrays.asList("retreat", "retreats", "retreating"),
 				null,
 				ConversationStates.ATTENDING,
 				"He's probably hiding. Keep an eye out for hidden entrances.",
 				null);
 
-		// Haizen is asked about an apothecary
-		hintNPC2.add(ConversationStates.ATTENDING,
-				"apothecary",
+		/* Haizen */
+
+		hintNPC4.add(ConversationStates.ATTENDING,
+				query_phrases,
 				null,
 				ConversationStates.ATTENDING,
 				"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
 				null);
 
-		hintNPC2.add(ConversationStates.ATTENDING,
+		hintNPC4.add(ConversationStates.ATTENDING,
 				Arrays.asList("hide", "hides", "hiding", "hidden"),
 				null,
 				ConversationStates.ATTENDING,
 				"If I were hiding I would surely do it in a secret room with a hidden entrance.",
 				null);
 
-		// Ortiv Milquetoast is asked about an apothecary
-		hintNPC3.add(ConversationStates.ATTENDING,
-				"apothecary",
-				null,
-				ConversationStates.ATTENDING,
-				"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan. He hasn't told me where, but he does bring the most delicious pears when he visits.",
-				null);
+		/* Ortiv Milquetoast */
 
-		hintNPC3.add(ConversationStates.ATTENDING,
-				Arrays.asList("hide", "hides", "hiding", "hidden"),
-				null,
-				ConversationStates.ATTENDING,
-				"He hinted at a secret laboratory that he had built. Something about a hidden doorway.",
-				null);
+		hintNPC5.add(
+			ConversationStates.ATTENDING,
+			query_phrases,
+			null,
+			ConversationStates.ATTENDING,
+			"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan. He hasn't told me where, but he does bring the most delicious pears when he visits.",
+			null);
+
+		hintNPC5.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("hide", "hides", "hiding", "hidden"),
+			null,
+			ConversationStates.ATTENDING,
+			"He hinted at a secret laboratory that he had built. Something about a hidden doorway.",
+			null);
+
+		hintNPC5.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("pear", "pears"),
+			null,
+			ConversationStates.ATTENDING,
+			"My friends tell me that pears can be found in Semos's mountains.",
+			null);
 	}
 
 	@Override

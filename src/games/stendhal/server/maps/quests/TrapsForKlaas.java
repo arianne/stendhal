@@ -249,15 +249,6 @@ public class TrapsForKlaas extends AbstractQuest {
             "Please hurry! I just found another box of food that's been chewed through.",
             null);
 
-		// Player asks about the apothecary
-		npc.add(
-			ConversationStates.ATTENDING,
-			"apothecary",
-			null,
-			ConversationStates.ATTENDING,
-			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know.",
-			null);
-
 		// Player has lost note
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
