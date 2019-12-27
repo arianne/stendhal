@@ -191,7 +191,8 @@ public class AntivenomRing extends AbstractQuest {
 			query_phrases,
 			null,
 			ConversationStates.ATTENDING,
-			"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan. He hasn't told me where, but he does bring the most delicious pears when he visits.",
+			"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan."
+			+ " He hasn't told me where, but he does bring the most delicious #pears when he visits.",
 			null);
 
 		hintNPC5.add(

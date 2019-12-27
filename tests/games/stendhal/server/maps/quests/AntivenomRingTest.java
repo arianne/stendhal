@@ -163,7 +163,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "apothecary");
 		assertEquals(
-			"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan. He hasn't told me where, but he does bring the most delicious pears when he visits.",
+			"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan."
+			+ " He hasn't told me where, but he does bring the most delicious #pears when he visits.",
 			getReply(npc));
 		en.step(player, "hide");
 		assertEquals("He hinted at a secret laboratory that he had built. Something about a hidden doorway.", getReply(npc));
