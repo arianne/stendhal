@@ -8,9 +8,6 @@ building/wall/
 - int_rock.png
 - int_rock_blue.png
 
-building/window/
-- lighted_window.png
-
 building/stairs/
 - winding.png
 - winding_2.png
