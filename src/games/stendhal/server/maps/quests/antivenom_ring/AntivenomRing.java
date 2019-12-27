@@ -162,7 +162,7 @@ public class AntivenomRing extends AbstractQuest {
 			);
 
 		hintNPC3.add(ConversationStates.ATTENDING,
-				Arrays.asList("retreat", "retreats", "retreating"),
+				Arrays.asList("retreat", "retreats", "retreating", "retreated"),
 				null,
 				ConversationStates.ATTENDING,
 				"He's probably hiding. Keep an eye out for hidden entrances.",
