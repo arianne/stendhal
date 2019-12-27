@@ -28,6 +28,7 @@ plant/
 - small_berried_plant.png
 
 plant/bush/
+- large_coloured.png
 - medium_coloured.png
 
 plant/flower/
