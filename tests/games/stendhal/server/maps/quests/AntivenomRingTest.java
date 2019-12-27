@@ -50,6 +50,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 	private final String questName = "antivenom_ring";
 	private final String subquestName = questName + "_extract";
+	private final String questTrapsKlaas = "traps_for_klaas";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -79,11 +80,15 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 		// initialize quest
 		new AntivenomRing().addToWorld();
+
+		// Traps for Klaas quest needs to be completed for some dialog to work
+		player.setQuest(questTrapsKlaas, 0, "done");
 	}
 
 	@Test
 	public void testQuest() {
 		testEntities();
+		testHintNPCs();
 		testQuestNotActive();
 		testQuestActive();
 		testQuestDone();
@@ -95,6 +100,75 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertNotNull(zoologist);
 		assertNotNull(note);
 		assertNull(note.getInfoString());
+
+		assertEquals("done", player.getQuest(questTrapsKlaas, 0));
+	}
+
+	private void testHintNPCs() {
+		SpeakerNPC npc = getNPC("Klaas");
+		assertNotNull(npc);
+		Engine en = npc.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "apothecary");
+		assertEquals(
+			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
+			+ " There are guards that patrol the city. They see a lot of things that others do not. As around about an"
+			+ " #apothecary.",
+			getReply(npc));
+
+		npc = getNPC("Julius");
+		assertNotNull(npc);
+		en = npc.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "apothecary");
+		assertEquals("I had witnessed #Valo meeting with the old apothecary on many occasions.", getReply(npc));
+		en.step(player, "Valo");
+		assertEquals("Valo is a healer who researched healing potions with the apothecary. He is usually in the #Church.", getReply(npc));
+		en.step(player, "Church");
+		assertEquals(
+			"I have a #map if you have trouble finding it.... Oh, I guess my map isn't updated with that part"
+			+ " of Ados City. Well, it's south of Town Hall.",
+			getReply(npc));
+
+		npc = getNPC("Valo");
+		assertNotNull(npc);
+		en = npc.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "apothecary");
+		assertEquals(
+			"Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was #retreating into the mountains.",
+			getReply(npc));
+		en.step(player, "retreating");
+		assertEquals("He's probably hiding. Keep an eye out for hidden entrances.", getReply(npc));
+
+		npc = getNPC("Haizen");
+		assertNotNull(npc);
+		en = npc.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "apothecary");
+		assertEquals(
+			"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
+			getReply(npc));
+		en.step(player, "hiding");
+		assertEquals("If I were hiding I would surely do it in a secret room with a hidden entrance.", getReply(npc));
+
+		npc = getNPC("Ortiv Milquetoast");
+		assertNotNull(npc);
+		en = npc.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, "apothecary");
+		assertEquals(
+			"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan. He hasn't told me where, but he does bring the most delicious pears when he visits.",
+			getReply(npc));
+		en.step(player, "hide");
+		assertEquals("He hinted at a secret laboratory that he had built. Something about a hidden doorway.", getReply(npc));
+		en.step(player, "pears");
+		assertEquals("My friends tell me that pears can be found in Semos's mountains.", getReply(npc));
 	}
 
 	private void testQuestNotActive() {
