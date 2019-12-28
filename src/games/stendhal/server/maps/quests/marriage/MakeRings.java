@@ -34,7 +34,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-class MakeRings {
+public class MakeRings {
 	private static final int REQUIRED_GOLD = 10;
 
 	private static final int REQUIRED_MONEY = 500;

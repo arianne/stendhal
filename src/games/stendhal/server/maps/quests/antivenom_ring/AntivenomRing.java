@@ -34,7 +34,8 @@ import games.stendhal.server.util.ItemCollection;
  * <ul>
  * <li>Jameson (the retired apothecary)</li>
  * <li>Zoey (zoologist at animal sanctuary)</li>
- * <li>Other NPCs to give hints at location of apothecary's lab: Valo, Haizen, & Ortiv Milquetoast</li>
+ * <li>Ognir (the ring maker)</li>
+ * <li>Other NPCs to give hints at location of apothecary's lab: Klaas, Julius, Valo, Haizen, & Ortiv Milquetoast</li>
  * </ul>
  *
  * STEPS:
@@ -42,15 +43,17 @@ import games.stendhal.server.util.ItemCollection;
  * <li>Complete Traps for Klaas quest to gain entrance into apothecary's lab.</li>
  * <li>Bring note to apothecary to Jameson.</li>
  * <li>As a favor to Klaas, Jameson will help you to strengthen your medicinal ring.</li>
- * <li>Bring Jameson a medicinal ring, cobra venom, 2 mandragora and 5 fairycakes.</li>
- * <li>Jameson infuses the ring.</li>
+ * <li>Bring Jameson a cobra venom, 2 mandragora, & 20 fairycakes.</li>
+ * <li>Jameson mixes an antivenom.</li>
+ * <li>Bring antivenom & medicinal ring to Ognir</li>
+ * <li>Ognir makes the medicinal ring stronger</li>
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li>2000 XP</li>
+ * <li>3000 XP (1000 from Jameson & 2000 from Ognir)</li>
  * <li>antivenom ring</li>
- * <li>Karma: 25???</li>
+ * <li>Karma: 75 (25 from Jameson & 50 from Ognir)</li>
  * </ul>
  *
  * REPETITIONS:
@@ -68,6 +71,7 @@ public class AntivenomRing extends AbstractQuest {
 	// NPCs involved in quest
 	private final static String apothecary = "Jameson";
 	private final static String zoologist = "Zoey";
+	private final static String ringmaker = "Ognir";
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -242,6 +246,7 @@ public class AntivenomRing extends AbstractQuest {
 		prepareHintNPCs();
 		new ApothecaryStage(apothecary, QUEST_SLOT).addToWorld();
 		new ZoologistStage(zoologist, QUEST_SLOT).addToWorld();
+		new RingMakerStage(ringmaker, QUEST_SLOT).addToWorld();
 	}
 
 	@Override

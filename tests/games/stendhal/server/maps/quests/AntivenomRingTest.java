@@ -40,11 +40,14 @@ import games.stendhal.server.maps.ados.snake_pit.PurpleCrystalNPC;
 import games.stendhal.server.maps.ados.wall.GreeterSoldierNPC;
 import games.stendhal.server.maps.athor.ship.CargoWorkerNPC;
 import games.stendhal.server.maps.fado.hut.BlueCrystalNPC;
+import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
 import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
 import games.stendhal.server.maps.nalwor.forest.RedCrystalNPC;
 import games.stendhal.server.maps.nalwor.river.PinkCrystalNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.quests.antivenom_ring.ApothecaryStage;
+import games.stendhal.server.maps.quests.marriage.MakeRings;
+import games.stendhal.server.maps.quests.marriage.MarriageQuestInfo;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
 import games.stendhal.server.maps.semos.mountain.YellowCrystalNPC;
@@ -59,6 +62,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 	private SpeakerNPC apothecary;
 	private SpeakerNPC zoologist;
+	private SpeakerNPC ringmaker;
 	private Item note;
 	private final String infostring = "note to apothecary";
 
@@ -81,6 +85,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		final Map<String, ZoneConfigurator> directNPCs = new HashMap<String, ZoneConfigurator>() {{
 			put("Jameson",  new ApothecaryNPC());
 			put("Zoey", new ZoologistNPC());
+			put("Ognir", new RingSmithNPC());
 			put("Klaas", new CargoWorkerNPC());
 			put("Julius", new GreeterSoldierNPC());
 			put("Valo", new HealerNPC());
@@ -123,9 +128,13 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 		apothecary = getNPC("Jameson");
 		zoologist = getNPC("Zoey");
+		ringmaker = getNPC("Ognir");
 		note = ItemTestHelper.createItem("note");
 
 		// initialize other quests related to NPCs to help detect potential conflicts
+		// Ognir
+		new MakeRings(new MarriageQuestInfo()).addToWorld(); // marriage quest
+		new RingMaker().addToWorld();
 		// Klaas
 		new TrapsForKlaas().addToWorld();
 		// Julius
@@ -153,6 +162,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertNotNull(player);
 		assertNotNull(apothecary);
 		assertNotNull(zoologist);
+		assertNotNull(ringmaker);
 		assertNotNull(note);
 		assertNull(note.getInfoString());
 	}
@@ -258,14 +268,26 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 		// ignores players when quest is not active
 		en.step(player, "hi");
-		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("!me yawns", getReply(zoologist));
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		// Ognir
+		en = ringmaker.getEngine();
+
+		// should not reply to requests to make antivenom ring if quest is not active
+		en.step(player, "hi");
+		en.step(player, apothecary.getName());
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hi! Can I #help you?", getReply(ringmaker));
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
 		// Jameson
 		en = apothecary.getEngine();
 
 		en.step(player, "hi");
-		assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("Hello, welcome to my lab.", getReply(apothecary));
 
 		// request quest without note from Klaas
@@ -325,7 +347,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
 
-		final String items_string = "a #'cobra venom', 20 #'fairy cakes', 2 #'roots of mandragora', and a #'medicinal ring'";
+		final String items_string = "a #'cobra venom', 20 #'fairy cakes', and 2 #'roots of mandragora'";
 
 		karma = player.getKarma();
 
@@ -461,12 +483,10 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertTrue(getReply(apothecary).startsWith("Okay. I still need"));
 
-		PlayerTestHelper.equipWithItem(player, "medicinal ring");
 		PlayerTestHelper.equipWithStackableItem(player, "mandragora", 2);
 		PlayerTestHelper.equipWithStackableItem(player, "fairy cake", 20);
 
 		assertTrue(player.isEquipped("cobra venom"));
-		assertTrue(player.isEquipped("medicinal ring"));
 		assertTrue(player.isEquipped("mandragora", 2));
 		assertTrue(player.isEquipped("fairy cake", 20));
 
@@ -476,9 +496,6 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUESTION_2, en.getCurrentState());
 		assertEquals("What did you bring?", getReply(apothecary));
 
-		en.step(player, "medicinal ring");
-		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
-		assertFalse(player.isEquipped("medicinal ring"));
 		en.step(player, "mandragora");
 		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
 		assertFalse(player.isEquipped("mandragora"));
@@ -488,9 +505,9 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "cobra venom");
 		assertFalse(player.isEquipped("cobra venom"));
 
-		assertEquals("Thank you. I'll get to work on infusing your ring right after I enjoy a few of these fairy cakes. Please come back in 3 days.",
+		assertEquals("Thank you. I'll get to work on mixing the antivenom right after I enjoy a few of these fairy cakes. Please come back in 30 minutes.",
 				getReply(apothecary));
-		assertTrue(player.getQuest(questName).startsWith("enhancing"));
+		assertTrue(player.getQuest(questName).startsWith("mixing"));
 
 		// zoologist back to ignoring player
 		en = zoologist.getEngine();
@@ -504,23 +521,95 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		// player returns before ring is ready
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertTrue(getReply(apothecary).startsWith("I have not finished with the ring. Please check back in"));
+		assertTrue(getReply(apothecary).startsWith("I have not finished mixing the antivenom. Please check back in"));
 
-		player.setQuest(questName, "enhancing;0");
+		player.setQuest(questName, 1, "0");
 		int xp = player.getXP();
 		double karma = player.getKarma();
 
 		// player returns after ring is ready
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals("I have finished infusing your ring. Now I'll finish the rest of my fairy cakes if you dont mind.",
+		assertEquals("I have finished mixing the antivenom. Now I'll finish the rest of my fairy cakes if you dont mind.",
 				getReply(apothecary));
 
-		assertEquals(xp + 2000, player.getXP());
+		assertEquals(xp + 1000, player.getXP());
 		assertEquals(karma + 25.0, player.getKarma(), 0);
+		assertTrue(player.isEquipped("antivenom"));
+		assertEquals("antivenom", player.getQuest(questName));
+		assertNull(player.getQuest(subquestName));
+
+		// Ognir
+		en = ringmaker.getEngine();
+
+		// make sure not carrying items
+		player.drop("antivenom", player.getNumberOfEquipped("antivenom"));
+		assertFalse(player.isEquipped("antivenom"));
+		assertFalse(player.isEquipped("medicinal ring"));
+		assertFalse(player.isEquipped("money", 1000));
+
+		final Item antivenom = ItemTestHelper.createItem("antivenom");
+		final Item ring = ItemTestHelper.createItem("medicinal ring");
+		final Item money = ItemTestHelper.createItem("money", 1000);
+
+		final String negativeReply = "I can make a stronger ring for you that resists poison, but I need you to bring me antivenom and a medicinal ring."
+				+ " I also require a fee of 1000 money.";
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hi! Can I #help you?", getReply(ringmaker));
+		en.step(player, apothecary.getName());
+		assertEquals(negativeReply, getReply(ringmaker));
+
+		// player is carrying antivenom only
+		player.equip("bag", antivenom);
+		en.step(player, apothecary.getName());
+		assertEquals(negativeReply, getReply(ringmaker));
+		player.drop(antivenom);
+
+		// player is carrying medicinal ring only
+		player.equip("bag", ring);
+		en.step(player, apothecary.getName());
+		assertEquals(negativeReply, getReply(ringmaker));
+		player.drop(ring);
+
+		// player is carrying money only
+		player.equip("bag", money);
+		en.step(player, apothecary.getName());
+		assertEquals(negativeReply, getReply(ringmaker));
+
+		// player is carrying antivenom, medicinal ring, & enough money
+		player.equip("bag", antivenom);
+		player.equip("bag", ring);
+		en.step(player, apothecary.getName());
+		assertEquals(
+			"I will get to work immediately infusing your ring with the antivenom. Please come back in 3"
+			+ " days. And be sure to ask for your #'antivenom ring'.",
+			getReply(ringmaker));
+
+		assertEquals("fusing", player.getQuest(questName, 0));
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertFalse(player.isEquipped("antivenom"));
+		assertFalse(player.isEquipped("medicinal ring"));
+		assertFalse(player.isEquipped("money", 1000));
+
+		// player returns before ring is done
+		en.step(player, "hi");
+		en.step(player, apothecary.getName());
+		assertTrue(getReply(ringmaker).startsWith("Your antivenom ring is not ready. Please come back in"));
+
+		player.setQuest(questName, 1, "0");
+		xp = player.getXP();
+		karma = player.getKarma();
+
+		// player returns after ring is done
+		en.step(player, apothecary.getName());
+		assertEquals("Your antivenom ring is ready.", getReply(ringmaker));
+
+		assertEquals(xp + 2000, player.getXP());
+		assertEquals(karma + 50.0, player.getKarma(), 0);
 		assertTrue(player.isEquipped("antivenom ring"));
 		assertEquals("done", player.getQuest(questName));
-		assertNull(player.getQuest(subquestName));
 	}
 
 	private void testQuestDone() {
@@ -529,6 +618,12 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("!me yawns", getReply(zoologist));
+
+		en = ringmaker.getEngine();
+
+		en.step(player, "hi");
+		en.step(player, apothecary.getName());
+		assertEquals("Hi! Can I #help you?", getReply(ringmaker));
 
 		en = apothecary.getEngine();
 
@@ -544,7 +639,5 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "quest");
 		en.step(player, "no");
 		assertEquals("Oh, that's too bad.", getReply(apothecary));
-
-		en.setCurrentState(ConversationStates.IDLE);
 	}
 }

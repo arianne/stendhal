@@ -14,7 +14,7 @@ package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.server.entity.player.Player;
 
-class MarriageQuestInfo {
+public class MarriageQuestInfo {
 	private static final String QUEST_SLOT = "marriage";
 
 	/**

@@ -58,7 +58,7 @@ public class ZoologistNPC implements ZoneConfigurator {
 					ConversationPhrases.GREETING_MESSAGES,
 					new OrCondition(
 							new NotCondition(new QuestActiveCondition("antivenom_ring")),
-							new QuestStateStartsWithCondition("antivenom_ring", "enhancing")),
+							new QuestStateStartsWithCondition("antivenom_ring", "mixing")),
 					ConversationStates.IDLE,
 					null,
 					new MultipleActions(

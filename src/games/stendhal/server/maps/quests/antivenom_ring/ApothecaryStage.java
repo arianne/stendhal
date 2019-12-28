@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -52,10 +51,13 @@ public class ApothecaryStage extends AVRStage {
 	private static final String NOTE_INFOSTRING = "note to apothecary";
 
 	/* items taken to apothecary to create antivenom */
-	private static final String MIX_ITEMS = "medicinal ring=1;cobra venom=1;mandragora=2;fairy cake=20";
-	private static final List<String> MIX_NAMES = Arrays.asList("medicinal ring", "cobra venom", "mandragora", "fairy cake");
+	private static final String MIX_ITEMS = "cobra venom=1;mandragora=2;fairy cake=20";
+	private static final List<String> MIX_NAMES = Arrays.asList("cobra venom", "mandragora", "fairy cake");
 
-	private static final int FUSE_TIME = MathHelper.MINUTES_IN_ONE_DAY * 3;
+	// time required to mix the antivenom
+	private static final int MIX_TIME_MINUTES = 30;
+
+	private static final String QUEST_STATE_NAME = "mixing";
 
 	public ApothecaryStage(final String npcName, final String questName) {
 		super(questName);
@@ -71,7 +73,7 @@ public class ApothecaryStage extends AVRStage {
 	public void addToWorld() {
 		addRequestQuestDialogue();
 		addGatheringItemsDialogue();
-		addBusyEnhancingDialogue();
+		addBusyMixingDialogue();
 		addQuestDoneDialogue();
 		addGeneralResponsesDialogue();
 	}
@@ -163,7 +165,8 @@ public class ApothecaryStage extends AVRStage {
 	private void addGatheringItemsDialogue() {
 		final ChatCondition gatheringStateCondition = new AndCondition(
 				new QuestActiveCondition(questName),
-				new NotCondition(new QuestStateStartsWithCondition(questName, "enhancing;")));
+				new NotCondition(new QuestStateStartsWithCondition(questName, QUEST_STATE_NAME)),
+				new NotCondition(new QuestStateStartsWithCondition(questName, RingMakerStage.QUEST_STATE_NAME)));
 
 		// Player asks for quest after it is started
 		apothecary.add(ConversationStates.ATTENDING,
@@ -232,23 +235,6 @@ public class ApothecaryStage extends AVRStage {
 				null,
 				new SayRequiredItemsFromCollectionAction(questName, "Okay. I still need [items]", false));
 
-/*		// player says he didn't bring any items (says no)
-		apothecary.add(ConversationStates.ATTENDING,
-				ConversationPhrases.NO_MESSAGES,
-				new QuestActiveCondition(questName),
-				ConversationStates.IDLE,
-				"Ok. Let me know when you have found something.",
-				null);
-
-		// player says he didn't bring any items to different question
-		apothecary.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.NO_MESSAGES,
-				new QuestActiveCondition(questName),
-				ConversationStates.IDLE,
-				"Ok. Let me know when you have found something.",
-				null);
-		*/
-
 		// player offers item that isn't in the list.
 		apothecary.add(ConversationStates.QUESTION_2, "",
 			new AndCondition(
@@ -258,9 +244,9 @@ public class ApothecaryStage extends AVRStage {
 			"I don't believe I asked for that.", null);
 
 		ChatAction mixAction = new MultipleActions (
-		new SetQuestAction(questName, "enhancing;" + Long.toString(System.currentTimeMillis())),
-		new SayTextAction("Thank you. I'll get to work on infusing your ring right after I enjoy a few of these fairy cakes. Please come back in "
-				+ Integer.toString(FUSE_TIME / MathHelper.MINUTES_IN_ONE_DAY) + " days.")
+		new SetQuestAction(questName, QUEST_STATE_NAME + ";" + Long.toString(System.currentTimeMillis())),
+		new SayTextAction("Thank you. I'll get to work on mixing the antivenom right after I enjoy a few of these fairy cakes. Please come back in "
+				+ Integer.toString(MIX_TIME_MINUTES) + " minutes.")
 		);
 
 		/* add triggers for the item names */
@@ -278,36 +264,39 @@ public class ApothecaryStage extends AVRStage {
 							mixAction,
 							ConversationStates.IDLE));
 		}
+
+		// TODO: add response for state "antivenom" but player has not gone to ringmaker yet
 	}
 
 
-	private void addBusyEnhancingDialogue() {
+	private void addBusyMixingDialogue() {
 		// Returned too early; still working
 		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
-						new QuestStateStartsWithCondition(questName, "enhancing;"),
-						new NotCondition(new TimePassedCondition(questName, 1, FUSE_TIME))),
+						new QuestStateStartsWithCondition(questName, QUEST_STATE_NAME),
+						new NotCondition(new TimePassedCondition(questName, 1, MIX_TIME_MINUTES))),
 				ConversationStates.IDLE,
 				null,
-				new SayTimeRemainingAction(questName, 1, FUSE_TIME, "I have not finished with the ring. Please check back in "));
+				new SayTimeRemainingAction(questName, 1, MIX_TIME_MINUTES, "I have not finished mixing the antivenom. Please check back in "));
 
 		final List<ChatAction> mixReward = new LinkedList<ChatAction>();
-		mixReward.add(new IncreaseXPAction(2000));
+		mixReward.add(new IncreaseXPAction(1000));
 		mixReward.add(new IncreaseKarmaAction(25.0));
-		mixReward.add(new EquipItemAction("antivenom ring", 1, true));
-		mixReward.add(new SetQuestAction(questName, "done"));
+		mixReward.add(new EquipItemAction("antivenom", 1, true));
+		mixReward.add(new SetQuestAction(questName, "antivenom"));
 		mixReward.add(new SetQuestAction(questName + "_extract", null)); // clear sub-quest slot
 
+		// FIXME: if player loses antivenom, quest cannot be completed
 		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
-						new QuestInStateCondition(questName, 0, "enhancing"),
-						new TimePassedCondition(questName, 1, FUSE_TIME)
+						new QuestInStateCondition(questName, 0, QUEST_STATE_NAME),
+						new TimePassedCondition(questName, 1, MIX_TIME_MINUTES)
 				),
 			ConversationStates.IDLE,
-			"I have finished infusing your ring. Now I'll finish the rest of my fairy cakes if you dont mind.",
+			"I have finished mixing the antivenom. Now I'll finish the rest of my fairy cakes if you dont mind.",
 			new MultipleActions(mixReward));
 	}
 
