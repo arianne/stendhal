@@ -70,6 +70,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private final String subquestName = questName + "_extract";
 	private final String questTrapsKlaas = "traps_for_klaas";
 
+	private final String items_string = "a #'cobra venom', 20 #'fairy cakes', and 2 #'roots of mandragora'";
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -314,7 +316,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "bye");
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
-		assertEquals("That is not a \"yes\" or \"no\" answer. I said, Is that note you are carrying for me?", getReply(apothecary));
+		assertEquals("That is not a #yes or #no answer. I said, Is that note you are carrying for me?", getReply(apothecary));
 
 		en.setCurrentState(ConversationStates.IDLE);
 
@@ -347,8 +349,6 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
 		assertEquals("Oh, a message from Klaas. Is that for me?", getReply(apothecary));
 
-		final String items_string = "a #'cobra venom', 20 #'fairy cakes', and 2 #'roots of mandragora'";
-
 		karma = player.getKarma();
 
 		// player accepts quest
@@ -356,8 +356,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(karma + 5.0, player.getKarma(), 0);
 		assertEquals(ApothecaryStage.getMixItems(), player.getQuest(questName));
-		assertEquals("Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me "
-				+ items_string + ".  Do you have any of those with you?",
+		assertEquals("Klaas has asked me to assist you. I can mix an antivenom that can be infused into a ring to increase its resistance to poison."
+				+ " I need you to bring me " + items_string + ".  Do you have any of those with you?",
 				getReply(apothecary));
 		en.step(player, "no");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
@@ -530,7 +530,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		// player returns after ring is ready
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		assertEquals("I have finished mixing the antivenom. Now I'll finish the rest of my fairy cakes if you dont mind.",
+		assertEquals("I have finished mixing the antivenom. Ognir is a skilled ring smith. He can infuse the antivenom into rings."
+				+ " Now I'll finish the rest of my fairy cakes if you dont mind.",
 				getReply(apothecary));
 
 		assertEquals(xp + 1000, player.getXP());
@@ -539,11 +540,36 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("antivenom", player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
 
+		// player has not yet been to see ring maker
+		en.step(player, "hi");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Have you not been to see the ring maker Ognir?", getReply(apothecary));
+
+		// player lost antivenom
+		player.drop("antivenom", player.getNumberOfEquipped("antivenom"));
+		en.step(player, "hi");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals(
+			"What's this? You have lost the antivenom? I can mix another batch, but I will need you to gather the ingredients again. Do you want me to mix another antivenom?",
+			getReply(apothecary));
+		en.step(player, "no");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("Oh, well, come back to me if you can't find your antivenom.", getReply(apothecary));
+		en.step(player, "hi");
+		en.step(player, "yes");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Okay, I need you to bring me " + items_string + ". Do you have any of those with you?", getReply(apothecary));
+		assertEquals(ApothecaryStage.getMixItems(), player.getQuest(questName));
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		// set quest state to progress with ring maker stage
+		player.setQuest(questName, "antivenom");
+
 		// Ognir
 		en = ringmaker.getEngine();
 
 		// make sure not carrying items
-		player.drop("antivenom", player.getNumberOfEquipped("antivenom"));
 		assertFalse(player.isEquipped("antivenom"));
 		assertFalse(player.isEquipped("medicinal ring"));
 		assertFalse(player.isEquipped("money", 1000));

@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -74,6 +75,7 @@ public class ApothecaryStage extends AVRStage {
 		addRequestQuestDialogue();
 		addGatheringItemsDialogue();
 		addBusyMixingDialogue();
+		addDoneMixingDialogue();
 		addQuestDoneDialogue();
 		addGeneralResponsesDialogue();
 	}
@@ -126,7 +128,8 @@ public class ApothecaryStage extends AVRStage {
 						new IncreaseKarmaAction(5.0),
 						new DropInfostringItemAction("note", NOTE_INFOSTRING),
 						new SayRequiredItemsFromCollectionAction(questName,
-								"Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?",
+								"Klaas has asked me to assist you. I can mix an antivenom that can be infused into a ring to increase its resistance to poison."
+								+ " I need you to bring me [items].  Do you have any of those with you?",
 								false)
 				)
 		);
@@ -134,7 +137,10 @@ public class ApothecaryStage extends AVRStage {
 		// Player accepts quest but dropped note
 		apothecary.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
-				new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING)),
+				new AndCondition(
+					new NotCondition(new QuestInStateCondition(questName, "antivenom")),
+					new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING))
+				),
 				ConversationStates.ATTENDING,
 				"Okay then, I will need you too... wait, where did that note go?",
 				null
@@ -145,7 +151,7 @@ public class ApothecaryStage extends AVRStage {
 				ConversationPhrases.GOODBYE_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"That is not a \"yes\" or \"no\" answer. I said, Is that note you are carrying for me?",
+				"That is not a #yes or #no answer. I said, Is that note you are carrying for me?",
 				null);
 
 		// Player rejects quest
@@ -165,8 +171,9 @@ public class ApothecaryStage extends AVRStage {
 	private void addGatheringItemsDialogue() {
 		final ChatCondition gatheringStateCondition = new AndCondition(
 				new QuestActiveCondition(questName),
-				new NotCondition(new QuestStateStartsWithCondition(questName, QUEST_STATE_NAME)),
-				new NotCondition(new QuestStateStartsWithCondition(questName, RingMakerStage.QUEST_STATE_NAME)));
+				new NotCondition(new QuestInStateCondition(questName, 0, QUEST_STATE_NAME)),
+				new NotCondition(new QuestInStateCondition(questName, 0, RingMakerStage.QUEST_STATE_NAME)),
+				new NotCondition(new QuestInStateCondition(questName, 0, "antivenom")));
 
 		// Player asks for quest after it is started
 		apothecary.add(ConversationStates.ATTENDING,
@@ -264,8 +271,6 @@ public class ApothecaryStage extends AVRStage {
 							mixAction,
 							ConversationStates.IDLE));
 		}
-
-		// TODO: add response for state "antivenom" but player has not gone to ringmaker yet
 	}
 
 
@@ -288,7 +293,6 @@ public class ApothecaryStage extends AVRStage {
 		mixReward.add(new SetQuestAction(questName, "antivenom"));
 		mixReward.add(new SetQuestAction(questName + "_extract", null)); // clear sub-quest slot
 
-		// FIXME: if player loses antivenom, quest cannot be completed
 		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
@@ -296,10 +300,59 @@ public class ApothecaryStage extends AVRStage {
 						new TimePassedCondition(questName, 1, MIX_TIME_MINUTES)
 				),
 			ConversationStates.IDLE,
-			"I have finished mixing the antivenom. Now I'll finish the rest of my fairy cakes if you dont mind.",
+			"I have finished mixing the antivenom. Ognir is a skilled ring smith. He can infuse the antivenom into rings."
+			+ " Now I'll finish the rest of my fairy cakes if you dont mind.",
 			new MultipleActions(mixReward));
 	}
 
+	/**
+	 * Conversation states for NPC after antivenom has been acquired
+	 */
+	private void addDoneMixingDialogue() {
+		final ChatCondition missingAntivenom = new AndCondition(
+				new QuestInStateCondition(questName, 0, "antivenom"),
+				new NotCondition(new PlayerHasItemWithHimCondition("antivenom")));
+
+		apothecary.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+				new QuestInStateCondition(questName, 0, "antivenom"),
+				new PlayerHasItemWithHimCondition("antivenom")
+			),
+			ConversationStates.IDLE,
+			"Have you not been to see the ring maker Ognir?",
+			null);
+
+		// player lost antivenom
+		apothecary.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				missingAntivenom,
+				ConversationStates.QUEST_OFFERED,
+				"What's this? You have lost the antivenom? I can mix another batch, but I will need you to gather the ingredients again. Do you want me to mix another antivenom?",
+				null);
+
+		// NPC offers to mix another vial of antivenom
+
+		// this is so player doesn't lose karma by saying "no"
+		apothecary.add(ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			missingAntivenom,
+			ConversationStates.IDLE,
+			"Oh, well, come back to me if you can't find your antivenom.",
+			null);
+
+		apothecary.add(ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.YES_MESSAGES,
+			missingAntivenom,
+			ConversationStates.ATTENDING,
+			"Okay, I need you to bring me ",
+			new MultipleActions(
+				new SetQuestAction(questName, MIX_ITEMS),
+				new SayRequiredItemsFromCollectionAction(questName,
+					"Okay, I need you to bring me [items]. Do you have any of those with you?",
+					false))
+			);
+	}
 
 	/**
 	 * Conversation states for NPC after quest is completed.

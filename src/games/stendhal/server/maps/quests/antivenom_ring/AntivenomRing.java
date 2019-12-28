@@ -45,7 +45,7 @@ import games.stendhal.server.util.ItemCollection;
  * <li>As a favor to Klaas, Jameson will help you to strengthen your medicinal ring.</li>
  * <li>Bring Jameson a cobra venom, 2 mandragora, & 20 fairycakes.</li>
  * <li>Jameson mixes an antivenom.</li>
- * <li>Bring antivenom & medicinal ring to Ognir</li>
+ * <li>Bring antivenom, medicinal ring, & 1,000 money to Ognir</li>
  * <li>Ognir makes the medicinal ring stronger</li>
  * </ul>
  *
