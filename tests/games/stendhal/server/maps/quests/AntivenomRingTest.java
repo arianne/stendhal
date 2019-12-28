@@ -19,13 +19,16 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.common.constants.Events;
+import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -33,12 +36,18 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
 import games.stendhal.server.maps.ados.church.HealerNPC;
 import games.stendhal.server.maps.ados.magician_house.WizardNPC;
+import games.stendhal.server.maps.ados.snake_pit.PurpleCrystalNPC;
 import games.stendhal.server.maps.ados.wall.GreeterSoldierNPC;
 import games.stendhal.server.maps.athor.ship.CargoWorkerNPC;
+import games.stendhal.server.maps.fado.hut.BlueCrystalNPC;
 import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
+import games.stendhal.server.maps.nalwor.forest.RedCrystalNPC;
+import games.stendhal.server.maps.nalwor.river.PinkCrystalNPC;
 import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
 import games.stendhal.server.maps.quests.antivenom_ring.ApothecaryStage;
 import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
+import games.stendhal.server.maps.semos.bakery.ChefNPC;
+import games.stendhal.server.maps.semos.mountain.YellowCrystalNPC;
 import marauroa.common.game.RPEvent;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
@@ -67,15 +76,48 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	@Before
 	public void setUp() throws Exception {
 		setZoneForPlayer(ZONE_NAME);
-		setNpcNames("Jameson", "Zoey", "Klaas", "Julius", "Valo", "Haizen", "Ortiv Milquetoast");
 
-		addZoneConfigurator(new ApothecaryNPC(), ZONE_NAME);
-		addZoneConfigurator(new ZoologistNPC(), ZONE_NAME);
-		addZoneConfigurator(new CargoWorkerNPC(), ZONE_NAME);
-		addZoneConfigurator(new GreeterSoldierNPC(), ZONE_NAME);
-		addZoneConfigurator(new HealerNPC(), ZONE_NAME);
-		addZoneConfigurator(new WizardNPC(), ZONE_NAME);
-		addZoneConfigurator(new RetiredTeacherNPC(), ZONE_NAME);
+		/* NPCs that are directly associated with Antivenom Ring quest */
+		final Map<String, ZoneConfigurator> directNPCs = new HashMap<String, ZoneConfigurator>() {{
+			put("Jameson",  new ApothecaryNPC());
+			put("Zoey", new ZoologistNPC());
+			put("Klaas", new CargoWorkerNPC());
+			put("Julius", new GreeterSoldierNPC());
+			put("Valo", new HealerNPC());
+			put("Haizen", new WizardNPC());
+			put("Ortiv Milquetoast", new RetiredTeacherNPC());
+		}};
+
+		/* these NPCs are not associated with Antivenom Ring quest, but with quests that could potentially
+		 * conflict.
+		 */
+		final Map<String, ZoneConfigurator> indirectNPCs =  new HashMap<String, ZoneConfigurator>() {{
+				// Emotion Crystals quest (Julius)
+				put("Red Crystal", new RedCrystalNPC());
+				put("Purple Crystal", new PurpleCrystalNPC());
+				put("Yellow Crystal", new YellowCrystalNPC());
+				put("Pink Crystal", new PinkCrystalNPC());
+				put("Blue Crystal", new BlueCrystalNPC());
+				// Pizza Delivery quest (Haizen)
+				put("Leander", new ChefNPC());
+		}};
+
+		List<String> allNPCs = new ArrayList<>();
+		for (final String name: directNPCs.keySet()) {
+			allNPCs.add(name);
+		}
+		for (final String name: indirectNPCs.keySet()) {
+			allNPCs.add(name);
+		}
+
+		setNpcNames(allNPCs.toArray(new String[allNPCs.size()]));
+
+		for (final ZoneConfigurator configurator: directNPCs.values()) {
+			addZoneConfigurator(configurator, ZONE_NAME);
+		}
+		for (final ZoneConfigurator configurator: indirectNPCs.values()) {
+			addZoneConfigurator(configurator, ZONE_NAME);
+		}
 
 		super.setUp();
 
@@ -83,11 +125,19 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		zoologist = getNPC("Zoey");
 		note = ItemTestHelper.createItem("note");
 
-		// initialize quest
-		new AntivenomRing().addToWorld();
+		// initialize other quests related to NPCs to help detect potential conflicts
+		// Klaas
+		new TrapsForKlaas().addToWorld();
+		// Julius
+		new EmotionCrystals().addToWorld();
+		// Haizen
+		new Maze().addToWorld();
+		new PizzaDelivery().addToWorld();
+		// Ortiv Milquetoast
+		new MixtureForOrtiv().addToWorld();
 
-		// Traps for Klaas quest needs to be completed for some dialog to work
-		player.setQuest(questTrapsKlaas, 0, "done");
+		// initialize Antivenom Ring quest
+		new AntivenomRing().addToWorld();
 	}
 
 	@Test
@@ -105,8 +155,6 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertNotNull(zoologist);
 		assertNotNull(note);
 		assertNull(note.getInfoString());
-
-		assertEquals("done", player.getQuest(questTrapsKlaas, 0));
 	}
 
 	private void testHintNPCs() {
@@ -114,13 +162,19 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
 
-		en.step(player, "hi");
+		// Traps for Klaas quest needs to be completed before Klaas will give hints to the apothecary
+		player.setQuest(questTrapsKlaas, 0, "done");
+		// don't say "hi" here because will give us another copy of the note
+		npc.setAttending(player);
+		en.setCurrentState(ConversationStates.ATTENDING);
+		assertTrue(npc.getAttending().equals(player));
 		en.step(player, "apothecary");
 		assertEquals(
 			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
 			+ " There are guards that patrol the city. They see a lot of things that others do not. As around about an"
 			+ " #apothecary.",
 			getReply(npc));
+		player.setQuest(questTrapsKlaas, null);
 
 		npc = getNPC("Julius");
 		assertNotNull(npc);
@@ -197,14 +251,17 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private void testQuestNotActive() {
 		assertNull(player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
+		assertFalse(player.isEquippedWithInfostring("note", infostring));
 
+		// Zoey
 		Engine en = zoologist.getEngine();
 
-		// Zoey ignores players when quest is not active
+		// ignores players when quest is not active
 		en.step(player, "hi");
 		assertEquals(en.getCurrentState(), ConversationStates.IDLE);
 		assertEquals("!me yawns", getReply(zoologist));
 
+		// Jameson
 		en = apothecary.getEngine();
 
 		en.step(player, "hi");
@@ -289,6 +346,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	private void testQuestActive() {
+		assertEquals(ApothecaryStage.getMixItems(), player.getQuest(questName));
+
 		Engine en = zoologist.getEngine();
 
 		// Zoey will now respond to player
