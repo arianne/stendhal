@@ -201,11 +201,11 @@ public class StendhalWebsiteDAO {
 	protected void insertIntoCharStats(final DBTransaction transaction, final Player player) throws SQLException {
 		final String query = "INSERT INTO character_stats"
 			+ " (name, admin, sentence, age, level,"
-			+ " outfit, outfit_colors, xp, money, married, atk, def, hp,"
+			+ " outfit, outfit_colors, outfit_layers, xp, money, married, atk, def, hp,"
 			+ " karma, head, armor, lhand, rhand,"
 			+ " legs, feet, cloak, finger, zone, lastseen)"
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
-			+ " '[outfit]', '[outfit_colors]', '[xp]', '[money]', '[married]',"
+			+ " '[outfit]', '[outfit_colors]', '[outfit_layers]', '[xp]', '[money]', '[married]',"
 			+ " '[atk]', '[atk]', '[hp]', '[karma]', '[head]', '[armor]',"
 			+ " '[lhand]', '[rhand]', '[legs]', '[feet]', '[cloak]', '[finger]',"
 			+ " '[zone]', '[lastseen]')";
