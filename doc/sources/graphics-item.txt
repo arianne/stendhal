@@ -283,7 +283,7 @@ crab_meat.*              Jordan Irwin (AntumDeluge); CC0; https://opengameart.or
 crepesuzette.png         omero; CC BY-SA 3.0; Stendhal
 easter_egg.png           dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 egg.png                  dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
-fairy_cake.png           Katie Russell (kymara); ???; Stendhal
+fairy_cake.png           Katie Russell (kymara); GPL 2.0+; Stendhal
 fishpie.png              kymara?; ???; ???
 garlic.png               Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
 grapes.png               Red Queen?; ???; ??? (committed by Red Queen: f807cc9)
