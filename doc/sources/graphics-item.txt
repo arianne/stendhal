@@ -524,7 +524,7 @@ skull_ring.png      Katie Russell (kymara); GPL 2.0; Stendhal
 
 data/sprites/items/resource/
 
-beeswax.png         laguz?; ???; https://sourceforge.net/p/arianne/patches/327/
+beeswax.png         Jan Helebrant; CC0; https://freesvg.org/beekeeper-by-juhele
 candle.png          laguz?; ???; https://sourceforge.net/p/arianne/patches/327/
 cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
 coal.png            7Soul1; CC0; https://opengameart.org/node/39455
