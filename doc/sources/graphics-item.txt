@@ -305,7 +305,7 @@ perch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 piesmall.png             Katie Russell (kymara); GPL 2.0; Stendhal
 pineapple.png            nicubunu; CC0; https://openclipart.org/detail/12995
 pizza.png                Alex Jackson (PancInteractive); CC BY 3.0; https://opengameart.org/node/22243
-pomegranate.png          Bluelads4?; ???; ???
+pomegranate.png          Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://commons.wikimedia.org/wiki/File:Afghan_pomegranate_Kandahar.jpg
 porcini.png              Daniel Herding (mort); GPL 2.0; Stendhal; Needs verified
 red-lionfish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
