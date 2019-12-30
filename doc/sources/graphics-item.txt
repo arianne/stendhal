@@ -313,7 +313,7 @@ roach.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 salad.png                  Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs verified
 sandwich.png               Katie Russell (kymara); GPL 2.0; Stendhal
 sausage.png                barbanegra?; ???; ??? (committed by kymara: 156d8af)
-sausage_on_bun.png         tigertoes; ???; ??? artwork done by kiheru using the sausage.png Committed by tigertoes
+sausage_on_bun.png         thekingphoenix; CC0; https://opengameart.org/node/77345
 small_easter_egg.png       dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 spinach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 spotted_egg.png            dStulle, Jordan Irwin (AntumDeluge); CC0; Stendhal, http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
