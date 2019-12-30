@@ -226,7 +226,7 @@ love_potion.png                Groundhug McHampster (h4mt4r0), Katie Russell (ky
 mana.png                       Groundhug McHampster (h4mt4r0), Red Queen; GPL 2.0+; Stendhal
 mega_poison.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 mega_potion.png                Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
-milk.png                       Katie Russell (kymara)?; ???; ???
+milk.png                       OCAL, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://freesvg.org/milk-in-bottle-vector-image
 minor_potion.png               Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/280/
 pina_colada.png                Katie Russell (kymara)?
 pina_colada2.png               nicubunu, Bluelads4; GPL 2.0+; Based on CC0 image: https://openclipart.org/detail/12995
