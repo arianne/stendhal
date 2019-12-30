@@ -675,7 +675,7 @@ knife.png                    7Soul1; CC0; https://opengameart.org/node/39455
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-orc_sword.png                Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+orc_sword.png                Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 orcish_sword.png             bleutailfly, Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 scimitar.png                 David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 short_sword.png              David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
