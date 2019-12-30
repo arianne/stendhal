@@ -662,6 +662,7 @@ dark_dagger.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.
 demon_fire_sword.png         durkham, Katie Russell (kymara); GPL 2.0+; Stendhal
 elvish_sword.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 fire_sword.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+golden_blade.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 golden_orc_sword.png         Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
 great_sword.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 hell_dagger.png              Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
@@ -671,7 +672,6 @@ katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.
 kilij.png                    durkham; GPL 2.0; Stendhal
 knife.png                    7Soul1; CC0; https://opengameart.org/node/39455
 [l|r]_hand_sword.png         LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/11142
-magic_dagger.png             David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 obsidian_knife.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/

@@ -326,7 +326,7 @@
   </item>
 
   <item name="golden blade">
-    <type class="sword" subclass="magic_dagger" tileid="-1"/>
+    <type class="sword" subclass="golden_blade" tileid="-1"/>
     <description>You see the rare and precious golden blade. It can steal life from those you stab with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
