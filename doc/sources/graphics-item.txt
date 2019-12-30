@@ -358,7 +358,7 @@ salad_grower.png            Nadine Schlonies (dine); GPL 2.0; Stendhal (based on
 sclaria_grower.png          ???; ???; ??? (committed by kiheru: c058ed6)
 spinach_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-tomato_grower.png           ???; ???; ??? (committed by kiheru: bd8d626)
+tomato_grower.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 watermelon_grower.png       Red Queen?, thekingphoenix; ???; https://opengameart.org/node/77345 (leaves' author unverified, committed by Red Queen: a243290)
 wood_grower.png             Katie Russell (kymara); GPL 2.0; Stendhal
 zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
