@@ -266,7 +266,7 @@ cauliflower.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cheese.png                 thekingphoenix; CC0; https://opengameart.org/node/77345
 cheese_sausage_on_bun.png  tigertoes; ???; ??? artwork done by kiheru using cheesesausage .png submitted by tigertoes
 cheesecake.png             barbanegra?; ???; ??? (committed by kymara: 156d8af)
-cheesesausage.png          barbanegra?; ???; ??? (committed by kymara: 156d8af)
+cheesesausage.*            thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 cherry.png                 Vesa Vanhatupa (Master484); CC0; https://opengameart.org/node/20467
 cherrypie.png              omero; CC BY-SA 3.0; Stendhal
 chicken.png                Michael Williams (BizmasterStudios); CC BY 4.0; https://opengameart.org/node/78777
