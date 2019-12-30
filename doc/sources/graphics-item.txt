@@ -525,7 +525,7 @@ skull_ring.png      Katie Russell (kymara); GPL 2.0; Stendhal
 data/sprites/items/resource/
 
 beeswax.png         Jan Helebrant; CC0; https://freesvg.org/beekeeper-by-juhele
-candle.png          laguz?; ???; https://sourceforge.net/p/arianne/patches/327/
+candle.*            liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/2658
 cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
 coal.png            7Soul1; CC0; https://opengameart.org/node/39455
 egg.png             barbanegra?; ???; ??? (duplicate of items/food/egg.png, committed by Miguel: 2a54cb4)
