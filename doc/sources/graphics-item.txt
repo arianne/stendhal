@@ -265,7 +265,6 @@ carrot.png               Belohlavek; CC0; https://opengameart.org/node/12830
 cauliflower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cheese.png               thekingphoenix; CC0; https://opengameart.org/node/77345
 cheese_sausage_on_bun.*  thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
-cheesecake.png           barbanegra?; ???; ??? (committed by kymara: 156d8af)
 cheesesausage.*          thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 cherry.png               Vesa Vanhatupa (Master484); CC0; https://opengameart.org/node/20467
 cherrypie.png            omero; CC BY-SA 3.0; Stendhal
