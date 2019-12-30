@@ -8,3 +8,6 @@ jewellelry/
 
 shield/
 - lion_clan_shield.png
+
+sword/
+- magic_dagger.png
