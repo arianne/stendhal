@@ -326,7 +326,7 @@ trout_smoked.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tuna_sandwich.png        Katie Russell (kymara); GPL 2.0; Stendhal
 unknown_fish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png         tigertoes; CC BY-SA 3.0; Stendhal
-watermelon.png           Red Queen?; ???; ??? (committed by Red Queen: 6b40947)
+watermelon.png           thekingphoenix; CC0; https://opengameart.org/node/77345
 
 data/sprites/items/food/apple_special/
 
