@@ -1720,9 +1720,9 @@
 		</equipable>
 	</item>
 
-	<item name="lolipop">
-		<type class="food" subclass="lolipop" tileid="-1"/>
-		<description>You see a lolipop.</description>
+	<item name="lollipop">
+		<type class="food" subclass="lollipop" tileid="-1"/>
+		<description>You see a lollipop.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<amount value="90"/>
