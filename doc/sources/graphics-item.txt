@@ -556,7 +556,7 @@ antipoison_rings.xcf.bz2  Jordan Irwin (AntumDeluge); OGA BY 3.0; https://openga
 antitoxin_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 antivenom_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
 aquamarine-ring.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-emerald-ring.png          kymara?, kiheru?; ???; ??? (based on gold-ring.png/aquamarine-ring.png? combined from e1a2ad7 & 942df05)
+emerald-ring.png          Kimmo Rundelin (kiheru), Katie Russell (kymara); CC BY-SA 3.0; Stendhal
 engagement_ring.png       Katie Russell (kymara), Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal (based on wedding.png???)
 gold-ring.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 insulated_ring.png        Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/20712
