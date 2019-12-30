@@ -273,7 +273,7 @@ chinese-cabbage.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chocolatebar.png         tigertoes; CC BY-SA 3.0; Stendhal
 chocolateshake.png       tigertoes; CC BY-SA 3.0; Stendhal
 clown-fish.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-coconut.png              megajack64?; ???; ???; Committed by kymara
+coconut.png              Petey21, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://commons.wikimedia.org/wiki/File:Coconut_face.jpg
 cod.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cod_smoked.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
