@@ -163,7 +163,7 @@ mace.png                 David E. Gervais; CC BY 3.0; http://pousse.rapiere.free
 rod_of_the_gm.png        Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/87071
 skull_staff.*            Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/87071
 staff.png                Anders Asplund (Danter); GPL 2.0; Stendhal
-ugmash.png               7Soul1; CC0; https://opengameart.org/node/39455
+ugmash.png               Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 vulcano_hammer.png       David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; re-worked grand_warhammer
 wizard_staff.png         Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 
@@ -287,7 +287,7 @@ fairy_cake.png           Katie Russell (kymara); GPL 2.0+; Stendhal
 fishpie.png              kymara?; ???; ???
 garlic.png               Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
 grapes.png               Jean-Victor Balin, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-grilled_steak.png        Bluelads4?; ???; ???
+grilled_steak.png        Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 ham.png                  David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 ham_smoked.png           David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 hamsausage.png           thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
@@ -526,7 +526,7 @@ data/sprites/items/resource/
 beeswax.png         Jan Helebrant; CC0; https://freesvg.org/beekeeper-by-juhele
 candle.*            liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://openclipart.org/detail/2658
 cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
-coal.png            7Soul1; CC0; https://opengameart.org/node/39455
+coal.png            Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 egg.png             dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg (duplicate of items/food/egg.png)
 flour.png           Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal
 golden_egg.png      dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
@@ -596,7 +596,7 @@ purple.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 rainbow_beans.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red.png               Anders Asplund (Danter); GPL 2.0; Stendhal
 smile.png             Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-summon.png            7Soul1, Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869, https://opengameart.org/node/39455
+summon.png            Henrique Lazarini (7Soul1), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869, https://opengameart.org/node/39455
 summon_pet.png        Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 twilightmoss.png      tigertoes; CC BY-SA 3.0; Stendhal
 yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
@@ -666,7 +666,7 @@ ice_sword.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.
 imperator_sword.png          Shaffan, Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/70367
 katana.png                   Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 kilij.png                    durkham; GPL 2.0; Stendhal
-knife.png                    7Soul1; CC0; https://opengameart.org/node/39455
+knife.png                    Henrique Lazarini (7Soul1); CC0; https://opengameart.org/node/39455
 [l|r]_hand_sword.png         LordNeo, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/11142
 magic_sword.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 nihonto.png                  Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
