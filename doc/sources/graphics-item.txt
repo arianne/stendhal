@@ -286,7 +286,7 @@ egg.png                  dStulle; CC0; http://openclipart.org/detail/6695, https
 fairy_cake.png           Katie Russell (kymara); GPL 2.0+; Stendhal
 fishpie.png              kymara?; ???; ???
 garlic.png               Kimmo Rundelin (kiheru), Storyteller; CC BY-SA 3.0; Stendhal
-grapes.png               Red Queen?; ???; ??? (committed by Red Queen: f807cc9)
+grapes.png               Jean-Victor Balin, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 grilled_steak.png        Bluelads4?; ???; ???
 ham.png                  David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
 ham_smoked.png           David E. Gervais; CC BY 3.0; https://opengameart.org/node/6622, http://pousse.rapiere.free.fr/tome/
