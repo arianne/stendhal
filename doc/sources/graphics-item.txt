@@ -605,14 +605,12 @@ yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 data/sprites/items/shield/
 
 black_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-bluetowershield.png           barbanegra?; ???; ??? (committed by kymara: 156d8af)
 blue_shield.png               bleutailfly; OGA BY 3.0; Stendhal
 buckler.png                   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_shield.png              Cethiel; CC0; https://opengameart.org/node/95987
 crown_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 elvish_shield.png             Cethiel; CC0; https://opengameart.org/node/95987
 enhanced_lion_shield.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-goldentowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 golden_shield.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 green_dragon_shield.*         Kimmo Rundelin (kiheru), Hernandack, Jordan (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/91222
 lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
@@ -623,7 +621,6 @@ mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; from OGA Heathe
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
 shadow_shield.png             Hernandack; CC0; https://opengameart.org/node/91222
-silvertowershield.png         barbanegra?; ???; ??? (committed by kymara: 156d8af)
 skull_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 studded_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 unicorn_shield.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
