@@ -282,7 +282,7 @@ corn.*                     ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; St
 courgette.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*                Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
 crepesuzette.png           omero; CC BY-SA 3.0; Stendhal
-easter_egg.png             Katie Russell (kymara); GPL 2.0; Stendhal
+easter_egg.png             Katie Russell (kymara), ???; ???; Stendhal (appears to be based on resource/mythical_egg.png)
 egg.png                    dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 fairy_cake.png             Katie Russell (kymara); ???; Stendhal
 fishpie.png                kymara?; ???; ???
@@ -314,9 +314,9 @@ salad.png                  Nadine Schlonies (dine); GPL 2.0; Stendhal; Needs ver
 sandwich.png               Katie Russell (kymara); GPL 2.0; Stendhal
 sausage.png                barbanegra?; ???; ??? (committed by kymara: 156d8af)
 sausage_on_bun.png         tigertoes; ???; ??? artwork done by kiheru using the sausage.png Committed by tigertoes
-small_easter_egg.png       kymara?; ???; ???; Based on items/food/egg.png?
+small_easter_egg.png       dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 spinach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spotted_egg.png            barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
+spotted_egg.png            dStulle, Jordan Irwin (AntumDeluge); CC0; Stendhal, http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 sugar.png                  ScratchIO; CC0; https://opengameart.org/node/99798
 surgeonfish.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool.png              Daniel Herding (mort); GPL 2.0; Stendhal
@@ -530,11 +530,11 @@ cloth.png           Nadine Schlonies (dine); GPL 2.0; Stendhal
 coal.png            7Soul1; CC0; https://opengameart.org/node/39455
 egg.png             dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg (duplicate of items/food/egg.png)
 flour.png           Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal
-golden_egg.png      barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
+golden_egg.png      dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 gold_bar.png        Daniel Herding (mort), Nadine Schlonies (dine); GPL 2.0; Stendhal (based on iron.png)
 gold_ore.png        Nadine Schlonies (dine); GPL 2.0; Stendhal
 grain.png           Daniel Herding (mort); GPL 2.0; Stendhal
-green_egg.png       barbanegra?; ???; ??? (committed by Miguel: 2a54cb4)
+green_egg.png       dStulle; CC0; http://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 horsehair.png       ???; ???; ??? (committed by kymara)
 iron.png            Daniel Herding (mort); GPL 2.0; Stendhal
 iron_ore.png        Daniel Herding (mort); GPL 2.0; Stendhal
