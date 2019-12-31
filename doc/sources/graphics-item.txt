@@ -380,7 +380,7 @@ liberty_helmet.png          ???; ???; ??? (committed by Kymara: 6d98377)
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
-red_helmet.png              ???; ???; ??? (committed by Kymara: a799898)
+red_helmet.png              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 robins_hat.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 shadow_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ committed by Miguel: 3e5e746)
 studded_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
