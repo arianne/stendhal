@@ -575,23 +575,23 @@ red_scent.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tom
 
 data/sprites/items/scroll/
 
-ados.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-balloon.png           bleutailfly; OGA BY 3.0; Stendhal
-blank_pet_scroll.png  Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-deniran.png           Anders Asplund (Danter), ???; ???; ???
-empty.png             Anders Asplund (Danter); GPL 2.0; Stendhal
-fado.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-home.png              Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
-invitation.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-kalavan.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-kirdneh.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-marked.png            Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
-nalwor.png            Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-ornament.png          ???; ???; ???
-rainbow_beans.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-summon.png            Henrique Lazarini (7Soul1), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869, https://opengameart.org/node/39455
-summon_pet.png        Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-twilightmoss.png      tigertoes; CC BY-SA 3.0; Stendhal
+ados.*              Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+balloon.png         bleutailfly; OGA BY 3.0; Stendhal
+blank_pet_scroll.*  Kimmo Rundelin (kiheru), bluecarrot16; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/69399
+deniran.*           Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal, https://opengameart.org/node/79098
+empty.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+fado.*              Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+home.*              Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+invitation.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+kalavan.*           Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+kirdneh.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+marked.*            Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+nalwor.*            Kimmo Rundelin (kiheru), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; Stendhal
+ornament.png        ???; ???; ???
+rainbow_beans.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+summon.*            Henrique Lazarini (7Soul1), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869, https://opengameart.org/node/39455
+summon_pet.*        Kimmo Rundelin (kiheru), triceratops; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/55254
+twilightmoss.png    tigertoes; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/shield/
 
