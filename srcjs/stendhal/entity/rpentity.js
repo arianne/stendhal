@@ -235,7 +235,7 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 		this.drawCombat(ctx);
 		var filename;
-		if (typeof(this["outfit"]) != "undefined") {
+		if (typeof(this["outfit"]) != "undefined" || typeof(this["outfit_ext"]) != "undefined") {
 			this.drawMultipartOutfit(ctx);
 		} else {
 			filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
