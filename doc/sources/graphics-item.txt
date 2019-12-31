@@ -376,7 +376,7 @@ golden_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.f
 golden_horned_barbute.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 horned_helmet.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 leather_helmet.png          David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-liberty_helmet.png          ???; ???; ??? (committed by Kymara: 6d98377)
+liberty_helmet.*            David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; Stendhal, http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 magic_chain_helmet.png      David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 mainio_helmet.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 mithril_helmet.png          janay; CC BY-SA 3.0; Stendhal was submitted by tigertoes
