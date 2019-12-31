@@ -38,6 +38,7 @@
     </ai>
   </creature>
 
+<!-- disabled
   <creature name="tiny scarab">
     <type class="insect" subclass="scarab_tiny" tileid="insect.png:1"/>
     <description></description>
@@ -103,5 +104,6 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+-->
 
 </creatures>

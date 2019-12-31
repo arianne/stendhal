@@ -160,6 +160,7 @@
     </ai>
   </creature>
 
+<!-- disabled
   <creature name="poison shroom">
     <type class="mutant" subclass="poison_shroom_small" tileid="mutant.png:6"/>
     <description></description>
@@ -182,6 +183,7 @@
       <profile name="strategy" params=",outfit_changer(hand_to_hand;poison_shroom_small;poison_shroom),"/>
     </ai>
   </creature>
+-->
 
   <creature name="werewolf">
     <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
