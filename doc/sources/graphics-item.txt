@@ -674,10 +674,10 @@ xeno_sword.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.
 
 data/sprites/items/token/
 
-blue_x_token.png            ???; ???; ??? (committed by hendrik, edited by kymara: 55929d1)
+blue_x_token.png            Hendrik Brummermann, Katie Russel (kymara); CC0; Stendhal
 darkyellow_round_token.png  Daniel Herding (mort); GPL 2.0; Stendhal
 flag.png                    ???; ???; ??? (committed by sjtsp2008: f6bb8c6)
-red_o_token.png             ???; ???; ??? (committed by hendrik, edited by kymara: 55929d1)
+red_o_token.png             Hendrik Brummermann, Katie Russel (kymara); CC0; Stendhal
 
 data/sprites/items/tool/
 
