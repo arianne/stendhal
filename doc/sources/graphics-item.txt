@@ -398,7 +398,7 @@ sclaria.png        ???; ???; ??? (committed by danter: 83339fc)
 data/sprites/items/jewellery/
 
 blackpearl.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-blackpearlnecklace.png  barbanegra?; ???; ??? (based on pearlnecklace.png, committed by tigertoes: 19c9981)
+blackpearlnecklace.png  sunburn; CC BY 3.0; https://opengameart.org/node/3292
 carbuncle.png           David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 carbuncle_crystal.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 diamond.*               David E. Gervais, Jordan Irwin (AntumDeluge); CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622 (animation created by AntumDeluge)
@@ -408,8 +408,8 @@ greater_carbuncle.png   David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.
 greater_emerald.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 greater_sapphire.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 obsidian.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-pearl.png               barbanegra?; ???; ??? (committed by kymara: 156d8af)
-pearlnecklace.png       barbanegra?; ???; ??? (committed by kymara: 156d8af)
+pearl.png               sunburn; CC BY 3.0; https://opengameart.org/node/3292
+pearlnecklace.png       sunburn; CC BY 3.0; https://opengameart.org/node/3292
 sapphire.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 sapphire_crystal.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
