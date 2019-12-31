@@ -961,7 +961,7 @@ hanging_bows.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 longbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 skull_spear.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spear.png           ???; ???; ??? (committed by Nadine Schlonies: 69d1d33)
+spear.png           Jordan Irwin (AntumDeluge); CC0; Stendhal
 spears.png          Jordan Irwin (AntumDeluge); CC0; Stendhal
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 swords.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
