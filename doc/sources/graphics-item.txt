@@ -577,29 +577,21 @@ data/sprites/items/scroll/
 
 ados.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 balloon.png           bleutailfly; OGA BY 3.0; Stendhal
-black.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 blank_pet_scroll.png  Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-blue.png              Anders Asplund (Danter); GPL 2.0; Stendhal
-cyan.png              Anders Asplund (Danter); GPL 2.0; Stendhal
 deniran.png           Anders Asplund (Danter), ???; ???; ???
 empty.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 fado.png              Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-green.png             Anders Asplund (Danter); GPL 2.0; Stendhal
 home.png              Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
 invitation.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 kalavan.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-key.png               Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 kirdneh.png           Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 marked.png            Anders Asplund (Danter), f4n4t1k3rr; GPL 2.0; Stendhal
 nalwor.png            Anders Asplund (Danter), ???; GPL 2.0; Stendhal
-purple.png            Anders Asplund (Danter); GPL 2.0; Stendhal
+ornament.png          ???; ???; ???
 rainbow_beans.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
-red.png               Anders Asplund (Danter); GPL 2.0; Stendhal
-smile.png             Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 summon.png            Henrique Lazarini (7Soul1), Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/82869, https://opengameart.org/node/39455
 summon_pet.png        Anders Asplund (Danter), ???; GPL 2.0; Stendhal
 twilightmoss.png      tigertoes; CC BY-SA 3.0; Stendhal
-yellow.png            Anders Asplund (Danter); GPL 2.0; Stendhal
 
 data/sprites/items/shield/
 
