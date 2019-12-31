@@ -730,7 +730,7 @@ chains.*              Katie Russell (kymara); GPL 2.0+; Stendhal
 suit_of_armor2.png    Daniel Cook; CC BY 3.0; https://opengameart.org/node/11758, http://www.lostgarden.com/2006/07/more-free-game-graphics.html
 sword_rack.png        Katie Russell (kymara); GPL 2.0+; Stendhal (some images from other sources)
 weapons_for_walls.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-weapons_rack.*        Katie Russell (kymara), durkham, David E. Gervais, Dungeon Crawl Stone Soup; ??? (spears from item/weapon/spear.png unverified); Stendhal, https://opengameart.org/node/6622, https://opengameart.org/node/12210
+weapons_rack.*        Katie Russell (kymara), durkham, David E. Gervais, Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); GPL 2.0+; Stendhal, https://opengameart.org/node/6622, https://opengameart.org/node/12210
 
 tiled/tileset/item/banners/
 
