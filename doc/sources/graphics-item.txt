@@ -367,7 +367,7 @@ data/sprites/items/helmet/
 
 aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-blue_helmet.png             kymara?; ???; ??? (committed by kymara: 6ea3692)
+blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 chain_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 chaos_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
