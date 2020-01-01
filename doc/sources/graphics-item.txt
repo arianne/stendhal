@@ -319,7 +319,7 @@ spotted_egg.png          dStulle, Jordan Irwin (AntumDeluge); CC0; Stendhal, htt
 sugar.png                ScratchIO; CC0; https://opengameart.org/node/99798
 surgeonfish.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 toadstool.png            Daniel Herding (mort); GPL 2.0; Stendhal
-tomato.png               ScratchIO; CC0; https://opengameart.org/node/99118
+tomato.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/, https://opengameart.org/node/6622
 trout.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 trout_smoked.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tuna_sandwich.png        Katie Russell (kymara); GPL 2.0; Stendhal
