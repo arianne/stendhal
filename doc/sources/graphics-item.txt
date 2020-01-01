@@ -246,7 +246,7 @@ daisies.png        kymara?; ???; ??? (committed by kymara: 7185046)
 exotic_flower.png  bleutailfly; OGA BY 3.0; Stendhal
 lilia.png          omero?; ???; ??? (committed by kymara: d78af05)
 pansy.png          omero; CC BY-SA 3.0; Stendhal
-rose.png           ???; ???; ??? (committed by kymara: 0fe8b59)
+rose.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://freesvg.org/red-rose-with-thorns
 zantedeschia.png   omero; CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/
