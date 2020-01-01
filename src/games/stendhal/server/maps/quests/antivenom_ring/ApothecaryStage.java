@@ -384,6 +384,14 @@ public class ApothecaryStage extends AVRStage {
 	}
 
 	private void addGeneralResponsesDialogue() {
+		apothecary.addReply(
+				"Klaas",
+				"Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare"
+				+ "#kokuda herb. I got to know Klaas very well as a result.");
+		// XXX: should kokuda be added as required ingredient? would make quest a little more difficult
+		apothecary.addReply(
+				"kokuda",
+				"The kokuda is an herb that can only be found inside #Athor Island's labyrinth.");
 		/*
         // Player asks about required items
 		apothecary.add(ConversationStates.QUESTION_1,
