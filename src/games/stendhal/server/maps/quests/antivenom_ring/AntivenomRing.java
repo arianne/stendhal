@@ -136,10 +136,10 @@ public class AntivenomRing extends AbstractQuest {
 
 		hintNPC2.add(
 			ConversationStates.ATTENDING,
-			"Valo",
+			hintNPC3.getName(),
 			null,
 			ConversationStates.ATTENDING,
-			"Valo is a healer who researched healing potions with the #apothecary. He is usually in the #Church.",
+			hintNPC3.getName() + " is a healer who researched healing potions with the #apothecary. He is usually in the #Church.",
 			null);
 
 		hintNPC2.add(
