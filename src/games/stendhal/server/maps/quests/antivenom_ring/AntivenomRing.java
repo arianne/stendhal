@@ -120,7 +120,7 @@ public class AntivenomRing extends AbstractQuest {
 			new QuestCompletedCondition("traps_for_klaas"),
 			ConversationStates.ATTENDING,
 			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
-			+ " There are guards that patrol the city. They see a lot of things that others do not. As around about an"
+			+ " There are guards that patrol the city. They see many happenings around the area. Ask around about an"
 			+ " #apothecary.",
 			null);
 
@@ -139,7 +139,7 @@ public class AntivenomRing extends AbstractQuest {
 			"Valo",
 			null,
 			ConversationStates.ATTENDING,
-			"Valo is a healer who researched healing potions with the apothecary. He is usually in the #Church.",
+			"Valo is a healer who researched healing potions with the #apothecary. He is usually in the #Church.",
 			null);
 
 		hintNPC2.add(
@@ -182,25 +182,25 @@ public class AntivenomRing extends AbstractQuest {
 		/* Haizen */
 
 		hintNPC4.add(ConversationStates.ATTENDING,
-				query_phrases,
-				null,
-				ConversationStates.ATTENDING,
-				"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
-				null);
+			query_phrases,
+			null,
+			ConversationStates.ATTENDING,
+			"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
+			null);
 
 		hintNPC4.add(ConversationStates.ATTENDING,
-				Arrays.asList("hide", "hides", "hiding", "hidden"),
-				null,
-				ConversationStates.ATTENDING,
-				"If I were hiding I would surely do it in a #'secret room' with a hidden entrance.",
-				null);
+			Arrays.asList("hide", "hides", "hiding", "hidden"),
+			null,
+			ConversationStates.ATTENDING,
+			"If I were hiding, I would surely do it in a #'secret room' with a hidden entrance.",
+			null);
 
 		hintNPC4.add(ConversationStates.ATTENDING,
-				Arrays.asList("secret", "secrets", "secret room", "secret rooms"),
-				null,
-				ConversationStates.ATTENDING,
-				"I'm sorry, I don't have any more information. Perhaps " + hintNPC5.getName() + " would know more.",
-				null);
+			Arrays.asList("secret", "secrets", "secret room", "secret rooms"),
+			null,
+			ConversationStates.ATTENDING,
+			"I'm sorry, I don't have any more information. Perhaps " + hintNPC5.getName() + " would know more.",
+			null);
 
 		/* Ortiv Milquetoast */
 
@@ -232,7 +232,8 @@ public class AntivenomRing extends AbstractQuest {
 			Arrays.asList("pear", "pears"),
 			null,
 			ConversationStates.ATTENDING,
-			"My friends tell me that pears can be found in Semos's mountains.",
+			"My friends tell me that pears can be found in Semos's mountains. If you travel there, please"
+			+ " be sure to bring some back for me.",
 			null);
 	}
 
