@@ -206,7 +206,7 @@ public class AntivenomRing extends AbstractQuest {
 			Arrays.asList("secret", "secrets", "secret room", "secret rooms"),
 			null,
 			ConversationStates.ATTENDING,
-			"I'm sorry, I don't have any more information. Perhaps #" + hintNPC5.getName() + " would know more.",
+			"I'm sorry, I don't have any more information. Perhaps #'" + hintNPC5.getName() + "' would know more.",
 			null);
 
 		hintNPC4.add(ConversationStates.ATTENDING,
