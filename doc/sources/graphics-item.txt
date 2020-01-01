@@ -676,7 +676,7 @@ data/sprites/items/token/
 
 blue_x_token.png            Hendrik Brummermann, Katie Russel (kymara); CC0; Stendhal
 darkyellow_round_token.png  Daniel Herding (mort); GPL 2.0; Stendhal
-flag.png                    ???; ???; ??? (committed by sjtsp2008: f6bb8c6)
+flag.png                    Daniel Herding (mort); GPL 2.0; Stendhal
 red_o_token.png             Hendrik Brummermann, Katie Russel (kymara); CC0; Stendhal
 
 data/sprites/items/tool/
