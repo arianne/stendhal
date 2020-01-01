@@ -75,7 +75,6 @@ pool.*                    ???, Kimmo Rundelin (kiheru); ???; ???
 realworldcafe.png         madmetzger; ???; ???
 rocks.png                 patvanmackelberg; CC0; https://opengameart.org/node/49850
 rocks_2.png               Daniel Cook, Jetrel, Bertram; CC BY 3.0; https://opengameart.org/node/11758
-squares_2.png             (placeholder)
 stone_details.png         bleutailfly; OGA BY 3.0; Stendhal
 swordfish.*               Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79120
 toolset.png               ???; ???; ??? (committed by kymara: 165842e)
@@ -177,7 +176,6 @@ wooden_stairs.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 tiled/tileset/building/wall/
 
-bricked_corners.png              (placeholder)
 bricked_edges.png                Ivan Voirol; CC BY 3.0; https://opengameart.org/node/28390
 dojo_walls.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earthen_3.png                    bleutailfly; OGA BY 3.0; Stendhal
@@ -596,7 +594,6 @@ raised_platform.png       ???; ???; ??? (committed by tigertoes: 3898134)
 raised_platform_blue.png  ???; ???; ??? (committed by tigertoes: 3898134)
 raised_platform_purple.*  ???; ???; ??? (committed by tigertoes: 3898134)
 soft_blue.png             ???; ???; ??? (committed by kiheru: a68087f)
-stonefloor.png            (placeholder) (committed by tigertoes: 64421a9)
 tiles.*                   Kimmo Rundelin (kiheru), Viktor Hahn (Viktor.Hahn@web.de), compmend, Jordan Irwin (AntumDeluge); CC BY-SA 4.0; Stendhal, https://opengameart.org/node/82895, https://opengameart.org/node/100854
 
 tiled/tileset/ground/ladder/
@@ -1060,7 +1057,6 @@ flowering.*            Josh Maines (Tap); CC BY-SA 4.0; https://opengameart.org/
 hedge.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hosta.png              bleutailfly; OGA BY 3.0; Stendhal
 large_brown.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-large_coloured.png     (placeholder) (committed by kymara: 22ef09b)
 large_dead.png         ???; ???; ??? (committed by omero: 94ba573)
 large_green.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 large_wide_dead.png    ???; ???; ??? (committed by omero: 94ba573)
@@ -1093,7 +1089,6 @@ red_blue_clusters.png   Zachariah Husiar (Zabin); CC BY 3.0; https://opengameart
 red_white.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 small_flower_bed_2.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-small_purple_white.png  (placeholder) (committed by kymara: 8413002)
 stone_edge_beds.png     ???; ???; ??? (committed by kymara: 1677b4e, from Mirage tilesets?)
 vines_flowered.png      bleutailfly; OGA BY 3.0; Stendhal
 
@@ -1177,7 +1172,6 @@ tree_golden_large.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_golden_small.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tree_green.png           ???; ???; ??? (committed by Miguel: 12d51cd)
 tree_realistic.png       tiborious?; ???; ??? (committed by Kymara: ded2708)
-tree_with_plants.png     (placeholder) (committed by bleutailfly: ab66b47)
 trees_1.*                Johann C; CC BY-SA 3.0; http://opengameart.org/node/11079; Pouf-Pouf Production http://poufpoufproduction.fr/
 umbrella_thorn.png       Carl Olsson (surt); CC0; http://opengameart.org/node/15082
 
