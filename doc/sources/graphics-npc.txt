@@ -205,7 +205,7 @@ thiefnpc.*                    Svetlana Kushnariova (Cabbit), Fabzy, Jordan Irwin
 timekeepernpc.png             diamonddmgirl; CC0; https://opengameart.org/node/89255
 transparentnpc.png            tigertoes; OGA BY 3.0; Stendhal
 vergernpc.*                   Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-wannabekingnpc.png            CC0 (placeholder)
+wannabekingnpc.png            Svetlana Kushnariova (Cabbit), daimonddmgirl, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/84455, https://opengameart.org/node/72198
 weaponrytradernpc.*           Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://opengameart.org/node/83523
 weaponsellernpc.*             Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 welcomernpc.png               Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/84003
