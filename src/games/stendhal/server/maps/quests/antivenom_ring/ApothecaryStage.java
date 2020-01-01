@@ -407,6 +407,7 @@ public class ApothecaryStage extends AVRStage {
 		apothecary.addReply(
 				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
 				"Heh! This is the ultimate protection against poisoning. Good luck getting one!");
+		*/
 		apothecary.addReply(
 				Arrays.asList("gland", "venom gland", "glands", "venom glands"),
 				"Some #snakes have a gland in which their venom is stored.");
@@ -419,7 +420,6 @@ public class ApothecaryStage extends AVRStage {
 						"root of mandragoras", "roots of mandragoras"),
 				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a"
 					+ "hidden path in the trees. At the end you will find what you are looking for.");
-		*/
 		apothecary.addReply(
 				Arrays.asList("cake", "fairy cake"),
 				"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures"
