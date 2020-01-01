@@ -10,7 +10,6 @@ death_tower.png               ???; ???; ??? (committed by laguz: ac039e9)
 fire_tower.png                ???; ???; ??? (committed by laguz: ac039e9)
 gazebo.*                      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gnome_homes.*                 Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20713
-gnomehome.pspimage            tigertoes; ???; Stendhal
 greenhouse.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_3.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 house_chalet.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
