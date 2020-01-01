@@ -183,7 +183,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "apothecary");
 		assertEquals(
 			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
-			+ " There are guards that patrol the city. They see a lot of things that others do not. As around about an"
+			+ " There are guards that patrol the city. They see many happenings around the area. Ask around about an"
 			+ " #apothecary.",
 			getReply(npc));
 		player.setQuest(questTrapsKlaas, null);
@@ -196,7 +196,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "apothecary");
 		assertEquals("I had witnessed #Valo meeting with the old apothecary on many occasions.", getReply(npc));
 		en.step(player, "Valo");
-		assertEquals("Valo is a healer who researched healing potions with the apothecary. He is usually in the #Church.", getReply(npc));
+		assertEquals("Valo is a healer who researched healing potions with the #apothecary. He is usually in the #Church.", getReply(npc));
 		en.step(player, "Church");
 		assertEquals(
 			"I have a #map if you have trouble finding it.... Oh, I guess my map isn't updated with that part"
@@ -210,12 +210,15 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "apothecary");
 		assertEquals(
-			"Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was #retreating into the mountains.",
+			"Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was"
+			+ " #retreating into the mountains.",
 			getReply(npc));
 		en.step(player, "retreating");
 		assertEquals("He's probably #hiding. Keep an eye out for #hidden entrances.", getReply(npc));
 		en.step(player, "hiding");
-		assertEquals("I'm sorry, I don't have any more information. Perhaps Haizen would know more.", getReply(npc));
+		assertEquals("I'm sorry, I don't have any more information. Perhaps #Haizen would know more.", getReply(npc));
+		en.step(player, "Haizen");
+		assertEquals("Haizen is the Wizard that lives west of here.", getReply(npc));
 
 		npc = getNPC("Haizen");
 		assertNotNull(npc);
@@ -224,12 +227,15 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		en.step(player, "apothecary");
 		assertEquals(
-			"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
+			"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership"
+			+ " there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
 			getReply(npc));
 		en.step(player, "hiding");
-		assertEquals("If I were hiding I would surely do it in a #'secret room' with a hidden entrance.", getReply(npc));
+		assertEquals("If I were hiding, I would surely do it in a #'secret room' with a hidden entrance.", getReply(npc));
 		en.step(player, "secret room");
-		assertEquals("I'm sorry, I don't have any more information. Perhaps Ortiv Milquetoast would know more.", getReply(npc));
+		assertEquals("I'm sorry, I don't have any more information. Perhaps #'Ortiv Milquetoast' would know more.", getReply(npc));
+		en.step(player, "Ortiv Milquetoast");
+		assertEquals("Ortiv Milquetoast is a former instructor in alchemy, retired and living in Kirdneh City.", getReply(npc));
 
 		npc = getNPC("Ortiv Milquetoast");
 		assertNotNull(npc);
@@ -257,7 +263,10 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 			replies.get(0));
 		assertEquals("!me licks his lips", replies.get(1));
 		en.step(player, "pears");
-		assertEquals("My friends tell me that pears can be found in Semos's mountains.", getReply(npc));
+		assertEquals(
+				"My friends tell me that pears can be found in Semos's mountains. If you travel there, please"
+				+ " be sure to bring some back for me.",
+				getReply(npc));
 	}
 
 	private void testQuestNotActive() {
@@ -369,6 +378,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 
 	private void testQuestActive() {
 		assertEquals(ApothecaryStage.getMixItems(), player.getQuest(questName));
+
+		testGeneralResponses();
 
 		Engine en = zoologist.getEngine();
 
@@ -665,5 +676,64 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "quest");
 		en.step(player, "no");
 		assertEquals("Oh, that's too bad.", getReply(apothecary));
+	}
+
+	private void testGeneralResponses() {
+		// general responses from apothecary
+		Engine en = apothecary.getEngine();
+
+		en.step(player, "hi");
+
+		en.step(player, "Klaas");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare"
+			+ "#kokuda herb. I got to know Klaas very well as a result.",
+			getReply(apothecary));
+		en.step(player, "ring");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("There are many types of rings.", getReply(apothecary));
+		en.step(player, "medicinal ring");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Some poisonous creatures carry them.", getReply(apothecary));
+		en.step(player, "antivenom ring");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("If you bring me what I need I may be able to strengthen a #medicinal #ring.", getReply(apothecary));
+		/* this item is not available
+		en.step(player, "antitoxin ring");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Heh! This is the ultimate protection against poisoning. Good luck getting one!", getReply(apothecary));
+		*/
+		en.step(player, "venom gland");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Some #snakes have a gland in which their venom is stored.", getReply(apothecary));
+		en.step(player, "cobra");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"I've heard rumor newly discovered pit full of snakes somewhere in Ados. But I've never"
+			+ "searched for it myself. That kind of work is better left to adventurers.",
+			getReply(apothecary));
+
+		final String mandragoraResponse = "This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a"
+				+ "hidden path in the trees. At the end you will find what you are looking for.";
+
+		en.step(player, "mandragora");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(mandragoraResponse, getReply(apothecary));
+		en.step(player, "root of mandragora");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(mandragoraResponse, getReply(apothecary));
+		en.step(player, "kokuda"); // kokuda is not a required item for quest, but is mentioned in general dialog
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("The kokuda is an herb that can only be found inside #Athor Island's labyrinth.", getReply(apothecary));
+		en.step(player, "fairy cake");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures"
+			+ "could make such angelic food.",
+			getReply(apothecary));
+
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
 }
