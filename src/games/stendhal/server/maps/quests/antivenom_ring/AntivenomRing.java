@@ -176,7 +176,14 @@ public class AntivenomRing extends AbstractQuest {
 			Arrays.asList("hide", "hides", "hidden", "hiding"),
 			null,
 			ConversationStates.ATTENDING,
-			"I'm sorry, I don't have any more information. Perhaps " + hintNPC4.getName() + " would know more.",
+			"I'm sorry, I don't have any more information. Perhaps #" + hintNPC4.getName() + " would know more.",
+			null);
+
+		hintNPC3.add(ConversationStates.ATTENDING,
+			hintNPC4.getName(),
+			null,
+			ConversationStates.ATTENDING,
+			hintNPC4.getName() + " is the Wizard that lives west of here.",
 			null);
 
 		/* Haizen */
@@ -199,7 +206,14 @@ public class AntivenomRing extends AbstractQuest {
 			Arrays.asList("secret", "secrets", "secret room", "secret rooms"),
 			null,
 			ConversationStates.ATTENDING,
-			"I'm sorry, I don't have any more information. Perhaps " + hintNPC5.getName() + " would know more.",
+			"I'm sorry, I don't have any more information. Perhaps #" + hintNPC5.getName() + " would know more.",
+			null);
+
+		hintNPC4.add(ConversationStates.ATTENDING,
+			hintNPC5.getName(),
+			null,
+			ConversationStates.ATTENDING,
+			hintNPC5.getName() + " is a former instructor in alchemy, retired and living in Kirdneh City.",
 			null);
 
 		/* Ortiv Milquetoast */
