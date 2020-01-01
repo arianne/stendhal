@@ -53,7 +53,7 @@
     <drops>
       <item value="money" quantity="[10,40]" probability="100.0"/>
       <item value="potion" quantity="[1,1]" probability="10.5"/>
-      <item value="deadly poison" quantity="[1,1]" probability="5.0"/>
+      <item value="deadly poison" quantity="[1,1]" probability="1.0"/>
       <item value="marbles" quantity="[1,1]" probability="40.0"/>
       <item value="chocolate bar" quantity="[1,2]" probability="30.0"/>
       <item value="assassin dagger" quantity="[1,1]" probability="0.050"/>
@@ -170,7 +170,7 @@
       <item value="black boots" quantity="[1,1]" probability="0.0050"/>
       <item value="assassin dagger" quantity="[1,1]" probability="1.0"/>
       <item value="potion" quantity="[1,1]" probability="10.0"/>
-      <item value="greater poison" quantity="[1,1]" probability="10.0"/>
+      <item value="greater poison" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
