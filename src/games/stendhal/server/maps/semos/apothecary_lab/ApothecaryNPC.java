@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2019 - Stendhal                         *
+ *                    Copyright © 2019 - Stendhal                          *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,47 +39,47 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-	    final SpeakerNPC npc = new SpeakerNPC("Jameson") {
+		final SpeakerNPC npc = new SpeakerNPC("Jameson") {
 
-	        @Override
+			@Override
 			protected void createPath() {
-	            List<Node> nodes=new LinkedList<Node>();
-	            nodes.add(new Node(7,9));
-	            nodes.add(new Node(16,9));
-	            nodes.add(new Node(16,12));
-	            nodes.add(new Node(19,12));
-	            nodes.add(new Node(19,16));
-	            nodes.add(new Node(19,12));
-	            nodes.add(new Node(15,12));
-	            nodes.add(new Node(15,17));
-	            nodes.add(new Node(15,12));
-	            nodes.add(new Node(7,12));
+				List<Node> nodes=new LinkedList<Node>();
+				nodes.add(new Node(7,9));
+				nodes.add(new Node(16,9));
+				nodes.add(new Node(16,12));
+				nodes.add(new Node(19,12));
+				nodes.add(new Node(19,16));
+				nodes.add(new Node(19,12));
+				nodes.add(new Node(15,12));
+				nodes.add(new Node(15,17));
+				nodes.add(new Node(15,12));
+				nodes.add(new Node(7,12));
 				setPath(new FixedPath(nodes, true));
-	        }
+			}
 
-	        @Override
+			@Override
 			protected void createDialog() {
-	            addGreeting("Hello, welcome to my lab.");
-	            addJob("I used to be an #apothecary, but now I have retired.");
-	            addHelp("I'm sorry, but I don't think there is anything I can help you with.");
-	            addOffer("I have nothing to offer.");
-	            addReply("Klaas", "Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare #kokuda herb. I got to know Klaas very well as a result.");
-	            addReply("kokuda", "The kokuda is an herb that can only be found inside #Athor Island's labyrinth.");
-	            addReply("Athor", "You mean you haven't visited Athor? It is a beautiful island. A great place to get away. But stay away from the cannibals' territory. If they invite you for dinner you might never make it home.");
-	            addReply("Apothecary", "I was head researcher of a team that worked for one of Faimouni's most powerful leaders. However this leader became corrupt and demanded that I use my skills to make deadly weapons of war. Anyway, I escaped and have been hiding out here ever since.");
-	            addQuest("I'm sorry, but I don't have anything for you to do at this time.");
-	            addGoodbye("Please keep my lab a secret.");
-	        }
-	    };
+				addGreeting("Hello, welcome to my lab.");
+				addJob("I used to be an #apothecary, but now I have retired.");
+				addHelp("I'm sorry, but I don't think there is anything I can help you with.");
+				addOffer("I have nothing to offer.");
+				addReply("Klaas", "Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare #kokuda herb. I got to know Klaas very well as a result.");
+				addReply("kokuda", "The kokuda is an herb that can only be found inside #Athor Island's labyrinth.");
+				addReply("Athor", "You mean you haven't visited Athor? It is a beautiful island. A great place to get away. But stay away from the cannibals' territory. If they invite you for dinner you might never make it home.");
+				addReply("Apothecary", "I was head researcher of a team that worked for one of Faimouni's most powerful leaders. However this leader became corrupt and demanded that I use my skills to make deadly weapons of war. Anyway, I escaped and have been hiding out here ever since.");
+				addQuest("I'm sorry, but I don't have anything for you to do at this time.");
+				addGoodbye("Please keep my lab a secret.");
+			}
+		};
 
-	    // The NPC sprite from data/sprites/npc/
-	    npc.setEntityClass("apothecarynpc");
-	    // set a description for when a player does 'Look'
-	    npc.setDescription("You see Jameson, he steadily works away.");
-	    // Set the initial position to be the first node on the Path you defined above.
-	    npc.setPosition(7, 9);
-	    npc.initHP(100);
+		// The NPC sprite from data/sprites/npc/
+		npc.setEntityClass("apothecarynpc");
+		// set a description for when a player does 'Look'
+		npc.setDescription("You see Jameson, he steadily works away.");
+		// Set the initial position to be the first node on the Path you defined above.
+		npc.setPosition(7, 9);
+		npc.initHP(100);
 
-	    zone.add(npc);
+		zone.add(npc);
 	}
 }
