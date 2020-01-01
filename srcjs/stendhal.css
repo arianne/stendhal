@@ -240,3 +240,7 @@ span.logi {
 #travellogdescription {
   font-style: italic
 }
+
+#portfolio {
+	display: none;
+}

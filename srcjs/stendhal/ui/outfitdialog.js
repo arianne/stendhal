@@ -4,6 +4,18 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 stendhal.ui = stendhal.ui || {};
 
+
+stendhal.ui.outfitCount = {
+	"hat": 13,
+	"hair": 49,
+	"mask": 9,
+	"eyes": 26,
+	"mouth": 5,
+	"head":  4,
+	"dress": 65,
+	"body": 3
+}
+
 stendhal.ui.OutfitDialog = function() {
 	if (stendhal.ui.OutfitDialog.instance != null) {
 		return;
@@ -472,46 +484,8 @@ stendhal.ui.OutfitDialog = function() {
 		return "" + index;
 	}
 
-	function makeSelector(part, partChanged) {
-		const outfit = marauroa.me["outfit"];
-		let outfitCount;
-		let divider;
-		switch (part) {
-			case "hair":
-				divider = 10000000000;
-				outfitCount = 49;
-				break;
-			case "eyes":
-				divider = 100000000;
-				outfitCount = 26;
-				break;
-			case "mouth":
-				divider = 1000000;
-				outfitCount = 5;
-				break;
-			case "head":
-				divider = 10000;
-				outfitCount = 4;
-				break;
-			case "dress":
-				divider = 100;
-				outfitCount = 65;
-				break;
-			case "body":
-				divider = 1;
-				outfitCount = 3;
-				break;
-			case "hat":
-				divider = 100;
-				outfitCount = 13;
-				break;
-			case "mask":
-				divider = 1;
-				outfitCount = 9;
-				break;
-		}
-		const index = Math.floor(outfit/divider) % 100;
-		const selector = new PartSelector(part, index, outfitCount - 1, partChanged);
+	function makeSelector(part, index, partChanged) {
+		const selector = new PartSelector(part, index, stendhal.ui.outfitCount[part] - 1, partChanged);
 
 		document.getElementById("setoutfitprev" + part).addEventListener("click", function(e) {
 			selector.previous();
@@ -553,14 +527,24 @@ stendhal.ui.OutfitDialog = function() {
 	}
 	stendhal.ui.OutfitDialog.instance = self;
 
-	const hatSelector = makeSelector("hat", partChanged);
-	const hairSelector = makeSelector("hair", partChanged);
-	const maskSelector = makeSelector("mask", partChanged);
-	const eyesSelector = makeSelector("eyes", partChanged);
-	const mouthSelector = makeSelector("mouth", partChanged);
-	const headSelector = makeSelector("head", partChanged);
-	const bodySelector = makeSelector("body", partChanged);
-	const dressSelector = makeSelector("dress", partChanged);
+	
+	const outfit = marauroa.me["outfit_ext"];
+
+	let entries = outfit.split(",");
+	let currentOutfit = {};
+	for (let i = 0; i < entries.length; i++) {
+		 let entry = entries[i].split("=");
+		 currentOutfit[entry[0]] = entry[1];
+	}
+
+	const hatSelector = makeSelector("hat", currentOutfit["hat"], partChanged);
+	const hairSelector = makeSelector("hair", currentOutfit["hair"], partChanged);
+	const maskSelector = makeSelector("mask", currentOutfit["mask"], partChanged);
+	const eyesSelector = makeSelector("eyes", currentOutfit["eyes"], partChanged);
+	const mouthSelector = makeSelector("mouth", currentOutfit["mouth"], partChanged);
+	const headSelector = makeSelector("head", currentOutfit["head"], partChanged);
+	const bodySelector = makeSelector("body", currentOutfit["body"], partChanged);
+	const dressSelector = makeSelector("dress", currentOutfit["dress"], partChanged);
 
 	function initialColorValue(part) {
 		const colors = marauroa.me["outfit_colors"];

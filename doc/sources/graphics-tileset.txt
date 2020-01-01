@@ -730,7 +730,7 @@ chains.*              Katie Russell (kymara); GPL 2.0+; Stendhal
 suit_of_armor2.png    Daniel Cook; CC BY 3.0; https://opengameart.org/node/11758, http://www.lostgarden.com/2006/07/more-free-game-graphics.html
 sword_rack.png        Katie Russell (kymara); GPL 2.0+; Stendhal (some images from other sources)
 weapons_for_walls.*   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-weapons_rack.png      Katie Russell (kymara); GPL 2.0+; Stendhal (some images from other sources)
+weapons_rack.*        Katie Russell (kymara), durkham, David E. Gervais, Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); GPL 2.0+; Stendhal, https://opengameart.org/node/6622, https://opengameart.org/node/12210
 
 tiled/tileset/item/banners/
 
@@ -961,7 +961,7 @@ hanging_bows.png    David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/t
 longbow.png         David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 power_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 skull_spear.png     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-spear.png           ???; ???; ??? (committed by Nadine Schlonies: 69d1d33)
+spear.png           Jordan Irwin (AntumDeluge); CC0; Stendhal
 spears.png          Jordan Irwin (AntumDeluge); CC0; Stendhal
 steel_arrow.png     David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 swords.png          Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
@@ -992,9 +992,9 @@ boardwalk.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 boat.png                johnnnny?; ???; ??? (committed by kymara: 9c6764a)
 creep_large.*           StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
 creep_med.*             StumpyStrust, Charlie; CC0; http://opengameart.org/node/20435, https://opengameart.org/node/20363
-ents.png                tigertoes; ???; Stendhal made for ent quests
+ents.*                  Kimmo Rundelin (kiheru), bleutailfly; CC BY-SA 3.0; Stendhal
 giant_heart.*           gustavorezende, Lazur URH, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/291622
-hay_cart.png            ???; CC BY-SA 3.0; https://opengameart.org/node/13829
+hay_cart.png            Casper Nilsson (C.Nilsson); CC BY-SA 3.0; https://opengameart.org/content/lpc-cnilsson
 letters.png             Juan; ???; Stendhal
 mine_carts.*            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mine_rails_2.png        Xenodora; CC BY-SA 3.0; https://opengameart.org/node/17247

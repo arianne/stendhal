@@ -4,8 +4,8 @@
 
   <!-- START: northpole-->
 
-  <creature name="elf builder1">
-    <type class="northpole" subclass="elf_builder1" tileid="northpole.png:0"></type>
+  <creature name="elf george">
+    <type class="northpole" subclass="northpole_george" tileid="northpole.png:4"></type>
     <description>You see a poor elf builder who can hardly keep it together with all the nasty little brats running around and making such a racket. Please help him out by getting rid of all those pesky little things.</description>
     <attributes>
       <atk value="40" />
@@ -33,8 +33,8 @@
     </ai>
   </creature>
 
-  <creature name="elf builder2">
-    <type class="northpole" subclass="elf_builder2" tileid="northpole.png:1"></type>
+  <creature name="elf russell">
+    <type class="northpole" subclass="northpole_russell" tileid="northpole.png:7"></type>
     <description>You see another poor elf builder who is having a hard time keeping it together with all the nasty little brats running around and making suck a racket. Please help him out by getting rid of all those pesky little things.</description>
     <attributes>
       <atk value="40" />
@@ -62,9 +62,9 @@
     </ai>
   </creature>
 
-  <creature name="elf guy">
-    <type class="northpole" subclass="elf_guy" tileid="northpole.png:2"/>
-    <description>You see a bright, cheery holday elf who is trying to remember that all kids are angels and can do no wrong.</description>
+  <creature name="elf thomas">
+    <type class="northpole" subclass="northpole_thomas" tileid="northpole.png:9"/>
+    <description>You see a bright, cheery holiday elf who is trying to remember that all kids are angels and can do no wrong.</description>
     <attributes>
       <atk value="40" />
       <def value="20" />
@@ -90,8 +90,8 @@
     </ai>
   </creature>
 
-  <creature name="elf kid1">
-    <type class="northpole" subclass="elf_kid1" tileid="northpole.png:3"/>
+  <creature name="elf andy">
+    <type class="northpole" subclass="northpole_andy" tileid="northpole.png:0"/>
     <description>You see a little sugar-fueled demon that is wrecking havoc wherever he goes, because he helped steal all of Kris Kringle's candy for his stockings, and has spent hours eating it.</description>
     <attributes>
       <atk value="40" />
@@ -121,8 +121,8 @@
       <profile name="patrolling" />
     </ai>
   </creature>
-  <creature name="elf kid2">
-    <type class="northpole" subclass="elf_kid2" tileid="northpole.png:4"/>
+  <creature name="elf arthur">
+    <type class="northpole" subclass="northpole_arthur" tileid="northpole.png:1"/>
   	<description>You see someone who is close to having a sugar coma from all the candy he has eaten.</description>
   	<attributes>
       <atk value="40" />
@@ -153,8 +153,8 @@
       <profile name="patrolling" />
   	</ai>
   </creature>
-  <creature name="elf kid3">
-    <type class="northpole" subclass="elf_kid3" tileid="northpole.png:5"/>
+  <creature name="elf mark">
+    <type class="northpole" subclass="northpole_mark" tileid="northpole.png:5"/>
   	<description>You see someone who wants you to help him steal MORE candy.</description>
   	<attributes>
       <atk value="40" />
@@ -185,9 +185,9 @@
       <profile name="patrolling" />
   	</ai>
   </creature>
-  <creature name="elf kid4">
-    <type class="northpole" subclass="elf_kid4" tileid="northpole.png:6"/>
-    <description>You see a little bully. Be careful, he is coming for you.</description>
+  <creature name="elf penny">
+    <type class="northpole" subclass="northpole_penny" tileid="northpole.png:6"/>
+    <description>You see a little bully. Be careful, she is coming for you.</description>
   	<attributes>
       <atk value="40" />
       <def value="20" />
@@ -217,8 +217,8 @@
       <profile name="patrolling" />
   	</ai>
   </creature>
-  <creature name="elf kid5">
-    <type class="northpole" subclass="elf_kid5" tileid="northpole.png:7"/>
+  <creature name="elf scott">
+    <type class="northpole" subclass="northpole_scott" tileid="northpole.png:8"/>
     <description>You see a rather obnoxious little kid who has had way too much candy.</description>
   	<attributes>
       <atk value="40" />
@@ -249,9 +249,9 @@
       <profile name="patrolling" />
   	</ai>
   </creature>
-  <creature name="elf skater1">
-  	<type class="northpole" subclass="elf_skater1" tileid="northpole.png:8" />
-  	<description>You see a skater that is barely able too stay on his feet.  Nothing fancy.</description>
+  <creature name="elf dorothy">
+  	<type class="northpole" subclass="northpole_dorothy" tileid="northpole.png:2"/>
+  	<description>You see a skater that is barely able too stay on her feet.  Nothing fancy.</description>
   	<attributes>
       <atk value="40" />
       <def value="20" />
@@ -281,8 +281,8 @@
   	</ai>
   </creature>
 
-  <creature name="elf skater2">
-    <type class="northpole" subclass="elf_skater2" tileid="northpole.png:9"/>
+  <creature name="elf eloise">
+    <type class="northpole" subclass="northpole_eloise" tileid="northpole.png:3"/>
     <description>You see a graceful skater.</description>
     <attributes>
       <atk value="40" />

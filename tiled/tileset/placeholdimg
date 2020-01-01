@@ -23,7 +23,6 @@ script = os.path.basename(__file__)
 version = 1.0
 
 argv = tuple(sys.argv[1:])
-argc = len(argv)
 
 os_win32 = os.name == 'nt'
 
@@ -36,8 +35,8 @@ def showDescr():
 ## Prints out instructions for using this script.
 def showUsage():
 	desc_infile = 'Image to be read.'
-	print('\nUsage:\n\t{} <overlay> <infile> <outfile>'.format(script))
-	print('\nArguments:\n\tinfile:  {}\n'.format(desc_infile))
+	print('\nUsage:\n\t{} [-p] <infile> <outfile>'.format(script))
+	print('\nArguments:\n\t-p:      Use alternate placeholder tile for images pending replacement.\n\tinfile:  {}\n'.format(desc_infile))
 
 
 if '--help' in argv or '-h' in argv:
@@ -48,6 +47,13 @@ if '--help' in argv or '-h' in argv:
 if '--version' in argv or '-v' in argv:
 	print(version)
 	sys.exit(0)
+
+pending = False
+if len(argv) > 0 and argv[0] == '-p':
+    pending = True
+    argv = tuple(argv[1:])
+
+argc = len(argv)
 
 
 ## Converts node delimeters for the current system.
@@ -191,7 +197,11 @@ elif argc > 1:
 	showUsage()
 	sys.exit(errno.E2BIG)
 
-overlay = normalizePath(os.path.join(dir_root, 'data/sprites/failsafe.png'))
+if pending:
+    overlay = normalizePath(os.path.join(dir_root, 'data/sprites/failsafe.png'))
+else:
+    overlay = os.path.join(dir_tilesets, 'placehold_tile.png')
+
 infile = normalizePath(argv[0])
 outfile = infile
 

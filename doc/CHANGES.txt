@@ -7,9 +7,8 @@ Changelog
 *world*
 - new enemies
   - amethyst mermaid, emerald mermaid, ruby mermaid, & sapphire mermaid
-  - elf builder1, elf builder2, elf guy, elf kid1, elf kid2, elf kid3,
-    elf kid4, elf kid5, elf skater1, & elf skater2
-  - frog
+  - northpole george, northpole russell, northpole thomas, northpole andy, northpole arthur, northpole mark,
+    northpole penny, northpole mark, northpole dorothy, & northpole eloise
   - legendary ice elemental
   - poison shroom
   - tiny scarab, scarab, & red scarab
@@ -27,7 +26,7 @@ Changelog
   - gumdrops
   - habanero pepper
   - lemondrop
-  - lolipop
+  - lollipop
   - mauve apple
   - peppermint
   - pinto beans
