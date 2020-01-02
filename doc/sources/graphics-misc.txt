@@ -5,8 +5,8 @@ accountcontrol.png           ???; ???; ???
 bag.png                      rg1024, Jordan Irwin (AntumDeluge); CC0; https://openclipart.org/detail/31207
 banner_background.*          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 buddy.png                    Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
-buddy_offline.png            ???; ???; ??? (committed by Miguel: 165ec2333d)
-buddy_online.png             ???; ???; ??? (committed by Miguel: 165ec2333d)
+buddy_offline.png            Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+buddy_online.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 chat.png                     ???; ???; ??? (source: https://sourceforge.net/p/arianne/patches/433/, committed by kymara: 332bb9c0bc)
 danger.*                     Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 forbidden.*                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
