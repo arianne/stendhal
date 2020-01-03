@@ -719,6 +719,12 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 			"I've heard rumor of a newly discovered pit full of snakes somewhere in Ados. But I've never "
 			+ "searched for it myself. That kind of work is better left to adventurers.",
 			getReply(apothecary));
+		en.step(player, "cobra venom");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"Someone who specializes with animals might know how to obtain some. I suggest visiting the "
+			+ "sanctuary in Ados.",
+			getReply(apothecary));
 
 		final String mandragoraResponse = "This is my favorite of all the herbs and one of the most rare. Out past Kalavan there is a "
 				+ "hidden path in the trees. At the end you will find what you are looking for.";

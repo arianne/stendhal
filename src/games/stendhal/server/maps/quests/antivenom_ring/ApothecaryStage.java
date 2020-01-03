@@ -400,6 +400,10 @@ public class ApothecaryStage extends AVRStage {
 				"Heh! This is the ultimate protection against poisoning. Good luck getting one!");
 		*/
 		apothecary.addReply(
+				Arrays.asList("venom", "cobra venom"),
+				"Someone who specializes with animals might know how to obtain some. I suggest visiting the "
+				+ "sanctuary in Ados.");
+		apothecary.addReply(
 				Arrays.asList("gland", "venom gland", "glands", "venom glands"),
 				"Some #snakes have a gland in which their venom is stored.");
 		apothecary.addReply(
