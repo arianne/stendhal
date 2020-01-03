@@ -687,8 +687,14 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "Klaas");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare"
+			"Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare "
 			+ "#kokuda herb. I got to know Klaas very well as a result.",
+			getReply(apothecary));
+		en.step(player, "athor");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+			"You mean you haven't visited Athor? It is a beautiful island. A great place to get away. But "
+			+ "stay away from the cannibals' territory. If they invite you for dinner, you might never make it home.",
 			getReply(apothecary));
 		en.step(player, "ring");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
@@ -710,11 +716,11 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "cobra");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"I've heard rumor newly discovered pit full of snakes somewhere in Ados. But I've never"
+			"I've heard rumor of a newly discovered pit full of snakes somewhere in Ados. But I've never "
 			+ "searched for it myself. That kind of work is better left to adventurers.",
 			getReply(apothecary));
 
-		final String mandragoraResponse = "This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a"
+		final String mandragoraResponse = "This is my favorite of all the herbs and one of the most rare. Out past Kalavan there is a "
 				+ "hidden path in the trees. At the end you will find what you are looking for.";
 
 		en.step(player, "mandragora");
@@ -729,7 +735,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "fairy cake");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures"
+			"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures "
 			+ "could make such angelic food.",
 			getReply(apothecary));
 

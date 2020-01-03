@@ -384,15 +384,6 @@ public class ApothecaryStage extends AVRStage {
 	}
 
 	private void addGeneralResponsesDialogue() {
-		apothecary.addReply(
-				"Klaas",
-				"Oh yes, my good old friend. I used to travel to #Athor quite often to gather the very rare"
-				+ "#kokuda herb. I got to know Klaas very well as a result.");
-		// XXX: should kokuda be added as required ingredient? would make quest a little more difficult
-		apothecary.addReply(
-				"kokuda",
-				"The kokuda is an herb that can only be found inside #Athor Island's labyrinth.");
-
 		// responses to quest related items/ingredients
 		apothecary.addReply(
 				Arrays.asList("ring", "rings"),
@@ -413,16 +404,16 @@ public class ApothecaryStage extends AVRStage {
 				"Some #snakes have a gland in which their venom is stored.");
 		apothecary.addReply(
 				Arrays.asList("snake", "snakes", "cobra", "cobras"),
-				"I've heard rumor newly discovered pit full of snakes somewhere in Ados. But I've never"
+				"I've heard rumor of a newly discovered pit full of snakes somewhere in Ados. But I've never "
 					+ "searched for it myself. That kind of work is better left to adventurers.");
 		apothecary.addReply(
 				Arrays.asList("mandragora", "mandragoras", "root of mandragora", "roots of mandragora",
 						"root of mandragoras", "roots of mandragoras"),
-				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a"
+				"This is my favorite of all the herbs and one of the most rare. Out past Kalavan there is a "
 					+ "hidden path in the trees. At the end you will find what you are looking for.");
 		apothecary.addReply(
 				Arrays.asList("cake", "fairy cake"),
-				"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures"
+				"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures "
 					+ "could make such angelic food.");
 	}
 }
