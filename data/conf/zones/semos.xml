@@ -217,7 +217,6 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     <!-- Portals -->
     <portal x="33" y="13" ref="lab_exit">
       <destination zone="int_apothecary_cabin" ref="lab_entrance" />
-      <attribute name="move.continuous" />
     </portal>
 
     <!-- Clock -->
