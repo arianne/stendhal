@@ -471,7 +471,7 @@ grey_fancy_horizontal.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_long.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_pale.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grey_plain.*               Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-hotdog_stand.png           tigertoes; CC BY-SA 3.0; Stendhal
+hotdog_stand.*             tigertoes, Katie Russell (kymara), bleutailfly, thekingphoenix; GPL 2.0+; Stendhal, https://opengameart.org/node/77345
 long_front_on.png          bleutailfly; OGA BY 3.0; Stendhal
 long_front_on_pale.png     bleutailfly; OGA BY 3.0; Stendhal
 long_side_on_pale.png      bleutailfly; OGA BY 3.0; Stendhal
