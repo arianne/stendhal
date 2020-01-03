@@ -70,9 +70,9 @@ data/sprites/monsters/dark_elf/
 baby_drow.*              Svetlana Kushnariova (Cabbit), olonu, ZigWin, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/97
 dark_elf.*               Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/117, https://opengameart.org/node/72969
 dark_elf_admiral.*       Svetlana Kushnariova (Cabbit), diamonddmgirl, kanaya2529, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/80570
-dark_elf_archer.*        Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVortexGames), SoCay, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/150
+dark_elf_archer.*        Svetlana Kushnariova (Cabbit), Cobra Hubbard (BlueVortexGames), SCay, olonu; CC BY 3.0; https://github.com/arianne/stendhal/issues/150
 dark_elf_captain.png     Svetlana Kushnariova (Cabbit), olonu, Muhammad Amiruddin (Amir027); OGA BY 3.0; https://github.com/arianne/stendhal/issues/123
-dark_elf_elite_archer.*  Svetlana Kushnariova (Cabbit), Nila122, SoCay, olonu; CC BY-SA 3.0; https://github.com/arianne/stendhal/issues/150
+dark_elf_elite_archer.*  Svetlana Kushnariova (Cabbit), Nila122, SCay, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/29293, https://opengameart.org/node/76291, https://github.com/arianne/stendhal/issues/150
 dark_elf_general.*       Svetlana Kushnariova (Cabbit), olonu, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/122, https://opengameart.org/node/72969, https://opengameart.org/node/10878
 dark_elf_knight.*        Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/11152
 dark_elf_master.*        Svetlana Kushnariova (Cabbit), olonu, Andrew Kelley (superjoe), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/116, https://opengameart.org/node/72969, https://opengameart.org/node/17839
