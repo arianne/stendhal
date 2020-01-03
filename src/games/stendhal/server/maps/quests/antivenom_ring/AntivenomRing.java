@@ -79,21 +79,30 @@ public class AntivenomRing extends AbstractQuest {
 		if (player.hasQuest(QUEST_SLOT)) {
 			res.add("I have found the hermit apothecary's lab in Semos Mountain.");
 
-			final String questState = player.getQuest(QUEST_SLOT);
-			if (questState.equals("done")) {
-				res.add("I brought all the items that " + apothecary + " requested.");
-				res.add("He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
-			} else if (questState.equals("rejected")) {
+			final String questState = player.getQuest(QUEST_SLOT, 0);
+			if (questState.equals("rejected")) {
 				res.add("Poison is too dangerous. I do not want to get hurt.");
 			} else {
-				if (questState.startsWith("enhancing;")) {
+				if (questState.equals("mixing") || questState.equals("antivenom") || questState.equals("fusing") || questState.equals("done")) {
 					res.add("I brought all the items that " + apothecary + " requested.");
-					res.add(apothecary + " is enhancing my ring.");
+					if (questState.equals("mixing")) {
+						res.add("He is mixing the antivenom.");
+					} else if (questState.equals("antivenom") || questState.equals("fusing") || questState.equals("done")) {
+						res.add("He created special antivenom mixture");
+						res.add(apothecary + " told me to seek out " + ringmaker + " who could use the antivenom to increase the efficiency of a medicinal ring.");
+						if (questState.equals("fusing")) {
+							res.add(ringmaker + " is applying the antivenom to my ring.");
+						} else if (questState.equals("done")) {
+							res.add(ringmaker + " applied the antivenom to my ring.");
+						}
+					}
 				} else {
-					ItemCollection itemList = new ItemCollection();
-					itemList.addFromString(questState.replace(";", ","));
+					final ItemCollection itemList = new ItemCollection();
+					itemList.addFromString(player.getQuest(QUEST_SLOT).replace(";", ","));
 
-					res.add(apothecary + " has asked me to gather some items. I still need to bring " + apothecary + " " + Grammar.enumerateCollection(itemList.toStringList()) + ".");
+					if (itemList.size() > 0) {
+						res.add("I need to gather the following items to " + apothecary + ": " + Grammar.enumerateCollection(itemList.toStringList()) + ".");
+					}
 				}
 			}
 		}
