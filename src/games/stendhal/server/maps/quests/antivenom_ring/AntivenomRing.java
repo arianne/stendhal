@@ -101,7 +101,7 @@ public class AntivenomRing extends AbstractQuest {
 					itemList.addFromString(player.getQuest(QUEST_SLOT).replace(";", ","));
 
 					if (itemList.size() > 0) {
-						res.add("I need to gather the following items to " + apothecary + ": " + Grammar.enumerateCollection(itemList.toStringList()) + ".");
+						res.add("I need to gather the following items for " + apothecary + ": " + Grammar.enumerateCollection(itemList.toStringList()) + ".");
 					}
 				}
 			}
