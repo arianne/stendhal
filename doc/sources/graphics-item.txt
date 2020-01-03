@@ -194,17 +194,18 @@ crystal*  Iwan Gabovitch (qubodup); CC BY 3.0; http://opengameart.org/node/11013
 
 data/sprites/items/documents/
 
-closed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+closed_envelope.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 coupon.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+envelope.xcf.bz2       Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 ice_scroll.*           Dungeon Crawl Stone Soup, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 license.png            tigertoes; CC BY-SA 3.0; Stendhal
 map.png                Katie Russell (kymara); GPL 2.0; Stendhal
 mapwithgrid.png        Katie Russell (kymara); GPL 2.0; Stendhal
-opened_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+opened_envelope.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 paper.*                Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 recipe.*               Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-sealed_envelope.png    Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
-unsealed_envelope.png  Fernando Miranda Muro (barbanegra)?; ???; ??? (committed by Miguel: 2a54cb4)
+sealed_envelope.png    Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
+unsealed_envelope.png  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 data/sprites/items/drink/
 
