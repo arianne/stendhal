@@ -905,11 +905,8 @@
 		</portal>
 
 		<!-- NPCs -->
-		<!--
-		* Not actually selling anything, yet
-		* No proper dialog, yet.
-		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.DeniranPotionSellerNPC" />
-  		-->
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.potionsshop.PotionsDealerNPC" />
+
 	</zone>
 
 	<zone name="int_deniran_library" file="interiors/deniran/library.tmx">
