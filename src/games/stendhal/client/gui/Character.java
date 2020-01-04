@@ -153,7 +153,7 @@ Inspectable {
 		specialSlots.setVisible(false);
 		content.add(specialSlots);
 
-		panel = createItemPanel(itemClass, store, "back", "data/gui/slot-bag.png");
+		panel = createItemPanel(itemClass, store, "back", "data/gui/slot-portfolio.png");
 		specialSlots.add(panel);
 		panel = createItemPanel(itemClass, store, "belt", "data/gui/slot-key.png");
 		specialSlots.add(panel);
