@@ -46,6 +46,10 @@ public class BuyerAdder {
 	 */
 	private ItemParserResult currentBehavRes;
 
+	public void addBuyer(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour) {
+		addBuyer(npc, buyerBehaviour, true);
+	}
+
 	public void addBuyer(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
 
