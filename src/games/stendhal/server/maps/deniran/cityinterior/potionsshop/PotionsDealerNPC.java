@@ -43,7 +43,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("foo");
+		final SpeakerNPC npc = new SpeakerNPC("Wanda");
 
 		final List<Node> nodes = Arrays.asList(
 				new Node(6, 5),
