@@ -24,9 +24,13 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.PlaySoundAction;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
@@ -61,7 +65,6 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 		npc.addJob("I manage this potion shop. Ask me about my #prices.");
 		npc.addHelp("If you would like to sell something, ask me about my #prices and I will tell you what I #offer.");
 		npc.addQuest("I don't have anything for you to do. But I could tell you my #prices.");
-		npc.addGoodbye("Please come again.");
 
 		npc.add(ConversationStates.ANY,
 				Arrays.asList("price", "prices"),
@@ -88,6 +91,17 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 						raiser.say(sb.toString());
 					}
 				});
+
+		npc.add(ConversationStates.ANY,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				null,
+				new MultipleActions(
+						new PlaySoundAction("kiss-female-01"),
+						new SayTextAction("Please come again.")
+				)
+		);
 
 		npc.setPosition(nodes.get(0).getX(), nodes.get(0).getY());
 		npc.setPath(new FixedPath(nodes, true));

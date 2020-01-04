@@ -93,6 +93,7 @@ horse-whinny-01.*         foxen10; CC0; https://freesound.org/people/foxen10/sou
 horse-whinny-02.*         Jonathan Shaw (InspectorJ); CC BY 3.0; https://freesound.org/people/InspectorJ/sounds/419231/
 imp-laugh-01.*            scorpion67890; CC0; https://freesound.org/people/scorpion67890/sounds/205751/
 keys-1.ogg                Storyteller; GPL
+kiss-female-01.*          guinefurrie; CC BY 3.0; https://freesound.org/people/guinefurrie/sounds/441510/
 kitten-meow-1.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
 kitten-meow-2.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
 kitten-meow-3.*           videog; CC0; http://freesound.org/people/videog/sounds/149191/
