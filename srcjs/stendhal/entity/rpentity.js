@@ -14,6 +14,9 @@
 var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
+// hair should not be drawn with hat indexes in this list
+stendhal.HATS_NO_HAIR = [3, 4];
+
 (function() {
 
 	var HEALTH_BAR_HEIGHT = 6;
@@ -189,6 +192,11 @@ marauroa.rpobjectFactory["rpentity"] = marauroa.util.fromProto(marauroa.rpobject
 		}
 
 		for (const layer of layers) {
+			// hair is not drawn under certain hats/helmets
+			if (layer == "hair" && stendhal.HATS_NO_HAIR.includes(parseInt(outfit["hat"]))) {
+				continue;
+			}
+
 			if (layer in outfit) {
 				const img = this.getOutfitPart(layer, outfit[layer]);
 				if (img) {

@@ -507,13 +507,22 @@ stendhal.ui.OutfitDialog = function() {
 		const ctx = canvas.getContext("2d");
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		var drawHair = true;
+		// hair is not drawn under certain hats/helmets
+		if (stendhal.HATS_NO_HAIR !== null && stendhal.HATS_NO_HAIR !== undefined) {
+			drawHair = !stendhal.HATS_NO_HAIR.includes(parseInt(hatSelector.index));
+		}
+
 		draw(ctx, bodySelector);
 		draw(ctx, dressSelector);
 		draw(ctx, headSelector);
 		draw(ctx, mouthSelector);
 		draw(ctx, eyesSelector);
 		draw(ctx, maskSelector);
-		draw(ctx, hairSelector);
+		if (drawHair) {
+			draw(ctx, hairSelector);
+		}
 		draw(ctx, hatSelector);
 	}
 
@@ -527,7 +536,7 @@ stendhal.ui.OutfitDialog = function() {
 	}
 	stendhal.ui.OutfitDialog.instance = self;
 
-	
+
 	const outfit = marauroa.me["outfit_ext"];
 
 	let entries = outfit.split(",");

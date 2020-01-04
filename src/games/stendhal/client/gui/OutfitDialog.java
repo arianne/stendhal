@@ -12,6 +12,8 @@
 
 package games.stendhal.client.gui;
 
+import static games.stendhal.common.Outfits.HATS_NO_HAIR;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -355,7 +357,28 @@ class OutfitDialog extends JDialog {
 		content.add(column);
 
 		outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever, headRetriever, mouthRetriever,
-				eyesRetriever, maskRetriever, hairRetriever, hatRetriever);
+				eyesRetriever, maskRetriever, hairRetriever, hatRetriever) {
+			@Override
+			public void changed() {
+				// Update image
+				BufferedImage img = getGraphicsConfiguration().createCompatibleImage(PLAYER_WIDTH, PLAYER_HEIGHT);
+				Graphics g = img.getGraphics();
+				g.setColor(Color.WHITE);
+				g.fillRect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT);
+				for (SpriteRetriever retriever : retrievers) {
+					// hair is not drawn under certain hats/helmets
+					if (retriever.equals(hairRetriever) && HATS_NO_HAIR.contains(hat.getIndex())) {
+						continue;
+					}
+
+					retriever.getSprite().draw(g, 0, 0);
+				}
+				g.dispose();
+				ImageIcon icon = new ImageIcon(img);
+				setIcon(icon);
+			}
+		};
+
 		outfitLabel.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(outfitLabel);
 

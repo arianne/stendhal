@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 
+import static games.stendhal.common.Outfits.HATS_NO_HAIR;
 import static games.stendhal.common.Outfits.LAYER_NAMES;
 import static games.stendhal.common.Outfits.RECOLORABLE_OUTFIT_PARTS;
 
@@ -107,6 +108,11 @@ public class OutfitStore {
 		final Graphics g = sprite.getGraphics();
 
 		for (String lname: LAYER_NAMES) {
+			// hair is not drawn under certain hats/helmets
+			if (lname.equals("hair") && HATS_NO_HAIR.contains(layer_map.get("hat"))) {
+				continue;
+			}
+
 			if (RECOLORABLE_OUTFIT_PARTS.contains(lname)) {
 				layer = getLayerSprite(lname, layer_map.get(lname), color);
 			} else {
