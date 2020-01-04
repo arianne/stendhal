@@ -29,7 +29,7 @@ class Portfolio extends SlotWindow implements FeatureChangeListener {
 		// Remember: when you change numbers below, also
 		// correctly match available slot in:
 		// src/games/stendhal/server/entity/RPEntityRPClass.java
-		super("portfolio", 3, 2);
+		super("portfolio", 3, 3);
 		// A panel window; forbid closing
 		setCloseable(false);
 	}

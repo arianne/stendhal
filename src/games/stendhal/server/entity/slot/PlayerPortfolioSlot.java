@@ -44,7 +44,7 @@ public class PlayerPortfolioSlot extends PlayerSlot {
 	}
 
 	/**
-	 * checks whether the entity may access the key ring
+	 * checks whether the entity may access the portfolio
 	 *
 	 * @param entity Entity
 	 * @return true, if the portfolio may be accessed, false otherwise
