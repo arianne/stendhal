@@ -57,6 +57,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 
 		final Map<String, Integer> pricesBuy = new HashMap<String, Integer>() {{
 			put("mandragora", 1500);
+			put("kokuda", 5000);
 			put("toadstool", 60);
 			put("greater poison", 60);
 			put("mega poison", 500);
