@@ -30,12 +30,14 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.condition.PlayerNextToCondition;
 import games.stendhal.server.entity.player.Player;
 
 public class PotionsDealerNPC implements ZoneConfigurator {
@@ -132,6 +134,16 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 						new SayTextAction("Please come again.")
 				)
 		);
+
+		npc.add(ConversationStates.IDLE,
+				"kiss",
+				new PlayerNextToCondition(),
+				ConversationStates.IDLE,
+				null,
+				new MultipleActions(
+						new PlaySoundAction("kiss-female-01"),
+						new NPCEmoteAction("kisses", "on the cheek")
+				));
 
 		npc.setPosition(nodes.get(0).getX(), nodes.get(0).getY());
 		npc.setPath(new FixedPath(nodes, true));
