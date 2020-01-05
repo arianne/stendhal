@@ -78,7 +78,8 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 		npc.addGreeting("Welcome to Deniran's potion shop.");
 		npc.addJob("I manage this potion shop. Ask me about my #prices.");
 		npc.addHelp("If you would like to sell something, ask me about my #prices and I will tell you what I #offer.");
-		npc.addQuest("I don't have anything for you to do. But I could tell you my #prices.");
+		npc.addQuest("I don't have anything for you to do. But I am trying to stock my inventory. If you want to help,"
+				+ " just ask and I'll tell you the #prices I pay for potions and poisons.");
 
 		npc.add(ConversationStates.ANY,
 				Arrays.asList("price", "prices"),
