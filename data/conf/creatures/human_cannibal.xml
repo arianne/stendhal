@@ -127,6 +127,7 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="strategy" params="archer,,dual attack"/>
     </ai>
   </creature>
 
