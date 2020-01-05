@@ -22,6 +22,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -134,6 +135,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 
 		npc.setPosition(nodes.get(0).getX(), nodes.get(0).getY());
 		npc.setPath(new FixedPath(nodes, true));
+		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setOutfit(new Outfit("body=1,head=0,mouth=2,eyes=1,dress=46,mask=1,hair=3"));
 
 		zone.add(npc);
