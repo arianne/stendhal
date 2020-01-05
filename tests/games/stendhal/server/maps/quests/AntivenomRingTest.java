@@ -726,8 +726,8 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 			+ "sanctuary in Ados.",
 			getReply(apothecary));
 
-		final String mandragoraResponse = "This is my favorite of all the herbs and one of the most rare. Out past Kalavan there is a "
-				+ "hidden path in the trees. At the end you will find what you are looking for.";
+		final String mandragoraResponse = "This is my favorite of all the herbs and one of the most rare. There are only a few places "
+				+ "in Faimouni where it grows. Keep a vigilant eye, or you will pass them right up.";
 
 		en.step(player, "mandragora");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());

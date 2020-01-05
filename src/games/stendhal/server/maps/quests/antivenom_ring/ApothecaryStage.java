@@ -414,7 +414,7 @@ public class ApothecaryStage extends AVRStage {
 				Arrays.asList("mandragora", "mandragoras", "root of mandragora", "roots of mandragora",
 						"root of mandragoras", "roots of mandragoras"),
 				"This is my favorite of all the herbs and one of the most rare. There are only a few places "
-				+ " in Faimouni where it grows. Keep a vigilant eye, or you will pass them right up.");
+				+ "in Faimouni where it grows. Keep a vigilant eye, or you will pass them right up.");
 		apothecary.addReply(
 				Arrays.asList("cake", "fairy cake"),
 				"Oh, fairy cakes are the best treat I have ever tasted. Only the most heavenly creatures "
