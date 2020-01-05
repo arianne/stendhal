@@ -31,24 +31,23 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 
 	private void buildNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("D J Smith") {
+			@Override
+			public void createDialog() {
+				addGreeting("Hello, and welcome to the deniran weapon shop.");
+				addJob("I am the local weapons dealer.");
+				addOffer("I need nothing at this time, but come back later I'm sure I'll need something.");
+				addGoodbye();
+			}
 
-		@Override
-		public void createDialog() {
-			addGreeting("Hello, and welcome to the deniran weapon shop.");
-			addJob("I am the local weapons dealer.");
-			addOffer("I need nothing at this time, but come back later I'm sure I'll need something.");
-			addGoodbye();
-		}
-
-		@Override
-		protected void createPath() {
-			final List<Node> nodes = new LinkedList<Node>();
-			nodes.add(new Node(29, 5));
-			nodes.add(new Node(11, 5));
-			setPath(new FixedPath(nodes, true));
-		}
-
+			@Override
+			protected void createPath() {
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(29, 5));
+				nodes.add(new Node(11, 5));
+				setPath(new FixedPath(nodes, true));
+			}
 		};
+
 		npc.setPosition(11, 5);
 		npc.setEntityClass("wellroundedguynpc");
 		npc.setDescription("You see D J Smith, the weapon dealer.");
