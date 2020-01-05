@@ -18,6 +18,7 @@ Changelog
   - Brosoklelo (Semos Mountains)
   - Jameson (Apothecary Lab)
   - Vlamyklela (Kirdney City)
+  - Wanda (Denrian Potions Shop)
   - Zoey (Ados Pet Sanctuary)
 - new food items:
   - candycane
