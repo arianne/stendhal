@@ -26,40 +26,62 @@ import games.stendhal.server.entity.player.Player;
 public class NPCEmoteAction implements ChatAction {
 
 	private final String npcAction;
+	private final String npcActionPost;
 
 	/** Determines if emote action will be directed at player. */
 	private final boolean towardPlayer;
 
 	/**
-	 * Creates a new EmoteAction.
+	 * Creates a new EmoteAction directed toward the player.
 	 *
-	 * @param npcAction text to say as emote
+	 * @param npcAction
+	 * 		Text to say as emote.
 	 */
 	public NPCEmoteAction(final String npcAction) {
 		this.npcAction = npcAction.trim();
+		this.npcActionPost = null;
 		this.towardPlayer = true;
 	}
 
 	/**
-	 * Creates a new EmoteAction that can optionally be directed at the player.
+	 * Creates a new EmoteAction that can optionally be directed toward the player.
 	 *
 	 * @param npcAction
-	 * 			Text to say as emote.
+	 * 		Text to say as emote.
 	 * @param towardPlayer
-	 * 			<code>boolean</code>: If <true>, will be directed at player.
+	 * 		<code>boolean</code>: If <true>, will be directed at player.
 	 */
 	public NPCEmoteAction(final String npcAction, final boolean towardPlayer) {
 		this.npcAction = npcAction.trim();
+		this.npcActionPost = null;
 		this.towardPlayer = towardPlayer;
+	}
+
+	/**
+	 * Creates a new EmoteAction directed toward the player.
+	 *
+	 * @param npcAction
+	 * 		Text to say as emote.
+	 * @param npcActionPost
+	 * 		Second part of emote text after player name.
+	 */
+	public NPCEmoteAction(final String npcAction, final String npcActionPost) {
+		this.npcAction = npcAction.trim();
+		this.npcActionPost = npcActionPost.trim();
+		this.towardPlayer = true;
 	}
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+		final StringBuilder sb = new StringBuilder("!me " + npcAction);
 		if (towardPlayer) {
-			raiser.say("!me " + npcAction + " " + player.getName());
-		} else {
-			raiser.say("!me " + npcAction);
+			sb.append(" " + player.getName());
+			if (npcActionPost != null) {
+				sb.append(" " + npcActionPost);
+			}
 		}
+
+		raiser.say(sb.toString());
 	}
 
 	@Override
