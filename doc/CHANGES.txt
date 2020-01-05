@@ -7,6 +7,7 @@ Changelog
 *world*
 - new enemies
   - amethyst mermaid, emerald mermaid, ruby mermaid, & sapphire mermaid
+  - cannibal warrior
   - northpole george, northpole russell, northpole thomas, northpole andy, northpole arthur, northpole mark,
     northpole penny, northpole mark, northpole dorothy, & northpole eloise
   - legendary ice elemental
