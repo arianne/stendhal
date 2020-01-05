@@ -138,7 +138,7 @@ public class ApothecaryStage extends AVRStage {
 		apothecary.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
-					new NotCondition(new QuestInStateCondition(questName, "antivenom")),
+					new NotCondition(new QuestInStateCondition(questName, "ringmaker")),
 					new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", NOTE_INFOSTRING))
 				),
 				ConversationStates.ATTENDING,
@@ -173,7 +173,7 @@ public class ApothecaryStage extends AVRStage {
 				new QuestActiveCondition(questName),
 				new NotCondition(new QuestInStateCondition(questName, 0, QUEST_STATE_NAME)),
 				new NotCondition(new QuestInStateCondition(questName, 0, RingMakerStage.QUEST_STATE_NAME)),
-				new NotCondition(new QuestInStateCondition(questName, 0, "antivenom")));
+				new NotCondition(new QuestInStateCondition(questName, 0, "ringmaker")));
 
 		// Player asks for quest after it is started
 		apothecary.add(ConversationStates.ATTENDING,
@@ -290,7 +290,7 @@ public class ApothecaryStage extends AVRStage {
 		mixReward.add(new IncreaseXPAction(1000));
 		mixReward.add(new IncreaseKarmaAction(25.0));
 		mixReward.add(new EquipItemAction("antivenom", 1, true));
-		mixReward.add(new SetQuestAction(questName, "antivenom"));
+		mixReward.add(new SetQuestAction(questName, "ringmaker"));
 		mixReward.add(new SetQuestAction(questName + "_extract", null)); // clear sub-quest slot
 
 		apothecary.add(ConversationStates.IDLE,
@@ -310,13 +310,13 @@ public class ApothecaryStage extends AVRStage {
 	 */
 	private void addDoneMixingDialogue() {
 		final ChatCondition missingAntivenom = new AndCondition(
-				new QuestInStateCondition(questName, 0, "antivenom"),
+				new QuestInStateCondition(questName, 0, "ringmaker"),
 				new NotCondition(new PlayerHasItemWithHimCondition("antivenom")));
 
 		apothecary.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(
-				new QuestInStateCondition(questName, 0, "antivenom"),
+				new QuestInStateCondition(questName, 0, "ringmaker"),
 				new PlayerHasItemWithHimCondition("antivenom")
 			),
 			ConversationStates.IDLE,

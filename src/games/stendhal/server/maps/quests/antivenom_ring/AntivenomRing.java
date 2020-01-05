@@ -83,11 +83,11 @@ public class AntivenomRing extends AbstractQuest {
 			if (questState.equals("rejected")) {
 				res.add("Poison is too dangerous. I do not want to get hurt.");
 			} else {
-				if (questState.equals("mixing") || questState.equals("antivenom") || questState.equals("fusing") || questState.equals("done")) {
+				if (questState.equals("mixing") || questState.equals("ringmaker") || questState.equals("fusing") || questState.equals("done")) {
 					res.add("I brought all the items that " + apothecary + " requested.");
 					if (questState.equals("mixing")) {
 						res.add("He is mixing the antivenom.");
-					} else if (questState.equals("antivenom") || questState.equals("fusing") || questState.equals("done")) {
+					} else if (questState.equals("ringmaker") || questState.equals("fusing") || questState.equals("done")) {
 						res.add("He created special antivenom mixture");
 						res.add(apothecary + " told me to seek out " + ringmaker + " who could use the antivenom to increase the efficiency of a medicinal ring.");
 						if (questState.equals("fusing")) {

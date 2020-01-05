@@ -65,7 +65,7 @@ public class RingMakerStage extends AVRStage {
 			ConversationStates.ATTENDING,
 			keywords,
 			new AndCondition(
-				new QuestInStateCondition(questName, "antivenom"),
+				new QuestInStateCondition(questName, "ringmaker"),
 				new NotCondition(new AndCondition(
 					new PlayerHasItemWithHimCondition("antivenom"),
 					new PlayerHasItemWithHimCondition("medicinal ring"),
@@ -82,7 +82,7 @@ public class RingMakerStage extends AVRStage {
 			ConversationStates.ATTENDING,
 			keywords,
 			new AndCondition(
-				new QuestInStateCondition(questName, "antivenom"),
+				new QuestInStateCondition(questName, "ringmaker"),
 				new PlayerHasItemWithHimCondition("antivenom"),
 				new PlayerHasItemWithHimCondition("medicinal ring"),
 				new PlayerHasItemWithHimCondition("money", FEE)
