@@ -32,7 +32,9 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 public class PotionsDealerNPC implements ZoneConfigurator {
@@ -57,9 +59,15 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 			put("mega poison", 500);
 			put("deadly poison", 2000);
 			put("sedative", 200);
+			put("venom gland", 2000);
+		}};
+
+		final Map<String, Integer> pricesSell = new HashMap<String, Integer>() {{
+			put("sedative", 400);
 		}};
 
 		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy));
+		new SellerAdder().addSeller(npc, new SellerBehaviour(pricesSell));
 
 		npc.addGreeting("Welcome to Deniran's potion shop.");
 		npc.addJob("I manage this potion shop. Ask me about my #prices.");
@@ -74,19 +82,33 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+						final int buyCount = pricesBuy.size();
+						final int sellCount = pricesSell.size();
+
 						final StringBuilder sb = new StringBuilder("I buy");
 						int idx = 0;
 						for (final String itemName: pricesBuy.keySet()) {
-							if (idx == pricesBuy.size() - 1) {
+							if (buyCount > 1 && idx == buyCount - 1) {
 								sb.append(" and");
 							}
 							sb.append(" " + Grammar.plural(itemName) + " for " + Integer.toString(pricesBuy.get(itemName)));
-							if (idx < pricesBuy.size() - 1) {
+							if (buyCount > 1 && idx < buyCount - 1) {
 								sb.append(",");
 							}
 							idx++;
 						}
-						sb.append(".");
+						sb.append(". I also sell");
+						idx = 0;
+						for (final String itemName: pricesSell.keySet()) {
+							if (sellCount > 1 && idx == sellCount - 1) {
+								sb.append(" and");
+							}
+							sb.append(" " + Grammar.plural(itemName) + " for " + Integer.toString(pricesSell.get(itemName)));
+							if (sellCount > 1 && idx < sellCount - 1) {
+								sb.append(",");
+							}
+							idx++;
+						}
 
 						raiser.say(sb.toString());
 					}
