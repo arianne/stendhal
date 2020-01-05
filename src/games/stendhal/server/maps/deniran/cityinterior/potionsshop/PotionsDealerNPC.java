@@ -63,6 +63,12 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 		}};
 
 		final Map<String, Integer> pricesSell = new HashMap<String, Integer>() {{
+			put("minor potion", 150);
+			put("potion", 300);
+			put("greater potion", 600);
+			put("mega potion", 1650);
+			put("antidote", 100);
+			put("greater antidote", 150);
 			put("sedative", 400);
 		}};
 
