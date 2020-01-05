@@ -97,6 +97,9 @@ final class PrefixManager
 		register("bottle of ", "bottles of ", "olive oil");
 		register("bottle of ", "bottles of ", "vinegar");
 
+		register("vial of ", "vials of ", "antivenom");
+		register("vial of ", "vials of ", "sedative");
+
 		registerEnd("bottle of ", "bottles of ", "potion");
 		registerEnd("bottle of ", "bottles of ", "poison");
 		registerEnd("bottle of ", "bottles of ", "antidote");

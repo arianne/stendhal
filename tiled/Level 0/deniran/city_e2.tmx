@@ -96,8 +96,8 @@
  <tileset firstgid="1003" name="chimney" tilewidth="32" tileheight="32" tilecount="2" columns="1">
   <image source="../../tileset/building/decoration/chimney.png" width="32" height="64"/>
  </tileset>
- <tileset firstgid="1005" name="caldron_sign" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../tileset/building/decoration/caldron_sign.png" width="32" height="32"/>
+ <tileset firstgid="1005" name="cauldron_sign" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="../../tileset/building/decoration/cauldron_sign.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="1006" name="magician_banner" tilewidth="32" tileheight="32" tilecount="3" columns="3">
   <image source="../../tileset/building/decoration/magician_banner.png" width="96" height="32"/>
