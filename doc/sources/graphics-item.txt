@@ -608,7 +608,7 @@ green_dragon_shield.*         Kimmo Rundelin (kiheru), Hernandack, Jordan (Antum
 lich_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 lion_shield.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 magic_plate_shield.*          Hernandack, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/91222
-mainio_shield.png             ScratchIO; CC0; https://opengameart.org/node/97166
+mainio_shield.png             ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/97166
 mithril_shield.png            tigertoes; CC BY-SA 3.0; Stendhal; from OGA Heather Lee Harvey (Emerald) EmeraldActivities.com & http://opengameart.org/users/emerald
 plate_shield.png              David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 red_shield.png                bleutailfly; OGA BY 3.0; Stendhal
