@@ -75,7 +75,9 @@ public class ApothecaryNPC implements ZoneConfigurator {
 				addReply("Athor",
 						"You mean you haven't visited Athor? It is a beautiful island. A great place to get away. But "
 						+ "stay away from the cannibals' territory. If they invite you for dinner, you might never make it home.");
-				// XXX: should kokuda be added as required ingredient for Antivenom Ring quest? would make it a little more difficult
+				/* this is a required ingredient for Antivenom Ring quest, but reply is added here because Jameson highlights
+				 * keyword "kokuda" even if quest is not active
+				 */
 				addReply("kokuda",
 						"The kokuda is an herb that can only be found inside #Athor Island's labyrinth.");
 			}

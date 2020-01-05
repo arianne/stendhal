@@ -70,7 +70,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private final String subquestName = questName + "_extract";
 	private final String questTrapsKlaas = "traps_for_klaas";
 
-	private final String items_string = "a #'cobra venom', 20 #'fairy cakes', and 2 #'roots of mandragora'";
+	private final String items_string = "a #'cobra venom', 20 #'fairy cakes', a #kokuda, and 2 #'roots of mandragora'";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -495,10 +495,12 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(getReply(apothecary).startsWith("Okay. I still need"));
 
 		PlayerTestHelper.equipWithStackableItem(player, "mandragora", 2);
+		PlayerTestHelper.equipWithStackableItem(player, "kokuda", 1);
 		PlayerTestHelper.equipWithStackableItem(player, "fairy cake", 20);
 
 		assertTrue(player.isEquipped("cobra venom"));
 		assertTrue(player.isEquipped("mandragora", 2));
+		assertTrue(player.isEquipped("kokuda"));
 		assertTrue(player.isEquipped("fairy cake", 20));
 
 		// says has the items
@@ -510,6 +512,9 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "mandragora");
 		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
 		assertFalse(player.isEquipped("mandragora"));
+		en.step(player, "kokuda");
+		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
+		assertFalse(player.isEquipped("kokuda"));
 		en.step(player, "fairy cake");
 		assertEquals("Excellent! Do you have anything else with you?", getReply(apothecary));
 		assertFalse(player.isEquipped("fairy cake"));

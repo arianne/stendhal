@@ -52,8 +52,8 @@ public class ApothecaryStage extends AVRStage {
 	private static final String NOTE_INFOSTRING = "note to apothecary";
 
 	/* items taken to apothecary to create antivenom */
-	private static final String MIX_ITEMS = "cobra venom=1;mandragora=2;fairy cake=20";
-	private static final List<String> MIX_NAMES = Arrays.asList("cobra venom", "mandragora", "fairy cake");
+	private static final String MIX_ITEMS = "cobra venom=1;mandragora=2;kokuda=1;fairy cake=20";
+	private static final List<String> MIX_NAMES = Arrays.asList("cobra venom", "mandragora", "kokuda", "fairy cake");
 
 	// time required to mix the antivenom
 	private static final int MIX_TIME_MINUTES = 30;
