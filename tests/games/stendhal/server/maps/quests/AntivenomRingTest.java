@@ -572,7 +572,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(xp + 1000, player.getXP());
 		assertEquals(karma + 25.0, player.getKarma(), 0);
 		assertTrue(player.isEquipped("antivenom"));
-		assertEquals("antivenom", player.getQuest(questName));
+		assertEquals("ringmaker", player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
 
 		// player has not yet been to see ring maker
@@ -599,7 +599,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 
 		// set quest state to progress with ring maker stage
-		player.setQuest(questName, "antivenom");
+		player.setQuest(questName, "ringmaker");
 
 		// Ognir
 		en = ringmaker.getEngine();
