@@ -57,6 +57,7 @@ public class ZoologistStage extends AVRStage {
 	@Override
 	public void addToWorld() {
 		prepareNPCInfo();
+		prepareResponses();
 		prepareRequestVenom();
 		prepareExtractVenom();
 	}
@@ -79,6 +80,39 @@ public class ZoologistStage extends AVRStage {
 				null);
 	}
 
+	private void prepareResponses() {
+		final String replyVial = "Hmmm... I don't have any here. But maybe you could find one in a laboratory somewhere.";
+		final String replyGland = "I would need the gland of a snake large enough to extract a decent amount.";
+
+		zoologist.add(ConversationStates.ATTENDING,
+				"vial",
+				null,
+				ConversationStates.ATTENDING,
+				replyVial,
+				null);
+
+		zoologist.add(ConversationStates.QUESTION_1,
+				"vial",
+				null,
+				ConversationStates.QUESTION_1,
+				replyVial + " So, do you have the items?",
+				null);
+
+		zoologist.add(ConversationStates.ATTENDING,
+				Arrays.asList("gland", "venom gland"),
+				null,
+				ConversationStates.ATTENDING,
+				replyGland,
+				null);
+
+		zoologist.add(ConversationStates.QUESTION_1,
+				Arrays.asList("gland", "venom gland"),
+				null,
+				ConversationStates.QUESTION_1,
+				replyGland + " So, do you have the items?",
+				null);
+	}
+
 	private void prepareRequestVenom() {
 		// player asks for venom
 		zoologist.add(ConversationStates.ATTENDING,
@@ -88,7 +122,7 @@ public class ZoologistStage extends AVRStage {
 				new QuestActiveCondition(questName),
 				ConversationStates.QUESTION_1,
 				"What's that, you need some venom to create an antivemon? I can extract the venom from a "
-				+ "cobra's venom gland, but I will need a vial to hold it in. Do you have those items?",
+				+ "cobra's #'venom gland', but I will need a #vial to hold it in. Do you have those items?",
 				null);
 
 		zoologist.add(ConversationStates.QUESTION_1,

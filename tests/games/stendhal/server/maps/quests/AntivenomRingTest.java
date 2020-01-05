@@ -400,12 +400,31 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "venomous");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals("I can use my equipment to #extract the poisons from venomous animals.", getReply(zoologist));
+		en.step(player, "vial");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Hmmm... I don't have any here. But maybe you could find one in a laboratory somewhere.", getReply(zoologist));
+		en.step(player, "venom gland");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("I would need the gland of a snake large enough to extract a decent amount.", getReply(zoologist));
 
 		// player asks about venom
 		en.step(player, "extract");
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 		assertEquals("What's that, you need some venom to create an antivemon? I can extract the venom from a "
-				+ "cobra's venom gland, but I will need a vial to hold it in. Do you have those items?",
+				+ "cobra's #'venom gland', but I will need a #vial to hold it in. Do you have those items?",
+				getReply(zoologist));
+
+		en.step(player, "vial");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals(
+				"Hmmm... I don't have any here. But maybe you could find one in a laboratory somewhere."
+				+ " So, do you have the items?",
+				getReply(zoologist));
+		en.step(player, "venom gland");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals(
+				"I would need the gland of a snake large enough to extract a decent amount."
+				+ " So, do you have the items?",
 				getReply(zoologist));
 
 		// player does not have items
