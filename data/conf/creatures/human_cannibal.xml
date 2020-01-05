@@ -104,23 +104,22 @@
     </ai>
   </creature>
 
-<!-- NOT READY
   <creature name="cannibal warrior">
     <type class="human" subclass="cannibal_warrior" tileid="human_cannibal.png:3"/>
     <description>You see a cannibal warrior.</description>
     <attributes>
-      <atk value="???"/>
-      <def value="???"/>
-      <hp value="???"/>
+      <atk value="321"/>
+      <def value="125"/>
+      <hp value="105"/>
       <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
-    <level value="???"/>
-    <experience value="???"/>
-    <respawn value="???"/>
+    <level value="36"/>
+    <experience value="1"/>
+    <respawn value="1450"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="wooden spear" quantity="???" probability="???"/>
+      <item value="wooden spear" quantity="[10,25]" probability="45.0"/>
     </drops>
     <equips>
     </equips>
@@ -130,6 +129,5 @@
       <profile name="human"/>
     </ai>
   </creature>
--->
 
 </creatures>
