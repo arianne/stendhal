@@ -54,6 +54,7 @@ public class WeaponDealerNPC implements ZoneConfigurator  {
 
 		final Map<String, Integer> pricesBuy = new HashMap<String, Integer>() {{
 			put("ugmash", 1200);
+			put("magic cloak", 12000);
 		}};
 
 		new BuyerAdder().addBuyer(npc, new BuyerBehaviour(pricesBuy));
