@@ -643,6 +643,18 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		player.equip("bag", antivenom);
 		player.equip("bag", ring);
 		en.step(player, apothecary.getName());
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		assertEquals(
+			"I can make your medicinal ring stronger, but I need a vial of antivenom."
+			+ " I also require a fee of 1000 money. Do you want to pay that price?",
+			getReply(ringmaker));
+		en.step(player, "no");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("Okay. Let me know if you change your mind.", getReply(ringmaker));
+		en.step(player, apothecary.getName());
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		en.step(player, "yes");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals(
 			"I will get to work immediately infusing your ring with the antivenom. Please come back in 3"
 			+ " days. And be sure to ask for your #'antivenom ring'.",

@@ -16,6 +16,7 @@ import java.util.List;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
@@ -77,7 +78,10 @@ public class RingMakerStage extends AVRStage {
 			+ " I also require a fee of 1000 money.",
 			null);
 
-		// player has items
+		/* player has items
+		 *
+		 * Checked other quests related to Ognir. Using QUESTION_1 state appears to be safe to use here.
+		 */
 		ringmaker.add(
 			ConversationStates.ATTENDING,
 			keywords,
@@ -86,7 +90,16 @@ public class RingMakerStage extends AVRStage {
 				new PlayerHasItemWithHimCondition("antivenom"),
 				new PlayerHasItemWithHimCondition("medicinal ring"),
 				new PlayerHasItemWithHimCondition("money", FEE)
-			),
+				),
+			ConversationStates.QUESTION_1,
+			"I can make your medicinal ring stronger, but I need a vial of antivenom."
+			+ " I also require a fee of 1000 money. Do you want to pay that price?",
+			null);
+
+		ringmaker.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES,
+			new QuestInStateCondition(questName, "ringmaker"),
 			ConversationStates.IDLE,
 			"I will get to work immediately infusing your ring with the antivenom. Please come back in "
 			+ Integer.toString(FUSE_TIME_DAYS) + " days. And be sure to ask for your #'antivenom ring'.",
@@ -96,6 +109,14 @@ public class RingMakerStage extends AVRStage {
 				new DropItemAction("money", 1000),
 				new SetQuestAction(questName, QUEST_STATE_NAME + ";" + Long.toString(System.currentTimeMillis()))
 			));
+
+		ringmaker.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
+			new QuestInStateCondition(questName, "ringmaker"),
+			ConversationStates.ATTENDING,
+			"Okay. Let me know if you change your mind.",
+			null);
 	}
 
 	private void addFusingDialogue() {
