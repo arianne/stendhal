@@ -18,24 +18,43 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.ados.animal_sanctuary.ZoologistNPC;
+import games.stendhal.server.maps.ados.church.HealerNPC;
+import games.stendhal.server.maps.ados.magician_house.WizardNPC;
+import games.stendhal.server.maps.ados.wall.GreeterSoldierNPC;
 import games.stendhal.server.maps.athor.ship.CargoWorkerNPC;
+import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
+import games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC;
+import games.stendhal.server.maps.quests.antivenom_ring.AntivenomRing;
+import games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
+
+	private static final StendhalQuestSystem questSystem = StendhalQuestSystem.get();
+
 	private static final String ZONE_NAME = "testzone";
 
 	private SpeakerNPC klaas;
 
+	private TrapsForKlaas quest;
+	private AntivenomRing avrQuest;
 	private String questName;
+	private String avrQuestName;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -49,17 +68,36 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 		setZoneForPlayer(ZONE_NAME);
 
 		final String npcName = "Klaas";
-		setNpcNames(npcName);
-		addZoneConfigurator(new CargoWorkerNPC(), ZONE_NAME);
+
+		final Map<String, ZoneConfigurator> allNPCs = new HashMap<String, ZoneConfigurator>() {{
+			put(npcName, new CargoWorkerNPC());
+			// these NPCs need to be initialized for activating Antivenom Ring quest
+			put("Jameson",  new ApothecaryNPC());
+			put("Zoey", new ZoologistNPC());
+			put("Ognir", new RingSmithNPC());
+			put("Julius", new GreeterSoldierNPC());
+			put("Valo", new HealerNPC());
+			put("Haizen", new WizardNPC());
+			put("Ortiv Milquetoast", new RetiredTeacherNPC());
+		}};
+
+		setNpcNames(allNPCs.keySet().toArray(new String[allNPCs.size()]));
+
+		for (final ZoneConfigurator configurator: allNPCs.values()) {
+			addZoneConfigurator(configurator, ZONE_NAME);
+		}
 
 		super.setUp();
 
 		klaas = getNPC(npcName);
 
-		// initialize quest
-		final AbstractQuest quest = new TrapsForKlaas();
+		quest = new TrapsForKlaas();
+		avrQuest = new AntivenomRing();
 		questName = quest.getSlotName();
-		quest.addToWorld();
+		avrQuestName = avrQuest.getSlotName();
+
+		// initialize quest
+		questSystem.loadQuest(quest);
 	}
 
 	@Test
@@ -157,31 +195,21 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT, en.getCurrentState());
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		/* FIXME: need to initialize Antivenom Ring quest
-		assertEquals("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward."
-				+ " I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
-				getReply(klaas));
-		*/
-		// FIXME: choosing randomly between two options?
-		//assertEquals("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.", getReply(klaas));
+		assertEquals("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.", getReply(klaas));
 		assertEquals("done", player.getQuest(questName, 0));
 		assertEquals(xp + 1000, player.getXP());
 		assertEquals(karma + 10.0, player.getKarma(), 0);
-		// FIXME: need to initialize Antivenom Ring quest
-		//assertTrue(player.isEquippedWithInfostring("note", "note to apothecary"));
+		assertFalse(player.isEquipped("rodent trap"));
+		assertFalse(player.isEquippedWithInfostring("note", "note to apothecary"));
 
 		xp = player.getXP();
 		karma = player.getKarma();
 
+		en.step(player, "bye");
+		en.step(player, "hi");
 		en.step(player, "apothecary");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
-		/* FIXME: need to initialize Antivenom Ring quest
-		assertEquals(
-				"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
-				+ " There are guards that patrol the city. They see many happenings around the area. Ask around about an"
-				+ " #apothecary.",
-				getReply(klaas));
-		*/
+		assertEquals("Ahoy! Nice to see you in the cargo hold!", getReply(klaas));
 
 		// player asks for quest before cooldown period is up
 		en.step(player, "quest");
@@ -196,5 +224,58 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		assertEquals("antivenom_ring", avrQuestName);
+		assertNull(questSystem.getQuestFromSlot(avrQuestName));
+
+		// reward & dialog are different if Antivenom Ring quest is registered
+		questSystem.loadQuest(avrQuest);
+		if (questSystem.getQuestFromSlot(avrQuestName) != null) {
+			testAVRNote(en);
+		}
+
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+	}
+
+	private void testAVRNote(final Engine en) {
+		player.setQuest(questName, "start");
+		PlayerTestHelper.equipWithStackableItem(player, "rodent trap", 20);
+
+		assertEquals("start", player.getQuest(questName));
+		assertNull(player.getQuest(avrQuestName));
+		assertTrue(player.isEquipped("rodent trap", 20));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.QUEST_ITEM_BROUGHT, en.getCurrentState());
+		assertEquals("Did you bring any traps?", getReply(klaas));
+		en.step(player, "yes");
+		assertEquals("Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward."
+				+ " I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
+				getReply(klaas));
+		assertEquals("done", player.getQuest(questName, 0));
+		assertFalse(player.isEquipped("rodent trap"));
+		assertTrue(player.isEquippedWithInfostring("note", "note to apothecary"));
+
+		// player asks about the apothecary
+		en.step(player, "apothecary");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals(
+				"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know."
+				+ " There are guards that patrol the city. They see many happenings around the area. Ask around about an"
+				+ " #apothecary.",
+				getReply(klaas));
+
+		en.step(player, "bye");
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+
+		// player loses note
+		player.dropWithInfostring("note", "note to apothecary");
+		assertFalse(player.isEquippedWithInfostring("note", "note to apothecary"));
+
+		en.step(player, "hi");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertEquals("You lost the note? Well, I guess I can write you up another, but be careful this time.", getReply(klaas));
+		assertTrue(player.isEquippedWithInfostring("note", "note to apothecary"));
 	}
 }

@@ -42,6 +42,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestRegisteredCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -222,7 +223,9 @@ public class TrapsForKlaas extends AbstractQuest {
 		// brings traps & has already started/completed antivenom ring quest
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
-				new PlayerHasItemWithHimCondition("rodent trap", 20),
+				new AndCondition(
+						new NotCondition(new QuestRegisteredCondition("antivenom_ring")),
+						new PlayerHasItemWithHimCondition("rodent trap", 20)),
 				ConversationStates.ATTENDING,
 				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.",
 				new MultipleActions(reward));
@@ -231,6 +234,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
+						new QuestRegisteredCondition("antivenom_ring"),
 						new PlayerHasItemWithHimCondition("rodent trap", 20),
 						new QuestNotStartedCondition("antivenom_ring")),
 				ConversationStates.ATTENDING,
@@ -252,6 +256,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
+						new QuestRegisteredCondition("antivenom_ring"),
 						new NotCondition(new PlayerHasInfostringItemWithHimCondition("note", "note to apothecary")),
 						new PlayerCanEquipItemCondition("note"),
 						new QuestCompletedCondition(QUEST_SLOT),
