@@ -468,6 +468,25 @@ public class StendhalQuestSystem {
 				return quest;
 			}
 		}
+
+		return null;
+	}
+
+	/**
+	 * gets the IQuest object for a quest.
+	 *
+	 * @param questSlot
+	 * 		Slot name used for quest.
+	 * @return
+	 * 		IQuest or <code>null</code> if it does not exist.
+	 */
+	public IQuest getQuestFromSlot(final String questSlot) {
+		for (final IQuest quest : quests) {
+			if (quest.getSlotName().equals(questSlot)) {
+				return quest;
+			}
+		}
+
 		return null;
 	}
 
