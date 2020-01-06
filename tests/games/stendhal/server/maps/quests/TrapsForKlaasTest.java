@@ -183,6 +183,17 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 				getReply(klaas));
 		*/
 
+		// player asks for quest before cooldown period is up
+		en.step(player, "quest");
+		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
+		assertTrue(getReply(klaas).startsWith("Thanks for the traps. Now the food will be safe. But I may need your help again in"));
+
+		// player asks for quest after cooldown period is up
+		player.setQuest(questName, "done;0");
+		en.step(player, "quest");
+		assertEquals(ConversationStates.QUEST_OFFERED, en.getCurrentState());
+		assertEquals("The rats down here have been getting into the food storage. Would you help me rid us of the varmints?", getReply(klaas));
+
 		en.step(player, "bye");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 	}
