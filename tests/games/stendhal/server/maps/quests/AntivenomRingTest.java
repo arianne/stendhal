@@ -682,6 +682,10 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(xp + 2000, player.getXP());
 		assertEquals(karma + 50.0, player.getKarma(), 0);
 		assertTrue(player.isEquipped("antivenom ring"));
+
+		final Item new_ring = player.getFirstEquipped("antivenom ring");
+		assertEquals(player.getName(), new_ring.getBoundTo());
+
 		assertEquals("done", player.getQuest(questName));
 	}
 
