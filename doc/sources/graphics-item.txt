@@ -444,7 +444,7 @@ data/sprites/items/legs/
 
 black_legs.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by kymara: 775c4eb)
 blue_legs.png             bleutailfly; OGA BY 3.0; Stendhal
-chain_legs.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/ (committed by Miguel: d9791e5)
+chain_legs.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_legs.png            ScratchIO; CC0; https://opengameart.org/node/108448
 dwarvish_legs.*           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 elvish_legs.png           Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
@@ -456,7 +456,7 @@ mithril_legs.png          janay; CC BY-SA 3.0; Stendhal committed by tigertoes
 red_legs.png              bleutailfly; OGA BY 3.0; Stendhal
 shadow_legs.png           Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 stone_legs.*              Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
-studded_legs.png          Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
+studded_legs.*            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 xeno_legs.png             David E. Gervais, bleutailfly; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 
 data/sprites/items/misc/
