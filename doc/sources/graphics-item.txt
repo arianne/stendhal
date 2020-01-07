@@ -27,7 +27,7 @@ data/sprites/items/armor/
 barbarian_armor.png           Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 black_armor.png               Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 blue_armor.png                bleutailfly; OGA BY 3.0; Stendhal
-chain_armor.png               David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
+chain_armor.png               Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_armor.png               ScratchIO; CC0; https://opengameart.org/node/108448
 dress.png                     Katherine Fitch (amaranthia); CC0; https://opengameart.org/node/51660
 dwarvish_armor.png            Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
@@ -93,7 +93,7 @@ data/sprites/items/boots/
 
 black_boots.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
 blue_boots.png             bleutailfly; OGA BY 3.0; Stendhal
-chain_boots.*              Tuomo Untinen (Reemax), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/51347
+chain_boots.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_boots.png            ScratchIO; CC0; https://opengameart.org/node/108448
 darkangels_clan_boots.png  Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal (re-color of elvish_boots)
 elvish_boots.png           Groundhug McHampster (h4mt4r0); GPL 2.0+; Stendhal, https://sourceforge.net/p/arianne/patches/271/
@@ -369,7 +369,7 @@ data/sprites/items/helmet/
 aventail.png                David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
 black_helmet.*              Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
 blue_helmet.png             Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, http://crawl.develz.org/wordpress/
-chain_helmet.png            David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/
+chain_helmet.png            Clint Bellanger, Justin Nichol, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/13879
 chaos_helmet.png            ScratchIO; CC0; https://opengameart.org/node/108448
 elvish_hat.*                Jordan Irwin (AntumDluge); OGA BY 3.0; Stendhal
 enhanced_golden_helmet.png  David E. Gervais; CC BY 3.0; http://pousse.rapiere.free.fr/tome/; edited?
