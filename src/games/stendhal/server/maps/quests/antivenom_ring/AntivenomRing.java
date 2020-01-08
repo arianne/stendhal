@@ -222,7 +222,7 @@ public class AntivenomRing extends AbstractQuest {
 			null);
 
 		hintNPC4.add(ConversationStates.ATTENDING,
-			hintNPC5.getName(),
+			Arrays.asList(hintNPC5.getName(), "Ortiv"),
 			null,
 			ConversationStates.ATTENDING,
 			hintNPC5.getName() + " is a former instructor in alchemy, retired and living in Kirdneh City.",
