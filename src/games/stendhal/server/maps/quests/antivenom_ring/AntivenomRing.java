@@ -88,8 +88,9 @@ public class AntivenomRing extends AbstractQuest {
 					if (questState.equals("mixing")) {
 						res.add("He is mixing the antivenom.");
 					} else if (questState.equals("ringmaker") || questState.equals("fusing") || questState.equals("done")) {
-						res.add("He created special antivenom mixture");
-						res.add(apothecary + " told me to seek out " + ringmaker + " who could use the antivenom to increase the efficiency of a medicinal ring.");
+						res.add("He created a special antivenom mixture");
+						res.add(apothecary + " told me to seek out " + ringmaker + " who could use the antivenom to increase the efficiency of a "
+								+ "medicinal ring. I should ask him about an #'antivenom ring'.");
 						if (questState.equals("fusing")) {
 							res.add(ringmaker + " is applying the antivenom to my ring.");
 						} else if (questState.equals("done")) {
@@ -102,6 +103,8 @@ public class AntivenomRing extends AbstractQuest {
 
 					if (itemList.size() > 0) {
 						res.add("I need to gather the following items for " + apothecary + ": " + Grammar.enumerateCollection(itemList.toStringList()) + ".");
+						res.add(apothecary + " recommended that I visit the pet sanctuary near Ados to find out how I can obtain a "
+								+ Grammar.singular(Grammar.fullForm("cobra venom")) + ".");
 					}
 				}
 			}
