@@ -53,7 +53,7 @@ import games.stendhal.server.util.ItemCollection;
  * <ul>
  * <li>3000 XP (1000 from Jameson & 2000 from Ognir)</li>
  * <li>antivenom ring</li>
- * <li>Karma: 75 (25 from Jameson & 50 from Ognir)</li>
+ * <li>Karma: 205 total (50 (+5 for starting) from Jameson & 150 from Ognir)</li>
  * </ul>
  *
  * REPETITIONS:

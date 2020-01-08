@@ -145,7 +145,7 @@ public class RingMakerStage extends AVRStage {
 			new MultipleActions(
 				new EquipItemAction("antivenom ring", 1, true),
 				new IncreaseXPAction(2000),
-				new SetQuestAndModifyKarmaAction(questName, "done", 50.0)
+				new SetQuestAndModifyKarmaAction(questName, "done", 150.0)
 			));
 	}
 }

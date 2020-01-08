@@ -570,7 +570,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 				getReply(apothecary));
 
 		assertEquals(xp + 1000, player.getXP());
-		assertEquals(karma + 25.0, player.getKarma(), 0);
+		assertEquals(karma + 50.0, player.getKarma(), 0);
 		assertTrue(player.isEquipped("antivenom"));
 		assertEquals("ringmaker", player.getQuest(questName));
 		assertNull(player.getQuest(subquestName));
@@ -680,7 +680,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Your antivenom ring is ready.", getReply(ringmaker));
 
 		assertEquals(xp + 2000, player.getXP());
-		assertEquals(karma + 50.0, player.getKarma(), 0);
+		assertEquals(karma + 150.0, player.getKarma(), 0);
 		assertTrue(player.isEquipped("antivenom ring"));
 
 		final Item new_ring = player.getFirstEquipped("antivenom ring");

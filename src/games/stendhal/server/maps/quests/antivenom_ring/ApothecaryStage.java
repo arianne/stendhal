@@ -288,7 +288,7 @@ public class ApothecaryStage extends AVRStage {
 
 		final List<ChatAction> mixReward = new LinkedList<ChatAction>();
 		mixReward.add(new IncreaseXPAction(1000));
-		mixReward.add(new IncreaseKarmaAction(25.0));
+		mixReward.add(new IncreaseKarmaAction(50.0));
 		mixReward.add(new EquipItemAction("antivenom", 1, true));
 		mixReward.add(new SetQuestAction(questName, "ringmaker"));
 		mixReward.add(new SetQuestAction(questName + "_extract", null)); // clear sub-quest slot
