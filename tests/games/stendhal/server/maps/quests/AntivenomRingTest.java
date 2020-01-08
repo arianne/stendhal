@@ -218,7 +218,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hiding");
 		assertEquals("I'm sorry, I don't have any more information. Perhaps #Haizen would know more.", getReply(npc));
 		en.step(player, "Haizen");
-		assertEquals("Haizen is the Wizard that lives west of here.", getReply(npc));
+		assertEquals("Haizen is the Wizard that lives to the west of Ados City.", getReply(npc));
 
 		npc = getNPC("Haizen");
 		assertNotNull(npc);

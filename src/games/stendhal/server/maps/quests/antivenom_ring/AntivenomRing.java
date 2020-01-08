@@ -195,7 +195,7 @@ public class AntivenomRing extends AbstractQuest {
 			hintNPC4.getName(),
 			null,
 			ConversationStates.ATTENDING,
-			hintNPC4.getName() + " is the Wizard that lives west of here.",
+			hintNPC4.getName() + " is the Wizard that lives to the west of Ados City.",
 			null);
 
 		/* Haizen */
