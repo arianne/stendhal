@@ -99,6 +99,7 @@ final class PrefixManager
 
 		register("vial of ", "vials of ", "antivenom");
 		register("vial of ", "vials of ", "sedative");
+		register("vial of ", "vials of ", "cobra venom");
 
 		registerEnd("bottle of ", "bottles of ", "potion");
 		registerEnd("bottle of ", "bottles of ", "poison");
