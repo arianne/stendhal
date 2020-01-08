@@ -70,7 +70,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 	private final String subquestName = questName + "_extract";
 	private final String questTrapsKlaas = "traps_for_klaas";
 
-	private final String items_string = "a #'cobra venom', 20 #'fairy cakes', a #kokuda, and 2 #'roots of mandragora'";
+	private final String items_string = "a #'vial of cobra venom', 20 #'fairy cakes', a #kokuda, and 2 #'roots of mandragora'";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
