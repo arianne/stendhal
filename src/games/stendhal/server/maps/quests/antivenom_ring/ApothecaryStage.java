@@ -55,8 +55,8 @@ public class ApothecaryStage extends AVRStage {
 	private static final String MIX_ITEMS = "cobra venom=1;mandragora=2;kokuda=1;fairy cake=20";
 	private static final List<String> MIX_NAMES = Arrays.asList("cobra venom", "mandragora", "kokuda", "fairy cake");
 
-	// time required to mix the antivenom
-	private static final int MIX_TIME_MINUTES = 30;
+	// time required (in minutes) to mix the antivenom
+	private static final int MIX_TIME = 30;
 
 	private static final String QUEST_STATE_NAME = "mixing";
 
@@ -253,7 +253,7 @@ public class ApothecaryStage extends AVRStage {
 		ChatAction mixAction = new MultipleActions (
 		new SetQuestAction(questName, QUEST_STATE_NAME + ";" + Long.toString(System.currentTimeMillis())),
 		new SayTextAction("Thank you. I'll get to work on mixing the antivenom right after I enjoy a few of these fairy cakes. Please come back in "
-				+ Integer.toString(MIX_TIME_MINUTES) + " minutes.")
+				+ Integer.toString(MIX_TIME) + " minutes.")
 		);
 
 		/* add triggers for the item names */
@@ -281,10 +281,10 @@ public class ApothecaryStage extends AVRStage {
 				new AndCondition(
 						new GreetingMatchesNameCondition(apothecary.getName()),
 						new QuestStateStartsWithCondition(questName, QUEST_STATE_NAME),
-						new NotCondition(new TimePassedCondition(questName, 1, MIX_TIME_MINUTES))),
+						new NotCondition(new TimePassedCondition(questName, 1, MIX_TIME))),
 				ConversationStates.IDLE,
 				null,
-				new SayTimeRemainingAction(questName, 1, MIX_TIME_MINUTES, "I have not finished mixing the antivenom. Please check back in "));
+				new SayTimeRemainingAction(questName, 1, MIX_TIME, "I have not finished mixing the antivenom. Please check back in "));
 
 		final List<ChatAction> mixReward = new LinkedList<ChatAction>();
 		mixReward.add(new IncreaseXPAction(1000));
@@ -297,7 +297,7 @@ public class ApothecaryStage extends AVRStage {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
 						new QuestInStateCondition(questName, 0, QUEST_STATE_NAME),
-						new TimePassedCondition(questName, 1, MIX_TIME_MINUTES)
+						new TimePassedCondition(questName, 1, MIX_TIME)
 				),
 			ConversationStates.IDLE,
 			"I have finished mixing the antivenom. Ognir is a skilled ring smith. He can infuse the antivenom into rings."

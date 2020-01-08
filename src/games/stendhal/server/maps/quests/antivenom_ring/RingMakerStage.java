@@ -37,7 +37,7 @@ public class RingMakerStage extends AVRStage {
 
 	// time required to fuse the ring
 	private static final int FUSE_TIME_DAYS = 3;
-	private static final int FUSE_TIME_MINUTES = MathHelper.MINUTES_IN_ONE_DAY * FUSE_TIME_DAYS;
+	private static final int FUSE_TIME = MathHelper.MINUTES_IN_ONE_DAY * FUSE_TIME_DAYS;
 
 	public static final String QUEST_STATE_NAME = "fusing";
 
@@ -126,11 +126,11 @@ public class RingMakerStage extends AVRStage {
 			keywords,
 			new AndCondition(
 				new QuestInStateCondition(questName, 0, QUEST_STATE_NAME),
-				new NotCondition(new TimePassedCondition(questName, 1, FUSE_TIME_MINUTES))
+				new NotCondition(new TimePassedCondition(questName, 1, FUSE_TIME))
 			),
 			ConversationStates.ATTENDING,
 			null,
-			new SayTimeRemainingAction(questName, 1, FUSE_TIME_MINUTES, "Your antivenom ring is not ready. Please come back in"));
+			new SayTimeRemainingAction(questName, 1, FUSE_TIME, "Your antivenom ring is not ready. Please come back in"));
 
 		// ring is ready
 		ringmaker.add(
@@ -138,7 +138,7 @@ public class RingMakerStage extends AVRStage {
 			keywords,
 			new AndCondition(
 					new QuestInStateCondition(questName, 0, QUEST_STATE_NAME),
-					new TimePassedCondition(questName, 1, FUSE_TIME_MINUTES)
+					new TimePassedCondition(questName, 1, FUSE_TIME)
 				),
 			ConversationStates.IDLE,
 			"Your antivenom ring is ready.",
