@@ -436,6 +436,11 @@ public final class ShopList {
 		shops.add("buyblack", "black halberd", 30000);
 
 		// ados market
+		shops.add("buyadosarmors", "blue helmet", 900);
+		shops.add("buyadosarmors", "blue boots", 200);
+		shops.add("buyadosarmors", "blue striped cloak", 500);
+		shops.add("buyadosarmors", "blue armor", 13000);
+		shops.add("buyadosarmors", "blue legs", 400);
 		shops.add("buyadosarmors", "blue shield", 900);
 
 		// Athor ferry
