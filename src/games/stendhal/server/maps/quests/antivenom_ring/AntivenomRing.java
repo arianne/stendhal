@@ -90,7 +90,7 @@ public class AntivenomRing extends AbstractQuest {
 					} else if (questState.equals("ringmaker") || questState.equals("fusing") || questState.equals("done")) {
 						res.add("He created a special antivenom mixture");
 						res.add(apothecary + " told me to seek out " + ringmaker + " who could use the antivenom to increase the efficiency of a "
-								+ "medicinal ring. I should ask him about an #'antivenom ring'.");
+								+ "medicinal ring. I should ask him about an antivenom ring.");
 						if (questState.equals("fusing")) {
 							res.add(ringmaker + " is applying the antivenom to my ring.");
 						} else if (questState.equals("done")) {
