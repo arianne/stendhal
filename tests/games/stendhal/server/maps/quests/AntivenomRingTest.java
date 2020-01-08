@@ -566,7 +566,7 @@ public class AntivenomRingTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
 		assertEquals("I have finished mixing the antivenom. Ognir is a skilled ring smith. He can infuse the antivenom into rings."
-				+ " Now I'll finish the rest of my fairy cakes if you dont mind.",
+				+ " Ask him about an #'antivenom ring'. Now I'll finish the rest of my fairy cakes if you dont mind.",
 				getReply(apothecary));
 
 		assertEquals(xp + 1000, player.getXP());

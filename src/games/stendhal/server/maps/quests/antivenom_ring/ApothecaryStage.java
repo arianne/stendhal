@@ -301,7 +301,7 @@ public class ApothecaryStage extends AVRStage {
 				),
 			ConversationStates.IDLE,
 			"I have finished mixing the antivenom. Ognir is a skilled ring smith. He can infuse the antivenom into rings."
-			+ " Now I'll finish the rest of my fairy cakes if you dont mind.",
+			+ " Ask him about an #'antivenom ring'. Now I'll finish the rest of my fairy cakes if you dont mind.",
 			new MultipleActions(mixReward));
 	}
 
