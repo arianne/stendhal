@@ -522,7 +522,7 @@ grass_2.png                  ???; ???; ??? (committed by kymara: 8712df8)
 grass_corners.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 grass_snow.*                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-gravel.png                   ???; ???; ??? (committed by kymara: 9655440)
+gravel.png                   nublet; CC0; https://opengameart.org/node/96514
 green_paving.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_paving_4.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 greenGround2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
