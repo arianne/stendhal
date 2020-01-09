@@ -535,7 +535,7 @@ marble.png                   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mossy_brick_paving.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 mud_patch.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pothole.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-red_paving.png               durkham?, Jordan Irwin (AntumDeluge); ???; ??? (committed by kymara: 1de18c7)
+red_paving.*                 Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/8037
 sand.png                     durkham?; ???; ??? (committed by kymara: 1de18c7)
 sand_1.*                     Rayane Félix (RayaneFLX); CC BY-SA 3.0; https://opengameart.org/node/70104
 sand_2.*                     Rayane Félix (RayaneFLX), Hyptosis, bluecarrot16, Leonard Pabin, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/70104, https://opengameart.org/node/80156, https://opengameart.org/node/47566, https://opengameart.org/node/5712
