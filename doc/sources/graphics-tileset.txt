@@ -513,7 +513,7 @@ brownground2.png             durkham?; ???; ??? (committed by kymara: 500d43a)
 cobbled_paving.png           ???; ???; ??? (committed by kiheru: 234f74d)
 cobblestones.png             n4; CC0; https://opengameart.org/node/44169
 dirt_mounds.*                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-drain.png                    ???; ???; ??? (committed by Astrid Sawatzky: 2bbf9db)
+drain.png                    rubberduck, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/30389
 dry_grass.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earth_edges.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 earth_edges_yellowgreen.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
