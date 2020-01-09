@@ -371,6 +371,8 @@
       <says>
         <sound value="scream-fem-2" />
         <sound value="rattlesnake-1" />
+        <sound value="lamia_hiss-01" />
+        <sound value="lamia_hiss-02" />
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>

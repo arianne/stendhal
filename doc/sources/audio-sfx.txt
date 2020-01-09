@@ -103,6 +103,7 @@ kitten-purr-1.*           Belhene; CC0; http://freesound.org/people/Belhene/soun
 kobold-groan-[01-03].*    shadeslayer99; CC0; https://freesound.org/people/shadeslayer99/sounds/161194/
 kobold-snort-01.*         Bob H; CC BY 3.0; https://www.youtube.com/watch?v=gmFFv-rXLeU
 lamb-[01-02].*            cognito perceptu; CC0; http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
+lamia_hiss-[01-02].*      poots; CC BY 3.0; https://freesound.org/people/poots/sounds/71031/
 laugh-evil-[01-02].ogg    Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81237
 laugh-evil-03.*           klankbeeld; CC BY 3.0; https://freesound.org/people/klankbeeld/sounds/126113/
 laugh-evil-04.*           ShadowFlayer; CC0; https://freesound.org/people/ShadowFlayer/sounds/401605/
