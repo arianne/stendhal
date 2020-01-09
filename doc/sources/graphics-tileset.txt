@@ -616,6 +616,7 @@ ice_2.png       Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 tiled/tileset/ground/rock/
 
 blue_crystal.*       Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
+blue_crystal2.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 gold_crystal.*       Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
 green_crystal.png    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 green_crystal2.*     Chris Fiedler (Chrisdesign), Iwan Gabovitch (qubodup), MrSmiles, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/79572
