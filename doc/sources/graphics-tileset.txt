@@ -1077,9 +1077,7 @@ flower_snow.*           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 flowers_mixed.*         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 foxgloves.*             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 hothouse_flowers.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-leafy_daisy_blue.png    ???; ???; ??? (committed by kymara: 39a0d92)
 leafy_daisy_red.png     ???; ???; ??? (committed by kymara: 39a0d92)
-leafy_daisy_white.png   ???; ???; ??? (committed by kymara: 39a0d92)
 leafy_daisy_yellow.png  ???; ???; ??? (committed by kymara: 39a0d92)
 planted_containers.*    Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 pointed_yellow.png      NoLogoGames; CC BY 4.0; https://opengameart.org/node/78584
